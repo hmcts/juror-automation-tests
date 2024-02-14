@@ -1,0 +1,27 @@
+Feature: JM-3997
+
+  @JurorTransformationMulti @NewSchemaConverted
+  Scenario Outline: Test to mark as undeliverable
+    Given I am on "Bureau" "test"
+
+    And I log in as "<user>"
+
+    Given the juror numbers have not been processed new schema
+      |part_no   | pool_no   | owner |
+      |<part_no> | <pool_no> | 400   |
+
+
+    And "<part_no>" has "NEXT_DATE" as "7 mondays time" new schema
+
+    When the user searches for juror record "<part_no>" from the global search bar
+    And I click the update juror record button
+    And I select the mark as undeliverable radio button
+    Then I click continue on the update juror record screen
+    And I see the juror record updated banner containing "Summons undeliverable"
+    And I see the juror status on the juror record screen has updated to "Undeliverable"
+    And I click the summons reply tab
+    And I see the summons reply status is "SUMMONS NOT RECEIVED"
+
+    Examples:
+      | user          | part_no   | pool_no   |
+      | MODTESTBUREAU | 641500134 | 415170402 |

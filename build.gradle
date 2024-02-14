@@ -1,0 +1,267 @@
+plugins {
+  id 'java-library'
+  id 'org.owasp.dependencycheck' version '9.0.9'
+  id 'jacoco'
+  id 'idea'
+  id 'eclipse'
+  id 'application'
+}
+
+group = 'uk.gov.hmcts'
+version = '0.0.1'
+
+java {
+  toolchain {
+    languageVersion = JavaLanguageVersion.of(17)
+  }
+}
+
+tasks.withType(JavaCompile) {
+  options.compilerArgs << "-Xlint:unchecked" << "-Werror"
+}
+
+// https://github.com/gradle/gradle/issues/16791
+tasks.withType(JavaExec).configureEach {
+  javaLauncher.set(javaToolchains.launcherFor(java.toolchain))
+}
+
+repositories {
+  mavenLocal()
+  mavenCentral()
+  maven { url 'https://jitpack.io' }
+}
+
+dependencies {
+  implementation 'log4j:log4j:1.2.17'
+  implementation 'org.slf4j:slf4j-api:1.7.5'
+  implementation 'org.slf4j:slf4j-log4j12:1.7.5'
+
+  implementation 'org.seleniumhq.selenium:selenium-java:4.13.0'
+
+  testImplementation 'io.github.prashant-ramcharan:courgette-jvm:6.10.0'
+
+  implementation 'org.apache.httpcomponents:httpclient:4.5.14'
+  implementation 'org.apache.httpcomponents:httpcore:4.4.16'
+
+  testImplementation 'io.cucumber:cucumber-picocontainer:7.14.0'
+
+  implementation 'io.cucumber:cucumber-junit:7.14.0'
+
+  testImplementation 'io.cucumber:cucumber-jvm-deps:1.0.6'
+
+  testImplementation 'io.cucumber:cucumber-core:7.14.0'
+
+  testImplementation 'io.cucumber:cucumber-java:7.14.0'
+  implementation 'org.hamcrest:hamcrest-core:2.2'
+
+  implementation group: 'commons-io', name: 'commons-io', version: '1.3.+'
+  implementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.10.0'
+
+  implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.+'
+  implementation group: 'net.sf.opencsv', name: 'opencsv', version: '2.+'
+
+  implementation group: 'com.codeborne', name: 'phantomjsdriver', version: '1.2.1'
+
+  implementation group: 'org.apache.chemistry.opencmis', name: 'chemistry-opencmis-client-impl', version: '1.1.+'
+
+  implementation group: 'org.postgresql', name: 'postgresql', version: '42.6.0'
+
+  implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.8.1'
+}
+
+// task features(type: Test, dependsOn: testClasses) {
+// 	if (project.hasProperty("envName")){
+// 			println "Received Environment Variable =>" + envName
+// 			systemProperty "envName", project.getProperty("envName")
+// 		}
+
+// 	if (project.hasProperty("envDriver")){
+// 		println "Received Driver Variable =>" + envDriver
+// 		systemProperty "envDriver", project.getProperty("envDriver")
+// 	}
+
+//     include '**/TestRunner_Features.class'
+
+//     outputs.upToDateWhen { false }
+// }
+
+// task regression(type: Test, dependsOn: testClasses) {
+// 	if (project.hasProperty("envName")){
+// 			println "Received Environment Variable =>" + envName
+// 			systemProperty "envName", project.getProperty("envName")
+// 		}
+
+// 	if (project.hasProperty("envDriver")){
+// 		println "Received Driver Variable =>" + envDriver
+// 		systemProperty "envDriver", project.getProperty("envDriver")
+// 	}
+
+//     include '**/TestRunner_Regression.class'
+
+//     outputs.upToDateWhen { false }
+// }
+
+// task smoketest(type: Test, dependsOn: testClasses) {
+// 	if (project.hasProperty("envName")){
+// 		println "Received Environment Variable =>" + envName
+// 		systemProperty "envName", project.getProperty("envName")
+// 	}
+
+// 	if (project.hasProperty("envDriver")){
+// 		println "Received Driver Variable =>" + envDriver
+// 		systemProperty "envDriver", project.getProperty("envDriver")
+// 	}
+
+//     include '**/TestRunner_SmokeTest.class'
+
+//     outputs.upToDateWhen { false }
+// }
+
+// task dryRunner(type: Test, dependsOn: testClasses) {
+
+// 	 include '**/TestRunner_ALL_DryRun.class'
+
+// 	 outputs.upToDateWhen { false }
+// }
+
+// task sampleTestRunner(type: Test, dependsOn: testClasses) {
+
+// 	 include '**/aSampleTestRunner.class'
+
+// 	 outputs.upToDateWhen { false }
+// }
+
+// task expenses(type: Test, dependsOn: testClasses) {
+// 	if (project.hasProperty("envName")){
+// 		println "Received Environment Variable =>" + envName
+// 		systemProperty "envName", project.getProperty("envName")
+// 	}
+
+// 	if (project.hasProperty("envDriver")){
+// 		println "Received Driver Variable =>" + envDriver
+// 		systemProperty "envDriver", project.getProperty("envDriver")
+// 	}
+
+//     include '**/TestRunner_Expenses.class'
+
+//     outputs.upToDateWhen { false }
+// }
+
+// task regressionsingle(type: Test, dependsOn: testClasses) {
+// 	if (project.hasProperty("envName")){
+// 		println "Received Environment Variable =>" + envName
+// 		systemProperty "envName", project.getProperty("envName")
+// 	}
+
+// 	if (project.hasProperty("envDriver")){
+// 		println "Received Driver Variable =>" + envDriver
+// 		systemProperty "envDriver", project.getProperty("envDriver")
+// 	}
+
+//     include '**/TestRunner_RegressionSingle.class'
+
+//     outputs.upToDateWhen { false }
+// }
+
+// task shakedown(type: Test, dependsOn: testClasses) {
+// 	if (project.hasProperty("envName")){
+// 		println "Received Environment Variable =>" + envName
+// 		systemProperty "envName", project.getProperty("envName")
+// 	}
+
+// 	if (project.hasProperty("envDriver")){
+// 		println "Received Driver Variable =>" + envDriver
+// 		systemProperty "envDriver", project.getProperty("envDriver")
+// 	}
+
+// 	include '**/TestRunner_Shakedown.class'
+
+// 	outputs.upToDateWhen { false }
+// }
+
+// task regressionwelsh(type: Test, dependsOn: testClasses) {
+// 	if (project.hasProperty("envName")) {
+// 		println "Received Environment Variable =>" + envName
+// 		systemProperty "envName", project.getProperty("envName")
+// 	}
+
+// 	if (project.hasProperty("envDriver")) {
+// 		println "Received Driver Variable =>" + envDriver
+// 		systemProperty "envDriver", project.getProperty("envDriver")
+// 	}
+
+// 	include '**/TestRunner_RegressionWelsh.class'
+
+// 	outputs.upToDateWhen { false }
+
+// task jurortransformation(type: Test, dependsOn: testClasses) {
+// 	if (project.hasProperty("envName")) {
+// 		println "Received Environment Variable =>" + envName
+// 		systemProperty "envName", project.getProperty("envName")
+// 	}
+
+// 	if (project.hasProperty("envDriver")) {
+// 		println "Received Driver Variable =>" + envDriver
+// 		systemProperty "envDriver", project.getProperty("envDriver")
+// 	}
+
+// 	include '**/TestRunner_JurorTransformation.class'
+
+// 	outputs.upToDateWhen { false }
+// 	}
+
+// task jurortransformationmulti(type: Test, dependsOn: testClasses) {
+// 	if (project.hasProperty("envName")) {
+// 		println "Received Environment Variable =>" + envName
+// 		systemProperty "envName", project.getProperty("envName")
+// 	}
+
+// 	if (project.hasProperty("envDriver")) {
+// 		println "Received Driver Variable =>" + envDriver
+// 		systemProperty "envDriver", project.getProperty("envDriver")
+// 	}
+
+// 	include '**/TestRunner_JurorTransformationMulti.class'
+
+// 	outputs.upToDateWhen { false }
+// 	}
+
+// 	task jurortransformationwip(type: Test, dependsOn: testClasses) {
+// 		if (project.hasProperty("envName")) {
+// 			println "Received Environment Variable =>" + envName
+// 			systemProperty "envName", project.getProperty("envName")
+// 		}
+
+// 		if (project.hasProperty("envDriver")) {
+// 			println "Received Driver Variable =>" + envDriver
+// 			systemProperty "envDriver", project.getProperty("envDriver")
+// 		}
+
+// 		include '**/TestRunner_JurorTransformationWIP.class'
+
+// 		outputs.upToDateWhen { false }
+// 	}
+
+// 	task newschemaconverted(type: Test, dependsOn: testClasses) {
+// 		if (project.hasProperty("envName")) {
+// 			println "Received Environment Variable =>" + envName
+// 			systemProperty "envName", project.getProperty("envName")
+// 		}
+
+// 		if (project.hasProperty("envDriver")) {
+// 			println "Received Driver Variable =>" + envDriver
+// 			systemProperty "envDriver", project.getProperty("envDriver")
+// 		}
+
+// 		include '**/TestRunner_NewSchemaConverted.class'
+
+// 		outputs.upToDateWhen { false }
+// 	}
+// }
+task functional(type: Test, dependsOn: testClasses) {
+  systemProperty "envName", System.getenv("envName")
+  systemProperty "envDriver", System.getenv("envDriver")
+  include '**/TestRunner_SmokeTest.class'
+  include '**/TestRunner_Shakedown.class'
+  outputs.upToDateWhen { false }
+}

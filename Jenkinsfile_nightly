@@ -1,0 +1,89 @@
+#!groovy
+properties([
+  // H allow predefined but random minute see https://en.wikipedia.org/wiki/Cron#Non-standard_characters
+  pipelineTriggers([cron('H 08 * * 1-5')]),
+  parameters([
+    choice(choices: ['chrome', 'firefox', 'msedge'], name: 'Browser'),
+    choice(choices: ['stg', 'test', 'demo', 'ithc'], name: 'EnvironmentChoice')
+  ])
+])
+
+@Library("Infrastructure") 
+
+import uk.gov.hmcts.contino.GradleBuilder
+
+def type = "java"
+def product = "juror"
+def component = "automation-tests"
+
+def secrets = [
+  'juror-stg': [
+    secret('api-POSTGRES-USER', 'DATABASE_STG_USERNAME'),
+    secret('api-POSTGRES-PASS', 'DATABASE_STG_PASSWORD'),
+    secret('automation-tests-modtestbureau', 'MODTESTBUREAU_PASSWORD'), 
+    secret('automation-tests-modtestcourt', 'MODTESTCOURT_PASSWORD'),
+    secret('automation-tests-system', 'SYSTEM_PASSWORD'),
+    secret('automation-tests-sjouser', 'SJOUSER_PASSWORD'),
+    secret('automation-tests-sjouser1', 'SJOUSER1_PASSWORD'),
+    secret('automation-tests-aramis1', 'ARAMIS1_PASSWORD'),
+    secret('automation-tests-cpass', 'CPASS_PASSWORD'),
+  ],
+  'juror-test': [
+    secret('api-POSTGRES-USER', 'DATABASE_TEST_USERNAME'),
+    secret('api-POSTGRES-PASS', 'DATABASE_TEST_PASSWORD'),
+    secret('automation-tests-modtestbureau', 'MODTESTBUREAU_PASSWORD'), 
+    secret('automation-tests-modtestcourt', 'MODTESTCOURT_PASSWORD'),
+    secret('automation-tests-system', 'SYSTEM_PASSWORD'),
+    secret('automation-tests-sjouser', 'SJOUSER_PASSWORD'),
+    secret('automation-tests-sjouser1', 'SJOUSER1_PASSWORD'),
+    secret('automation-tests-aramis1', 'ARAMIS1_PASSWORD'),
+    secret('automation-tests-cpass', 'CPASS_PASSWORD'),
+  ],
+  'juror-demo': [
+    secret('api-POSTGRES-USER', 'DATABASE_DEMO_USERNAME'),
+    secret('api-POSTGRES-PASS', 'DATABASE_DEMO_PASSWORD'),
+    secret('automation-tests-modtestbureau', 'MODTESTBUREAU_PASSWORD'), 
+    secret('automation-tests-modtestcourt', 'MODTESTCOURT_PASSWORD'),
+    secret('automation-tests-system', 'SYSTEM_PASSWORD'),
+    secret('automation-tests-sjouser', 'SJOUSER_PASSWORD'),
+    secret('automation-tests-sjouser1', 'SJOUSER1_PASSWORD'),
+    secret('automation-tests-aramis1', 'ARAMIS1_PASSWORD'),
+    secret('automation-tests-cpass', 'CPASS_PASSWORD'),
+  ],
+  'juror-ithc': [
+    secret('api-POSTGRES-USER', 'DATABASE_ITHC_USERNAME'),
+    secret('api-POSTGRES-PASS', 'DATABASE_ITHC_PASSWORD'),
+    secret('automation-tests-modtestbureau', 'MODTESTBUREAU_PASSWORD'), 
+    secret('automation-tests-modtestcourt', 'MODTESTCOURT_PASSWORD'),
+    secret('automation-tests-system', 'SYSTEM_PASSWORD'),
+    secret('automation-tests-sjouser', 'SJOUSER_PASSWORD'),
+    secret('automation-tests-sjouser1', 'SJOUSER1_PASSWORD'),
+    secret('automation-tests-aramis1', 'ARAMIS1_PASSWORD'),
+    secret('automation-tests-cpass', 'CPASS_PASSWORD'),
+  ],
+]
+
+static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
+  [$class     : 'AzureKeyVaultSecret',
+   secretType : 'Secret',
+   name       : secretName,
+   version    : '',
+   envVariable: envVar
+  ]
+}
+
+GradleBuilder builder = new GradleBuilder(this, product)
+
+withNightlyPipeline(type, product, component) {
+  loadVaultSecrets(secrets)
+  enableFullFunctionalTest()
+  enableSlackNotifications('#juror-builds')
+
+  env.envName = params.EnvironmentChoice
+  env.envDriver = params.Browser
+
+  after('functionalTest') {
+    steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'build/reports/tests/**/*.html'
+    steps.archiveArtifacts allowEmptyArchive: true, artifacts: '**/cucumber.json'
+  }
+}

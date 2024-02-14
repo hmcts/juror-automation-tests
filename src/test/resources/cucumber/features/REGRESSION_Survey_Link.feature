@@ -1,0 +1,135 @@
+Feature: Regression Survey_Link
+
+@Regression
+Scenario Outline: Survey Link 1st Party Eng
+	
+	Given I am on "Public" "juror-test01"
+	Given the juror numbers have not been processed
+		| part_no 	| pool_no 	| owner |
+		| <part_no> |<pool_no>	| 400 	|
+		
+	And "<part_no>" has "LNAME" as "<last_name>"
+	And "<part_no>" has "RET_DATE" as "5 mondays time"
+	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
+	And "<part_no>" has "ZIP" as "<postcode>"
+	
+	And I set the radio button to "I am replying for myself"
+	And I press the "Continue" button
+	
+	When I set "9-digit juror number" to "<part_no>"
+	And I set "Juror last name" to "<last_name>"
+	And I set "Juror postcode" to "<postcode>"
+	And I press the "Continue" button
+	
+	#name
+	
+	Then I see "Is the name we have for you correct?" on the page
+	
+	And I see "Give feedback (opens in a new window or tab)" on the page
+	And I click on the "Give feedback (opens in a new window or tab)" link
+	And I switch to the new window
+#	Then I see "Were you able to do what you needed to do today?" on the page
+	And I see "https://www.smartsurvey.co.uk/s/DL1RCF/" in the URL
+	
+	
+Examples:
+	|part_no	|last_name		|postcode	| email 	| pool_no	|
+	|641500119	|LNAMEONEONENINE|CH1 2AN	|a@eeee.com	|415170402	|
+	
+@Regression
+Scenario Outline: Survey Link 3rd Party Eng
+	
+	Given I am on "Public" "juror-test01"
+	Given the juror numbers have not been processed
+		|part_no 	|pool_no 	|owner |
+		|<part_no> |<pool_no>	|400 	|
+		
+	And "<part_no>" has "LNAME" as "<last_name>" 
+	And "<part_no>" has "RET_DATE" as "5 mondays time"
+	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
+	And "<part_no>" has "ZIP" as "<postcode>"
+	
+	And I set the radio button to "I am replying for someone else"
+	And I press the "Continue" button
+	Then I see "Their juror details" on the page
+	
+	When I set "9-digit juror number" to "<part_no>"
+	When I set "Juror last name" to "<last_name>"
+	When I set "Juror postcode" to "<postcode>"
+	And I press the "Continue" button
+	Then I see "What is your name?" on the page
+	
+	And I see "Give feedback (opens in a new window or tab)" on the page
+	And I click on the "Give feedback (opens in a new window or tab)" link
+#	And I switch to the new window
+#	Then I see "Were you able to do what you needed to do today?" on the page
+#	And I see "https://www.smartsurvey.co.uk/s/DL1RCF/" in the URL
+	
+Examples:
+	|part_no	|last_name		|postcode	|email 		|pool_no	|
+	|645700919	|LNAMEONEONENINE|CH1 2AN	|a@eeee.com	|457170501	|
+	
+@RegressionWelsh
+Scenario Outline: Survey Link 1st Party Welsh
+	
+	Given I am on the welsh version of "Public" "juror-test01"
+	Given the juror numbers have not been processed
+		| part_no 	| pool_no 	| owner |
+		| <part_no> |<pool_no>	| 400 	|
+	
+	And "<part_no>" has "LNAME" as "<last_name>" 
+	And "<part_no>" has "RET_DATE" as "5 mondays time"
+	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
+	And "<part_no>" has "ZIP" as "<postcode>"
+
+	And I set the radio button to "n ymateb dros fy hun"
+	And I press the "Parhau" button
+	Then I see "Eich manylion rheithiwr" on the page
+	
+	When I set "Rhif rheithiwr" to "<part_no>"
+	When I set "Cyfenw" to "<last_name>"
+	When I set "Cod post Rheithiwr" to "<postcode>"
+	And I press the "Parhau" button
+	Then I see "A yw'r enw sydd gennym ar eich cyfer chi yn gywir?" on the page
+	
+	And I see "Give feedback (opens in a new window or tab)" on the page
+	And I click on the "Give feedback (opens in a new window or tab)" link
+#	And I switch to the new window
+#	Then I see "Were you able to do what you needed to do today?" on the page
+#	And I see "https://www.smartsurvey.co.uk/s/DL1RCF/" in the URL
+	
+Examples:
+	|part_no	|last_name		|postcode	|email 		|pool_no	|
+	|645700927	|LNAMEONEONENINE|CH1 2AN	|a@eeee.com	|457170501	|
+
+@RegressionWelsh
+Scenario Outline: Survey Link 3rd Party Welsh
+	
+	Given I am on the welsh version of "Public" "juror-test01"
+	Given the juror numbers have not been processed
+		| part_no 	| pool_no 	| owner |
+		| <part_no> |<pool_no>	| 400 	|
+		
+	And "<part_no>" has "LNAME" as "<last_name>" 
+	And "<part_no>" has "RET_DATE" as "5 mondays time"
+	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
+	And "<part_no>" has "ZIP" as "<postcode>"
+	
+	And I set the radio button to "Rwy'n ymateb ar ran rhywun arall"
+	And I press the "Parhau" button
+	
+	When I set "Rhif rheithiwr" to "<part_no>"
+	When I set "Cyfenw" to "<last_name>"
+	When I set "Cod post Rheithiwr" to "<postcode>"
+	And I press the "Parhau" button
+	
+	And I see "Give feedback (opens in a new window or tab)" on the page
+	And I click on the "Give feedback (opens in a new window or tab)" link
+#	And I switch to the new window
+#	Then I see "Were you able to do what you needed to do today?" on the page
+#	And I see "https://www.smartsurvey.co.uk/s/DL1RCF/" in the URL
+	
+Examples:
+	|part_no	|last_name		|postcode	|email 		|pool_no	|
+	|645700924	|LNAMEONEONENINE|CH1 2AN	|a@eeee.com	|457170501	|
+	
