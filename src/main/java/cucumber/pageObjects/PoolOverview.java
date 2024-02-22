@@ -51,6 +51,15 @@ public class PoolOverview {
     @FindBy(xpath = "//div[@class='bullet required']/../span")
     WebElement numberOfJurorsRequested;
 
+    @FindBy(xpath = "//span[contains(text(),'Jurors needed')]//ancestor::div/span")
+    WebElement numberOfJurorsRequiredCourtOverview;
+
+    @FindBy(xpath = "//span[contains(text(),'Jurors requested from Bureau')]//ancestor::div/span")
+    WebElement numberOfJurorsRequestedCourtOverview;
+
+    @FindBy(xpath = "//span[contains(text(),'Court deferrals used')]//ancestor::div/span")
+    WebElement numberOfCourtDeferralsUsed;
+
     @FindBy(xpath = "//div[@class='bullet available']/following-sibling::span[@class='amount']")
     WebElement numberOfJurorsConfirmed;
 
@@ -122,6 +131,16 @@ public class PoolOverview {
         return numberOfJurorsRequested.getText();
     }
 
+    public String getNumberOfJurorsRequestedCourtOverview() {
+        log.info("Getting number of jurors requested");
+        return numberOfJurorsRequestedCourtOverview.getText();
+    }
+
+    public String getNumberOfCourtDeferralsUsed() {
+        log.info("Getting number of jurors requested");
+        return numberOfCourtDeferralsUsed.getText();
+    }
+
     public String getNumberOfJurorsConfirmed() {
         log.info("Getting number of jurors confirmed");
         return numberOfJurorsConfirmed.getText();
@@ -150,6 +169,11 @@ public class PoolOverview {
     public String getNumberOfJurorsRequired() {
         log.info("Getting number of jurors required");
         return numberOfJurorsRequested.getText();
+    }
+
+    public String getNumberOfJurorsRequiredCourtOverview() {
+        log.info("Getting number of jurors required");
+        return numberOfJurorsRequestedCourtOverview.getText();
     }
 
     public String getCurrentPoolSize() {

@@ -23,6 +23,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -428,7 +430,8 @@ public class NavigationShared {
     }
     public NavigationShared check_Jurorcheckbox(String Juror_no) {
         try {
-            WebElement checkbox = driver.findElement(By.xpath("//input[@value='" + Juror_no + "']"));
+            String checkboxXPath = "//input[@name='selectedJurors' and @value='" + Juror_no + "']";
+            WebElement checkbox = driver.findElement(By.xpath(checkboxXPath));
 
             log.info("Checkbox " + Juror_no + " checked:" + checkbox.isSelected());
             checkbox.click();
@@ -1936,6 +1939,18 @@ public class NavigationShared {
     @FindBy(id = "serviceStartDate")
     WebElement serviceStartDate;
 
+    @FindBy(xpath = "//*[@id=\"messageTemplateForm\"]/div[2]")
+    WebElement messageTemplate;
+
+    @FindBy(name = "selectMethod")
+    WebElement methodDropdown;
+
+    @FindBy(className = "moj-banner__message")
+    WebElement messageBanner;
+
+    @FindBy(id = "nextDueAtCourtDate")
+    WebElement nextDueAtCourtDate;
+
 
     public void enterNewDate(String attDateSequence, final String day, final String month, final String year) {
         log.info("Entering new date");
@@ -2044,6 +2059,16 @@ public class NavigationShared {
                 newAttendanceDateField.clear();
                 newAttendanceDateField.sendKeys(mondayDateValue);
                 break;
+
+            case "Attendance date for message":
+                newAttendanceDateField.clear();
+                newAttendanceDateField.sendKeys(mondayDateValue);
+                break;
+
+            case "Next due at court":
+                nextDueAtCourtDate.clear();
+                nextDueAtCourtDate.sendKeys(mondayDateValue);
+                break;
         }
     }
     public void appendURL(String uRL) {
@@ -2101,4 +2126,44 @@ public class NavigationShared {
         log.info("Getting jurors check in label");
         return JurorCheckedInLabel.getText();
     }
+    public boolean seeMessageTemplate() {
+        return messageTemplate.isDisplayed();
+    }
+
+    public void selectFromMessageMethodDropdown(String methodType, String jurorNumber) {
+        boolean found = false;
+        waitForPageLoad(2);
+
+        Set<String> messageType = new HashSet<>();
+
+        while (true) {
+            WebElement table = driver.findElement(By.id("messageJurorsTable"));
+
+            List<WebElement> rows = table.findElements(By.tagName("tr"));
+            WebElement rowWithJurorNumber = null;
+            for (WebElement row : rows) {
+                if (row.getText().contains(jurorNumber)) {
+                    rowWithJurorNumber = row;
+                    found = true;
+                    break;
+                }
+            }
+            if (found) {
+                WebElement dropdown = rowWithJurorNumber.findElement(By.name("selectMethod"));
+                Select select = new Select(dropdown);
+
+                if (!messageType.contains(methodType)) {
+                    WebElement option = dropdown.findElement(By.xpath(".//option[text()='" + methodType + "']"));
+                    option.click();
+                    messageType.add(methodType);
+                    break;
+                }
+            } else {
+                WebElement nextPageLink = driver.findElement(By.className("govuk-pagination__next"));
+                nextPageLink.click();
+            }
+        }
+    }
+
+    public String messageSentBanner() { return messageBanner.getText();}
 }

@@ -194,9 +194,9 @@ public class StepDef_DatabaseNewSchema {
             String owner = list.get(i).get("owner");
 
             DBTNSD.cleanTestDataNSD(pool_number, juror_number);
-            DBTNSD.cleanTestDataPoolNSD(juror_number, pool_number);
+            DBTNSD.cleanTestDataPoolNSD(pool_number);
             DBTNSD.createPoolNSD(court, noWeeks, owner, pool_number);
-            DBTNSD.createJurorsNSD(pool_number, juror_number);
+            DBTNSD.createJurorsNSD(pool_number, juror_number, noWeeks);
         }
     }
 
@@ -554,5 +554,10 @@ public class StepDef_DatabaseNewSchema {
     @Given("^I update juror \"([^\"]*)\" to have a have a date of birth which is ineligible for postponement$")
     public void updateJurorDob(String jurorNumber) throws SQLException {
         DBTNSD.setJurorsDobAsIneligible(jurorNumber);
+    }
+
+    @Given("^I update juror \"([^\"]*)\" to have a status of Panel in order to record attendance$")
+    public void setJurorAsPanelForRecordingAttendance(String jurorNumber) throws SQLException {
+        DBTNSD.setJurorsStatusAsPanelNSD(jurorNumber);
     }
 }

@@ -4,23 +4,17 @@ Feature: JM-4256 Record proof of name change for a jury officer
   Scenario Outline: The system shall allow a jury officer to record a proof of change of name and accept name change
 
     Given I am on "Bureau" "test"
-    Given the juror numbers have not been processed new schema
-      | part_no   | pool_no 	| owner |
-      | <part_no> |<pool_no>	| 400 	|
-
-
-    And "<part_no>" has "NEXT_DATE" as "10 mondays time" new schema
+    Given a bureau owned pool is created with jurors
+      | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   |<juror_number>     | <pool_number> | 5				                | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no   | pool_no   | owner |
-      |<part_no> | <pool_no> | 415   |
-
-
-    And "<part_no>" has "NEXT_DATE" as "10 mondays time" new schema
+      |part_no               | pool_no           | owner |
+      |<juror_number>       | <pool_number>      | 415   |
 
     And I log in as "<user>"
 
-    When the user searches for juror record "<part_no>" from the global search bar
+    When the user searches for juror record "<juror_number>" from the global search bar
 
     And I click on the "Juror details" link
     And I click on the "Add or change" link
@@ -54,31 +48,26 @@ Feature: JM-4256 Record proof of name change for a jury officer
     And I see "Fnametester Lnametesting" on the page
 
     Examples:
-      |part_no   |pool_no    |user         |
-      |641500900 |415170402  | MODTESTCOURT|
+      |user			 |password	  |juror_number  | pool_number  |
+      |MODTESTCOURT |Password1!   |041524587     |415300351     |
 
 
   @JurorTransformationWIP @NewSchemaConverted @JM-5469
   Scenario Outline: The system shall allow a jury officer to record a proof of change of name and reject name change
 
+
     Given I am on "Bureau" "test"
-    Given the juror numbers have not been processed new schema
-      | part_no   | pool_no 	| owner |
-      | <part_no> |<pool_no>	| 400 	|
-
-
-    And "<part_no>" has "NEXT_DATE" as "10 mondays time" new schema
+    Given a bureau owned pool is created with jurors
+      | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   |<juror_number>     | <pool_number> | 5				                | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no   | pool_no   | owner |
-      |<part_no> | <pool_no> | 415   |
-
-
-    And "<part_no>" has "NEXT_DATE" as "10 mondays time" new schema
+      |part_no               | pool_no           | owner |
+      |<juror_number>       | <pool_number>      | 415   |
 
     And I log in as "<user>"
 
-    When the user searches for juror record "<part_no>" from the global search bar
+    When the user searches for juror record "<juror_number>" from the global search bar
 
     And I click on the "Juror details" link
     And I click on the "Add or change" link
@@ -109,28 +98,26 @@ Feature: JM-4256 Record proof of name change for a jury officer
     And I see "Mr Edward Palmer" on the page
 
     Examples:
-      |part_no   |pool_no    |user         |
-      |641500133 |415170402  | MODTESTCOURT|
+      |user			 |password	  |juror_number   | pool_number  |
+      |MODTESTCOURT |Password1!   |041522367      |415303331     |
 
 
   @JurorTransformationWIP @NewSchemaConverted @JM-5469
   Scenario Outline: The system shall allow a jury officer to record a proof of change of name
 
+
     Given I am on "Bureau" "test"
-    Given the juror numbers have not been processed new schema
-      | part_no   | pool_no 	| owner |
-      | <part_no> |<pool_no>	| 400 	|
-
-
-    And "<part_no>" has "NEXT_DATE" as "10 mondays time" new schema
+    Given a bureau owned pool is created with jurors
+      | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   |<juror_number>     | <pool_number> | 5				                | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no   | pool_no   | owner |
-      |<part_no> | <pool_no> | 415   |
+      |part_no               | pool_no           | owner |
+      |<juror_number>       | <pool_number>      | 415   |
 
     And I log in as "<user>"
 
-    When the user searches for juror record "<part_no>" from the global search bar
+    When the user searches for juror record "<juror_number>" from the global search bar
 
     And I click on the "Juror details" link
     And I click on the "Add or change" link
@@ -167,27 +154,25 @@ Feature: JM-4256 Record proof of name change for a jury officer
     And I see "Fnametester Lnametesting" on the page
 
     Examples:
-      |part_no   |pool_no    |user         |
-      |641500911 |415170402  | MODTESTCOURT|
+      |user			 |password	  |juror_number    | pool_number  |
+      |MODTESTCOURT |Password1!   |041524123       |415300123     |
 
   @JurorTransformationWIP  @NewSchemaConverted @JM-5469
   Scenario Outline: The system shall allow a jury officer to record a proof of change of name. Change name while recording paper summons
 
+
     Given I am on "Bureau" "test"
-    Given the juror numbers have not been processed new schema
-      | part_no   | pool_no 	| owner |
-      | <part_no> |<pool_no>	| 400 	|
+    Given a bureau owned pool is created with jurors
+      | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   |<juror_number>     | <pool_number> | 5				                | 400	|
 
-
-    And "<part_no>" has "NEXT_DATE" as "10 mondays time" new schema
+    Then a new pool is inserted for where record has transferred to the court new schema
+      |part_no               | pool_no           | owner |
+      |<juror_number>       | <pool_number>      | 415   |
 
     And I log in as "<user>"
 
-    Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no   | pool_no   | owner |
-      |<part_no> | <pool_no> | 415   |
-
-    When the user searches for juror record "<part_no>" from the global search bar
+    When the user searches for juror record "<juror_number>" from the global search bar
 
     And I click the Enter summons reply button
     And I click on the "Enter a new name" link
@@ -233,5 +218,5 @@ Feature: JM-4256 Record proof of name change for a jury officer
     And I see "Mr FnameTester LnameTesting" on the page
 
     Examples:
-      |part_no   |pool_no    |user         |
-      |641500752 |415170402  | MODTESTCOURT|
+      |user			 |password	  |juror_number   | pool_number  |
+      |MODTESTCOURT |Password1!   |041544999      |415300999     |

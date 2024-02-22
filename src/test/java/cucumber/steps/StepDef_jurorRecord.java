@@ -374,4 +374,16 @@ public class StepDef_jurorRecord {
         JUROR_RECORD.enterComments(comments);
     }
 
+    @Then("^I am able to see and interact with the jurors Deferral granted letter tabs and fields$")
+    public void iAmAbleToSeeAndInteractWithTheDeferralGrantedLetterTabsAndFields() {
+        JUROR_RECORD.deferralGrantedjurorsTabPresent("Juror number");
+        JUROR_RECORD.deferralGrantedjurorsTabPresent("First name");
+        JUROR_RECORD.deferralGrantedjurorsTabPresent("Last name");
+        JUROR_RECORD.deferralGrantedjurorsTabPresent("Postcode");
+        JUROR_RECORD.deferralGrantedjurorsTabPresent("Status");
+        JUROR_RECORD.deferralGrantedjurorsTabPresent("Deferred to");
+        JUROR_RECORD.deferralGrantedjurorsTabPresent("Reason");
+        JUROR_RECORD.deferralGrantedjurorsTabPresent("Date printed");
+    }
+
 }

@@ -1,6 +1,6 @@
 Feature: JM-5054-As a jury officer I need to be able to return jurors from a trial to jurors in waiting (FE)
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationWIP @NewSchemaConverted
   Scenario Outline: Happy path to create a trial and generate Panel and return all the jurors
 
     Given I am on "Bureau" "test"
@@ -18,6 +18,7 @@ Feature: JM-5054-As a jury officer I need to be able to return jurors from a tri
       |<juror_number_3>     | <pool_number>      | 415   |
       |<juror_number_4>     | <pool_number>      | 415   |
 
+    And I Confirm all the data in the record attendance table is cleared
     And a new trial is inserted with the trial number "<trial_number>"
     And I log in as "<user>"
      #set juror as responded
@@ -84,6 +85,8 @@ Feature: JM-5054-As a jury officer I need to be able to return jurors from a tri
     Then I verify the text "You're returning 4 panel members to the list of jurors in waiting." on the page
     And I see "Cancel" on the page
     When I press the "Return" button
+
+    #will require end trial functionality implemented here
     Then I verify the banner message "4 jurors returned" on the page
 
 
@@ -93,7 +96,7 @@ Feature: JM-5054-As a jury officer I need to be able to return jurors from a tri
 
 
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationWIP @NewSchemaConverted
   Scenario Outline: Create a trial and generate Panel and return partial jurors
 
     Given I am on "Bureau" "test"
@@ -111,6 +114,7 @@ Feature: JM-5054-As a jury officer I need to be able to return jurors from a tri
       |<juror_number_3>     | <pool_number>      | 415   |
       |<juror_number_4>     | <pool_number>      | 415   |
 
+    And I Confirm all the data in the record attendance table is cleared
     And a new trial is inserted with the trial number "<trial_number>"
     And I log in as "<user>"
 
@@ -176,6 +180,8 @@ Feature: JM-5054-As a jury officer I need to be able to return jurors from a tri
     Then I verify the text "You're returning 2 panel members to the list of jurors in waiting." on the page
     And I see "Cancel" on the page
     When I press the "Return" button
+
+    #will require end trial functionality implemented here
     Then I verify the banner message "2 jurors returned" on the page
 
     Examples:

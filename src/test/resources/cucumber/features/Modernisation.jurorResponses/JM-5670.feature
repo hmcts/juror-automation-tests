@@ -12,7 +12,7 @@ Scenario Outline: Postpone a juror to another court as a Bureau officer - Bulk f
       | 415   |<juror_number_4> 	| <pool_number>     | 5				            | 400	|
 
 
-    And I log as "<user>"
+    And I log in as "<user>"
 
     And I press the "Apps" button
     And I click on the "Pool management" link
@@ -150,5 +150,135 @@ Scenario Outline: Postpone a juror to another court as a Bureau officer - Bulk f
         And I see "1 juror postponed to deferral maintenance" on the page
 
         Examples:
-            |user			|juror_number  | juror_number_2  |juror_number_3    | pool_number   | trial_number    |
-            |MODTESTCOURT   |041520222     | 041520223       |041520224         |415300701      | TESTINGTRIAL2024|
+            |user			|password	  |juror_number  | juror_number_2  |juror_number_3    | pool_number   | trial_number    |
+            |MODTESTCOURT   |Password1!    |041520222     | 041520223       |041520224         |415300701      | TESTINGTRIAL2024|
+
+    @JurorTransformationMulti
+    Scenario Outline: Postpone a juror having age more than 75 to another court as a bureau officer - Bulk flow happy path
+        Given I am on "Bureau" "test"
+        And I Confirm all the data in the record attendance table is cleared
+        Given a bureau owned pool is created with jurors
+            | court |juror_number       | pool_number      | att_date_weeks_in_future | owner |
+            | 415   |<juror_number>     | <pool_number>     | 5                      | 400  |
+            | 415   |<juror_number_2>   | <pool_number>     | 5                         | 400  |
+            | 415   |<juror_number_3>   | <pool_number>     | 5                         | 400  |
+
+        And I log in with "<user>" and "<password>"
+        And I press the "Apps" button
+        And I click on the "Pool management" link
+        And I click on the "Search" link
+        And I set "Pool number" to "<pool_number>"
+        And I press the "Continue" button
+        And I check the juror "<juror_number>" checkbox
+        And I click on "<juror_number>" in the same row as "<juror_number>"
+        And I click on the "Juror details" link
+        And I click on the "Add or change" link
+        And I change a date of birth of a juror that will make more than 75 years
+        Then I press the "Save" button
+        And I press the "Apps" button
+        And I click on the "Pool management" link
+        And I click on the "Search" link
+        And I set "Pool number" to "<pool_number>"
+        And I press the "Continue" button
+        And I check the juror "<juror_number_2>" checkbox
+        And I click on "<juror_number_2>" in the same row as "<juror_number_2>"
+        And I click on the "Juror details" link
+        And I click on the "Add or change" link
+        And I change a date of birth of a juror that will make more than 75 years
+        Then I press the "Save" button
+        And I press the "Apps" button
+        And I click on the "Pool management" link
+        And I click on the "Search" link
+        And I set "Pool number" to "<pool_number>"
+        And I press the "Continue" button
+        And I check the juror "<juror_number_3>" checkbox
+        And I click on "<juror_number_3>" in the same row as "<juror_number_3>"
+        And I click on the "Juror details" link
+        And I click on the "Add or change" link
+        And I change a date of birth of a juror that will make more than 75 years
+        Then I press the "Save" button
+        And I press the "Apps" button
+        And I click on the "Pool management" link
+        And I click on the "Search" link
+        And I set "Pool number" to "<pool_number>"
+        And I press the "Continue" button
+        And I check the select all checkbox on pool overview as bureau user
+        And I press the "Postpone" button
+        And I set the "Postpone service start date" date to a Monday "38" weeks in the future
+        And I press the "Continue" button
+        And I see "There are no active pools for this date" on the page
+        And I press the "Put in deferral maintenance" button
+        Then I verify reassign error message with the text "The following jurors cannot be moved because they'll be 76 years old by the new date and no longer eligible for jury service."
+
+        Examples:
+            |user          |password   |juror_number  | juror_number_2  | juror_number_3  |  pool_number  |
+            |MODTESTBUREAU |Password1!   |041520023     | 041520024      |041520025           |  415300703    |
+
+
+    @JurorTransformationMulti
+    Scenario Outline: Postpone a juror having age more than 75 to another court as a jury officer - Bulk flow happy path
+        Given I am on "Bureau" "test"
+
+        Given a bureau owned pool is created with jurors
+            | court |juror_number       | pool_number      | att_date_weeks_in_future | owner |
+            | 415   |<juror_number>     | <pool_number>     | 5                      | 400  |
+            | 415   |<juror_number_2>   | <pool_number>     | 5                         | 400  |
+            | 415   |<juror_number_3>   | <pool_number>     | 5                         | 400  |
+        Then a new pool is inserted for where record has transferred to the court new schema
+            |part_no               | pool_no           | owner |
+            |<juror_number>       | <pool_number>      | 415   |
+            |<juror_number_2>       | <pool_number>      | 415   |
+            |<juror_number_3>       | <pool_number>      | 415   |
+
+        And I log in with "<user>" and "<password>"
+        And I press the "Apps" button
+        And I click on the "Pool management" link
+        And I click on the "Search" link
+        And I set "Pool number" to "<pool_number>"
+        And I press the "Continue" button
+        And I check the juror "<juror_number>" checkbox
+        And I click on "<juror_number>" in the same row as "<juror_number>"
+        And I click on the "Juror details" link
+        And I click on the "Add or change" link
+        And I change a date of birth of a juror that will make more than 75 years
+        Then I press the "Save" button
+        And I press the "Apps" button
+        And I click on the "Pool management" link
+        And I click on the "Search" link
+        And I set "Pool number" to "<pool_number>"
+        And I press the "Continue" button
+        And I check the juror "<juror_number_2>" checkbox
+        And I click on "<juror_number_2>" in the same row as "<juror_number_2>"
+        And I click on the "Juror details" link
+        And I click on the "Add or change" link
+        And I change a date of birth of a juror that will make more than 75 years
+        Then I press the "Save" button
+        And I press the "Apps" button
+        And I click on the "Pool management" link
+        And I click on the "Search" link
+        And I set "Pool number" to "<pool_number>"
+        And I press the "Continue" button
+        And I check the juror "<juror_number_3>" checkbox
+        And I click on "<juror_number_3>" in the same row as "<juror_number_3>"
+        And I click on the "Juror details" link
+        And I click on the "Add or change" link
+        And I change a date of birth of a juror that will make more than 75 years
+        Then I press the "Save" button
+        And I press the "Apps" button
+        And I click on the "Pool management" link
+        And I click on the "Search" link
+        And I set "Pool number" to "<pool_number>"
+        And I press the "Continue" button
+        And I check the select all checkbox on pool overview as court user
+        And I press the "Postpone" button
+        And I set the "Postpone service start date" date to a Monday "38" weeks in the future
+        And I press the "Continue" button
+        And I see "There are no active pools for this date" on the page
+        And I press the "Put in deferral maintenance" button
+        Then I verify reassign error message with the text "The following jurors cannot be moved because they'll be 76 years old by the new date and no longer eligible for jury service."
+
+        Examples:
+            |user          |password   |juror_number  | juror_number_2  | juror_number_3  |  pool_number  |
+            |MODTESTCOURT |Password1!   |041520022     | 041520023      |041520024          |  415300704     |
+
+

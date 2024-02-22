@@ -96,4 +96,10 @@ public class ActivePools {
         }
         return false;
     }
+
+    public void checkSelectAllCheckboxOnPoolOverviewForCourt() {
+        log.info("Clicked select all checkbox on pool overview");
+        poolOverviewSelectAll.click();
+
+    }
 }

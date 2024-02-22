@@ -341,3 +341,72 @@ Feature: Create Juror Record scenarios
     Examples:
       |user			|
       |MODTESTCOURT |
+
+  @JurorTransformationMulti @NewSchemaConverted
+  Scenario Outline: Juror record shows manually created juror
+
+    Given I am on "Bureau" "test"
+    And I log in as "<user>"
+
+    And I click on the "Juror management" link
+    And I press the "Create juror record" button
+    And I set the radio button to "Create a pool to add the juror to"
+    And I press the "Continue" button
+
+  #create pool
+    And I see "Create a pool for court use only" on the page
+    And I set the "Service start date for new pool" date to a Monday "10" weeks in the future
+    And I set the radio button to "Crown court"
+    And I press the "Continue" button
+    And I see "Check pool details" on the page
+    And I press the "Create active pool" button
+
+  #jurors name
+    And I see "What's the juror's name?" on the page
+    And I set "Title (optional)" to "Mr"
+    And I set "First name" to "John"
+    And I set "Last name" to "ManualSummon"
+    And I press the "Continue" button
+
+  #dob
+    And I see "What's their date of birth?" on the page
+    And I set "Date of birth" to "08/05/1982"
+    And I press the "Continue" button
+
+  #address
+    And I see "What's the juror's address?" on the page
+    And I set "Address line 1" to "5 Testing Street"
+    And I set "Town or city" to "London"
+    And I set "Postcode" to "CH1 2AN"
+    And I press the "Continue" button
+
+  #contact details
+    And I see "Enter their contact details" on the page
+    And I set "Main phone - UK only (optional)" to "07739967653"
+    And I press the "Continue" button
+
+  #notes
+    And I see "Notes (optional)" on the page
+    And I enter "Note testing" in the Notes text box
+    And I press the "Continue" button
+    And I see "Check your answers" on the page
+
+  #create juror record
+    And I press the "Create juror record" button
+    And I see "Draft juror record created for John ManualSummon - senior jury officer will need to approve this" on the page
+
+   #Approve Juror and check summons reply
+    Given I am on "Bureau" "test"
+    And I log in as "SJOUSER"
+    And I see senior jury officer notification banner
+    And I click on the jurors to approve link from the sjo notification
+    And I see "Approve jurors" on the page
+    And I click on "Pending approval" in the same row as "Manualsummon"
+    And I see "Approve or reject pending juror" on the page
+    When I approve juror and search record
+    And I click on the Summons Reply tab
+    Then I see "Juror was summoned in person" on the page
+
+    Examples:
+      |user         |
+      |MODTESTCOURT |
