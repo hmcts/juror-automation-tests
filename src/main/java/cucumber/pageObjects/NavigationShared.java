@@ -21,8 +21,14 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.text.SimpleDateFormat;
+import java.time.DayOfWeek;
 import java.time.Duration;
-import java.util.List;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAdjusters;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -64,13 +70,13 @@ public class NavigationShared {
     @FindBy(id = "isUrgent")
     WebElement urgentCheckbox;
 
-    @FindBy(xpath="//table[@class='govuk-table']/thead/tr/th[1]")
+    @FindBy(xpath = "//table[@class='govuk-table']/thead/tr/th[1]")
     WebElement JurorNumberLabel;
-    @FindBy(xpath="//table[@class='govuk-table']/thead/tr/th[2]")
+    @FindBy(xpath = "//table[@class='govuk-table']/thead/tr/th[2]")
     WebElement JurorFirstNameLabel;
-    @FindBy(xpath="//table[@class='govuk-table']/thead/tr/th[3]")
+    @FindBy(xpath = "//table[@class='govuk-table']/thead/tr/th[3]")
     WebElement JurorLastNameLabel;
-    @FindBy(xpath="//table[@class='govuk-table']/thead/tr/th[4]")
+    @FindBy(xpath = "//table[@class='govuk-table']/thead/tr/th[4]")
     WebElement JurorCheckedInLabel;
 
     @FindBy(id = "checkOutTimeHour")
@@ -426,9 +432,11 @@ public class NavigationShared {
         ));
         return buttons;
     }
+
     public NavigationShared check_Jurorcheckbox(String Juror_no) {
         try {
-            WebElement checkbox = driver.findElement(By.xpath("//input[@value='" + Juror_no + "']"));
+            String checkboxXPath = "//input[@name='selectedJurors' and @value='" + Juror_no + "']";
+            WebElement checkbox = driver.findElement(By.xpath(checkboxXPath));
 
             log.info("Checkbox " + Juror_no + " checked:" + checkbox.isSelected());
             checkbox.click();
@@ -1487,7 +1495,7 @@ public class NavigationShared {
             inputField.clear();
             // clear() doesn't always work so this second approach ensures the field is cleared
             inputField.click();
-            inputField.sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
+            inputField.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
             inputField.sendKeys(inputText);
             log.info("Found field and input text =>" + inputText);
         } catch (Exception e) {
@@ -1497,7 +1505,7 @@ public class NavigationShared {
             inputField.clear();
             // clear() doesn't always work so this second approach ensures the field is cleared
             inputField.click();
-            inputField.sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
+            inputField.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
             inputField.sendKeys(inputText);
             log.info("Found field and input text =>" + inputText);
         }
@@ -1936,6 +1944,21 @@ public class NavigationShared {
     @FindBy(id = "serviceStartDate")
     WebElement serviceStartDate;
 
+    @FindBy(xpath = "//*[@id=\"messageTemplateForm\"]/div[2]/div[2]/dl/div/dd")
+    WebElement messageTemplate;
+
+    @FindBy(name = "selectMethod")
+    WebElement methodDropdown;
+
+    @FindBy(className = "moj-banner__message")
+    WebElement messageBanner;
+
+    @FindBy(id = "nextDueAtCourtDate")
+    WebElement nextDueAtCourtDate;
+
+    @FindBy(id = "sentenceDate")
+    WebElement sentenceDate;
+
 
     public void enterNewDate(String attDateSequence, final String day, final String month, final String year) {
         log.info("Entering new date");
@@ -2044,8 +2067,24 @@ public class NavigationShared {
                 newAttendanceDateField.clear();
                 newAttendanceDateField.sendKeys(mondayDateValue);
                 break;
+
+            case "Attendance date for message":
+                newAttendanceDateField.clear();
+                newAttendanceDateField.sendKeys(mondayDateValue);
+                break;
+
+            case "Next due at court":
+                nextDueAtCourtDate.clear();
+                nextDueAtCourtDate.sendKeys(mondayDateValue);
+                break;
+
+            case "Sentence":
+                sentenceDate.clear();
+                sentenceDate.sendKeys(mondayDateValue);
+                break;
         }
     }
+
     public void appendURL(String uRL) {
         String expected_text = "Page not found";
         String bodyText = driver.findElement(By.tagName("body")).getText();
@@ -2057,7 +2096,7 @@ public class NavigationShared {
 
     }
 
-    public void iSeeInUrl (String getCurrentUrl){
+    public void iSeeInUrl(String getCurrentUrl) {
         waitForPageLoad();
         driver.getCurrentUrl();
         log.info(getCurrentUrl + "pool-management");
@@ -2065,16 +2104,18 @@ public class NavigationShared {
         log.info("URL =>" + getCurrentUrl + "pool-management");
     }
 
-    public  String getProtocolFromURLString(String urlString) {
+    public String getProtocolFromURLString(String urlString) {
         Pattern p = Pattern.compile("(https?://)");
         Matcher m = p.matcher(urlString);
         m.find();
         return m.group(1);
     }
-    public String getHeadingText( ) {
-        log.info("Going to see next due date text is present in the page =>" );
-        return  driver.findElements(By.className("govuk-body")).get(0).getText();
+
+    public String getHeadingText() {
+        log.info("Going to see next due date text is present in the page =>");
+        return driver.findElements(By.className("govuk-body")).get(0).getText();
     }
+
     public NavigationShared continueBtnOnPage(String expected_text) throws Throwable {
 
         log.info("Going to check the availability of continue button =>");
@@ -2085,20 +2126,76 @@ public class NavigationShared {
 
     }
 
-    public String getJurorNumber(){
+    public String getJurorNumber() {
         log.info("Getting Juror number label ");
         return JurorNumberLabel.getText();
     }
-    public String getFirstName(){
+
+    public String getFirstName() {
         log.info("Getting Jurors first name label ");
         return JurorFirstNameLabel.getText();
     }
-    public String getLastName(){
+
+    public String getLastName() {
         log.info("Getting jurors last name label");
         return JurorLastNameLabel.getText();
     }
-    public String getCheckedIn(){
+
+    public String getCheckedIn() {
         log.info("Getting jurors check in label");
         return JurorCheckedInLabel.getText();
     }
-}
+
+    public boolean seeMessageTemplate() {
+        return messageTemplate.isDisplayed();
+    }
+
+    public void selectFromMessageMethodDropdown(String methodType, String jurorNumber) {
+        boolean found = false;
+        waitForPageLoad(2);
+
+        Set<String> messageType = new HashSet<>();
+
+        while (true) {
+            WebElement table = driver.findElement(By.id("messageJurorsTable"));
+
+            List<WebElement> rows = table.findElements(By.tagName("tr"));
+            WebElement rowWithJurorNumber = null;
+            for (WebElement row : rows) {
+                if (row.getText().contains(jurorNumber)) {
+                    rowWithJurorNumber = row;
+                    found = true;
+                    break;
+                }
+            }
+            if (found) {
+                WebElement dropdown = rowWithJurorNumber.findElement(By.name("selectMethod"));
+                Select select = new Select(dropdown);
+
+                if (!messageType.contains(methodType)) {
+                    WebElement option = dropdown.findElement(By.xpath(".//option[text()='" + methodType + "']"));
+                    option.click();
+                    messageType.add(methodType);
+                    break;
+                }
+            } else {
+                WebElement nextPageLink = driver.findElement(By.className("govuk-pagination__next"));
+                nextPageLink.click();
+            }
+        }
+    }
+    public String messageSentBanner() {
+        String bannerText = messageBanner.getText();
+        System.out.println("Message Sent Banner Text: " + bannerText);
+        return bannerText;
+    }
+    public String seeMessageTemplateDate(String specificDate) {
+        String messageText = messageTemplate.getText();
+        if (messageText.contains(specificDate)) {
+            System.out.println("Message template contains the date: " + specificDate);
+        } else {
+            System.out.println("Message template does not contain the date: " + specificDate);
+        }
+        return messageText;
+    }
+
