@@ -1,6 +1,6 @@
-Feature: JM-4365-As a jury officer I need to be able to check jurors out for their attendance on the day (BE)
+Feature: JM-4365-As a jury officer I need to be able to check jurors out for their attendance on the day
 
-  @JurorTransformationWIP @NewSchemaConverted @JM-6021
+  @JurorTransformation @NewSchemaConverted
   Scenario Outline: Happy path to Check jurors out for their attendance on the day
 
     #return to single thread when fixed, not multi
@@ -20,6 +20,7 @@ Feature: JM-4365-As a jury officer I need to be able to check jurors out for the
       |<juror_number_3>     | <pool_number>      | 415   |
       |<juror_number_4>     | <pool_number>      | 415   |
 
+    And I Confirm all the data in the record attendance table is cleared
     And a new trial is inserted with the trial number "<trial_number>"
     And I log in as "<user>"
      #set juror as responded
@@ -81,7 +82,6 @@ Feature: JM-4365-As a jury officer I need to be able to check jurors out for the
     And I select the checkout radio button to "pm"
     And I input juror "<juror_number_4>" to be checked out
     When I press the "Check out juror" button
-    And I refresh the page
     Then I see "<juror_number_1>" in the same row as "4:00pm"
     And I see "<juror_number_2>" in the same row as "5:30pm"
     And I see "<juror_number_3>" in the same row as "6:30pm"
@@ -100,7 +100,6 @@ Feature: JM-4365-As a jury officer I need to be able to check jurors out for the
     And I set "check out" "Minute" to "00"
     And I select the checkout radio button to "pm"
     And I press the "Save changes" button
-    #Below step will fail due to defect-JM-6021
     Then I see "10:00am" in the same row as "<juror_number_1>"
     Then I see "8:00pm" in the same row as "<juror_number_1>"
 
@@ -136,6 +135,7 @@ Feature: JM-4365-As a jury officer I need to be able to check jurors out for the
       |<juror_number_3>     | <pool_number>      | 415   |
       |<juror_number_4>     | <pool_number>      | 415   |
 
+    And I Confirm all the data in the record attendance table is cleared
     And a new trial is inserted with the trial number "<trial_number>"
     And I log in as "<user>"
      #set juror as responded

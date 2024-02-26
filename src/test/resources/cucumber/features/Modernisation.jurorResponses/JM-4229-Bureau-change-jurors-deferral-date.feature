@@ -1,25 +1,24 @@
 Feature: Bureau change jurors deferral date
 
-  @JurorTransformationMulti
+  @JurorTransformationWIP @JurorDigitalNotConverted
   Scenario Outline: Change jurors deferral date
 
     Given I am on "Public" "test"
 
-    Given the juror numbers have not been processed new schema
-      |part_no   | pool_no   | owner |
-      |<part_no> | <pool_no> | 400   |
+    Given a bureau owned pool is created with jurors
+      | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number> 	    | <pool_number>     | 5				            | 400	|
 
-
-    And "<part_no>" has "NEXT_DATE" as "5 mondays time" new schema
-
-    And I record a digital response for a juror with a deferral new schema
-      |jurorNumber   | <part_no>  |
+    And I record a digital response for a juror with a deferral
+      |jurorNumber   | <juror_number>  |
       |jurorLname    | <last_name>|
       |jurorPostcode | <postcode> |
 
     Given I am on "Bureau" "test"
+
     Given I log in as "MODTESTBUREAU"
-    Then I search for juror "<part_no>"
+
+    Then I search for juror "<juror_number>"
     And I click the summons reply tab
     And I click on the "View summons reply" link
     And I see the reply "type" on the response is "DEFERRAL"
@@ -39,7 +38,7 @@ Feature: Bureau change jurors deferral date
     And I do not see "Sorry, there is a technical problem" on the page
     And I see "Deferral granted (other)" on the page
 
-    Then I search for juror "<part_no>"
+    Then I search for juror "<juror_number>"
     And I see the juror status on the juror record screen is "Deferred"
     And I see the number of deferrals is "1"
     And I see under pool details the pool number is "In deferral maintenance"
@@ -53,5 +52,5 @@ Feature: Bureau change jurors deferral date
     And I see Deferred to is "41" Mondays in the future
 
     Examples:
-      |part_no		|pool_no  |last_name        |postcode	|
-      |641500048	|415170402|LNAMEFOUREIGHT	|CH1 2AN	|
+      | juror_number| pool_number | last_name       | postcode	|
+      | 041500059	| 415300149   | LNAMEFOUREIGHT	| CH1 2AN	|

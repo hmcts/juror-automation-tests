@@ -194,9 +194,9 @@ public class StepDef_DatabaseNewSchema {
             String owner = list.get(i).get("owner");
 
             DBTNSD.cleanTestDataNSD(pool_number, juror_number);
-            DBTNSD.cleanTestDataPoolNSD(juror_number, pool_number);
+            DBTNSD.cleanTestDataPoolNSD(pool_number);
             DBTNSD.createPoolNSD(court, noWeeks, owner, pool_number);
-            DBTNSD.createJurorsNSD(pool_number, juror_number);
+            DBTNSD.createJurorsNSD(pool_number, juror_number, noWeeks);
         }
     }
 
@@ -554,5 +554,29 @@ public class StepDef_DatabaseNewSchema {
     @Given("^I update juror \"([^\"]*)\" to have a have a date of birth which is ineligible for postponement$")
     public void updateJurorDob(String jurorNumber) throws SQLException {
         DBTNSD.setJurorsDobAsIneligible(jurorNumber);
+    }
+
+    @Given("^I update juror \"([^\"]*)\" to be able to send a message to them$")
+    public void updateJurorToBeAbleToSendMessage(String jurorNumber) throws SQLException {
+        DBTNSD.updateJurorToBeAbleToSendMessage(jurorNumber);
+    }
+
+    @And("^I see the juror \"([^\"]*)\" has a message in the database$")
+    public void jurorMessageNSD(String jurorNumber) throws SQLException {
+        DBTNSD.getMessageNSD(jurorNumber);
+    }
+
+    @Given("^I update juror \"([^\"]*)\" to have a status of Panel in order to record attendance$")
+    public void setJurorAsPanelForRecordingAttendance (String jurorNumber) throws SQLException {
+        DBTNSD.setJurorsStatusAsPanelNSD(jurorNumber);
+        }
+    @Given("^I clear messages for juror \"([^\"]*)\"$")
+    public void clearMessagesForJuror(String jurorNumber) throws SQLException {
+        DBTNSD.clearMessagesForJuror(jurorNumber);
+    }
+    @Given("^I update juror \"([^\"]*)\" to have a status of \"([^\"]*)\"$")
+    public void setJurorStatus(String jurorNumber, String statusName) throws SQLException {
+        int statusNumber = DBTNSD.getStatusNumber(statusName);
+        DBTNSD.setJurorStatus(jurorNumber, Integer.toString(statusNumber));
     }
 }

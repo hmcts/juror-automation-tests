@@ -15,6 +15,7 @@ Feature: JM-4956 - 4679
       |<juror_number>       | <pool_number>      | 415   |
       |<juror_number_2>     | <pool_number>      | 415   |
 
+    And I Confirm all the data in the record attendance table is cleared
     And a new trial is inserted with the trial number "<trial_number>"
     And I log in as "<user>"
 
@@ -88,6 +89,7 @@ Feature: JM-4956 - 4679
       |part_no              | pool_no           | owner |
       |<juror_number>       | <pool_number>     | 415   |
 
+    And I Confirm all the data in the record attendance table is cleared
     And a new protected trial is inserted with the trial number "<trial_number>"
     And I log in as "<user>"
 
@@ -125,7 +127,7 @@ Feature: JM-4956 - 4679
       |MODTESTCOURT |041520003      | 415300209     | T202495831   |
 
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformation @NewSchemaConverted
   Scenario Outline: Create a Trial and Generate Panel from a specific pool
 
     Given I am on "Bureau" "test"
@@ -140,6 +142,7 @@ Feature: JM-4956 - 4679
       |<juror_number>      | <pool_number>          | 415   |
       |<juror_number_2>    | <pool_number>          | 415   |
 
+    And I Confirm all the data in the record attendance table is cleared
     And a new trial is inserted with the trial number "<trial_number>"
     And I log in as "<user>"
 
@@ -191,7 +194,7 @@ Feature: JM-4956 - 4679
       |MODTESTCOURT |041520004     | 041520005       |415300213      | T2024111111  |
 
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformation @NewSchemaConverted
   Scenario Outline: JM-4679 -  Generate a panel and then empanel - Happy Path
 
     Given I am on "Bureau" "test"
@@ -208,6 +211,7 @@ Feature: JM-4956 - 4679
       |<juror_number_2>      | <pool_number> | 415  |
       |<juror_number_3>      | <pool_number> | 415  |
 
+    And I Confirm all the data in the record attendance table is cleared
     And a new trial is inserted with the trial number "<trial_number>"
     And I log in as "<user>"
 
@@ -311,6 +315,7 @@ Feature: JM-4956 - 4679
       |<juror_number_2>   | <pool_number>    | 415  |
       |<juror_number_3>   | <pool_number>    | 415  |
 
+    And I Confirm all the data in the record attendance table is cleared
     And a new trial is inserted with the trial number "<trial_number>"
     And I log in as "<user>"
 

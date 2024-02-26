@@ -91,7 +91,6 @@ public class TrialsAndAttendance {
     @FindBy(xpath = "//th[@class=\"govuk-table__header\"]/button")
     public List<WebElement> headerTableName;
 
-
     @FindBy(xpath = "//div[@class=\"govuk-button-group mod-flex mod-justify-end\"]/a")
     public List<WebElement> trialManagementButtonName;
 
@@ -455,5 +454,10 @@ public class TrialsAndAttendance {
             }
         }
     }
+    public void clickTrialRadioButton(String trialNumber) {
+        WebElement trialRadioButton = driver.findElement(By.xpath("//input[@type='radio' and @value='" + trialNumber + "']"));
+        trialRadioButton.click();
+    }
 }
+
 

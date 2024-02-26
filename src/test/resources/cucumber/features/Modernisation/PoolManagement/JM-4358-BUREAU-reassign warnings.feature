@@ -1,6 +1,6 @@
 Feature: JM-4358
 
-  @JurorTransformation @NewSchemaConverted
+  @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Reassign a juror Bureau User - warning cannot be reassigned when status not 1 or 2
 
     Given I am on "Bureau" "test"
@@ -91,7 +91,6 @@ Feature: JM-4358
     Then I verify reassign error message with the text "You can only move jurors with a responded or summoned status. The following jurors have a different status and cannot be moved."
 
     #Reassign  Summoned juror
-    #Failure the below step due to bug ticket-JM-5573
     When I navigate to the pool request screen
     And I click on active pools
     And I click on the "Search" link
@@ -120,7 +119,7 @@ Feature: JM-4358
       |415911911  | MODTESTBUREAU |
 
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationWIP @NewSchemaConverted @JM-6307
   Scenario Outline: Reassign a juror Bureau User - warning cannot be reassigned when juror will be over 75
     Given I am on "Bureau" "test"
 
@@ -173,6 +172,7 @@ Feature: JM-4358
     And I click on the "Add or change" link
     And I change a date of birth of a juror that will make more than 75 years
     Then I press the "Save" button
+    #calculating dob on today's date when it should be on attendance date #JM-6307
     And I press the "Yes - disqualify juror" button
     And I navigate to the pool request screen
     And I click on active pools

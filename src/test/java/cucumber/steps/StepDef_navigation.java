@@ -7,7 +7,6 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.apache.log4j.Logger;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -22,7 +21,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import static cucumber.utils.DateManipulator.formatDate;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class StepDef_navigation {
 
@@ -58,7 +59,7 @@ public class StepDef_navigation {
 	public void text_on_page_check(String arg1) throws Throwable {
 		if (arg1.contains("{") && arg1.contains("}")) {
 			arg1 = arg1.replace("{", "").replace("}", "");
-			arg1 = DateManipulator.formatDate(
+			arg1 = formatDate(
 					DateManipulator.processString(arg1, false),
 					"dd/MM/yyyy"
 			);
@@ -73,8 +74,8 @@ public class StepDef_navigation {
 	}
 
 	@When("^I do not see \"(.*)\" on the page$")
-	public void text_not_on_page_check(String arg1) throws Throwable{
-		try{
+	public void text_not_on_page_check(String arg1) throws Throwable {
+		try {
 			NAV.textNotPresentOnPage(arg1);
 		} catch (Exception e) {
 			NAV.textNotPresentOnPage(arg1);
@@ -85,7 +86,7 @@ public class StepDef_navigation {
 	public void Verifytext_on_page_check(String arg1) throws Throwable {
 		if (arg1.contains("{") && arg1.contains("}")) {
 			arg1 = arg1.replace("{", "").replace("}", "");
-			arg1 = DateManipulator.formatDate(
+			arg1 = formatDate(
 					DateManipulator.processString(arg1, false),
 					"dd/MM/yyyy"
 			);
@@ -98,11 +99,12 @@ public class StepDef_navigation {
 			NAV.textPresentOnPage(arg1);
 		}
 	}
+
 	@When("^I verify the banner message \"(.*)\" on the page$")
 	public void verifyBannerMessage_on_page_check(String arg1) throws Throwable {
 		if (arg1.contains("{") && arg1.contains("}")) {
 			arg1 = arg1.replace("{", "").replace("}", "");
-			arg1 = DateManipulator.formatDate(
+			arg1 = formatDate(
 					DateManipulator.processString(arg1, false),
 					"dd/MM/yyyy"
 			);
@@ -115,18 +117,19 @@ public class StepDef_navigation {
 			NAV.textPresentOnPage(arg1);
 		}
 	}
+
 	@Then("^on the page I see$")
-	public void seeOnThePage_datatable (DataTable arg1) throws Throwable {
+	public void seeOnThePage_datatable(DataTable arg1) throws Throwable {
 		List<Map<String, String>> list = arg1.asMaps(String.class, String.class);
-		for(int i=0; i<list.size(); i++) {
+		for (int i = 0; i < list.size(); i++) {
 			text_on_page_check(list.get(i).get("text"));
 		}
 	}
 
 	@Then("^on the page I do not see$")
-	public void doNotSeeOnThePage_datatable (DataTable arg1) throws Throwable {
+	public void doNotSeeOnThePage_datatable(DataTable arg1) throws Throwable {
 		List<Map<String, String>> list = arg1.asMaps(String.class, String.class);
-		for(int i=0; i<list.size(); i++) {
+		for (int i = 0; i < list.size(); i++) {
 			text_not_on_page_check(list.get(i).get("text"));
 		}
 	}
@@ -158,13 +161,13 @@ public class StepDef_navigation {
 	}
 
 
-
 	@When("^I check the juror \"([^\"]*)\" checkbox$")
 	public void check_Jurorcheckbox(String arg1) throws Throwable {
 		try {
+			NAV.waitForPageLoad();
 			NAV.check_Jurorcheckbox(arg1);
 		} catch (Exception e) {
-			NAV.waitForPageLoad();
+			NAV.waitForPageLoad(2);
 			NAV.check_Jurorcheckbox(arg1);
 		}
 	}
@@ -174,7 +177,7 @@ public class StepDef_navigation {
 	public void set_value_to(String arg1, String arg2) throws Throwable {
 
 		if (arg2.contains(" time")) {
-			arg2 = DateManipulator.formatDate(
+			arg2 = formatDate(
 					DateManipulator.processString(arg2, false),
 					"dd/MM/yyyy"
 			);
@@ -182,7 +185,7 @@ public class StepDef_navigation {
 
 		if (arg2.contains("{") && arg2.contains("}")) {
 			arg2 = arg2.replace("{", "").replace("}", "");
-			arg2 = DateManipulator.formatDate(
+			arg2 = formatDate(
 					DateManipulator.processString(arg2, false),
 					"dd/MM/yyyy"
 			);
@@ -203,9 +206,9 @@ public class StepDef_navigation {
 	}
 
 	@When("^I set the following fields$")
-	public void multi_set_value_to (DataTable arg1) throws Throwable {
+	public void multi_set_value_to(DataTable arg1) throws Throwable {
 		List<List<String>> list = arg1.asLists(String.class);
-		for(int i=0; i<=list.size(); i++) { //i starts from 1 because i=0 represents the header
+		for (int i = 0; i <= list.size(); i++) { //i starts from 1 because i=0 represents the header
 			set_value_to(
 					list.get(0).get(i),
 					list.get(1).get(i)
@@ -228,7 +231,7 @@ public class StepDef_navigation {
 
 		if (arg2.contains("{") && arg2.contains("}")) {
 			arg2 = arg2.replace("{", "").replace("}", "");
-			arg2 = DateManipulator.formatDate(
+			arg2 = formatDate(
 					DateManipulator.processString(arg2, false),
 					"dd/MM/yyyy"
 			);
@@ -293,14 +296,15 @@ public class StepDef_navigation {
 	@When("^I click on the \"(.*)\" link$")
 	public void click_link(String arg1) throws Throwable {
 
-		try{
+		try {
 			if (CO.checkWhetherInList(arg1))
 				return;
-		} catch (Exception e) {}
+		} catch (Exception e) {
+		}
 
 		// Temporary workaround - This only occurs for one link
 		if (arg1.equalsIgnoreCase("back")) {
-			try{
+			try {
 				BUR.pressBackLink();
 			} catch (Exception e) {
 				NAV.waitForPageLoad();
@@ -308,13 +312,14 @@ public class StepDef_navigation {
 			}
 			return;
 		}
-		try{
+		try {
 			NAV.click_link_by_text(arg1);
 		} catch (Exception e) {
 			NAV.waitForPageLoad();
 			NAV.click_link_by_text(arg1);
 		}
 	}
+
 	@Then("^I do not see link with text \"([^\"]*)\"$")
 	public void doNotSee_linkText(String arg1) {
 		NAV.linkText_visible(arg1, false);
@@ -327,7 +332,7 @@ public class StepDef_navigation {
 
 	@When("^I select \"([^\"]*)\" from the \"([^\"]*)\" dropdown$")
 	public void select_fromDropdown(String option_value, String dropdown_name) {
-		try{
+		try {
 			NAV.select_fromDropdown(option_value, dropdown_name);
 		} catch (Exception e) {
 			NAV.waitForPageLoad();
@@ -336,8 +341,8 @@ public class StepDef_navigation {
 	}
 
 	@When("^I select \"([^\"]*)\" from Process reply$")
-	public void select_fromProcessReply(String optionValue) throws Throwable{
-		try{
+	public void select_fromProcessReply(String optionValue) throws Throwable {
+		try {
 			NAV.press_buttonByName("Process reply");
 			NAV.setProcessReplyTo_(optionValue);
 		} catch (Exception e) {
@@ -348,7 +353,7 @@ public class StepDef_navigation {
 
 	@When("^I select \"([^\"]*)\" from the \"([^\"]*)\" dropdown on the Dashboard$")
 	public void select_fromDashboardDropdown(String option_value, String dropdown_name) {
-		try{
+		try {
 			NAV.select_fromDashboardDropdown(option_value, dropdown_name);
 		} catch (Exception e) {
 			NAV.waitForPageLoad();
@@ -357,7 +362,7 @@ public class StepDef_navigation {
 	}
 
 	@Then("^I cannot select \"([^\"]*)\" from the \"([^\"]*)\" dropdown$")
-	public void select_fromDropdownNegative(String arg1, String arg2){
+	public void select_fromDropdownNegative(String arg1, String arg2) {
 		// Performance Issue - To Review
 		try {
 			NAV.select_fromDropdown(arg1, arg2);
@@ -367,8 +372,8 @@ public class StepDef_navigation {
 	}
 
 	@Then("^I see \"([^\"]*)\" in position (\\d+) on the groups added list$")
-	public void checkGroupsAddedPosition_withText(String text, Integer position){
-		try{
+	public void checkGroupsAddedPosition_withText(String text, Integer position) {
+		try {
 			GRP.checkGroupsAddedPosition_withText(text, position);
 		} catch (Exception e) {
 			NAV.waitForPageLoad();
@@ -377,34 +382,34 @@ public class StepDef_navigation {
 	}
 
 	@Then("^the \"([^\"]*)\" text has class \"([^\"]*)\"$")
-	public void text_hasClass(String text, String className){
+	public void text_hasClass(String text, String className) {
 		GRP.text_hasClass(text, className);
 	}
 
 	@When("^I search for \"([^\"]*)\"$")
-	public void searchFor(String arg1){
+	public void searchFor(String arg1) {
 		NAV.generic_searchForText(arg1);
 	}
 
 	@When("^I select the \"([^\"]*)\" checkbox for \"([^\"]*)\"$")
-	public void selectCheckbox_forRowWithText(String column, String rowText){
+	public void selectCheckbox_forRowWithText(String column, String rowText) {
 		NAV.selectCheckbox_forRowWithText(column, rowText);
 	}
 
 	@Then("^the \"([^\"]*)\" checkbox for \"([^\"]*)\" is \"([^\"]*)\"$")
-	public void confirmCheckbox_forRowWithText (String column, String rowText, String checkedUnchecked){
+	public void confirmCheckbox_forRowWithText(String column, String rowText, String checkedUnchecked) {
 		NAV.confirmCheckbox_forRowWithText(column, rowText, checkedUnchecked);
 	}
 
 	@Then("^the \"([^\"]*)\" button is disabled$")
-	public void buttonIsDisabled(String buttonLabel) throws Throwable{
+	public void buttonIsDisabled(String buttonLabel) throws Throwable {
 		NAV.checkButtonIsDisabled(buttonLabel);
 
 	}
 
 
 	@When("^I select \"([^\"]*)\" from the dropdown$")
-	public void select_fromDropdown (String option) throws Exception {
+	public void select_fromDropdown(String option) throws Exception {
 		try {
 			NAV.select_fromDropdown(option);
 		} catch (Error e) {
@@ -453,12 +458,12 @@ public class StepDef_navigation {
 
 
 	@Then("^I see \"([^\"]*)\" under the label \"([^\"]*)\"$")
-	public void seeText_underHeadingBlockLabel(String text, String header){
+	public void seeText_underHeadingBlockLabel(String text, String header) {
 		NAV.seeText_underHeadingBlockLabel(text, header);
 	}
 
 	@When("^I click on the \"([^\"]*)\" link under \"([^\"]*)\"$")
-	public void clickLink_underHeadingBlock(String linkText, String header){
+	public void clickLink_underHeadingBlock(String linkText, String header) {
 		NAV.clickText_underHeadingBlock(linkText, header);
 	}
 
@@ -488,7 +493,6 @@ public class StepDef_navigation {
 	}
 
 
-
 	//Old Click Change Link
 	@When("^I click on \"([^\"]*)\" in the same row as \"([^\"]*)\"$")
 	public void clickText_inSameRow_asText(String clickText, String nextToText) throws Exception {
@@ -514,13 +518,13 @@ public class StepDef_navigation {
 	}
 
 	@Then("^\"([^\"]*)\" text is bold$")
-	public void seeText_isBold (String text) {
-		NAV.seeText_isBold (text);
+	public void seeText_isBold(String text) {
+		NAV.seeText_isBold(text);
 	}
 
 	@When("^I set input field with \"([^\"]*)\" of \"([^\"]*)\" to \"([^\"]*)\"$")
-	public void setInputFieldWith_toText (String attributeType, String attributeValue, String inputText) {
-		NAV.setInputFieldWith_toText (attributeType, attributeValue, inputText);
+	public void setInputFieldWith_toText(String attributeType, String attributeValue, String inputText) {
+		NAV.setInputFieldWith_toText(attributeType, attributeValue, inputText);
 	}
 
 	@When("^I set the \"([^\"]*)\" date to a Monday \"([^\"]*)\" weeks in the future$")
@@ -576,6 +580,7 @@ public class StepDef_navigation {
 		NAV.waitForPageLoad();
 
 	}
+
 	@And("^I should see the details of the pool with a bank holiday date$")
 	public void iShouldSeeTheDetailsOfThePoolWithBankHolidayDate(DataTable table) {
 		Map<String, String> data = table.asMap(String.class, String.class);
@@ -590,8 +595,9 @@ public class StepDef_navigation {
 	}
 
 	@When("^I validate the \"([^\"]*)\" deferral date is \"([^\"]*)\" weeks in the future$")
-	public void iValidateDeferralDateInTheFuture (String attDateSequence, Integer noOfWeeks) throws Throwable {
-		try {String fullDatePattern = "d MMMMM yyyy";
+	public void iValidateDeferralDateInTheFuture(String attDateSequence, Integer noOfWeeks) throws Throwable {
+		try {
+			String fullDatePattern = "d MMMMM yyyy";
 			Calendar calendar = Calendar.getInstance();
 			calendar.add(Calendar.WEEK_OF_MONTH, noOfWeeks);
 
@@ -654,12 +660,12 @@ public class StepDef_navigation {
 	;
 
 	@When("^I append text area with \"([^\"]*)\" of \"([^\"]*)\" with \"([^\"]*)\"$")
-	public void setTextAreaWith_toText_noClear (String attributeType, String attributeValue, String inputText) {
-		NAV.setTextAreaWith_toText_noClear (attributeType, attributeValue, inputText);
+	public void setTextAreaWith_toText_noClear(String attributeType, String attributeValue, String inputText) {
+		NAV.setTextAreaWith_toText_noClear(attributeType, attributeValue, inputText);
 	}
 
 	@Then("^the checkbox in the same row as \"([^\"]*)\" is \"([^\"]*)\"$")
-	public void checkboxSame_rowAs (String nextToText, String checkboxState) throws Exception {
+	public void checkboxSame_rowAs(String nextToText, String checkboxState) throws Exception {
 		try {
 			NAV.checkboxState_inSameRow_asText(checkboxState, nextToText);
 		} catch (Exception e) {
@@ -669,7 +675,7 @@ public class StepDef_navigation {
 	}
 
 	@Then("^I see \"([^\"]*)\" icon in the same row as \"([^\"]*)\"$")
-	public void seeIconSame_rowAs (String icon, String nextToText) {
+	public void seeIconSame_rowAs(String icon, String nextToText) {
 		try {
 			NAV.seeIconSame_rowAs(icon, nextToText);
 		} catch (Exception e) {
@@ -707,8 +713,8 @@ public class StepDef_navigation {
 	;
 
 	@Then("^the page title is \"([^\"]*)\"$")
-	public void checkPageTitleIs (String expectedPageTitle)  {
-		NAV.checkPageTitleIs (expectedPageTitle);
+	public void checkPageTitleIs(String expectedPageTitle) {
+		NAV.checkPageTitleIs(expectedPageTitle);
 	}
 
 	@When("^I hit the tab key$")
@@ -772,9 +778,9 @@ public class StepDef_navigation {
 
 	@Then("^I see \"([^\"]*)\" under \"([^\"]*)\" box$")
 	public void getBoxHeaderText(String text, String boxName) {
-		try{NAV.getBoxHeaderText(text, boxName);
-		}
-		catch(Exception e) {
+		try {
+			NAV.getBoxHeaderText(text, boxName);
+		} catch (Exception e) {
 			NAV.getBoxHeaderText(text, boxName);
 		}
 	}
@@ -798,7 +804,6 @@ public class StepDef_navigation {
 
 		SST.captureScreenShot();
 	}
-
 	@When("^I see error \"(.*)\"$")
 	public void eligibilityErrorCheck(String arg1) throws Throwable {
 		try {
@@ -814,6 +819,38 @@ public class StepDef_navigation {
 	}
 	@When("^I verify button \"(.*)\" on the page$")
 	public void buttonContinue_on_page_Verify(String arg1) throws Throwable {
-		NAV.continueBtnOnPage( arg1);
+		NAV.continueBtnOnPage(arg1);
+	}
+
+	@Then("^I see the draft message template")
+	public void messageTemplatePresent() throws Throwable {
+		assertTrue(NAV.seeMessageTemplate());
+	}
+
+	@When("^I click on the methods dropdown and select \"([^\"]*)\" for juror \"([^\"]*)\"$")
+	public void methodDropdownOnMessage(String methodType, String jurorNumber) {
+		NAV.waitForPageLoad();
+		NAV.selectFromMessageMethodDropdown(methodType, jurorNumber);
+	}
+	@And("^I see the message sent banner containing \"([^\"]*)\"$")
+	public void iSeeMessageSentBannerContaining(String bannerContains) {
+		assertEquals(bannerContains, NAV.messageSentBanner());
+	}
+	@And("^I see the template containing my attendance date with a monday \"([^\"]*)\" weeks in the future$")
+	public void iSeeDateInTemplate(String noOfWeeks) {
+		String datePattern = "dd/MM/yyyy";
+		Calendar calendar = Calendar.getInstance();
+		calendar.add(Calendar.WEEK_OF_MONTH, Integer.parseInt(noOfWeeks));
+		LocalDate localDate = calendar.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+		Date mondayDate = Date.from(localDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+		String mondayDateValue = new SimpleDateFormat(datePattern).format(mondayDate.getTime());
+
+		String messageText = NAV.seeMessageTemplateDate(mondayDateValue);
+
+		if (messageText.contains(mondayDateValue)) {
+			System.out.println("Message template contains the date: " + mondayDateValue);
+		} else {
+			System.out.println("Message template does not contain the date: " + mondayDateValue);
+		}
 	}
 }

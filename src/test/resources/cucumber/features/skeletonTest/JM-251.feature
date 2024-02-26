@@ -90,24 +90,16 @@ Feature: JM-251
 		Then I can see the newly created pool
 
 		When I select the pool that I have just created to move to the pool summary page
-		Then the system will display non-editable information on the pool summary screen
+
+		Then the system will display non-editable information on the court version of the pool summary screen
 			|jurorsRequested	|150		|
-			|jurorsConfirmed	|0			|
-			|jurorsSummoned		|0			|
-			|currentPoolSize	|0 /150		|
+			|jurorsNeeded		|150		|
+			|courtDeferralsUsed	|0			|
 			|courtName			|Chester	|
 			|courtLocationCode	|415		|
 			|courtStartDate		|			|
 
 		And I see the pool status is REQUESTED
-
-		And the pool summary donut displays
-			|summoned		|0	|
-			|required		|150|
-			|confirmed		|0	|
-			|unavailable	|0	|
-			|notResponded	|0	|
-			|surplus		|0	|
 
 		And the Summon citizens button is not visible
 

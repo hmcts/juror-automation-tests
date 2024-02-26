@@ -9,15 +9,19 @@ Feature: MOD-Smoketest
     Given I delete pools created in the last 3 days new schema for court "416"
     Given I delete pools created in the last 3 days new schema for court "471"
     Given I delete pools created in the last 3 days new schema for court "457"
-    Given I delete trials data
+    Given I delete pools created in the last 3 days new schema for court "452"
     Given I delete appearances data
+    Given I delete trials data
     Given I refresh the voters table for court "452" new schema
     Given I refresh the voters table for court "457" new schema
     Given I refresh the voters table for court "471" new schema
     Given I refresh the voters table for court "415" new schema
+    Given I refresh the voters table for court "416" new schema
     And voters for court "471" have been updated to postcode "CH2 2AN" new schema
     And voters for court "415" have been updated to postcode "CH2 2AN" new schema
+    And voters for court "416" have been updated to postcode "CH2 2AN" new schema
     And voters for court "457" have been updated to postcode "SA1 4PF" new schema
+    And voters for court "452" have been updated to postcode "SA1 4PF" new schema
 
     And I log in as "<user>"
 

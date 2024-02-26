@@ -59,7 +59,7 @@ Feature: JM-4368 Jury Officer Can Manually Run a Police Check
       | 641500381 | 415170402 | ERROR_RETRY_OTHER_ERROR_CODE     | In progress                        |
       | 641500381 | 415170402 | ERROR_RETRY_UNEXPECTED_EXCEPTION | In progress                        |
 
-  @JurorTransformationWIP @JM-5790
+  @JurorTransformationMulti
   Scenario Outline: Manually run police check - presence of link - failed
     Given I am on "Bureau" "test"
     Given I log in as "MODTESTCOURT"
@@ -76,8 +76,8 @@ Feature: JM-4368 Jury Officer Can Manually Run a Police Check
       |<part_no> | <pool_no> | 415   |
 
 #    Given I set Police Check to "F" and Phoenix Checked to "C" for "<part_no>"
-    And I search for juror "<part_no>"
     Given I set Police Check to "INELIGIBLE" for "<part_no>" new schema
+    And I search for juror "<part_no>"
     And I see the police check value is "Failed"
     And I do not see the link to run a police check
 
