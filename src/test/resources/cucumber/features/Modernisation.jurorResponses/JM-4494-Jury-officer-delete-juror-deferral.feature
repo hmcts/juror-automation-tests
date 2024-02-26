@@ -1,22 +1,19 @@
 Feature: JM-4494 Jury officer Delete Juror Deferral
 
-  @JurorTransformationMulti
+  @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Jury Officer Delete Juror deferral - paper
     Given I am on "Bureau" "test"
 
-    Given the juror numbers have not been processed new schema
-      |part_no   | pool_no   | owner |
-      |<part_no> | <pool_no> | 400   |
-
-
-    And "<part_no>" has "NEXT_DATE" as "5 mondays time" new schema
+    Given a bureau owned pool is created with jurors
+      | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number> 	    | <pool_number>     | 5				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no   | pool_no   | owner |
-      |<part_no> | <pool_no> | 415   |
+      |part_no               | pool_no          | owner |
+      |<juror_number>        | <pool_number>    | 415   |
 
     Given I log in as "MODTESTCOURT"
-    When the user searches for juror record "<part_no>" from the global search bar
+    When the user searches for juror record "<juror_number>" from the global search bar
     Then I record a happy path deferral paper summons response
     And I see the reply "type" on the response is "DEFERRAL"
 
@@ -39,7 +36,7 @@ Feature: JM-4494 Jury officer Delete Juror Deferral
 
     And I do not see "Sorry, there is a technical problem" on the page
 
-    When the user searches for juror record "<part_no>" from the global search bar
+    When the user searches for juror record "<juror_number>" from the global search bar
     And I see the juror status on the juror record screen is "Deferred"
     And I see the number of deferrals is "1"
     And I see under pool details the pool number is "In deferral maintenance"
@@ -49,5 +46,5 @@ Feature: JM-4494 Jury officer Delete Juror Deferral
     And I see the juror status on the juror record screen is "Responded"
 
     Examples:
-      | part_no		| pool_no	|
-      |641500371	|415170402	|
+      | juror_number| pool_number |
+      | 041500060	| 415300150	  |

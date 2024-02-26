@@ -2198,4 +2198,4 @@ public class NavigationShared {
         }
         return messageText;
     }
-
+}

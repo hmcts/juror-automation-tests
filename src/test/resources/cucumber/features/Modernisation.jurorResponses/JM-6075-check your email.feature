@@ -1,6 +1,6 @@
 Feature: As a jury officer I want to send the check your email message
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationWIP @NewSchemaConverted @Messages
   Scenario Outline: Send check your email message for Juror using Text including error checks
 
     Given I am on "Bureau" "test"
@@ -14,7 +14,6 @@ Feature: As a jury officer I want to send the check your email message
       |<juror_number>        | <pool_number>    | 415   |
 
     And I update juror "<juror_number>" to be able to send a message to them
-
 
     #log on and search for juror
     And I log in as "<user>"
@@ -54,23 +53,20 @@ Feature: As a jury officer I want to send the check your email message
       |user			| juror_number | pool_number |
       |MODTESTCOURT | 041529889    | 415980988   |
 
-
-
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationWIP @NewSchemaConverted @Messages
   Scenario Outline: Send check your email message for Juror
 
     Given I am on "Bureau" "test"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
-      | 415   |<juror_number>    | <pool_number>     | 5				            | 400	|
+      | 415   |<juror_number>    | <pool_number>    | 5				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
       |part_no               | pool_no          | owner |
       |<juror_number>        | <pool_number>    | 415   |
 
     And I update juror "<juror_number>" to be able to send a message to them
-
 
     #log on and search for juror
     And I log in as "<user>"
@@ -105,21 +101,20 @@ Feature: As a jury officer I want to send the check your email message
       |MODTESTCOURT | 041529888    | 415980988   |
 
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationWIP @NewSchemaConverted @Messages
   Scenario Outline: Send check your email message for Juror via their Name
 
     Given I am on "Bureau" "test"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
-      | 415   |<juror_number>    | <pool_number>     | 5				            | 400	|
+      | 415   |<juror_number>    | <pool_number>    | 5				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
       |part_no               | pool_no          | owner |
       |<juror_number>        | <pool_number>    | 415   |
 
     And I update juror "<juror_number>" to be able to send a message to them
-
 
     #log on and search for juror
     And I log in as "<user>"
@@ -154,21 +149,20 @@ Feature: As a jury officer I want to send the check your email message
       |MODTESTCOURT | 041529887    | 415980988   |
 
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationWIP @NewSchemaConverted @Messages
   Scenario Outline: Send check your email message for Juror via their Pool number
 
     Given I am on "Bureau" "test"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
-      | 415   |<juror_number>    | <pool_number>     | 5				            | 400	|
+      | 415   |<juror_number>    | <pool_number>    | 5				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
       |part_no               | pool_no          | owner |
       |<juror_number>        | <pool_number>    | 415   |
 
     And I update juror "<juror_number>" to be able to send a message to them
-
 
     #log on and search for juror
     And I log in as "<user>"
@@ -203,25 +197,23 @@ Feature: As a jury officer I want to send the check your email message
       |MODTESTCOURT | 041529886    | 415980988   |
 
 
-  @JurorTransformation @NewSchemaConverted
+  @JurorTransformationWIP @NewSchemaConverted @Messages
   Scenario Outline: Send check your email message for Juror in Trial
 
     Given I am on "Bureau" "test"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
-      | 415   |<juror_number>    | <pool_number>     | 5				            | 400	|
+      | 415   |<juror_number>    | <pool_number>    | 5				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
       |part_no               | pool_no          | owner |
       |<juror_number>        | <pool_number>    | 415   |
 
-
     And I Confirm all the data in the record attendance table is cleared
     And a new trial is inserted with the trial number "<trial_number>"
     And I update juror "<juror_number>" to be able to send a message to them
     And I update juror "<juror_number>" to have a status of responded in order to record attendance
-
 
     #log on and search for juror
     And I log in as "<user>"
@@ -293,21 +285,20 @@ Feature: As a jury officer I want to send the check your email message
       |MODTESTCOURT | 041529885    | 415980988   |T202419999985      |
 
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationWIP @NewSchemaConverted @Messages
   Scenario Outline: Send check your email message for Juror - Next start date
 
     Given I am on "Bureau" "test"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number      | pool_number	     | att_date_weeks_in_future	| owner |
-      | 415   |<juror_number>    | <pool_number>     | 5				            | 400	|
+      | 415   |<juror_number>    | <pool_number>     | 5				        | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
       |part_no               | pool_no          | owner |
       |<juror_number>        | <pool_number>    | 415   |
 
     And I update juror "<juror_number>" to be able to send a message to them
-
 
     #log on and search for juror
     And I log in as "<user>"
@@ -343,21 +334,20 @@ Feature: As a jury officer I want to send the check your email message
       |MODTESTCOURT | 041529884    | 415980988   |
 
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationWIP @NewSchemaConverted @Messages
   Scenario Outline: Send check your email message for Juror via their deferred date
 
     Given I am on "Bureau" "test"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
-      | 415   |<juror_number>    | <pool_number>     | 5				            | 400	|
+      | 415   |<juror_number>    | <pool_number>    | 5				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
       |part_no               | pool_no          | owner |
       |<juror_number>        | <pool_number>    | 415   |
 
     And I update juror "<juror_number>" to be able to send a message to them
-
 
     #log on and search for juror
     And I log in as "<user>"
@@ -451,22 +441,22 @@ Feature: As a jury officer I want to send the check your email message
       |MODTESTCOURT | 041529883    | 415980988   |
 
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationWIP @NewSchemaConverted @Messages
   Scenario Outline: Send check your email message for Juror using Text for multiple jurors
 
     Given I am on "Bureau" "test"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
-      | 415   |<juror_number>    | <pool_number>     | 5				         | 400	|
-      | 415   |<juror_number_2>    | <pool_number>     | 5				         | 400	|
-      | 415   |<juror_number_3>    | <pool_number>     | 5				         | 400	|
+      | 415   |<juror_number>    | <pool_number>    | 5				            | 400	|
+      | 415   |<juror_number_2>  | <pool_number>    | 5				            | 400	|
+      | 415   |<juror_number_3>  | <pool_number>    | 5				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
       |part_no               | pool_no          | owner |
       |<juror_number>        | <pool_number>    | 415   |
-      |<juror_number_2>        | <pool_number>    | 415   |
-      |<juror_number_3>        | <pool_number>    | 415   |
+      |<juror_number_2>      | <pool_number>    | 415   |
+      |<juror_number_3>      | <pool_number>    | 415   |
 
     And I update juror "<juror_number>" to be able to send a message to them
     And I update juror "<juror_number_2>" to be able to send a message to them

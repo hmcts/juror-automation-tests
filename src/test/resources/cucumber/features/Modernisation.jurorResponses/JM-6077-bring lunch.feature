@@ -1,6 +1,6 @@
 Feature: As a jury officer I want to send the bring lunch message
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationWIP @NewSchemaConverted @Messages
   Scenario Outline: Send bring lunch message for Juror using Text including error checks
 
     Given I am on "Bureau" "test"
@@ -56,7 +56,7 @@ Feature: As a jury officer I want to send the bring lunch message
 
 
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationWIP @NewSchemaConverted @Messages
   Scenario Outline: Send bring lunch message for Juror using Email
 
     Given I am on "Bureau" "test"
@@ -104,7 +104,7 @@ Feature: As a jury officer I want to send the bring lunch message
       |MODTESTCOURT | 041529878    | 415980987   |
 
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationWIP @NewSchemaConverted @Messages
   Scenario Outline: Send bring lunch message for Juror via their Name
 
     Given I am on "Bureau" "test"
@@ -153,7 +153,7 @@ Feature: As a jury officer I want to send the bring lunch message
       |MODTESTCOURT | 041529877    | 415980987   |
 
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationWIP @NewSchemaConverted @Messages
   Scenario Outline: Send bring lunch message for Juror via their Pool number
 
     Given I am on "Bureau" "test"
@@ -202,7 +202,7 @@ Feature: As a jury officer I want to send the bring lunch message
       |MODTESTCOURT | 041529876    | 415980987   |
 
 
-  @JurorTransformation @NewSchemaConverted
+  @JurorTransformationWIP @NewSchemaConverted @Messages
   Scenario Outline: Send bring lunch message for anyone at Trial
 
     Given I am on "Bureau" "test"
@@ -292,7 +292,7 @@ Feature: As a jury officer I want to send the bring lunch message
       |MODTESTCOURT | 041529875    | 415980987   |T202419999984      |
 
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationWIP @NewSchemaConverted @Messages
   Scenario Outline: Send bring lunch message for any juror - Next start date
 
     Given I am on "Bureau" "test"
@@ -342,7 +342,7 @@ Feature: As a jury officer I want to send the bring lunch message
       |MODTESTCOURT | 041529874    | 415980987   |
 
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationWIP @NewSchemaConverted @Messages
   Scenario Outline: Send bring lunch message for Juror via their deferred date
 
     Given I am on "Bureau" "test"
@@ -450,7 +450,7 @@ Feature: As a jury officer I want to send the bring lunch message
       |MODTESTCOURT | 041529873    | 415980987   |
 
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationWIP @NewSchemaConverted @Messages
   Scenario Outline: Send bring lunch message for Juror using Text and Email for multiple jurors
 
     Given I am on "Bureau" "test"

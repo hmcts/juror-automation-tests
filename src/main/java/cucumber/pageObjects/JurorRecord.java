@@ -3,10 +3,13 @@ package cucumber.pageObjects;
 
 import cucumber.testdata.DatabaseTester;
 import org.apache.log4j.Logger;
+import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -193,7 +196,8 @@ public class JurorRecord {
     @FindBy(xpath = "//*[@id=\"failed-to-attend\"]")
     WebElement failedToAttendCheckbox;
 
-
+    @FindBy(xpath = "//thead[@class=\"govuk-table__head\"]/tr/th/button")
+    public List<WebElement> DeferralGrantedResultsheaderTableName;
 
     public String getHeading() {
         return heading.getText();
@@ -432,6 +436,7 @@ public class JurorRecord {
 
         log.info("Found =>" + link + "<= in the same row as =>" + nextTo + "<= and clicked on 'Change' link as expected");
     }
+
     public void sjoNotification() {
         sjoNotificationBanner.getText();
     }
@@ -439,8 +444,53 @@ public class JurorRecord {
     public void clickSjoNotification() {
         sjoNotificationBanner.click();
     }
+
     public boolean sjoNotificationNotPresent() {
         List<WebElement> elements = driver.findElements(By.xpath("//*[contains(text(),'to approve')]"));
         return elements.isEmpty();
     }
+
+    public void deferralGrantedjurorsTabPresent(final String tabName) {
+        log.info("Clicking tab");
+        switch (tabName) {
+            case "Juror number":
+                Assert.assertTrue("Expected Text not found", DeferralGrantedResultsheaderTableName.get(0).getText().equals(tabName));
+                log.info(" Text - " + DeferralGrantedResultsheaderTableName.get(0).getText() + " - is visible on the page ");
+                break;
+            case "First name":
+                Assert.assertTrue("Expected Text not found", DeferralGrantedResultsheaderTableName.get(1).getText().equals(tabName));
+                log.info(" Text - " + DeferralGrantedResultsheaderTableName.get(1).getText() + " - is visible on the page ");
+                break;
+            case "Last name":
+                Assert.assertTrue("Expected Text not found", DeferralGrantedResultsheaderTableName.get(2).getText().equals(tabName));
+                log.info(" Text - " + DeferralGrantedResultsheaderTableName.get(2).getText() + " - is visible on the page ");
+                break;
+            case "Postcode":
+                Assert.assertTrue("Expected Text not found", DeferralGrantedResultsheaderTableName.get(3).getText().equals(tabName));
+                log.info(" Text - " + DeferralGrantedResultsheaderTableName.get(2).getText() + " - is visible on the page ");
+                break;
+            case "Status":
+                Assert.assertTrue("Expected Text not found", DeferralGrantedResultsheaderTableName.get(4).getText().equals(tabName));
+                log.info(" Text - " + DeferralGrantedResultsheaderTableName.get(2).getText() + " - is visible on the page ");
+                break;
+            case "Deferred to":
+                Assert.assertTrue("Expected Text not found", DeferralGrantedResultsheaderTableName.get(5).getText().equals(tabName));
+                log.info(" Text - " + DeferralGrantedResultsheaderTableName.get(2).getText() + " - is visible on the page ");
+                break;
+            case "Reason":
+                Assert.assertTrue("Expected Text not found", DeferralGrantedResultsheaderTableName.get(6).getText().equals(tabName));
+                log.info(" Text - " + DeferralGrantedResultsheaderTableName.get(2).getText() + " - is visible on the page ");
+                break;
+            case "Date printed":
+                Assert.assertTrue("Expected Text not found", DeferralGrantedResultsheaderTableName.get(7).getText().equals(tabName));
+                log.info(" Text - " + DeferralGrantedResultsheaderTableName.get(2).getText() + " - is visible on the page ");
+                break;
+
+            default:
+                log.info("Expected element text is not present on the page");
+                break;
+        }
+
+    }
+
 }

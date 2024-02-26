@@ -4,17 +4,14 @@ Feature: JM-3897 mark juror as deferred paper
   Scenario Outline: Mark juror as deferred - Send to deferral maintenance Happy path paper
     Given I am on "Bureau" "test"
 
-    Given the juror numbers have not been processed new schema
-      |part_no   | pool_no   | owner |
-      |<part_no> | <pool_no> | 400   |
-
-
-    And "<part_no>" has "NEXT_DATE" as "5 mondays time" new schema
+    Given a bureau owned pool is created with jurors
+      | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number> 	    | <pool_number>     | 5				            | 400	|
 
     Given I log in as "<user>"
     Given I navigate to the pool request screen
     Given I create an active "civil" court pool request for court "415", "14" Mondays in the future
-    When the user searches for juror record "<part_no>" from the global search bar
+    When the user searches for juror record "<juror_number>" from the global search bar
     Then I record a happy path deferral paper summons response
     And I see the reply "type" on the response is "DEFERRAL"
     
@@ -38,7 +35,7 @@ Feature: JM-3897 mark juror as deferred paper
     And I do not see "Sorry, there is a technical problem" on the page
     And I see "Deferral granted (other)" on the page
 
-    Then the user searches for juror record "<part_no>" from the global search bar
+    Then the user searches for juror record "<juror_number>" from the global search bar
     And I click the summons reply tab
 
     And I click on the "View summons reply" link
@@ -46,25 +43,22 @@ Feature: JM-3897 mark juror as deferred paper
     And I see the reply "status" on the response is "COMPLETED"
 
     Examples:
-      |user			|part_no  |pool_no  |
-      |MODTESTBUREAU|641500203|415170402|
+      | user		  | juror_number| pool_number  |
+      | MODTESTBUREAU | 041500056   | 415300146    |
 
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Mark juror as deferred - Add to pool Happy path paper
     # This test may pass but only because of temporary soft deletion of data until JM-4750 is closed
     Given I am on "Bureau" "test"
 
-    Given the juror numbers have not been processed new schema
-      |part_no   | pool_no   | owner |
-      |<part_no> | <pool_no> | 400   |
-
-
-    And "<part_no>" has "NEXT_DATE" as "5 mondays time" new schema
+    Given a bureau owned pool is created with jurors
+      | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   |<juror_number> 	    | <pool_number>     | 5				            | 400	|
 
     Given I log in as "<user>"
     Given I navigate to the pool request screen
     Given I create an active "civil" court pool request for court "415", "14" Mondays in the future
-    When the user searches for juror record "<part_no>" from the global search bar
+    When the user searches for juror record "<juror_number>" from the global search bar
     Then I record a happy path deferral paper summons response
     And I see the reply "type" on the response is "DEFERRAL"
 
@@ -89,7 +83,7 @@ Feature: JM-3897 mark juror as deferred paper
     And I do not see "Sorry, there is a technical problem" on the page
     And I see "Deferral granted (other)" on the page
 
-    When the user searches for juror record "<part_no>" from the global search bar
+    When the user searches for juror record "<juror_number>" from the global search bar
     And I click the summons reply tab
     And I click on the "View summons reply" link
     And I see the reply "type" on the response is "DEFERRAL"
@@ -99,22 +93,19 @@ Feature: JM-3897 mark juror as deferred paper
     Then the poolNumbers lists is empty
 
     Examples:
-      |user			|part_no  |pool_no  |
-      |MODTESTBUREAU|641500026|415170402|
+      | user		  | juror_number| pool_number |
+      | MODTESTBUREAU | 041500057   | 415300147   |
 
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Mark juror as deferred - No dates entered validation paper
     Given I am on "Bureau" "test"
 
-    Given the juror numbers have not been processed new schema
-      |part_no   | pool_no   | owner |
-      |<part_no> | <pool_no> | 400   |
-
-
-    And "<part_no>" has "NEXT_DATE" as "5 mondays time" new schema
+    Given a bureau owned pool is created with jurors
+      | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   |<juror_number> 	    | <pool_number>     | 5				            | 400	|
 
     Given I log in as "<user>"
-    When the user searches for juror record "<part_no>" from the global search bar
+    When the user searches for juror record "<juror_number>" from the global search bar
     Then I record a happy path deferral paper summons response
     And I see the reply "type" on the response is "DEFERRAL"
 
@@ -127,22 +118,19 @@ Feature: JM-3897 mark juror as deferred paper
     Then I see "Enter at least one preferred start date for this juror" on the page
 
     Examples:
-      |user			|part_no  |pool_no  |
-      |MODTESTBUREAU|641500026|415170402|
+      | user		  | juror_number| pool_number  |
+      | MODTESTBUREAU | 041500058   | 415300148    |
 
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Mark juror as deferred - Incorrect date format validation paper
     Given I am on "Bureau" "test"
 
-    Given the juror numbers have not been processed new schema
-      |part_no   | pool_no   | owner |
-      |<part_no> | <pool_no> | 400   |
-
-
-    And "<part_no>" has "NEXT_DATE" as "5 mondays time" new schema
+    Given a bureau owned pool is created with jurors
+      | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   |<juror_number> 	    | <pool_number>     | 5				            | 400	|
 
     Given I log in as "<user>"
-    When the user searches for juror record "<part_no>" from the global search bar
+    When the user searches for juror record "<juror_number>" from the global search bar
     Then I record a happy path deferral paper summons response
     And I see the reply "type" on the response is "DEFERRAL"
 
@@ -156,5 +144,5 @@ Feature: JM-3897 mark juror as deferred paper
     Then I see "Dates must only include numbers and forward slashes" on the page
 
     Examples:
-      |user			|part_no  |pool_no  |
-      |MODTESTBUREAU|641500169|415170402|
+      | user		  | juror_number  | pool_number  |
+      | MODTESTBUREAU | 041500055     | 415300145    |

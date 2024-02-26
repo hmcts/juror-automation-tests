@@ -999,7 +999,7 @@ public class DatabaseTesterNewSchemaDesign {
 
 		if (getCountFromJurorPoolNSD(part_no, pool_no) == 0)
 			pStmt = conn.prepareStatement("insert into juror_mod.juror_pool (juror_number, pool_number, owner, user_edtq, is_active, status, times_sel, def_date, location, no_attendances, no_attended, no_fta, no_awol, pool_seq, edit_tag, next_date, on_call, was_deferred, deferral_code, id_checked, postpone, paid_cash, scan_code, last_update, reminder_sent, transfer_date, date_created)"
-					+ " VALUES ('" + part_no + "', '" + pool_no + "', '400', 'MODTESTBUREAU', true, 1, NULL, NULL, NULL, NULL, NULL, NULL, '0001', NULL, '2024-03-19', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-01-09 11:25:00.791', NULL, NULL, '2024-01-09 11:25:00.791')");
+					+ " VALUES ('" + part_no + "', '" + pool_no + "', '400', 'MODTESTBUREAU', true, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0001', NULL, '2024-03-19', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-01-09 11:25:00.791', NULL, NULL, '2024-01-09 11:25:00.791')");
 
 		pStmt.execute();
 		conn.commit();
@@ -3315,7 +3315,7 @@ public class DatabaseTesterNewSchemaDesign {
 				pStmt.execute();
 
 				pStmt = conn.prepareStatement("insert into juror_mod.juror_pool (juror_number,pool_number,owner,user_edtq,is_active,status,times_sel,def_date,location,no_attendances,no_attended,no_fta,no_awol,pool_seq,edit_tag,next_date,on_call,was_deferred,deferral_code,id_checked,postpone,paid_cash,scan_code,last_update,reminder_sent,transfer_date,date_created)"
-						+ "values ('0" + court + "0000" + index + "','" + court + "00000" + index + "','" + owner + "', 'MODTESTBUREAU', true, 7, NULL, '" + localDateMonday + "', NULL, '" + court + "', NULL, NULL, NULL, '0001', NULL, NULL, NULL, NULL, NULL, 'Y', NULL, NULL, NULL, CURRENT_DATE, NULL, NULL, CURRENT_DATE)");
+						+ "values ('0" + court + "0000" + index + "','" + court + "00000" + index + "','" + owner + "', 'MODTESTBUREAU', true, 7, NULL, '" + localDateMonday + "', NULL, '" + court + "', NULL, NULL, NULL, '0001', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, CURRENT_DATE, NULL, NULL, CURRENT_DATE)");
 				pStmt.execute();
 
 			}

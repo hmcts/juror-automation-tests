@@ -580,4 +580,3 @@ public class StepDef_DatabaseNewSchema {
         DBTNSD.setJurorStatus(jurorNumber, Integer.toString(statusNumber));
     }
 }
-

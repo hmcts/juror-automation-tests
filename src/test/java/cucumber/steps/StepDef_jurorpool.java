@@ -244,6 +244,20 @@ public class StepDef_jurorpool {
         }
     }
 
+    @Then("^the system will display non-editable information on the court version of the pool summary screen$")
+    public void theSystemWillDisplayNonEditableInformationOnTheCourtPoolSummaryScreen(DataTable table) throws ParseException {
+        Map<String, String> data = table.asMap(String.class, String.class);
+
+        assertEquals(data.get("jurorsRequested"), POOL_OVERVIEW_PAGE.getNumberOfJurorsRequestedCourtOverview());
+        assertEquals(data.get("courtName"), POOL_OVERVIEW_PAGE.getCourtName());
+        assertEquals(data.get("courtLocationCode"), POOL_OVERVIEW_PAGE.getCourtLocationCode());
+        assertEquals(data.get("jurorsNeeded"), POOL_OVERVIEW_PAGE.getNumberOfJurorsRequiredCourtOverview());
+        assertEquals(data.get("courtDeferralsUsed"), POOL_OVERVIEW_PAGE.getNumberOfCourtDeferralsUsed());
+        if (poolDate.get() != null) {
+            assertEquals(poolDate.get(), POOL_OVERVIEW_PAGE.getConvertedStartDate());
+        }
+    }
+
     @Then("^the pool summary donut displays$")
     public void thePoolSummaryDonutDisplays(DataTable table) throws ParseException {
         Map<String, String> data = table.asMap(String.class, String.class);
@@ -3040,5 +3054,20 @@ public class StepDef_jurorpool {
             log.info("Juror " + jurorNumber + " is not present in the jurors cannot be moved table.");
         }
     }
+
+    @When("^I check the select all checkbox on pool overview as court user$")
+    public void checkSelectAllCheckboxOnPoolOverviewForCourtUser() {
+        NAV.waitForPageLoad();
+        ACTIVE_POOLS_PAGE.checkSelectAllCheckboxOnPoolOverviewForCourt();
     }
 
+    @When("^I approve juror and search record$")
+    public void approveJurorAndSearchRecord() throws Throwable {
+        String URL = webDriver.getCurrentUrl();
+        jurorRecordNumber = URL.substring(Math.max(0, URL.length() - 9));
+        GRP.click_radioButtonWithLabel("Approve");
+        NAV.press_buttonByName("Confirm");
+        NAV.waitForPageLoad();
+        JUROR_RECORD_SEARCH.searchForRecordFromGlobalSearch(jurorRecordNumber);
+    }
+    }

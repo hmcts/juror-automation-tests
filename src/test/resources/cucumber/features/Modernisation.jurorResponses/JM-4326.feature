@@ -6,10 +6,10 @@ Feature: JM-4326 - Defer a juror and then complete their service at a later date
 
     Given I log in as "<user>"
 
-    Given the juror numbers have not been processed new schema
-      |part_no   | pool_no   | owner |
-      |<part_no> | <pool_no> | 400   |
-
+    Given a bureau owned pool is created with jurors
+      | court |juror_number       | pool_number      | att_date_weeks_in_future | owner |
+      | 415   |<juror_number>     | <pool_number>     | 5                      | 400  |
+      | 415   |<juror_number_1>     | <pool_number>     | 5                      | 400  |
 
     And "<part_no>" has "NEXT_DATE" as "5 mondays time" new schema
     And pool "<pool_no>" has attendance date as "5 mondays time" new schema
@@ -19,7 +19,7 @@ Feature: JM-4326 - Defer a juror and then complete their service at a later date
     Given I create an active "Crown" court pool request for court "415", "14" Mondays in the future
 
     #search for juror and record paper response
-    When the user searches for juror record "<part_no>" from the global search bar
+    When the user searches for juror record "<juror_number>" from the global search bar
     Then I record a happy path deferral paper summons response
     And I see the reply "type" on the response is "DEFERRAL"
 
@@ -46,7 +46,7 @@ Feature: JM-4326 - Defer a juror and then complete their service at a later date
     And I see "Deferral granted (other)" on the page
 
     #check summons response
-    When the user searches for juror record "<part_no>" from the global search bar
+    When the user searches for juror record "<juror_number>" from the global search bar
     And I click on the "Summons reply" link
     #will fail here as a result of  JM-5795
     And I see the processing outcome of the summons reply on juror record is "Deferral - granted (other)"
@@ -55,8 +55,8 @@ Feature: JM-4326 - Defer a juror and then complete their service at a later date
     And I see the reply type has been updated to "DEFERRAL"
 
     Examples:
-      |user			|part_no  |pool_no  |
-      |MODTESTBUREAU|641500173|415170501|
+      |user			|password	|juror_number  |pool_number  |juror_number_1|
+      |MODTESTBUREAU|Password1!	|041530012     |415300301|041530014|
 
   @JurorTransformationWIP @JM-5795
   Scenario Outline: Mark juror as deferred - Add to pool Happy path paper - Jury Officer

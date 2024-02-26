@@ -135,7 +135,6 @@ public class StepDef_trialsAndAttendance {
 		TRL.tabPresent("Jurors in waiting");
 		TRL.tabPresent("UNCONFIRMED");
 		TRL.tabPresent("Record attendence");
-
 	}
 
 	@Then("^I am able to see and interact with the Record attendance confirmation screen$")
@@ -248,4 +247,10 @@ public class StepDef_trialsAndAttendance {
 		TRL.clickActiveTrialNumber(arg1);
 
 	}
+	@When("^I select the \"([^\"]*)\" trial number radio button$")
+	public void checkFailedToAttendCheckBox(String trialNumber) {
+		NAV.waitForPageLoad(1);
+		TRL.clickTrialRadioButton(trialNumber);
+	}
+
 	}

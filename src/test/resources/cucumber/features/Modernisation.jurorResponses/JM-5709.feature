@@ -1,13 +1,13 @@
-Feature: As a jury officer I want to be able to send the excused message
+Feature: As a jury officer I need to send the next delayed start message
 
   @JurorTransformationWIP @NewSchemaConverted @Messages
-  Scenario Outline: Send excused message for Juror using Text including error checks
+  Scenario Outline: Send delayed start message for Juror using Text including error checks
 
     Given I am on "Bureau" "test"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
-      | 415   |<juror_number>    | <pool_number>     | 5				        | 400	|
+      | 415   |<juror_number>    | <pool_number>    | 5				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
       |part_no               | pool_no          | owner |
@@ -15,17 +15,19 @@ Feature: As a jury officer I want to be able to send the excused message
 
     And I update juror "<juror_number>" to be able to send a message to them
 
-
     #log on and search for juror
     And I log in as "<user>"
 
     And I press the "Apps" button
     And I click on the "Messaging" link
     And I see "Send messages" on the page
-    And I click on the "Excused" link
+    And I click on the "Delayed start" link
     And I see "Message details" on the page
     And I see the draft message template
-    And I see "You have been excused from attending jury service on this occasion and are no longer required to attend court. If you have any questions, please contact the jury office on <court_phone>." on the page
+    And I see "You are due for Jury Service on <attend_date>, but please do not attend the court until contacted by the Jury Team. Please attend work if you are able, you will receive sufficient notice when required to attend. If you have any questions, please contact the jury office on <court_phone>." on the page
+    And I press the "Continue" button
+    And I see error "Enter an attendance date"
+    And I set the "Attendance date for message" date to a Monday "5" weeks in the future
     And I press the "Continue" button
     And I see "Find jurors to send message to" on the page
     And I press the "Continue" button
@@ -45,25 +47,26 @@ Feature: As a jury officer I want to be able to send the excused message
 
     And I see "Check and send message" on the page
     And I see "You’re sending the following message to 1 jurors. You cannot undo this after sending." on the page
-    And I see "You have been excused from attending jury service on this occasion and are no longer required to attend court. If you have any questions, please contact the jury office on 01244 317606." on the page
+    And I see "You are due for Jury Service on" on the page
+    And I see "but please do not attend the court until contacted by the Jury Team. Please attend work if you are able, you will receive sufficient notice when required to attend. If you have any questions, please contact the jury office on 01244 317606." on the page
+    And I see the template containing my attendance date with a monday "5" weeks in the future
     And I press the "Send message" button
     And I see the message sent banner containing "Message will be sent to 1 jurors"
     And I see the juror "<juror_number>" has a message in the database
 
     Examples:
       |user			| juror_number | pool_number |
-      |MODTESTCOURT | 041529869    | 415980986   |
-
+      |MODTESTCOURT | 041529919    | 415980990   |
 
 
   @JurorTransformationWIP @NewSchemaConverted @Messages
-  Scenario Outline: Send excused message for Juror using Email
+  Scenario Outline: Send delayed start message for Juror using Email
 
     Given I am on "Bureau" "test"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
-      | 415   |<juror_number>    | <pool_number>     | 5				            | 400	|
+      | 415   |<juror_number>    | <pool_number>    | 5				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
       |part_no               | pool_no          | owner |
@@ -71,47 +74,49 @@ Feature: As a jury officer I want to be able to send the excused message
 
     And I update juror "<juror_number>" to be able to send a message to them
 
-
     #log on and search for juror
     And I log in as "<user>"
 
     And I press the "Apps" button
     And I click on the "Messaging" link
     And I see "Send messages" on the page
-    And I click on the "Excused" link
+    And I click on the "Delayed start" link
     And I see "Message details" on the page
     And I see the draft message template
-    And I see "You have been excused from attending jury service on this occasion and are no longer required to attend court. If you have any questions, please contact the jury office on <court_phone>." on the page
+    And I see "You are due for Jury Service on <attend_date>, but please do not attend the court until contacted by the Jury Team. Please attend work if you are able, you will receive sufficient notice when required to attend. If you have any questions, please contact the jury office on <court_phone>." on the page
+    And I set the "Attendance date for message" date to a Monday "5" weeks in the future
     And I press the "Continue" button
     And I see "Find jurors to send message to" on the page
 
     And I set the radio button to "Juror number"
     And I set "Enter juror number" to "<juror_number>"
     And I press the "Continue" button
-    And I click on the methods dropdown and select "Text" for juror "<juror_number>"
+    And I click on the methods dropdown and select "Email" for juror "<juror_number>"
     And I check the juror "<juror_number>" checkbox
     And I press the "Send message" button
 
     And I see "Check and send message" on the page
     And I see "You’re sending the following message to 1 jurors. You cannot undo this after sending." on the page
-    And I see "You have been excused from attending jury service on this occasion and are no longer required to attend court. If you have any questions, please contact the jury office on 01244 317606." on the page
+    And I see "You are due for Jury Service on" on the page
+    And I see "but please do not attend the court until contacted by the Jury Team. Please attend work if you are able, you will receive sufficient notice when required to attend. If you have any questions, please contact the jury office on 01244 317606." on the page
+    And I see the template containing my attendance date with a monday "5" weeks in the future
     And I press the "Send message" button
     And I see the message sent banner containing "Message will be sent to 1 jurors"
     And I see the juror "<juror_number>" has a message in the database
 
     Examples:
       |user			| juror_number | pool_number |
-      |MODTESTCOURT | 041529868    | 415980986   |
+      |MODTESTCOURT | 041529918    | 415980990   |
 
 
   @JurorTransformationWIP @NewSchemaConverted @Messages
-  Scenario Outline: Send excused message for Juror via their Name
+  Scenario Outline: Send delayed start message for Juror via their Name
 
     Given I am on "Bureau" "test"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
-      | 415   |<juror_number>    | <pool_number>     | 5				            | 400	|
+      | 415   |<juror_number>    | <pool_number>    | 5				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
       |part_no               | pool_no          | owner |
@@ -119,17 +124,18 @@ Feature: As a jury officer I want to be able to send the excused message
 
     And I update juror "<juror_number>" to be able to send a message to them
 
-
     #log on and search for juror
     And I log in as "<user>"
 
     And I press the "Apps" button
     And I click on the "Messaging" link
     And I see "Send messages" on the page
-    And I click on the "Excused" link
+    And I click on the "Delayed start" link
     And I see "Message details" on the page
+
     And I see the draft message template
-    And I see "You have been excused from attending jury service on this occasion and are no longer required to attend court. If you have any questions, please contact the jury office on <court_phone>." on the page
+    And I see "You are due for Jury Service on <attend_date>, but please do not attend the court until contacted by the Jury Team. Please attend work if you are able, you will receive sufficient notice when required to attend. If you have any questions, please contact the jury office on <court_phone>." on the page
+    And I set the "Attendance date for message" date to a Monday "5" weeks in the future
     And I press the "Continue" button
     And I see "Find jurors to send message to" on the page
     And I set the radio button to "Juror name"
@@ -143,24 +149,26 @@ Feature: As a jury officer I want to be able to send the excused message
 
     And I see "Check and send message" on the page
     And I see "You’re sending the following message to 1 jurors. You cannot undo this after sending." on the page
-    And I see "You have been excused from attending jury service on this occasion and are no longer required to attend court. If you have any questions, please contact the jury office on 01244 317606." on the page
+    And I see "You are due for Jury Service on" on the page
+    And I see "but please do not attend the court until contacted by the Jury Team. Please attend work if you are able, you will receive sufficient notice when required to attend. If you have any questions, please contact the jury office on 01244 317606." on the page
+    And I see the template containing my attendance date with a monday "5" weeks in the future
     And I press the "Send message" button
     And I see the message sent banner containing "Message will be sent to 1 jurors"
     And I see the juror "<juror_number>" has a message in the database
 
     Examples:
       |user			| juror_number | pool_number |
-      |MODTESTCOURT | 041529867    | 415980986   |
+      |MODTESTCOURT | 041529917    | 415980990   |
 
 
   @JurorTransformationWIP @NewSchemaConverted @Messages
-  Scenario Outline: Send excused message for Juror via their Pool number
+  Scenario Outline: Send delayed start message for Juror via their Pool number
 
     Given I am on "Bureau" "test"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
-      | 415   |<juror_number>    | <pool_number>     | 5				            | 400	|
+      | 415   |<juror_number>    | <pool_number>    | 5				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
       |part_no               | pool_no          | owner |
@@ -168,17 +176,18 @@ Feature: As a jury officer I want to be able to send the excused message
 
     And I update juror "<juror_number>" to be able to send a message to them
 
-
     #log on and search for juror
     And I log in as "<user>"
 
     And I press the "Apps" button
     And I click on the "Messaging" link
     And I see "Send messages" on the page
-    And I click on the "Excused" link
+    And I click on the "Delayed start" link
     And I see "Message details" on the page
+
     And I see the draft message template
-    And I see "You have been excused from attending jury service on this occasion and are no longer required to attend court. If you have any questions, please contact the jury office on <court_phone>." on the page
+    And I see "You are due for Jury Service on <attend_date>, but please do not attend the court until contacted by the Jury Team. Please attend work if you are able, you will receive sufficient notice when required to attend. If you have any questions, please contact the jury office on <court_phone>." on the page
+    And I set the "Attendance date for message" date to a Monday "5" weeks in the future
     And I press the "Continue" button
     And I see "Find jurors to send message to" on the page
     And I set the radio button to "Pool"
@@ -192,35 +201,35 @@ Feature: As a jury officer I want to be able to send the excused message
 
     And I see "Check and send message" on the page
     And I see "You’re sending the following message to 1 jurors. You cannot undo this after sending." on the page
-    And I see "You have been excused from attending jury service on this occasion and are no longer required to attend court. If you have any questions, please contact the jury office on 01244 317606." on the page
+    And I see "You are due for Jury Service on" on the page
+    And I see "but please do not attend the court until contacted by the Jury Team. Please attend work if you are able, you will receive sufficient notice when required to attend. If you have any questions, please contact the jury office on 01244 317606." on the page
+    And I see the template containing my attendance date with a monday "5" weeks in the future
     And I press the "Send message" button
     And I see the message sent banner containing "Message will be sent to 1 jurors"
     And I see the juror "<juror_number>" has a message in the database
 
     Examples:
       |user			| juror_number | pool_number |
-      |MODTESTCOURT | 041529866    | 415980986   |
+      |MODTESTCOURT | 041529916    | 415980990   |
 
 
   @JurorTransformationWIP @NewSchemaConverted @Messages
-  Scenario Outline: Send excused message for anyone at Trial
+  Scenario Outline: Send delayed start message for anyone at Trial
 
     Given I am on "Bureau" "test"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
-      | 415   |<juror_number>    | <pool_number>     | 5				            | 400	|
+      | 415   |<juror_number>    | <pool_number>    | 5				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
       |part_no               | pool_no          | owner |
       |<juror_number>        | <pool_number>    | 415   |
 
-
     And I Confirm all the data in the record attendance table is cleared
     And a new trial is inserted with the trial number "<trial_number>"
     And I update juror "<juror_number>" to be able to send a message to them
     And I update juror "<juror_number>" to have a status of responded in order to record attendance
-
 
     #log on and search for juror
     And I log in as "<user>"
@@ -262,11 +271,11 @@ Feature: As a jury officer I want to be able to send the excused message
 
     And I press the "Apps" button
     And I click on the "Messaging" link
-    And I see "Send messages" on the page
-    And I click on the "Excused" link
-    And I see "Message details" on the page
+    And I click on the "Delayed start" link
+
     And I see the draft message template
-    And I see "You have been excused from attending jury service on this occasion and are no longer required to attend court. If you have any questions, please contact the jury office on <court_phone>." on the page
+    And I see "You are due for Jury Service on <attend_date>, but please do not attend the court until contacted by the Jury Team. Please attend work if you are able, you will receive sufficient notice when required to attend. If you have any questions, please contact the jury office on <court_phone>." on the page
+    And I set the "Attendance date for message" date to a Monday "5" weeks in the future
     And I press the "Continue" button
     And I see "Find jurors to send message to" on the page
 
@@ -282,24 +291,25 @@ Feature: As a jury officer I want to be able to send the excused message
 
     And I see "Check and send message" on the page
     And I see "You’re sending the following message to 1 jurors. You cannot undo this after sending." on the page
-    And I see "You have been excused from attending jury service on this occasion and are no longer required to attend court. If you have any questions, please contact the jury office on 01244 317606." on the page
+    And I see "You are due for Jury Service on" on the page
+    And I see "but please do not attend the court until contacted by the Jury Team. Please attend work if you are able, you will receive sufficient notice when required to attend. If you have any questions, please contact the jury office on 01244 317606." on the page
+    And I see the template containing my attendance date with a monday "5" weeks in the future
     And I press the "Send message" button
     And I see the message sent banner containing "Message will be sent to 1 jurors"
     And I see the juror "<juror_number>" has a message in the database
 
     Examples:
-      |user			| juror_number | pool_number |trial_number       |
-      |MODTESTCOURT | 041529865    | 415980986   |T202419999983      |
-
+      |user			| juror_number | pool_number | trial_number  |
+      |MODTESTCOURT | 041529915    | 415980990   | T202419999988 |
 
   @JurorTransformationWIP @NewSchemaConverted @Messages
-  Scenario Outline: Send excused message for any juror - Next start date
+  Scenario Outline: Send delayed start message for any juror - Next start date
 
     Given I am on "Bureau" "test"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number      | pool_number	     | att_date_weeks_in_future	| owner |
-      | 415   |<juror_number>    | <pool_number>     | 5				            | 400	|
+      | 415   |<juror_number>    | <pool_number>     | 5			            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
       |part_no               | pool_no          | owner |
@@ -307,17 +317,18 @@ Feature: As a jury officer I want to be able to send the excused message
 
     And I update juror "<juror_number>" to be able to send a message to them
 
-
     #log on and search for juror
     And I log in as "<user>"
 
     And I press the "Apps" button
     And I click on the "Messaging" link
     And I see "Send messages" on the page
-    And I click on the "Excused" link
+    And I click on the "Delayed start" link
     And I see "Message details" on the page
+
     And I see the draft message template
-    And I see "You have been excused from attending jury service on this occasion and are no longer required to attend court. If you have any questions, please contact the jury office on <court_phone>." on the page
+    And I see "You are due for Jury Service on <attend_date>, but please do not attend the court until contacted by the Jury Team. Please attend work if you are able, you will receive sufficient notice when required to attend. If you have any questions, please contact the jury office on <court_phone>." on the page
+    And I set the "Attendance date for message" date to a Monday "5" weeks in the future
     And I press the "Continue" button
     And I see "Find jurors to send message to" on the page
     And I set the radio button to "Next due at court"
@@ -331,32 +342,32 @@ Feature: As a jury officer I want to be able to send the excused message
 
     And I see "Check and send message" on the page
     And I see "You’re sending the following message to 1 jurors. You cannot undo this after sending." on the page
-    And I see "You have been excused from attending jury service on this occasion and are no longer required to attend court. If you have any questions, please contact the jury office on 01244 317606." on the page
+    And I see "You are due for Jury Service on" on the page
+    And I see "but please do not attend the court until contacted by the Jury Team. Please attend work if you are able, you will receive sufficient notice when required to attend. If you have any questions, please contact the jury office on 01244 317606." on the page
+    And I see the template containing my attendance date with a monday "5" weeks in the future
     And I press the "Send message" button
     And I see the message sent banner containing "Message will be sent to 1 jurors"
     And I see the juror "<juror_number>" has a message in the database
 
-
     Examples:
       |user			| juror_number | pool_number |
-      |MODTESTCOURT | 041529864    | 415980986   |
+      |MODTESTCOURT | 041529914    | 415980990   |
 
 
   @JurorTransformationWIP @NewSchemaConverted @Messages
-  Scenario Outline: Send excused message for Juror via their deferred date
+  Scenario Outline: Send delayed start message for Juror via their deferred date
 
     Given I am on "Bureau" "test"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
-      | 415   |<juror_number>    | <pool_number>     | 5				            | 400	|
+      | 415   |<juror_number>    | <pool_number>    | 5				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
       |part_no               | pool_no          | owner |
       |<juror_number>        | <pool_number>    | 415   |
 
     And I update juror "<juror_number>" to be able to send a message to them
-
 
     #log on and search for juror
     And I log in as "<user>"
@@ -422,13 +433,14 @@ Feature: As a jury officer I want to be able to send the excused message
     And I press the "Apps" button
     And I click on the "Messaging" link
     And I see "Send messages" on the page
-    And I click on the "Excused" link
+    And I click on the "Delayed start" link
     And I see "Message details" on the page
+
     And I see the draft message template
-    And I see "You have been excused from attending jury service on this occasion and are no longer required to attend court. If you have any questions, please contact the jury office on <court_phone>." on the page
+    And I see "You are due for Jury Service on <attend_date>, but please do not attend the court until contacted by the Jury Team. Please attend work if you are able, you will receive sufficient notice when required to attend. If you have any questions, please contact the jury office on <court_phone>." on the page
+    And I set the "Attendance date for message" date to a Monday "5" weeks in the future
     And I press the "Continue" button
     And I see "Find jurors to send message to" on the page
-
     And I set the radio button to "Date deferred to"
     And I press the "Continue" button
     And I see error "Enter date deferred to"
@@ -440,39 +452,41 @@ Feature: As a jury officer I want to be able to send the excused message
 
     And I see "Check and send message" on the page
     And I see "You’re sending the following message to 1 jurors. You cannot undo this after sending." on the page
-    And I see "You have been excused from attending jury service on this occasion and are no longer required to attend court. If you have any questions, please contact the jury office on 01244 317606." on the page
+    And I see "You are due for Jury Service on" on the page
+    And I see "but please do not attend the court until contacted by the Jury Team. Please attend work if you are able, you will receive sufficient notice when required to attend. If you have any questions, please contact the jury office on 01244 317606." on the page
+    And I see the template containing my attendance date with a monday "5" weeks in the future
     And I press the "Send message" button
     And I see the message sent banner containing "Message will be sent to 1 jurors"
     And I see the juror "<juror_number>" has a message in the database
 
     Examples:
       |user			| juror_number | pool_number |
-      |MODTESTCOURT | 041529863    | 415980986   |
+      |MODTESTCOURT | 041529913    | 415980990   |
 
 
   @JurorTransformationWIP @NewSchemaConverted @Messages
-  Scenario Outline: Send excused message for Juror using Text and Email for multiple jurors
+  Scenario Outline: Send delayed start message for Juror using Text and Email for multiple jurors
 
     Given I am on "Bureau" "test"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
-      | 415   |<juror_number>    | <pool_number>     | 5				         | 400	|
-      | 415   |<juror_number_2>    | <pool_number>     | 5				         | 400	|
-      | 415   |<juror_number_3>    | <pool_number>     | 5				         | 400	|
+      | 415   |<juror_number>    | <pool_number>    | 5				            | 400	|
+      | 415   |<juror_number_2>  | <pool_number>    | 5				            | 400	|
+      | 415   |<juror_number_3>  | <pool_number>    | 5				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
       |part_no               | pool_no          | owner |
       |<juror_number>        | <pool_number>    | 415   |
-      |<juror_number_2>        | <pool_number>    | 415   |
-      |<juror_number_3>        | <pool_number>    | 415   |
+      |<juror_number_2>      | <pool_number>    | 415   |
+      |<juror_number_3>      | <pool_number>    | 415   |
 
     And I update juror "<juror_number>" to be able to send a message to them
     And I update juror "<juror_number_2>" to be able to send a message to them
     And I update juror "<juror_number_3>" to be able to send a message to them
 
-    And I clear messages for juror "<juror_number_2>"
-    And I clear messages for juror "<juror_number_3>"
+#    And I clear messages for juror "<juror_number_2>"
+#    And I clear messages for juror "<juror_number_3>"
 
     #log on and search for juror
     And I log in as "<user>"
@@ -480,10 +494,12 @@ Feature: As a jury officer I want to be able to send the excused message
     And I press the "Apps" button
     And I click on the "Messaging" link
     And I see "Send messages" on the page
-    And I click on the "Excused" link
+    And I click on the "Delayed start" link
     And I see "Message details" on the page
+
     And I see the draft message template
-    And I see "You have been excused from attending jury service on this occasion and are no longer required to attend court. If you have any questions, please contact the jury office on <court_phone>." on the page
+    And I see "You are due for Jury Service on <attend_date>, but please do not attend the court until contacted by the Jury Team. Please attend work if you are able, you will receive sufficient notice when required to attend. If you have any questions, please contact the jury office on <court_phone>." on the page
+    And I set the "Attendance date for message" date to a Monday "5" weeks in the future
     And I press the "Continue" button
     And I see "Find jurors to send message to" on the page
 
@@ -491,17 +507,21 @@ Feature: As a jury officer I want to be able to send the excused message
     And I set "Enter pool number" to "<pool_number>"
     And I press the "Continue" button
     And I see "Select jurors to send message to" on the page
+
     And I click on the methods dropdown and select "Text" for juror "<juror_number>"
     And I check the juror "<juror_number>" checkbox
     And I click on the methods dropdown and select "Email" for juror "<juror_number_2>"
     And I check the juror "<juror_number_2>" checkbox
     And I click on the methods dropdown and select "Text" for juror "<juror_number_3>"
     And I check the juror "<juror_number_3>" checkbox
+
     And I press the "Send message" button
 
     And I see "Check and send message" on the page
-    And I see "You’re sending the following message to 3 jurors. You cannot undo this after sending." on the page
-    And I see "You have been excused from attending jury service on this occasion and are no longer required to attend court. If you have any questions, please contact the jury office on 01244 317606." on the page
+    And I see "You’re sending the following message to 1 jurors. You cannot undo this after sending." on the page
+    And I see "You are due for Jury Service on" on the page
+    And I see "but please do not attend the court until contacted by the Jury Team. Please attend work if you are able, you will receive sufficient notice when required to attend. If you have any questions, please contact the jury office on 01244 317606." on the page
+    And I see the template containing my attendance date with a monday "5" weeks in the future
     And I press the "Send message" button
     And I see the message sent banner containing "Message will be sent to 3 jurors"
     And I see the juror "<juror_number>" has a message in the database
@@ -510,5 +530,4 @@ Feature: As a jury officer I want to be able to send the excused message
 
     Examples:
       |user			| juror_number | juror_number_2 | juror_number_3 |pool_number |
-      |MODTESTCOURT | 041529862    | 041529861      |041529860       |415980986   |
-
+      |MODTESTCOURT | 041529912    | 041529911      |041529910       |415980990   |

@@ -119,4 +119,3 @@ Scenario Outline: Postpone a juror to another court as a Bureau officer - Bulk f
         Examples:
             |user		   |juror_number  | juror_number_2  |juror_number_3   | pool_number  |
             |MODTESTBUREAU |041520789     | 041520769       |041520779         |415200601    |
-
