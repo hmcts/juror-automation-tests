@@ -114,7 +114,7 @@ public class SharedDriver extends EventFiringWebDriver {
 					System.setProperty("webdriver.chrome.driver","/usr/local/bin/chromedriver");
 					REAL_DRIVER = new ChromeDriver(options);
 				} catch (Exception f) { // intended settings for running in jenkins
-					System.setProperty("webdriver.chrome.driver","src/test/resources/drivers/chromedriver-linux64_118.0.5993.70/chromedriver");
+					System.setProperty("webdriver.chrome.driver","src/test/resources/drivers/chromedriver-linux64/chromedriver");
 					options.addArguments("--headless");
 					options.addArguments("--window-size=1920,1080");
 					options.addArguments("--disable-dev-shm-usage");
