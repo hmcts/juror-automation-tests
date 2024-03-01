@@ -1,6 +1,6 @@
-Feature: JM-4958, JM-4954 As a jury officer i need to be able to complete a jurors service
+Feature: JM-4958, JM-4954, JM-4955 As a jury officer i need to be able to complete a jurors service
 
-  @JurorTransformationWIP @NewSchemaConverted @JM-6043
+  @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Complete Service as a jury officer - Bulk flow
 
     Given I am on "Bureau" "test"
@@ -62,7 +62,7 @@ Feature: JM-4958, JM-4954 As a jury officer i need to be able to complete a juro
       |MODTESTCOURT |041500036    |041500037    |415300127  |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @JM-6043
+  @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Complete Service as a jury officer - Bulk flow - Unhappy Path
     Given I am on "Bureau" "test"
 
@@ -189,3 +189,61 @@ Feature: JM-4958, JM-4954 As a jury officer i need to be able to complete a juro
     Examples:
       |user			|juror_number  |pool_number  |
       |MODTESTCOURT |415300135     |041500045    |
+
+  @JurorTransformationMulti
+  Scenario Outline: Uncomplete Service as an SJO
+    Given I am on "Bureau" "test"
+
+    Given a bureau owned pool is created with jurors
+      | court |juror_number  	| pool_number	| att_date_weeks_in_future	| owner |
+      | 415   |<juror_number> 	| <pool_number> | 5				            | 400	|
+
+    Then a new pool is inserted for where record has transferred to the court new schema
+      |part_no         | pool_no       | owner |
+      |<juror_number>  | <pool_number> | 415   |
+
+    #log on and search for juror
+    And I log in as "<user>"
+    When the user searches for juror record "<juror_number>" from the global search bar
+
+    #record paper summons for juror and set to responded
+    Then I record a happy path paper summons response
+    And I click on the "No, skip and process later" link
+    And I click the process reply button
+    Then I mark the reply as responded
+    And I click continue on the juror summons reply page
+    And I click the checkbox to mark the reply as responded
+    And I confirm I want to mark the reply as responded
+
+    #view juror and complete
+    When the user searches for juror record "<juror_number>" from the global search bar
+    And I click the update juror record button
+    And I set the radio button to "Complete service"
+    And I click continue on the update juror record screen
+    And I set the "Completion date" single date field to a Monday "17" weeks in the future
+    And I press the "Complete service" button
+    Then I see "Juror's service completed" on the page
+    And I see the juror status on the juror record screen is "Completed"
+    Given I am on "Bureau" "test"
+
+    # Log in as SJO and uncomplete
+    And I log in as "SJOUSER"
+    And I see senior jury officer notification banner
+    And I press the "Apps" button
+    And I click on the "SJO Tasks" link
+    And I set the radio button to "Juror Number"
+    And I set "Enter juror number" to "<juror_number>"
+    And I press the "Continue" button
+    And I set the first checkbox on the Uncomplete Service page
+    And I press the "Uncomplete juror" button
+    And I see "Their juror status will revert to 'Responded' and they must continue their jury service." on the page
+    And I press the "Uncomplete service" button
+    And I see "Service uncompleted for 1 juror." on the page
+    When I search for juror "<juror_number>"
+    When the user searches for juror record "<juror_number>" from the global search bar
+    Then I see the juror status on the juror record screen is "Responded"
+
+
+    Examples:
+      |user			|juror_number  |pool_number  |
+      |MODTESTCOURT |041540003     |415300403    |

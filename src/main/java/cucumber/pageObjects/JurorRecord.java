@@ -2,18 +2,20 @@ package cucumber.pageObjects;
 
 
 import cucumber.testdata.DatabaseTester;
+import cucumber.utils.ReadProperties;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 public class JurorRecord {
@@ -76,7 +78,7 @@ public class JurorRecord {
     @FindBy(xpath = "//dt[contains(text(),'Processing outcome')]/following-sibling::dd")
     WebElement processingOutcome;
 
-    @FindBy(xpath = "//*[@id=\"main-content\"]/div[3]/div/dl/div[2]/dd/span/div")
+    @FindBy(xpath = "//div[@id=\"jurorStatus\"]/span[@class=\"icon mod-icon-urgent\"]")
     WebElement processingOutcomeWarningIcon;
 
     @FindBy(xpath = "//dt[contains(text(),'Reply date')]/following-sibling::dd")
@@ -199,8 +201,15 @@ public class JurorRecord {
     @FindBy(xpath = "//thead[@class=\"govuk-table__head\"]/tr/th/button")
     public List<WebElement> DeferralGrantedResultsheaderTableName;
 
+    @FindBy(xpath = "//input[@name='selectedJurors']")
+    public WebElement uncompleteJurorCheckbox;
+
     public String getHeading() {
         return heading.getText();
+    }
+
+    public void checkUncompleteJuror() {
+        uncompleteJurorCheckbox.click();
     }
 
     public boolean seeJurorRecordTag() {
@@ -491,6 +500,66 @@ public class JurorRecord {
                 break;
         }
 
+    }
+    public void seePrintedLetterInLettersTable(String jurorNumber) {
+        Calendar today = Calendar.getInstance();
+        SimpleDateFormat formatter = new SimpleDateFormat("EEE dd MMM yyyy");
+        String printedDate = formatter.format(today.getTime());
+
+        WebElement table = driver.findElement(By.xpath("//*[@id=\"main-content\"]/div[4]/div/table"));
+        List<WebElement> rows = table.findElements(By.tagName("tr"));
+
+        for (WebElement row : rows) {
+            List<WebElement> cells = row.findElements(By.tagName("td"));
+            boolean jurorFound = false;
+            boolean dateFound = false;
+            int dateColumnIndex = -1;
+
+            for (int i = 0; i < cells.size(); i++) {
+                WebElement cell = cells.get(i);
+                String cellText = cell.getText();
+
+                if (cellText.contains(jurorNumber)) {
+                    jurorFound = true;
+                }
+
+                if (cellText.contains(printedDate)) {
+                    dateFound = true;
+                    dateColumnIndex = i;
+                }
+            }
+
+            if (jurorFound && dateFound && dateColumnIndex == 8) {
+                System.out.println("Found matching juror and date: " + jurorNumber + ", " + printedDate);
+                return;
+            }
+        }
+        throw new RuntimeException("Matching juror and date not found: " + jurorNumber + ", " + printedDate);
+    }
+
+
+    public void returnToPreviousTabAfterLetter() {
+
+        String currentUrl = driver.getWindowHandle();
+
+        String previousTabUrl = ("https://juror-test-bureau.clouddev.online/homepage");
+
+        Set<String> windowHandles = driver.getWindowHandles();
+
+        if (windowHandles.size() >= 2) {
+
+            for (String handle : windowHandles) {
+                if (!handle.equals(currentUrl)) {
+                    driver.switchTo().window(handle);
+                    driver.switchTo().window(currentUrl);
+                    new WebDriverWait(driver, Duration.ofSeconds(3));
+                    driver.get(previousTabUrl);
+                    return;
+                }
+            }
+        } else {
+            log.info("There is only one tab open. Cannot return to the previous tab.");
+        }
     }
 
 }

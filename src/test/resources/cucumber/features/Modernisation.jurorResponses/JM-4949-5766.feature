@@ -1,6 +1,6 @@
 Feature: JM-4949 & JM-5766
 
-  @JurorTransformationWIP @NewSchemaConverted
+  @JurorTransformation @NewSchemaConverted
   Scenario Outline: Return all jurors on a panel
 
     Given I am on "Bureau" "test"
@@ -58,7 +58,6 @@ Feature: JM-4949 & JM-5766
     And I press the "Confirm and empanel jury" button
     And I see "Juror" in the same row as "<juror_number>"
 
-
     #retrurn jury process
     And I check the juror "<juror_number>" checkbox
     And I press the "Return jury" button
@@ -90,7 +89,7 @@ Feature: JM-4949 & JM-5766
     And I see "A check out time of 2:30pm will be applied to all juror." on the page
     And I see "They'll be returned to the list of jurors in waiting, to continue their service." on the page
 
-    #return juror - This step will fail because of bug JM-6166
+    #return juror
     And I press the "Return" button
     Then I verify the text "Do you want to end this trial?" on the page
     And I set the radio button to "No"
@@ -300,7 +299,6 @@ Feature: JM-4949 & JM-5766
     And I select the radio button with name "<juror_number>" and value "juror"
     And I press the "Confirm and empanel jury" button
     And I see "Juror" in the same row as "<juror_number>"
-
 
     #retrurn jury process
     And I check the juror "<juror_number>" checkbox
@@ -559,7 +557,6 @@ Feature: JM-4949 & JM-5766
       | 415   |<juror_number_1>     | <pool_number>     | 5				            | 400	|
       | 415   |<juror_number_2> 	| <pool_number>     | 5				            | 400	|
 
-
     Then a new pool is inserted for where record has transferred to the court new schema
       |part_no              | pool_no           | owner |
       |<juror_number_1>     | <pool_number>     | 415   |
@@ -623,7 +620,6 @@ Feature: JM-4949 & JM-5766
     And I see "Juror" in the same row as "<juror_number_1>"
     And I see "Juror" in the same row as "<juror_number_2>"
 
-
     #retrurn jury process for all jurors
     When I check the juror "<juror_number_1>" checkbox
     And I check the juror "<juror_number_2>" checkbox
@@ -665,4 +661,4 @@ Feature: JM-4949 & JM-5766
 
     Examples:
       |user			|juror_number_1  | juror_number_2 |   pool_number    | trial_number |
-      |MODTESTCOURT |041520020     | 041520021      |    415300201      | TEST2022226  |
+      |MODTESTCOURT |041520020       | 041520021      |    415300201     | TEST2022226  |

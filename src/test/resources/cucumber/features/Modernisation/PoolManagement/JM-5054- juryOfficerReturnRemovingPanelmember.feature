@@ -1,6 +1,6 @@
-Feature: JM-5054-As a jury officer I need to be able to return jurors from a trial to jurors in waiting (FE)
+Feature: JM-5054-As a jury officer I need to be able to return jurors from a trial to jurors in waiting
 
-  @JurorTransformationWIP @NewSchemaConverted
+  @JurorTransformation @NewSchemaConverted
   Scenario Outline: Happy path to create a trial and generate Panel and return all the jurors
 
     Given I am on "Bureau" "test"
@@ -96,7 +96,7 @@ Feature: JM-5054-As a jury officer I need to be able to return jurors from a tri
 
 
 
-  @JurorTransformationWIP @NewSchemaConverted
+  @JurorTransformation @NewSchemaConverted
   Scenario Outline: Create a trial and generate Panel and return partial jurors
 
     Given I am on "Bureau" "test"

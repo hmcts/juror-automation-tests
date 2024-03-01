@@ -5,18 +5,16 @@ Feature: JM-3813
 
     Given I am on "Bureau" "test"
 
-    Given the juror numbers have not been processed new schema
-      |part_no   | pool_no   | owner       |
-      |<part_no> | <pool_no> | 400         |
+    Given a bureau owned pool is created with jurors
+      | court  | juror_number  	| pool_number	   | att_date_weeks_in_future	| owner |
+      | 415    | <juror_number> | <pool_number>    | 5			                | 400	|
 
-
-    And "<part_no>" has "NEXT_DATE" as "5 mondays time" new schema
-    And juror "<part_no>" has "FIRST_NAME" as "<fname>" new schema
-    And juror "<part_no>" has "LAST_NAME" as "<lname>" new schema
+    And juror "<juror_number>" has "FIRST_NAME" as "<fname>" new schema
+    And juror "<juror_number>" has "LAST_NAME" as "<lname>" new schema
 
     And I log in as "<user>"
 
-    When the user searches for juror record "<part_no>" from the global search bar
+    When the user searches for juror record "<juror_number>" from the global search bar
 
     #record paper summons response
     And I record an excusal request paper summons response
@@ -45,11 +43,11 @@ Feature: JM-3813
     And I set the radio button to "Refuse excusal"
     And I press the "Continue" button
     And I see "Excusal refused (other)" on the page
-    And I see "Summons reply for <part_no> <fname> <lname> successfully processed: Excusal refused (other)" in the response banner
+    And I see "Summons reply for <juror_number> <fname> <lname> successfully processed: Excusal refused (other)" in the response banner
 
     #return to juror record
-    When the user searches for juror record "<part_no>" from the global search bar
-    Then I am on the Juror Record for juror "<part_no>"
+    When the user searches for juror record "<juror_number>" from the global search bar
+    Then I am on the Juror Record for juror "<juror_number>"
     Then I see the juror's status on the juror record screen is "Responded"
     And the warning icon is displayed next to the juror status
 
@@ -62,5 +60,5 @@ Feature: JM-3813
     And I see the reply method of the summons reply on juror record is "Paper"
 
     Examples:
-      | user          | part_no   | pool_no   |fname           |lname          |
-      | MODTESTBUREAU | 641500898 | 415170402 |FNAMETWOZEROTWO |LNAMETWOZEROTWO|
+      | user          | juror_number  | pool_number   |fname           |lname          |
+      | MODTESTBUREAU | 041500078     | 415300168     |FNAMETWOZEROTWO |LNAMETWOZEROTWO|

@@ -6,7 +6,9 @@ import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -38,6 +40,7 @@ public class StepDef_jurorRecord {
     private final PoolOverview POOL_OVERVIEW_PAGE;
     private final ActivePools ACTIVE_POOLS_PAGE;
     private final SummonsReply SUMMONS_REPLY;
+    private final SummonsReplySearch SUMMONS_SEARCH;
     private final ViewSummonsReply VIEW_SUMMONS_REPLY;
     private final PoolSearch POOL_SEARCH;
 
@@ -72,6 +75,7 @@ public class StepDef_jurorRecord {
         HEADER_PAGE = PageFactory.initElements(webDriver, Header.class);
         COURT_JUROR_RECORD = PageFactory.initElements(webDriver, CourtJurorRecord.class);
         JUROR_RECORD = juror_record;
+        SUMMONS_SEARCH = PageFactory.initElements(webDriver, SummonsReplySearch.class);
     }
 
     @Then("^I am on the Juror Record for juror \"([^\"]*)\"$")
@@ -358,6 +362,11 @@ public class StepDef_jurorRecord {
         JUROR_RECORD.sjoNotification();
     }
 
+    @When("^I set the first checkbox on the Uncomplete Service page$")
+    public void checkUncompleteJuror() {
+        JUROR_RECORD.checkUncompleteJuror();
+    }
+
     @When("^I do not see the senior jury officer notification banner$")
     public void doNotseeSjoNotificationBanner() {
         JUROR_RECORD.sjoNotificationNotPresent();
@@ -374,7 +383,7 @@ public class StepDef_jurorRecord {
         JUROR_RECORD.enterComments(comments);
     }
 
-    @Then("^I am able to see and interact with the jurors Deferral granted letter tabs and fields$")
+    @Then("^I am able to see and interact with the jurors Deferral letter tabs and fields$")
     public void iAmAbleToSeeAndInteractWithTheDeferralGrantedLetterTabsAndFields() {
         JUROR_RECORD.deferralGrantedjurorsTabPresent("Juror number");
         JUROR_RECORD.deferralGrantedjurorsTabPresent("First name");
@@ -385,5 +394,47 @@ public class StepDef_jurorRecord {
         JUROR_RECORD.deferralGrantedjurorsTabPresent("Reason");
         JUROR_RECORD.deferralGrantedjurorsTabPresent("Date printed");
     }
+    @When("^I expand the summons replies search advanced search criteria$")
+    public void expandPoolSearchAdvanced() { SUMMONS_SEARCH.clickAdvancedSearch(); }
 
+    @When("^I check the urgent checkbox$")
+    public void selectUrgentCheckbox() { SUMMONS_SEARCH.clickUrgentCheckbox(); }
+
+    @When("^I check the Awaiting Court Reply Checkbox$")
+    public void selectAwaitingCourtReplyCheckbox() { SUMMONS_SEARCH.clickAwaitingCourtReplyCheckbox(); }
+
+    @When("^I check the Awaiting Juror Reply Checkbox$")
+    public void selectAwaitingJurorReplyCheckbox() { SUMMONS_SEARCH.clickAwaitingJurorReplyCheckbox(); }
+
+    @When("^I check the Awaiting Translation Checkbox$")
+    public void selectAwaitingTranslationCheckbox() { SUMMONS_SEARCH.clickAwaitingTranslationCheckbox(); }
+
+    @When("^I check the ToDo Checkbox$")
+    public void clickToDoCheckbox() { SUMMONS_SEARCH.clickToDoCheckbox(); }
+
+    @When("^I check the Completed Checkbox$")
+    public void clickCompletedCheckbox() { SUMMONS_SEARCH.clickCompletedCheckbox(); }
+
+    @When("^I click the search button$")
+    public void clickSearchButton() { SUMMONS_SEARCH.clickSearchButton();}
+
+    @When("^I enter pool number \"([^\"]*)\"$")
+    public void setPoolNumber(String poolNumber) { SUMMONS_SEARCH.setPoolNumber(poolNumber); }
+
+    @When("^I enter juror number \"([^\"]*)\"$")
+    public void setJurorNumber(String jurorNumber) { SUMMONS_SEARCH.setJurorNumber(jurorNumber); }
+
+    @When("^I enter assigned officer \"([^\"]*)\"$")
+    public void setOfficerAssigned(String officerAssigned) { SUMMONS_SEARCH.setOfficerAssigned(officerAssigned); }
+
+    @Then("I see the printed letter for juror number \"([^\"]*)\" in the letters table$")
+    public void seeThePrintedLetterForJurorInTheTable(String jurorNumber) {
+        NAV.waitForPageLoad(2);
+        JUROR_RECORD.seePrintedLetterInLettersTable(jurorNumber);
+    }
+
+    @When("^I return to the previous tab$")
+    public void returnToPreviousTab(){
+        JUROR_RECORD.returnToPreviousTabAfterLetter();
+    }
 }

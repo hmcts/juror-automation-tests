@@ -1,6 +1,6 @@
 Feature: JM-4256 Record proof of name change for a jury officer
 
-  @JurorTransformationWIP @NewSchemaConverted @JM-5469
+  @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: The system shall allow a jury officer to record a proof of change of name and accept name change
 
     Given I am on "Bureau" "test"
@@ -48,11 +48,11 @@ Feature: JM-4256 Record proof of name change for a jury officer
     And I see "Fnametester Lnametesting" on the page
 
     Examples:
-      |user			 |password	  |juror_number  | pool_number  |
-      |MODTESTCOURT |Password1!   |041524587     |415300351     |
+      |user			 |juror_number  | pool_number  |
+      |MODTESTCOURT |041524587     |415300351     |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @JM-5469
+  @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: The system shall allow a jury officer to record a proof of change of name and reject name change
 
 
@@ -77,11 +77,11 @@ Feature: JM-4256 Record proof of name change for a jury officer
     And I see "This new name will only become their legal name on their juror record after:" on the page
     And I see "When you enter a new name here, it will overwrite any previous pending name." on the page
 
-    And I set "First name" to "FnameTester"
-    And I set "Last name" to "LnameTesting"
+    And I set "First name" to "Tester"
+    And I set "Last name" to "Testing"
     And I press the "Save" button
     And I see "Pending approval" on the page
-    And I see the juror's new name "Fnametester Lnametesting" is pending approval
+    And I see the juror's new name "Tester Testing" is pending approval
     And I enter a date of birth that will make the juror between 18 and 75
     And I press the "Save" button
 
@@ -95,14 +95,15 @@ Feature: JM-4256 Record proof of name change for a jury officer
     And I see "Confirm you want to reject this name change" on the page
     And I see "Their name change request will be removed from their juror record. Their original name will continue to be used." on the page
     And I press the "Reject name change" button
-    And I see "Mr Edward Palmer" on the page
+    And I see "Fname Lname" on the page
+    And I do not see "Tester Testing" on the page
 
     Examples:
-      |user			 |password	  |juror_number   | pool_number  |
-      |MODTESTCOURT |Password1!   |041522367      |415303331     |
+      |user			 |juror_number   | pool_number  |
+      |MODTESTCOURT |041522367      |415303331     |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @JM-5469
+  @JurorTransformationWIP @NewSchemaConverted @JM-6350
   Scenario Outline: The system shall allow a jury officer to record a proof of change of name
 
 
@@ -154,10 +155,10 @@ Feature: JM-4256 Record proof of name change for a jury officer
     And I see "Fnametester Lnametesting" on the page
 
     Examples:
-      |user			 |password	  |juror_number    | pool_number  |
-      |MODTESTCOURT |Password1!   |041524123       |415300123     |
+      |user			 |juror_number    | pool_number  |
+      |MODTESTCOURT |041524123       |415300123     |
 
-  @JurorTransformationWIP  @NewSchemaConverted @JM-5469
+  @JurorTransformationMulti  @NewSchemaConverted
   Scenario Outline: The system shall allow a jury officer to record a proof of change of name. Change name while recording paper summons
 
 
@@ -183,7 +184,7 @@ Feature: JM-4256 Record proof of name change for a jury officer
     And I set "Last name" to "LnameTesting"
     And I press the "Save" button
     And I see "Pending approval" on the page
-    And I see the juror's new name "Mr Fnametester Lnametesting" is pending approval
+    And I see the juror's new name "Fnametester Lnametesting" is pending approval
 
     #juror details
     When I fill in all of the juror details for the summons reply
@@ -215,8 +216,8 @@ Feature: JM-4256 Record proof of name change for a jury officer
     And I click done on the juror summons reply page
 
     And I see "Pending" on the page
-    And I see "Mr FnameTester LnameTesting" on the page
+    And I see "FnameTester LnameTesting" on the page
 
     Examples:
-      |user			 |password	  |juror_number   | pool_number  |
-      |MODTESTCOURT |Password1!   |041544999      |415300999     |
+      |user			 |juror_number   | pool_number  |
+      |MODTESTCOURT |041544999      |415300999     |

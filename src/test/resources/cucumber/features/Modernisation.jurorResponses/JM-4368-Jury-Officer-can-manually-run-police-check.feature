@@ -40,7 +40,6 @@ Feature: JM-4368 Jury Officer Can Manually Run a Police Check
       |part_no   | pool_no   | owner |
       |<part_no> | <pool_no> | 400   |
 
-
     And "<part_no>" has "NEXT_DATE" as "5 mondays time" new schema
 
     Then a new pool is inserted for where record has transferred to the court new schema
@@ -113,14 +112,13 @@ Feature: JM-4368 Jury Officer Can Manually Run a Police Check
       | part_no		| pool_no	|
       |641500402	|415170402	|
 
-  @JurorTransformationWIP @Not_Implemented_In_Backend
+  @JurorTransformationMulti @Not_Implemented_In_Backend
   Scenario Outline: Manually run police check - police check runs NOT IMPLEMENTED IN BACKEND
     Given I am on "Bureau" "test"
 
     Given the juror numbers have not been processed new schema
       |part_no   | pool_no   | owner |
       |<part_no> | <pool_no> | 400   |
-
 
     And "<part_no>" has "NEXT_DATE" as "5 mondays time" new schema
 
@@ -145,4 +143,4 @@ Feature: JM-4368 Jury Officer Can Manually Run a Police Check
 
     Examples:
       | part_no   | pool_no   |
-      |641500405	|415170402	|
+      |641500405  |415170402  |

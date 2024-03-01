@@ -143,18 +143,20 @@ public class PoolSearch {
 
     public Integer getPoolSearchNumberOfResults(){
         By element = By.className("govuk-pagination__next");
-        List <WebElement> nextNavButton = driver.findElements(element) ;
+        List<WebElement> nextNavButton = driver.findElements(element);
         int numberOfRows = 0;
-        if(!nextNavButton.isEmpty()) while (!nextNavButton.isEmpty()) {
-            numberOfRows = numberOfRows + poolSearchResultsTable.findElements(By.tagName("tr")).size();
+
+        // Iterate through all pages of search results
+        while (!nextNavButton.isEmpty()) {
+            numberOfRows += poolSearchResultsTable.findElements(By.tagName("tr")).size();
             log.info("Number of rows: " + numberOfRows);
             nextButton.click();
             nextNavButton = driver.findElements(element);
         }
-        if(nextNavButton.isEmpty()) {
-            numberOfRows = numberOfRows + poolSearchResultsTable.findElements(By.tagName("tr")).size();
-            log.info("Number of rows: " + numberOfRows);
-        }
+
+        // No more next buttons, count the remaining rows on the last page
+        numberOfRows += poolSearchResultsTable.findElements(By.tagName("tr")).size();
+        log.info("Number of rows: " + numberOfRows);
 
         return numberOfRows;
     }

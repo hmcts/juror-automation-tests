@@ -4,48 +4,48 @@ Feature: JM-666
   Scenario Outline: Test to search for crown court pool by pool number
     Given I am on "Bureau" "test"
 
-    Given the juror numbers have not been processed new schema
-      |part_no   | pool_no   | owner |
-      |<part_no> | <pool_no> | 400   |
+    Given a bureau owned pool is created with jurors
+      | court | juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number>    | <pool_number>   | 5				            | 400	|
 
     And I log in as "MODTESTCOURT"
 
     And a new pool is inserted which is owned by the court and includes a deferred juror new schema
-      |owner   | pool_no   | part_no    | no_weeks   |
-      |<court> | <pool_no> | <part_no>  | <no_weeks> |
+      | owner   | pool_no       | part_no         | no_weeks   |
+      | 415     | <pool_number> | <juror_number>  | <no_weeks> |
 
     And I navigate to the pool search screen
-    When I enter the pool number "<pool_no>" on the pool search screen
+    When I enter the pool number "<pool_number>" on the pool search screen
     And I search for the pool
     Then the pool is displayed
 
     Examples:
-      |part_no	|pool_no	|court|no_weeks|
-      |241599991|415999991	|415  |10      |
+      | juror_number  | pool_number	| no_weeks|
+      | 041500067     | 415300157	| 5      |
 
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Test to search for pool by pool number with matching location code
     Given I am on "Bureau" "test"
 
-    Given the juror numbers have not been processed new schema
-      |part_no   | pool_no   | owner |
-      |<part_no> | <pool_no> | 400   |
+    Given a bureau owned pool is created with jurors
+      | court | juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number>    | <pool_number>   | 5				            | 400	|
 
     And I log in as "MODTESTCOURT"
 
     And a new pool is inserted which is owned by the court and includes a deferred juror new schema
-      |owner   | pool_no   | part_no    | no_weeks   |
-      |<court> | <pool_no> | <part_no>  | <no_weeks> |
+      | owner | pool_no       | part_no         | no_weeks   |
+      | 415   | <pool_number> | <juror_number>  | <no_weeks> |
 
     And I navigate to the pool search screen
-    When I enter the pool number "<pool_no>" on the pool search screen
-    And I enter a location code of "<court>" for the pool search
+    When I enter the pool number "<pool_number>" on the pool search screen
+    And I enter a location code of "415" for the pool search
     And I search for the pool
     Then the pool is displayed
 
     Examples:
-      |part_no	|pool_no	|court|no_weeks|
-      |241599992|415999992	|415  |10      |
+      | juror_number| pool_number | no_weeks|
+      | 041500068   | 415300158	  |10       |
 
   @JurorTransformation @NewSchemaConverted
   Scenario: Test to search for pool by pool number with matching pool status
@@ -66,51 +66,51 @@ Feature: JM-666
   Scenario Outline: Test to search for pool by pool number with matching pool stage
     Given I am on "Bureau" "test"
 
-    Given the juror numbers have not been processed new schema
-      |part_no   | pool_no   | owner |
-      |<part_no> | <pool_no> | 400   |
+    Given a bureau owned pool is created with jurors
+      | court | juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number>    | <pool_number>   | 5				            | 400	|
 
     And I log in as "MODTESTCOURT"
 
     And a new pool is inserted which is owned by the court and includes a deferred juror new schema
-      |owner   | pool_no   | part_no    | no_weeks   |
-      |<court> | <pool_no> | <part_no>  | <no_weeks> |
+      | owner | pool_no       | part_no         | no_weeks   |
+      | 415   | <pool_number> | <juror_number>  | <no_weeks> |
 
     And I navigate to the pool search screen
-    When I enter the pool number "<pool_no>" on the pool search screen
+    When I enter the pool number "<pool_number>" on the pool search screen
     And I expand the pool search advanced search criteria
     And I select the At Court option in the advanced pool search section
     And I search for the pool
     Then the pool is displayed
 
     Examples:
-      |part_no	|pool_no	|court|no_weeks|
-      |641500600|415171109	|415  |10      |
+      | juror_number  | pool_number	| no_weeks|
+      | 041500069     | 415300159	| 10      |
 
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Test to search for a pool by pool number with matching pool type - Crown Court
     Given I am on "Bureau" "test"
 
-    Given the juror numbers have not been processed new schema
-      |part_no   | pool_no   | owner |
-      |<part_no> | <pool_no> | 400   |
+    Given a bureau owned pool is created with jurors
+      | court | juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number>    | <pool_number>   | 5				            | 400	|
 
     And I log in as "MODTESTCOURT"
 
     And a new pool is inserted which is owned by the court and includes a deferred juror new schema
-      |owner   | pool_no   | part_no    | no_weeks   |
-      |<court> | <pool_no> | <part_no>  | <no_weeks> |
+      | owner | pool_no       | part_no         | no_weeks   |
+      | 415   | <pool_number> | <juror_number>  | <no_weeks> |
 
     And I navigate to the pool search screen
-    When I enter the pool number "<pool_no>" on the pool search screen
+    When I enter the pool number "<pool_number>" on the pool search screen
     And I expand the pool search advanced search criteria
     And I select the Crown Court option in the advanced pool search section
     And I search for the pool
     Then the pool is displayed
 
     Examples:
-      |part_no	|pool_no	|court|no_weeks|
-      |241599994|415999994	|415  |10      |
+      | juror_number  | pool_number	| no_weeks|
+      | 041500070     | 415300160	| 10      |
 
   @JurorTransformation @NewSchemaConverted
   Scenario: Creating a pool and searching for it using pool number and advanced search - Civil Court
@@ -159,143 +159,146 @@ Feature: JM-666
   Scenario Outline: Test to search for pool by pool number with non matching date
     Given I am on "Bureau" "test"
 
-    Given the juror numbers have not been processed new schema
-      |part_no   | pool_no   | owner |
-      |<part_no> | <pool_no> | 400   |
+    Given a bureau owned pool is created with jurors
+      | court | juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number>    | <pool_number>   | 5				            | 400	|
 
     And I log in as "MODTESTCOURT"
 
     And a new pool is inserted which is owned by the court and includes a deferred juror new schema
-      |owner   | pool_no   | part_no    | no_weeks   |
-      |<court> | <pool_no> | <part_no>  | <no_weeks> |
+      | owner | pool_no       | part_no         | no_weeks   |
+      | 415   | <pool_number> | <juror_number>  | <no_weeks> |
 
     And I navigate to the pool search screen
-    When I enter the pool number "<pool_no>" on the pool search screen
+    When I enter the pool number "<pool_number>" on the pool search screen
     And I set input field with "id" of "serviceStartDate" to "25/10/2022"
     And I search for the pool
     Then I see "There are no matching results" on the page
 
     Examples:
-      |part_no	|pool_no	|court|no_weeks|
-      |241599995|415999995	|415  |10      |
+      | juror_number  | pool_number | no_weeks|
+      | 041500071     | 415300161	| 10      |
 
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Test to search for pool by pool number with non matching location code
     Given I am on "Bureau" "test"
 
-    Given the juror numbers have not been processed new schema
-      |part_no   | pool_no   | owner |
-      |<part_no> | <pool_no> | 400   |
+    Given a bureau owned pool is created with jurors
+      | court | juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number>    | <pool_number>   | 5				            | 400	|
 
     And I log in as "MODTESTCOURT"
 
     And a new pool is inserted which is owned by the court and includes a deferred juror new schema
-      |owner   | pool_no   | part_no    | no_weeks   |
-      |<court> | <pool_no> | <part_no>  | <no_weeks> |
+      | owner | pool_no       | part_no         | no_weeks   |
+      | 415   | <pool_number> | <juror_number>  | <no_weeks> |
 
     And I navigate to the pool search screen
-    When I enter the pool number "<pool_no>" on the pool search screen
+    When I enter the pool number "<pool_number>" on the pool search screen
     And I enter a location code of "416" for the pool search
     And I search for the pool
     Then I see "There are no matching results" on the page
 
     Examples:
-      |part_no	|pool_no	|court|no_weeks|
-      |241599996|415999996	|415  |10      |
+      | juror_number  | pool_number	| no_weeks|
+      | 041500072     | 415300162	| 10      |
 
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Test to search for pool by pool number with non matching pool status
     Given I am on "Bureau" "test"
 
-    Given the juror numbers have not been processed new schema
-      |part_no   | pool_no   | owner |
-      |<part_no> | <pool_no> | 400   |
+    Given a bureau owned pool is created with jurors
+      | court | juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number>    | <pool_number>   | 5				            | 400	|
 
     And I log in as "MODTESTCOURT"
 
     And a new pool is inserted which is owned by the court and includes a deferred juror new schema
-      |owner   | pool_no   | part_no    | no_weeks   |
-      |<court> | <pool_no> | <part_no>  | <no_weeks> |
+      | owner   | pool_no       | part_no         | no_weeks   |
+      | 415     | <pool_number> | <juror_number>  | <no_weeks> |
 
     And I navigate to the pool search screen
-    When I enter the pool number "<pool_no>" on the pool search screen
+    When I enter the pool number "<pool_number>" on the pool search screen
     And I expand the pool search advanced search criteria
     And I select the Requested option in the advanced pool search section
     And I search for the pool
     Then I see "There are no matching results" on the page
 
     Examples:
-      |part_no	|pool_no	|court|no_weeks|
-      |241599997|415999997	|415  |10      |
+      | juror_number	| pool_number	| no_weeks|
+      | 041500073       | 415300163	    | 10      |
 
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Test to search for pool by pool number with non matching pool stage
     Given I am on "Bureau" "test"
 
-    Given the juror numbers have not been processed new schema
-      |part_no   | pool_no   | owner |
-      |<part_no> | <pool_no> | 400   |
+    Given a bureau owned pool is created with jurors
+      | court | juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number>    | <pool_number>   | 5				            | 400	|
 
     And I log in as "MODTESTCOURT"
 
     And a new pool is inserted which is owned by the court and includes a deferred juror new schema
-      |owner   | pool_no   | part_no    | no_weeks   |
-      |<court> | <pool_no> | <part_no>  | <no_weeks> |
+      | owner   | pool_no       | part_no         | no_weeks   |
+      | 415     | <pool_number> | <juror_number>  | <no_weeks> |
 
     And I navigate to the pool search screen
-    When I enter the pool number "<pool_no>" on the pool search screen
+    When I enter the pool number "<pool_number>" on the pool search screen
     And I expand the pool search advanced search criteria
     And I select the With the Bureau option in the advanced pool search section
     And I search for the pool
     Then I see "There are no matching results" on the page
 
     Examples:
-      |part_no	|pool_no	|court|no_weeks|
-      |241599998|415999998	|415  |10      |
+      | juror_number  | pool_number	|no_weeks|
+      | 041500074     | 415300164	|10      |
 
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Test to search for pool by pool number with non matching pool type
     Given I am on "Bureau" "test"
 
-    Given the juror numbers have not been processed new schema
-      |part_no   | pool_no   | owner |
-      |<part_no> | <pool_no> | 400   |
+    Given a bureau owned pool is created with jurors
+      | court | juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number>    | <pool_number>   | 5				            | 400	|
 
     And I log in as "MODTESTCOURT"
 
     And a new pool is inserted which is owned by the court and includes a deferred juror new schema
-      |owner   | pool_no   | part_no    | no_weeks   |
-      |<court> | <pool_no> | <part_no>  | <no_weeks> |
+      | owner   | pool_no       | part_no         | no_weeks   |
+      | 415     | <pool_number> | <juror_number>  | <no_weeks> |
 
     And I navigate to the pool search screen
-    When I enter the pool number "<pool_no>" on the pool search screen
+    When I enter the pool number "<pool_number>" on the pool search screen
     And I expand the pool search advanced search criteria
     And I select the High Court option in the advanced pool search section
     And I search for the pool
     Then I see "There are no matching results" on the page
 
     Examples:
-      |part_no	|pool_no	|court|no_weeks|
-      |241599998|415999998	|415  |10      |
+      | juror_number| pool_number | no_weeks|
+      | 041500075   | 415300165	  | 10      |
 
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Test to check previous advanced search criteria is retained
     Given I am on "Bureau" "test"
 
-    Given the juror numbers have not been processed new schema
-      |part_no   | pool_no   | owner |
-      | <part_no>   | <pool_no>   | 400   |
-      | <part_no_2> | <pool_no_2> | 400   |
+    Given a bureau owned pool is created with jurors
+      | court | juror_number       | pool_number	 | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number1>    | <pool_number1>  | 5				        | 400	|
+
+    Given a bureau owned pool is created with jurors
+      | court | juror_number       | pool_number	 | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number2>    | <pool_number2>  | 5				        | 400	|
 
     And I log in as "MODTESTCOURT"
 
     And a new pool is inserted which is owned by the court and includes a deferred juror new schema
-      |owner   | pool_no   | part_no    | no_weeks   |
-      | <court> | <pool_no>   | <part_no>   | <no_weeks> |
-      | <court> | <pool_no_2> | <part_no_2> | <no_weeks> |
+      | owner | pool_no         | part_no         | no_weeks   |
+      | 415   | <pool_number1>  | <juror_number1> | <no_weeks> |
+      | 415   | <pool_number2>  | <juror_number2> | <no_weeks> |
 
     And I navigate to the pool search screen
-    When I enter a location code of "<court>" for the pool search
+    When I enter a location code of "415" for the pool search
     And I expand the pool search advanced search criteria
     And I select all the tick boxes in the advanced search section
     And I search for the pool
@@ -304,5 +307,5 @@ Feature: JM-666
     And all the tick boxes in the advanced search section are still selected
 
     Examples:
-      | part_no   | pool_no   | part_no_2 | pool_no_2 | court | no_weeks |
-      | 241599909 | 415999909 | 641500407 | 415170601 | 415   | 10       |
+      | juror_number1   | pool_number1   | juror_number2 | pool_number2 | no_weeks |
+      | 041500076       | 415300166      | 041500077     | 415300167    | 10       |

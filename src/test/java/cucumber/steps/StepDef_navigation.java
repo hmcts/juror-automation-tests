@@ -164,7 +164,6 @@ public class StepDef_navigation {
 	@When("^I check the juror \"([^\"]*)\" checkbox$")
 	public void check_Jurorcheckbox(String arg1) throws Throwable {
 		try {
-			NAV.waitForPageLoad();
 			NAV.check_Jurorcheckbox(arg1);
 		} catch (Exception e) {
 			NAV.waitForPageLoad(2);
@@ -829,7 +828,6 @@ public class StepDef_navigation {
 
 	@When("^I click on the methods dropdown and select \"([^\"]*)\" for juror \"([^\"]*)\"$")
 	public void methodDropdownOnMessage(String methodType, String jurorNumber) {
-		NAV.waitForPageLoad();
 		NAV.selectFromMessageMethodDropdown(methodType, jurorNumber);
 	}
 	@And("^I see the message sent banner containing \"([^\"]*)\"$")

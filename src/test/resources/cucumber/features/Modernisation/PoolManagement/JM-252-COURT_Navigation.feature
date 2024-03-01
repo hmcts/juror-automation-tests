@@ -1,6 +1,6 @@
 Feature: JM-252_Navigation_COURT
 
-  @JurorTransformationWIP @NewSchemaConverted @JM-6143
+  @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Navigating back and forth and changing inputs
     Given I am on "Bureau" "test"
     And I log in as "<user>"

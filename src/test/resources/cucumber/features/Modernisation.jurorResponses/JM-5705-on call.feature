@@ -15,7 +15,6 @@ Feature: As a jury officer I need to send a on call message
 
     And I update juror "<juror_number>" to be able to send a message to them
 
-
     #log on and search for juror
     And I log in as "<user>"
 

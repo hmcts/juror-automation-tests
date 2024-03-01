@@ -485,9 +485,6 @@ Feature: As a jury officer I need to send a failed to attend message
     And I update juror "<juror_number_2>" to be able to send a message to them
     And I update juror "<juror_number_3>" to be able to send a message to them
 
-    And I clear messages for juror "<juror_number_2>"
-    And I clear messages for juror "<juror_number_3>"
-
     #log on and search for juror
     And I log in as "<user>"
 

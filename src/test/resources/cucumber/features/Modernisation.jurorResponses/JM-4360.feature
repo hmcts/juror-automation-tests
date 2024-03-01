@@ -7,11 +7,11 @@ Feature: JM-4360 - As a jury officer I need to be able to check jurors in for th
     Given the juror numbers have not been processed new schema
       |part_no     | pool_no   | owner |
       |<part_no>   | <pool_no> | 415   |
-      |<part_no_2>   | <pool_no> | 415   |
+      |<part_no_2> | <pool_no> | 415   |
 
     Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no   | pool_no   | owner |
-      |<part_no> | <pool_no> | 415   |
+      |part_no     | pool_no   | owner |
+      |<part_no>   | <pool_no> | 415   |
       |<part_no_2> | <pool_no> | 415   |
 
     And I log in as "<user>"
@@ -45,7 +45,6 @@ Feature: JM-4360 - As a jury officer I need to be able to check jurors in for th
     And I see "jurors listed as attending" on the page
     And I see "<part_no>" in the same row as "9:00am"
     And I see "<part_no_2>" in the same row as "2:30pm"
-
 
     Examples:
       |user			|part_no  |part_no_2 |pool_no    |
