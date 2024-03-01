@@ -23,7 +23,7 @@ public class ActivePools {
     @FindBy(xpath = "/html/body/div[2]/main/div/div/form/table")
     WebElement randomActivePool;
 
-    @FindBy(id = "check-all-jurors")
+    @FindBy(xpath = "//input[@name='check-all-jurors']")
     WebElement poolOverviewSelectAll;
 
     @FindBy(id = "selectAllCheckbox")
@@ -63,8 +63,8 @@ public class ActivePools {
     }
 
     public void checkSelectAllCheckboxOnPoolOverview() {
-        log.info("Clicked select all checkbox on pool overview");
         poolOverviewSelectAll.click();
+        log.info("Clicked select all checkbox on pool overview");
     }
     public void bureauCheckSelectAllCheckboxOnPoolOverview() {
         log.info("Clicked select all checkbox on pool overview");
@@ -99,7 +99,5 @@ public class ActivePools {
 
     public void checkSelectAllCheckboxOnPoolOverviewForCourt() {
         log.info("Clicked select all checkbox on pool overview");
-        poolOverviewSelectAll.click();
-
-    }
+        poolOverviewSelectAll.click();    }
 }

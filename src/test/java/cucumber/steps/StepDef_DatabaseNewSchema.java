@@ -579,4 +579,8 @@ public class StepDef_DatabaseNewSchema {
         int statusNumber = DBTNSD.getStatusNumber(statusName);
         DBTNSD.setJurorStatus(jurorNumber, Integer.toString(statusNumber));
     }
+    @Given("^I update juror \"([^\"]*)\" to change the status of printed in order to resend letter$")
+    public void setJurorAsPrinted(String jurorNumber) throws SQLException {
+        DBTNSD.setJurorsStatusAsPrintedforResendDeferralLetter(jurorNumber);
+    }
 }

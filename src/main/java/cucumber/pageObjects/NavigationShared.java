@@ -1959,7 +1959,6 @@ public class NavigationShared {
     @FindBy(id = "sentenceDate")
     WebElement sentenceDate;
 
-
     public void enterNewDate(String attDateSequence, final String day, final String month, final String year) {
         log.info("Entering new date");
         switch (attDateSequence) {
@@ -2081,6 +2080,11 @@ public class NavigationShared {
             case "Sentence":
                 sentenceDate.clear();
                 sentenceDate.sendKeys(mondayDateValue);
+                break;
+
+            case "Enter a new service start date":
+                postponeServiceStartDateField.clear();
+                postponeServiceStartDateField.sendKeys(mondayDateValue);
                 break;
         }
     }

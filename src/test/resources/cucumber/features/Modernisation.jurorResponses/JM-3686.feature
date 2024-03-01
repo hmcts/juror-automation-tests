@@ -1,6 +1,6 @@
 Feature: JM-3686
 
-  @JurorTransformationWIP @NewSchemaConverted @JM-5469
+  @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: JM-3686 - End to End test for updating paper response information from juror
 
     Given I am on "Bureau" "test"

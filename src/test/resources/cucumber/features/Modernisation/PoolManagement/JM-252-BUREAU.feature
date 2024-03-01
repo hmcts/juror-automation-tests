@@ -141,7 +141,7 @@ Feature: JM-252 Bureau user create new pools
       | MODTESTBUREAU |   | CHESTER       | Civil     | Civil court   | 415       | Chester      | 0        |
       | MODTESTBUREAU |   | CHESTER       | High      | High court    | 415       | Chester      | 0        |
 
-  @JurorTransformationWIP @JM-4459 @NewSchemaConverted
+  @JurorTransformation @NewSchemaConverted
   Scenario Outline: Happy Path Test to create a new pool and change pool_no
     Given I am on "Bureau" "test"
     Given new pool requests are deleted

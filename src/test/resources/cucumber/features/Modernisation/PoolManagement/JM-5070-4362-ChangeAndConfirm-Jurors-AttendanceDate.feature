@@ -175,7 +175,7 @@ Feature: 1)JM-5070 As a jury officer I need to be able to change a jurors attend
       |MODTESTCOURT |041530015      | 041530016        |041530017        |  415300301      |
 
 
-  @JurorTransformationWIP @newSchemaConverted
+  @JurorTransformation @newSchemaConverted
   Scenario Outline: create a new pool of jurors and verify attendance date for panel members
 
     Given I am on "Bureau" "test"

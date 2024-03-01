@@ -76,7 +76,7 @@ Feature: JM-4956 - 4679
       |MODTESTCOURT |041520001     | 041520002        |415300207     | T202495831   |
 
 
-  @JurorTransformationWIP @JM-5972
+  @JurorTransformation @NewSchemaConverted
   Scenario Outline: Generate a Panel for a Protected Trial
 
     Given I am on "Bureau" "test"

@@ -3057,7 +3057,6 @@ public class StepDef_jurorpool {
 
     @When("^I check the select all checkbox on pool overview as court user$")
     public void checkSelectAllCheckboxOnPoolOverviewForCourtUser() {
-        NAV.waitForPageLoad();
         ACTIVE_POOLS_PAGE.checkSelectAllCheckboxOnPoolOverviewForCourt();
     }
 
