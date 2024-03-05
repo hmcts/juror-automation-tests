@@ -204,6 +204,16 @@ public class JurorRecord {
     @FindBy(xpath = "//input[@name='selectedJurors']")
     public WebElement uncompleteJurorCheckbox;
 
+    @FindBy(xpath = "//*[@id=\"addNonAttendanceDayButton\"]")
+    public WebElement addNonAttendanceDayButton;
+
+    @FindBy(id = "nonAttendanceDay")
+    public WebElement nonAttendanceDate;
+
+    @FindBy(xpath = "//*[@id=\"nonAttendanceDayForm\"]/div[2]/button")
+    public WebElement confirmNonAttendanceDateButton;
+
+
     public String getHeading() {
         return heading.getText();
     }
@@ -503,10 +513,10 @@ public class JurorRecord {
     }
     public void seePrintedLetterInLettersTable(String jurorNumber) {
         Calendar today = Calendar.getInstance();
-        SimpleDateFormat formatter = new SimpleDateFormat("EEE dd MMM yyyy");
+        SimpleDateFormat formatter = new SimpleDateFormat("EEE d MMM yyyy");
         String printedDate = formatter.format(today.getTime());
 
-        WebElement table = driver.findElement(By.xpath("//*[@id=\"main-content\"]/div[4]/div/table"));
+        WebElement table = driver.findElement(By.xpath("//*[@id=\"main-content\"]/div[4]/div/table/tbody"));
         List<WebElement> rows = table.findElements(By.tagName("tr"));
 
         for (WebElement row : rows) {
@@ -560,6 +570,14 @@ public class JurorRecord {
         } else {
             log.info("There is only one tab open. Cannot return to the previous tab.");
         }
+    }
+    public void pressNonAttendanceDayButton() {addNonAttendanceDayButton.click();}
+
+    public void PressConfirmNonAttendanceDateButton() {confirmNonAttendanceDateButton.click();}
+
+    public void setNonAttendanceDate(String date) {
+        nonAttendanceDate.clear();
+        nonAttendanceDate.sendKeys(date);
     }
 
 }

@@ -13,16 +13,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAdjusters;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static org.junit.Assert.*;
 
@@ -436,5 +434,61 @@ public class StepDef_jurorRecord {
     @When("^I return to the previous tab$")
     public void returnToPreviousTab(){
         JUROR_RECORD.returnToPreviousTabAfterLetter();
+    }
+    @When("^I press non-attendance day button$")
+    public void pressNonAttendanceButton(){
+        JUROR_RECORD.pressNonAttendanceDayButton();
+    }
+    @When("^I press confirm non-attendance day button$")
+    public void pressConfirmNonAttendanceButton(){
+        JUROR_RECORD.PressConfirmNonAttendanceDateButton();
+    }
+
+    @When("^I set non-attendance date to \"([^\"]*)\"$")
+    public void setNonAttendanceDayDateWithFreeText(String text) {
+        JUROR_RECORD.setNonAttendanceDate(text);
+    }
+
+    @When("^I set non-attendance date to \"([^\"]*)\" weeks in the future$")
+    public void setNonAttendanceDayDate(String Weeks){
+
+        int weeks;
+        try { weeks = Integer.parseInt(Weeks); }
+        catch (NumberFormatException e) { weeks = 0;}
+
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date today = Calendar.getInstance().getTime();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(today);
+        calendar.add(Calendar.WEEK_OF_MONTH, weeks);
+        Date newDate = calendar.getTime();
+
+        JUROR_RECORD.setNonAttendanceDate(dateFormat.format(newDate));
+    }
+
+    @Then("^I see the date \"([^\"]*)\" weeks from now in the same row as \"([^\"]*)\"$")
+    public void seeText_inSameRow_asText(String Weeks, String nextToText) {
+
+        int weeks;
+        try {
+            weeks = Integer.parseInt(Weeks);
+            }
+        catch (NumberFormatException e) {
+            weeks = 0;
+        }
+
+        DateFormat dateFormat = new SimpleDateFormat("EEE d MMM yyyy");
+        Date today = Calendar.getInstance().getTime();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(today);
+        calendar.add(Calendar.WEEK_OF_MONTH, weeks);
+        Date newDate = calendar.getTime();
+
+        try {
+            NAV.seeText_inSameRow_asText(dateFormat.format(newDate), nextToText);
+        } catch (Exception e) {
+            NAV.waitForPageLoad();
+            NAV.seeText_inSameRow_asText(dateFormat.format(newDate), nextToText);
+        }
     }
 }

@@ -583,4 +583,8 @@ public class StepDef_DatabaseNewSchema {
     public void setJurorAsPrinted(String jurorNumber) throws SQLException {
         DBTNSD.setJurorsStatusAsPrintedforResendDeferralLetter(jurorNumber);
     }
+    @Given("^a confirmation letter inserted for juror \"([^\"]*)\"$")
+    public void insertConfirmationLetterPlaceholder(String jurorNumber) throws SQLException {
+        DBTNSD.insertConfirmationLetter(jurorNumber);
+    }
 }

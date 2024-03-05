@@ -781,19 +781,19 @@ public class DatabaseTesterNewSchemaDesign {
 			conn = db.getConnection("demo");
 
 		try {
-			pStmt = conn.prepareStatement("INSERT INTO juror_mod.courtroom (owner,room_number,description)"
+			pStmt = conn.prepareStatement("INSERT INTO juror_mod.courtroom (loc_code,room_number,description)"
 					+ "VALUES ('" + court + "','Court','COURT ROOM')");
 			pStmt.execute();
 
-			pStmt = conn.prepareStatement("INSERT INTO juror_mod.courtroom (owner,room_number,description)"
+			pStmt = conn.prepareStatement("INSERT INTO juror_mod.courtroom (loc_code,room_number,description)"
 					+ "VALUES ('" + court + "','ChkOut','PARTICIPANT CHECKED OUT')");
 			pStmt.execute();
 
-			pStmt = conn.prepareStatement("INSERT INTO juror_mod.courtroom (owner,room_number,description)"
+			pStmt = conn.prepareStatement("INSERT INTO juror_mod.courtroom (loc_code,room_number,description)"
 					+ "VALUES ('" + court + "','Navail','Not Available')");
 			pStmt.execute();
 
-			pStmt = conn.prepareStatement("INSERT INTO juror_mod.courtroom (owner,room_number,description)"
+			pStmt = conn.prepareStatement("INSERT INTO juror_mod.courtroom (loc_code,room_number,description)"
 					+ "VALUES ('" + court + "','Asmbly','JURY ASSEMBLY ROOM')");
 			pStmt.execute();
 
@@ -816,7 +816,7 @@ public class DatabaseTesterNewSchemaDesign {
 			conn = db.getConnection("demo");
 
 		try {
-			pStmt = conn.prepareStatement("DELETE from juror_mod.courtroom where owner = '" + court + "'");
+			pStmt = conn.prepareStatement("DELETE from juror_mod.courtroom where loc_code = '" + court + "'");
 			pStmt.execute();
 
 		} finally {
@@ -4430,5 +4430,36 @@ public class DatabaseTesterNewSchemaDesign {
 			default:
 				throw new IllegalArgumentException("Invalid status name: " + statusName);
 		}
+	}
+
+	public void insertConfirmationLetter(String jurorNumber) throws SQLException {
+		db = new DBConnection();
+
+		String env_property = System.getProperty("env.database");
+
+		if (env_property != null)
+			conn = db.getConnection(env_property);
+		else
+			conn = db.getConnection("demo");
+
+		try {
+
+			pStmt = conn.prepareStatement("DELETE from juror_mod.bulk_print_data where juror_no='" + jurorNumber + "'");
+			pStmt.executeUpdate();
+
+			pStmt = conn.prepareStatement("INSERT INTO juror_mod.bulk_print_data (juror_no,creation_date,form_type,detail_rec,extracted_flag,digital_comms)"
+					+ "VALUES ('" + jurorNumber + "',NOW(),'5224A','THE CROWN COURT AT CHESTER JURY CENTRAL SUMMONING BUREAU THE COURT SERVICE',NULL,NULL)");
+			pStmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.error("Message:" + e.getMessage());
+
+		} finally {
+			conn.commit();
+			pStmt.close();
+			conn.close();
+		}
+
 	}
 }
