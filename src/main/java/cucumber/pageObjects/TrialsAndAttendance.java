@@ -458,6 +458,15 @@ public class TrialsAndAttendance {
         WebElement trialRadioButton = driver.findElement(By.xpath("//input[@type='radio' and @value='" + trialNumber + "']"));
         trialRadioButton.click();
     }
+    public String dismissedBanner() {
+        String bannerText = NAV.messageBanner.getText();
+        System.out.println("Message Sent Banner Text: " + bannerText);
+        return bannerText;
+    }
+    public void clickAvailableJurorsButton() {
+        WebElement availableJurorsButton = driver.findElement(By.xpath("//button[normalize-space()='Calculate available jurors']"));
+        availableJurorsButton.click();
+    }
 }
 
 

@@ -221,26 +221,25 @@ public class StepDef_trialsAndAttendance {
 	}
 
 	@When("^I set \"([^\"]*)\" \"([^\"]*)\" to \"([^\"]*)\"$")
-	public void set_Checkoutvalue_to(String arg1 ,String arg2, String arg3) throws Throwable {
+	public void set_Checkoutvalue_to(String arg1, String arg2, String arg3) throws Throwable {
 
-		TRL.setRecordAttendnceChangeTimeTextbox(arg2,arg3);
+		TRL.setRecordAttendnceChangeTimeTextbox(arg2, arg3);
 
 	}
-
-		@When("^I select the checkout radio button to \"([^\"]*)\"$")
-		public void selectCheckOutRadioButton(String arg) throws Throwable {
-			try{
-				TRL.click_CheckoutRadioButton(arg);
-			} catch (Throwable e) {
-				NAV.waitForPageLoad();
-				TRL.click_CheckoutRadioButton(arg);
-			}
-		};
+	@When("^I select the checkout radio button to \"([^\"]*)\"$")
+	public void selectCheckOutRadioButton(String arg) throws Throwable {
+		try {
+			TRL.click_CheckoutRadioButton(arg);
+		} catch (Throwable e) {
+			NAV.waitForPageLoad();
+			TRL.click_CheckoutRadioButton(arg);
+		}
+	}
 
 	@When("^I click on the \"(.*)\" from the search results")
 	public void click_TrialNumber(String arg1) throws Throwable {
 
-		try{
+		try {
 			TRL.clickActiveTrialNumber(arg1);
 			return;
 		} catch (Exception e) {}
@@ -252,5 +251,13 @@ public class StepDef_trialsAndAttendance {
 		NAV.waitForPageLoad(1);
 		TRL.clickTrialRadioButton(trialNumber);
 	}
-
+	@And("^I see the banner for dismissed jurors containing \"([^\"]*)\"$")
+	public void iSeeMessageSentBannerContaining(String bannerContains) {
+		assertEquals(bannerContains, TRL.dismissedBanner());
 	}
+	@When("^I press the calculate available jurors button$")
+	public void clickAvailableJurorsButton() {
+		TRL.clickAvailableJurorsButton();
+		NAV.waitForPageLoad(2);
+	}
+}

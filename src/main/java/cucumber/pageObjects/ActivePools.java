@@ -23,7 +23,7 @@ public class ActivePools {
     @FindBy(xpath = "/html/body/div[2]/main/div/div/form/table")
     WebElement randomActivePool;
 
-    @FindBy(xpath = "//input[@name='check-all-jurors']")
+    @FindBy(xpath = "//input[@name='check-all-jurors' or @id='check-all-jurors']")
     WebElement poolOverviewSelectAll;
 
     @FindBy(id = "selectAllCheckbox")
