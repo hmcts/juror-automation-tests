@@ -34,7 +34,7 @@ Feature: JM-4949 & JM-5766
 
     And I press the "Apps" button
     And I click on the "Trial management" link
-    And I click on the "<trial_number>" link
+    And I click on the trial number "<trial_number>"
 
     And I press the "Generate panel" button
     And I see "Generate a panel" on the page
@@ -167,7 +167,7 @@ Feature: JM-4949 & JM-5766
 
     And I press the "Apps" button
     And I click on the "Trial management" link
-    And I click on the "<trial_number>" link
+    And I click on the trial number "<trial_number>"
 
     And I press the "Generate panel" button
     And I see "Generate a panel" on the page
@@ -276,7 +276,7 @@ Feature: JM-4949 & JM-5766
 
     And I press the "Apps" button
     And I click on the "Trial management" link
-    And I click on the "<trial_number>" link
+    And I click on the trial number "<trial_number>"
 
     And I press the "Generate panel" button
     And I see "Generate a panel" on the page
@@ -364,7 +364,7 @@ Feature: JM-4949 & JM-5766
 
     And I press the "Apps" button
     And I click on the "Trial management" link
-    And I click on the "<trial_number>" link
+    And I click on the trial number "<trial_number>"
 
     And I press the "Generate panel" button
     And I see "Generate a panel" on the page
@@ -474,7 +474,7 @@ Feature: JM-4949 & JM-5766
 
     And I press the "Apps" button
     And I click on the "Trial management" link
-    And I click on the "<trial_number>" link
+    And I click on the trial number "<trial_number>"
 
     And I press the "Generate panel" button
     And I see "Generate a panel" on the page
@@ -593,7 +593,7 @@ Feature: JM-4949 & JM-5766
 
     And I press the "Apps" button
     And I click on the "Trial management" link
-    And I click on the "<trial_number>" from the search results
+    And I click on the trial number "<trial_number>"
 
     When I press the "Generate panel" button
     Then I see "Generate a panel" on the page

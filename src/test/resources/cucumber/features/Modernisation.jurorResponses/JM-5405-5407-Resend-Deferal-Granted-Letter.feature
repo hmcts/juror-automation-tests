@@ -106,14 +106,14 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
       |  041520026    | 415300703   | MODTESTBUREAU |
 
   @JurorTransformationMulti @NewSchemaConverted
-  Scenario Outline:As a bureau officer verify a deferred juror letter in printing stage can delete
+  Scenario Outline:As a bureau officer verify a deferral granted letter in printing stage can delete
 
     Given I am on "Bureau" "test"
     And I log in as "<user>"
 
     When a bureau owned pool is created with jurors
-      | court | juror_number  | pool_number     | att_date_weeks_in_future   | owner |
-      | 415   | <juror_number>| <pool_number>   | 5                          | 400  |
+      | court | juror_number  | pool_number     | att_date_weeks_in_future   | owner  |
+      | 415   | <juror_number>| <pool_number>   | 5                          | 400    |
 
     And the user searches for juror record "<juror_number>" from the global search bar
 
@@ -130,7 +130,7 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
     When I answer the juror summons reply eligibility questions
     And I click continue on the juror summons reply page
 
-  #can attend on date
+  #deferral
     Then the juror summons reply types page is displayed
     When I set the radio button to "Deferral request"
     And I click continue on the juror summons reply page
@@ -165,16 +165,8 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
     And I press the "Continue" button
     And I press the "Put in deferral maintenance" button
     And I verify the banner message "Deferral granted (other)" on the page
-    When the user searches for juror record "<juror_number>" from the global search bar
-    Then I see the juror status has updated to "Deferred"
-    And I click the update juror record button
-    And I set the radio button to "Deferral - grant or refuse"
-    Then I click continue on the update juror record screen
-    And I select "O - OTHER" from the "Reason for the deferral request" dropdown
-    When I set the radio button to "Grant deferral"
-    And I press the "Continue" button
-    Then I see "Deferral granted (other)" on the page
-     #delete a pending document
+
+  #delete a pending document
     And I press the "Apps" button
     And I click on the "Documents" link
     And I click on the "Deferral granted letters" link
@@ -453,11 +445,11 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
 
     Given I am on "Bureau" "test"
     When a bureau owned pool is created with jurors
-      | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
-      | 415   | <juror_number>| <pool_number>   | 5                          | 400  |
+      | court |juror_number   | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number>| <pool_number>   | 5                         | 400  |
 
     Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no              | pool_no           | owner |
+     |part_no        | pool_no           | owner |
      | <juror_number>| <pool_number>     | 415   |
 
     And I log in as "<user>"
@@ -518,6 +510,11 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
     And I select "O - OTHER" from the "Reason for the deferral request" dropdown
     When I set the radio button to "Grant deferral"
     And I press the "Continue" button
+
+    And I see "Do you want to print a deferral granted letter?" on the page
+    And I set the radio button to "No"
+    And I press the "Continue" button
+
     Then I see "Deferral granted (other)" on the page
 
     And I press the "Apps" button
@@ -542,7 +539,7 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
     Then I see "https://juror-test-bureau.clouddev.online/documents/deferral-granted/letters-list?documentSearchBy=juror&jurorDetails=041530028" in the URL
 
     Examples:
-      | juror_number  | pool_number | user          |
+      | juror_number  | pool_number | user         |
       |  041530027    | 415300305   | MODTESTCOURT |
 
   @JurorTransformationWIP @NewSchemaConverted @JM-6338

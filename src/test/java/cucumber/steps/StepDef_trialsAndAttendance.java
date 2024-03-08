@@ -236,7 +236,7 @@ public class StepDef_trialsAndAttendance {
 		}
 	}
 
-	@When("^I click on the \"(.*)\" from the search results")
+	@When("^I click on the trial number \"([^\"]*)\"$")
 	public void click_TrialNumber(String arg1) throws Throwable {
 
 		try {

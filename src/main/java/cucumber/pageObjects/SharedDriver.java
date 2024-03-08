@@ -103,6 +103,7 @@ public class SharedDriver extends EventFiringWebDriver {
 			if (headlessChrome.equalsIgnoreCase("true")) {
 				options.addArguments("--headless");
 				options.addArguments("--window-size=1920,1080");
+				options.addArguments("--user-agent=Chrome/117.0.5938.132");
 			} else {
 				//options.addArguments("--start-maximized");
 			}
@@ -118,6 +119,7 @@ public class SharedDriver extends EventFiringWebDriver {
 					options.addArguments("--headless");
 					options.addArguments("--window-size=1920,1080");
 					options.addArguments("--disable-dev-shm-usage");
+					options.addArguments("--user-agent=Chrome/117.0.5938.132");		
 					REAL_DRIVER = new ChromeDriver(options);
 				}
 			}
