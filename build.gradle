@@ -269,7 +269,7 @@ dependencies {
 task functional(type: Test, dependsOn: testClasses) {
   systemProperty "envName", System.getenv("envName")
   systemProperty "envDriver", System.getenv("envDriver")
- 	include '**/TestRunner_JurorTransformation.class'
+  include '**/TestRunner_JurorTransformation.class'
   include '**/TestRunner_JurorTransformationMulti.class'
   include '**/TestRunner_JurorTransformationWIP.class'
   include '**/TestRunner_Shakedown.class'
