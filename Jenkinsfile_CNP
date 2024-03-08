@@ -55,7 +55,7 @@ GradleBuilder builder = new GradleBuilder(this, product)
 
 withNightlyPipeline(type, product, component) {
   loadVaultSecrets(secrets)
-  enableFullFunctionalTest()
+  enableFullFunctionalTest(600)
   enableSlackNotifications('#juror-build-notices')
 
   env.envName = params.EnvironmentChoice
