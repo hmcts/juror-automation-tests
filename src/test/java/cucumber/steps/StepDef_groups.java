@@ -86,6 +86,16 @@ public class StepDef_groups {
 	    	GRP.click_radioButtonWithLabel(arg1);
 	    }
 	};
+
+	@When("^I choose the \"([^\"]*)\" radio button$")
+	public void chooseRadioButton(String arg1) throws Throwable {
+		try{
+			GRP.chooseRadioButtonWithLabel(arg1);
+		} catch (Throwable e) {
+			NAV.waitForPageLoad();
+			GRP.chooseRadioButtonWithLabel(arg1);
+		}
+	}
 	@Then("^the radio button \"([^\"]*)\" is \"([^\"]*)\"$")
 	public void confirm_Radiobutton_withNameChecked(String radioButtonLabel, String selectUnSelected){
 	    GRP.confirm_Radiobutton_withNameChecked(radioButtonLabel, selectUnSelected);

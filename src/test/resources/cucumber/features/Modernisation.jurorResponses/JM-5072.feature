@@ -1,6 +1,6 @@
 Feature: JM-5072 - Dismiss random jurors
 
-  @JurorTransformationWIP @NewSchemaConverted @JM-6374
+  @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: As a jury officer I want to dismiss random jurors - Happy Path
 
     Given I am on "Bureau" "test"
@@ -40,19 +40,7 @@ Feature: JM-5072 - Dismiss random jurors
     And I input juror "<juror_number_2>" to be checked in
     And I press the "Check in juror" button
     And I see "<juror_number_2>" in the same row as "9:00am"
-
-    Then I press the "Confirm attendance" button
-    And I see "Some jurors have not been checked out" on the page
-    And I see "<juror_number>" in the same row as "9:00am"
-    And I see "<juror_number_2>" in the same row as "9:00am"
-
-    And I set "Hour" to "5"
-    And I set "Minute" to "00"
-    And I set the radio button to "pm"
-    Then I press the "Continue" button
-    And I see "Confirm attendance list" on the page
-    Then I press the "Confirm attendance list is correct" button
-
+    
     #dismiss jurors
     And I press the "Apps" button
     And I click on the "Juror management" link
@@ -66,30 +54,31 @@ Feature: JM-5072 - Dismiss random jurors
 
     #this will fail here because of JM-6374
     And I see "Number of available jurors from selected pools" on the page
-    And I see "2 available to dismiss" on the page
+    And I see "2 jurors available to dismiss" on the page
     And I see "How many of these jurors do you want to dismiss?" on the page
-    And I set "How many of these jurors do you want to dismiss?" to "1"
+    And I set "How many of these jurors do you want to dismiss?" to "2"
     And I press the "Generate list of jurors to dismiss" button
     
     And I see "Select jurors to dismiss" on the page
     And I check the select all checkbox
     And I press the "Dismiss selected jurors" button
+
+    And I see "Some jurors have not been checked out" on the page
+    And I set "Hour" to "7"
+    And I set "Minute" to "00"
+    And I set the radio button to "pm"
+    Then I press the "Continue" button
     
     And I see "Complete service" on the page
     And I set the "Completion date" date to a Monday "-2" weeks in the future
-    And I press the "Compelete service" button
-    And I see the banner for dismissed jurors containing "1 jurors dismissed and service completed."
+    And I press the "Complete service" button
+    And I see the banner for dismissed jurors containing "2 jurors dismissed and service completed."
 
     And the user searches for juror record "<juror_number>" from the global search bar
     And I see the juror status has updated to "Completed"
 
-    #check if number available to dismiss has gone down
-    And I press the "Apps" button
-    And I click on the "Juror management" link
-    And I press the "Dismiss jurors" button
-    And I check the "<pool_number>" checkbox
-    And I press the "Calculate available jurors" button
-    And I see "1 jurors available to dismiss" on the page
+    And the user searches for juror record "<juror_number_2>" from the global search bar
+    And I see the juror status has updated to "Completed"
 
     Examples:
       |user			|juror_number    | juror_number_2  |   pool_number    |

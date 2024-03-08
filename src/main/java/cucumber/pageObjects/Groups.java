@@ -2,7 +2,6 @@ package cucumber.pageObjects;
 
 import com.google.common.base.Verify;
 import cucumber.utils.AngularJsHTTPCallWait;
-import cucumber.utils.ReadProperties;
 import cucumber.utils.WaitUtil_v2;
 import cucumber.utils.WaitUtils;
 import org.apache.log4j.Logger;
@@ -205,6 +204,23 @@ public class Groups {
 					"//label[text()[contains(.,'"+arg1+"')]]"
 			));
 			NAV.click_onElement(radioButtonNext);
+		}
+
+		log.info("Clicked on radio button which contained text =>" + arg1);
+	}
+
+	public void chooseRadioButtonWithLabel(String arg1) throws Exception {
+		WebElement radioButton;
+		wait.activateImplicitWait();
+		try{
+			radioButton = driver.findElement(By.xpath("//label[text()[contains(.,'" + arg1 + "')]]/../input[@type='radio']"));
+			NAV.click_onElement(radioButton);
+			radioButton.sendKeys(Keys.chord("", Keys.TAB));
+		} catch (Exception e) {
+			radioButton = driver.findElement(By.xpath("//label[text()[contains(.,'" + arg1 + "')]]/../input[@type='radio']"));
+			NAV.waitForPageLoad();
+			NAV.click_onElement(radioButton);
+			radioButton.sendKeys(Keys.chord("", Keys.TAB));;
 		}
 
 		log.info("Clicked on radio button which contained text =>" + arg1);

@@ -45,7 +45,7 @@ Feature: JM-4956 - 4679
 
     And I press the "Apps" button
     And I click on the "Trial management" link
-    And I click on the "<trial_number>" link
+    And I click on the trial number "<trial_number>"
 
     And I press the "Generate panel" button
     And I see "Generate a panel" on the page
@@ -112,7 +112,7 @@ Feature: JM-4956 - 4679
 
     And I press the "Apps" button
     And I click on the "Trial management" link
-    And I click on the "<trial_number>" link
+    And I click on the trial number "<trial_number>"
 
     And I press the "Generate panel" button
     And I set the radio button to "All available jurors"
@@ -170,7 +170,7 @@ Feature: JM-4956 - 4679
 
     And I press the "Apps" button
     And I click on the "Trial management" link
-    And I click on the "<trial_number>" link
+    And I click on the trial number "<trial_number>"
 
     And I press the "Generate panel" button
     And I see "Generate a panel" on the page
@@ -251,7 +251,7 @@ Feature: JM-4956 - 4679
 
     And I press the "Apps" button
     And I click on the "Trial management" link
-    And I click on the "<trial_number>" link
+    And I click on the trial number "<trial_number>"
 
     And I press the "Generate panel" button
     And I see "Generate a panel" on the page
@@ -353,7 +353,7 @@ Feature: JM-4956 - 4679
 
     And I press the "Apps" button
     And I click on the "Trial management" link
-    And I click on the "<trial_number>" link
+    And I click on the trial number "<trial_number>"
 
     And I press the "Generate panel" button
     And I see "Generate a panel" on the page
@@ -403,3 +403,28 @@ Feature: JM-4956 - 4679
     Examples:
       |user			|juror_number  | juror_number_2  |juror_number_3   | pool_number    | trial_number |
       |MODTESTCOURT |041520009     | 041520010       |041520011        | 415300214      | T202425891   |
+
+
+  @JurorTransformation @NewSchemaConverted
+  Scenario Outline: Create a Trial and Generate Panel - Unhappy path using more jurors than those available
+
+    Given I am on "Bureau" "test"
+
+    And I Confirm all the data in the record attendance table is cleared
+    And a new trial is inserted with the trial number "<trial_number>"
+    And I log in as "<user>"
+    
+    And I press the "Apps" button
+    And I click on the "Trial management" link
+    And I click on the trial number "<trial_number>"
+
+    And I press the "Generate panel" button
+    And I see "Which jurors do you want to generate a panel from?" on the page
+    And I set the radio button to "All available jurors"
+    And I set "Number of jurors needed on this panel" to "2"
+    And I press the "Continue" button
+    And I see "Cannot create panel - Not enough jurors available" in the error banner
+
+    Examples:
+      |user			   | trial_number |
+      |MODTESTCOURT    | T2020070324  |
