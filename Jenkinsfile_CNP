@@ -75,9 +75,27 @@ withNightlyPipeline(type, product, component) {
       allowMissing         : true,
       alwaysLinkToLastBuild: true,
       keepAll              : true,
-      reportDir            : "target/TestRunner_SmokeTest/",
+      reportDir            : "target/TestRunner_/JurorTransformation",
       reportFiles          : "cucumber.html",
-      reportName           : "Cucumber Smoke Test Report"
+      reportName           : "Cucumber JurorTransformation Test Report"
+    ]
+
+    publishHTML target: [
+      allowMissing         : true,
+      alwaysLinkToLastBuild: true,
+      keepAll              : true,
+      reportDir            : "target/TestRunner_JurorTransformationMulti/",
+      reportFiles          : "cucumber.html",
+      reportName           : "Cucumber JurorTransformationMulti Test Report"
+    ]
+
+    publishHTML target: [
+      allowMissing         : true,
+      alwaysLinkToLastBuild: true,
+      keepAll              : true,
+      reportDir            : "target/TestRunner_JurorTransformationWIP/",
+      reportFiles          : "cucumber.html",
+      reportName           : "Cucumber JurorTransformationWIP Test Report"
     ]
 
     publishHTML target: [
@@ -88,6 +106,16 @@ withNightlyPipeline(type, product, component) {
       reportFiles          : "cucumber.html",
       reportName           : "Cucumber Shakedown Test Report"
     ]
+
+    publishHTML target: [
+      allowMissing         : true,
+      alwaysLinkToLastBuild: true,
+      keepAll              : true,
+      reportDir            : "target/TestRunner_SmokeTest/",
+      reportFiles          : "cucumber.html",
+      reportName           : "Cucumber Smoke Test Report"
+    ]
+
     steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'selenium.log'
     steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'target/**/*.json'
   }
