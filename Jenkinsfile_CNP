@@ -3,10 +3,10 @@ properties([
   parameters([
     choice(choices: ['chrome', 'firefox', 'msedge'], name: 'Browser'),
     choice(choices: ['stg', 'test', 'demo', 'ithc'], name: 'EnvironmentChoice'),
-    booleanParam(defaultValue: false, description: 'Include JurorTransformation tests', name: 'runJurorTransformation').
-    booleanParam(defaultValue: false, description: 'Include JurorTransformationMulti tests', name: 'runJurorTransformationMulti'),
-    booleanParam(defaultValue: false, description: 'Include JurorTransformationWIP tests', name: 'runJurorTransformationWIP'),
-    booleanParam(defaultValue: false, description: 'Include Shakedown tests', name: 'runShakedown')
+    booleanParam(name: 'runJurorTransformation', defaultValue: false, description: 'Include JurorTransformation tests'),
+    booleanParam(name: 'runJurorTransformationMulti', defaultValue: false, description: 'Include JurorTransformationMulti tests'),
+    booleanParam(name: 'runJurorTransformationWIP', defaultValue: false, description: 'Include JurorTransformationWIP tests'),
+    booleanParam(name: 'runShakedown', defaultValue: false, description: 'Include Shakedown tests')
   ])
 ])
 
