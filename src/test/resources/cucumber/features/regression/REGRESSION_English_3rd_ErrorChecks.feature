@@ -1,17 +1,16 @@
 Feature: Regression English_3rd_ErrorChecks
 
-@Regression @JDB-3348 @JDB-3501 @JDB-3502 @JDB-3524 @JDB-3638 @JDB-3668 @JDB-3669 @JDB-3670 @JDB-3671 @JDB-3672 @JDB-3711 @JDB-3715 
-@JDB-3653 @JDB-4502 
+@Regression @NewSchemaConverted
 Scenario Outline: English_3rd_ErrorChecks
-	Given I am on "Public" "bau-test"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+
+	Given I am on "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
 	
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	
 	Then I see "Reply to a jury summons" on the page
 	
@@ -39,15 +38,13 @@ Scenario Outline: English_3rd_ErrorChecks
 	And I see "Find out about call charges" on the page
 	
 	#Juror Log In (Find out how to trigger all messages)
-	
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 	Then I see "What is your name?" on the page
 	
 	#Third Party Name
-	
 	When I press the "Continue" button
 	Then I see "There is a problem" on the page
 	And I see "Enter your first name" on the page
@@ -58,7 +55,6 @@ Scenario Outline: English_3rd_ErrorChecks
 	Then I see "Your relationship to the person" on the page
 	
 	#Third Party Relationship
-	
 	When I press the "Continue" button
 	Then I see "There is a problem" on the page
 	And I see "Enter your relationship to the person summoned" on the page
@@ -67,7 +63,6 @@ Scenario Outline: English_3rd_ErrorChecks
 	Then I see "Your contact information" on the page
 	
 	#3rd Party Contact
-	
 	When I press the "Continue" button
 	Then I see "There is a problem" on the page
 	And I see "Choose a way for us to contact you" on the page
@@ -90,137 +85,116 @@ Scenario Outline: English_3rd_ErrorChecks
 	And I see "Enter your email address and check that it matches the other one you have provided" on the page
 	
 	#new
-	
-	And I set "Enter your email address" to "email@outlook.com"
-	And I set "Enter your email address again" to "email@outlook.com"
+	And I set "Enter your email address" to "<email>"
+	And I set "Enter your email address again" to "<email>"
 	
 	#main starts with non 0
-	
 	When I set "Main phone" to "1207 821 1818"
 	When I press the "Continue" button
 	Then I see "There is a problem" on the page
 	And I see "Check your main phone number" on the page
 	
 	#main includes a letter
-	
 	When I set "Main phone" to "H207 821 1818"
 	When I press the "Continue" button
 	Then I see "There is a problem" on the page
 	And I see "Check your main phone number" on the page
 	
 	#main has all spaces
-	
 	When I set "Main phone" to "           "
 	When I press the "Continue" button
 	Then I see "There is a problem" on the page
 	And I see "Enter your main phone number" on the page
 	
 	#main starts 01 and is followed by spaces
-	
 	When I set "Main phone" to "01         "
 	When I press the "Continue" button
 	Then I see "There is a problem" on the page
 	And I see "Check your main phone number" on the page
 	
 	#main has hyphens
-	
 	When I set "Main phone" to "0121-333-4444"
 	Then I see "There is a problem" on the page
 	And I see "Check your main phone number" on the page
 	
 	#main has commas
-	
 	When I set "Main phone" to "0121,333,4444"
 	Then I see "There is a problem" on the page
 	And I see "Check your main phone number" on the page
 	
 	#main begins 07 but only has 10 digits
-	
 	When I set "Main phone" to "0711111111"
 	Then I see "There is a problem" on the page
 	And I see "Check your main phone number" on the page
 	
 	#main begins 01 but only has 9 digits
-	
 	When I set "Main phone" to "011111111"
 	Then I see "There is a problem" on the page
 	And I see "Check your main phone number" on the page
 	
 	#main has too many spaces
-	
 	When I set "Main phone" to "01  21  123 444"
 	When I press the "Continue" button
 	Then I see "Why are you replying for the other person?" on the page
 	And I click on the "Back" link
 	
 	#main prefixed with a space
-	
 	When I set "Main phone" to " 0121123444"
 	When I press the "Continue" button
 	Then I see "Why are you replying for the other person?" on the page
 	And I click on the "Back" link
 	
 	#other starts with non 0
-	
 	When I set "Another phone (optional)" to "1207 821 1818"
 	When I press the "Continue" button
 	Then I see "There is a problem" on the page
 	And I see "Check your other phone number" on the page
 	
 	#other includes a letter
-	
 	When I set "Another phone (optional)" to "H207 821 1818"
 	When I press the "Continue" button
 	Then I see "There is a problem" on the page
 	And I see "Check your other phone number" on the page
 		
 	#other starts 01 and is followed by spaces
-	
 	When I set "Another phone (optional)" to "01         "
 	When I press the "Continue" button
 	Then I see "There is a problem" on the page
 	And I see "Check your other phone number" on the page
 	
 	#other has hyphens
-	
 	When I set "Another phone (optional)" to "0121-333-4444"
 	Then I see "There is a problem" on the page
 	And I see "Check your other phone number" on the page
 	
 	#other has commas
-	
 	When I set "Another phone (optional)" to "0121,333,4444"
 	Then I see "There is a problem" on the page
 	And I see "Check your other phone number" on the page
 	
 	#other begins 07 but only has 10 digits
-	
 	When I set "Another phone (optional)" to "0711111111"
 	Then I see "There is a problem" on the page
 	And I see "Check your other phone number" on the page
 	
 	#other begins 01 but only has 9 digits
-	
 	When I set "Another phone (optional)" to "011111111"
 	Then I see "There is a problem" on the page
 	And I see "Check your other phone number" on the page
 	
 	#other has too many spaces
-	
 	When I set "Another phone (optional)" to "01  21  123 444"
 	When I press the "Continue" button
 	Then I see "Why are you replying for the other person?" on the page
 	And I click on the "Back" link
 	
 	#other prefixed with a space
-	
 	When I set "Another phone (optional)" to " 0121123444"
 	When I press the "Continue" button
 	Then I see "Why are you replying for the other person?" on the page
 	And I click on the "Back" link
 	
 	#both invalid
-	
 	When I set "Main phone" to "011111111"
 	When I set "Another phone (optional)" to "011111111"
 	When I press the "Continue" button
@@ -232,12 +206,10 @@ Scenario Outline: English_3rd_ErrorChecks
 	When I set "Another phone (optional)" to ""
 	
 	#end new
-
 	And I press the "Continue" button
 	Then I see "Why are you replying for the other person?" on the page
 	
 	#Why Replying
-	
 	When I press the "Continue" button
 	Then I see "There is a problem" on the page
 	And I see "Tell us why you're replying for the person named on the jury summons" on the page
@@ -258,7 +230,6 @@ Scenario Outline: English_3rd_ErrorChecks
 	#Check Juror Name
 	#JDB-4281
 	#JDB-4125
-
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	And I set "First name" to ""
@@ -273,7 +244,6 @@ Scenario Outline: English_3rd_ErrorChecks
 	Then I see "Is this their address?" on the page
 	
 	#Check address
-	
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	And I set "Address line 1" to ""
@@ -305,32 +275,27 @@ Scenario Outline: English_3rd_ErrorChecks
 	Then I see "Give the date of birth for the person you're replying for" on the page
 	
 	#Juror DoB
-	
 	When I press the "Continue" button
 	Then I see "There is a problem" on the page
 	
 	#JDB-4502
-	
 	And I see "Enter the day the person was born" on the page
 	And I do not see "Enter the month the person was born" on the page
 	And I do not see "Enter the year the person was born" on the page
 
 	#only day is set
-	
 	When I set "Day" to "27"
 	When I press the "Continue" button
 	Then I see "There is a problem" on the page
 	And I see "Enter the month the person was born" on the page
 	
 	#day and month are set
-	
 	And I set "Month" to "04"
 	When I press the "Continue" button
 	Then I see "There is a problem" on the page
 	And I see "Enter the year the person was born" on the page
 	
 	#only year is set
-	
 	When I set "Day" to ""
 	And I set "Month" to ""
 	And I set "Year" to "1988"
@@ -345,7 +310,6 @@ Scenario Outline: English_3rd_ErrorChecks
 	Then I see "We might need to get in touch with the person to ask them more questions or give them information about their jury service" on the page
 	
 	#Contacting the Juror
-	
 	When I press the "Continue" button
 	Then I see "There is a problem" on the page
 	And I see "Select a phone number for us to use to contact you or the juror" on the page
@@ -359,7 +323,6 @@ Scenario Outline: English_3rd_ErrorChecks
 	And I see "Enter their email address" on the page
 
 	#JDB-3502 and JDB-3504 - only warns about email not phone
-	
 	When I set "Main phone number" to "|||"
 	And I set "Another phone number" to "|||"
 	And I set "Enter email address" to "|||"
@@ -375,138 +338,118 @@ Scenario Outline: English_3rd_ErrorChecks
 	And I press the "Continue" button
 	Then I see "Enter their email address and check that it matches the other one you have provided" on the page
 
-	And I set "Enter email address" to "email@outlook.com"
-	And I set "Enter the email address again" to "email@outlook.com"
+	And I set "Enter email address" to "<email>"
+	And I set "Enter the email address again" to "<email>"
 	When I set "Main phone number" to ""
 	And I set "Another phone number" to ""
 	
 	#main starts with non 0
-	
 	When I set "Main phone" to "1207 821 1818"
 	When I press the "Continue" button
 	Then I see "There is a problem" on the page
 	And I see "Check their main phone number" on the page
 	
 	#main includes a letter
-	
 	When I set "Main phone" to "H207 821 1818"
 	When I press the "Continue" button
 	Then I see "There is a problem" on the page
 	And I see "Check their main phone number" on the page
 	
 	#main has all spaces
-	
 	When I set "Main phone" to "           "
 	When I press the "Continue" button
 	Then I see "There is a problem" on the page
 	And I see "Enter their main phone number" on the page
 	
 	#main starts 01 and is followed by spaces
-	
 	When I set "Main phone" to "01         "
 	When I press the "Continue" button
 	Then I see "There is a problem" on the page
 	And I see "Check their main phone number" on the page
 	
 	#main has hyphens
-	
 	When I set "Main phone" to "0121-333-4444"
 	Then I see "There is a problem" on the page
 	And I see "Check their main phone number" on the page
 	
 	#main has commas
-	
 	When I set "Main phone" to "0121,333,4444"
 	Then I see "There is a problem" on the page
 	And I see "Check their main phone number" on the page
 	
 	#main begins 07 but only has 10 digits
-	
 	When I set "Main phone" to "0711111111"
 	Then I see "There is a problem" on the page
 	And I see "Check their main phone number" on the page
 	
 	#main begins 01 but only has 9 digits
-	
 	When I set "Main phone" to "011111111"
 	Then I see "There is a problem" on the page
 	And I see "Check their main phone number" on the page
 	
 	#main has too many spaces
-	
 	When I set "Main phone" to "01  21  123 444"
 	When I press the "Continue" button
 	Then I see "Confirm if the person is eligible for jury service" on the page
 	And I click on the "Back" link
 	
 	#main prefixed with a space
-	
 	When I set "Main phone" to " 0121123444"
 	When I press the "Continue" button
 	Then I see "Confirm if the person is eligible for jury service" on the page
 	And I click on the "Back" link
 	
 	#other starts with non 0
-	
 	When I set "Another phone number (optional)" to "1207 821 1818"
 	When I press the "Continue" button
 	Then I see "There is a problem" on the page
 	And I see "Check their other phone number" on the page
 	
 	#other includes a letter
-	
 	When I set "Another phone number (optional)" to "H207 821 1818"
 	When I press the "Continue" button
 	Then I see "There is a problem" on the page
 	And I see "Check their other phone number" on the page
 		
 	#other starts 01 and is followed by spaces
-	
 	When I set "Another phone number (optional)" to "01         "
 	When I press the "Continue" button
 	Then I see "There is a problem" on the page
 	And I see "Check their other phone number" on the page
 	
 	#other has hyphens
-	
 	When I set "Another phone number (optional)" to "0121-333-4444"
 	Then I see "There is a problem" on the page
 	And I see "Check their other phone number" on the page
 	
 	#other has commas
-	
 	When I set "Another phone number (optional)" to "0121,333,4444"
 	Then I see "There is a problem" on the page
 	And I see "Check their other phone number" on the page
 	
 	#other begins 07 but only has 10 digits
-	
 	When I set "Another phone number (optional)" to "0711111111"
 	Then I see "There is a problem" on the page
 	And I see "Check their other phone number" on the page
 	
 	#other begins 01 but only has 9 digits
-	
 	When I set "Another phone number (optional)" to "011111111"
 	Then I see "There is a problem" on the page
 	And I see "Check their other phone number" on the page
 	
 	#other has too many spaces
-	
 	When I set "Another phone number (optional)" to "01  21  123 444"
 	When I press the "Continue" button
 	Then I see "Confirm if the person is eligible for jury service" on the page
 	And I click on the "Back" link
 	
 	#other prefixed with a space
-	
 	When I set "Another phone number (optional)" to " 0121123444"
 	When I press the "Continue" button
 	Then I see "Confirm if the person is eligible for jury service" on the page
 	And I click on the "Back" link
 	
 	#both invalid
-	
 	When I set "Main phone" to "011111111"
 	When I set "Another phone number (optional)" to "011111111"
 	When I press the "Continue" button
@@ -519,13 +462,11 @@ Scenario Outline: English_3rd_ErrorChecks
 	And I press the "Continue" button
 	
 	#Eligibility
-	
 	Then I see "Confirm if the person is eligible for jury service" on the page
 	
 	When I press the "Continue" button
 	
 	#Residency Yes
-	
 	Then I see "Since they turned 13, has their main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	When I press the "Continue" button
 	Then I see "There is a problem" on the page
@@ -540,7 +481,6 @@ Scenario Outline: English_3rd_ErrorChecks
 	And I press the "Continue" button
 	
 	#CJS no
-	
 	Then I see "Has the person you're replying for worked in the criminal justice system in the last 5 years?" on the page
 	When I press the "Continue" button
 	Then I see "There is a problem" on the page
@@ -565,7 +505,6 @@ Scenario Outline: English_3rd_ErrorChecks
 	And I press the "Continue" button
 	
 	#Bail no
-	
 	Then I see "Is the person currently on bail for a criminal offence?" on the page
 	When I press the "Continue" button
 	Then I see "There is a problem" on the page
@@ -581,7 +520,6 @@ Scenario Outline: English_3rd_ErrorChecks
 	And I press the "Continue" button
 	
 	#Convictions no
-	
 	Then I see "Has the person been found guilty of a criminal offence?" on the page
 	When I press the "Continue" button
 	Then I see "There is a problem" on the page
@@ -597,7 +535,6 @@ Scenario Outline: English_3rd_ErrorChecks
 	And I press the "Continue" button
 	
 	#Mental health part 1 no
-	
 	Then I see "Is the person you're replying for being detained, looked after or treated under the Mental Health Act?" on the page
 	When I press the "Continue" button
 	Then I see "There is a problem" on the page
@@ -613,7 +550,6 @@ Scenario Outline: English_3rd_ErrorChecks
 	And I press the "Continue" button
 	
 	#Mental health part 2 no
-	
 	Then I see "Has it been decided that the person you're replying for 'lacks mental capacity'?" on the page
 	When I press the "Continue" button
 	Then I see "There is a problem" on the page
@@ -629,7 +565,6 @@ Scenario Outline: English_3rd_ErrorChecks
 	And I press the "Continue" button
 	
 	#I can attend
-	
 	Then I see "Check your start date" on the page
 	When I press the "Continue" button
 	And I see "There is a problem" on the page
@@ -639,7 +574,6 @@ Scenario Outline: English_3rd_ErrorChecks
 	And  I press the "Continue" button
 	
 	#RA no
-	
 	Then I see "Will the person you're replying for need help when they're at the court?" on the page
 	When I press the "Continue" button
 	Then I see "There is a problem" on the page
@@ -649,7 +583,6 @@ Scenario Outline: English_3rd_ErrorChecks
 	And I press the "Continue" button
 	
 	#JDB-3638
-	
 	Then I see "Select if they have limited mobility, a hearing impairment, diabetes, a severe sight impairment or other disability or impairment" on the page
 	
 	When I check the "Other" checkbox
@@ -660,7 +593,6 @@ Scenario Outline: English_3rd_ErrorChecks
 	And I press the "Continue" button
 	
 	#Check Your Answers
-	
 	Then I see "Check your answers now" on the page
 	Then I see "Has it been decided that the person you're replying for 'lacks mental capacity'?" on the page
 	Then I see "Is the person you're replying for being detained, looked after or treated under the Mental Health Act?" on the page
@@ -672,14 +604,12 @@ Scenario Outline: English_3rd_ErrorChecks
 	When I click on the "Change" link in the same row as "Confirm the date of their jury service"
 	Then I see "Check your start date" on the page
 	
-	#fails here - danielle to check
-	
+	#deferral
 	When I set the radio button to "No, we need to change the date"
 	And I press the "Continue" button
 	Then I see "Tell us why they need another date for their jury service" on the page
 	
 	#Deferral Reason
-	
 	When I press the "Continue" button
 	Then I see "There is a problem" on the page
 	And I see "Enter their reason for needing another date for jury service" on the page
@@ -689,7 +619,6 @@ Scenario Outline: English_3rd_ErrorChecks
 	Then I see "Choose 3 Mondays when they can start jury service" on the page
 	
 	#Deferral Dates JDB-3524
-	
 	When I press the "Continue" button
 	
 	Then on the page I see
@@ -722,14 +651,12 @@ Scenario Outline: English_3rd_ErrorChecks
 	And I press the "Continue" button
 	
 	#confirm
-	
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 	
 	Then I see "Check your answers now" on the page
 	
 	#Check Your Answers
-	
 	When I click on the "Change" link in the same row as "Confirm the date of their jury service"
 	Then I see "Check your start date" on the page
 	
@@ -738,7 +665,6 @@ Scenario Outline: English_3rd_ErrorChecks
 	Then I see "Why do they need to be excused from jury service?" on the page
 	
 	#Excusal Reason
-	
 	When I press the "Continue" button
 	Then I see "There is a problem" on the page
 	And I see "Enter reason why they cannot do jury service in the next 12 months" on the page
@@ -748,11 +674,10 @@ Scenario Outline: English_3rd_ErrorChecks
 	Then I see "Check your answers now" on the page
 	
 	#When I press the "Submit" button
-	
 	When I check the "The answers I have given for the person I'm replying for are true as far as I know." checkbox
 	And I press the "Submit" button
 	Then I see "We have sent an email to say you have replied to this jury summons." on the page
 	
 Examples:
-	|part_no		|last_name			|postcode	|email           	|pool_no	|
-	|641500982		|LNAMENINEEIGHTTWO	|CH1 2AN	|email@outlook.com	|415170401	|
+	| juror_number	| last_name			| postcode	| email           	| pool_number	|
+	| 045200088		| LNAMENINEEIGHTTWO	| CH1 2AN	| email@outlook.com	| 452300087		|

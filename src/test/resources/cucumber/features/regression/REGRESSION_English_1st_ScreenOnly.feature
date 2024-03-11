@@ -1,31 +1,29 @@
  Feature: English_1st_ScreenOnly
 
-@Regression @JDB-3349 @JDB-3350 @JDB-3358 @JDB-3359 @JDB-3360 @JDB-3361 @JDB-3362 @JDB-3373 @JDB-3378 @JDB-3363 @JDB-3364 @JDB-3371 @JDB-3377
-@JDB-3370 @JDB-3376 @JDB-3355 @JDB-3372 @JDB-3418
+@Regression @NewSchemaConverted
 Scenario Outline: English 1st Screen Only
-	Given I am on "Public" "juror-test02"
+
+	Given I am on "Public" "test"
+
 	Then the page title is "Reply to a jury summons - GOV.UK"
-	
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
 		
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	
 	Then I see "Reply to a jury summons" on the page
 	
 	And I set the radio button to "I am replying for myself"
 	And I press the "Continue" button
-	And I set "9-digit juror number" to "<part_no>"
+	And I set "9-digit juror number" to "<juror_number>"
 	And I set "Juror last name" to "<last_name>"
 	And I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 	
 	#JDB-3358
-	
 	Then on the page I see
 		| text	|
 		| Your details |
@@ -48,7 +46,6 @@ Scenario Outline: English 1st Screen Only
 	And I press the "Continue" button
 	
 	#JDB-3359 and JDB-3355
-	
 	Then on the page I see
 		| text	|
 		| Your details |
@@ -58,7 +55,6 @@ Scenario Outline: English 1st Screen Only
 	And I press the "Continue" button
 	
 	#JDB-3361
-	
 	Then on the page I see
 		| text	|
 		|Your details|
@@ -73,12 +69,11 @@ Scenario Outline: English 1st Screen Only
 	
 	When I click on the "Why do we need your email address?" link
 	Then I see "We'll use your email address to send you information and reminders about your jury service." on the page
-	And I set "Enter your email address" to "email@outlook.com"
-	And I set "Enter your email address again" to "email@outlook.com"
+	And I set "Enter your email address" to "<email>"
+	And I set "Enter your email address again" to "<email>"
 	And I press the "Continue" button
 
 	#JDB-3350 and JDB-3360
-
 	Then on the page I see
 		| text	|
 		| Your details |
@@ -100,11 +95,10 @@ Scenario Outline: English 1st Screen Only
 	And I set "Month" to "01"
 	
 	#JDB-3418 Checking age 18 works
-	
 	And I set "Year" to "2000"
 	And I press the "Continue" button
 	Then I see "Confirm you're eligible for jury service" on the page
 	
 Examples:
-	| part_no		|last_name		|postcode	|email 		| pool_no |
-	|841501663		|LNAMEEIGHTFOUR	|CH1 2AN	|a@eeee.com	|415181001|
+	| juror_number	| last_name		| postcode	| email 		| pool_number  	|
+	| 045200067		| LNAMEEIGHTFOUR| CH1 2AN	| a@eeee.com	| 452300066		|

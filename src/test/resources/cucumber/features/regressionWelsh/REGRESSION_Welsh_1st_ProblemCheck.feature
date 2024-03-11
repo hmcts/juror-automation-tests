@@ -9,10 +9,10 @@ Scenario Outline: Welsh_1st_ProblemCheck
 		| part_no 	| pool_no 	| owner |
 		| <part_no> |<pool_no>	| 400 	|
 	
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+
+
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 
 	Then I see "A ydych yn ymateb dros eich hun neu ar ran rhywun arall?" on the page
 	
@@ -25,7 +25,7 @@ Scenario Outline: Welsh_1st_ProblemCheck
 	
 	When I press the "Parhau" button
 	Then I see "Mae problem" on the page
-	When I set "Rhif rheithiwr" to "<part_no>"
+	When I set "Rhif rheithiwr" to "<juror_number>"
 	And I set "Cyfenw" to "<last_name>"
 	And I set "Cod post Rheithiwr" to "<postcode>"
 	And I press the "Parhau" button
@@ -183,7 +183,7 @@ Scenario Outline: Welsh_1st_ProblemCheck
 	When I check the "Mae'r wybodaeth a roddais uchod yn wir hyd eithaf fy ngwybodaeth." checkbox
 	And I press the "Cyflwyno" button
 	Then I see "Rydych wedi cwblhau'r broses ymateb" on the page
-	And I see "<part_no>" on the page
+	And I see "<juror_number>" on the page
 	
 Examples:
 	|part_no		|last_name			|postcode	|email 		|pool_no	|

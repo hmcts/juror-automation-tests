@@ -1,29 +1,26 @@
 Feature: Bureau_Note_2000Char_Error
 
-#this script is failing because it is basically moving too quickly for the app. Jorge is going to help resolve this
-
-@Regression @JDB-3684 
+@Regression @NewSchemaConverted
 Scenario Outline: Exceed 2000 characters in Bureau notes and check new error message has been implemented
 	
-	Given I am on "Bureau" "juror-test02"	
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+	Given I am on "Bureau" "test"
 
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
+
 	And auto straight through processing has been enabled
 	
 	Given I have submitted a first party English straight through response
-		| part_no	|pool_number	| last_name		|postcode	| email |
-		|<part_no> |<pool_no>		| <last_name>	|<postcode>	|<email>|
+		| part_no		| pool_number	| last_name		| postcode	| email 	|
+		| <juror_number>| <pool_number>	| <last_name>	| <postcode>| <email>	|
 	
-	Given I am on "Bureau" "juror-test02"
+	Given I am on "Bureau" "test"
 	When I log in
 	And I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	When I click on "<part_no>" in the same row as "<part_no>"
+	When I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Responded" on the page
 	
 	When I click on the "Logs" link
@@ -35,6 +32,5 @@ Scenario Outline: Exceed 2000 characters in Bureau notes and check new error mes
 	Then I see "Notes must be 2000 characters or fewer" on the page
 	
 Examples:
-	|part_no	|pool_no 	|last_name 			|postcode 	|email				|date			|
-	|641500913	|415170601 |LNAMENINEONETHREE	|CH1 2AN	|email@outlook.com	|4 mondays time	|
-	
+	| juror_number	| pool_number 	| last_name 		| postcode 	| email				|
+	| 045200170		| 452300155 	| LNAMENINEONETHREE	| CH1 2AN	| email@outlook.com	|

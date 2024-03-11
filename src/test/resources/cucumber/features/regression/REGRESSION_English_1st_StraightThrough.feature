@@ -1,19 +1,18 @@
 Feature: Regression English_1st_StraightThrough
 
-@Regression @replytypes
+@Regression @NewSchemaConverted
 Scenario Outline: English 1st Party Straight Through
 	
-	Given I am on "Public" "bau-test"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+	Given I am on "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
 		
-	And "<part_no>" has "LNAME" as "<last_name>"
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	
 	And I set the radio button to "I am replying for myself"
 	And I see "You can still ask a family member or a person you trust to help you understand or reply." on the page
@@ -31,7 +30,7 @@ Scenario Outline: English 1st Party Straight Through
 	Then I see "jurysummoning@justice.gov.uk" on the page
 	And I see "If you do not have a juror number, please contact:" on the page
 	
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	And I set "Juror last name" to "<last_name>"
 	And I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
@@ -95,10 +94,10 @@ Scenario Outline: English 1st Party Straight Through
 		| Your details |
 		| Enter your email address |
 	
-	When I set "Enter your email address" to "e@mail.com"
+	When I set "Enter your email address" to "<email>"
 	And I press the "Continue" button
 	Then I see "Enter your email address and check that it matches the one in the first field" on the page
-	When I set "Enter your email address again" to "e@mail.com"
+	When I set "Enter your email address again" to "<email>"
 	And I click on the "Why do we need your email address?" link
 	And I see "We'll use your email address to send you information and reminders about your jury service." on the page
 	And I press the "Continue" button
@@ -119,9 +118,7 @@ Scenario Outline: English 1st Party Straight Through
 	And I press the "Continue" button
 
 	#Qualify for jury service
-	
 	#JDB-4636
-	
 	And I see "steps/qualify" in the URL
 	Then I see "Confirm you're eligible for jury service" on the page
 	And I do not see "Qualifying for jury service" on the page
@@ -136,7 +133,6 @@ Scenario Outline: English 1st Party Straight Through
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	
 	#Residency
-	
 	And I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	And I see "steps/qualify/residency" in the URL
 	And I do not see "Qualifying for jury service" on the page
@@ -149,7 +145,6 @@ Scenario Outline: English 1st Party Straight Through
 	And I press the "Continue" button
 	
 	#CJS no
-	
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
 	And I see "steps/qualify/cjs-employed" in the URL
 	And I do not see "Beta" on the page
@@ -167,7 +162,6 @@ Scenario Outline: English 1st Party Straight Through
 	And I press the "Continue" button
 	
 	#Bail
-	
 	And I see "steps/qualify/bail" in the URL
 	And I see "Are you currently on bail for a criminal offence?" on the page
 	And I see "If you're on bail in criminal proceedings, you cannot do jury service." on the page
@@ -184,7 +178,6 @@ Scenario Outline: English 1st Party Straight Through
 	And I press the "Continue" button
 	
 	#Convictions
-	
 	And I see "steps/qualify/convictions" in the URL
 	And I see "Have you been found guilty of a criminal offence?" on the page
 	And I do not see "Qualifying for jury service" on the page
@@ -200,7 +193,6 @@ Scenario Outline: English 1st Party Straight Through
 	And I press the "Continue" button
 		
 	#Mental Health Sectioned
-	
 	And I see "steps/qualify/mental-health-sectioned" in the URL
 	And I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
 	And I do not see "Qualifying for jury service" on the page
@@ -216,7 +208,6 @@ Scenario Outline: English 1st Party Straight Through
 	And I press the "Continue" button
 	
 	#Mental Health Capacity
-	
 	And I see "steps/qualify/mental-health-capacity" in the URL
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
 	And I do not see "Qualifying for jury service" on the page
@@ -234,7 +225,6 @@ Scenario Outline: English 1st Party Straight Through
 	And I do not see "Eligibility" on the page
 	
 	#I can attend
-	
 	And I do not see "Beta" on the page
 	And I see "Give feedback (opens in a new window or tab)" on the page
 	And I see "10:00am" on the page
@@ -242,7 +232,6 @@ Scenario Outline: English 1st Party Straight Through
 	And  I press the "Continue" button
 
 	#RA no
-	
 	Then I see "Will you need help when you're at the court?" on the page
 	And I do not see "Beta" on the page
 	And I see "Give feedback (opens in a new window or tab)" on the page
@@ -256,7 +245,6 @@ Scenario Outline: English 1st Party Straight Through
 	Then I see "Check your answers now" on the page
 	
 	#Check your answers
-	
 	And I see "You answered the eligibility questions" on the page
 	And I do not see "Beta" on the page
 	And I see "Give feedback (opens in a new window or tab)" on the page
@@ -270,39 +258,38 @@ Scenario Outline: English 1st Party Straight Through
 	Then I click on the "Download a copy of your summons reply HTML (15KB)" link
 	And I see "You answered the eligibility questions" on the page
 	
-	Given I am on "Bureau" "bau_test"
+	Given I am on "Bureau" "test"
 	And I log in
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	Then I see "<part_no>" on the page
+	Then I see "<juror_number>" on the page
 
-	Then I see "<part_no>" has reply type indicator "COMPLETED"
+	Then I see "<juror_number>" has reply type indicator "COMPLETED"
 	
 Examples:
-	|part_no	|last_name			|postcode	|email 		|pool_no	|
-	|645200349	|LNAMETHREEFOURNINE	|SY2 6LU	|a@eeee.com	|452170401	|
+	|juror_number	|last_name			|postcode	|email 		|pool_number|
+	|045200069		|LNAMETHREEFOURNINE	|SY2 6LU	|a@eeee.com	|452300068	|
 	
 
-@Regression
+@Regression @NewSchemaConverted
 Scenario Outline: English 1st Party Straight Through Change Links
 	
 	Given I am on "Public" "test"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
 		
-	And "<part_no>" has "LNAME" as "<last_name>"
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 
 	And I set the radio button to "I am replying for myself"
 
 	And I press the "Continue" button
 
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	And I set "Juror last name" to "<last_name>"
 	And I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
@@ -319,8 +306,8 @@ Scenario Outline: English 1st Party Straight Through Change Links
 
 	And I press the "Continue" button
 	
-	When I set "Enter your email address" to "e@mail.com"
-	When I set "Enter your email address again" to "e@mail.com"
+	When I set "Enter your email address" to "<email>"
+	When I set "Enter your email address again" to "<email>"
 
 	And I press the "Continue" button
 
@@ -330,9 +317,7 @@ Scenario Outline: English 1st Party Straight Through Change Links
 	And I press the "Continue" button
 
 	#Qualify for jury service
-	
 	#JDB-4636
-	
 	Then I see "Confirm you're eligible for jury service" on the page
 	And I do not see "Qualifying for jury service" on the page
 	And I see "Your answers in this next section will help us check if you can do jury service or not." on the page
@@ -344,7 +329,6 @@ Scenario Outline: English 1st Party Straight Through Change Links
 	When I press the "Continue" button
 
 	#Residency
-	
 	And I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	And I see "steps/qualify/residency" in the URL
 	And I do not see "Qualifying for jury service" on the page
@@ -354,7 +338,6 @@ Scenario Outline: English 1st Party Straight Through Change Links
 	And I press the "Continue" button
 	
 	#CJS no
-	
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
 	And I see "steps/qualify/cjs-employed" in the URL
 	When I see "Eligibility" on the page
@@ -364,7 +347,6 @@ Scenario Outline: English 1st Party Straight Through Change Links
 	And I press the "Continue" button
 	
 	#Bail
-	
 	And I see "steps/qualify/bail" in the URL
 	And I see "Are you currently on bail for a criminal offence?" on the page
 	And I do not see "Qualifying for jury service" on the page
@@ -374,7 +356,6 @@ Scenario Outline: English 1st Party Straight Through Change Links
 	And I press the "Continue" button
 	
 	#Convictions
-	
 	And I see "steps/qualify/convictions" in the URL
 	And I see "Have you been found guilty of a criminal offence?" on the page
 	And I do not see "Qualifying for jury service" on the page
@@ -384,7 +365,6 @@ Scenario Outline: English 1st Party Straight Through Change Links
 	And I press the "Continue" button
 		
 	#Mental Health Sectioned
-	
 	And I see "steps/qualify/mental-health-sectioned" in the URL
 	And I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
 	And I do not see "Qualifying for jury service" on the page
@@ -394,7 +374,6 @@ Scenario Outline: English 1st Party Straight Through Change Links
 	And I press the "Continue" button
 	
 	#Mental Health Capacity
-	
 	And I see "steps/qualify/mental-health-capacity" in the URL
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
 	And I do not see "Qualifying for jury service" on the page
@@ -404,7 +383,6 @@ Scenario Outline: English 1st Party Straight Through Change Links
 	And I press the "Continue" button
 	
 	#I can attend
-	
 	Then I see "Check your start date" on the page
 	And I do not see "Eligibility" on the page
 
@@ -413,19 +391,16 @@ Scenario Outline: English 1st Party Straight Through Change Links
 	And  I press the "Continue" button
 
 	#RA no
-	
 	Then I see "Will you need help when you're at the court?" on the page
 
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Check your answers
-	
 	Then I see "Check your answers now" on the page
 	And I see "You answered the eligibility questions" on the page
 	
 	#change links
-	
 	When I click on the "Change" link in the same row as "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?"
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	When I see "Eligibility" on the page
@@ -476,7 +451,6 @@ Scenario Outline: English 1st Party Straight Through Change Links
 	Then I see text "Yes - I am a convicted criminal" in the same row as "Have you been convicted of a criminal offence and been given a sentence?"
 
 	#submit
-
 	And I check the "The information I have given is true to the best of my knowledge" checkbox
 	And I press the "Submit" button
 
@@ -484,27 +458,26 @@ Scenario Outline: English 1st Party Straight Through Change Links
 	And I see "You answered the eligibility questions" on the page
 	
 Examples:
-	|part_no	|last_name		|postcode	| email 	| pool_no	|
-	|641500216	|LNAMEONEONENINE|CH1 2AN	|a@eeee.com	|415170601	|
+	| juror_number	| last_name			| postcode	| email 	| pool_number	|
+	| 045200070		| LNAMEONEONENINE	| CH1 2AN	| a@eeee.com| 452300069		|
 
-@Regression
+@Regression @NewSchemaConverted
 Scenario Outline: English 1st Party Straight Through Navigate Back
 	
-	Given I am on "Public" "juror-test02"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+	Given I am on "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
 		
-	And "<part_no>" has "LNAME" as "<last_name>"
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 
 	And I set the radio button to "I am replying for myself"
 
 	And I press the "Continue" button
 
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	And I set "Juror last name" to "<last_name>"
 	And I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
@@ -521,8 +494,8 @@ Scenario Outline: English 1st Party Straight Through Navigate Back
 
 	And I press the "Continue" button
 	
-	When I set "Enter your email address" to "e@mail.com"
-	When I set "Enter your email address again" to "e@mail.com"
+	When I set "Enter your email address" to "<email>"
+	When I set "Enter your email address again" to "<email>"
 
 	And I press the "Continue" button
 
@@ -532,9 +505,7 @@ Scenario Outline: English 1st Party Straight Through Navigate Back
 	And I press the "Continue" button
 
 	#Qualify for jury service
-	
 	#JDB-4636
-	
 	Then I see "Confirm you're eligible for jury service" on the page
 	And I do not see "Qualifying for jury service" on the page
 	And I see "Your answers in this next section will help us check if you can do jury service or not." on the page
@@ -546,7 +517,6 @@ Scenario Outline: English 1st Party Straight Through Navigate Back
 	When I press the "Continue" button
 
 	#Residency
-	
 	And I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	And I see "steps/qualify/residency" in the URL
 	And I do not see "Qualifying for jury service" on the page
@@ -556,7 +526,6 @@ Scenario Outline: English 1st Party Straight Through Navigate Back
 	And I press the "Continue" button
 	
 	#CJS no
-	
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
 	And I see "steps/qualify/cjs-employed" in the URL
 	When I see "Eligibility" on the page
@@ -566,7 +535,6 @@ Scenario Outline: English 1st Party Straight Through Navigate Back
 	And I press the "Continue" button
 	
 	#Bail
-	
 	And I see "steps/qualify/bail" in the URL
 	And I see "Are you currently on bail for a criminal offence?" on the page
 	And I do not see "Qualifying for jury service" on the page
@@ -576,7 +544,6 @@ Scenario Outline: English 1st Party Straight Through Navigate Back
 	And I press the "Continue" button
 	
 	#Convictions
-	
 	And I see "steps/qualify/convictions" in the URL
 	And I see "Have you been found guilty of a criminal offence?" on the page
 	And I do not see "Qualifying for jury service" on the page
@@ -586,7 +553,6 @@ Scenario Outline: English 1st Party Straight Through Navigate Back
 	And I press the "Continue" button
 		
 	#Mental Health Sectioned
-	
 	And I see "steps/qualify/mental-health-sectioned" in the URL
 	And I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
 	And I do not see "Qualifying for jury service" on the page
@@ -596,7 +562,6 @@ Scenario Outline: English 1st Party Straight Through Navigate Back
 	And I press the "Continue" button
 	
 	#Mental Health Capacity
-	
 	And I see "steps/qualify/mental-health-capacity" in the URL
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
 	And I do not see "Qualifying for jury service" on the page
@@ -608,7 +573,6 @@ Scenario Outline: English 1st Party Straight Through Navigate Back
 	Then I see "Check your start date" on the page
 
 	#navigate back
-	
 	And I click on the "Back" link
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
 	And the radio button "No" is "Selected"
@@ -634,7 +598,6 @@ Scenario Outline: English 1st Party Straight Through Navigate Back
 	And the radio button "Yes" is "Selected"
 	
 	#navigate forward
-	
 	And I press the "Continue" button
 	
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
@@ -664,7 +627,6 @@ Scenario Outline: English 1st Party Straight Through Navigate Back
 	And I press the "Continue" button
 	
 	#I can attend
-	
 	Then I see "Check your start date" on the page
 	And I do not see "Eligibility" on the page
 
@@ -673,7 +635,6 @@ Scenario Outline: English 1st Party Straight Through Navigate Back
 	And I press the "Continue" button
 
 	#RA no
-	
 	Then I see "Will you need help when you're at the court?" on the page
 
 	When I set the radio button to "No"
@@ -681,12 +642,10 @@ Scenario Outline: English 1st Party Straight Through Navigate Back
 	And I press the "Continue" button
 	
 	#Check your answers
-	
 	Then I see "Check your answers now" on the page
 	And I see "You answered the eligibility questions" on the page
 	
 	#submit
-
 	And I check the "The information I have given is true to the best of my knowledge" checkbox
 	And I press the "Submit" button
 
@@ -694,28 +653,27 @@ Scenario Outline: English 1st Party Straight Through Navigate Back
 	And I see "You answered the eligibility questions" on the page
 	
 Examples:
-	|part_no	|last_name		|postcode	| email 	| pool_no	|
-	|644200078	|LNAMEONEONENINE|CH1 2AN	|a@eeee.com	|442170501	|
+	| juror_number	| last_name			| postcode	| email 	| pool_number	|
+	| 045200071		| LNAMEONEONENINE	| CH1 2AN	| a@eeee.com| 452300070		|
 
 
-	@Regression @PCQ
+	@Regression @PCQ @NewSchemaConverted
 	Scenario Outline: English 1st Party PCQ - decline to answer
 
-		Given I am on "Public" "bau-test"
-		Given the juror numbers have not been processed
-			| part_no 	| pool_no 	| owner |
-			| <part_no> |<pool_no>	| 400 	|
+		Given I am on "Public" "test"
 
-		And "<part_no>" has "LNAME" as "<last_name>"
-		And "<part_no>" has "RET_DATE" as "5 mondays time"
-		And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-		And "<part_no>" has "ZIP" as "<postcode>"
+		Given a bureau owned pool is created with jurors
+			| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+			| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
 
-		Given auto straight through processing has been enabled
+		And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+		And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
+
+		Given auto straight through processing has been enabled new schema
 
 		And I set the radio button to "I am replying for myself"
 		And I press the "Continue" button
-		When I set "9-digit juror number" to "<part_no>"
+		When I set "9-digit juror number" to "<juror_number>"
 		And I set "Juror last name" to "<last_name>"
 		And I set "Juror postcode" to "<postcode>"
 		And I press the "Continue" button
@@ -800,27 +758,26 @@ Examples:
 		And I see "Download a copy of your summons reply PDF (65KB)" on the page
 
 		Examples:
-			|part_no	|last_name			|postcode	|email 		|pool_no	|
-			|645200349	|LNAMETHREEFOURNINE	|SY2 6LU	|a@eeee.com	|452170401	|
+			| juror_number	| last_name			| postcode	| email 		| pool_number	|
+			| 045200072		| LNAMETHREEFOURNINE| SY2 6LU	| a@eeee.com	| 452300071		|
 
-	@Regression @PCQ
+	@Regression @PCQ @NewSchemaConverted
 	Scenario Outline: English 1st Party PCQ - answer questions
 
-		Given I am on "Public" "bau-test"
-		Given the juror numbers have not been processed
-			| part_no 	| pool_no 	| owner |
-			| <part_no> |<pool_no>	| 400 	|
+		Given I am on "Public" "test"
 
-		And "<part_no>" has "LNAME" as "<last_name>"
-		And "<part_no>" has "RET_DATE" as "5 mondays time"
-		And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-		And "<part_no>" has "ZIP" as "<postcode>"
+		Given a bureau owned pool is created with jurors
+			| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+			| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
 
-		Given auto straight through processing has been enabled
+		And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+		And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
+
+		Given auto straight through processing has been enabled new schema
 
 		And I set the radio button to "I am replying for myself"
 		And I press the "Continue" button
-		When I set "9-digit juror number" to "<part_no>"
+		When I set "9-digit juror number" to "<juror_number>"
 		And I set "Juror last name" to "<last_name>"
 		And I set "Juror postcode" to "<postcode>"
 		And I press the "Continue" button
@@ -834,7 +791,6 @@ Examples:
 		When I press the "Continue" button
 
 		#phone
-
 		When I set "Main phone" to "02078211818"
 		When I press the "Continue" button
 
@@ -944,27 +900,26 @@ Examples:
 		And I see "Download a copy of your summons reply PDF (65KB)" on the page
 
 		Examples:
-			|part_no	|last_name			|postcode	|email 		|pool_no	|
-			|645200349	|LNAMETHREEFOURNINE	|SY2 6LU	|a@eeee.com	|452170401	|
+			| juror_number	| last_name			| postcode	| email 	| pool_number	|
+			| 045200073		| LNAMETHREEFOURNINE| SY2 6LU	| a@eeee.com| 452300072		|
 
-	@Regression @PCQ
+	@Regression @PCQ @NewSchemaConverted
 	Scenario Outline: English 1st Party PCQ - cancel out of questions
 
-		Given I am on "Public" "bau-test"
-		Given the juror numbers have not been processed
-			| part_no 	| pool_no 	| owner |
-			| <part_no> |<pool_no>	| 400 	|
+		Given I am on "Public" "test"
 
-		And "<part_no>" has "LNAME" as "<last_name>"
-		And "<part_no>" has "RET_DATE" as "5 mondays time"
-		And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-		And "<part_no>" has "ZIP" as "<postcode>"
+		Given a bureau owned pool is created with jurors
+			| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+			| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
 
-		Given auto straight through processing has been enabled
+		And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+		And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
+
+		Given auto straight through processing has been enabled new schema
 
 		And I set the radio button to "I am replying for myself"
 		And I press the "Continue" button
-		When I set "9-digit juror number" to "<part_no>"
+		When I set "9-digit juror number" to "<juror_number>"
 		And I set "Juror last name" to "<last_name>"
 		And I set "Juror postcode" to "<postcode>"
 		And I press the "Continue" button
@@ -978,7 +933,6 @@ Examples:
 		When I press the "Continue" button
 
 		#phone
-
 		When I set "Main phone" to "02078211818"
 		When I press the "Continue" button
 
@@ -1049,7 +1003,7 @@ Examples:
 
 		Then I press the "I don" button
 
-	#Check your answers
+		#Check your answers
 		Then I see "Check your answers" on the page
 		And I check the "The information I have given is true to the best of my knowledge" checkbox
 		And I press the "Submit" button
@@ -1057,29 +1011,28 @@ Examples:
 		And I see "Download a copy of your summons reply PDF (65KB)" on the page
 
 		Examples:
-			|part_no	|last_name			|postcode	|email 		|pool_no	|
-			|645200349	|LNAMETHREEFOURNINE	|SY2 6LU	|a@eeee.com	|452170401	|
+			| juror_number	| last_name			| postcode	| email 		| pool_number	|
+			| 045200074		| LNAMETHREEFOURNINE| SY2 6LU	| a@eeee.com	| 452300073		|
 
-	@Regression @PCQ
+	@Regression @PCQ @NewSchemaConverted
 	Scenario Outline: English 3rd Party PCQ - questions do not appear
 
-		Given I am on "Public" "bau-test"
-		Given the juror numbers have not been processed
-			| part_no 	| pool_no 	| owner |
-			| <part_no> |<pool_no>	| 400 	|
+		Given I am on "Public" "test"
 
-		And "<part_no>" has "LNAME" as "<last_name>"
-		And "<part_no>" has "RET_DATE" as "5 mondays time"
-		And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-		And "<part_no>" has "ZIP" as "<postcode>"
+		Given a bureau owned pool is created with jurors
+			| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+			| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
 
-		Given auto straight through processing has been enabled
+		And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+		And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
+
+		Given auto straight through processing has been enabled new schema
 
 		And I set the radio button to "I am replying for someone else"
 		And I press the "Continue" button
 
 	#Juror Log In
-		When I set "9-digit juror number" to "<part_no>"
+		When I set "9-digit juror number" to "<juror_number>"
 		When I set "Juror last name" to "<last_name>"
 		When I set "Juror postcode" to "<postcode>"
 		And I press the "Continue" button
@@ -1179,24 +1132,25 @@ Examples:
 			|part_no	|last_name			|postcode	|email 		|pool_no	|
 			|645200349	|LNAMETHREEFOURNINE	|SY2 6LU	|a@eeee.com	|452170401	|
 
-	@Regression @PCQ
+	@Regression @PCQ @NewSchemaConverted
 	Scenario Outline: Welsh 1st Party PCQ - answer questions
-		Given I am on the welsh version of "Public" "test"
-		Given auto straight through processing has been enabled
-		Given the juror numbers have not been processed
-			| part_no 	| pool_no 	| owner |
-			| <part_no> |<pool_no>	| 400 	|
 
-		And "<part_no>" has "LNAME" as "<last_name>"
-		And "<part_no>" has "ZIP" as "<postcode>"
-		And "<part_no>" has "RET_DATE" as "5 mondays time"
-		And "<part_no>" has "NEXT_DATE" as "5 mondays time"
+		Given I am on the welsh version of "Public" "test"
+
+		Given auto straight through processing has been enabled new schema
+
+		Given a bureau owned pool is created with jurors
+			| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+			| 457   | <juror_number>| <pool_number>	| 5				            | 400	|
+
+		And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+		And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 
 		And I set the radio button to "n ymateb dros fy hun"
 		And I press the "Parhau" button
 
 	#Login
-		When I set "Rhif rheithiwr" to "<part_no>"
+		When I set "Rhif rheithiwr" to "<juror_number>"
 		When I set "Cyfenw" to "<last_name>"
 		When I set "Cod post Rheithiwr" to "<postcode>"
 		And I press the "Parhau" button
@@ -1321,5 +1275,5 @@ Examples:
 		And I see "Mi wnaethoch ateb y cwestiynau cymhwysedd" on the page
 
 		Examples:
-			|part_no	|last_name	|postcode	|email 		|pool_no	|
-			|841501049	|LastNameB	|CH1 2AN	|e@mail.com	|415181001	|
+			| juror_number	| last_name	| postcode	| email 		| pool_number	|
+			| 045700029		| LastNameB	| CH1 2AN	| e@mail.com	| 457300029		|

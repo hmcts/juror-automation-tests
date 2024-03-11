@@ -2,18 +2,17 @@ Feature: Regression English_ReplyTypesIndicator
 
 #this test contains scenarios that test the reply types indicator which do not already exist in other scripts
 
-@Regression @replytypes 
+@Regression @NewSchemaConverted
 Scenario Outline: English 1st Party + Juror Details Change
 	
 	Given I am on "Public" "test"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
 		
-	And "<part_no>" has "LNAME" as "<last_name>"
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	
 	And I set the radio button to "I am replying for myself"
 
@@ -21,7 +20,7 @@ Scenario Outline: English 1st Party + Juror Details Change
 
 	And I see "Your juror details" on the page
 
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	And I set "Juror last name" to "<last_name>"
 	And I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
@@ -43,8 +42,8 @@ Scenario Outline: English 1st Party + Juror Details Change
 	When I set "Main phone" to "02078211818"
 	And I press the "Continue" button
 	
-	When I set "Enter your email address" to "e@mail.com"
-	When I set "Enter your email address again" to "e@mail.com"
+	When I set "Enter your email address" to "<email>"
+	When I set "Enter your email address again" to "<email>"
 
 	And I press the "Continue" button
 
@@ -54,53 +53,42 @@ Scenario Outline: English 1st Party + Juror Details Change
 	And I press the "Continue" button
 
 	#Qualify for jury service
-	
 	#JDB-4636
-	
 	When I press the "Continue" button
 
 	#Residency
-	
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 	
 	#CJS
-
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Bail
-
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Convictions
-	
 	When I set the radio button to "No"
 	And I press the "Continue" button
 		
 	#Mental Health Sectioned
-
 	And I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Mental Health Capacity
-	
 	And I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#I can attend
-
 	And I set the radio button to "Yes, I can start on"
 	And  I press the "Continue" button
 
 	#RA no
-
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Check your answers
-	
 	And I check the "The information I have given is true to the best of my knowledge" checkbox
 	And I press the "Submit" button
 	Then I see "We have sent you an email to say you have replied to your jury summons." on the page
@@ -112,9 +100,9 @@ Scenario Outline: English 1st Party + Juror Details Change
 	And I log in
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	Then I see "<part_no>" on the page
+	Then I see "<juror_number>" on the page
 	
 	And I click link with ID "selectAllLink"
 	And I press the "Send to..." button
@@ -125,32 +113,31 @@ Scenario Outline: English 1st Party + Juror Details Change
 	
 	Then I click on the "Sign out" link
 	When I log in as "CPASS"
-	Then I see "<part_no>" on the page
-	Then I see "<part_no>" has reply type indicator "NEEDS REVIEW"
-	
-	When I click on "<part_no>" in the same row as "<part_no>"
+	Then I see "<juror_number>" on the page
+	Then I see "<juror_number>" has reply type indicator "NEEDS REVIEW"
+
+	When I click on "<juror_number>" in the same row as "<juror_number>"
 	And I see "NEEDS REVIEW" on the page
 	
 Examples:
-	|part_no	|last_name	|postcode	|email 		|pool_no	|
-	|645100925	|DOE		|SW1H 9AJ	|a@eeee.com	|451170401	|
+	| juror_number	| last_name	| postcode	| email 		| pool_number	|
+	| 045200136		| DOE		| SW1H 9AJ	| a@eeee.com	| 452300135		|
 	
 
-@RegressionSingle @replytypes
+@RegressionSingle @NewSchemaConverted
 Scenario Outline: English 1st Party + RA
 
 	Given I am on "Public" "test"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
 	
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "FNAME" as "FNAMESEVENONETHREE"
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "Address" as "855 STREET NAME"
-	And "<part_no>" has "Address4" as "LONDON"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "FIRST_NAME" as "FNAMESEVENONETHREE" new schema
+	And juror "<juror_number>" has "ADDRESS_LINE_1" as "855 STREET NAME" new schema
+	And juror "<juror_number>" has "ADDRESS_LINE_4" as "LONDON" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	
 	Then I see "Reply to a jury summons" on the page
 	
@@ -158,7 +145,7 @@ Scenario Outline: English 1st Party + RA
 	And I press the "Continue" button
 	Then I see "Your juror details" on the page
 	
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
@@ -211,7 +198,6 @@ Scenario Outline: English 1st Party + RA
 	And I press the "Continue" button
 	
 	#deferral
-	
 	When I set the radio button to "No, I need to change the date"
 	And I press the "Continue" button
 
@@ -225,7 +211,6 @@ Scenario Outline: English 1st Party + RA
 	And I press the "Continue" button
 	
 	#check dates screen
-	
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 
@@ -241,18 +226,18 @@ Scenario Outline: English 1st Party + RA
 	When I press the "Submit" button
 	
 	Then I see "You have completed your reply" on the page
-	Then I see "<part_no>" on the page
+	Then I see "<juror_number>" on the page
 	
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "TODO" where "JUROR_NUMBER" is "<part_no>"
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "N" where "JUROR_NUMBER" is "<part_no>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "TODO" where "JUROR_NUMBER" is "<juror_number>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "N" where "JUROR_NUMBER" is "<juror_number>"
 	
 	Given I am on "Bureau" "test"
 	And I log in
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	Then I see "<part_no>" on the page
+	Then I see "<juror_number>" on the page
 	
 	And I click link with ID "selectAllLink"
 	And I press the "Send to..." button
@@ -263,31 +248,31 @@ Scenario Outline: English 1st Party + RA
 	
 	Then I click on the "Sign out" link
 	When I log in as "CPASS"
-	Then I see "<part_no>" on the page
-	Then I see "<part_no>" has reply type indicator "DEFERRAL"
-	
-	When I click on "<part_no>" in the same row as "<part_no>"
+	Then I see "<juror_number>" on the page
+	Then I see "<juror_number>" has reply type indicator "DEFERRAL"
+
+	When I click on "<juror_number>" in the same row as "<juror_number>"
 	And I see "DEFERRAL" on the page
 	
 Examples:
-	|part_no	|pool_no	|last_name			|postcode	|email 		| 
-	|645200610	|452170401	|LNAMESIXONEZERO	|SY2 6LU	|e@eeee.com	|
+	| juror_number	| pool_number	| last_name			| postcode	| email 		|
+	| 045200137		| 452300136		| LNAMESIXONEZERO	| SY2 6LU	| e@eeee.com	|
 	
-@Regression @replytypes 
+@Regression @NewSchemaConverted
 Scenario Outline: English 1st Party + Residency
 
 	Given I am on "Public" "test"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
 	
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "FNAME" as "FNAMESEVENONETHREE"
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "Address" as "855 STREET NAME"
-	And "<part_no>" has "Address4" as "LONDON"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "FIRST_NAME" as "FNAMESEVENONETHREE"  new schema
+
+	And juror "<juror_number>" has "ADDRESS_LINE_1" as "855 STREET NAME" new schema
+	And juror "<juror_number>" has "ADDRESS_LINE_4" as "LONDON" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	
 	Then I see "Reply to a jury summons" on the page
 	
@@ -295,7 +280,7 @@ Scenario Outline: English 1st Party + Residency
 	And I press the "Continue" button
 	Then I see "Your juror details" on the page
 	
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
@@ -349,7 +334,6 @@ Scenario Outline: English 1st Party + Residency
 	And I press the "Continue" button
 	
 	#Straight through
-	
 	When I set the radio button to "Yes"
 	And I press the "Continue" button
 	
@@ -363,18 +347,18 @@ Scenario Outline: English 1st Party + Residency
 	When I press the "Submit" button
 	
 	Then I see "You have completed your reply" on the page
-	Then I see "<part_no>" on the page
+	Then I see "<juror_number>" on the page
 	
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "TODO" where "JUROR_NUMBER" is "<part_no>"
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "N" where "JUROR_NUMBER" is "<part_no>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "TODO" where "JUROR_NUMBER" is "<juror_number>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "N" where "JUROR_NUMBER" is "<juror_number>"
 	
 	Given I am on "Bureau" "test"
 	And I log in
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	Then I see "<part_no>" on the page
+	Then I see "<juror_number>" on the page
 	
 	And I click link with ID "selectAllLink"
 	And I press the "Send to..." button
@@ -385,31 +369,31 @@ Scenario Outline: English 1st Party + Residency
 	
 	Then I click on the "Sign out" link
 	When I log in as "CPASS"
-	Then I see "<part_no>" on the page
-	Then I see "<part_no>" has reply type indicator "INELIGIBLE"
-	
-	When I click on "<part_no>" in the same row as "<part_no>"
+	Then I see "<juror_number>" on the page
+	Then I see "<juror_number>" has reply type indicator "INELIGIBLE"
+
+	When I click on "<juror_number>" in the same row as "<juror_number>"
 	And I see "INELIGIBLE" on the page
 	
 Examples:
-	|part_no	|pool_no	|last_name			|postcode	|email 		| 
-	|645200637	|452170401	|LNAMESIXTHREESEVEN	|SY2 6LU	|e@eeee.com	|
+	| juror_number	| pool_number	| last_name			| postcode	| email 		|
+	| 045200138		| 452300137		| LNAMESIXTHREESEVEN| SY2 6LU	| e@eeee.com	|
 
-@Regression @replytypes 
+@Regression @NewSchemaConverted
 Scenario Outline: English 1st Party + Bail
 
 	Given I am on "Public" "test"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
 	
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "FNAME" as "FNAMESEVENONETHREE"
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "Address" as "855 STREET NAME"
-	And "<part_no>" has "Address4" as "LONDON"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "FIRST_NAME" as "FNAMESEVENONETHREE" new schema
+
+	And juror "<juror_number>" has "ADDRESS_LINE_1" as "855 STREET NAME" new schema
+	And juror "<juror_number>" has "ADDRESS_LINE_4" as "LONDON" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	
 	Then I see "Reply to a jury summons" on the page
 	
@@ -417,7 +401,7 @@ Scenario Outline: English 1st Party + Bail
 	And I press the "Continue" button
 	Then I see "Your juror details" on the page
 	
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
@@ -471,7 +455,6 @@ Scenario Outline: English 1st Party + Bail
 	And I press the "Continue" button
 	
 	#Straight through
-	
 	When I set the radio button to "Yes"
 	And I press the "Continue" button
 	
@@ -485,18 +468,18 @@ Scenario Outline: English 1st Party + Bail
 	When I press the "Submit" button
 	
 	Then I see "You have completed your reply" on the page
-	Then I see "<part_no>" on the page
+	Then I see "<juror_number>" on the page
 	
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "TODO" where "JUROR_NUMBER" is "<part_no>"
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "N" where "JUROR_NUMBER" is "<part_no>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "TODO" where "JUROR_NUMBER" is "<juror_number>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "N" where "JUROR_NUMBER" is "<juror_number>"
 	
 	Given I am on "Bureau" "test"
 	And I log in
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	Then I see "<part_no>" on the page
+	Then I see "<juror_number>" on the page
 	
 	And I click link with ID "selectAllLink"
 	And I press the "Send to..." button
@@ -507,95 +490,83 @@ Scenario Outline: English 1st Party + Bail
 	
 	Then I click on the "Sign out" link
 	When I log in as "CPASS"
-	Then I see "<part_no>" on the page
-	Then I see "<part_no>" has reply type indicator "INELIGIBLE"
-	
-	When I click on "<part_no>" in the same row as "<part_no>"
+	Then I see "<juror_number>" on the page
+	Then I see "<juror_number>" has reply type indicator "INELIGIBLE"
+
+	When I click on "<juror_number>" in the same row as "<juror_number>"
 	And I see "INELIGIBLE" on the page
 	
 Examples:
-	|part_no	|pool_no	|last_name			|postcode	|email 		| 
-	|645200637	|452170401	|LNAMESIXTHREESEVEN	|SY2 6LU	|e@eeee.com	|
+	| juror_number	| pool_number	| last_name			| postcode	| email 		|
+	| 045200139		| 452300138		| LNAMESIXTHREESEVEN| SY2 6LU	| e@eeee.com	|
 
-@Features
+@Features @NewSchemaConverted
 Scenario Outline: English 3rd Party + Convictions
 
 	#moved into features 02-01-24 to return to Regression
 
 	Given I am on "Public" "test"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
 		
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 
 	And I set the radio button to "I am replying for someone else"
 	And I press the "Continue" button
 	
 	#Juror Log In
-	
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 	
 	#3rd Party Name
-	
 	When I set "First name" to "FirstNameA"
 	And I set "Last name" to "LastNameB"
 	And I press the "Continue" button
 	
 	#Relationship to juror
-
 	And I set "How do you know the person you're replying for?" to "Friend"
 	And I press the "Continue" button
 	
 	#3rd Party Contact
-
 	And I check the "By phone (UK Numbers only)" checkbox
 	And I set "Main phone" to "0207 821 1818"
 	And I check the "By email" checkbox
-	And I set "Enter your email address" to "email@outlook.com"
-	And I set "Enter your email address again" to "email@outlook.com"
+	And I set "Enter your email address" to "<email>"
+	And I set "Enter your email address again" to "<email>"
 	And I press the "Continue" button
 	
 	#Why are you replying for the person?
-	
 	When I set the radio button to "The person is not here"
 	And I press the "Continue" button
 	
 	#Check juror name
-
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 	
 	#Check juror address
-
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 	
 	#DoB
-	
 	And I set "Day" to "01"
 	And I set "Month" to "01"
 	And I set "Year" to "1980"
 	And I press the "Continue" button
 
 	#Contacting the juror
-
 	And I set the radio button to "Use the phone number that you have already given to contact you"
 	And I set the radio button to "Use the email address that you have already given to contact you"
 	And I press the "Continue" button
 	
 	#Qualify for jury service
-
 	And I press the "Continue" button
 	
 	#Residency
-
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 	
@@ -604,38 +575,31 @@ Scenario Outline: English 3rd Party + Convictions
 	And I press the "Continue" button
 	
 	#Bail
-
 	And I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Convictions
-
 	When I set the radio button to "Yes"
 	And I set text area with "id" of "convictedDetails" to "I am a convicted criminal"
 	And I press the "Continue" button
 	
 	#Mental Health Sectioned
-
 	And I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Mental Health Capacity
-
 	And I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Confirm Date of Jury
-
 	When I set the radio button to "Yes"   
 	And I press the "Continue" button
 	
 	#RA
-
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Check Your Answers
-	
 	When I check the "The answers I have given for the person I'm replying for are true as far as I know" checkbox
 	And I press the "Submit" button
 	And I see "You have completed your reply" on the page
@@ -644,9 +608,9 @@ Scenario Outline: English 3rd Party + Convictions
 	And I log in
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	Then I see "<part_no>" on the page
+	Then I see "<juror_number>" on the page
 	
 	And I click link with ID "selectAllLink"
 	And I press the "Send to..." button
@@ -657,92 +621,81 @@ Scenario Outline: English 3rd Party + Convictions
 	
 	Then I click on the "Sign out" link
 	When I log in as "CPASS"
-	Then I see "<part_no>" on the page
-	Then I see "<part_no>" has reply type indicator "INELIGIBLE"
-	
-	When I click on "<part_no>" in the same row as "<part_no>"
+	Then I see "<juror_number>" on the page
+	Then I see "<juror_number>" has reply type indicator "INELIGIBLE"
+
+	When I click on "<juror_number>" in the same row as "<juror_number>"
 	And I see "INELIGIBLE" on the page
 	
 Examples:
-	|part_no	|last_name			|postcode	|email       	    |pool_no	|
-	|645200694	|LNAMESIXNINEFOUR	|SY2 6LU	|email@outlook.com	|452170401	|
+	| juror_number	| last_name			| postcode	| email       	    | pool_number	|
+	| 045200140		| LNAMESIXNINEFOUR	| SY2 6LU	| email@outlook.com	| 452300139		|
 	
-@Regression @replytypes 
+@Regression @NewSchemaConverted
 Scenario Outline: English 3rd Party + Residency
+
 	Given I am on "Public" "test"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
 		
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 
 	And I set the radio button to "I am replying for someone else"
 	And I press the "Continue" button
 	
 	#Juror Log In
-	
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 	
 	#3rd Party Name
-	
 	When I set "First name" to "FirstNameA"
 	And I set "Last name" to "LastNameB"
 	And I press the "Continue" button
 	
 	#Relationship to juror
-
 	And I set "How do you know the person you're replying for?" to "Friend"
 	And I press the "Continue" button
 	
 	#3rd Party Contact
-
 	And I check the "By phone (UK Numbers only)" checkbox
 	And I set "Main phone" to "0207 821 1818"
 	And I check the "By email" checkbox
-	And I set "Enter your email address" to "email@outlook.com"
-	And I set "Enter your email address again" to "email@outlook.com"
+	And I set "Enter your email address" to "<email>"
+	And I set "Enter your email address again" to "<email>"
 	And I press the "Continue" button
 	
 	#Why are you replying for the person?
-	
 	When I set the radio button to "The person is not here"
 	And I press the "Continue" button
 	
 	#Check juror name
-
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 	
 	#Check juror address
-
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 	
 	#DoB
-	
 	And I set "Day" to "01"
 	And I set "Month" to "01"
 	And I set "Year" to "1980"
 	And I press the "Continue" button
 
 	#Contacting the juror
-
 	And I set the radio button to "Use the phone number that you have already given to contact you"
 	And I set the radio button to "Use the email address that you have already given to contact you"
 	And I press the "Continue" button
 	
 	#Qualify for jury service
-
 	And I press the "Continue" button
 	
 	#Residency
-
 	And I set the radio button to "No"
 	And I set "Provide details about where the person you are answering for has lived since their 13th birthday" to "some details"
 	And I press the "Continue" button
@@ -752,37 +705,30 @@ Scenario Outline: English 3rd Party + Residency
 	And I press the "Continue" button
 	
 	#Bail
-
 	And I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Convictions
-
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Mental Health Sectioned
-
 	And I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Mental Health Capacity
-
 	And I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Confirm Date of Jury
-
 	When I set the radio button to "Yes"   
 	And I press the "Continue" button
 	
 	#RA
-
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Check Your Answers
-	
 	When I check the "The answers I have given for the person I'm replying for are true as far as I know" checkbox
 	And I press the "Submit" button
 	And I see "You have completed your reply" on the page
@@ -791,9 +737,9 @@ Scenario Outline: English 3rd Party + Residency
 	And I log in
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	Then I see "<part_no>" on the page
+	Then I see "<juror_number>" on the page
 	
 	And I click link with ID "selectAllLink"
 	And I press the "Send to..." button
@@ -804,92 +750,81 @@ Scenario Outline: English 3rd Party + Residency
 	
 	Then I click on the "Sign out" link
 	When I log in as "CPASS"
-	Then I see "<part_no>" on the page
-	Then I see "<part_no>" has reply type indicator "INELIGIBLE"
-	
-	When I click on "<part_no>" in the same row as "<part_no>"
+	Then I see "<juror_number>" on the page
+	Then I see "<juror_number>" has reply type indicator "INELIGIBLE"
+
+	When I click on "<juror_number>" in the same row as "<juror_number>"
 	And I see "INELIGIBLE" on the page
 	
 Examples:
-	|part_no	|last_name			|postcode	|email       	    |pool_no	|
-	|645200720	|LNAMESEVENTWOZERO	|SY2 6LU	|email@outlook.com	|452170401	|
+	| juror_number	| last_name			| postcode	| email       	    | pool_number	|
+	| 045200141		| LNAMESEVENTWOZERO	| SY2 6LU	| email@outlook.com	| 452300140		|
 
-@Regression @replytypes 
+@Regression @NewSchemaConverted
 Scenario Outline: English 3rd Party + Bail
+
 	Given I am on "Public" "test"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
 		
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 
 	And I set the radio button to "I am replying for someone else"
 	And I press the "Continue" button
 	
 	#Juror Log In
-	
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 	
 	#3rd Party Name
-	
 	When I set "First name" to "FirstNameA"
 	And I set "Last name" to "LastNameB"
 	And I press the "Continue" button
 	
 	#Relationship to juror
-
 	And I set "How do you know the person you're replying for?" to "Friend"
 	And I press the "Continue" button
 	
 	#3rd Party Contact
-
 	And I check the "By phone (UK Numbers only)" checkbox
 	And I set "Main phone" to "0207 821 1818"
 	And I check the "By email" checkbox
-	And I set "Enter your email address" to "email@outlook.com"
-	And I set "Enter your email address again" to "email@outlook.com"
+	And I set "Enter your email address" to "<email>"
+	And I set "Enter your email address again" to "<email>"
 	And I press the "Continue" button
 	
 	#Why are you replying for the person?
-	
 	When I set the radio button to "The person is not here"
 	And I press the "Continue" button
 	
 	#Check juror name
-
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 	
 	#Check juror address
-
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 	
 	#DoB
-	
 	And I set "Day" to "01"
 	And I set "Month" to "01"
 	And I set "Year" to "1980"
 	And I press the "Continue" button
 
 	#Contacting the juror
-
 	And I set the radio button to "Use the phone number that you have already given to contact you"
 	And I set the radio button to "Use the email address that you have already given to contact you"
 	And I press the "Continue" button
 	
 	#Qualify for jury service
-
 	And I press the "Continue" button
 	
 	#Residency
-
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 	
@@ -898,38 +833,31 @@ Scenario Outline: English 3rd Party + Bail
 	And I press the "Continue" button
 	
 	#Bail
-
 	And I set the radio button to "Yes"
 	And I set "Provide details about the person's bail and criminal offence" to "some details"
 	And I press the "Continue" button
 	
 	#Convictions
-
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Mental Health Sectioned
-
 	And I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Mental Health Capacity
-
 	And I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Confirm Date of Jury
-
 	When I set the radio button to "Yes"   
 	And I press the "Continue" button
 	
 	#RA
-
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Check Your Answers
-	
 	When I check the "The answers I have given for the person I'm replying for are true as far as I know" checkbox
 	And I press the "Submit" button
 	And I see "You have completed your reply" on the page
@@ -938,9 +866,9 @@ Scenario Outline: English 3rd Party + Bail
 	And I log in
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	Then I see "<part_no>" on the page
+	Then I see "<juror_number>" on the page
 	
 	And I click link with ID "selectAllLink"
 	And I press the "Send to..." button
@@ -951,92 +879,81 @@ Scenario Outline: English 3rd Party + Bail
 	
 	Then I click on the "Sign out" link
 	When I log in as "CPASS"
-	Then I see "<part_no>" on the page
-	Then I see "<part_no>" has reply type indicator "INELIGIBLE"
-	
-	When I click on "<part_no>" in the same row as "<part_no>"
+	Then I see "<juror_number>" on the page
+	Then I see "<juror_number>" has reply type indicator "INELIGIBLE"
+
+	When I click on "<juror_number>" in the same row as "<juror_number>"
 	And I see "INELIGIBLE" on the page
 	
 Examples:
-	|part_no	|last_name				|postcode	|email       	    |pool_no	|
-	|645200743	|LNAMESEVENFOURTHREE	|SY2 6LU	|email@outlook.com	|452170401	|
+	| juror_number	| last_name				| postcode	| email       	    | pool_number	|
+	| 045200142		| LNAMESEVENFOURTHREE	| SY2 6LU	| email@outlook.com	| 452300141		|
 
-@Regression @replytypes 
+@Regression @NewSchemaConverted
 Scenario Outline: English 3rd Party + Mental Health
+
 	Given I am on "Public" "test"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
 		
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 
 	And I set the radio button to "I am replying for someone else"
 	And I press the "Continue" button
 	
 	#Juror Log In
-	
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 	
 	#3rd Party Name
-	
 	When I set "First name" to "FirstNameA"
 	And I set "Last name" to "LastNameB"
 	And I press the "Continue" button
 	
 	#Relationship to juror
-
 	And I set "How do you know the person you're replying for?" to "Friend"
 	And I press the "Continue" button
 	
 	#3rd Party Contact
-
 	And I check the "By phone (UK Numbers only)" checkbox
 	And I set "Main phone" to "0207 821 1818"
 	And I check the "By email" checkbox
-	And I set "Enter your email address" to "email@outlook.com"
-	And I set "Enter your email address again" to "email@outlook.com"
+	And I set "Enter your email address" to "<email>"
+	And I set "Enter your email address again" to "<email>"
 	And I press the "Continue" button
 	
 	#Why are you replying for the person?
-	
 	When I set the radio button to "The person is not here"
 	And I press the "Continue" button
 	
 	#Check juror name
-
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 	
 	#Check juror address
-
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 	
 	#DoB
-	
 	And I set "Day" to "01"
 	And I set "Month" to "01"
 	And I set "Year" to "1980"
 	And I press the "Continue" button
 
 	#Contacting the juror
-
 	And I set the radio button to "Use the phone number that you have already given to contact you"
 	And I set the radio button to "Use the email address that you have already given to contact you"
 	And I press the "Continue" button
 	
 	#Qualify for jury service
-
 	And I press the "Continue" button
 	
 	#Residency
-
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 	
@@ -1045,39 +962,32 @@ Scenario Outline: English 3rd Party + Mental Health
 	And I press the "Continue" button
 	
 	#Bail
-
 	And I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Convictions
-
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Mental Health Sectioned
-
 	And I set the radio button to "Yes"
 	And I set "Provide details about how they're being detained, looked after or treated under the Mental Health Act" to "some details"
 	And I press the "Continue" button
 	
 	#Mental Health Capacity
-
 	And I set the radio button to "Yes"
 	And I set "Provide brief details about why it was decided they lack mental capacity" to "some details"
 	And I press the "Continue" button
 	
 	#Confirm Date of Jury
-
 	When I set the radio button to "Yes"   
 	And I press the "Continue" button
 	
 	#RA
-
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Check Your Answers
-	
 	When I check the "The answers I have given for the person I'm replying for are true as far as I know" checkbox
 	And I press the "Submit" button
 	And I see "You have completed your reply" on the page
@@ -1086,9 +996,9 @@ Scenario Outline: English 3rd Party + Mental Health
 	And I log in
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	Then I see "<part_no>" on the page
+	Then I see "<juror_number>" on the page
 	
 	And I click link with ID "selectAllLink"
 	And I press the "Send to..." button
@@ -1099,17 +1009,17 @@ Scenario Outline: English 3rd Party + Mental Health
 	
 	Then I click on the "Sign out" link
 	When I log in as "CPASS"
-	Then I see "<part_no>" on the page
-	Then I see "<part_no>" has reply type indicator "INELIGIBLE"
-	
-	When I click on "<part_no>" in the same row as "<part_no>"
+	Then I see "<juror_number>" on the page
+	Then I see "<juror_number>" has reply type indicator "INELIGIBLE"
+
+	When I click on "<juror_number>" in the same row as "<juror_number>"
 	And I see "INELIGIBLE" on the page
 	
 Examples:
-	|part_no	|last_name				|postcode	|email       	    |pool_no	|
-	|645200748	|LNAMESEVENFOUREIGHT   	|SY2 6LU	|email@outlook.com	|452170401	|
+	| juror_number	| last_name				| postcode	| email       	    | pool_number	|
+	| 045200143		| LNAMESEVENFOUREIGHT   | SY2 6LU	| email@outlook.com	| 452300142		|
 	
-@Features
+@Features @NewSchemaConverted
 Scenario Outline: Multiple reply types
 
 	#moved into Features 03-01-24 to return to Regression
@@ -1117,145 +1027,117 @@ Scenario Outline: Multiple reply types
 	Given I am on "Public" "test"
 
 	Given auto straight through processing has been enabled
-	Given the juror numbers have not been processed
-		|part_no 			|pool_no 		|owner 	|
-		|<part_no> 			|<pool_no>		|400 	|
-		|<part_no_two> 		|<pool_no>		|400 	|
-		|<part_no_three>	|<pool_no>		|400 	|
-		|<part_no_four>		|<pool_no>		|400 	|
-		|<part_no_five> 	|<pool_no>		|400 	|
-		|<part_no_six> 		|<pool_no>		|400 	|
-		|<part_no_seven>	|<pool_no_two>	|400 	|
-		|<part_no_eight>	|<pool_no>		|400 	|
-		|<part_no_nine>		|<pool_no_three>|400 	|
-		|<part_no_ten>		|<pool_no>		|400 	|
-		|<part_no_eleven>	|<pool_no>		|400 	|
 
-	And "<part_no>" has "LNAME" as "<last_name>"
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  			| pool_number			| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number>			| <pool_number>			| 5				            | 400	|
+		| 452   |<juror_number_two>		| <pool_number>			| 5				            | 400	|
+		| 452   |<juror_number_three>	| <pool_number>			| 5				            | 400	|
+		| 452   |<juror_number_four>	| <pool_number>			| 5				            | 400	|
+		| 452   |<juror_number_five>	| <pool_number>			| 5				            | 400	|
+		| 452   |<juror_number_six>		| <pool_number>			| 5				            | 400	|
+		| 452   |<juror_number_eight>	| <pool_number>			| 5				            | 400	|
+		| 452   |<juror_number_ten>		| <pool_number>			| 5				            | 400	|
+		| 452   |<juror_number_eleven>	| <pool_number>			| 5				            | 400	|
 
-	And "<part_no_two>" has "LNAME" as "<last_name>"
-	And "<part_no_two>" has "RET_DATE" as "5 mondays time"
-	And "<part_no_two>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no_two>" has "ZIP" as "<postcode>"
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  			| pool_number			| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number_seven>	| <pool_number_two>		| 5				            | 400	|
 
-	And "<part_no_three>" has "LNAME" as "<last_name>"
-	And "<part_no_three>" has "RET_DATE" as "5 mondays time"
-	And "<part_no_three>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no_three>" has "ZIP" as "<postcode>"
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  			| pool_number			| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number_nine>	| <pool_number_three>	| 5				            | 400	|
 
-	And "<part_no_four>" has "LNAME" as "<last_name>"
-	And "<part_no_four>" has "RET_DATE" as "5 mondays time"
-	And "<part_no_four>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no_four>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 
-	And "<part_no_five>" has "LNAME" as "<last_name>"
-	And "<part_no_five>" has "RET_DATE" as "5 mondays time"
-	And "<part_no_five>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no_five>" has "ZIP" as "<postcode>"
+	And juror "<juror_number_two>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number_two>" has "POSTCODE" as "<postcode>" new schema
 
-	And "<part_no_six>" has "LNAME" as "<last_name>"
-	And "<part_no_six>" has "RET_DATE" as "5 mondays time"
-	And "<part_no_six>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no_six>" has "ZIP" as "<postcode>"
+	And juror "<juror_number_three>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number_three>" has "POSTCODE" as "<postcode>" new schema
 
-	And "<part_no_seven>" has "LNAME" as "<last_name>"
-	And "<part_no_seven>" has "RET_DATE" as "5 mondays time"
-	And "<part_no_seven>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no_seven>" has "ZIP" as "<postcode>"
+	And juror "<juror_number_four>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number_four>" has "POSTCODE" as "<postcode>" new schema
 
-	And "<part_no_eight>" has "LNAME" as "<last_name>"
-	And "<part_no_eight>" has "RET_DATE" as "5 mondays time"
-	And "<part_no_eight>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no_eight>" has "ZIP" as "<postcode>"
+	And juror "<juror_number_five>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number_five>" has "POSTCODE" as "<postcode>" new schema
 
-	And "<part_no_nine>" has "LNAME" as "<last_name>"
-	And "<part_no_nine>" has "RET_DATE" as "5 mondays time"
-	And "<part_no_nine>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no_nine>" has "ZIP" as "<postcode>"
+	And juror "<juror_number_six>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number_six>" has "POSTCODE" as "<postcode>" new schema
 
-	And "<part_no_ten>" has "LNAME" as "<last_name>"
-	And "<part_no_ten>" has "RET_DATE" as "5 mondays time"
-	And "<part_no_ten>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no_ten>" has "ZIP" as "<postcode>"
+	And juror "<juror_number_seven>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number_seven>" has "POSTCODE" as "<postcode>" new schema
 
-	And "<part_no_eleven>" has "LNAME" as "<last_name>"
-	And "<part_no_eleven>" has "RET_DATE" as "5 mondays time"
-	And "<part_no_eleven>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no_eleven>" has "ZIP" as "<postcode>"
+	And juror "<juror_number_eight>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number_eight>" has "POSTCODE" as "<postcode>" new schema
+
+	And juror "<juror_number_nine>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number_nine>" has "POSTCODE" as "<postcode>" new schema
+
+	And juror "<juror_number_ten>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number_ten>" has "POSTCODE" as "<postcode>" new schema
+
+	And juror "<juror_number_eleven>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number_eleven>" has "POSTCODE" as "<postcode>" new schema
 
 	#RESPONSE 1
 	#3rd party MH
-
-#	Given I am on "Public" "test"
 	Given I am on "Public" "test"
 
 	And I set the radio button to "I am replying for someone else"
 	And I press the "Continue" button
 
 	#Juror Log In
-
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 
 	#3rd Party Name
-
 	When I set "First name" to "FirstNameA"
 	And I set "Last name" to "LastNameB"
 	And I press the "Continue" button
 
 	#Relationship to juror
-
 	And I set "How do you know the person you're replying for?" to "Friend"
 	And I press the "Continue" button
 
 	#3rd Party Contact
-
 	And I check the "By phone (UK Numbers only)" checkbox
 	And I set "Main phone" to "0207 821 1818"
 	And I check the "By email" checkbox
-	And I set "Enter your email address" to "email@outlook.com"
-	And I set "Enter your email address again" to "email@outlook.com"
+	And I set "Enter your email address" to "<email>"
+	And I set "Enter your email address again" to "<email>"
 	And I press the "Continue" button
 
 	#Why are you replying for the person?
-
 	When I set the radio button to "The person is not here"
 	And I press the "Continue" button
 
-	#Check juror name
-
+	#Check juror nam
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 
 	#Check juror address
-
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 
 	#DoB
-
 	And I set "Day" to "01"
 	And I set "Month" to "01"
 	And I set "Year" to "1980"
 	And I press the "Continue" button
 
 	#Contacting the juror
-
 	And I set the radio button to "Use the phone number that you have already given to contact you"
 	And I set the radio button to "Use the email address that you have already given to contact you"
 	And I press the "Continue" button
 
 	#Qualify for jury service
-
 	And I press the "Continue" button
 
 	#Residency
-
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 
@@ -1264,113 +1146,93 @@ Scenario Outline: Multiple reply types
 	And I press the "Continue" button
 
 	#Bail
-
 	And I set the radio button to "No"
 	And I press the "Continue" button
 
 	#Convictions
-
 	When I set the radio button to "No"
 	And I press the "Continue" button
 
 	#Mental Health Sectioned
-
 	And I set the radio button to "Yes"
 	And I set "Provide details about how they're being detained, looked after or treated under the Mental Health Act" to "some details"
 	And I press the "Continue" button
 
 	#Mental Health Capacity
-
 	And I set the radio button to "Yes"
 	And I set "Provide brief details about why it was decided they lack mental capacity" to "some details"
 	And I press the "Continue" button
 
 	#Confirm Date of Jury
-
 	When I set the radio button to "Yes"
 	And I press the "Continue" button
 
 	#RA
-
 	When I set the radio button to "No"
 	And I press the "Continue" button
 
 	#Check Your Answers
-
 	When I check the "The answers I have given for the person I'm replying for are true as far as I know" checkbox
 	And I press the "Submit" button
 	And I see "You have completed your reply" on the page
 
 	#RESPONSE 2
 	#3rd party bail
-
-#	Given I am on "Public" "test"
 	Given I am on "Public" "test"
 
 	And I set the radio button to "I am replying for someone else"
 	And I press the "Continue" button
 
 	#Juror Log In
-
-	When I set "9-digit juror number" to "<part_no_two>"
+	When I set "9-digit juror number" to "<juror_number_two>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 
 	#3rd Party Name
-
 	When I set "First name" to "FirstNameA"
 	And I set "Last name" to "LastNameB"
 	And I press the "Continue" button
 
 	#Relationship to juror
-
 	And I set "How do you know the person you're replying for?" to "Friend"
 	And I press the "Continue" button
 
 	#3rd Party Contact
-
 	And I check the "By phone (UK Numbers only)" checkbox
 	And I set "Main phone" to "0207 821 1818"
 	And I check the "By email" checkbox
-	And I set "Enter your email address" to "email@outlook.com"
-	And I set "Enter your email address again" to "email@outlook.com"
+	And I set "Enter your email address" to "<email>"
+	And I set "Enter your email address again" to "<email>"
 	And I press the "Continue" button
 
 	#Why are you replying for the person?
-
 	When I set the radio button to "The person is not here"
 	And I press the "Continue" button
 
 	#Check juror name
-
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 
 	#Check juror address
-
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 
 	#DoB
-
 	And I set "Day" to "01"
 	And I set "Month" to "01"
 	And I set "Year" to "1980"
 	And I press the "Continue" button
 
 	#Contacting the juror
-
 	And I set the radio button to "Use the phone number that you have already given to contact you"
 	And I set the radio button to "Use the email address that you have already given to contact you"
 	And I press the "Continue" button
 
 	#Qualify for jury service
-
 	And I press the "Continue" button
 
 	#Residency
-
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 
@@ -1379,112 +1241,92 @@ Scenario Outline: Multiple reply types
 	And I press the "Continue" button
 
 	#Bail
-
 	And I set the radio button to "Yes"
 	And I set "Provide details about the person's bail and criminal offence" to "some details"
 	And I press the "Continue" button
 
 	#Convictions
-
 	When I set the radio button to "No"
 	And I press the "Continue" button
 
 	#Mental Health Sectioned
-
 	And I set the radio button to "No"
 	And I press the "Continue" button
 
 	#Mental Health Capacity
-
 	And I set the radio button to "No"
 	And I press the "Continue" button
 
 	#Confirm Date of Jury
-
 	When I set the radio button to "Yes"
 	And I press the "Continue" button
 
 	#RA
-
 	When I set the radio button to "No"
 	And I press the "Continue" button
 
 	#Check Your Answers
-
 	When I check the "The answers I have given for the person I'm replying for are true as far as I know" checkbox
 	And I press the "Submit" button
 	And I see "You have completed your reply" on the page
 
 	#RESPONSE 3
 	#3rd party residency
-
-#	Given I am on "Public" "test"
 	Given I am on "Public" "test"
 
 	And I set the radio button to "I am replying for someone else"
 	And I press the "Continue" button
 
 	#Juror Log In
-
-	When I set "9-digit juror number" to "<part_no_three>"
+	When I set "9-digit juror number" to "<juror_number_three>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 
 	#3rd Party Name
-
 	When I set "First name" to "FirstNameA"
 	And I set "Last name" to "LastNameB"
 	And I press the "Continue" button
 
 	#Relationship to juror
-
 	And I set "How do you know the person you're replying for?" to "Friend"
 	And I press the "Continue" button
 
 	#3rd Party Contact
-
 	And I check the "By phone (UK Numbers only)" checkbox
 	And I set "Main phone" to "0207 821 1818"
 	And I check the "By email" checkbox
-	And I set "Enter your email address" to "email@outlook.com"
-	And I set "Enter your email address again" to "email@outlook.com"
+	And I set "Enter your email address" to "<email>"
+	And I set "Enter your email address again" to "<email>"
 	And I press the "Continue" button
 
 	#Why are you replying for the person?
-
 	When I set the radio button to "The person is not here"
 	And I press the "Continue" button
 
 	#Check juror name
-
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 
 	#Check juror address
-
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 
 	#DoB
-
 	And I set "Day" to "01"
 	And I set "Month" to "01"
 	And I set "Year" to "1980"
 	And I press the "Continue" button
 
 	#Contacting the juror
-
 	And I set the radio button to "Use the phone number that you have already given to contact you"
 	And I set the radio button to "Use the email address that you have already given to contact you"
 	And I press the "Continue" button
 
 	#Qualify for jury service
-
 	And I press the "Continue" button
 
 	#Residency
-
 	And I set the radio button to "No"
 	And I set "Provide details about where the person you are answering for has lived since their 13th birthday" to "some details"
 	And I press the "Continue" button
@@ -1494,111 +1336,91 @@ Scenario Outline: Multiple reply types
 	And I press the "Continue" button
 
 	#Bail
-
 	And I set the radio button to "No"
 	And I press the "Continue" button
 
 	#Convictions
-
 	When I set the radio button to "No"
 	And I press the "Continue" button
 
 	#Mental Health Sectioned
-
 	And I set the radio button to "No"
 	And I press the "Continue" button
 
 	#Mental Health Capacity
-
 	And I set the radio button to "No"
 	And I press the "Continue" button
 
 	#Confirm Date of Jury
-
 	When I set the radio button to "Yes"
 	And I press the "Continue" button
 
 	#RA
-
 	When I set the radio button to "No"
 	And I press the "Continue" button
 
 	#Check Your Answers
-
 	When I check the "The answers I have given for the person I'm replying for are true as far as I know" checkbox
 	And I press the "Submit" button
 	And I see "You have completed your reply" on the page
 
 	#RESPONSE 4
 	#3rd party convictions
-
-#	Given I am on "Public" "test"
 	Given I am on "Public" "test"
 
 	And I set the radio button to "I am replying for someone else"
 	And I press the "Continue" button
 
 	#Juror Log In
-
-	When I set "9-digit juror number" to "<part_no_four>"
+	When I set "9-digit juror number" to "<juror_number_four>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 
 	#3rd Party Name
-
 	When I set "First name" to "FirstNameA"
 	And I set "Last name" to "LastNameB"
 	And I press the "Continue" button
 
 	#Relationship to juror
-
 	And I set "How do you know the person you're replying for?" to "Friend"
 	And I press the "Continue" button
 
 	#3rd Party Contact
-
 	And I check the "By phone (UK Numbers only)" checkbox
 	And I set "Main phone" to "0207 821 1818"
 	And I check the "By email" checkbox
-	And I set "Enter your email address" to "email@outlook.com"
-	And I set "Enter your email address again" to "email@outlook.com"
+	And I set "Enter your email address" to "<email>"
+	And I set "Enter your email address again" to "<email>"
 	And I press the "Continue" button
 
 	#Why are you replying for the person?
-
 	When I set the radio button to "The person is not here"
 	And I press the "Continue" button
 
 	#Check juror name
-
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 
 	#Check juror address
-
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 
 	#DoB
-
 	And I set "Day" to "01"
 	And I set "Month" to "01"
 	And I set "Year" to "1980"
 	And I press the "Continue" button
 
 	#Contacting the juror
-
 	And I set the radio button to "Use the phone number that you have already given to contact you"
 	And I set the radio button to "Use the email address that you have already given to contact you"
 	And I press the "Continue" button
 
 	#Qualify for jury service
-
 	And I press the "Continue" button
 
 	#Residency
-
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 
@@ -1607,53 +1429,44 @@ Scenario Outline: Multiple reply types
 	And I press the "Continue" button
 
 	#Bail
-
 	And I set the radio button to "No"
 	And I press the "Continue" button
 
 	#Convictions
-
 	When I set the radio button to "Yes"
 	And I set text area with "id" of "convictedDetails" to "I am a convicted criminal"
 	And I press the "Continue" button
 
 	#Mental Health Sectioned
-
 	And I set the radio button to "No"
 	And I press the "Continue" button
 
 	#Mental Health Capacity
-
 	And I set the radio button to "No"
 	And I press the "Continue" button
 
 	#Confirm Date of Jury
-
 	When I set the radio button to "Yes"
 	And I press the "Continue" button
 
 	#RA
-
 	When I set the radio button to "No"
 	And I press the "Continue" button
 
 	#Check Your Answers
-
 	When I check the "The answers I have given for the person I'm replying for are true as far as I know" checkbox
 	And I press the "Submit" button
 	And I see "You have completed your reply" on the page
 
 	#RESPONSE 5
 	#1st bail
-
-#	Given I am on "Public" "test"
 	Given I am on "Public" "test"
 
 	And I set the radio button to "I am replying for myself"
 	And I press the "Continue" button
 	Then I see "Your juror details" on the page
 
-	When I set "9-digit juror number" to "<part_no_five>"
+	When I set "9-digit juror number" to "<juror_number_five>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
@@ -1707,7 +1520,6 @@ Scenario Outline: Multiple reply types
 	And I press the "Continue" button
 
 	#Straight through
-
 	When I set the radio button to "Yes"
 	And I press the "Continue" button
 
@@ -1725,15 +1537,13 @@ Scenario Outline: Multiple reply types
 
 	#RESPONSE 6
 	#1st residency
-
-#	Given I am on "Public" "test"
 	Given I am on "Public" "test"
 
 	And I set the radio button to "I am replying for myself"
 	And I press the "Continue" button
 	Then I see "Your juror details" on the page
 
-	When I set "9-digit juror number" to "<part_no_six>"
+	When I set "9-digit juror number" to "<juror_number_six>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
@@ -1787,7 +1597,6 @@ Scenario Outline: Multiple reply types
 	And I press the "Continue" button
 
 	#Straight through
-
 	When I set the radio button to "Yes"
 	And I press the "Continue" button
 
@@ -1805,8 +1614,6 @@ Scenario Outline: Multiple reply types
 
 	#RESPONSE 7
 	#1st details change
-
-#	Given I am on "Public" "test"
 	Given I am on "Public" "test"
 
 	And I set the radio button to "I am replying for myself"
@@ -1815,7 +1622,7 @@ Scenario Outline: Multiple reply types
 
 	And I see "Your juror details" on the page
 
-	When I set "9-digit juror number" to "<part_no_seven>"
+	When I set "9-digit juror number" to "<juror_number_seven>"
 	And I set "Juror last name" to "<last_name>"
 	And I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
@@ -1848,53 +1655,41 @@ Scenario Outline: Multiple reply types
 	And I press the "Continue" button
 
 	#Qualify for jury service
-
-	#JDB-4636
-
 	When I press the "Continue" button
 
 	#Residency
-
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 
 	#CJS
-
 	When I set the radio button to "No"
 	And I press the "Continue" button
 
 	#Bail
-
 	When I set the radio button to "No"
 	And I press the "Continue" button
 
 	#Convictions
-
 	When I set the radio button to "No"
 	And I press the "Continue" button
 
 	#Mental Health Sectioned
-
 	And I set the radio button to "No"
 	And I press the "Continue" button
 
 	#Mental Health Capacity
-
 	And I set the radio button to "No"
 	And I press the "Continue" button
 
 	#I can attend
-
 	And I set the radio button to "Yes, I can start on"
 	And  I press the "Continue" button
 
 	#RA no
-
 	When I set the radio button to "No"
 	And I press the "Continue" button
 
 	#Check your answers
-
 	Then I see "Check your answers now" on the page
 	Then I check the "The information I have given is true to the best of my knowledge" checkbox
 	When I press the "Submit" button
@@ -1904,8 +1699,6 @@ Scenario Outline: Multiple reply types
 
 	#RESPONSE 8
 	#1st deferral
-
-#	Given I am on "Public" "test"
 	Given I am on "Public" "test"
 
 	Then I see "Reply to a jury summons" on the page
@@ -1914,7 +1707,7 @@ Scenario Outline: Multiple reply types
 	And I press the "Continue" button
 	Then I see "Your juror details" on the page
 
-	When I set "9-digit juror number" to "<part_no_eight>"
+	When I set "9-digit juror number" to "<juror_number_eight>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
@@ -1967,7 +1760,6 @@ Scenario Outline: Multiple reply types
 	And I press the "Continue" button
 
 	#deferral
-
 	When I set the radio button to "No, I need to change the date"
 	And I press the "Continue" button
 
@@ -1981,7 +1773,6 @@ Scenario Outline: Multiple reply types
 	And I press the "Continue" button
 
 	#check dates screen
-
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 
@@ -2001,7 +1792,6 @@ Scenario Outline: Multiple reply types
 
 	#RESPONSE 9
 	#1st excusal
-
 	Given I am on "Public" "test"
 
 	Then I see "Reply to a jury summons" on the page
@@ -2011,35 +1801,29 @@ Scenario Outline: Multiple reply types
 	Then I see "Your juror details" on the page
 
 	#Juror Log In
-
-	When I set "9-digit juror number" to "<part_no_nine>"
+	When I set "9-digit juror number" to "<juror_number_nine>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 
 	#Check Name
-
 	When I set the radio button to "Yes"
 	When I press the "Continue" button
 
 	#Check Address
-
 	When I set the radio button to "Yes"
 	And I press the "Continue" button
 
 	#Phone Details
-
 	When I set "Main phone" to "0207 821 1818"
 	And I press the "Continue" button
 
 	#Email
-
-	When I set "Enter your email address" to "email@outlook.com"
-	And I set "Enter your email address again" to "email@outlook.com"
+	When I set "Enter your email address" to "<email>"
+	And I set "Enter your email address again" to "<email>"
 	And I press the "Continue" button
 
 	#DoB
-
 	When I set "Day" to "27"
 	And I set "Month" to "04"
 	And I set "Year" to "1981"
@@ -2048,82 +1832,70 @@ Scenario Outline: Multiple reply types
 	When I press the "Continue" button
 
 	#Residency
-
 	When I set the radio button to "Yes"
 	And I press the "Continue" button
 
 	#CJS
-
 	When I set the radio button to "No"
 	And I press the "Continue" button
 
 	#Bail
-
 	When I set the radio button to "No"
 	And I press the "Continue" button
 
 	#Convictions
-
 	When I set the radio button to "No"
 	And I press the "Continue" button
 
 	#Mental Health part 1
-
 	When I set the radio button to "No"
 	And I press the "Continue" button
 
 	#Mental Health part 2
-
 	When I set the radio button to "No"
 	And I press the "Continue" button
 
 	#Confirm Date of Jury
-
 	When I set the radio button to "No, I cannot do jury service and need to be excused"
 	And I press the "Continue" button
 
 	#Excusal Reason
-
 	When I set text area with "id" of "excusalReason" to "Excuse me please"
 	And I press the "Continue" button
 
 	#RA
-
 	When I set the radio button to "No"
 	And I press the "Continue" button
 
 	#Check Your Answers Now
-
 	When I check the "The information" checkbox
 	And I press the "Submit" button
 	And I see "You have completed your reply" on the page
 
 	#RESPONSE 10
 	#3rd Deceased
-
 	Given I am on "Public" "test"
 
 	And I have submitted a third party English deceased response
-	|part_no		|pool_number|last_name		|postcode	|email 	|
-	|<part_no_ten>	|<pool_no>	|<last_name>	|<postcode>	|<email>|
+	| part_no				| pool_number	| last_name		| postcode	| email  |
+	| <juror_number_ten>	| <pool_number>	| <last_name>	| <postcode>| <email>|
 
 	#RESPONSE 11
 	#auto processed
-
 	Given I am on "Public" "test"
 
 	And I have submitted a first party English straight through response
-	|part_no			|pool_number|last_name		|postcode	|email 	|
-	|<part_no_eleven>	|<pool_no>	|<last_name>	|<postcode>	|<email>|
+	|part_no				| pool_number	| last_name		| postcode	| email  |
+	|<juror_number_eleven>	| <pool_number>	| <last_name>	| <postcode>| <email>|
 
 	Given I am on "Bureau" "test"
 
 	When I log in as "SYSTEM"
 	
 	When I click on the "Search" link
-	And I set "Juror's pool number" to "<pool_no>"
+	And I set "Juror's pool number" to "<pool_number>"
 	And I press the "Search" button
-	And I see "<part_no>" on the page
+	And I see "<juror_number>" on the page
 	
 	And I click link with ID "selectAllLink"
 	And I press the "Send to..." button
@@ -2134,10 +1906,10 @@ Scenario Outline: Multiple reply types
 	
 	Then I click on the "Search" link
 	
-	And I set "Juror's pool number" to "<pool_no_two>"
+	And I set "Juror's pool number" to "<pool_number_two>"
 	And I press the "Search" button
 	
-	And I see "<part_no_seven>" on the page
+	And I see "<juror_number_seven>" on the page
 	And I click link with ID "selectAllLink"
 	And I press the "Send to..." button
 	And I set input field with "id" of "sendToOfficer" to "ARAMIS1"
@@ -2147,10 +1919,10 @@ Scenario Outline: Multiple reply types
 	
 	Then I click on the "Search" link
 	
-	And I set "Juror's pool number" to "<pool_no_three>"
+	And I set "Juror's pool number" to "<pool_number_three>"
 	And I press the "Search" button
 	
-	And I see "<part_no_nine>" on the page
+	And I see "<juror_number_nine>" on the page
 	And I click link with ID "selectAllLink"
 	And I press the "Send to..." button
 	And I set input field with "id" of "sendToOfficer" to "ARAMIS1"
@@ -2164,17 +1936,17 @@ Scenario Outline: Multiple reply types
 	
 	And I log in as "ARAMIS1"
 
-	Then I see "<part_no>" has reply type indicator "INELIGIBLE"
-	Then I see "<part_no_two>" has reply type indicator "INELIGIBLE"
-	Then I see "<part_no_three>" has reply type indicator "INELIGIBLE"
-	Then I see "<part_no_four>" has reply type indicator "INELIGIBLE"
-	Then I see "<part_no_five>" has reply type indicator "INELIGIBLE"
-	Then I see "<part_no_six>" has reply type indicator "INELIGIBLE"
-	Then I see "<part_no_seven>" has reply type indicator "NEEDS REVIEW"
-	Then I see "<part_no_eight>" has reply type indicator "DEFERRAL"
-	Then I see "<part_no_nine>" has reply type indicator "EXCUSAL"
+	Then I see "<juror_number>" has reply type indicator "INELIGIBLE"
+	Then I see "<juror_number_two>" has reply type indicator "INELIGIBLE"
+	Then I see "<juror_number_three>" has reply type indicator "INELIGIBLE"
+	Then I see "<juror_number_four>" has reply type indicator "INELIGIBLE"
+	Then I see "<juror_number_five>" has reply type indicator "INELIGIBLE"
+	Then I see "<juror_number_six>" has reply type indicator "INELIGIBLE"
+	Then I see "<juror_number_seven>" has reply type indicator "NEEDS REVIEW"
+	Then I see "<juror_number_eight>" has reply type indicator "DEFERRAL"
+	Then I see "<juror_number_nine>" has reply type indicator "EXCUSAL"
 	
-	When I click on "<part_no>" in the same row as "<part_no>"
+	When I click on "<juror_number>" in the same row as "<juror_number>"
 	And I see "INELIGIBLE" on the page
 	
 	Then I press the "Process reply" button
@@ -2185,8 +1957,8 @@ Scenario Outline: Multiple reply types
 	
 	And I click on the "Your work" link
 	
-	Then I see "<part_no_two>" on the page
-	When I click on "<part_no_two>" in the same row as "<part_no_two>"
+	Then I see "<juror_number_two>" on the page
+	When I click on "<juror_number_two>" in the same row as "<juror_number_two>"
 	And I see "INELIGIBLE" on the page
 	
 	Then I press the "Process reply" button
@@ -2197,8 +1969,8 @@ Scenario Outline: Multiple reply types
 	
 	And I click on the "Your work" link
 	
-	Then I see "<part_no_three>" on the page
-	When I click on "<part_no_three>" in the same row as "<part_no_three>"
+	Then I see "<juror_number_three>" on the page
+	When I click on "<juror_number_three>" in the same row as "<juror_number_three>"
 	And I see "INELIGIBLE" on the page
 	
 	Then I press the "Process reply" button
@@ -2209,8 +1981,8 @@ Scenario Outline: Multiple reply types
 	
 	And I click on the "Your work" link
 	
-	Then I see "<part_no_four>" on the page
-	When I click on "<part_no_four>" in the same row as "<part_no_four>"
+	Then I see "<juror_number_four>" on the page
+	When I click on "<juror_number_four>" in the same row as "<juror_number_four>"
 	And I see "INELIGIBLE" on the page
 	
 	Then I press the "Process reply" button
@@ -2221,8 +1993,8 @@ Scenario Outline: Multiple reply types
 	
 	And I click on the "Your work" link
 	
-	Then I see "<part_no_five>" on the page
-	When I click on "<part_no_five>" in the same row as "<part_no_five>"
+	Then I see "<juror_number_five>" on the page
+	When I click on "<juror_number_five>" in the same row as "<juror_number_five>"
 	And I see "INELIGIBLE" on the page
 	
 	Then I press the "Process reply" button
@@ -2233,8 +2005,8 @@ Scenario Outline: Multiple reply types
 	
 	And I click on the "Your work" link
 	
-	Then I see "<part_no_six>" on the page
-	When I click on "<part_no_six>" in the same row as "<part_no_six>"
+	Then I see "<juror_number_six>" on the page
+	When I click on "<juror_number_six>" in the same row as "<juror_number_six>"
 	And I see "INELIGIBLE" on the page
 	
 	Then I press the "Process reply" button
@@ -2245,8 +2017,8 @@ Scenario Outline: Multiple reply types
 	
 	And I click on the "Your work" link
 	
-	Then I see "<part_no_seven>" on the page
-	When I click on "<part_no_seven>" in the same row as "<part_no_seven>"
+	Then I see "<juror_number_seven>" on the page
+	When I click on "<juror_number_seven>" in the same row as "<juror_number_seven>"
 	And I see "NEEDS REVIEW" on the page
 	
 	Then I press the "Process reply" button
@@ -2257,8 +2029,8 @@ Scenario Outline: Multiple reply types
 	
 	And I click on the "Your work" link
 	
-	Then I see "<part_no_eight>" on the page
-	When I click on "<part_no_eight>" in the same row as "<part_no_eight>"
+	Then I see "<juror_number_eight>" on the page
+	When I click on "<juror_number_eight>" in the same row as "<juror_number_eight>"
 	And I see "DEFERRAL" on the page
 	
 	Then I press the "Process reply" button
@@ -2269,8 +2041,8 @@ Scenario Outline: Multiple reply types
 	
 	And I click on the "Your work" link
 	
-	Then I see "<part_no_nine>" on the page
-	When I click on "<part_no_nine>" in the same row as "<part_no_nine>"
+	Then I see "<juror_number_nine>" on the page
+	When I click on "<juror_number_nine>" in the same row as "<juror_number_nine>"
 	And I see "EXCUSAL" on the page
 	
 	Then I press the "Process reply" button
@@ -2282,206 +2054,182 @@ Scenario Outline: Multiple reply types
 	And I click on the "Your work" link
 	
 	And I click on the "Search" link
-	And I set "Juror number" to "<part_no_ten>"
+	And I set "Juror number" to "<juror_number_ten>"
 	And I press the "Search" button
 	
-	When I click on "<part_no_ten>" in the same row as "<part_no_ten>"
+	When I click on "<juror_number_ten>" in the same row as "<juror_number_ten>"
 	And I see "DECEASED" on the page
 	
-#	And I click on the "Back" link
-	
 	And I click on the "Search" link
-	And I set "Juror number" to "<part_no_eleven>"
+	And I set "Juror number" to "<juror_number_eleven>"
 	And I press the "Search" button
-	And I see "<part_no_eleven>" on the page
+	And I see "<juror_number_eleven>" on the page
 	
-	When I click on "<part_no_eleven>" in the same row as "<part_no_eleven>"
+	When I click on "<juror_number_eleven>" in the same row as "<juror_number_eleven>"
 	And I see "AUTO PROCESSED" on the page
 	
 	Then I click on the "Your work" link
 	Then I click on the "Completed" link
 	
-	When I click on "<part_no>" in the same row as "<part_no>"
+	When I click on "<juror_number>" in the same row as "<juror_number>"
 	And I see "INELIGIBLE" on the page
 
 	And I click on the "Back" link
 	
-	When I click on "<part_no_two>" in the same row as "<part_no_two>"
+	When I click on "<juror_number_two>" in the same row as "<juror_number_two>"
 	And I see "INELIGIBLE" on the page
 	
 	And I click on the "Back" link
 	
-	When I click on "<part_no_three>" in the same row as "<part_no_three>"
+	When I click on "<juror_number_three>" in the same row as "<juror_number_three>"
 	And I see "INELIGIBLE" on the page
 	
 	And I click on the "Back" link
 	
-	When I click on "<part_no_four>" in the same row as "<part_no_four>"
+	When I click on "<juror_number_four>" in the same row as "<juror_number_four>"
 	And I see "INELIGIBLE" on the page
 	
 	And I click on the "Back" link
 	
-	When I click on "<part_no_five>" in the same row as "<part_no_five>"
+	When I click on "<juror_number_five>" in the same row as "<juror_number_five>"
 	And I see "INELIGIBLE" on the page
 	
 	And I click on the "Back" link
 	
-	When I click on "<part_no_six>" in the same row as "<part_no_six>"
+	When I click on "<juror_number_six>" in the same row as "<juror_number_six>"
 	And I see "INELIGIBLE" on the page
 	
 	And I click on the "Back" link
 	
-	When I click on "<part_no_seven>" in the same row as "<part_no_seven>"
+	When I click on "<juror_number_seven>" in the same row as "<juror_number_seven>"
 	And I see "NEEDS REVIEW" on the page
 	
 	And I click on the "Back" link
 	
-	When I click on "<part_no_eight>" in the same row as "<part_no_eight>"
+	When I click on "<juror_number_eight>" in the same row as "<juror_number_eight>"
 	And I see "DEFERRAL" on the page
 	
 	And I click on the "Back" link
 	
-	When I click on "<part_no_nine>" in the same row as "<part_no_nine>"
+	When I click on "<juror_number_nine>" in the same row as "<juror_number_nine>"
 	And I see "EXCUSAL" on the page
 	
 Examples:
-	|part_no	|part_no_two	|part_no_three	|part_no_four	|part_no_five	|part_no_six	|part_no_seven	|part_no_eight	|part_no_nine	|part_no_ten|part_no_eleven	|last_name	|postcode	|email       	    |pool_no	|pool_no_two|pool_no_three	|
-	|645200748	|645200743		|645200720		|645200694		|645200637		|645200884		|645100925		|645200610		|641500226		|645200130	|645200784		|LNAME  	|SY2 6LU	|email@outlook.com	|452170401	|451170401	|415170401		|
+	| juror_number	| juror_number_two	| juror_number_three| juror_number_four	| juror_number_five	| juror_number_six	| juror_number_seven| juror_number_eight| juror_number_nine	| juror_number_ten| juror_number_eleven	| last_name	| postcode	| email       	    | pool_number	| pool_number_two	| pool_number_three	|
+	| 045200144		| 045200145			| 045200146			| 045200147			| 045200148			| 045200149			| 045200150			| 045200151			| 045200152			| 045200153		  | 045200154			| LNAME  	| SY2 6LU	| email@outlook.com	| 452300143		| 452300144			| 452300145			|
 	
 
-@Features
+@Features @NewSchemaConverted
 Scenario Outline: Multiple reply types in Awaiting Information
 
 	#moved into Features 02-01-24 return to RegressionSingle
 
 	Given I am on "Public" "test"
+
 	Given auto straight through processing has been enabled
-	Given the juror numbers have not been processed
-		|part_no 			|pool_no 		|owner 	|
-		|<part_no> 			|<pool_no>		|400 	|
-		|<part_no_two> 		|<pool_no>		|400 	|
-		|<part_no_three>	|<pool_no>		|400 	|
-		|<part_no_four>		|<pool_no>		|400 	|
-		|<part_no_five> 	|<pool_no>		|400 	|
-		|<part_no_six> 		|<pool_no>		|400 	|
-		|<part_no_seven>	|<pool_no_two>	|400 	|
-		|<part_no_eight>	|<pool_no>		|400 	|
-		|<part_no_nine>		|<pool_no_three>|400 	|
 
-	And "<part_no>" has "LNAME" as "<last_name>"
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  			| pool_number			| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number>			| <pool_number>			| 5				            | 400	|
+		| 452   |<juror_number_two>		| <pool_number>			| 5				            | 400	|
+		| 452   |<juror_number_three>	| <pool_number>			| 5				            | 400	|
+		| 452   |<juror_number_four>	| <pool_number>			| 5				            | 400	|
+		| 452   |<juror_number_five>	| <pool_number>			| 5				            | 400	|
+		| 452   |<juror_number_six>		| <pool_number>			| 5				            | 400	|
+		| 452   |<juror_number_eight>	| <pool_number>			| 5				            | 400	|
 
-	And "<part_no_two>" has "LNAME" as "<last_name>"
-	And "<part_no_two>" has "RET_DATE" as "5 mondays time"
-	And "<part_no_two>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no_two>" has "ZIP" as "<postcode>"
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  			| pool_number			| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number_seven>	| <pool_number_two>		| 5				            | 400	|
 
-	And "<part_no_three>" has "LNAME" as "<last_name>"
-	And "<part_no_three>" has "RET_DATE" as "5 mondays time"
-	And "<part_no_three>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no_three>" has "ZIP" as "<postcode>"
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  			| pool_number			| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number_nine>	| <pool_number_three>	| 5				            | 400	|
 
-	And "<part_no_four>" has "LNAME" as "<last_name>"
-	And "<part_no_four>" has "RET_DATE" as "5 mondays time"
-	And "<part_no_four>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no_four>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 
-	And "<part_no_five>" has "LNAME" as "<last_name>"
-	And "<part_no_five>" has "RET_DATE" as "5 mondays time"
-	And "<part_no_five>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no_five>" has "ZIP" as "<postcode>"
+	And juror "<juror_number_two>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number_two>" has "POSTCODE" as "<postcode>" new schema
 
-	And "<part_no_six>" has "LNAME" as "<last_name>"
-	And "<part_no_six>" has "RET_DATE" as "5 mondays time"
-	And "<part_no_six>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no_six>" has "ZIP" as "<postcode>"
+	And juror "<juror_number_three>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number_three>" has "POSTCODE" as "<postcode>" new schema
 
-	And "<part_no_seven>" has "LNAME" as "<last_name>"
-	And "<part_no_seven>" has "RET_DATE" as "5 mondays time"
-	And "<part_no_seven>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no_seven>" has "ZIP" as "<postcode>"
+	And juror "<juror_number_four>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number_four>" has "POSTCODE" as "<postcode>" new schema
 
-	And "<part_no_eight>" has "LNAME" as "<last_name>"
-	And "<part_no_eight>" has "RET_DATE" as "5 mondays time"
-	And "<part_no_eight>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no_eight>" has "ZIP" as "<postcode>"
+	And juror "<juror_number_five>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number_five>" has "POSTCODE" as "<postcode>" new schema
 
-	And "<part_no_nine>" has "LNAME" as "<last_name>"
-	And "<part_no_nine>" has "RET_DATE" as "5 mondays time"
-	And "<part_no_nine>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no_nine>" has "ZIP" as "<postcode>"
+	And juror "<juror_number_six>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number_six>" has "POSTCODE" as "<postcode>" new schema
+
+	And juror "<juror_number_seven>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number_seven>" has "POSTCODE" as "<postcode>" new schema
+
+	And juror "<juror_number_eight>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number_eight>" has "POSTCODE" as "<postcode>" new schema
+
+	And juror "<juror_number_nine>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number_nine>" has "POSTCODE" as "<postcode>" new schema
 
 	#RESPONSE 1
 	#3rd party MH
-
 	Given I am on "Public" "test"
 
 	And I set the radio button to "I am replying for someone else"
 	And I press the "Continue" button
 
 	#Juror Log In
-
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 
 	#3rd Party Name
-
 	When I set "First name" to "FirstNameA"
 	And I set "Last name" to "LastNameB"
 	And I press the "Continue" button
 
 	#Relationship to juror
-
 	And I set "How do you know the person you're replying for?" to "Friend"
 	And I press the "Continue" button
 
 	#3rd Party Contact
-
 	And I check the "By phone (UK Numbers only)" checkbox
 	And I set "Main phone" to "0207 821 1818"
 	And I check the "By email" checkbox
-	And I set "Enter your email address" to "email@outlook.com"
-	And I set "Enter your email address again" to "email@outlook.com"
+	And I set "Enter your email address" to "<email>"
+	And I set "Enter your email address again" to "<email>"
 	And I press the "Continue" button
 
 	#Why are you replying for the person?
-
 	When I set the radio button to "The person is not here"
 	And I press the "Continue" button
 
 	#Check juror name
-
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 
 	#Check juror address
-
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 
 	#DoB
-
 	And I set "Day" to "01"
 	And I set "Month" to "01"
 	And I set "Year" to "1980"
 	And I press the "Continue" button
 
 	#Contacting the juror
-
 	And I set the radio button to "Use the phone number that you have already given to contact you"
 	And I set the radio button to "Use the email address that you have already given to contact you"
 	And I press the "Continue" button
 
 	#Qualify for jury service
-
 	And I press the "Continue" button
 
 	#Residency
-
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 
@@ -2490,112 +2238,93 @@ Scenario Outline: Multiple reply types in Awaiting Information
 	And I press the "Continue" button
 
 	#Bail
-
 	And I set the radio button to "No"
 	And I press the "Continue" button
 
 	#Convictions
-
 	When I set the radio button to "No"
 	And I press the "Continue" button
 
 	#Mental Health Sectioned
-
 	And I set the radio button to "Yes"
 	And I set "Provide details about how they're being detained, looked after or treated under the Mental Health Act" to "some details"
 	And I press the "Continue" button
 
 	#Mental Health Capacity
-
 	And I set the radio button to "Yes"
 	And I set "Provide brief details about why it was decided they lack mental capacity" to "some details"
 	And I press the "Continue" button
 
 	#Confirm Date of Jury
-
 	When I set the radio button to "Yes"
 	And I press the "Continue" button
 
 	#RA
-
 	When I set the radio button to "No"
 	And I press the "Continue" button
 
 	#Check Your Answers
-
 	When I check the "The answers I have given for the person I'm replying for are true as far as I know" checkbox
 	And I press the "Submit" button
 	And I see "You have completed your reply" on the page
 
 	#RESPONSE 2
 	#3rd party bail
-
 	Given I am on "Public" "test"
 
 	And I set the radio button to "I am replying for someone else"
 	And I press the "Continue" button
 
 	#Juror Log In
-
-	When I set "9-digit juror number" to "<part_no_two>"
+	When I set "9-digit juror number" to "<juror_number_two>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 
 	#3rd Party Name
-
 	When I set "First name" to "FirstNameA"
 	And I set "Last name" to "LastNameB"
 	And I press the "Continue" button
 
 	#Relationship to juror
-
 	And I set "How do you know the person you're replying for?" to "Friend"
 	And I press the "Continue" button
 
 	#3rd Party Contact
-
 	And I check the "By phone (UK Numbers only)" checkbox
 	And I set "Main phone" to "0207 821 1818"
 	And I check the "By email" checkbox
-	And I set "Enter your email address" to "email@outlook.com"
-	And I set "Enter your email address again" to "email@outlook.com"
+	And I set "Enter your email address" to "<email>"
+	And I set "Enter your email address again" to "<email>"
 	And I press the "Continue" button
 
 	#Why are you replying for the person?
-
 	When I set the radio button to "The person is not here"
 	And I press the "Continue" button
 
 	#Check juror name
-
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 
 	#Check juror address
-
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 
 	#DoB
-
 	And I set "Day" to "01"
 	And I set "Month" to "01"
 	And I set "Year" to "1980"
 	And I press the "Continue" button
 
 	#Contacting the juror
-
 	And I set the radio button to "Use the phone number that you have already given to contact you"
 	And I set the radio button to "Use the email address that you have already given to contact you"
 	And I press the "Continue" button
 
 	#Qualify for jury service
-
 	And I press the "Continue" button
 
 	#Residency
-
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 
@@ -2604,110 +2333,91 @@ Scenario Outline: Multiple reply types in Awaiting Information
 	And I press the "Continue" button
 
 	#Bail
-
 	And I set the radio button to "Yes"
 	And I set "Provide details about the person's bail and criminal offence" to "some details"
 	And I press the "Continue" button
 
 	#Convictions
-
 	When I set the radio button to "No"
 	And I press the "Continue" button
 
 	#Mental Health Sectioned
-
 	And I set the radio button to "No"
 	And I press the "Continue" button
 
 	#Mental Health Capacity
-
 	And I set the radio button to "No"
 	And I press the "Continue" button
 
 	#Confirm Date of Jury
-
 	When I set the radio button to "Yes"
 	And I press the "Continue" button
 
 	#RA
-
 	When I set the radio button to "No"
 	And I press the "Continue" button
 
 	#Check Your Answers
-
 	When I check the "The answers I have given for the person I'm replying for are true as far as I know" checkbox
 	And I press the "Submit" button
 	And I see "You have completed your reply" on the page
 
 	#RESPONSE 3
 	#3rd party residency
-
 	Given I am on "Public" "test"
 	And I set the radio button to "I am replying for someone else"
 	And I press the "Continue" button
 
 	#Juror Log In
-
-	When I set "9-digit juror number" to "<part_no_three>"
+	When I set "9-digit juror number" to "<juror_number_three>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 
 	#3rd Party Name
-
 	When I set "First name" to "FirstNameA"
 	And I set "Last name" to "LastNameB"
 	And I press the "Continue" button
 
 	#Relationship to juror
-
 	And I set "How do you know the person you're replying for?" to "Friend"
 	And I press the "Continue" button
 
 	#3rd Party Contact
-
 	And I check the "By phone (UK Numbers only)" checkbox
 	And I set "Main phone" to "0207 821 1818"
 	And I check the "By email" checkbox
-	And I set "Enter your email address" to "email@outlook.com"
-	And I set "Enter your email address again" to "email@outlook.com"
+	And I set "Enter your email address" to "<email>"
+	And I set "Enter your email address again" to "<email>"
 	And I press the "Continue" button
 
 	#Why are you replying for the person?
-
 	When I set the radio button to "The person is not here"
 	And I press the "Continue" button
 
 	#Check juror name
-
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 
 	#Check juror address
-
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 
 	#DoB
-
 	And I set "Day" to "01"
 	And I set "Month" to "01"
 	And I set "Year" to "1980"
 	And I press the "Continue" button
 
 	#Contacting the juror
-
 	And I set the radio button to "Use the phone number that you have already given to contact you"
 	And I set the radio button to "Use the email address that you have already given to contact you"
 	And I press the "Continue" button
 
 	#Qualify for jury service
-
 	And I press the "Continue" button
 
 	#Residency
-
 	And I set the radio button to "No"
 	And I set "Provide details about where the person you are answering for has lived since their 13th birthday" to "some details"
 	And I press the "Continue" button
@@ -2717,107 +2427,88 @@ Scenario Outline: Multiple reply types in Awaiting Information
 	And I press the "Continue" button
 
 	#Bail
-
 	And I set the radio button to "No"
 	And I press the "Continue" button
 
 	#Convictions
-
 	When I set the radio button to "No"
 	And I press the "Continue" button
 
 	#Mental Health Sectioned
-
 	And I set the radio button to "No"
 	And I press the "Continue" button
 
 	#Mental Health Capacity
-
 	And I set the radio button to "No"
 	And I press the "Continue" button
 
 	#Confirm Date of Jury
-
 	When I set the radio button to "Yes"
 	And I press the "Continue" button
 
 	#RA
-
 	When I set the radio button to "No"
 	And I press the "Continue" button
 
 	#Check Your Answers
-
 	When I check the "The answers I have given for the person I'm replying for are true as far as I know" checkbox
 	And I press the "Submit" button
 	And I see "You have completed your reply" on the page
 
 	#RESPONSE 4
 	#3rd party convictions
-
 	Given I am on "Public" "test"
 	And I set the radio button to "I am replying for someone else"
 	And I press the "Continue" button
 
 	#Juror Log In
-
-	When I set "9-digit juror number" to "<part_no_four>"
+	When I set "9-digit juror number" to "<juror_number_four>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 
 	#3rd Party Name
-
 	When I set "First name" to "FirstNameA"
 	And I set "Last name" to "LastNameB"
 	And I press the "Continue" button
 
 	#Relationship to juror
-
 	And I set "How do you know the person you're replying for?" to "Friend"
 	And I press the "Continue" button
 
 	#3rd Party Contact
-
 	And I check the "By phone (UK Numbers only)" checkbox
 	And I set "Main phone" to "0207 821 1818"
 	And I check the "By email" checkbox
-	And I set "Enter your email address" to "email@outlook.com"
-	And I set "Enter your email address again" to "email@outlook.com"
+	And I set "Enter your email address" to "<email>"
+	And I set "Enter your email address again" to "<email>"
 	And I press the "Continue" button
 
 	#Why are you replying for the person?
-
 	When I set the radio button to "The person is not here"
 	And I press the "Continue" button
 
 	#Check juror name
-
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 
 	#Check juror address
-
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 
 	#DoB
-
 	When I set the date of birth to a Monday "-2950" weeks in the future
 	And I press the "Continue" button
 
 	#Contacting the juror
-
 	And I set the radio button to "Use the phone number that you have already given to contact you"
 	And I set the radio button to "Use the email address that you have already given to contact you"
 	And I press the "Continue" button
 
 	#Qualify for jury service
-
 	And I press the "Continue" button
 
 	#Residency
-
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 
@@ -2826,52 +2517,44 @@ Scenario Outline: Multiple reply types in Awaiting Information
 	And I press the "Continue" button
 
 	#Bail
-
 	And I set the radio button to "No"
 	And I press the "Continue" button
 
 	#Convictions
-
 	When I set the radio button to "Yes"
 	And I set text area with "id" of "convictedDetails" to "I am a convicted criminal"
 	And I press the "Continue" button
 
 	#Mental Health Sectioned
-
 	And I set the radio button to "No"
 	And I press the "Continue" button
 
 	#Mental Health Capacity
-
 	And I set the radio button to "No"
 	And I press the "Continue" button
 
 	#Confirm Date of Jury
-
 	When I set the radio button to "Yes"
 	And I press the "Continue" button
 
 	#RA
-
 	When I set the radio button to "No"
 	And I press the "Continue" button
 
 	#Check Your Answers
-
 	When I check the "The answers I have given for the person I'm replying for are true as far as I know" checkbox
 	And I press the "Submit" button
 	And I see "You have completed your reply" on the page
 
 	#RESPONSE 5
 	#1st bail
-
 	Given I am on "Public" "test"
 
 	And I set the radio button to "I am replying for myself"
 	And I press the "Continue" button
 	Then I see "Your juror details" on the page
 
-	When I set "9-digit juror number" to "<part_no_five>"
+	When I set "9-digit juror number" to "<juror_number_five>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
@@ -2925,7 +2608,6 @@ Scenario Outline: Multiple reply types in Awaiting Information
 	And I press the "Continue" button
 
 	#Straight through
-
 	When I set the radio button to "Yes"
 	And I press the "Continue" button
 
@@ -2939,18 +2621,17 @@ Scenario Outline: Multiple reply types in Awaiting Information
 	When I press the "Submit" button
 
 	Then I see "You have completed your reply" on the page
-	Then I see "<part_no_five>" on the page
+	Then I see "<juror_number_five>" on the page
 
 	#RESPONSE 6
 	#1st residency
-
 	Given I am on "Public" "test"
 
 	And I set the radio button to "I am replying for myself"
 	And I press the "Continue" button
 	Then I see "Your juror details" on the page
 
-	When I set "9-digit juror number" to "<part_no_six>"
+	When I set "9-digit juror number" to "<juror_number_six>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
@@ -3004,7 +2685,6 @@ Scenario Outline: Multiple reply types in Awaiting Information
 	And I press the "Continue" button
 
 	#Straight through
-
 	When I set the radio button to "Yes"
 	And I press the "Continue" button
 
@@ -3018,11 +2698,10 @@ Scenario Outline: Multiple reply types in Awaiting Information
 	When I press the "Submit" button
 
 	Then I see "You have completed your reply" on the page
-	Then I see "<part_no_six>" on the page
+	Then I see "<juror_number_six>" on the page
 
 	#RESPONSE 7
 	#1st details change
-
 	Given I am on "Public" "test"
 
 	And I set the radio button to "I am replying for myself"
@@ -3031,7 +2710,7 @@ Scenario Outline: Multiple reply types in Awaiting Information
 
 	And I see "Your juror details" on the page
 
-	When I set "9-digit juror number" to "<part_no_seven>"
+	When I set "9-digit juror number" to "<juror_number_seven>"
 	And I set "Juror last name" to "<last_name>"
 	And I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
@@ -3053,8 +2732,8 @@ Scenario Outline: Multiple reply types in Awaiting Information
 	When I set "Main phone" to "02078211818"
 	And I press the "Continue" button
 
-	When I set "Enter your email address" to "e@mail.com"
-	When I set "Enter your email address again" to "e@mail.com"
+	When I set "Enter your email address" to "<email>"
+	When I set "Enter your email address again" to "<email>"
 
 	And I press the "Continue" button
 
@@ -3064,63 +2743,51 @@ Scenario Outline: Multiple reply types in Awaiting Information
 	And I press the "Continue" button
 
 	#Qualify for jury service
-
 	#JDB-4636
-
 	When I press the "Continue" button
 
 	#Residency
-
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 
 	#CJS
-
 	When I set the radio button to "No"
 	And I press the "Continue" button
 
 	#Bail
-
 	When I set the radio button to "No"
 	And I press the "Continue" button
 
 	#Convictions
-
 	When I set the radio button to "No"
 	And I press the "Continue" button
 
 	#Mental Health Sectioned
-
 	And I set the radio button to "No"
 	And I press the "Continue" button
 
 	#Mental Health Capacity
-
 	And I set the radio button to "No"
 	And I press the "Continue" button
 
 	#I can attend
-
 	And I set the radio button to "Yes, I can start on"
 	And  I press the "Continue" button
 
 	#RA no
-
 	When I set the radio button to "No"
 	And I press the "Continue" button
 
 	#Check your answers
-
 	Then I see "Check your answers now" on the page
 	Then I check the "The information I have given is true to the best of my knowledge" checkbox
 	When I press the "Submit" button
 
 	Then I see "You have completed your reply" on the page
-	Then I see "<part_no_seven>" on the page
+	Then I see "<juror_number_seven>" on the page
 
 	#RESPONSE 8
 	#1st deferral
-
 	Given I am on "Public" "test"
 
 	Then I see "Reply to a jury summons" on the page
@@ -3129,7 +2796,7 @@ Scenario Outline: Multiple reply types in Awaiting Information
 	And I press the "Continue" button
 	Then I see "Your juror details" on the page
 
-	When I set "9-digit juror number" to "<part_no_eight>"
+	When I set "9-digit juror number" to "<juror_number_eight>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
@@ -3182,7 +2849,6 @@ Scenario Outline: Multiple reply types in Awaiting Information
 	And I press the "Continue" button
 
 	#deferral
-
 	When I set the radio button to "No, I need to change the date"
 	And I press the "Continue" button
 
@@ -3196,7 +2862,6 @@ Scenario Outline: Multiple reply types in Awaiting Information
 	And I press the "Continue" button
 
 	#check dates screen
-
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 
@@ -3212,11 +2877,10 @@ Scenario Outline: Multiple reply types in Awaiting Information
 	When I press the "Submit" button
 
 	Then I see "You have completed your reply" on the page
-	Then I see "<part_no_eight>" on the page
+	Then I see "<juror_number_eight>" on the page
 
 	#RESPONSE 9
 	#1st excusal
-
 	Given I am on "Public" "test"
 
 	Then I see "Reply to a jury summons" on the page
@@ -3226,35 +2890,29 @@ Scenario Outline: Multiple reply types in Awaiting Information
 	Then I see "Your juror details" on the page
 
 	#Juror Log In
-
-	When I set "9-digit juror number" to "<part_no_nine>"
+	When I set "9-digit juror number" to "<juror_number_nine>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 
 	#Check Name
-
 	When I set the radio button to "Yes"
 	When I press the "Continue" button
 
 	#Check Address
-
 	When I set the radio button to "Yes"
 	And I press the "Continue" button
 
 	#Phone Details
-
 	When I set "Main phone" to "0207 821 1818"
 	And I press the "Continue" button
 
 	#Email
-
-	When I set "Enter your email address" to "email@outlook.com"
-	And I set "Enter your email address again" to "email@outlook.com"
+	When I set "Enter your email address" to "<email>"
+	And I set "Enter your email address again" to "<email>"
 	And I press the "Continue" button
 
 	#DoB
-
 	When I set "Day" to "27"
 	And I set "Month" to "04"
 	And I set "Year" to "1981"
@@ -3263,65 +2921,54 @@ Scenario Outline: Multiple reply types in Awaiting Information
 	When I press the "Continue" button
 
 	#Residency
-
 	When I set the radio button to "Yes"
 	And I press the "Continue" button
 
 	#CJS
-
 	When I set the radio button to "No"
 	And I press the "Continue" button
 
 	#Bail
-
 	When I set the radio button to "No"
 	And I press the "Continue" button
 
 	#Convictions
-
 	When I set the radio button to "No"
 	And I press the "Continue" button
 
 	#Mental Health part 1
-
 	When I set the radio button to "No"
 	And I press the "Continue" button
 
 	#Mental Health part 2
-
 	When I set the radio button to "No"
 	And I press the "Continue" button
 
 	#Confirm Date of Jury
-
 	When I set the radio button to "No, I cannot do jury service and need to be excused"
 	And I press the "Continue" button
 
 	#Excusal Reason
-
 	When I set text area with "id" of "excusalReason" to "Excuse me please"
 	And I press the "Continue" button
 
 	#RA
-
 	When I set the radio button to "No"
 	And I press the "Continue" button
 
 	#Check Your Answers Now
-
 	When I check the "The information" checkbox
 	And I press the "Submit" button
 	And I see "You have completed your reply" on the page
 
 	#BUREAU
-	
 	Given I am on "Bureau" "test"
 	And I log in
 	
 	When I click on the "Search" link
-	And I set "Juror's pool number" to "<pool_no>"
+	And I set "Juror's pool number" to "<pool_number>"
 	And I press the "Search" button
-	And I see "<part_no>" on the page
+	And I see "<juror_number>" on the page
 	
 	And I click link with ID "selectAllLink"
 	And I press the "Send to..." button
@@ -3332,10 +2979,10 @@ Scenario Outline: Multiple reply types in Awaiting Information
 	
 	Then I click on the "Search" link
 	
-	And I set "Juror's pool number" to "<pool_no_two>"
+	And I set "Juror's pool number" to "<pool_number_two>"
 	And I press the "Search" button
 	
-	And I see "<part_no_seven>" on the page
+	And I see "<juror_number_seven>" on the page
 	And I click link with ID "selectAllLink"
 	And I press the "Send to..." button
 	And I set input field with "id" of "sendToOfficer" to "CPASS"
@@ -3345,10 +2992,10 @@ Scenario Outline: Multiple reply types in Awaiting Information
 	
 	Then I click on the "Search" link
 	
-	And I set "Juror's pool number" to "<pool_no_three>"
+	And I set "Juror's pool number" to "<pool_number_three>"
 	And I press the "Search" button
 	
-	And I see "<part_no_nine>" on the page
+	And I see "<juror_number_nine>" on the page
 	And I click link with ID "selectAllLink"
 	And I press the "Send to..." button
 	And I set input field with "id" of "sendToOfficer" to "CPASS"
@@ -3363,20 +3010,19 @@ Scenario Outline: Multiple reply types in Awaiting Information
 
 	#Then I take a screenshot
 	
-	Then I see "<part_no>" has reply type indicator "INELIGIBLE"
-	Then I see "<part_no_two>" has reply type indicator "INELIGIBLE"
-	Then I see "<part_no_three>" has reply type indicator "INELIGIBLE"
-	Then I see "<part_no_four>" has reply type indicator "INELIGIBLE"
-	Then I see "<part_no_five>" has reply type indicator "INELIGIBLE"
-	Then I see "<part_no_six>" has reply type indicator "INELIGIBLE"
-	Then I see "<part_no_seven>" has reply type indicator "NEEDS REVIEW"
-	Then I see "<part_no_eight>" has reply type indicator "DEFERRAL"
-	Then I see "<part_no_nine>" has reply type indicator "EXCUSAL"
+	Then I see "<juror_number>" has reply type indicator "INELIGIBLE"
+	Then I see "<juror_number_two>" has reply type indicator "INELIGIBLE"
+	Then I see "<juror_number_three>" has reply type indicator "INELIGIBLE"
+	Then I see "<juror_number_four>" has reply type indicator "INELIGIBLE"
+	Then I see "<juror_number_five>" has reply type indicator "INELIGIBLE"
+	Then I see "<juror_number_six>" has reply type indicator "INELIGIBLE"
+	Then I see "<juror_number_seven>" has reply type indicator "NEEDS REVIEW"
+	Then I see "<juror_number_eight>" has reply type indicator "DEFERRAL"
+	Then I see "<juror_number_nine>" has reply type indicator "EXCUSAL"
 	
-	When I click on "<part_no>" in the same row as "<part_no>"
+	When I click on "<juror_number>" in the same row as "<juror_number>"
 	
 	#Then I take a screenshot
-	
 	And I see "INELIGIBLE" on the page
 	
 	Then I press the "More actions" button
@@ -3387,11 +3033,10 @@ Scenario Outline: Multiple reply types in Awaiting Information
 	
 	And I click on the "Your work" link
 	
-	Then I see "<part_no_two>" on the page
-	When I click on "<part_no_two>" in the same row as "<part_no_two>"
+	Then I see "<juror_number_two>" on the page
+	When I click on "<juror_number_two>" in the same row as "<juror_number_two>"
 	
 	#Then I take a screenshot
-	
 	And I see "INELIGIBLE" on the page
 	
 	Then I press the "More actions" button
@@ -3402,11 +3047,10 @@ Scenario Outline: Multiple reply types in Awaiting Information
 	
 	And I click on the "Your work" link
 	
-	Then I see "<part_no_three>" on the page
-	When I click on "<part_no_three>" in the same row as "<part_no_three>"
+	Then I see "<juror_number_three>" on the page
+	When I click on "<juror_number_three>" in the same row as "<juror_number_three>"
 	
 	#Then I take a screenshot
-	
 	And I see "INELIGIBLE" on the page
 	
 	Then I press the "More actions" button
@@ -3417,11 +3061,10 @@ Scenario Outline: Multiple reply types in Awaiting Information
 	
 	And I click on the "Your work" link
 	
-	Then I see "<part_no_four>" on the page
-	When I click on "<part_no_four>" in the same row as "<part_no_four>"
+	Then I see "<juror_number_four>" on the page
+	When I click on "<juror_number_four>" in the same row as "<juror_number_four>"
 	
 	#Then I take a screenshot
-	
 	And I see "INELIGIBLE" on the page
 	
 	Then I press the "More actions" button
@@ -3432,11 +3075,10 @@ Scenario Outline: Multiple reply types in Awaiting Information
 	
 	And I click on the "Your work" link
 	
-	Then I see "<part_no_five>" on the page
-	When I click on "<part_no_five>" in the same row as "<part_no_five>"
+	Then I see "<juror_number_five>" on the page
+	When I click on "<juror_number_five>" in the same row as "<juror_number_five>"
 	
 	#Then I take a screenshot
-	
 	And I see "INELIGIBLE" on the page
 	
 	Then I press the "More actions" button
@@ -3447,11 +3089,10 @@ Scenario Outline: Multiple reply types in Awaiting Information
 	
 	And I click on the "Your work" link
 	
-	Then I see "<part_no_six>" on the page
-	When I click on "<part_no_six>" in the same row as "<part_no_six>"
+	Then I see "<juror_number_six>" on the page
+	When I click on "<juror_number_six>" in the same row as "<juror_number_six>"
 	
 	#Then I take a screenshot
-	
 	And I see "INELIGIBLE" on the page
 	
 	Then I press the "More actions" button
@@ -3462,11 +3103,10 @@ Scenario Outline: Multiple reply types in Awaiting Information
 	
 	And I click on the "Your work" link
 	
-	Then I see "<part_no_seven>" on the page
-	When I click on "<part_no_seven>" in the same row as "<part_no_seven>"
+	Then I see "<juror_number_seven>" on the page
+	When I click on "<juror_number_seven>" in the same row as "<juror_number_seven>"
 	
 	#Then I take a screenshot
-	
 	And I see "NEEDS REVIEW" on the page
 	
 	Then I press the "More actions" button
@@ -3477,11 +3117,10 @@ Scenario Outline: Multiple reply types in Awaiting Information
 	
 	And I click on the "Your work" link
 	
-	Then I see "<part_no_eight>" on the page
-	When I click on "<part_no_eight>" in the same row as "<part_no_eight>"
+	Then I see "<juror_number_eight>" on the page
+	When I click on "<juror_number_eight>" in the same row as "<juror_number_eight>"
 	
 	#Then I take a screenshot
-	
 	And I see "DEFERRAL" on the page
 	
 	Then I press the "More actions" button
@@ -3492,11 +3131,10 @@ Scenario Outline: Multiple reply types in Awaiting Information
 	
 	And I click on the "Your work" link
 	
-	Then I see "<part_no_nine>" on the page
-	When I click on "<part_no_nine>" in the same row as "<part_no_nine>"
+	Then I see "<juror_number_nine>" on the page
+	When I click on "<juror_number_nine>" in the same row as "<juror_number_nine>"
 	
 	#Then I take a screenshot
-	
 	And I see "EXCUSAL" on the page
 	
 	Then I press the "More actions" button
@@ -3508,78 +3146,67 @@ Scenario Outline: Multiple reply types in Awaiting Information
 	Then I click on the "Your work" link
 	Then I click on the "Awaiting information" link
 	
-	When I click on "<part_no>" in the same row as "<part_no>"
+	When I click on "<juror_number>" in the same row as "<juror_number>"
 	
 	#Then I take a screenshot
-	
 	And I see "NEEDS REVIEW" on the page
 	
 	And I click on the "Back" link
 	
-	When I click on "<part_no_two>" in the same row as "<part_no_two>"
+	When I click on "<juror_number_two>" in the same row as "<juror_number_two>"
 	
 	#Then I take a screenshot
-	
 	And I see "NEEDS REVIEW" on the page
 	
 	And I click on the "Back" link
 	
-	When I click on "<part_no_three>" in the same row as "<part_no_three>"
+	When I click on "<juror_number_three>" in the same row as "<juror_number_three>"
 	
 	#Then I take a screenshot
-	
 	And I see "NEEDS REVIEW" on the page
 	
 	And I click on the "Back" link
 	
-	When I click on "<part_no_four>" in the same row as "<part_no_four>"
+	When I click on "<juror_number_four>" in the same row as "<juror_number_four>"
 	
 	#Then I take a screenshot
-	
 	And I see "NEEDS REVIEW" on the page
 	
 	And I click on the "Back" link
 	
-	When I click on "<part_no_five>" in the same row as "<part_no_five>"
+	When I click on "<juror_number_five>" in the same row as "<juror_number_five>"
 	
 	#Then I take a screenshot
-	
 	And I see "NEEDS REVIEW" on the page
 	
 	And I click on the "Back" link
 	
-	When I click on "<part_no_six>" in the same row as "<part_no_six>"
+	When I click on "<juror_number_six>" in the same row as "<juror_number_six>"
 	
 	#Then I take a screenshot
-	
 	And I see "NEEDS REVIEW" on the page
 	
 	And I click on the "Back" link
 	
-	When I click on "<part_no_seven>" in the same row as "<part_no_seven>"
+	When I click on "<juror_number_seven>" in the same row as "<juror_number_seven>"
 	
 	#Then I take a screenshot
-	
 	And I see "NEEDS REVIEW" on the page
 	
 	And I click on the "Back" link
 	
-	When I click on "<part_no_eight>" in the same row as "<part_no_eight>"
+	When I click on "<juror_number_eight>" in the same row as "<juror_number_eight>"
 	
 	#Then I take a screenshot
-	
 	And I see "NEEDS REVIEW" on the page
 	
 	And I click on the "Back" link
 	
-	When I click on "<part_no_nine>" in the same row as "<part_no_nine>"
+	When I click on "<juror_number_nine>" in the same row as "<juror_number_nine>"
 	
 	#Then I take a screenshot
-	
 	And I see "NEEDS REVIEW" on the page
 	
 Examples:
-	|part_no	|part_no_two	|part_no_three	|part_no_four	|part_no_five	|part_no_six	|part_no_seven	|part_no_eight	|part_no_nine	|part_no_ten|part_no_eleven	|last_name	|postcode	|email       	    |pool_no	|pool_no_two|pool_no_three	|
-	|645200748	|645200743		|645200720		|645200694		|645200637		|645200884		|645100925		|645200610		|641500226		|645200130	|645200784		|LNAME  	|SY2 6LU	|email@outlook.com	|452170401	|451170401	|415170401		|
-	
-
+	| juror_number	| juror_number_two	| juror_number_three| juror_number_four	| juror_number_five	| juror_number_six	| juror_number_seven| juror_number_eight| juror_number_nine	| last_name	| postcode	| email       	    | pool_number	| pool_number_two	| pool_number_three	|
+	| 045200155		| 045200156			| 045200157			| 045200158			| 045200159			| 045200160			| 045200161			| 045200162			| 045200163			| LNAME  	| SY2 6LU	| email@outlook.com	| 452300146		| 452300147			| 452300148			|

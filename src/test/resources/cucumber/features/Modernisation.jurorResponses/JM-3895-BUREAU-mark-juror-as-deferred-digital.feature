@@ -9,7 +9,7 @@ Feature: JM-3895 mark juror as deferred digital
       | <part_no> | <pool_no> | 400   |
 
 
-    And "<part_no>" has "NEXT_DATE" as "5 mondays time" new schema
+
 
     And I record a digital response for a juror with a deferral
       | jurorNumber   | <part_no>        |
@@ -38,7 +38,7 @@ Feature: JM-3895 mark juror as deferred digital
     And I do not see "Sorry, there is a technical problem" on the page
     And I see "Deferral granted (other)" on the page
 
-    Then the user searches for juror record "<part_no>" from the global search bar
+    Then the user searches for juror record "<juror_number>" from the global search bar
     And I click the summons reply tab
     And I click on the "View summons reply" link
     And I see the reply "type" on the response is "DEFERRAL"

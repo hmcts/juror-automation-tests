@@ -5,13 +5,13 @@ Feature: JM-3995 JM-4302
 
     Given I am on "Bureau" "test"
 
-    Given juror_pool records are cleared down for "<part_no>"
+    Given juror_pool records are cleared down for "<juror_number>"
 
     Given the juror numbers have not been processed new schema
       |part_no   | pool_no   | owner |
       |<part_no> | <pool_no> | 400   |
 
-    And "<part_no>" has "NEXT_DATE" as "7 mondays time" new schema
+    And "<juror_number>" has "NEXT_DATE" as "7 mondays time" new schema
 
     And I log in as "<user>"
 
@@ -19,7 +19,7 @@ Feature: JM-3995 JM-4302
       |part_no   | pool_no   | owner |
       |<part_no> | <pool_no> | 415   |
 
-    When the user searches for juror record "<part_no>" from the global search bar
+    When the user searches for juror record "<juror_number>" from the global search bar
 
     #record happy path paper summons
     And I record a happy path paper summons response
@@ -29,7 +29,7 @@ Feature: JM-3995 JM-4302
     Then I see "The juror’s answers mean this is a straight-through reply. So you can process it as responded now, or return later." on the page
     When I press the "Yes, process now" button
 
-    When the user searches for juror record "<part_no>" from the global search bar
+    When the user searches for juror record "<juror_number>" from the global search bar
     And I click the update juror record button
     And I click the transfer to another pool radio button
     And I press the "Continue" button
@@ -50,16 +50,16 @@ Feature: JM-3995 JM-4302
     Then I see "Transfer to Welshpool (774)" on the page
     When I press the "Continue" button
 
-    Then I am on the Juror Record for juror "<part_no>"
+    Then I am on the Juror Record for juror "<juror_number>"
     And I see the juror status on the juror record screen has updated to "Transferred"
     And I see "Juror record updated: juror transferred to Welshpool (774)" on the page
 
     #Welshpool (774) is a SATELLITE court, so court user can see both juror records
-    When I search for juror "<part_no>"
-    Then a second juror record is shown in the search results for "<part_no>"
+    When I search for juror "<juror_number>"
+    Then a second juror record is shown in the search results for "<juror_number>"
     When I click the juror record search link for court name "Welshpool"
 
-    Then I am on the Juror Record for juror "<part_no>"
+    Then I am on the Juror Record for juror "<juror_number>"
     And I see the juror's status on the juror record screen is "Responded"
     And I see the court name on the juror record screen is "The Crown Court At Welshpool"
 
@@ -76,7 +76,7 @@ Feature: JM-3995 JM-4302
       |part_no   | pool_no   | owner |
       |<part_no> | <pool_no> | 400   |
 
-    And "<part_no>" has "NEXT_DATE" as "7 mondays time" new schema
+    And "<juror_number>" has "NEXT_DATE" as "7 mondays time" new schema
     And pool "<pool_no>" has attendance date as "7 mondays time" new schema
 
     And I log in as "<user>"
@@ -85,7 +85,7 @@ Feature: JM-3995 JM-4302
       |part_no   | pool_no   | owner |
       |<part_no> | <pool_no> | 415   |
 
-    When the user searches for juror record "<part_no>" from the global search bar
+    When the user searches for juror record "<juror_number>" from the global search bar
 
     #record happy path paper summons
     And I record a happy path paper summons response
@@ -95,7 +95,7 @@ Feature: JM-3995 JM-4302
     And I see "The juror’s answers mean this is a straight-through reply. So you can process it as responded now, or return later." on the page
     When I press the "Yes, process now" button
 
-    When the user searches for juror record "<part_no>" from the global search bar
+    When the user searches for juror record "<juror_number>" from the global search bar
 
     And I click the update juror record button
 
@@ -137,7 +137,7 @@ Feature: JM-3995 JM-4302
 
     Then I see "Transfer to Welshpool (774)" on the page
     When I click on the "Cancel" link
-    Then I am on the Juror Record for juror "<part_no>"
+    Then I am on the Juror Record for juror "<juror_number>"
 
     Examples:
       | user          | part_no   | pool_no   |
@@ -148,11 +148,12 @@ Feature: JM-3995 JM-4302
   Scenario Outline: JM-4302 - Transfer a juror to another court - Non-Satellite courts
 
     Given I am on "Bureau" "test"
+
     Given the juror numbers have not been processed new schema
       |part_no   | pool_no   | owner |
       |<part_no> | <pool_no> | 400   |
 
-    And "<part_no>" has "NEXT_DATE" as "7 mondays time" new schema
+    And "<juror_number>" has "NEXT_DATE" as "7 mondays time" new schema
 
     And I log in as "<user>"
 
@@ -160,7 +161,7 @@ Feature: JM-3995 JM-4302
       |part_no   | pool_no   | owner |
       |<part_no> | <pool_no> | 415   |
 
-    When the user searches for juror record "<part_no>" from the global search bar
+    When the user searches for juror record "<juror_number>" from the global search bar
 
     #record happy path paper summons
     And I record a happy path paper summons response
@@ -186,7 +187,7 @@ Feature: JM-3995 JM-4302
     And I press the "Confirm" button
 
     #now transfer
-    When the user searches for juror record "<part_no>" from the global search bar
+    When the user searches for juror record "<juror_number>" from the global search bar
 
     And I click the update juror record button
 
@@ -226,7 +227,7 @@ Feature: JM-3995 JM-4302
     Then I see "Transfer to Carlisle (412)" on the page
     When I press the "Continue" button
 
-    Then I am on the Juror Record for juror "<part_no>"
+    Then I am on the Juror Record for juror "<juror_number>"
     And I see the juror status on the juror record screen has updated to "Transferred"
     And I see "Juror record updated: juror transferred to Carlisle (412)" on the page
 

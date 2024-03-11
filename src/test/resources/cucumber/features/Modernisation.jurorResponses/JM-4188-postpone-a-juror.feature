@@ -25,14 +25,14 @@
       |<part_no> | <pool_no> | 400   |
 
 
-    And "<part_no>" has "NEXT_DATE" as "5 mondays time" new schema
+
     And pool "<pool_no>" has attendance date as "5 mondays time" new schema
 
     And I log in as "MODTESTBUREAU"
     And I navigate to the pool request screen
     And I create an active "civil" court pool request for court "415", "30" Mondays in the future
 
-    And I search for juror "<part_no>"
+    And I search for juror "<juror_number>"
     And I click the update juror record button
     And I set the radio button to "Postpone service start date"
     And I click continue on the update juror record screen

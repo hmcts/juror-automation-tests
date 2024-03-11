@@ -11,9 +11,9 @@ Feature: JM-3826 Request Additional Information
     | <part_no> | <pool_no> | 400   |
 
 
-   And "<part_no>" has "NEXT_DATE" as "5 mondays time" new schema
 
-   When the user searches for juror record "<part_no>" from the global search bar
+
+   When the user searches for juror record "<juror_number>" from the global search bar
 
    #record paper summons response
     And I click the Enter summons reply button

@@ -9,10 +9,9 @@ Feature: JM-3900
       | part_no   | pool_no   | owner |
       | <part_no> | <pool_no> | 400   |
 
-    And juror "<part_no>" has "LAST_NAME" as "<last_name>" new schema
+    And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
 
-    And "<part_no>" has "NEXT_DATE" as "5 mondays time" new schema
-    And juror "<part_no>" has "POSTCODE" as "<postcode>" new schema
+    And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 
     And I record a digital response for a juror with a deferral
       | jurorNumber   | <part_no>  |

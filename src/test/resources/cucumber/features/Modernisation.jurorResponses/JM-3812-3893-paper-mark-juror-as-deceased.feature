@@ -8,9 +8,6 @@ Feature: JM-3812 JM-3893
       |part_no   | pool_no   | owner |
       |<part_no> | <pool_no> | 400   |
 
-
-    And "<part_no>" has "NEXT_DATE" as "5 mondays time" new schema
-
     And I log in as "<user>"
     And I search for juror "<part_no>"
     And I click the update juror record button
@@ -33,12 +30,9 @@ Feature: JM-3812 JM-3893
       |part_no   | pool_no   | owner |
       |<part_no> | <pool_no> | 400   |
 
-
-    And "<part_no>" has "NEXT_DATE" as "5 mondays time" new schema
-
     And I log in as "<user>"
 
-    And I search for juror "<part_no>"
+    And I search for juror "<juror_number>"
     And I click the update juror record button
     And I select the mark as deceased radio button
     Then I click continue on the update juror record screen
@@ -56,15 +50,13 @@ Feature: JM-3812 JM-3893
       |part_no   | pool_no   | owner |
       |<part_no> | <pool_no> | 400   |
 
-
-    And "<part_no>" has "NEXT_DATE" as "5 mondays time" new schema
-    And juror "<part_no>" has "FIRST_NAME" as "<fname>" new schema
-    And juror "<part_no>" has "LAST_NAME" as "<lname>" new schema
-    And juror "<part_no>" has "TITLE" as "<title>" new schema
+    And juror "<juror_number>" has "FIRST_NAME" as "<fname>" new schema
+    And juror "<juror_number>" has "LAST_NAME" as "<lname>" new schema
+    And juror "<juror_number>" has "TITLE" as "<title>" new schema
 
     And I log in as "<user>"
 
-    And I search for juror "<part_no>"
+    And I search for juror "<juror_number>"
     Then I record a happy path paper summons response
     Then I see "Do you want to process this summons reply as responded now?" on the page
     When I click on the "No, skip and process later" link

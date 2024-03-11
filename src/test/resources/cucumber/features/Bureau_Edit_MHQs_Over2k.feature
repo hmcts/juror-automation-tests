@@ -9,11 +9,11 @@ Scenario Outline: Bureau User Edits a Response Where MHQ1 and MHQ2 Are 2000 char
 		| part_no 	| pool_no 	| owner |
 		| <part_no> |<pool_no>	| 400 	|
 
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "Address4" as "LONDON"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+
+
+	And juror "<juror_number>" has "ADDRESS_LINE_4" as "LONDON"
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	
 	#start now
 	
@@ -23,7 +23,7 @@ Scenario Outline: Bureau User Edits a Response Where MHQ1 and MHQ2 Are 2000 char
 	
 	#log on
 	
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
@@ -132,9 +132,9 @@ Scenario Outline: Bureau User Edits a Response Where MHQ1 and MHQ2 Are 2000 char
 	And I log in as "SYSTEM"
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	
 	When I click on the "Eligibility" link
 	Then I see "Attention" in the same row as "Mental health"

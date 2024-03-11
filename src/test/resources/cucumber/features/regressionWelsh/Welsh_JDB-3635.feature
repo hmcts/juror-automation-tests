@@ -7,10 +7,10 @@ Scenario Outline: Checking that TP is visible in all 3rd Party browser URLs afte
 		| part_no 	| pool_no 	| owner |
 		| <part_no> |<pool_no>	| 400 	|
 		
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+
+
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 
 	And I set the radio button to "Rwy'n ymateb ar ran rhywun arall"
 	And I press the "Parhau" button	
@@ -18,7 +18,7 @@ Scenario Outline: Checking that TP is visible in all 3rd Party browser URLs afte
 	#Juror Log In
 	
 	When I see "/tp" in the URL
-	When I set "Rhif rheithiwr" to "<part_no>"
+	When I set "Rhif rheithiwr" to "<juror_number>"
 	When I set "Cyfenw" to "<last_name>"
 	When I set "Cod post Rheithiwr" to "<postcode>"
 	And I press the "Parhau" button

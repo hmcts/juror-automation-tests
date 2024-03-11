@@ -7,10 +7,10 @@ Scenario Outline: Welsh Cookie Policy
 		| part_no 	| pool_no 	| owner |
 		| <part_no> |<pool_no>	| 400 	|
 		
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "ZIP" as "<postcode>"
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
+
+
 	
 	#Cookies Policy
 	
@@ -121,10 +121,10 @@ Scenario Outline: Welsh 1st Party Cookies Polciy on each Page
 		| part_no 	| pool_no 	| owner |
 		| <part_no> |<pool_no>	| 400 	|
 		
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "ZIP" as "<postcode>"
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
+
+
 
 	And I set the radio button to "n ymateb dros fy hun"
 	And I see link with text "Cwcis" 
@@ -141,7 +141,7 @@ Scenario Outline: Welsh 1st Party Cookies Polciy on each Page
 	
 	And I see "Rhowch eich cod post fel y mae wedi'i nodi ar y llythyr gwŷs rheithgor, hyd yn oed os yw'n anghywir. Gallwch ei newid nes ymlaen." on the page
 	
-	When I set "Rhif rheithiwr" to "<part_no>"
+	When I set "Rhif rheithiwr" to "<juror_number>"
 	When I set "Cyfenw" to "<last_name>"
 	When I set "Cod post Rheithiwr" to "<postcode>"
 	And I see link with text "Cwcis" 
@@ -347,10 +347,10 @@ Scenario Outline: Welsh 3rd Party Cookies Policy on each page
 		| part_no 	| pool_no 	| owner |
 		| <part_no> |<pool_no>	| 400 	|
 	
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+
+
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 
 	And I set the radio button to "Rwy'n ymateb ar ran rhywun arall"
 	And I see link with text "Cwcis" 
@@ -362,7 +362,7 @@ Scenario Outline: Welsh 3rd Party Cookies Policy on each page
 	Then I see "Rhif ffôn: 0300 456 1024" on the page
 	And I see "Llinell Gymraeg: 0300 303 5173" on the page
 	
-	When I set "Rhif rheithiwr" to "<part_no>"
+	When I set "Rhif rheithiwr" to "<juror_number>"
 	When I set "Cyfenw" to "<last_name>"
 	When I set "Cod post Rheithiwr" to "<postcode>"
 	And I see link with text "Cwcis" 

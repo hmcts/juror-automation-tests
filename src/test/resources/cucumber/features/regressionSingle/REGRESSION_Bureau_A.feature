@@ -12,10 +12,10 @@ Scenario Outline: Lift from QC Script for Bureau A Functionality
 	
 	# Set part_no pool to not be urgent
 	
-	Given "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "LNAME" as "<last_name>"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	Given "<juror_number>" has "RET_DATE" as "5 mondays time"
+
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	
 	# Submit response in pool
 	
@@ -71,7 +71,7 @@ Scenario Outline: Lift from QC Script for Bureau A Functionality
 	Then I see "Urgent" icon in the same row as "<part_no_two>"
 	And I see "Send to court" icon in the same row as "<part_no_three>"
 	
-	When I click on "<part_no>" in the same row as "<part_no>"
+	When I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Record status" on the page
 	Then I press the "More actions" button
 	And I click on the "Mark as 'Awaiting information" link
@@ -95,7 +95,7 @@ Scenario Outline: Lift from QC Script for Bureau A Functionality
 	And I press the "Confirm" button
 	
 	When I click on the "Back" link
-	Then I see "AWAITING COURT REPLY" in the same row as "<part_no>"
+	Then I see "AWAITING COURT REPLY" in the same row as "<juror_number>"
 	
 	And I see "<part_no_two>" on the page
 	When I click on "<part_no_two>" in the same row as "<part_no_two>"
@@ -121,15 +121,15 @@ Scenario Outline: Lift from QC Script for Bureau A Functionality
 	And I see "<part_no_three>" on the page
 	Then I see "COMPLETED" on the page
 	
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "Y" where "JUROR_NUMBER" is "<part_no_three>"
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "CLOSED" where "JUROR_NUMBER" is "<part_no_three>"
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "SUPER_URGENT" is "Y" where "JUROR_NUMBER" is "<part_no_three>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "Y" where "JUROR_NUMBER" is "<part_no_three>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "CLOSED" where "JUROR_NUMBER" is "<part_no_three>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "SUPER_URGENT" is "Y" where "JUROR_NUMBER" is "<part_no_three>"
 	
 	Then on "JUROR" . "pool" I see "RESPONDED" is "N" where "part_no" is "<part_no_three>" and "OWNER" is "400"
 
 	When I click on the "Back" link
 		
-	Given the date received for the juror response "<part_no>" is set to 6 working days before the current date
+	Given the date received for the juror response "<juror_number>" is set to 6 working days before the current date
 	Given the date received for the juror response "<part_no_two>" is set to 6 working days before the current date
 	#Given the date received for the juror response "<part_no_three>" is set to 6 working days before the current date
 	
@@ -141,7 +141,7 @@ Scenario Outline: Lift from QC Script for Bureau A Functionality
 	And I see "Awaiting information" on the page
 	And I click on the "Awaiting information" link
 	And I do not see any links on the page that open to a new page without an alt text
-	And I see "<part_no>" is flagged as overdue
+	And I see "<juror_number>" is flagged as overdue
 	And I see "<part_no_two>" is flagged as overdue
 	
 	#Then I see "Overdue" icon in the same row as "<part_no_three>"
@@ -162,18 +162,18 @@ Scenario Outline: Bureau A script, steps 24 onwards
 		| part_no 	| pool_no 	| owner |
 		| <part_no> |457170501	| 400 	|
 	
-	Given "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "Address4" as "LONDON"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	Given "<juror_number>" has "RET_DATE" as "5 mondays time"
+
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "ADDRESS_LINE_4" as "LONDON"
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	Then I see "Reply to a jury summons" on the page
 	
 	And I set the radio button to "I am replying for myself"
 	And I press the "Continue" button
 	Then I see "Your juror details" on the page
 	
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
@@ -272,11 +272,11 @@ Scenario Outline: Bureau A script, steps 24 onwards
 	Given I am on "Bureau" "bau-test"
 	And I log in
 	And I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
 	Then I see "1 results for" on the page
 	
-	When I click on "<part_no>" in the same row as "<part_no>"
+	When I click on "<juror_number>" in the same row as "<juror_number>"
 	And I see "<last_name>" on the page
 	And I see "FIRSTNAMECHANGED" on the page
 	And I see "LASTNAMECHANGED" on the page
@@ -323,10 +323,10 @@ Scenario Outline: Bureau A script, steps 24 onwards
 	Given I am on "Bureau" "bau-test"
 	And I log in
 	And I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
 	Then I see "1 results for" on the page
-	When I click on "<part_no>" in the same row as "<part_no>"
+	When I click on "<juror_number>" in the same row as "<juror_number>"
 	
 	#JDB-1677
 	

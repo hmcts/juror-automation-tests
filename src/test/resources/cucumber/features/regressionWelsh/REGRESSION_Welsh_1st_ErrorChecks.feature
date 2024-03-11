@@ -7,11 +7,11 @@ Scenario Outline: Welsh_1st_ErrorChecks - status is Undeliverable
 		| part_no 	| pool_no 	| owner |
 		| <part_no> |<pool_no>	| 400 	|
 		
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "ZIP" as "<postcode>"
-	And "<part_no>" has "STATUS" as "9"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+
+
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
+	And "<juror_number>" has "STATUS" as "9"
 
 	When I set the radio button to "n ymateb dros fy hun"
 	And I press the "Parhau" button
@@ -33,7 +33,7 @@ Scenario Outline: Welsh_1st_ErrorChecks - status is Undeliverable
 	
 	#Juror Log In
 	
-	When I set "Rhif rheithiwr – 9 digid" to "<part_no>"
+	When I set "Rhif rheithiwr – 9 digid" to "<juror_number>"
 	When I set "Cyfenw'r Rheithiwr" to "<last_name>"
 	When I set "Cod post Rheithiwr" to "<postcode>"
 	And I press the "Parhau" button
@@ -68,17 +68,17 @@ Scenario Outline: Welsh_1st_ErrorChecks - Court date is in the past
 		| part_no 	| pool_no 	| owner |
 		| <part_no> |<pool_no>	| 400 	|
 		
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "RET_DATE" as "-1 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "-1 mondays time"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And "<juror_number>" has "RET_DATE" as "-1 mondays time"
+	And "<juror_number>" has "NEXT_DATE" as "-1 mondays time"
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 
 	When I set the radio button to "n ymateb dros fy hun"
 	And I press the "Parhau" button
 	
 	#Juror Log In
 	
-	When I set "Rhif rheithiwr – 9 digid" to "<part_no>"
+	When I set "Rhif rheithiwr – 9 digid" to "<juror_number>"
 	When I set "Cyfenw'r Rheithiwr" to "<last_name>"
 	When I set "Cod post Rheithiwr" to "<postcode>"
 	And I press the "Parhau" button
@@ -99,15 +99,15 @@ Scenario Outline: Welsh_1st_ErrorChecks
 		| part_no 	| pool_no 	| owner |
 		| <part_no> |<pool_no>	| 400 	|
 
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "ZIP" as "<Postcode>" 
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+
+
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 
 	And I set the radio button to "n ymateb dros fy hun"
 	And I press the "Parhau" button
 	
-	When I set "Rhif rheithiwr – 9 digid" to "<part_no>"
+	When I set "Rhif rheithiwr – 9 digid" to "<juror_number>"
 	When I set "Cyfenw'r Rheithiwr" to "<last_name>"
 	When I set "Cod post Rheithiwr" to "<Postcode>"
 	And I press the "Parhau" button
@@ -461,11 +461,11 @@ Scenario Outline: Welsh response completed in Legacy and login attempted on Digi
 	|part_no		|pool_no 	|Owner 		|
 	|641500623		|415181001 	|400		|
 	
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "READ_ONLY" as "N"
-	And "<part_no>" has "RESPONDED" as "Y"
-	And "<part_no>" has "STATUS" as "2"
+
+
+	And "<juror_number>" has "READ_ONLY" as "N"
+	And "<juror_number>" has "RESPONDED" as "Y"
+	And "<juror_number>" has "STATUS" as "2"
 	
 	Then I see "A ydych yn ymateb dros eich hun neu ar ran rhywun arall?" on the page
 	
@@ -473,7 +473,7 @@ Scenario Outline: Welsh response completed in Legacy and login attempted on Digi
 	And I press the "Parhau" button
 	Then I see "Eich manylion rheithiwr" on the page
 	
-	When I set "Rhif rheithiwr – 9 digid" to "<part_no>"
+	When I set "Rhif rheithiwr – 9 digid" to "<juror_number>"
 	And I set "Cyfenw'r Rheithiwr" to "<last_name>"
 	And I set "Cod post Rheithiwr" to "<postcode>"
 	And I press the "Parhau" button
@@ -509,11 +509,11 @@ Examples:
 			| part_no 	| pool_no 	| owner |
 			| <part_no> |<pool_no>	| 400 	|
 
-		And "<part_no>" has "LNAME" as "<last_name>"
-		And "<part_no>" has "RET_DATE" as "5 mondays time"
-		And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-		And "<part_no>" has "ZIP" as "<postcode>"
-		And "<part_no>" has "STATUS" as "9"
+		And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+
+
+		And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
+		And "<juror_number>" has "STATUS" as "9"
 
 
 		Then I see "A ydych yn ymateb dros eich hun neu ar ran rhywun arall?" on the page
@@ -521,7 +521,7 @@ Examples:
 		When I set the radio button to "n ymateb dros fy hun"
 		And I press the "Parhau" button
 
-		When I set "Rhif rheithiwr – 9 digid" to "<part_no>"
+		When I set "Rhif rheithiwr – 9 digid" to "<juror_number>"
 		And I set "Cyfenw'r Rheithiwr" to "<last_name>"
 		And I set "Cod post Rheithiwr" to "<postcode>"
 		And I press the "Parhau" button

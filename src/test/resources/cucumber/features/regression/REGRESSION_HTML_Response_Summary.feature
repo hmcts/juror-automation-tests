@@ -1,23 +1,23 @@
 Feature: Regression HTML Response Summary
 
-@Regression @JDB-4531 
+@Regression @NewSchemaConverted
 Scenario Outline: English_Max_Chars HTML Response Summary
-	Given I am on "Public" "bau-test"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+
+	Given I am on "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
 		
-	And "<part_no>" has "LNAME" as "<last_name>"
-	And "<part_no>" has "FNAME" as "<first_name>" 
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "FIRST_NAME" as "<first_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	
 	And I set the radio button to "I am replying for myself"
 	And I press the "Continue" button
 	Then I see "Your juror details" on the page
 	
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	And I set "Juror last name" to "<last_name>"
 	And I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
@@ -25,91 +25,76 @@ Scenario Outline: English_Max_Chars HTML Response Summary
 	When I set the radio button to "Yes"
 
 	#name
-	
 	And I set the radio button to "Yes"
 	When I press the "Continue" button
 	
 	#address
-	
 	Then I see "Is this your address?" on the page
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 	
 	#phone
-	
 	Then I see "What is your phone number?" on the page
 	When I set "Main phone" to "02078211818"
 	And I press the "Continue" button
 
 	#email
-	
 	Then I see "What is your email address?" on the page
 	When I set "Enter your email address" to "<email>"
 	When I set "Enter your email address again" to "<email>"
 	And I press the "Continue" button
 
 	#DOB
-	
 	Then I see "What is your date of birth?" on the page
 	When I set the date of birth to a Monday "-1500" weeks in the future
 	
 	And I press the "Continue" button
 
 	#Qualify for jury service
-	
 	Then I see "Confirm you're eligible for jury service" on the page
 	When I press the "Continue" button
 	
 	#Residency
-	
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	And I set the radio button to "No"
 	And I set "Provide details about where you have lived since your 13th birthday" to "These are the details.These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are th"
 	And I press the "Continue" button
 	
 	#CJS
-	
 	When I set the radio button to "Yes"
 	And I check the "Other" checkbox
 	And I set "Which other part of the Criminal Justice System?" to "These are the details.These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are th"
 	And I press the "Continue" button
 	
 	#Bail
-	
 	And I set the radio button to "Yes"
 	And I set "Provide details about your bail and criminal offence" to "These are the details.These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are th"
 	And I press the "Continue" button
 	
 	#Convictions
-	
 	When I set the radio button to "Yes"
 	And I set text area with "id" of "convictedDetails" to "These are the details.These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are th"
 	And I press the "Continue" button
 	
 	#Mental Health Sectioned
-	
 	And I set the radio button to "Yes"
 	And I set "Provide details about how you're being detained, looked after or treated under the Mental Health Act" to "These are the details.These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are th"
 	And I press the "Continue" button 
 	
 	#Mental Health Capacity
-	
 	And I set the radio button to "Yes"
 	And I set "Provide brief details about why it was decided you lack mental capacity" to "These are the details.These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are th"
 	And I press the "Continue" button
 	
 	#I can attend
-	
 	And I see "Yes, I can start on" on the page
 	And  I press the "Continue" button
 	
 	#confirm dates
-	
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 	
 	#RA no
-	
 	When I set the radio button to "Yes"
 	And I check the "Diabetes" checkbox
 	And I set "Tell us about any special arrangements or help you need while you're doing jury service." to "These are the details.These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are th"
@@ -117,7 +102,6 @@ Scenario Outline: English_Max_Chars HTML Response Summary
 	Then I see "Check your answers now" on the page
 	
 	#Check your answers
-	
 	When I check the "The information I have given is true to the best of my knowledge" checkbox
 	And I press the "Submit" button
 	Then I see "We have sent you an email to say you have replied to your jury summons." on the page
@@ -127,7 +111,7 @@ Scenario Outline: English_Max_Chars HTML Response Summary
 	
 	And I see "Copy of your jury summons reply" on the page
 	And I see "<last_name>" in the same row as "Name"
-	And I see "<part_no>" in the same row as "Juror number"
+	And I see "<juror_number>" in the same row as "Juror number"
 	And I see "Your jury summons details" on the page
 	And I see "THE CROWN COURT AT SHEFFIELD" in the same row as "Court"
 	And I see "You have said that you can do jury service on the date shown." on the page
@@ -178,28 +162,27 @@ Scenario Outline: English_Max_Chars HTML Response Summary
 	And I see "Download a copy of your summons reply HTML" on the page	
 	
 Examples:
-	|part_no	|pool_no	|first_name	|last_name	|postcode	|email 		|
-	|645100027	|451170401	|John		|Doe		|SW1H 9AJ	|a@eeee.com	|
+	| juror_number	| pool_number	| first_name| last_name	| postcode	| email 		|
+	| 045200110		| 452300109		| John		| Doe		| SW1H 9AJ	| a@eeee.com	|
 
-@Regression @JDB-4531 
+@Regression @NewSchemaConverted
 Scenario Outline: English 1st Party Excusal HTML Response Summary
 
-	Given I am on "Public" "bau-test"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+	Given I am on "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
 	
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "FNAME" as "<first_name>"
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "Address4" as "LONDON"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "FIRST_NAME" as "<first_name>" new schema
+	And juror "<juror_number>" has "ADDRESS_LINE_4" as "LONDON" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	
 	And I set the radio button to "I am replying for myself"
 	And I press the "Continue" button
 	
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
@@ -254,7 +237,7 @@ Scenario Outline: English 1st Party Excusal HTML Response Summary
 	
 	And I see "Copy of your jury summons reply" on the page
 	And I see "<last_name>" in the same row as "Name"
-	And I see "<part_no>" in the same row as "Juror number"
+	And I see "<juror_number>" in the same row as "Juror number"
 	And I see "Your jury summons details" on the page
 	And I see "THE CROWN COURT AT SHEFFIELD" in the same row as "Court"
 	And I see "You have said that you cannot do jury service and would like to be excused." on the page
@@ -305,28 +288,27 @@ Scenario Outline: English 1st Party Excusal HTML Response Summary
 	And I see "Download a copy of your summons reply HTML" on the page	
 	
 Examples:
-	|part_no	|pool_no	|first_name	|last_name	|postcode	|email 		|
-	|645100388	|451170401	|John		|Doe		|SW1H 9AJ	|a@eeee.com	|
+	| juror_number	| pool_number	| first_name| last_name	| postcode	| email 		|
+	| 045200111		| 452300110		| John		| Doe		| SW1H 9AJ	| a@eeee.com	|
 
-@Regression @JDB-4531 
+@Regression @NewSchemaConverted
 Scenario Outline: English 1st Party Deferral HTML Response Summary
 
-	Given I am on "Public" "bau-test"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+	Given I am on "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
 	
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "FNAME" as "<first_name>"
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "Address4" as "LONDON"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "FIRST_NAME" as "<first_name>" new schema
+	And juror "<juror_number>" has "ADDRESS_LINE_4" as "LONDON" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	
 	And I set the radio button to "I am replying for myself"
 	And I press the "Continue" button
 	
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
@@ -381,7 +363,6 @@ Scenario Outline: English 1st Party Deferral HTML Response Summary
 	And I press the "Continue" button
 	
 	#help in court
-	
 	When I set the radio button to "No"
 	And I press the "Continue" button
 
@@ -390,7 +371,6 @@ Scenario Outline: English 1st Party Deferral HTML Response Summary
 	When I press the "Submit" button
 	
 	#JDB-4553
-	
 	Then I see "at least 2 weeks before your jury service starts, we'll send you:" on the page
 	
 	Then I see "You have completed your reply" on the page
@@ -399,7 +379,7 @@ Scenario Outline: English 1st Party Deferral HTML Response Summary
 	
 	And I see "Copy of your jury summons reply" on the page
 	And I see "<last_name>" in the same row as "Name"
-	And I see "<part_no>" in the same row as "Juror number"
+	And I see "<juror_number>" in the same row as "Juror number"
 	And I see "Your jury summons details" on the page
 	And I see "THE CROWN COURT AT SHEFFIELD" in the same row as "Court"
 	And I see "You have said that you need to change the date of your jury service." on the page
@@ -448,105 +428,90 @@ Scenario Outline: English 1st Party Deferral HTML Response Summary
 	And I see "Download a copy of your summons reply HTML" on the page	
 	
 Examples:
-	|part_no	|pool_no	|first_name	|last_name	|postcode	|email 		|
-	|645100388	|451170401	|John		|Doe		|SW1H 9AJ	|a@eeee.com	|
+	| juror_number	| pool_number	| first_name| last_name	| postcode	| email 		|
+	| 045200112		| 452300111		| John		| Doe		| SW1H 9AJ	| a@eeee.com	|
 	
-@RegressionWelsh @JDB-4531 
+@RegressionWelsh @NewSchemaConverted
 Scenario Outline: Welsh 1st Party Straight Through (welsh court)
-	Given I am on the welsh version of "Public" "juror-test02"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
 
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "FNAME" as "<first_name>" 
-	And "<part_no>" has "ZIP" as "<postcode>"
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	
+	Given I am on the welsh version of "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
+
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "FIRST_NAME" as "<first_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
+
 	And I set the radio button to "n ymateb dros fy hun"
 	And I press the "Parhau" button
 	Then I see "Eich manylion rheithiwr" on the page
 
-	When I set "Rhif rheithiwr" to "<part_no>"
+	When I set "Rhif rheithiwr" to "<juror_number>"
 	When I set "Cyfenw" to "<last_name>"
 	When I set "Cod post Rheithiwr" to "<postcode>"
 	And I press the "Parhau" button
 	
 	#Check Your Name
-		
 	And I set the radio button to "Ydy"
 	And I press the "Parhau" button
 
 	#Address
-		
 	And I set the radio button to "Ie"
 	When I press the "Parhau" button
 	
 	#Phone
-	
 	When I set "Prif rif ffôn" to "0207 821 1818"
 	And I press the "Parhau" button
 	
 	#Email
-
 	And I set "Nodwch eich cyfeiriad e-bost" to "<email>"
 	And I set "Nodwch eich cyfeiriad e-bost eto" to "<email>"
 	And I press the "Parhau" button
 	
 	#DoB
-
 	When I set "Diwrnod" to "27"
 	And I set "Mis" to "04"
 	And I set "Blwyddyn" to "1978"
 	And I press the "Parhau" button
 	
 	#Qualify for jury service
-	
 	When I press the "Parhau" button
 
 	#Residency
-
 	And I set the radio button to "Do"
 	And I press the "Parhau" button
 
 	#CJS
-	
 	When I set the radio button to "Nac ydw"
 	And I press the "Parhau" button
 	
 	#Bail
-
 	And I set the radio button to "Nac ydw"
 	And I press the "Parhau" button
 	
 	#Convictions
-
 	When I set the radio button to "Naddo"
 	And I press the "Parhau" button
 	
 	#Mental Health Sectioned
-
 	And I set the radio button to "Na"
 	And I press the "Parhau" button
 	
 	#Mental Health Capacity
-
 	And I set the radio button to "Na"
 	And I press the "Parhau" button
 	
-	#Confirm attendance	
-
+	#Confirm attendance
 	When I set the radio button to "Ydw, rydw i'n gallu dechrau"
 	And I press the "Parhau" button
 	
 	#RA
-	
 	When I set the radio button to "Nac oes"
 	And I press the "Parhau" button
 
 	#submit
-	
 	And I check the "Mae'r wybodaeth a roddais uchod yn wir hyd eithaf fy ngwybodaeth." checkbox
 	And I press the "Cyflwyno" button
 	
@@ -555,7 +520,7 @@ Scenario Outline: Welsh 1st Party Straight Through (welsh court)
 	
 	And I see "Copi o’ch ymateb i wŷs rheithgor" on the page
 	And I see "<last_name>" in the same row as "Enw"
-	And I see "<part_no>" in the same row as "Rhif rheithiwr"
+	And I see "<juror_number>" in the same row as "Rhif rheithiwr"
 	And I see "Manylion eich gwŷs rheithgor" on the page
 	And I see "THE CROWN COURT AT SHEFFIELD" in the same row as "Llys"
 	And I see "Rydych wedi dweud eich bod yn gallu gwasanaethu ar reithgor ar y dyddiad a nodir" on the page
@@ -599,46 +564,42 @@ Scenario Outline: Welsh 1st Party Straight Through (welsh court)
 	And I see "Lawrlwythwch gopi o'ch ymateb i'r wŷs HTML" on the page	
 	
 Examples:
-	|part_no	|pool_no	|first_name	|last_name	|postcode	|email 		|
-	|645100048	|451170401	|John		|Doe		|SW1H 9AJ	|a@eeee.com	|
+	| juror_number	| pool_number	| first_name| last_name	| postcode	| email 		|
+	| 045200113		| 452300112		| John		| Doe		| SW1H 9AJ	| a@eeee.com	|
 
-@Regression @JDB-4531 
+@Regression @NewSchemaConverted
 Scenario Outline: English 3rd Party Deferral HTML Response summary
-	Given I am on "Public" "bau-test"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+
+	Given I am on "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
 		
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "FNAME" as "<first_name>" 
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "FIRST_NAME" as "<first_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	
 	And I set the radio button to "I am replying for someone else"
 	And I press the "Continue" button
 	
 	#Juror Log In
-	
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 	
 	#3rd Party Name
-	
 	When I see "Your Details" on the page
 	When I set "First name" to "FirstNameA"
 	And I set "Last name" to "LastNameB"
 	And I press the "Continue" button
 	
 	#Relationship to juror
-
 	And I set "How do you know the person you're replying for?" to "Friend"
 	And I press the "Continue" button
 	
 	#3rd Party Contact
-	
 	And I check the "By phone (UK Numbers only)" checkbox
 	And I set "Main phone" to "0207 821 1818"
 	And I check the "By email" checkbox
@@ -647,79 +608,64 @@ Scenario Outline: English 3rd Party Deferral HTML Response summary
 	And I press the "Continue" button
 	
 	#Why are you replying title
-
 	When I set the radio button to "The person is not here"
 	And I press the "Continue" button
 	
 	#Check juror name
-
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 	
 	#Check juror address
-
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 	
 	#DoB
-	
 	And I set "Day" to "01"
 	And I set "Month" to "01"
 	And I set "Year" to "1988"
 	And I press the "Continue" button
 
 	#Contacting the juror
-
 	And I set the radio button to "Use the phone number that you have already given to contact you"
 	And I set the radio button to "Use the email address that you have already given to contact you"
 	And I press the "Continue" button
 
 	#Qualify for jury service
-	
 	And I press the "Continue" button
 
 	#Residency
-	
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 
 	# Have you ever worked
-	
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Bail
-
 	And I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Convictions
-
 	And I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Mental Health Sectioned
-
 	And I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Mental Health Capacity
-
 	And I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Confirm Date of Jury
-	
 	When I set the radio button to "No, we need to change the date" 
 	And I press the "Continue" button
 	
 	#Deferral Reason
-	
 	When I set text area with "id" of "deferralReason" to "Deferral Reason"
 	And I press the "Continue" button
 	
 	#JDB-3445 Deferral Date Screen Layout
-
 	When I set the "First" single date field to a Monday "6" weeks in the future
 	When I set the "Second" single date field to a Monday "7" weeks in the future
 	When I set the "Third" single date field to a Monday "8" weeks in the future
@@ -727,12 +673,10 @@ Scenario Outline: English 3rd Party Deferral HTML Response summary
 	And I press the "Continue" button
 
 	#confirm dates
-	
 	When I set the radio button to "Yes"
 	And I press the "Continue" button
 	
 	#help in court
-	
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
@@ -747,7 +691,7 @@ Scenario Outline: English 3rd Party Deferral HTML Response summary
 	
 	And I see "Copy of your jury summons reply" on the page
 	And I see "<last_name>" in the same row as "Name"
-	And I see "<part_no>" in the same row as "Juror number"
+	And I see "<juror_number>" in the same row as "Juror number"
 	And I see "Your jury summons details" on the page
 	And I see "THE CROWN COURT AT SHEFFIELD" in the same row as "Court"
 	And I see "You have said that you need to change the date of your jury service." on the page
@@ -810,21 +754,21 @@ Scenario Outline: English 3rd Party Deferral HTML Response summary
 	And I see "Download a copy of your summons reply HTML" on the page	
 	
 Examples:
-	|part_no	|pool_no	|first_name	|last_name	|postcode	|email 		|
-	|645100552	|451170401	|John		|Doe		|SW1H 9AJ	|a@eeee.com	|
+	| juror_number	| pool_number	| first_name| last_name	| postcode	| email 		|
+	| 045200114		| 452300113		| John		| Doe		| SW1H 9AJ	| a@eeee.com	|
 	
-@Regression @JDB-4531 
+@Regression @NewSchemaConverted
 Scenario Outline: English 1st Party Overage HTML Response Summary
-	Given I am on "Public" "bau-test"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+
+	Given I am on "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
 		
-	And "<part_no>" has "LNAME" as "<last_name>"
-	And "<part_no>" has "FNAME" as "<first_name>"
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "FIRST_NAME" as "<first_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	
 	Then I see "Reply to a jury summons" on the page
 	
@@ -832,7 +776,7 @@ Scenario Outline: English 1st Party Overage HTML Response Summary
 	And I press the "Continue" button
 	Then I see "Your juror details" on the page
 	
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
@@ -840,7 +784,6 @@ Scenario Outline: English 1st Party Overage HTML Response Summary
 	When I set the radio button to "Yes"
 	
 	#Moving past Name Section
-	
 	When I press the "Continue" button
 	Then I see "Is this your address?" on the page
 	When I set the radio button to "Yes"
@@ -857,7 +800,6 @@ Scenario Outline: English 1st Party Overage HTML Response Summary
 	And I press the "Continue" button
 	
 	#On DoB Screen
-	
 	Then I see "What is your date of birth?" on the page
 	
 	When I set "Day" to "27"
@@ -865,7 +807,6 @@ Scenario Outline: English 1st Party Overage HTML Response Summary
 	And I set "Year" to "1900"
 	
 	#Moving past DoB Section
-	
 	And I press the "Continue" button
 	Then I see "Is your date of birth correct?" on the page
 	
@@ -879,17 +820,16 @@ Scenario Outline: English 1st Party Overage HTML Response Summary
 	When I press the "Submit" button
 	
 	Then I see "You have completed your reply" on the page
-	Then I see "<part_no>" on the page
+	Then I see "<juror_number>" on the page
 	
 	#HTML Response Summary
-	
 	Then I see "You have completed your reply" on the page
 	And I see "Download a copy of your summons reply HTML" on the page
 	And I click on the "Download a copy of your summons reply HTML" link
 	
 	And I see "Copy of your jury summons reply" on the page
 	And I see "<last_name>" in the same row as "Name"
-	And I see "<part_no>" in the same row as "Juror number"
+	And I see "<juror_number>" in the same row as "Juror number"
 	And I see "Your jury summons details" on the page
 	And I see "THE CROWN COURT AT SHEFFIELD" in the same row as "Court"
 	And I see "Your age makes you ineligible to do jury service." on the page
@@ -915,24 +855,23 @@ Scenario Outline: English 1st Party Overage HTML Response Summary
 	And I see "Download a copy of your summons reply HTML" on the page	
 	
 Examples:
-	|part_no	|pool_no	|first_name	|last_name	|postcode	|email 		|
-	|645100536	|451170401	|John		|Doe		|SW1H 9AJ	|a@eeee.com	|
+	| juror_number	| pool_number	| first_name| last_name	| postcode	| email 		|
+	| 045200115		| 452300114		| John		| Doe		| SW1H 9AJ	| a@eeee.com	|
 
-@Regression @JDB-4531 
+@Regression @NewSchemaConverted
 Scenario Outline: English 3rd Deceased HTML Response Summary
-	Given I am on "Public" "bau-test"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
 
-	And "<part_no>" has "LNAME" as "<last_name>"
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "Address4" as "LONDON"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	Given I am on "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
+
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "ADDRESS_LINE_4" as "LONDON" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	
 	#Reply to jury summons
-	
 	Then I see "Reply to a jury summons" on the page
 
 	And I set the radio button to "I am replying for someone else"
@@ -940,53 +879,46 @@ Scenario Outline: English 3rd Deceased HTML Response Summary
 	Then I see "Their juror details" on the page
 	
 	#Login
-
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 	Then I see "What is your name?" on the page
 	
 	#3rd Party Name
-	
 	When I set "First name" to "FirstName"
 	And I set "Last name" to "LastName"
 	And I press the "Continue" button
 	
 	#Relationship to Juror
-	
 	When I set "How do you know the person you're replying for?" to "Friend"
 	And I press the "Continue" button
 	
 	#3rd Party Contact
-	
 	When I check the "By phone (UK Numbers only)" checkbox
 	And I check the "By email" checkbox
 	And I set "Main phone" to "02078211818"
-	And I set "Enter your email address" to "email@outlook.com"
-	And I set "Enter your email address again" to "email@outlook.com"
+	And I set "Enter your email address" to "<email>"
+	And I set "Enter your email address again" to "<email>"
 	And I press the "Continue" button
 	
 	#Why Are You Replying
-	
 	When I set the radio button to "The person has died"
 	And I press the "Continue" button
 	
 	#Check Your Answers Now
-	
 	When I check the "The answers I have given for the person I'm replying for are true as far as I know" checkbox
 	And I press the "Submit" button
 	Then I see "You have completed your reply" on the page
 	
 	#HTML Response Summary
-	
 	Then I see "You have completed your reply" on the page
 	And I see "Download a copy of your summons reply HTML" on the page
 	And I click on the "Download a copy of your summons reply HTML" link
 	
 	And I see "Copy of your jury summons reply" on the page
 	And I see "<last_name>" in the same row as "Name"
-	And I see "<part_no>" in the same row as "Juror number"
+	And I see "<juror_number>" in the same row as "Juror number"
 	And I see "Your jury summons details" on the page
 	And I see "THE CROWN COURT AT SHEFFIELD" in the same row as "Court"
 	And I see "You have said that the person summoned is deceased." on the page
@@ -1012,63 +944,56 @@ Scenario Outline: English 3rd Deceased HTML Response Summary
 	And I see "Download a copy of your summons reply HTML" on the page	
 
 Examples:
-	|part_no		|pool_no	|last_name	|postcode	|email 		| 
-	|645100857		|451170401	|DOE		|SW1H 9AJ	|e@eeee.com	|
+	| juror_number	| pool_number| last_name| postcode	| email 		|
+	| 045200116		| 452300115	 | DOE		| SW1H 9AJ	| e@eeee.com	|
 
-@Regression @JDB-4531 
+@Regression @NewSchemaConverted
 Scenario Outline: English 1st ST HTML Check
 
-	Given I am on "Public" "bau-test"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+	Given I am on "Public" "test"
 
-	And "<part_no>" has "LNAME" as "<last_name>"
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "Address4" as "LONDON"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
+
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "ADDRESS_LINE_4" as "LONDON" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	
 	#Reply to jury summons
-
 	Then I see "Reply to a jury summons" on the page
 	
 	And I set the radio button to "I am replying for myself"
 	And I press the "Continue" button
 	Then I see "Your juror details" on the page
 	
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 	
 	#name
-	
 	Then I see "Is the name we have for you correct?" on the page
 	When I set the radio button to "Yes"
 	And I press the "Continue" button
 	
 	#address
-	
 	Then I see "Is this your address?" on the page
 	When I set the radio button to "Yes"
 	And I press the "Continue" button
 	
 	#phone
-	
 	Then I see "What is your phone number?" on the page
 	When I set "Main phone" to "02078211818"
 	And I press the "Continue" button
 	
 	#email
-	
 	Then I see "What is your email address?" on the page
 	When I set "Enter your email address" to "<email>"
 	When I set "Enter your email address again" to "<email>"
 	And I press the "Continue" button
 	
 	#dob
-	
 	Then I see "What is your date of birth?" on the page
 	When I set "Day" to "27"
 	And I set "Month" to "04"
@@ -1076,48 +1001,40 @@ Scenario Outline: English 1st ST HTML Check
 	And I press the "Continue" button
 	
 	#qualifying
-	
 	Then I see "Confirm you're eligible for jury service" on the page
 	And I press the "Continue" button
 	
 	#residency
-	
 	Then I see "Since you turned 13, has your main address" on the page
 	When I set the radio button to "Yes"
 	And I press the "Continue" button
 	
 	#CJS
-	
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#bail
-	
 	Then I see "Are you currently on bail" on the page
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#crim offence
-	
 	Then I see "Have you been found guilty of a criminal offence" on the page
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#MHQ1
-	
 	Then I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#MHQ2
-	
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#confirm date
-	
 	Then I see "Check your start date" on the page
 	And I see "Yes, I can start on" on the page
 	And I set the radio button to "Yes, I can start on"
@@ -1125,13 +1042,11 @@ Scenario Outline: English 1st ST HTML Check
 	
 	#Help in Court
 	#3608
-	
 	Then I see "Will you need help when you're at the court?" on the page
 	When I set the radio button to "No"
 	And I press the "Continue" button
 		
 	#Check Answers
-	
 	Then I see "Check your answers now" on the page
 	
 	Then I check the "The information I have given is true to the best of my knowledge" checkbox
@@ -1139,14 +1054,13 @@ Scenario Outline: English 1st ST HTML Check
 	When I press the "Submit" button
 
 	#Confirmation
-	
 	Then I see "You have completed your reply" on the page
 	And I see "Download a copy of your summons reply HTML" on the page
 	And I click on the "Download a copy of your summons reply HTML" link
 	
 	And I see "Copy of your jury summons reply" on the page
 	And I see "<last_name>" in the same row as "Name"
-	And I see "<part_no>" in the same row as "Juror number"
+	And I see "<juror_number>" in the same row as "Juror number"
 	And I see "Your jury summons details" on the page
 	And I see "THE CROWN COURT AT SHEFFIELD" in the same row as "Court"
 	And I see "You have said that you can do jury service on the date shown." on the page
@@ -1188,38 +1102,35 @@ Scenario Outline: English 1st ST HTML Check
 	And I see "Download a copy of your summons reply HTML" on the page	
 	
 Examples:
-	|part_no	|pool_no	|first_name	|last_name	|postcode	|email 		| 
-	|645100289	|451170401	|JOHN		|DOE		|SW1H 9AJ	|e@eeee.com	|
+	| juror_number	| pool_number	| first_name| last_name	| postcode	| email 		|
+	| 045200117		| 452300116		| JOHN		| DOE		| SW1H 9AJ	| e@eeee.com	|
 
-@Regression @JDB-4531 
+@Regression @NewSchemaConverted
 Scenario Outline: English 1st Ineligible HTML Check
 
-	Given I am on "Public" "bau-test"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+	Given I am on "Public" "test"
 
-	And "<part_no>" has "LNAME" as "<last_name>"
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "Address4" as "LONDON"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
+
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "ADDRESS_LINE_4" as "LONDON" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	
 	#Reply to jury summons
-
 	Then I see "Reply to a jury summons" on the page
 	
 	And I set the radio button to "I am replying for myself"
 	And I press the "Continue" button
 	Then I see "Your juror details" on the page
 	
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 	
 	#name
-	
 	Then I see "Is the name we have for you correct?" on the page
 	When I set the radio button to "No"
 	And I press the "Continue" button
@@ -1228,27 +1139,23 @@ Scenario Outline: English 1st Ineligible HTML Check
 	And I press the "Continue" button
 	
 	#address
-	
 	Then I see "Is this your address?" on the page
 	When I set the radio button to "Yes"
 	And I press the "Continue" button
 	
 	#phone
-	
 	Then I see "What is your phone number?" on the page
 	When I set "Main phone" to "02078211818"
 	And I set "Another phone" to "09999999999"
 	And I press the "Continue" button
 	
 	#email
-	
 	Then I see "What is your email address?" on the page
 	When I set "Enter your email address" to "<email>"
 	When I set "Enter your email address again" to "<email>"
 	And I press the "Continue" button
 	
 	#dob
-	
 	Then I see "What is your date of birth?" on the page
 	When I set "Day" to "27"
 	And I set "Month" to "04"
@@ -1256,7 +1163,6 @@ Scenario Outline: English 1st Ineligible HTML Check
 	And I press the "Continue" button
 	
 	#qualifying
-	
 	Then I see "Confirm you're eligible for jury service" on the page
 	And I press the "Continue" button
 	
@@ -1281,7 +1187,6 @@ Scenario Outline: English 1st Ineligible HTML Check
 	And I press the "Continue" button
 	
 	#confirm date
-	
 	And I see "No, I need to change the date" on the page
 	When I set the radio button to "No, I need to change the date"
 	And I press the "Continue" button
@@ -1296,19 +1201,16 @@ Scenario Outline: English 1st Ineligible HTML Check
 	And I press the "Continue" button
 	
 	#confirm
-	
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 	
 	#Help in court
-
 	And I set the radio button to "Yes"
 	And I check the "Diabetes" checkbox
 	Then I set "Tell us about any special arrangements or help you need while you're doing jury service." to "Special Need is DIABETES"
 	And I press the "Continue" button
 		
 	#Check Answers
-	
 	Then I see "Check your answers now" on the page
 	
 	Then I check the "The information I have given is true to the best of my knowledge" checkbox
@@ -1316,13 +1218,12 @@ Scenario Outline: English 1st Ineligible HTML Check
 	When I press the "Submit" button
 
 	#Confirmation
-	
 	Then I see "You have completed your reply" on the page
 	And I see "Download a copy of your summons reply HTML" on the page
 	And I click on the "Download a copy of your summons reply HTML" link
 	And I see "Copy of your jury summons reply" on the page
 	And I see "<last_name>" in the same row as "Name"
-	And I see "<part_no>" in the same row as "Juror number"
+	And I see "<juror_number>" in the same row as "Juror number"
 	And I see "Your jury summons details" on the page
 	And I see "THE CROWN COURT AT SHEFFIELD" in the same row as "Court"
 	And I see "You have said that you need to change the date of your jury service." on the page
@@ -1369,5 +1270,5 @@ Scenario Outline: English 1st Ineligible HTML Check
 	And I see "Download a copy of your summons reply HTML" on the page	
 	
 Examples:
-	|part_no	|pool_no	|first_name		|last_name	|postcode	|email 		| 
-	|645100236	|451170401	|Sarah-Louise	|DOE		|SW1H 9AJ	|e@eeee.com	|
+	| juror_number	| pool_number	| first_name	| last_name	| postcode	| email 		|
+	| 045200118		| 452300117		| Sarah-Louise	| DOE		| SW1H 9AJ	| e@eeee.com	|

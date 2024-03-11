@@ -1,9 +1,10 @@
 Feature: Bureau E Test
 
-@Regression @Regression_Bureau_E_Staff 
-@JDB-2637 
+@Regression @NewSchemaConverted
 Scenario: Bureau E Test
+
 	Given I am on "Bureau" "test"
+
 	And I log in
 	And staff with name "AutomationStaffMemberONE" does not exist
 	And staff with name "AutomationStaffMemberTWO" does not exist

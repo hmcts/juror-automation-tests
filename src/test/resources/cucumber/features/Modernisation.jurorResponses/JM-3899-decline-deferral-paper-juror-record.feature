@@ -11,7 +11,7 @@ Feature: JM-3899
 
     And I log in as "<user>"
 
-    When the user searches for juror record "<part_no>" from the global search bar
+    When the user searches for juror record "<juror_number>" from the global search bar
 
     #record paper summons response requesting deferral
     And I record a happy path deferral paper summons response

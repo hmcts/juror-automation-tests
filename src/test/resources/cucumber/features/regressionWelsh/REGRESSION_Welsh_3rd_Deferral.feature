@@ -8,10 +8,10 @@ Scenario Outline: Welsh 3rd Party Deferral
 		| part_no 	| pool_no 	| owner |
 		| <part_no> |<pool_no>	| 400 	|
 	
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+
+
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 
 	And I see "Rwy'n ymateb ar ran rhywun arall" on the page
 	And I see "Rwy'n ymateb dros fy hun" on the page
@@ -19,7 +19,7 @@ Scenario Outline: Welsh 3rd Party Deferral
 	And I press the "Parhau" button
 	Then I see "Ei fanylion rheithiwr" on the page
 	
-	When I set "Rhif rheithiwr" to "<part_no>"
+	When I set "Rhif rheithiwr" to "<juror_number>"
 	When I set "Cyfenw" to "<last_name>"
 	When I set "Cod post Rheithiwr" to "<postcode>"
 	And I press the "Parhau" button
@@ -206,7 +206,7 @@ Scenario Outline: Welsh 3rd Party Deferral
 	When I press the "Cyflwyno" button
 	
 	Then I see "Rydych wedi cwblhau'r broses ymateb" on the page
-	Then I see "<part_no>" on the page
+	Then I see "<juror_number>" on the page
 	
 	#JDB-3071
 	
@@ -217,9 +217,9 @@ Scenario Outline: Welsh 3rd Party Deferral
 	And I log in
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	Then I see "<part_no>" on the page
+	Then I see "<juror_number>" on the page
 	
 	And I click link with ID "selectAllLink"
 	And I press the "Send to..." button
@@ -230,9 +230,9 @@ Scenario Outline: Welsh 3rd Party Deferral
 	
 	Then I click on the "Sign out" link
 	And I log in as "ARAMIS1"
-	Then I see "<part_no>" on the page
-	Then I see "<part_no>" has reply type indicator "DEFERRAL"
-	
+	Then I see "<juror_number>" on the page
+	Then I see "<juror_number>" has reply type indicator "DEFERRAL"
+
 Examples:
 	|part_no		|last_name			|postcode	|email 		|pool_no	|
 	|841501643		|LNAMESIXSIXZERO	|CH1 2AN	|a@eeee.com	|415181001	|
@@ -244,10 +244,10 @@ Scenario Outline: Welsh 3rd Party Deferral - Bank Holiday
 		| part_no 	| pool_no 	| owner |
 		| <part_no> |<pool_no>	| 400 	|
 	
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+
+
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 
 	And I see "Rwy'n ymateb ar ran rhywun arall" on the page
 	And I see "Rwy'n ymateb dros fy hun" on the page
@@ -255,7 +255,7 @@ Scenario Outline: Welsh 3rd Party Deferral - Bank Holiday
 	And I press the "Parhau" button
 	Then I see "Ei fanylion rheithiwr" on the page
 	
-	When I set "Rhif rheithiwr" to "<part_no>"
+	When I set "Rhif rheithiwr" to "<juror_number>"
 	When I set "Cyfenw" to "<last_name>"
 	When I set "Cod post Rheithiwr" to "<postcode>"
 	And I press the "Parhau" button
@@ -446,7 +446,7 @@ Scenario Outline: Welsh 3rd Party Deferral - Bank Holiday
 	
 	Then I see "Rydych wedi cwblhau'r broses ymateb" on the page
 	Then I see "Rydych wedi cwblhau'r broses ymateb" on the page
-	Then I see "<part_no>" on the page
+	Then I see "<juror_number>" on the page
 	
 	#JDB-3071
 	

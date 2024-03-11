@@ -17,7 +17,7 @@ Feature: JM-4360 - As a jury officer I need to be able to check jurors in for th
     And I log in as "<user>"
 
     #enter responses in order to be in a state to be checked in
-    When the user searches for juror record "<part_no>" from the global search bar
+    When the user searches for juror record "<juror_number>" from the global search bar
     And I record a happy path paper summons response and process now
 
     When the user searches for juror record "<part_no_2>" from the global search bar
@@ -33,7 +33,7 @@ Feature: JM-4360 - As a jury officer I need to be able to check jurors in for th
     And I set "Hour" to "09"
     And I set "Minute" to "00"
     And I set the radio button to "am"
-    And I input juror "<part_no>" to be checked in
+    And I input juror "<juror_number>" to be checked in
     And I press the "Check in juror" button
     And I set "Hour" to "2"
     And I set "Minute" to "30"
@@ -43,7 +43,7 @@ Feature: JM-4360 - As a jury officer I need to be able to check jurors in for th
 
     #check jurors have been checked in at their right times
     And I see "jurors listed as attending" on the page
-    And I see "<part_no>" in the same row as "9:00am"
+    And I see "<juror_number>" in the same row as "9:00am"
     And I see "<part_no_2>" in the same row as "2:30pm"
 
     Examples:

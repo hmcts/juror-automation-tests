@@ -15,10 +15,8 @@ Scenario Outline: JM-3000 Assign Reply Happy Path
 
 	Given auto straight through processing has been enabled
 
-
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time" new schema
-	And juror "<part_no>" has "LAST_NAME" as "<last_name>" new schema
-	And juror "<part_no>" has "POSTCODE" as "<postcode>" new schema
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 
 	Given I have submitted a first party English ineligibilty response
 		| part_no			|pool_number	| last_name			|postcode		| email 	|details	|
@@ -32,7 +30,6 @@ Scenario Outline: JM-3000 Assign Reply Happy Path
 	Then I see "1" in the same row as "total" in Backlog box
 	Then I see "1" in the same row as "standard" in Backlog box
 
-
 	#Assign the new replies to CPASS
 	Then I set how many "Standard" replies I want to assign to "1"
 	When I check the "ARAMIS" checkbox
@@ -40,11 +37,11 @@ Scenario Outline: JM-3000 Assign Reply Happy Path
 
 	#view the assigned record
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
 
 	#Check it's assigned to CPASS
-	When I click on "<part_no>" in the same row as "<part_no>"
+	When I click on "<juror_number>" in the same row as "<juror_number>"
 	And I am on the modernisation version of View Summons Reply
 	And I see assigned to is "ARAMIS"
 
@@ -65,11 +62,11 @@ Scenario Outline: JM-3000 Assign Reply Happy Path
 
 	#view the assigned record
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
 
 	#Check it's assigned to SYSTEM
-	When I click on "<part_no>" in the same row as "<part_no>"
+	When I click on "<juror_number>" in the same row as "<juror_number>"
 	And I am on the modernisation version of View Summons Reply
 	And I see assigned to is "SYSTEM"
 
@@ -95,10 +92,8 @@ Examples:
 
 		Given auto straight through processing has been enabled
 
-
-		And "<part_no>" has "NEXT_DATE" as "5 mondays time" new schema
-		And juror "<part_no>" has "LAST_NAME" as "<last_name>" new schema
-		And juror "<part_no>" has "POSTCODE" as "<postcode>" new schema
+		And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+		And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 
 		And "<part_no_two>" has "RET_DATE" as "5 mondays time"
 		And "<part_no_two>" has "NEXT_DATE" as "5 mondays time"
@@ -121,7 +116,6 @@ Examples:
 		Then I see "1" in the same row as "total" in Backlog box
 		Then I see "1" in the same row as "standard" in Backlog box
 
-
 	#Assign the new replies to CPASS
 		Then I set how many "Standard" replies I want to assign to "1"
 		When I check the "ARAMIS1" checkbox
@@ -129,11 +123,11 @@ Examples:
 
 	#view the assigned record
 		When I click on the "Search" link
-		And I set "Juror number" to "<part_no>"
+		And I set "Juror number" to "<juror_number>"
 		And I press the "Search" button
 
 	#Check it's assigned to CPASS
-		When I click on "<part_no>" in the same row as "<part_no>"
+		When I click on "<juror_number>" in the same row as "<juror_number>"
 		And I am on the modernisation version of View Summons Reply
 		And I see assigned to is "ARAMIS1"
 

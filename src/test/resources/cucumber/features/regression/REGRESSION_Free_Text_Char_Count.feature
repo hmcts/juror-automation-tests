@@ -1,22 +1,22 @@
 Feature: Free Text Char Count
 
-@RegressionWelsh 
+@RegressionWelsh @NewSchemaConverted
 Scenario Outline: Welsh_3rd_Char_Counts
-	Given I am on the welsh version of "Public" "bau-test"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+
+	Given I am on the welsh version of "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
 		
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 
 	And I set the radio button to "Rwy'n ymateb ar ran rhywun arall"
 	And I press the "Parhau" button
 	Then I see "Ei fanylion rheithiwr" on the page
 	
-	When I set "Rhif rheithiwr" to "<part_no>"
+	When I set "Rhif rheithiwr" to "<juror_number>"
 	When I set "Cyfenw" to "<last_name>"
 	When I set "Cod post Rheithiwr" to "<postcode>"
 	And I press the "Parhau" button
@@ -64,12 +64,10 @@ Scenario Outline: Welsh_3rd_Char_Counts
 	And I press the "Parhau" button
 	
 	#JDB-3107
-	
 	Then I see "Cadarnhau a yw'r unigolyn yn gymwys i wasanaethu ar reithgor" on the page
 	And I press the "Parhau" button
 	
 	#Residency
-
 	And I set the radio button to "Naddo"
 	And I see "You have 1000 characters remaining" on the page
 	And I set "Rhowch fanylion" to "These are the details."
@@ -79,7 +77,6 @@ Scenario Outline: Welsh_3rd_Char_Counts
 	And I press the "Parhau" button
 	
 	#CJS
-
 	And I set the radio button to "Ydy"
 	Then I see "Dewiswch unrhyw sefydliadau y mae'r unigolyn rydych yn ymateb ar ei ran wedi gweithio iddynt." on the page
 	
@@ -94,7 +91,6 @@ Scenario Outline: Welsh_3rd_Char_Counts
 	And I press the "Parhau" button
 	
 	#Bail
-
 	And I set the radio button to "Ydy"
 	And I see "You have 1000 characters remaining" on the page
 	And I set "Rhowch fanylion" to "These are the details."
@@ -104,7 +100,6 @@ Scenario Outline: Welsh_3rd_Char_Counts
 	And I press the "Parhau" button
 	
 	#Criminal Convictions
-
 	And I see "A yw'r unigolyn wedi'i gael yn euog o drosedd?" on the page
 	And I set the radio button to "Ydy"
 	And I see "You have 1000 characters remaining" on the page
@@ -115,7 +110,6 @@ Scenario Outline: Welsh_3rd_Char_Counts
 	And I press the "Parhau" button
 	
 	#Mental Health
-
 	Then I see "A ydi'r person yr ydych yn ymateb ar ei ran yn cael ei gadw, ei warchod neu ei drin o dan y Ddeddf Iechyd Meddwl?" on the page
 	And I set the radio button to "Ie"
 	And I see "You have 1000 characters remaining" on the page
@@ -135,7 +129,6 @@ Scenario Outline: Welsh_3rd_Char_Counts
 	And I press the "Parhau" button
 	
 	#Can you attend
-
 	And I set the radio button to "Nac ydi, rhaid newid y dyddiad"
 	And I press the "Parhau" button
 	
@@ -162,7 +155,6 @@ Scenario Outline: Welsh_3rd_Char_Counts
 	And I press the "Parhau" button
 
 	#Special Reqs
-	
 	Then I see "A fydd yr unigolyn rydych yn ymateb ar ei ran angen cymorth pan fydd yn y llys?" on the page
 	
 	And I set the radio button to "Oes"
@@ -191,72 +183,66 @@ Scenario Outline: Welsh_3rd_Char_Counts
 	
 	Then I see "Rydych wedi cwblhau'r broses ymateb" on the page
 	And I see "Rydych wedi cwblhau'r broses ymateb" on the page
-	Then I see "<part_no>" on the page
+	Then I see "<juror_number>" on the page
 	
 Examples:
-	|part_no		|last_name			|postcode	|email 		|pool_no	|
-	|645200900		|LNAMENINEZEROZERO	|SY2 6LU	|a@eeee.com	|452170401	|
+	| juror_number	| last_name			| postcode	| email 		| pool_number	|
+	| 045200105		| LNAMENINEZEROZERO	| SY2 6LU	| a@eeee.com	| 452300104		|
 
 
-@Regression 
+@Regression @NewSchemaConverted
 Scenario Outline: English_3rd_Char_Counts_and_warnings
-	Given I am on "Public" "bau-test"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+
+	Given I am on "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
 		
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	
 	And I set the radio button to "I am replying for someone else"
 	And I press the "Continue" button
 	Then I see "Their juror details" on the page
 	
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 	Then I see "What is your name?" on the page
 	
 	#3rd Party Name
-	
 	When I set "First name" to "FirstNamea"
 	And I set "Last name" to "LastNameb"
 	And I press the "Continue" button
 	Then I see "Your relationship to the person" on the page
 	
 	#Relationship to juror
-	
 	When I set "How do you know the person you're replying for?" to "Friend"
 	And I press the "Continue" button
 	Then I see "Your contact information" on the page
 	
 	#3rd Party Contact
-	
 	When I see "Your Details" on the page
 	When I check the "By phone (UK Numbers only)" checkbox
 	And I set "Main phone" to "0207 821 1818"
 	And I check the "By email" checkbox
-	And I set "Enter your email address" to "email@outlook.com"
-	And I set "Enter your email address again" to "email@outlook.com"
+	And I set "Enter your email address" to "<email>"
+	And I set "Enter your email address again" to "<email>"
 	And I press the "Continue" button
 	Then I see "Why are you replying for the other person?" on the page
 	
 	#Why are you replying for juror
-	
 	When I set the radio button to "The person is not here"
 	And I press the "Continue" button
 	
 	#Check juror name
-	
 	Then I see "Is the name we have for them correct?" on the page
 	When I set the radio button to "Yes"
 	And I press the "Continue" button
 	
 	#Check juror address
-	
 	Then I see "Is this their address?" on the page
 	When I set the radio button to "Yes"
 	And I press the "Continue" button
@@ -264,7 +250,6 @@ Scenario Outline: English_3rd_Char_Counts_and_warnings
 	Then I see "Give the date of birth for the person you're replying for" on the page
 	
 	#DoB
-	
 	When I see "Juror Details" on the page
 	And I set "Day" to "27"
 	And I set "Month" to "04"
@@ -273,21 +258,17 @@ Scenario Outline: English_3rd_Char_Counts_and_warnings
 	Then I see "We might need to get in touch with the person to ask them more questions or give them information about their jury service" on the page
 	
 	#Contacting the juror
-	
 	When I see "Juror Details" on the page
 	And I set the radio button to "Use the phone number that you have already given to contact you"
 	And I set the radio button to "Use the email address that you have already given to contact you"
 	And I press the "Continue" button
 	
 	#Does the person you're answering for qualify for jury service?
-
 	Then I see "Confirm if the person is eligible for jury service" on the page
 	And I press the "Continue" button
 	
 	#Eligibility questions
-	
 	#residency
-
 	And I set the radio button to "No"
 	
 	And I see "You have 1,000 characters remaining" on the page
@@ -308,8 +289,7 @@ Scenario Outline: English_3rd_Char_Counts_and_warnings
 	And I see "You have 0 characters remaining" on the page
 	And I press the "Continue" button
 	
-	#CJS Emp	
-
+	#CJS Emp
 	And I set the radio button to "Yes"
 	And I check the "Other" checkbox
 	
@@ -334,7 +314,6 @@ Scenario Outline: English_3rd_Char_Counts_and_warnings
 	And I press the "Continue" button
 	
 	#bail
-	
 	And I set the radio button to "Yes"
 	
 	And I see "You have 1,000 characters remaining" on the page
@@ -358,7 +337,6 @@ Scenario Outline: English_3rd_Char_Counts_and_warnings
 	And I press the "Continue" button
 
 	#criminaloffence
-	
 	And I set the radio button to "Yes"
 	
 	And I see "You have 1,000 characters remaining" on the page
@@ -381,7 +359,6 @@ Scenario Outline: English_3rd_Char_Counts_and_warnings
 	And I press the "Continue" button
 	
 	#mentalhealth1
-	
 	And I set the radio button to "Yes"
 	
 	And I see "You have 1,000 characters remaining" on the page
@@ -403,7 +380,6 @@ Scenario Outline: English_3rd_Char_Counts_and_warnings
 	And I press the "Continue" button
 	
 	#mentalhealth2
-	
 	And I set the radio button to "Yes"
 	
 	And I see "You have 1,000 characters remaining" on the page
@@ -426,7 +402,6 @@ Scenario Outline: English_3rd_Char_Counts_and_warnings
 	And I press the "Continue" button
 	
 	#excusal
-	
 	And I set the radio button to "No, they cannot do"
 	And I press the "Continue" button
 	
@@ -454,7 +429,6 @@ Scenario Outline: English_3rd_Char_Counts_and_warnings
 	And I press the "Continue" button
 	
 	#deferral
-	
 	Then I click on the "Back" link
 	Then I click on the "Back" link
 	
@@ -484,7 +458,6 @@ Scenario Outline: English_3rd_Char_Counts_and_warnings
 	And I press the "Continue" button
 
 	#Help in court
-
 	And I set the radio button to "Yes"
 	And I check the "Other" checkbox
 	
@@ -508,7 +481,6 @@ Scenario Outline: English_3rd_Char_Counts_and_warnings
 	And I press the "Continue" button
 
 	#Check your answers
-
 	Then I check the "The answers I have given for the person I'm replying for are true as far as I know." checkbox
 
 	When I press the "Submit" button
@@ -516,26 +488,26 @@ Scenario Outline: English_3rd_Char_Counts_and_warnings
 	Then I see "You have completed your reply" on the page
 	
 Examples:
-	|part_no	|last_name				|postcode	|email         	  |pool_no	|
-	|645200883	|LNAMEEIGHTEIGHTTHREE	|SY2 6LU	|email@outlook.com|452170401|
+	| juror_number	| last_name				| postcode	| email         	| pool_number	|
+	| 045200106		| LNAMEEIGHTEIGHTTHREE	| SY2 6LU	| email@outlook.com	| 452300105		|
 	
-@Regression 
+@Regression @NewSchemaConverted
 Scenario Outline: English_Special_Chars
-	Given I am on "Public" "juror-test02"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+
+	Given I am on "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
 		
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	
 	And I set the radio button to "I am replying for myself"
 	And I press the "Continue" button
 	Then I see "Your juror details" on the page
 	
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	And I set "Juror last name" to "<last_name>"
 	And I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
@@ -543,32 +515,27 @@ Scenario Outline: English_Special_Chars
 	When I set the radio button to "Yes"
 
 	#name
-	
 	And I set the radio button to "Yes"
 	When I press the "Continue" button
 	
 	#address
-	
 	Then I see "Is this your address?" on the page
 	
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 	
 	#phone
-	
 	Then I see "What is your phone number?" on the page
 	When I set "Main phone" to "02078211818"
 	And I press the "Continue" button
 
 	#email
-	
 	Then I see "What is your email address?" on the page
 	When I set "Enter your email address" to "<email>"
 	When I set "Enter your email address again" to "<email>"
 	And I press the "Continue" button
 
 	#DOB
-	
 	Then I see "What is your date of birth?" on the page
 	When I set "Day" to "27"
 	And I set "Month" to "04"
@@ -576,12 +543,10 @@ Scenario Outline: English_Special_Chars
 	And I press the "Continue" button
 
 	#Qualify for jury service
-	
 	Then I see "Confirm you're eligible for jury service" on the page
 	When I press the "Continue" button
 	
 	#Residency
-	
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	And I set the radio button to "No"
 	
@@ -667,104 +632,92 @@ Scenario Outline: English_Special_Chars
 	And I press the "Continue" button
 	
 	#CJS no
-	
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Bail
-	
 	Then I see "Are you currently on bail for a criminal offence?" on the page
 	When I see "Eligibility" on the page
 	And I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Convictions
-	
 	Then I see "Have you been found guilty of a criminal offence?" on the page
 	When I see "Eligibility" on the page
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Mental Health Sectioned
-	
 	Then I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
 	When I see "Eligibility" on the page
 	And I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Mental Health Capacity
-	
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
 	When I see "Eligibility" on the page
 	And I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#I can attend
-	
 	Then I see "Check your start date" on the page
 	And I see "Yes, I can start on" on the page
 	And I set the radio button to "Yes, I can start on"
 	And  I press the "Continue" button
 	
 	#RA no
-	
 	Then I see "Will you need help when you're at the court?" on the page
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	Then I see "Check your answers now" on the page
 	
 	#Check your answers
-	
 	When I check the "The information I have given is true to the best of my knowledge" checkbox
 	And I press the "Submit" button
 	Then I see "We have sent you an email to say you have replied to your jury summons." on the page
 	
 Examples:
-	|part_no		|last_name			|postcode	|email          	|pool_no	|
-	|645700805		|LNAMEEIGHTZEROFIVE	|SA1 4PF	|email@outlook.com	|457170401	|
+	| juror_number	| last_name			| postcode	| email          	| pool_number	|
+	| 045200107		| LNAMEEIGHTZEROFIVE| SA1 4PF	| email@outlook.com	| 452300106		|
 	
-@Regression 
+@Regression @NewSchemaConverted
 Scenario Outline: English_1st_Char_Counts_and_warnings
-	Given I am on "Public" "juror-test02"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+
+	Given I am on "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
 		
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	
 	And I set the radio button to "I am replying for myself"
 	And I press the "Continue" button
 	
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 	
 	#name
-	
 	Then I see "Is the name we have for you correct?" on the page
 	When I set the radio button to "Yes"
 	And I press the "Continue" button
 	
 	#address
-	
 	Then I see "Is this your address?" on the page
 	When I set the radio button to "Yes"
 	And I press the "Continue" button
 	
 	#phone
-	
 	Then I see "What is your phone number?" on the page
 	And I set "Main phone" to "01211234444"
 	And I set "Another phone (optional)" to "07111111111"
 	And I press the "Continue" button
 	
 	#email
-	
 	Then I see "What is your email address?" on the page
 	And I set "Enter your email address" to "<email>"
 	And I set "Enter your email address again" to "<email>"
@@ -773,18 +726,15 @@ Scenario Outline: English_1st_Char_Counts_and_warnings
 	Then I see "What is your date of birth?" on the page
 	
 	#DoB
-
 	And I set "Day" to "27"
 	And I set "Month" to "04"
 	And I set "Year" to "1981"
 	And I press the "Continue" button
 	
 	#Eligibility questions
-	
 	And I press the "Continue" button
 	
 	#residency
-
 	And I set the radio button to "No"
 	
 	And I see "You have 1,000 characters remaining" on the page
@@ -805,8 +755,7 @@ Scenario Outline: English_1st_Char_Counts_and_warnings
 	And I see "You have 0 characters remaining" on the page
 	And I press the "Continue" button
 	
-	#CJS Emp	
-
+	#CJS Emp
 	And I set the radio button to "Yes"
 	And I check the "Other" checkbox
 	
@@ -831,7 +780,6 @@ Scenario Outline: English_1st_Char_Counts_and_warnings
 	And I press the "Continue" button
 	
 	#bail
-	
 	And I set the radio button to "Yes"
 	
 	And I see "You have 1,000 characters remaining" on the page
@@ -855,7 +803,6 @@ Scenario Outline: English_1st_Char_Counts_and_warnings
 	And I press the "Continue" button
 
 	#criminaloffence
-	
 	And I set the radio button to "Yes"
 	
 	And I see "You have 1,000 characters remaining" on the page
@@ -878,7 +825,6 @@ Scenario Outline: English_1st_Char_Counts_and_warnings
 	And I press the "Continue" button
 	
 	#mentalhealth1
-	
 	And I set the radio button to "Yes"
 	
 	And I see "You have 1,000 characters remaining" on the page
@@ -895,14 +841,13 @@ Scenario Outline: English_1st_Char_Counts_and_warnings
 #
 #	And I press the "Continue" button
 #	And I see "Details about how you are detained, or likely to be detained, under the Mental Health Act 1983 must be fewer characters" on the page
-#	
+#
 #	And I set "Provide details" to "These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are t"
 #	And I see "You have 0 characters remaining" on the page
 #
 	And I press the "Continue" button
 	
 	#mentalhealth2
-	
 	And I set the radio button to "Yes"
 	
 	And I see "You have 1,000 characters remaining" on the page
@@ -925,7 +870,6 @@ Scenario Outline: English_1st_Char_Counts_and_warnings
 	And I press the "Continue" button
 	
 	#excusal
-	
 	And I set the radio button to "No, I cannot do jury service and need to be excused"
 	And I press the "Continue" button
 	
@@ -949,7 +893,6 @@ Scenario Outline: English_1st_Char_Counts_and_warnings
 	And I press the "Continue" button
 	
 	#deferral
-	
 	Then I click on the "Back" link
 	Then I click on the "Back" link
 	
@@ -977,7 +920,6 @@ Scenario Outline: English_1st_Char_Counts_and_warnings
 	And I press the "Continue" button
 	
 	#Help in court
-
 	And I set the radio button to "Yes"
 	And I check the "Other" checkbox
 	
@@ -1001,7 +943,6 @@ Scenario Outline: English_1st_Char_Counts_and_warnings
 	And I press the "Continue" button
 
 	#Check your answers
-
 	Then I check the "The information I have given is true to the best of my knowledge" checkbox
 
 	When I press the "Submit" button
@@ -1009,50 +950,46 @@ Scenario Outline: English_1st_Char_Counts_and_warnings
 	Then I see "You have completed your reply" on the page
 	
 Examples:
-	|part_no		|last_name			|postcode	|email           	|pool_no	|
-	|645200922		|LNAMENINETWOTWO	|SY2 6LU	|email@outlook.com	|452170401	|
+	| juror_number	| last_name			| postcode	| email           	| pool_number	|
+	| 045200108		| LNAMENINETWOTWO	| SY2 6LU	| email@outlook.com	| 452300107		|
 	
-@Regression 
+@Regression @NewSchemaConverted
 Scenario Outline: English_1st_Char_Counts_YesToNo
-	Given I am on "Public" "juror-test02"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+
+	Given I am on "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
 		
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	
 	And I set the radio button to "I am replying for myself"
 	And I press the "Continue" button
 	
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 	
 	#name
-	
 	Then I see "Is the name we have for you correct?" on the page
 	When I set the radio button to "Yes"
 	And I press the "Continue" button
 	
 	#address
-	
 	Then I see "Is this your address?" on the page
 	When I set the radio button to "Yes"
 	And I press the "Continue" button
 	
 	#phone
-	
 	Then I see "What is your phone number?" on the page
 	And I set "Main phone" to "01211234444"
 	And I set "Another phone (optional)" to "07111111111"
 	And I press the "Continue" button
 	
 	#email
-	
 	Then I see "What is your email address?" on the page
 	And I set "Enter your email address" to "<email>"
 	And I set "Enter your email address again" to "<email>"
@@ -1061,18 +998,15 @@ Scenario Outline: English_1st_Char_Counts_YesToNo
 	Then I see "What is your date of birth?" on the page
 	
 	#DoB
-
 	And I set "Day" to "27"
 	And I set "Month" to "04"
 	And I set "Year" to "1981"
 	And I press the "Continue" button
 	
 	#Eligibility questions
-	
 	And I press the "Continue" button
 	
 	#residency
-
 	And I set the radio button to "No"
 	
 	And I see "You have 1,000 characters remaining" on the page
@@ -1089,8 +1023,7 @@ Scenario Outline: English_1st_Char_Counts_YesToNo
 	
 	And I press the "Continue" button
 	
-	#CJS Emp	
-
+	#CJS Emp
 	And I set the radio button to "Yes"
 	And I check the "Other" checkbox
 	
@@ -1109,7 +1042,6 @@ Scenario Outline: English_1st_Char_Counts_YesToNo
 	And I press the "Continue" button
 	
 	#bail
-	
 	And I set the radio button to "Yes"
 	
 	And I see "You have 1,000 characters remaining" on the page
@@ -1127,7 +1059,6 @@ Scenario Outline: English_1st_Char_Counts_YesToNo
 	And I press the "Continue" button
 
 	#criminaloffence
-	
 	And I set the radio button to "Yes"
 	
 	And I see "You have 1,000 characters remaining" on the page
@@ -1145,7 +1076,6 @@ Scenario Outline: English_1st_Char_Counts_YesToNo
 	And I press the "Continue" button
 	
 	#mentalhealth1
-	
 	And I set the radio button to "Yes"
 	
 	And I see "You have 1,000 characters remaining" on the page
@@ -1157,7 +1087,6 @@ Scenario Outline: English_1st_Char_Counts_YesToNo
 	And I set the radio button to "No"
 	
 	#mentalhealth2
-	
 	And I set the radio button to "Yes"
 	
 	And I see "You have 1,000 characters remaining" on the page
@@ -1175,13 +1104,11 @@ Scenario Outline: English_1st_Char_Counts_YesToNo
 	And I press the "Continue" button
 	
 	#candojuryservice
-	
 	And I see "Yes, I can start on" on the page
 	And I set the radio button to "Yes, I can start on"
 	And I press the "Continue" button
 
 	#Help in court
-
 	And I set the radio button to "Yes"
 	And I check the "Other" checkbox
 	
@@ -1200,7 +1127,6 @@ Scenario Outline: English_1st_Char_Counts_YesToNo
 	And I press the "Continue" button
 
 	#Check your answers
-
 	Then I check the "The information I have given is true to the best of my knowledge" checkbox
 
 	When I press the "Submit" button
@@ -1208,6 +1134,5 @@ Scenario Outline: English_1st_Char_Counts_YesToNo
 	Then I see "You have completed your reply" on the page
 	
 Examples:
-	|part_no		|last_name			|postcode	|email           	|pool_no	|
-	|645200927		|LNAMENINETWOSEVEN	|SY2 6LU	|email@outlook.com	|452170401	|
-	
+	| juror_number	| last_name			| postcode	| email           	| pool_number	|
+	| 045200109		| LNAMENINETWOSEVEN	| SY2 6LU	| email@outlook.com	| 452300108		|

@@ -12,10 +12,10 @@ Scenario Outline:
 		| <part_no> |<pool_no>	| 400 	|
 		
 	
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+
+
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	
 	Then I see "Reply to a jury summons" on the page
 	
@@ -23,7 +23,7 @@ Scenario Outline:
 	And I press the "Continue" button
 	Then I see "Your juror details" on the page
 	
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
@@ -152,10 +152,10 @@ Scenario Outline:
 	When I log in as "CPASS"
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	Then I see "<part_no>" on the page
-	And I click on "<part_no>" in the same row as "<part_no>"
+	Then I see "<juror_number>" on the page
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 
 	And I press the "Process reply" button
 	And I click on the "Excusal" link
@@ -165,8 +165,8 @@ Scenario Outline:
 	And I see "Excused" on the page
 	And I see "COMPLETED" on the page
 	
-	Then on "JUROR" . "POOL" I see "H_PHONE" is "0207 8211 818" where "PART_NO" is "<part_no>"
-	Then on "JUROR" . "POOL" I see "W_PHONE" is "0207 1111 112" where "PART_NO" is "<part_no>"
+	Then on "JUROR" . "POOL" I see "H_PHONE" is "0207 8211 818" where "PART_NO" is "<juror_number>"
+	Then on "JUROR" . "POOL" I see "W_PHONE" is "0207 1111 112" where "PART_NO" is "<juror_number>"
 	
 Examples:
 	|part_no		|last_name			|postcode	| email 	| pool_no	|

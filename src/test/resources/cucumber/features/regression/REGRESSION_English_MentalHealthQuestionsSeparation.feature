@@ -1,28 +1,25 @@
 Feature: Regression 1st_MentalHealthQuestionsSeparation
 
-@Regression @JDB-3584 
+@Regression @NewSchemaConverted
 Scenario Outline: 1st party MHQ1=Y MHQ2=Y
 	
-	Given I am on "Public" "juror-test02"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+	Given I am on "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
 		
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	
 	Then I see "Reply to a jury summons" on the page
-	
-	
+
 	And I set the radio button to "I am replying for myself"
 	And I press the "Continue" button
 	Then I see "Your juror details" on the page
 	
 	#Juror Log In
-	
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
@@ -30,28 +27,23 @@ Scenario Outline: 1st party MHQ1=Y MHQ2=Y
 	When I set the radio button to "Yes"
 	
 	#Check Name
-	
 	And I press the "Continue" button
 	Then I see "Is this your address?" on the page
 	When I set the radio button to "Yes"
 	
 	#Check Address
-	
 	And I press the "Continue" button
 	
 	#Phone Details
-	
 	When I set "Main phone" to "0207 821 1818"
 	And I press the "Continue" button
 
 	#Email
-
-	When I set "Enter your email address" to "email@outlook.com"
-	And I set "Enter your email address again" to "email@outlook.com"
+	When I set "Enter your email address" to <email>"
+	And I set "Enter your email address again" to "<email>"
 	And I press the "Continue" button
 	
 	#DoB
-	
 	When I set "Day" to "27"
 	And I set "Month" to "04"
 	And I set "Year" to "1981"
@@ -62,39 +54,33 @@ Scenario Outline: 1st party MHQ1=Y MHQ2=Y
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	
 	#Residency
-	
 	When I set the radio button to "Yes"
 	And I press the "Continue" button
 	
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
 		
 	#CJS no
-	
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	Then I see "Are you currently on bail for a criminal offence?" on the page
 		
 	#Bail
-	
 	And I set the radio button to "No"
 	And I press the "Continue" button
 	
 	Then I see "Have you been found guilty of a criminal offence?" on the page
 	
 	#Convictions
-	
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Mental Health part 1
-	
 	When I set the radio button to "Yes"
 	And I set "Provide details about how you're being detained, looked after or treated under the Mental Health Act" to "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. N"
 	And I press the "Continue" button
 	
 	#Mental Health part 2
-	
 	When I set the radio button to "Yes"
 	And I set "Provide brief details about why it was decided you lack mental capacity" to "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. N"
 	And I press the "Continue" button
@@ -102,7 +88,6 @@ Scenario Outline: 1st party MHQ1=Y MHQ2=Y
 	Then I see "Check your start date" on the page
 	
 	#I can attend
-	
 	And I see "Yes, I can start on" on the page
 	When I set the radio button to "Yes, I can start on"
 	And  I press the "Continue" button	
@@ -110,29 +95,25 @@ Scenario Outline: 1st party MHQ1=Y MHQ2=Y
 	Then I see "Will you need help when you're at the court?" on the page
 	
 	#RA no
-	
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	Then I see "Check your answers now" on the page
 	
 	#Check your answers
-	
 	And I check the "The information I have given is true to the best of my knowledge" checkbox
 	And I press the "Submit" button
 	
 	#When I press the "Submit" button
-	
 	Then I see "We have sent you an email to say you have replied to your jury summons." on the page
 
 	#Bureau
-	
-	Given I am on "Bureau" "juror-test02" 	
+	Given I am on "Bureau" "test"
 	And I log in as "SYSTEM"
-	
+
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	
 	When I click on the "Eligibility" link
 	Then I see "Attention" in the same row as "Mental health"
@@ -141,32 +122,29 @@ Scenario Outline: 1st party MHQ1=Y MHQ2=Y
 	And I do not see "[MENTAL HEALTH Q2]" on the page
 
 Examples:
-	|part_no		|last_name			|postcode	| email           |pool_no		|
-	|741500530		|LNAMEFIVETHREEZERO	|CH1 2AN	|email@outlook.com|415181001	|
+	| juror_number	| last_name			| postcode	| email            | pool_number|
+	| 045200097		| LNAMEFIVETHREEZERO| CH1 2AN	| email@outlook.com| 452300096	|
 	
-@Regression @JDB-3584 
+@Regression @NewSchemaConverted
 Scenario Outline: 1st party MHQ1=Y MHQ2=N
 	
-	Given I am on "Public" "juror-test02"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+	Given I am on "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
 		
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	
 	Then I see "Reply to a jury summons" on the page
-	
-	
+
 	And I set the radio button to "I am replying for myself"
 	And I press the "Continue" button
 	Then I see "Your juror details" on the page
 	
 	#Juror Log In
-	
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
@@ -174,28 +152,23 @@ Scenario Outline: 1st party MHQ1=Y MHQ2=N
 	When I set the radio button to "Yes"
 	
 	#Check Name
-	
 	And I press the "Continue" button
 	Then I see "Is this your address?" on the page
 	When I set the radio button to "Yes"
 	
 	#Check Address
-	
 	And I press the "Continue" button
 	
 	#Phone Details
-	
 	When I set "Main phone" to "0207 821 1818"
 	And I press the "Continue" button
 
 	#Email
-
-	When I set "Enter your email address" to "email@outlook.com"
-	And I set "Enter your email address again" to "email@outlook.com"
+	When I set "Enter your email address" to "<email>"
+	And I set "Enter your email address again" to "<email>"
 	And I press the "Continue" button
 	
 	#DoB
-	
 	When I set "Day" to "27"
 	And I set "Month" to "04"
 	And I set "Year" to "1981"
@@ -206,46 +179,39 @@ Scenario Outline: 1st party MHQ1=Y MHQ2=N
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	
 	#Residency
-	
 	When I set the radio button to "Yes"
 	And I press the "Continue" button
 	
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
 	
 	#CJS no
-	
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	Then I see "Are you currently on bail for a criminal offence?" on the page
 		
 	#Bail
-	
 	And I set the radio button to "No"
 	And I press the "Continue" button
 	
 	Then I see "Have you been found guilty of a criminal offence?" on the page
 	
 	#Convictions
-	
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Mental Health part 1
-	
 	When I set the radio button to "Yes"
 	And I set "Provide details" to "I am sectioned"
 	And I press the "Continue" button
 	
 	#Mental Health part 2
-	
 	When I set the radio button to "No"
 	And I press the "Continue" button
 		
 	Then I see "Check your start date" on the page
 	
 	#I can attend
-	
 	And I see "Yes, I can start on" on the page
 	When I set the radio button to "Yes, I can start on"
 	And  I press the "Continue" button
@@ -253,29 +219,25 @@ Scenario Outline: 1st party MHQ1=Y MHQ2=N
 	Then I see "Will you need help when you're at the court?" on the page
 	
 	#RA no
-	
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	Then I see "Check your answers now" on the page
 	
 	#Check your answers
-	
 	And I check the "The information I have given is true to the best of my knowledge" checkbox
 	And I press the "Submit" button
 	
 	#When I press the "Submit" button
-	
 	Then I see "We have sent you an email to say you have replied to your jury summons." on the page
 
 	#Bureau
-	
-	Given I am on "Bureau" "juror-test02" 	
+	Given I am on "Bureau" "test"
 	And I log in as "SYSTEM"
-	
+
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	
 	When I click on the "Eligibility" link
 	Then I see "Attention" in the same row as "Mental health"
@@ -284,62 +246,54 @@ Scenario Outline: 1st party MHQ1=Y MHQ2=N
 	And I do not see "[MENTAL HEALTH Q2]" on the page
 
 Examples:
-	|part_no		|last_name			|postcode	| email           |pool_no		|
-	|741500607		|LNAMESIXZEROSEVEN	|CH1 2AN	|email@outlook.com|415181001	|
+	| juror_number	| last_name			| postcode	| email            | pool_number|
+	| 045200098		| LNAMESIXZEROSEVEN	| CH1 2AN	| email@outlook.com| 452300097	|
 	
-@Regression @JDB-3584 
+@Regression @NewSchemaConverted
 Scenario Outline: 1st party MHQ1=N MHQ2=Y
 	
-	Given I am on "Public" "juror-test02"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+	Given I am on "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
 		
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	
 	Then I see "Reply to a jury summons" on the page
-	
-	
+
 	And I set the radio button to "I am replying for myself"
 	And I press the "Continue" button
 	Then I see "Your juror details" on the page
 	
 	#Juror Log In
-	
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 	Then I see "Is the name we have for you correct?" on the page
 	
 	#Check Name
-	
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 	
 	Then I see "Is this your address?" on the page
 	
 	#Check Address
-	
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 	
 	#Phone Details
-	
 	When I set "Main phone" to "0207 821 1818"
 	And I press the "Continue" button
 
 	#Email
-
 	When I set "Enter your email address" to "email@outlook.com"
 	And I set "Enter your email address again" to "email@outlook.com"
 	And I press the "Continue" button
 	
 	#DoB
-	
 	When I set "Day" to "27"
 	And I set "Month" to "04"
 	And I set "Year" to "1981"
@@ -350,38 +304,32 @@ Scenario Outline: 1st party MHQ1=N MHQ2=Y
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	
 	#Residency
-	
 	When I set the radio button to "Yes"
 	And I press the "Continue" button
 	
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
 	
 	#CJS no
-	
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	Then I see "Are you currently on bail for a criminal offence?" on the page
 		
 	#Bail
-	
 	And I set the radio button to "No"
 	And I press the "Continue" button
 	
 	Then I see "Have you been found guilty of a criminal offence?" on the page
 	
 	#Convictions
-	
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Mental Health part 1
-	
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Mental Health part 2
-	
 	When I set the radio button to "Yes"
 	And I set "Provide brief details about why it was decided you lack mental capacity" to "I lack capacity"
 	And I press the "Continue" button
@@ -389,7 +337,6 @@ Scenario Outline: 1st party MHQ1=N MHQ2=Y
 	Then I see "Check your start date" on the page
 	
 	#I can attend
-	
 	And I see "Yes, I can start on" on the page
 	When I set the radio button to "Yes"
 	And  I press the "Continue" button
@@ -397,29 +344,25 @@ Scenario Outline: 1st party MHQ1=N MHQ2=Y
 	Then I see "Will you need help when you're at the court?" on the page
 	
 	#RA no
-	
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	Then I see "Check your answers now" on the page
 	
 	#Check your answers
-	
 	And I check the "The information I have given is true to the best of my knowledge" checkbox
 	And I press the "Submit" button
 	
 	#When I press the "Submit" button
-	
 	Then I see "We have sent you an email to say you have replied to your jury summons." on the page
 
 	#Bureau
-	
-	Given I am on "Bureau" "juror-test02" 	
+	Given I am on "Bureau" "test"
 	And I log in as "SYSTEM"
-	
+
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	
 	When I click on the "Eligibility" link
 	Then I see "Attention" in the same row as "Mental health"
@@ -428,61 +371,53 @@ Scenario Outline: 1st party MHQ1=N MHQ2=Y
 	And I do not see "[MENTAL HEALTH Q2]" on the page
 
 Examples:
-	|part_no		|last_name			|postcode	| email           |pool_no		|
-	|741500531		|LNAMEFIVETHREEONE	|CH1 2AN	|email@outlook.com|415181001	|
+	| juror_number	| last_name			| postcode	| email           	| pool_number	|
+	| 045200099		| LNAMEFIVETHREEONE	| CH1 2AN	| email@outlook.com	| 452300098		|
 	
-@Regression @JDB-3584 
+@Regression @NewSchemaConverted
 Scenario Outline: 1st party MHQ1=N MHQ2=N
 	
-	Given I am on "Public" "juror-test02"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+	Given I am on "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
 		
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	
 	Then I see "Reply to a jury summons" on the page
-	
-	
+
 	And I set the radio button to "I am replying for myself"
 	And I press the "Continue" button
 	Then I see "Your juror details" on the page
 	
 	#Juror Log In
-	
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 	Then I see "Is the name we have for you correct?" on the page
 	
 	#Check Name
-	
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 	Then I see "Is this your address?" on the page
 	
 	#Check Address
-	
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 	
 	#Phone Details
-	
 	When I set "Main phone" to "0207 821 1818"
 	And I press the "Continue" button
 
 	#Email
-
-	When I set "Enter your email address" to "email@outlook.com"
-	And I set "Enter your email address again" to "email@outlook.com"
+	When I set "Enter your email address" to "<email>"
+	And I set "Enter your email address again" to "<email>"
 	And I press the "Continue" button
 	
 	#DoB
-	
 	When I set "Day" to "27"
 	And I set "Month" to "04"
 	And I set "Year" to "1981"
@@ -493,44 +428,37 @@ Scenario Outline: 1st party MHQ1=N MHQ2=N
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	
 	#Residency
-	
 	When I set the radio button to "Yes"
 	And I press the "Continue" button
 	
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
 	
 	#CJS no
-	
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	Then I see "Are you currently on bail for a criminal offence?" on the page
 		
 	#Bail
-	
 	And I set the radio button to "No"
 	And I press the "Continue" button
 	Then I see "Have you been found guilty of a criminal offence?" on the page
 	
 	#Convictions
-	
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Mental Health part 1
-	
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Mental Health part 2
-	
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	Then I see "Check your start date" on the page
 	
 	#I can attend
-	
 	And I see "Yes, I can start on" on the page
 	And I set the radio button to "Yes"
 	And  I press the "Continue" button
@@ -538,29 +466,25 @@ Scenario Outline: 1st party MHQ1=N MHQ2=N
 	Then I see "Will you need help when you're at the court?" on the page
 	
 	#RA no
-	
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	Then I see "Check your answers now" on the page
 	
 	#Check your answers
-	
 	And I check the "The information I have given is true to the best of my knowledge" checkbox
 	And I press the "Submit" button
 	
 	#When I press the "Submit" button
-	
 	Then I see "We have sent you an email to say you have replied to your jury summons." on the page
 
 	#Bureau
-	
-	Given I am on "Bureau" "juror-test02" 	
+	Given I am on "Bureau" "test"
 	And I log in as "SYSTEM"
-	
+
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	
 	When I click on the "Eligibility" link
 	Then I see "Pass" in the same row as "Mental health"
@@ -569,21 +493,20 @@ Scenario Outline: 1st party MHQ1=N MHQ2=N
 	And I do not see "[MENTAL HEALTH Q2]" on the page
 
 Examples:
-	|part_no	|last_name	|postcode	|email            |pool_no		|
-	|641500767	|415170401	|CH1 2AN	|email@outlook.com|415170401	|
+	| juror_number	| last_name	| postcode	| email            | pool_number|
+	| 045200100		| 415170401	| CH1 2AN	| email@outlook.com| 452300099	|
 
-@Regression @JDB-3584 
+@Regression @NewSchemaConverted
 Scenario Outline: English_3rd_YY
 
-	Given I am on "Public" "juror-test02"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+	Given I am on "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
 	
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	
 	Then I see "Reply to a jury summons" on the page
 	
@@ -594,56 +517,48 @@ Scenario Outline: English_3rd_YY
 	Then I see "Their juror details" on the page
 	
 	#Juror Log In
-	
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 	Then I see "What is your name?" on the page
 	
 	#Third Party Name
-
 	When I set "First name" to "FirstNameA"
 	And I set "Last name" to "LastNameB"
 	And I press the "Continue" button
 	Then I see "Your relationship to the person" on the page
 	
 	#Third Party Relationship
-
 	When I set "How do you know the person you're replying for?" to "Friend"
 	And I press the "Continue" button
 	Then I see "Your contact information" on the page
 	
 	#3rd Party Contact
-	
 	When I check the "By phone (UK Numbers only)" checkbox
 	When I set "Main phone" to "02078211818"
 	And I check the "By email" checkbox
-	And I set "Enter your email address" to "email@outlook.com"
-	And I set "Enter your email address again" to "email@outlook.com"
+	And I set "Enter your email address" to "<email>"
+	And I set "Enter your email address again" to "<email>"
 	And I press the "Continue" button
 	Then I see "Why are you replying for the other person?" on the page
 	
 	#Why Replying
-
 	When I set the radio button to "The person is not here"
 	And I press the "Continue" button
 	Then I see "Is the name we have for them correct?" on the page
 	When I set the radio button to "Yes"
 	
 	#Check Juror Name
-
 	And I press the "Continue" button
 	Then I see "Is this their address?" on the page
 	When I set the radio button to "Yes"
 	
 	#Check address
-	
 	And I press the "Continue" button
 	Then I see "Give the date of birth for the person you're replying for" on the page
 	
 	#Juror DoB
-	
 	When I set "Day" to "27"
 	And I set "Month" to "04"
 	And I set "Year" to "1981"
@@ -651,46 +566,36 @@ Scenario Outline: English_3rd_YY
 	Then I see "We might need to get in touch with the person to ask them more questions or give them information about their jury service" on the page
 	
 	#Contacting the Juror
-	
 	When I set the radio button to "Use the phone number that you have already given to contact you"
 	And I set the radio button to "Use the email address that you have already given to contact you"
 	And I press the "Continue" button
 	
 	#Eligibility
-	
 	Then I see "Confirm if the person is eligible for jury service" on the page
 	
 	When I press the "Continue" button
 	Then I see "Since they turned 13, has their main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	
 	#Residency Yes
-	
 	When I set the radio button to "Yes"
 	And I press the "Continue" button
 	
 	#CJS no
-
 	Then I see "Has the person you're replying for worked in the criminal justice system in the last 5 years?" on the page
 	When I set the radio button to "No"
 	And I press the "Continue" button	
-	
-	
+
 	#Bail no
-	
 	Then I see "Is the person currently on bail for a criminal offence?" on the page
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Convictions no
-	
 	Then I see "Has the person been found guilty of a criminal offence?" on the page
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Mental health part 1
-	
-#	Then I see "Is the person you're replying for being detained, looked after or treated under the Mental Health Act?" on the page
-		
 	Then on the page I see
 	|text|
 	|Is the person you're replying for being detained, looked after or treated under the Mental Health Act?|
@@ -710,10 +615,8 @@ Scenario Outline: English_3rd_YY
 	And I set "Provide details about how they're being detained, looked after or treated under the Mental Health Ac" to "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. N"
 	
 	And I press the "Continue" button
-#	Then I see "Has it been decided that the person you're replying for 'lacks mental capacity'?" on the page
-	
+
 	#Mental health part 2
-	
 	And on the page I see
 	|text|
 	|Has it been decided that the person you're replying for 'lacks mental capacity'?|
@@ -736,13 +639,11 @@ Scenario Outline: English_3rd_YY
 	And I press the "Continue" button
 	
 	#I can attend
-
 	Then I see "Check your start date" on the page
 	Then I set the radio button to "Yes, they can start on"
 	And  I press the "Continue" button
 
 	#RA no
-	
 	Then I see "Will the person you're replying for need help when they're at the court?" on the page
 	When I set the radio button to "No"
 	And I press the "Continue" button
@@ -753,19 +654,17 @@ Scenario Outline: English_3rd_YY
 	And I see text "Yes" in the same row as "Has it been decided that the person you're replying for 'lacks mental capacity'?"
 	
 	#When I press the "Submit" button
-
 	When I check the "The answers I have given for the person I'm replying for are true as far as I know." checkbox
 	And I press the "Submit" button
 	
 	#Confirmation
-	
 	Then I see "You have completed your reply" on the page
 	And I see "Download a copy of your summons reply HTML" on the page
 	And I click on the "Download a copy of your summons reply HTML" link
 	
 	And I see "Copy of your jury summons reply" on the page
 	And I see "<last_name>" in the same row as "Name"
-	And I see "<part_no>" in the same row as "Juror number"
+	And I see "<juror_number>" in the same row as "Juror number"
 
 	And I see "You answered the eligibility questions" on the page
 	And I see "Yes" in the same row as "Is the person you're replying for being detained, looked after or treated under the Mental Health Act?"
@@ -774,15 +673,15 @@ Scenario Outline: English_3rd_YY
 	Then I press the "back" button on my browser
 	Then I see "You have completed your reply" on the page
 	And I see "Download a copy of your summons reply HTML" on the page 
-	#Bureau
-	
-	Given I am on "Bureau" "juror-test02" 	
+
+ 	#Bureau
+	Given I am on "Bureau" "test"
 	And I log in as "SYSTEM"
-	
+
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	
 	When I click on the "Eligibility" link
 	Then I see "Attention" in the same row as "Mental health"
@@ -792,21 +691,20 @@ Scenario Outline: English_3rd_YY
 	And I do not see "[MENTAL HEALTH Q2]" on the page
 	
 Examples:
-	| part_no		|last_name			|postcode	| email           |pool_no		|
-	|641500932		|LNAMENINETHREETWO	|CH1 2AN	|email@outlook.com|415170601	|
+	| juror_number	| last_name			| postcode	| email           	| pool_number	|
+	| 045200101		| LNAMENINETHREETWO	| CH1 2AN	| email@outlook.com	| 452300100		|
 
-@Regression @JDB-3584 
+@Regression @NewSchemaConverted
 Scenario Outline: English_3rd_YN
 
-	Given I am on "Public" "juror-test02"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+	Given I am on "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
 	
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	
 	Then I see "Reply to a jury summons" on the page
 	
@@ -817,56 +715,48 @@ Scenario Outline: English_3rd_YN
 	Then I see "Their juror details" on the page
 	
 	#Juror Log In
-	
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 	Then I see "What is your name?" on the page
 	
 	#Third Party Name
-
 	When I set "First name" to "FirstNameA"
 	And I set "Last name" to "LastNameB"
 	And I press the "Continue" button
 	Then I see "Your relationship to the person" on the page
 	
 	#Third Party Relationship
-
 	When I set "How do you know the person you're replying for?" to "Friend"
 	And I press the "Continue" button
 	Then I see "Your contact information" on the page
 	
 	#3rd Party Contact
-	
 	When I check the "By phone (UK Numbers only)" checkbox
 	When I set "Main phone" to "02078211818"
 	And I check the "By email" checkbox
-	And I set "Enter your email address" to "email@outlook.com"
-	And I set "Enter your email address again" to "email@outlook.com"
+	And I set "Enter your email address" to "<email>"
+	And I set "Enter your email address again" to "<email>"
 	And I press the "Continue" button
 	Then I see "Why are you replying for the other person?" on the page
 	
 	#Why Replying
-
 	When I set the radio button to "The person is not here"
 	And I press the "Continue" button
 	Then I see "Is the name we have for them correct?" on the page
 	When I set the radio button to "Yes"
 	
 	#Check Juror Name
-
 	And I press the "Continue" button
 	Then I see "Is this their address?" on the page
 	
 	#Check address
-	
 	When I set the radio button to "Yes"
 	And I press the "Continue" button
 	Then I see "Give the date of birth for the person you're replying for" on the page
 	
 	#Juror DoB
-	
 	When I set "Day" to "27"
 	And I set "Month" to "04"
 	And I set "Year" to "1981"
@@ -874,47 +764,40 @@ Scenario Outline: English_3rd_YN
 	Then I see "We might need to get in touch with the person to ask them more questions or give them information about their jury service" on the page
 	
 	#Contacting the Juror
-	
 	When I set the radio button to "Use the phone number that you have already given to contact you"
 	And I set the radio button to "Use the email address that you have already given to contact you"
 	And I press the "Continue" button
 	
 	#Eligibility
-	
 	Then I see "Confirm if the person is eligible for jury service" on the page
 	
 	When I press the "Continue" button
 	Then I see "Since they turned 13, has their main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	
 	#Residency Yes
-	
 	When I set the radio button to "Yes"
 	And I press the "Continue" button
 	
 	Then I see "Has the person you're replying for worked in the criminal justice system in the last 5 years?" on the page
 	
 	#CJS no
-
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	Then I see "Is the person currently on bail for a criminal offence?" on the page
 	
 	#Bail no
-	
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	Then I see "Has the person been found guilty of a criminal offence?" on the page
 	
 	#Convictions no
-
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	Then I see "Is the person you're replying for being detained, looked after or treated under the Mental Health Act?" on the page
 	
 	#Mental health part 1
-	
 	When I set the radio button to "Yes"
 	And I set "Provide details" to "They are sectioned"
 
@@ -922,7 +805,6 @@ Scenario Outline: English_3rd_YN
 	Then I see "Has it been decided that the person you're replying for 'lacks mental capacity'?" on the page
 	
 	#Mental health part 2
-	
 	When I set the radio button to "No"
 	
 	And I press the "Continue" button
@@ -930,34 +812,30 @@ Scenario Outline: English_3rd_YN
 	Then I see "Check your start date" on the page
 	
 	#I can attend
-
 	Then I set the radio button to "Yes, they can start on"
 	And  I press the "Continue" button
 	
 	Then I see "Will the person you're replying for need help when they're at the court?" on the page
 	
 	#RA no
-
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	Then I see "Check your answers now" on the page
 	
 	#When I press the "Submit" button
-	
 	When I check the "The answers I have given for the person I'm replying for are true as far as I know." checkbox
 	And I press the "Submit" button
 	Then I see "We have sent an email to say you have replied to this jury summons." on the page
 
 	#Bureau
-	
-	Given I am on "Bureau" "juror-test02" 	
+	Given I am on "Bureau" "test"
 	And I log in as "SYSTEM"
-	
+
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	
 	When I click on the "Eligibility" link
 	Then I see "Attention" in the same row as "Mental health"
@@ -966,25 +844,23 @@ Scenario Outline: English_3rd_YN
 	And I do not see "[MENTAL HEALTH Q2]" on the page
 	
 Examples:
-	| part_no		|last_name			|postcode	|email           	|pool_no	|
-	|641500693		|LNAMENINETHREETWO	|CH1 2AN	|email@outlook.com	|415170401	|
+	| juror_number	| last_name			| postcode	| email           	| pool_number	|
+	| 045200102		| LNAMENINETHREETWO	| CH1 2AN	| email@outlook.com	| 452300101		|
 
-@Regression @JDB-3584 
+@Regression @NewSchemaConverted
 Scenario Outline: English_3rd_NY
 
-	Given I am on "Public" "juror-test02"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+	Given I am on "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
 	
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	
 	Then I see "Reply to a jury summons" on the page
-	
-	
+
 	Then I see "Are you replying for yourself or for someone else?" on the page
 
 	When I set the radio button to "I am replying for someone else"
@@ -992,15 +868,13 @@ Scenario Outline: English_3rd_NY
 	Then I see "Their juror details" on the page
 	
 	#Juror Log In
-	
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 	Then I see "What is your name?" on the page
 	
 	#Third Party Name
-
 	When I set "First name" to "FirstNameA"
 	And I set "Last name" to "LastNameB"
 	And I press the "Continue" button
@@ -1008,46 +882,40 @@ Scenario Outline: English_3rd_NY
 	Then I see "Your relationship to the person" on the page
 	
 	#Third Party Relationship
-
 	When I set "How do you know the person you're replying for?" to "Friend"
 	And I press the "Continue" button
 	
 	Then I see "Your contact information" on the page
 	
 	#3rd Party Contact
-	
 	When I check the "By phone (UK Numbers only)" checkbox
 	When I set "Main phone" to "02078211818"
 	And I check the "By email" checkbox
-	And I set "Enter your email address" to "email@outlook.com"
-	And I set "Enter your email address again" to "email@outlook.com"
+	And I set "Enter your email address" to "<email>"
+	And I set "Enter your email address again" to "<email>"
 	And I press the "Continue" button
 	
 	Then I see "Why are you replying for the other person?" on the page
 	
 	#Why Replying
-
 	When I set the radio button to "The person is not here"
 	And I press the "Continue" button
 	
 	Then I see "Is the name we have for them correct?" on the page
 	
 	#Check Juror Name
-	
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 	
 	Then I see "Is this their address?" on the page
 	
 	#Check address
-	
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 	
 	Then I see "Give the date of birth for the person you're replying for" on the page
 	
 	#Juror DoB
-	
 	When I set "Day" to "27"
 	And I set "Month" to "04"
 	And I set "Year" to "1981"
@@ -1056,13 +924,11 @@ Scenario Outline: English_3rd_NY
 	Then I see "We might need to get in touch with the person to ask them more questions or give them information about their jury service" on the page
 	
 	#Contacting the Juror
-	
 	When I set the radio button to "Use the phone number that you have already given to contact you"
 	And I set the radio button to "Use the email address that you have already given to contact you"
 	And I press the "Continue" button
 	
 	#Eligibility
-	
 	Then I see "Confirm if the person is eligible for jury service" on the page
 	
 	When I press the "Continue" button
@@ -1070,41 +936,35 @@ Scenario Outline: English_3rd_NY
 	Then I see "Since they turned 13, has their main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	
 	#Residency Yes
-	
 	When I set the radio button to "Yes"
 	And I press the "Continue" button
 	
 	Then I see "Has the person you're replying for worked in the criminal justice system in the last 5 years?" on the page
 	
 	#CJS no
-
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	Then I see "Is the person currently on bail for a criminal offence?" on the page
 	
 	#Bail no
-	
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	Then I see "Has the person been found guilty of a criminal offence?" on the page
 	
 	#Convictions no
-
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	Then I see "Is the person you're replying for being detained, looked after or treated under the Mental Health Act?" on the page
 	
 	#Mental health part 1
-	
 	When I set the radio button to "No"
 
 	And I press the "Continue" button
 	Then I see "Has it been decided that the person you're replying for 'lacks mental capacity'?" on the page
 	
 	#Mental health part 2
-	
 	When I set the radio button to "Yes"
 	And I set "Provide brief details about why it was decided they lack mental capacity" to "They lack capacity"
 	
@@ -1113,33 +973,29 @@ Scenario Outline: English_3rd_NY
 	Then I see "Check your start date" on the page
 	
 	#I can attend
-
 	Then I set the radio button to "Yes, they can start on"
 	And  I press the "Continue" button
 	
 	Then I see "Will the person you're replying for need help when they're at the court?" on the page
 	
 	#RA no
-
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	Then I see "Check your answers now" on the page
 	
 	#When I press the "Submit" button
-	
 	When I check the "The answers I have given for the person I'm replying for are true as far as I know." checkbox
 	And I press the "Submit" button
 	Then I see "We have sent an email to say you have replied to this jury summons." on the page
 
 	#Bureau
-	
-	Given I am on "Bureau" "juror-test02" 	
+	Given I am on "Bureau" "test"
 	And I log in as "SYSTEM"
-	
+
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	
 	When I click on the "Eligibility" link
 	Then I see "Attention" in the same row as "Mental health"
@@ -1148,21 +1004,20 @@ Scenario Outline: English_3rd_NY
 	And I do not see "[MENTAL HEALTH Q2]" on the page
 	
 Examples:
-	| part_no	|last_name			|postcode	| email           |pool_no		|
-	|641500148	|LNAMENINETHREETWO	|CH1 2AN	|email@outlook.com|415170401	|
+	| juror_number	| last_name			| postcode	| email           	| pool_number	|
+	| 045200103		| LNAMENINETHREETWO	| CH1 2AN	| email@outlook.com	| 452300102		|
 
-@Regression @JDB-3584 
+@Regression @NewSchemaConverted
 Scenario Outline: English_3rd_NN
 
-	Given I am on "Public" "juror-test02"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+	Given I am on "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
 	
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	
 	Then I see "Reply to a jury summons" on the page
 	
@@ -1174,58 +1029,50 @@ Scenario Outline: English_3rd_NN
 	Then I see "Their juror details" on the page
 	
 	#Juror Log In
-	
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 	Then I see "What is your name?" on the page
 	
 	#Third Party Name
-
 	When I set "First name" to "FirstNameA"
 	And I set "Last name" to "LastNameB"
 	And I press the "Continue" button
 	Then I see "Your relationship to the person" on the page
 	
 	#Third Party Relationship
-
 	When I set "How do you know the person you're replying for?" to "Friend"
 	And I press the "Continue" button
 	Then I see "Your contact information" on the page
 	
 	#3rd Party Contact
-	
 	When I check the "By phone (UK Numbers only)" checkbox
 	When I set "Main phone" to "02078211818"
 	And I check the "By email" checkbox
-	And I set "Enter your email address" to "email@outlook.com"
-	And I set "Enter your email address again" to "email@outlook.com"
+	And I set "Enter your email address" to "<email>"
+	And I set "Enter your email address again" to "<email>"
 	And I press the "Continue" button
 	Then I see "Why are you replying for the other person?" on the page
 	
 	#Why Replying
-
 	When I set the radio button to "The person is not here"
 	And I press the "Continue" button
 	Then I see "Is the name we have for them correct?" on the page
 	
 	#Check Juror Name
-	
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 	
 	Then I see "Is this their address?" on the page
 	
 	#Check address
-	
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 	
 	Then I see "Give the date of birth for the person you're replying for" on the page
 	
 	#Juror DoB
-	
 	When I set "Day" to "27"
 	And I set "Month" to "04"
 	And I set "Year" to "1981"
@@ -1234,55 +1081,47 @@ Scenario Outline: English_3rd_NN
 	Then I see "We might need to get in touch with the person to ask them more questions or give them information about their jury service" on the page
 	
 	#Contacting the Juror
-	
 	When I set the radio button to "Use the phone number that you have already given to contact you"
 	And I set the radio button to "Use the email address that you have already given to contact you"
 	And I press the "Continue" button
 	
 	#Eligibility
-	
 	Then I see "Confirm if the person is eligible for jury service" on the page
 	
 	When I press the "Continue" button
 	Then I see "Since they turned 13, has their main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	
 	#Residency Yes
-	
 	When I set the radio button to "Yes"
 	And I press the "Continue" button
 	
 	Then I see "Has the person you're replying for worked in the criminal justice system in the last 5 years?" on the page
 	
 	#CJS no
-
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	Then I see "Is the person currently on bail for a criminal offence?" on the page
 	
 	#Bail no
-	
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	Then I see "Has the person been found guilty of a criminal offence?" on the page
 	
 	#Convictions no
-
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	Then I see "Is the person you're replying for being detained, looked after or treated under the Mental Health Act?" on the page
 	
 	#Mental health part 1
-	
 	When I set the radio button to "No"
 
 	And I press the "Continue" button
 	Then I see "Has it been decided that the person you're replying for 'lacks mental capacity'?" on the page
 	
 	#Mental health part 2
-	
 	When I set the radio button to "No"
 	
 	And I press the "Continue" button
@@ -1290,34 +1129,30 @@ Scenario Outline: English_3rd_NN
 	Then I see "Check your start date" on the page
 	
 	#I can attend
-
 	Then I set the radio button to "Yes, they can start on"
 	And  I press the "Continue" button
 	
 	Then I see "Will the person you're replying for need help when they're at the court?" on the page
 	
 	#RA no
-
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	Then I see "Check your answers now" on the page
 	
 	#When I press the "Submit" button
-	
 	When I check the "The answers I have given for the person I'm replying for are true as far as I know." checkbox
 	And I press the "Submit" button
 	Then I see "We have sent an email to say you have replied to this jury summons." on the page
 
 	#Bureau
-	
-	Given I am on "Bureau" "juror-test02" 	
+	Given I am on "Bureau" "test"
 	And I log in as "SYSTEM"
-	
+
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	
 	When I click on the "Eligibility" link
 	Then I see "Pass" in the same row as "Mental health"
@@ -1326,5 +1161,5 @@ Scenario Outline: English_3rd_NN
 	And I do not see "[MENTAL HEALTH Q2]" on the page
 	
 Examples:
-	|part_no	|last_name			|postcode	|email            |pool_no		|
-	|641500885	|LNAMENINETHREETWO	|CH1 2AN	|email@outlook.com|415170401	|
+	| juror_number	| last_name			| postcode	| email            | pool_number|
+	| 045200104		| LNAMENINETHREETWO	| CH1 2AN	| email@outlook.com| 452300103	|

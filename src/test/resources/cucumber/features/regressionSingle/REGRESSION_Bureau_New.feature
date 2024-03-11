@@ -114,10 +114,10 @@ Scenario Outline: Your Work
 
 	# Set part_no pool to not be urgent
 
-	Given "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "LNAME" as "<last_name>"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	Given "<juror_number>" has "RET_DATE" as "5 mondays time"
+
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 
 	# Submit response in pool
 
@@ -127,7 +127,7 @@ Scenario Outline: Your Work
 
 	#update response to have been received 6 days ago
 
-	Given the "DATE_RECEIVED" for juror "<part_no>" is set to "-2 mondays time"
+	Given the "DATE_RECEIVED" for juror "<juror_number>" is set to "-2 mondays time"
 
 	# Set part_no pool to be urgent
 
@@ -190,11 +190,11 @@ Scenario Outline: Your Work
 	And I see link with text "Search"
 	And I see "/inbox" in the URL
 	
-	Then I see "<part_no>" on the page
-#	And on Bureau I see "<part_no>" under "High priority"
-	And I see "<part_no>" is flagged as overdue
-	And I see "LNAMEONE" in the same row as "<part_no>"
-	And I see "SWANSEA" in the same row as "<part_no>"
+	Then I see "<juror_number>" on the page
+#	And on Bureau I see "<juror_number>" under "High priority"
+	And I see "<juror_number>" is flagged as overdue
+	And I see "LNAMEONE" in the same row as "<juror_number>"
+	And I see "SWANSEA" in the same row as "<juror_number>"
 	
 	Then I see "<part_no_two>" on the page
 	Then I see "URGENT" icon in the same row as "<part_no_two>"
@@ -210,7 +210,7 @@ Scenario Outline: Your Work
 	And I see "LNAMEFOUR" in the same row as "<part_no_four>"
 	And I see "SWANSEA" in the same row as "<part_no_four>"
 
-	When I click on "<part_no>" in the same row as "<part_no>"
+	When I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Record status" on the page
 	And I see "OVERDUE" on the page
 
@@ -229,12 +229,12 @@ Scenario Outline: Your Work
 	And I press the "Confirm" button
 	Then I see "AWAITING COURT REPLY" on the page
 	When I click on the "Your work" link
-	Then I do not see "<part_no>" on the page
+	Then I do not see "<juror_number>" on the page
 	When I click on the "Awaiting information" link
 	And I see "/pending" in the URL
-	Then I see "<part_no>" on the page
-	Then I see "AWAITING COURT REPLY" in the same row as "<part_no>"
-	And I see "<part_no>" is flagged as overdue
+	Then I see "<juror_number>" on the page
+	Then I see "AWAITING COURT REPLY" in the same row as "<juror_number>"
+	And I see "<juror_number>" is flagged as overdue
 	
 	When I click on the "To do" link
 	When I click on "<part_no_two>" in the same row as "<part_no_two>"
@@ -297,16 +297,16 @@ Scenario Outline: Your Work
 	#complete
 	
 	When I click on the "Awaiting information" link
-	When I click on "<part_no>" in the same row as "<part_no>"
+	When I click on "<juror_number>" in the same row as "<juror_number>"
 	When I select "Responded" from Process reply
 	And I check the "Mark juror as 'responded'" checkbox
 	And I press the "Confirm" button
 	Then I see "COMPLETED" on the page
 	And I do not see "OVERDUE" on the page
 	When I click on the "Your work" link
-	And I do not see "<part_no>" on the page
+	And I do not see "<juror_number>" on the page
 	When I click on the "Completed" link
-	Then I see "<part_no>" on the page
+	Then I see "<juror_number>" on the page
 	
 	When I click on the "Awaiting information" link
 	When I click on "<part_no_two>" in the same row as "<part_no_two>"
@@ -353,10 +353,10 @@ Scenario Outline: Edit Response
 	
 	# Set part_no pool to not be urgent
 	
-	Given "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "LNAME" as "<last_name>"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	Given "<juror_number>" has "RET_DATE" as "5 mondays time"
+
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	
 	# Submit response in pool
 	
@@ -412,7 +412,7 @@ Scenario Outline: Edit Response
 	|<part_no_two>|
 	|<part_no_three>|
 	
-	And I click on the "<part_no>" link
+	And I click on the "<juror_number>" link
 	
 	And on the page I see
 	|text|
@@ -456,10 +456,10 @@ Scenario Outline: Search as Team Member
 	
 	# Set part_no pool to not be urgent
 	
-	Given "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "LNAME" as "<last_name>"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	Given "<juror_number>" has "RET_DATE" as "5 mondays time"
+
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	
 	# Submit response in pool
 	
@@ -570,19 +570,19 @@ Scenario Outline: Search as Team Member
 	
 	Then I press the "Search" button
 	And I see "1 results for " on the page
-	And I see "<last_name>" in the same row as "<part_no>"
+	And I see "<last_name>" in the same row as "<juror_number>"
 	
 	#three results - search on pool no
 	
 	Then I click on the "Clear search" link
-	Then I do not see "<part_no>" on the page
+	Then I do not see "<juror_number>" on the page
 	
 	And I set "Juror's pool number" to "<pool_no>"
 	Then "Juror's pool number" is "<pool_no>"
 	
 	Then I press the "Search" button
 	And I see "results for " on the page
-	And I see "<last_name>" in the same row as "<part_no>"
+	And I see "<last_name>" in the same row as "<juror_number>"
 	And I see "<last_name_two>" in the same row as "<part_no_two>"
 	And I see "<last_name_three>" in the same row as "<part_no_three>"
 	
@@ -592,12 +592,12 @@ Scenario Outline: Search as Team Member
 	#search on juror number
 	
 	Then I click on the "Clear search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	Then I press the "Search" button
 	And I see "results for " on the page
-	And I see "<last_name>" in the same row as "<part_no>"
-	And I see "<pool_no>" in the same row as "<part_no>"
-	And I see "ARAMIS1" in the same row as "<part_no>"
+	And I see "<last_name>" in the same row as "<juror_number>"
+	And I see "<pool_no>" in the same row as "<juror_number>"
+	And I see "ARAMIS1" in the same row as "<juror_number>"
 	And I see "TO DO" on the page
 	
 	Given auto straight through processing has been enabled
@@ -618,10 +618,10 @@ Scenario Outline: Search as Team Leader
 	
 	# Set part_no pool to not be urgent
 	
-	Given "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "LNAME" as "<last_name>"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	Given "<juror_number>" has "RET_DATE" as "5 mondays time"
+
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	
 	# Submit response in pool
 	
@@ -734,7 +734,7 @@ Scenario Outline: Search as Team Leader
 	
 	Then I press the "Search" button
 	And I see "results for " on the page
-	And I see "LNAMESTANDARD" in the same row as "<part_no>"
+	And I see "LNAMESTANDARD" in the same row as "<juror_number>"
 	
 	#name appears if it's just 1
 	
@@ -748,14 +748,14 @@ Scenario Outline: Search as Team Leader
 	#three results
 	
 	Then I click on the "Clear search" link
-	Then I do not see "<part_no>" on the page
+	Then I do not see "<juror_number>" on the page
 	And I do not see "<last_name>" on the page
 	And I set "Juror's pool number" to "457170501"
 	Then "Juror's pool number" is "457170501"
 	
 	Then I press the "Search" button
 
-	And I see "LNAMESTANDARD" in the same row as "<part_no>"
+	And I see "LNAMESTANDARD" in the same row as "<juror_number>"
 	And I see "LNAMEURGENT" in the same row as "<part_no_two>"
 	And I see "LNAMESUPERURGENT" in the same row as "<part_no_three>"
 	
@@ -1026,7 +1026,7 @@ Scenario Outline: Work Allocation
 	And I see "" in "allocateUrgent" Allocate Replies box
 	And I see "" in "allocateSuperUrgent" Allocate Replies box
 	And the "Assign replies" button is disabled
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "STAFF_LOGIN" is "ARAMIS1" where "JUROR_NUMBER" is "<part_no_four>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "STAFF_LOGIN" is "ARAMIS1" where "JUROR_NUMBER" is "<part_no_four>"
 
 	#Allocate the urgent to CPASS
 	
@@ -1048,7 +1048,7 @@ Scenario Outline: Work Allocation
 	And I see "" in "allocateUrgent" Allocate Replies box
 	And I see "" in "allocateSuperUrgent" Allocate Replies box
 	And the "Assign replies" button is disabled
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "STAFF_LOGIN" is "ARAMIS1" where "JUROR_NUMBER" is "<part_no_five>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "STAFF_LOGIN" is "ARAMIS1" where "JUROR_NUMBER" is "<part_no_five>"
 	
 	#Allocate the super-urgent to CPASS
 	
@@ -1068,7 +1068,7 @@ Scenario Outline: Work Allocation
 	And I see "" in "allocateUrgent" Allocate Replies box
 	And I see "" in "allocateSuperUrgent" Allocate Replies box
 	And the "Assign replies" button is disabled
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "STAFF_LOGIN" is "ARAMIS1" where "JUROR_NUMBER" is "<part_no_six>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "STAFF_LOGIN" is "ARAMIS1" where "JUROR_NUMBER" is "<part_no_six>"
 	And auto straight through processing has been enabled
 	
 Examples:
@@ -1102,7 +1102,7 @@ Given I am on "Bureau" "test"
 	| part_no		|pool_number| last_name		|postcode	| email |
 	|<part_no_seven>|<pool_no>	| <last_name>	|<postcode>	|<email>|
 	
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "STAFF_LOGIN" is "AUTO" where "JUROR_NUMBER" is "<part_no_seven>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "STAFF_LOGIN" is "AUTO" where "JUROR_NUMBER" is "<part_no_seven>"
 	
 	Given I am on "Bureau" "test"
 	When I log in
@@ -1273,10 +1273,10 @@ Scenario Outline: Results grid updates when status changes are made
 
 	# Set part_no pool to not be urgent
 	
-	Given "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "LNAME" as "<last_name>"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	Given "<juror_number>" has "RET_DATE" as "5 mondays time"
+
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	
 	#turn off auto processing
 	
@@ -1297,7 +1297,7 @@ Scenario Outline: Results grid updates when status changes are made
 	
 	#record notes
 	
-	When I click on "<part_no>" in the same row as "<part_no>"	
+	When I click on "<juror_number>" in the same row as "<juror_number>"
 	When I click on the "Logs" link
 	And I click on the "Notes" link
 	And I click on the "Add or Edit" link
@@ -1320,7 +1320,7 @@ Scenario Outline: Results grid updates when status changes are made
 	
 	#now mark as awaiting info
 	
-	When I click on "<part_no>" in the same row as "<part_no>"
+	When I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Record status" on the page
 	Then I press the "More actions" button
 	And I click on the "Mark as 'Awaiting information" link
@@ -1329,11 +1329,11 @@ Scenario Outline: Results grid updates when status changes are made
 	And I press the "Confirm" button
 	
 	When I click on the "Back" link
-	Then I see "AWAITING COURT REPLY" in the same row as "<part_no>"
+	Then I see "AWAITING COURT REPLY" in the same row as "<juror_number>"
 	
 	#now mark as responded
 	
-	When I click on "<part_no>" in the same row as "<part_no>"
+	When I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Record status" on the page
 	When I select "Responded" from Process reply
 	And I check the "Mark juror as 'responded'" checkbox
@@ -1342,7 +1342,7 @@ Scenario Outline: Results grid updates when status changes are made
 	And I see "Responded" on the page
 	
 	When I click on the "Back" link
-	Then I see "COMPLETED" in the same row as "<part_no>"
+	Then I see "COMPLETED" in the same row as "<juror_number>"
 	
 	
 Examples:

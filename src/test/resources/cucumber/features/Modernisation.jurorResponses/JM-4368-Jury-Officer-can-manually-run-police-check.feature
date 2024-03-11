@@ -11,14 +11,11 @@ Feature: JM-4368 Jury Officer Can Manually Run a Police Check
       |part_no   | pool_no   | owner |
       |<part_no> | <pool_no> | 400   |
 
-
-    And "<part_no>" has "NEXT_DATE" as "5 mondays time" new schema
-
     Then a new pool is inserted for where record has transferred to the court new schema
       |part_no   | pool_no   | owner |
       |<part_no> | <pool_no> | 415   |
 
-    And I search for juror "<part_no>"
+    And I search for juror "<juror_number>"
     And I see the police check value is "Not checked"
     And I see the link to run a police check
     When I click the link to run a police check
@@ -40,15 +37,13 @@ Feature: JM-4368 Jury Officer Can Manually Run a Police Check
       |part_no   | pool_no   | owner |
       |<part_no> | <pool_no> | 400   |
 
-    And "<part_no>" has "NEXT_DATE" as "5 mondays time" new schema
-
     Then a new pool is inserted for where record has transferred to the court new schema
       |part_no   | pool_no   | owner |
       |<part_no> | <pool_no> | 415   |
 
-#    Given I set Police Check to "P" and Phoenix Checked to "U" for "<part_no>"
-    Given I set Police Check to "<police_check_value>" for "<part_no>" new schema
-    And I search for juror "<part_no>"
+#    Given I set Police Check to "P" and Phoenix Checked to "U" for "<juror_number>"
+    Given I set Police Check to "<police_check_value>" for "<juror_number>" new schema
+    And I search for juror "<juror_number>"
     And I see the police check value is "<police_check_status>"
     And I do not see the link to run a police check
 
@@ -67,16 +62,13 @@ Feature: JM-4368 Jury Officer Can Manually Run a Police Check
       | part_no   | pool_no   | owner |
       | <part_no> | <pool_no> | 400   |
 
-
-    And "<part_no>" has "NEXT_DATE" as "5 mondays time" new schema
-
     Then a new pool is inserted for where record has transferred to the court new schema
       |part_no   | pool_no   | owner |
       |<part_no> | <pool_no> | 415   |
 
-#    Given I set Police Check to "F" and Phoenix Checked to "C" for "<part_no>"
-    Given I set Police Check to "INELIGIBLE" for "<part_no>" new schema
-    And I search for juror "<part_no>"
+#    Given I set Police Check to "F" and Phoenix Checked to "C" for "<juror_number>"
+    And I search for juror "<juror_number>"
+    Given I set Police Check to "INELIGIBLE" for "<juror_number>" new schema
     And I see the police check value is "Failed"
     And I do not see the link to run a police check
 
@@ -95,16 +87,13 @@ Feature: JM-4368 Jury Officer Can Manually Run a Police Check
       |part_no   | pool_no   | owner |
       |<part_no> | <pool_no> | 400   |
 
-
-    And "<part_no>" has "NEXT_DATE" as "5 mondays time" new schema
-
     Then a new pool is inserted for where record has transferred to the court new schema
       |part_no   | pool_no   | owner |
       |<part_no> | <pool_no> | 415   |
 
-#    Given I set Police Check to "P" and Phoenix Checked to "C" for "<part_no>"
-    Given I set Police Check to "ELIGIBLE" for "<part_no>" new schema
-    And I search for juror "<part_no>"
+#    Given I set Police Check to "P" and Phoenix Checked to "C" for "<juror_number>"
+    Given I set Police Check to "ELIGIBLE" for "<juror_number>" new schema
+    And I search for juror "<juror_number>"
     And I see the police check value is "Passed"
     And I do not see the link to run a police check
 
@@ -120,18 +109,16 @@ Feature: JM-4368 Jury Officer Can Manually Run a Police Check
       |part_no   | pool_no   | owner |
       |<part_no> | <pool_no> | 400   |
 
-    And "<part_no>" has "NEXT_DATE" as "5 mondays time" new schema
-
     Then a new pool is inserted for where record has transferred to the court new schema
       | part_no   | pool_no   | owner |
       | <part_no> | <pool_no> | 415   |
 
     Given I log in as "MODTESTCOURT"
 
-    Given I set Police Check to "NOT_CHECKED" for "<part_no>" new schema
-    And I search for juror "<part_no>"
+    Given I set Police Check to "NOT_CHECKED" for "<juror_number>" new schema
+    And I search for juror "<juror_number>"
     And I record a happy path paper summons response and process now
-    And I search for juror "<part_no>"
+    And I search for juror "<juror_number>"
     And I see the police check value is "Not checked"
     And I see the link to run a police check
     When I click the link to run a police check

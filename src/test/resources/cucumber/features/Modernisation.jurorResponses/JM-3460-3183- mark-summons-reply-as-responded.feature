@@ -10,10 +10,10 @@ Feature: JM-3460 JM-3183
       |<part_no> | <pool_no> | 400   |
 
 
-    And "<part_no>" has "NEXT_DATE" as "7 mondays time" new schema
+    And "<juror_number>" has "NEXT_DATE" as "7 mondays time" new schema
     And pool "<pool_no>" has attendance date as "7 mondays time" new schema
 
-    When the user searches for juror record "<part_no>" from the global search bar
+    When the user searches for juror record "<juror_number>" from the global search bar
     And I click the Enter summons reply button
     Then the juror details form is displayed
     When I fill in all of the juror details for the summons reply
@@ -58,10 +58,10 @@ Feature: JM-3460 JM-3183
       |<part_no> | <pool_no> | 400   |
 
 
-    And "<part_no>" has "NEXT_DATE" as "7 mondays time" new schema
+    And "<juror_number>" has "NEXT_DATE" as "7 mondays time" new schema
     And pool "<pool_no>" has attendance date as "7 mondays time" new schema
 
-    When the user searches for juror record "<part_no>" from the global search bar
+    When the user searches for juror record "<juror_number>" from the global search bar
     And I click the Enter summons reply button
     Then the juror details form is displayed
     When I fill in all of the juror details for the summons reply
@@ -103,10 +103,10 @@ Feature: JM-3460 JM-3183
       |<part_no> | <pool_no> | 400   |
 
 
-    And "<part_no>" has "NEXT_DATE" as "7 mondays time" new schema
+    And "<juror_number>" has "NEXT_DATE" as "7 mondays time" new schema
     And pool "<pool_no>" has attendance date as "7 mondays time" new schema
 
-    When the user searches for juror record "<part_no>" from the global search bar
+    When the user searches for juror record "<juror_number>" from the global search bar
     And I click the Enter summons reply button
     Then the juror details form is displayed
     When I fill in all of the juror details for the summons reply
@@ -148,10 +148,10 @@ Feature: JM-3460 JM-3183
       |<part_no> | <pool_no> | 400   |
 
 
-    And "<part_no>" has "NEXT_DATE" as "7 mondays time" new schema
+    And "<juror_number>" has "NEXT_DATE" as "7 mondays time" new schema
     And pool "<pool_no>" has attendance date as "7 mondays time" new schema
 
-    When the user searches for juror record "<part_no>" from the global search bar
+    When the user searches for juror record "<juror_number>" from the global search bar
     And I click the Enter summons reply button
     Then the juror details form is displayed
     When I fill in all of the juror details for the summons reply
