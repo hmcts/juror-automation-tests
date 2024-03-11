@@ -276,7 +276,7 @@ task functional(type: Test, dependsOn: testClasses) {
   def runJurorTransformationMulti = System.getenv("runJurorTransformationMulti")
   def runJurorTransformationWIP = System.getenv("runJurorTransformationWIP")
   def runNewSchemaConverted = System.getenv("runNewSchemaConverted")
-  def runRegression = System.getenv("runRNewSchemaConverted")
+  def runRegression = System.getenv("runRegression")
   def runRegressionSingle = System.getenv("runRegressionSingle")
   def runRegressionWelsh = System.getenv("runRegressionWelsh")
   def runShakedown = System.getenv("runShakedown")
