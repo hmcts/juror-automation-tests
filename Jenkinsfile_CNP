@@ -2,7 +2,17 @@
 properties([
   parameters([
     choice(choices: ['chrome', 'firefox', 'msedge'], name: 'Browser'),
-    choice(choices: ['stg', 'test', 'demo', 'ithc'], name: 'EnvironmentChoice')
+    choice(choices: ['stg', 'test', 'demo', 'ithc'], name: 'EnvironmentChoice'),
+    booleanParam(name: 'runExpenses', defaultValue: false, description: 'Include Expenses tests'),
+    booleanParam(name: 'runFeatures', defaultValue: false, description: 'Include Features tests'),
+    booleanParam(name: 'runJurorTransformation', defaultValue: false, description: 'Include JurorTransformation tests'),
+    booleanParam(name: 'runJurorTransformationMulti', defaultValue: false, description: 'Include JurorTransformationMulti tests'),
+    booleanParam(name: 'runJurorTransformationWIP', defaultValue: false, description: 'Include JurorTransformationWIP tests'),
+    booleanParam(name: 'runNewSchemaConverted', defaultValue: false, description: 'Include NewSchemaConverted tests'),
+    booleanParam(name: 'runRegression', defaultValue: false, description: 'Include Regression tests'),
+    booleanParam(name: 'runRegressionSingle', defaultValue: false, description: 'Include RegressionSingle tests'),
+    booleanParam(name: 'runRegressionWelsh', defaultValue: false, description: 'Include RegressionWelsh tests'),
+    booleanParam(name: 'runShakedown', defaultValue: false, description: 'Include Shakedown tests')
   ])
 ])
 
@@ -60,15 +70,99 @@ withNightlyPipeline(type, product, component) {
 
   env.envName = params.EnvironmentChoice
   env.envDriver = params.Browser
+  env.runExpenses = params.runExpenses
+  env.runFeatures = params.runFeatures
+  env.runJurorTransformation = params.runJurorTransformation
+  env.runJurorTransformationMulti = params.runJurorTransformationMulti
+  env.runJurorTransformationWIP = params.runJurorTransformationWIP
+  env.runNewSchemaConverted = params.runNewSchemaConverted
+  env.runRegression = params.runRegression
+  env.runRegressionSingle = params.runRegressionSingle
+  env.runRegressionWelsh = params.runRegressionWelsh
+  env.runShakedown = params.runShakedown
+  
 
   afterAlways('fullFunctionalTest') {
+
     publishHTML target: [
       allowMissing         : true,
       alwaysLinkToLastBuild: true,
       keepAll              : true,
-      reportDir            : "target/TestRunner_SmokeTest/",
+      reportDir            : "target/TestRunner_Expenses/",
       reportFiles          : "cucumber.html",
-      reportName           : "Cucumber Smoke Test Report"
+      reportName           : "Cucumber Expenses Test Report"
+    ]
+
+    publishHTML target: [
+      allowMissing         : true,
+      alwaysLinkToLastBuild: true,
+      keepAll              : true,
+      reportDir            : "target/TestRunner_Features/",
+      reportFiles          : "cucumber.html",
+      reportName           : "Cucumber Features Test Report"
+    ]
+
+    publishHTML target: [
+      allowMissing         : true,
+      alwaysLinkToLastBuild: true,
+      keepAll              : true,
+      reportDir            : "target/TestRunner_JurorTransformation/",
+      reportFiles          : "cucumber.html",
+      reportName           : "Cucumber JurorTransformation Test Report"
+    ]
+
+    publishHTML target: [
+      allowMissing         : true,
+      alwaysLinkToLastBuild: true,
+      keepAll              : true,
+      reportDir            : "target/TestRunner_JurorTransformationMulti/",
+      reportFiles          : "cucumber.html",
+      reportName           : "Cucumber JurorTransformationMulti Test Report"
+    ]
+
+    publishHTML target: [
+      allowMissing         : true,
+      alwaysLinkToLastBuild: true,
+      keepAll              : true,
+      reportDir            : "target/TestRunner_JurorTransformationWIP/",
+      reportFiles          : "cucumber.html",
+      reportName           : "Cucumber JurorTransformationWIP Test Report"
+    ]
+
+    publishHTML target: [
+      allowMissing         : true,
+      alwaysLinkToLastBuild: true,
+      keepAll              : true,
+      reportDir            : "target/TestRunner_NewSchemaConverted/",
+      reportFiles          : "cucumber.html",
+      reportName           : "Cucumber NewSchemaConverted Test Report"
+    ]
+
+    publishHTML target: [
+      allowMissing         : true,
+      alwaysLinkToLastBuild: true,
+      keepAll              : true,
+      reportDir            : "target/TestRunner_Regression/",
+      reportFiles          : "cucumber.html",
+      reportName           : "Cucumber Regression Test Report"
+    ]
+
+    publishHTML target: [
+      allowMissing         : true,
+      alwaysLinkToLastBuild: true,
+      keepAll              : true,
+      reportDir            : "target/TestRunner_RegressionSingle/",
+      reportFiles          : "cucumber.html",
+      reportName           : "Cucumber RegressionSingle Test Report"
+    ]
+
+    publishHTML target: [
+      allowMissing         : true,
+      alwaysLinkToLastBuild: true,
+      keepAll              : true,
+      reportDir            : "target/TestRunner_RegressionWelsh/",
+      reportFiles          : "cucumber.html",
+      reportName           : "Cucumber RegressionWelsh Test Report"
     ]
 
     publishHTML target: [
@@ -79,6 +173,16 @@ withNightlyPipeline(type, product, component) {
       reportFiles          : "cucumber.html",
       reportName           : "Cucumber Shakedown Test Report"
     ]
+
+    publishHTML target: [
+      allowMissing         : true,
+      alwaysLinkToLastBuild: true,
+      keepAll              : true,
+      reportDir            : "target/TestRunner_SmokeTest/",
+      reportFiles          : "cucumber.html",
+      reportName           : "Cucumber Smoke Test Report"
+    ]
+
     steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'selenium.log'
     steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'target/**/*.json'
   }
