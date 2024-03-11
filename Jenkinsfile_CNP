@@ -1,8 +1,8 @@
 #!groovy
 properties([
   parameters([
-    choice(choices: ['chrome', 'firefox', 'msedge'], name: 'Browser')
-    choice(choices: ['stg', 'test', 'demo', 'ithc'], name: 'EnvironmentChoice')
+    choice(choices: ['chrome', 'firefox', 'msedge'], name: 'Browser'),
+    choice(choices: ['stg', 'test', 'demo', 'ithc'], name: 'EnvironmentChoice'),
     booleanParam defaultValue: false, description 'Include JurorTransformation tests', name: 'runJurorTransformation'  
     booleanParam defaultValue: false, description 'Include JurorTransformationMulti tests', name: 'runJurorTransformationMulti'  
     booleanParam defaultValue: false, description 'Include JurorTransformationWIP tests', name: 'runJurorTransformationWIP'  
