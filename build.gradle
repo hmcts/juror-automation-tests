@@ -269,10 +269,24 @@ dependencies {
 task functional(type: Test, dependsOn: testClasses) {
   systemProperty "envName", System.getenv("envName")
   systemProperty "envDriver", System.getenv("envDriver")
+
+  def runExpenses = System.getenv("runExpenses")
+  def runFeatures = System.getenv("runFeatures")
   def runJurorTransformation = System.getenv("runJurorTransformation")
   def runJurorTransformationMulti = System.getenv("runJurorTransformationMulti")
   def runJurorTransformationWIP = System.getenv("runJurorTransformationWIP")
+  def runNewSchemaConverted = System.getenv("runNewSchemaConverted")
+  def runRegression = System.getenv("runRNewSchemaConverted")
+  def runRegressionSingle = System.getenv("runRegressionSingle")
+  def runRegressionWelsh = System.getenv("runRegressionWelsh")
   def runShakedown = System.getenv("runShakedown")
+  
+  if (runExpenses == 'true') {
+    include '**/TestRunner_Expenses.class'
+  }
+  if (runFeatures == 'true') {
+    include '**/TestRunner_Features.class'
+  }
   if (runJurorTransformation == 'true') {
     include '**/TestRunner_JurorTransformation.class'
   }
@@ -281,6 +295,18 @@ task functional(type: Test, dependsOn: testClasses) {
   }
   if (runJurorTransformationWIP == 'true') {
     include '**/TestRunner_JurorTransformationWIP.class'
+  }
+  if (runNewSchemaConverted == 'true') {
+    include '**/TestRunner_NewSchemaConverted.class'
+  }
+  if (runRegression == 'true') {
+    include '**/TestRunner_Regression.class'
+  }
+  if (runRegressionSingle == 'true') {
+    include '**/TestRunner_RegressionSingle.class'
+  }
+  if (runRegressionWelsh == 'true') {
+    include '**/TestRunner_RegressionWelsh.class'
   }
   if (runShakedown == 'true') {
     include '**/TestRunner_Shakedown.class'

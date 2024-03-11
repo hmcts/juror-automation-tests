@@ -21,7 +21,8 @@ import org.junit.runner.RunWith;
             		},
                 plugin = {
                         "pretty",
-                        "json:target/TestRunner_Features/cucumber.json"
+                        "json:target/TestRunner_Features/cucumber.json",
+                        "html:target/TestRunner_Features/cucumber.html"
                     },
         		glue = {
         				"cucumber.steps"
