@@ -3,6 +3,10 @@ properties([
   parameters([
     choice(choices: ['chrome', 'firefox', 'msedge'], name: 'Browser'),
     choice(choices: ['stg', 'test', 'demo', 'ithc'], name: 'EnvironmentChoice')
+    booleanParam defaultValue: false, description 'Include JurorTransformation tests', name: 'runJurorTransformation'  
+    booleanParam defaultValue: false, description 'Include JurorTransformationMulti tests', name: 'runJurorTransformationMulti'  
+    booleanParam defaultValue: false, description 'Include JurorTransformationWIP tests', name: 'runJurorTransformationWIP'  
+    booleanParam defaultValue: false, description 'Include Shakedown tests', name: 'runShakedown'  
   ])
 ])
 
@@ -60,6 +64,11 @@ withNightlyPipeline(type, product, component) {
 
   env.envName = params.EnvironmentChoice
   env.envDriver = params.Browser
+  env.runJurorTransformation = params.runJurorTransformation
+  env.runJurorTransformationMulti = params.runJurorTransformationMulti
+  env.runJurorTransformationWIP = params.runJurorTransformationWIP
+  env.runShakedown = params.runShakedown
+  
 
   afterAlways('fullFunctionalTest') {
     publishHTML target: [

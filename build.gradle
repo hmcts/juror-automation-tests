@@ -269,10 +269,23 @@ dependencies {
 task functional(type: Test, dependsOn: testClasses) {
   systemProperty "envName", System.getenv("envName")
   systemProperty "envDriver", System.getenv("envDriver")
-  include '**/TestRunner_JurorTransformation.class'
-  include '**/TestRunner_JurorTransformationMulti.class'
-  include '**/TestRunner_JurorTransformationWIP.class'
-  include '**/TestRunner_Shakedown.class'
-  // include '**/TestRunner_SmokeTest.class'
+  def runJurorTransformation = System.getenv("runJurorTransformation")
+  def runJurorTransformationMulti = System.getenv("runJurorTransformationMulti")
+  def runJurorTransformationWIP = System.getenv("runJurorTransformationWIP")
+  def runShakedown = System.getenv("runShakedown")
+  if (runJurorTransformation == 'true') {
+    include '**/TestRunner_JurorTransformation.class'
+  }
+  if (runJurorTransformationMulti == 'true') {
+    include '**/TestRunner_JurorTransformationMulti.class'
+  }
+  if (runJurorTransformationWIP == 'true') {
+    include '**/TestRunner_JurorTransformationWIP.class'
+  }
+  if (runShakedown == 'true') {
+    include '**/TestRunner_Shakedown.class'
+  }
+  //Always run SmokeTest
+  include '**/TestRunner_SmokeTest.class'
   outputs.upToDateWhen { false }
 }
