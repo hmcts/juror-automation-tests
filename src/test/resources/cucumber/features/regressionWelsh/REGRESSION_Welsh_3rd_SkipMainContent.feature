@@ -8,16 +8,16 @@ Scenario Outline: Welsh 3rd Party Straight Through with Skip to Main Content Che
 		| part_no 	| pool_no 	| owner |
 		| <part_no> |<pool_no>	| 400 	|
 
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "FNAME" as "FNAMESEVENONETHREE"
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	#And "<part_no>" has "FNAME" as "FNAMEEIGHTFIVEFIVE"
-	And "<part_no>" has "Address" as "855 STREET NAME"
-	#And "<part_no>" has "Address2" as "ANYTOWN"
-	#And "<part_no>" has "Address3" as ""
-	And "<part_no>" has "Address4" as "LONDON"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And "<juror_number>" has "FIRST_NAME" as "FNAMESEVENONETHREE"
+
+
+	#And "<juror_number>" has "FIRST_NAME" as "FNAMEEIGHTFIVEFIVE"
+	And juror "<juror_number>" has "ADDRESS_LINE_1" as "855 STREET NAME"
+	#And "<juror_number>" has "Address2" as "ANYTOWN"
+	#And "<juror_number>" has "Address3" as ""
+	And juror "<juror_number>" has "ADDRESS_LINE_4" as "LONDON"
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	
 	#JDB-3357 Skip to main content check
 	#Reply to jury summons
@@ -44,7 +44,7 @@ Scenario Outline: Welsh 3rd Party Straight Through with Skip to Main Content Che
 	Then I click on the "Ymlaen i'r prif gynnwys" link
 	Then I see "Ei fanylion rheithiwr" on the page
 	
-	When I set "Rhif rheithiwr – 9 digid" to "<part_no>"
+	When I set "Rhif rheithiwr – 9 digid" to "<juror_number>"
 	When I set "Cyfenw'r Rheithiwr" to "<last_name>"
 	When I set "Cod post Rheithiwr" to "<postcode>"
 	And I press the "Parhau" button

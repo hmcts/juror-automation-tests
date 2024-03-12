@@ -1,16 +1,15 @@
 Feature: Regression English_1st_Underage
 
-@Regression @replytypes @JDB-3072 @JDB-3454 @JDB-3411 @1st_Underage @JDB-3888 @JDB-3790 @JDB-4097 @JDB-4502 
+@Regression @NewSchemaConverted
 Scenario Outline: English 1st Party Underage
-	Given I am on "Public" "bau-test"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+	Given I am on "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
 	
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	
 	Then I see "Reply to a jury summons" on the page
 	
@@ -18,7 +17,7 @@ Scenario Outline: English 1st Party Underage
 	And I press the "Continue" button
 	Then I see "Your juror details" on the page
 	
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
@@ -26,7 +25,6 @@ Scenario Outline: English 1st Party Underage
 	When I set the radio button to "Yes"
 	
 	#Moving past Name Section
-	
 	When I press the "Continue" button
 	Then I see "Is this your address?" on the page
 	When I set the radio button to "Yes"
@@ -38,12 +36,11 @@ Scenario Outline: English 1st Party Underage
 	And I press the "Continue" button
 	Then I see "What is your email address?" on the page
 	
-	When I set "Enter your email address" to "email@outlook.com"
-	And I set "Enter your email address again" to "email@outlook.com"
+	When I set "Enter your email address" to "<email>"
+	And I set "Enter your email address again" to "<email>"
 	And I press the "Continue" button
 	
 	#On DoB Screen
-	
 	Then I see "What is your date of birth?" on the page
 	
 	When I set "Day" to "27"
@@ -51,16 +48,13 @@ Scenario Outline: English 1st Party Underage
 	And I set "Year" to "2006"
 	
 	#Moving past DoB Section
-	
 	And I press the "Continue" button
 	Then I see "Is your date of birth correct?" on the page
 	
 	#And "Is your date of birth correct?" text is bold
-	
 	And I see "steps/your-details/confirm" in the URL
 	
 	#new change DOB
-	
 	And I press the "Continue" button
 	Then I see "There is a problem" on the page
 	And I see "Tell us if your date of birth is correct" on the page
@@ -69,7 +63,6 @@ Scenario Outline: English 1st Party Underage
 	And I press the "Continue" button
 	
 	#On DoB Screen
-	
 	Then I see "What is your date of birth?" on the page
 	
 	When I set "Day" to ""
@@ -79,27 +72,23 @@ Scenario Outline: English 1st Party Underage
 	Then I see "There is a problem" on the page
 	
 	#JDB-4502
-	
 	And I see "Enter the day you were born" on the page
 	And I do not see "Enter the month you were born" on the page
 	And I do not see "Enter the year you were born" on the page
 
 	#only day is set
-	
 	When I set "Day" to "27"
 	When I press the "Continue" button
 	Then I see "There is a problem" on the page
 	And I see "Enter the month you were born" on the page
 	
 	#day and month are set
-	
 	And I set "Month" to "04"
 	When I press the "Continue" button
 	Then I see "There is a problem" on the page
 	And I see "Enter the year you were born" on the page
 	
 	#only year is set
-	
 	When I set "Day" to ""
 	And I set "Month" to ""
 	And I set "Year" to "1988"
@@ -123,7 +112,6 @@ Scenario Outline: English 1st Party Underage
 	And I press the "Continue" button
 
 	#confirm DOB
-	
 	Then I set the radio button to "Yes"
 	And I press the "Continue" button
 	
@@ -134,33 +122,32 @@ Scenario Outline: English 1st Party Underage
 	When I press the "Submit" button
 	
 	Then I see "You have completed your reply" on the page
-	Then I see "<part_no>" on the page
+	Then I see "<juror_number>" on the page
 	
-	Given I am on "Bureau" "bau-test"
+	Given I am on "Bureau" "test"
 	And I log in
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	Then I see "<part_no>" on the page
+	Then I see "<juror_number>" on the page
 
-	Then I see "<part_no>" has reply type indicator "COMPLETED"
+	Then I see "<juror_number>" has reply type indicator "COMPLETED"
 	
 Examples:
-	|part_no		|last_name			|postcode	|email 		|pool_no	|
-	|741500550		|LNAMEFIVEFIVEZERO	|CH1 2AN	|a@eeee.com	|415181001	|
+	| juror_number	| last_name			| postcode	| email 		| pool_number	|
+	| 045200076		| LNAMEFIVEFIVEZERO	| CH1 2AN	| a@eeee.com	| 452300075		|
 	
-@Regression
+@Regression @NewSchemaConverted
 Scenario Outline: English 1st Party Underage with Error Check
 	Given I am on "Public" "test"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
 	
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	
 	Then I see "Reply to a jury summons" on the page
 	
@@ -168,7 +155,7 @@ Scenario Outline: English 1st Party Underage with Error Check
 	And I press the "Continue" button
 	Then I see "Your juror details" on the page
 	
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
@@ -176,7 +163,6 @@ Scenario Outline: English 1st Party Underage with Error Check
 	When I set the radio button to "Yes"
 	
 	#Moving past Name Section
-	
 	And I press the "Continue" button
 	Then I see "Is this your address?" on the page
 	When I set the radio button to "Yes"
@@ -188,19 +174,17 @@ Scenario Outline: English 1st Party Underage with Error Check
 	And I press the "Continue" button
 	Then I see "What is your email address?" on the page
 	
-	When I set "Enter your email address" to "email@outlook.com"
-	And I set "Enter your email address again" to "email@outlook.com"
+	When I set "Enter your email address" to "<email>"
+	And I set "Enter your email address again" to "<email>"
 	And I press the "Continue" button
 	
 	#On DoB Screen
-	
 	Then I see "What is your date of birth?" on the page
 
 	#set dob to make them underage
 	And I set the date of birth to a Monday "-884" weeks in the future
 	
 	#Moving past DoB Section and JDB-3417
-	
 	And I press the "Continue" button
 	Then I see "Is your date of birth correct?" on the page
 	
@@ -248,23 +232,22 @@ Scenario Outline: English 1st Party Underage with Error Check
 	
 	Then I see "You have completed your reply" on the page
 	And I see "Your age means you cannot do jury service" on the page
-	Then I see "<part_no>" on the page
+	Then I see "<juror_number>" on the page
 	
 Examples:
-	|part_no		|last_name	|postcode	|pool_no	|
-	|841500403		|LNAME403	|CH1 2AN	|415181001	|
+	| juror_number	| last_name	| postcode	| pool_number	|
+	| 045200077		| LNAME403	| CH1 2AN	| 452300076		|
 	
-@Regression
+@Regression @NewSchemaConverted
 Scenario Outline: English 1st Party Underage with Back Check
 	Given I am on "Public" "test"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
 		
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	
 	Then I see "Reply to a jury summons" on the page
 	
@@ -272,7 +255,7 @@ Scenario Outline: English 1st Party Underage with Back Check
 	And I press the "Continue" button
 	Then I see "Your juror details" on the page
 	
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
@@ -280,7 +263,6 @@ Scenario Outline: English 1st Party Underage with Back Check
 	When I set the radio button to "Yes"
 	
 	#Moving past Name Section
-	
 	When I press the "Continue" button
 	Then I see "Is this your address?" on the page
 	When I set the radio button to "Yes"
@@ -292,19 +274,17 @@ Scenario Outline: English 1st Party Underage with Back Check
 	And I press the "Continue" button
 	Then I see "What is your email address?" on the page
 	
-	When I set "Enter your email address" to "email@outlook.com"
-	And I set "Enter your email address again" to "email@outlook.com"
+	When I set "Enter your email address" to "<email>"
+	And I set "Enter your email address again" to "<email>"
 	And I press the "Continue" button
 	
 	#On DoB Screen
-	
 	Then I see "What is your date of birth?" on the page
 
 	#set dob to make them underage
 	And I set the date of birth to a Monday "-884" weeks in the future
 	
 	#Moving past DoB Section
-	
 	And I press the "Continue" button
 	Then I see "Is your date of birth correct?" on the page
 
@@ -346,8 +326,8 @@ Scenario Outline: English 1st Party Underage with Back Check
 
 	Then I see "You have completed your reply" on the page
 	And I see "Your age means you cannot do jury service" on the page
-	Then I see "<part_no>" on the page
+	Then I see "<juror_number>" on the page
 	
 Examples:
-	|part_no		|last_name			|postcode	|pool_no	|
-	|641500141		|LNAMEONEFOURONE	|CH1 2AN	|415170401	|
+	| juror_number	| last_name			| postcode	| pool_number	|
+	| 045200078		| LNAMEONEFOURONE	| CH1 2AN	| 452300077		|

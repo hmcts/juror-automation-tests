@@ -11,9 +11,9 @@ Feature: JM-3770
       |part_no 	|pool_no 	|owner	|
       |<part_no>|<pool_no>	|400 	|
 
-    Given "<part_no>" has "NEXT_DATE" as "5 mondays time" new schema
+    Given "<juror_number>" has "NEXT_DATE" as "5 mondays time" new schema
 
-    When the user searches for juror record "<part_no>" from the global search bar
+    When the user searches for juror record "<juror_number>" from the global search bar
 
     #record paper summons response
     And I click the Enter summons reply button
@@ -72,7 +72,7 @@ Feature: JM-3770
       |part_no 	|pool_no 	|owner	|
       |<part_no>|<pool_no>	|400 	|
 
-    Given "<part_no>" has "NEXT_DATE" as "5 mondays time" new schema
+    Given "<juror_number>" has "NEXT_DATE" as "5 mondays time" new schema
 
 	# Submit response in pool
     Given I have submitted a first party English ineligibilty response
@@ -85,9 +85,9 @@ Feature: JM-3770
 
     #search for response
     And I click on the "Search" link
-    And I set "Juror number" to "<part_no>"
+    And I set "Juror number" to "<juror_number>"
     And I press the "Search" button
-    When I click on "<part_no>" in the same row as "<part_no>"
+    When I click on "<juror_number>" in the same row as "<juror_number>"
 
 	#check options/Disqualify juror
     And I press the "Process reply" button

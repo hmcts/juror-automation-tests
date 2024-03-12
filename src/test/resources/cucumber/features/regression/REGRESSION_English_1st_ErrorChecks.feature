@@ -1,17 +1,17 @@
 Feature: Regression English_1st_ErrorChecks
 
-@Regression @4485 
+@Regression @NewSchemaConverted
 Scenario Outline: English 1st ErrorChecks - status is Undeliverable
 
-	Given I am on "Public" "bau-test"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
-	And "<part_no>" has "LNAME" as "<last_name>"
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "ZIP" as "<postcode>"
-	And "<part_no>" has "STATUS" as "9"
+	Given I am on "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
+
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
+	And "<juror_number>" has "STATUS" as "9" new schema
 
 	Then I see "Reply to a jury summons" on the page
 	Then I see "Are you replying for yourself or for someone else?" on the page
@@ -34,8 +34,7 @@ Scenario Outline: English 1st ErrorChecks - status is Undeliverable
 	And I see "Find out about call charges" on the page
 
 	#Juror Log In
-
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	And I set "Juror last name" to "<last_name>"
 	And I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
@@ -58,20 +57,20 @@ Scenario Outline: English 1st ErrorChecks - status is Undeliverable
 	And I see "You cannot tell us extra information through this digital service." on the page
 	
 	Examples:
-	|part_no	|last_name	|postcode   |pool_no	|
-	|645100298	|DOE		|SW1H 9AJ	|451170401	|
+	|juror_number	|last_name	|postcode   |pool_number|
+	|045200045		|DOE		|SW1H 9AJ	|452300044	|
 
-@Regression @4494 @4488
+@Regression @NewSchemaConverted
 Scenario Outline: English_1st_ErrorChecks - Court date is in the past
-	Given I am on "Public" "juror-test01"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+
+	Given I am on "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
 		
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "RET_DATE" as "-1 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "-1 mondays time"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	
 	Then I see "Reply to a jury summons" on the page
 	
@@ -82,28 +81,27 @@ Scenario Outline: English_1st_ErrorChecks - Court date is in the past
 	Then I see "Your juror details" on the page
 	
 	#Juror Log In
-	
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 	Then I see "The court date for your jury summons has passed. You cannot reply using this service." on the page
 	
 	Examples:
-	|part_no	|last_name	|postcode	|email           	|pool_no	|
-	|645100079	|DOE		|SW1H 9AJ	|email@outlook.com	|451170401	|
+	|juror_number	|last_name	|postcode	|pool_number|
+	|045200046		|DOE		|SW1H 9AJ	|452300045	|
 	
-@Regression  @JDB-3348 @JDB-3501 @JDB-3638 @JDB-3668 @JDB-3669 @JDB-3670 @JDB-3671 @JDB-3672 @JDB-3711 @JDB-3715 @JDB-3857 @4502 
+@Regression @NewSchemaConverted
 Scenario Outline: English_1st_ErrorChecks
-	Given I am on "Public" "bau-test"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+
+	Given I am on "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
 		
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	
 	Then I see "Reply to a jury summons" on the page
 	
@@ -117,15 +115,13 @@ Scenario Outline: English_1st_ErrorChecks
 	Then I see "Your juror details" on the page
 	
 	#Juror Log In (Find out how to trigger all messages)
-	
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 	Then I see "Is the name we have for you correct?" on the page
 	
 	#Check name
-	
 	When I press the "Continue" button
 	And I see "You need to tell us if we have the correct name for you" on the page
 	
@@ -143,7 +139,6 @@ Scenario Outline: English_1st_ErrorChecks
 	Then I see "Is this your address?" on the page
 	
 	#Check address
-	
 	When I set the radio button to "No"
 	When I press the "Continue" button
 	And I set "Address line 1" to ""
@@ -157,7 +152,6 @@ Scenario Outline: English_1st_ErrorChecks
 	And I see "Enter your postcode" on the page
 	
 	#Checking Invalids check with Jorge
-	
 	When I set "Address line 1" to "|||"
 	And I set "Town or city" to "|||"
 	And I set "County" to "|||"
@@ -178,7 +172,6 @@ Scenario Outline: English_1st_ErrorChecks
 	Then I see "What is your phone number?" on the page
 	
 	#Phone details
-	
 	When I press the "Continue" button
 	Then I see "There is a problem" on the page
 	And I see "Enter your main phone number" on the page
@@ -303,7 +296,6 @@ Scenario Outline: English_1st_ErrorChecks
 	Then I see "What is your email address?" on the page
 	
 	#Email details
-	
 	When I press the "Continue" button
 	Then I see "There is a problem" on the page
 	And I see "Enter your email address" on the page
@@ -312,38 +304,33 @@ Scenario Outline: English_1st_ErrorChecks
 	And I press the "Continue" button
 	Then I see "Enter your email address and check that it matches the one in the first field" on the page
 	
-	When I set "Enter your email address" to "email@outlook.com"
-	And I set "Enter your email address again" to "email@outlook.com"
+	When I set "Enter your email address" to "<email>"
+	And I set "Enter your email address again" to "<email>"
 	And I press the "Continue" button
 	Then I see "What is your date of birth?" on the page
 	
 	#DoB
-	
 	When I press the "Continue" button
 	Then I see "There is a problem" on the page
 	
 	#JDB-4502
-	
 	And I see "Enter the day you were born" on the page
 	And I do not see "Enter the month you were born" on the page
 	And I do not see "Enter the year you were born" on the page
 
 	#only day is set
-	
 	When I set "Day" to "27"
 	When I press the "Continue" button
 	Then I see "There is a problem" on the page
 	And I see "Enter the month you were born" on the page
 	
 	#day and month are set
-	
 	And I set "Month" to "04"
 	When I press the "Continue" button
 	Then I see "There is a problem" on the page
 	And I see "Enter the year you were born" on the page
 	
 	#only year is set
-	
 	When I set "Day" to ""
 	And I set "Month" to ""
 	And I set "Year" to "1988"
@@ -368,7 +355,6 @@ Scenario Outline: English_1st_ErrorChecks
 	When I press the "Continue" button
 	
 	#Residency Yes
-	
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	When I press the "Continue" button
 	Then I see "There is a problem" on the page
@@ -385,7 +371,6 @@ Scenario Outline: English_1st_ErrorChecks
 	And I press the "Continue" button
 	
 	#CJS no
-	
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
 	When I press the "Continue" button
 	Then I see "There is a problem" on the page
@@ -410,7 +395,6 @@ Scenario Outline: English_1st_ErrorChecks
 	And I press the "Continue" button
 	
 	#Bail no
-	
 	Then I see "Are you currently on bail for a criminal offence?" on the page
 	When I press the "Continue" button
 	Then I see "There is a problem" on the page
@@ -426,7 +410,6 @@ Scenario Outline: English_1st_ErrorChecks
 	And I press the "Continue" button
 	
 	#Convictions no
-	
 	Then I see "Have you been found guilty of a criminal offence?" on the page
 	When I press the "Continue" button
 	Then I see "There is a problem" on the page
@@ -442,7 +425,6 @@ Scenario Outline: English_1st_ErrorChecks
 	And I press the "Continue" button
 	
 	#Mental health part 1 no
-	
 	Then I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
 	When I press the "Continue" button
 	Then I see "There is a problem" on the page
@@ -458,7 +440,6 @@ Scenario Outline: English_1st_ErrorChecks
 	And I press the "Continue" button
 	
 	#Mental health part 2 no
-	
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
 	And I see "This means, legally, you cannot make decisions for yourself." on the page
 	When I press the "Continue" button
@@ -475,7 +456,6 @@ Scenario Outline: English_1st_ErrorChecks
 	And I press the "Continue" button
 	
 	#I can attend
-	
 	Then I see "Check your start date" on the page
 	When I press the "Continue" button
 	Then I see "There is a problem" on the page
@@ -485,7 +465,6 @@ Scenario Outline: English_1st_ErrorChecks
 	And  I press the "Continue" button
 	
 	#RA no
-	
 	Then I see "Will you need help when you're at the court?" on the page
 	When I press the "Continue" button
 	Then I see "There is a problem" on the page
@@ -496,7 +475,6 @@ Scenario Outline: English_1st_ErrorChecks
 	Then I see "There is a problem" on the page
 	
 	#JDB-3638
-	
 	And I see "Select if you have limited mobility, a hearing impairment, diabetes, a severe sight impairment or other disability or impairment" on the page
 	
 	When I check the "Other" checkbox
@@ -508,7 +486,6 @@ Scenario Outline: English_1st_ErrorChecks
 	And I press the "Continue" button
 	
 	#Check Your Answers
-	
 	Then I see "Check your answers now" on the page
 	When I press the "Submit" button
 	Then I see "There is a problem" on the page
@@ -522,7 +499,6 @@ Scenario Outline: English_1st_ErrorChecks
 	Then I see "Tell us why you need another date for your jury service" on the page
 	
 	#Deferral Reason
-	
 	When I press the "Continue" button
 	Then I see "There is a problem" on the page
 	And I see "Enter your reason for needing another date for jury service" on the page
@@ -532,7 +508,6 @@ Scenario Outline: English_1st_ErrorChecks
 	Then I see "Choose 3 Mondays when you can start jury service" on the page
 	
 	#Deferral Dates
-	
 	When I press the "Continue" button
 	Then I see "There is a problem" on the page
 	And I see "Enter the first Monday you'd prefer to start jury service" on the page
@@ -566,7 +541,6 @@ Scenario Outline: English_1st_ErrorChecks
 	And I press the "Continue" button
 	
 	#confirm dates
-	
 	And I see "steps/confirm-date/deferral-check" in the URL
 	And I see "Check your dates" on the page
 	And I see "Dates you can start jury service" on the page
@@ -584,7 +558,6 @@ Scenario Outline: English_1st_ErrorChecks
 	Then I see "Check your answers now" on the page
 	
 	#Check Your Answers
-	
 	When I click on the "Change" link in the same row as "Confirm the date of your jury service"
 	Then I see "Check your start date" on the page
 	
@@ -593,7 +566,6 @@ Scenario Outline: English_1st_ErrorChecks
 	Then I see "Why do you need to be excused from jury service?" on the page
 	
 	#Excusal Reason
-	
 	When I press the "Continue" button
 	Then I see "There is a problem" on the page
 	And I see "Enter reason why you cannot do jury service in the next 12 months" on the page
@@ -603,26 +575,25 @@ Scenario Outline: English_1st_ErrorChecks
 	Then I see "Check your answers now" on the page
 	
 	#When I press the "Submit" button
-	
 	When I check the "The information I have given is true to the best of my knowledge" checkbox
 	And I press the "Submit" button
 	Then I see "We have sent you an email to say you have replied to your jury summons." on the page
 	
 Examples:
-	|part_no	|last_name			|postcode	|email           	|pool_no	|
-	|641500942	|LNAMENINEFOURTWO	|CH1 2AN	|email@outlook.com	|415170401	|
+	|juror_number	|last_name			|postcode	|email           	|pool_number|
+	|045200047		|LNAMENINEFOURTWO	|CH1 2AN	|email@outlook.com	|452300046	|
 	
-@Regression @JDB-3772 
+@Regression @NewSchemaConverted
 Scenario Outline: Checking that there is in-line error message for Responder Type screen
-	Given I am on "Public" "bau-test"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+
+	Given I am on "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
 		
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	
 	Then I see "Reply to a jury summons" on the page
 	
@@ -632,26 +603,23 @@ Scenario Outline: Checking that there is in-line error message for Responder Typ
 	Then I see "There is a problem" on the page
 	
 	#need a welsh version too
-	
 	And I see "Select if you are replying for yourself or for someone else" on the page
 	
 Examples:
-	|part_no	|last_name		|postcode	| email 	| pool_no	|
-	|641500681	|LNAMESIXEIGHTONE|CH1 2AN	|a@eeee.com	|415170601	|
+	| juror_number	| last_name		 | postcode	| pool_number	|
+	| 045200048		| LNAMESIXEIGHTONE| CH1 2AN	| 452300047		|
 	
-@Regression @JDB-4100 
+@Regression @NewSchemaConverted
 Scenario Outline: English response completed in Legacy and login attempted on Digital
+
 	Given I am on "Public" "test"
-	Given I have cleared down the juror digital database
-	Given the juror numbers have not been processed
-	|part_no		|pool_no 	|Owner 		|
-	|<part_no>		|<pool_no> 	|400		|
-	
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "READ_ONLY" as "N"
-	And "<part_no>" has "RESPONDED" as "Y"
-	And "<part_no>" has "STATUS" as "2"
+
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
+
+	And "<juror_number>" has "RESPONDED" as "Y" new schema
+	And juror "<juror_number>" has "STATUS" as "2" new schema
 	
 	Then I see "Reply to a jury summons" on the page
 	
@@ -661,7 +629,7 @@ Scenario Outline: English response completed in Legacy and login attempted on Di
 	And I press the "Continue" button
 	Then I see "Your juror details" on the page
 	
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	And I set "Juror last name" to "<last_name>"
 	And I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
@@ -684,21 +652,21 @@ Scenario Outline: English response completed in Legacy and login attempted on Di
 	And I see "You cannot tell us extra information through this digital service." on the page
 
 Examples:
-	|part_no	|last_name			|postcode	|email 		|pool_no   |
-	|641500276	|LNAMETWOSEVENSIX	|CH1 2AN	|e@mail.com	|415170402 |
+	| juror_number	| last_name			| postcode	| pool_number	|
+	| 045200049		| LNAMETWOSEVENSIX	| CH1 2AN	| 452300048 	|
 
-	@Regression @4485
+	@Regression @NewSchemaConverted
 	Scenario Outline: English Already Replied info page
-		Given I am on "Public" "bau-test"
-		Given the juror numbers have not been processed
-			| part_no 	| pool_no 	| owner |
-			| <part_no> |<pool_no>	| 400 	|
 
-		And "<part_no>" has "LNAME" as "<last_name>"
-		And "<part_no>" has "RET_DATE" as "5 mondays time"
-		And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-		And "<part_no>" has "ZIP" as "<postcode>"
-		And "<part_no>" has "STATUS" as "9"
+		Given I am on "Public" "test"
+
+		Given a bureau owned pool is created with jurors
+			| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+			| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
+
+		And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+		And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
+		And "<juror_number>" has "STATUS" as "9" new schema
 
 		Then I see "Reply to a jury summons" on the page
 
@@ -708,7 +676,7 @@ Examples:
 		And I press the "Continue" button
 		And I see "steps/login" in the URL
 
-		When I set "9-digit juror number" to "<part_no>"
+		When I set "9-digit juror number" to "<juror_number>"
 		And I set "Juror last name" to "<last_name>"
 		And I set "Juror postcode" to "<postcode>"
 		And I press the "Continue" button
@@ -730,7 +698,6 @@ Examples:
 		
 		And I see "You cannot tell us extra information through this digital service." on the page
 
-
 		Examples:
-			|part_no	|last_name	      |postcode   |pool_no|
-			|645200277	|LNAMESIXSEVENSIX |SW1H 9AJ   |452170501|
+			| juror_number	| last_name	       | postcode   | pool_number	|
+			| 045200050	 	| LNAMESIXSEVENSIX | SW1H 9AJ   | 452300049		|

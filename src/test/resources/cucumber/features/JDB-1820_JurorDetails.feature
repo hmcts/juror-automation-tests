@@ -1,27 +1,25 @@
 Feature: JDB-1820 Juror Details
 
-@Regression @JDB-1820 @JDB-3347 @JDB-3442 @JDB-3443 @JDB-3638
+@Regression @NewSchemaConverted
 Scenario Outline: Back and forward navigation all screens for 1st Party
-	Given I am on "Public" "bau-test"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+
+	Given I am on "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
 	
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	
 	Then I see "Reply to a jury summons" on the page
-	
-	
+
 	And I set the radio button to "I am replying for myself"
 	And I press the "Continue" button
 	Then I see "Your juror details" on the page
 	
 	#Juror Log In
-	
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
@@ -30,7 +28,6 @@ Scenario Outline: Back and forward navigation all screens for 1st Party
 	And I press the "Continue" button
 	
 	#Check Name
-	
 	Then I set "First name" to ""
 	And I set "Last name" to ""
 	And I press the "Continue" button
@@ -48,7 +45,6 @@ Scenario Outline: Back and forward navigation all screens for 1st Party
 	Then I see "Is this your address?" on the page
 	
 	#Check Address
-	
 	When I set the radio button to "No"
 	When I press the "Continue" button
 	Then I set "Address line 1" to ""
@@ -82,7 +78,6 @@ Scenario Outline: Back and forward navigation all screens for 1st Party
 	Then I see "What is your phone number?" on the page
 	
 	#Phone Details
-	
 	When I press the "Continue" button
 	Then I see "Enter your main phone number" on the page
 	When I set "Main phone" to "0207 821 1818"
@@ -94,7 +89,6 @@ Scenario Outline: Back and forward navigation all screens for 1st Party
 	Then I see "What is your email address?" on the page
 	
 	#Email
-	
 	When I press the "Continue" button
 	Then I see "Enter your email address" on the page
 	When I set "Enter your email address" to "email@outlook.com"
@@ -117,14 +111,12 @@ Scenario Outline: Back and forward navigation all screens for 1st Party
 	When I click on the "Back" link
 	Then I see "What is your date of birth?" on the page
 	And I press the "Continue" button
-	
-	
+
 	Then I see "Confirm you're eligible for jury service" on the page
 	
 	When I press the "Continue" button
 	
 	#Residency
-	
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	When I press the "Continue" button
 	Then I see "Select yes if your main address has been in the UK, Channel Islands or Isle of Man for any period of at least 5 years, since you turned 13" on the page
@@ -139,7 +131,6 @@ Scenario Outline: Back and forward navigation all screens for 1st Party
 	And I press the "Continue" button
 	
 	#CJS
-	
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
 	When I press the "Continue" button
 	Then I see "Select whether you've worked in the criminal justice system in the last 5 years" on the page
@@ -164,7 +155,6 @@ Scenario Outline: Back and forward navigation all screens for 1st Party
 	When I press the "Continue" button
 	
 	#Bail
-	
 	Then I see "Are you currently on bail for a criminal offence?" on the page
 	When I press the "Continue" button
 	Then I see "Select yes if you are currently on bail for a criminal offence" on the page
@@ -179,7 +169,6 @@ Scenario Outline: Back and forward navigation all screens for 1st Party
 	When I press the "Continue" button 
 	
 	#Convictions
-	
 	Then I see "Have you been found guilty of a criminal offence?" on the page
 	When I press the "Continue" button
 	Then I see "Select yes if you have been found guilty of a criminal offence" on the page
@@ -190,7 +179,6 @@ Scenario Outline: Back and forward navigation all screens for 1st Party
 	And I press the "Continue" button
 	
 	#Mental Health part 1
-	
 	Then I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
 	When I press the "Continue" button
 	Then I see "Select yes if you're being detained, looked after or treated under the Mental Health Act" on the page
@@ -205,7 +193,6 @@ Scenario Outline: Back and forward navigation all screens for 1st Party
 	When I press the "Continue" button
 	
 	#Mental Health part 2
-	
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
 	When I press the "Continue" button
 	Then I see "Select yes if it's been decided that you 'lack mental capacity'" on the page
@@ -220,15 +207,13 @@ Scenario Outline: Back and forward navigation all screens for 1st Party
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
 	When I press the "Continue" button
 	
-	#JDB-3442 Back link on confirm date page
-	
+	#Back link on confirm date page
 	Then I see "Check your start date" on the page
 	When I click on the "Back" link
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
 	When I press the "Continue" button 
 	
 	#Confirm date of service
-	
 	Then I see "Check your start date" on the page
 	When I press the "Continue" button
 	And I see "Select whether you can start jury service on this date" on the page
@@ -240,8 +225,7 @@ Scenario Outline: Back and forward navigation all screens for 1st Party
 	Then I see "Check your start date" on the page
 	When I press the "Continue" button 
 	
-	#RA JDB-3443
-	
+	#RA
 	Then I see "Will you need help when you're at the court?" on the page
 	When I press the "Continue" button
 	Then I see "There is a problem" on the page
@@ -250,7 +234,6 @@ Scenario Outline: Back and forward navigation all screens for 1st Party
 	And I press the "Continue" button
 	
 	#JDB-3638
-	
 	When I check the "Other" checkbox
 	And I press the "Continue" button
 	Then I see "Give details of your disability or impairment" on the page
@@ -268,8 +251,6 @@ Scenario Outline: Back and forward navigation all screens for 1st Party
 	And I see "You have completed your reply" on the page
 	And I see "We have sent you an email to say you have replied to your jury summons." on the page
 	
-	
 Examples:
-	|part_no		|last_name	|postcode	|email            |pool_no	 |
-	|641500222		|DOE		|SW1H 9AJ	|email@outlook.com|415170401 |
-	
+	| juror_number	| last_name	| postcode	| email            | pool_number|
+	| 045200181		| DOE		| SW1H 9AJ	| email@outlook.com| 452300166 	|

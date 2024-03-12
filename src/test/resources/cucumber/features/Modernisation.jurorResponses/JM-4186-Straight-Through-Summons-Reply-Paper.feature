@@ -11,8 +11,8 @@ Feature: JM-4186
 
     And I log in as "<user>"
 
-    And the user searches for juror record "<part_no>" from the global search bar
-    Then I am on the Juror Record for juror "<part_no>"
+    And the user searches for juror record "<juror_number>" from the global search bar
+    Then I am on the Juror Record for juror "<juror_number>"
     And I click the Enter summons reply button
     Then the juror details form is displayed
     And I enter a date of birth that will make the juror between 18 and 75
@@ -40,7 +40,7 @@ Feature: JM-4186
     Then I see "Your work" on the page
     And I see "Summons reply for <part_no> FNAMESEVENONEFIVE LNAMESEVENONEFIVE successfully processed: Responded" on the page
 
-    And I click on the "<part_no>" link
+    And I click on the "<juror_number>" link
     Then I see the Juror Record tag
     And the Enter summons reply button is not visible
 
@@ -57,12 +57,12 @@ Feature: JM-4186
       |part_no   | pool_no   | owner  |
       |<part_no> | <pool_no> | 400    |
 
-    And "<part_no>" has "NEXT_DATE" as "7 mondays time"
+    And "<juror_number>" has "NEXT_DATE" as "7 mondays time"
 
     And I log in as "<user>"
 
-    And the user searches for juror record "<part_no>" from the global search bar
-    Then I am on the Juror Record for juror "<part_no>"
+    And the user searches for juror record "<juror_number>" from the global search bar
+    Then I am on the Juror Record for juror "<juror_number>"
     And I click the Enter summons reply button
     Then the juror details form is displayed
     And I enter a date of birth that will make the juror between 18 and 75

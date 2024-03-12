@@ -8,8 +8,8 @@ Scenario Outline: 1st Party English ST, 5 weeks in advance, PNC pass
 	|part_no		|pool_no 	|Owner 		|
 	|741500438		|415181001 	|400		|
 	Given auto straight through processing has been enabled
-	And "<part_no>" has "RET_DATE" as "2 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "2 mondays time"
+	And "<juror_number>" has "RET_DATE" as "2 mondays time"
+	And "<juror_number>" has "NEXT_DATE" as "2 mondays time"
 	And I have submitted a first party English straight through response
 	| part_no		|pool_number| last_name		|postcode	| email |
 	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
@@ -18,21 +18,21 @@ Scenario Outline: 1st Party English ST, 5 weeks in advance, PNC pass
 	And I log in as "SYSTEM"
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Responded" on the page
 	
 	#DB checks (Do PNC PASS)
-	And "<part_no>" has "POLICE_CHECK" as "P"
-	And "<part_no>" has "PHOENIX_CHECKED" as "C"
+	And "<juror_number>" has "POLICE_CHECK" as "P"
+	And "<juror_number>" has "PHOENIX_CHECKED" as "C"
 	
 	#conf letter generated
-#	Given a confirmation letter is generated for juror "<part_no>"
+#	Given a confirmation letter is generated for juror "<juror_number>"
 	
-#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<part_no>"
+#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<juror_number>"
 	
 Examples:
 |part_no		|pool_no 	|last_name 				|postcode 	|email					|
@@ -46,8 +46,8 @@ Scenario Outline: 1st Party English ST, 3 weeks in advance, PNC fail
 	|part_no		|pool_no 	|Owner 		|
 	|741500543		|415181001 	|400		|
 	Given auto straight through processing has been enabled
-	And "<part_no>" has "RET_DATE" as "3 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "3 mondays time"
+	And "<juror_number>" has "RET_DATE" as "3 mondays time"
+	And "<juror_number>" has "NEXT_DATE" as "3 mondays time"
 	And I have submitted a first party English straight through response
 	| part_no		|pool_number| last_name		|postcode	| email |
 	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
@@ -56,9 +56,9 @@ Scenario Outline: 1st Party English ST, 3 weeks in advance, PNC fail
 	And I log in as "SYSTEM"
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Summoned" on the page
 	
 	#process in Bureau as Responded
@@ -68,21 +68,21 @@ Scenario Outline: 1st Party English ST, 3 weeks in advance, PNC fail
 	Then I see "Completed" on the page
 	
 	#DB checks (Do PNC PASS)
-	And "<part_no>" has "POLICE_CHECK" as "F"
-	And "<part_no>" has "PHOENIX_CHECKED" as "C"
+	And "<juror_number>" has "POLICE_CHECK" as "F"
+	And "<juror_number>" has "PHOENIX_CHECKED" as "C"
 	
 	#record is auto disqualified
-	And "<part_no>" has "DATE_DISQ" as "01-JUL-19"
-	And "<part_no>" has "DISQ_CODE" as "E"
-	And "<part_no>" has "STATUS" as "6"
-	And "<part_no>" has "NEXT_DATE" as ""
+	And "<juror_number>" has "DATE_DISQ" as "01-JUL-19"
+	And "<juror_number>" has "DISQ_CODE" as "E"
+	And "<juror_number>" has "STATUS" as "6"
+	And "<juror_number>" has "NEXT_DATE" as ""
 	
 	#conf letter generated
-	Given a disqualified letter is generated for juror "<part_no>"
+	Given a disqualified letter is generated for juror "<juror_number>"
 	
-#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<part_no>"
+#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<juror_number>"
 	
 Examples:
 |part_no		|pool_no 	|last_name 				|postcode 	|email					|
@@ -96,8 +96,8 @@ Scenario Outline: 1st Party English ST, 4 weeks in advance, PNC pass
 	|part_no		|pool_no 	|Owner 		|
 	|741500586		|415181001 	|400		|
 	Given auto straight through processing has been enabled
-	And "<part_no>" has "RET_DATE" as "2 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "2 mondays time"
+	And "<juror_number>" has "RET_DATE" as "2 mondays time"
+	And "<juror_number>" has "NEXT_DATE" as "2 mondays time"
 	And I have submitted a first party Welsh straight through response
 	| part_no		|pool_number| last_name		|postcode	| email |
 	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
@@ -112,9 +112,9 @@ Scenario Outline: 1st Party English ST, 4 weeks in advance, PNC pass
 	And I log in as "SYSTEM"
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 #	Then I see "Responded" on the page
 #	Then I see "Summoned" on the page
 #	
@@ -125,15 +125,15 @@ Scenario Outline: 1st Party English ST, 4 weeks in advance, PNC pass
 	Then I see "Completed" on the page
 	
 	#DB checks (Do PNC PASS)
-	And "<part_no>" has "POLICE_CHECK" as "P"
-	And "<part_no>" has "PHOENIX_CHECKED" as "C"
+	And "<juror_number>" has "POLICE_CHECK" as "P"
+	And "<juror_number>" has "PHOENIX_CHECKED" as "C"
 	
 	#conf letter generated
-#	Given a confirmation letter is generated for juror "<part_no>"
+#	Given a confirmation letter is generated for juror "<juror_number>"
 	
-#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<part_no>"
+#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<juror_number>"
 	
 Examples:
 |part_no		|pool_no 	|last_name 				|postcode 	|email					|
@@ -147,8 +147,8 @@ Scenario Outline: 1st Party English ST, 3 weeks in advance, PNC pass
 	|part_no		|pool_no 	|Owner 		|
 	|741500654		|415181001 	|400		|
 	Given auto straight through processing has been enabled
-	And "<part_no>" has "RET_DATE" as "3 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "3 mondays time"
+	And "<juror_number>" has "RET_DATE" as "3 mondays time"
+	And "<juror_number>" has "NEXT_DATE" as "3 mondays time"
 	And I have submitted a first party English straight through response
 	| part_no		|pool_number| last_name		|postcode	| email |
 	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
@@ -157,9 +157,9 @@ Scenario Outline: 1st Party English ST, 3 weeks in advance, PNC pass
 	And I log in as "SYSTEM"
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Summoned" on the page
 	And I see "Urgent" on the page
 	
@@ -170,15 +170,15 @@ Scenario Outline: 1st Party English ST, 3 weeks in advance, PNC pass
 	Then I see "Completed" on the page
 	
 	#DB checks (Do PNC PASS)
-	And "<part_no>" has "POLICE_CHECK" as "P"
-	And "<part_no>" has "PHOENIX_CHECKED" as "C"
+	And "<juror_number>" has "POLICE_CHECK" as "P"
+	And "<juror_number>" has "PHOENIX_CHECKED" as "C"
 	
 	#conf letter generated
-	Given a confirmation letter is generated for juror "<part_no>"
+	Given a confirmation letter is generated for juror "<juror_number>"
 		
-#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<part_no>"
+#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<juror_number>"
 	
 Examples:
 |part_no		|pool_no 	|last_name 				|postcode 	|email					|
@@ -192,8 +192,8 @@ Scenario Outline: 1st Party English ST, 2 weeks in advance, PNC pass
 	|part_no		|pool_no 	|Owner 		|
 	|741500057		|415181001 	|400		|
 	Given auto straight through processing has been enabled
-	And "<part_no>" has "RET_DATE" as "2 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "2 mondays time"
+	And "<juror_number>" has "RET_DATE" as "2 mondays time"
+	And "<juror_number>" has "NEXT_DATE" as "2 mondays time"
 	And I have submitted a first party English straight through response
 	| part_no		|pool_number| last_name		|postcode	| email |
 	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
@@ -202,9 +202,9 @@ Scenario Outline: 1st Party English ST, 2 weeks in advance, PNC pass
 	And I log in as "SYSTEM"
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Summoned" on the page
 	And I see "Urgent" on the page
 	
@@ -215,15 +215,15 @@ Scenario Outline: 1st Party English ST, 2 weeks in advance, PNC pass
 	Then I see "Completed" on the page
 	
 	#DB checks (Do PNC PASS)
-	And "<part_no>" has "POLICE_CHECK" as "P"
-	And "<part_no>" has "PHOENIX_CHECKED" as "C"
+	And "<juror_number>" has "POLICE_CHECK" as "P"
+	And "<juror_number>" has "PHOENIX_CHECKED" as "C"
 	
 	#conf letter generated
-	Given a confirmation letter is generated for juror "<part_no>"
+	Given a confirmation letter is generated for juror "<juror_number>"
 	
-#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<part_no>"
+#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<juror_number>"
 	
 Examples:
 |part_no		|pool_no 	|last_name 				|postcode 	|email					|
@@ -237,8 +237,8 @@ Scenario Outline: 1st Party English ST, 2 weeks in advance, PNC fail
 	|part_no		|pool_no 	|Owner 		|
 	|741500065		|415181001 	|400		|
 	Given auto straight through processing has been enabled
-	And "<part_no>" has "RET_DATE" as "2 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "2 mondays time"
+	And "<juror_number>" has "RET_DATE" as "2 mondays time"
+	And "<juror_number>" has "NEXT_DATE" as "2 mondays time"
 	And I have submitted a first party English straight through response
 	| part_no		|pool_number| last_name		|postcode	| email |
 	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
@@ -247,17 +247,17 @@ Scenario Outline: 1st Party English ST, 2 weeks in advance, PNC fail
 	And I log in as "SYSTEM"
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Summoned" on the page
 	And I see "Urgent" on the page
 	
 	#DB checks (Do PNC FAIL)
 	
-	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224" where "PART_NO" is "<part_no>"
-	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<part_no>"
-	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<part_no>"
+	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224" where "PART_NO" is "<juror_number>"
+	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<juror_number>"
+	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<juror_number>"
 	
 Examples:
 |part_no		|pool_no 	|last_name 				|postcode 	|email					|
@@ -271,9 +271,9 @@ Scenario Outline: 1st Party English ST, 1 week in advance, PNC pass
 	|part_no		|pool_no 	|Owner 		|
 	|<part_no>		|<pool_no> 	|400		|
 	Given auto straight through processing has been enabled
-	And "<part_no>" has "RET_DATE" as "1 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "1 mondays time"
-	And "<part_no>" has "READ_ONLY" as "Y"
+	And "<juror_number>" has "RET_DATE" as "1 mondays time"
+	And "<juror_number>" has "NEXT_DATE" as "1 mondays time"
+	And "<juror_number>" has "READ_ONLY" as "Y"
 	And I have submitted a first party English straight through response
 	| part_no		|pool_number| last_name		|postcode	| email |
 	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
@@ -282,17 +282,17 @@ Scenario Outline: 1st Party English ST, 1 week in advance, PNC pass
 	And I log in as "SYSTEM"
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 #	Then I see "Summoned" on the page
 	And I see "Send to court" on the page
 	
 	#Check email and SMS as well as Notifications
 	
-	#Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<part_no>"
-	#Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<part_no>"
-	#Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<part_no>"
+	#Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<juror_number>"
+	#Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<juror_number>"
+	#Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<juror_number>"
 	
 Examples:
 |part_no		|pool_no 	|last_name 				|postcode 	|email					|
@@ -306,9 +306,9 @@ Scenario Outline: 1st Party English ST, 1 day in advance, PNC pass
 	|part_no		|pool_no 	|Owner 		|
 	|741500514		|415181001 	|400		|
 	Given auto straight through processing has been enabled
-	And "<part_no>" has "RET_DATE" as "1 days time"
-	And "<part_no>" has "NEXT_DATE" as "1 days time"
-	And "<part_no>" has "READ_ONLY" as "Y"
+	And "<juror_number>" has "RET_DATE" as "1 days time"
+	And "<juror_number>" has "NEXT_DATE" as "1 days time"
+	And "<juror_number>" has "READ_ONLY" as "Y"
 	And I have submitted a first party English straight through response
 	| part_no		|pool_number| last_name		|postcode	| email |
 	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
@@ -317,17 +317,17 @@ Scenario Outline: 1st Party English ST, 1 day in advance, PNC pass
 	And I log in as "SYSTEM"
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Summoned" on the page
 	And I see "Send to court" on the page
 	
 	#DB checks (Do PNC N/A)
 	
-	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<part_no>"
-	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<part_no>"
-	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<part_no>"
+	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<juror_number>"
+	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<juror_number>"
+	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<juror_number>"
 	
 Examples:
 |part_no		|pool_no 	|last_name 				|postcode 	|email					|
@@ -341,8 +341,8 @@ Scenario Outline: 1st Party Welsh ST, 5 weeks in advance, PNC pass
 	|part_no		|pool_no 	|Owner 		|
 	|<part_no>		|<pool_no>	|400		|
 	Given auto straight through processing has been enabled
-	And "<part_no>" has "RET_DATE" as "2 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "2 mondays time"
+	And "<juror_number>" has "RET_DATE" as "2 mondays time"
+	And "<juror_number>" has "NEXT_DATE" as "2 mondays time"
 	And I have submitted a first party Welsh straight through response
 	| part_no		|pool_number| last_name		|postcode	| email |
 	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
@@ -355,21 +355,21 @@ Scenario Outline: 1st Party Welsh ST, 5 weeks in advance, PNC pass
 	And I log in as "SYSTEM"
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 #	Then I see "Responded" on the page
 	
 	#DB checks (Do PNC PASS)
-	And "<part_no>" has "POLICE_CHECK" as "P"
-	And "<part_no>" has "PHOENIX_CHECKED" as "C"
+	And "<juror_number>" has "POLICE_CHECK" as "P"
+	And "<juror_number>" has "PHOENIX_CHECKED" as "C"
 	
 	#conf letter generated
-#	Given a confirmation letter is generated for juror "<part_no>"
+#	Given a confirmation letter is generated for juror "<juror_number>"
 	
-#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<part_no>"
+#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<juror_number>"
 	
 Examples:
 |part_no		|pool_no 	|last_name 				|postcode 	|email					|
@@ -383,8 +383,8 @@ Scenario Outline: 1st Party Welsh ST, 4 weeks in advance, PNC pass
 	|part_no		|pool_no 	|Owner 		|
 	|645700112		|457170401 	|400		|
 	Given auto straight through processing has been enabled
-	And "<part_no>" has "RET_DATE" as "4 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "4 mondays time"
+	And "<juror_number>" has "RET_DATE" as "4 mondays time"
+	And "<juror_number>" has "NEXT_DATE" as "4 mondays time"
 #	And I have submitted a first party Welsh straight through response
 #	| part_no		|pool_number| last_name		|postcode	| email |
 #	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
@@ -399,9 +399,9 @@ Scenario Outline: 1st Party Welsh ST, 4 weeks in advance, PNC pass
 	And I log in as "SYSTEM"
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Summoned" on the page
 	And I see "Urgent" on the page
 	
@@ -412,15 +412,15 @@ Scenario Outline: 1st Party Welsh ST, 4 weeks in advance, PNC pass
 	Then I see "Completed" on the page
 	
 	#DB checks (Do PNC PASS)
-	And "<part_no>" has "POLICE_CHECK" as "P"
-	And "<part_no>" has "PHOENIX_CHECKED" as "C"
+	And "<juror_number>" has "POLICE_CHECK" as "P"
+	And "<juror_number>" has "PHOENIX_CHECKED" as "C"
 	
 	#conf letter generated
-	Given a confirmation letter is generated for juror "<part_no>"
+	Given a confirmation letter is generated for juror "<juror_number>"
 		
-#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<part_no>"
+#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<juror_number>"
 	
 Examples:
 |part_no		|pool_no 	|last_name 			|postcode 	|email				|
@@ -434,8 +434,8 @@ Scenario Outline: 1st Party Welsh ST, 3 weeks in advance, PNC pass
 	|part_no		|pool_no 	|Owner 		|
 	|645700142		|457170401 	|400		|
 	Given auto straight through processing has been enabled
-	And "<part_no>" has "RET_DATE" as "3 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "3 mondays time"
+	And "<juror_number>" has "RET_DATE" as "3 mondays time"
+	And "<juror_number>" has "NEXT_DATE" as "3 mondays time"
 	And I have submitted a first party Welsh straight through response
 	| part_no		|pool_number| last_name		|postcode	| email |
 	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
@@ -444,9 +444,9 @@ Scenario Outline: 1st Party Welsh ST, 3 weeks in advance, PNC pass
 	And I log in as "SYSTEM"
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Summoned" on the page
 	And I see "Urgent" on the page
 	
@@ -457,15 +457,15 @@ Scenario Outline: 1st Party Welsh ST, 3 weeks in advance, PNC pass
 	Then I see "Completed" on the page
 	
 	#DB checks (Do PNC PASS)
-	And "<part_no>" has "POLICE_CHECK" as "P"
-	And "<part_no>" has "PHOENIX_CHECKED" as "C"
+	And "<juror_number>" has "POLICE_CHECK" as "P"
+	And "<juror_number>" has "PHOENIX_CHECKED" as "C"
 	
 	#conf letter generated
-	Given a confirmation letter is generated for juror "<part_no>"
+	Given a confirmation letter is generated for juror "<juror_number>"
 		
-#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<part_no>"
+#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<juror_number>"
 	
 Examples:
 |part_no		|pool_no 	|last_name 				|postcode 	|email				|
@@ -479,8 +479,8 @@ Scenario Outline: 1st Party Welsh ST, 2 weeks in advance, PNC pass
 	|part_no		|pool_no 	|Owner 		|
 	|<part_no>		|<pool_no> 	|400		|
 	Given auto straight through processing has been enabled
-	And "<part_no>" has "RET_DATE" as "2 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "2 mondays time"
+	And "<juror_number>" has "RET_DATE" as "2 mondays time"
+	And "<juror_number>" has "NEXT_DATE" as "2 mondays time"
 	And I have submitted a first party Welsh straight through response
 	| part_no		|pool_number| last_name		|postcode	| email |
 	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
@@ -493,9 +493,9 @@ Scenario Outline: 1st Party Welsh ST, 2 weeks in advance, PNC pass
 	And I log in as "SYSTEM"
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Summoned" on the page
 	And I see "Urgent" on the page
 	
@@ -506,15 +506,15 @@ Scenario Outline: 1st Party Welsh ST, 2 weeks in advance, PNC pass
 	Then I see "Completed" on the page
 	
 	#DB checks (Do PNC PASS)
-	And "<part_no>" has "POLICE_CHECK" as "P"
-	And "<part_no>" has "PHOENIX_CHECKED" as "C"
+	And "<juror_number>" has "POLICE_CHECK" as "P"
+	And "<juror_number>" has "PHOENIX_CHECKED" as "C"
 	
 	#conf letter generated
-	Given a confirmation letter is generated for juror "<part_no>"
+	Given a confirmation letter is generated for juror "<juror_number>"
 	
-#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<part_no>"
+#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<juror_number>"
 	
 Examples:
 |part_no		|pool_no 	|last_name 				|postcode 	|email				|
@@ -528,9 +528,9 @@ Scenario Outline: 1st Party Welsh ST, 1 week in advance, PNC pass
 	|part_no		|pool_no 	|Owner 		|
 	|645700937		|457170401 	|400		|
 	Given auto straight through processing has been enabled
-	And "<part_no>" has "RET_DATE" as "1 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "1 mondays time"
-	And "<part_no>" has "READ_ONLY" as "Y"
+	And "<juror_number>" has "RET_DATE" as "1 mondays time"
+	And "<juror_number>" has "NEXT_DATE" as "1 mondays time"
+	And "<juror_number>" has "READ_ONLY" as "Y"
 	And I have submitted a first party Welsh straight through response
 	| part_no		|pool_number| last_name		|postcode	| email |
 	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
@@ -543,17 +543,17 @@ Scenario Outline: 1st Party Welsh ST, 1 week in advance, PNC pass
 	And I log in as "SYSTEM"
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Summoned" on the page
 	And I see "Send to court" on the page
 	
 	#DB checks (Do PNC PASS)
 	
-#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<part_no>"
+#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<juror_number>"
 	
 Examples:
 |part_no		|pool_no 	|last_name 				|postcode 	|email					|
@@ -567,9 +567,9 @@ Scenario Outline: 1st Party Welsh ST, 1 day in advance, PNC pass
 	|part_no		|pool_no 	|Owner 		|
 	|841501931		|415181001 	|400		|
 	Given auto straight through processing has been enabled
-	And "<part_no>" has "RET_DATE" as "1 days time"
-	And "<part_no>" has "NEXT_DATE" as "1 days time"
-	And "<part_no>" has "READ_ONLY" as "Y"
+	And "<juror_number>" has "RET_DATE" as "1 days time"
+	And "<juror_number>" has "NEXT_DATE" as "1 days time"
+	And "<juror_number>" has "READ_ONLY" as "Y"
 	And I have submitted a first party Welsh straight through response
 	| part_no		|pool_number| last_name		|postcode	| email |
 	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
@@ -578,17 +578,17 @@ Scenario Outline: 1st Party Welsh ST, 1 day in advance, PNC pass
 	And I log in as "SYSTEM"
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Summoned" on the page
 	And I see "Send to court" on the page
 	
 	#DB checks (Do PNC N/A)
 	
-	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<part_no>"
-	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<part_no>"
-	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<part_no>"
+	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<juror_number>"
+	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<juror_number>"
+	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<juror_number>"
 	
 Examples:
 |part_no		|pool_no 	|last_name 				|postcode 	|email					|
@@ -602,8 +602,8 @@ Scenario Outline: 1st Party Deferral accepted, 5 weeks in advance, PNC pass
 	|part_no		|pool_no 	|Owner 		|
 	|741500528		|415181001 	|400		|
 	Given auto straight through processing has been enabled
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
+
+
 	And I have submitted a first party English deferral response
 	| part_no		|pool_number| last_name		|postcode	| email |
 	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
@@ -612,9 +612,9 @@ Scenario Outline: 1st Party Deferral accepted, 5 weeks in advance, PNC pass
 	And I log in as "SYSTEM"
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Summoned" on the page
 	
 	When I select "Deferral" from Process reply
@@ -627,15 +627,15 @@ Scenario Outline: 1st Party Deferral accepted, 5 weeks in advance, PNC pass
 	Then I see "Completed" on the page
 	
 	#DB checks (Do PNC PASS)
-	And "<part_no>" has "POLICE_CHECK" as "P"
-	And "<part_no>" has "PHOENIX_CHECKED" as "C"
+	And "<juror_number>" has "POLICE_CHECK" as "P"
+	And "<juror_number>" has "PHOENIX_CHECKED" as "C"
 	
 	#deferral letter generated
-	Given a deferral letter is generated for juror "<part_no>"
+	Given a deferral letter is generated for juror "<juror_number>"
 	
-#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<part_no>"
+#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<juror_number>"
 	
 Examples:
 |part_no		|pool_no 	|last_name 			|postcode 	|email					|
@@ -649,8 +649,8 @@ Scenario Outline: 1st Party Deferral refused, 5 weeks in advance, PNC pass
 	|part_no		|pool_no 	|Owner 		|
 	|741500533		|415181001 	|400		|
 	Given auto straight through processing has been enabled
-	And "<part_no>" has "RET_DATE" as "4 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "4 mondays time"
+	And "<juror_number>" has "RET_DATE" as "4 mondays time"
+	And "<juror_number>" has "NEXT_DATE" as "4 mondays time"
 	And I have submitted a first party English deferral response
 	| part_no		|pool_number| last_name		|postcode	| email |
 	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
@@ -659,9 +659,9 @@ Scenario Outline: 1st Party Deferral refused, 5 weeks in advance, PNC pass
 	And I log in as "SYSTEM"
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Summoned" on the page
 	
 	When I select "Deferral" from Process reply
@@ -672,16 +672,16 @@ Scenario Outline: 1st Party Deferral refused, 5 weeks in advance, PNC pass
 	Then I see "Completed" on the page
 	
 	#DB checks (Do PNC PASS)
-	And "<part_no>" has "POLICE_CHECK" as "P"
-	And "<part_no>" has "PHOENIX_CHECKED" as "C"
+	And "<juror_number>" has "POLICE_CHECK" as "P"
+	And "<juror_number>" has "PHOENIX_CHECKED" as "C"
 	
 	#def denied and conformation letter generated
-#	Given a confirmation letter is generated for juror "<part_no>"
-#	Given a deferral denied letter is generated for juror "<part_no>"
+#	Given a confirmation letter is generated for juror "<juror_number>"
+#	Given a deferral denied letter is generated for juror "<juror_number>"
 	
-#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<part_no>"
+#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<juror_number>"
 	
 Examples:
 |part_no		|pool_no 	|last_name 				|postcode 	|email					|
@@ -695,8 +695,8 @@ Scenario Outline: 1st Party Deferral accepted, 4 weeks in advance, PNC pass
 	|part_no		|pool_no 	|Owner 		|
 	|741500558		|415181001 	|400		|
 	Given auto straight through processing has been enabled
-	And "<part_no>" has "RET_DATE" as "4 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "4 mondays time"
+	And "<juror_number>" has "RET_DATE" as "4 mondays time"
+	And "<juror_number>" has "NEXT_DATE" as "4 mondays time"
 	And I have submitted a first party English deferral response
 	| part_no		|pool_number| last_name		|postcode	| email |
 	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
@@ -707,9 +707,9 @@ Scenario Outline: 1st Party Deferral accepted, 4 weeks in advance, PNC pass
 	And I log in as "SYSTEM"
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Summoned" on the page
 	
 	When I select "Deferral" from Process reply
@@ -722,15 +722,15 @@ Scenario Outline: 1st Party Deferral accepted, 4 weeks in advance, PNC pass
 	Then I see "Completed" on the page
 	
 	#DB checks (Do PNC PASS)
-	And "<part_no>" has "POLICE_CHECK" as "P"
-	And "<part_no>" has "PHOENIX_CHECKED" as "C"
+	And "<juror_number>" has "POLICE_CHECK" as "P"
+	And "<juror_number>" has "PHOENIX_CHECKED" as "C"
 	
 	#deferral letter generated
-	Given a deferral letter is generated for juror "<part_no>"
+	Given a deferral letter is generated for juror "<juror_number>"
 	
-#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<part_no>"
+#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<juror_number>"
 	
 Examples:
 |part_no		|pool_no 	|last_name 			|postcode 	|email					|
@@ -744,8 +744,8 @@ Scenario Outline: 1st Party Deferral refused, 4 weeks in advance, PNC pass
 	|part_no		|pool_no 	|Owner 		|
 	|741500580		|415181001 	|400		|
 	Given auto straight through processing has been enabled
-	And "<part_no>" has "RET_DATE" as "4 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "4 mondays time"
+	And "<juror_number>" has "RET_DATE" as "4 mondays time"
+	And "<juror_number>" has "NEXT_DATE" as "4 mondays time"
 	And I have submitted a first party English deferral response
 	| part_no		|pool_number| last_name		|postcode	| email |
 	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
@@ -756,17 +756,17 @@ Scenario Outline: 1st Party Deferral refused, 4 weeks in advance, PNC pass
 	And I log in as "SYSTEM"
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Summoned" on the page
 	And I see "Urgent" on the page
 	
 	#DB checks (Do PNC PASS)
 	
-	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<part_no>"
-	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<part_no>"
-	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<part_no>"
+	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<juror_number>"
+	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<juror_number>"
+	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<juror_number>"
 	
 Examples:
 |part_no		|pool_no 	|last_name 			|postcode 	|email					|
@@ -780,8 +780,8 @@ Scenario Outline: 1st Party Deferral accepted, 3 weeks in advance, PNC pass
 	|part_no		|pool_no 	|Owner 		|
 	|741500614		|415181001 	|400		|
 	Given auto straight through processing has been enabled
-	And "<part_no>" has "RET_DATE" as "3 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "3 mondays time"
+	And "<juror_number>" has "RET_DATE" as "3 mondays time"
+	And "<juror_number>" has "NEXT_DATE" as "3 mondays time"
 	And I have submitted a first party English deferral response
 	| part_no		|pool_number| last_name		|postcode	| email |
 	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
@@ -790,9 +790,9 @@ Scenario Outline: 1st Party Deferral accepted, 3 weeks in advance, PNC pass
 	And I log in as "SYSTEM"
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Summoned" on the page
 	And I see "Urgent" on the page
 	
@@ -806,15 +806,15 @@ Scenario Outline: 1st Party Deferral accepted, 3 weeks in advance, PNC pass
 	Then I see "Completed" on the page
 	
 	#DB checks (Do PNC PASS)
-	And "<part_no>" has "POLICE_CHECK" as "P"
-	And "<part_no>" has "PHOENIX_CHECKED" as "C"
+	And "<juror_number>" has "POLICE_CHECK" as "P"
+	And "<juror_number>" has "PHOENIX_CHECKED" as "C"
 	
 	#deferral letter generated
-	Given a deferral letter is generated for juror "<part_no>"
+	Given a deferral letter is generated for juror "<juror_number>"
 	
-#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<part_no>"
+#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<juror_number>"
 	
 Examples:
 |part_no		|pool_no 	|last_name 			|postcode 	|email					|
@@ -828,8 +828,8 @@ Scenario Outline: 1st Party Deferral refused, 3 weeks in advance, PNC pass
 	|part_no		|pool_no 	|Owner 		|
 	|741500627		|415181001 	|400		|
 	Given auto straight through processing has been enabled
-	And "<part_no>" has "RET_DATE" as "3 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "3 mondays time"
+	And "<juror_number>" has "RET_DATE" as "3 mondays time"
+	And "<juror_number>" has "NEXT_DATE" as "3 mondays time"
 	And I have submitted a first party English deferral response
 	| part_no		|pool_number| last_name		|postcode	| email |
 	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
@@ -838,17 +838,17 @@ Scenario Outline: 1st Party Deferral refused, 3 weeks in advance, PNC pass
 	And I log in as "SYSTEM"
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Summoned" on the page
 	And I see "Urgent" on the page
 	
 	#DB checks (Do PNC PASS)
 	
-	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<part_no>"
-	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<part_no>"
-	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<part_no>"
+	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<juror_number>"
+	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<juror_number>"
+	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<juror_number>"
 	
 Examples:
 |part_no		|pool_no 	|last_name 			|postcode 	|email					|
@@ -862,8 +862,8 @@ Scenario Outline: 1st Party Deferral accepted, 2 weeks in advance, PNC pass
 	|part_no		|pool_no 	|Owner 		|
 	|741500657		|415181001 	|400		|
 	Given auto straight through processing has been enabled
-	And "<part_no>" has "RET_DATE" as "2 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "2 mondays time"
+	And "<juror_number>" has "RET_DATE" as "2 mondays time"
+	And "<juror_number>" has "NEXT_DATE" as "2 mondays time"
 	And I have submitted a first party English deferral response
 	| part_no		|pool_number| last_name		|postcode	| email |
 	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
@@ -872,9 +872,9 @@ Scenario Outline: 1st Party Deferral accepted, 2 weeks in advance, PNC pass
 	And I log in as "SYSTEM"
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Summoned" on the page
 	And I see "Urgent" on the page
 	
@@ -888,15 +888,15 @@ Scenario Outline: 1st Party Deferral accepted, 2 weeks in advance, PNC pass
 	Then I see "Completed" on the page
 	
 	#DB checks (Do PNC PASS)
-	And "<part_no>" has "POLICE_CHECK" as "P"
-	And "<part_no>" has "PHOENIX_CHECKED" as "C"
+	And "<juror_number>" has "POLICE_CHECK" as "P"
+	And "<juror_number>" has "PHOENIX_CHECKED" as "C"
 	
 	#deferral letter generated
-	Given a deferral letter is generated for juror "<part_no>"
+	Given a deferral letter is generated for juror "<juror_number>"
 	
-#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<part_no>"
+#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<juror_number>"
 	
 Examples:
 |part_no		|pool_no 	|last_name 			|postcode 	|email					|
@@ -910,8 +910,8 @@ Scenario Outline: 1st Party Deferral refused, 2 weeks in advance, PNC pass
 	|part_no		|pool_no 	|Owner 		|
 	|741500674		|415181001 	|400		|
 	Given auto straight through processing has been enabled
-	And "<part_no>" has "RET_DATE" as "2 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "2 mondays time"
+	And "<juror_number>" has "RET_DATE" as "2 mondays time"
+	And "<juror_number>" has "NEXT_DATE" as "2 mondays time"
 	And I have submitted a first party English deferral response
 	| part_no		|pool_number| last_name		|postcode	| email |
 	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
@@ -920,17 +920,17 @@ Scenario Outline: 1st Party Deferral refused, 2 weeks in advance, PNC pass
 	And I log in as "SYSTEM"
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Summoned" on the page
 	And I see "Urgent" on the page
 	
 	#DB checks (Do PNC PASS)
 	
-	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<part_no>"
-	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<part_no>"
-	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<part_no>"
+	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<juror_number>"
+	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<juror_number>"
+	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<juror_number>"
 	
 Examples:
 |part_no		|pool_no 	|last_name 			|postcode 	|email					|
@@ -944,9 +944,9 @@ Scenario Outline: 1st Party Deferral accepted, 1 week in advance, PNC pass
 	|part_no		|pool_no 	|Owner 		|
 	|741500779		|415181001 	|400		|
 	Given auto straight through processing has been enabled
-	And "<part_no>" has "RET_DATE" as "1 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "1 mondays time"
-	And "<part_no>" has "READ_ONLY" as "Y"
+	And "<juror_number>" has "RET_DATE" as "1 mondays time"
+	And "<juror_number>" has "NEXT_DATE" as "1 mondays time"
+	And "<juror_number>" has "READ_ONLY" as "Y"
 	And I have submitted a first party English deferral response
 	| part_no		|pool_number| last_name		|postcode	| email |
 	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
@@ -955,17 +955,17 @@ Scenario Outline: 1st Party Deferral accepted, 1 week in advance, PNC pass
 	And I log in as "SYSTEM"
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Summoned" on the page
 	And I see "Send to court" on the page
 	
 	#DB checks (Do PNC PASS)
 	
-	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<part_no>"
-	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<part_no>"
-	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<part_no>"
+	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<juror_number>"
+	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<juror_number>"
+	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<juror_number>"
 	
 Examples:
 |part_no		|pool_no 	|last_name 				|postcode 	|email					|
@@ -979,9 +979,9 @@ Scenario Outline: 1st Party Deferral refused, 1 week in advance, PNC pass
 	|part_no		|pool_no 	|Owner 		|
 	|741500790		|415181001 	|400		|
 	Given auto straight through processing has been enabled
-	And "<part_no>" has "RET_DATE" as "1 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "1 mondays time"
-	And "<part_no>" has "READ_ONLY" as "Y"
+	And "<juror_number>" has "RET_DATE" as "1 mondays time"
+	And "<juror_number>" has "NEXT_DATE" as "1 mondays time"
+	And "<juror_number>" has "READ_ONLY" as "Y"
 	And I have submitted a first party English deferral response
 	| part_no		|pool_number| last_name		|postcode	| email |
 	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
@@ -990,17 +990,17 @@ Scenario Outline: 1st Party Deferral refused, 1 week in advance, PNC pass
 	And I log in as "SYSTEM"
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Summoned" on the page
 	And I see "Send to court" on the page
 	
 	#DB checks (Do PNC PASS)
 	
-	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<part_no>"
-	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<part_no>"
-	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<part_no>"
+	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<juror_number>"
+	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<juror_number>"
+	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<juror_number>"
 	
 Examples:
 |part_no		|pool_no 	|last_name 			|postcode 	|email					|
@@ -1014,8 +1014,8 @@ Scenario Outline: 1st Party Excusal accepted, 5 weeks in advance, PNC pass
 	|part_no		|pool_no 	|Owner 		|
 	|741500795		|415181001 	|400		|
 	Given auto straight through processing has been enabled
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
+
+
 	And I have submitted a first party English excusal response
 	| part_no		|pool_number| last_name		|postcode	| email |
 	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
@@ -1024,9 +1024,9 @@ Scenario Outline: 1st Party Excusal accepted, 5 weeks in advance, PNC pass
 	And I log in as "SYSTEM"
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Summoned" on the page
 	
 	#process in Bureau as Excused
@@ -1037,15 +1037,15 @@ Scenario Outline: 1st Party Excusal accepted, 5 weeks in advance, PNC pass
 	Then I see "Completed" on the page
 	
 	#DB checks (Do PNC PASS)
-	And "<part_no>" has "POLICE_CHECK" as "P"
-	And "<part_no>" has "PHOENIX_CHECKED" as "C"
+	And "<juror_number>" has "POLICE_CHECK" as "P"
+	And "<juror_number>" has "PHOENIX_CHECKED" as "C"
 	
 	#excusal letter generated
-	Given an excusal letter is generated for juror "<part_no>"
+	Given an excusal letter is generated for juror "<juror_number>"
 	
-#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<part_no>"
+#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<juror_number>"
 	
 Examples:
 |part_no		|pool_no 	|last_name 			|postcode 	|email					|
@@ -1059,8 +1059,8 @@ Scenario Outline: 1st Party Excusal refused, 5 weeks in advance, PNC pass
 	|part_no		|pool_no 	|Owner 		|
 	|741500827		|415181001  |400		|
 	Given auto straight through processing has been enabled
-	And "<part_no>" has "RET_DATE" as "3 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "3 mondays time"
+	And "<juror_number>" has "RET_DATE" as "3 mondays time"
+	And "<juror_number>" has "NEXT_DATE" as "3 mondays time"
 	And I have submitted a first party English excusal response
 	| part_no		|pool_number| last_name		|postcode	| email |
 	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
@@ -1069,9 +1069,9 @@ Scenario Outline: 1st Party Excusal refused, 5 weeks in advance, PNC pass
 	And I log in as "SYSTEM"
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Summoned" on the page
 	
 	#process in Bureau as Excused
@@ -1082,16 +1082,16 @@ Scenario Outline: 1st Party Excusal refused, 5 weeks in advance, PNC pass
 	Then I see "Completed" on the page
 	
 	#DB checks (Do PNC PASS)
-	And "<part_no>" has "POLICE_CHECK" as "P"
-	And "<part_no>" has "PHOENIX_CHECKED" as "C"
+	And "<juror_number>" has "POLICE_CHECK" as "P"
+	And "<juror_number>" has "PHOENIX_CHECKED" as "C"
 	
 	#refuse excusal letter generated
-	Given an excusal denied letter is generated for juror "<part_no>"
-	Given a confirmation letter is generated for juror "<part_no>"
+	Given an excusal denied letter is generated for juror "<juror_number>"
+	Given a confirmation letter is generated for juror "<juror_number>"
 	
-#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<part_no>"
+#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<juror_number>"
 	
 Examples:
 |part_no		|pool_no 	|last_name 				|postcode 	|email					|
@@ -1105,8 +1105,8 @@ Scenario Outline: 1st Party Excusal accepted, 4 weeks in advance, PNC pass
 	|part_no		|pool_no 	|Owner 		|
 	|741500520		|415181001 	|400		|
 	Given auto straight through processing has been enabled
-	And "<part_no>" has "RET_DATE" as "4 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "4 mondays time"
+	And "<juror_number>" has "RET_DATE" as "4 mondays time"
+	And "<juror_number>" has "NEXT_DATE" as "4 mondays time"
 	And I have submitted a first party English excusal response
 	| part_no		|pool_number| last_name		|postcode	| email |
 	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
@@ -1117,9 +1117,9 @@ Scenario Outline: 1st Party Excusal accepted, 4 weeks in advance, PNC pass
 	And I log in as "SYSTEM"
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Summoned" on the page
 	
 	#process in Bureau as Excused
@@ -1130,15 +1130,15 @@ Scenario Outline: 1st Party Excusal accepted, 4 weeks in advance, PNC pass
 	Then I see "Completed" on the page
 	
 	#DB checks (Do PNC PASS)
-	And "<part_no>" has "POLICE_CHECK" as "P"
-	And "<part_no>" has "PHOENIX_CHECKED" as "C"
+	And "<juror_number>" has "POLICE_CHECK" as "P"
+	And "<juror_number>" has "PHOENIX_CHECKED" as "C"
 	
 	#excusal letter generated
-	Given an excusal letter is generated for juror "<part_no>"
+	Given an excusal letter is generated for juror "<juror_number>"
 	
-#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<part_no>"
+#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<juror_number>"
 	
 Examples:
 |part_no		|pool_no 	|last_name 			|postcode 	|email				|
@@ -1152,8 +1152,8 @@ Scenario Outline: 1st Party Excusal refused, 4 weeks in advance, PNC pass
 	|part_no		|pool_no 	|Owner 		|
 	|<part_no>		|<pool_no> 	|400		|
 	Given auto straight through processing has been enabled
-	And "<part_no>" has "RET_DATE" as "4 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "4 mondays time"
+	And "<juror_number>" has "RET_DATE" as "4 mondays time"
+	And "<juror_number>" has "NEXT_DATE" as "4 mondays time"
 	And I have submitted a first party English excusal response
 	| part_no		|pool_number| last_name		|postcode	| email |
 	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
@@ -1164,17 +1164,17 @@ Scenario Outline: 1st Party Excusal refused, 4 weeks in advance, PNC pass
 	And I log in as "SYSTEM"
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Summoned" on the page
 	And I see "Urgent" on the page
 	
 	#DB checks (Do PNC PASS)
 	
-#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<part_no>"
+#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<juror_number>"
 	
 Examples:
 |part_no		|pool_no 	|last_name 			|postcode 	|email					|
@@ -1188,8 +1188,8 @@ Scenario Outline: 1st Party Excusal accepted, 3 weeks in advance, PNC pass
 	|part_no		|pool_no 	|Owner 		|
 	|741500473		|415181001 	|400		|
 	Given auto straight through processing has been enabled
-	And "<part_no>" has "RET_DATE" as "3 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "3 mondays time"
+	And "<juror_number>" has "RET_DATE" as "3 mondays time"
+	And "<juror_number>" has "NEXT_DATE" as "3 mondays time"
 	And I have submitted a first party English excusal response
 	| part_no		|pool_number| last_name		|postcode	| email |
 	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
@@ -1198,9 +1198,9 @@ Scenario Outline: 1st Party Excusal accepted, 3 weeks in advance, PNC pass
 	And I log in as "SYSTEM"
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Summoned" on the page
 	And I see "Urgent" on the page
 	
@@ -1212,15 +1212,15 @@ Scenario Outline: 1st Party Excusal accepted, 3 weeks in advance, PNC pass
 	Then I see "Completed" on the page
 	
 	#DB checks (Do PNC PASS)
-	And "<part_no>" has "POLICE_CHECK" as "P"
-	And "<part_no>" has "PHOENIX_CHECKED" as "C"
+	And "<juror_number>" has "POLICE_CHECK" as "P"
+	And "<juror_number>" has "PHOENIX_CHECKED" as "C"
 	
 	#excusal letter generated
-	Given an excusal letter is generated for juror "<part_no>"
+	Given an excusal letter is generated for juror "<juror_number>"
 	
-#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<part_no>"
+#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<juror_number>"
 	
 Examples:
 |part_no		|pool_no 	|last_name 				|postcode 	|email					|
@@ -1234,8 +1234,8 @@ Scenario Outline: 1st Party Excusal refused, 3 weeks in advance, PNC pass
 	|part_no		|pool_no 	|Owner 		|
 	|841500029		|415181001 	|400		|
 	Given auto straight through processing has been enabled
-	And "<part_no>" has "RET_DATE" as "3 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "3 mondays time"
+	And "<juror_number>" has "RET_DATE" as "3 mondays time"
+	And "<juror_number>" has "NEXT_DATE" as "3 mondays time"
 	And I have submitted a first party English excusal response
 	| part_no		|pool_number| last_name		|postcode	| email |
 	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
@@ -1244,17 +1244,17 @@ Scenario Outline: 1st Party Excusal refused, 3 weeks in advance, PNC pass
 	And I log in as "SYSTEM"
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Summoned" on the page
 	And I see "Urgent" on the page
 	
 	#DB checks (Do PNC PASS)
 	
-	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<part_no>"
-	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<part_no>"
-	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<part_no>"
+	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<juror_number>"
+	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<juror_number>"
+	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<juror_number>"
 	
 Examples:
 |part_no		|pool_no 	|last_name 	|postcode 	|email					|
@@ -1268,8 +1268,8 @@ Scenario Outline: 1st Party Excusal accepted, 2 weeks in advance, PNC pass
 	|part_no		|pool_no 	|Owner 		|
 	|841500034		|415181001 	|400		|
 	Given auto straight through processing has been enabled
-	And "<part_no>" has "RET_DATE" as "2 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "2 mondays time"
+	And "<juror_number>" has "RET_DATE" as "2 mondays time"
+	And "<juror_number>" has "NEXT_DATE" as "2 mondays time"
 	And I have submitted a first party English excusal response
 	| part_no		|pool_number| last_name		|postcode	| email |
 	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
@@ -1278,9 +1278,9 @@ Scenario Outline: 1st Party Excusal accepted, 2 weeks in advance, PNC pass
 	And I log in as "SYSTEM"
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Summoned" on the page
 	And I see "Urgent" on the page
 	
@@ -1292,15 +1292,15 @@ Scenario Outline: 1st Party Excusal accepted, 2 weeks in advance, PNC pass
 	Then I see "Completed" on the page
 	
 	#DB checks (Do PNC PASS)
-	And "<part_no>" has "POLICE_CHECK" as "P"
-	And "<part_no>" has "PHOENIX_CHECKED" as "C"
+	And "<juror_number>" has "POLICE_CHECK" as "P"
+	And "<juror_number>" has "PHOENIX_CHECKED" as "C"
 	
 	#excusal letter generated
-	Given an excusal letter is generated for juror "<part_no>"
+	Given an excusal letter is generated for juror "<juror_number>"
 	
-#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<part_no>"
+#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<juror_number>"
 	
 Examples:
 |part_no		|pool_no 	|last_name 	|postcode 	|email					|
@@ -1314,8 +1314,8 @@ Scenario Outline: 1st Party Excusal refused, 2 weeks in advance, PNC pass
 	|part_no		|pool_no 	|Owner 		|
 	|841500038		|415181001 	|400		|
 	Given auto straight through processing has been enabled
-	And "<part_no>" has "RET_DATE" as "2 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "2 mondays time"
+	And "<juror_number>" has "RET_DATE" as "2 mondays time"
+	And "<juror_number>" has "NEXT_DATE" as "2 mondays time"
 	And I have submitted a first party English excusal response
 	| part_no		|pool_number| last_name		|postcode	| email |
 	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
@@ -1324,17 +1324,17 @@ Scenario Outline: 1st Party Excusal refused, 2 weeks in advance, PNC pass
 	And I log in as "SYSTEM"
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Summoned" on the page
 	And I see "Urgent" on the page
 	
 	#DB checks (Do PNC PASS)
 	
-	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<part_no>"
-	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<part_no>"
-	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<part_no>"
+	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<juror_number>"
+	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<juror_number>"
+	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<juror_number>"
 	
 Examples:
 |part_no		|pool_no 	|last_name 	|postcode 	|email					|
@@ -1348,9 +1348,9 @@ Scenario Outline: 1st Party Excusal accepted, 1 week in advance, PNC pass
 	|part_no		|pool_no 	|Owner 		|
 	|841501637		|415181001 	|400		|
 	Given auto straight through processing has been enabled
-	And "<part_no>" has "RET_DATE" as "1 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "1 mondays time"
-	And "<part_no>" has "READ_ONLY" as "Y"
+	And "<juror_number>" has "RET_DATE" as "1 mondays time"
+	And "<juror_number>" has "NEXT_DATE" as "1 mondays time"
+	And "<juror_number>" has "READ_ONLY" as "Y"
 	And I have submitted a first party English excusal response
 	| part_no		|pool_number| last_name		|postcode	| email |
 	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
@@ -1359,17 +1359,17 @@ Scenario Outline: 1st Party Excusal accepted, 1 week in advance, PNC pass
 	And I log in as "SYSTEM"
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Summoned" on the page
 	And I see "Send to court" on the page
 	
 	#DB checks (Do PNC PASS)
 	
-	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<part_no>"
-	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<part_no>"
-	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<part_no>"
+	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<juror_number>"
+	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<juror_number>"
+	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<juror_number>"
 	
 Examples:
 |part_no		|pool_no 	|last_name 	|postcode 	|email					|
@@ -1383,9 +1383,9 @@ Scenario Outline: 1st Party Excusal refused, 1 week in advance, PNC pass
 	|part_no		|pool_no 	|Owner 		|
 	|841501641		|415181001 	|400		|
 	Given auto straight through processing has been enabled
-	And "<part_no>" has "RET_DATE" as "1 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "1 mondays time"
-	And "<part_no>" has "READ_ONLY" as "Y"
+	And "<juror_number>" has "RET_DATE" as "1 mondays time"
+	And "<juror_number>" has "NEXT_DATE" as "1 mondays time"
+	And "<juror_number>" has "READ_ONLY" as "Y"
 	And I have submitted a first party English excusal response
 	| part_no		|pool_number| last_name		|postcode	| email |
 	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
@@ -1394,17 +1394,17 @@ Scenario Outline: 1st Party Excusal refused, 1 week in advance, PNC pass
 	And I log in as "SYSTEM"
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 #	Then I see "Summoned" on the page
 	And I see "Send to court" on the page
 	
 	#DB checks (Do PNC PASS)
 	
-#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<part_no>"
+#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<juror_number>"
 	
 Examples:
 |part_no		|pool_no 	|last_name 	|postcode 	|email					|
@@ -1418,8 +1418,8 @@ Scenario Outline: 1st Party Disqualify, 5 weeks in advance, PNC n/a
 	|part_no		|pool_no 	|Owner 		|
 	|841501651		|415181001 	|400		|
 	Given auto straight through processing has been enabled
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
+
+
 	And I have submitted a first party English ineligibilty response
 	| part_no		|pool_number| last_name		|postcode	| email |
 	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
@@ -1445,9 +1445,9 @@ Scenario Outline: 1st Party Disqualify, 5 weeks in advance, PNC n/a
 	And I log in as "SYSTEM"
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Summoned" on the page
 	
 	When I select "Disqualified" from Process reply
@@ -1456,11 +1456,11 @@ Scenario Outline: 1st Party Disqualify, 5 weeks in advance, PNC n/a
 	Then I see "Completed" on the page
 	
 	#disqualify letter generated
-	Given a disqualified letter is generated for juror "<part_no>"
+	Given a disqualified letter is generated for juror "<juror_number>"
 	
-#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<part_no>"
+#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<juror_number>"
 	
 Examples:
 |part_no		|pool_no 	|last_name 			|postcode 	|email				|
@@ -1474,8 +1474,8 @@ Scenario Outline: 1st Party Ineligible, 2 weeks in advance, PNC n/a
 	|part_no		|pool_no 	|Owner 		|
 	|841501672		|415181001 	|400		|
 	Given auto straight through processing has been enabled
-	And "<part_no>" has "RET_DATE" as "2 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "2 mondays time"
+	And "<juror_number>" has "RET_DATE" as "2 mondays time"
+	And "<juror_number>" has "NEXT_DATE" as "2 mondays time"
 	And I have submitted a first party English ineligibilty response
 	| part_no		|pool_number| last_name		|postcode	| email |
 	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
@@ -1484,17 +1484,17 @@ Scenario Outline: 1st Party Ineligible, 2 weeks in advance, PNC n/a
 	And I log in as "SYSTEM"
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Summoned" on the page
 	And I see "Urgent" on the page
 	
 	#DB checks (Do PNC N/A)
 	
-	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<part_no>"
-	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<part_no>"
-	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<part_no>"
+	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<juror_number>"
+	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<juror_number>"
+	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<juror_number>"
 	
 Examples:
 |part_no		|pool_no 	|last_name 			|postcode 	|email					|
@@ -1508,9 +1508,9 @@ Scenario Outline: 1st Party Ineligible, 1 week in advance, PNC n/a
 	|part_no		|pool_no 	|Owner 		|
 	|841501673		|415181001 	|400		|
 	Given auto straight through processing has been enabled
-	And "<part_no>" has "RET_DATE" as "1 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "1 mondays time"
-	And "<part_no>" has "READ_ONLY" as "Y"
+	And "<juror_number>" has "RET_DATE" as "1 mondays time"
+	And "<juror_number>" has "NEXT_DATE" as "1 mondays time"
+	And "<juror_number>" has "READ_ONLY" as "Y"
 	And I have submitted a first party English ineligibilty response
 	| part_no		|pool_number| last_name		|postcode	| email |
 	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
@@ -1519,17 +1519,17 @@ Scenario Outline: 1st Party Ineligible, 1 week in advance, PNC n/a
 	And I log in as "SYSTEM"
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Summoned" on the page
 	And I see "Send to court" on the page
 	
 	#DB checks (Do PNC N/A)
 	
-	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<part_no>"
-	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<part_no>"
-	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<part_no>"
+	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<juror_number>"
+	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<juror_number>"
+	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<juror_number>"
 	
 Examples:
 |part_no		|pool_no 	|last_name 			|postcode 	|email					|
@@ -1543,8 +1543,8 @@ Scenario Outline: 3rd Party Deceased, 5 weeks in advance, PNC n/a
 	|part_no		|pool_no 	|Owner 		|
 	|645100496		|451170401 	|400		|
 	Given auto straight through processing has been enabled
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
+
+
 	And I have submitted a third party English deceased response
 	| part_no		|pool_number| last_name		|postcode	| email |
 	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
@@ -1553,16 +1553,16 @@ Scenario Outline: 3rd Party Deceased, 5 weeks in advance, PNC n/a
 	And I log in as "SYSTEM"
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then "Record status" is "Excused"
 	
 	#DB checks (Do PNC N/A)
 	
-#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<part_no>"
+#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<juror_number>"
 	
 Examples:
 |part_no		|pool_no 	|last_name 		|postcode 	|email					|
@@ -1576,8 +1576,8 @@ Scenario Outline: 3rd Party Welsh Deceased, 5 weeks in advance, PNC n/a
 	|part_no		|pool_no 	|Owner 		|
 	|645700230		|457170401 	|400		|
 	Given auto straight through processing has been enabled
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
+
+
 	And I have submitted a third party Welsh deceased response
 	| part_no		|pool_number| last_name		|postcode	| email |
 	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
@@ -1590,16 +1590,16 @@ Scenario Outline: 3rd Party Welsh Deceased, 5 weeks in advance, PNC n/a
 	And I log in as "SYSTEM"
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then "Record status" is "Excused"
 	
 	#DB checks (Do PNC N/A)
 	
-#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<part_no>"
+#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<juror_number>"
 	
 Examples:
 |part_no		|pool_no 	|last_name 			|postcode 	|email					|
@@ -1613,8 +1613,8 @@ Scenario Outline: 3rd Party Deceased, 2 weeks in advance, PNC n/a
 	|part_no		|pool_no 	|Owner 		|
 	|841501691		|415181001 	|400		|
 	Given auto straight through processing has been enabled
-	And "<part_no>" has "RET_DATE" as "2 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "2 mondays time"
+	And "<juror_number>" has "RET_DATE" as "2 mondays time"
+	And "<juror_number>" has "NEXT_DATE" as "2 mondays time"
 	And I have submitted a first party English ineligibilty response
 	| part_no		|pool_number| last_name		|postcode	| email |
 	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
@@ -1623,17 +1623,17 @@ Scenario Outline: 3rd Party Deceased, 2 weeks in advance, PNC n/a
 	And I log in as "SYSTEM"
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Summoned" on the page
 	And I see "Urgent" on the page
 	
 	#DB checks (Do PNC N/A)
 	
-	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<part_no>"
-	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<part_no>"
-	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<part_no>"
+	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<juror_number>"
+	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<juror_number>"
+	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<juror_number>"
 	
 Examples:
 |part_no		|pool_no 	|last_name 			|postcode 	|email					|
@@ -1647,9 +1647,9 @@ Scenario Outline: 1st Party Ineligible, 1 week in advance, PNC n/a
 	|part_no		|pool_no 	|Owner 		|
 	|<part_no>		|<pool_no> 	|400		|
 	Given auto straight through processing has been enabled
-	And "<part_no>" has "RET_DATE" as "1 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "1 mondays time"
-	And "<part_no>" has "READ_ONLY" as "Y"
+	And "<juror_number>" has "RET_DATE" as "1 mondays time"
+	And "<juror_number>" has "NEXT_DATE" as "1 mondays time"
+	And "<juror_number>" has "READ_ONLY" as "Y"
 	And I have submitted a third party English ineligibilty response
 	| part_no		|pool_number| last_name		|postcode	| email |
 	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
@@ -1658,17 +1658,17 @@ Scenario Outline: 1st Party Ineligible, 1 week in advance, PNC n/a
 	And I log in as "SYSTEM"
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 #	Then I see "Summoned" on the page
 	And I see "Send to court" on the page
 	
 	#DB checks (Do PNC N/A)
 	
-#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<part_no>"
+#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<juror_number>"
 	
 Examples:
 |part_no		|pool_no 	|last_name 			|postcode 	|email					|
@@ -1682,8 +1682,8 @@ Scenario Outline: 1st Party English Age Disqualified, 5 weeks in advance, PNC n/
 	|part_no		|pool_no 	|Owner 		|
 	|841501936		|415181001 	|400		|
 	Given auto straight through processing has been enabled
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
+
+
 	And I have submitted a first party English underage response
 	| part_no		|pool_number| last_name		|postcode	| email |
 	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
@@ -1692,16 +1692,16 @@ Scenario Outline: 1st Party English Age Disqualified, 5 weeks in advance, PNC n/
 	And I log in as "SYSTEM"
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then "Record status" is "Disqualified"
 	
 	#DB checks (Do PNC N/A)
 	
-#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<part_no>"
+#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<juror_number>"
 	
 Examples:
 |part_no		|pool_no 	|last_name 	|postcode 	|email					|
@@ -1715,8 +1715,8 @@ Scenario Outline: 3rd Party English Age Disqualified, 5 weeks in advance, PNC n/
 	|part_no		|pool_no 	|Owner 		|
 	|841501948		|415181001 	|400		|
 	Given auto straight through processing has been enabled
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
+
+
 	And I have submitted a third party English overage response
 	| part_no		|pool_number| last_name		|postcode	| email |
 	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
@@ -1725,16 +1725,16 @@ Scenario Outline: 3rd Party English Age Disqualified, 5 weeks in advance, PNC n/
 	And I log in as "SYSTEM"
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Summoned" on the page
 	
 	#DB checks (Do PNC N/A)
 #	
-#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<part_no>"
+#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<juror_number>"
 	
 Examples:
 |part_no		|pool_no 	|last_name 	|postcode 	|email					|
@@ -1748,8 +1748,8 @@ Scenario Outline: 1st Party Welsh Age Disqualified, 5 weeks in advance, PNC n/a
 	|part_no		|pool_no 	|Owner 		|
 	|841501955		|415181001 	|400		|
 	Given auto straight through processing has been enabled
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
+
+
 	And I have submitted a first party Welsh underage response
 	| part_no		|pool_number| last_name		|postcode	| email |
 	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
@@ -1762,16 +1762,16 @@ Scenario Outline: 1st Party Welsh Age Disqualified, 5 weeks in advance, PNC n/a
 	And I log in as "SYSTEM"
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then "Record status" is "Disqualified"
 	
 	#DB checks (Do PNC N/A)
 	
-#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<part_no>"
+#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<juror_number>"
 	
 Examples:
 |part_no		|pool_no 	|last_name 	|postcode 	|email					|
@@ -1785,8 +1785,8 @@ Scenario Outline: 3rd Party Welsh Age Disqualified, 5 weeks in advance, PNC n/a
 	|part_no		|pool_no 	|Owner 		|
 	|841501948		|415181001 	|400		|
 	Given auto straight through processing has been enabled
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
+
+
 	And I have submitted a third party Welsh overage response
 	| part_no		|pool_number| last_name		|postcode	| email |
 	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
@@ -1799,16 +1799,16 @@ Scenario Outline: 3rd Party Welsh Age Disqualified, 5 weeks in advance, PNC n/a
 	And I log in as "SYSTEM"
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Summoned" on the page
 	
 	#DB checks (Do PNC N/A)
 	
-#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<part_no>"
+#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<juror_number>"
 	
 Examples:
 |part_no		|pool_no 	|last_name 	|postcode 	|email					|
@@ -1822,8 +1822,8 @@ Scenario Outline: 1st Party Postponement, 5 weeks in advance, PNC pass, creation
 	|part_no		|pool_no 	|Owner 		|
 	|641500490		|415170401 	|400		|
 	Given auto straight through processing has been enabled
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
+
+
 	And I have submitted a first party English ineligibilty response
 	| part_no		|pool_number| last_name		|postcode	| email |
 	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
@@ -1832,9 +1832,9 @@ Scenario Outline: 1st Party Postponement, 5 weeks in advance, PNC pass, creation
 	And I log in as "SYSTEM"
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Summoned" on the page
 	
 	When I select "Deferral" from Process reply
@@ -1847,15 +1847,15 @@ Scenario Outline: 1st Party Postponement, 5 weeks in advance, PNC pass, creation
 	Then I see "Completed" on the page
 	
 	#DB checks (Do PNC PASS)
-	And "<part_no>" has "POLICE_CHECK" as "P"
-	And "<part_no>" has "PHOENIX_CHECKED" as "C"
+	And "<juror_number>" has "POLICE_CHECK" as "P"
+	And "<juror_number>" has "PHOENIX_CHECKED" as "C"
 	
 	#postponse letter generated
-	Given a postponement letter is generated for juror "<part_no>"
+	Given a postponement letter is generated for juror "<juror_number>"
 	
-#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<part_no>"
+#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<juror_number>"
 	
 Examples:
 |part_no		|pool_no 	|last_name 	|postcode 	|email					|
@@ -1869,8 +1869,8 @@ Scenario Outline: 1st Party Postponement, 5 weeks in advance, PNC pass, creation
 	|part_no		|pool_no 	|Owner 		|
 	|644200857		|442170401	|400		|
 	Given auto straight through processing has been enabled
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
+
+
 	And I have submitted a first party English ineligibilty response
 	| part_no		|pool_number| last_name		|postcode	| email |
 	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
@@ -1879,9 +1879,9 @@ Scenario Outline: 1st Party Postponement, 5 weeks in advance, PNC pass, creation
 	And I log in as "SYSTEM"
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Summoned" on the page
 	
 	When I select "Deferral" from Process reply
@@ -1894,15 +1894,15 @@ Scenario Outline: 1st Party Postponement, 5 weeks in advance, PNC pass, creation
 	Then I see "Completed" on the page
 	
 	#DB checks (Do PNC PASS)
-	And "<part_no>" has "POLICE_CHECK" as "P"
-	And "<part_no>" has "PHOENIX_CHECKED" as "C"
+	And "<juror_number>" has "POLICE_CHECK" as "P"
+	And "<juror_number>" has "PHOENIX_CHECKED" as "C"
 	
 	#postponse letter generated
-	Given a postponement letter is generated for juror "<part_no>"
+	Given a postponement letter is generated for juror "<juror_number>"
 	
-#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<part_no>"
+#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<juror_number>"
 	
 Examples:
 |part_no		|pool_no 	|last_name 				|postcode 	|email					|
@@ -1916,8 +1916,8 @@ Scenario Outline: 1st Party Postponement, 5 weeks in advance, PNC pass, creation
 	|part_no		|pool_no 	|Owner 		|
 	|644200858		|442170401	|400		|
 	Given auto straight through processing has been enabled
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
+
+
 	And I have submitted a first party English ineligibilty response
 	| part_no		|pool_number| last_name		|postcode	| email |
 	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
@@ -1926,9 +1926,9 @@ Scenario Outline: 1st Party Postponement, 5 weeks in advance, PNC pass, creation
 	And I log in as "SYSTEM"
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Summoned" on the page
 	
 	When I select "Deferral" from Process reply
@@ -1941,15 +1941,15 @@ Scenario Outline: 1st Party Postponement, 5 weeks in advance, PNC pass, creation
 	Then I see "Completed" on the page
 	
 	#DB checks (Do PNC PASS)
-	And "<part_no>" has "POLICE_CHECK" as "P"
-	And "<part_no>" has "PHOENIX_CHECKED" as "C"
+	And "<juror_number>" has "POLICE_CHECK" as "P"
+	And "<juror_number>" has "PHOENIX_CHECKED" as "C"
 	
 	#postponse letter generated
-	Given a postponement letter is generated for juror "<part_no>"
+	Given a postponement letter is generated for juror "<juror_number>"
 	
-#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<part_no>"
+#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<juror_number>"
 	
 Examples:
 |part_no		|pool_no 	|last_name 				|postcode 	|email					|
@@ -1964,21 +1964,21 @@ Scenario Outline: 1st Party paper response with no email, 5 weeks in advance, PN
 	|part_no		|pool_no 	|Owner 		|
 	|644200896		|442170401 	|400		|
 	Given auto straight through processing has been enabled
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "RESPONDED" as "Y"
-	And "<part_no>" has "STATUS" as "2"
+
+
+	And "<juror_number>" has "RESPONDED" as "Y"
+	And "<juror_number>" has "STATUS" as "2"
 	
 	#DB checks (Do PNC PASS)
-	And "<part_no>" has "POLICE_CHECK" as "P"
-	And "<part_no>" has "PHOENIX_CHECKED" as "C"
+	And "<juror_number>" has "POLICE_CHECK" as "P"
+	And "<juror_number>" has "PHOENIX_CHECKED" as "C"
 	
 	#postponse letter generated
-	Given a confirmation letter is generated for juror "<part_no>"
+	Given a confirmation letter is generated for juror "<juror_number>"
 	
-#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<part_no>"
+#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<juror_number>"
 	
 Examples:
 |part_no		|pool_no 	|last_name 	|postcode 	|email				|
@@ -1992,22 +1992,22 @@ Scenario Outline: 1st Party paper response with email, 5 weeks in advance, PNC p
 	|part_no		|pool_no 	|Owner 		|
 	|644200960		|442170401 	|400		|
 	Given auto straight through processing has been enabled
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "RESPONDED" as "Y"
-	And "<part_no>" has "STATUS" as "2"
-	And "<part_no>" has "H_EMAIL" as "e@mail.com"
+
+
+	And "<juror_number>" has "RESPONDED" as "Y"
+	And "<juror_number>" has "STATUS" as "2"
+	And "<juror_number>" has "H_EMAIL" as "e@mail.com"
 	
 	#DB checks (Do PNC PASS)
-	And "<part_no>" has "POLICE_CHECK" as "P"
-	And "<part_no>" has "PHOENIX_CHECKED" as "C"
+	And "<juror_number>" has "POLICE_CHECK" as "P"
+	And "<juror_number>" has "PHOENIX_CHECKED" as "C"
 	
 	#postponse letter generated
-	Given a confirmation letter is generated for juror "<part_no>"
+	Given a confirmation letter is generated for juror "<juror_number>"
 	
-#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<part_no>"
+#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<juror_number>"
 	
 Examples:
 |part_no		|pool_no 	|last_name 	|postcode 	|email					|
@@ -2021,8 +2021,8 @@ Scenario Outline: 1st Party English ST, 5 weeks in advance, PNC pass, invalid em
 	|part_no		|pool_no 	|Owner 		|
 	|644200977		|442170401 	|400		|
 	Given auto straight through processing has been enabled
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
+
+
 	And I have submitted a first party English straight through response
 	| part_no		|pool_number| last_name		|postcode	| email |
 	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
@@ -2031,21 +2031,21 @@ Scenario Outline: 1st Party English ST, 5 weeks in advance, PNC pass, invalid em
 	And I log in as "SYSTEM"
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Responded" on the page
 	
 	#DB checks (Do PNC PASS)
-	And "<part_no>" has "POLICE_CHECK" as "P"
-	And "<part_no>" has "PHOENIX_CHECKED" as "C"
+	And "<juror_number>" has "POLICE_CHECK" as "P"
+	And "<juror_number>" has "PHOENIX_CHECKED" as "C"
 	
 	#conf letter generated
-	Given a confirmation letter is generated for juror "<part_no>"
+	Given a confirmation letter is generated for juror "<juror_number>"
 	
-#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<part_no>"
+#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<juror_number>"
 	
 Examples:
 |part_no		|pool_no 	|last_name 				|postcode 	|email				|
@@ -2059,9 +2059,9 @@ Scenario Outline: English 3rd Party Straight Through, 2 weeks in advance, PNC pa
 		| part_no 	| pool_no 	| owner |
 		| <part_no> |<pool_no>	| 400 	|
 	Given auto straight through processing has been enabled
-	And "<part_no>" has "RET_DATE" as "1 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "1 mondays time"
-	And "<part_no>" has "READ_ONLY" as "Y"
+	And "<juror_number>" has "RET_DATE" as "1 mondays time"
+	And "<juror_number>" has "NEXT_DATE" as "1 mondays time"
+	And "<juror_number>" has "READ_ONLY" as "Y"
 
 	Then I see "Reply to a jury summons" on the page
 	
@@ -2071,7 +2071,7 @@ Scenario Outline: English 3rd Party Straight Through, 2 weeks in advance, PNC pa
 	
 	#Juror Log In
 	
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
@@ -2186,9 +2186,9 @@ Scenario Outline: English 3rd Party Straight Through, 2 weeks in advance, PNC pa
 	And I log in as "SYSTEM"
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Summoned" on the page
 	
 	#process in Bureau as Responded
@@ -2198,11 +2198,11 @@ Scenario Outline: English 3rd Party Straight Through, 2 weeks in advance, PNC pa
 	Then I see "Completed" on the page
 	
 	#DB checks (Do PNC PASS)
-	And "<part_no>" has "POLICE_CHECK" as "P"
-	And "<part_no>" has "PHOENIX_CHECKED" as "C"
+	And "<juror_number>" has "POLICE_CHECK" as "P"
+	And "<juror_number>" has "PHOENIX_CHECKED" as "C"
 	
 	#conf letter generated
-	Given a confirmation letter is generated for juror "<part_no>"
+	Given a confirmation letter is generated for juror "<juror_number>"
 		
 Examples:
 	| part_no	|last_name			|postcode	| email           |pool_no	|
@@ -2216,9 +2216,9 @@ Scenario Outline: 3rd Party English ST, 5 weeks in advance, PNC pass
 	|part_no		|pool_no 	|Owner 		|
 	|<part_no>		|<pool_no> 	|400		|
 	Given auto straight through processing has been enabled
-	And "<part_no>" has "RET_DATE" as "1 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "1 mondays time"
-	And "<part_no>" has "READ_ONLY" as "Y"
+	And "<juror_number>" has "RET_DATE" as "1 mondays time"
+	And "<juror_number>" has "NEXT_DATE" as "1 mondays time"
+	And "<juror_number>" has "READ_ONLY" as "Y"
 	
 	And I have submitted a third party English straight through response
 	| part_no		|pool_number| last_name		|postcode	| email |
@@ -2228,9 +2228,9 @@ Scenario Outline: 3rd Party English ST, 5 weeks in advance, PNC pass
 	And I log in as "SYSTEM"
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Summoned" on the page
 	
 	#process in Bureau as Responded
@@ -2240,15 +2240,15 @@ Scenario Outline: 3rd Party English ST, 5 weeks in advance, PNC pass
 	Then I see "Completed" on the page
 	
 	#DB checks (Do PNC PASS)
-	And "<part_no>" has "POLICE_CHECK" as "P"
-	And "<part_no>" has "PHOENIX_CHECKED" as "C"
+	And "<juror_number>" has "POLICE_CHECK" as "P"
+	And "<juror_number>" has "PHOENIX_CHECKED" as "C"
 	
 	#conf letter generated
-	Given a confirmation letter is generated for juror "<part_no>"
+	Given a confirmation letter is generated for juror "<juror_number>"
 	
-#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<part_no>"
+#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<juror_number>"
 	
 Examples:
 |part_no		|pool_no 	|last_name 	|postcode 	|email					|
@@ -2262,9 +2262,9 @@ Scenario Outline: 3rd Party Welsh ST, 5 weeks in advance, PNC pass
 	|part_no	|pool_no 	|Owner 		|
 	|<part_no>	|<pool_no> 	|400		|
 	Given auto straight through processing has been enabled
-	And "<part_no>" has "RET_DATE" as "3 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "3 mondays time"
-#	And "<part_no>" has "READ_ONLY" as "Y"
+	And "<juror_number>" has "RET_DATE" as "3 mondays time"
+	And "<juror_number>" has "NEXT_DATE" as "3 mondays time"
+#	And "<juror_number>" has "READ_ONLY" as "Y"
 #	And I have submitted a third party Welsh straight through response
 #	| part_no		|pool_number| last_name		|postcode	| email |
 #	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
@@ -2277,9 +2277,9 @@ Scenario Outline: 3rd Party Welsh ST, 5 weeks in advance, PNC pass
 	And I log in as "SYSTEM"
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 #	Then I see "Summoned" on the page
 	
 	#process in Bureau as Responded
@@ -2289,15 +2289,15 @@ Scenario Outline: 3rd Party Welsh ST, 5 weeks in advance, PNC pass
 	Then I see "Completed" on the page
 	
 	#DB checks (Do PNC PASS)
-	And "<part_no>" has "POLICE_CHECK" as "P"
-	And "<part_no>" has "PHOENIX_CHECKED" as "C"
+	And "<juror_number>" has "POLICE_CHECK" as "P"
+	And "<juror_number>" has "PHOENIX_CHECKED" as "C"
 	
 	#conf letter generated
-	Given a confirmation letter is generated for juror "<part_no>"
+	Given a confirmation letter is generated for juror "<juror_number>"
 	
-#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<part_no>"
+#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<juror_number>"
 	
 Examples:
 |part_no	|pool_no 	|last_name 				|postcode 	|email					|
@@ -2311,8 +2311,8 @@ Scenario Outline: 1st Party Welsh Excusal accepted, 5 weeks in advance, PNC pass
 	|part_no		|pool_no 	|Owner 		|
 	|645700291		|457170401	|400		|
 	Given auto straight through processing has been enabled
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
+
+
 	And I have submitted a first party Welsh excusal response
 	| part_no		|pool_number| last_name		|postcode	| email |
 	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
@@ -2325,9 +2325,9 @@ Scenario Outline: 1st Party Welsh Excusal accepted, 5 weeks in advance, PNC pass
 	And I log in as "SYSTEM"
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Summoned" on the page
 	
 	#process in Bureau as Excused
@@ -2338,15 +2338,15 @@ Scenario Outline: 1st Party Welsh Excusal accepted, 5 weeks in advance, PNC pass
 	Then I see "Completed" on the page
 	
 	#DB checks (Do PNC PASS)
-	And "<part_no>" has "POLICE_CHECK" as "P"
-	And "<part_no>" has "PHOENIX_CHECKED" as "C"
+	And "<juror_number>" has "POLICE_CHECK" as "P"
+	And "<juror_number>" has "PHOENIX_CHECKED" as "C"
 	
 	#excusal letter generated
-#	Given an excusal letter is generated for juror "<part_no>"
+#	Given an excusal letter is generated for juror "<juror_number>"
 	
-#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<part_no>"
+#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<juror_number>"
 	
 Examples:
 |part_no		|pool_no 	|last_name 			|postcode 	|email					|
@@ -2360,8 +2360,8 @@ Scenario Outline: 3rd Party English Excusal accepted, 5 weeks in advance, PNC pa
 	|part_no	|pool_no 	|Owner 		|
 	|644200976	|442170401 	|400		|
 	Given auto straight through processing has been enabled
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
+
+
 	And I have submitted a third party English excusal response
 	| part_no		|pool_number| last_name		|postcode	| email |
 	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
@@ -2370,9 +2370,9 @@ Scenario Outline: 3rd Party English Excusal accepted, 5 weeks in advance, PNC pa
 	And I log in as "SYSTEM"
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Summoned" on the page
 	
 	#process in Bureau as Excused
@@ -2383,15 +2383,15 @@ Scenario Outline: 3rd Party English Excusal accepted, 5 weeks in advance, PNC pa
 	Then I see "Completed" on the page
 	
 	#DB checks (Do PNC PASS)
-	And "<part_no>" has "POLICE_CHECK" as "P"
-	And "<part_no>" has "PHOENIX_CHECKED" as "C"
+	And "<juror_number>" has "POLICE_CHECK" as "P"
+	And "<juror_number>" has "PHOENIX_CHECKED" as "C"
 	
 	#conf letter generated
-	Given an excusal letter is generated for juror "<part_no>"
+	Given an excusal letter is generated for juror "<juror_number>"
 	
-#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<part_no>"
+#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<juror_number>"
 	
 Examples:
 |part_no	|pool_no 	|last_name 			|postcode 	|email					|
@@ -2405,8 +2405,8 @@ Scenario Outline: 3rd Party Welsh Excusal accepted, 5 weeks in advance, PNC pass
 	|part_no	|pool_no 	|Owner 		|
 	|645700183	|457170401 	|400		|
 	Given auto straight through processing has been enabled
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
+
+
 	And I have submitted a third party Welsh excusal response
 	| part_no		|pool_number| last_name		|postcode	| email |
 	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
@@ -2419,9 +2419,9 @@ Scenario Outline: 3rd Party Welsh Excusal accepted, 5 weeks in advance, PNC pass
 	And I log in as "SYSTEM"
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Summoned" on the page
 	
 	#process in Bureau as Excused
@@ -2432,15 +2432,15 @@ Scenario Outline: 3rd Party Welsh Excusal accepted, 5 weeks in advance, PNC pass
 	Then I see "Completed" on the page
 	
 	#DB checks (Do PNC PASS)
-	And "<part_no>" has "POLICE_CHECK" as "P"
-	And "<part_no>" has "PHOENIX_CHECKED" as "C"
+	And "<juror_number>" has "POLICE_CHECK" as "P"
+	And "<juror_number>" has "PHOENIX_CHECKED" as "C"
 	
 	#conf letter generated
-	Given an excusal letter is generated for juror "<part_no>"
+	Given an excusal letter is generated for juror "<juror_number>"
 	
-#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<part_no>"
+#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<juror_number>"
 	
 Examples:
 |part_no	|pool_no 	|last_name 			|postcode 	|email					|
@@ -2454,8 +2454,8 @@ Scenario Outline: 1st Party Welsh Deferral accepted, 5 weeks in advance, PNC pas
 	|part_no		|pool_no 	|Owner 		|
 	|<part_no>		|<pool_no> 	|400		|
 	Given auto straight through processing has been enabled
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
+
+
 #	And I have submitted a first party Welsh deferral response
 #	| part_no		|pool_number| last_name		|postcode	| email |
 #	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
@@ -2468,9 +2468,9 @@ Scenario Outline: 1st Party Welsh Deferral accepted, 5 weeks in advance, PNC pas
 	And I log in as "SYSTEM"
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Summoned" on the page
 	
 	When I select "Deferral" from Process reply
@@ -2483,15 +2483,15 @@ Scenario Outline: 1st Party Welsh Deferral accepted, 5 weeks in advance, PNC pas
 	Then I see "Completed" on the page
 	
 	#DB checks (Do PNC PASS)
-	And "<part_no>" has "POLICE_CHECK" as "P"
-	And "<part_no>" has "PHOENIX_CHECKED" as "C"
+	And "<juror_number>" has "POLICE_CHECK" as "P"
+	And "<juror_number>" has "PHOENIX_CHECKED" as "C"
 	
 	#deferral letter generated
-#	Given a deferral letter is generated for juror "<part_no>"
+#	Given a deferral letter is generated for juror "<juror_number>"
 	
-#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<part_no>"
+#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<juror_number>"
 	
 Examples:
 |part_no		|pool_no 	|last_name 			|postcode 	|email					|
@@ -2505,8 +2505,8 @@ Scenario Outline: 3rd Party English Deferral accepted, 5 weeks in advance, PNC p
 	|part_no	|pool_no 	|Owner 		|
 	|641500631	|415170401 	|400		|
 	Given auto straight through processing has been enabled
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
+
+
 	And I have submitted a third party English deferral response
 	| part_no		|pool_number| last_name		|postcode	| email |
 	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
@@ -2515,9 +2515,9 @@ Scenario Outline: 3rd Party English Deferral accepted, 5 weeks in advance, PNC p
 	And I log in as "SYSTEM"
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Summoned" on the page
 	
 	When I select "Deferral" from Process reply
@@ -2530,15 +2530,15 @@ Scenario Outline: 3rd Party English Deferral accepted, 5 weeks in advance, PNC p
 	Then I see "Completed" on the page
 	
 	#DB checks (Do PNC PASS)
-	And "<part_no>" has "POLICE_CHECK" as "P"
-	And "<part_no>" has "PHOENIX_CHECKED" as "C"
+	And "<juror_number>" has "POLICE_CHECK" as "P"
+	And "<juror_number>" has "PHOENIX_CHECKED" as "C"
 	
 	#deferral letter generated
-	Given a deferral letter is generated for juror "<part_no>"
+	Given a deferral letter is generated for juror "<juror_number>"
 	
-#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<part_no>"
+#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<juror_number>"
 	
 Examples:
 |part_no	|pool_no 	|last_name 	|postcode 	|email					|
@@ -2552,8 +2552,8 @@ Scenario Outline: 3rd Party Welsh Deferral accepted, 5 weeks in advance, PNC pas
 	|part_no	|pool_no 	|Owner 		|
 	|645700247	|457170401 	|400		|
 	Given auto straight through processing has been enabled
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
+
+
 	And I have submitted a third party Welsh deferral response
 	| part_no		|pool_number| last_name		|postcode	| email |
 	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
@@ -2566,9 +2566,9 @@ Scenario Outline: 3rd Party Welsh Deferral accepted, 5 weeks in advance, PNC pas
 	And I log in as "SYSTEM"
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Summoned" on the page
 	
 	When I select "Deferral" from Process reply
@@ -2581,15 +2581,15 @@ Scenario Outline: 3rd Party Welsh Deferral accepted, 5 weeks in advance, PNC pas
 	Then I see "Completed" on the page
 	
 	#DB checks (Do PNC PASS)
-	And "<part_no>" has "POLICE_CHECK" as "P"
-	And "<part_no>" has "PHOENIX_CHECKED" as "C"
+	And "<juror_number>" has "POLICE_CHECK" as "P"
+	And "<juror_number>" has "PHOENIX_CHECKED" as "C"
 	
 	#deferral letter generated
-	Given a deferral letter is generated for juror "<part_no>"
+	Given a deferral letter is generated for juror "<juror_number>"
 	
-#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<part_no>"
+#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<juror_number>"
 	
 Examples:
 |part_no	|pool_no 	|last_name 			|postcode 	|email					|
@@ -2603,8 +2603,8 @@ Scenario Outline: 1st Party Welsh Excusal refused, 5 weeks in advance, PNC pass
 	|part_no	|pool_no 	|Owner 		|
 	|645700261	|457170401 	|400		|
 	Given auto straight through processing has been enabled
-	And "<part_no>" has "RET_DATE" as "3 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "3 mondays time"
+	And "<juror_number>" has "RET_DATE" as "3 mondays time"
+	And "<juror_number>" has "NEXT_DATE" as "3 mondays time"
 #	And I have submitted a first party Welsh excusal response
 #	| part_no		|pool_number| last_name		|postcode	| email |
 #	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
@@ -2617,9 +2617,9 @@ Scenario Outline: 1st Party Welsh Excusal refused, 5 weeks in advance, PNC pass
 	And I log in as "SYSTEM"
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 #	Then I see "Summoned" on the page
 	
 	#process in Bureau as Refuse Excuse
@@ -2630,16 +2630,16 @@ Scenario Outline: 1st Party Welsh Excusal refused, 5 weeks in advance, PNC pass
 	Then I see "Completed" on the page
 	
 	#DB checks (Do PNC PASS)
-	And "<part_no>" has "POLICE_CHECK" as "P"
-	And "<part_no>" has "PHOENIX_CHECKED" as "C"
+	And "<juror_number>" has "POLICE_CHECK" as "P"
+	And "<juror_number>" has "PHOENIX_CHECKED" as "C"
 	
 	#refuse excusal letter generated
-	Given an excusal denied letter is generated for juror "<part_no>"
-	Given a confirmation letter is generated for juror "<part_no>"
+	Given an excusal denied letter is generated for juror "<juror_number>"
+	Given a confirmation letter is generated for juror "<juror_number>"
 	
-#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<part_no>"
+#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<juror_number>"
 	
 Examples:
 |part_no	|pool_no 	|last_name 		|postcode 	|email					|
@@ -2653,8 +2653,8 @@ Scenario Outline: 3rd Party Excusal refused, 5 weeks in advance, PNC pass
 	|part_no	|pool_no 	|Owner 		|
 	|<part_no>	|<pool_no> 	|400		|
 	Given auto straight through processing has been enabled
-	And "<part_no>" has "RET_DATE" as "3 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "3 mondays time"
+	And "<juror_number>" has "RET_DATE" as "3 mondays time"
+	And "<juror_number>" has "NEXT_DATE" as "3 mondays time"
 	And I have submitted a third party English excusal response
 	| part_no		|pool_number| last_name		|postcode	| email |
 	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
@@ -2663,9 +2663,9 @@ Scenario Outline: 3rd Party Excusal refused, 5 weeks in advance, PNC pass
 	And I log in as "SYSTEM"
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Summoned" on the page
 	
 	#process in Bureau as Refuse Excuse
@@ -2676,16 +2676,16 @@ Scenario Outline: 3rd Party Excusal refused, 5 weeks in advance, PNC pass
 	Then I see "Completed" on the page
 	
 	#DB checks (Do PNC PASS)
-	And "<part_no>" has "POLICE_CHECK" as "P"
-	And "<part_no>" has "PHOENIX_CHECKED" as "C"
+	And "<juror_number>" has "POLICE_CHECK" as "P"
+	And "<juror_number>" has "PHOENIX_CHECKED" as "C"
 	
 	#refuse excusal letter generated
-	Given an excusal denied letter is generated for juror "<part_no>"
-	Given a confirmation letter is generated for juror "<part_no>"
+	Given an excusal denied letter is generated for juror "<juror_number>"
+	Given a confirmation letter is generated for juror "<juror_number>"
 	
-#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<part_no>"
+#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<juror_number>"
 	
 Examples:
 |part_no	|pool_no 	|last_name 	|postcode 	|email					|
@@ -2699,8 +2699,8 @@ Scenario Outline: 3rd Party Welsh Excusal refused, 5 weeks in advance, PNC pass
 	|part_no	|pool_no 	|Owner 		|
 	|645700185	|457170401	|400		|
 	Given auto straight through processing has been enabled
-	And "<part_no>" has "RET_DATE" as "3 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "3 mondays time"
+	And "<juror_number>" has "RET_DATE" as "3 mondays time"
+	And "<juror_number>" has "NEXT_DATE" as "3 mondays time"
 #	And I have submitted a third party Welsh excusal response
 #	| part_no		|pool_number| last_name		|postcode	| email |
 #	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
@@ -2713,9 +2713,9 @@ Scenario Outline: 3rd Party Welsh Excusal refused, 5 weeks in advance, PNC pass
 	And I log in as "SYSTEM"
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 #	Then I see "Summoned" on the page
 	
 	#process in Bureau as Refuse Excuse
@@ -2726,16 +2726,16 @@ Scenario Outline: 3rd Party Welsh Excusal refused, 5 weeks in advance, PNC pass
 	Then I see "Completed" on the page
 	
 	#DB checks (Do PNC PASS)
-	And "<part_no>" has "POLICE_CHECK" as "P"
-	And "<part_no>" has "PHOENIX_CHECKED" as "C"
+	And "<juror_number>" has "POLICE_CHECK" as "P"
+	And "<juror_number>" has "PHOENIX_CHECKED" as "C"
 	
 	#refuse excusal letter generated
-	Given an excusal denied letter is generated for juror "<part_no>"
-	Given a confirmation letter is generated for juror "<part_no>"
+	Given an excusal denied letter is generated for juror "<juror_number>"
+	Given a confirmation letter is generated for juror "<juror_number>"
 	
-#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<part_no>"
+#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<juror_number>"
 	
 Examples:
 |part_no	|pool_no 	|last_name 			|postcode 	|email					|
@@ -2749,8 +2749,8 @@ Scenario Outline: 1st Party Welsh Deferral refused, 5 weeks in advance, PNC pass
 	|part_no		|pool_no 	|Owner 		|
 	|645700237		|457170401 	|400		|
 	Given auto straight through processing has been enabled
-	And "<part_no>" has "RET_DATE" as "3 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "3 mondays time"
+	And "<juror_number>" has "RET_DATE" as "3 mondays time"
+	And "<juror_number>" has "NEXT_DATE" as "3 mondays time"
 #	And I have submitted a first party Welsh deferral response
 #	| part_no		|pool_number| last_name		|postcode	| email |
 #	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
@@ -2763,9 +2763,9 @@ Scenario Outline: 1st Party Welsh Deferral refused, 5 weeks in advance, PNC pass
 	And I log in as "SYSTEM"
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 #	Then I see "Summoned" on the page
 	
 	When I select "Deferral" from Process reply
@@ -2776,16 +2776,16 @@ Scenario Outline: 1st Party Welsh Deferral refused, 5 weeks in advance, PNC pass
 	Then I see "Completed" on the page
 	
 	#DB checks (Do PNC PASS)
-	And "<part_no>" has "POLICE_CHECK" as "P"
-	And "<part_no>" has "PHOENIX_CHECKED" as "C"
+	And "<juror_number>" has "POLICE_CHECK" as "P"
+	And "<juror_number>" has "PHOENIX_CHECKED" as "C"
 	
 	#def denied and conformation letter generated
-	Given a confirmation letter is generated for juror "<part_no>"
-	Given a deferral denied letter is generated for juror "<part_no>"
+	Given a confirmation letter is generated for juror "<juror_number>"
+	Given a deferral denied letter is generated for juror "<juror_number>"
 	
-#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<part_no>"
+#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<juror_number>"
 	
 Examples:
 |part_no		|pool_no 	|last_name 			|postcode 	|email					|
@@ -2799,8 +2799,8 @@ Scenario Outline: 3rd Party Deferral refused, 5 weeks in advance, PNC pass
 	|part_no	|pool_no 	|Owner 		|
 	|<part_no>	|<pool_no> 	|400		|
 	Given auto straight through processing has been enabled
-	And "<part_no>" has "RET_DATE" as "3 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "3 mondays time"
+	And "<juror_number>" has "RET_DATE" as "3 mondays time"
+	And "<juror_number>" has "NEXT_DATE" as "3 mondays time"
 	And I have submitted a third party English deferral response
 	| part_no		|pool_number| last_name		|postcode	| email |
 	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
@@ -2809,9 +2809,9 @@ Scenario Outline: 3rd Party Deferral refused, 5 weeks in advance, PNC pass
 	And I log in as "SYSTEM"
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Summoned" on the page
 	
 	When I select "Deferral" from Process reply
@@ -2822,16 +2822,16 @@ Scenario Outline: 3rd Party Deferral refused, 5 weeks in advance, PNC pass
 	Then I see "Completed" on the page
 	
 	#DB checks (Do PNC PASS)
-	And "<part_no>" has "POLICE_CHECK" as "P"
-	And "<part_no>" has "PHOENIX_CHECKED" as "C"
+	And "<juror_number>" has "POLICE_CHECK" as "P"
+	And "<juror_number>" has "PHOENIX_CHECKED" as "C"
 	
 	#def denied and conformation letter generated
-	Given a confirmation letter is generated for juror "<part_no>"
-	Given a deferral denied letter is generated for juror "<part_no>"
+	Given a confirmation letter is generated for juror "<juror_number>"
+	Given a deferral denied letter is generated for juror "<juror_number>"
 	
-#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<part_no>"
+#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<juror_number>"
 	
 Examples:
 |part_no	|pool_no 	|last_name 			|postcode 	|email					|
@@ -2845,8 +2845,8 @@ Scenario Outline: 3rd Party Welsh Deferral refused, 5 weeks in advance, PNC pass
 	|part_no	|pool_no 	|Owner 		|
 	|645700246	|457170401	|400		|
 	Given auto straight through processing has been enabled
-	And "<part_no>" has "RET_DATE" as "3 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "3 mondays time"
+	And "<juror_number>" has "RET_DATE" as "3 mondays time"
+	And "<juror_number>" has "NEXT_DATE" as "3 mondays time"
 #	And I have submitted a third party Welsh deferral response
 #	| part_no		|pool_number| last_name		|postcode	| email |
 #	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
@@ -2859,9 +2859,9 @@ Scenario Outline: 3rd Party Welsh Deferral refused, 5 weeks in advance, PNC pass
 	And I log in as "SYSTEM"
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 #	Then I see "Summoned" on the page
 	
 	When I select "Deferral" from Process reply
@@ -2872,16 +2872,16 @@ Scenario Outline: 3rd Party Welsh Deferral refused, 5 weeks in advance, PNC pass
 	Then I see "Completed" on the page
 	
 	#DB checks (Do PNC PASS)
-	And "<part_no>" has "POLICE_CHECK" as "P"
-	And "<part_no>" has "PHOENIX_CHECKED" as "C"
+	And "<juror_number>" has "POLICE_CHECK" as "P"
+	And "<juror_number>" has "PHOENIX_CHECKED" as "C"
 	
 	#def denied and conformation letter generated
-	Given a confirmation letter is generated for juror "<part_no>"
-	Given a deferral denied letter is generated for juror "<part_no>"
+	Given a confirmation letter is generated for juror "<juror_number>"
+	Given a deferral denied letter is generated for juror "<juror_number>"
 	
-#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<part_no>"
+#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<juror_number>"
 	
 Examples:
 |part_no	|pool_no 	|last_name 			|postcode 	|email					|
@@ -2895,8 +2895,8 @@ Scenario Outline: 3rd Party Welsh Postponement, 5 weeks in advance, PNC pass
 	|part_no		|pool_no 	|Owner 		|
 	|645700260		|457170401	|400		|
 	Given auto straight through processing has been enabled
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
+
+
 	And I have submitted a third party Welsh ineligibilty response
 	| part_no		|pool_number| last_name		|postcode	| email |
 	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
@@ -2909,9 +2909,9 @@ Scenario Outline: 3rd Party Welsh Postponement, 5 weeks in advance, PNC pass
 	And I log in as "SYSTEM"
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Summoned" on the page
 	
 	When I select "Deferral" from Process reply
@@ -2924,15 +2924,15 @@ Scenario Outline: 3rd Party Welsh Postponement, 5 weeks in advance, PNC pass
 	Then I see "Completed" on the page
 	
 	#DB checks (Do PNC PASS)
-	And "<part_no>" has "POLICE_CHECK" as "P"
-	And "<part_no>" has "PHOENIX_CHECKED" as "C"
+	And "<juror_number>" has "POLICE_CHECK" as "P"
+	And "<juror_number>" has "PHOENIX_CHECKED" as "C"
 	
 	#postponse letter generated
-	Given a postponement letter is generated for juror "<part_no>"
+	Given a postponement letter is generated for juror "<juror_number>"
 	
-#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<part_no>"
+#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<juror_number>"
 	
 Examples:
 |part_no		|pool_no 	|last_name 			|postcode 	|email					|
@@ -2946,8 +2946,8 @@ Scenario Outline: 1st Party Welsh Postponement, 5 weeks in advance, PNC pass
 	|part_no	|pool_no 	|Owner 		|
 	|645700786	|457170401	|400		|
 	Given auto straight through processing has been enabled
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
+
+
 	And I have submitted a first party Welsh ineligibilty response
 	| part_no		|pool_number| last_name		|postcode	| email |
 	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
@@ -2960,9 +2960,9 @@ Scenario Outline: 1st Party Welsh Postponement, 5 weeks in advance, PNC pass
 	And I log in as "SYSTEM"
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Summoned" on the page
 	
 	When I select "Deferral" from Process reply
@@ -2975,15 +2975,15 @@ Scenario Outline: 1st Party Welsh Postponement, 5 weeks in advance, PNC pass
 	Then I see "Completed" on the page
 	
 	#DB checks (Do PNC PASS)
-	And "<part_no>" has "POLICE_CHECK" as "P"
-	And "<part_no>" has "PHOENIX_CHECKED" as "C"
+	And "<juror_number>" has "POLICE_CHECK" as "P"
+	And "<juror_number>" has "PHOENIX_CHECKED" as "C"
 	
 	#postponse letter generated
-	Given a postponement letter is generated for juror "<part_no>"
+	Given a postponement letter is generated for juror "<juror_number>"
 	
-#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<part_no>"
+#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<juror_number>"
 	
 Examples:
 |part_no	|pool_no 	|last_name 			|postcode 	|email					|
@@ -2998,9 +2998,9 @@ Scenario Outline: 3rd Party Postponement, 5 weeks in advance, PNC pass
 	|part_no		|pool_no 	|Owner 		|
 	|<part_no>		|<pool_no>	|400		|
 	Given auto straight through processing has been enabled
-	And "<part_no>" has "RET_DATE" as "1 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "1 mondays time"
-	And "<part_no>" has "READ_ONLY" as "Y"
+	And "<juror_number>" has "RET_DATE" as "1 mondays time"
+	And "<juror_number>" has "NEXT_DATE" as "1 mondays time"
+	And "<juror_number>" has "READ_ONLY" as "Y"
 	And I have submitted a third party English ineligibilty response
 	| part_no		|pool_number| last_name		|postcode	| email |
 	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
@@ -3009,9 +3009,9 @@ Scenario Outline: 3rd Party Postponement, 5 weeks in advance, PNC pass
 #	And I log in as "SYSTEM"
 #	
 #	When I click on the "Search" link
-#	And I set "Juror number" to "<part_no>"
+#	And I set "Juror number" to "<juror_number>"
 #	And I press the "Search" button
-#	And I click on "<part_no>" in the same row as "<part_no>"
+#	And I click on "<juror_number>" in the same row as "<juror_number>"
 #	Then I see "Summoned" on the page
 #	
 #	When I select "Deferral" from Process reply
@@ -3024,15 +3024,15 @@ Scenario Outline: 3rd Party Postponement, 5 weeks in advance, PNC pass
 #	Then I see "Completed" on the page
 #	
 #	#DB checks (Do PNC PASS)
-#	And "<part_no>" has "POLICE_CHECK" as "P"
-#	And "<part_no>" has "PHOENIX_CHECKED" as "C"
+#	And "<juror_number>" has "POLICE_CHECK" as "P"
+#	And "<juror_number>" has "PHOENIX_CHECKED" as "C"
 #	
 #	#postponse letter generated
-#	Given a postponement letter is generated for juror "<part_no>"
+#	Given a postponement letter is generated for juror "<juror_number>"
 #	
-#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<part_no>"
-#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<part_no>"
+#	Then on "JUROR" . "PRINT_FILES" I see "FORM_TYPE" is "5224A" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "PRINT_FILES" I see "DIGITAL_COMMS" is "Y" where "PART_NO" is "<juror_number>"
+#	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<juror_number>"
 	
 Examples:
 |part_no		|pool_no 	|last_name 	|postcode 	|email					|

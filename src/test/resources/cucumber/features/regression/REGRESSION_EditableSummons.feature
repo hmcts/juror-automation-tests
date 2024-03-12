@@ -10,11 +10,11 @@ Scenario Outline:
 		|<part_no> 	|<pool_no>	|400 	|
 
 	#Set part_no pool to be urgent
-	Given "<part_no>" has "RET_DATE" as "2 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "2 mondays time"
+	Given "<juror_number>" has "RET_DATE" as "2 mondays time"
+	And "<juror_number>" has "NEXT_DATE" as "2 mondays time"
 
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 
 	Then I see "Reply to a jury summons" on the page
 		
@@ -22,7 +22,7 @@ Scenario Outline:
 	And I press the "Continue" button
 	Then I see "Their juror details" on the page
 	
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
@@ -100,18 +100,18 @@ Scenario Outline:
 	And I press the "Submit" button
 	
 	Then I see "You have completed your reply" on the page
-	Then I see "<part_no>" on the page
+	Then I see "<juror_number>" on the page
 	
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "TODO" where "JUROR_NUMBER" is "<part_no>"
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "N" where "JUROR_NUMBER" is "<part_no>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "TODO" where "JUROR_NUMBER" is "<juror_number>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "N" where "JUROR_NUMBER" is "<juror_number>"
 
 	Given I am on "Bureau" "juror-test01"
 	And I log in as "CPASS"
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	
 	And I do not see link with text "edit"
 	And I do not see link with text "Edit"
@@ -208,13 +208,13 @@ Scenario Outline:
 	#check the response is now allocated to CPASS
 	
 	And I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	Then I see "CPASS" in the same row as "<part_no>"
+	Then I see "CPASS" in the same row as "<juror_number>"
 	
 	#check call notes are still there
 	
-	When I click on "<part_no>" in the same row as "<part_no>"
+	When I click on "<juror_number>" in the same row as "<juror_number>"
 	When I click on the "Logs" link
 	When I click on the "Call log" link
 	And I see "These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are tThese are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are t" on the page
@@ -231,7 +231,7 @@ Scenario Outline:
 	Then I click on the "Your work" link
 	Then I click on the "Awaiting information" link
 	
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	
 	And I do not see link with text "edit"
 	And I do not see link with text "Edit"
@@ -290,7 +290,7 @@ Scenario Outline:
 	Then I click on the "Your work" link
 	Then I click on the "Completed" link
 	
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	
 	And I do not see link with text "edit"
 	And I do not see link with text "Edit"
@@ -354,11 +354,11 @@ Scenario Outline: jdb-3644
 		| <part_no> |<pool_no>	| 400 	|
 		
 	#Set part_no pool to be urgent
-	Given "<part_no>" has "RET_DATE" as "2 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "2 mondays time"
+	Given "<juror_number>" has "RET_DATE" as "2 mondays time"
+	And "<juror_number>" has "NEXT_DATE" as "2 mondays time"
 
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 
 	Then I see "Reply to a jury summons" on the page
 		
@@ -366,7 +366,7 @@ Scenario Outline: jdb-3644
 	And I press the "Continue" button
 	Then I see "Their juror details" on the page
 	
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
@@ -444,18 +444,18 @@ Scenario Outline: jdb-3644
 	And I press the "Submit" button
 	
 	Then I see "You have completed your reply" on the page
-	Then I see "<part_no>" on the page
+	Then I see "<juror_number>" on the page
 	
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "TODO" where "JUROR_NUMBER" is "<part_no>"
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "N" where "JUROR_NUMBER" is "<part_no>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "TODO" where "JUROR_NUMBER" is "<juror_number>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "N" where "JUROR_NUMBER" is "<juror_number>"
 
 	Given I am on "Bureau" "bau-test"
 	And I log in as "CPASS"
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	And I click on the "Change" link
 	And I set "Title (optional)" to ""
 	And I set "First name" to ""
@@ -665,15 +665,15 @@ Scenario Outline: jdb-3644
 	Then I see "READING" on the page
 	Then I see "VISUAL IMPAIRMENT" on the page
 	
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "PHONE_NUMBER" is "0333333339" where "JUROR_NUMBER" is "<part_no>"
-	Then on "JUROR" . "POOL" I see "H_PHONE" is "" where "PART_NUMBER" is "<part_no>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PHONE_NUMBER" is "0333333339" where "JUROR_NUMBER" is "<juror_number>"
+	Then on "JUROR" . "POOL" I see "H_PHONE" is "" where "PART_NUMBER" is "<juror_number>"
 	
 	When I select "Responded" from Process reply
 	And I check the "Mark juror as 'responded'" checkbox
 	And I press the "Confirm" button
 	Then I see "COMPLETED" on the page
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "PHONE_NUMBER" is "0333333339" where "JUROR_NUMBER" is "<part_no>"
-	Then on "JUROR" . "POOL" I see "H_PHONE" is "0333333339" where "PART_NUMBER" is "<part_no>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PHONE_NUMBER" is "0333333339" where "JUROR_NUMBER" is "<juror_number>"
+	Then on "JUROR" . "POOL" I see "H_PHONE" is "0333333339" where "PART_NUMBER" is "<juror_number>"
 	
 Examples:
 	|part_no	|pool_no	|last_name		|postcode	| email |

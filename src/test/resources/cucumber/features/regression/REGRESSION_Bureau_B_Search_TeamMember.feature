@@ -45,7 +45,7 @@ Scenario Outline: Lift from QC Script for Bureau B Search
 		|text 		|
 		|<part_no>	|
 	
-	When I click on "<part_no>" in the same row as "<part_no>"
+	When I click on "<juror_number>" in the same row as "<juror_number>"
 	Then on the page I see
 		|text 			|
 		|Juror details	|

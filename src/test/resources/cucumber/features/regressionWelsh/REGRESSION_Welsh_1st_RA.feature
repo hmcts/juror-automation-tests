@@ -8,11 +8,11 @@ Scenario Outline: Welsh_1st_RA
 		| part_no 	| pool_no 	| owner |
 		| <part_no> |<pool_no>	| 400 	|
 		
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "Address4" as "LONDON"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+
+
+	And juror "<juror_number>" has "ADDRESS_LINE_4" as "LONDON"
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	
 	Then I see "A ydych yn ymateb dros eich hun neu ar ran rhywun arall?" on the page
 	And I set the radio button to "n ymateb dros fy hun"
@@ -20,7 +20,7 @@ Scenario Outline: Welsh_1st_RA
 	
 	Then I see "Eich manylion rheithiwr" on the page
 	
-	When I set "Rhif rheithiwr – 9 digid" to "<part_no>"
+	When I set "Rhif rheithiwr – 9 digid" to "<juror_number>"
 	When I set "Cyfenw'r Rheithiwr" to "<last_name>"
 	When I set "Cod post Rheithiwr" to "<postcode>"
 	And I press the "Parhau" button

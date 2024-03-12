@@ -11,7 +11,6 @@ Feature: JM-4326 - Defer a juror and then complete their service at a later date
       | 415   |<juror_number>     | <pool_number>     | 5                      | 400  |
       | 415   |<juror_number_1>     | <pool_number>     | 5                      | 400  |
 
-    And "<part_no>" has "NEXT_DATE" as "5 mondays time" new schema
     And pool "<pool_no>" has attendance date as "5 mondays time" new schema
 
     #create a pool to defer to
@@ -55,8 +54,8 @@ Feature: JM-4326 - Defer a juror and then complete their service at a later date
     And I see the reply type has been updated to "DEFERRAL"
 
     Examples:
-      |user			|password	|juror_number  |pool_number  |juror_number_1|
-      |MODTESTBUREAU|Password1!	|041530012     |415300301|041530014|
+      |user			|juror_number  |pool_number  |juror_number_1|
+      |MODTESTBUREAU|041530012     |415300301|041530014|
 
   @JurorTransformationWIP @JM-5795
   Scenario Outline: Mark juror as deferred - Add to pool Happy path paper - Jury Officer
@@ -66,15 +65,10 @@ Feature: JM-4326 - Defer a juror and then complete their service at a later date
       |part_no   | pool_no   | owner |
       |<part_no> | <pool_no> | 400   |
 
-
-    And "<part_no>" has "NEXT_DATE" as "5 mondays time" new schema
-
     Then a new pool is inserted for where record has transferred to the court new schema
       |part_no   | pool_no   | owner |
       |<part_no> | <pool_no> | 415   |
 
-
-    And "<part_no>" has "NEXT_DATE" as "5 mondays time" new schema
     And pool "<pool_no>" has attendance date as "5 mondays time"
 
     #log on and search for juror
@@ -107,7 +101,7 @@ Feature: JM-4326 - Defer a juror and then complete their service at a later date
 
 
     #check summons response
-    When the user searches for juror record "<part_no>" from the global search bar
+    When the user searches for juror record "<juror_number>" from the global search bar
     And I click on the "Summons reply" link
     #will fail here as a result of  JM-5795
     And I see the processing outcome of the summons reply on juror record is "Deferral - granted (other)"
@@ -129,8 +123,6 @@ Feature: JM-4326 - Defer a juror and then complete their service at a later date
       | part_no   | pool_no   | owner |
       | <part_no> | <pool_no> | 400   |
 
-
-    And "<part_no>" has "NEXT_DATE" as "5 mondays time" new schema
     And pool "<pool_no>" has attendance date as "5 mondays time"
 
     #record digital response
@@ -147,7 +139,7 @@ Feature: JM-4326 - Defer a juror and then complete their service at a later date
     Given I create an active "civil" court pool request for court "415", "14" Mondays in the future
 
     #search for juror and process reply
-    When the user searches for juror record "<part_no>" from the global search bar
+    When the user searches for juror record "<juror_number>" from the global search bar
     And I click the summons reply tab
     And I click on the "View summons reply" link
     And I see the reply "type" on the response is "DEFERRAL"
@@ -169,7 +161,7 @@ Feature: JM-4326 - Defer a juror and then complete their service at a later date
     And I see "Deferral granted (other)" on the page
 
     #search for juror and view reponse
-    When the user searches for juror record "<part_no>" from the global search bar
+    When the user searches for juror record "<juror_number>" from the global search bar
     And I click on the "Summons reply" link
     And I click on the "View summons reply" link
     And I see the reply status has updated to "COMPLETED"
@@ -187,8 +179,6 @@ Feature: JM-4326 - Defer a juror and then complete their service at a later date
       | part_no   | pool_no   | owner |
       | <part_no> | <pool_no> | 400   |
 
-
-    And "<part_no>" has "NEXT_DATE" as "5 mondays time" new schema
     And pool "<pool_no>" has attendance date as "5 mondays time"
 
     #record digital response
@@ -206,7 +196,7 @@ Feature: JM-4326 - Defer a juror and then complete their service at a later date
     And I log in as "<user>"
 
     #search for juror and view response
-    When the user searches for juror record "<part_no>" from the global search bar
+    When the user searches for juror record "<juror_number>" from the global search bar
     And I click the summons reply tab
 
     #failing due to JM-4750
@@ -230,7 +220,7 @@ Feature: JM-4326 - Defer a juror and then complete their service at a later date
 
 
     #check summons response
-    When the user searches for juror record "<part_no>" from the global search bar
+    When the user searches for juror record "<juror_number>" from the global search bar
     And I click on the "Summons reply" link
     #will fail here as a result of  JM-5795
     And I see the processing outcome of the summons reply on juror record is "Deferral - granted (other)"

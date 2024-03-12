@@ -7,17 +7,17 @@ Scenario Outline: Welsh 1st Party Excusal
 		| part_no 	| pool_no 	| owner |
 		| <part_no> |<pool_no>	| 400 	|
 		
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+
+
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
    
     And I do not see any links on the page that open to a new page without an alt text
 	And I set the radio button to "n ymateb dros fy hun"
 	And I press the "Parhau" button
 	Then I see "Eich manylion rheithiwr" on the page
 	
-	When I set "Rhif rheithiwr" to "<part_no>"
+	When I set "Rhif rheithiwr" to "<juror_number>"
 	When I set "Cyfenw" to "<last_name>"
 	When I set "Cod post Rheithiwr" to "<postcode>"
 	And I press the "Parhau" button
@@ -138,7 +138,7 @@ Scenario Outline: Welsh 1st Party Excusal
 	
 	Then I see "Rydych wedi cwblhau'r broses ymateb" on the page
 	Then I see "Rydych wedi cwblhau'r broses ymateb" on the page
-	Then I see "<part_no>" on the page
+	Then I see "<juror_number>" on the page
 	
 	Then I click on the "Lawrlwythwch gopi o'ch ymateb i'r wŷs HTML (15KB)" link
 	And I see "Pam fod angen ichi gael eich esgusodi rhag gwasanaethu ar reithgor?" on the page

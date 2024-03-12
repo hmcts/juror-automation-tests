@@ -10,10 +10,10 @@ Feature: JM-3180
       | <part_no> |<pool_no>	| 400 	|
 
 
-    And "<part_no>" has "NEXT_DATE" as "5 mondays time" new schema
-    And juror "<part_no>" has "TITLE" as "Mr" new schema
-    And juror "<part_no>" has "FIRST_NAME" as "FNAME" new schema
-    And juror "<part_no>" has "LAST_NAME" as "LNAME" new schema
+
+    And juror "<juror_number>" has "TITLE" as "Mr" new schema
+    And juror "<juror_number>" has "FIRST_NAME" as "FNAME" new schema
+    And juror "<juror_number>" has "LAST_NAME" as "LNAME" new schema
 
     And I submit a digital response with reasonable adjustment
       |part_no	  |pool_number  |last_name	|postcode	|email 	|adjustmentNeededCap  |details                       |
@@ -22,7 +22,7 @@ Feature: JM-3180
     Given I am on "Bureau" "test"
     And I log in as "<user>"
 
-    When the user searches for juror record "<part_no>" from the global search bar
+    When the user searches for juror record "<juror_number>" from the global search bar
     Then I click the summons reply tab
     And I click on the view summons reply link
     Then the view summons reply page is displayed
@@ -48,10 +48,10 @@ Feature: JM-3180
       | <part_no> |<pool_no>	| 400 	|
 
 
-    And "<part_no>" has "NEXT_DATE" as "5 mondays time" new schema
-    And juror "<part_no>" has "TITLE" as "Mr" new schema
-    And juror "<part_no>" has "FIRST_NAME" as "FNAME" new schema
-    And juror "<part_no>" has "LAST_NAME" as "LNAME" new schema
+
+    And juror "<juror_number>" has "TITLE" as "Mr" new schema
+    And juror "<juror_number>" has "FIRST_NAME" as "FNAME" new schema
+    And juror "<juror_number>" has "LAST_NAME" as "LNAME" new schema
 
     And I submit a digital response with reasonable adjustment
       |part_no	  |pool_number  |last_name	|postcode	|email 	|adjustmentNeededCap  |details                       |
@@ -60,7 +60,7 @@ Feature: JM-3180
     Given I am on "Bureau" "test"
     And I log in as "<user>"
 
-    When the user searches for juror record "<part_no>" from the global search bar
+    When the user searches for juror record "<juror_number>" from the global search bar
     Then I click the summons reply tab
     And I click on the view summons reply link
     Then the view summons reply page is displayed
@@ -83,10 +83,10 @@ Feature: JM-3180
       | <part_no> |<pool_no>	| 400 	|
 
 
-    And "<part_no>" has "NEXT_DATE" as "5 mondays time" new schema
-    And juror "<part_no>" has "TITLE" as "Mr" new schema
-    And juror "<part_no>" has "FIRST_NAME" as "FNAME" new schema
-    And juror "<part_no>" has "LAST_NAME" as "LNAME" new schema
+
+    And juror "<juror_number>" has "TITLE" as "Mr" new schema
+    And juror "<juror_number>" has "FIRST_NAME" as "FNAME" new schema
+    And juror "<juror_number>" has "LAST_NAME" as "LNAME" new schema
 
     And I submit a digital response with reasonable adjustment
       |part_no	  |pool_number  |last_name	|postcode	|email 	|adjustmentNeededCap  |details                       |
@@ -95,7 +95,7 @@ Feature: JM-3180
     Given I am on "Bureau" "test"
     And I log in as "<user>"
 
-    When the user searches for juror record "<part_no>" from the global search bar
+    When the user searches for juror record "<juror_number>" from the global search bar
     Then I click the summons reply tab
     And I click on the view summons reply link
     Then the view summons reply page is displayed
@@ -119,10 +119,10 @@ Feature: JM-3180
       | <part_no> |<pool_no>	| 400 	|
 
 
-    And "<part_no>" has "NEXT_DATE" as "5 mondays time" new schema
-    And juror "<part_no>" has "TITLE" as "Mr" new schema
-    And juror "<part_no>" has "FNAME" as "FNAME" new schema
-    And juror "<part_no>" has "LNAME" as "LNAME" new schema
+
+    And juror "<juror_number>" has "TITLE" as "Mr" new schema
+    And juror "<juror_number>" has "FNAME" as "FNAME" new schema
+    And juror "<juror_number>" has "LNAME" as "LNAME" new schema
 
     And I submit a digital response with reasonable adjustment
       |part_no	  |pool_number  |last_name	|postcode	|email 	|adjustmentNeededCap  |details                       |
@@ -131,7 +131,7 @@ Feature: JM-3180
     Given I am on "Bureau" "test"
     And I log in as "<user>"
 
-    When the user searches for juror record "<part_no>" from the global search bar
+    When the user searches for juror record "<juror_number>" from the global search bar
     Then I click the summons reply tab
     And I click on the view summons reply link
     Then the view summons reply page is displayed

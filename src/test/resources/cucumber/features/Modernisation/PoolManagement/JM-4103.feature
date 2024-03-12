@@ -12,8 +12,6 @@ Feature: JM-4103
       | <part_no3> |<pool_no>	| 400 	|
       | <part_no4> |<pool_no>	| 400 	|
 
-
-    And "<part_no>" has "NEXT_DATE" as "5 mondays time" new schema
     And "<part_no2>" has "NEXT_DATE" as "5 mondays time" new schema
     And "<part_no3>" has "NEXT_DATE" as "5 mondays time" new schema
     And "<part_no4>" has "NEXT_DATE" as "5 mondays time" new schema
@@ -31,7 +29,7 @@ Feature: JM-4103
     And I click on active pools
     And I click on the "At court" link
     When I navigate to the active pool "415171002" overview
-    And I select the checkbox in the same row as "<part_no>" in pool table
+    And I select the checkbox in the same row as "<juror_number>" in pool table
     And I select the checkbox in the same row as "<part_no2>" in pool table
     And I select the checkbox in the same row as "<part_no3>" in pool table
     And I select the checkbox in the same row as "<part_no4>" in pool table
@@ -79,8 +77,6 @@ Feature: JM-4103
       | part_no   | pool_no 	| owner |
       | <part_no> |<pool_no>	| 400 	|
 
-    And "<part_no>" has "NEXT_DATE" as "5 mondays time" new schema
-
     Then a new pool is inserted for where record has transferred to the court new schema
       |part_no    | pool_no   | owner |
       |<part_no>  | <pool_no> | 415   |
@@ -91,7 +87,7 @@ Feature: JM-4103
     And I click on active pools
     And I click on the "At court" link
     When I navigate to the active pool "415171002" overview
-    And I select the checkbox in the same row as "<part_no>" in pool table
+    And I select the checkbox in the same row as "<juror_number>" in pool table
     And I see "1 of selected" on the page
 
     #transfer
@@ -127,8 +123,6 @@ Feature: JM-4103
       |<part_no_2>  | <pool_no> | 400   |
       |<part_no_3>  | <pool_no> | 400   |
 
-
-    And "<part_no>" has "NEXT_DATE" as "5 mondays time" new schema
     And "<part_no_2>" has "NEXT_DATE" as "5 mondays time" new schema
     And "<part_no_3>" has "NEXT_DATE" as "5 mondays time" new schema
 

@@ -1,24 +1,23 @@
 Feature: English_3rd_SkipMainContent
 
-@Regression @JDB-3357 @JDB-3515 
+@Regression @NewSchemaConverted
 Scenario Outline: English 3rd Party Straight Through with Skip to Main Content Checks
 	
-	Given I am on "Public" "juror-test02"
-	Then the page language is "en"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+	Given I am on "Public" "test"
 
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "FNAME" as "FNAMESEVENONETHREE"
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "Address4" as "LONDON"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	Then the page language is "en"
+
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
+
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "FIRST_NAME" as "FNAMESEVENONETHREE" new schema
+	And juror "<juror_number>" has "ADDRESS_LINE_4" as "LONDON" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	
 	#JDB-3357 Skip to main content check
 	#Reply to jury summons
-	
 	When I hit the tab key
 	Then I see "Skip to main content" on the page
 	Then the page language is "en"
@@ -27,7 +26,6 @@ Scenario Outline: English 3rd Party Straight Through with Skip to Main Content C
 	Then the page language is "en"
 	
 	#JDB-3357 Skip to main content check
-	
 	Then I hit the tab key
 	Then I see "Skip to main content" on the page
 	Then the page language is "en"
@@ -38,20 +36,18 @@ Scenario Outline: English 3rd Party Straight Through with Skip to Main Content C
 	And I press the "Continue" button
 	
 	#JDB-3357 Skip to main content check
-
 	Then I hit the tab key
 	Then I see "Skip to main content" on the page
 	Then the page language is "en"
 	Then I click on the "Skip to main content" link
 	Then I see "Their juror details" on the page
 	
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 	
 	#JDB-3357 Skip to main content check
-
 	Then I hit the tab key
 	Then I see "Skip to main content" on the page
 	Then the page language is "en"
@@ -63,7 +59,6 @@ Scenario Outline: English 3rd Party Straight Through with Skip to Main Content C
 	And I press the "Continue" button
 	
 	#JDB-3357 Skip to main content check
-
 	Then I hit the tab key
 	Then I see "Skip to main content" on the page
 	Then the page language is "en"
@@ -74,7 +69,6 @@ Scenario Outline: English 3rd Party Straight Through with Skip to Main Content C
 	And I press the "Continue" button
 	
 	#JDB-3357 Skip to main content check
-
 	Then I hit the tab key
 	Then I see "Skip to main content" on the page
 	Then the page language is "en"
@@ -84,12 +78,11 @@ Scenario Outline: English 3rd Party Straight Through with Skip to Main Content C
 	When I check the "By phone (UK Numbers only)" checkbox
 	And I check the "By email" checkbox
 	And I set "Main phone" to "0207 821 1818"
-	And I set "Enter your email address" to "email@outlook.com"
-	And I set "Enter your email address again" to "email@outlook.com"
+	And I set "Enter your email address" to "<email>"
+	And I set "Enter your email address again" to "<email>"
 	And I press the "Continue" button
 	
 	#JDB-3357 Skip to main content check
-
 	Then I hit the tab key
 	Then I see "Skip to main content" on the page
 	Then the page language is "en"
@@ -100,7 +93,6 @@ Scenario Outline: English 3rd Party Straight Through with Skip to Main Content C
 	And I press the "Continue" button
 	
 	#JDB-3357 Skip to main content check
-
 	Then I hit the tab key
 	Then I see "Skip to main content" on the page
 	Then the page language is "en"
@@ -111,7 +103,6 @@ Scenario Outline: English 3rd Party Straight Through with Skip to Main Content C
 	And I press the "Continue" button
 
 	#JDB-3357 Skip to main content check
-
 	Then I hit the tab key
 	Then I see "Skip to main content" on the page
 	Then the page language is "en"
@@ -122,7 +113,6 @@ Scenario Outline: English 3rd Party Straight Through with Skip to Main Content C
 	And I press the "Continue" button
 	
 	#JDB-3357 Skip to main content check
-
 	Then I hit the tab key
 	Then I see "Skip to main content" on the page
 	Then the page language is "en"
@@ -135,7 +125,6 @@ Scenario Outline: English 3rd Party Straight Through with Skip to Main Content C
 	And I press the "Continue" button
 	
 	#JDB-3357 Skip to main content check
-
 	Then I hit the tab key
 	Then I see "Skip to main content" on the page
 	Then the page language is "en"
@@ -147,7 +136,6 @@ Scenario Outline: English 3rd Party Straight Through with Skip to Main Content C
 	And I press the "Continue" button
 
 	#JDB-3357 Skip to main content check
-
 	Then I see "Confirm if the person is eligible for jury service" on the page
 
 	Then I hit the tab key
@@ -159,7 +147,6 @@ Scenario Outline: English 3rd Party Straight Through with Skip to Main Content C
 	And I press the "Continue" button
 	
 	#JDB-3357 Skip to main content check
-
 	Then I hit the tab key
 	Then I see "Skip to main content" on the page
 	Then the page language is "en"
@@ -170,7 +157,6 @@ Scenario Outline: English 3rd Party Straight Through with Skip to Main Content C
 	And I press the "Continue" button
 	
 	#JDB-3357 Skip to main content check
-
 	Then I hit the tab key
 	Then I see "Skip to main content" on the page
 	Then the page language is "en"
@@ -181,7 +167,6 @@ Scenario Outline: English 3rd Party Straight Through with Skip to Main Content C
 	And I press the "Continue" button
 	
 	#JDB-3357 Skip to main content check
-
 	Then I hit the tab key
 	Then I see "Skip to main content" on the page
 	Then the page language is "en"
@@ -192,7 +177,6 @@ Scenario Outline: English 3rd Party Straight Through with Skip to Main Content C
 	And I press the "Continue" button
 	
 	#JDB-3357 Skip to main content check
-
 	Then I hit the tab key
 	Then I see "Skip to main content" on the page
 	Then the page language is "en"
@@ -203,7 +187,6 @@ Scenario Outline: English 3rd Party Straight Through with Skip to Main Content C
 	And I press the "Continue" button
 	
 	#JDB-3357 Skip to main content check
-
 	Then I hit the tab key
 	Then I see "Skip to main content" on the page
 	Then the page language is "en"
@@ -214,7 +197,6 @@ Scenario Outline: English 3rd Party Straight Through with Skip to Main Content C
 	And I press the "Continue" button
 	
 	#JDB-3357 Skip to main content check
-
 	Then I hit the tab key
 	Then I see "Skip to main content" on the page
 	Then the page language is "en"
@@ -225,7 +207,6 @@ Scenario Outline: English 3rd Party Straight Through with Skip to Main Content C
 	And I press the "Continue" button
 	
 	#JDB-3357 Skip to main content check
-
 	Then I hit the tab key
 	Then I see "Skip to main content" on the page
 	Then the page language is "en"
@@ -236,7 +217,6 @@ Scenario Outline: English 3rd Party Straight Through with Skip to Main Content C
 	And I press the "Continue" button
 	
 	#JDB-3357 Skip to main content check
-
 	Then I hit the tab key
 	Then I see "Skip to main content" on the page
 	Then the page language is "en"
@@ -247,7 +227,6 @@ Scenario Outline: English 3rd Party Straight Through with Skip to Main Content C
 	And I press the "Continue" button
 	
 	#JDB-3357 Skip to main content check
-
 	Then I hit the tab key
 	Then I see "Skip to main content" on the page
 	Then the page language is "en"
@@ -259,7 +238,6 @@ Scenario Outline: English 3rd Party Straight Through with Skip to Main Content C
 	When I press the "Submit" button
 
 	#JDB-3357 Skip to main content check
-
 	Then I hit the tab key
 	Then I see "Skip to main content" on the page
 	Then the page language is "en"
@@ -267,5 +245,5 @@ Scenario Outline: English 3rd Party Straight Through with Skip to Main Content C
 	Then I see "You have completed your reply" on the page
 
 Examples:
-	| part_no		|pool_no	|last_name	|postcode	|email 		| 
-	|641500404		|415170401	|DOE		|SW1H 9AJ	|e@eeee.com	|
+	| juror_number	| pool_number	| last_name	| postcode	| email 		|
+	| 045200090		| 452300089		| DOE		| SW1H 9AJ	| e@eeee.com	|

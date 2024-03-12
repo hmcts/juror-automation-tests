@@ -1,16 +1,16 @@
 Feature: 1st English Confirm Date of Service Back Link
 
-@Regression @JDB-3442 
+@Regression @NewSchemaConverted
 Scenario Outline: Checking there is a back link on the Confirm date of jury service screen
-	Given I am on "Public" "bau-test"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+
+	Given I am on "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
 	
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	
 	Then I see "Reply to a jury summons" on the page
 	
@@ -19,8 +19,7 @@ Scenario Outline: Checking there is a back link on the Confirm date of jury serv
 	Then I see "Your juror details" on the page
 	
 	#Juror Log In
-	
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
@@ -29,7 +28,6 @@ Scenario Outline: Checking there is a back link on the Confirm date of jury serv
 	And I press the "Continue" button
 	
 	#Check Name
-	
 	Then I set "First name" to ""
 	And I set "Last name" to ""
 	And I press the "Continue" button
@@ -49,7 +47,6 @@ Scenario Outline: Checking there is a back link on the Confirm date of jury serv
 	And I press the "Continue" button
 	
 	#Check Address
-	
 	Then I set "Address line 1" to ""
 	And I set "Town or city" to ""
 	And I set "County (optional)" to ""
@@ -76,7 +73,6 @@ Scenario Outline: Checking there is a back link on the Confirm date of jury serv
 	Then I see "What is your phone number?" on the page
 	
 	#Phone Details
-	
 	When I press the "Continue" button
 	Then I see "Enter your main phone number" on the page
 	When I set "Main phone" to "0207 821 1818"
@@ -88,11 +84,10 @@ Scenario Outline: Checking there is a back link on the Confirm date of jury serv
 	Then I see "What is your email address?" on the page
 	
 	#Email
-	
 	When I press the "Continue" button
 	Then I see "Enter your email address" on the page
-	When I set "Enter your email address" to "email@outlook.com"
-	And I set "Enter your email address again" to "email@outlook.com"
+	When I set "Enter your email address" to "<email>"
+	And I set "Enter your email address again" to "<email>"
 	And I press the "Continue" button
 	Then I see "What is your date of birth?" on the page
 	When I click on the "Back" link
@@ -101,7 +96,6 @@ Scenario Outline: Checking there is a back link on the Confirm date of jury serv
 	Then I see "What is your date of birth?" on the page
 	
 	#DoB
-	
 	When I press the "Continue" button
 	Then I see "There is a problem" on the page
 	Then I see "Enter the day you were born" on the page
@@ -119,7 +113,6 @@ Scenario Outline: Checking there is a back link on the Confirm date of jury serv
 	When I press the "Continue" button
 	
 	#Residency
-	
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	When I press the "Continue" button
 	Then I see "Select yes if your main address has been in the UK, Channel Islands or Isle of Man for any period of at least 5 years, since you turned 13" on the page
@@ -135,7 +128,6 @@ Scenario Outline: Checking there is a back link on the Confirm date of jury serv
 	And I press the "Continue" button
 	
 	#CJS no
-	
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
 	When I set the radio button to "No"
 	And I click on the "Back" link
@@ -147,7 +139,6 @@ Scenario Outline: Checking there is a back link on the Confirm date of jury serv
 	And I press the "Continue" button
 	
 	#Bail
-	
 	Then I see "Are you currently on bail for a criminal offence?" on the page
 	When I press the "Continue" button
 	Then I see "Select yes if you are currently on bail for a criminal offence" on the page
@@ -162,7 +153,6 @@ Scenario Outline: Checking there is a back link on the Confirm date of jury serv
 	When I press the "Continue" button 
 	
 	#Convictions
-	
 	Then I see "Have you been found guilty of a criminal offence?" on the page
 	When I press the "Continue" button
 	Then I see "Select yes if you have been found guilty of a criminal offence" on the page
@@ -177,7 +167,6 @@ Scenario Outline: Checking there is a back link on the Confirm date of jury serv
 	When I press the "Continue" button 
 	
 	#Mental Health part 1
-	
 	Then I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
 	When I press the "Continue" button
 	Then I see "Select yes if you're being detained, looked after or treated under the Mental Health Act" on the page
@@ -192,7 +181,6 @@ Scenario Outline: Checking there is a back link on the Confirm date of jury serv
 	When I press the "Continue" button
 	
 	#Mental Health part 2
-	
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
 	When I press the "Continue" button
 	Then I see "Select yes if it's been decided that you 'lack mental capacity'" on the page
@@ -209,21 +197,21 @@ Scenario Outline: Checking there is a back link on the Confirm date of jury serv
 	Then I see "Check your start date" on the page
 	
 Examples:
-	| part_no		|last_name	|postcode	| email           |pool_no		|
-	|841500021		|LNAME21	|CH1 2AN	|email@outlook.com|415181001	|
+	| juror_number	| last_name	| postcode	| email           	| pool_number	|
+	| 045200172		| LNAME21	| CH1 2AN	| email@outlook.com	| 452300157		|
 	
 	
-@Regression @JDB-3731 
+@Regression @NewSchemaConverted
 Scenario Outline: No Error TypeError: Cannot read property details of undefined when clicking Back
-	Given I am on "Public" "juror-test02"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+
+	Given I am on "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
 		
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	
 	Then I see "Reply to a jury summons" on the page
 	
@@ -232,8 +220,7 @@ Scenario Outline: No Error TypeError: Cannot read property details of undefined 
 	Then I see "Your juror details" on the page
 	
 	#Juror Log In
-	
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
@@ -242,14 +229,12 @@ Scenario Outline: No Error TypeError: Cannot read property details of undefined 
 	And I press the "Continue" button
 	
 	#change Name
-	
 	Then I set "Title (optional)" to "Prof"
 	Then I set "First name" to "John"
 	And I set "Last name" to "James"
 	And I press the "Continue" button
 
 	#change address
-	
 	Then I see "Is this your address?" on the page
 	And I set the radio button to "No"
 	And I press the "Continue" button
@@ -259,20 +244,17 @@ Scenario Outline: No Error TypeError: Cannot read property details of undefined 
 	And I press the "Continue" button
 	
 	#Phone Details
-	
 	Then I see "What is your phone number?" on the page
 	When I set "Main phone" to "0207 821 1818"
 	And I press the "Continue" button
 	
 	#email
-	
 	Then I see "What is your email address?" on the page
-	When I set "Enter your email address" to "email@outlook.com"
-	And I set "Enter your email address again" to "email@outlook.com"
+	When I set "Enter your email address" to "<email>"
+	And I set "Enter your email address again" to "<email>"
 	And I press the "Continue" button
 	
 	#dob
-	
 	Then I see "What is your date of birth?" on the page
 	When I set "Day" to "01"
 	And I set "Month" to "01"
@@ -280,16 +262,13 @@ Scenario Outline: No Error TypeError: Cannot read property details of undefined 
 	And I press the "Continue" button
 	
 	#qualifying
-	
 	Then I see "Confirm you're eligible for jury service" on the page
 	And I press the "Continue" button
 
 	#residency
-	
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	
 	#back
-	
 	When I click on the "Back" link
 	Then I see "Confirm you're eligible for jury service" on the page
 	When I click on the "Back" link
@@ -305,5 +284,5 @@ Scenario Outline: No Error TypeError: Cannot read property details of undefined 
 	And I do not see "TypeError: Cannot read property 'details' of undefined" on the page
 	
 	Examples:
-	| part_no		|last_name	|postcode	| email           |pool_no	|
-	|641500568		|DOE		|SW1H 9AJ	|email@outlook.com|415170401|
+	| juror_number	| last_name	| postcode	| email           	| pool_number	|
+	| 045200173		| DOE		| SW1H 9AJ	| email@outlook.com	| 452300158		|

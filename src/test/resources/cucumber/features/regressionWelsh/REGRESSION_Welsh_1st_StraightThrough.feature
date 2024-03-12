@@ -12,10 +12,10 @@ Scenario Outline: Welsh 1st Party Straight Through (english court)
 		| part_no 	| pool_no 	| owner |
 		| <part_no> |<pool_no>	| 400 	|
 		
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "ZIP" as "<postcode>"
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
+
+
 
 	Then I see "Beth ddylwn ei wneud os oes angen cymorth arnaf i ymateb?" on the page
 	And I click on the "Beth ddylwn ei wneud os oes angen cymorth arnaf i ymateb?" link
@@ -44,7 +44,7 @@ Scenario Outline: Welsh 1st Party Straight Through (english court)
 	
 	And I see "Rhowch eich cod post fel y mae wedi'i nodi ar y llythyr gwŷs rheithgor, hyd yn oed os yw'n anghywir. Gallwch ei newid nes ymlaen." on the page
 	
-	When I set "Rhif rheithiwr" to "<part_no>"
+	When I set "Rhif rheithiwr" to "<juror_number>"
 	When I set "Cyfenw" to "<last_name>"
 	When I set "Cod post Rheithiwr" to "<postcode>"
 	And I press the "Parhau" button
@@ -281,19 +281,19 @@ Scenario Outline: Welsh 1st Party Straight Through (english court)
 	And I log in as "SYSTEM"
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
 	
-	When I click on "<part_no>" in the same row as "<part_no>"
+	When I click on "<juror_number>" in the same row as "<juror_number>"
 	
 	Then I see "COMPLETED" on the page
 	
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "CLOSED" where "JUROR_NUMBER" is "<part_no>"
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "Y" where "JUROR_NUMBER" is "<part_no>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "CLOSED" where "JUROR_NUMBER" is "<juror_number>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "Y" where "JUROR_NUMBER" is "<juror_number>"
 	
 	#JDB-3453
 	
-	Then on "JUROR" . "POOL" I see "WELSH" is null where "part_no" is "<part_no>"
+	Then on "JUROR" . "POOL" I see "WELSH" is null where "part_no" is "<juror_number>"
 	
 Examples:
 	|part_no	|last_name	|postcode	|email 		|pool_no	|
@@ -306,10 +306,10 @@ Scenario Outline: Welsh 1st Party Straight Through (welsh court)
 		| part_no 	| pool_no 	| owner |
 		| <part_no> |<pool_no>	| 400 	|
 
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "ZIP" as "<postcode>"
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
+
+
 	
 	And I set the radio button to "n ymateb dros fy hun"
 	And I press the "Parhau" button
@@ -329,7 +329,7 @@ Scenario Outline: Welsh 1st Party Straight Through (welsh court)
 	
 	And I see "Rhowch eich cod post fel y mae wedi'i nodi ar y llythyr gwŷs rheithgor, hyd yn oed os yw'n anghywir. Gallwch ei newid nes ymlaen." on the page
 	
-	When I set "Rhif rheithiwr" to "<part_no>"
+	When I set "Rhif rheithiwr" to "<juror_number>"
 	When I set "Cyfenw" to "<last_name>"
 	When I set "Cod post Rheithiwr" to "<postcode>"
 	And I press the "Parhau" button
@@ -529,10 +529,10 @@ Scenario Outline: Welsh 1st Party Straight Through (welsh court)
 	And I log in as "SYSTEM"
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
 	
-	When I click on "<part_no>" in the same row as "<part_no>"
+	When I click on "<juror_number>" in the same row as "<juror_number>"
 	
 #	When I select "Responded" from Process reply
 #	And I set the radio button to "Accept juror as responded"
@@ -540,12 +540,12 @@ Scenario Outline: Welsh 1st Party Straight Through (welsh court)
 #	And I press the "Mark as completed" button
 	And I see "COMPLETED" on the page
 	
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "CLOSED" where "JUROR_NUMBER" is "<part_no>"
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "Y" where "JUROR_NUMBER" is "<part_no>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "CLOSED" where "JUROR_NUMBER" is "<juror_number>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "Y" where "JUROR_NUMBER" is "<juror_number>"
 	
 	#JDB-3453
 	
-	Then on "JUROR" . "POOL" I see "WELSH" is "Y" where "part_no" is "<part_no>"
+	Then on "JUROR" . "POOL" I see "WELSH" is "Y" where "part_no" is "<juror_number>"
 	
 Examples:
 	|part_no	|last_name	|postcode	|email 		| pool_no	|

@@ -13,14 +13,14 @@ Feature: JM-4247 Edit Juror Record as Court User
       |<part_no> | <pool_no> | 415   |
 
 
-    And "<part_no>" has "NEXT_DATE" as "10 mondays time" new schema
-    And juror "<part_no>" has "FIRST_NAME" as "Joe" new schema
-    And juror "<part_no>" has "LAST_NAME" as "Blogs" new schema
+    And "<juror_number>" has "NEXT_DATE" as "10 mondays time" new schema
+    And juror "<juror_number>" has "FIRST_NAME" as "Joe" new schema
+    And juror "<juror_number>" has "LAST_NAME" as "Blogs" new schema
 
     And I log in as "<user>"
     When the user searches for juror record "<part_no>" from the global search bar
     And I record a happy path paper summons response and process now
-    When the user searches for juror record "<part_no>" from the global search bar
+    When the user searches for juror record "<juror_number>" from the global search bar
 
     And I click on the "Juror details" link
     And I click on the "Add or change" link

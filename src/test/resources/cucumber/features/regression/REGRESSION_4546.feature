@@ -1,12 +1,11 @@
 Feature: Regression Accessibility Statement
 
-@Regression @JDB-4546 
+@Regression @NewSchemaConverted
 Scenario: English Accessibility Statement
 	
-	Given I am on "Public" "bau-test"
+	Given I am on "Public" "test"
 
   	#Accessibility Statement
-
    	And I click on the "Accessibility statement" link
    	And I switch to the new window
 
@@ -73,21 +72,20 @@ Scenario: English Accessibility Statement
    	
    	And I see "If you require a copy of the full accessibility test report please contact Andrew Singleton Bisby." on the page
 
-@Regression @JDB-4546 
+@Regression @NewSchemaConverted
 Scenario Outline: English 1st Party - Accessibility Statement on each page
 
-	Given I am on "Public" "bau-test"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
-	
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "FNAME" as "FNAMESEVENONETHREE"
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "Address" as "855 STREET NAME"
-	And "<part_no>" has "Address4" as "LONDON"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	Given I am on "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  		| pool_number	| att_date_weeks_in_future	| owner |
+		| 415 	|<juror_number> 	| <pool_number> | 5				            | 400	|
+
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "FIRST_NAME" as "FNAMESEVENONETHREE" new schema
+	And juror juror "<juror_number>" has "ADDRESS_LINE_1" as "855 STREET NAME" new schema
+	And juror juror "<juror_number>" has "ADDRESS_LINE_4" as "LONDON" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	
 	Then I see "Reply to a jury summons" on the page
 	And I see link with text "Accessibility statement"
@@ -97,7 +95,7 @@ Scenario Outline: English 1st Party - Accessibility Statement on each page
 	Then I see "Your juror details" on the page
 	And I see link with text "Accessibility statement"
 	
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
@@ -211,7 +209,6 @@ Scenario Outline: English 1st Party - Accessibility Statement on each page
 	And I press the "Continue" button
 	
 	#confirm dates
-	
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 	
@@ -230,26 +227,24 @@ Scenario Outline: English 1st Party - Accessibility Statement on each page
 	
 	Then I see "You have completed your reply" on the page
 	And I see link with text "Accessibility statement"
-	Then I see "<part_no>" on the page
+	Then I see "<juror_number>" on the page
 
 Examples:
-	|part_no	|pool_no	|last_name			|postcode	|email 		| 
-	|645200713	|452170401	|LNAMESEVENONETHREE	|SY2 6LU	|e@eeee.com	|
+	|juror_number	|pool_number|last_name			|postcode	|email 		|
+	|041500034		|415300125	|LNAMESEVENONETHREE	|SY2 6LU	|e@eeee.com	|
 	
 
-@Regression @JDB-4546 
+@Regression @NeewSchemaConverted
 Scenario Outline: English 3rd Party - Accessibility statement on each page
 	
-	Given I am on "Public" "bau-test"
-	
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
-		
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	Given I am on "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court | juror_number  	| pool_number	| att_date_weeks_in_future	| owner |
+		| 415	| <juror_number> 	| <pool_number> | 5				            | 400	|
+
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	
 	Then I see "Reply to a jury summons" on the page
 	And I see link with text "Accessibility statement"
@@ -260,8 +255,7 @@ Scenario Outline: English 3rd Party - Accessibility statement on each page
 	And I see link with text "Accessibility statement"
 	
 	#Juror Log In
-	
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
@@ -269,7 +263,6 @@ Scenario Outline: English 3rd Party - Accessibility statement on each page
 	And I see link with text "Accessibility statement"
 	
 	#3rd Party Name
-	
 	When I see "Your Details" on the page
 	When I set "First name" to "FirstNameA"
 	And I set "Last name" to "LastNameB"
@@ -278,7 +271,6 @@ Scenario Outline: English 3rd Party - Accessibility statement on each page
 	And I see link with text "Accessibility statement"
 	
 	#Relationship to juror
-	
 	When I see "Your Details" on the page
 	And I set "How do you know the person you're replying for?" to "Friend Friend Friend Friend Friend Friend Friend Friend Friend Friend Friend Friend Friend Friend Fr"
 	And I press the "Continue" button
@@ -286,17 +278,15 @@ Scenario Outline: English 3rd Party - Accessibility statement on each page
 	And I see link with text "Accessibility statement"
 	
 	#3rd Party Contact
-	
 	When I see "Your Details" on the page
 	And I check the "By phone (UK Numbers only)" checkbox
 	And I set "Main phone" to "0207 821 1818"
 	And I check the "By email" checkbox
-	And I set "Enter your email address" to "email@outlook.com"
-	And I set "Enter your email address again" to "email@outlook.com"
+	And I set "Enter your email address" to "<email>"
+	And I set "Enter your email address again" to "<email>"
 	And I press the "Continue" button
 	
 	#Why are you replying title
-	
 	Then I see "Why are you replying for the other person?" on the page
 	And I see link with text "Accessibility statement"
 	And I do not see "Why are you replying?" on the page
@@ -306,7 +296,6 @@ Scenario Outline: English 3rd Party - Accessibility statement on each page
 	And I see link with text "Accessibility statement"
 	
 	#Check juror name
-	
 	When I see "Juror Details" on the page
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
@@ -314,7 +303,6 @@ Scenario Outline: English 3rd Party - Accessibility statement on each page
 	And I see link with text "Accessibility statement"
 	
 	#Check juror address
-	
 	When I see "Juror Details" on the page
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
@@ -322,20 +310,17 @@ Scenario Outline: English 3rd Party - Accessibility statement on each page
 	And I see link with text "Accessibility statement"
 	
 	#DoB
-	
 	When I see "Juror Details" on the page
 	And I set "Day" to "01"
 	And I set "Month" to "01"
 	
 	#JDB-3418 Checking age 18 works
-	
 	And I set "Year" to "2000"
 	And I press the "Continue" button
 	Then I see "We might need to get in touch with the person to ask them more questions or give them information about their jury service" on the page
 	And I see link with text "Accessibility statement"
 	
 	#Contacting the juror
-	
 	When I see "Juror Details" on the page
 	And I set the radio button to "Use the phone number that you have already given to contact you"
 	And I set the radio button to "Use the email address that you have already given to contact you"
@@ -343,27 +328,23 @@ Scenario Outline: English 3rd Party - Accessibility statement on each page
 	And I see link with text "Accessibility statement"
 	
 	#Qualify for jury service
-	
 	When I see "Confirm if the person is eligible for jury service" on the page
 	And I press the "Continue" button
 	
 	#Residency
-	
 	Then I see "Since they turned 13, has their main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	And I see link with text "Accessibility statement"
 	When I see "Eligibility" on the page
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 	
-	# Have you ever worked
-	
+	#Have you ever worked
 	Then I see "Has the person you're replying for worked in the criminal justice system in the last 5 years?" on the page
 	And I see link with text "Accessibility statement"
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Bail
-	
 	Then I see "Is the person currently on bail for a criminal offence?" on the page
 	And I see link with text "Accessibility statement"
 	When I see "Eligibility" on the page
@@ -371,7 +352,6 @@ Scenario Outline: English 3rd Party - Accessibility statement on each page
 	And I press the "Continue" button
 	
 	#Convictions
-	
 	Then I see "Has the person been found guilty of a criminal offence?" on the page
 	And I see link with text "Accessibility statement"
 	When I see "Eligibility" on the page
@@ -380,7 +360,6 @@ Scenario Outline: English 3rd Party - Accessibility statement on each page
 	And I press the "Continue" button
 	
 	#Mental Health Sectioned
-	
 	Then I see "Is the person you're replying for being detained, looked after or treated under the Mental Health Act?" on the page
 	And I see link with text "Accessibility statement"
 	When I see "Eligibility" on the page
@@ -388,7 +367,6 @@ Scenario Outline: English 3rd Party - Accessibility statement on each page
 	And I press the "Continue" button
 	
 	#Mental Health Capacity
-	
 	Then I see "Has it been decided that the person you're replying for 'lacks mental capacity'?" on the page
 	And I see link with text "Accessibility statement"
 	When I see "Eligibility" on the page
@@ -396,7 +374,6 @@ Scenario Outline: English 3rd Party - Accessibility statement on each page
 	And I press the "Continue" button
 	
 	#Confirm Date of Jury
-	
 	Then I see "Check your start date" on the page
 	And I see link with text "Accessibility statement"
 	When I set the radio button to "No, we need to change the date" 
@@ -405,12 +382,10 @@ Scenario Outline: English 3rd Party - Accessibility statement on each page
 	And I see link with text "Accessibility statement"
 	
 	#Deferral Reason
-	
 	When I set text area with "id" of "deferralReason" to "askForAnotherDateReasonWhy"
 	And I press the "Continue" button
 	
 	#JDB-3445 Deferral Date Screen Layout
-	
 	Then I see "Choose 3 Mondays when they can start jury service" on the page
 
 	When I set the "First" single date field to a Monday "19" weeks in the future
@@ -423,7 +398,6 @@ Scenario Outline: English 3rd Party - Accessibility statement on each page
 	And I press the "Continue" button
 	
 	#confirm dates
-	
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 	
@@ -443,6 +417,6 @@ Scenario Outline: English 3rd Party - Accessibility statement on each page
 	And I see link with text "Accessibility statement"
 	
 Examples:
-	|part_no		|last_name			|postcode	|email           	|pool_no	|
-	|641500676		|LNAMESIXSEVENSIX	|CH1 2AN	|email@outlook.com	|415170401	|
+	|juror_number	|last_name			|postcode	|email           	|pool_number|
+	|041500035		|LNAMESIXSEVENSIX	|CH1 2AN	|email@outlook.com	|415300126	|
 	

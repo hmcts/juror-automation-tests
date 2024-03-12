@@ -25,11 +25,11 @@ Feature: JM-5178
     And I set "Hour" to "09"
     And I set "Minute" to "00"
     And I set the radio button to "am"
-    And I input juror "<part_no>" to be checked in
+    And I input juror "<juror_number>" to be checked in
     And I press the "Check in juror" button
-    And I see "9:00am" in the same row as "<part_no>"
+    And I see "9:00am" in the same row as "<juror_number>"
 
-    When the user searches for juror record "<part_no>" from the global search bar
+    When the user searches for juror record "<juror_number>" from the global search bar
     And I click on the "Attendance" link
     And I click on the "Change" link
     And I see "When are they next due at court?" on the page

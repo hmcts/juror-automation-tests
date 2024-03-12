@@ -1,19 +1,18 @@
 Feature: Regression English_1st_Deferral
 
-@Regression @JDB-4249 @JDB-3704 @replytypes
+@Regression @NewSchemaConverted
 Scenario Outline: English 1st Party Deferral
 
 	Given I am on "Public" "test"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
 	
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "FNAME" as "FNAMESEVENONETHREE"
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "Address" as "855 STREET NAME"
-	And "<part_no>" has "Address4" as "LONDON"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "FIRST_NAME" as "FNAMESEVENONETHREE" new schema
+	And juror juror "<juror_number>" has "ADDRESS_LINE_1" as "855 STREET NAME" new schema
+	And juror juror "<juror_number>" has "ADDRESS_LINE_4" as "LONDON" new schema
 	And I have deleted all holidays new schema
 	
 	Then I see "Reply to a jury summons" on the page
@@ -22,7 +21,7 @@ Scenario Outline: English 1st Party Deferral
 	And I press the "Continue" button
 	Then I see "Your juror details" on the page
 	
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
@@ -173,7 +172,7 @@ Scenario Outline: English 1st Party Deferral
 	When I press the "Submit" button
 	
 	Then I see "You have completed your reply" on the page
-	Then I see "<part_no>" on the page
+	Then I see "<juror_number>" on the page
 	
 	Then I see "You have completed your reply" on the page
 	Then I see "If we get in touch with you, you may need to give your juror number. It's also on the letter we sent you." on the page
@@ -191,8 +190,8 @@ Scenario Outline: English 1st Party Deferral
 	And I do not see "Your Guide to Jury Service (PDF 85KB)" on the page
 	And I see "What did you think of this service? (Takes 30 seconds)" on the page
 	
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "TODO" where "JUROR_NUMBER" is "<part_no>"
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "N" where "JUROR_NUMBER" is "<part_no>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "TODO" where "JUROR_NUMBER" is "<juror_number>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "N" where "JUROR_NUMBER" is "<juror_number>"
 	
 	Then I click on the "Download a copy of your summons reply HTML (15KB)" link
 	And I see "You have said that you need to change the date of your jury service." on the page
@@ -212,9 +211,9 @@ Scenario Outline: English 1st Party Deferral
 	And I log in
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	Then I see "<part_no>" on the page
+	Then I see "<juror_number>" on the page
 	
 	And I click link with ID "selectAllLink"
 	And I press the "Send to..." button
@@ -225,10 +224,10 @@ Scenario Outline: English 1st Party Deferral
 	
 	Then I click on the "Sign out" link
 	When I log in as "CPASS"
-	Then I see "<part_no>" on the page
-	Then I see "<part_no>" has reply type indicator "DEFERRAL"
-	
-	When I click on "<part_no>" in the same row as "<part_no>"
+	Then I see "<juror_number>" on the page
+	Then I see "<juror_number>" has reply type indicator "DEFERRAL"
+
+	When I click on "<juror_number>" in the same row as "<juror_number>"
 	
 	And I see "Juror details" on the page
 	
@@ -242,34 +241,33 @@ Scenario Outline: English 1st Party Deferral
 	
 	Then I see "COMPLETED" on the page
 	
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "CLOSED" where "JUROR_NUMBER" is "<part_no>"
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "Y" where "JUROR_NUMBER" is "<part_no>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "CLOSED" where "JUROR_NUMBER" is "<juror_number>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "Y" where "JUROR_NUMBER" is "<juror_number>"
 	
-	Then on "JUROR" . "POOL" I see "H_PHONE" is "02078211818" where "part_no" is "<part_no>"
-	Then on "JUROR" . "POOL" I see "H_EMAIL" is "<email>" where "part_no" is "<part_no>"
+	Then on "JUROR_MOD" . "JUROR" I see "H_PHONE" is "02078211818" where "JUROR_NUMBER" is "<juror_number>"
+	Then on "JUROR_MOD" . "JUROR" I see "H_EMAIL" is "<email>" where "JUROR_NUMBER" is "<juror_number>"
 	
 	#JDB-3453
 	
-	Then on "JUROR" . "POOL" I see "WELSH" is null where "part_no" is "<part_no>" and "owner" is "400"
+	Then on "JUROR_MOD" . "JUROR" I see "WELSH" is null where "part_no" is "<juror_number>"
 	
 Examples:
-	|part_no	|pool_no	|last_name			|postcode	|email 		| 
-	|645200520	|452170401	|LNAMEFIVETWOZERO	|SY2 6LU	|e@eeee.com	|
+	|juror_number	|pool_number|last_name			|postcode	|email 		|
+	|045200014		|452300010	|LNAMEFIVETWOZERO	|SY2 6LU	|e@eeee.com	|
 	
-@Regression
+@Regression @NewSchemaConverted
 Scenario Outline: English 1st Party Deferral - do not accept dates
 
-	Given I am on "Public" "bau-test"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+	Given I am on "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
 	
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "Address" as "855 STREET NAME"
-	And "<part_no>" has "Address4" as "LONDON"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror juror "<juror_number>" has "ADDRESS_LINE_1" as "855 STREET NAME" new schema
+	And juror juror "<juror_number>" has "ADDRESS_LINE_4" as "LONDON" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	And I have deleted all holidays new schema
 	
 	Then I see "Reply to a jury summons" on the page
@@ -278,7 +276,7 @@ Scenario Outline: English 1st Party Deferral - do not accept dates
 	And I press the "Continue" button
 	Then I see "Your juror details" on the page
 	
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
@@ -456,7 +454,7 @@ Scenario Outline: English 1st Party Deferral - do not accept dates
 	When I press the "Submit" button
 	
 	Then I see "You have completed your reply" on the page
-	Then I see "<part_no>" on the page
+	Then I see "<juror_number>" on the page
 	
 	Then I see "You have completed your reply" on the page
 	Then I see "If we get in touch with you, you may need to give your juror number. It's also on the letter we sent you." on the page
@@ -488,17 +486,17 @@ Scenario Outline: English 1st Party Deferral - do not accept dates
 	And I validate the "Second" deferral date is "18" weeks in the future
 	And I validate the "Third" deferral date is "19" weeks in the future
 	
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "TODO" where "JUROR_NUMBER" is "<part_no>"
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "N" where "JUROR_NUMBER" is "<part_no>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "TODO" where "JUROR_NUMBER" is "<juror_number>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "N" where "JUROR_NUMBER" is "<juror_number>"
 	
-	Given I am on "Bureau" "bau-test"
+	Given I am on "Bureau" "test"
 	And I log in
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
 	
-	When I click on "<part_no>" in the same row as "<part_no>"
+	When I click on "<juror_number>" in the same row as "<juror_number>"
 	
 	And I see "Juror details" on the page
 	
@@ -511,32 +509,31 @@ Scenario Outline: English 1st Party Deferral - do not accept dates
 	And I press the "Confirm" button
 	Then I see "COMPLETED" on the page
 	
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "CLOSED" where "JUROR_NUMBER" is "<part_no>"
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "Y" where "JUROR_NUMBER" is "<part_no>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "CLOSED" where "JUROR_NUMBER" is "<juror_number>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "Y" where "JUROR_NUMBER" is "<juror_number>"
 	
-	Then on "JUROR" . "POOL" I see "H_PHONE" is "02078211818" where "part_no" is "<part_no>"
-	Then on "JUROR" . "POOL" I see "H_EMAIL" is "<email>" where "part_no" is "<part_no>"
+	Then on "JUROR_MOD" . "JUROR" I see "H_PHONE" is "02078211818" where "part_no" is "<juror_number>"
+	Then on "JUROR_MOD" . "JUROR" I see "H_EMAIL" is "<email>" where "part_no" is "<juror_number>"
 	
 	#JDB-3453
 	
-	Then on "JUROR" . "POOL" I see "WELSH" is null where "part_no" is "<part_no>" and "owner" is "400"
+	Then on "JUROR" . "POOL" I see "WELSH" is null where "part_no" is "<juror_number>" and "owner" is "400"
 	
-Examples:
-	|part_no	|pool_no	|last_name			|postcode	|email 		| 
-	|645100441	|451170401	|LNAMESEVENONETHREE	|SW1H 9AJ	|e@eeee.com	|
+	Examples:
+	|juror_number	|pool_number|last_name			|postcode	|email 		|
+	|045200015		|452300011	|LNAMESEVENONETHREE	|SW1H 9AJ	|e@eeee.com	|
 	
-@RegressionSingle @JDB-3335 @JDB-3445 @JDB-3448 @JDB-3503 
+@RegressionSingle @NewSchemaConverted
 Scenario Outline: 1st English Deferral (Duplicate?)
 
-	Given I am on "Public" "bau-test"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+	Given I am on "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
 		
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	And I have deleted all holidays new schema
 	
 	Then I see "Reply to a jury summons" on the page
@@ -547,7 +544,7 @@ Scenario Outline: 1st English Deferral (Duplicate?)
 	
 	#Juror Log In
 	
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
@@ -555,31 +552,26 @@ Scenario Outline: 1st English Deferral (Duplicate?)
 	And I set the radio button to "Yes"
 	
 	#Check Name
-	
 	When I press the "Continue" button
 	Then I see "Is this your address?" on the page
 	And I set the radio button to "Yes"
 	
 	#Check Address
-	
 	And I press the "Continue" button
 	Then I see "What is your phone number?" on the page
 	
 	#Phone Details
-	
 	When I set "Main phone" to "0207 821 1818"
 	And I press the "Continue" button
 	Then I see "What is your email address?" on the page
 	
 	#Email
-	
-	When I set "Enter your email address" to "email@outlook.com"
-	And I set "Enter your email address again" to "email@outlook.com"
+	When I set "Enter your email address" to "<email>"
+	And I set "Enter your email address again" to "<email>"
 	And I press the "Continue" button
 	Then I see "What is your date of birth?" on the page
 	
 	#DoB
-	
 	When I set the date of birth to a Monday "-1560" weeks in the future
 	And I press the "Continue" button
 	Then I see "Confirm you're eligible for jury service" on the page
@@ -587,40 +579,33 @@ Scenario Outline: 1st English Deferral (Duplicate?)
 	When I press the "Continue" button
 	
 	#Residency
-	
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	When I set the radio button to "Yes"
 	And I press the "Continue" button
 	
 	#CJS
-	
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Bail
-	
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Convictions
-	
 	Then I see "Have you been found guilty of a criminal offence?" on the page
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Mental Health part 1
-	
 	Then I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Mental Health part 2
-	
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#New deferrals
-	
 	Then I see "Check your start date" on the page
 	And I see "You are summoned to start jury service on" on the page
 	And I see "Can you start jury service on this date?" on the page
@@ -633,7 +618,6 @@ Scenario Outline: 1st English Deferral (Duplicate?)
 	And I press the "Continue" button
 	
 	#reason
-	
 	And I see "steps/confirm-date/deferral-reason" in the URL
 	And I see "Tell us why you need another date for your jury service" on the page
 	And I see "You must have a good reason for changing, for example:" on the page
@@ -645,7 +629,6 @@ Scenario Outline: 1st English Deferral (Duplicate?)
 	And I press the "Continue" button
 	
 	#dates
-	
 	And I see "steps/confirm-date/deferral-dates" in the URL
 	Then I see "Choose 3 Mondays when you can start jury service" on the page
 	And I see "These must be between" on the page
@@ -658,25 +641,21 @@ Scenario Outline: 1st English Deferral (Duplicate?)
 	And I press the "Continue" button
 	
 	#check dates
-	
 	And I see "Check your dates" on the page
 	And I see "Dates you can start jury service" on the page
 	And I validate the "First" deferral date is "19" weeks in the future
 	And I validate the "Second" deferral date is "20" weeks in the future
 	And I validate the "Third" deferral date is "21" weeks in the future
-
 	
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 	
 	#RA
-	
 	Then I see "Will you need help when" on the page
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Check Your Answers Now
-	
 	Then I see "Check your answers now" on the page
 	When I check the "The information" checkbox
 	And I press the "Submit" button
@@ -685,28 +664,28 @@ Scenario Outline: 1st English Deferral (Duplicate?)
 	Given I am on "Bureau" "bau-test"
 	And I log in
 	And I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	And I click on the "Deferral or excusal" link
 	
 	Then I see "Deferral Reason" on the page
 	
 Examples:
-	|part_no	|last_name			|postcode	|email           	|pool_no	|
-	|641500753	|LNAMESEVENFIVETHREE|CH1 2AN	|email@outlook.com	|415170401	|
+	| juror_number	| last_name				| postcode	| email           	| pool_number	|
+	| 045200016		| LNAMESEVENFIVETHREE	| CH1 2AN	| email@outlook.com	| 452300012		|
 	
-@Regression @JDB-3139 
+@Regression @NewSchemaConverted
 Scenario Outline: 1st English Deferral with Bureau Check
-	Given I am on "Public" "bau-test"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+
+	Given I am on "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
 	
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	And I have deleted all holidays new schema
 	
 	Then I see "Reply to a jury summons" on the page
@@ -716,8 +695,7 @@ Scenario Outline: 1st English Deferral with Bureau Check
 	Then I see "Your juror details" on the page
 	
 	#Juror Log In
-	
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
@@ -725,31 +703,26 @@ Scenario Outline: 1st English Deferral with Bureau Check
 	And I set the radio button to "Yes"
 	
 	#Check Name
-	
 	When I press the "Continue" button
 	Then I see "Is this your address?" on the page
 	And I set the radio button to "Yes"
 	
 	#Check Address
-	
 	And I press the "Continue" button
 	Then I see "What is your phone number?" on the page
 	
 	#Phone Details
-	
 	When I set "Main phone" to "0207 821 1818"
 	And I press the "Continue" button
 	Then I see "What is your email address?" on the page
 	
 	#Email
-	
-	When I set "Enter your email address" to "email@outlook.com"
-	And I set "Enter your email address again" to "email@outlook.com"
+	When I set "Enter your email address" to "<email>"
+	And I set "Enter your email address again" to "<email>"
 	And I press the "Continue" button
 	Then I see "What is your date of birth?" on the page
 	
 	#DoB
-	
 	When I set the date of birth to a Monday "-1560" weeks in the future
 	And I press the "Continue" button
 	
@@ -758,41 +731,34 @@ Scenario Outline: 1st English Deferral with Bureau Check
 	When I press the "Continue" button
 	
 	#Residency
-	
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	When I set the radio button to "Yes"
 	And I press the "Continue" button
 	
 	#CJS
-	
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Bail
-	
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Convictions
-	
 	Then I see "Have you been found guilty of a criminal offence?" on the page
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Mental Health part 1
-	
 	Then I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Mental Health part 2
-	
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#New deferrals
-	
 	Then I see "Check your start date" on the page
 	And I see "You are summoned to start jury service on" on the page
 	And I see "Can you start jury service on this date?" on the page
@@ -805,7 +771,6 @@ Scenario Outline: 1st English Deferral with Bureau Check
 	And I press the "Continue" button
 	
 	#reason
-	
 	And I see "steps/confirm-date/deferral-reason" in the URL
 	And I see "Tell us why you need another date for your jury service" on the page
 	And I see "You must have a good reason for changing, for example:" on the page
@@ -817,7 +782,6 @@ Scenario Outline: 1st English Deferral with Bureau Check
 	And I press the "Continue" button
 	
 	#choose dates
-	
 	And I see "steps/confirm-date/deferral-dates" in the URL
 	Then I see "Choose 3 Mondays when you can start jury service" on the page
 	And I see "These must be between" on the page
@@ -830,7 +794,6 @@ Scenario Outline: 1st English Deferral with Bureau Check
 	And I press the "Continue" button
 	
 	#confirm dates
-	
 	And I see "steps/confirm-date/deferral-check" in the URL
 	And I see "Check your dates" on the page
 	And I see "Dates you can start jury service" on the page
@@ -838,7 +801,6 @@ Scenario Outline: 1st English Deferral with Bureau Check
 	And I validate the "Second" deferral date is "10" weeks in the future
 	And I validate the "Third" deferral date is "11" weeks in the future
 
-	
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 	
@@ -855,9 +817,9 @@ Scenario Outline: 1st English Deferral with Bureau Check
 	Given I am on "Bureau" "bau-test"
 	And I log in
 	And I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	And I click on the "Deferral or excusal" link
 	
 	Then I see "Deferral Reason" on the page
@@ -879,27 +841,27 @@ Scenario Outline: 1st English Deferral with Bureau Check
 	Then I see "COMPLETED" on the page
 	
 Examples:
-	|part_no	|last_name	|postcode	|email           	|pool_no	|
-	|641500557	|LNAME21	|CH1 2AN	|email@outlook.com	|415170501	|
+	|juror_number	|last_name	|postcode	|email           	|pool_number|
+	|045200017		|LNAME21	|CH1 2AN	|email@outlook.com	|452300013	|
 	
-@Regression @JDB-3674 
+@Regression @NewSchemaConverted
 Scenario Outline: 1st English Back Button Logic with Deferral Reason Screen
-	Given I am on "Public" "bau-test"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+
+	Given I am on "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
 		
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	And I have deleted all holidays new schema
 	
 	Then I see "Reply to a jury summons" on the page
 	
 	And I set the radio button to "I am replying for myself"
 	And I press the "Continue" button
-	And I set "9-digit juror number" to "<part_no>"
+	And I set "9-digit juror number" to "<juror_number>"
 	And I set "Juror last name" to "<last_name>"
 	And I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
@@ -947,10 +909,10 @@ Scenario Outline: 1st English Back Button Logic with Deferral Reason Screen
 		| Your details |
 		| Enter your email address |
 	
-	When I set "Enter your email address" to "test@gmail.com"
+	When I set "Enter your email address" to "<email>"
 	And I press the "Continue" button
 	Then I see "Enter your email address and check that it matches the one in the first field" on the page
-	When I set "Enter your email address again" to "test@gmail.com"
+	When I set "Enter your email address again" to "<email>"
 	And I press the "Continue" button
 
 	Then on the page I see
@@ -964,70 +926,59 @@ Scenario Outline: 1st English Back Button Logic with Deferral Reason Screen
 	And I press the "Continue" button
 
 	#Qualify for jury service
-	
 	Then I see "Confirm you're eligible for jury service" on the page
 	When I press the "Continue" button
 	
 	#Residency
-	
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	When I see "Eligibility" on the page
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 	
 	#CJS no
-	
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Bail
-	
 	Then I see "Are you currently on bail for a criminal offence?" on the page
 	When I see "Eligibility" on the page
 	And I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Convictions
-	
 	Then I see "Have you been found guilty of a criminal offence?" on the page
 	When I see "Eligibility" on the page
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Mental Health Sectioned
-	
 	Then I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
 	When I see "Eligibility" on the page
 	And I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Mental Health Capacity
-	
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
 	When I see "Eligibility" on the page
 	And I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#I can attend
-	
 	Then I see "Check your start date" on the page
 	When I set the radio button to "Yes, I can start on"
 	And  I press the "Continue" button
 	
 	#RA no
-	
 	Then I see "Will you need help when you're at the court?" on the page
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Check Your Answers (Covers Scenarios 1 and 2)
-	
 	Then I see "Check your answers now" on the page
 	When I click on the "Change" link in the same row as "Confirm the date of your jury service"
 	
 	#New deferrals
-	
 	Then I see "Check your start date" on the page
 	And I see "You are summoned to start jury service on" on the page
 	And I see "Can you start jury service on this date?" on the page
@@ -1040,7 +991,6 @@ Scenario Outline: 1st English Back Button Logic with Deferral Reason Screen
 	And I press the "Continue" button
 	
 	#deferral reason
-	
 	And I see "steps/confirm-date/deferral-reason" in the URL
 	And I see "Tell us why you need another date for your jury service" on the page
 	And I see "You must have a good reason for changing, for example:" on the page
@@ -1052,34 +1002,28 @@ Scenario Outline: 1st English Back Button Logic with Deferral Reason Screen
 	And I press the "Continue" button
 	
 	#enter dates
-	
 	When I set the "First" single date field to a Monday "9" weeks in the future
 	When I set the "Second" single date field to a Monday "10" weeks in the future
 	When I set the "Third" single date field to a Monday "11" weeks in the future
 	And I press the "Continue" button
 	
 	#Confirm Date of Jury Service
-	
 	And I see "Check your dates" on the page
 	When I set the radio button to "Yes"
 	
 	#back link
-	
 	When I click on the "Back" link
 	Then I see "Choose 3 Mondays when you can start jury service" on the page
 	
 	#back link
-	
 	When I click on the "Back" link
 	
 	When I see "I need to change the date" on the page
 	
 	#Check Your Answers
-	
 	When I click on the "Change" link in the same row as "Confirm the date of your jury service"
 	
 	#New deferrals
-	
 	Then I see "Check your start date" on the page
 	And I see "You are summoned to start jury service on" on the page
 	And I see "Can you start jury service on this date?" on the page
@@ -1094,7 +1038,6 @@ Scenario Outline: 1st English Back Button Logic with Deferral Reason Screen
 	Then I see "Check your answers now" on the page
 	
 	#Check Your Answers
-	
 	When I click on the "Change" link in the same row as "Tell us why you need another date for your jury service"
 	When I set text area with "id" of "deferralReason" to ""
 	And I press the "Continue" button
@@ -1102,7 +1045,6 @@ Scenario Outline: 1st English Back Button Logic with Deferral Reason Screen
 	When I click on the "Back" link	
 	
 	#Check Your Answers (to confirm scenario 3 passes)
-	
 	Then I see "Check your answers now" on the page
 	And I see "Deferral Reason" on the page
 	And I validate the "First" deferral date is "9" weeks in the future
@@ -1114,27 +1056,27 @@ Scenario Outline: 1st English Back Button Logic with Deferral Reason Screen
 	Then I see "We have sent you an email to say you have replied to your jury summons." on the page
 	
 Examples:
-	|part_no	|last_name		|postcode	| email 	| pool_no	|
-	|641500092	|LNAMENINETWO	|CH1 2AN	|a@eeee.com	|415170402	|
+	| juror_number	| last_name		| postcode	| email 	| pool_number	|
+	| 045200018		| LNAMENINETWO	| CH1 2AN	| a@eeee.com| 452300014		|
 
-@Regression
+@Regression @NewSchemaConverted
 Scenario Outline: 1st English Back Button Logic with Deferral Dates Screen
+
 	Given I am on "Public" "test"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
 		
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema new schema
 	And I have deleted all holidays new schema
 	
 	Then I see "Reply to a jury summons" on the page
 	
 	And I set the radio button to "I am replying for myself"
 	And I press the "Continue" button
-	And I set "9-digit juror number" to "<part_no>"
+	And I set "9-digit juror number" to "<juror_number>"
 	And I set "Juror last name" to "<last_name>"
 	And I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
@@ -1200,71 +1142,60 @@ Scenario Outline: 1st English Back Button Logic with Deferral Dates Screen
 	And I press the "Continue" button
 
 	#Qualify for jury service
-	
 	Then I see "Confirm you're eligible for jury service" on the page
 	When I press the "Continue" button
 
 	#Residency
-	
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	When I see "Eligibility" on the page
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 	
 	#CJS no
-	
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Bail
-	
 	Then I see "Are you currently on bail for a criminal offence?" on the page
 	When I see "Eligibility" on the page
 	And I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Convictions
-	
 	Then I see "Have you been found guilty of a criminal offence?" on the page
 	When I see "Eligibility" on the page
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Mental Health Sectioned
-	
 	Then I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
 	When I see "Eligibility" on the page
 	And I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Mental Health Capacity
-	
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
 	When I see "Eligibility" on the page
 	And I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#I can attend
-	
 	Then I see "Check your start date" on the page
 	When I set the radio button to "Yes, I can start on"
 	And  I press the "Continue" button
 	
 	#RA no
-	
 	Then I see "Will you need help when you're at the court?" on the page
 	When I set the radio button to "No"
 	Then the radio button "No" is "selected"
 	And I press the "Continue" button
 	
 	#Check Your Answers (Covers Scenario 1)
-	
 	Then I see "Check your answers now" on the page
 	When I click on the "Change" link in the same row as "Confirm the date of your jury service"
 	
 	#New deferrals
-	
 	Then I see "Check your start date" on the page
 	And I see "You are summoned to start jury service on" on the page
 	And I see "Can you start jury service on this date?" on the page
@@ -1287,7 +1218,6 @@ Scenario Outline: 1st English Back Button Logic with Deferral Dates Screen
 	When I press the "Continue" button
 	
 	#Deferral Dates
-	
 	When I press the "Continue" button
 	And I see "Enter the first Monday you'd prefer to start jury service" on the page
 	And I see "Enter the second Monday you'd prefer to start jury service" on the page
@@ -1300,7 +1230,6 @@ Scenario Outline: 1st English Back Button Logic with Deferral Dates Screen
 	And I press the "Continue" button
 	
 	#confirm dates
-	
 	And I see "steps/confirm-date/deferral-check" in the URL
 	And I see "Check your dates" on the page
 	And I see "Dates you can start jury service" on the page
@@ -1315,11 +1244,9 @@ Scenario Outline: 1st English Back Button Logic with Deferral Dates Screen
 	And I see text "I need to change the date of my jury service" in the same row as "Confirm the date of your jury service"
 	
 	#Check Your Answers (Scenario 2)
-	
 	When I click on the "Change" link in the same row as "Confirm the date of your jury service"
 	
 	#New deferrals
-	
 	Then I see "Check your start date" on the page
 	And I see "You are summoned to start jury service on" on the page
 	And I see "Can you start jury service on this date?" on the page
@@ -1334,7 +1261,6 @@ Scenario Outline: 1st English Back Button Logic with Deferral Dates Screen
 	Then I see "Check your answers now" on the page
 	
 	#Check Your Answers
-	
 	And I see text "I can do jury service on the date shown" in the same row as "Confirm the date of your jury service"
 	When I click on the "Change" link in the same row as "Confirm the date of your jury service"
 
@@ -1360,30 +1286,28 @@ Scenario Outline: 1st English Back Button Logic with Deferral Dates Screen
 	Then I see "Check your answers now" on the page
 	
 	#Check Your Answers (Submit)
-	
 	When I check the "The information I have given is true to the best of my knowledge" checkbox
 	And I press the "Submit" button
 	Then I see "We have sent you an email to say you have replied to your jury summons." on the page
 	
 Examples:
-	|part_no	|last_name	|postcode	|email 		|pool_no	|
-	|641500564	|DOE		|SW1H 9AJ	|a@eeee.com	|415170401	|
+	| juror_number	| last_name	| postcode	| email 	| pool_number|
+	| 045200019		| DOE		| SW1H 9AJ	| a@eeee.com| 452300015	|
 
-@Regression @JDB-4249 @JDB-3704 @JDB-4608 
+@Regression @NewSchemaConverted
 Scenario Outline: English 1st Party Deferral - Validation and Errors
 
-	Given I am on "Public" "bau-test"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+	Given I am on "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
 	
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "FNAME" as "FNAMESEVENONETHREE"
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "Address" as "855 STREET NAME"
-	And "<part_no>" has "Address4" as "LONDON"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "FIRST_NAME" as "FNAMESEVENONETHREE" new schema
+	And juror "<juror_number>" has "ADDRESS_LINE_1" as "855 STREET NAME" new schema
+	And juror "<juror_number>" has "ADDRESS_LINE_4" as "LONDON" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	And I have deleted all holidays new schema
 	
 	Then I see "Reply to a jury summons" on the page
@@ -1392,7 +1316,7 @@ Scenario Outline: English 1st Party Deferral - Validation and Errors
 	And I press the "Continue" button
 	Then I see "Your juror details" on the page
 	
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
@@ -1445,19 +1369,16 @@ Scenario Outline: English 1st Party Deferral - Validation and Errors
 	And I press the "Continue" button
 	
 	#New deferrals
-	
 	Then I see "Check your start date" on the page
 	And I see "You are summoned to start jury service on" on the page
 	And I see "Can you start jury service on this date?" on the page
 	
 	#check errors
-	
 	And I press the "Continue" button
 	And I see "There is a problem" on the page
 	And I see "Select whether you can start jury service on this date" on the page
 	
 	#check hint text
-	
 	Then I click on the "Will I need to serve longer than 2 weeks?" link
 	And I see "Most jurors only need to serve 2 weeks." on the page
 	And I see "You may be asked to serve for longer when you arrive at court." on the page
@@ -1467,7 +1388,6 @@ Scenario Outline: English 1st Party Deferral - Validation and Errors
 	And I see "You must contact us at that time to let us know." on the page
 	
 	#collapse hint text
-	
 	Then I click on the "Will I need to serve longer than 2 weeks?" link
 	And I do not see "Most jurors only need to serve 2 weeks." on the page
 	And I do not see "You may be asked to serve for longer when you arrive at court." on the page
@@ -1477,14 +1397,11 @@ Scenario Outline: English 1st Party Deferral - Validation and Errors
 	And I do not see "You must contact us at that time to let us know." on the page
 
 	#select deferral
-	
 	When I set the radio button to "No, I need to change the date"
 	And I press the "Continue" button
 	
 	#deferral reason
-	
 	#check hint text
-	
 	And I see "steps/confirm-date/deferral-reason" in the URL
 	And I see "Tell us why you need another date for your jury service" on the page
 	
@@ -1508,7 +1425,6 @@ Scenario Outline: English 1st Party Deferral - Validation and Errors
 	And I see "You must be available to serve at least 2 weeks." on the page
 	
 	#check hint text
-	
 	And I click on the "Will I need to serve longer than 2 weeks?" link
 	And I see "Most jurors only need to serve 2 weeks." on the page
 	And I see "You may be asked to serve for longer when you arrive at court." on the page
@@ -1526,7 +1442,6 @@ Scenario Outline: English 1st Party Deferral - Validation and Errors
 	And I do not see "You must contact us at that time to let us know." on the page
 	
 	#check inputting invalid values in
-	
 	And I press the "Continue" button
 	And I see "There is a problem" on the page
 	And I see "Enter the first Monday you'd prefer to start jury service" on the page
@@ -1590,7 +1505,6 @@ Scenario Outline: English 1st Party Deferral - Validation and Errors
 	And I press the "Continue" button
 
 	#confirm dates
-	
 	And I see "steps/confirm-date/deferral-check" in the URL
 	And I see "Check your dates" on the page
 	And I see "Dates you can start jury service" on the page
@@ -1600,7 +1514,6 @@ Scenario Outline: English 1st Party Deferral - Validation and Errors
 	And I validate the "Third" deferral date is "11" weeks in the future
 	
 	#check hint text
-	
 	And I click on the "Will I need to serve longer than 2 weeks?" link
 	Then on the page I see
 	| text	|
@@ -1629,13 +1542,11 @@ Scenario Outline: English 1st Party Deferral - Validation and Errors
 	And I press the "Continue" button
 
 	#help in court
-	
 	Then I see "Will you need help when you're at the court?" on the page
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#check answers
-	
 	Then I see "Check your answers now" on the page
 	
 	Then on the page I see
@@ -1655,32 +1566,31 @@ Scenario Outline: English 1st Party Deferral - Validation and Errors
 	When I press the "Submit" button
 	
 	Then I see "You have completed your reply" on the page
-	Then I see "<part_no>" on the page
+	Then I see "<juror_number>" on the page
 	
 	Then I see "You have completed your reply" on the page
 	
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "TODO" where "JUROR_NUMBER" is "<part_no>"
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "N" where "JUROR_NUMBER" is "<part_no>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "TODO" where "JUROR_NUMBER" is "<juror_number>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "N" where "JUROR_NUMBER" is "<juror_number>"
 	
 Examples:
-	|part_no	|pool_no	|last_name			|postcode	|email 		| 
-	|645100691	|451170401	|LNAMESEVENONETHREE	|SW1H 9AJ	|e@eeee.com	|
+	| juror_number	| pool_number	| last_name			| postcode	| email 		|
+	| 045200020		| 452300016		| LNAMESEVENONETHREE| SW1H 9AJ	| e@eeee.com	|
 	
-@RegressionSingle @JDB-4249 @JDB-3704
+@RegressionSingle @NewSchemaConverted
 Scenario Outline: English 1st Party Deferral - date 1 selected is a BH
 
-	Given I am on "Public" "bau-test"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+	Given I am on "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
 	
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "FNAME" as "FNAMESEVENONETHREE"
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "Address" as "855 STREET NAME"
-	And "<part_no>" has "Address4" as "LONDON"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "FIRST_NAME" as "FNAMESEVENONETHREE" new schema
+	And juror "<juror_number>" has "ADDRESS_LINE_1" as "855 STREET NAME" new schema
+	And juror "<juror_number>" has "ADDRESS_LINE_4" as "LONDON" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	And I have deleted all holidays new schema
 	
 	Then I see "Reply to a jury summons" on the page
@@ -1689,34 +1599,29 @@ Scenario Outline: English 1st Party Deferral - date 1 selected is a BH
 	And I press the "Continue" button
 	Then I see "Your juror details" on the page
 	
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 	
 	#name
-	
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 	
 	#address
-	
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 	
 	#phone
-	
 	When I set "Main phone" to "02078211818"
 	And I press the "Continue" button
 	
 	#email
-
 	When I set "Enter your email address" to "<email>"
 	When I set "Enter your email address again" to "<email>"
 	And I press the "Continue" button
 	
 	#dob
-	
 	And I set the date of birth to a Monday "-1560" weeks in the future
 	And I press the "Continue" button
 	
@@ -1753,7 +1658,6 @@ Scenario Outline: English 1st Party Deferral - date 1 selected is a BH
 	And I press the "Continue" button
 	
 	#New deferrals
-	
 	Then I see "Check your start date" on the page
 	
 	When I set the radio button to "No, I need to change the date"
@@ -1771,7 +1675,6 @@ Scenario Outline: English 1st Party Deferral - date 1 selected is a BH
 	And I press the "Continue" button
 	
 	#confirm dates screen
-	
 	And I see "Check your dates" on the page
 	And I see "Dates you can start jury service" on the page
 
@@ -1783,7 +1686,6 @@ Scenario Outline: English 1st Party Deferral - date 1 selected is a BH
 	And I press the "Continue" button
 	
 	#Bank Holiday
-	
 	Then I see "At least one of the Mondays you selected is a bank holiday" on the page
 	And I see "You've selected at least one Monday that's a UK bank holiday." on the page
 	And I see "If we choose this as your start date, your jury service will start on the Tuesday at the earliest." on the page
@@ -1791,7 +1693,6 @@ Scenario Outline: English 1st Party Deferral - date 1 selected is a BH
 	And I press the "Continue" button
 
 	#help in court
-	
 	Then I see "Will you need help when you're at the court?" on the page
 	Then I see "Do you have a disability or impairment that means you’ll need extra support or facilities in the court building where you are doing your Jury Service?" on the page
 	When I set the radio button to "No"
@@ -1820,7 +1721,7 @@ Scenario Outline: English 1st Party Deferral - date 1 selected is a BH
 	When I press the "Submit" button
 	
 	Then I see "You have completed your reply" on the page
-	Then I see "<part_no>" on the page
+	Then I see "<juror_number>" on the page
 	
 	Then on the page I see
 	| text	|
@@ -1841,8 +1742,8 @@ Scenario Outline: English 1st Party Deferral - date 1 selected is a BH
 	
 	And I do not see "Your Guide to Jury Service (PDF 85KB)" on the page
 	
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "TODO" where "JUROR_NUMBER" is "<part_no>"
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "N" where "JUROR_NUMBER" is "<part_no>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "TODO" where "JUROR_NUMBER" is "<juror_number>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "N" where "JUROR_NUMBER" is "<juror_number>"
 	
 	Then I click on the "Download a copy of your summons reply HTML (15KB)" link
 	And on the page I see
@@ -1860,14 +1761,14 @@ Scenario Outline: English 1st Party Deferral - date 1 selected is a BH
 	And I validate the "Second" deferral date is "9" weeks in the future
 	And I validate the "Third" deferral date is "10" weeks in the future
 	
-	Given I am on "Bureau" "bau-test"
+	Given I am on "Bureau" "test"
 	And I log in
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
 	
-	When I click on "<part_no>" in the same row as "<part_no>"
+	When I click on "<juror_number>" in the same row as "<juror_number>"
 	
 	And I see "Juror details" on the page
 	
@@ -1880,36 +1781,36 @@ Scenario Outline: English 1st Party Deferral - date 1 selected is a BH
 	And I press the "Confirm" button
 	Then I see "COMPLETED" on the page
 	
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "CLOSED" where "JUROR_NUMBER" is "<part_no>"
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "Y" where "JUROR_NUMBER" is "<part_no>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "CLOSED" where "JUROR_NUMBER" is "<juror_number>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "Y" where "JUROR_NUMBER" is "<juror_number>"
 	
-	Then on "JUROR" . "POOL" I see "H_PHONE" is "02078211818" where "part_no" is "<part_no>"
-	Then on "JUROR" . "POOL" I see "H_EMAIL" is "<email>" where "part_no" is "<part_no>"
+	Then on "JUROR_MOD" . "JUROR" I see "H_PHONE" is "02078211818" where "JUROR_NUMBER" is "<juror_number>"
+	Then on "JUROR_MOD" . "JUROR" I see "H_EMAIL" is "<email>" where "JUROR_NUMBER" is "<juror_number>"
 	
 	#JDB-3453
 	
-	Then on "JUROR" . "POOL" I see "WELSH" is null where "part_no" is "<part_no>" and "owner" is "400"
+	Then on "JUROR_MOD" . "JUROR" I see "WELSH" is null where "JUROR_NUMBER" is "<juror_number>" and "owner" is "400"
 	And I delete bank holiday
 	
 Examples:
-	|part_no	|pool_no	|last_name			|postcode	|email 		| 
-	|645100011	|451170401	|LNAMESEVENONETHREE	|SW1H 9AJ	|e@eeee.com	|
+	| juror_number	| pool_number	| last_name			| postcode	| email 		|
+	| 041500054		| 415300144		| LNAMESEVENONETHREE| SW1H 9AJ	| e@eeee.com	|
 	
-@RegressionSingle @JDB-4249 @JDB-3704
+@RegressionSingle @NewSchemaConverted
 Scenario Outline: English 1st Party Deferral - date 2 selected is a BH
 
-	Given I am on "Public" "bau-test"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+	Given I am on "Public" "test"
 
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "FNAME" as "FNAMESEVENONETHREE"
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "Address" as "855 STREET NAME"
-	And "<part_no>" has "Address4" as "LONDON"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
+
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "FIRST_NAME" as "FNAMESEVENONETHREE" new schema
+
+	And juror "<juror_number>" has "ADDRESS_LINE_1" as "855 STREET NAME" new schema
+	And juror "<juror_number>" has "ADDRESS_LINE_4" as "LONDON" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	And I have deleted all holidays new schema
 	
 	Then I see "Reply to a jury summons" on the page
@@ -1918,34 +1819,29 @@ Scenario Outline: English 1st Party Deferral - date 2 selected is a BH
 	And I press the "Continue" button
 	Then I see "Your juror details" on the page
 	
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 	
 	#name
-	
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 	
 	#address
-	
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 	
 	#phone
-	
 	When I set "Main phone" to "02078211818"
 	And I press the "Continue" button
 	
 	#email
-
 	When I set "Enter your email address" to "<email>"
 	When I set "Enter your email address again" to "<email>"
 	And I press the "Continue" button
 	
 	#dob
-	
 	And I set the date of birth to a Monday "-1560" weeks in the future
 	And I press the "Continue" button
 	
@@ -1982,7 +1878,6 @@ Scenario Outline: English 1st Party Deferral - date 2 selected is a BH
 	And I press the "Continue" button
 	
 	#New deferrals
-	
 	Then I see "Check your start date" on the page
 	
 	When I set the radio button to "No, I need to change the date"
@@ -2000,7 +1895,6 @@ Scenario Outline: English 1st Party Deferral - date 2 selected is a BH
 	And I press the "Continue" button
 	
 	#confirm dates screen
-	
 	Then on the page I see
 	|text|
 	|Check your dates|
@@ -2013,7 +1907,6 @@ Scenario Outline: English 1st Party Deferral - date 2 selected is a BH
 	And I press the "Continue" button
 	
 	#Bank Holiday
-	
 	Then on the page I see
 	|text|
 	|At least one of the Mondays you selected is a bank holiday|
@@ -2023,7 +1916,6 @@ Scenario Outline: English 1st Party Deferral - date 2 selected is a BH
 	And I press the "Continue" button
 
 	#help in court
-	
 	Then I see "Will you need help when you're at the court?" on the page
 	When I set the radio button to "No"
 	And I press the "Continue" button
@@ -2044,7 +1936,7 @@ Scenario Outline: English 1st Party Deferral - date 2 selected is a BH
 	When I press the "Submit" button
 	
 	Then I see "You have completed your reply" on the page
-	Then I see "<part_no>" on the page
+	Then I see "<juror_number>" on the page
 	
 	Then on the page I see
 	| text	|
@@ -2065,8 +1957,8 @@ Scenario Outline: English 1st Party Deferral - date 2 selected is a BH
 	
 	And I do not see "Your Guide to Jury Service (PDF 85KB)" on the page
 	
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "TODO" where "JUROR_NUMBER" is "<part_no>"
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "N" where "JUROR_NUMBER" is "<part_no>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "TODO" where "JUROR_NUMBER" is "<juror_number>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "N" where "JUROR_NUMBER" is "<juror_number>"
 	
 	Then I click on the "Download a copy of your summons reply HTML (15KB)" link
 	And on the page I see
@@ -2084,14 +1976,14 @@ Scenario Outline: English 1st Party Deferral - date 2 selected is a BH
 	And I validate the "Second" deferral date is "10" weeks in the future
 	And I validate the "Third" deferral date is "11" weeks in the future
 	
-	Given I am on "Bureau" "bau-test"
+	Given I am on "Bureau" "test"
 	And I log in
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
 	
-	When I click on "<part_no>" in the same row as "<part_no>"
+	When I click on "<juror_number>" in the same row as "<juror_number>"
 	
 	And I see "Juror details" on the page
 	
@@ -2104,36 +1996,36 @@ Scenario Outline: English 1st Party Deferral - date 2 selected is a BH
 	And I press the "Confirm" button
 	Then I see "COMPLETED" on the page
 	
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "CLOSED" where "JUROR_NUMBER" is "<part_no>"
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "Y" where "JUROR_NUMBER" is "<part_no>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "CLOSED" where "JUROR_NUMBER" is "<juror_number>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "Y" where "JUROR_NUMBER" is "<juror_number>"
 	
-	Then on "JUROR" . "POOL" I see "H_PHONE" is "02078211818" where "part_no" is "<part_no>"
-	Then on "JUROR" . "POOL" I see "H_EMAIL" is "<email>" where "part_no" is "<part_no>"
+	Then on "JUROR_MOD" . "JUROR" I see "H_PHONE" is "02078211818" where "JUROR_NUMBER" is "<juror_number>"
+	Then on "JUROR_MOD" . "JUROR" I see "H_EMAIL" is "<email>" where "JUROR_NUMBER" is "<juror_number>"
 	
 	#JDB-3453
 	
-	Then on "JUROR" . "POOL" I see "WELSH" is null where "part_no" is "<part_no>" and "owner" is "400"
+	Then on "JUROR_MOD" . "JUROR" I see "WELSH" is null where "JUROR_NUMBER" is "<juror_number>" and "owner" is "400"
 	And I delete bank holiday
 
 Examples:
-	|part_no	|pool_no	|last_name			|postcode	|email 		| 
-	|741500847	|415181001	|LNAMESEVENONETHREE	|CH1 2AN	|e@eeee.com	|
+	|juror_number	|pool_number|last_name			|postcode	|email 		|
+	|045200035		|452300034	|LNAMESEVENONETHREE	|CH1 2AN	|e@eeee.com	|
 	
-@RegressionSingle @JDB-4249 @JDB-3704
+@RegressionSingle @JDNewSchemaConverted
 Scenario Outline: English 1st Party Deferral - date 3 selected is a BH
 
-	Given I am on "Public" "bau-test"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+	Given I am on "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
 	
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "FNAME" as "FNAMESEVENONETHREE"
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "Address" as "855 STREET NAME"
-	And "<part_no>" has "Address4" as "LONDON"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "FIRST_NAME" as "FNAMESEVENONETHREE" new schema
+
+	And juror "<juror_number>" has "ADDRESS_LINE_1" as "855 STREET NAME" new schema
+	And juror "<juror_number>" has "ADDRESS_LINE_4" as "LONDON" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	And I have deleted all holidays new schema
 	
 	Then I see "Reply to a jury summons" on the page
@@ -2142,34 +2034,29 @@ Scenario Outline: English 1st Party Deferral - date 3 selected is a BH
 	And I press the "Continue" button
 	Then I see "Your juror details" on the page
 	
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 	
 	#name
-	
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 	
 	#address
-	
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 	
 	#phone
-	
 	When I set "Main phone" to "02078211818"
 	And I press the "Continue" button
 	
 	#email
-
 	When I set "Enter your email address" to "<email>"
 	When I set "Enter your email address again" to "<email>"
 	And I press the "Continue" button
 	
 	#dob
-	
 	And I set the date of birth to a Monday "-1560" weeks in the future
 	And I press the "Continue" button
 	
@@ -2206,7 +2093,6 @@ Scenario Outline: English 1st Party Deferral - date 3 selected is a BH
 	And I press the "Continue" button
 	
 	#New deferrals
-	
 	Then I see "Check your start date" on the page
 	
 	When I set the radio button to "No, I need to change the date"
@@ -2224,7 +2110,6 @@ Scenario Outline: English 1st Party Deferral - date 3 selected is a BH
 	And I press the "Continue" button
 	
 	#confirm dates screen
-	
 	Then on the page I see
 	|text|
 	|Check your dates|
@@ -2237,7 +2122,6 @@ Scenario Outline: English 1st Party Deferral - date 3 selected is a BH
 	And I press the "Continue" button
 	
 	#Bank Holiday
-	
 	Then on the page I see
 	|text|
 	|At least one of the Mondays you selected is a bank holiday|
@@ -2248,7 +2132,6 @@ Scenario Outline: English 1st Party Deferral - date 3 selected is a BH
 	And I press the "Continue" button
 
 	#help in court
-	
 	Then I see "Will you need help when you're at the court?" on the page
 	When I set the radio button to "No"
 	And I press the "Continue" button
@@ -2269,7 +2152,7 @@ Scenario Outline: English 1st Party Deferral - date 3 selected is a BH
 	When I press the "Submit" button
 	
 	Then I see "You have completed your reply" on the page
-	Then I see "<part_no>" on the page
+	Then I see "<juror_number>" on the page
 	
 	Then on the page I see
 	| text	|
@@ -2290,8 +2173,8 @@ Scenario Outline: English 1st Party Deferral - date 3 selected is a BH
 	
 	And I do not see "Your Guide to Jury Service (PDF 85KB)" on the page
 	
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "TODO" where "JUROR_NUMBER" is "<part_no>"
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "N" where "JUROR_NUMBER" is "<part_no>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "TODO" where "JUROR_NUMBER" is "<juror_number>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "N" where "JUROR_NUMBER" is "<juror_number>"
 	
 	Then I click on the "Download a copy of your summons reply HTML (15KB)" link
 	And on the page I see
@@ -2309,14 +2192,14 @@ Scenario Outline: English 1st Party Deferral - date 3 selected is a BH
 	And I validate the "Second" deferral date is "10" weeks in the future
 	And I validate the "Third" deferral date is "11" weeks in the future
 	
-	Given I am on "Bureau" "bau-test"
+	Given I am on "Bureau" "test"
 	And I log in
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
 	
-	When I click on "<part_no>" in the same row as "<part_no>"
+	When I click on "<juror_number>" in the same row as "<juror_number>"
 	
 	And I see "Juror details" on the page
 	
@@ -2329,37 +2212,33 @@ Scenario Outline: English 1st Party Deferral - date 3 selected is a BH
 	And I press the "Confirm" button
 	Then I see "COMPLETED" on the page
 	
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "CLOSED" where "JUROR_NUMBER" is "<part_no>"
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "Y" where "JUROR_NUMBER" is "<part_no>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "CLOSED" where "JUROR_NUMBER" is "<juror_number>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "Y" where "JUROR_NUMBER" is "<juror_number>"
 	
-	Then on "JUROR" . "POOL" I see "H_PHONE" is "02078211818" where "part_no" is "<part_no>"
-	Then on "JUROR" . "POOL" I see "H_EMAIL" is "<email>" where "part_no" is "<part_no>"
-	
-	#JDB-3453
-	
-	Then on "JUROR" . "POOL" I see "WELSH" is null where "part_no" is "<part_no>" and "owner" is "400"
+	Then on "JUROR_MOD" . "JUROR" I see "H_PHONE" is "02078211818" where "JUROR_NUMBER" is "<juror_number>"
+	Then on "JUROR_MOD" . "JUROR" I see "H_EMAIL" is "<email>" where "JUROR_NUMBER" is "<juror_number>"
+	Then on "JUROR_MOD" . "JUROR" I see "WELSH" is null where "JUROR_NUMBER" is "<juror_number>" and "owner" is "400"
 
-	And I delete bank holiday
+	And I delete bank holiday new schema
 
 Examples:
-	|part_no	|pool_no	|last_name			|postcode	|email 		| 
-	|645100755	|451170401	|LNAMESEVENONETHREE	|SW1H 9AJ	|e@eeee.com	|
+	|juror_number	|pool_number|last_name			|postcode	|email 		|
+	|045200036		|452300035	|LNAMESEVENONETHREE	|SW1H 9AJ	|e@eeee.com	|
 	
-@RegressionSingle @JDB-4249 @JDB-3704
+@RegressionSingle @NewSchemaConverted
 Scenario Outline: English 1st Party Deferral - >1 date selected is a BH
 
-	Given I am on "Public" "bau-test"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+	Given I am on "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
 	
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "FNAME" as "FNAMESEVENONETHREE"
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "Address" as "855 STREET NAME"
-	And "<part_no>" has "Address4" as "LONDON"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "FIRST_NAME" as "FNAMESEVENONETHREE" new schema
+	And juror "<juror_number>" has "ADDRESS_LINE_1" as "855 STREET NAME" new schema
+	And juror "<juror_number>" has "ADDRESS_LINE_4" as "LONDON" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	And I have deleted all holidays new schema
 	
 	Then I see "Reply to a jury summons" on the page
@@ -2368,34 +2247,29 @@ Scenario Outline: English 1st Party Deferral - >1 date selected is a BH
 	And I press the "Continue" button
 	Then I see "Your juror details" on the page
 	
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 	
 	#name
-	
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 	
 	#address
-	
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 	
 	#phone
-	
 	When I set "Main phone" to "02078211818"
 	And I press the "Continue" button
 	
 	#email
-
 	When I set "Enter your email address" to "<email>"
 	When I set "Enter your email address again" to "<email>"
 	And I press the "Continue" button
 	
 	#dob
-	
 	And I set the date of birth to a Monday "-1560" weeks in the future
 	And I press the "Continue" button
 	
@@ -2432,7 +2306,6 @@ Scenario Outline: English 1st Party Deferral - >1 date selected is a BH
 	And I press the "Continue" button
 	
 	#New deferrals
-	
 	Then I see "Check your start date" on the page
 	
 	When I set the radio button to "No, I need to change the date"
@@ -2442,7 +2315,6 @@ Scenario Outline: English 1st Party Deferral - >1 date selected is a BH
 	And I press the "Continue" button
 
 	And I create a bank holiday "10" Mondays in the future for court/bureau "400" new schema
-#	And I create a bank holiday "11" Mondays in the future for court/bureau "400"
 
 	When I set the "First" single date field to a Monday "9" weeks in the future
 	When I set the "Second" single date field to a Monday "10" weeks in the future
@@ -2451,7 +2323,6 @@ Scenario Outline: English 1st Party Deferral - >1 date selected is a BH
 	And I press the "Continue" button
 	
 	#confirm dates screen
-	
 	Then on the page I see
 	|text|
 	|Check your dates|
@@ -2465,7 +2336,6 @@ Scenario Outline: English 1st Party Deferral - >1 date selected is a BH
 	And I press the "Continue" button
 	
 	#Bank Holiday
-	
 	Then on the page I see
 	|text|
 	|At least one of the Mondays you selected is a bank holiday|
@@ -2475,7 +2345,6 @@ Scenario Outline: English 1st Party Deferral - >1 date selected is a BH
 	And I press the "Continue" button
 
 	#help in court
-	
 	Then I see "Will you need help when you're at the court?" on the page
 	When I set the radio button to "No"
 	And I press the "Continue" button
@@ -2497,7 +2366,7 @@ Scenario Outline: English 1st Party Deferral - >1 date selected is a BH
 	When I press the "Submit" button
 	
 	Then I see "You have completed your reply" on the page
-	Then I see "<part_no>" on the page
+	Then I see "<juror_number>" on the page
 	
 	Then on the page I see
 	| text	|
@@ -2518,8 +2387,8 @@ Scenario Outline: English 1st Party Deferral - >1 date selected is a BH
 	
 	And I do not see "Your Guide to Jury Service (PDF 85KB)" on the page
 	
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "TODO" where "JUROR_NUMBER" is "<part_no>"
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "N" where "JUROR_NUMBER" is "<part_no>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "TODO" where "JUROR_NUMBER" is "<juror_number>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "N" where "JUROR_NUMBER" is "<juror_number>"
 	
 	Then I click on the "Download a copy of your summons reply HTML (15KB)" link
 	And on the page I see
@@ -2538,14 +2407,14 @@ Scenario Outline: English 1st Party Deferral - >1 date selected is a BH
 	And I validate the "Second" deferral date is "10" weeks in the future
 	And I validate the "Third" deferral date is "11" weeks in the future
 	
-	Given I am on "Bureau" "bau-test"
+	Given I am on "Bureau" "test"
 	And I log in
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
 	
-	When I click on "<part_no>" in the same row as "<part_no>"
+	When I click on "<juror_number>" in the same row as "<juror_number>"
 	
 	And I see "Juror details" on the page
 	
@@ -2558,36 +2427,34 @@ Scenario Outline: English 1st Party Deferral - >1 date selected is a BH
 	And I press the "Confirm" button
 	Then I see "COMPLETED" on the page
 	
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "CLOSED" where "JUROR_NUMBER" is "<part_no>"
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "Y" where "JUROR_NUMBER" is "<part_no>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "CLOSED" where "JUROR_NUMBER" is "<juror_number>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "Y" where "JUROR_NUMBER" is "<juror_number>"
 	
-	Then on "JUROR" . "POOL" I see "H_PHONE" is "02078211818" where "part_no" is "<part_no>"
-	Then on "JUROR" . "POOL" I see "H_EMAIL" is "<email>" where "part_no" is "<part_no>"
+	Then on "JUROR_MOD" . "JUROR" I see "H_PHONE" is "02078211818" where "JUROR_NUMBER" is "<juror_number>"
+	Then on "JUROR_MOD" . "JUROR" I see "H_EMAIL" is "<email>" where "JUROR_NUMBER" is "<juror_number>"
 	
 	#JDB-3453
-	
-	Then on "JUROR" . "POOL" I see "WELSH" is null where "part_no" is "<part_no>" and "owner" is "400"
-	Then I delete bank holiday
+	Then on "JUROR_MOD" . "JUROR" I see "WELSH" is null where "JUROR_NUMBER" is "<juror_number>" and "owner" is "400"
+	Then I delete bank holiday new schema
 
 Examples:
-	|part_no	|pool_no	|last_name			|postcode	|email 		| 
-	|645100792	|451170401	|LNAMESEVENONETHREE	|SW1H 9AJ	|e@eeee.com	|
+	|juror_number	|pool_number	|last_name			|postcode	|email 		|
+	|045200037		|452300036		|LNAMESEVENONETHREE	|SW1H 9AJ	|e@eeee.com	|
 	
-@RegressionSingle
+@RegressionSingle @NewSchemaConverted
 Scenario Outline: English 1st Party Deferral - Navigate back from BH page
 
 	Given I am on "Public" "test"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
 	
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "FNAME" as "FNAMESEVENONETHREE"
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "Address" as "855 STREET NAME"
-	And "<part_no>" has "Address4" as "LONDON"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "FIRST_NAME" as "FNAMESEVENONETHREE" new schema
+	And juror "<juror_number>" has "ADDRESS_LINE_1" as "855 STREET NAME" new schema
+	And juror "<juror_number>" has "ADDRESS_LINE_4" as "LONDON" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	And I have deleted all holidays new schema
 	
 	Then I see "Reply to a jury summons" on the page
@@ -2596,34 +2463,29 @@ Scenario Outline: English 1st Party Deferral - Navigate back from BH page
 	And I press the "Continue" button
 	Then I see "Your juror details" on the page
 	
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 	
 	#name
-	
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 	
 	#address
-	
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 	
 	#phone
-	
 	When I set "Main phone" to "02078211818"
 	And I press the "Continue" button
 	
 	#email
-
 	When I set "Enter your email address" to "<email>"
 	When I set "Enter your email address again" to "<email>"
 	And I press the "Continue" button
 	
 	#dob
-	
 	And I set the date of birth to a Monday "-1560" weeks in the future
 	And I press the "Continue" button
 	
@@ -2660,7 +2522,6 @@ Scenario Outline: English 1st Party Deferral - Navigate back from BH page
 	And I press the "Continue" button
 	
 	#New deferrals
-	
 	Then I see "Check your start date" on the page
 	
 	When I set the radio button to "No, I need to change the date"
@@ -2678,7 +2539,6 @@ Scenario Outline: English 1st Party Deferral - Navigate back from BH page
 	And I press the "Continue" button
 	
 	#confirm dates screen
-	
 	Then on the page I see
 	|text|
 	|Check your dates|
@@ -2692,7 +2552,6 @@ Scenario Outline: English 1st Party Deferral - Navigate back from BH page
 	And I press the "Continue" button
 	
 	#Bank Holiday
-	
 	Then on the page I see
 	|text|
 	|At least one of the Mondays you selected is a bank holiday|
@@ -2703,27 +2562,22 @@ Scenario Outline: English 1st Party Deferral - Navigate back from BH page
 	And I press the "Continue" button
 
 	#back link
-	
 	And I click on the "Back" link
 	And I see "At least one of the Mondays you selected is a bank holiday" on the page
 	
 	#back link
-	
 	And I click on the "Back" link
 	And I see "Check your dates" on the page
 	
 	#back link
-	
 	When I click on the "Back" link
 	Then I see "Choose 3 Mondays when you can start jury service" on the page
 	
 	#back link
-	
 	When I click on the "Back" link
 	Then I see "Tell us why you need another date for your jury service" on the page
 	
 	#back link
-	
 	When I click on the "Back" link
 	Then I see "Check your start date" on the page
 	
@@ -2732,13 +2586,11 @@ Scenario Outline: English 1st Party Deferral - Navigate back from BH page
 	And I press the "Continue" button
 	
 	#reason
-	
 	Then I see "Tell us why you need another date for your jury service" on the page
 	When I set text area with "id" of "deferralReason" to "Deferral Reason"
 	And I press the "Continue" button
 	
 	#choose dates
-	
 	Then I see "Choose 3 Mondays when you can start jury service" on the page
 	
 	When I set the "First" single date field to a Monday "6" weeks in the future
@@ -2748,18 +2600,15 @@ Scenario Outline: English 1st Party Deferral - Navigate back from BH page
 	And I press the "Continue" button
 	
 	#confirm dates
-	
 	And I see "Check your dates" on the page
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 	
 	#BH page
-	
 	And I see "At least one of the Mondays you selected is a bank holiday" on the page
 	And I press the "Continue" button
 		
 	#help in court
-	
 	Then I see "Will you need help when you're at the court?" on the page
 	When I set the radio button to "No"
 	And I press the "Continue" button
@@ -2780,7 +2629,7 @@ Scenario Outline: English 1st Party Deferral - Navigate back from BH page
 	When I press the "Submit" button
 	
 	Then I see "You have completed your reply" on the page
-	Then I see "<part_no>" on the page
+	Then I see "<juror_number>" on the page
 	
 	Then on the page I see
 	| text	|
@@ -2801,8 +2650,8 @@ Scenario Outline: English 1st Party Deferral - Navigate back from BH page
 	
 	And I do not see "Your Guide to Jury Service (PDF 85KB)" on the page
 	
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "TODO" where "JUROR_NUMBER" is "<part_no>"
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "N" where "JUROR_NUMBER" is "<part_no>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "TODO" where "JUROR_NUMBER" is "<juror_number>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "N" where "JUROR_NUMBER" is "<juror_number>"
 	
 	Then I click on the "Download a copy of your summons reply HTML (15KB)" link
 	And on the page I see
@@ -2824,10 +2673,10 @@ Scenario Outline: English 1st Party Deferral - Navigate back from BH page
 	And I log in
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
 	
-	When I click on "<part_no>" in the same row as "<part_no>"
+	When I click on "<juror_number>" in the same row as "<juror_number>"
 	
 	And I see "Juror details" on the page
 	
@@ -2840,36 +2689,36 @@ Scenario Outline: English 1st Party Deferral - Navigate back from BH page
 	And I press the "Confirm" button
 	Then I see "COMPLETED" on the page
 	
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "CLOSED" where "JUROR_NUMBER" is "<part_no>"
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "Y" where "JUROR_NUMBER" is "<part_no>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "CLOSED" where "JUROR_NUMBER" is "<juror_number>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "Y" where "JUROR_NUMBER" is "<juror_number>"
 	
-	Then on "JUROR" . "POOL" I see "H_PHONE" is "02078211818" where "part_no" is "<part_no>"
-	Then on "JUROR" . "POOL" I see "H_EMAIL" is "<email>" where "part_no" is "<part_no>"
+	Then on "JUROR_MOD" . "JUROR" I see "H_PHONE" is "02078211818" where "JUROR_NUMBER" is "<juror_number>"
+	Then on "JUROR_MOD" . "JUROR" I see "H_EMAIL" is "<email>" where "JUROR_NUMBER" is "<juror_number>"
 	
 	#JDB-3453
-	
-	Then on "JUROR" . "POOL" I see "WELSH" is null where "part_no" is "<part_no>" and "owner" is "400"
+	Then on "JUROR_MOD" . "JUROR" I see "WELSH" is null where "JUROR_NUMBER" is "<juror_number>" and "owner" is "400"
 	And I delete bank holiday new schema
 
 Examples:
-	|part_no	|pool_no	|last_name			|postcode	|email 		| 
-	|645200889	|452170401	|LNAMESEVENONETHREE	|WV1 4EE	|e@eeee.com	|
+	|juror_number	|pool_number	|last_name			|postcode	|email 		|
+	|045200038		|452300037		|LNAMESEVENONETHREE	|WV1 4EE	|e@eeee.com	|
 
-@RegressionSingle @JDB-4249 @JDB-3704
+@RegressionSingle @NewSchemaConverted
 Scenario Outline: English 1st Party Deferral - selected date makes juror >76
 
-	Given I am on "Public" "bau-test"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+	Given I am on "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
 	
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "FNAME" as "FNAMESEVENONETHREE"
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "Address" as "855 STREET NAME"
-	And "<part_no>" has "Address4" as "LONDON"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "FIRST_NAME" as "FNAMESEVENONETHREE" new schema
+
+
+	And juror "<juror_number>" has "ADDRESS_LINE_1" as "855 STREET NAME" new schema
+	And juror "<juror_number>" has "ADDRESS_LINE_4" as "LONDON" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	And I have deleted all holidays new schema
 	
 	Then I see "Reply to a jury summons" on the page
@@ -2878,7 +2727,7 @@ Scenario Outline: English 1st Party Deferral - selected date makes juror >76
 	And I press the "Continue" button
 	Then I see "Your juror details" on the page
 	
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
@@ -2934,7 +2783,6 @@ Scenario Outline: English 1st Party Deferral - selected date makes juror >76
 	And I press the "Continue" button
 	
 	#New deferrals
-	
 	Then I see "Check your start date" on the page
 	When I set the radio button to "No, I need to change the date"
 	And I press the "Continue" button
@@ -2963,7 +2811,6 @@ Scenario Outline: English 1st Party Deferral - selected date makes juror >76
 	And I press the "Continue" button
 	
 	#check dates screen
-	
 	And I see "Check your dates" on the page
 	And I see "Dates you can start jury service" on the page
 	And I validate the "First" deferral date is "9" weeks in the future
@@ -2976,7 +2823,6 @@ Scenario Outline: English 1st Party Deferral - selected date makes juror >76
 	And I see "Do you want to proceed with these dates?" on the page
 	
 	#check hint text
-	
 	And I click on the "Will I need to serve longer than 2 weeks?" link
 	And I see "Most jurors only need to serve 2 weeks." on the page
 	And I see "You may be asked to serve for longer when you arrive at court." on the page
@@ -3022,7 +2868,7 @@ Scenario Outline: English 1st Party Deferral - selected date makes juror >76
 	When I press the "Submit" button
 	
 	Then I see "You have completed your reply" on the page
-	Then I see "<part_no>" on the page
+	Then I see "<juror_number>" on the page
 	
 	Then I see "You have completed your reply" on the page
 	Then I see "If we get in touch with you, you may need to give your juror number. It's also on the letter we sent you." on the page
@@ -3040,8 +2886,8 @@ Scenario Outline: English 1st Party Deferral - selected date makes juror >76
 	And I do not see "Your Guide to Jury Service (PDF 85KB)" on the page
 	And I see "What did you think of this service? (Takes 30 seconds)" on the page
 	
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "TODO" where "JUROR_NUMBER" is "<part_no>"
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "N" where "JUROR_NUMBER" is "<part_no>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "TODO" where "JUROR_NUMBER" is "<juror_number>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "N" where "JUROR_NUMBER" is "<juror_number>"
 	
 	Then I click on the "Download a copy of your summons reply HTML (15KB)" link
 	And I see "You have said that you need to change the date of your jury service." on the page
@@ -3057,14 +2903,14 @@ Scenario Outline: English 1st Party Deferral - selected date makes juror >76
 	And I validate the "Second" deferral date is "10" weeks in the future
 	And I validate the "Third" deferral date is "11" weeks in the future
 	
-	Given I am on "Bureau" "bau-test"
+	Given I am on "Bureau" "test"
 	And I log in
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
 	
-	When I click on "<part_no>" in the same row as "<part_no>"
+	When I click on "<juror_number>" in the same row as "<juror_number>"
 	
 	And I see "Juror details" on the page
 	
@@ -3077,35 +2923,34 @@ Scenario Outline: English 1st Party Deferral - selected date makes juror >76
 	And I press the "Confirm" button
 	Then I see "COMPLETED" on the page
 	
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "CLOSED" where "JUROR_NUMBER" is "<part_no>"
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "Y" where "JUROR_NUMBER" is "<part_no>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "CLOSED" where "JUROR_NUMBER" is "<juror_number>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "Y" where "JUROR_NUMBER" is "<juror_number>"
 	
-	Then on "JUROR" . "POOL" I see "H_PHONE" is "02078211818" where "part_no" is "<part_no>"
-	Then on "JUROR" . "POOL" I see "H_EMAIL" is "<email>" where "part_no" is "<part_no>"
+	Then on "JUROR_MOD" . "JUROR" I see "H_PHONE" is "02078211818" where "JUROR_NUMBER" is "<juror_number>"
+	Then on "JUROR_MOD" . "JUROR" I see "H_EMAIL" is "<email>" where "JUROR_NUMBER" is "<juror_number>"
 	
 	#JDB-3453
 	
-	Then on "JUROR" . "POOL" I see "WELSH" is null where "part_no" is "<part_no>" and "owner" is "400"
+	Then on "JUROR_MOD" . "JUROR" I see "WELSH" is null where "JUROR_NUMBER" is "<juror_number>" and "owner" is "400"
 	
 Examples:
-	|part_no	|pool_no	|last_name			|postcode	|email 		| 
-	|645100227	|451170401	|LNAMESEVENONETHREE	|SW1H 9AJ	|e@eeee.com	|
+	|juror_number	|pool_number|last_name			|postcode	|email 		|
+	|045200039		|452300038	|LNAMESEVENONETHREE	|SW1H 9AJ	|e@eeee.com	|
 
-@Regression @replytypes 
+@Regression @NewSchemaConverted
 Scenario Outline: English 1st Party Deferral + Bail + Name change
 
 	Given I am on "Public" "test"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
 	
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "FNAME" as "FNAMESEVENONETHREE"
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "Address" as "855 STREET NAME"
-	And "<part_no>" has "Address4" as "LONDON"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "FIRST_NAME" as "FNAMESEVENONETHREE" new schema
+	And juror "<juror_number>" has "ADDRESS_LINE_1" as "855 STREET NAME" new schema
+	And juror "<juror_number>" has "ADDRESS_LINE_4" as "LONDON" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	And I have deleted all holidays new schema
 	
 	Then I see "Reply to a jury summons" on the page
@@ -3114,7 +2959,7 @@ Scenario Outline: English 1st Party Deferral + Bail + Name change
 	And I press the "Continue" button
 	Then I see "Your juror details" on the page
 	
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
@@ -3172,7 +3017,6 @@ Scenario Outline: English 1st Party Deferral + Bail + Name change
 	And I press the "Continue" button
 	
 	#New deferrals
-	
 	Then I see "Check your start date" on the page
 	And I see "You are summoned to start jury service on" on the page
 	And I see "Can you start jury service on this date?" on the page
@@ -3206,7 +3050,6 @@ Scenario Outline: English 1st Party Deferral + Bail + Name change
 	And I press the "Continue" button
 	
 	#check dates screen
-	
 	And I see "Check your dates" on the page
 	And I see "Dates you can start jury service" on the page
 	And I validate the "First" deferral date is "6" weeks in the future
@@ -3219,7 +3062,6 @@ Scenario Outline: English 1st Party Deferral + Bail + Name change
 	And I see "Do you want to proceed with these dates?" on the page
 	
 	#check hint text
-	
 	And I click on the "Will I need to serve longer than 2 weeks?" link
 	And I see "Most jurors only need to serve 2 weeks." on the page
 	And I see "You may be asked to serve for longer when you arrive at court." on the page
@@ -3267,12 +3109,12 @@ Scenario Outline: English 1st Party Deferral + Bail + Name change
 	When I press the "Submit" button
 	
 	Then I see "You have completed your reply" on the page
-	Then I see "<part_no>" on the page
+	Then I see "<juror_number>" on the page
 	
 	Then I see "You have completed your reply" on the page
 	
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "TODO" where "JUROR_NUMBER" is "<part_no>"
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "N" where "JUROR_NUMBER" is "<part_no>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "TODO" where "JUROR_NUMBER" is "<juror_number>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "N" where "JUROR_NUMBER" is "<juror_number>"
 	
 	Then I click on the "Download a copy of your summons reply HTML (15KB)" link
 	And I see "You have said that you need to change the date of your jury service." on the page
@@ -3287,9 +3129,9 @@ Scenario Outline: English 1st Party Deferral + Bail + Name change
 	And I log in
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	Then I see "<part_no>" on the page
+	Then I see "<juror_number>" on the page
 	
 	And I click link with ID "selectAllLink"
 	And I press the "Send to..." button
@@ -3300,28 +3142,27 @@ Scenario Outline: English 1st Party Deferral + Bail + Name change
 	
 	Then I click on the "Sign out" link
 	When I log in as "CPASS"
-	Then I see "<part_no>" on the page
-	Then I see "<part_no>" has reply type indicator "INELIGIBLE"
-	
-Examples:
-	|part_no	|pool_no	|last_name			|postcode	|email 		| 
-	|645200713	|452170401	|LNAMESEVENONETHREE	|SY2 6LU	|e@eeee.com	|
+	Then I see "<juror_number>" on the page
+	Then I see "<juror_number>" has reply type indicator "INELIGIBLE"
 
-@Regression @JDB-4249 @JDB-3704 @replytypes 
+Examples:
+	|juror_number	|pool_number|last_name			|postcode	|email 		|
+	|045200040		|452300039	|LNAMESEVENONETHREE	|SY2 6LU	|e@eeee.com	|
+
+@Regression @NewSchemaConverted
 Scenario Outline: English 1st Party Deferral - NEW PAGE
 
 	Given I am on "Public" "test"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
 	
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "FNAME" as "FNAMESEVENONETHREE"
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "Address" as "855 STREET NAME"
-	And "<part_no>" has "Address4" as "LONDON"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "FIRST_NAME" as "FNAMESEVENONETHREE"
+	And juror "<juror_number>" has "ADDRESS_LINE_1" as "855 STREET NAME" new schema
+	And juror "<juror_number>" has "ADDRESS_LINE_4" as "LONDON" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	And I have deleted all holidays new schema
 	
 	Then I see "Reply to a jury summons" on the page
@@ -3330,7 +3171,7 @@ Scenario Outline: English 1st Party Deferral - NEW PAGE
 	And I press the "Continue" button
 	Then I see "Your juror details" on the page
 	
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
@@ -3383,7 +3224,6 @@ Scenario Outline: English 1st Party Deferral - NEW PAGE
 	And I press the "Continue" button
 	
 	#New deferrals
-	
 	Then I see "Check your start date" on the page
 	When I set the radio button to "No, I need to change the date"
 	And I press the "Continue" button
@@ -3398,7 +3238,6 @@ Scenario Outline: English 1st Party Deferral - NEW PAGE
 	And I press the "Continue" button
 	
 	#check dates screen
-
 	And I see "Dates you can start jury service" on the page
 	And I validate the "First" deferral date is "6" weeks in the future
 	And I validate the "Second" deferral date is "7" weeks in the future
@@ -3428,15 +3267,15 @@ Scenario Outline: English 1st Party Deferral - NEW PAGE
 	When I press the "Submit" button
 	
 	Then I see "You have completed your reply" on the page
-	Then I see "<part_no>" on the page
+	Then I see "<juror_number>" on the page
 	
 	Given I am on "Bureau" "test"
 	And I log in
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	Then I see "<part_no>" on the page
+	Then I see "<juror_number>" on the page
 	
 	And I click link with ID "selectAllLink"
 	And I press the "Send to..." button
@@ -3447,17 +3286,16 @@ Scenario Outline: English 1st Party Deferral - NEW PAGE
 	
 	Then I click on the "Sign out" link
 	When I log in as "CPASS"
-	Then I see "<part_no>" on the page
-	Then I see "<part_no>" has reply type indicator "DEFERRAL"
-	
-	When I click on "<part_no>" in the same row as "<part_no>"
+	Then I see "<juror_number>" on the page
+	Then I see "<juror_number>" has reply type indicator "DEFERRAL"
+
+	When I click on "<juror_number>" in the same row as "<juror_number>"
 	
 	And I see "Juror details" on the page
 	
 	When I select "Deferral" from Process reply
 	
 	#continue with nothing selected
-	
 	And I press the "Confirm" button
 	And I see "There is a problem" on the page
 	And I see "Select a reason for the deferral request" on the page
@@ -3466,7 +3304,6 @@ Scenario Outline: English 1st Party Deferral - NEW PAGE
 	And I set the radio button to "Accept deferral"
 	
 	#continue with only decision selected
-	
 	And I press the "Confirm" button
 	And I see "There is a problem" on the page
 	And I see "Select a reason for the deferral request" on the page
@@ -3483,13 +3320,11 @@ Scenario Outline: English 1st Party Deferral - NEW PAGE
 	And I set the radio button to "Other"
 	
 	#continue with only reason Accept and Other selected
-	
 	And I press the "Confirm" button
 	And I see "There is a problem" on the page
 	And I see "Enter a valid deferral date" on the page
 	
 	#date validation - cant be silly value
-	
 	When I set input field with "id" of "deferralDate" to "1111/1111/1111"
 
 	And I press the "Confirm" button
@@ -3497,7 +3332,6 @@ Scenario Outline: English 1st Party Deferral - NEW PAGE
 	And I see "Enter a valid deferral date" on the page
 	
 	#date validation - cant be > 12 mos in the future
-	
 	When I set input field with "id" of "deferralDate" to "01/01/2050"
 	
 	And I press the "Confirm" button
@@ -3505,14 +3339,12 @@ Scenario Outline: English 1st Party Deferral - NEW PAGE
 	And I see "Enter a valid deferral date" on the page
 	
 	#select the radio buttons
-	
 	And I select deferral date "6" weeks in the future
 	And I select deferral date "7" weeks in the future
 	And I select deferral date "8" weeks in the future
 	Then I set the radio button to "Other"
 	
 	#can input the same date as one of the radio buttons
-
 	When I set the "Deferral" single date field to a Monday "10" weeks in the future
 	
 	And I select "O - OTHER" from the "Reason for the deferral request" dropdown
@@ -3520,25 +3352,23 @@ Scenario Outline: English 1st Party Deferral - NEW PAGE
 	Then I see "COMPLETED" on the page
 	
 Examples:
-	|part_no	|pool_no	|last_name			|postcode	|email 		| 
-	|641500530	|415170401	|LNAMEFIVETWOZERO	|SW1H 9AJ	|e@eeee.com	|
+	|juror_number	|pool_number|last_name			|postcode	|email 		|
+	|045200041		|452300040	|LNAMEFIVETWOZERO	|SW1H 9AJ	|e@eeee.com	|
 
-@Regression @replytypes
+@Regression @NewSchemaConverted
 Scenario Outline: English 1st Party Deferral - refuse deferral
 
-	Given I am on "Public" "bau-test"
+	Given I am on "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
 	
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
-	
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "FNAME" as "FNAMESEVENONETHREE"
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "Address" as "855 STREET NAME"
-	And "<part_no>" has "Address4" as "LONDON"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "FIRST_NAME" as "FNAMESEVENONETHREE" new schema
+	And juror "<juror_number>" has "ADDRESS_LINE_1" as "855 STREET NAME" new schema
+	And juror "<juror_number>" has "ADDRESS_LINE_4" as "LONDON" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	And I have deleted all holidays new schema
 	
 	Then I see "Reply to a jury summons" on the page
@@ -3547,7 +3377,7 @@ Scenario Outline: English 1st Party Deferral - refuse deferral
 	And I press the "Continue" button
 	Then I see "Your juror details" on the page
 	
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
@@ -3600,7 +3430,6 @@ Scenario Outline: English 1st Party Deferral - refuse deferral
 	And I press the "Continue" button
 	
 	#New deferrals
-	
 	Then I see "Check your start date" on the page
 	When I set the radio button to "No, I need to change the date"
 	And I press the "Continue" button
@@ -3615,7 +3444,6 @@ Scenario Outline: English 1st Party Deferral - refuse deferral
 	And I press the "Continue" button
 	
 	#check dates screen
-
 	And I see "Dates you can start jury service" on the page
 	
 	And I set the radio button to "Yes"
@@ -3642,15 +3470,15 @@ Scenario Outline: English 1st Party Deferral - refuse deferral
 	When I press the "Submit" button
 	
 	Then I see "You have completed your reply" on the page
-	Then I see "<part_no>" on the page
+	Then I see "<juror_number>" on the page
 
 	Given I am on "Bureau" "bau-test"
 	And I log in
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	Then I see "<part_no>" on the page
+	Then I see "<juror_number>" on the page
 	
 	And I click link with ID "selectAllLink"
 	And I press the "Send to..." button
@@ -3661,21 +3489,19 @@ Scenario Outline: English 1st Party Deferral - refuse deferral
 	
 	Then I click on the "Sign out" link
 	When I log in as "CPASS"
-	Then I see "<part_no>" on the page
-	Then I see "<part_no>" has reply type indicator "DEFERRAL"
-	
-	When I click on "<part_no>" in the same row as "<part_no>"
+	Then I see "<juror_number>" on the page
+	Then I see "<juror_number>" has reply type indicator "DEFERRAL"
+
+	When I click on "<juror_number>" in the same row as "<juror_number>"
 	
 	And I see "Juror details" on the page
 	
 	When I select "Deferral" from Process reply
 	
 	#refuse deferral
-	
 	And I set the radio button to "Refuse deferral"
 	
 	#continue with only decision selected
-	
 	And I press the "Confirm" button
 	And I see "There is a problem" on the page
 	And I see "Select a reason for the deferral request" on the page
@@ -3686,6 +3512,6 @@ Scenario Outline: English 1st Party Deferral - refuse deferral
 	Then I see "COMPLETED" on the page
 	
 Examples:
-	|part_no	|pool_no	|last_name			|postcode	|email 		| 
-	|645200403	|452170401	|LNAMEFOURZEROTHREE	|SY2 6LU	|e@eeee.com	|
+	|juror_number	|pool_number|last_name			|postcode	|email 		|
+	|045200042		|452300041	|LNAMEFOURZEROTHREE	|SY2 6LU	|e@eeee.com	|
 	

@@ -9,8 +9,8 @@ Scenario Outline: Cycle through process options
 		|part_no 	|pool_no 	|owner	|
 		|<part_no> 	|<pool_no>	|400 	|
 	
-	Given "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
+	Given "<juror_number>" has "RET_DATE" as "5 mondays time"
+
 	
 	# Submit response in pool
 	
@@ -30,7 +30,7 @@ Scenario Outline: Cycle through process options
 	And I set "Juror's pool number" to "<pool_no>"
 	And I press the "Search" button
 	
-	When I click on "<part_no>" in the same row as "<part_no>"
+	When I click on "<juror_number>" in the same row as "<juror_number>"
 
 	#process options as team member where record assigned to me
 	
@@ -101,8 +101,8 @@ Scenario Outline: Send to court process options
 	
 	# Set part_no pool to be super urgent
 	
-	Given "<part_no>" has "RET_DATE" as "2 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "2 mondays time"
+	Given "<juror_number>" has "RET_DATE" as "2 mondays time"
+	And "<juror_number>" has "NEXT_DATE" as "2 mondays time"
 	
 	# Submit response in pool
 	
@@ -110,9 +110,9 @@ Scenario Outline: Send to court process options
 		|part_no	|pool_number|last_name		|postcode	|email 	|
 		|<part_no>	|<pool_no>	|<last_name>	|<postcode>	|a@a.com|
 		
-	Given "<part_no>" has "READ_ONLY" as "Y"
-	Then the "URGENT" for juror "<part_no>" is set to "N"
-	Then the "SUPER_URGENT" for juror "<part_no>" is set to "Y"
+	Given "<juror_number>" has "READ_ONLY" as "Y"
+	Then the "URGENT" for juror "<juror_number>" is set to "N"
+	Then the "SUPER_URGENT" for juror "<juror_number>" is set to "Y"
 	
 	Given I am on "Bureau" "test"
 	And I log in	
@@ -126,7 +126,7 @@ Scenario Outline: Send to court process options
 	And I set "Juror's pool number" to "<pool_no>"
 	And I press the "Search" button
 	
-	When I click on "<part_no>" in the same row as "<part_no>"
+	When I click on "<juror_number>" in the same row as "<juror_number>"
 
 	And I do not see "Download as a PDF" on the page
 	Then I press the "More actions" button
@@ -162,8 +162,8 @@ Scenario Outline: Urgent process options
 	
 	# Set part_no pool to be urgent
 	
-	Given "<part_no>" has "RET_DATE" as "2 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "2 mondays time"
+	Given "<juror_number>" has "RET_DATE" as "2 mondays time"
+	And "<juror_number>" has "NEXT_DATE" as "2 mondays time"
 	
 	# Submit response in pool
 	
@@ -177,7 +177,7 @@ Scenario Outline: Urgent process options
 	And I set "Juror's pool number" to "<pool_no>"
 	And I press the "Search" button
 	
-	When I click on "<part_no>" in the same row as "<part_no>"
+	When I click on "<juror_number>" in the same row as "<juror_number>"
 
 	# cannot assign to anyone as response not allocated to me
 	
@@ -205,7 +205,7 @@ Scenario Outline: Urgent process options
 	And I set "Juror's pool number" to "<pool_no>"
 	And I press the "Search" button
 	
-	When I click on "<part_no>" in the same row as "<part_no>"
+	When I click on "<juror_number>" in the same row as "<juror_number>"
 
 	And I do not see "Download as a PDF" on the page
 	And I do not see "Mark as 'Awaiting information'" on the page
@@ -245,8 +245,8 @@ Scenario Outline: Closed process options
 		|part_no 	|pool_no 	|owner	|
 		|<part_no> 	|<pool_no>	|400 	|
 	
-	Given "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
+	Given "<juror_number>" has "RET_DATE" as "5 mondays time"
+
 	
 	# Submit response in pool
 	
@@ -261,7 +261,7 @@ Scenario Outline: Closed process options
 	And I set "Juror's pool number" to "<pool_no>"
 	And I press the "Search" button
 	
-	When I click on "<part_no>" in the same row as "<part_no>"
+	When I click on "<juror_number>" in the same row as "<juror_number>"
 
 	Then I press the "More actions" button
 	And I see link with text "Download as a PDF"

@@ -9,7 +9,7 @@ Scenario Outline: English 1st Party Straight Through
 
 	And I press the "Continue" button
 	
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	And I set "Juror last name" to "<last_name>"
 	And I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
@@ -125,7 +125,7 @@ Scenario Outline: English 1st Party Straight Through
 	
 Examples:
 	|part_no	|last_name	|postcode	|email 					|pool_no	|
-	|041510967	|LNAMEIFG	|CH7 1NN	|danielle.bach@cgi.com	|415220702	|
+	|041510967	|LNAMEIFG	|CH7 1NN	|e@mail.com	|415220702	|
 	
 
 Scenario Outline: English 1st Party Excusal 
@@ -139,7 +139,7 @@ Scenario Outline: English 1st Party Excusal
 	
 	#Juror Log In
 	
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
@@ -229,16 +229,16 @@ Scenario Outline: English 1st Party Excusal
 	
 Examples:
 	|part_no	|last_name	|postcode	|email           		|pool_no	|
-	|041510923	|LNAMEIBC	|CH3 1NN	|danielle.bach@cgi.com	|415170401	|
-	|041510918	|LNAMEIAH	|CH6 1NN	|danielle.bach@cgi.com	|415170401	|
-	|041510899	|LNAMEHII	|CH3 1NN	|danielle.bach@cgi.com	|415170401	|
-	|041510894	|LNAMEHID	|CH6 1NN	|danielle.bach@cgi.com	|415170401	|
-	|041510886	|LNAMEHHF	|CH6 1NN	|danielle.bach@cgi.com	|415170401	|
-	|041510879	|LNAMEHGI	|CH7 1NN	|danielle.bach@cgi.com	|415170401	|
-	|041510876	|LNAMEHGF	|CH4 1NN	|danielle.bach@cgi.com	|415170401	|
-	|041510859	|LNAMEHEI	|CH3 1NN	|danielle.bach@cgi.com	|415170401	|
-	|041510808	|LNAMEHJH	|CH8 1NN	|danielle.bach@cgi.com	|415170401	|
-	|041510796	|LNAMEGIF	|CH4 1NN	|danielle.bach@cgi.com	|415170401	|
+	|041510923	|LNAMEIBC	|CH3 1NN	|e@mail.com	|415170401	|
+	|041510918	|LNAMEIAH	|CH6 1NN	|e@mail.com	|415170401	|
+	|041510899	|LNAMEHII	|CH3 1NN	|e@mail.com	|415170401	|
+	|041510894	|LNAMEHID	|CH6 1NN	|e@mail.com	|415170401	|
+	|041510886	|LNAMEHHF	|CH6 1NN	|e@mail.com	|415170401	|
+	|041510879	|LNAMEHGI	|CH7 1NN	|e@mail.com	|415170401	|
+	|041510876	|LNAMEHGF	|CH4 1NN	|e@mail.com	|415170401	|
+	|041510859	|LNAMEHEI	|CH3 1NN	|e@mail.com	|415170401	|
+	|041510808	|LNAMEHJH	|CH8 1NN	|e@mail.com	|415170401	|
+	|041510796	|LNAMEGIF	|CH4 1NN	|e@mail.com	|415170401	|
 
 @NLE
 Scenario Outline: English 1st Party Deferral
@@ -250,7 +250,7 @@ Scenario Outline: English 1st Party Deferral
 	And I set the radio button to "I am replying for myself"
 	And I press the "Continue" button
 	
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
@@ -335,17 +335,17 @@ Scenario Outline: English 1st Party Deferral
 	When I press the "Submit" button
 	
 	Then I see "You have completed your reply" on the page
-	Then I see "<part_no>" on the page
+	Then I see "<juror_number>" on the page
 	
 Examples:
 	|part_no	|pool_no	|last_name	|postcode	|email 					| 
-#	|041510776	|415220702	|LNAMEGGF	|CH8 1NN	|danielle.bach@cgi.com	|
-#	|041510700	|415220702	|LNAMEGJJ	|CH4 1NN	|danielle.bach@cgi.com	|
-#	|041510696	|415220702	|LNAMEFIF	|CH8 1NN	|danielle.bach@cgi.com	|
-#	|041510693	|415220702	|LNAMEFIC	|CH5 1NN	|danielle.bach@cgi.com	|
-#	|041510643	|415220702	|LNAMEFDC	|CH3 1NN	|danielle.bach@cgi.com	|
-#	|041510639	|415220702	|LNAMEFCI	|CH7 1NN	|danielle.bach@cgi.com	|
-#	|041510638	|415220702	|LNAMEFCH	|CH6 1NN	|danielle.bach@cgi.com	|
-	|041510572	|415220702	|LNAMEEGB	|CH4 1NN	|danielle.bach@cgi.com	|
-#	|041510559	|415220702	|LNAMEEEI	|CH7 1NN	|danielle.bach@cgi.com	|
-#	|041510542	|415220702	|LNAMEEDB	|CH6 1NN	|danielle.bach@cgi.com	|
+#	|041510776	|415220702	|LNAMEGGF	|CH8 1NN	|e@mail.com	|
+#	|041510700	|415220702	|LNAMEGJJ	|CH4 1NN	|e@mail.com	|
+#	|041510696	|415220702	|LNAMEFIF	|CH8 1NN	|e@mail.com	|
+#	|041510693	|415220702	|LNAMEFIC	|CH5 1NN	|e@mail.com	|
+#	|041510643	|415220702	|LNAMEFDC	|CH3 1NN	|e@mail.com	|
+#	|041510639	|415220702	|LNAMEFCI	|CH7 1NN	|e@mail.com	|
+#	|041510638	|415220702	|LNAMEFCH	|CH6 1NN	|e@mail.com	|
+	|041510572	|415220702	|LNAMEEGB	|CH4 1NN	|e@mail.com	|
+#	|041510559	|415220702	|LNAMEEEI	|CH7 1NN	|e@mail.com	|
+#	|041510542	|415220702	|LNAMEEDB	|CH6 1NN	|e@mail.com	|

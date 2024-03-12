@@ -1,16 +1,16 @@
 Feature: Regression Eligibility Hint Text
 
-@Regression 
+@Regression @NewSchemaConverted
 Scenario Outline: English_1st_Eligibility_Hint_Text
-	Given I am on "Public" "bau-test"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+
+	Given I am on "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   | <juror_number>| <pool_number>	| 5				            | 400	|
 		
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	
 	Then I see "Reply to a jury summons" on the page
 	
@@ -20,39 +20,34 @@ Scenario Outline: English_1st_Eligibility_Hint_Text
 	And I press the "Continue" button
 	Then I see "Your juror details" on the page
 	
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 	Then I see "Is the name we have for you correct?" on the page
 	
 	#Check name
-	
 	When I set the radio button to "Yes"
 	When I press the "Continue" button
 	Then I see "Is this your address?" on the page
 	
 	#Check address
-	
 	When I set the radio button to "Yes"
 	When I press the "Continue" button
 	Then I see "What is your phone number?" on the page
 	
 	#Phone details
-	
 	When I set "Main phone" to "0207 821 1818"
 	And I press the "Continue" button
 	Then I see "What is your email address?" on the page
 	
 	#Email details
-	
 	When I set "Enter your email address" to "email@outlook.com"
 	And I set "Enter your email address again" to "email@outlook.com"
 	And I press the "Continue" button
 	Then I see "What is your date of birth?" on the page
 	
 	#DoB
-	
 	When I set "Day" to "27"
 	And I set "Month" to "04"
 	And I set "Year" to "1981"
@@ -63,12 +58,10 @@ Scenario Outline: English_1st_Eligibility_Hint_Text
 	When I press the "Continue" button
 	
 	#Residency Yes
-	
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	When I set the radio button to "Yes"
 	
 	#help text
-	
 	Then I click on the "Need help answering this?" link
 	
 	And on the page I see
@@ -104,18 +97,15 @@ Scenario Outline: English_1st_Eligibility_Hint_Text
 	And I press the "Continue" button
 	
 	#CJS no
-	
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Bail no
-	
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Convictions no
-
 	When I set the radio button to "No"
 	And I click on the "Guidance on jury service if you have a conviction" link
 	
@@ -168,52 +158,46 @@ Scenario Outline: English_1st_Eligibility_Hint_Text
 	And I press the "Continue" button
 	
 	#Mental health part 1 no
-
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Mental health part 2 no
-
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#I can attend
-	
 	Then I see "Check your start date" on the page
 	When I set the radio button to "Yes, I can start on"
 	And  I press the "Continue" button
 	
 	#RA no
-	
 	Then I see "Will you need help when you're at the court?" on the page
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Check Your Answers
-	
 	Then I see "Check your answers now" on the page
 	
 	#When I press the "Submit" button
-	
 	When I check the "The information I have given is true to the best of my knowledge" checkbox
 	And I press the "Submit" button
 	Then I see "We have sent you an email to say you have replied to your jury summons." on the page
 	
 Examples:
-	|part_no	|last_name			|postcode	|email           	|pool_no	|
-	|645100224	|LNAMENINEFOURTWO	|SW1H 9AJ	|email@outlook.com	|451170401	|
+	| juror_number	| last_name			| postcode	| email           	| pool_number	|
+	| 045200222		| LNAMENINEFOURTWO	| SW1H 9AJ	| email@outlook.com	| 452300207		|
 
-@Regression 
+@Regression @NewSchemaConverted
 Scenario Outline: English_3rd_Eligibility_Hint_Text
-	Given I am on "Public" "bau-test"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+
+	Given I am on "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   | <juror_number>| <pool_number>	| 5				            | 400	|
 	
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	
 	Then I see "Reply to a jury summons" on the page
 	
@@ -222,27 +206,24 @@ Scenario Outline: English_3rd_Eligibility_Hint_Text
 	When I set the radio button to "I am replying for someone else"
 	And I press the "Continue" button
 	
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 	Then I see "What is your name?" on the page
 	
 	#Third Party Name
-
 	When I set "First name" to "FirstName"
 	And I set "Last name" to "LastName"
 	And I press the "Continue" button
 	Then I see "Your relationship to the person" on the page
 	
 	#Third Party Relationship
-
 	When I set "How do you know the person you're replying for?" to "Friend"
 	And I press the "Continue" button
 	Then I see "Your contact information" on the page
 	
 	#3rd Party Contact
-
 	And I check the "By phone" checkbox
 	When I set "Main phone" to "02078211818"
 	And I check the "By email" checkbox
@@ -252,25 +233,21 @@ Scenario Outline: English_3rd_Eligibility_Hint_Text
 	Then I see "Why are you replying for the other person?" on the page
 	
 	#Why Replying
-
 	When I set the radio button to "The person is not here"
 	And I press the "Continue" button
 	Then I see "Is the name we have for them correct?" on the page
 
 	#Check Juror Name
-
 	When I set the radio button to "Yes"
 	And I press the "Continue" button
 	Then I see "Is this their address?" on the page
 	
 	#Check address
-	
 	When I set the radio button to "Yes"
 	And I press the "Continue" button
 	Then I see "Give the date of birth for the person you're replying for" on the page
 	
 	#Juror DoB
-	
 	When I set "Day" to "27"
 	And I set "Month" to "04"
 	And I set "Year" to "1981"
@@ -278,24 +255,20 @@ Scenario Outline: English_3rd_Eligibility_Hint_Text
 	Then I see "We might need to get in touch with the person to ask them more questions or give them information about their jury service" on the page
 	
 	#Contacting the Juror
-	
 	When I set the radio button to "Use the phone number that you have already given to contact you"
 	And I set the radio button to "Use the email address that you have already given to contact you"
 	And I press the "Continue" button
 	
 	#Eligibility
-	
 	Then I see "Confirm if the person is eligible for jury service" on the page
 	
 	When I press the "Continue" button
 	
 	#Residency Yes
-	
 	Then I see "Since they turned 13, has their main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	When I set the radio button to "Yes"
 	
 	#help text
-	
 	Then I click on the "Need help answering this?" link
 	
 	And I see "To be eligible for jury service, their main address must have been in one of the following for any period of at least 5 years:" on the page
@@ -327,18 +300,15 @@ Scenario Outline: English_3rd_Eligibility_Hint_Text
 	And I press the "Continue" button
 	
 	#CJS no
-	
 	Then I see "Has the person you're replying for worked in the criminal justice system in the last 5 years?" on the page
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Bail no
-
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Convictions no
-	
 	When I set the radio button to "No"
 	And I click on the "Guidance on jury service if you have a conviction" link
 	
@@ -390,23 +360,19 @@ Scenario Outline: English_3rd_Eligibility_Hint_Text
 	And I press the "Continue" button
 	
 	#Mental health part 1 no
-	
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Mental health part 2 no
-
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#I can attend
-	
 	Then I see "Check your start date" on the page
 	Then I set the radio button to "Yes, they can start on"
 	And  I press the "Continue" button
 	
 	#RA no
-	
 	Then I see "Will the person you're replying for need help when they're at the court?" on the page
 	When I set the radio button to "No"
 	And I press the "Continue" button
@@ -414,15 +380,13 @@ Scenario Outline: English_3rd_Eligibility_Hint_Text
 	Then I see "Check your answers now" on the page
 	
 	#Check Your Answers
-	
 	Then I see "Check your answers now" on the page
 	
 	#When I press the "Submit" button
-	
 	When I check the "The answers I have given for the person I'm replying for are true as far as I know." checkbox
 	And I press the "Submit" button
 	Then I see "We have sent an email to say you have replied to this jury summons." on the page
 	
 Examples:
-	|part_no		|last_name			|postcode	|email           	|pool_no	|
-	|645100912		|LNAMENINEEIGHTTWO	|SW1H 9AJ	|email@outlook.com	|451170401	|	
+	| juror_number	| last_name			| postcode	| email           	| pool_number	|
+	| 045200223		| LNAMENINEEIGHTTWO	| SW1H 9AJ	| email@outlook.com	| 452300208		|

@@ -5,12 +5,12 @@ Feature: JM-4494 Jury officer Delete Juror Deferral
     Given I am on "Bureau" "test"
 
     Given a bureau owned pool is created with jurors
-      | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
-      | 415   | <juror_number> 	    | <pool_number>     | 5				            | 400	|
+      | court |juror_number  	        | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   |<juror_number> 	        | <pool_number>     | 5				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no               | pool_no          | owner |
-      |<juror_number>        | <pool_number>    | 415   |
+      |part_no        | pool_no       | owner |
+      |<juror_number> | <pool_number> | 415   |
 
     Given I log in as "MODTESTCOURT"
     When the user searches for juror record "<juror_number>" from the global search bar

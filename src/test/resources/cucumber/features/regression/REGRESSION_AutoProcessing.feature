@@ -1,19 +1,16 @@
 Feature: Regression Test AUTOPROCESSING
 
-@Regression @JDB-3516 @JDB-3747 
+@Regression @NewSchemaConverted
 Scenario Outline: submit responses which are auto processed
+
 	Given I am on "Public" "test"
-	Given the juror numbers have not been processed
-		| part_no 			| pool_no 	| owner |
-		| <part_no> 		|415170401	| 400 	|
-		| <part_no_two> 	|415170401	| 400 	|
-		| <part_no_three> 	|415170401	| 400 	|
-		| <part_no_four> 	|415170401	| 400 	|
-	
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "ZIP" as "<postcode>"
+
+	Given a bureau owned pool is created with jurors
+		| court | juror_number  	| pool_number	| att_date_weeks_in_future	| owner |
+		| 415	| <juror_number1> 	| <pool_number> | 5				            | 400	|
+		| 415	| <juror_number2> 	| <pool_number> | 5				            | 400	|
+		| 415	| <juror_number3> 	| <pool_number> | 5				            | 400	|
+		| 415	| <juror_number4> 	| <pool_number> | 5				            | 400	|
 	
 	#Auto Processed 1st ST
 	
@@ -21,7 +18,7 @@ Scenario Outline: submit responses which are auto processed
 	
 	And I set the radio button to "I am replying for myself"
 	And I press the "Continue" button
-	And I set "9-digit juror number" to "<part_no>"
+	And I set "9-digit juror number" to "<juror_number1>"
 	And I set "Juror last name" to "<last_name>"
 	And I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
@@ -49,7 +46,6 @@ Scenario Outline: submit responses which are auto processed
 		|Another phone (optional)|
 
 	#JDB-3351
-
 	When I set "Main phone" to "02078211818"
 	And I press the "Continue" button
 	And I do not see any links on the page that open to a new page without an alt text
@@ -67,7 +63,6 @@ Scenario Outline: submit responses which are auto processed
 	And I do not see any links on the page that open to a new page without an alt text
 	
 	#JDB-3350
-
 	Then on the page I see
 		| text	|
 		| Your details	|
@@ -82,52 +77,43 @@ Scenario Outline: submit responses which are auto processed
 	And I do not see any links on the page that open to a new page without an alt text
 	
 	#Qualify for jury service JDB-3372
-	
 	Then I see "Confirm you're eligible for jury service" on the page
 	When I press the "Continue" button
 	
 	#JDB-3373
-	
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	And I do not see any links on the page that open to a new page without an alt text
 	
 	#Residency JDB-3378
-	
 	When I see "Eligibility" on the page
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 	
 	#CJS no
-	
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
 	And I do not see any links on the page that open to a new page without an alt text
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#JDB-3371
-	
 	Then I see "Are you currently on bail for a criminal offence?" on the page
 	And I do not see any links on the page that open to a new page without an alt text
 	
 	#Bail JDB-3377
-	
 	When I see "Eligibility" on the page
 	And I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#JDB-3370
-	
 	Then I see "Have you been found guilty of a criminal offence?" on the page
 	And I do not see any links on the page that open to a new page without an alt text
 	
 	#Convictions JDB-3376
-	
 	When I see "Eligibility" on the page
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Mental Health Sectioned JDB-3363 JDB-3353
-	
 	Then I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
 	And I do not see any links on the page that open to a new page without an alt text
 	When I see "Eligibility" on the page
@@ -135,7 +121,6 @@ Scenario Outline: submit responses which are auto processed
 	And I press the "Continue" button
 	
 	#Mental Health Capacity JDB-3364
-	
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
 	And I do not see any links on the page that open to a new page without an alt text
 	When I see "Eligibility" on the page
@@ -143,7 +128,6 @@ Scenario Outline: submit responses which are auto processed
 	And I press the "Continue" button
 	
 	#I can attend
-	
 	Then I see "Check your start date" on the page
 	And I do not see any links on the page that open to a new page without an alt text
 	And I see "Yes, I can start on" on the page
@@ -151,7 +135,6 @@ Scenario Outline: submit responses which are auto processed
 	And  I press the "Continue" button	
 	
 	#RA no
-	
 	Then I see "Will you need help when you're at the court?" on the page
 	When I set the radio button to "No"
 	And I press the "Continue" button
@@ -159,29 +142,24 @@ Scenario Outline: submit responses which are auto processed
 	When I check the "The information I have given is true to the best of my knowledge" checkbox
 	
 	#Enable auto processing
-		
 	Given auto straight through processing has been enabled
 	
 	And I press the "Submit" button
 	
 	#Disable auto processing
-	
 	Given auto straight through processing has been disabled
 	And I do not see any links on the page that open to a new page without an alt text
 	
 	#Auto Processed Deceased
-	
 	Given I am on "Public" "test"
 	
-	And "<part_no_two>" has "LNAME" as "<last_name>" 
-	And "<part_no_two>" has "RET_DATE" as "5 mondays time"
-	And "<part_no_two>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no_two>" has "ZIP" as "<postcode>"
+	And juror "<juror_number2>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number2>" has "POSTCODE" as "<postcode>" new schema
 	
 	And I set the radio button to "I am replying for someone else"
 	And I press the "Continue" button
 	And I do not see any links on the page that open to a new page without an alt text
-	When I set "9-digit juror number" to "<part_no_two>"
+	When I set "9-digit juror number" to "<juror_number2>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
@@ -211,29 +189,24 @@ Scenario Outline: submit responses which are auto processed
 	Then I check the "The answers I have given for the person I'm replying for are true as far as I know." checkbox
 	
 	#Enable auto processing
-		
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	
 	And I press the "Submit" button
 	And I do not see any links on the page that open to a new page without an alt text
 	
 	#Disable auto processing
-	
-	Given auto straight through processing has been disabled
+	Given auto straight through processing has been disabled new schema
 	
 	#Auto Processed Underage
-	
 	Given I am on "Public" "test"
 		
-	And "<part_no_three>" has "LNAME" as "<last_name>" 
-	And "<part_no_three>" has "RET_DATE" as "5 mondays time"
-	And "<part_no_three>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no_three>" has "ZIP" as "<postcode>"
+	And "<juror_number3>" has "LAST_NAME" as "<last_name>"
+	And "<juror_number3>" has "POSTCODE" as "<postcode>"
 	
 	And I set the radio button to "I am replying for myself"
 	And I press the "Continue" button
 	And I do not see any links on the page that open to a new page without an alt text
-	When I set "9-digit juror number" to "<part_no_three>"
+	When I set "9-digit juror number" to "<juror_number3>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
@@ -254,13 +227,11 @@ Scenario Outline: submit responses which are auto processed
 	And I do not see any links on the page that open to a new page without an alt text
 	
 	#On DoB Screen, underage
-	
 	When I set "Day" to "27"
 	And I set "Month" to "04"
 	And I set "Year" to "2006"
 	
 	#Moving past DoB Section
-	
 	And I press the "Continue" button
 	
 	And I set the radio button to "Yes"
@@ -271,28 +242,23 @@ Scenario Outline: submit responses which are auto processed
 	Then I check the "The information I have given is true to the best of my knowledge" checkbox
 	
 	#Enable auto processing
-		
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	
 	And I press the "Submit" button
 	
 	#Disable auto processing
-	
-	Given auto straight through processing has been disabled
+	Given auto straight through processing has been disabled new schema
 
-	#Auto Processing overage	
-		
+	#Auto Processing overage
 	Given I am on "Public" "test"
 		
-	And "<part_no_four>" has "LNAME" as "<last_name>" 
-	And "<part_no_four>" has "RET_DATE" as "5 mondays time"
-	And "<part_no_four>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no_four>" has "ZIP" as "<postcode>"
+	And juror "<juror_number4>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number4>" has "POSTCODE" as "<postcode>" new schema
 	
 	And I set the radio button to "I am replying for myself"
 	And I press the "Continue" button
 	
-	When I set "9-digit juror number" to "<part_no_four>"
+	When I set "9-digit juror number" to "<juror_number4>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
@@ -309,18 +275,16 @@ Scenario Outline: submit responses which are auto processed
 	And I press the "Continue" button
 	Then I see "What is your email address?" on the page
 	
-	When I set "Enter your email address" to "email@outlook.com"
-	And I set "Enter your email address again" to "email@outlook.com"
+	When I set "Enter your email address" to "<email>"
+	And I set "Enter your email address again" to "<email>"
 	And I press the "Continue" button
 	
 	#On DoB Screen
-	
 	When I set "Day" to "27"
 	And I set "Month" to "04"
 	And I set "Year" to "1900"
 	
 	#Moving past DoB Section
-	
 	And I press the "Continue" button
 
 	Then I set the radio button to "Yes"
@@ -330,14 +294,12 @@ Scenario Outline: submit responses which are auto processed
 	Then I check the "The information I have given is true to the best of my knowledge" checkbox
 	
 	#Enable auto processing
-		
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	
 	And I press the "Submit" button
 	
 	#Disable auto processing
-	
-	Given auto straight through processing has been disabled
+	Given auto straight through processing has been disabled new schema
 
 	Given I am on "Bureau" "test"
 	And I log in
@@ -346,8 +308,8 @@ Scenario Outline: submit responses which are auto processed
 	And I set "Juror's pool number" to "<pool_no>"
 	And I press the "Search" button
 
-	Then I see "COMPLETED" in the same row as "<part_no>"
-	And I see "AUTO" in the same row as "<part_no>"
+	Then I see "COMPLETED" in the same row as "<juror_number>"
+	And I see "AUTO" in the same row as "<juror_number>"
 	Then I see "COMPLETED" in the same row as "<part_no_two>"
 	And I see "AUTO" in the same row as "<part_no_two>"
 	Then I see "COMPLETED" in the same row as "<part_no_three>"
@@ -355,12 +317,12 @@ Scenario Outline: submit responses which are auto processed
 	Then I see "COMPLETED" in the same row as "<part_no_four>"
 	And I see "AUTO" in the same row as "<part_no_four>"
 	
-	Then on "JUROR" . "POOL" I see "RESPONDED" is "Y" where "part_no" is "<part_no>"
-	Then on "JUROR" . "POOL" I see "USER_EDTQ" is "AUTO" where "part_no" is "<part_no>"
+	Then on "JUROR" . "POOL" I see "RESPONDED" is "Y" where "part_no" is "<juror_number>"
+	Then on "JUROR" . "POOL" I see "USER_EDTQ" is "AUTO" where "part_no" is "<juror_number>"
 	
 	#JDB-3453
 	
-	Then on "JUROR" . "POOL" I see "WELSH" is null where "part_no" is "<part_no>" and "owner" is "400"
+	Then on "JUROR" . "POOL" I see "WELSH" is null where "part_no" is "<juror_number>" and "owner" is "400"
 	Then on "JUROR" . "POOL" I see "RESPONDED" is "Y" where "part_no" is "<part_no_two>"
 	Then on "JUROR" . "POOL" I see "USER_EDTQ" is "AUTO" where "part_no" is "<part_no_two>"
 	
@@ -388,23 +350,23 @@ Examples:
 	|part_no		|part_no_two	|part_no_three	|part_no_four	|pool_no 	|last_name 	|postcode	|email		|
 	|641500607		|641500327		|641500339		|641500376 		|415170401	|LNAME 		|CH1 2AN	|e@mail.com	|
 
-@Regression @JDB-3679 
+@Regression @NewSchemaConverted
 Scenario Outline: Check that when name is changed, the response is NOT auto processed
-	Given I am on "Public" "juror-test02"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+
+	Given I am on "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   | <juror_number>| <pool_number>	| 5				            | 400	|
 		
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	
 	Then I see "Reply to a jury summons" on the page
 	
 	And I set the radio button to "I am replying for myself"
 	And I press the "Continue" button
-	And I set "9-digit juror number" to "<part_no>"
+	And I set "9-digit juror number" to "<juror_number>"
 	And I set "Juror last name" to "<last_name>"
 	And I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
@@ -455,107 +417,96 @@ Scenario Outline: Check that when name is changed, the response is NOT auto proc
 	And I press the "Continue" button
 
 	#Qualify for jury service
-	
 	Then I see "Confirm you're eligible for jury service" on the page
 	When I press the "Continue" button
 	
 	#Residency
-	
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	When I see "Eligibility" on the page
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 	
 	#CJS no
-	
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Bail
-	
 	Then I see "Are you currently on bail for a criminal offence?" on the page
 	When I see "Eligibility" on the page
 	And I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Convictions
-	
 	Then I see "Have you been found guilty of a criminal offence?" on the page
 	When I see "Eligibility" on the page
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Mental Health Sectioned
-	
 	Then I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
 	When I see "Eligibility" on the page
 	And I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Mental Health Capacity
-	
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
 	When I see "Eligibility" on the page
 	And I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#I can attend
-	
 	Then I see "Check your start date" on the page
 	And I see "Yes, I can start on" on the page
 	And I set the radio button to "Yes, I can start on"
 	And  I press the "Continue" button
 	
 	#RA no
-	
 	Then I see "Will you need help when you're at the court?" on the page
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Check Your Answers
-	
 	Then I see "Check your answers now" on the page
 	When I check the "The information I have given is true to the best of my knowledge" checkbox
 	And I press the "Submit" button
 	Then I see "We have sent you an email to say you have replied to your jury summons." on the page
 	
 	#Bureau
-	
-	Given I am on "Bureau" "juror-test02"
+	Given I am on "Bureau" "test"
 	When I log in
 	And I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	Then I see "<part_no>" in the same row as "TO DO"
+	Then I see "<juror_number>" in the same row as "TO DO"
 	
 	#check DB
 	
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "STAFF_LOGIN" is null where "JUROR_NUMBER" is "<part_no>"
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "STAFF_ASSIGNMENT_DATE" is null where "JUROR_NUMBER" is "<part_no>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "STAFF_LOGIN" is null where "JUROR_NUMBER" is "<juror_number>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "STAFF_ASSIGNMENT_DATE" is null where "JUROR_NUMBER" is "<juror_number>"
 	
 Examples:
-	|part_no	|last_name	|postcode	| email 			| pool_no	|
-	|641500878	|DOE		|SW1H 9AJ	|email@outlook.com	|415170401	|
+	| juror_number	| last_name	| postcode	| email 			| pool_number	|
+	| 045200212		| DOE		| SW1H 9AJ	| email@outlook.com	| 452300197		|
 	
-@Regression @JDB-3679 
+@Regression @NewSchemaConverted
 Scenario Outline: Check that when address is changed, the response is NOT auto processed
-	Given I am on "Public" "juror-test02"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+
+	Given I am on "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   | <juror_number>| <pool_number>	| 5				            | 400	|
 		
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "ADDRESS" as "1 ORIGINAL LANE"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "ADDRESS_LINE_1" as "1 ORIGINAL LANE" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	
 	Then I see "Reply to a jury summons" on the page
 	
 	And I set the radio button to "I am replying for myself"
 	And I press the "Continue" button
-	And I set "9-digit juror number" to "<part_no>"
+	And I set "9-digit juror number" to "<juror_number>"
 	And I set "Juror last name" to "<last_name>"
 	And I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
@@ -605,107 +556,94 @@ Scenario Outline: Check that when address is changed, the response is NOT auto p
 	And I press the "Continue" button
 
 	#Qualify for jury service
-	
 	Then I see "Confirm you're eligible for jury service" on the page
 	When I press the "Continue" button
 	
 	#Residency
-	
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	When I see "Eligibility" on the page
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 	
 	#CJS no
-	
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Bail
-	
 	Then I see "Are you currently on bail for a criminal offence?" on the page
 	When I see "Eligibility" on the page
 	And I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Convictions
-	
 	Then I see "Have you been found guilty of a criminal offence?" on the page
 	When I see "Eligibility" on the page
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Mental Health Sectioned
-	
 	Then I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
 	When I see "Eligibility" on the page
 	And I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Mental Health Capacity
-	
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
 	When I see "Eligibility" on the page
 	And I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#I can attend
-	
 	Then I see "Check your start date" on the page
 	And I see "Yes, I can start on" on the page
 	And I set the radio button to "Yes, I can start on"
 	And  I press the "Continue" button
 	
 	#RA no
-	
 	Then I see "Will you need help when you're at the court?" on the page
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Check Your Answers
-	
 	Then I see "Check your answers now" on the page
 	When I check the "The information I have given is true to the best of my knowledge" checkbox
 	And I press the "Submit" button
 	Then I see "We have sent you an email to say you have replied to your jury summons." on the page
 	
 	#Bureau
-	
-	Given I am on "Bureau" "juror-test02"
+	Given I am on "Bureau" "test"
 	When I log in
 	And I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	Then I see "<part_no>" in the same row as "TO DO"
+	Then I see "<juror_number>" in the same row as "TO DO"
 
 	#check DB
-	
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "STAFF_LOGIN" is null where "JUROR_NUMBER" is "<part_no>"
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "STAFF_ASSIGNMENT_DATE" is null where "JUROR_NUMBER" is "<part_no>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "STAFF_LOGIN" is null where "JUROR_NUMBER" is "<juror_number>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "STAFF_ASSIGNMENT_DATE" is null where "JUROR_NUMBER" is "<juror_number>"
 	
 Examples:
-	|part_no	|last_name	|postcode	|email 				|pool_no	|
-	|641500886	|DOE		|SW1H 9AJ	|email@outlook.com	|415170401	|
+	| juror_number	| last_name	| postcode	| email 			| pool_number	|
+	| 045200213		| DOE		| SW1H 9AJ	| email@outlook.com	| 452300198		|
 
-@Regression @JDB-4084 
+@Regression @NewSchemaConverted
 Scenario Outline: Check that when Address2 is changed from (null), the response is not auto processed
-	Given I am on "Public" "juror-test02"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+
+	Given I am on "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   | <juror_number>| <pool_number>	| 5				            | 400	|
 		
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "ZIP" as "<postcode>"
-	And "<part_no>" has "Address2" as ""
-	
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
+	And "<juror_number>" has "ADDRESS_LINE_2" as ""
 	Then I see "Reply to a jury summons" on the page
 	
 	And I set the radio button to "I am replying for myself"
 	And I press the "Continue" button
-	And I set "9-digit juror number" to "<part_no>"
+	And I set "9-digit juror number" to "<juror_number>"
 	And I set "Juror last name" to "<last_name>"
 	And I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
@@ -754,112 +692,99 @@ Scenario Outline: Check that when Address2 is changed from (null), the response 
 	And I press the "Continue" button
 
 	#Qualify for jury service
-	
 	Then I see "Confirm you're eligible for jury service" on the page
 	When I press the "Continue" button
 	
 	#Residency
-	
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	When I see "Eligibility" on the page
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 	
 	#CJS no
-	
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Bail
-	
 	Then I see "Are you currently on bail for a criminal offence?" on the page
 	When I see "Eligibility" on the page
 	And I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Convictions
-	
 	Then I see "Have you been found guilty of a criminal offence?" on the page
 	When I see "Eligibility" on the page
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Mental Health Sectioned
-	
 	Then I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
 	When I see "Eligibility" on the page
 	And I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Mental Health Capacity
-	
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
 	When I see "Eligibility" on the page
 	And I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#I can attend
-	
 	Then I see "Check your start date" on the page
 	And I see "Yes, I can start on" on the page
 	And I set the radio button to "Yes, I can start on"
 	And  I press the "Continue" button
 	
 	#RA no
-	
 	Then I see "Will you need help when you're at the court?" on the page
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Check Your Answers
-	
 	Then I see "Check your answers now" on the page
 	When I check the "The information I have given is true to the best of my knowledge" checkbox
 	And I press the "Submit" button
 	Then I see "We have sent you an email to say you have replied to your jury summons." on the page
 	
 	#Bureau
-	
-	Given I am on "Bureau" "juror-test01"
+	Given I am on "Bureau" "test"
 	When I log in
 	And I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I see "<part_no>" in the same row as "TO DO"
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I see "<juror_number>" in the same row as "TO DO"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Juror details" on the page
 	And I see "Summoned" on the page
 	And I see "Second Address Line" on the page
 
 	#check DB
-	
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "STAFF_LOGIN" is null where "JUROR_NUMBER" is "<part_no>"
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "STAFF_ASSIGNMENT_DATE" is null where "JUROR_NUMBER" is "<part_no>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "STAFF_LOGIN" is null where "JUROR_NUMBER" is "<juror_number>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "STAFF_ASSIGNMENT_DATE" is null where "JUROR_NUMBER" is "<juror_number>"
 	
 Examples:
-	|part_no	|last_name		|postcode	|email 				|pool_no	|
-	|645700095	|LNAMENINEFIVE	|SA1 4PF	|email@outlook.com	|457170401	|
+	| juror_number	| last_name		| postcode	| email 			| pool_number	|
+	| 045200214		| LNAMENINEFIVE	| SA1 4PF	| email@outlook.com	| 452300199		|
 	
 @Regression @JDB-4084 
 Scenario Outline: Check that when Address3 is changed from (null), the response is not auto processed
-	Given I am on "Public" "juror-test02"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+
+	Given I am on "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   | <juror_number>| <pool_number>	| 5				            | 400	|
 		
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "ZIP" as "<postcode>"
-	And "<part_no>" has "Address3" as ""
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
+	And juror "<juror_number>" has "ADDRESS_LINE_3" as "" new schema
 	
 	Then I see "Reply to a jury summons" on the page
-	
-	
+
 	And I set the radio button to "I am replying for myself"
 	And I press the "Continue" button
-	And I set "9-digit juror number" to "<part_no>"
+	And I set "9-digit juror number" to "<juror_number>"
 	And I set "Juror last name" to "<last_name>"
 	And I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
@@ -908,111 +833,99 @@ Scenario Outline: Check that when Address3 is changed from (null), the response 
 	And I press the "Continue" button
 
 	#Qualify for jury service
-	
 	Then I see "Confirm you're eligible for jury service" on the page
 	When I press the "Continue" button
 	
 	#Residency
-	
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	When I see "Eligibility" on the page
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 	
 	#CJS no
-	
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Bail
-	
 	Then I see "Are you currently on bail for a criminal offence?" on the page
 	When I see "Eligibility" on the page
 	And I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Convictions
-	
 	Then I see "Have you been found guilty of a criminal offence?" on the page
 	When I see "Eligibility" on the page
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Mental Health Sectioned
-	
 	Then I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
 	When I see "Eligibility" on the page
 	And I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Mental Health Capacity
-	
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
 	When I see "Eligibility" on the page
 	And I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#I can attend
-	
 	Then I see "Check your start date" on the page
 	And I see "Yes, I can start on" on the page
 	And I set the radio button to "Yes, I can start on"
 	And  I press the "Continue" button
 	
 	#RA no
-	
 	Then I see "Will you need help when you're at the court?" on the page
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Check Your Answers
-	
 	Then I see "Check your answers now" on the page
 	When I check the "The information I have given is true to the best of my knowledge" checkbox
 	And I press the "Submit" button
 	Then I see "We have sent you an email to say you have replied to your jury summons." on the page
 	
 	#Bureau
-	
-	Given I am on "Bureau" "juror-test02"
+	Given I am on "Bureau" "test"
 	When I log in
 	And I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I see "<part_no>" in the same row as "TO DO"
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I see "<juror_number>" in the same row as "TO DO"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Juror details" on the page
 	And I see "Summoned" on the page
 	And I see "Third Address Line" on the page
 
 	#check DB
-	
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "STAFF_LOGIN" is null where "JUROR_NUMBER" is "<part_no>"
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "STAFF_ASSIGNMENT_DATE" is null where "JUROR_NUMBER" is "<part_no>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "STAFF_LOGIN" is null where "JUROR_NUMBER" is "<juror_number>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "STAFF_ASSIGNMENT_DATE" is null where "JUROR_NUMBER" is "<juror_number>"
 	
 Examples:
-	|part_no	|last_name			|postcode	|email 				|pool_no	|
-	|644200430	|LNAMEFOURTHREEZERO	|NN1 3HQ	|email@outlook.com	|442170401	|
+	| juror_number	| last_name			| postcode	| email 			| pool_number	|
+	| 045200215		| LNAMEFOURTHREEZERO| NN1 3HQ	| email@outlook.com	| 452300200		|
 	
-@Regression @JDB-4084 
+@Regression @NewSchemaConverted
 Scenario Outline: Check that when Address4 is changed from (null), the response is not auto processed
-	Given I am on "Public" "juror-test02"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+
+	Given I am on "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   | <juror_number>| <pool_number>	| 5				            | 400	|
 		
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "ZIP" as "<postcode>"
-	And "<part_no>" has "Address4" as ""
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
+	And juror "<juror_number>" has "ADDRESS_LINE_4" as "" new schema
 	
 	Then I see "Reply to a jury summons" on the page
 	
 	And I set the radio button to "I am replying for myself"
 	And I press the "Continue" button
-	And I set "9-digit juror number" to "<part_no>"
+	And I set "9-digit juror number" to "<juror_number>"
 	And I set "Juror last name" to "<last_name>"
 	And I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
@@ -1061,66 +974,56 @@ Scenario Outline: Check that when Address4 is changed from (null), the response 
 	And I press the "Continue" button
 
 	#Qualify for jury service
-	
 	Then I see "Confirm you're eligible for jury service" on the page
 	When I press the "Continue" button
 	
 	#Residency
-	
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	When I see "Eligibility" on the page
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 	
 	#CJS no
-	
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Bail
-	
 	Then I see "Are you currently on bail for a criminal offence?" on the page
 	When I see "Eligibility" on the page
 	And I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Convictions
-	
 	Then I see "Have you been found guilty of a criminal offence?" on the page
 	When I see "Eligibility" on the page
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Mental Health Sectioned
-	
 	Then I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
 	When I see "Eligibility" on the page
 	And I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Mental Health Capacity
-	
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
 	When I see "Eligibility" on the page
 	And I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#I can attend
-	
 	Then I see "Check your start date" on the page
 	And I see "Yes, I can start on" on the page
 	And I set the radio button to "Yes, I can start on"
 	And  I press the "Continue" button
 	
 	#RA no
-	
 	Then I see "Will you need help when you're at the court?" on the page
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Check Your Answers
-	
 	Then I see "Check your answers now" on the page
 	When I check the "The information I have given is true to the best of my knowledge" checkbox
 	And I press the "Submit" button
@@ -1128,45 +1031,43 @@ Scenario Outline: Check that when Address4 is changed from (null), the response 
 	Then I see "We have sent you an email to say you have replied to your jury summons." on the page
 	
 	#Bureau
-	
-	Given I am on "Bureau" "juror-test02"
+	Given I am on "Bureau" "test"
 	When I log in
 	And I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I see "<part_no>" in the same row as "TO DO"
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I see "<juror_number>" in the same row as "TO DO"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Juror details" on the page
 	And I see "Summoned" on the page
 	And I see "NewTown" on the page
 
 	#check DB
-	
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "STAFF_LOGIN" is null where "JUROR_NUMBER" is "<part_no>"
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "STAFF_ASSIGNMENT_DATE" is null where "JUROR_NUMBER" is "<part_no>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "STAFF_LOGIN" is null where "JUROR_NUMBER" is "<juror_number>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "STAFF_ASSIGNMENT_DATE" is null where "JUROR_NUMBER" is "<juror_number>"
 	
 Examples:
-	|part_no	|last_name			|postcode	|email 				|pool_no	|
-	|645700118	|LNAMEONEONEEIGHT	|SA1 4PF	|email@outlook.com	|457170401	|
+	| juror_number	| last_name			| postcode	| email 			| pool_number	|
+	| 045200216		| LNAMEONEONEEIGHT	| SA1 4PF	| email@outlook.com	| 452300201		|
 	
-@Regression @JDB-4084 
+@Regression @NewSchemaConverted
 Scenario Outline: Check that when Address5 is changed from (null), the response is not auto processed
-	Given I am on "Public" "juror-test02"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+
+	Given I am on "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   | <juror_number>| <pool_number>	| 5				            | 400	|
 		
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "ZIP" as "<postcode>"
-	And "<part_no>" has "Address5" as ""
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
+	And juror "<juror_number>" has "ADDRESS_LINE_5" as "" new schema
 	
 	Then I see "Reply to a jury summons" on the page
 	
 	And I set the radio button to "I am replying for myself"
 	And I press the "Continue" button
-	And I set "9-digit juror number" to "<part_no>"
+	And I set "9-digit juror number" to "<juror_number>"
 	And I set "Juror last name" to "<last_name>"
 	And I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
@@ -1215,111 +1116,99 @@ Scenario Outline: Check that when Address5 is changed from (null), the response 
 	And I press the "Continue" button
 
 	#Qualify for jury service
-	
 	Then I see "Confirm you're eligible for jury service" on the page
 	When I press the "Continue" button
 	
 	#Residency
-	
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	When I see "Eligibility" on the page
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 	
 	#CJS no
-	
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Bail
-	
 	Then I see "Are you currently on bail for a criminal offence?" on the page
 	When I see "Eligibility" on the page
 	And I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Convictions
-	
 	Then I see "Have you been found guilty of a criminal offence?" on the page
 	When I see "Eligibility" on the page
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Mental Health Sectioned
-	
 	Then I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
 	When I see "Eligibility" on the page
 	And I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Mental Health Capacity
-	
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
 	When I see "Eligibility" on the page
 	And I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#I can attend
-	
 	Then I see "Check your start date" on the page
 	And I see "Yes, I can start on" on the page
 	And I set the radio button to "Yes, I can start on"
 	And  I press the "Continue" button
 	
 	#RA no
-	
 	Then I see "Will you need help when you're at the court?" on the page
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Check Your Answers
-	
 	Then I see "Check your answers now" on the page
 	When I check the "The information I have given is true to the best of my knowledge" checkbox
 	And I press the "Submit" button
 	Then I see "We have sent you an email to say you have replied to your jury summons." on the page
 	
 	#Bureau
-	
-	Given I am on "Bureau" "juror-test02"
+	Given I am on "Bureau" "test"
 	When I log in
 	And I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I see "<part_no>" in the same row as "TO DO"
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I see "<juror_number>" in the same row as "TO DO"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Juror details" on the page
 	And I see "Summoned" on the page
 	And I see "NewCounty" on the page
 
 	#check DB
-	
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "STAFF_LOGIN" is null where "JUROR_NUMBER" is "<part_no>"
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "STAFF_ASSIGNMENT_DATE" is null where "JUROR_NUMBER" is "<part_no>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "STAFF_LOGIN" is null where "JUROR_NUMBER" is "<juror_number>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "STAFF_ASSIGNMENT_DATE" is null where "JUROR_NUMBER" is "<juror_number>"
 	
 Examples:
-	|part_no	|last_name	|postcode	|email 				|pool_no	|
-	|644200902	|LNAMENINEZEROTWO	|NN1 3HQ	|email@outlook.com	|442170401	|
+	| juror_number	| last_name			| postcode	| email 			| pool_number	|
+	| 045200217		| LNAMENINEZEROTWO	| NN1 3HQ	| email@outlook.com	| 452300202		|
 	
-@Regression @JDB-4084
+@Regression @NewSchemaConverted
 Scenario Outline: Check that when Address2 is changed from string value, the response is not auto processed
-	Given I am on "Public" "juror-test02"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+
+	Given I am on "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   | <juror_number>| <pool_number>	| 5				            | 400	|
 		
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "ZIP" as "<postcode>"
-	And "<part_no>" has "Address2" as "Second Address Line"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
+	And juror "<juror_number>" has "Address2" as "Second Address Line" new schema
 	
 	Then I see "Reply to a jury summons" on the page
 
 	And I set the radio button to "I am replying for myself"
 	And I press the "Continue" button
-	And I set "9-digit juror number" to "<part_no>"
+	And I set "9-digit juror number" to "<juror_number>"
 	And I set "Juror last name" to "<last_name>"
 	And I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
@@ -1368,111 +1257,99 @@ Scenario Outline: Check that when Address2 is changed from string value, the res
 	And I press the "Continue" button
 
 	#Qualify for jury service
-	
 	Then I see "Confirm you're eligible for jury service" on the page
 	When I press the "Continue" button
 	
 	#Residency
-	
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	When I see "Eligibility" on the page
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 	
 	#CJS no
-	
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Bail
-	
 	Then I see "Are you currently on bail for a criminal offence?" on the page
 	When I see "Eligibility" on the page
 	And I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Convictions
-	
 	Then I see "Have you been found guilty of a criminal offence?" on the page
 	When I see "Eligibility" on the page
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Mental Health Sectioned
-	
 	Then I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
 	When I see "Eligibility" on the page
 	And I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Mental Health Capacity
-	
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
 	When I see "Eligibility" on the page
 	And I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#I can attend
-	
 	Then I see "Check your start date" on the page
 	And I see "Yes, I can start on" on the page
 	And I set the radio button to "Yes, I can start on"
 	And  I press the "Continue" button
 	
 	#RA no
-	
 	Then I see "Will you need help when you're at the court?" on the page
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Check Your Answers
-	
 	Then I see "Check your answers now" on the page
 	When I check the "The information I have given is true to the best of my knowledge" checkbox
 	And I press the "Submit" button
 	Then I see "We have sent you an email to say you have replied to your jury summons." on the page
 	
 	#Bureau
-	
-	Given I am on "Bureau" "juror-test02"
+	Given I am on "Bureau" "test"
 	When I log in
 	And I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I see "<part_no>" in the same row as "TO DO"
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I see "<juror_number>" in the same row as "TO DO"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Juror details" on the page
 	And I see "Summoned" on the page
 	And I see "Second Address Line CHANGED" on the page
 
 	#check DB
-	
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "STAFF_LOGIN" is null where "JUROR_NUMBER" is "<part_no>"
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "STAFF_ASSIGNMENT_DATE" is null where "JUROR_NUMBER" is "<part_no>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "STAFF_LOGIN" is null where "JUROR_NUMBER" is "<juror_number>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "STAFF_ASSIGNMENT_DATE" is null where "JUROR_NUMBER" is "<juror_number>"
 	
 Examples:
-	|part_no	|last_name	|postcode	|email 				|pool_no	|
-	|645100538	|DOE		|SW1H 9AJ	|email@outlook.com	|451170401	|
+	| juror_number	| last_name	| postcode	| email 			| pool_number	|
+	| 045200218		| DOE		| SW1H 9AJ	| email@outlook.com	| 452300203		|
 	
-@Regression
+@Regression @NewSchemaConverted
 Scenario Outline: Check that when Address3 is changed from string value, the response is not auto processed
+
 	Given I am on "Public" "test"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+
+	Given a bureau owned pool is created with jurors
+		| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   | <juror_number>| <pool_number>	| 5				            | 400	|
 		
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "ZIP" as "<postcode>"
-	And "<part_no>" has "Address3" as "Third Address Line"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
+	And juror "<juror_number>" has "ADDRES_LINE_3" as "Third Address Line" new schema
 	
 	Then I see "Reply to a jury summons" on the page
 	
 	And I set the radio button to "I am replying for myself"
 	And I press the "Continue" button
-	And I set "9-digit juror number" to "<part_no>"
+	And I set "9-digit juror number" to "<juror_number>"
 	And I set "Juror last name" to "<last_name>"
 	And I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
@@ -1521,111 +1398,99 @@ Scenario Outline: Check that when Address3 is changed from string value, the res
 	And I press the "Continue" button
 
 	#Qualify for jury service
-	
 	Then I see "Confirm you're eligible for jury service" on the page
 	When I press the "Continue" button
 	
 	#Residency
-	
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	When I see "Eligibility" on the page
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 	
 	#CJS no
-	
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Bail
-	
 	Then I see "Are you currently on bail for a criminal offence?" on the page
 	When I see "Eligibility" on the page
 	And I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Convictions
-	
 	Then I see "Have you been found guilty of a criminal offence?" on the page
 	When I see "Eligibility" on the page
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Mental Health Sectioned
-	
 	Then I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
 	When I see "Eligibility" on the page
 	And I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Mental Health Capacity
-	
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
 	When I see "Eligibility" on the page
 	And I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#I can attend
-	
 	Then I see "Check your start date" on the page
 	And I see "Yes, I can start on" on the page
 	And I set the radio button to "Yes, I can start on"
 	And  I press the "Continue" button
 	
 	#RA no
-	
 	Then I see "Will you need help when you're at the court?" on the page
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Check Your Answers
-	
 	Then I see "Check your answers now" on the page
 	When I check the "The information I have given is true to the best of my knowledge" checkbox
 	And I press the "Submit" button
 	Then I see "We have sent you an email to say you have replied to your jury summons." on the page
 	
 	#Bureau
-	
 	Given I am on "Bureau" "test"
 	When I log in
 	And I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I see "<part_no>" in the same row as "TO DO"
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I see "<juror_number>" in the same row as "TO DO"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Juror details" on the page
 	And I see "Summoned" on the page
 	And I see "Third Address Line CHANGED" on the page
 
 	#check DB
-	
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "STAFF_LOGIN" is null where "JUROR_NUMBER" is "<part_no>"
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "STAFF_ASSIGNMENT_DATE" is null where "JUROR_NUMBER" is "<part_no>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "STAFF_LOGIN" is null where "JUROR_NUMBER" is "<juror_number>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "STAFF_ASSIGNMENT_DATE" is null where "JUROR_NUMBER" is "<juror_number>"
 	
 Examples:
-	|part_no	|last_name				|postcode	|email 				|pool_no	|
-	|641500953	|LNAMENINEFIVETHREE		|CH1 2AN	|email@outlook.com	|415170402	|
+	| juror_number	| last_name				| postcode	| email 			| pool_number	|
+	| 045200219		| LNAMENINEFIVETHREE	| CH1 2AN	| email@outlook.com	| 452300204		|
 	
-@Regression @JDB-4084 
+@Regression @NewSchemaConverted
 Scenario Outline: Check that when Address4 is changed from string value, the response is not auto processed
-	Given I am on "Public" "juror-test02"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+
+	Given I am on "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   | <juror_number>| <pool_number>	| 5				            | 400	|
 		
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "ZIP" as "<postcode>"
-	And "<part_no>" has "Address4" as "NewTown"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
+	And juror "<juror_number>" has "ADDRESS_LINE_4" as "NewTown" new schema
 	
 	Then I see "Reply to a jury summons" on the page
 	
 	And I set the radio button to "I am replying for myself"
 	And I press the "Continue" button
-	And I set "9-digit juror number" to "<part_no>"
+	And I set "9-digit juror number" to "<juror_number>"
 	And I set "Juror last name" to "<last_name>"
 	And I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
@@ -1674,111 +1539,99 @@ Scenario Outline: Check that when Address4 is changed from string value, the res
 	And I press the "Continue" button
 
 	#Qualify for jury service
-	
 	Then I see "Confirm you're eligible for jury service" on the page
 	When I press the "Continue" button
 	
 	#Residency
-	
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	When I see "Eligibility" on the page
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 	
 	#CJS no
-	
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Bail
-	
 	Then I see "Are you currently on bail for a criminal offence?" on the page
 	When I see "Eligibility" on the page
 	And I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Convictions
-	
 	Then I see "Have you been found guilty of a criminal offence?" on the page
 	When I see "Eligibility" on the page
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Mental Health Sectioned
-	
 	Then I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
 	When I see "Eligibility" on the page
 	And I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Mental Health Capacity
-	
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
 	When I see "Eligibility" on the page
 	And I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#I can attend
-	
 	Then I see "Check your start date" on the page
 	And I see "Yes, I can start on" on the page
 	And I set the radio button to "Yes, I can start on"
 	And  I press the "Continue" button
 	
 	#RA no
-	
 	Then I see "Will you need help when you're at the court?" on the page
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Check Your Answers
-	
 	Then I see "Check your answers now" on the page
 	When I check the "The information I have given is true to the best of my knowledge" checkbox
 	And I press the "Submit" button
 	Then I see "We have sent you an email to say you have replied to your jury summons." on the page
 	
 	#Bureau
-	
-	Given I am on "Bureau" "juror-test02"
+	Given I am on "Bureau" "test"
 	When I log in
 	And I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I see "<part_no>" in the same row as "TO DO"
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I see "<juror_number>" in the same row as "TO DO"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Juror details" on the page
 	And I see "Summoned" on the page
 	And I see "NewTownCHANGED" on the page
 
 	#check DB
-	
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "STAFF_LOGIN" is null where "JUROR_NUMBER" is "<part_no>"
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "STAFF_ASSIGNMENT_DATE" is null where "JUROR_NUMBER" is "<part_no>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "STAFF_LOGIN" is null where "JUROR_NUMBER" is "<juror_number>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "STAFF_ASSIGNMENT_DATE" is null where "JUROR_NUMBER" is "<juror_number>"
 	
 Examples:
-	|part_no	|last_name	|postcode	|email 				|pool_no	|
-	|641500429	|DOE		|SY2 6LU	|email@outlook.com	|415170401	|
+	| juror_number	| last_name	| postcode	| email 			| pool_number	|
+	| 045200220		| DOE		| SY2 6LU	| email@outlook.com	| 452300205		|
 	
-@Regression @JDB-4084
+@Regression @NewSchemaConverted
 Scenario Outline: Check that when Address5 is changed from string value, the response is not auto processed
-	Given I am on "Public" "juror-test02"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+
+	Given I am on "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   | <juror_number>| <pool_number>	| 5				            | 400	|
 		
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "ZIP" as "<postcode>"
-	And "<part_no>" has "Address5" as "NewCounty"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
+	And juror "<juror_number>" has "ADDRESS_LINE_5" as "NewCounty" new schema
 	
 	Then I see "Reply to a jury summons" on the page
 	
 	And I set the radio button to "I am replying for myself"
 	And I press the "Continue" button
-	And I set "9-digit juror number" to "<part_no>"
+	And I set "9-digit juror number" to "<juror_number>"
 	And I set "Juror last name" to "<last_name>"
 	And I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
@@ -1827,89 +1680,77 @@ Scenario Outline: Check that when Address5 is changed from string value, the res
 	And I press the "Continue" button
 
 	#Qualify for jury service
-	
 	Then I see "Confirm you're eligible for jury service" on the page
 	When I press the "Continue" button
 	
 	#Residency
-	
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	When I see "Eligibility" on the page
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 	
 	#CJS no
-	
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Bail
-	
 	Then I see "Are you currently on bail for a criminal offence?" on the page
 	When I see "Eligibility" on the page
 	And I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Convictions
-	
 	Then I see "Have you been found guilty of a criminal offence?" on the page
 	When I see "Eligibility" on the page
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Mental Health Sectioned
-	
 	Then I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
 	When I see "Eligibility" on the page
 	And I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Mental Health Capacity
-	
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
 	When I see "Eligibility" on the page
 	And I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#I can attend
-	
 	Then I see "Check your start date" on the page
 	And I see "Yes, I can start on" on the page
 	And I set the radio button to "Yes, I can start on"
 	And  I press the "Continue" button
 	
 	#RA no
-	
 	Then I see "Will you need help when you're at the court?" on the page
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Check Your Answers
-	
 	Then I see "Check your answers now" on the page
 	When I check the "The information I have given is true to the best of my knowledge" checkbox
 	And I press the "Submit" button
 	Then I see "We have sent you an email to say you have replied to your jury summons." on the page
 	
 	#Bureau
-	
-	Given I am on "Bureau" "juror-test02"
+	Given I am on "Bureau" "test"
 	When I log in
 	And I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I see "<part_no>" in the same row as "TO DO"
-	And I click on "<part_no>" in the same row as "<part_no>"
+	And I see "<juror_number>" in the same row as "TO DO"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Juror details" on the page
 	And I see "Summoned" on the page
 	And I see "NewCountyCHANGED" on the page
 
 	#check DB
-	
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "STAFF_LOGIN" is null where "JUROR_NUMBER" is "<part_no>"
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "STAFF_ASSIGNMENT_DATE" is null where "JUROR_NUMBER" is "<part_no>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "STAFF_LOGIN" is null where "JUROR_NUMBER" is "<juror_number>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "STAFF_ASSIGNMENT_DATE" is null where "JUROR_NUMBER" is "<juror_number>"
 	
 Examples:
-	|part_no	|last_name	|postcode	|email 				|pool_no	|
-	|641500766	|DOE		|NN1 4EE	|email@outlook.com	|415170401	|
+	| juror_number	| last_name	| postcode	| email 			| pool_number	|
+	| 045200221		| DOE		| NN1 4EE	| email@outlook.com	| 452300206		|

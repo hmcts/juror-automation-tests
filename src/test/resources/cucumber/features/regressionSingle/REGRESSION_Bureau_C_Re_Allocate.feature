@@ -15,10 +15,10 @@ Scenario Outline: Bureau C script
 	
 	Given auto straight through processing has been enabled
 	
-	And "<part_no>" has "RET_DATE" as "6 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "6 mondays time"
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And "<juror_number>" has "RET_DATE" as "6 mondays time"
+	And "<juror_number>" has "NEXT_DATE" as "6 mondays time"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	
 	And "<part_no_two>" has "RET_DATE" as "6 mondays time"
 	And "<part_no_two>" has "NEXT_DATE" as "6 mondays time"
@@ -47,7 +47,7 @@ Scenario Outline: Bureau C script
 	And I press the "Assign replies" button
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
 	
 	And I press the "Select all" button
@@ -56,12 +56,12 @@ Scenario Outline: Bureau C script
 	And I press the "Send" button
 	And I press the "Send" button
 	Then I see "Your work" on the page
-	Then I see "<part_no>" in the same row as "<part_no>"
+	Then I see "<juror_number>" in the same row as "<juror_number>"
 	When I click on the "To do" link
 	
 	# Proves that I have sent from Backlog to SYSTEM/Logged in USer
 	
-	When I click on "<part_no>" in the same row as "<part_no>"
+	When I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I press the "More actions" button
 	And I click on the "Send to a colleague" link
 	
@@ -76,10 +76,10 @@ Scenario Outline: Bureau C script
 	And I press the "Send" button
 	Then I see "Your work" on the page
 	Then I see "To do" on the page
-	Then I do not see "<part_no>" on the page
+	Then I do not see "<juror_number>" on the page
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
 	And I press the "Select all" button
 	And I press the "Send to" button
@@ -92,22 +92,22 @@ Scenario Outline: Bureau C script
 
 	Given I am on "Bureau" "test"
 	And I log in as "ARAMIS1"
-	Then I see "<part_no>" on the page
-	
-	When I click on "<part_no>" in the same row as "<part_no>"
+	Then I see "<juror_number>" on the page
+
+	When I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I press the "More actions" button
 	And I click on the "Send to a colleague" link
 	And I set input field with "id" of "sendToOfficer" to "SYSTEM"
 	And I press the "Send" button
 	And I press the "Send" button
 	Then I see "Your work" on the page
-	Then I do not see "<part_no>" on the page
+	Then I do not see "<juror_number>" on the page
 	
 	And I click on the "Sign out" link
 
 	Given I am on "Bureau" "test"
 	And I log in
-	Then I see "<part_no>" on the page
+	Then I see "<juror_number>" on the page
 	
 	When I click on the "Search" link
 	And I set "Juror's pool number" to "<pool_no>"
@@ -123,7 +123,7 @@ Scenario Outline: Bureau C script
 
 	Given I am on "Bureau" "test"
 	And I log in as "ARAMIS1"
-	Then I see "<part_no>" on the page
+	Then I see "<juror_number>" on the page
 	Then I see "<part_no_two>" on the page
 	Then I see "<part_no_three>" on the page
 	
@@ -147,7 +147,7 @@ Scenario Outline: Bureau C script
 
 	Given I am on "Bureau" "test"
 	And I log in as "CPASS"
-	Then I do not see "<part_no>" on the page
+	Then I do not see "<juror_number>" on the page
 	Then I do not see "<part_no_two>" on the page
 	Then I do not see "<part_no_three>" on the page
 	

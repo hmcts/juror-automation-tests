@@ -11,10 +11,10 @@ Feature: Bureau - launch darkly negative test
 
 	    #set up some responses
 		#non-urgent
-		And "<part_no>" has "LNAME" as "<last_name>"
-		And "<part_no>" has "ZIP" as "<postcode>"
-		And "<part_no>" has "RET_DATE" as "5 mondays time"
-		And "<part_no>" has "NEXT_DATE" as "5 mondays time"
+		And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+		And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
+
+
 
 		Given I am on "Public" "test"
 		And I have submitted a first party Welsh ineligibilty response
@@ -154,11 +154,11 @@ Feature: Bureau - launch darkly negative test
 
 		#Search page
 		And I click on the "Search" link
-		And I set "Juror number" to "<part_no>"
+		And I set "Juror number" to "<juror_number>"
 		And I press the "Search" button
 
 		#view page
-		When I click on "<part_no>" in the same row as "<part_no>"
+		When I click on "<juror_number>" in the same row as "<juror_number>"
 		And I do not see "SUMMONS REPLY" on the page
 		And I do not see link with text "View juror"
 		And I do not see "Service start date" on the page
@@ -339,10 +339,10 @@ Feature: Bureau - launch darkly negative test
 
 	    #set up some responses
 		#non-urgent
-		And "<part_no>" has "LNAME" as "<last_name>"
-		And "<part_no>" has "ZIP" as "<postcode>"
-		And "<part_no>" has "RET_DATE" as "5 mondays time"
-		And "<part_no>" has "NEXT_DATE" as "5 mondays time"
+		And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+		And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
+
+
 
 		Given I am on "Public" "test"
 		And I have submitted a first party English ineligibilty response
@@ -356,11 +356,11 @@ Feature: Bureau - launch darkly negative test
 
 		#Search page
 		And I click on the "Search" link
-		And I set "Juror number" to "<part_no>"
+		And I set "Juror number" to "<juror_number>"
 		And I press the "Search" button
 
 		#view page
-		When I click on "<part_no>" in the same row as "<part_no>"
+		When I click on "<juror_number>" in the same row as "<juror_number>"
 		And I do not see "SUMMONS REPLY" on the page
 
 		Examples:
@@ -377,10 +377,10 @@ Feature: Bureau - launch darkly negative test
 
 	    #set up some responses
 		#non-urgent
-		And "<part_no>" has "LNAME" as "<last_name>"
-		And "<part_no>" has "ZIP" as "<postcode>"
-		And "<part_no>" has "RET_DATE" as "5 mondays time"
-		And "<part_no>" has "NEXT_DATE" as "5 mondays time"
+		And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+		And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
+
+
 
 		Given I am on "Public" "test"
 		And I have submitted a first party English ineligibilty response
@@ -394,11 +394,11 @@ Feature: Bureau - launch darkly negative test
 
 		#Search page
 		And I click on the "Search" link
-		And I set "Juror number" to "<part_no>"
+		And I set "Juror number" to "<juror_number>"
 		And I press the "Search" button
 
 		#view page
-		When I click on "<part_no>" in the same row as "<part_no>"
+		When I click on "<juror_number>" in the same row as "<juror_number>"
 		And I do not see link with text "View juror"
 
 		Examples:
@@ -415,10 +415,10 @@ Feature: Bureau - launch darkly negative test
 
 	    #set up some responses
 		#non-urgent
-		And "<part_no>" has "LNAME" as "<last_name>"
-		And "<part_no>" has "ZIP" as "<postcode>"
-		And "<part_no>" has "RET_DATE" as "5 mondays time"
-		And "<part_no>" has "NEXT_DATE" as "5 mondays time"
+		And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+		And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
+
+
 
 		Given I am on "Public" "test"
 		And I have submitted a first party English ineligibilty response
@@ -432,11 +432,11 @@ Feature: Bureau - launch darkly negative test
 
 		#Search page
 		And I click on the "Search" link
-		And I set "Juror number" to "<part_no>"
+		And I set "Juror number" to "<juror_number>"
 		And I press the "Search" button
 
 		#view page
-		When I click on "<part_no>" in the same row as "<part_no>"
+		When I click on "<juror_number>" in the same row as "<juror_number>"
 		And I do not see "Service start date" on the page
 
 		Examples:
@@ -453,10 +453,10 @@ Feature: Bureau - launch darkly negative test
 
 	    #set up some responses
 		#non-urgent
-		And "<part_no>" has "LNAME" as "<last_name>"
-		And "<part_no>" has "ZIP" as "<postcode>"
-		And "<part_no>" has "RET_DATE" as "5 mondays time"
-		And "<part_no>" has "NEXT_DATE" as "5 mondays time"
+		And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+		And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
+
+
 
 		Given I am on "Public" "test"
 		And I have submitted a first party English ineligibilty response
@@ -470,11 +470,11 @@ Feature: Bureau - launch darkly negative test
 
 		#Search page
 		And I click on the "Search" link
-		And I set "Juror number" to "<part_no>"
+		And I set "Juror number" to "<juror_number>"
 		And I press the "Search" button
 
 		#view page
-		When I click on "<part_no>" in the same row as "<part_no>"
+		When I click on "<juror_number>" in the same row as "<juror_number>"
 
 		#check reasonable adjustments
 		Then I click on the "Reasonable adjustments" link
@@ -495,10 +495,10 @@ Feature: Bureau - launch darkly negative test
 
 	    #set up some responses
 		#non-urgent
-		And "<part_no>" has "LNAME" as "<last_name>"
-		And "<part_no>" has "ZIP" as "<postcode>"
-		And "<part_no>" has "RET_DATE" as "5 mondays time"
-		And "<part_no>" has "NEXT_DATE" as "5 mondays time"
+		And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+		And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
+
+
 
 		Given I am on "Public" "test"
 		And I have submitted a first party English ineligibilty response
@@ -512,11 +512,11 @@ Feature: Bureau - launch darkly negative test
 
 		#Search page
 		And I click on the "Search" link
-		And I set "Juror number" to "<part_no>"
+		And I set "Juror number" to "<juror_number>"
 		And I press the "Search" button
 
 		#view page
-		When I click on "<part_no>" in the same row as "<part_no>"
+		When I click on "<juror_number>" in the same row as "<juror_number>"
 
 		#respond summons
 		When I respond the juror response in Juror Digital
@@ -537,10 +537,10 @@ Feature: Bureau - launch darkly negative test
 
 	    #set up some responses
 		#non-urgent
-		And "<part_no>" has "LNAME" as "<last_name>"
-		And "<part_no>" has "ZIP" as "<postcode>"
-		And "<part_no>" has "RET_DATE" as "5 mondays time"
-		And "<part_no>" has "NEXT_DATE" as "5 mondays time"
+		And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+		And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
+
+
 
 		Given I am on "Public" "test"
 		And I have submitted a first party English ineligibilty response
@@ -635,13 +635,13 @@ Feature: Bureau - launch darkly negative test
 		And I see "Juror's pool number" on the page
 		And I do not see "Advanced search" on the page
 
-		And I set "Juror number" to "<part_no>"
+		And I set "Juror number" to "<juror_number>"
 		And I press the "Search" button
 
 		#summons response details
 
 		#view page
-		When I click on "<part_no>" in the same row as "<part_no>"
+		When I click on "<juror_number>" in the same row as "<juror_number>"
 		And I do not see "SUMMONS REPLY" on the page
 		And I do not see link with text "View juror"
 		And I do not see "Service start date" on the page

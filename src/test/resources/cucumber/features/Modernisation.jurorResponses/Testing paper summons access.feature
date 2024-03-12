@@ -9,7 +9,7 @@ Feature: JM-4079 Testing paper summons access
       |part_no   | pool_no   | owner |
       |<part_no> | <pool_no> | 400   |
 
-    And "<part_no>" has "NEXT_DATE" as "-2 mondays time" new schema
+    And "<juror_number>" has "NEXT_DATE" as "-2 mondays time" new schema
     And pool "<pool_no>" has attendance date as "-2 mondays time" new schema
 
     Given a new pool is inserted for where record has transferred to the court new schema
@@ -19,7 +19,7 @@ Feature: JM-4079 Testing paper summons access
     And I log in as "MODTESTCOURT"
 
     #navigate to juror record
-    When the user searches for juror record "<part_no>" from the global search bar
+    When the user searches for juror record "<juror_number>" from the global search bar
 
     #record happy path paper summons
     And I record a happy path paper summons response
@@ -49,7 +49,7 @@ Feature: JM-4079 Testing paper summons access
       |<part_no> | <pool_no> | 400   |
 
 
-    And "<part_no>" has "NEXT_DATE" as "2 mondays time" new schema
+    And "<juror_number>" has "NEXT_DATE" as "2 mondays time" new schema
 
     Given a new pool is inserted for where record has transferred to the court new schema
       |part_no   | pool_no   | owner |
@@ -58,7 +58,7 @@ Feature: JM-4079 Testing paper summons access
     And I log in as "MODTESTBUREAU"
 
     #navigate to juror record
-    When the user searches for juror record "<part_no>" from the global search bar
+    When the user searches for juror record "<juror_number>" from the global search bar
 
     #record summons button not available
     Then the Enter summons reply button is not visible

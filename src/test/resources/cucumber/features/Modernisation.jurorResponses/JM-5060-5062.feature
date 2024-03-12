@@ -12,16 +12,16 @@ Feature: JM-5060 - 5062
       |part_no    | pool_no   | owner |
       |<part_no>  | <pool_no> | 415   |
 
-    And "<part_no>" has "NEXT_DATE" as "5 mondays time" new schema
+
 
     #log on and search for juror
     And I log in as "<user>"
 
     #put juror in state to have their attendance status set
-    When the user searches for juror record "<part_no>" from the global search bar
+    When the user searches for juror record "<juror_number>" from the global search bar
     And I record a happy path paper summons response
     And I click on the "No, skip and process later" link
-    When the user searches for juror record "<part_no>" from the global search bar
+    When the user searches for juror record "<juror_number>" from the global search bar
     Then I click the summons reply tab
     And I click on the view summons reply link
     And I press the "Process reply" button
@@ -33,7 +33,7 @@ Feature: JM-5060 - 5062
     And I press the "Confirm" button
 
     #mark as failed to attend/error checks
-    When the user searches for juror record "<part_no>" from the global search bar
+    When the user searches for juror record "<juror_number>" from the global search bar
     And I press the "Update juror record" button
     And I press the "Continue" button
     And I see error "Select how you want to update the juror record"
@@ -47,7 +47,7 @@ Feature: JM-5060 - 5062
     And I see the juror record updated banner containing "Failed to attend"
     And I see the juror status has updated to "Failed to attend"
 
-    When the user searches for juror record "<part_no>" from the global search bar
+    When the user searches for juror record "<juror_number>" from the global search bar
     And I click on the "Attendance" link
 
     #this will fail here as a result of JM-5889
@@ -73,16 +73,16 @@ Feature: JM-5060 - 5062
       |part_no    | pool_no   | owner |
       |<part_no>  | <pool_no> | 415   |
 
-    And "<part_no>" has "NEXT_DATE" as "5 mondays time" new schema
+
 
     #log on and search for juror
     And I log in as "<user>"
 
-    When the user searches for juror record "<part_no>" from the global search bar
+    When the user searches for juror record "<juror_number>" from the global search bar
     And I record a happy path paper summons response
     And I click on the "No, skip and process later" link
 
-    When the user searches for juror record "<part_no>" from the global search bar
+    When the user searches for juror record "<juror_number>" from the global search bar
     Then I click the summons reply tab
     And I click on the view summons reply link
     And I press the "Process reply" button
@@ -102,12 +102,12 @@ Feature: JM-5060 - 5062
     And I set "Hour" to "09"
     And I set "Minute" to "00"
     And I set the radio button to "am"
-    And I input juror "<part_no>" to be checked in
+    And I input juror "<juror_number>" to be checked in
     And I press the "Check in juror" button
-    And I see "<part_no>" in the same row as "9:00am"
+    And I see "<juror_number>" in the same row as "9:00am"
 
     #attempt to mark as failed to attend
-    When the user searches for juror record "<part_no>" from the global search bar
+    When the user searches for juror record "<juror_number>" from the global search bar
     And I press the "Update juror record" button
     And I set the radio button to "Change juror status to ‘Failed to attend’"
     And I press the "Continue" button
@@ -115,7 +115,7 @@ Feature: JM-5060 - 5062
     And I press the "Change status to ‘Failed to attend’" button
     And I see "Unable to change this juror’s status to ‘Failed to attend’" in the error banner
 
-    When the user searches for juror record "<part_no>" from the global search bar
+    When the user searches for juror record "<juror_number>" from the global search bar
     And I click on the "Attendance" link
 
     #this will fail here as a result of JM-5889
@@ -141,16 +141,16 @@ Feature: JM-5060 - 5062
       |part_no    | pool_no   | owner |
       |<part_no>  | <pool_no> | 415   |
 
-    And "<part_no>" has "NEXT_DATE" as "5 mondays time" new schema
+
 
     #log on and search for juror
     And I log in as "<user>"
 
-    When the user searches for juror record "<part_no>" from the global search bar
+    When the user searches for juror record "<juror_number>" from the global search bar
     And I record a happy path paper summons response
     And I click on the "No, skip and process later" link
 
-    When the user searches for juror record "<part_no>" from the global search bar
+    When the user searches for juror record "<juror_number>" from the global search bar
     Then I click the summons reply tab
     And I click on the view summons reply link
     And I press the "Process reply" button
@@ -161,7 +161,7 @@ Feature: JM-5060 - 5062
     And I check the "Mark juror as 'responded'" checkbox
     And I press the "Confirm" button
 
-    When the user searches for juror record "<part_no>" from the global search bar
+    When the user searches for juror record "<juror_number>" from the global search bar
     And I press the "Update juror record" button
     And I set the radio button to "Change juror status to ‘Failed to attend’"
     And I press the "Continue" button
@@ -171,11 +171,11 @@ Feature: JM-5060 - 5062
     And I see the juror status has updated to "Failed to attend"
 
     #attempt to mark as failed to attend again now that juror has given reasonable reason
-    When the user searches for juror record "<part_no>" from the global search bar
+    When the user searches for juror record "<juror_number>" from the global search bar
     And I press the "Update juror record" button
     And I do not see failed to attend radio button in the update juror record section
 
-    When the user searches for juror record "<part_no>" from the global search bar
+    When the user searches for juror record "<juror_number>" from the global search bar
     And I click on the "Attendance" link
 
     #this will fail here as a result of JM-5889
@@ -200,16 +200,16 @@ Feature: JM-5060 - 5062
       |part_no    | pool_no   | owner |
       |<part_no>  | <pool_no> | 415   |
 
-    And "<part_no>" has "NEXT_DATE" as "5 mondays time" new schema
+
 
     #log on and search for juror
     And I log in as "<user>"
 
-    When the user searches for juror record "<part_no>" from the global search bar
+    When the user searches for juror record "<juror_number>" from the global search bar
     And I record a happy path paper summons response
     And I click on the "No, skip and process later" link
 
-    When the user searches for juror record "<part_no>" from the global search bar
+    When the user searches for juror record "<juror_number>" from the global search bar
     Then I click the summons reply tab
     And I click on the view summons reply link
     And I press the "Process reply" button
@@ -220,7 +220,7 @@ Feature: JM-5060 - 5062
     And I check the "Mark juror as 'responded'" checkbox
     And I press the "Confirm" button
 
-    When the user searches for juror record "<part_no>" from the global search bar
+    When the user searches for juror record "<juror_number>" from the global search bar
     And I press the "Update juror record" button
     And I set the radio button to "Change juror status to ‘Failed to attend’"
     And I press the "Continue" button
@@ -238,7 +238,7 @@ Feature: JM-5060 - 5062
     Given I am on "Bureau" "test"
     And I log in as "SJOUSER"
 
-    When the user searches for juror record "<part_no>" from the global search bar
+    When the user searches for juror record "<juror_number>" from the global search bar
     And I press the "Update juror record" button
     And I set the radio button to "Undo ‘Failed to attend' juror status"
     And I press the "Continue" button

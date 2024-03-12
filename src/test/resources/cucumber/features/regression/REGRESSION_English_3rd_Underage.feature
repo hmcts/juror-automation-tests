@@ -1,18 +1,16 @@
 Feature: Regression English_3rd_Underage
 
-@Regression @JDB-3081 @JDB-3889 @JDB-3790 @JDB-3983 @JDB-4097 @JDB-4502 
+@Regression @NewSchemaConverted
 Scenario Outline: English 3rd Party Underage
 		
-	Given I am on "Public" "bau-test"
+	Given I am on "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
 	
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
-	
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	
 	Then I see "Reply to a jury summons" on the page
 	
@@ -20,7 +18,7 @@ Scenario Outline: English 3rd Party Underage
 	And I press the "Continue" button
 	Then I see "Their juror details" on the page
 	
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
@@ -58,16 +56,13 @@ Scenario Outline: English 3rd Party Underage
 	And I set "Year" to "2006"
 	
 	#Moving past DoB Section
-	
 	And I press the "Continue" button
 	Then I see "Is the date of birth correct?" on the page
 	
 	#And "Is the date of birth correct?" text is bold
-	
 	And I see "steps/your-details/confirm/tp" in the URL
 
 	#change
-	
 	And I press the "Continue" button
 	Then I see "There is a problem" on the page
 	And I see "Tell us if their date of birth is correct" on the page
@@ -76,7 +71,6 @@ Scenario Outline: English 3rd Party Underage
 	And I press the "Continue" button
 	
 	#DoB
-	
 	When I set "Day" to ""
 	And I set "Month" to ""
 	And I set "Year" to ""
@@ -84,27 +78,23 @@ Scenario Outline: English 3rd Party Underage
 	Then I see "There is a problem" on the page
 	
 	#JDB-4502
-	
 	And I see "Enter the day the person was born" on the page
 	And I do not see "Enter the month the person was born" on the page
 	And I do not see "Enter the year the person was born" on the page
 
 	#only day is set
-	
 	When I set "Day" to "27"
 	When I press the "Continue" button
 	Then I see "There is a problem" on the page
 	And I see "Enter the month the person was born" on the page
 	
 	#day and month are set
-	
 	And I set "Month" to "04"
 	When I press the "Continue" button
 	Then I see "There is a problem" on the page
 	And I see "Enter the year the person was born" on the page
 	
 	#only year is set
-	
 	When I set "Day" to ""
 	And I set "Month" to ""
 	And I set "Year" to "1988"
@@ -136,8 +126,8 @@ Scenario Outline: English 3rd Party Underage
 	When I press the "Submit" button
 	
 	Then I see "You have completed your reply" on the page
-	Then I see "<part_no>" on the page
+	Then I see "<juror_number>" on the page
 	
 Examples:
-	|part_no	|last_name	|postcode	|email 		|pool_no	|
-	|741500001	|LNAMEONE	|CH1 2AN	|a@eeee.com	|415181001	|
+	| juror_number	| last_name	| postcode	| email 		| pool_number	|
+	| 045200094		| LNAMEONE	| CH1 2AN	| a@eeee.com	| 452300093		|

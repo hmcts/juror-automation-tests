@@ -10,7 +10,7 @@ Scenario Outline: JM-3721 As Court User, set Paper Response status as Awaiting T
 		|<part_no> | <pool_no> | 400   |
 
 
-	And "<part_no>" has "NEXT_DATE" as "7 mondays time" new schema
+	And "<juror_number>" has "NEXT_DATE" as "7 mondays time" new schema
 
 	Then a new pool is inserted for where record has transferred to the court new schema
 		|part_no   | pool_no   | owner |
@@ -19,9 +19,9 @@ Scenario Outline: JM-3721 As Court User, set Paper Response status as Awaiting T
 	And I log in as "<user>"
 
 	#view the record
-	Then I set "Search for a juror record" to "<part_no>"
+	Then I set "Search for a juror record" to "<juror_number>"
 	When I press the "Search" button
-	And I am on the court Juror Record for juror "<part_no>"
+	And I am on the court Juror Record for juror "<juror_number>"
 
 	#record paper summons response
 	And I click the Enter summons reply button
@@ -62,7 +62,7 @@ Scenario Outline: JM-3721 As Court User, set Paper Response status as Awaiting T
 	And I see the reply status has updated to "TO DO"
 
 	#check DB
-#	Then on "JUROR_DIGITAL" . "PAPER_RESPONSE" I see "WELSH" is "Y" where "JUROR_NUMBER" is "<part_no>"
+#	Then on "JUROR_MOD" . "PAPER_RESPONSE" I see "WELSH" is "Y" where "JUROR_NUMBER" is "<juror_number>"
 
 	#now mark as awaiting translation
 	And I click the More Actions button
@@ -88,7 +88,7 @@ Scenario Outline: JM-3721 As Court User, set Paper Response status as Awaiting T
 			|<part_no> | <pool_no> | 400   |
 
 
-		And "<part_no>" has "NEXT_DATE" as "7 mondays time" new schema
+		And "<juror_number>" has "NEXT_DATE" as "7 mondays time" new schema
 
 		Then a new pool is inserted for where record has transferred to the court new schema
 			|part_no   | pool_no   | owner |
@@ -97,9 +97,9 @@ Scenario Outline: JM-3721 As Court User, set Paper Response status as Awaiting T
 		And I log in as "<user>"
 
 	#view the record
-		Then I set "Search for a juror record" to "<part_no>"
+		Then I set "Search for a juror record" to "<juror_number>"
 		When I press the "Search" button
-		And I am on the court Juror Record for juror "<part_no>"
+		And I am on the court Juror Record for juror "<juror_number>"
 
 	#record paper summons response
 	And I click the Enter summons reply button
@@ -140,7 +140,7 @@ Scenario Outline: JM-3721 As Court User, set Paper Response status as Awaiting T
 	And I see the reply status has updated to "TO DO"
 
 	#check DB
-#	Then on "JUROR_DIGITAL" . "PAPER_RESPONSE" I see "WELSH" is "Y" where "JUROR_NUMBER" is "<part_no>"
+#	Then on "JUROR_MOD" . "PAPER_RESPONSE" I see "WELSH" is "Y" where "JUROR_NUMBER" is "<juror_number>"
 
 	#now mark as awaiting translation
 	And I click the More Actions button
@@ -171,7 +171,7 @@ Scenario Outline: JM-3721 As Court User, set Paper Response status as Awaiting T
 			|<part_no> | <pool_no> | 400   |
 
 
-		And "<part_no>" has "NEXT_DATE" as "7 mondays time" new schema
+		And "<juror_number>" has "NEXT_DATE" as "7 mondays time" new schema
 
 		Then a new pool is inserted for where record has transferred to the court new schema
 			|part_no   | pool_no   | owner |
@@ -180,9 +180,9 @@ Scenario Outline: JM-3721 As Court User, set Paper Response status as Awaiting T
 		And I log in as "<user>"
 
 	#view the record
-		Then I set "Search for a juror record" to "<part_no>"
+		Then I set "Search for a juror record" to "<juror_number>"
 		When I press the "Search" button
-		And I am on the court Juror Record for juror "<part_no>"
+		And I am on the court Juror Record for juror "<juror_number>"
 
 	#record paper summons response
 		And I click the Enter summons reply button
@@ -223,7 +223,7 @@ Scenario Outline: JM-3721 As Court User, set Paper Response status as Awaiting T
 		And I see the reply status has updated to "TO DO"
 
 	#check DB
-#	Then on "JUROR_DIGITAL" . "PAPER_RESPONSE" I see "WELSH" is "Y" where "JUROR_NUMBER" is "<part_no>"
+#	Then on "JUROR_MOD" . "PAPER_RESPONSE" I see "WELSH" is "Y" where "JUROR_NUMBER" is "<juror_number>"
 
 	#now mark as awaiting translation
 		And I click the More Actions button

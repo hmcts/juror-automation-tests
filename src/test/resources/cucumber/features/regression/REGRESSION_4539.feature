@@ -1,17 +1,16 @@
 Feature: Regression JDB-4539
 
-@Regression @JDB-4539 
+@Regression @NewSchemaConverted
 Scenario Outline: English 1st Party ST JDB-4539
 	
-	Given I am on "Public" "bau-test"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+	Given I am on "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court 	|juror_number  		| pool_number	| att_date_weeks_in_future	| owner |
+		| <court> 	|<juror_number> 	| <pool_number> | 5				            | 400	|
 		
-	And "<part_no>" has "LNAME" as "<last_name>"
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 
    	And I do not see "You can ask a family member, friend or carer to help you." on the page
    	Then I click on the "What if I need help replying?" link
@@ -35,7 +34,7 @@ Scenario Outline: English 1st Party ST JDB-4539
 	Then I click on the "I do not have a juror number" link
     And I do not see "If you do not have a juror number, please contact:" on the page
 	
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	And I set "Juror last name" to "<last_name>"
 	And I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
@@ -85,8 +84,8 @@ Scenario Outline: English 1st Party ST JDB-4539
 	Then I click on the "Why do we need your email address?" link
     And I do not see "We'll use your email address to send you information and reminders about your jury service." on the page
 	
-	When I set "Enter your email address" to "e@mail.com"
-	When I set "Enter your email address again" to "e@mail.com"
+	When I set "Enter your email address" to "<email>"
+	When I set "Enter your email address again" to "<email>"
 	And I press the "Continue" button
 
 	Then on the page I see
@@ -186,20 +185,20 @@ Scenario Outline: English 1st Party ST JDB-4539
 	Then I see "We have sent you an email to say you have replied to your jury summons." on the page
 	
 Examples:
-	|part_no	|last_name	|postcode	|email 		|pool_no	|
-	|645100062	|DOE		|SW1H 9AJ	|a@eeee.com	|451170401	|
+	|juror_number	|last_name	|postcode	|email 		|pool_number| court |
+	|041500029		|DOE		|SW1H 9AJ	|a@eeee.com	|415300120	| 415	|
 	
-@Regression @JDB-4539 
+@Regression @NewSchemaConverted
 Scenario Outline: English 3rd Party St JDB-4539
-	Given I am on "Public" "juror-test02"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
-		
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "ZIP" as "<postcode>"
+
+	Given I am on "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court 	|juror_number  		| pool_number	| att_date_weeks_in_future	| owner |
+		| <court> 	|<juror_number> 	| <pool_number> | 5				            | 400	|
+
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	
 	Then I see "Reply to a jury summons" on the page
 	
@@ -222,15 +221,13 @@ Scenario Outline: English 3rd Party St JDB-4539
     And I do not see "If you do not have a juror number for the person you are replying for, please contact:" on the page
 	
 	#Juror Log In
-	
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 	Then I see "What is your name?" on the page
 	
 	#3rd Party Name
-	
 	When I see "Your Details" on the page
 	When I set "First name" to "FirstNameA"
 	And I set "Last name" to "LastNameB"
@@ -238,21 +235,19 @@ Scenario Outline: English 3rd Party St JDB-4539
 	Then I see "Your relationship to the person" on the page
 	
 	#Relationship to juror
-	
 	When I see "Your Details" on the page
 	And I set "How do you know the person you're replying for?" to "Friend"
 	And I press the "Continue" button
 	Then I see "Your contact information" on the page
 	
 	#3rd Party Contact
-	
 	When I see "Your Details" on the page
 	And I check the "By phone (UK Numbers only)" checkbox
 	And I see "Provide a UK phone number that we can use to reach you between 9am and 5pm, Monday to Friday." on the page
 	And I set "Main phone" to "0207 821 1818"
 	And I check the "By email" checkbox
-	And I set "Enter your email address" to "email@outlook.com"
-	And I set "Enter your email address again" to "email@outlook.com"
+	And I set "Enter your email address" to "<email>"
+	And I set "Enter your email address again" to "<email>"
 	
    	And I do not see "If we need to get in touch with you to check anything about your response for the other person, we'll use the email or phone number you give us." on the page
    	Then I click on the "Why do we need your contact details?" link
@@ -269,20 +264,17 @@ Scenario Outline: English 3rd Party St JDB-4539
 	And I press the "Continue" button
 	
 	#Why Replying
-	
 	Then I see "Why are you replying for the other person?" on the page
 	When I set the radio button to "The person is not here"
 	And I press the "Continue" button
 	Then I see "Is the name we have for them correct?" on the page
 	
 	#Check juror name
-	
 	When I see "Juror Details" on the page
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 	
 	#Check juror address
-	
 	Then I see "Is this their address?" on the page
 	
     And I do not see "If their address will change soon, give us their current address. This is so we can still contact them." on the page
@@ -302,7 +294,6 @@ Scenario Outline: English 3rd Party St JDB-4539
     And I do not see "You need to tell us the person's date of birth so we can check they are a suitable age to be on a jury." on the page
 	
 	#DoB
-	
 	And I set "Day" to "01"
 	And I set "Month" to "01"	
 	And I set "Year" to "1980"
@@ -310,7 +301,6 @@ Scenario Outline: English 3rd Party St JDB-4539
 	Then I see "We might need to get in touch with the person to ask them more questions or give them information about their jury service" on the page
 	
 	#Contacting the juror
-
 	And I set the radio button to "Use the phone number that you have already given to contact you"
 	And I set the radio button to "Use the email address that you have already given to contact you"
 	
@@ -323,19 +313,16 @@ Scenario Outline: English 3rd Party St JDB-4539
 	And I press the "Continue" button
 
 	#Qualify for jury service
-	
 	When I see "Confirm if the person is eligible for jury service" on the page
 	And I press the "Continue" button
 	
 	#Residency
-	
 	Then I see "Since they turned 13, has their main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	When I see "Eligibility" on the page
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 	
 	#CJS no
-	
 	Then I see "Has the person you're replying for worked in the criminal justice system in the last 5 years?" on the page
 	
     And I do not see "Working in the Criminal Justice system does not stop a person doing jury service. But we may get in touch to find out more." on the page
@@ -348,37 +335,31 @@ Scenario Outline: English 3rd Party St JDB-4539
 	And I press the "Continue" button
 	
 	#Bail
-	
 	Then I see "Is the person currently on bail for a criminal offence?" on the page
 	And I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Convictions
-	
 	Then I see "Has the person been found guilty of a criminal offence?" on the page
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Mental Health Sectioned
-	
 	Then I see "Is the person you're replying for being detained, looked after or treated under the Mental Health Act?" on the page
 	And I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Mental Health Capacity
-	
 	Then I see "Has it been decided that the person you're replying for 'lacks mental capacity'?" on the page
 	And I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#The person can attend
-	
 	Then I see "Check your start date" on the page
 	Then I set the radio button to "Yes, they can start on"
 	And  I press the "Continue" button
 	
 	#RA no
-	
 	Then I see "Will the person you're replying for need help when they're at the court?" on the page
 	
 	And I do not see "If you tell us the person you're replying for has an impairment or disability," on the page
@@ -392,32 +373,29 @@ Scenario Outline: English 3rd Party St JDB-4539
 	Then I see "Check your answers now" on the page
 	
 	#Check your answers
-	
 	When I check the "The answers I have given for the person I'm replying for are true as far as I know." checkbox
 		
 	#When I press the "Submit" button
-	
 	And I press the "Submit" button
 	
 	Then I see "We have sent an email to say you have replied to this jury summons." on the page
 	
 Examples:
-	|part_no	|last_name	|postcode	|email           	|pool_no	|
-	|645100231	|DOE		|SW1H 9AJ	|email@outlook.com	|451170401	|
+	|juror_number	|last_name	|postcode	|email           	|pool_number| court |
+	|041500030		|DOE		|SW1H 9AJ	|email@outlook.com	|415300121	| 415	|
 	
 	
 @Regression @JDB-4539 
 Scenario Outline: English 1st Party Deferral JDB-4539
 	
-	Given I am on "Public" "juror-test01"
-	Given the juror numbers have not been processed
-		|part_no 	|pool_no 	| owner |
-		|<part_no> 	|<pool_no>	| 400 	|
-		
-	And "<part_no>" has "LNAME" as "<last_name>"
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	Given I am on "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court 	|juror_number  		| pool_number	| att_date_weeks_in_future	| owner |
+		| <court> 	|<juror_number> 	| <pool_number> | 5				            | 400	|
+
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 
    	And I do not see "You can ask a family member, friend or carer to help you." on the page
    	Then I click on the "What if I need help replying?" link
@@ -438,7 +416,7 @@ Scenario Outline: English 1st Party Deferral JDB-4539
 	Then I click on the "I do not have a juror number" link
     And I do not see "If you do not have a juror number, please contact:" on the page
 	
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	And I set "Juror last name" to "<last_name>"
 	And I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
@@ -450,6 +428,7 @@ Scenario Outline: English 1st Party Deferral JDB-4539
 	And I set the radio button to "Yes"
 	
 	And I press the "Continue" button
+
 	Then on the page I see
 		| text	|
 		| Is this your address? |
@@ -488,8 +467,8 @@ Scenario Outline: English 1st Party Deferral JDB-4539
 	Then I click on the "Why do we need your email address?" link
     And I do not see "We'll use your email address to send you information and reminders about your jury service." on the page
 	
-	When I set "Enter your email address" to "e@mail.com"
-	When I set "Enter your email address again" to "e@mail.com"
+	When I set "Enter your email address" to "<email>"
+	When I set "Enter your email address again" to "<email>"
 	And I press the "Continue" button
 
 	Then on the page I see
@@ -511,19 +490,16 @@ Scenario Outline: English 1st Party Deferral JDB-4539
 	And I press the "Continue" button
 
 	#Qualify for jury service
-	
 	Then I see "Confirm you're eligible for jury service" on the page
 	When I press the "Continue" button
 	
 	#Residency
-	
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	When I see "Eligibility" on the page
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 	
 	#CJS
-	
 	And I do not see "Your job in the Criminal Justice System does not stop you doing jury service. But we may get in touch to find out more." on the page
     And I click on the "Why do we ask this?" link
 	And I see "Your job in the Criminal Justice System does not stop you doing jury service. But we may get in touch to find out more." on the page
@@ -534,25 +510,21 @@ Scenario Outline: English 1st Party Deferral JDB-4539
 	And I press the "Continue" button
 	
 	#Bail
-	
 	Then I see "Are you currently on bail for a criminal offence?" on the page
 	And I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Convictions
-	
 	Then I see "Have you been found guilty of a criminal offence?" on the page
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Mental Health Sectioned
-	
 	Then I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
 	And I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Mental Health Capacity
-	
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
 	And I set the radio button to "No"
 	And I press the "Continue" button
@@ -576,12 +548,10 @@ Scenario Outline: English 1st Party Deferral JDB-4539
 	And I press the "Continue" button
 
 	#confirm dates
-	
 	When I set the radio button to "Yes"
 	And I press the "Continue" button
 	
 	#help in court
-	
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
@@ -594,21 +564,21 @@ Scenario Outline: English 1st Party Deferral JDB-4539
 	Then I see "You have completed your reply" on the page	
 	
 Examples:
-	|part_no	|pool_no	|last_name			|postcode	|email 		| 
-	|645200276	|452170501	|LNAMESEVENONETHREE	|SY2 6LU	|e@eeee.com	|
+	|juror_number	|pool_number|last_name			|postcode	|email 		| court |
+	|041500031		|415300122	|LNAMESEVENONETHREE	|SY2 6LU	|e@eeee.com	| 415	|
 	
 		
-@Regression @JDB-4539 
+@Regression @NewSchemaConverted
 Scenario Outline: English 3rd Party Deferral JDB-4539
-	Given I am on "Public" "bau-test"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
-		
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "ZIP" as "<postcode>"
+
+	Given I am on "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court 	|juror_number  		| pool_number	| att_date_weeks_in_future	| owner |
+		| <court> 	|<juror_number> 	| <pool_number> | 5				            | 400	|
+
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	
 	Then I see "Reply to a jury summons" on the page
 	
@@ -632,7 +602,7 @@ Scenario Outline: English 3rd Party Deferral JDB-4539
 	
 	#Juror Log In
 	
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
@@ -660,8 +630,8 @@ Scenario Outline: English 3rd Party Deferral JDB-4539
 	And I see "Provide a UK phone number that we can use to reach you between 9am and 5pm, Monday to Friday." on the page
 	And I set "Main phone" to "0207 821 1818"
 	And I check the "By email" checkbox
-	And I set "Enter your email address" to "email@outlook.com"
-	And I set "Enter your email address again" to "email@outlook.com"
+	And I set "Enter your email address" to "<email>"
+	And I set "Enter your email address again" to "<email>"
 	
    	And I do not see "If we need to get in touch with you to check anything about your response for the other person, we'll use the email or phone number you give us." on the page
    	Then I click on the "Why do we need your contact details?" link
@@ -678,20 +648,17 @@ Scenario Outline: English 3rd Party Deferral JDB-4539
 	And I press the "Continue" button
 	
 	#Why Replying
-	
 	Then I see "Why are you replying for the other person?" on the page
 	When I set the radio button to "The person is not here"
 	And I press the "Continue" button
 	Then I see "Is the name we have for them correct?" on the page
 	
 	#Check juror name
-	
 	When I see "Juror Details" on the page
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 	
 	#Check juror address
-	
 	Then I see "Is this their address?" on the page
 	
     And I do not see "If their address will change soon, give us their current address. This is so we can still contact them." on the page
@@ -711,7 +678,6 @@ Scenario Outline: English 3rd Party Deferral JDB-4539
     And I do not see "You need to tell us the person's date of birth so we can check they are a suitable age to be on a jury." on the page
 	
 	#DoB
-	
 	And I set "Day" to "01"
 	And I set "Month" to "01"	
 	And I set "Year" to "1980"
@@ -719,7 +685,6 @@ Scenario Outline: English 3rd Party Deferral JDB-4539
 	Then I see "We might need to get in touch with the person to ask them more questions or give them information about their jury service" on the page
 	
 	#Contacting the juror
-
 	And I set the radio button to "Use the phone number that you have already given to contact you"
 	And I set the radio button to "Use the email address that you have already given to contact you"
 	
@@ -732,7 +697,6 @@ Scenario Outline: English 3rd Party Deferral JDB-4539
 	And I press the "Continue" button
 
 	#Qualify for jury service
-	
 	When I see "Confirm if the person is eligible for jury service" on the page
 	And I press the "Continue" button
 	
@@ -743,7 +707,6 @@ Scenario Outline: English 3rd Party Deferral JDB-4539
 	And I press the "Continue" button
 	
 	# Have you ever worked
-	
 	Then I see "Has the person you're replying for worked in the criminal justice system in the last 5 years?" on the page
 	
 	And I do not see "Working in the Criminal Justice system does not stop a person doing jury service. But we may get in touch to find out more." on the page
@@ -755,25 +718,21 @@ Scenario Outline: English 3rd Party Deferral JDB-4539
 	And I press the "Continue" button
 	
 	#Bail
-	
 	Then I see "Is the person currently on bail for a criminal offence?" on the page
 	And I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Convictions
-	
 	Then I see "Has the person been found guilty of a criminal offence?" on the page
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Mental Health Sectioned
-	
 	Then I see "Is the person you're replying for being detained, looked after or treated under the Mental Health Act?" on the page
 	And I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Mental Health Capacity
-	
 	Then I see "Has it been decided that the person you're replying for 'lacks mental capacity'?" on the page
 	And I set the radio button to "No"
 	And I press the "Continue" button
@@ -785,12 +744,10 @@ Scenario Outline: English 3rd Party Deferral JDB-4539
 	Then I see "Tell us why they need another date for their jury service" on the page
 	
 	#Deferral Reason
-	
 	When I set text area with "id" of "deferralReason" to "askForAnotherDateReasonWhy"
 	And I press the "Continue" button
 	
 	#JDB-3445 Deferral Date Screen Layout
-	
 	Then I see "Choose 3 Mondays when they can start jury service" on the page
 	
 	When I set the "First" single date field to a Monday "9" weeks in the future
@@ -821,21 +778,20 @@ Scenario Outline: English 3rd Party Deferral JDB-4539
 	Then I see "You have completed your reply" on the page
 	
 Examples:
-	|part_no		|last_name			|postcode	|email           	|pool_no	|
-	|645200285		|LNAMESIXSEVENSIX	|CH1 2AN	|email@outlook.com	|452170501	|
+	|juror_number	|last_name			|postcode	|email           	|pool_number| court |
+	|041500032		|LNAMESIXSEVENSIX	|CH1 2AN	|email@outlook.com	|415300123	| 415	|
 	
-@Regression @JDB-4539 
+@Regression @NewSchemaConverted
 Scenario Outline: English 1st Party Excusal JDB-4539
 	
-	Given I am on "Public" "juror-test02"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
-		
-	And "<part_no>" has "LNAME" as "<last_name>"
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	Given I am on "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court 	|juror_number  		| pool_number	| att_date_weeks_in_future	| owner |
+		| <court> 	|<juror_number> 	| <pool_number> | 5				            | 400	|
+
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 
    	And I do not see "You can ask a family member, friend or carer to help you." on the page
    	Then I click on the "What if I need help replying?" link
@@ -856,7 +812,7 @@ Scenario Outline: English 1st Party Excusal JDB-4539
 	Then I click on the "I do not have a juror number" link
     And I do not see "If you do not have a juror number, please contact:" on the page
 	
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	And I set "Juror last name" to "<last_name>"
 	And I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
@@ -906,8 +862,8 @@ Scenario Outline: English 1st Party Excusal JDB-4539
 	Then I click on the "Why do we need your email address?" link
     And I do not see "We'll use your email address to send you information and reminders about your jury service." on the page
 	
-	When I set "Enter your email address" to "e@mail.com"
-	When I set "Enter your email address again" to "e@mail.com"
+	When I set "Enter your email address" to "<email>"
+	When I set "Enter your email address again" to "<email>"
 	And I press the "Continue" button
 
 	Then on the page I see
@@ -929,12 +885,10 @@ Scenario Outline: English 1st Party Excusal JDB-4539
 	And I press the "Continue" button
 
 	#Qualify for jury service
-	
 	Then I see "Confirm you're eligible for jury service" on the page
 	When I press the "Continue" button
 	
 	#Residency
-	
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	When I see "Eligibility" on the page
 
@@ -942,7 +896,6 @@ Scenario Outline: English 1st Party Excusal JDB-4539
 	And I press the "Continue" button
 	
 	#CJS
-	
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
 	
 	And I do not see "Your job in the Criminal Justice System does not stop you doing jury service. But we may get in touch to find out more." on the page
@@ -955,25 +908,21 @@ Scenario Outline: English 1st Party Excusal JDB-4539
 	And I press the "Continue" button
 	
 	#Bail
-	
 	Then I see "Are you currently on bail for a criminal offence?" on the page
 	And I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Convictions
-	
 	Then I see "Have you been found guilty of a criminal offence?" on the page
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Mental Health Sectioned
-	
 	Then I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
 	And I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Mental Health Capacity
-	
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
 	And I set the radio button to "No"
 	And I press the "Continue" button
@@ -984,7 +933,6 @@ Scenario Outline: English 1st Party Excusal JDB-4539
 	And I press the "Continue" button
 	
 	#Excusal Reason
-	
 	Then I see "Why do you need to be excused from jury service?" on the page
 	When I set text area with "id" of "excusalReason" to "Excuse me please"
 	
@@ -997,7 +945,6 @@ Scenario Outline: English 1st Party Excusal JDB-4539
 	And I press the "Continue" button
 	
 	#RA
-	
 	Then I see "Will you need help when you're at the court?" on the page
 	And I do not see "If you tell us you have an impairment or disability, we'll do all we can to help you and meet your needs in the court building when you do jury service." on the page
     And I click on the "Why do we ask this?" link
@@ -1014,20 +961,20 @@ Scenario Outline: English 1st Party Excusal JDB-4539
 	And I see "You have completed your reply" on the page
 	
 Examples:
-	|part_no	|last_name		|postcode	|email            |pool_no	|
-	|645200905	|LNAMETWOTWOSIX	|CH1 2AN	|email@outlook.com|452170501|
+	| juror_number	| last_name		| postcode	| email            | pool_number| court |
+	| 041500033		| LNAMETWOTWOSIX| CH1 2AN	| email@outlook.com| 415300124	| 415   |
 	
-@Regression @JDB-4539 
+@Regression @NewSchemaConverted
 Scenario Outline: English 3rd Party Excusal JDB-4539
-	Given I am on "Public" "juror-test02"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
-		
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "ZIP" as "<postcode>"
+
+	Given I am on "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court 	|juror_number  		| pool_number	| att_date_weeks_in_future	| owner |
+		| <court> 	|<juror_number> 	| <pool_number> | 5				            | 400	|
+
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	
 	Then I see "Reply to a jury summons" on the page
 	
@@ -1050,15 +997,13 @@ Scenario Outline: English 3rd Party Excusal JDB-4539
     And I do not see "If you do not have a juror number for the person you are replying for, please contact:" on the page
 	
 	#Juror Log In
-	
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 	Then I see "What is your name?" on the page
 	
 	#3rd Party Name
-	
 	When I see "Your Details" on the page
 	When I set "First name" to "FirstNameA"
 	And I set "Last name" to "LastNameB"
@@ -1066,21 +1011,19 @@ Scenario Outline: English 3rd Party Excusal JDB-4539
 	Then I see "Your relationship to the person" on the page
 	
 	#Relationship to juror
-	
 	When I see "Your Details" on the page
 	And I set "How do you know the person you're replying for?" to "Friend"
 	And I press the "Continue" button
 	Then I see "Your contact information" on the page
 	
 	#3rd Party Contact
-	
 	When I see "Your Details" on the page
 	And I check the "By phone (UK Numbers only)" checkbox
 	And I see "Provide a UK phone number that we can use to reach you between 9am and 5pm, Monday to Friday." on the page
 	And I set "Main phone" to "0207 821 1818"
 	And I check the "By email" checkbox
-	And I set "Enter your email address" to "email@outlook.com"
-	And I set "Enter your email address again" to "email@outlook.com"
+	And I set "Enter your email address" to "<email>"
+	And I set "Enter your email address again" to "<email>"
 	
    	And I do not see "If we need to get in touch with you to check anything about your response for the other person, we'll use the email or phone number you give us." on the page
    	Then I click on the "Why do we need your contact details?" link
@@ -1097,20 +1040,17 @@ Scenario Outline: English 3rd Party Excusal JDB-4539
 	And I press the "Continue" button
 	
 	#Why Replying
-	
 	Then I see "Why are you replying for the other person?" on the page
 	When I set the radio button to "The person is not here"
 	And I press the "Continue" button
 	Then I see "Is the name we have for them correct?" on the page
 	
 	#Check juror name
-	
 	When I see "Juror Details" on the page
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 	
 	#Check juror address
-	
 	Then I see "Is this their address?" on the page
 	
     And I do not see "If their address will change soon, give us their current address. This is so we can still contact them." on the page
@@ -1130,7 +1070,6 @@ Scenario Outline: English 3rd Party Excusal JDB-4539
     And I do not see "You need to tell us the person's date of birth so we can check they are a suitable age to be on a jury." on the page
 	
 	#DoB
-	
 	And I set "Day" to "01"
 	And I set "Month" to "01"	
 	And I set "Year" to "1980"
@@ -1138,7 +1077,6 @@ Scenario Outline: English 3rd Party Excusal JDB-4539
 	Then I see "We might need to get in touch with the person to ask them more questions or give them information about their jury service" on the page
 	
 	#Contacting the juror
-
 	And I set the radio button to "Use the phone number that you have already given to contact you"
 	And I set the radio button to "Use the email address that you have already given to contact you"
 	
@@ -1151,19 +1089,16 @@ Scenario Outline: English 3rd Party Excusal JDB-4539
 	And I press the "Continue" button
 
 	#Qualify for jury service
-	
 	When I see "Confirm if the person is eligible for jury service" on the page
 	And I press the "Continue" button
 	
 	#Residency
-	
 	Then I see "Since they turned 13, has their main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	When I see "Eligibility" on the page
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 	
 	#CJS
-	
 	Then I see "Has the person you're replying for worked in the criminal justice system in the last 5 years?" on the page
 	
 	And I do not see "Working in the Criminal Justice system does not stop a person doing jury service. But we may get in touch to find out more." on the page
@@ -1176,25 +1111,21 @@ Scenario Outline: English 3rd Party Excusal JDB-4539
 	And I press the "Continue" button
 	
 	#Bail
-	
 	Then I see "Is the person currently on bail for a criminal offence?" on the page
 	And I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Convictions
-	
 	Then I see "Has the person been found guilty of a criminal offence?" on the page
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Mental Health Sectioned
-	
 	Then I see "Is the person you're replying for being detained, looked after or treated under the Mental Health Act?" on the page
 	And I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Mental Health Capacity
-	
 	Then I see "Has it been decided that the person you're replying for 'lacks mental capacity'?" on the page
 	And I set the radio button to "No"
 	And I press the "Continue" button
@@ -1205,7 +1136,6 @@ Scenario Outline: English 3rd Party Excusal JDB-4539
 	And I press the "Continue" button
 	
 	#Excusal Reason JDB-3653
-	
 	Then I see "Why do they need to be excused from jury service?" on the page
 	And I set text area with "id" of "excusalReason" to "Excuse them please"
 	
@@ -1215,7 +1145,6 @@ Scenario Outline: English 3rd Party Excusal JDB-4539
 	And I press the "Continue" button
 	
 	#RA
-	
 	Then I see "Will the person you're replying for need help when they're at the court?" on the page
 	
 	And I do not see "If you tell us the person you're replying for has an impairment or disability, we'll do all we can to help them and meet their needs in the court building when they do jury service." on the page
@@ -1228,7 +1157,6 @@ Scenario Outline: English 3rd Party Excusal JDB-4539
 	And I press the "Continue" button
 	
 	#Check Your Answers
-	
 	Then I see "Check your answers now" on the page
 	
 	When I check the "The answers I have given for the person I'm replying for are true as far as I know" checkbox
@@ -1236,6 +1164,6 @@ Scenario Outline: English 3rd Party Excusal JDB-4539
 	And I see "You have completed your reply" on the page
 	
 Examples:
-	|part_no	|last_name			|postcode	|email       	    |pool_no	|
-	|644200230	|LNAMETWOSIXEIGHT	|CH1 2AN	|email@outlook.com	|442170501	|
+	|juror_number	|last_name			|postcode	|email       	    |pool_number| court |
+	|644200230		|LNAMETWOSIXEIGHT	|CH1 2AN	|email@outlook.com	|442170501	| 415	|
 	

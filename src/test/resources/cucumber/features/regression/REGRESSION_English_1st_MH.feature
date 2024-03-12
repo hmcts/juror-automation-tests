@@ -1,16 +1,16 @@
 Feature: Regression English_1st_MH
 
-@Regression @JDB-3441 @JDB-4552 
+@Regression @NewSchemaConverted
 Scenario Outline: Checking the word Act in Mental Health Act is capitalised
-	Given I am on "Public" "juror-test02"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+
+	Given I am on "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
 	
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	
 	Then I see "Reply to a jury summons" on the page
 
@@ -19,15 +19,13 @@ Scenario Outline: Checking the word Act in Mental Health Act is capitalised
 	Then I see "Your juror details" on the page
 	
 	#Juror Log In
-	
-	When I set "9-digit juror number" to "<part_no>"
+	When I set "9-digit juror number" to "<juror_number>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 	Then I see "Is the name we have for you correct?" on the page
 	
 	#Check Name
-	
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	Then I set "First name" to ""
@@ -47,7 +45,6 @@ Scenario Outline: Checking the word Act in Mental Health Act is capitalised
 	Then I see "Is this your address?" on the page
 	
 	#Check Address
-	
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	Then I set "Address line 1" to ""
@@ -73,7 +70,6 @@ Scenario Outline: Checking the word Act in Mental Health Act is capitalised
 	Then I see "What is your phone number?" on the page
 	
 	#Phone Details
-	
 	When I press the "Continue" button
 	Then I see "Enter your main phone number" on the page
 	When I set "Main phone" to "0207 821 1818"
@@ -89,8 +85,8 @@ Scenario Outline: Checking the word Act in Mental Health Act is capitalised
 	When I press the "Continue" button
 	Then I see "Enter your email address" on the page
 	
-	When I set "Enter your email address" to "email@outlook.com"
-	And I set "Enter your email address again" to "email@outlook.com"
+	When I set "Enter your email address" to "<email>"
+	And I set "Enter your email address again" to "<email>"
 	And I press the "Continue" button
 	Then I see "What is your date of birth?" on the page
 	When I click on the "Back" link
@@ -99,7 +95,6 @@ Scenario Outline: Checking the word Act in Mental Health Act is capitalised
 	Then I see "What is your date of birth?" on the page
 	
 	#DoB
-	
 	When I press the "Continue" button
 	Then I see "There is a problem" on the page
 	When I set "Day" to "27"
@@ -115,7 +110,6 @@ Scenario Outline: Checking the word Act in Mental Health Act is capitalised
 	When I press the "Continue" button
 	
 	#Residency
-	
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	When I press the "Continue" button
 	Then I see "Select yes if your main address has been in the UK, Channel Islands or Isle of Man for any period of at least 5 years, since you turned 13" on the page
@@ -129,12 +123,10 @@ Scenario Outline: Checking the word Act in Mental Health Act is capitalised
 	And I press the "Continue" button
 	
 	#CJS
-	
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#bail
-	
 	Then I see "Are you currently on bail for a criminal offence?" on the page
 	When I click on the "Back" link
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
@@ -145,7 +137,6 @@ Scenario Outline: Checking the word Act in Mental Health Act is capitalised
 	Then I see "Have you been found guilty of a criminal offence?" on the page
 	
 	#JDB-4552
-	
 	When I click on the "Guidance on jury service if you have a conviction" link
 
 	And on the page I see
@@ -182,7 +173,6 @@ Scenario Outline: Checking the word Act in Mental Health Act is capitalised
 	And I press the "Continue" button
 	
 	#Mental Health part 1
-	
 	Then I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
 	When I press the "Continue" button
 	Then I see "Select yes if you're being detained, looked after or treated under the Mental Health Act" on the page
@@ -197,7 +187,6 @@ Scenario Outline: Checking the word Act in Mental Health Act is capitalised
 	When I press the "Continue" button
 	
 	#Mental Health part 2
-	
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
 	
 	When I click on the "Need help answering this?" link
@@ -234,7 +223,6 @@ Scenario Outline: Checking the word Act in Mental Health Act is capitalised
 	And I press the "Submit" button
 	
 	#Confirmation
-	
 	Then I see "You have completed your reply" on the page
 	And I see "Download a copy of your summons reply HTML" on the page
 	And I click on the "Download a copy of your summons reply HTML" link
@@ -246,26 +234,26 @@ Scenario Outline: Checking the word Act in Mental Health Act is capitalised
 	And I see "No" in the same row as "Has it been decided that you 'lack mental capacity'?"
 	
 Examples:
-	|part_no	|last_name			|postcode	|email           	|pool_no	|
-	|741500745	|LNAMESEVENFOURFIVE	|CH1 2AN	|email@outlook.com	|415181001	|
+	| juror_number	| last_name			| postcode	| email           	| pool_number	|
+	| 045200060		| LNAMESEVENFOURFIVE| CH1 2AN	| email@outlook.com	| 452300059		|
 	
-@Regression @replytypes @JDB-3584 @JDB-3704 
+@Regression @NewSchemaConverted
 Scenario Outline: Checking MH questions have been split in Bureau and no text MENTAL HEALTH Q2 is visible
-	Given I am on "Public" "juror-test02"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+
+	Given I am on "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
 		
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	
 	Then I see "Reply to a jury summons" on the page
 
 	And I set the radio button to "I am replying for myself"
 	And I press the "Continue" button
-	And I set "9-digit juror number" to "<part_no>"
+	And I set "9-digit juror number" to "<juror_number>"
 	And I set "Juror last name" to "<last_name>"
 	And I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
@@ -314,10 +302,10 @@ Scenario Outline: Checking MH questions have been split in Bureau and no text ME
 		| Your details |
 		| Enter your email address |
 	
-	When I set "Enter your email address" to "test@gmail.com"
+	When I set "Enter your email address" to "<email>"
 	And I press the "Continue" button
 	Then I see "Enter your email address and check that it matches the one in the first field" on the page
-	When I set "Enter your email address again" to "test@gmail.com"
+	When I set "Enter your email address again" to "<email>"
 	And I press the "Continue" button
 
 	Then on the page I see
@@ -336,34 +324,29 @@ Scenario Outline: Checking MH questions have been split in Bureau and no text ME
 	When I press the "Continue" button
 	
 	#Residency
-	
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	When I see "Eligibility" on the page
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 	
 	#CJS no
-	
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Bail
-	
 	Then I see "Are you currently on bail for a criminal offence?" on the page
 	When I see "Eligibility" on the page
 	And I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Convictions
-	
 	Then I see "Have you been found guilty of a criminal offence?" on the page
 	When I see "Eligibility" on the page
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Mental Health Sectioned
-	
 	Then I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
 	And on the page I see
 	|text|
@@ -387,7 +370,6 @@ Scenario Outline: Checking MH questions have been split in Bureau and no text ME
 	And I press the "Continue" button 
 	
 	#Mental Health Capacity
-	
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
 	And on the page I see
 	|text|
@@ -411,20 +393,17 @@ Scenario Outline: Checking MH questions have been split in Bureau and no text ME
 	And I press the "Continue" button
 	
 	#I can attend
-	
 	Then I see "Check your start date" on the page
 	And I see "Yes, I can start on" on the page
 	And I set the radio button to "Yes, I can start on"
 	And  I press the "Continue" button
 	
 	#RA no
-	
 	Then I see "Will you need help when you're at the court?" on the page
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
 	#Check your answers
-	
 	Then I see "Check your answers now" on the page
 	And I see text "Yes" in the same row as "Are you being detained, looked after or treated under the Mental Health Act?"
 	And I see text "Yes" in the same row as "Has it been decided that you 'lack mental capacity'?"
@@ -432,14 +411,13 @@ Scenario Outline: Checking MH questions have been split in Bureau and no text ME
 	And I press the "Submit" button
 	
 	#Confirmation
-	
 	Then I see "You have completed your reply" on the page
 	And I see "Download a copy of your summons reply HTML" on the page
 	And I click on the "Download a copy of your summons reply HTML" link
 	
 	And I see "Copy of your jury summons reply" on the page
 	And I see "<last_name>" in the same row as "Name"
-	And I see "<part_no>" in the same row as "Juror number"
+	And I see "<juror_number>" in the same row as "Juror number"
 
 	And I see "You answered the eligibility questions" on the page
 	And I see "Yes" in the same row as "Are you being detained, looked after or treated under the Mental Health Act?"
@@ -450,14 +428,13 @@ Scenario Outline: Checking MH questions have been split in Bureau and no text ME
 	And I see "Download a copy of your summons reply HTML" on the page	
 	
 	#Bureau
-	
-	Given I am on "Bureau" "juror-test02"
+	Given I am on "Bureau" "test"
 	And I log in
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	Then I see "<part_no>" on the page
+	Then I see "<juror_number>" on the page
 	
 	And I click link with ID "selectAllLink"
 	And I press the "Send to..." button
@@ -468,10 +445,10 @@ Scenario Outline: Checking MH questions have been split in Bureau and no text ME
 	
 	Then I click on the "Sign out" link
 	When I log in as "CPASS"
-	Then I see "<part_no>" on the page
-	Then I see "<part_no>" has reply type indicator "INELIGIBLE"
-	
-	And I click on "<part_no>" in the same row as "<part_no>"
+	Then I see "<juror_number>" on the page
+	Then I see "<juror_number>" has reply type indicator "INELIGIBLE"
+
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	
 	When I click on the "Eligibility" link
 	Then I see "Attention" in the same row as "Mental health"
@@ -480,5 +457,5 @@ Scenario Outline: Checking MH questions have been split in Bureau and no text ME
 	And I do not see "[MENTAL HEALTH Q2]" on the page
 	
 Examples:
-	|part_no	|last_name		|postcode	| email 	| pool_no	|
-	|641500679	|LNAMESIXSEVENNINE|CH1 2AN	|a@eeee.com	|415170601	|
+	| juror_number	| last_name			| postcode	| email 	| pool_number	|
+	| 045200061		| LNAMESIXSEVENNINE	| CH1 2AN	| a@eeee.com| 452300060		|

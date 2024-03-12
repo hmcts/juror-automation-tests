@@ -9,10 +9,10 @@ Scenario Outline: 1st Party Account Locked
 		| <part_no> |<pool_no>	| 400 	|
 		
 	
-#	And "<part_no>" has "LNAME" as "<last_name>" 
-#	And "<part_no>" has "RET_DATE" as "5 mondays time"
-#	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-#	And "<part_no>" has "ZIP" as "<postcode>"
+#	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+#
+#
+#	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 #
 ##1st_English	
 #
@@ -33,7 +33,7 @@ Scenario Outline: 1st Party Account Locked
 
 #log on attempt #1	
 
-	When I set "Rhif rheithiwr" to "<part_no>"
+	When I set "Rhif rheithiwr" to "<juror_number>"
 	And I set "Cyfenw" to "Smith"
 	And I set "Cod post Rheithiwr" to "SW17 7SR"
 	And I press the "Parhau" button
@@ -41,7 +41,7 @@ Scenario Outline: 1st Party Account Locked
 	
 #log on attempt #2
 
-	When I set "Rhif rheithiwr" to "<part_no>"
+	When I set "Rhif rheithiwr" to "<juror_number>"
 	And I set "Cyfenw" to "Smith"
 	And I set "Cod post Rheithiwr" to "SW17 7SR"
 	And I press the "Parhau" button
@@ -49,7 +49,7 @@ Scenario Outline: 1st Party Account Locked
 	
 #log on attempt #3
 
-	When I set "Rhif rheithiwr" to "<part_no>"
+	When I set "Rhif rheithiwr" to "<juror_number>"
 	And I set "Cyfenw" to "Smith"
 	And I set "Cod post Rheithiwr" to "SW17 7SR"
 	And I press the "Parhau" button
@@ -57,7 +57,7 @@ Scenario Outline: 1st Party Account Locked
 	
 #log on attempt #4
 
-	When I set "Rhif rheithiwr" to "<part_no>"
+	When I set "Rhif rheithiwr" to "<juror_number>"
 	And I set "Cyfenw" to "Smith"
 	And I set "Cod post Rheithiwr" to "SW17 7SR"
 	And I press the "Parhau" button
@@ -78,10 +78,10 @@ Scenario Outline: 3rd Party Account Locked
 		| part_no 	| pool_no 	| owner |
 		| <part_no> |<pool_no>	| 400 	|
 	
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+
+
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 
 	
 #	Then I see "Reply to a jury summons" on the page
@@ -97,7 +97,7 @@ Scenario Outline: 3rd Party Account Locked
 
 #log on attempt #1	
 
-	When I set "Rhif rheithiwr" to "<part_no>"
+	When I set "Rhif rheithiwr" to "<juror_number>"
 	When I set "Cyfenw" to "Smith"
 	When I set "Cod post Rheithiwr" to "SW17 7SR"
 	And I press the "Parhau" button
@@ -106,7 +106,7 @@ Scenario Outline: 3rd Party Account Locked
 	
 #log on attempt #2
 
-	When I set "Rhif rheithiwr" to "<part_no>"
+	When I set "Rhif rheithiwr" to "<juror_number>"
 	When I set "Cyfenw" to "Smith"
 	When I set "Cod post Rheithiwr" to "SW17 7SR"
 	And I press the "Parhau" button
@@ -115,7 +115,7 @@ Scenario Outline: 3rd Party Account Locked
 	
 #log on attempt #3
 
-	When I set "Rhif rheithiwr" to "<part_no>"
+	When I set "Rhif rheithiwr" to "<juror_number>"
 	When I set "Cyfenw" to "Smith"
 	When I set "Cod post Rheithiwr" to "SW17 7SR"
 	And I press the "Parhau" button
@@ -124,7 +124,7 @@ Scenario Outline: 3rd Party Account Locked
 	
 #log on attempt #4
 
-	When I set "Rhif rheithiwr" to "<part_no>"
+	When I set "Rhif rheithiwr" to "<juror_number>"
 	When I set "Cyfenw" to "Smith"
 	When I set "Cod post Rheithiwr" to "SW17 7SR"
 	And I press the "Parhau" button

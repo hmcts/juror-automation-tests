@@ -11,10 +11,10 @@ Scenario Outline: 1. Edit Juror Details on PENDING ALLOCATION
 	
 	# Set part_no pool to not be urgent
 	
-	Given "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "LNAME" as "<last_name>"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	Given "<juror_number>" has "RET_DATE" as "5 mondays time"
+
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	
 	# Submit response in pool
 	
@@ -28,13 +28,13 @@ Scenario Outline: 1. Edit Juror Details on PENDING ALLOCATION
 	#check response is pending allocation
 	
 	And I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	Then I see "TO DO" in the same row as "<part_no>"
+	Then I see "TO DO" in the same row as "<juror_number>"
 	
 	#edit Juror's name
 	
-	When I click on "<part_no>" in the same row as "<part_no>"
+	When I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Process reply" on the page
 	When I click on the "Change" link
 	And I set "First name" to "Bob"
@@ -45,9 +45,9 @@ Scenario Outline: 1. Edit Juror Details on PENDING ALLOCATION
 	#check the response is now allocated to CPASS
 	
 	And I click on the "Search" link
-	And I set "Juror number" to "<part_no>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	Then I see "CPASS" in the same row as "<part_no>"
+	Then I see "CPASS" in the same row as "<juror_number>"
 
 Examples:
 	|part_no	|pool_no 	|last_name 			|postcode 	|
@@ -976,8 +976,8 @@ Scenario Outline: 11. Complete a PENDING ALLOCATION response that has been proce
 	
 	Then I see "Responded" on the page
 	And I see "COMPLETED" on the page
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "CLOSED" where "JUROR_NUMBER" is "<part_no_ten>"
-	Then on "JUROR_DIGITAL" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "Y" where "JUROR_NUMBER" is "<part_no_ten>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "CLOSED" where "JUROR_NUMBER" is "<part_no_ten>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "Y" where "JUROR_NUMBER" is "<part_no_ten>"
 	
 	#check record is now in "completed today"
 	

@@ -10,7 +10,7 @@ Feature: JM-3811 Mark as deceased digital
       |<part_no> | <pool_no> | 400   |
 
 
-    And "<part_no>" has "NEXT_DATE" as "1 mondays time" new schema
+    And "<juror_number>" has "NEXT_DATE" as "1 mondays time" new schema
     
     And I have submitted a third party English deceased response
       |part_no	|pool_number|last_name		|postcode	|email 	|
@@ -19,7 +19,7 @@ Feature: JM-3811 Mark as deceased digital
     Given I am on "Bureau" "test"
     Given I log in as "<user>"
     
-    And the user searches for juror record "<part_no>" from the global search bar
+    And the user searches for juror record "<juror_number>" from the global search bar
     When I click the summons reply tab
      #fails due to defect JM-4742
     When I click on the view summons reply link

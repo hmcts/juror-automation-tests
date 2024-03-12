@@ -10,7 +10,7 @@ Feature: Grant excusal digital
       | <part_no> |<pool_no>	| 400 	|
 
 
-    And "<part_no>" has "NEXT_DATE" as "5 mondays time" new schema
+
 
     And I have submitted a first party English excusal response
       |part_no	|pool_number|last_name		|postcode	| email |
@@ -20,7 +20,7 @@ Feature: Grant excusal digital
 
     And I log in as "<user>"
 
-    When I search for juror "<part_no>"
+    When I search for juror "<juror_number>"
     Then I click the summons reply tab
     And I click on the view summons reply link
     Then the view summons reply page is displayed
@@ -48,7 +48,7 @@ Feature: Grant excusal digital
       | <part_no> |<pool_no>	| 400 	|
 
 
-    And "<part_no>" has "NEXT_DATE" as "5 mondays time" new schema
+
 
     And I have submitted a first party English excusal response
       |part_no	|pool_number|last_name		|postcode	| email |
@@ -58,9 +58,9 @@ Feature: Grant excusal digital
 
     And I log in as "<user>"
     When I click on the "Search" link
-    And I set "Juror number" to "<part_no>"
+    And I set "Juror number" to "<juror_number>"
     And I press the "Search" button
-    And I click on "<part_no>" in the same row as "<part_no>"
+    And I click on "<juror_number>" in the same row as "<juror_number>"
     And I select Process reply
     And I select the Excusal radio button
     And I click continue on the process reply page

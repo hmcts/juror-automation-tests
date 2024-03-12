@@ -7,10 +7,10 @@ Scenario Outline:
 		| part_no 	| pool_no 	| owner |
 		| <part_no> |<pool_no>	| 400 	|
 	
-	And "<part_no>" has "LNAME" as "<last_name>" 
-	And "<part_no>" has "RET_DATE" as "5 mondays time"
-	And "<part_no>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no>" has "ZIP" as "<postcode>"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+
+
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 
 	And I set the radio button to "Rwy'n ymateb ar ran rhywun arall"
 	And I press the "Parhau" button
@@ -20,7 +20,7 @@ Scenario Outline:
 	Then I see "Bradford" on the page
 	And I do not see "Pocock" on the page
 	
-	When I set "Rhif rheithiwr" to "<part_no>"
+	When I set "Rhif rheithiwr" to "<juror_number>"
 	When I set "Cyfenw" to "<last_name>"
 	When I set "Cod post Rheithiwr" to "<postcode>"
 	And I press the "Parhau" button
@@ -83,7 +83,7 @@ Scenario Outline:
 	
 	Then I see "Rydych wedi cwblhau'r broses ymateb" on the page
 	Then I see "Rydych wedi cwblhau'r broses ymateb" on the page
-	Then I see "<part_no>" on the page
+	Then I see "<juror_number>" on the page
 	
 Examples:
 	| part_no		|last_name		|postcode	| email 	| pool_no	|

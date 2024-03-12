@@ -13,11 +13,11 @@ Feature: JM-3368 Super Urgent Paper Response Court
 			|<part_no> | <pool_no> | 415   |
 
 
-		And "<part_no>" has "NEXT_DATE" as "1 mondays time" new schema
+		And "<juror_number>" has "NEXT_DATE" as "1 mondays time" new schema
 
 		And I log in as "<user>"
 
-		When the user searches for juror record "<part_no>" from the global search bar
+		When the user searches for juror record "<juror_number>" from the global search bar
 
 		#record unhappy path paper summons
 		And I record an unhappy path paper summons response

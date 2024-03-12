@@ -12,11 +12,11 @@ Feature: JM-3686
       |<part_no> | <pool_no> | 400   |
 
 
-    And "<part_no>" has "NEXT_DATE" as "1 mondays time" new schema
+    And "<juror_number>" has "NEXT_DATE" as "1 mondays time" new schema
 
-    Given the request letter for part_no "<part_no>" is deleted
+    Given the request letter for part_no "<juror_number>" is deleted
 
-    When the user searches for juror record "<part_no>" from the global search bar
+    When the user searches for juror record "<juror_number>" from the global search bar
 
    #record paper summons response
     And I record a happy path paper summons response
@@ -26,7 +26,7 @@ Feature: JM-3686
     Then I see "The juror’s answers mean this is a straight-through reply. So you can process it as responded now, or return later." on the page
     When I click on the "No, skip and process later" link
 
-    When the user searches for juror record "<part_no>" from the global search bar
+    When the user searches for juror record "<juror_number>" from the global search bar
     Then the view summons reply page is displayed
 
     And I click on the "Summons reply" link

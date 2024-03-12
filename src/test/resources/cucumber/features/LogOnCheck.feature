@@ -6,7 +6,7 @@ Feature: Juror Details Checker
 
 		And I set the radio button to "I am replying for myself"
 		And I press the "Continue" button
-		And I set "9-digit juror number" to "<part_no>"
+		And I set "9-digit juror number" to "<juror_number>"
 		And I set "Juror last name" to "<last_name>"
 		And I set "Juror postcode" to "<postcode>"
 		And I press the "Continue" button
