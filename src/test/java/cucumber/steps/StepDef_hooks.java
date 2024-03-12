@@ -41,7 +41,7 @@ public class StepDef_hooks {
 		if (scenario.isFailed()) {		
 			try {
 				JavascriptExecutor jse = (JavascriptExecutor)webDriver;
-			    jse.executeScript("document.body.style.zoom = '50%';");
+			    jse.executeScript("document.body.style.zoom = '100%';");
 			} catch (Exception e) {
 				//Untested
 			}
