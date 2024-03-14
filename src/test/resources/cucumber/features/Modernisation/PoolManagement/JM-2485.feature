@@ -33,6 +33,6 @@ Feature: JM-2485
       | Pool type          |
       | Service start date |
     And the court name displayed is one of the following
-      | Lewes Sitting At Chichester |
+      | Knutsford |
       | Chester    |
       | Welshpool  |

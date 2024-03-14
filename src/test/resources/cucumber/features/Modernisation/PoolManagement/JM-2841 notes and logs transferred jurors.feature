@@ -101,11 +101,11 @@ Feature: JM-2841 Notes and Logs for Transferred Jurors
 
     #select court and attendance date
     When I set input field with "ID" of "courtNameOrLocation" to "457"
-    And I click on the "Swansea (457)" link
+    And I click on the "Swansea Crown Court (457)" link
     And I set attendance date to "5" Mondays in the future
     And I press the "Continue" button
 
-    Then I see "Transfer to Swansea (457)" on the page
+    Then I see "Transfer to Swansea Crown Court (457)" on the page
     When I press the "Continue" button
 
     #search for juror at new pool

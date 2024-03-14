@@ -44,12 +44,7 @@ public class StepDef_data {
 	public void makeUserFirstTime_admin (String username) {
 	    DBB.setAdmin_firstTimeLogin(username);
 	};
-	
-	
-	@When("^I have reset user \"([^\"]*)\"$")
-	public void resetUser(String username) throws Throwable {
-	    DBT.resetUser(username);
-	}	
+
 	
 	@Given("^I have cleared down the juror digital database$")
 	public void resetJurorDigitalDatabase() throws Throwable {

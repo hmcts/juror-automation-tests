@@ -54,7 +54,7 @@ Feature: As a jury officer i need to send a attendance date and time changed mes
     And I see "Check and send message" on the page
     And I see "You’re sending the following message to 1 jurors. You cannot undo this after sending." on the page
     And I see "The date of your attendance for Jury Service has changed to" on the page
-    And I see "at 09:00 at CHESTER Court. The days you are not required at court still form part of your jury service and will not be added on at the end. If you have any questions, please contact the jury office on 01244 317606." on the page
+    And I see "at 09:00 at CHESTER Court. The days you are not required at court still form part of your jury service and will not be added on at the end. If you have any questions, please contact the jury office on 01244 356726." on the page
     And I see the template containing my attendance date with a monday "5" weeks in the future
     And I press the "Send message" button
     And I see the message sent banner containing "Message will be sent to 1 jurors"
@@ -108,7 +108,7 @@ Feature: As a jury officer i need to send a attendance date and time changed mes
     And I see "Check and send message" on the page
     And I see "You’re sending the following message to 1 jurors. You cannot undo this after sending." on the page
     And I see "The date of your attendance for Jury Service has changed to" on the page
-    And I see "at 09:00 at CHESTER Court. The days you are not required at court still form part of your jury service and will not be added on at the end. If you have any questions, please contact the jury office on 01244 317606." on the page
+    And I see "at 09:00 at CHESTER Court. The days you are not required at court still form part of your jury service and will not be added on at the end. If you have any questions, please contact the jury office on 01244 356726." on the page
     And I see the template containing my attendance date with a monday "5" weeks in the future
     And I press the "Send message" button
     And I see the message sent banner containing "Message will be sent to 1 jurors"
@@ -164,7 +164,7 @@ Feature: As a jury officer i need to send a attendance date and time changed mes
     And I see "Check and send message" on the page
     And I see "You’re sending the following message to 1 jurors. You cannot undo this after sending." on the page
     And I see "The date of your attendance for Jury Service has changed to" on the page
-    And I see "at 09:00 at CHESTER Court. The days you are not required at court still form part of your jury service and will not be added on at the end. If you have any questions, please contact the jury office on 01244 317606." on the page
+    And I see "at 09:00 at CHESTER Court. The days you are not required at court still form part of your jury service and will not be added on at the end. If you have any questions, please contact the jury office on 01244 356726." on the page
     And I see the template containing my attendance date with a monday "5" weeks in the future
     And I press the "Send message" button
     And I see the message sent banner containing "Message will be sent to 1 jurors"
@@ -220,7 +220,7 @@ Feature: As a jury officer i need to send a attendance date and time changed mes
     And I see "Check and send message" on the page
     And I see "You’re sending the following message to 1 jurors. You cannot undo this after sending." on the page
     And I see "The date of your attendance for Jury Service has changed to" on the page
-    And I see "at 09:00 at CHESTER Court. The days you are not required at court still form part of your jury service and will not be added on at the end. If you have any questions, please contact the jury office on 01244 317606." on the page
+    And I see "at 09:00 at CHESTER Court. The days you are not required at court still form part of your jury service and will not be added on at the end. If you have any questions, please contact the jury office on 01244 356726." on the page
     And I see the template containing my attendance date with a monday "5" weeks in the future
     And I press the "Send message" button
     And I see the message sent banner containing "Message will be sent to 1 jurors"
@@ -318,7 +318,7 @@ Feature: As a jury officer i need to send a attendance date and time changed mes
     And I see "Check and send message" on the page
     And I see "You’re sending the following message to 1 jurors. You cannot undo this after sending." on the page
     And I see "The date of your attendance for Jury Service has changed to" on the page
-    And I see "at 09:00 at CHESTER Court. The days you are not required at court still form part of your jury service and will not be added on at the end. If you have any questions, please contact the jury office on 01244 317606." on the page
+    And I see "at 09:00 at CHESTER Court. The days you are not required at court still form part of your jury service and will not be added on at the end. If you have any questions, please contact the jury office on 01244 356726." on the page
     And I see the template containing my attendance date with a monday "5" weeks in the future
     And I press the "Send message" button
     And I see the message sent banner containing "Message will be sent to 1 jurors"
@@ -373,7 +373,7 @@ Feature: As a jury officer i need to send a attendance date and time changed mes
     And I see "Check and send message" on the page
     And I see "You’re sending the following message to 1 jurors. You cannot undo this after sending." on the page
     And I see "The date of your attendance for Jury Service has changed to" on the page
-    And I see "at 09:00 at CHESTER Court. The days you are not required at court still form part of your jury service and will not be added on at the end. If you have any questions, please contact the jury office on 01244 317606." on the page
+    And I see "at 09:00 at CHESTER Court. The days you are not required at court still form part of your jury service and will not be added on at the end. If you have any questions, please contact the jury office on 01244 356726." on the page
     And I see the template containing my attendance date with a monday "5" weeks in the future
     And I press the "Send message" button
     And I see the message sent banner containing "Message will be sent to 1 jurors"
@@ -491,7 +491,7 @@ Feature: As a jury officer i need to send a attendance date and time changed mes
     And I see "Check and send message" on the page
     And I see "You’re sending the following message to 1 jurors. You cannot undo this after sending." on the page
     And I see "The date of your attendance for Jury Service has changed to" on the page
-    And I see "at 09:00 at CHESTER Court. The days you are not required at court still form part of your jury service and will not be added on at the end. If you have any questions, please contact the jury office on 01244 317606." on the page
+    And I see "at 09:00 at CHESTER Court. The days you are not required at court still form part of your jury service and will not be added on at the end. If you have any questions, please contact the jury office on 01244 356726." on the page
     And I see the template containing my attendance date with a monday "5" weeks in the future
     And I press the "Send message" button
     And I see the message sent banner containing "Message will be sent to 1 jurors"
@@ -560,7 +560,7 @@ Feature: As a jury officer i need to send a attendance date and time changed mes
     And I see "Check and send message" on the page
     And I see "You’re sending the following message to 3 jurors. You cannot undo this after sending." on the page
     And I see "The date of your attendance for Jury Service has changed to" on the page
-    And I see "at 09:00 at CHESTER Court. The days you are not required at court still form part of your jury service and will not be added on at the end. If you have any questions, please contact the jury office on 01244 317606." on the page
+    And I see "at 09:00 at CHESTER Court. The days you are not required at court still form part of your jury service and will not be added on at the end. If you have any questions, please contact the jury office on 01244 356726." on the page
     And I see the template containing my attendance date with a monday "5" weeks in the future
     And I press the "Send message" button
     And I see the message sent banner containing "Message will be sent to 3 jurors"

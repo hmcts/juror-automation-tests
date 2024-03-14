@@ -333,32 +333,6 @@ public class DatabaseTesterNewSchemaDesign {
 
 	}
 
-	//Danielle enable/disable a Bureau user account
-	public void enableBureauUserNSD(String username, String login_enabled_yn, String value) throws SQLException {
-
-		db = new DBConnection();
-		String env_property = System.getProperty("env.database");
-
-		if (env_property != null)
-			conn = db.getConnection(env_property);
-		else
-			conn = db.getConnection("demo");
-
-		try {
-			pStmt = conn.prepareStatement("update juror_mod.users set " + login_enabled_yn + "=? where owner='400' and username='" + username + "'");
-			pStmt.setString(1, value);
-
-			pStmt.execute();
-			log.info("Updated user to enable/disable " + login_enabled_yn + " for user " + username + "");
-
-		} finally {
-			conn.commit();
-			pStmt.close();
-			conn.close();
-		}
-
-	}
-
 	public void onDatabaseTable_seeColWithColValue_whereColColvalueNSD(String environment, String database, String databaseTable,
 																	   String expectedColumn, String expectedColumnValue, String whereColumn, String whereColumnValue) throws SQLException {
 
@@ -447,10 +421,19 @@ public class DatabaseTesterNewSchemaDesign {
 			conn = db.getConnection("demo");
 		try {
 
+			pStmt = conn.prepareStatement("delete from juror_mod.user_roles where username=?");
+			pStmt.setString(1, staffName);
+			pStmt.executeQuery();
+			log.info("Delete all JUROR_MOD.USER_ROLES rows where username =>" + staffName);
+
+			pStmt = conn.prepareStatement("delete from juror_mod.user_courts where username=?");
+			pStmt.setString(1, staffName);
+			pStmt.executeQuery();
+			log.info("Delete all JUROR_MOD.USER_COURTS rows where username =>" + staffName);
+
 			pStmt = conn.prepareStatement("delete from juror_mod.users where name=?");
 			pStmt.setString(1, staffName);
-
-			ResultSet rs = pStmt.executeQuery();
+			pStmt.executeQuery();
 			log.info("Delete all JUROR_MOD.USERS rows where Name =>" + staffName);
 
 		} catch (SQLException e) {
@@ -1197,32 +1180,6 @@ public class DatabaseTesterNewSchemaDesign {
 
 	}
 
-	public void resetUserNSD(String username) throws SQLException {
-		db = new DBConnection();
-
-		String env_property = System.getProperty("env.database");
-		if (env_property != null)
-			conn = db.getConnection(env_property);
-		else
-			conn = db.getConnection("demo");
-
-		try {
-			pStmt = conn.prepareStatement("update juror_mod.users set password_changed_date=NOW() where username=?");
-			pStmt.setString(1, username);
-			pStmt.executeQuery();
-			log.info("Updated password changed date for =>" + username + "<= to let us login");
-
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-			log.error("Message:" + e.getMessage());
-		} finally {
-			conn.commit();
-			pStmt.close();
-			conn.close();
-		}
-
-	}
 
 	public void resetJurorDigitalDatabase() throws SQLException {
 		db = new DBConnection();
@@ -2728,9 +2685,19 @@ public class DatabaseTesterNewSchemaDesign {
 		else
 			conn = db.getConnection("demo");
 		try {
-			pStmt = conn.prepareStatement("DELETE FROM JUROR_MOD.USERS WHERE USERNAME IN ('MODTESTBUREAU','MODTESTCOURT','MODCOURT', 'MODBUREAUOFFICER')");
+
+
+			pStmt = conn.prepareStatement("delete from juror_mod.user_roles where username IN ('MODTESTBUREAU','MODTESTCOURT','MODCOURT', 'MODBUREAUOFFICER', 'AUTO', 'TeamPickListUser', 'AutomationStaffMembe', 'CPASS', 'SYSTEM', 'SJOUSER1', 'ARAMIS1', 'NEWUSER')");
+			pStmt.executeQuery();
+			log.info("Delete all JUROR_MOD.USER_ROLES rows where username IN ('MODTESTBUREAU','MODTESTCOURT','MODCOURT', 'MODBUREAUOFFICER', 'AUTO', 'TeamPickListUser', 'AutomationStaffMembe', 'CPASS', 'SYSTEM', 'SJOUSER1', 'ARAMIS1', 'NEWUSER')");
+
+			pStmt = conn.prepareStatement("delete from juror_mod.user_courts where username IN ('MODTESTBUREAU','MODTESTCOURT','MODCOURT', 'MODBUREAUOFFICER', 'AUTO', 'TeamPickListUser', 'AutomationStaffMembe', 'CPASS', 'SYSTEM', 'SJOUSER1', 'ARAMIS1', 'NEWUSER')");
+			pStmt.executeQuery();
+			log.info("Delete all JUROR_MOD.USER_COURTS rows where username IN ('MODTESTBUREAU','MODTESTCOURT','MODCOURT', 'MODBUREAUOFFICER', 'AUTO', 'TeamPickListUser', 'AutomationStaffMembe', 'CPASS', 'SYSTEM', 'SJOUSER1', 'ARAMIS1', 'NEWUSER')");
+
+			pStmt = conn.prepareStatement("DELETE FROM JUROR_MOD.USERS WHERE USERNAME IN ('MODTESTBUREAU','MODTESTCOURT','MODCOURT', 'MODBUREAUOFFICER', 'AUTO', 'TeamPickListUser', 'AutomationStaffMembe', 'CPASS', 'SYSTEM', 'SJOUSER1', 'ARAMIS1', 'NEWUSER')");
 			pStmt.execute();
-			log.info("Deleted FROM JUROR_MOD.USERS WHERE USERNAME IN ('MODTESTBUREAU','MODTESTCOURT','MODCOURT', 'MODBUREAUOFFICER')");
+			log.info("Deleted FROM JUROR_MOD.USERS WHERE USERNAME IN ('MODTESTBUREAU','MODTESTCOURT','MODCOURT', 'MODBUREAUOFFICER', 'AUTO', 'TeamPickListUser', 'AutomationStaffMembe', 'CPASS', 'SYSTEM', 'SJOUSER1', 'ARAMIS1', 'NEWUSER')");
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -2955,6 +2922,310 @@ public class DatabaseTesterNewSchemaDesign {
 			conn.commit();
 
 			log.info("deleted trials records");
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.error("Message:" + e.getMessage());
+			log.info(11);
+		} finally {
+			conn.commit();
+			pStmt.close();
+			conn.close();
+		}
+	}
+
+	public void populateCourtCatchmentAreaTable() throws SQLException {
+		db = new DBConnection();
+		String env_property = System.getProperty("env.database");
+		if (env_property != null)
+			conn = db.getConnection(env_property);
+		else
+			conn = db.getConnection("demo");
+		try {
+			pStmt = conn.prepareStatement("delete from juror_mod.court_catchment_area");
+			pStmt.execute();
+			conn.commit();
+
+			pStmt = conn.prepareStatement("INSERT INTO juror_mod.court_catchment_area (postcode,loc_code) VALUES\n" +
+					"\t ('AL1','450'),\n" +
+					"\t ('B4','127'),\n" +
+					"\t ('B4','404'),\n" +
+					"\t ('B97','797'),\n" +
+					"\t ('BB11','409'),\n" +
+					"\t ('BD1','402'),\n" +
+					"\t ('BH7','406'),\n" +
+					"\t ('BL1','470'),\n" +
+					"\t ('BN3','799'),\n" +
+					"\t ('BN7','431'),\n" +
+					"\t ('BS1','408'),\n" +
+					"\t ('CA1','412'),\n" +
+					"\t ('CB1','410'),\n" +
+					"\t ('CF1','411'),\n" +
+					"\t ('CF10','411'),\n" +
+					"\t ('CF2','411'),\n" +
+					"\t ('CF3','411'),\n" +
+					"\t ('CF4','411'),\n" +
+					"\t ('CF47','437'),\n" +
+					"\t ('CF5','411'),\n" +
+					"\t ('CF6','411'),\n" +
+					"\t ('CF7','411'),\n" +
+					"\t ('CF8','411'),\n" +
+					"\t ('CH1','415'),\n" +
+					"\t ('CH2','415'),\n" +
+					"\t ('CH7','769'),\n" +
+					"\t ('CM1','414'),\n" +
+					"\t ('CR4','794'),\n" +
+					"\t ('CR9','418'),\n" +
+					"\t ('CT1','479'),\n" +
+					"\t ('CV1','417'),\n" +
+					"\t ('CV34','463'),\n" +
+					"\t ('DE1','419'),\n" +
+					"\t ('DH1','422'),\n" +
+					"\t ('DN1','420'),\n" +
+					"\t ('DN31','425'),\n" +
+					"\t ('DT1','407'),\n" +
+					"\t ('DY10','798'),\n" +
+					"\t ('E11','453'),\n" +
+					"\t ('EC4M','413'),\n" +
+					"\t ('EX1','423'),\n" +
+					"\t ('EX31','750'),\n" +
+					"\t ('GL1','424'),\n" +
+					"\t ('GL1','795'),\n" +
+					"\t ('GL10','795'),\n" +
+					"\t ('GL11','795'),\n" +
+					"\t ('GL12','795'),\n" +
+					"\t ('GL13','795'),\n" +
+					"\t ('GL18','795'),\n" +
+					"\t ('GL19','795'),\n" +
+					"\t ('GL2','795'),\n" +
+					"\t ('GL20','795'),\n" +
+					"\t ('GL3','795'),\n" +
+					"\t ('GL4','795'),\n" +
+					"\t ('GL5','795'),\n" +
+					"\t ('GL50','795'),\n" +
+					"\t ('GL51','795'),\n" +
+					"\t ('GL52','795'),\n" +
+					"\t ('GL53','795'),\n" +
+					"\t ('GL54','795'),\n" +
+					"\t ('GL55','795'),\n" +
+					"\t ('GL56','795'),\n" +
+					"\t ('GL6','795'),\n" +
+					"\t ('GL7','795'),\n" +
+					"\t ('GL8','795'),\n" +
+					"\t ('GL9','795'),\n" +
+					"\t ('GU1','474'),\n" +
+					"\t ('HA1','468'),\n" +
+					"\t ('HP20','401'),\n" +
+					"\t ('HR1','762'),\n" +
+					"\t ('HU1','403'),\n" +
+					"\t ('IP1','426'),\n" +
+					"\t ('IP33','754'),\n" +
+					"\t ('KT1','427'),\n" +
+					"\t ('KT3','794'),\n" +
+					"\t ('KT4','794'),\n" +
+					"\t ('L2','433'),\n" +
+					"\t ('LA1','751'),\n" +
+					"\t ('LA14','756'),\n" +
+					"\t ('LE1','430'),\n" +
+					"\t ('LL40','768'),\n" +
+					"\t ('LL55','755'),\n" +
+					"\t ('LN1','432'),\n" +
+					"\t ('LS1','429'),\n" +
+					"\t ('LU1','476'),\n" +
+					"\t ('M1','435'),\n" +
+					"\t ('M1','436'),\n" +
+					"\t ('M2','435'),\n" +
+					"\t ('M3','435'),\n" +
+					"\t ('M4','435'),\n" +
+					"\t ('M5','435'),\n" +
+					"\t ('M6','435'),\n" +
+					"\t ('M7','435'),\n" +
+					"\t ('M8','435'),\n" +
+					"\t ('ME16','434'),\n" +
+					"\t ('N22','469'),\n" +
+					"\t ('NE1','439'),\n" +
+					"\t ('NG1','444'),\n" +
+					"\t ('NN1','442'),\n" +
+					"\t ('NN3','442'),\n" +
+					"\t ('NN5','442'),\n" +
+					"\t ('NN7','442'),\n" +
+					"\t ('NP20','441'),\n" +
+					"\t ('NR3','443'),\n" +
+					"\t ('OX1','445'),\n" +
+					"\t ('PE1','473'),\n" +
+					"\t ('PE29','796'),\n" +
+					"\t ('PE32','765'),\n" +
+					"\t ('PL1','446'),\n" +
+					"\t ('PO1','447'),\n" +
+					"\t ('PO19','416'),\n" +
+					"\t ('PO30','478'),\n" +
+					"\t ('PR1','448'),\n" +
+					"\t ('RG1','449'),\n" +
+					"\t ('S1','451'),\n" +
+					"\t ('S2','451'),\n" +
+					"\t ('S3','451'),\n" +
+					"\t ('S4','451'),\n" +
+					"\t ('S5','451'),\n" +
+					"\t ('S6','451'),\n" +
+					"\t ('S7','451'),\n" +
+					"\t ('S8','451'),\n" +
+					"\t ('SA1','457'),\n" +
+					"\t ('SA2','457'),\n" +
+					"\t ('SA31','758'),\n" +
+					"\t ('SA61','761'),\n" +
+					"\t ('SE1','400'),\n" +
+					"\t ('SE1','428'),\n" +
+					"\t ('SE1','440'),\n" +
+					"\t ('SE1','471'),\n" +
+					"\t ('SE28','472'),\n" +
+					"\t ('SM4','794'),\n" +
+					"\t ('SN1','458'),\n" +
+					"\t ('SO15','454'),\n" +
+					"\t ('SO23','465'),\n" +
+					"\t ('SP1','480'),\n" +
+					"\t ('SS14','461'),\n" +
+					"\t ('SS2','772'),\n" +
+					"\t ('ST1','456'),\n" +
+					"\t ('ST16','455'),\n" +
+					"\t ('SW15','794'),\n" +
+					"\t ('SW18','794'),\n" +
+					"\t ('SW19','794'),\n" +
+					"\t ('SW1P','464'),\n" +
+					"\t ('SW20','794'),\n" +
+					"\t ('SY2','452'),\n" +
+					"\t ('SY2','774'),\n" +
+					"\t ('TA1','459'),\n" +
+					"\t ('TR1','477'),\n" +
+					"\t ('TS1','460'),\n" +
+					"\t ('TW7','475'),\n" +
+					"\t ('WA1','462'),\n" +
+					"\t ('WA16','767'),\n" +
+					"\t ('WC2A','626'),\n" +
+					"\t ('WR1','466'),\n" +
+					"\t ('WV1','421'),\n" +
+					"\t ('YO1','467');");
+			pStmt.execute();
+			conn.commit();
+
+			log.info("populated court_catchment_area");
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.error("Message:" + e.getMessage());
+			log.info(11);
+		} finally {
+			conn.commit();
+			pStmt.close();
+			conn.close();
+		}
+	}
+
+	public void populateCourtroomTable() throws SQLException {
+		db = new DBConnection();
+		String env_property = System.getProperty("env.database");
+		if (env_property != null)
+			conn = db.getConnection(env_property);
+		else
+			conn = db.getConnection("demo");
+		try {
+			pStmt = conn.prepareStatement("delete from juror_mod.courtroom");
+			pStmt.execute();
+			conn.commit();
+
+			pStmt = conn.prepareStatement("INSERT INTO juror_mod.courtroom (\"loc_code\",room_number,description) VALUES\n" +
+					"\t ('421','Navail','Not Available'),\n" +
+					"\t ('435','Asmbly','JURY ASSEMBLY ROOM'),\n" +
+					"\t ('435','CT10','Court 10'),\n" +
+					"\t ('442','ChkOut','PARTICIPANT CHECKED OUT'),\n" +
+					"\t ('435','Court','COURT ROOM'),\n" +
+					"\t ('451','COURT4','Court 4'),\n" +
+					"\t ('421','ChkOut','PARTICIPANT CHECKED OUT'),\n" +
+					"\t ('442','Court ','COURT ROOM'),\n" +
+					"\t ('435','COURT3','Court 3'),\n" +
+					"\t ('451','COURT3','Court 3'),\n" +
+					"\t ('452','ChkOut','PARTICIPANT CHECKED OUT'),\n" +
+					"\t ('435','Navail','Not Available'),\n" +
+					"\t ('452','Court ','COURT ROOM'),\n" +
+					"\t ('417','Court ','COURT ROOM'),\n" +
+					"\t ('451','COURT6','Court 6'),\n" +
+					"\t ('451','COURT8','Court 8'),\n" +
+					"\t ('451','ChkOut','PARTICIPANT CHECKED OUT'),\n" +
+					"\t ('435','COURT1','Court 1'),\n" +
+					"\t ('417','Asmbly','JURY ASSEMBLY ROOM'),\n" +
+					"\t ('452','Navail','Not Available'),\n" +
+					"\t ('435','COURT4','Court 4'),\n" +
+					"\t ('451','COURT2','Court 2'),\n" +
+					"\t ('457','ChkOut','PARTICIPANT CHECKED OUT'),\n" +
+					"\t ('452','Asmbly','JURY ASSEMBLY ROOM'),\n" +
+					"\t ('457','Asmbly','JURY ASSEMBLY ROOM'),\n" +
+					"\t ('417','Navail','Not Available'),\n" +
+					"\t ('421','Court ','COURT ROOM'),\n" +
+					"\t ('421','Asmbly','JURY ASSEMBLY ROOM'),\n" +
+					"\t ('435','COURT9','Court 9'),\n" +
+					"\t ('451','Asmbly','JURY ASSEMBLY ROOM'),\n" +
+					"\t ('415','Court ','COURT ROOM'),\n" +
+					"\t ('435','ChkOut','PARTICIPANT CHECKED OUT'),\n" +
+					"\t ('417','ChkOut','PARTICIPANT CHECKED OUT'),\n" +
+					"\t ('435','COURT6','Court 6'),\n" +
+					"\t ('451','COURT1','Court 1'),\n" +
+					"\t ('435','COURT7','Court 7'),\n" +
+					"\t ('451','Court','COURT ROOM'),\n" +
+					"\t ('451','Navail','Not Available'),\n" +
+					"\t ('457','Navail','Not Available'),\n" +
+					"\t ('451','COURT9','Court 9'),\n" +
+					"\t ('451','COURT5','Court 5'),\n" +
+					"\t ('415','ChkOut','PARTICIPANT CHECKED OUT'),\n" +
+					"\t ('451','COURT7','Court 7'),\n" +
+					"\t ('442','Asmbly','JURY ASSEMBLY ROOM'),\n" +
+					"\t ('442','Navail','Not Available'),\n" +
+					"\t ('435','COURT5','Court 5'),\n" +
+					"\t ('451','CT10','Court 10'),\n" +
+					"\t ('457','Court ','COURT ROOM'),\n" +
+					"\t ('415','Navail','Not Available'),\n" +
+					"\t ('435','COURT8','Court 8'),\n" +
+					"\t ('415','Asmbly','JURY ASSEMBLY ROOM'),\n" +
+					"\t ('435','COURT2','Court 2');\n");
+			pStmt.execute();
+			conn.commit();
+
+			log.info("populated courtroom");
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.error("Message:" + e.getMessage());
+			log.info(11);
+		} finally {
+			conn.commit();
+			pStmt.close();
+			conn.close();
+		}
+	}
+
+	public void populateJudgeTable() throws SQLException {
+		db = new DBConnection();
+		String env_property = System.getProperty("env.database");
+		if (env_property != null)
+			conn = db.getConnection(env_property);
+		else
+			conn = db.getConnection("demo");
+		try {
+
+			pStmt = conn.prepareStatement("DELETE FROM JUROR_MOD.JUDGE");
+			pStmt.execute();
+			conn.commit();
+
+			pStmt = conn.prepareStatement("INSERT INTO juror_mod.judge (\"owner\",code,description,telephone_number,\"name\",is_active,last_used) VALUES\n" +
+					"\t ('435','DRED','DREDD',NULL,'DREDD',false,NULL),\n" +
+					"\t ('421','AITK','PATRICIA H AITKEN',NULL,'PATRICIA H AITKEN',false,NULL),\n" +
+					"\t ('435','LAWW','HIGHCOURT',NULL,'HIGHCOURT',false,NULL),\n" +
+					"\t ('435','JUDD','LAWSON',NULL,'LAWSON',false,NULL),\n" +
+					"\t ('400','AITK','PATRICIA H AITKEN',NULL,'PATRICIA H AITKEN',false,NULL),\n" +
+					"\t ('442','AITK','PATRICIA H AITKEN',NULL,'PATRICIA H AITKEN',false,NULL),\n" +
+					"\t ('457','DEED','JOHN',NULL,'JOHN',false,NULL),\n" +
+					"\t ('451','DRED','DREDD',NULL,'DREDD',false,NULL),\n" +
+					"\t ('417','AITK','PATRICIA H AITKEN',NULL,'PATRICIA H AITKEN',false,NULL),\n" +
+					"\t ('415','AITK','PATRICIA H AITKEN',NULL,'PATRICIA H AITKEN',false,'2024-03-01 10:06:42.04449');\n");
+			pStmt.execute();
+			conn.commit();
+
+			log.info("populated judge");
 		} catch (SQLException e) {
 			e.printStackTrace();
 			log.error("Message:" + e.getMessage());

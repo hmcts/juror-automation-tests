@@ -160,7 +160,7 @@ Feature: JM-252_Navigation_COURT
     #CHANGE COURT
     Then  I click the change link for the chosen court
     And I see "Select a court for this pool" on the page
-    Then I set input field with "ID" of "courtNameOrLocation" to "416"
+    Then I set input field with "ID" of "courtNameOrLocation" to "767"
     And I click on the "Chichester (416)" link
     And I press the "Continue" button
 
@@ -173,7 +173,7 @@ Feature: JM-252_Navigation_COURT
     Then I should be taken to the pool summary page
 
     And I should see the newly created pool request
-      | court          | Lewes Sitting At Chichester |
+      | court          | Knutsford |
       | jurorsRequired | 150                         |
 
     Then I set input field with "ID" of "courtNameOrLocation" to "415"
@@ -186,10 +186,10 @@ Feature: JM-252_Navigation_COURT
     Then I see "Chester" on the page
     And I see "Chichester" on the page
 
-    Then I set input field with "ID" of "courtNameOrLocation" to "416"
+    Then I set input field with "ID" of "courtNameOrLocation" to "767"
     Then I click on the "Chichester (416)" link
     Then I press the "Filter" button
-    Then only records from "Lewes Sitting At Chichester" are displayed
+    Then only records from "Knutsford" are displayed
 
     Then I click on the "Clear filter" link
 
@@ -206,7 +206,7 @@ Feature: JM-252_Navigation_COURT
     Then I set input field with "ID" of "courtNameOrLocation" to "Chichester"
     Then I click on the "Chichester (416)" link
     Then I press the "Filter" button
-    Then only records from "Lewes Sitting At Chichester" are displayed
+    Then only records from "Knutsford" are displayed
 
     When I press the "Create pool" button
     And I set the radio button to "Request new pool"

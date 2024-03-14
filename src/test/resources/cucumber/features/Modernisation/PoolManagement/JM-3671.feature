@@ -137,7 +137,7 @@ Feature: JM-3671
     Then I click on the "Change" link
     Then I see "Change the court catchment area" on the page
     Then I set input field with "ID" of "courtNameOrLocation" to "457"
-    Then I click on the "Swansea (457)" link
+    Then I click on the "Swansea Crown Court (457)" link
     Then I press the "Continue" button
 
     Then I see "Add a court catchment area" on the page

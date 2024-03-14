@@ -53,11 +53,9 @@ Feature: JM-4186
 
     Given I am on "Bureau" "test"
 
-    Given the juror numbers have not been processed new schema
-      |part_no   | pool_no   | owner  |
-      |<part_no> | <pool_no> | 400    |
-
-    And "<juror_number>" has "NEXT_DATE" as "7 mondays time"
+    Given a bureau owned pool is created with jurors
+      | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number> 	    | <pool_number>     | 7				            | 400	|
 
     And I log in as "<user>"
 
@@ -89,5 +87,5 @@ Feature: JM-4186
     Then I do not see "The juror’s answers mean this is a straight-through reply. So you can process it as responded now, or return later." on the page
 
     Examples:
-      |part_no	|pool_no   |user         |
-      |641500281|415170501 |MODTESTBUREAU|
+      | juror_number  | pool_number   |user         |
+      | 041500147     | 415300247     |MODTESTBUREAU|

@@ -35,20 +35,20 @@ Feature: JM-5039
     And I press the "Continue" button
     And I see error "Enter a court name or location code to transfer to"
     And I see error "Enter a transfer date in the correct format, for example, 31/01/2023"
-    Then I set input field with "ID" of "courtNameOrLocation" to "416"
-    And I click on the "Lewes Sitting At Chichester (416)" link
+    Then I set input field with "ID" of "courtNameOrLocation" to "767"
+    And I click on the "Knutsford (767)" link
     And I set the "Change the service start date for this pool" single date field to a Monday "60" weeks in the future
 
     And I press the "Continue" button
     And I see error "Service start date must be within the next 12 months"
 
     #transfer to another court
-    Then I set input field with "ID" of "courtNameOrLocation" to "416"
-    And I click on the "Lewes Sitting At Chichester (416)" link
+    Then I set input field with "ID" of "courtNameOrLocation" to "767"
+    And I click on the "Knutsford (767)" link
 
     And I set the "Change the service start date for this pool" single date field to a Monday "5" weeks in the future
     And I press the "Continue" button
-    And I see "Transfer to Lewes Sitting At Chichester" on the page
+    And I see "Transfer to Knutsford" on the page
     And I press the "Continue" button
     And I see "3 jurors transferred" on the page
 
@@ -57,15 +57,15 @@ Feature: JM-5039
 
     #search jurors have been transferred
     When the user searches for juror record "<juror_number1>" from the global search bar
-    And I click on "<juror_number1>" in the same row as "Lewes Sitting At Chichester"
+    And I click on "<juror_number1>" in the same row as "Knutsford"
     And I see the juror status has updated to "Responded"
 
     When the user searches for juror record "<juror_number2>" from the global search bar
-    And I click on "<juror_number2>" in the same row as "Lewes Sitting At Chichester"
+    And I click on "<juror_number2>" in the same row as "Knutsford"
     And I see the juror status has updated to "Responded"
 
     When the user searches for juror record "<juror_number3>" from the global search bar
-    And I click on "<juror_number3>" in the same row as "Lewes Sitting At Chichester"
+    And I click on "<juror_number3>" in the same row as "Knutsford"
     And I see the juror status has updated to "Responded"
     Examples:
       | user         | pool_number| juror_number1 | juror_number2   | juror_number3 |

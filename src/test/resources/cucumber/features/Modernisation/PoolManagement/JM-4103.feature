@@ -38,29 +38,29 @@ Feature: JM-4103
     #transfer
     And I press the "Transfer" button
     Then I see "Select a court to transfer to" on the page
-    And I set "Enter a court name or location code" to "416"
+    And I set "Enter a court name or location code" to "767"
     And I set the "Change the service start date for this pool" single date field to a Monday "5" weeks in the future
     And I press the "Continue" button
-    And I see "Transfer to Lewes Sitting At Chichester" on the page
+    And I see "Transfer to Knutsford" on the page
     And I press the "Continue" button
     And I see "4 jurors transferred" on the page
 
     Given I am on "Bureau" "test"
     And I log in as "MODTESTBUREAU"
     When the user searches for juror record "<part_no>" from the global search bar
-    And I click on "<part_no>" in the same row as "Lewes Sitting At Chichester"
+    And I click on "<part_no>" in the same row as "Knutsford"
     And I see the juror status has updated to "Responded"
 
     When the user searches for juror record "<part_no2>" from the global search bar
-    And I click on "<part_no2>" in the same row as "Lewes Sitting At Chichester"
+    And I click on "<part_no2>" in the same row as "Knutsford"
     And I see the juror status has updated to "Responded"
 
     When the user searches for juror record "<part_no3>" from the global search bar
-    And I click on "<part_no3>" in the same row as "Lewes Sitting At Chichester"
+    And I click on "<part_no3>" in the same row as "Knutsford"
     And I see the juror status has updated to "Responded"
 
     When the user searches for juror record "<part_no4>" from the global search bar
-    And I click on "<part_no4>" in the same row as "Lewes Sitting At Chichester"
+    And I click on "<part_no4>" in the same row as "Knutsford"
     And I see the juror status has updated to "Responded"
 
     Examples:
@@ -93,17 +93,17 @@ Feature: JM-4103
     #transfer
     And I press the "Transfer" button
     Then I see "Select a court to transfer to" on the page
-    And I set "Enter a court name or location code" to "416"
+    And I set "Enter a court name or location code" to "767"
     And I set the "Change the service start date for this pool" single date field to a Monday "5" weeks in the future
     And I press the "Continue" button
-    And I see "Transfer to Lewes Sitting At Chichester" on the page
+    And I see "Transfer to Knutsford" on the page
     And I press the "Continue" button
     And I see "1 juror transferred" on the page
 
     Given I am on "Bureau" "test"
     And I log in as "MODTESTBUREAU"
     When the user searches for juror record "<part_no>" from the global search bar
-    And I click on "<part_no>" in the same row as "Lewes Sitting At Chichester"
+    And I click on "<part_no>" in the same row as "Knutsford"
     And I see the juror status has updated to "Responded"
 
 
@@ -144,7 +144,7 @@ Feature: JM-4103
     #transfer
     And I press the "Transfer" button
     Then I see "Select a court to transfer to" on the page
-    And I set "Enter a court name or location code" to "416"
+    And I set "Enter a court name or location code" to "767"
     And I set the "Change the service start date for this pool" single date field to a Monday "20" weeks in the future
     And I press the "Continue" button
     And I press the "Continue and move remaining jurors" button
@@ -153,7 +153,7 @@ Feature: JM-4103
     Given I am on "Bureau" "postgres"
     And I log in as "MODTESTBUREAU"
     When the user searches for juror record "<part_no>" from the global search bar
-    And I click on "<part_no>" in the same row as "Lewes Sitting At Chichester"
+    And I click on "<part_no>" in the same row as "Knutsford"
     And I see the juror status has updated to "Responded"
     And I see the court name on the juror record screen is "The Crown Court At Chichester"
 

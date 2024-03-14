@@ -67,12 +67,12 @@ Feature: JM-4001 and JM-4002 - Bureau User
     #needs to stay in single thread pack
 
       #select juror deferral to add to active pool
-      Given "1" new pool's are inserted for court "416" with owner "400" and a deferral date "1" Mondays in the future
+      Given "1" new pool's are inserted for court "767" with owner "400" and a deferral date "1" Mondays in the future
       #select court
       When I set input field with "ID" of "courtNameOrLocationCode" to "CHICHESTER"
       And I click on the "Chichester (416)" link
       And I press the "Find" button
-      Then I am taken to the deferral maintenance screen for the selected court "Lewes Sitting At Chichester (416)"
+      Then I am taken to the deferral maintenance screen for the selected court "Knutsford (767)"
       And The deferrals table is displayed
       When I press the "Juror number" button
       And The first deferral in the table is "041600000, 0FNAME0, TESTNAME, 416000000" with a deferral date "1" Mondays in the future

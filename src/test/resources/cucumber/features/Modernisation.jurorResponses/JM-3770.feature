@@ -7,11 +7,9 @@ Feature: JM-3770
 
     And I log in as "<user>"
 
-    Given the juror numbers have not been processed new schema
-      |part_no 	|pool_no 	|owner	|
-      |<part_no>|<pool_no>	|400 	|
-
-    Given "<juror_number>" has "NEXT_DATE" as "5 mondays time" new schema
+    Given a bureau owned pool is created with jurors
+      | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number> 	    | <pool_number>     | 5				            | 400	|
 
     When the user searches for juror record "<juror_number>" from the global search bar
 
@@ -60,24 +58,22 @@ Feature: JM-3770
     And I see "Summons reply for 641500575 FNAMEFIVESEVENFIVE LNAMEFIVESEVENFIVE successfully processed: Disqualified (Residency)" on the page
 
     Examples:
-      |part_no	| pool_no   | user         |
-      |641500575| 415170402 |MODTESTBUREAU |
+      | juror_number| pool_number   | user         |
+      | 041500144   | 415300244     | MODTESTBUREAU|
 
   @JurorTransformationWIP @NewSchemaConverted @JurorDigitalNotConverted
   Scenario Outline: Disqualify Juror because of Residency reasons - Digital
 
     Given I am on "Public" "test"
 
-    Given the juror numbers have not been processed new schema
-      |part_no 	|pool_no 	|owner	|
-      |<part_no>|<pool_no>	|400 	|
-
-    Given "<juror_number>" has "NEXT_DATE" as "5 mondays time" new schema
+    Given a bureau owned pool is created with jurors
+      | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number> 	    | <pool_number>     | 5				            | 400	|
 
 	# Submit response in pool
     Given I have submitted a first party English ineligibilty response
-      |part_no	    |pool_number|last_name		|postcode	|email 	|
-      |<part_no>	|<pool_no>	|<last_name>	|<postcode>	|e@mail.com|
+      |part_no	        |pool_number    |last_name		|postcode	|email 	    |
+      |<juror_number>	|<pool_number>	|<last_name>	|<postcode>	|e@mail.com |
 
     #log on
     Given I am on "Bureau" "test"
@@ -107,5 +103,5 @@ Feature: JM-3770
     And I see "Your work" on the page
 
     Examples:
-      |part_no	| user          | pool_no  |last_name         | postcode|
-      |641500960| MODTESTBUREAU | 415170402| LNAMENINESIXZERO | CH1 2AN |
+      | juror_number  | user          | pool_number | last_name        | postcode|
+      | 041500145     | MODTESTBUREAU | 415300245   | LNAMENINESIXZERO | CH1 2AN |

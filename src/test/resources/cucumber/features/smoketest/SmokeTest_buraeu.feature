@@ -4,8 +4,6 @@ Feature: Environment Smoke Tests - Bureau
 Scenario: 
 	Given I am on "Bureau" "test"
 	Given PCQs has been disabled
-	And I have reset user "SYSTEM"
-	And I have reset user "CPASS"
 	And I have deleted all holidays new schema
 
 	And I see "Sign in" on the page

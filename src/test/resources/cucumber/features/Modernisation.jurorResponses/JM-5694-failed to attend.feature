@@ -49,7 +49,7 @@ Feature: As a jury officer I need to send a failed to attend message
     And I see "Check and send message" on the page
     And I see "You’re sending the following message to 1 jurors. You cannot undo this after sending." on the page
     And I see "You failed to attend for Jury Service at CHESTER Court on" on the page
-    And I see "Please contact the jury office on 01244 317606." on the page
+    And I see "Please contact the jury office on 01244 356726." on the page
     And I see the template containing my attendance date with a monday "5" weeks in the future
     And I press the "Send message" button
     And I see the message sent banner containing "Message will be sent to 1 jurors"
@@ -99,7 +99,7 @@ Feature: As a jury officer I need to send a failed to attend message
     And I see "Check and send message" on the page
     And I see "You’re sending the following message to 1 jurors. You cannot undo this after sending." on the page
     And I see "You failed to attend for Jury Service at CHESTER Court on" on the page
-    And I see "Please contact the jury office on 01244 317606." on the page
+    And I see "Please contact the jury office on 01244 356726." on the page
     And I see the template containing my attendance date with a monday "5" weeks in the future
     And I press the "Send message" button
     And I see the message sent banner containing "Message will be sent to 1 jurors"
@@ -151,7 +151,7 @@ Feature: As a jury officer I need to send a failed to attend message
     And I see "Check and send message" on the page
     And I see "You’re sending the following message to 1 jurors. You cannot undo this after sending." on the page
     And I see "You failed to attend for Jury Service at CHESTER Court on" on the page
-    And I see "Please contact the jury office on 01244 317606." on the page
+    And I see "Please contact the jury office on 01244 356726." on the page
     And I see the template containing my attendance date with a monday "5" weeks in the future
     And I press the "Send message" button
     And I see the message sent banner containing "Message will be sent to 1 jurors"
@@ -204,7 +204,7 @@ Feature: As a jury officer I need to send a failed to attend message
     And I see "Check and send message" on the page
     And I see "You’re sending the following message to 1 jurors. You cannot undo this after sending." on the page
     And I see "You failed to attend for Jury Service at CHESTER Court on" on the page
-    And I see "Please contact the jury office on 01244 317606." on the page
+    And I see "Please contact the jury office on 01244 356726." on the page
     And I see the template containing my attendance date with a monday "5" weeks in the future
     And I press the "Send message" button
     And I see the message sent banner containing "Message will be sent to 1 jurors"
@@ -299,7 +299,7 @@ Feature: As a jury officer I need to send a failed to attend message
     And I see "Check and send message" on the page
     And I see "You’re sending the following message to 1 jurors. You cannot undo this after sending." on the page
     And I see "You failed to attend for Jury Service at CHESTER Court on" on the page
-    And I see "Please contact the jury office on 01244 317606." on the page
+    And I see "Please contact the jury office on 01244 356726." on the page
     And I see the template containing my attendance date with a monday "5" weeks in the future
     And I press the "Send message" button
     And I see the message sent banner containing "Message will be sent to 1 jurors"
@@ -352,7 +352,7 @@ Feature: As a jury officer I need to send a failed to attend message
     And I see "Check and send message" on the page
     And I see "You’re sending the following message to 1 jurors. You cannot undo this after sending." on the page
     And I see "You failed to attend for Jury Service at CHESTER Court on" on the page
-    And I see "Please contact the jury office on 01244 317606." on the page
+    And I see "Please contact the jury office on 01244 356726." on the page
     And I see the template containing my attendance date with a monday "5" weeks in the future
     And I press the "Send message" button
     And I see the message sent banner containing "Message will be sent to 1 jurors"
@@ -466,7 +466,7 @@ Feature: As a jury officer I need to send a failed to attend message
     And I see "Check and send message" on the page
     And I see "You’re sending the following message to 1 jurors. You cannot undo this after sending." on the page
     And I see "You failed to attend for Jury Service at CHESTER Court on" on the page
-    And I see "Please contact the jury office on 01244 317606." on the page
+    And I see "Please contact the jury office on 01244 356726." on the page
     And I see the template containing my attendance date with a monday "5" weeks in the future
     And I press the "Send message" button
     And I see the message sent banner containing "Message will be sent to 1 jurors"
@@ -531,7 +531,7 @@ Feature: As a jury officer I need to send a failed to attend message
     And I see "Check and send message" on the page
     And I see "You’re sending the following message to 3 jurors. You cannot undo this after sending." on the page
     And I see "You failed to attend for Jury Service at CHESTER Court on" on the page
-    And I see "Please contact the jury office on 01244 317606." on the page
+    And I see "Please contact the jury office on 01244 356726." on the page
     And I see the template containing my attendance date with a monday "5" weeks in the future
     And I press the "Send message" button
     And I see the message sent banner containing "Message will be sent to 3 jurors"

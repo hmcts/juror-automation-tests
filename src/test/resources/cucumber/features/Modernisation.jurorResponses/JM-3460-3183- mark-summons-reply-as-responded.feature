@@ -5,13 +5,9 @@ Feature: JM-3460 JM-3183
     Given I am on "Bureau" "test"
     And I log in as "<user>"
 
-    Given the juror numbers have not been processed new schema
-      |part_no   | pool_no   | owner |
-      |<part_no> | <pool_no> | 400   |
-
-
-    And "<juror_number>" has "NEXT_DATE" as "7 mondays time" new schema
-    And pool "<pool_no>" has attendance date as "7 mondays time" new schema
+    Given a bureau owned pool is created with jurors
+      | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number> 	    | <pool_number>     | 7				            | 400	|
 
     When the user searches for juror record "<juror_number>" from the global search bar
     And I click the Enter summons reply button
@@ -45,21 +41,17 @@ Feature: JM-3460 JM-3183
     And I see the juror status on the juror record screen has updated to "Responded"
 
     Examples:
-      | user          | part_no   | pool_no   |
-      | MODTESTBUREAU | 641500972 | 415170501 |
+      | user          | juror_number  | pool_number   |
+      | MODTESTBUREAU | 041500140     | 415300240     |
 
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Cancel Marking Paper Summons Reply As Responded
     Given I am on "Bureau" "test"
     And I log in as "<user>"
 
-    Given the juror numbers have not been processed new schema
-      |part_no   | pool_no   | owner |
-      |<part_no> | <pool_no> | 400   |
-
-
-    And "<juror_number>" has "NEXT_DATE" as "7 mondays time" new schema
-    And pool "<pool_no>" has attendance date as "7 mondays time" new schema
+    Given a bureau owned pool is created with jurors
+      | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number> 	    | <pool_number>     | 7				            | 400	|
 
     When the user searches for juror record "<juror_number>" from the global search bar
     And I click the Enter summons reply button
@@ -90,21 +82,17 @@ Feature: JM-3460 JM-3183
     And I see the juror status on the juror record screen is "Summoned"
 
     Examples:
-      | user          | part_no   | pool_no   |
-      | MODTESTBUREAU | 641500981 | 415170501 |
+      | user          | juror_number  | pool_number   |
+      | MODTESTBUREAU | 041500141     | 415300241     |
 
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Mark Paper Summons Reply As Responded - Mark As Responded Validation
     Given I am on "Bureau" "test"
     And I log in as "<user>"
 
-    Given the juror numbers have not been processed new schema
-      |part_no   | pool_no   | owner |
-      |<part_no> | <pool_no> | 400   |
-
-
-    And "<juror_number>" has "NEXT_DATE" as "7 mondays time" new schema
-    And pool "<pool_no>" has attendance date as "7 mondays time" new schema
+    Given a bureau owned pool is created with jurors
+      | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number> 	    | <pool_number>     | 7				            | 400	|
 
     When the user searches for juror record "<juror_number>" from the global search bar
     And I click the Enter summons reply button
@@ -135,21 +123,17 @@ Feature: JM-3460 JM-3183
     And there is an error message with the text "Confirm that the reply can be marked as 'responded'"
 
     Examples:
-      | user          | part_no   | pool_no   |
-      | MODTESTBUREAU | 641500985 | 415170501 |
+      | user          | juror_number  | pool_number   |
+      | MODTESTBUREAU | 041500142     | 415300242     |
 
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Mark Paper Summons Reply As Responded - Confirm Mark As Responded validation
     Given I am on "Bureau" "test"
     And I log in as "<user>"
 
-    Given the juror numbers have not been processed new schema
-      |part_no   | pool_no   | owner |
-      |<part_no> | <pool_no> | 400   |
-
-
-    And "<juror_number>" has "NEXT_DATE" as "7 mondays time" new schema
-    And pool "<pool_no>" has attendance date as "7 mondays time" new schema
+    Given a bureau owned pool is created with jurors
+      | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number> 	    | <pool_number>     | 7				            | 400	|
 
     When the user searches for juror record "<juror_number>" from the global search bar
     And I click the Enter summons reply button
@@ -178,5 +162,5 @@ Feature: JM-3460 JM-3183
     And there is an error message with the text "Please select a response process type"
 
     Examples:
-      | user          | part_no   | pool_no   |
-      | MODTESTBUREAU | 641500987 | 415170501 |
+      | user          | juror_number  | pool_number   |
+      | MODTESTBUREAU | 041500143     | 415300243     |

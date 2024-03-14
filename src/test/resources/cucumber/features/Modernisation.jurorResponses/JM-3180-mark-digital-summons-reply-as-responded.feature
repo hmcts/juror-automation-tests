@@ -5,19 +5,17 @@ Feature: JM-3180
 
     Given I am on "Public" "test"
 
-    Given the juror numbers have not been processed new schema
-      | part_no   | pool_no 	| owner |
-      | <part_no> |<pool_no>	| 400 	|
-
-
+    Given a bureau owned pool is created with jurors
+      | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number> 	    | <pool_number>     | 5				            | 400	|
 
     And juror "<juror_number>" has "TITLE" as "Mr" new schema
     And juror "<juror_number>" has "FIRST_NAME" as "FNAME" new schema
     And juror "<juror_number>" has "LAST_NAME" as "LNAME" new schema
 
     And I submit a digital response with reasonable adjustment
-      |part_no	  |pool_number  |last_name	|postcode	|email 	|adjustmentNeededCap  |details                       |
-      |<part_no>  |<pool_no>	|LNAME  	|CH1 2AN	|<email>|<adjustmentNeededCap>|Reasonable adjustment detail  |
+      | part_no	         | pool_number  | last_name	| postcode	| email  | adjustmentNeededCap     | details                       |
+      | <juror_number>   | <pool_number>| LNAME  	| CH1 2AN	| <email>| <adjustmentNeededCap>   | Reasonable adjustment detail  |
 
     Given I am on "Bureau" "test"
     And I log in as "<user>"
@@ -36,26 +34,24 @@ Feature: JM-3180
     And I see the juror status on the juror record screen has updated to "Responded"
 
     Examples:
-      | user          | part_no   | pool_no   | email     | adjustmentNeeded   | adjustmentFullCaps    | adjustmentFull          | adjustmentNeededCap|
-      | MODTESTBUREAU | 641500477 | 415170501 | e@mail.com| limited mobility   | L - LIMITED MOBILITY  | L - Limited mobility    | Limited mobility   |
+      | user          | juror_number| pool_number | email     | adjustmentNeeded   | adjustmentFullCaps    | adjustmentFull          | adjustmentNeededCap|
+      | MODTESTBUREAU | 041500134   | 415300234   | e@mail.com| limited mobility   | L - LIMITED MOBILITY  | L - Limited mobility    | Limited mobility   |
 
   @JurorTransformationWIP @NewSchemaConverted @JurorDigitalNotConverted
   Scenario Outline: Cancel Marking Digital Summons Reply As Responded
     Given I am on "Public" "test"
 
-    Given the juror numbers have not been processed new schema
-      | part_no   | pool_no 	| owner |
-      | <part_no> |<pool_no>	| 400 	|
-
-
+    Given a bureau owned pool is created with jurors
+      | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number> 	    | <pool_number>     | 5				            | 400	|
 
     And juror "<juror_number>" has "TITLE" as "Mr" new schema
     And juror "<juror_number>" has "FIRST_NAME" as "FNAME" new schema
     And juror "<juror_number>" has "LAST_NAME" as "LNAME" new schema
 
     And I submit a digital response with reasonable adjustment
-      |part_no	  |pool_number  |last_name	|postcode	|email 	|adjustmentNeededCap  |details                       |
-      |<part_no>  |<pool_no>	|LNAME  	|CH1 2AN	|<email>|<adjustmentNeededCap>|Reasonable adjustment detail  |
+      |part_no	      |pool_number  |last_name	|postcode	|email 	|adjustmentNeededCap  |details                       |
+      |<juror_number> |<pool_number>|LNAME  	|CH1 2AN	|<email>|<adjustmentNeededCap>|Reasonable adjustment detail  |
 
     Given I am on "Bureau" "test"
     And I log in as "<user>"
@@ -71,26 +67,24 @@ Feature: JM-3180
     And I see the juror status on the juror record screen is "Summoned"
 
     Examples:
-      | user          | part_no   | pool_no   | email     | adjustmentNeeded   | adjustmentFullCaps    | adjustmentFull          | adjustmentNeededCap|
-      | MODTESTBUREAU | 641500158 | 415170501 | e@mail.com| limited mobility   | L - LIMITED MOBILITY  | L - Limited mobility    | Limited mobility   |
+      | user          | juror_number| pool_number | email     | adjustmentNeeded   | adjustmentFullCaps    | adjustmentFull          | adjustmentNeededCap|
+      | MODTESTBUREAU | 041500135   | 415300235   | e@mail.com| limited mobility   | L - LIMITED MOBILITY  | L - Limited mobility    | Limited mobility   |
 
   @JurorTransformationWIP @NewSchemaConverted @JurorDigitalNotConverted
   Scenario Outline: Mark Digital Summons Reply As Responded - Mark As Responded Validation
     Given I am on "Public" "test"
 
-    Given the juror numbers have not been processed new schema
-      | part_no   | pool_no 	| owner |
-      | <part_no> |<pool_no>	| 400 	|
-
-
+    Given a bureau owned pool is created with jurors
+      | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number> 	    | <pool_number>     | 5				            | 400	|
 
     And juror "<juror_number>" has "TITLE" as "Mr" new schema
     And juror "<juror_number>" has "FIRST_NAME" as "FNAME" new schema
     And juror "<juror_number>" has "LAST_NAME" as "LNAME" new schema
 
     And I submit a digital response with reasonable adjustment
-      |part_no	  |pool_number  |last_name	|postcode	|email 	|adjustmentNeededCap  |details                       |
-      |<part_no>  |<pool_no>	|LNAME  	|CH1 2AN	|<email>|<adjustmentNeededCap>|Reasonable adjustment detail  |
+      |part_no	      |pool_number  |last_name	|postcode	|email 	|adjustmentNeededCap  |details                       |
+      |<juror_number> |<pool_number>|LNAME  	|CH1 2AN	|<email>|<adjustmentNeededCap>|Reasonable adjustment detail  |
 
     Given I am on "Bureau" "test"
     And I log in as "<user>"
@@ -106,27 +100,25 @@ Feature: JM-3180
     And there is an error message with the text "Confirm that the reply can be marked as 'responded'"
 
     Examples:
-      | user          | part_no   | pool_no   | email     | adjustmentNeeded   | adjustmentFullCaps    | adjustmentFull          | adjustmentNeededCap|
-      | MODTESTBUREAU | 641500384 | 415170501 | e@mail.com| limited mobility   | L - LIMITED MOBILITY  | L - Limited mobility    | Limited mobility   |
+      | user          | juror_number  | pool_number   | email     | adjustmentNeeded   | adjustmentFullCaps    | adjustmentFull          | adjustmentNeededCap|
+      | MODTESTBUREAU | 041500136     | 415300236     | e@mail.com| limited mobility   | L - LIMITED MOBILITY  | L - Limited mobility    | Limited mobility   |
 
   @JurorTransformationWIP @NewSchemaConverted @JurorDigitalNotConverted
   Scenario Outline: Mark Digital Summons Reply As Responded - Confirm Mark As Responded validation
 
     Given I am on "Public" "test"
 
-    Given the juror numbers have not been processed new schema
-      | part_no   | pool_no 	| owner |
-      | <part_no> |<pool_no>	| 400 	|
-
-
+    Given a bureau owned pool is created with jurors
+      | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number> 	    | <pool_number>     | 5				            | 400	|
 
     And juror "<juror_number>" has "TITLE" as "Mr" new schema
     And juror "<juror_number>" has "FNAME" as "FNAME" new schema
     And juror "<juror_number>" has "LNAME" as "LNAME" new schema
 
     And I submit a digital response with reasonable adjustment
-      |part_no	  |pool_number  |last_name	|postcode	|email 	|adjustmentNeededCap  |details                       |
-      |<part_no>  |<pool_no>	|LNAME  	|CH1 2AN	|<email>|<adjustmentNeededCap>|Reasonable adjustment detail  |
+      |part_no	      |pool_number  |last_name	|postcode	|email 	|adjustmentNeededCap  |details                       |
+      |<juror_number> |<pool_number>|LNAME  	|CH1 2AN	|<email>|<adjustmentNeededCap>|Reasonable adjustment detail  |
 
     Given I am on "Bureau" "test"
     And I log in as "<user>"
@@ -140,5 +132,5 @@ Feature: JM-3180
     And there is an error message with the text "Please select a response process type"
 
     Examples:
-      | user          | part_no   | pool_no   | email     | adjustmentNeeded   | adjustmentFullCaps    | adjustmentFull          | adjustmentNeededCap|
-      | MODTESTBUREAU | 641500146 | 415170501 | e@mail.com| limited mobility   | L - LIMITED MOBILITY  | L - Limited mobility    | Limited mobility   |
+      | user          | juror_number  | pool_number | email     | adjustmentNeeded   | adjustmentFullCaps    | adjustmentFull          | adjustmentNeededCap|
+      | MODTESTBUREAU | 041500137     | 415300237   | e@mail.com| limited mobility   | L - LIMITED MOBILITY  | L - Limited mobility    | Limited mobility   |

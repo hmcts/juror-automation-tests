@@ -5,8 +5,8 @@ Feature: JM-4677 - As a jury officer I need to create a trial
 
     Given I am on "Bureau" "test"
 
-    Given I have deleted court rooms for "416"
-    Given I have inserted court rooms for "416"
+    Given I have deleted court rooms for "767"
+    Given I have inserted court rooms for "767"
 
     #log on and search for juror
     And I log in as "<user>"

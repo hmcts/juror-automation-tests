@@ -51,7 +51,7 @@ Feature: As a jury officer I need to send the selected for a panel message
     And I see "Check and send message" on the page
     And I see "You’re sending the following message to 1 jurors. You cannot undo this after sending." on the page
     And I see "You have been selected to form a panel from which a jury will be chosen. Please attend CHESTER Court on" on the page
-    And I see "at 09:00. If you have any questions, please contact the jury office on 01244 317606." on the page
+    And I see "at 09:00. If you have any questions, please contact the jury office on 01244 356726." on the page
     And I see the template containing my attendance date with a monday "5" weeks in the future
     And I press the "Send message" button
     And I see the message sent banner containing "Message will be sent to 1 jurors"
@@ -106,7 +106,7 @@ Feature: As a jury officer I need to send the selected for a panel message
     And I see "Check and send message" on the page
     And I see "You’re sending the following message to 1 jurors. You cannot undo this after sending." on the page
     And I see "You have been selected to form a panel from which a jury will be chosen. Please attend CHESTER Court on" on the page
-    And I see "at 09:00. If you have any questions, please contact the jury office on 01244 317606." on the page
+    And I see "at 09:00. If you have any questions, please contact the jury office on 01244 356726." on the page
     And I see the template containing my attendance date with a monday "5" weeks in the future
     And I press the "Send message" button
     And I see the message sent banner containing "Message will be sent to 1 jurors"
@@ -163,7 +163,7 @@ Feature: As a jury officer I need to send the selected for a panel message
     And I see "Check and send message" on the page
     And I see "You’re sending the following message to 1 jurors. You cannot undo this after sending." on the page
     And I see "You have been selected to form a panel from which a jury will be chosen. Please attend CHESTER Court on" on the page
-    And I see "at 09:00. If you have any questions, please contact the jury office on 01244 317606." on the page
+    And I see "at 09:00. If you have any questions, please contact the jury office on 01244 356726." on the page
     And I see the template containing my attendance date with a monday "5" weeks in the future
     And I press the "Send message" button
     And I see the message sent banner containing "Message will be sent to 1 jurors"
@@ -220,7 +220,7 @@ Feature: As a jury officer I need to send the selected for a panel message
     And I see "Check and send message" on the page
     And I see "You’re sending the following message to 1 jurors. You cannot undo this after sending." on the page
     And I see "You have been selected to form a panel from which a jury will be chosen. Please attend CHESTER Court on" on the page
-    And I see "at 09:00. If you have any questions, please contact the jury office on 01244 317606." on the page
+    And I see "at 09:00. If you have any questions, please contact the jury office on 01244 356726." on the page
     And I see the template containing my attendance date with a monday "5" weeks in the future
     And I press the "Send message" button
     And I see the message sent banner containing "Message will be sent to 1 jurors"
@@ -319,7 +319,7 @@ Feature: As a jury officer I need to send the selected for a panel message
     And I see "Check and send message" on the page
     And I see "You’re sending the following message to 1 jurors. You cannot undo this after sending." on the page
     And I see "You have been selected to form a panel from which a jury will be chosen. Please attend CHESTER Court on" on the page
-    And I see "at 09:00. If you have any questions, please contact the jury office on 01244 317606." on the page
+    And I see "at 09:00. If you have any questions, please contact the jury office on 01244 356726." on the page
     And I see the template containing my attendance date with a monday "5" weeks in the future
     And I press the "Send message" button
     And I see the message sent banner containing "Message will be sent to 1 jurors"
@@ -376,7 +376,7 @@ Feature: As a jury officer I need to send the selected for a panel message
     And I see "Check and send message" on the page
     And I see "You’re sending the following message to 1 jurors. You cannot undo this after sending." on the page
     And I see "You have been selected to form a panel from which a jury will be chosen. Please attend CHESTER Court on" on the page
-    And I see "at 09:00. If you have any questions, please contact the jury office on 01244 317606." on the page
+    And I see "at 09:00. If you have any questions, please contact the jury office on 01244 356726." on the page
     And I see the template containing my attendance date with a monday "5" weeks in the future
     And I press the "Send message" button
     And I see the message sent banner containing "Message will be sent to 1 jurors"
@@ -494,7 +494,7 @@ Feature: As a jury officer I need to send the selected for a panel message
     And I see "Check and send message" on the page
     And I see "You’re sending the following message to 1 jurors. You cannot undo this after sending." on the page
     And I see "You have been selected to form a panel from which a jury will be chosen. Please attend CHESTER Court on" on the page
-    And I see "at 09:00. If you have any questions, please contact the jury office on 01244 317606." on the page
+    And I see "at 09:00. If you have any questions, please contact the jury office on 01244 356726." on the page
     And I see the template containing my attendance date with a monday "5" weeks in the future
     And I press the "Send message" button
     And I see the message sent banner containing "Message will be sent to 1 jurors"
@@ -564,7 +564,7 @@ Feature: As a jury officer I need to send the selected for a panel message
     And I see "Check and send message" on the page
     And I see "You’re sending the following message to 3 jurors. You cannot undo this after sending." on the page
     And I see "You have been selected to form a panel from which a jury will be chosen. Please attend CHESTER Court on" on the page
-    And I see "at 09:00. If you have any questions, please contact the jury office on 01244 317606." on the page
+    And I see "at 09:00. If you have any questions, please contact the jury office on 01244 356726." on the page
     And I see the template containing my attendance date with a monday "5" weeks in the future
     And I press the "Send message" button
     And I see the message sent banner containing "Message will be sent to 3 jurors"

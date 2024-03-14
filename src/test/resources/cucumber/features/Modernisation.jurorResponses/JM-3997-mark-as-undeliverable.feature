@@ -6,12 +6,9 @@ Feature: JM-3997
 
     And I log in as "<user>"
 
-    Given the juror numbers have not been processed new schema
-      |part_no   | pool_no   | owner |
-      |<part_no> | <pool_no> | 400   |
-
-
-    And "<juror_number>" has "NEXT_DATE" as "7 mondays time" new schema
+    Given a bureau owned pool is created with jurors
+      | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number> 	    | <pool_number>     | 7				            | 400	|
 
     When the user searches for juror record "<juror_number>" from the global search bar
     And I click the update juror record button
@@ -23,5 +20,5 @@ Feature: JM-3997
     And I see the summons reply status is "SUMMONS NOT RECEIVED"
 
     Examples:
-      | user          | part_no   | pool_no   |
-      | MODTESTBUREAU | 641500134 | 415170402 |
+      | user          | juror_number  | pool_number   |
+      | MODTESTBUREAU | 041500146     | 415300246     |

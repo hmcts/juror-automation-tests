@@ -7,13 +7,13 @@ Feature: JM-4368 Jury Officer Can Manually Run a Police Check
 
     Given I log in as "MODTESTCOURT"
 
-    Given the juror numbers have not been processed new schema
-      |part_no   | pool_no   | owner |
-      |<part_no> | <pool_no> | 400   |
+    Given a bureau owned pool is created with jurors
+      | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number> 	    | <pool_number>     | 5				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no   | pool_no   | owner |
-      |<part_no> | <pool_no> | 415   |
+      |part_no   	  | pool_no   	  | owner |
+      |<juror_number> | <pool_number> | 415   |
 
     And I search for juror "<juror_number>"
     And I see the police check value is "Not checked"
@@ -23,8 +23,8 @@ Feature: JM-4368 Jury Officer Can Manually Run a Police Check
     And I see the button to run a police check
 
     Examples:
-      | part_no		| pool_no	|
-      |641500364	|415170402	|
+      | juror_number| pool_number |
+      | 041500126	| 415300226	  |
 
   @JurorTransformationMulti
   Scenario Outline: Manually run police check - presence of link - there was a problem
@@ -33,13 +33,13 @@ Feature: JM-4368 Jury Officer Can Manually Run a Police Check
 
     Given I log in as "MODTESTCOURT"
 
-    Given the juror numbers have not been processed new schema
-      |part_no   | pool_no   | owner |
-      |<part_no> | <pool_no> | 400   |
+    Given a bureau owned pool is created with jurors
+      | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number> 	    | <pool_number>     | 5				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no   | pool_no   | owner |
-      |<part_no> | <pool_no> | 415   |
+      |part_no   	  | pool_no   	  | owner |
+      |<juror_number> | <pool_number> | 415   |
 
 #    Given I set Police Check to "P" and Phoenix Checked to "U" for "<juror_number>"
     Given I set Police Check to "<police_check_value>" for "<juror_number>" new schema
@@ -48,23 +48,23 @@ Feature: JM-4368 Jury Officer Can Manually Run a Police Check
     And I do not see the link to run a police check
 
     Examples:
-      | part_no   | pool_no   | police_check_value               | police_check_status                |
-      | 641500381 | 415170402 | UNCHECKED_MAX_RETRIES_EXCEEDED   | Not checked - there was a problem. |
-      | 641500381 | 415170402 | ERROR_RETRY_OTHER_ERROR_CODE     | In progress                        |
-      | 641500381 | 415170402 | ERROR_RETRY_UNEXPECTED_EXCEPTION | In progress                        |
+      | juror_number| pool_number | police_check_value               | police_check_status                |
+      | 041500127   | 415300227   | UNCHECKED_MAX_RETRIES_EXCEEDED   | Not checked - there was a problem. |
+      | 041500127   | 415300227   | ERROR_RETRY_OTHER_ERROR_CODE     | In progress                        |
+      | 041500127   | 415300227   | ERROR_RETRY_UNEXPECTED_EXCEPTION | In progress                        |
 
   @JurorTransformationMulti
   Scenario Outline: Manually run police check - presence of link - failed
     Given I am on "Bureau" "test"
     Given I log in as "MODTESTCOURT"
 
-    Given the juror numbers have not been processed new schema
-      | part_no   | pool_no   | owner |
-      | <part_no> | <pool_no> | 400   |
+    Given a bureau owned pool is created with jurors
+      | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number> 	    | <pool_number>     | 5				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no   | pool_no   | owner |
-      |<part_no> | <pool_no> | 415   |
+      |part_no   	  | pool_no   	  | owner |
+      |<juror_number> | <pool_number> | 415   |
 
 #    Given I set Police Check to "F" and Phoenix Checked to "C" for "<juror_number>"
     And I search for juror "<juror_number>"
@@ -73,8 +73,8 @@ Feature: JM-4368 Jury Officer Can Manually Run a Police Check
     And I do not see the link to run a police check
 
     Examples:
-      | part_no		| pool_no	|
-      |641500390	|415170402	|
+      | juror_number| pool_number	|
+      | 041500128	| 415300228	    |
 
   @JurorTransformationMulti
   Scenario Outline: Manually run police check - presence of link - passed
@@ -83,13 +83,13 @@ Feature: JM-4368 Jury Officer Can Manually Run a Police Check
 
     Given I log in as "MODTESTCOURT"
 
-    Given the juror numbers have not been processed new schema
-      |part_no   | pool_no   | owner |
-      |<part_no> | <pool_no> | 400   |
+    Given a bureau owned pool is created with jurors
+      | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number> 	    | <pool_number>     | 5				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no   | pool_no   | owner |
-      |<part_no> | <pool_no> | 415   |
+      |part_no   	  | pool_no   	  | owner |
+      |<juror_number> | <pool_number> | 415   |
 
 #    Given I set Police Check to "P" and Phoenix Checked to "C" for "<juror_number>"
     Given I set Police Check to "ELIGIBLE" for "<juror_number>" new schema
@@ -98,20 +98,20 @@ Feature: JM-4368 Jury Officer Can Manually Run a Police Check
     And I do not see the link to run a police check
 
     Examples:
-      | part_no		| pool_no	|
-      |641500402	|415170402	|
+      | juror_number| pool_number |
+      | 041500129	| 415300229	  |
 
   @JurorTransformationMulti @Not_Implemented_In_Backend
   Scenario Outline: Manually run police check - police check runs NOT IMPLEMENTED IN BACKEND
     Given I am on "Bureau" "test"
 
-    Given the juror numbers have not been processed new schema
-      |part_no   | pool_no   | owner |
-      |<part_no> | <pool_no> | 400   |
+    Given a bureau owned pool is created with jurors
+      | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number> 	    | <pool_number>     | 5				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
-      | part_no   | pool_no   | owner |
-      | <part_no> | <pool_no> | 415   |
+      |part_no   	  | pool_no   	  | owner |
+      |<juror_number> | <pool_number> | 415   |
 
     Given I log in as "MODTESTCOURT"
 
@@ -129,5 +129,5 @@ Feature: JM-4368 Jury Officer Can Manually Run a Police Check
     And I see the police check value is not "Not checked"
 
     Examples:
-      | part_no   | pool_no   |
-      |641500405  |415170402  |
+      | juror_number  | pool_number |
+      | 041500130     | 415300230   |
