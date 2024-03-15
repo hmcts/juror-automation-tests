@@ -112,7 +112,7 @@ public class SharedDriver extends EventFiringWebDriver {
 			} catch (Exception e) {
 				try {
 					// These settings are intended for dev macbooks
-					System.setProperty("webdriver.chrome.driver","src/test/resources/chromedriver_mac_arm");
+					System.setProperty("webdriver.chrome.driver","src/test/resources/chromedriver_mac");
 					REAL_DRIVER = new ChromeDriver(options);
 				} catch (Exception f) { // intended settings for running in jenkins
 					System.setProperty("webdriver.chrome.driver","src/test/resources/drivers/chromedriver-linux64/chromedriver");
