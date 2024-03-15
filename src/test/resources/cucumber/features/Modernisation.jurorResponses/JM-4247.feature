@@ -4,21 +4,20 @@ Feature: JM-4247 Edit Juror Record as Court User
   Scenario Outline: The system shall allow the Jury officer to edit a juror record for a juror in their control
 
     Given I am on "Bureau" "test"
-    Given the juror numbers have not been processed new schema
-      | part_no   | pool_no 	| owner |
-      | <part_no> |<pool_no>	| 400 	|
+
+    Given a bureau owned pool is created with jurors
+      | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number> 	    | <pool_number>     | 10			            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no   | pool_no   | owner |
-      |<part_no> | <pool_no> | 415   |
+      |part_no        | pool_no       | owner |
+      |<juror_number> | <pool_number> | 415   |
 
-
-    And "<juror_number>" has "NEXT_DATE" as "10 mondays time" new schema
     And juror "<juror_number>" has "FIRST_NAME" as "Joe" new schema
     And juror "<juror_number>" has "LAST_NAME" as "Blogs" new schema
 
     And I log in as "<user>"
-    When the user searches for juror record "<part_no>" from the global search bar
+    When the user searches for juror record "<juror_number>" from the global search bar
     And I record a happy path paper summons response and process now
     When the user searches for juror record "<juror_number>" from the global search bar
 
@@ -70,5 +69,5 @@ Feature: JM-4247 Edit Juror Record as Court User
     And I see "Testing Test" on the page
 
     Examples:
-      |part_no   |pool_no    |user         |
-      |641500529 |415170402  | MODTESTCOURT|
+      | juror_number| pool_number|user         |
+      | 041500123   | 415300223  | MODTESTCOURT|

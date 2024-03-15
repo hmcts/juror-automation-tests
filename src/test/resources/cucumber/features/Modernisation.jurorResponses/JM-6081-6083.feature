@@ -83,7 +83,7 @@ Feature: JM-6081 - 6083
     And I see "Check and send message" on the page
     And I see "You’re sending the following message to 1 jurors. You cannot undo this after sending." on the page
     And I see "The defendant in the trial in which you were a juror is being sentenced on" on the page
-    And I see "Please contact the court after the hearing date on 01244 317606 quoting reference number T202419999999 if you would like to know the sentence. Please do not reply to this email as this mailbox is unmonitored." on the page
+    And I see "Please contact the court after the hearing date on 01244 356726 quoting reference number T202419999999 if you would like to know the sentence. Please do not reply to this email as this mailbox is unmonitored." on the page
     And I see the template containing my attendance date with a monday "5" weeks in the future
     And I press the "Send message" button
     And I see the message sent banner containing "Message will be sent to 1 jurors"
@@ -178,7 +178,7 @@ Feature: JM-6081 - 6083
     And I see the draft message template
     
     And I see "The defendant in the trial in which you were a juror is being sentenced on" on the page
-    And I see "Please contact the court if you wish to attend on 01244 317606. Alternatively contact the court after the hearing date quoting reference number T202419999998 if you would like to know the sentence. Please note that jurors do not have a role in sentencing, and as such your attendance is entirely voluntary and travel and subsistence payments cannot be claimed. Please do not reply to this email as this mailbox is unmonitored." on the page
+    And I see "Please contact the court if you wish to attend on 01244 356726. Alternatively contact the court after the hearing date quoting reference number T202419999998 if you would like to know the sentence. Please note that jurors do not have a role in sentencing, and as such your attendance is entirely voluntary and travel and subsistence payments cannot be claimed. Please do not reply to this email as this mailbox is unmonitored." on the page
     And I see the template containing my attendance date with a monday "5" weeks in the future
     And I press the "Send message" button
     And I see the message sent banner containing "Message will be sent to 1 jurors"

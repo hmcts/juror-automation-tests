@@ -20,13 +20,10 @@
   @JurorTransformationWIP @NewSchemaConverted @JM-5891
   Scenario Outline: Test to mark juror as postponed and add to future pool
     Given I am on "Bureau" "test"
-    Given the juror numbers have not been processed new schema
-      |part_no   | pool_no   | owner |
-      |<part_no> | <pool_no> | 400   |
 
-
-
-    And pool "<pool_no>" has attendance date as "5 mondays time" new schema
+    Given a bureau owned pool is created with jurors
+      | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number> 	    | <pool_number>     | 5				            | 400	|
 
     And I log in as "MODTESTBUREAU"
     And I navigate to the pool request screen
@@ -43,5 +40,5 @@
     Then I see "Juror record updated: Postponed" on the page
 
     Examples:
-    |part_no  |pool_no  |
-    |141500153|415240806|
+    | juror_number  | pool_number  |
+    | 041500125     | 415300225    |

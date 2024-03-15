@@ -4,19 +4,17 @@ Feature: JM-3457 and JM-3456 - Digital Response
   Scenario Outline: Happy path test to check juror reasonable adjustment
     Given I am on "Public" "test"
 
-    Given the juror numbers have not been processed new schema
-      | part_no   | pool_no 	| owner |
-      | <part_no> |<pool_no>	| 400 	|
-
-
+    Given a bureau owned pool is created with jurors
+      | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number> 	    | <pool_number>     | 5				            | 400	|
 
     And juror "<juror_number>" has "TITLE" as "Mr" new schema
     And juror "<juror_number>" has "FNAME" as "FNAME" new schema
     And juror "<juror_number>" has "LNAME" as "LNAME" new schema
 
     And I submit a digital response with reasonable adjustment
-      |part_no	  |pool_number  |last_name	|postcode	|email 	|adjustmentNeededCap  |details             |
-      |<part_no>  |<pool_no>	|LNAME  	|CH1 2AN	|<email>|<adjustmentNeededCap>|<adjustmentNeeded>  |
+      |part_no	       | pool_number    |last_name	|postcode	|email 	|adjustmentNeededCap  |details             |
+      |<juror_number>  |<pool_number>	|LNAME  	|CH1 2AN	|<email>|<adjustmentNeededCap>|<adjustmentNeeded>  |
 
     Given I am on "Bureau" "test"
 
@@ -42,7 +40,7 @@ Feature: JM-3457 and JM-3456 - Digital Response
 
     And I see the following juror information on the check can accommodate screen
       | jurorName             | Mr FNAME LNAME        |
-      | jurorNumber           | <part_no>             |
+      | jurorNumber           | <juror_number>        |
       | jurorMainPhone        | 01234561234           |
       | jurorEmail            | <email>               |
       | jurorAdjustmentReason | <adjustmentFull>      |
@@ -71,10 +69,10 @@ Feature: JM-3457 and JM-3456 - Digital Response
     And I see the reply status has updated to "AWAITING COURT REPLY"
 
     Examples:
-      | part_no  | pool_no  | email     | adjustmentNeeded   | adjustmentFullCaps    | adjustmentFull          | adjustmentNeededCap    |
-      | 641500514| 415170402| e@mail.com| limited mobility   | L - LIMITED MOBILITY  | L - Limited mobility    | Limited mobility       |
-      | 641500698| 415170402| e@mail.com| vision impairment  | V - VISUAL IMPAIRMENT | V - Visual impairment   | Severe sight impairment|
-      | 641500701| 415170402| e@mail.com| hearing impairment | H - HEARING IMPAIRMENT| H - Hearing impairment  | Hearing impairment     |
+      | juror_number  | pool_number   | email     | adjustmentNeeded   | adjustmentFullCaps    | adjustmentFull          | adjustmentNeededCap    |
+      | 041500138     | 415300238     | e@mail.com| limited mobility   | L - LIMITED MOBILITY  | L - Limited mobility    | Limited mobility       |
+      | 041500138     | 415300238     | e@mail.com| vision impairment  | V - VISUAL IMPAIRMENT | V - Visual impairment   | Severe sight impairment|
+      | 041500138     | 415300238     | e@mail.com| hearing impairment | H - HEARING IMPAIRMENT| H - Hearing impairment  | Hearing impairment     |
 
 
   @JurorTransformationWIP @NewSchemaConverted @JurorDigitalNotConverted
@@ -82,16 +80,13 @@ Feature: JM-3457 and JM-3456 - Digital Response
 
     Given I am on "Public" "test"
 
-    Given the juror numbers have not been processed new schema
-      | part_no   | pool_no 	| owner |
-      | <part_no> |<pool_no>	| 400 	|
-
-
-
+    Given a bureau owned pool is created with jurors
+      | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number> 	    | <pool_number>     | 5				            | 400	|
 
     And I submit a digital response with reasonable adjustment
-      |part_no	  |pool_number  |last_name	|postcode	|email 	|adjustmentNeededCap     |details             |
-      |<part_no>  |<pool_no>	|LNAME  	|CH1 2AN	|<email>|<adjustmentNeededCap>   |<adjustmentNeeded>  |
+      |part_no	       |pool_number     |last_name	|postcode	|email 	|adjustmentNeededCap     |details             |
+      |<juror_number>  |<pool_number>	|LNAME  	|CH1 2AN	|<email>|<adjustmentNeededCap>   |<adjustmentNeeded>  |
 
     Given I am on "Bureau" "test"
     And I log in as "<user>"
@@ -132,6 +127,5 @@ Feature: JM-3457 and JM-3456 - Digital Response
     And I see the reply status has updated to "TO DO"
 
     Examples:
-      | user          | part_no   | pool_no   | email      | adjustmentNeededCap | adjustmentFullCaps   | adjustmentNeeded             |
-      | MODTESTBUREAU | 641500286 | 415170501 | e@mail.com |  Limited mobility   | L - LIMITED MOBILITY | Reasonable adjustment detail |
-
+      | user          | juror_number  | pool_number   | email      | adjustmentNeededCap | adjustmentFullCaps   | adjustmentNeeded             |
+      | MODTESTBUREAU | 041500139     | 415300239     | e@mail.com |  Limited mobility   | L - LIMITED MOBILITY | Reasonable adjustment detail |

@@ -471,55 +471,7 @@ public class DatabaseTester {
 
 	}
 
-	//Danielle enable/disable a Bureau user account
-	public void enableBureauUser(String username, String login_enabled_yn, String value) throws SQLException {
 
-		db = new DBConnection();
-		String env_property = System.getProperty("env.database");
-
-		if (env_property != null)
-			conn = db.getConnection(env_property);
-		else
-			conn = db.getConnection("demo");
-
-		try {
-			pStmt = conn.prepareStatement("update juror_mod.users set " + login_enabled_yn + "=? where owner='400' and username='" + username + "'");
-			pStmt.setString(1, value);
-
-
-			pStmt.execute();
-			log.info("Updated juror password to enable/disable " + login_enabled_yn + " for user " + username + "");
-
-		} finally {
-			conn.commit();
-			pStmt.close();
-			conn.close();
-		}
-
-	}
-
-	public void expiredBureauUser(String username) throws SQLException {
-
-		db = new DBConnection();
-		String env_property = System.getProperty("env.database");
-
-		if (env_property != null)
-			conn = db.getConnection(env_property);
-		else
-			conn = db.getConnection("demo");
-
-		try {
-			pStmt = conn.prepareStatement("update juror_mod.users set PASSWORD_CHANGED_DATE=current_date-365 where owner='400' and username='" + username + "'");
-			pStmt.execute();
-			log.info("Updated juror password to expire password for user " + username + "");
-
-		} finally {
-			conn.commit();
-			pStmt.close();
-			conn.close();
-		}
-
-	}
 
 	public void onDatabaseTable_seeColWithColValue_whereColColvalue(String environment, String database, String databaseTable,
 																	String expectedColumn, String expectedColumnValue, String whereColumn, String whereColumnValue) throws SQLException {
@@ -613,6 +565,16 @@ public class DatabaseTester {
 		else
 			conn = db.getConnection("demo");
 		try {
+
+			pStmt = conn.prepareStatement("delete from juror_mod.user_roles where username=?");
+			pStmt.setString(1, staffName);
+			pStmt.executeQuery();
+			log.info("Delete all JUROR_MOD.USER_ROLES rows where username =>" + staffName);
+
+			pStmt = conn.prepareStatement("delete from juror_mod.user_courts where username=?");
+			pStmt.setString(1, staffName);
+			pStmt.executeQuery();
+			log.info("Delete all JUROR_MOD.USER_COURTS rows where username =>" + staffName);
 
 			pStmt = conn.prepareStatement("delete from juror_MOD.USERS where name=?"); // SQL Statement here
 			pStmt.setString(1, staffName);
@@ -1190,33 +1152,6 @@ public class DatabaseTester {
 	}
 
 
-	public void resetUser(String username) throws SQLException {
-		db = new DBConnection();
-
-		String env_property = System.getProperty("env.database");
-		if (env_property != null)
-			conn = db.getConnection(env_property);
-		else
-			conn = db.getConnection("demo");
-
-		try {
-			pStmt = conn.prepareStatement("update juror_mod.users set password_changed_date=NOW() where username=?");
-			pStmt.setString(1, username);
-			pStmt.execute();
-			log.info("Updated password changed date for =>" + username + "<= to let us login");
-
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-			log.error("Message:" + e.getMessage());
-		} finally {
-			conn.commit();
-			pStmt.close();
-			conn.close();
-		}
-
-	}
-
 	public void resetJurorDigitalDatabase() throws SQLException {
 		db = new DBConnection();
 
@@ -1296,6 +1231,15 @@ public class DatabaseTester {
 			conn = db.getConnection("demo");
 
 		try {
+
+			pStmt = conn.prepareStatement("delete from juror_mod.user_roles where username='TeamPickListUser'");
+			pStmt.executeQuery();
+			log.info("Delete all JUROR_MOD.USER_ROLES rows where username='TeamPickListUser'");
+
+			pStmt = conn.prepareStatement("delete from juror_mod.user_courts where username='TeamPickListUser'");
+			pStmt.executeQuery();
+			log.info("Delete all JUROR_MOD.USER_COURTS rows where username='TeamPickListUser'");
+
 			pStmt = conn.prepareStatement("Delete from juror_mod.users where username='TeamPickListUser'");
 			pStmt.execute();
 
@@ -2827,20 +2771,57 @@ public class DatabaseTester {
 		else
 			conn = db.getConnection("demo");
 		try {
-			pStmt = conn.prepareStatement("INSERT INTO JUROR_MOD.USERS (OWNER,USERNAME,NAME,LEVEL,ACTIVE,LAST_LOGGED_IN,VERSION,TEAM_ID,PASSWORD,PASSWORD_WARNING,DAYS_TO_EXPIRE,PASSWORD_CHANGED_DATE,FAILED_LOGIN_ATTEMPTS,LOGIN_ENABLED_YN) VALUES ('400', 'MODTESTBUREAU', 'MODTESTBUREAU', 1, true, CURRENT_DATE, 1242, 1, '32CA9FC1A0F5B633', NULL, NULL, CURRENT_DATE, 0, 'Y')");
-			pStmt.execute();
-			conn.commit();
-			log.info("INSERTED INTO JUROR_MOD.USERS LOGIN 'MODTESTBUREAU'");
 
-			pStmt = conn.prepareStatement("INSERT INTO JUROR_MOD.USERS (OWNER,USERNAME,NAME,LEVEL,ACTIVE,LAST_LOGGED_IN,VERSION,TEAM_ID,PASSWORD,PASSWORD_WARNING,DAYS_TO_EXPIRE,PASSWORD_CHANGED_DATE,FAILED_LOGIN_ATTEMPTS,LOGIN_ENABLED_YN) VALUES ('415', 'MODTESTCOURT', 'MODTESTCOURT', 1, true, CURRENT_DATE, 287, 1, '32CA9FC1A0F5B633', NULL, NULL, CURRENT_DATE, 0, 'Y')");
+			// USERS TABLE
+			pStmt = conn.prepareStatement("""
+ 					INSERT INTO juror_mod.users (owner, user_type, username, email, name, active, version) 
+ 					VALUES 
+ 					('400', 'BUREAU', 'MODTESTBUREAU', 'MODTESTBUREAU@email.gov.uk', 'MODTESTBUREAU', true, 1),
+ 					('415', 'COURT', 'MODTESTCOURT', 'MODTESTCOURT@email.gov.uk', 'MODTESTCOURT', true, 1),
+ 					('400', 'SYSTEM', 'AUTO', 'AUTO@email.gov.uk', 'AUTO', true, 1),
+ 					('400', 'BUREAU', 'TeamPickListUser', 'TeamPickListUser@email.gov.uk', 'TeamPickListUser', true, 1),
+ 					('400', 'BUREAU', 'AutomationStaffTWO', 'AutomationStaffTWO@email.gov.uk', 'AutomationStaffTWO', true, 1),
+ 					('400', 'SYSTEM', 'SYSTEM', 'SYSTEM@email.gov.uk', 'SYSTEM', true, 1),
+ 					('416', 'COURT', 'SJOUSER1', 'SJOUSER1@email.gov.uk', 'SJOUSER1', true, 1),
+ 					('400', 'BUREAU', 'CPASS', 'CPASS@email.gov.uk', 'CPASS', true, 1),
+ 					('400', 'BUREAU', 'NEWUSER', 'NEWUSER@email.gov.uk', 'NEWUSER', true, 1),
+ 					('400', 'BUREAU', 'ARAMIS1', 'ARAMIS1@email.gov.uk', 'ARAMIS1', true, 1),
+ 					('415', 'COURT', 'MODCOURT', 'MODCOURT@email.gov.uk', 'MODCOURT', true, 1);
+ 					""");
 			pStmt.execute();
 			conn.commit();
-			log.info("INSERTED INTO JUROR_MOD.USERS LOGIN 'MODTESTCOURT'");
 
-			pStmt = conn.prepareStatement("INSERT INTO JUROR_MOD.USERS (OWNER,USERNAME,NAME,LEVEL,ACTIVE,LAST_LOGGED_IN,VERSION,TEAM_ID,PASSWORD,PASSWORD_WARNING,DAYS_TO_EXPIRE,PASSWORD_CHANGED_DATE,FAILED_LOGIN_ATTEMPTS,LOGIN_ENABLED_YN) VALUES ('415', 'MODCOURT', 'MODCOURT', 1, true, CURRENT_DATE, 287, 1, '32CA9FC1A0F5B633', NULL, NULL, CURRENT_DATE, 0, 'Y')");
+			// USER_ROLES TABLE
+			pStmt = conn.prepareStatement("""
+					INSERT INTO juror_mod.user_roles (username, role) 
+					VALUES 
+					('MODTESTBUREAU', 'TEAM_LEADER'),
+					('SJOUSER1', 'SENIOR_JUROR_OFFICER');
+					""");
 			pStmt.execute();
 			conn.commit();
-			log.info("INSERTED INTO JUROR_MOD.USERS LOGIN 'MODCOURT'");
+
+			// USER_COURTS TABLE
+			pStmt = conn.prepareStatement("""
+					INSERT INTO juror_mod.user_courts (username, loc_code)
+					VALUES
+					('MODTESTBUREAU', '400'),
+					('MODTESTCOURT', '415'),
+					('MODCOURT', '415'),
+					('MODCOURT', '769'),
+					('MODCOURT', '416'),
+					('AUTO', '400'),
+					('TeamPickListUser', '400'),
+					('AutomationStaffTWO', '400'),
+					('SYSTEM', '400'),
+					('SJOUSER1', '416'),
+					('CPASS', '400'),
+					('ARAMIS1', '400'),
+					('NEWUSER', '400');
+					""");
+			pStmt.execute();
+			conn.commit();
+			log.info("INSERTED INTO JUROR_MOD.USERS");
 
 		} catch (SQLException e) {
 			e.printStackTrace();

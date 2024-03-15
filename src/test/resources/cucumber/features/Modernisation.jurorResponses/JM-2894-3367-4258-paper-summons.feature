@@ -162,7 +162,7 @@ Feature: JM-2894 JM 3367
     And I set the radio button to "Mark as responded"
     And I press the "Continue" button
     And I see "You may need to reassign this juror to a different court before you can finish processing this reply" on the page
-    And I set the radio button to "Swansea (457)"
+    And I set the radio button to "Swansea Crown Court (457)"
     And I press the "Continue" button
     And I see "Choose a pool to reassign to" on the page
     And I see the reassign active pools table
@@ -276,7 +276,7 @@ Feature: JM-2894 JM 3367
     And I see "Leeds" on the page
     And I set the radio button to "Select a different court"
     And I set "Court name or location code" to "457"
-    Then I click on the "Swansea (457)" link
+    Then I click on the "Swansea Crown Court (457)" link
     And I press the "Continue" button
     And I see "Choose a pool to reassign to" on the page
     And I see the reassign active pools table

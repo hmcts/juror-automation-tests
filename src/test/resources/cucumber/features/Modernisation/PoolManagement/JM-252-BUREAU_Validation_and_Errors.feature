@@ -221,9 +221,9 @@ Feature: JM-252_Validation_and_Errors
 
     Examples:
       | user	        | selectedCourt    | displayCourt     | courtType    | courtCode | juror_number  | pool_number |
-      | MODTESTBUREAU	| SWANSEA          | Swansea          | Crown        | 457       | 045700001     | 457300001   |
-      | MODTESTBUREAU	| SWANSEA          | Swansea          | Civil        | 457       | 045700001     | 457300001   |
-      | MODTESTBUREAU	| SWANSEA          | Swansea          | High         | 457       | 045700001     | 457300001   |
+      | MODTESTBUREAU	| SWANSEA          | Swansea Crown Court          | Crown        | 457       | 045700001     | 457300001   |
+      | MODTESTBUREAU	| SWANSEA          | Swansea Crown Court          | Civil        | 457       | 045700001     | 457300001   |
+      | MODTESTBUREAU	| SWANSEA          | Swansea Crown Court          | High         | 457       | 045700001     | 457300001   |
 
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Errors and Warnings on Change Number Of Deferrals - Continue An Invalid Input
@@ -280,9 +280,9 @@ Feature: JM-252_Validation_and_Errors
 
     Examples:
       | user	        | selectedCourt    | displayCourt     | courtType    | courtCode | juror_number  | pool_number |
-      | MODTESTBUREAU	| SWANSEA          | Swansea          | Crown        | 457       | 045700002     | 457300002   |
-      | MODTESTBUREAU	| SWANSEA          | Swansea          | Civil        | 457       | 045700002     | 457300002   |
-      | MODTESTBUREAU	| SWANSEA          | Swansea          | High         | 457       | 045700002     | 457300002   |
+      | MODTESTBUREAU	| SWANSEA          | Swansea Crown Court          | Crown        | 457       | 045700002     | 457300002   |
+      | MODTESTBUREAU	| SWANSEA          | Swansea Crown Court          | Civil        | 457       | 045700002     | 457300002   |
+      | MODTESTBUREAU	| SWANSEA          | Swansea Crown Court          | High         | 457       | 045700002     | 457300002   |
 
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Errors and Warnings on Change Number Of Deferrals - Number > Number of Defs Available
@@ -340,9 +340,9 @@ Feature: JM-252_Validation_and_Errors
 
     Examples:
       | user	        | selectedCourt    | displayCourt     | courtType    | courtCode | juror_number| pool_number |
-      | MODTESTBUREAU	| SWANSEA          | Swansea          | Crown        | 457       | 045700003   | 457300003   |
-      | MODTESTBUREAU	| SWANSEA          | Swansea          | Civil        | 457       | 045700003   | 457300003   |
-      | MODTESTBUREAU	| SWANSEA          | Swansea          | High         | 457       | 045700003   | 457300003   |
+      | MODTESTBUREAU	| SWANSEA          | Swansea Crown Court          | Crown        | 457       | 045700003   | 457300003   |
+      | MODTESTBUREAU	| SWANSEA          | Swansea Crown Court          | Civil        | 457       | 045700003   | 457300003   |
+      | MODTESTBUREAU	| SWANSEA          | Swansea Crown Court          | High         | 457       | 045700003   | 457300003   |
 
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Errors and Warnings on Change Number Of Deferrals - Zero Deferrals
@@ -404,9 +404,9 @@ Feature: JM-252_Validation_and_Errors
 
     Examples:
       | user	        | selectedCourt    | displayCourt     | courtType    | courtCode | juror_number | pool_number  |
-      | MODTESTBUREAU	| SWANSEA          | Swansea          | Crown        | 457       | 045700004    | 457300004    |
-      | MODTESTBUREAU	| SWANSEA          | Swansea          | Civil        | 457       | 045700004    | 457300004    |
-      | MODTESTBUREAU	| SWANSEA          | Swansea          | High         | 457       | 045700004    | 457300004    |
+      | MODTESTBUREAU	| SWANSEA          | Swansea Crown Court          | Crown        | 457       | 045700004    | 457300004    |
+      | MODTESTBUREAU	| SWANSEA          | Swansea Crown Court          | Civil        | 457       | 045700004    | 457300004    |
+      | MODTESTBUREAU	| SWANSEA          | Swansea Crown Court          | High         | 457       | 045700004    | 457300004    |
 
   @JurorTransformation @NewSchemaConverted
   Scenario Outline: Errors and Warnings on Change Number Of Deferrals - One Deferral
@@ -464,9 +464,9 @@ Feature: JM-252_Validation_and_Errors
 
     Examples:
       | user	        | selectedCourt    | displayCourt     | courtType    | courtCode | juror_number  | pool_number |
-      | MODTESTBUREAU	| SWANSEA          | Swansea          | Crown        | 457       | 045700005     | 457300005   |
-      | MODTESTBUREAU	| SWANSEA          | Swansea          | Civil        | 457       | 045700005     | 457300005   |
-      | MODTESTBUREAU	| SWANSEA          | Swansea          | High         | 457       | 045700005     | 457300005   |
+      | MODTESTBUREAU	| SWANSEA          | Swansea Crown Court          | Crown        | 457       | 045700005     | 457300005   |
+      | MODTESTBUREAU	| SWANSEA          | Swansea Crown Court          | Civil        | 457       | 045700005     | 457300005   |
+      | MODTESTBUREAU	| SWANSEA          | Swansea Crown Court          | High         | 457       | 045700005     | 457300005   |
 
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Errors and Warnings on Continue - No Selections
@@ -619,9 +619,9 @@ Feature: JM-252_Validation_and_Errors
 
     Examples:
       | user	        | selectedCourt    | displayCourt     | courtType    | courtTypeFull   | courtCode | juror_number  | pool_number |
-      | MODTESTBUREAU	| SWANSEA          | Swansea          | Crown        | Crown court     | 457       | 045700006     | 457300006   |
-      | MODTESTBUREAU	| SWANSEA          | Swansea          | Civil        | Civil court     | 457       | 045700006     | 457300006   |
-      | MODTESTBUREAU	| SWANSEA          | Swansea          | High         | High court      | 457       | 045700006     | 457300006   |
+      | MODTESTBUREAU	| SWANSEA          | Swansea Crown Court          | Crown        | Crown court     | 457       | 045700006     | 457300006   |
+      | MODTESTBUREAU	| SWANSEA          | Swansea Crown Court          | Civil        | Civil court     | 457       | 045700006     | 457300006   |
+      | MODTESTBUREAU	| SWANSEA          | Swansea Crown Court          | High         | High court      | 457       | 045700006     | 457300006   |
 
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Errors and Warnings on Change Pool Number - No Pool Number
@@ -682,9 +682,9 @@ Feature: JM-252_Validation_and_Errors
 
     Examples:
       | user	        | selectedCourt    | displayCourt     | courtType    | courtTypeFull   | courtCode | juror_number  | pool_number |
-      | MODTESTBUREAU	| SWANSEA          | Swansea          | Crown        | Crown court     | 457       | 045700007     | 457300007   |
-      | MODTESTBUREAU	| SWANSEA          | Swansea          | Civil        | Civil court     | 457       | 045700007     | 457300007   |
-      | MODTESTBUREAU	| SWANSEA          | Swansea          | High         | High court      | 457       | 045700007     | 457300007   |
+      | MODTESTBUREAU	| SWANSEA          | Swansea Crown Court          | Crown        | Crown court     | 457       | 045700007     | 457300007   |
+      | MODTESTBUREAU	| SWANSEA          | Swansea Crown Court          | Civil        | Civil court     | 457       | 045700007     | 457300007   |
+      | MODTESTBUREAU	| SWANSEA          | Swansea Crown Court          | High         | High court      | 457       | 045700007     | 457300007   |
 
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Errors and Warnings on Change Pool Number - Pool Number Does Not Contain Court Location Code
@@ -746,9 +746,9 @@ Feature: JM-252_Validation_and_Errors
 
     Examples:
       | user	        | selectedCourt    | displayCourt     | courtType    | courtTypeFull   | courtCode | juror_number  | pool_number |
-      | MODTESTBUREAU	| SWANSEA          | Swansea          | Crown        | Crown court     | 457       | 045700008     | 457300008   |
-      | MODTESTBUREAU	| SWANSEA          | Swansea          | Civil        | Civil court     | 457       | 045700008     | 457300008   |
-      | MODTESTBUREAU	| SWANSEA          | Swansea          | High         | High court      | 457       | 045700008     | 457300008   |
+      | MODTESTBUREAU	| SWANSEA          | Swansea Crown Court          | Crown        | Crown court     | 457       | 045700008     | 457300008   |
+      | MODTESTBUREAU	| SWANSEA          | Swansea Crown Court          | Civil        | Civil court     | 457       | 045700008     | 457300008   |
+      | MODTESTBUREAU	| SWANSEA          | Swansea Crown Court          | High         | High court      | 457       | 045700008     | 457300008   |
 
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Errors and Warnings on Change Pool Number - Pool Number Does Not Contain Months Of Attendance Date
@@ -816,9 +816,9 @@ Feature: JM-252_Validation_and_Errors
 
     Examples:
       | user	        | selectedCourt    | displayCourt     | courtType    | courtTypeFull   | courtCode | juror_number  | pool_number |
-      | MODTESTBUREAU	| SWANSEA          | Swansea          | Crown        | Crown court     | 457       | 045700009     | 457300009   |
-      | MODTESTBUREAU	| SWANSEA          | Swansea          | Civil        | Civil court     | 457       | 045700009     | 457300009   |
-      | MODTESTBUREAU	| SWANSEA          | Swansea          | High         | High court      | 457       | 045700009     | 457300009   |
+      | MODTESTBUREAU	| SWANSEA          | Swansea Crown Court          | Crown        | Crown court     | 457       | 045700009     | 457300009   |
+      | MODTESTBUREAU	| SWANSEA          | Swansea Crown Court          | Civil        | Civil court     | 457       | 045700009     | 457300009   |
+      | MODTESTBUREAU	| SWANSEA          | Swansea Crown Court          | High         | High court      | 457       | 045700009     | 457300009   |
 
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Errors and Warnings on Change Pool Number - Pool Number Too Long
@@ -880,9 +880,9 @@ Feature: JM-252_Validation_and_Errors
 
     Examples:
       | user	        | selectedCourt    | displayCourt     | courtType    | courtTypeFull   | courtCode | juror_number  | pool_number |
-      | MODTESTBUREAU	| SWANSEA          | Swansea          | Crown        | Crown court     | 457       | 045700010     | 457300010   |
-      | MODTESTBUREAU	| SWANSEA          | Swansea          | Civil        | Civil court     | 457       | 045700010     | 457300010   |
-      | MODTESTBUREAU	| SWANSEA          | Swansea          | High         | High court      | 457       | 045700010     | 457300010   |
+      | MODTESTBUREAU	| SWANSEA          | Swansea Crown Court          | Crown        | Crown court     | 457       | 045700010     | 457300010   |
+      | MODTESTBUREAU	| SWANSEA          | Swansea Crown Court          | Civil        | Civil court     | 457       | 045700010     | 457300010   |
+      | MODTESTBUREAU	| SWANSEA          | Swansea Crown Court          | High         | High court      | 457       | 045700010     | 457300010   |
 
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Errors and Warnings on Change Pool Number - Pool Number Too Short
@@ -944,9 +944,9 @@ Feature: JM-252_Validation_and_Errors
 
     Examples:
       | user	        | selectedCourt    | displayCourt     | courtType    | courtTypeFull   | courtCode | juror_number  | pool_number |
-      | MODTESTBUREAU	| SWANSEA          | Swansea          | Crown        | Crown court     | 457       | 045700011     | 457300011   |
-      | MODTESTBUREAU	| SWANSEA          | Swansea          | Civil        | Civil court     | 457       | 045700011     | 457300011   |
-      | MODTESTBUREAU	| SWANSEA          | Swansea          | High         | High court      | 457       | 045700011     | 457300011   |
+      | MODTESTBUREAU	| SWANSEA          | Swansea Crown Court          | Crown        | Crown court     | 457       | 045700011     | 457300011   |
+      | MODTESTBUREAU	| SWANSEA          | Swansea Crown Court          | Civil        | Civil court     | 457       | 045700011     | 457300011   |
+      | MODTESTBUREAU	| SWANSEA          | Swansea Crown Court          | High         | High court      | 457       | 045700011     | 457300011   |
 
   @JurorTransformation @NewSchemaConverted
   Scenario Outline: Errors and Warnings on Change Pool Number - Pool Number Already in Use
@@ -1012,9 +1012,9 @@ Feature: JM-252_Validation_and_Errors
 
     Examples:
       | user	        | selectedCourt    | displayCourt     | courtType    | courtTypeFull   | courtCode | juror_number  | pool_number |
-      | MODTESTBUREAU	| SWANSEA          | Swansea          | Crown        | Crown court     | 457       | 045700012     | 457300012   |
-      | MODTESTBUREAU	| SWANSEA          | Swansea          | Civil        | Civil court     | 457       | 045700012     | 457300012   |
-      | MODTESTBUREAU	| SWANSEA          | Swansea          | High         | High court      | 457       | 045700012     | 457300012   |
+      | MODTESTBUREAU	| SWANSEA          | Swansea Crown Court          | Crown        | Crown court     | 457       | 045700012     | 457300012   |
+      | MODTESTBUREAU	| SWANSEA          | Swansea Crown Court          | Civil        | Civil court     | 457       | 045700012     | 457300012   |
+      | MODTESTBUREAU	| SWANSEA          | Swansea Crown Court          | High         | High court      | 457       | 045700012     | 457300012   |
 
   @JurorTransformation @NewSchemaConverted
   Scenario Outline: Errors and Warnings on Change Pool Number - Valid Pool Number
@@ -1086,9 +1086,9 @@ Feature: JM-252_Validation_and_Errors
 
     Examples:
       | user	        | selectedCourt    | displayCourt     | courtType    | courtTypeFull   | courtCode | juror_number  | pool_number   |
-      | MODTESTBUREAU	| SWANSEA          | Swansea          | Crown        | Crown court     | 457       | 041500047     | 415300130     |
-      | MODTESTBUREAU	| SWANSEA          | Swansea          | Civil        | Civil court     | 457       | 041500047     | 415300130     |
-      | MODTESTBUREAU	| SWANSEA          | Swansea          | High         | High court      | 457       | 041500047     | 415300130     |
+      | MODTESTBUREAU	| SWANSEA          | Swansea Crown Court          | Crown        | Crown court     | 457       | 041500047     | 415300130     |
+      | MODTESTBUREAU	| SWANSEA          | Swansea Crown Court          | Civil        | Civil court     | 457       | 041500047     | 415300130     |
+      | MODTESTBUREAU	| SWANSEA          | Swansea Crown Court          | High         | High court      | 457       | 041500047     | 415300130     |
 
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Test to assure that a warning appears if the attendance date is set to a weekend date

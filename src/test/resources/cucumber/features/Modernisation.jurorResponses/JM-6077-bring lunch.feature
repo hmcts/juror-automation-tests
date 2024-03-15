@@ -45,7 +45,7 @@ Feature: As a jury officer I want to send the bring lunch message
 
     And I see "Check and send message" on the page
     And I see "You’re sending the following message to 1 jurors. You cannot undo this after sending." on the page
-    And I see "Your jury panel is likely to go into deliberation tomorrow. Please bring a packed lunch to court as you will not be able to leave the deliberation room to get refreshments. Please do not bring metal cutlery or glass. If you have any questions, please contact the jury office on 01244 317606." on the page
+    And I see "Your jury panel is likely to go into deliberation tomorrow. Please bring a packed lunch to court as you will not be able to leave the deliberation room to get refreshments. Please do not bring metal cutlery or glass. If you have any questions, please contact the jury office on 01244 356726." on the page
     And I press the "Send message" button
     And I see the message sent banner containing "Message will be sent to 1 jurors"
     And I see the juror "<juror_number>" has a message in the database
@@ -95,7 +95,7 @@ Feature: As a jury officer I want to send the bring lunch message
 
     And I see "Check and send message" on the page
     And I see "You’re sending the following message to 1 jurors. You cannot undo this after sending." on the page
-    And I see "Your jury panel is likely to go into deliberation tomorrow. Please bring a packed lunch to court as you will not be able to leave the deliberation room to get refreshments. Please do not bring metal cutlery or glass. If you have any questions, please contact the jury office on 01244 317606." on the page
+    And I see "Your jury panel is likely to go into deliberation tomorrow. Please bring a packed lunch to court as you will not be able to leave the deliberation room to get refreshments. Please do not bring metal cutlery or glass. If you have any questions, please contact the jury office on 01244 356726." on the page
     And I press the "Send message" button
     And I see the message sent banner containing "Message will be sent to 1 jurors"
     And I see the juror "<juror_number>" has a message in the database
@@ -145,7 +145,7 @@ Feature: As a jury officer I want to send the bring lunch message
 
     And I see "Check and send message" on the page
     And I see "You’re sending the following message to 1 jurors. You cannot undo this after sending." on the page
-    And I see "Your jury panel is likely to go into deliberation tomorrow. Please bring a packed lunch to court as you will not be able to leave the deliberation room to get refreshments. Please do not bring metal cutlery or glass. If you have any questions, please contact the jury office on 01244 317606." on the page
+    And I see "Your jury panel is likely to go into deliberation tomorrow. Please bring a packed lunch to court as you will not be able to leave the deliberation room to get refreshments. Please do not bring metal cutlery or glass. If you have any questions, please contact the jury office on 01244 356726." on the page
     And I press the "Send message" button
     And I see the message sent banner containing "Message will be sent to 1 jurors"
     And I see the juror "<juror_number>" has a message in the database
@@ -195,7 +195,7 @@ Feature: As a jury officer I want to send the bring lunch message
 
     And I see "Check and send message" on the page
     And I see "You’re sending the following message to 1 jurors. You cannot undo this after sending." on the page
-    And I see "Your jury panel is likely to go into deliberation tomorrow. Please bring a packed lunch to court as you will not be able to leave the deliberation room to get refreshments. Please do not bring metal cutlery or glass. If you have any questions, please contact the jury office on 01244 317606." on the page
+    And I see "Your jury panel is likely to go into deliberation tomorrow. Please bring a packed lunch to court as you will not be able to leave the deliberation room to get refreshments. Please do not bring metal cutlery or glass. If you have any questions, please contact the jury office on 01244 356726." on the page
     And I press the "Send message" button
     And I see the message sent banner containing "Message will be sent to 1 jurors"
     And I see the juror "<juror_number>" has a message in the database
@@ -289,7 +289,7 @@ Feature: As a jury officer I want to send the bring lunch message
 
     And I see "Check and send message" on the page
     And I see "You’re sending the following message to 1 jurors. You cannot undo this after sending." on the page
-    And I see "Your jury panel is likely to go into deliberation tomorrow. Please bring a packed lunch to court as you will not be able to leave the deliberation room to get refreshments. Please do not bring metal cutlery or glass. If you have any questions, please contact the jury office on 01244 317606." on the page
+    And I see "Your jury panel is likely to go into deliberation tomorrow. Please bring a packed lunch to court as you will not be able to leave the deliberation room to get refreshments. Please do not bring metal cutlery or glass. If you have any questions, please contact the jury office on 01244 356726." on the page
     And I press the "Send message" button
     And I see the message sent banner containing "Message will be sent to 1 jurors"
     And I see the juror "<juror_number>" has a message in the database
@@ -339,7 +339,7 @@ Feature: As a jury officer I want to send the bring lunch message
 
     And I see "Check and send message" on the page
     And I see "You’re sending the following message to 1 jurors. You cannot undo this after sending." on the page
-    And I see "Your jury panel is likely to go into deliberation tomorrow. Please bring a packed lunch to court as you will not be able to leave the deliberation room to get refreshments. Please do not bring metal cutlery or glass. If you have any questions, please contact the jury office on 01244 317606." on the page
+    And I see "Your jury panel is likely to go into deliberation tomorrow. Please bring a packed lunch to court as you will not be able to leave the deliberation room to get refreshments. Please do not bring metal cutlery or glass. If you have any questions, please contact the jury office on 01244 356726." on the page
     And I press the "Send message" button
     And I see the message sent banner containing "Message will be sent to 1 jurors"
     And I see the juror "<juror_number>" has a message in the database
@@ -452,7 +452,7 @@ Feature: As a jury officer I want to send the bring lunch message
 
     And I see "Check and send message" on the page
     And I see "You’re sending the following message to 1 jurors. You cannot undo this after sending." on the page
-    And I see "Your jury panel is likely to go into deliberation tomorrow. Please bring a packed lunch to court as you will not be able to leave the deliberation room to get refreshments. Please do not bring metal cutlery or glass. If you have any questions, please contact the jury office on 01244 317606." on the page
+    And I see "Your jury panel is likely to go into deliberation tomorrow. Please bring a packed lunch to court as you will not be able to leave the deliberation room to get refreshments. Please do not bring metal cutlery or glass. If you have any questions, please contact the jury office on 01244 356726." on the page
     And I press the "Send message" button
     And I see the message sent banner containing "Message will be sent to 1 jurors"
     And I see the juror "<juror_number>" has a message in the database
@@ -514,7 +514,7 @@ Feature: As a jury officer I want to send the bring lunch message
 
     And I see "Check and send message" on the page
     And I see "You’re sending the following message to 3 jurors. You cannot undo this after sending." on the page
-    And I see "Your jury panel is likely to go into deliberation tomorrow. Please bring a packed lunch to court as you will not be able to leave the deliberation room to get refreshments. Please do not bring metal cutlery or glass. If you have any questions, please contact the jury office on 01244 317606." on the page
+    And I see "Your jury panel is likely to go into deliberation tomorrow. Please bring a packed lunch to court as you will not be able to leave the deliberation room to get refreshments. Please do not bring metal cutlery or glass. If you have any questions, please contact the jury office on 01244 356726." on the page
     And I press the "Send message" button
     And I see the message sent banner containing "Message will be sent to 3 jurors"
     And I see the juror "<juror_number>" has a message in the database

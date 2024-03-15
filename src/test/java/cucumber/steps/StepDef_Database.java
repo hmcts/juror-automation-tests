@@ -116,19 +116,6 @@ public class StepDef_Database {
         DBT.updateJurorDigital(column, part_no, value);
     }
 
-    ;
-
-    //Danielle enable/disable a Bureau user account
-    @Given("^bureau username \"([^\"]*)\" has \"([^\"]*)\" set to \"([^\"]*)\"$")
-    public void enableBureauUser(String username, String login_enabled_yn, String value) throws SQLException {
-        DBT.enableBureauUser(username, login_enabled_yn, value);
-    }
-
-    @Given("^bureau username \"([^\"]*)\" has an expired password$")
-    public void expiredBureauUser(String username) throws SQLException {
-        DBT.expiredBureauUser(username);
-    }
-
     //Danielle insert an RSUM row for dashboard test
     @Given("^an RSUM row is generated for juror \"([^\"]*)\" in pool \"([^\"]*)\"$")
     public void insertRSUMRow(String part_no, String pool_no) throws SQLException {

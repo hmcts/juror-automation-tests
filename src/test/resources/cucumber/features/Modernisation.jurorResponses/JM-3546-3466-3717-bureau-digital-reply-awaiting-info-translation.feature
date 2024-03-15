@@ -4,17 +4,15 @@ Feature: JM-3546 and JM-3466 Bureau User Marks Digital Response as Awaiting Info
   Scenario Outline: Bureau User Marks Digital Response as Awaiting Info - happy path
 
     Given I am on "Public" "test"
-    Given the juror numbers have not been processed new schema
-      |part_no 	|pool_no 	|owner	|
-      |<part_no>|<pool_no>	|400 	|
 
-    Given "<juror_number>" has "NEXT_DATE" as "5 mondays time" new schema
+    Given a bureau owned pool is created with jurors
+      | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number> 	    | <pool_number>     | 5				            | 400	|
 
 	# Submit response in pool
-
     Given I have submitted a first party English ineligibilty response
-      |part_no	    |pool_number|last_name		|postcode	|email 	|
-      |<part_no>	|<pool_no>	|<last_name>	|<postcode>	|a@a.com|
+      |part_no	      |pool_number    |last_name	|postcode	|email 	|
+      |<juror_number> |<pool_number>  |<last_name>	|<postcode>	|a@a.com|
 
     #log on
     Given I am on "Bureau" "test"
@@ -55,24 +53,22 @@ Feature: JM-3546 and JM-3466 Bureau User Marks Digital Response as Awaiting Info
     Then I see Reply Method is "Digital"
 
     Examples:
-      |part_no		|pool_no 	|last_name 			|postcode 	|
-      |645200186	|452170401 	|LNAMEONEEIGHTSIX	|SY2 6LU	|
+      | juror_number| pool_number 	| last_name 		| postcode 	|
+      | 041500152	| 415300251 	|LNAMEONEEIGHTSIX	| SY2 6LU	|
 
   @JurorTransformationWIP @NewSchemaConverted @JurorDigitalNotConverted
   Scenario Outline: Bureau User Marks Digital Response as Awaiting Info - navigation
 
     Given I am on "Public" "test"
 
-    Given the juror numbers have not been processed new schema
-      |part_no 	|pool_no 	|owner	|
-      |<part_no>|<pool_no>	|400 	|
-
-    Given "<juror_number>" has "NEXT_DATE" as "5 mondays time" new schema
+    Given a bureau owned pool is created with jurors
+      | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number> 	    | <pool_number>     | 5				            | 400	|
 
 	# Submit response in pool
     Given I have submitted a first party English ineligibilty response
-      |part_no	    |pool_number|last_name		|postcode	|email 	|
-      |<part_no>	|<pool_no>	|<last_name>	|<postcode>	|a@a.com|
+      | part_no	        | pool_number   | last_name		| postcode	| email 	|
+      | <juror_number>	| <pool_number>	| <last_name>	| <postcode>| a@a.com   |
 
     #log on
     Given I am on "Bureau" "test"
@@ -111,24 +107,22 @@ Feature: JM-3546 and JM-3466 Bureau User Marks Digital Response as Awaiting Info
     Then I see Reply Method is "Digital"
 
     Examples:
-      |part_no		|pool_no 	|last_name 			|postcode 	|
-      |645200289	|452170401 	|LNAMETWOEIGHTNINE	|SY2 6LU	|
+      | juror_number| pool_number 	| last_name 		| postcode 	|
+      | 041500153	| 415300252 	| LNAMETWOEIGHTNINE	| SY2 6LU	|
 
   @JurorTransformationWIP @NewSchemaConverted @JurorDigitalNotConverted
   Scenario Outline: Bureau User Marks Digital Response as Awaiting Info - errors and warnings
 
     Given I am on "Public" "test"
 
-    Given the juror numbers have not been processed new schema
-      |part_no 	|pool_no 	|owner	|
-      |<part_no>|<pool_no>	|400 	|
-
-    Given "<juror_number>" has "NEXT_DATE" as "5 mondays time" new schema
+    Given a bureau owned pool is created with jurors
+      | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number> 	    | <pool_number>     | 5				            | 400	|
 
 	# Submit response in pool
     Given I have submitted a first party English ineligibilty response
-      |part_no	    |pool_number|last_name		|postcode	|email 	|
-      |<part_no>	|<pool_no>	|<last_name>	|<postcode>	|a@a.com|
+      |part_no	        |pool_number    |last_name		|postcode	|email 	|
+      |<juror_number>	|<pool_number>	|<last_name>	|<postcode>	|a@a.com|
 
     #log on
     Given I am on "Bureau" "test"
@@ -159,5 +153,5 @@ Feature: JM-3546 and JM-3466 Bureau User Marks Digital Response as Awaiting Info
     Then I see Reply Method is "Digital"
 
     Examples:
-      |part_no		|pool_no 	|last_name 			|postcode 	|
-      |645200289	|452170401 	|LNAMETWOEIGHTNINE	|SY2 6LU	|
+      | juror_number| pool_number 	| last_name 		| postcode 	|
+      | 041500154	| 415300253 	| LNAMETWOEIGHTNINE	| SY2 6LU	|

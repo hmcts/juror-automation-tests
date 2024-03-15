@@ -347,10 +347,10 @@ Feature: JM-4222
     And I set the radio button to "Transfer to another court"
     And I press the "Continue" button
     And I set "Enter a court name or location code" to "457"
-    Then I click on the "Swansea (457)" link
+    Then I click on the "Swansea Crown Court (457)" link
     And I set the "Service start date for transfer" single date field to a Monday "10" weeks in the future
     And I press the "Continue" button
-    And I see "Transfer to Swansea (457)" on the page
+    And I see "Transfer to Swansea Crown Court (457)" on the page
     And I press the "Continue" button
 
     When the user searches for juror record "<juror_number>" from the global search bar

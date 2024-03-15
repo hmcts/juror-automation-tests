@@ -3,6 +3,7 @@ package cucumber.pageObjects;
 import java.io.File;
 import java.util.concurrent.TimeUnit;
 
+import cucumber.utils.DatabaseSetup;
 import org.openqa.selenium.UnexpectedAlertBehaviour;
 //import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
@@ -45,7 +46,6 @@ public class SharedDriver extends EventFiringWebDriver {
 	};
 
 	static {
-
 		String usingDriver = ReadProperties.machine("usingDriver");
 		String usingProxy = ReadProperties.machine("usingProxy");
 		String headlessChrome = ReadProperties.machine("headlessChrome");
@@ -112,7 +112,7 @@ public class SharedDriver extends EventFiringWebDriver {
 			} catch (Exception e) {
 				try {
 					// These settings are intended for dev macbooks
-					System.setProperty("webdriver.chrome.driver","/usr/local/bin/chromedriver");
+					System.setProperty("webdriver.chrome.driver","src/test/resources/chromedriver_mac");
 					REAL_DRIVER = new ChromeDriver(options);
 				} catch (Exception f) { // intended settings for running in jenkins
 					System.setProperty("webdriver.chrome.driver","src/test/resources/drivers/chromedriver-linux64/chromedriver");

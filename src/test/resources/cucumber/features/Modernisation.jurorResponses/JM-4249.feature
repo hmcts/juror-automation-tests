@@ -5,13 +5,12 @@ Feature: JM-4249 Edit Juror Record as Bureau User
 
     Given I am on "Bureau" "test"
 
-    Given the juror numbers have not been processed new schema
-      | part_no   | pool_no 	| owner |
-      | <part_no> |<pool_no>	| 400 	|
-
+    Given a bureau owned pool is created with jurors
+      | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number> 	    | <pool_number>     | 5				            | 400	|
 
     And I log in as "<user>"
-    When the user searches for juror record "<part_no>" from the global search bar
+    When the user searches for juror record "<juror_number>" from the global search bar
     And I record a happy path paper summons response and process now
     When the user searches for juror record "<juror_number>" from the global search bar
 
@@ -62,5 +61,5 @@ Feature: JM-4249 Edit Juror Record as Bureau User
     And I see "Testing Test" on the page
 
     Examples:
-      |part_no  |pool_no    |user          |
-      |641500478|415170402  | MODTESTBUREAU|
+      | juror_number  | pool_number |user          |
+      | 041500132     | 415300232   | MODTESTBUREAU|

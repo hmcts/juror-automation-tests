@@ -43,16 +43,13 @@ Feature: Grant excusal digital
 
     Given I am on "Public" "test"
 
-    Given the juror numbers have not been processed new schema
-      | part_no   | pool_no 	| owner |
-      | <part_no> |<pool_no>	| 400 	|
-
-
-
+    Given a bureau owned pool is created with jurors
+      | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number> 	    | <pool_number>     | 5				            | 400	|
 
     And I have submitted a first party English excusal response
-      |part_no	|pool_number|last_name		|postcode	| email |
-      |<part_no>|<pool_no>	|<last_name>	|<postcode>	|<email>|
+      |part_no	      |pool_number    |last_name	|postcode	| email |
+      |<juror_number> |<pool_number>  |<last_name>	|<postcode>	|<email>|
 
     Given I am on "Bureau" "test"
 
@@ -70,7 +67,7 @@ Feature: Grant excusal digital
     Then I see the excusal success message for "<excusalReason>"
 
     Examples:
-      | dropDown       | excusalReason | user          | part_no   | pool_no   | last_name           | postcode | email      |
-      | C - CHILD CARE | child care    | MODTESTBUREAU | 641500604 | 415170402 | LNAMESIXZEROFOUR    | CH1 2AN  | e@mail.com |
-      | D - DECEASED   | deceased      | MODTESTBUREAU | 641500606 | 415170402 | LNAMESIXZEROSIX     | CH1 2AN  | e@mail.com |
+      | dropDown       | excusalReason | user          | juror_number   | pool_number   | last_name           | postcode | email      |
+      | C - CHILD CARE | child care    | MODTESTBUREAU | 041500155      | 415300254     | LNAMESIXZEROFOUR    | CH1 2AN  | e@mail.com |
+      | D - DECEASED   | deceased      | MODTESTBUREAU | 041500155      | 415300254     | LNAMESIXZEROSIX     | CH1 2AN  | e@mail.com |
     

@@ -35,7 +35,6 @@ public class DBConnection {
 			props.put("password",  ReadProperties.main("database_" + environment + "_password"));
 			oracle_jdbc = ReadProperties.main("database_"+environment);
 		}
-		
 
 		try {
 			conn = DriverManager.getConnection(

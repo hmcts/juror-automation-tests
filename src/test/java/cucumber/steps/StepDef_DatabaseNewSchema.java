@@ -56,13 +56,6 @@ public class StepDef_DatabaseNewSchema {
         DBTNSD.updateJurorDigitalNSD(column, part_no, value);
     }
 
-    //Danielle enable/disable a Bureau user account
-    @Given("^bureau username \"([^\"]*)\" has \"([^\"]*)\" set to \"([^\"]*)\" new schema$")
-    public void enableBureauUserNSD(String username, String login_enabled_yn, String value) throws SQLException {
-        DBTNSD.enableBureauUserNSD(username, login_enabled_yn, value);
-    }
-
-    //Danielle insert an RSUM row for dashboard test
     @Given("^an RSUM row is generated for juror \"([^\"]*)\" in pool \"([^\"]*)\" new schema$")
     public void insertRSUMRowNSD(String part_no, String pool_no) throws SQLException {
         DBTNSD.insertRSUMRowNSD(part_no, pool_no);
@@ -410,6 +403,21 @@ public class StepDef_DatabaseNewSchema {
     @Given("^I have created the modernisation staff data new schema$")
     public void insertModernisationDataNSD() throws SQLException {
         DBT.insert_modernisation_data();
+    }
+
+    @Given("^I populate the court catchment area table$")
+    public void populateCourtCatchmentAreaNSD() throws SQLException {
+        DBTNSD.populateCourtCatchmentAreaTable();
+    }
+
+    @Given("^I populate the courtroom table$")
+    public void populateCourtroomNSD() throws SQLException {
+        DBTNSD.populateCourtroomTable();
+    }
+
+    @Given("^I populate the judge table$")
+    public void populateJudgeNSD() throws SQLException {
+        DBTNSD.populateJudgeTable();
     }
 
     @Given("^I delete pools created in the last 3 days new schema for court \"([^\"]*)\"$")

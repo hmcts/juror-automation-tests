@@ -189,8 +189,8 @@ Feature: JM-252 JM-4302 Court user create new pools
     # check that user cannot see courts outside of jurisdiction
     Then I set input field with "ID" of "courtNameOrLocation" to "420"
     And I do not see "Doncaster (420)" on the page
-    Then I set input field with "ID" of "courtNameOrLocation" to "416"
-    Then I click on the "Chichester (416)" link
+    Then I set input field with "ID" of "courtNameOrLocation" to "767"
+    Then I click on the "Knutsford (767)" link
     Then I press the "Continue" button
 
     Then I set the radio button to "<courtType>"
@@ -201,8 +201,8 @@ Feature: JM-252 JM-4302 Court user create new pools
     Then I should be taken to the pool summary page
 
     And I should see the newly created pool request
-      | court          | Lewes Sitting At Chichester  |
-      | jurorsRequired | 150                          |
+      | court          | Knutsford  |
+      | jurorsRequired | 150        |
 
     Examples:
       | user	      | courtType    | displayCourt | noJurors | courtCode | courtTypeFull |

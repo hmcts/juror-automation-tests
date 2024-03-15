@@ -26,7 +26,7 @@ Feature: JM-252_Navigation
     Then I click on the "Bury St Edmunds" link
     Then I clear field with id "courtNameOrLocation"
     Then I set input field with "ID" of "courtNameOrLocation" to "457"
-    And I see "Swansea (457)" on the page
+    And I see "Swansea Crown Court (457)" on the page
     Then I click on the "Swansea" link
 
     # cancel
@@ -47,7 +47,7 @@ Feature: JM-252_Navigation
       | text                                              |
       | Request a new pool                                |
       | Court name or location code                       |
-      | Swansea                                           |
+      | Swansea Crown Court                                           |
       | Attendance date                                   |
       | Pool type                                         |
       | Crown court                                       |
@@ -171,7 +171,7 @@ Feature: JM-252_Navigation
     #select court
 
     Then I set input field with "ID" of "courtNameOrLocation" to "457"
-    Then I click on the "Swansea (457)" link
+    Then I click on the "Swansea Crown Court (457)" link
     Then I press the "Continue" button
 
     Then I set the radio button to "<courtType>"
@@ -182,7 +182,7 @@ Feature: JM-252_Navigation
     Then I should be taken to the pool summary page
 
     And I should see the newly created pool request
-      | court          | Swansea |
+      | court          | Swansea Crown Court |
       | jurorsRequired | 150     |
 
     Then I set input field with "ID" of "courtNameOrLocation" to "415"
@@ -196,7 +196,7 @@ Feature: JM-252_Navigation
     And I see "Swansea" on the page
 
     Then I set input field with "ID" of "courtNameOrLocation" to "457"
-    Then I click on the "Swansea (457)" link
+    Then I click on the "Swansea Crown Court (457)" link
     Then I press the "Filter" button
     Then only records from "Swansea" are displayed
 
@@ -213,7 +213,7 @@ Feature: JM-252_Navigation
     And I see "Swansea" on the page
 
     Then I set input field with "ID" of "courtNameOrLocation" to "Swansea"
-    Then I click on the "Swansea (457)" link
+    Then I click on the "Swansea Crown Court (457)" link
     Then I press the "Filter" button
     Then only records from "Swansea" are displayed
 

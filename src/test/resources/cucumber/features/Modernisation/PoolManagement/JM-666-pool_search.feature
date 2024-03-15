@@ -195,7 +195,7 @@ Feature: JM-666
 
     And I navigate to the pool search screen
     When I enter the pool number "<pool_number>" on the pool search screen
-    And I enter a location code of "416" for the pool search
+    And I enter a location code of "767" for the pool search
     And I search for the pool
     Then I see "There are no matching results" on the page
 

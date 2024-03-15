@@ -5,8 +5,14 @@ Feature: MOD-Smoketest
     Given I am on "bureau" "test"
     Given I have cleared down the modernisation staff data new schema
     Given I have created the modernisation staff data new schema
+
+
+    Given I populate the court catchment area table
+    Given I populate the courtroom table
+    Given I populate the judge table
+
     Given I delete pools created in the last 3 days new schema for court "415"
-    Given I delete pools created in the last 3 days new schema for court "416"
+    Given I delete pools created in the last 3 days new schema for court "767"
     Given I delete pools created in the last 3 days new schema for court "471"
     Given I delete pools created in the last 3 days new schema for court "457"
     Given I delete pools created in the last 3 days new schema for court "452"
@@ -16,10 +22,10 @@ Feature: MOD-Smoketest
     Given I refresh the voters table for court "457" new schema
     Given I refresh the voters table for court "471" new schema
     Given I refresh the voters table for court "415" new schema
-    Given I refresh the voters table for court "416" new schema
+    Given I refresh the voters table for court "767" new schema
     And voters for court "471" have been updated to postcode "CH2 2AN" new schema
     And voters for court "415" have been updated to postcode "CH2 2AN" new schema
-    And voters for court "416" have been updated to postcode "CH2 2AN" new schema
+    And voters for court "767" have been updated to postcode "CH2 2AN" new schema
     And voters for court "457" have been updated to postcode "SA1 4PF" new schema
     And voters for court "452" have been updated to postcode "SA1 4PF" new schema
 
@@ -36,7 +42,7 @@ Feature: MOD-Smoketest
     And I see link with text "Search"
 
     Then I set input field with "ID" of "courtNameOrLocation" to "457"
-    And I see "Swansea (457)" on the page
+    And I see "Swansea Crown Court (457)" on the page
     Then I click on the "Swansea" link
 
     Examples:
