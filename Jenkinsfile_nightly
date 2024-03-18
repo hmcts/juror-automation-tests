@@ -8,14 +8,14 @@ properties([
     choice(choices: ['test', 'stg', 'demo', 'ithc'], name: 'EnvironmentChoice'),
     booleanParam(name: 'runExpenses', defaultValue: false, description: 'Include Expenses tests'),
     booleanParam(name: 'runFeatures', defaultValue: false, description: 'Include Features tests'),
-    booleanParam(name: 'runJurorTransformation', defaultValue: false, description: 'Include JurorTransformation tests'),
-    booleanParam(name: 'runJurorTransformationMulti', defaultValue: false, description: 'Include JurorTransformationMulti tests'),
-    booleanParam(name: 'runJurorTransformationWIP', defaultValue: false, description: 'Include JurorTransformationWIP tests'),
+    booleanParam(name: 'runJurorTransformation', defaultValue: true, description: 'Include JurorTransformation tests'),
+    booleanParam(name: 'runJurorTransformationMulti', defaultValue: true, description: 'Include JurorTransformationMulti tests'),
+    booleanParam(name: 'runJurorTransformationWIP', defaultValue: true, description: 'Include JurorTransformationWIP tests'),
     booleanParam(name: 'runNewSchemaConverted', defaultValue: false, description: 'Include NewSchemaConverted tests'),
     booleanParam(name: 'runRegression', defaultValue: false, description: 'Include Regression tests'),
     booleanParam(name: 'runRegressionSingle', defaultValue: false, description: 'Include RegressionSingle tests'),
     booleanParam(name: 'runRegressionWelsh', defaultValue: false, description: 'Include RegressionWelsh tests'),
-    booleanParam(name: 'runShakedown', defaultValue: false, description: 'Include Shakedown tests')
+    booleanParam(name: 'runShakedown', defaultValue: true, description: 'Include Shakedown tests')
   ])
 ])
 
