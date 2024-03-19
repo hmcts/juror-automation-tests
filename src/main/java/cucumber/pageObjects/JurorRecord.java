@@ -213,6 +213,9 @@ public class JurorRecord {
     @FindBy(xpath = "//*[@id=\"nonAttendanceDayForm\"]/div[2]/button")
     public WebElement confirmNonAttendanceDateButton;
 
+    @FindBy(xpath = "//thead[@class=\"govuk-table__head\"]/tr/th/button")
+    public List<WebElement> DeferralRefusedResultsheaderTableName;
+
 
     public String getHeading() {
         return heading.getText();
@@ -579,5 +582,46 @@ public class JurorRecord {
         nonAttendanceDate.clear();
         nonAttendanceDate.sendKeys(date);
     }
+    public void deferralRefusedjurorsTabPresent(final String tabName) {
+        log.info("Clicking tab");
+        switch (tabName) {
+            case "Juror number":
+                Assert.assertTrue("Expected Text not found", DeferralRefusedResultsheaderTableName.get(0).getText().equals(tabName));
+                log.info(" Text - " + DeferralGrantedResultsheaderTableName.get(0).getText() + " - is visible on the page ");
+                break;
+            case "First name":
+                Assert.assertTrue("Expected Text not found", DeferralRefusedResultsheaderTableName.get(1).getText().equals(tabName));
+                log.info(" Text - " + DeferralGrantedResultsheaderTableName.get(1).getText() + " - is visible on the page ");
+                break;
+            case "Last name":
+                Assert.assertTrue("Expected Text not found", DeferralRefusedResultsheaderTableName.get(2).getText().equals(tabName));
+                log.info(" Text - " + DeferralGrantedResultsheaderTableName.get(2).getText() + " - is visible on the page ");
+                break;
+            case "Postcode":
+                Assert.assertTrue("Expected Text not found", DeferralRefusedResultsheaderTableName.get(3).getText().equals(tabName));
+                log.info(" Text - " + DeferralGrantedResultsheaderTableName.get(2).getText() + " - is visible on the page ");
+                break;
+            case "Status":
+                Assert.assertTrue("Expected Text not found", DeferralRefusedResultsheaderTableName.get(4).getText().equals(tabName));
+                log.info(" Text - " + DeferralGrantedResultsheaderTableName.get(2).getText() + " - is visible on the page ");
+                break;
+            case "Date Refused":
+                Assert.assertTrue("Expected Text not found", DeferralRefusedResultsheaderTableName.get(5).getText().equals(tabName));
+                log.info(" Text - " + DeferralGrantedResultsheaderTableName.get(2).getText() + " - is visible on the page ");
+                break;
+            case "Reason":
+                Assert.assertTrue("Expected Text not found", DeferralRefusedResultsheaderTableName.get(6).getText().equals(tabName));
+                log.info(" Text - " + DeferralGrantedResultsheaderTableName.get(2).getText() + " - is visible on the page ");
+                break;
+            case "Date printed":
+                Assert.assertTrue("Expected Text not found", DeferralGrantedResultsheaderTableName.get(7).getText().equals(tabName));
+                log.info(" Text - " + DeferralGrantedResultsheaderTableName.get(2).getText() + " - is visible on the page ");
+                break;
 
+            default:
+                log.info("Expected element text is not present on the page");
+                break;
+        }
+
+    }
 }

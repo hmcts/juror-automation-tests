@@ -491,4 +491,15 @@ public class StepDef_jurorRecord {
             NAV.seeText_inSameRow_asText(dateFormat.format(newDate), nextToText);
         }
     }
+    @Then("^I am able to see and interact with the jurors Deferral Refused letter tabs and fields$")
+    public void iAmAbleToSeeAndInteractWithTheDeferralRefusedLetterTabsAndFields() {
+        JUROR_RECORD.deferralRefusedjurorsTabPresent("Juror number");
+        JUROR_RECORD.deferralRefusedjurorsTabPresent("First name");
+        JUROR_RECORD.deferralRefusedjurorsTabPresent("Last name");
+        JUROR_RECORD.deferralRefusedjurorsTabPresent("Postcode");
+        JUROR_RECORD.deferralRefusedjurorsTabPresent("Status");
+        JUROR_RECORD.deferralRefusedjurorsTabPresent("Refused to");
+        JUROR_RECORD.deferralRefusedjurorsTabPresent("Reason");
+        JUROR_RECORD.deferralGrantedjurorsTabPresent("Date printed");
+    }
 }
