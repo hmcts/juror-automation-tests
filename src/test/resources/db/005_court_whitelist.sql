@@ -1,4 +1,6 @@
 delete from juror_digital.court_whitelist;
+commit;
+
 INSERT INTO juror_digital.court_whitelist
 (loc_code)
 VALUES ('415'),
@@ -9,3 +11,4 @@ VALUES ('415'),
        ('452'),
        ('457'),
        ('999');
+commit;

@@ -4,27 +4,27 @@ Feature: JM-5178
   Scenario Outline: Place a juror on call as a jury officer - Attendance screen
     Given I am on "Bureau" "test"
 
-    Given the juror numbers have not been processed new schema
-      |part_no   | pool_no   | owner |
-      |<part_no> | <pool_no> | 400   |
+    Given a bureau owned pool is created with jurors
+      | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number> 	    | <pool_number>     | 5				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no   | pool_no   | owner |
-      |<part_no> | <pool_no> | 415   |
+      |part_no        | pool_no       | owner |
+      |<juror_number> | <pool_number> | 415   |
 
     And I log in as "<user>"
-    When the user searches for juror record "<part_no>" from the global search bar
+    When the user searches for juror record "<juror_number>" from the global search bar
     And I record a happy path paper summons response and process now
 
     And I press the "Apps" button
     And I click on the "Juror management" link
     And I click on the "Record attendance" link
     And I click on the "Jurors in waiting" link
-    And I set the radio button to "Check in"
-
+    And I choose the "Check in" radio button
+    
     And I set "Hour" to "09"
     And I set "Minute" to "00"
-    And I set the radio button to "am"
+    And I choose the "am" radio button
     And I input juror "<juror_number>" to be checked in
     And I press the "Check in juror" button
     And I see "9:00am" in the same row as "<juror_number>"
@@ -40,6 +40,5 @@ Feature: JM-5178
     And I see "On call" in the same row as "Next due at court"
 
     Examples:
-      |user			|part_no  | pool_no   |
-      |MODTESTCOURT |141500444| 415180101 |
-
+      | user		 | juror_number | pool_number   |
+      | MODTESTCOURT | 041500161    | 415300260     |

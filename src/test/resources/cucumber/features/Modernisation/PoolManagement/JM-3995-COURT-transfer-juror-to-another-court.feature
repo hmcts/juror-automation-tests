@@ -7,17 +7,15 @@ Feature: JM-3995 JM-4302
 
     Given juror_pool records are cleared down for "<juror_number>"
 
-    Given the juror numbers have not been processed new schema
-      |part_no   | pool_no   | owner |
-      |<part_no> | <pool_no> | 400   |
-
-    And "<juror_number>" has "NEXT_DATE" as "7 mondays time" new schema
+    Given a bureau owned pool is created with jurors
+      | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number> 	    | <pool_number>     | 7				            | 400	|
 
     And I log in as "<user>"
 
     Given a new pool is inserted for where record has transferred to the court new schema
-      |part_no   | pool_no   | owner |
-      |<part_no> | <pool_no> | 415   |
+      |part_no        | pool_no       | owner |
+      |<juror_number> | <pool_number> | 415   |
 
     When the user searches for juror record "<juror_number>" from the global search bar
 
@@ -64,26 +62,23 @@ Feature: JM-3995 JM-4302
     And I see the court name on the juror record screen is "The Crown Court At Welshpool"
 
     Examples:
-      | user          | part_no   | pool_no   |
-      | MODTESTCOURT | 641500139 | 415171103 |
+      | user         | juror_number | pool_number |
+      | MODTESTCOURT | 041500164    | 415300263   |
 
   @JurorTransformationWIP @NewSchemaConverted @JM-5902
   Scenario Outline: Transfer a juror to another court - Juror Record - Validation and Errors
 
     Given I am on "Bureau" "test"
 
-    Given the juror numbers have not been processed new schema
-      |part_no   | pool_no   | owner |
-      |<part_no> | <pool_no> | 400   |
-
-    And "<juror_number>" has "NEXT_DATE" as "7 mondays time" new schema
-    And pool "<pool_no>" has attendance date as "7 mondays time" new schema
+    Given a bureau owned pool is created with jurors
+      | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number> 	    | <pool_number>     | 7				            | 400	|
 
     And I log in as "<user>"
 
     Given a new pool is inserted for where record has transferred to the court new schema
-      |part_no   | pool_no   | owner |
-      |<part_no> | <pool_no> | 415   |
+      |part_no        | pool_no       | owner |
+      |<juror_number> | <pool_number> | 415   |
 
     When the user searches for juror record "<juror_number>" from the global search bar
 
@@ -140,8 +135,8 @@ Feature: JM-3995 JM-4302
     Then I am on the Juror Record for juror "<juror_number>"
 
     Examples:
-      | user          | part_no   | pool_no   |
-      | MODTESTCOURT | 641500215 | 415171103  |
+      | user         | juror_number | pool_number |
+      | MODTESTCOURT | 041500163    | 415300262   |
 
 
   @JurorTransformationMulti @NewSchemaConverted
@@ -149,17 +144,15 @@ Feature: JM-3995 JM-4302
 
     Given I am on "Bureau" "test"
 
-    Given the juror numbers have not been processed new schema
-      |part_no   | pool_no   | owner |
-      |<part_no> | <pool_no> | 400   |
-
-    And "<juror_number>" has "NEXT_DATE" as "7 mondays time" new schema
+    Given a bureau owned pool is created with jurors
+      | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number> 	    | <pool_number>     | 7				            | 400	|
 
     And I log in as "<user>"
 
     Given a new pool is inserted for where record has transferred to the court new schema
-      |part_no   | pool_no   | owner |
-      |<part_no> | <pool_no> | 415   |
+      |part_no        | pool_no       | owner |
+      |<juror_number> | <pool_number> | 415   |
 
     When the user searches for juror record "<juror_number>" from the global search bar
 
@@ -232,5 +225,5 @@ Feature: JM-3995 JM-4302
     And I see "Juror record updated: juror transferred to Carlisle (412)" on the page
 
     Examples:
-      | user         | part_no   | pool_no   |
-      | MODTESTCOURT | 641500859 | 415171103  |
+      | user         | juror_number | pool_number|
+      | MODTESTCOURT | 041500162    | 415300261  |

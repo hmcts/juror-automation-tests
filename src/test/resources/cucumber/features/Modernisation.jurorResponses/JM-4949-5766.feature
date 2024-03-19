@@ -4,13 +4,14 @@ Feature: JM-4949 & JM-5766
   Scenario Outline: Return all jurors on a panel
 
     Given I am on "Bureau" "test"
+
     Given a bureau owned pool is created with jurors
       | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
       | 415   |<juror_number> 	    | <pool_number>     | 5				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no               | pool_no           | owner |
-      |<juror_number>       | <pool_number>      | 415   |
+      |part_no              | pool_no           | owner |
+      |<juror_number>       | <pool_number>     | 415   |
 
     And I Confirm all the data in the record attendance table is cleared
     And a new trial is inserted with the trial number "<trial_number>"

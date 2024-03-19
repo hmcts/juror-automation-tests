@@ -1,4 +1,6 @@
 delete from juror_mod.court_catchment_area;
+commit;
+
 INSERT INTO juror_mod.court_catchment_area (postcode, loc_code)
 VALUES ('AL1', '450'),
        ('B4', '127'),
@@ -157,3 +159,4 @@ VALUES ('AL1', '450'),
        ('WR1', '466'),
        ('WV1', '421'),
        ('YO1', '467');
+commit;
