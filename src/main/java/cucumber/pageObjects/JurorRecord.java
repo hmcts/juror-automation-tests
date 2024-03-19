@@ -217,7 +217,6 @@ public class JurorRecord {
     public List<WebElement> DeferralRefusedResultsheaderTableName;
 
 
-
     public String getHeading() {
         return heading.getText();
     }
@@ -583,7 +582,6 @@ public class JurorRecord {
         nonAttendanceDate.clear();
         nonAttendanceDate.sendKeys(date);
     }
-  
     public void deferralRefusedjurorsTabPresent(final String tabName) {
         log.info("Clicking tab");
         switch (tabName) {
@@ -626,5 +624,4 @@ public class JurorRecord {
         }
 
     }
-
 }
