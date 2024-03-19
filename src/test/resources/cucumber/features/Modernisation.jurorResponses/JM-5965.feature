@@ -18,7 +18,6 @@ Feature: JM-5965 - Certificate of Exemption
 
     And I update juror "<juror_number>" to have a status of responded in order to record attendance
 
-
      #check in juror
     And I press the "Apps" button
     And I click on the "Juror management" link
