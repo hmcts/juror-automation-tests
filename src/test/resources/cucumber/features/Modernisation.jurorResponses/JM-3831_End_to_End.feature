@@ -5,12 +5,9 @@ Feature: JM-3831
 
     Given I am on "Bureau" "test"
 
-    Given the juror numbers have not been processed new schema
-      |part_no   | pool_no   | owner |
-      |<part_no> | <pool_no> | 400   |
-
-
-    And "<juror_number>" has "NEXT_DATE" as "7 mondays time" new schema
+    Given a bureau owned pool is created with jurors
+      | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   |<juror_number> 	    | <pool_number>     | 7				            | 400	|
 
     And I log in as "<user>"
 
@@ -72,8 +69,8 @@ Feature: JM-3831
     And I set the radio button to "Refuse excusal"
     And I press the "Continue" button
     And I see "Excusal refused (other)" on the page
-    And I see "Summons reply for <part_no> FNAMETWOFOUREIGHT LNAMETWOFOUREIGHT successfully processed: Excusal refused (other)" in the response banner
+    And I see "Summons reply for <juror_number> fname lname successfully processed: Excusal refused (other)" in the response banner
 
     Examples:
-      | user          | part_no   | pool_no   |
-      | MODTESTBUREAU | 641500248 | 415170501 |
+      | user          | juror_number   | pool_number   |
+      | MODTESTBUREAU | 641500248      | 415170501     |
