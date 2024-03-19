@@ -491,4 +491,44 @@ public class StepDef_jurorRecord {
             NAV.seeText_inSameRow_asText(dateFormat.format(newDate), nextToText);
         }
     }
+    @When("^I press view all expenses button$")
+    public void pressViewAllExpensesButton(){
+        JUROR_RECORD.pressViewAllExpensesButton();
+    }
+    @When("^I press change default expenses button$")
+    public void pressChangeDefaultButton(){
+        JUROR_RECORD.pressChangeDefaultExpensesButton();
+    }
+    @When("^I press change juror bank details button$")
+    public void pressChangeJurorBankDetailsButton(){
+        JUROR_RECORD.pressChangeJurorBankDetailsButton();
+    }
+    @When("^I set financial loss field to \"([^\"]*)\"$")
+    public void setFinancialLossField(String loss){
+        JUROR_RECORD.setFinancialLossField(loss);
+    }
+    @When("^I set travel time hours field to \"([^\"]*)\"$")
+    public void setTimeTravelHoursField(String hours){
+        JUROR_RECORD.setTimeTravelHoursField(hours);
+    }
+    @When("^I set travel time minutes field to \"([^\"]*)\"$")
+    public void setTimeTravelMinutesField(String minutes){
+        JUROR_RECORD.setTimeTravelMinutesField(minutes);
+    }
+    @When("^I set mileage to \"([^\"]*)\"$")
+    public void setMileageField(String mileage){
+        JUROR_RECORD.setMileageField(mileage);
+    }
+    @When("^I click food and drink radio button$")
+    public void clickFoodAndDrinkRadioButton() {
+        JUROR_RECORD.clickFoodAndDrinkRadioButton();
+    }
+    @When("^I set smart card field to \"([^\"]*)\"$")
+    public void setSmartCardField(String cardNumber){
+        JUROR_RECORD.setSmartCardField(cardNumber);
+    }
+    @When("^I click apply to all drafts checkbox$")
+    public void setApplyToAllDraftCheckbox() {
+        JUROR_RECORD.setApplyToAllDraftCheckbox();
+    }
 }
