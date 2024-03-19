@@ -231,12 +231,16 @@ public class JurorRecord {
 
     @FindBy(id = "travelTime-minute")
     public WebElement travelTimeMinuteField;
+
     @FindBy(id = "mileage")
     public WebElement mileageField;
+
     @FindBy(id = "foodAndDrink")
     public WebElement foodAndDrinkRadioButton;
+
     @FindBy(id = "applyToAllDraft")
     public WebElement applyToAllDraftCheckbox;
+
     @FindBy(id = "smartCard")
     public WebElement smartCardField;
 
