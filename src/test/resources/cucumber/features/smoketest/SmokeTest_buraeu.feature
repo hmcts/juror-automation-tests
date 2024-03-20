@@ -7,7 +7,7 @@ Scenario:
 	And I have deleted all holidays new schema
 
 	And I see "Sign in" on the page
-	And I log in as "SYSTEM"
+	And I log in as "MODTESTBUREAU"
 	Then I see "To do" on the page
 	
 	Then I click on the "Search" link
@@ -19,7 +19,7 @@ Scenario:
 
 	And I see "results for "is urgent"" on the page
 	
-	When I click on "645" in the same row as "645"
+	When I click on "041" in the same row as "MODTESTBUREAU"
 	And I see "Juror details" on the page
 
 	
