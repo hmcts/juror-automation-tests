@@ -93,7 +93,7 @@ public class WaitUtils {
 	}
 	
 	public void activateImplicitWait() {
-		activateImplicitWait(10);							
+		activateImplicitWait(5);
 	}
 	
 	public void activateImplicitWait (Integer seconds) {
