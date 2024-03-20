@@ -189,4 +189,4 @@ Feature: JM-6062 - As a jury officer, I want to set default expenses in the syst
 
     Examples:
       |user       |juror_number_1 |    pool_number   |
-      |MODTESTCOURT |041610007      | 416100301        |
+      |MODTESTCOURT |041610008      | 416100301        |
