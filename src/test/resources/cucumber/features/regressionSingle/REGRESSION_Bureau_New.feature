@@ -572,7 +572,7 @@ Scenario Outline: Search as Team Leader
 
 	And I see "Manage replies to jury summons" on the page
 	And I click on the "Your work" link
-	And I see link with text "SYSTEM"
+	And I see link with text "MODTESTBUREAU"
 	And I see link with text "Sign out"
 	And I see link with text "To do"
 	And I see link with text "Awaiting information"
@@ -715,7 +715,7 @@ Scenario Outline: Search as Team Leader
 	And I click link with ID "selectAllLink"
 	Then I press the "Send to..." button
 	Then I see "Select an officer" on the page
-	And I set input field with "id" of "sendToOfficer" to "SYSTEM"
+	And I set input field with "id" of "sendToOfficer" to "MODTESTBUREAU"
 	And I press the "Send" button
 	And I press the "Send" button
 	Then I see "Your work" on the page
@@ -735,7 +735,7 @@ Scenario Outline: Search as Team Leader
 	
 	And I click on the "Advanced search" link
 	Then I see "results for “ARAMIS1”" on the page
-	And I select "SYSTEM" from the "Officer assigned" dropdown
+	And I select "MODTESTBUREAU" from the "Officer assigned" dropdown
 	Then I press the "Search" button
 	And I do not see "LNAMESTANDARD" on the page
 	And I see "LNAMEURGENT" in the same row as "<part_no_two>"
@@ -1037,7 +1037,7 @@ Scenario: Manage Team
 	And staff with name "New Name" does not exist
 	And I see "Manage replies to jury summons" on the page
 	And I see "Your work" on the page
-	And I see link with text "SYSTEM"
+	And I see link with text "MODTESTBUREAU"
 	And I see link with text "Sign out"
 	And I see link with text "To do"
 	And I see link with text "Awaiting information"
@@ -1055,7 +1055,7 @@ Scenario: Manage Team
 	And I see "Team leader" on the page
 	And I see "Status" on the page
 	And I see "-" in the same row as "ARAMIS1"
-	And I see "Team leader" in the same row as "SYSTEM"
+	And I see "Team leader" in the same row as "MODTESTBUREAU"
 	Then I see "ACTIVE" in the same row as "ARAMIS1"
 	
 	# Inactive hidden by default
@@ -1207,7 +1207,7 @@ Scenario Outline: Results grid updates when status changes are made
 	And I press the "Save" button
 	
 	When I click on the "Back" link
-	Then I see "SYSTEM" in the same row as "<last_name>"
+	Then I see "MODTESTBUREAU" in the same row as "<last_name>"
 	
 	
 	#now reassign

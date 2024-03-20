@@ -25,7 +25,7 @@ Scenario Outline: Lift from QC Script for Bureau B Search
 		|<juror_number2>|<pool_number>	|<last_name>|<postcode>	|<email>	|<details>	|
 
 	Given I am on "Bureau" "test"
-	When I log in as "SYSTEM"
+	When I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	And I set "Juror's pool number" to "<pool_number>"
 	And I press the "Search" button

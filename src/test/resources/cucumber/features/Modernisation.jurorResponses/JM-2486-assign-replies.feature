@@ -48,7 +48,7 @@ Feature: JM-2486
     And I see "Select the officers you want to assign these replies to" on the page
 
     #check team leads not in results grid
-    And I do not see "SYSTEM" in the staff results grid
+    And I do not see "MODTESTBUREAU" in the staff results grid
     And I do not see "MODTESTBUREAU" in the staff results grid
 
     #check responses counts are displayed
@@ -135,7 +135,7 @@ Feature: JM-2486
     And I see "Select the officers you want to assign these replies to" on the page
 
     #check team leads not in results grid
-    And I do not see "SYSTEM" in the staff results grid
+    And I do not see "MODTESTBUREAU" in the staff results grid
     And I do not see "MODTESTBUREAU" in the staff results grid
 
     #check responses counts are displayed

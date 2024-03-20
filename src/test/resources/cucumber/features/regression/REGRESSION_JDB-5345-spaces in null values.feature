@@ -104,7 +104,7 @@ Scenario Outline: 3rd Party English null values are not saved as spaces
 
 #respond the response
 	Given I am on "Bureau" "test"
-	When I log in as "SYSTEM"
+	When I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	And I set "Juror's pool number" to "<pool_number>"
 	And I press the "Search" button

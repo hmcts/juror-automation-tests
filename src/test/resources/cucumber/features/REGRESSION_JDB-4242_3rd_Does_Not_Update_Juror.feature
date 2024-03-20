@@ -23,7 +23,7 @@ Scenario Outline: English 3rd Party Deceased
 	Then on "JUROR_MOD" . "JUROR" I see "M_PHONE" is null where "JUROR_NUMBER" is "<juror_number>"
 	Then on "JUROR_MOD" . "JUROR" I see "H_PHONE" is null where "JUROR_NUMBER" is "<juror_number>"
 	Then on "JUROR_MOD" . "JUROR" I see "W_PHONE" is null where "JUROR_NUMBER" is "<juror_number>"
-	Then on "JUROR_MOD" . "JUROR_POOL" I see "EXCUSAL_CODE" is "D" where "JUROR_NUMBER" is "<juror_number>"
+	Then on "JUROR_MOD" . "JUROR" I see "EXCUSAL_CODE" is "D" where "JUROR_NUMBER" is "<juror_number>"
 
 Examples:
 	| juror_number	| last_name			| postcode	| email          	| pool_number	|
@@ -48,7 +48,7 @@ Scenario Outline: English 3rd Party Excused - contact details same as 3rd party
 	| <juror_number>| <pool_number>	| <last_name>	| <postcode>| <email>	|
 	
 	Given I am on "Bureau" "test"
-	And I log in as "SYSTEM"
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -92,7 +92,7 @@ Scenario Outline: English 3rd Party Deferred - contact details same as 3rd party
 	| <juror_number>| <pool_number>	| <last_name>	| <postcode>| <email>	|
 
 	Given I am on "Bureau" "test"
-	And I log in as "SYSTEM"
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -137,7 +137,7 @@ Scenario Outline: English 3rd Party ST - contact details same as 3rd party
 	| <juror_number>| <pool_number>	| <last_name>	| <postcode>| <email>	|
 	
 	Given I am on "Bureau" "test"
-	And I log in as "SYSTEM"
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -179,7 +179,7 @@ Scenario Outline: English 3rd Party Disqualified - contact details same as 3rd p
 	| <juror_number>| <pool_number>	| <last_name>	| <postcode>| <email>	|
 	
 	Given I am on "Bureau" "test"
-	And I log in as "SYSTEM"
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -223,7 +223,7 @@ Scenario Outline: English 3rd Party Super Urgent - contact details same as 3rd p
 	| <juror_number>| <pool_number>	| <last_name>	| <postcode>| <email>	|
 	
 	Given I am on "Bureau" "test"
-	And I log in as "SYSTEM"
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -394,7 +394,7 @@ Scenario Outline: English 3rd Party Welsh - contact details different for juror
 	
 	#Bureau process reply
 	Given I am on "Bureau" "test"
-	And I log in as "SYSTEM"
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -441,7 +441,7 @@ Scenario Outline: English 3rd Party Straight Through - Juror already has contact
 	
 	#Bureau process reply
 	Given I am on "Bureau" "test"
-	And I log in as "SYSTEM"
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
