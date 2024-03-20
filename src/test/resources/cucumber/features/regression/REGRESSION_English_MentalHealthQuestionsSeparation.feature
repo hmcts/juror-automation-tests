@@ -108,7 +108,7 @@ Scenario Outline: 1st party MHQ1=Y MHQ2=Y
 
 	#Bureau
 	Given I am on "Bureau" "test"
-	And I log in as "SYSTEM"
+	And I log in as "MODTESTBUREAU"
 
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -232,7 +232,7 @@ Scenario Outline: 1st party MHQ1=Y MHQ2=N
 
 	#Bureau
 	Given I am on "Bureau" "test"
-	And I log in as "SYSTEM"
+	And I log in as "MODTESTBUREAU"
 
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -357,7 +357,7 @@ Scenario Outline: 1st party MHQ1=N MHQ2=Y
 
 	#Bureau
 	Given I am on "Bureau" "test"
-	And I log in as "SYSTEM"
+	And I log in as "MODTESTBUREAU"
 
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -479,7 +479,7 @@ Scenario Outline: 1st party MHQ1=N MHQ2=N
 
 	#Bureau
 	Given I am on "Bureau" "test"
-	And I log in as "SYSTEM"
+	And I log in as "MODTESTBUREAU"
 
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -676,7 +676,7 @@ Scenario Outline: English_3rd_YY
 
  	#Bureau
 	Given I am on "Bureau" "test"
-	And I log in as "SYSTEM"
+	And I log in as "MODTESTBUREAU"
 
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -830,7 +830,7 @@ Scenario Outline: English_3rd_YN
 
 	#Bureau
 	Given I am on "Bureau" "test"
-	And I log in as "SYSTEM"
+	And I log in as "MODTESTBUREAU"
 
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -990,7 +990,7 @@ Scenario Outline: English_3rd_NY
 
 	#Bureau
 	Given I am on "Bureau" "test"
-	And I log in as "SYSTEM"
+	And I log in as "MODTESTBUREAU"
 
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -1147,7 +1147,7 @@ Scenario Outline: English_3rd_NN
 
 	#Bureau
 	Given I am on "Bureau" "test"
-	And I log in as "SYSTEM"
+	And I log in as "MODTESTBUREAU"
 
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"

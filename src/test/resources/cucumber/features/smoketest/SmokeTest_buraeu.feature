@@ -7,7 +7,7 @@ Scenario:
 	And I have deleted all holidays new schema
 
 	And I see "Sign in" on the page
-	And I log in as "SYSTEM"
+	And I log in as "MODTESTBUREAU"
 	Then I see "To do" on the page
 	
 	Then I click on the "Search" link

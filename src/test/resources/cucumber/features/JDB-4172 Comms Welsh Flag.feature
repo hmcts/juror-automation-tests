@@ -73,7 +73,7 @@ Scenario Outline: 1st Party English ST, answers in English
 	|<part_no>	|<pool_no>	| <last_name>	|<postcode>	|<email>|
 
 	Given I am on "Bureau" "juror-test01"	
-	And I log in as "SYSTEM"
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -123,7 +123,7 @@ Scenario Outline: 1st Party English ST, answers in Welsh
 	#Currently an issue with 4 weeks and urgents JDB-4010 (ONLY ON FRIDAY)
 
 	Given I am on "Bureau" "juror-test01"	
-	And I log in as "SYSTEM"
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -170,7 +170,7 @@ Scenario Outline: 1st Party Welsh ST, answers in Welsh
 #	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
 	
 	Given I am on "Bureau" "juror-test01"	
-	And I log in as "SYSTEM"
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -219,7 +219,7 @@ Scenario Outline: 1st Party Welsh ST, answers in English
 	#Currently an issue with 4 weeks and urgents JDB-4010 (ONLY ON FRIDAY)
 
 	Given I am on "Bureau" "juror-test01"	
-	And I log in as "SYSTEM"
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -264,7 +264,7 @@ Scenario Outline: 1st Party English ST, responds in English
 	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
 	
 	Given I am on "Bureau" "juror-test01"	
-	And I log in as "SYSTEM"
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -318,7 +318,7 @@ Scenario Outline: 1st Party Welsh Age Disqualified, responds in Welsh
 #	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
 
 	Given I am on "Bureau" "juror-test01"	
-	And I log in as "SYSTEM"
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -351,7 +351,7 @@ Scenario Outline: 1st Party English ST, responds in Welsh
 	|<part_no>	|<pool_no>	|<last_name>|<postcode>	|<email>|
 	
 	Given I am on "Bureau" "juror-test01"	
-	And I log in as "SYSTEM"
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -405,7 +405,7 @@ Scenario Outline: 1st Party Welsh Age Disqualified, responds in English
 	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
 
 	Given I am on "Bureau" "juror-test01"	
-	And I log in as "SYSTEM"
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -442,7 +442,7 @@ Scenario Outline: 1st Party Welsh Excusal refused, juror replies in English
 	|<part_no>	|<pool_no>	|<last_name>|<postcode>	|<email>|
 
 	Given I am on "Bureau" "juror-test01"	
-	And I log in as "SYSTEM"
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -492,7 +492,7 @@ Scenario Outline: 1st Party Welsh Excusal refused, juror replies in Welsh
 #	|<part_no>	|<pool_no>	|<last_name>|<postcode>	|<email>|
 
 	Given I am on "Bureau" "juror-test01"	
-	And I log in as "SYSTEM"
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -542,7 +542,7 @@ Scenario Outline: 1st Party English Excusal refused, juror replies in Welsh
 #	|<part_no>	|<pool_no>	|<last_name>|<postcode>	|<email>|
 
 	Given I am on "Bureau" "juror-test01"	
-	And I log in as "SYSTEM"
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -592,7 +592,7 @@ Scenario Outline: 1st Party English Excusal refused, juror replies in English
 	|<part_no>	|<pool_no>	|<last_name>|<postcode>	|<email>|
 
 	Given I am on "Bureau" "juror-test01"	
-	And I log in as "SYSTEM"
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -638,7 +638,7 @@ Scenario Outline: 1st Party English Excusal accepted, juror responds in English
 	|<part_no>	|<pool_no>	|<last_name>|<postcode>	|<email>|
 
 	Given I am on "Bureau" "juror-test01"	
-	And I log in as "SYSTEM"
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -683,7 +683,7 @@ Scenario Outline: 1st Party English Excusal accepted, juror responds in Welsh
 	|<part_no>	|<pool_no>	|<last_name>|<postcode>	|<email>|
 
 	Given I am on "Bureau" "juror-test01"	
-	And I log in as "SYSTEM"
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -728,7 +728,7 @@ Scenario Outline: 1st Party English Welsh accepted, juror responds in Welsh
 	|<part_no>	|<pool_no>	|<last_name>|<postcode>	|<email>|
 
 	Given I am on "Bureau" "juror-test01"	
-	And I log in as "SYSTEM"
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -773,7 +773,7 @@ Scenario Outline: 1st Party English Welsh accepted, juror responds in English
 	|<part_no>	|<pool_no>	|<last_name>|<postcode>	|<email>|
 
 	Given I am on "Bureau" "juror-test01"	
-	And I log in as "SYSTEM"
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -818,7 +818,7 @@ Scenario Outline: 1st Party English Deferral refused, answers in welsh
 	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
 
 	Given I am on "Bureau" "juror-test01"	
-	And I log in as "SYSTEM"
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -860,7 +860,7 @@ Scenario Outline: 1st Party English Deferral refused, answers in english
 	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
 
 	Given I am on "Bureau" "juror-test01"	
-	And I log in as "SYSTEM"
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -902,7 +902,7 @@ Scenario Outline: 1st Party Welsh Deferral refused, answers in english
 	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
 
 	Given I am on "Bureau" "juror-test01"	
-	And I log in as "SYSTEM"
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -944,7 +944,7 @@ Scenario Outline: 1st Party Welsh Deferral refused, answers in welsh
 	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
 
 	Given I am on "Bureau" "juror-test01"	
-	And I log in as "SYSTEM"
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -990,7 +990,7 @@ Scenario Outline: 1st Party Welsh Postponement, responds in English
 	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
 
 	Given I am on "Bureau" "juror-test01"	
-	And I log in as "SYSTEM"
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -1041,7 +1041,7 @@ Scenario Outline: 1st Party Welsh Postponement, responds in Welsh
 #	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
 
 	Given I am on "Bureau" "juror-test01"	
-	And I log in as "SYSTEM"
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -1092,7 +1092,7 @@ Scenario Outline: 1st Party English Postponement, responds in English
 	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
 
 	Given I am on "Bureau" "juror-test01"	
-	And I log in as "SYSTEM"
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -1143,7 +1143,7 @@ Scenario Outline: 1st Party English Postponement, responds in Welsh
 #	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
 
 	Given I am on "Bureau" "juror-test01"	
-	And I log in as "SYSTEM"
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -1194,7 +1194,7 @@ Scenario Outline: 1st Party Welsh Deferral accepted, responds in Welsh
 #	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
 
 	Given I am on "Bureau" "juror-test01"	
-	And I log in as "SYSTEM"
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -1245,7 +1245,7 @@ Scenario Outline: 1st Party Welsh Deferral accepted, responds in English
 	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
 
 	Given I am on "Bureau" "juror-test01"	
-	And I log in as "SYSTEM"
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -1296,7 +1296,7 @@ Scenario Outline: 1st Party English Deferral accepted, responds in English
 	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
 
 	Given I am on "Bureau" "juror-test01"	
-	And I log in as "SYSTEM"
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -1347,7 +1347,7 @@ Scenario Outline: 1st Party English Deferral accepted, responds in Welsh
 #	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
 
 	Given I am on "Bureau" "juror-test01"	
-	And I log in as "SYSTEM"
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"

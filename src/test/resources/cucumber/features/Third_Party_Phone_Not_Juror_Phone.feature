@@ -142,7 +142,7 @@ Scenario Outline: English 3rd Party Gives Phone and Juror Email
 	
 	#Bureau
 	Given I am on "Bureau" "test"
-	And I log in as "SYSTEM"
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -328,7 +328,7 @@ Scenario Outline: English 3rd Party Gives Email and Juror Phone
 	#Bureau
 	
 	Given I am on "Bureau" "juror-test02"	
-	And I log in as "SYSTEM"
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"

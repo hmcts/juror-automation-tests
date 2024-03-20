@@ -899,7 +899,7 @@ Scenario Outline: 10. test that editing an allocated response doesnt auto alloca
 	#check SYSTEM can update record and it's not allocated to them
 
 	Given I am on "Bureau" "juror-test02"
-	And I log in as "SYSTEM"
+	And I log in as "MODTESTBUREAU"
 	
 	And I click on the "Search" link
 	And I set "Juror number" to "<part_no_nine>"

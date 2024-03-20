@@ -52,7 +52,7 @@ Scenario Outline: Bureau C script
 	
 	And I press the "Select all" button
 	And I press the "Send to..." button
-	And I set input field with "id" of "sendToOfficer" to "SYSTEM"
+	And I set input field with "id" of "sendToOfficer" to "MODTESTBUREAU"
 	And I press the "Send" button
 	And I press the "Send" button
 	Then I see "Your work" on the page
@@ -97,7 +97,7 @@ Scenario Outline: Bureau C script
 	When I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I press the "More actions" button
 	And I click on the "Send to a colleague" link
-	And I set input field with "id" of "sendToOfficer" to "SYSTEM"
+	And I set input field with "id" of "sendToOfficer" to "MODTESTBUREAU"
 	And I press the "Send" button
 	And I press the "Send" button
 	Then I see "Your work" on the page
