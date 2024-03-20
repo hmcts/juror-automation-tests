@@ -491,4 +491,5 @@ public class StepDef_jurorRecord {
             NAV.seeText_inSameRow_asText(dateFormat.format(newDate), nextToText);
         }
     }
+
 }

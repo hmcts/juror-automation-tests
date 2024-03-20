@@ -1,5 +1,12 @@
 UPDATE juror_mod.court_location set assembly_room = null;
+commit;
+
+delete FROM juror_mod.trial;
+commit;
+
 delete FROM juror_mod.courtroom;
+commit;
+
 INSERT INTO juror_mod.courtroom (loc_code, room_number, description)
 VALUES ('421', 'Navail', 'Not Available'),
        ('435', 'Asmbly', 'JURY ASSEMBLY ROOM'),
@@ -53,3 +60,4 @@ VALUES ('421', 'Navail', 'Not Available'),
        ('435', 'COURT8', 'Court 8'),
        ('415', 'Asmbly', 'JURY ASSEMBLY ROOM'),
        ('435', 'COURT2', 'Court 2');
+commit;

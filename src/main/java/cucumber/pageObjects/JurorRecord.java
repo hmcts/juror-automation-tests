@@ -214,6 +214,7 @@ public class JurorRecord {
     public WebElement confirmNonAttendanceDateButton;
 
 
+
     public String getHeading() {
         return heading.getText();
     }
@@ -579,5 +580,4 @@ public class JurorRecord {
         nonAttendanceDate.clear();
         nonAttendanceDate.sendKeys(date);
     }
-
 }

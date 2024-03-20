@@ -3,13 +3,6 @@ Feature: MOD-Smoketest
   @Shakedown
   Scenario Outline: Smoketest
     Given I am on "bureau" "test"
-    Given I have cleared down the modernisation staff data new schema
-    Given I have created the modernisation staff data new schema
-
-
-    Given I populate the court catchment area table
-    Given I populate the courtroom table
-    Given I populate the judge table
 
     Given I delete pools created in the last 3 days new schema for court "415"
     Given I delete pools created in the last 3 days new schema for court "767"
