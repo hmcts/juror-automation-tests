@@ -68,7 +68,7 @@ dependencies {
   implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.+'
   implementation group: 'net.sf.opencsv', name: 'opencsv', version: '2.+'
 
-  implementation group: 'com.codeborne', name: 'phantomjsdriver', version: '1.2.1'
+  implementation group: 'com.codeborne', name: 'phantomjsdriver', version: '1.5.0'
 
   implementation group: 'org.apache.chemistry.opencmis', name: 'chemistry-opencmis-client-impl', version: '1.1.+'
 
