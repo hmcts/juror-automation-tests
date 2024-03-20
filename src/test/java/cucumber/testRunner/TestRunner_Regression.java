@@ -12,7 +12,7 @@ import org.junit.runner.RunWith;
 @CourgetteOptions(
         threads = 6,
         runLevel = CourgetteRunLevel.FEATURE,
-        rerunFailedScenarios = true,
+        rerunFailedScenarios = false,
 		testOutput = CourgetteTestOutput.CONSOLE,
         cucumberOptions = @CucumberOptions(
                 features = "src/test/resources/cucumber/features",
