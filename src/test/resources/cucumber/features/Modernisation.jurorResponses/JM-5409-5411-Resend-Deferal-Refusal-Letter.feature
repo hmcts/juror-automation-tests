@@ -2,7 +2,7 @@ Feature: 1)JM-5409 As a Bureau officer I need to resend a deferral refusal lette
   2) JM-5411 As a Jury officer I need to resend a deferral refusal letters
 
 
-  @JurorTransformationWIP @NewSchemaConverted @JM-6314
+  @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline:Verify as a bureau officer can able to resend a deferral refusal letter
 
     Given I am on "Bureau" "test"
@@ -92,19 +92,17 @@ Feature: 1)JM-5409 As a Bureau officer I need to resend a deferral refusal lette
     And I set the radio button to "Juror"
     When I set "Enter juror name, number or postcode" to "<juror_number>"
     And I press the "Search" button
-    # below step will fail due to @JM-6314
-    #Then I see "<todaysdate>" in the same row as "<juror_number>"
     And I see the printed letter for juror number "<juror_number>" in the letters table
-    Then I am able to see and interact with the jurors Deferral letter tabs and fields
+    Then I am able to see and interact with the jurors Deferral Refused letter tabs and fields
     When I check the "<juror_number>" checkbox
-    And I press the "Resend deferral refusal letter" button
+    And I press the "Resend deferral refused letter" button
     Then I see "1 document sent for printing" on the page
 
     Examples:
       | juror_number  | pool_number | user          |
       |  041520030    | 415300703   | MODTESTBUREAU |
 
-  @JurorTransformationWIP @NewSchemaConverted @JM-6314
+  @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline:As a bureau officer verify a deferred juror letter in printing stage can delete
 
     Given I am on "Bureau" "test"
@@ -189,7 +187,7 @@ Feature: 1)JM-5409 As a Bureau officer I need to resend a deferral refusal lette
       |  041520026    | 415300703   | MODTESTBUREAU |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @JM-6314
+  @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline:Verify as a bureau user can view letters queued for printing and can delete it
 
     Given I am on "Bureau" "test"
