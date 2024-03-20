@@ -56,7 +56,7 @@ Scenario Outline: JM-3000 Assign Reply Happy Path
 	Then I see "ARAMIS" on the page
 
 	#assign to SYSTEM
-	And I set input field with "id" of "sendToOfficer" to "SYSTEM"
+	And I set input field with "id" of "sendToOfficer" to "MODTESTBUREAU"
 	And I press the "Send" button
 	And I press the "Send" button
 
@@ -68,7 +68,7 @@ Scenario Outline: JM-3000 Assign Reply Happy Path
 	#Check it's assigned to SYSTEM
 	When I click on "<juror_number>" in the same row as "<juror_number>"
 	And I am on the modernisation version of View Summons Reply
-	And I see assigned to is "SYSTEM"
+	And I see assigned to is "MODTESTBUREAU"
 
 	And I click on the "Sign out" link
 
@@ -159,7 +159,7 @@ Examples:
 
 		Then I click on the Select an officer to send to input field
 		Then I see "ARAMIS" on the page
-		Then I see "SYSTEM" on the page
+		Then I see "MODTESTBUREAU" on the page
 		Then I see "MODTESTBUREAU" on the page
 		Then I see "ARAMIS1" on the page
 		Then I see "Return to unassigned replies" on the page

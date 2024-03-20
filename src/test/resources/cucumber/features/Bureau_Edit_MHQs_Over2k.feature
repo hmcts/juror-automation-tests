@@ -129,7 +129,7 @@ Scenario Outline: Bureau User Edits a Response Where MHQ1 and MHQ2 Are 2000 char
 	#Bureau
 	
 	Given I am on "Bureau" "juror-test02"	
-	And I log in as "SYSTEM"
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"

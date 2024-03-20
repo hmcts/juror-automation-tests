@@ -505,7 +505,7 @@ Scenario Outline: English_1st Party_CJS_A
 	Then I see "We have sent you an email to say you have replied to your jury summons." on the page
 
 	Given I am on "Bureau" "test"
-	And I log in as "SYSTEM"
+	And I log in as "MODTESTBUREAU"
 
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"

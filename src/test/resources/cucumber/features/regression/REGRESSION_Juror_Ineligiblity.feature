@@ -1014,7 +1014,7 @@ Scenario Outline: Welsh_1st_Inel_Email_Check
 	Then I see "Beth yw eich barn am y gwasanaeth hwn? (30 eiliad o'ch amser)" on the page
 	
 	Given I am on "Bureau" "test"
-	And I log in as "SYSTEM"
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
