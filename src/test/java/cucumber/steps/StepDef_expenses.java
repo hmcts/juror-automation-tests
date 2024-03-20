@@ -77,4 +77,51 @@ public class StepDef_expenses {
     public void setApplyToAllDraftCheckbox() {
         EXPENSES.setApplyToAllDraftCheckbox();
     }
+    @When("^I see the unpaid expenses table$")
+    public void seeUnpaidExpensesTable() {assertTrue(EXPENSES.unpaidExpensesTable());
+    }
+    @Then("^I see the following expenses on the jurors unpaid expenses form$")
+    public void iSeeTheFollowingInformationOnUnpaidExpenseTable(DataTable dataTable) {
+
+        NAV.waitForPageLoad(3);
+        Map<String, String> expectedData = dataTable.asMap(String.class, String.class);
+        Map<String, String> actualData = EXPENSES.getUnpaidAttendanceDetails();
+
+        assertEquals(expectedData.get("Attendance"), actualData.get("attendance"));
+        assertEquals(expectedData.get("Loss of earnings"), actualData.get("lossOfEarnings"));
+        assertEquals(expectedData.get("Extra care"), actualData.get("extraCare"));
+        assertEquals(expectedData.get("Other"), actualData.get("other"));
+        assertEquals(expectedData.get("P. transport"), actualData.get("transport"));
+        assertEquals(expectedData.get("Taxi"), actualData.get("taxi"));
+        assertEquals(expectedData.get("Motorcycle"), actualData.get("motorcycle"));
+        assertEquals(expectedData.get("Car"), actualData.get("car"));
+        assertEquals(expectedData.get("Bicycle"), actualData.get("bicycle"));
+        assertEquals(expectedData.get("Parking"), actualData.get("parking"));
+        assertEquals(expectedData.get("Food and drink"), actualData.get("foodAndDrink"));
+        assertEquals(expectedData.get("(Smartcard)"), actualData.get("smartCard"));
+        assertEquals(expectedData.get("Total"), actualData.get("total"));
+    }
+
+    @When("^I check the checkbox containing my expense date$")
+    public void checkExpenseDateCheckbox() {
+        EXPENSES.checkCheckboxWithExpenseDate();
+    }
+    @Then("^I see the following details on the expenses for approval form$")
+    public void iSeeTheFollowingInformationOnApproveExpenseTable(DataTable dataTable) {
+
+        NAV.waitForPageLoad(3);
+        Map<String, String> expectedData = dataTable.asMap(String.class, String.class);
+        Map<String, String> actualData = EXPENSES.getApproveExpenseDetails();
+
+        assertEquals(expectedData.get("Attendance"), actualData.get("attendance"));
+        assertEquals(expectedData.get("Financial loss"), actualData.get("financialLoss"));
+        assertEquals(expectedData.get("Travel"), actualData.get("travel"));
+        assertEquals(expectedData.get("Food and drink"), actualData.get("foodAndDrink"));
+        assertEquals(expectedData.get("Smartcard"), actualData.get("smartCard"));
+        assertEquals(expectedData.get("Total due"), actualData.get("totalDue"));
+    }
+    @When("^I see the audit report for my expense in the table$")
+    public void seeAuditReportInTable() {
+        EXPENSES.auditReportDisplayedInTable();
+    }
 }
