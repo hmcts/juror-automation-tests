@@ -19,7 +19,7 @@ Scenario:
 
 	And I see "results for "is urgent"" on the page
 	
-	When I click on "645" in the same row as "645"
+	When I click on "041" in the same row as "MODTESTBUREAU"
 	And I see "Juror details" on the page
 
 	
