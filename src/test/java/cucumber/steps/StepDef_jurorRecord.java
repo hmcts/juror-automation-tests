@@ -241,6 +241,7 @@ public class StepDef_jurorRecord {
                 case "alternate":
                 case "only":
                 case "new":
+                case "deferral date":
                     SUMMONS_REPLY.setAltChoicePaper(StepDef_jurorpool.mondayWeeksInFuture(mondaysInFuture));
                     break;
             }
@@ -491,6 +492,7 @@ public class StepDef_jurorRecord {
             NAV.seeText_inSameRow_asText(dateFormat.format(newDate), nextToText);
         }
     }
+  
     @Then("^I am able to see and interact with the jurors Deferral Refused letter tabs and fields$")
     public void iAmAbleToSeeAndInteractWithTheDeferralRefusedLetterTabsAndFields() {
         JUROR_RECORD.deferralRefusedjurorsTabPresent("Juror number");
@@ -502,4 +504,16 @@ public class StepDef_jurorRecord {
         JUROR_RECORD.deferralRefusedjurorsTabPresent("Reason");
         JUROR_RECORD.deferralGrantedjurorsTabPresent("Date printed");
     }
+    @Then("^I am able to see and interact with the jurors Postponement letter tabs and fields$")
+    public void iAmAbleToSeeAndInteractWithThePostponementLetterTabsAndFields() {
+        JUROR_RECORD.postponementjurorsTabPresent("Juror number");
+        JUROR_RECORD.postponementjurorsTabPresent("First name");
+        JUROR_RECORD.postponementjurorsTabPresent("Last name");
+        JUROR_RECORD.postponementjurorsTabPresent("Postcode");
+        JUROR_RECORD.postponementjurorsTabPresent("Status");
+        JUROR_RECORD.postponementjurorsTabPresent("Postponed to");
+        JUROR_RECORD.postponementjurorsTabPresent("Reason");
+        JUROR_RECORD.postponementjurorsTabPresent("Date printed");
+    }
+
 }

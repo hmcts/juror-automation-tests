@@ -1,6 +1,6 @@
 Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
 
-  @JurorTransformationWIP @NewSchemaConverted @JM-6349 @JM-6351 @JM-6352
+  @JurorTransformationWIP @NewSchemaConverted
   Scenario Outline:As a bureau officer test a Deferred juror can resend a granted letter by searching via juror number
 
     Given I am on "Bureau" "test"
@@ -57,9 +57,7 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
 
     #error validation
     And I press the "Continue" button
-    And I see error "Select a deferral reason"
-    And I see error "Select whether you want to grant or refuse this deferral"
-
+    And I see error "Select a reason for the deferral request"
     And I select "O - OTHER" from the "Reason for the deferral request" dropdown
     And I set the radio button to "Choose a different date"
     And I set the "alternate" choice to "51" Mondays in the future
@@ -73,9 +71,10 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
     And I click continue on the update juror record screen
     And I select "O - OTHER" from the "Reason for the deferral request" dropdown
     When I set the radio button to "Grant deferral"
+    When I set the radio button to "Other"
+    And I set the "deferral date" choice to "21" Mondays in the future
     And I press the "Continue" button
     Then I see "Deferral granted (other)" on the page
-
     And I press the "Apps" button
     When I click on the "Documents" link
     And I click on the "Deferral granted letters" link
@@ -103,7 +102,7 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
 
     Examples:
       | juror_number  | pool_number | user          |
-      |  041520026    | 415300703   | MODTESTBUREAU |
+      |  041520051   | 415300704   | MODTESTBUREAU |
 
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline:As a bureau officer verify a deferral granted letter in printing stage can delete
@@ -160,11 +159,12 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
     And I set the "third" choice to "9" Mondays in the future
     And I press the "Continue" button
     And I select "O - OTHER" from the "Reason for the deferral request" dropdown
-    And I set the radio button to "Choose a different date"
-    And I set the "alternate" choice to "51" Mondays in the future
+    When I set the radio button to "Grant deferral"
+    When I set the radio button to "Other"
+    And I set the "deferral date" choice to "21" Mondays in the future
     And I press the "Continue" button
-    And I press the "Put in deferral maintenance" button
-    And I verify the banner message "Deferral granted (other)" on the page
+    Then I see "Deferral granted (other)" on the page
+
 
   #delete a pending document
     And I press the "Apps" button
@@ -512,7 +512,7 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
     And I press the "Continue" button
 
     And I see "Do you want to print a deferral granted letter?" on the page
-    And I set the radio button to "No"
+    And I set the radio button to "Yes"
     And I press the "Continue" button
 
     Then I see "Deferral granted (other)" on the page
