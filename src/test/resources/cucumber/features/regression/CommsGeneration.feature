@@ -35,7 +35,7 @@ Scenario Outline: Create data for comms generation
 	|<juror_number2>|<pool_number>	|<last_name>	|<postcode>	|<email>|
 
 	Given I am on "Bureau" "test"
-	And I log in as "SYSTEM"
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number1>"
@@ -121,7 +121,7 @@ Scenario Outline: Create data for JDB-4706
 	|<juror_number5>|<pool_number2>	|<last_name>	|<postcode>	|<email>|
 
 	Given I am on "Bureau" "test"
-	And I log in with "SYSTEM" and "Password1!"
+	And I log in with "MODTESTBUREAU" and "Password1!"
 
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number1>"
@@ -263,7 +263,7 @@ Scenario Outline: Create data for JDB-4709
 	|<juror_number5>|<pool_number2>	|<last_name>	|<postcode>	|<email>|
 
 	Given I am on "Bureau" "test"
-	And I log in with "SYSTEM" and "Password1!"
+	And I log in with "MODTESTBUREAU" and "Password1!"
 
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number1>"

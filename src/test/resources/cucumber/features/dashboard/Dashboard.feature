@@ -151,7 +151,7 @@ Scenario Outline: Dashboard - Summons Sent and responded and not responded
 
 	#Process as responded
 	Given I am on "Bureau" "juror-test01"
-	And I log in as "SYSTEM"
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
 	And I set "Juror number" to "<part_no1>"

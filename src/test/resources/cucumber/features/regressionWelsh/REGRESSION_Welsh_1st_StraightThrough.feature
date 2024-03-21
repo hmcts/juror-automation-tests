@@ -278,7 +278,7 @@ Scenario Outline: Welsh 1st Party Straight Through (english court)
 	#Bureau
 	
 	Given I am on "Bureau" "bau-test"
-	And I log in as "SYSTEM"
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -526,7 +526,7 @@ Scenario Outline: Welsh 1st Party Straight Through (welsh court)
 	#Bureau
 	
 	Given I am on "Bureau" "bau-test"
-	And I log in as "SYSTEM"
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"

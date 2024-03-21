@@ -13,7 +13,7 @@ Scenario Outline: English 3rd Deceased
 	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
 	And juror "<juror_number>" has "FIRST_NAME" as "FNAMESEVENONETHREE" new schema
 	And juror "<juror_number>" has "ADDRESS_LINE_1" as "855 STREET NAME" new schema
-	And juror "<juror_number>" has "ADDRESS_LINE_4" as "LONDON"
+	And juror "<juror_number>" has "ADDRESS_LINE_4" as "LONDON" new schema
 	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	
 	#Reply to jury summons
@@ -66,8 +66,8 @@ Scenario Outline: English 3rd Deceased
 	And I see "Jurors are selected at random from the electoral roll. This is not always completely up to date. That's why we sent a jury summons to this person. We do apologise for this and hope it has not caused too much distress." on the page
 
 	Given I am on "Bureau" "test"
-	And I log in
-	
+#	And I log in
+	And I log in as "MODTESTBUREAU"
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
