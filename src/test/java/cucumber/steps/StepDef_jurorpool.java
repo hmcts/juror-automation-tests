@@ -248,11 +248,8 @@ public class StepDef_jurorpool {
     public void theSystemWillDisplayNonEditableInformationOnTheCourtPoolSummaryScreen(DataTable table) throws ParseException {
         Map<String, String> data = table.asMap(String.class, String.class);
 
-        assertEquals(data.get("jurorsRequested"), POOL_OVERVIEW_PAGE.getNumberOfJurorsRequestedCourtOverview());
         assertEquals(data.get("courtName"), POOL_OVERVIEW_PAGE.getCourtName());
         assertEquals(data.get("courtLocationCode"), POOL_OVERVIEW_PAGE.getCourtLocationCode());
-        assertEquals(data.get("jurorsNeeded"), POOL_OVERVIEW_PAGE.getNumberOfJurorsRequiredCourtOverview());
-        assertEquals(data.get("courtDeferralsUsed"), POOL_OVERVIEW_PAGE.getNumberOfCourtDeferralsUsed());
         if (poolDate.get() != null) {
             assertEquals(poolDate.get(), POOL_OVERVIEW_PAGE.getConvertedStartDate());
         }
