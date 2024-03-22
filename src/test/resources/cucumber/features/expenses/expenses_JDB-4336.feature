@@ -7,7 +7,7 @@ Scenario: expensesJDB-4336 Additional Expenses
 	
 	And I press the "Start now" button
 	
-	Then I set the radio button to "No"
+	Then I choose the "No" radio button
 	When I press the "Continue" button
 		
 	Then I see "Check what you can claim for jury service" on the page
@@ -29,13 +29,13 @@ Scenario: expensesJDB-4336 Additional Expenses
 	
 	#Select Yes
 	
-	Then I set the radio button to "Yes"
+	Then I choose the "Yes" radio button
 	Then the radio button "Yes" is "selected"
 	Then the radio button "No" is "unselected"
 
 	#Select No
 	
-	Then I set the radio button to "No"
+	Then I choose the "No" radio button
 	Then the radio button "No" is "selected"
 	Then the radio button "Yes" is "unselected"
 	

@@ -91,7 +91,7 @@ Scenario Outline: 2. Edit Eligibility on PENDING ALLOCATION response
 	Then I see "Process reply" on the page
 	When I click on the "Eligibility" link
 	When I click on the "Change" link
-	And I set the radio button to "No" under "Residency"
+	And I choose the "No" radio button under "Residency"
 	And I set "Provide details" to "Details"
 	When I click on the "Save" link
 	And I set "Please give a reason for the change to this summons reply" to "Some reasons for change"
@@ -141,11 +141,11 @@ Scenario Outline: 3. Edit Deferral on PENDING ALLOCATION response
 	And I press the "Continue" button
 	
 	Then I see "Is the name we have for you correct?" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	When I press the "Continue" button
 	
 	Then I see "<postcode>" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	Then I see "What is your phone number?" on the page
@@ -167,29 +167,29 @@ Scenario Outline: 3. Edit Deferral on PENDING ALLOCATION response
 	And I press the "Continue" button
 	
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	And I see "Are you currently on bail for a criminal offence?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	Then I see "Have you been found guilty of a criminal offence?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	Then I see "Mental Health" on the page
 	And I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	And I see "No, I need to change the date" on the page
@@ -207,12 +207,12 @@ Scenario Outline: 3. Edit Deferral on PENDING ALLOCATION response
 	When I set the "Third" single date field to a Monday "8" weeks in the future
 	And I press the "Continue" button
 	
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	Then I see "Will you need help when you're at the court?" on the page
 	Then I see "Do you have a disability or impairment that means you’ll need extra support or facilities in the court building where you are doing your Jury Service?" on the page	
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	When I press the "Continue" button
 	
 	Then I see "Check your answers now" on the page	
@@ -290,11 +290,11 @@ Scenario Outline: 4. Edit Excusal on PENDING ALLOCATION response
 	And I press the "Continue" button
 	
 	Then I see "Is the name we have for you correct?" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	When I press the "Continue" button
 	
 	Then I see "Is this your address?" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	Then I see "What is your phone number?" on the page
@@ -316,25 +316,25 @@ Scenario Outline: 4. Edit Excusal on PENDING ALLOCATION response
 	When I press the "Continue" button
 	
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	Then I see "Have you been found guilty of a criminal offence?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	Then I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	Then I see "Check your start date" on the page
@@ -348,7 +348,7 @@ Scenario Outline: 4. Edit Excusal on PENDING ALLOCATION response
 	And I press the "Continue" button
 	
 	Then I see "Will you need help when" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	Then I see "Check your answers now" on the page
@@ -432,7 +432,7 @@ Scenario Outline: 5. Edit CJS Employment on PENDING ALLOCATION response
 	Then I see "Process reply" on the page
 	When I click on the "CJS employment" link
 	When I click on the "Change" link
-	And I set the radio button to "Yes" under "CJS Employment"
+	And I choose the "Yes" radio button under "CJS Employment"
 	And I check the "National Crime Agency" checkbox
 	And I click on the "Save" link
 	And I set "Please give a reason for the change to this summons reply" to "Some reasons for change"
@@ -485,13 +485,13 @@ Scenario Outline: 6. Edit Reasonable Adjustments on PENDING ALLOCATION response
 	#name
 	
 	Then I see "Is the name we have for you correct?" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#address
 	
 	Then I see "Is this your address?" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#phone
@@ -523,37 +523,37 @@ Scenario Outline: 6. Edit Reasonable Adjustments on PENDING ALLOCATION response
 	#residency
 	
 	Then I see "Since you turned 13, has your main address" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#CJS
 	
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#bail
 	
 	Then I see "Are you currently on bail" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#crim offence
 	
 	Then I see "Have you been found guilty of a criminal offence" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#MHQ1
 	
 	Then I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#MHQ2
 	
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#confirm date
@@ -566,7 +566,7 @@ Scenario Outline: 6. Edit Reasonable Adjustments on PENDING ALLOCATION response
 	#Help in Court
 	
 	Then I see "Will you need help when you're at the court?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	Then I check the "Diabetes" checkbox
 	And I press the "Continue" button
 		

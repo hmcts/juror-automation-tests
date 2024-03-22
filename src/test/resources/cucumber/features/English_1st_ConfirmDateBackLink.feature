@@ -24,7 +24,7 @@ Scenario Outline: Checking there is a back link on the Confirm date of jury serv
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 	Then I see "Is the name we have for you correct?" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Check Name
@@ -40,10 +40,10 @@ Scenario Outline: Checking there is a back link on the Confirm date of jury serv
 	When I click on the "Back" link
 	Then I see "FirstNamea" on the page
 	And I see "LastNameb" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	When I press the "Continue" button
 	Then I see "Is this your address?" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Check Address
@@ -68,7 +68,7 @@ Scenario Outline: Checking there is a back link on the Confirm date of jury serv
 	Then I see "123 Street" on the page
 	And I see "London" on the page
 	And I see "CH1 2AN" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	Then I see "What is your phone number?" on the page
 	
@@ -116,10 +116,10 @@ Scenario Outline: Checking there is a back link on the Confirm date of jury serv
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	When I press the "Continue" button
 	Then I see "Select yes if your main address has been in the UK, Channel Islands or Isle of Man for any period of at least 5 years, since you turned 13" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	Then I see "Provide details about where you have lived since your 13th birthday" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
@@ -129,23 +129,23 @@ Scenario Outline: Checking there is a back link on the Confirm date of jury serv
 	
 	#CJS no
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I click on the "Back" link
 	And I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	And the radio button "Yes" is "Selected"
 	And I press the "Continue" button
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Bail
 	Then I see "Are you currently on bail for a criminal offence?" on the page
 	When I press the "Continue" button
 	Then I see "Select yes if you are currently on bail for a criminal offence" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	Then I see "Provide details about your bail and criminal offence" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	Then I see "Have you been found guilty of a criminal offence?" on the page
 	When I click on the "Back" link
@@ -156,10 +156,10 @@ Scenario Outline: Checking there is a back link on the Confirm date of jury serv
 	Then I see "Have you been found guilty of a criminal offence?" on the page
 	When I press the "Continue" button
 	Then I see "Select yes if you have been found guilty of a criminal offence" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	And I see "Provide details about your criminal offence" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	Then I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
 	When I click on the "Back" link
@@ -170,10 +170,10 @@ Scenario Outline: Checking there is a back link on the Confirm date of jury serv
 	Then I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
 	When I press the "Continue" button
 	Then I see "Select yes if you're being detained, looked after or treated under the Mental Health Act" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	Then I see "Provide details about how you're being detained, looked after or treated under the Mental Health Act" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
 	When I click on the "Back" link
@@ -184,10 +184,10 @@ Scenario Outline: Checking there is a back link on the Confirm date of jury serv
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
 	When I press the "Continue" button
 	Then I see "Select yes if it's been decided that you 'lack mental capacity'" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	Then I see "Provide brief details about why it was decided you lack mental capacity" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	Then I see "Check your start date" on the page
 	When I click on the "Back" link
@@ -225,7 +225,7 @@ Scenario Outline: No Error TypeError: Cannot read property details of undefined 
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 	Then I see "Is the name we have for you correct?" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#change Name
@@ -236,7 +236,7 @@ Scenario Outline: No Error TypeError: Cannot read property details of undefined 
 
 	#change address
 	Then I see "Is this your address?" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	Then I set "Address line 1" to "1"
 	And I set "Town or city" to "2"
@@ -278,7 +278,7 @@ Scenario Outline: No Error TypeError: Cannot read property details of undefined 
 	And I set "Year" to "1900"
 	And I press the "Continue" button
 	Then I see "Is your date of birth correct?" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	Then I see "Check your answers now" on the page
 	And I do not see "TypeError: Cannot read property 'details' of undefined" on the page

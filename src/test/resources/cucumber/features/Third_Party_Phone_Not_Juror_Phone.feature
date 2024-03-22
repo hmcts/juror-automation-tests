@@ -54,12 +54,12 @@ Scenario Outline: English 3rd Party Gives Phone and Juror Email
 	Then I see "Is the name we have for them correct?" on the page
 	
 	#Check juror name
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	Then I see "Is this their address?" on the page
 	
 	#Check juror address
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	Then I see "Give the date of birth for the person you're replying for" on the page
 	
@@ -88,36 +88,36 @@ Scenario Outline: English 3rd Party Gives Phone and Juror Email
 	#Residency
 	Then I see "Since they turned 13, has their main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#CJS no
 	Then I see "Has the person you're replying for worked in the criminal justice system in the last 5 years?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Bail
 	Then I see "Is the person currently on bail for a criminal offence?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Convictions
 	Then I see "Has the person been found guilty of a criminal offence?" on the page
 	When I see "Eligibility" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Sectioned
 	Then I see "Is the person you're replying for being detained, looked after or treated under the Mental Health Act?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Capacity
 	Then I see "Has it been decided that the person you're replying for 'lacks mental capacity'?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#The person can attend
@@ -127,7 +127,7 @@ Scenario Outline: English 3rd Party Gives Phone and Juror Email
 	
 	#RA no
 	Then I see "Will the person you're replying for need help when they're at the court?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Check your answers
@@ -224,14 +224,14 @@ Scenario Outline: English 3rd Party Gives Email and Juror Phone
 	#Check juror name
 	
 	When I see "Juror Details" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	Then I see "Is this their address?" on the page
 	
 	#Check juror address
 	
 	When I see "Juror Details" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	Then I see "Give the date of birth for the person you're replying for" on the page
 	
@@ -264,41 +264,41 @@ Scenario Outline: English 3rd Party Gives Email and Juror Phone
 	
 	Then I see "Since they turned 13, has their main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#CJS no
 	
 	Then I see "Has the person you're replying for worked in the criminal justice system in the last 5 years?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Bail
 	
 	Then I see "Is the person currently on bail for a criminal offence?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Convictions
 	
 	Then I see "Has the person been found guilty of a criminal offence?" on the page
 	When I see "Eligibility" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Sectioned
 	
 	Then I see "Is the person you're replying for being detained, looked after or treated under the Mental Health Act?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Capacity
 	
 	Then I see "Has it been decided that the person you're replying for 'lacks mental capacity'?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#The person can attend
@@ -310,7 +310,7 @@ Scenario Outline: English 3rd Party Gives Email and Juror Phone
 	#RA no
 	
 	Then I see "Will the person you're replying for need help when they're at the court?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Check your answers
@@ -402,12 +402,12 @@ Scenario Outline: English 3rd Party cannot proceed with response with missing ph
 	Then I see "Is the name we have for them correct?" on the page
 	
 	#Check juror name
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	Then I see "Is this their address?" on the page
 	
 	#Check juror address
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	Then I see "Give the date of birth for the person you're replying for" on the page
 	
@@ -495,13 +495,13 @@ Scenario Outline: English 3rd Party cannot proceed with response with missing em
 	
 	#Check juror name
 	When I see "Juror Details" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	Then I see "Is this their address?" on the page
 	
 	#Check juror address
 	When I see "Juror Details" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	Then I see "Give the date of birth for the person you're replying for" on the page
 	

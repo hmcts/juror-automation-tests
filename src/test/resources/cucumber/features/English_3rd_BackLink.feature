@@ -83,23 +83,23 @@ Scenario Outline: Back and forward navigation all screens for 3rd Party
 	#Check juror name
 	When I see "FNAME132" on the page
 	And I see "LNAME132" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	Then I see "Is this their address?" on the page
 	When I click on the "Back" link
 	Then I see "Is the name we have for them correct?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	When I press the "Continue" button
 	Then I see "Is this their address?" on the page
 	
 	#Check juror address
 	When I see "CH1 2AN" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	When I press the "Continue" button
 	Then I see "Give the date of birth for the person you're replying for" on the page
 	When I click on the "back" link
 	Then I see "Is this their address?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	When I press the "Continue" button
 	Then I see "Give the date of birth for the person you're replying for" on the page
 	
@@ -136,7 +136,7 @@ Scenario Outline: Back and forward navigation all screens for 3rd Party
 	Then I see "Since they turned 13, has their main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	
 	#Residency
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	Then I see "Has the person you're replying for worked in the criminal justice system in the last 5 years?" on the page
 	When I click on the "Back" link
@@ -145,7 +145,7 @@ Scenario Outline: Back and forward navigation all screens for 3rd Party
 	
 	#CJS
 	Then I see "Has the person you're replying for worked in the criminal justice system in the last 5 years?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	Then I see "Is the person currently on bail for a criminal offence?" on the page
 	When I click on the "Back" link
@@ -154,7 +154,7 @@ Scenario Outline: Back and forward navigation all screens for 3rd Party
 	
 	#Bail
 	Then I see "Is the person currently on bail for a criminal offence?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	Then I see "Has the person been found guilty of a criminal offence?" on the page
 	When I click on the "Back" link
@@ -163,7 +163,7 @@ Scenario Outline: Back and forward navigation all screens for 3rd Party
 	
 	#Convictions
 	Then I see "Has the person been found guilty of a criminal offence?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	Then I see "Is the person you're replying for being detained, looked after or treated under the Mental Health Act?" on the page
 	When I click on the "Back" link
@@ -173,7 +173,7 @@ Scenario Outline: Back and forward navigation all screens for 3rd Party
 	
 	#Mental Health part 1
 	Then I see "Is the person you're replying for being detained, looked after or treated under the Mental Health Act?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	Then I see "Has it been decided that the person you're replying for 'lacks mental capacity'?" on the page
 	When I click on the "Back" link
@@ -182,7 +182,7 @@ Scenario Outline: Back and forward navigation all screens for 3rd Party
 	
 	#Mental Health part 2
 	Then I see "Has it been decided that the person you're replying for 'lacks mental capacity'?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	Then I see "Check your start date" on the page
 	When I click on the "Back" link
@@ -199,7 +199,7 @@ Scenario Outline: Back and forward navigation all screens for 3rd Party
 	
 	#RA
 	Then I see "Will the person you're replying for need help when they're at the court?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	Then I see "Check your answers now" on the page
 	

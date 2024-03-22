@@ -93,7 +93,7 @@ Feature: JM-4949 & JM-5766
     #return juror
     And I press the "Return" button
     Then I verify the text "Do you want to end this trial?" on the page
-    And I set the radio button to "No"
+    And I choose the "No" radio button
     And I press the "Continue" button
     And I see "1 juror returned" on the page
 
@@ -314,7 +314,7 @@ Feature: JM-4949 & JM-5766
 
     And I press the "Return" button
     And I verify the text "Do you want to end this trial?" on the page
-    And I set the radio button to "No"
+    And I choose the "No" radio button
     And I press the "Continue" button
     And I see "1 juror returned" on the page
 
@@ -417,7 +417,7 @@ Feature: JM-4949 & JM-5766
     And I press the "Return" button
 
     And I verify the text "Do you want to end this trial?" on the page
-    And I set the radio button to "No"
+    And I choose the "No" radio button
     And I press the "Continue" button
     And I see "1 juror returned" on the page
 
@@ -648,7 +648,7 @@ Feature: JM-4949 & JM-5766
     When I press the "Return" button
     Then I verify the text "Do you want to end this trial?" on the page
     And I see "Continue" on the page
-    And I set the radio button to "Yes"
+    And I choose the "Yes" radio button
     And I press the "Continue" button
 
     Then I verify the banner message "2 jurors returned and trial ended" on the page

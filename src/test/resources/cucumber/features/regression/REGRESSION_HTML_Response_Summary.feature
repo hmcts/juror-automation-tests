@@ -22,15 +22,15 @@ Scenario Outline: English_Max_Chars HTML Response Summary
 	And I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 	Then I see "Is the name we have for you correct?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 
 	#name
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	When I press the "Continue" button
 	
 	#address
 	Then I see "Is this your address?" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#phone
@@ -56,33 +56,33 @@ Scenario Outline: English_Max_Chars HTML Response Summary
 	
 	#Residency
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I set "Provide details about where you have lived since your 13th birthday" to "These are the details.These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are th"
 	And I press the "Continue" button
 	
 	#CJS
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I check the "Other" checkbox
 	And I set "Which other part of the Criminal Justice System?" to "These are the details.These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are th"
 	And I press the "Continue" button
 	
 	#Bail
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I set "Provide details about your bail and criminal offence" to "These are the details.These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are th"
 	And I press the "Continue" button
 	
 	#Convictions
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I set text area with "id" of "convictedDetails" to "These are the details.These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are th"
 	And I press the "Continue" button
 	
 	#Mental Health Sectioned
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I set "Provide details about how you're being detained, looked after or treated under the Mental Health Act" to "These are the details.These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are th"
 	And I press the "Continue" button 
 	
 	#Mental Health Capacity
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I set "Provide brief details about why it was decided you lack mental capacity" to "These are the details.These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are th"
 	And I press the "Continue" button
 	
@@ -91,11 +91,11 @@ Scenario Outline: English_Max_Chars HTML Response Summary
 	And  I press the "Continue" button
 	
 	#confirm dates
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#RA no
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I check the "Diabetes" checkbox
 	And I set "Tell us about any special arrangements or help you need while you're doing jury service." to "These are the details.These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are th"
 	And I press the "Continue" button
@@ -187,10 +187,10 @@ Scenario Outline: English 1st Party Excusal HTML Response Summary
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	When I set "Main phone" to "02078211818"
@@ -206,17 +206,17 @@ Scenario Outline: English 1st Party Excusal HTML Response Summary
 	And I press the "Continue" button
 	And I press the "Continue" button
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	When I set the radio button to "No, I cannot do jury service and need to be excused"
 	And I press the "Continue" button
@@ -224,7 +224,7 @@ Scenario Outline: English 1st Party Excusal HTML Response Summary
 	When I set text area with "id" of "excusalReason" to "Excuse me please"
 	And I press the "Continue" button
 	
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	Then I check the "The information I have given is true to the best of my knowledge" checkbox
@@ -313,10 +313,10 @@ Scenario Outline: English 1st Party Deferral HTML Response Summary
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	When I set "Main phone" to "02078211818"
@@ -332,17 +332,17 @@ Scenario Outline: English 1st Party Deferral HTML Response Summary
 	And I press the "Continue" button
 	And I press the "Continue" button
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	And I see "No, I need to change the date" on the page
 	When I set the radio button to "No, I need to change the date"
@@ -359,11 +359,11 @@ Scenario Outline: English 1st Party Deferral HTML Response Summary
 	
 	#confirm dates
 	
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#help in court
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	Then I check the "The information I have given is true to the best of my knowledge" checkbox
@@ -612,11 +612,11 @@ Scenario Outline: English 3rd Party Deferral HTML Response summary
 	And I press the "Continue" button
 	
 	#Check juror name
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#Check juror address
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#DoB
@@ -634,27 +634,27 @@ Scenario Outline: English 3rd Party Deferral HTML Response summary
 	And I press the "Continue" button
 
 	#Residency
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 
 	# Have you ever worked
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Bail
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Convictions
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Sectioned
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Capacity
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Confirm Date of Jury
@@ -673,11 +673,11 @@ Scenario Outline: English 3rd Party Deferral HTML Response summary
 	And I press the "Continue" button
 
 	#confirm dates
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#help in court
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	Then I see "Check your answers now" on the page
@@ -781,12 +781,12 @@ Scenario Outline: English 1st Party Overage HTML Response Summary
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 	Then I see "Is the name we have for you correct?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	
 	#Moving past Name Section
 	When I press the "Continue" button
 	Then I see "Is this your address?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	
 	When I press the "Continue" button
 	Then I see "What is your phone number?" on the page
@@ -810,7 +810,7 @@ Scenario Outline: English 1st Party Overage HTML Response Summary
 	And I press the "Continue" button
 	Then I see "Is your date of birth correct?" on the page
 	
-	Then I set the radio button to "Yes"
+	Then I choose the "Yes" radio button
 
 	And I press the "Continue" button
 	Then I see "Check your answers now" on the page
@@ -974,12 +974,12 @@ Scenario Outline: English 1st ST HTML Check
 	
 	#name
 	Then I see "Is the name we have for you correct?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#address
 	Then I see "Is this your address?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#phone
@@ -1006,32 +1006,32 @@ Scenario Outline: English 1st ST HTML Check
 	
 	#residency
 	Then I see "Since you turned 13, has your main address" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#CJS
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#bail
 	Then I see "Are you currently on bail" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#crim offence
 	Then I see "Have you been found guilty of a criminal offence" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#MHQ1
 	Then I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#MHQ2
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#confirm date
@@ -1043,7 +1043,7 @@ Scenario Outline: English 1st ST HTML Check
 	#Help in Court
 	#3608
 	Then I see "Will you need help when you're at the court?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 		
 	#Check Answers
@@ -1132,7 +1132,7 @@ Scenario Outline: English 1st Ineligible HTML Check
 	
 	#name
 	Then I see "Is the name we have for you correct?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	And I set "First name" to "<first_name>"
 	And I set "Last name" to "<last_name>"
@@ -1140,7 +1140,7 @@ Scenario Outline: English 1st Ineligible HTML Check
 	
 	#address
 	Then I see "Is this your address?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#phone
@@ -1166,23 +1166,23 @@ Scenario Outline: English 1st Ineligible HTML Check
 	Then I see "Confirm you're eligible for jury service" on the page
 	And I press the "Continue" button
 	
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I set "Provide details about where you have lived since your 13th birthday" to "Residency"
 	And I press the "Continue" button	
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I check the "Police service" checkbox
 	And I set "Which police service?" to "London Police Service"
 	And I press the "Continue" button
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I set "Provide details about your bail and criminal offence" to "Bail"
 	And I press the "Continue" button
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	When I set text area with "id" of "convictedDetails" to "Criminal Convictions"
 	And I press the "Continue" button
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I set "Provide details about how you're being detained, looked after or treated under the Mental Health Act" to "Mental Health Sectioned"
 	And I press the "Continue" button
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I set "Provide brief details about why it was decided you lack mental capacity" to "Mental Health Capacity"
 	And I press the "Continue" button
 	
@@ -1201,11 +1201,11 @@ Scenario Outline: English 1st Ineligible HTML Check
 	And I press the "Continue" button
 	
 	#confirm
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#Help in court
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I check the "Diabetes" checkbox
 	Then I set "Tell us about any special arrangements or help you need while you're doing jury service." to "Special Need is DIABETES"
 	And I press the "Continue" button

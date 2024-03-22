@@ -179,7 +179,7 @@ Scenario Outline: Bureau A script, steps 24 onwards
 	And I press the "Continue" button
 	Then I see "Your details" on the page
 	
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	And I set "First name" to "FIRSTNAMECHANGED"
@@ -188,7 +188,7 @@ Scenario Outline: Bureau A script, steps 24 onwards
 	And I press the "Continue" button
 	Then I see "Is this your address?" on the page
 	
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	And I set "Address line 1" to "BUILDINGCHANGED"
@@ -210,32 +210,32 @@ Scenario Outline: Bureau A script, steps 24 onwards
 	Then I see "Confirm you're eligible for jury service" on the page
 	
 	When I press the "Continue" button
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I set "Provide details" to "residencyTestData"
 	And I press the "Continue" button
 	
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I check the "Police service" checkbox
 	And I set "Which police service" to "policeForceTestData"
 	And I press the "Continue" button
 	
 	Then I see "Are you currently on bail for a criminal offence?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I set "Provide details about your bail and criminal offence" to "bailTestData"
 	And I press the "Continue" button
 	
 	Then I see "Have you been found guilty of a criminal offence?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	Then I see "Mental Health" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I set "Provide details about how you're being detained, looked after or treated under the Mental Health Act" to "mentalHealthTestData"
 	And I press the "Continue" button
 	
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I set "Provide brief details about why it was decided you lack mental capacity" to "mentalHealthCapacityTestData"
 	And I press the "Continue" button
 	
@@ -252,11 +252,11 @@ Scenario Outline: Bureau A script, steps 24 onwards
 
 	And I press the "Continue" button
 	
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	Then I see "Will you need help" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I check the "Limited mobility" checkbox
 	And I check the "Hearing impairment" checkbox
 	And I check the "Diabetes" checkbox

@@ -7,9 +7,9 @@ Scenario: expensesJDB-4342 will parking costs be paid
 	
 	And I press the "Start now" button
 	
-	Then I set the radio button to "No"
+	Then I choose the "No" radio button
 	When I press the "Continue" button
-	Then I set the radio button to "Yes"
+	Then I choose the "Yes" radio button
 	When I press the "Continue" button
 	Then I set "£" to "1000,00"	
 	When I press the "Continue" button
@@ -17,7 +17,7 @@ Scenario: expensesJDB-4342 will parking costs be paid
 	When I press the "Continue" button
 	Then I set "Miles each day" to "10.2"
 	When I press the "Continue" button
-	Then I set the radio button to "Yes"
+	Then I choose the "Yes" radio button
 	When I press the "Continue" button
 	
 	Then I see "Check what you can claim for jury service" on the page

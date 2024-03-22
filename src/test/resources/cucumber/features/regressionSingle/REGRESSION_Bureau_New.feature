@@ -1090,7 +1090,7 @@ Scenario: Manage Team
 	And I set "Name" to "New Name"
 	And I set "Username" to "NEWUSER"
 	And the radio button "No" is "selected"
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	
 	Then I press the "Save" button
 	And I see "Manage team" on the page
@@ -1104,7 +1104,7 @@ Scenario: Manage Team
 	And "Username" is "NEWUSER"
 	And I see "/NEWUSER" in the URL
 	And the radio button "No" is "selected"
-	Then I set the radio button to "Yes"
+	Then I choose the "Yes" radio button
 	Then I press the "Save" button
 	And I see "Manage team" on the page
 	Then I see "ACTIVE" in the same row as "New Name"

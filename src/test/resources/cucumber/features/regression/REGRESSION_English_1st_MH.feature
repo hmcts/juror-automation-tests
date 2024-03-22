@@ -26,7 +26,7 @@ Scenario Outline: Checking the word Act in Mental Health Act is capitalised
 	Then I see "Is the name we have for you correct?" on the page
 	
 	#Check Name
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	Then I set "First name" to ""
 	And I set "Last name" to ""
@@ -40,12 +40,12 @@ Scenario Outline: Checking the word Act in Mental Health Act is capitalised
 	When I click on the "Back" link
 	Then I see "FirstNamea" on the page
 	And I see "LastNameb" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	When I press the "Continue" button
 	Then I see "Is this your address?" on the page
 	
 	#Check Address
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	Then I set "Address line 1" to ""
 	And I set "Town or city" to ""
@@ -65,7 +65,7 @@ Scenario Outline: Checking the word Act in Mental Health Act is capitalised
 	Then I see "123 Street" on the page
 	And I see "London" on the page
 	And I see "CH1 2AN" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	Then I see "What is your phone number?" on the page
 	
@@ -113,17 +113,17 @@ Scenario Outline: Checking the word Act in Mental Health Act is capitalised
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	When I press the "Continue" button
 	Then I see "Select yes if your main address has been in the UK, Channel Islands or Isle of Man for any period of at least 5 years, since you turned 13" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	Then I see "Provide details about where you have lived since your 13th birthday" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	When I click on the "Back" link
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	And I press the "Continue" button
 	
 	#CJS
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#bail
@@ -132,7 +132,7 @@ Scenario Outline: Checking the word Act in Mental Health Act is capitalised
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
 	When I press the "Continue" button
 	Then I see "Are you currently on bail for a criminal offence?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	Then I see "Have you been found guilty of a criminal offence?" on the page
 	
@@ -169,17 +169,17 @@ Scenario Outline: Checking the word Act in Mental Health Act is capitalised
 	|a community or overseas community order under the Armed Forces Act 2006|
 	|If you serve on a jury when you know you should not because of a criminal conviction, you may be fined up to £5,000.|
 	
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health part 1
 	Then I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
 	When I press the "Continue" button
 	Then I see "Select yes if you're being detained, looked after or treated under the Mental Health Act" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	Then I see "Provide details about how you're being detained, looked after or treated under the Mental Health Act" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
 	When I click on the "Back" link
@@ -202,16 +202,16 @@ Scenario Outline: Checking the word Act in Mental Health Act is capitalised
 	
 	When I press the "Continue" button
 	Then I see "Select yes if it's been decided that you 'lack mental capacity'" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	Then I see "Provide brief details about why it was decided you lack mental capacity" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	And I see "Yes, I can start on" on the page
 	And I set the radio button to "Yes, I can start on"
 	And I press the "Continue" button
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	Then I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
@@ -262,14 +262,14 @@ Scenario Outline: Checking MH questions have been split in Bureau and no text ME
 		| Your details |
 		| Is the name we have for you correct? |
 
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	Then on the page I see
 		| text	|
 		| Is this your address? |
 
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	Then on the page I see
@@ -326,24 +326,24 @@ Scenario Outline: Checking MH questions have been split in Bureau and no text ME
 	#Residency
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#CJS no
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Bail
 	Then I see "Are you currently on bail for a criminal offence?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Convictions
 	Then I see "Have you been found guilty of a criminal offence?" on the page
 	When I see "Eligibility" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Sectioned
@@ -365,7 +365,7 @@ Scenario Outline: Checking MH questions have been split in Bureau and no text ME
 	|(If you feel you cannot complete jury service because of significant mental health issues, you can still ask to be excused or change your dates.)|
 	
 	When I see "Eligibility" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I set "Provide details" to "I am sectioned"
 	And I press the "Continue" button 
 	
@@ -388,7 +388,7 @@ Scenario Outline: Checking MH questions have been split in Bureau and no text ME
 	|If a person lacks mental capacity, they cannot do jury service.|
 	
 	When I see "Eligibility" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I set "Provide brief details about why it was decided you lack mental capacity" to "I lack capacity"
 	And I press the "Continue" button
 	
@@ -400,7 +400,7 @@ Scenario Outline: Checking MH questions have been split in Bureau and no text ME
 	
 	#RA no
 	Then I see "Will you need help when you're at the court?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Check your answers

@@ -17,12 +17,12 @@ Scenario: expensesFullClaimE2E
 	
 	#loseincome
 	Then I see "Will you lose any income while doing jury service?" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	When I press the "Continue" button
 	
 	#earnings
 	Then I see "Do you earn more than £64.95 each day on the days you work?" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	When I press the "Continue" button
 
 	#earningsamount
@@ -31,7 +31,7 @@ Scenario: expensesFullClaimE2E
 	
 	#extracosts
 	Then I see "Will doing jury service mean you have extra costs that you wouldn't normally have?" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	When I press the "Continue" button
 	
 	#extracostsamount
@@ -62,7 +62,7 @@ Scenario: expensesFullClaimE2E
 	
 	#parking
 	Then I see "Will you need to pay for parking?" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	When I press the "Continue" button
 	
 	#cantclaimforparking
@@ -90,11 +90,11 @@ Scenario: expensesNoExpensesE2E
 	And I press the "Start now" button
 	
 	Then I see "Will you lose any income while doing jury service?" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	When I press the "Continue" button
 	
 	Then I see "Will doing jury service mean you have extra costs that you wouldn't normally have?" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	When I press the "Continue" button
 	
 	Then I see "How will you travel to the court?" on the page
@@ -119,11 +119,11 @@ Scenario: expensesEarnLess64E2E
 	And I press the "Start now" button
 	
 	Then I see "Will you lose any income while doing jury service?" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	When I press the "Continue" button
 
 	Then I see "Do you earn more than £64.95 each day on the days you work?" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	When I press the "Continue" button
 
 	Then I see "How much do you earn each day?" on the page
@@ -131,7 +131,7 @@ Scenario: expensesEarnLess64E2E
 	When I press the "Continue" button
 
 	Then I see "Will doing jury service mean you have extra costs that you wouldn't normally have?" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	When I press the "Continue" button
 
 	Then I see "How will you travel to the court?" on the page
@@ -158,11 +158,11 @@ Scenario: expensesPartialClaimE2E
 	And I press the "Start now" button
 
 	Then I see "Will you lose any income while doing jury service?" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	When I press the "Continue" button
 
 	Then I see "Will doing jury service mean you have extra costs that you wouldn't normally have?" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	When I press the "Continue" button
 	
 	Then I see "What will the total be for these extra costs each day?" on the page
@@ -178,7 +178,7 @@ Scenario: expensesPartialClaimE2E
 	When I press the "Continue" button
 
 	Then I see "Will you need to pay for parking?" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	When I press the "Continue" button
 
 	Then I see "Claiming for parking" on the page
@@ -199,15 +199,15 @@ Scenario: expensesChangeAnswersE2E
 	And I press the "Start now" button
 
 	Then I see "Will you lose any income while doing jury service?" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	When I press the "Continue" button
 	
 	Then I see "Do you earn more than £64.95 each day on the days you work?" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	When I press the "Continue" button
 
 	Then I see "Will doing jury service mean you have extra costs that you wouldn't normally have?" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	When I press the "Continue" button
 
 	Then I see "What will the total be for these extra costs each day?" on the page
@@ -232,7 +232,7 @@ Scenario: expensesChangeAnswersE2E
 	And I set "Miles" to "2"
 	When I press the "Continue" button
 	Then I see "Will you need to pay for parking?" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	When I press the "Continue" button
 
 	Then I see "Claiming for parking" on the page
@@ -246,7 +246,7 @@ Scenario: expensesChangeAnswersE2E
 	And I see text "Yes" in the same row as "Will you lose income?"
 	And I click on the "Change" link in the same row as "Will you lose income?"
 
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	When I press the "Continue" button
 	Then I see "Check your answers" on the page
 	And I see text "No" in the same row as "Will you lose income?"
@@ -254,7 +254,7 @@ Scenario: expensesChangeAnswersE2E
 	And I see text "Yes" in the same row as "Extra costs you wouldn't normally have?"
 	And I click on the "Change" link in the same row as "Extra costs you wouldn't normally have?"
 
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	When I press the "Continue" button
 	Then I see "Check your answers" on the page
 	And I see text "No" in the same row as "Extra costs you wouldn't normally have?"
@@ -313,15 +313,15 @@ Scenario: expensesStraightThrough
 	And I press the "Start now" button
 
 	Then I see "Will you lose any income while doing jury service?" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	When I press the "Continue" button
 
 	Then I see "Do you earn more than £64.95 each day on the days you work?" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	When I press the "Continue" button
 
 	Then I see "Will doing jury service mean you have extra costs that you wouldn't normally have?" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	When I press the "Continue" button
 
 	Then I see "What will the total be for these extra costs each day?" on the page
@@ -346,7 +346,7 @@ Scenario: expensesStraightThrough
 	And I set "Miles" to "2"
 	When I press the "Continue" button
 	Then I see "Will you need to pay for parking?" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	When I press the "Continue" button
 
 	Then I see "Claiming for parking" on the page
@@ -379,13 +379,13 @@ Scenario: expensesNavigationTravelTypes
 	
 	And I press the "Start now" button
 
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	When I press the "Continue" button
 
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	When I press the "Continue" button
 
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	When I press the "Continue" button
 
 	And I set "£" to "30"
@@ -404,7 +404,7 @@ Scenario: expensesNavigationTravelTypes
 	When I press the "Continue" button
 	And I set "Miles" to "2"
 	When I press the "Continue" button
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	When I press the "Continue" button
 	
 	And I see "Total cost of public transport each day" on the page
@@ -482,13 +482,13 @@ Scenario: expensesParkingPage
 	
 	And I press the "Start now" button
 	
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	When I press the "Continue" button
 	
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	When I press the "Continue" button
 	
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	When I press the "Continue" button
 
 	And I check the "Car" checkbox
@@ -500,7 +500,7 @@ Scenario: expensesParkingPage
 	And I set "Miles" to "2"
 	When I press the "Continue" button
 	And I see "Will you need to pay for parking?" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	When I press the "Continue" button
 
 	And I see "Claiming for parking" on the page

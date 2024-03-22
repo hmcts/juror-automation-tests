@@ -8,11 +8,11 @@ Scenario: expensesJDB-4375
 	And I press the "Start now" button
 	
 	#loseincome
-	Then I set the radio button to "Yes"
+	Then I choose the "Yes" radio button
 	When I press the "Continue" button
 	
 	#earnmorethan
-	Then I set the radio button to "No"
+	Then I choose the "No" radio button
 	When I press the "Continue" button
 
 	#Back link

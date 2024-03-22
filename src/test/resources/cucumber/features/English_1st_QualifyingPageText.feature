@@ -26,7 +26,7 @@ Scenario Outline: Checking page text for Eligibility page
 	Then I see "Is the name we have for you correct?" on the page
 	
 	#Check Name
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	Then I see "What is your name?" on the page
 	
@@ -44,13 +44,13 @@ Scenario Outline: Checking page text for Eligibility page
 	And I see "LastNameb" on the page
 	
 	#should this happen?
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	
 	When I press the "Continue" button
 	Then I see "Is this your address?" on the page
 	
 	#Check Address
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	Then I set "Address line 1" to ""
@@ -73,7 +73,7 @@ Scenario Outline: Checking page text for Eligibility page
 	And I see "CH1 2AN" on the page
 	
 	#should this happen?
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	
 	And I press the "Continue" button
 	Then I see "What is your phone number?" on the page

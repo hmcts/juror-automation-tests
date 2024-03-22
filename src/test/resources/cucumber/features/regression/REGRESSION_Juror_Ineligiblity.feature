@@ -1403,12 +1403,12 @@ Scenario Outline: 1st Party Ineligible
 	
 	#Check juror name
 	Then I see "Is the name we have for them correct?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#Check juror address
 	Then I see "Is this their address?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	Then I see "Give the date of birth for the person you're replying for" on the page
@@ -1432,28 +1432,28 @@ Scenario Outline: 1st Party Ineligible
 	And I press the "Continue" button
 	
 	#Eligibility questions
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I set "Provide details" to "Residency"
 	And I press the "Continue" button	
 
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I check the "Police service" checkbox
 	And I set "Which police service?" to "London Met Police Force"
 	And I press the "Continue" button
 	
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I set "Provide details" to "Bail"
 	And I press the "Continue" button
 	
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I set text area with "id" of "convictedDetails" to "Criminal Convictions"
 	And I press the "Continue" button
 	
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I set "Provide details about how they're being detained, looked after or treated under the Mental Health Act" to "Mental Health Sectioned"
 	And I press the "Continue" button
 	
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I set "Provide brief details about why it was decided they lack mental capacity" to "Mental Health Capacity"
 	And I press the "Continue" button
 	
@@ -1461,7 +1461,7 @@ Scenario Outline: 1st Party Ineligible
 	And I press the "Continue" button
 	
 	#Help in court
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I check the "Diabetes" checkbox
 	And I press the "Continue" button
 
@@ -1565,12 +1565,12 @@ Scenario Outline: New CJS Options 3rd party
 	
 	#Check juror name
 	Then I see "Is the name we have for them correct?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#Check juror address
 	Then I see "Is this their address?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	Then I see "Give the date of birth for the person you're replying for" on the page
@@ -1594,11 +1594,11 @@ Scenario Outline: New CJS Options 3rd party
 	And I press the "Continue" button
 	
 	#Eligibility questions
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#CJS Emp
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I check the "Police service" checkbox
 	And I set "Which police service?" to "London Met Police Force"
 	And I check the "HM Prison Service" checkbox
@@ -1610,20 +1610,20 @@ Scenario Outline: New CJS Options 3rd party
 	And I set "Which other part of the Criminal Justice System?" to "Another part of the CJS"
 	And I press the "Continue" button
 	
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	Then I set the radio button to "Yes, they can start on"
 	And I press the "Continue" button
 
 	#Help in court
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 
 	#Check your answers

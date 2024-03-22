@@ -25,14 +25,14 @@ Scenario Outline: English 1st Party + Juror Details Change
 	And I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	And I set "First name" to "Joe"
 	And I set "Last name" to "Blogs"
 	
 	And I press the "Continue" button
 
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	When I press the "Continue" button
 	And I set "Address line 1" to "99 The Road"
 	And I set "Town or city" to "Town"
@@ -57,27 +57,27 @@ Scenario Outline: English 1st Party + Juror Details Change
 	When I press the "Continue" button
 
 	#Residency
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#CJS
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Bail
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Convictions
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 		
 	#Mental Health Sectioned
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Capacity
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#I can attend
@@ -85,7 +85,7 @@ Scenario Outline: English 1st Party + Juror Details Change
 	And  I press the "Continue" button
 
 	#RA no
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Check your answers
@@ -151,10 +151,10 @@ Scenario Outline: English 1st Party + RA
 	And I press the "Continue" button
 	
 	Then I see "Is the name we have for you correct?" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	When I set "Main phone" to "02078211818"
@@ -174,27 +174,27 @@ Scenario Outline: English 1st Party + RA
 	And I press the "Continue" button
 	
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	And I see "Are you currently on bail for a criminal offence?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	Then I see "Have you been found guilty of a criminal offence?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	And I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#deferral
@@ -211,12 +211,12 @@ Scenario Outline: English 1st Party + RA
 	And I press the "Continue" button
 	
 	#check dates screen
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 
 	Then I see "Will you need help when you're at the court?" on the page
 	Then I see "Do you have a disability or impairment that means you’ll need extra support or facilities in the court building where you are doing your Jury Service?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	Then I check the "Diabetes" checkbox
 	And I press the "Continue" button
 	Then I see "Check your answers now" on the page
@@ -286,10 +286,10 @@ Scenario Outline: English 1st Party + Residency
 	And I press the "Continue" button
 	
 	Then I see "Is the name we have for you correct?" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	When I set "Main phone" to "02078211818"
@@ -309,37 +309,37 @@ Scenario Outline: English 1st Party + Residency
 	And I press the "Continue" button
 	
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I set "Provide details" to "some reasons"
 	And I press the "Continue" button
 	
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	And I see "Are you currently on bail for a criminal offence?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	Then I see "Have you been found guilty of a criminal offence?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	And I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Straight through
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	Then I see "Will you need help when you're at the court?" on the page
 	Then I see "Do you have a disability or impairment that means you’ll need extra support or facilities in the court building where you are doing your Jury Service?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	Then I see "Check your answers now" on the page
@@ -407,10 +407,10 @@ Scenario Outline: English 1st Party + Bail
 	And I press the "Continue" button
 	
 	Then I see "Is the name we have for you correct?" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	When I set "Main phone" to "02078211818"
@@ -430,37 +430,37 @@ Scenario Outline: English 1st Party + Bail
 	And I press the "Continue" button
 	
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	And I see "Are you currently on bail for a criminal offence?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	Then I set "Provide details about your bail and criminal offence" to "some details"
 	And I press the "Continue" button
 	
 	Then I see "Have you been found guilty of a criminal offence?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	And I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Straight through
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	Then I see "Will you need help when you're at the court?" on the page
 	Then I see "Do you have a disability or impairment that means you’ll need extra support or facilities in the court building where you are doing your Jury Service?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	Then I see "Check your answers now" on the page
@@ -545,11 +545,11 @@ Scenario Outline: English 3rd Party + Convictions
 	And I press the "Continue" button
 	
 	#Check juror name
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#Check juror address
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#DoB
@@ -567,36 +567,36 @@ Scenario Outline: English 3rd Party + Convictions
 	And I press the "Continue" button
 	
 	#Residency
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#CJS
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Bail
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Convictions
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I set text area with "id" of "convictedDetails" to "I am a convicted criminal"
 	And I press the "Continue" button
 	
 	#Mental Health Sectioned
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Capacity
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Confirm Date of Jury
-	When I set the radio button to "Yes"   
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#RA
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Check Your Answers
@@ -674,11 +674,11 @@ Scenario Outline: English 3rd Party + Residency
 	And I press the "Continue" button
 	
 	#Check juror name
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#Check juror address
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#DoB
@@ -696,36 +696,36 @@ Scenario Outline: English 3rd Party + Residency
 	And I press the "Continue" button
 	
 	#Residency
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I set "Provide details about where the person you are answering for has lived since their 13th birthday" to "some details"
 	And I press the "Continue" button
 	
 	#CJS
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Bail
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Convictions
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Sectioned
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Capacity
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Confirm Date of Jury
-	When I set the radio button to "Yes"   
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#RA
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Check Your Answers
@@ -803,11 +803,11 @@ Scenario Outline: English 3rd Party + Bail
 	And I press the "Continue" button
 	
 	#Check juror name
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#Check juror address
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#DoB
@@ -825,36 +825,36 @@ Scenario Outline: English 3rd Party + Bail
 	And I press the "Continue" button
 	
 	#Residency
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#CJS
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Bail
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I set "Provide details about the person's bail and criminal offence" to "some details"
 	And I press the "Continue" button
 	
 	#Convictions
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Sectioned
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Capacity
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Confirm Date of Jury
-	When I set the radio button to "Yes"   
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#RA
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Check Your Answers
@@ -932,11 +932,11 @@ Scenario Outline: English 3rd Party + Mental Health
 	And I press the "Continue" button
 	
 	#Check juror name
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#Check juror address
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#DoB
@@ -954,37 +954,37 @@ Scenario Outline: English 3rd Party + Mental Health
 	And I press the "Continue" button
 	
 	#Residency
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#CJS
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Bail
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Convictions
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Sectioned
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I set "Provide details about how they're being detained, looked after or treated under the Mental Health Act" to "some details"
 	And I press the "Continue" button
 	
 	#Mental Health Capacity
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I set "Provide brief details about why it was decided they lack mental capacity" to "some details"
 	And I press the "Continue" button
 	
 	#Confirm Date of Jury
-	When I set the radio button to "Yes"   
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#RA
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Check Your Answers
@@ -1116,11 +1116,11 @@ Scenario Outline: Multiple reply types
 	And I press the "Continue" button
 
 	#Check juror nam
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 
 	#Check juror address
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 
 	#DoB
@@ -1138,37 +1138,37 @@ Scenario Outline: Multiple reply types
 	And I press the "Continue" button
 
 	#Residency
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 
 	#CJS
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	#Bail
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 
 	#Convictions
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	#Mental Health Sectioned
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I set "Provide details about how they're being detained, looked after or treated under the Mental Health Act" to "some details"
 	And I press the "Continue" button
 
 	#Mental Health Capacity
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I set "Provide brief details about why it was decided they lack mental capacity" to "some details"
 	And I press the "Continue" button
 
 	#Confirm Date of Jury
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 
 	#RA
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	#Check Your Answers
@@ -1211,11 +1211,11 @@ Scenario Outline: Multiple reply types
 	And I press the "Continue" button
 
 	#Check juror name
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 
 	#Check juror address
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 
 	#DoB
@@ -1233,36 +1233,36 @@ Scenario Outline: Multiple reply types
 	And I press the "Continue" button
 
 	#Residency
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 
 	#CJS
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	#Bail
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I set "Provide details about the person's bail and criminal offence" to "some details"
 	And I press the "Continue" button
 
 	#Convictions
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	#Mental Health Sectioned
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 
 	#Mental Health Capacity
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 
 	#Confirm Date of Jury
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 
 	#RA
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	#Check Your Answers
@@ -1305,11 +1305,11 @@ Scenario Outline: Multiple reply types
 	And I press the "Continue" button
 
 	#Check juror name
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 
 	#Check juror address
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 
 	#DoB
@@ -1327,36 +1327,36 @@ Scenario Outline: Multiple reply types
 	And I press the "Continue" button
 
 	#Residency
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I set "Provide details about where the person you are answering for has lived since their 13th birthday" to "some details"
 	And I press the "Continue" button
 
 	#CJS
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	#Bail
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 
 	#Convictions
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	#Mental Health Sectioned
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 
 	#Mental Health Capacity
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 
 	#Confirm Date of Jury
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 
 	#RA
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	#Check Your Answers
@@ -1399,11 +1399,11 @@ Scenario Outline: Multiple reply types
 	And I press the "Continue" button
 
 	#Check juror name
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 
 	#Check juror address
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 
 	#DoB
@@ -1421,36 +1421,36 @@ Scenario Outline: Multiple reply types
 	And I press the "Continue" button
 
 	#Residency
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 
 	#CJS
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	#Bail
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 
 	#Convictions
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I set text area with "id" of "convictedDetails" to "I am a convicted criminal"
 	And I press the "Continue" button
 
 	#Mental Health Sectioned
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 
 	#Mental Health Capacity
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 
 	#Confirm Date of Jury
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 
 	#RA
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	#Check Your Answers
@@ -1472,10 +1472,10 @@ Scenario Outline: Multiple reply types
 	And I press the "Continue" button
 
 	Then I see "Is the name we have for you correct?" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 
 	When I set "Main phone" to "02078211818"
@@ -1495,37 +1495,37 @@ Scenario Outline: Multiple reply types
 	And I press the "Continue" button
 
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	And I see "Are you currently on bail for a criminal offence?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	Then I set "Provide details about your bail and criminal offence" to "some details"
 	And I press the "Continue" button
 
 	Then I see "Have you been found guilty of a criminal offence?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	And I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	#Straight through
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 
 	Then I see "Will you need help when you're at the court?" on the page
 	Then I see "Do you have a disability or impairment that means you’ll need extra support or facilities in the court building where you are doing your Jury Service?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	Then I see "Check your answers now" on the page
@@ -1549,10 +1549,10 @@ Scenario Outline: Multiple reply types
 	And I press the "Continue" button
 
 	Then I see "Is the name we have for you correct?" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 
 	When I set "Main phone" to "02078211818"
@@ -1572,37 +1572,37 @@ Scenario Outline: Multiple reply types
 	And I press the "Continue" button
 
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I set "Provide details" to "some reasons"
 	And I press the "Continue" button
 
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	And I see "Are you currently on bail for a criminal offence?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	Then I see "Have you been found guilty of a criminal offence?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	And I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	#Straight through
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 
 	Then I see "Will you need help when you're at the court?" on the page
 	Then I see "Do you have a disability or impairment that means you’ll need extra support or facilities in the court building where you are doing your Jury Service?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	Then I see "Check your answers now" on the page
@@ -1627,14 +1627,14 @@ Scenario Outline: Multiple reply types
 	And I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	And I set "First name" to "Joe"
 	And I set "Last name" to "Blogs"
 
 	And I press the "Continue" button
 
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	When I press the "Continue" button
 	And I set "Address line 1" to "99 The Road"
 	And I set "Town or city" to "Town"
@@ -1658,27 +1658,27 @@ Scenario Outline: Multiple reply types
 	When I press the "Continue" button
 
 	#Residency
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 
 	#CJS
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	#Bail
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	#Convictions
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	#Mental Health Sectioned
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 
 	#Mental Health Capacity
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 
 	#I can attend
@@ -1686,7 +1686,7 @@ Scenario Outline: Multiple reply types
 	And  I press the "Continue" button
 
 	#RA no
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	#Check your answers
@@ -1713,10 +1713,10 @@ Scenario Outline: Multiple reply types
 	And I press the "Continue" button
 
 	Then I see "Is the name we have for you correct?" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 
 	When I set "Main phone" to "02078211818"
@@ -1736,27 +1736,27 @@ Scenario Outline: Multiple reply types
 	And I press the "Continue" button
 
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	And I see "Are you currently on bail for a criminal offence?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	Then I see "Have you been found guilty of a criminal offence?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	And I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	#deferral
@@ -1773,12 +1773,12 @@ Scenario Outline: Multiple reply types
 	And I press the "Continue" button
 
 	#check dates screen
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 
 	Then I see "Will you need help when you're at the court?" on the page
 	Then I see "Do you have a disability or impairment that means you’ll need extra support or facilities in the court building where you are doing your Jury Service?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	Then I check the "Diabetes" checkbox
 	And I press the "Continue" button
 	Then I see "Check your answers now" on the page
@@ -1807,11 +1807,11 @@ Scenario Outline: Multiple reply types
 	And I press the "Continue" button
 
 	#Check Name
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	When I press the "Continue" button
 
 	#Check Address
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 
 	#Phone Details
@@ -1832,27 +1832,27 @@ Scenario Outline: Multiple reply types
 	When I press the "Continue" button
 
 	#Residency
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 
 	#CJS
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	#Bail
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	#Convictions
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	#Mental Health part 1
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	#Mental Health part 2
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	#Confirm Date of Jury
@@ -1864,7 +1864,7 @@ Scenario Outline: Multiple reply types
 	And I press the "Continue" button
 
 	#RA
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	#Check Your Answers Now
@@ -2208,11 +2208,11 @@ Scenario Outline: Multiple reply types in Awaiting Information
 	And I press the "Continue" button
 
 	#Check juror name
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 
 	#Check juror address
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 
 	#DoB
@@ -2230,37 +2230,37 @@ Scenario Outline: Multiple reply types in Awaiting Information
 	And I press the "Continue" button
 
 	#Residency
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 
 	#CJS
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	#Bail
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 
 	#Convictions
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	#Mental Health Sectioned
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I set "Provide details about how they're being detained, looked after or treated under the Mental Health Act" to "some details"
 	And I press the "Continue" button
 
 	#Mental Health Capacity
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I set "Provide brief details about why it was decided they lack mental capacity" to "some details"
 	And I press the "Continue" button
 
 	#Confirm Date of Jury
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 
 	#RA
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	#Check Your Answers
@@ -2303,11 +2303,11 @@ Scenario Outline: Multiple reply types in Awaiting Information
 	And I press the "Continue" button
 
 	#Check juror name
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 
 	#Check juror address
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 
 	#DoB
@@ -2325,36 +2325,36 @@ Scenario Outline: Multiple reply types in Awaiting Information
 	And I press the "Continue" button
 
 	#Residency
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 
 	#CJS
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	#Bail
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I set "Provide details about the person's bail and criminal offence" to "some details"
 	And I press the "Continue" button
 
 	#Convictions
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	#Mental Health Sectioned
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 
 	#Mental Health Capacity
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 
 	#Confirm Date of Jury
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 
 	#RA
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	#Check Your Answers
@@ -2396,11 +2396,11 @@ Scenario Outline: Multiple reply types in Awaiting Information
 	And I press the "Continue" button
 
 	#Check juror name
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 
 	#Check juror address
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 
 	#DoB
@@ -2418,36 +2418,36 @@ Scenario Outline: Multiple reply types in Awaiting Information
 	And I press the "Continue" button
 
 	#Residency
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I set "Provide details about where the person you are answering for has lived since their 13th birthday" to "some details"
 	And I press the "Continue" button
 
 	#CJS
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	#Bail
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 
 	#Convictions
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	#Mental Health Sectioned
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 
 	#Mental Health Capacity
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 
 	#Confirm Date of Jury
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 
 	#RA
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	#Check Your Answers
@@ -2489,11 +2489,11 @@ Scenario Outline: Multiple reply types in Awaiting Information
 	And I press the "Continue" button
 
 	#Check juror name
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 
 	#Check juror address
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 
 	#DoB
@@ -2509,36 +2509,36 @@ Scenario Outline: Multiple reply types in Awaiting Information
 	And I press the "Continue" button
 
 	#Residency
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 
 	#CJS
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	#Bail
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 
 	#Convictions
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I set text area with "id" of "convictedDetails" to "I am a convicted criminal"
 	And I press the "Continue" button
 
 	#Mental Health Sectioned
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 
 	#Mental Health Capacity
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 
 	#Confirm Date of Jury
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 
 	#RA
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	#Check Your Answers
@@ -2560,10 +2560,10 @@ Scenario Outline: Multiple reply types in Awaiting Information
 	And I press the "Continue" button
 
 	Then I see "Is the name we have for you correct?" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 
 	When I set "Main phone" to "02078211818"
@@ -2583,37 +2583,37 @@ Scenario Outline: Multiple reply types in Awaiting Information
 	And I press the "Continue" button
 
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	And I see "Are you currently on bail for a criminal offence?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	Then I set "Provide details about your bail and criminal offence" to "some details"
 	And I press the "Continue" button
 
 	Then I see "Have you been found guilty of a criminal offence?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	And I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	#Straight through
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 
 	Then I see "Will you need help when you're at the court?" on the page
 	Then I see "Do you have a disability or impairment that means you’ll need extra support or facilities in the court building where you are doing your Jury Service?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	Then I see "Check your answers now" on the page
@@ -2637,10 +2637,10 @@ Scenario Outline: Multiple reply types in Awaiting Information
 	And I press the "Continue" button
 
 	Then I see "Is the name we have for you correct?" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 
 	When I set "Main phone" to "02078211818"
@@ -2660,37 +2660,37 @@ Scenario Outline: Multiple reply types in Awaiting Information
 	And I press the "Continue" button
 
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I set "Provide details" to "some reasons"
 	And I press the "Continue" button
 
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	And I see "Are you currently on bail for a criminal offence?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	Then I see "Have you been found guilty of a criminal offence?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	And I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	#Straight through
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 
 	Then I see "Will you need help when you're at the court?" on the page
 	Then I see "Do you have a disability or impairment that means you’ll need extra support or facilities in the court building where you are doing your Jury Service?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	Then I see "Check your answers now" on the page
@@ -2715,14 +2715,14 @@ Scenario Outline: Multiple reply types in Awaiting Information
 	And I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	And I set "First name" to "Joe"
 	And I set "Last name" to "Blogs"
 
 	And I press the "Continue" button
 
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	When I press the "Continue" button
 	And I set "Address line 1" to "99 The Road"
 	And I set "Town or city" to "Town"
@@ -2747,27 +2747,27 @@ Scenario Outline: Multiple reply types in Awaiting Information
 	When I press the "Continue" button
 
 	#Residency
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 
 	#CJS
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	#Bail
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	#Convictions
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	#Mental Health Sectioned
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 
 	#Mental Health Capacity
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 
 	#I can attend
@@ -2775,7 +2775,7 @@ Scenario Outline: Multiple reply types in Awaiting Information
 	And  I press the "Continue" button
 
 	#RA no
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	#Check your answers
@@ -2802,10 +2802,10 @@ Scenario Outline: Multiple reply types in Awaiting Information
 	And I press the "Continue" button
 
 	Then I see "Is the name we have for you correct?" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 
 	When I set "Main phone" to "02078211818"
@@ -2825,27 +2825,27 @@ Scenario Outline: Multiple reply types in Awaiting Information
 	And I press the "Continue" button
 
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	And I see "Are you currently on bail for a criminal offence?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	Then I see "Have you been found guilty of a criminal offence?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	And I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	#deferral
@@ -2862,12 +2862,12 @@ Scenario Outline: Multiple reply types in Awaiting Information
 	And I press the "Continue" button
 
 	#check dates screen
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 
 	Then I see "Will you need help when you're at the court?" on the page
 	Then I see "Do you have a disability or impairment that means you’ll need extra support or facilities in the court building where you are doing your Jury Service?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	Then I check the "Diabetes" checkbox
 	And I press the "Continue" button
 	Then I see "Check your answers now" on the page
@@ -2896,11 +2896,11 @@ Scenario Outline: Multiple reply types in Awaiting Information
 	And I press the "Continue" button
 
 	#Check Name
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	When I press the "Continue" button
 
 	#Check Address
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 
 	#Phone Details
@@ -2921,27 +2921,27 @@ Scenario Outline: Multiple reply types in Awaiting Information
 	When I press the "Continue" button
 
 	#Residency
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 
 	#CJS
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	#Bail
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	#Convictions
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	#Mental Health part 1
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	#Mental Health part 2
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	#Confirm Date of Jury
@@ -2953,7 +2953,7 @@ Scenario Outline: Multiple reply types in Awaiting Information
 	And I press the "Continue" button
 
 	#RA
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	#Check Your Answers Now

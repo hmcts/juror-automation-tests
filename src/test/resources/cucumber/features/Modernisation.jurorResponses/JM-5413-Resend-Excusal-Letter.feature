@@ -357,7 +357,7 @@ Feature: JM-5413-5415 - Resend excusal granted letter for Bureau and Jury users
     And I set the radio button to "Grant excusal"
     And I press the "Continue" button
     And I see "Do you want to print an excusal granted letter?" on the page
-    And I set the radio button to "Yes"
+    And I choose the "Yes" radio button
     And I press the "Continue" button
     And I see "https://juror-test-bureau.clouddev.online/documents/excusal-granted/letters-list" in the URL
     #will fail here because of JM-6338
@@ -394,7 +394,7 @@ Feature: JM-5413-5415 - Resend excusal granted letter for Bureau and Jury users
     And I set the radio button to "Grant excusal"
     And I press the "Continue" button
     And I see "Do you want to print an excusal granted letter?" on the page
-    And I set the radio button to "No"
+    And I choose the "No" radio button
     And I press the "Continue" button
 
     And the user searches for juror record "<juror_number>" from the global search bar

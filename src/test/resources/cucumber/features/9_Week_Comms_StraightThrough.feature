@@ -2106,10 +2106,10 @@ Scenario Outline: English 3rd Party Straight Through, 2 weeks in advance, PNC pa
 	#Check juror name
 	
 	Then I see "Is the name we have for them correct?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	Then I see "Is this their address?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#DoB
@@ -2137,27 +2137,27 @@ Scenario Outline: English 3rd Party Straight Through, 2 weeks in advance, PNC pa
 
 	#Residency
 	
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 
 	#Mental Health Sectioned
 	
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Capacity
 	
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Bail
 	
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Convictions
 	
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#The person can attend
@@ -2167,12 +2167,12 @@ Scenario Outline: English 3rd Party Straight Through, 2 weeks in advance, PNC pa
 	
 	#CJS no
 	
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#RA no
 	
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Check your answers
