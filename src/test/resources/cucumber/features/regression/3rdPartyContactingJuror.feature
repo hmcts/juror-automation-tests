@@ -51,7 +51,7 @@ Scenario Outline: English check that result cannot be processed without phone nu
 	When I set the radio button to "The person is not here"
 	And I press the "Continue" button
 	Then I see "Is the name we have for them correct?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	When I click on the "What happens if they have changed their name?" link
@@ -61,7 +61,7 @@ Scenario Outline: English check that result cannot be processed without phone nu
 	When I see "Juror Details" on the page
 	And I press the "Continue" button
 	Then I see "Is this their address?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	
 	#Check juror address
 	When I see "Juror Details" on the page

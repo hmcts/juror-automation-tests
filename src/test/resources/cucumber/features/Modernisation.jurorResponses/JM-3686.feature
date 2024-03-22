@@ -60,7 +60,7 @@ Feature: JM-3686
     Then I select the CJS Employment tab from the summons reply page
     And I see "CJS employment" on the page
     And I click on the "Add or change" link
-    And I set the radio button to "Yes"
+    And I choose the "Yes" radio button
     And I check the "Police force" checkbox
     And I set "Which police force?" to "Metropolitan police"
     And I press the "Continue" button
@@ -74,7 +74,7 @@ Feature: JM-3686
    And I see "Reasonable adjustments" on the page
    And I click on the "Add or change" link
    And I see "Will the juror need extra support or facilities at court?" on the page
-   And I set the radio button to "Yes"
+   And I choose the "Yes" radio button
    And I see "Select reason" on the page
    When I select "D - Diet" from the "Select reason" dropdown
    And I set "What help does the juror need at court" to "Nutritional Guidance"
@@ -83,13 +83,13 @@ Feature: JM-3686
     Then I select the Signature tab from the summons reply page
     And I click on the "Add or change" link
     And I see "Has the summons reply been signed?" on the page
-    Then I set the radio button to "No"
+    Then I choose the "No" radio button
     And I press the "Done" button
     And I see "Summons reply is missing essential information - reply cannot be processed until this information is entered." on the page
     Then I select the Signature tab from the summons reply page
     And I see "Required" on the page
     And I click on the "Add or change" link
-    Then I set the radio button to "Yes"
+    Then I choose the "Yes" radio button
     And I press the "Done" button
     And I do not see "Summons reply is missing essential information - reply cannot be processed until this information is entered." on the page
 

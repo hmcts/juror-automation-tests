@@ -35,11 +35,11 @@ Scenario Outline: Secrets Change - Public Straight through auto processed
 	And I press the "Continue" button
 
 	And I see "<last_name>" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 
 	And I see "<postcode>" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	When I press the "Continue" button
 
 	When I set "Main phone" to "02078211818"
@@ -58,23 +58,23 @@ Scenario Outline: Secrets Change - Public Straight through auto processed
 	When I press the "Continue" button
 
 	#Residency
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Sectioned
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Capacity
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Bail
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Convictions
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#I can attend
@@ -82,11 +82,11 @@ Scenario Outline: Secrets Change - Public Straight through auto processed
 	And  I press the "Continue" button
 
 	#CJS no
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#RA no
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Check your answers
@@ -146,11 +146,11 @@ Scenario Outline: Secrets Change - Public over/under age through auto processed
 	And I press the "Continue" button
 
 	And I see "<last_name>" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	When I press the "Continue" button
 
 	And I see "<postcode>" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	When I press the "Continue" button
 	
 	When I set "Main phone" to "02078211818"
@@ -211,10 +211,10 @@ Scenario Outline: Secrets Change - Public Not Auto Processed (deferral)
 	And I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	When I press the "Continue" button
 
 	When I set "Main phone" to "02078211818"
@@ -233,23 +233,23 @@ Scenario Outline: Secrets Change - Public Not Auto Processed (deferral)
 	When I press the "Continue" button
 
 	#Residency
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Sectioned
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Capacity
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Bail
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Convictions
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#defer
@@ -264,11 +264,11 @@ Scenario Outline: Secrets Change - Public Not Auto Processed (deferral)
 	And I press the "Continue" button
 
 	#CJS no
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#RA no
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Check your answers
@@ -411,10 +411,10 @@ Scenario Outline: Secrets Change Bureau
 	And I set the radio button to "The person is not here"
 	And I press the "Continue" button
 
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	When I press the "Continue" button
 
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	When I press the "Continue" button
 	
 	And I set "Day" to "01"
@@ -432,31 +432,31 @@ Scenario Outline: Secrets Change Bureau
 	
 	When I press the "Continue" button
 	
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
-	Then I set the radio button to "Yes"
+	Then I choose the "Yes" radio button
 	And I press the "Continue" button
 	
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	When I press the "Continue" button
 
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 
 	And I check the "The answers I have given for the person I'm replying for are true as far as I know." checkbox
@@ -512,7 +512,7 @@ Scenario Outline: Secrets Change Bureau
 	
 	When I click on the "edit" link
 	
-	And I set the radio button to "No" under "Residency"
+	And I choose the "No" radio button under "Residency"
 	And I see "Provide details" on the page
 	And I set text area with "id" of "residencyDetails" to "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Naaaaaa"
 
@@ -547,7 +547,7 @@ Scenario Outline: Secrets Change Bureau
 	
 	When I click on the "edit" link
 	
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I check the "Police service" checkbox
 
 	And I set text area with "id" of "cjsPoliceDetails" to "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Naaaaaa"

@@ -5,7 +5,7 @@ Scenario Outline: English 3rd Party Deceased
 
 	Given I am on "Public" "test"
 
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -213,7 +213,7 @@ Scenario Outline: English 3rd Party Super Urgent - contact details same as 3rd p
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
-		| 452   |<juror_number>| <pool_number>	| 2				            | 400	|
+		| 452   |<juror_number>| <pool_number>	| 1				            | 400	|
 	
 	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
 	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
@@ -230,7 +230,7 @@ Scenario Outline: English 3rd Party Super Urgent - contact details same as 3rd p
 	And I press the "Search" button
 	And I click on "<juror_number>" in the same row as "<juror_number>"
 	
-	Then I press the "Process reply" button
+	Then I press the "More actions" button
 	Then I click on the "PDF sent to court..." link
 	When I check the "PDF sent to court" checkbox
 	And I press the "Confirm" button
@@ -475,7 +475,7 @@ Scenario Outline: English 1st Party Straight Through - regression - contact deta
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
 		| 457   |<juror_number>| <pool_number>	| 5				            | 400	|
 		
-	And auto straight through processing has been enabled
+	And auto straight through processing has been enabled new schema
 	
 	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
 	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema

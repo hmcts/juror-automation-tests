@@ -9,14 +9,14 @@ Scenario Outline: Exceed 2000 characters in Bureau notes and check new error mes
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
 		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
 
-	And auto straight through processing has been enabled
+	And auto straight through processing has been enabled new schema
 	
 	Given I have submitted a first party English straight through response
 		| part_no		| pool_number	| last_name		| postcode	| email 	|
 		| <juror_number>| <pool_number>	| <last_name>	| <postcode>| <email>	|
 	
 	Given I am on "Bureau" "test"
-	When I log in
+	When I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button

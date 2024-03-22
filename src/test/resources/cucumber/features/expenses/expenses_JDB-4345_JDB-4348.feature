@@ -8,11 +8,11 @@ Scenario Outline: expensesJDB-4345_RoundUp
 	And I press the "Start now" button
 	
 	#loseincome
-	Then I set the radio button to "Yes"
+	Then I choose the "Yes" radio button
 	When I press the "Continue" button
 	
 	#earnmorethan
-	Then I set the radio button to "No"
+	Then I choose the "No" radio button
 	When I press the "Continue" button
 	
 	#dailyearnings
@@ -20,7 +20,7 @@ Scenario Outline: expensesJDB-4345_RoundUp
 	When I press the "Continue" button
 	
 	#otherexpenses
-	Then I set the radio button to "Yes"
+	Then I choose the "Yes" radio button
 	When I press the "Continue" button
 	
 	#dailyexpenses
@@ -48,7 +48,7 @@ Scenario Outline: expensesJDB-4345_RoundUp
 	When I press the "Continue" button
 	
 	#payforparking?
-	Then I set the radio button to "Yes"
+	Then I choose the "Yes" radio button
 	When I press the "Continue" button
 	
 	#cantclaimforparking
@@ -162,11 +162,11 @@ Scenario Outline: expensesJDB-4345_earnings>64.95andexpenses=0
 	And I press the "Start now" button
 	
 	#loseincome
-	Then I set the radio button to "Yes"
+	Then I choose the "Yes" radio button
 	When I press the "Continue" button
 	
 	#earnmorethan
-	Then I set the radio button to "No"
+	Then I choose the "No" radio button
 	When I press the "Continue" button
 	
 	#dailyearnings
@@ -174,7 +174,7 @@ Scenario Outline: expensesJDB-4345_earnings>64.95andexpenses=0
 	When I press the "Continue" button
 	
 	#otherexpenses
-	Then I set the radio button to "Yes"
+	Then I choose the "Yes" radio button
 	When I press the "Continue" button
 	
 	#dailyexpenses
@@ -202,7 +202,7 @@ Scenario Outline: expensesJDB-4345_earnings>64.95andexpenses=0
 	When I press the "Continue" button
 	
 	#payforparking?
-	Then I set the radio button to "Yes"
+	Then I choose the "Yes" radio button
 	When I press the "Continue" button
 	
 	#cantclaimforparking
@@ -298,11 +298,11 @@ Scenario Outline: expensesJDB-4345_0earningsandexpenses>or<64.95
 	And I press the "Start now" button
 	
 	#loseincome
-	Then I set the radio button to "Yes"
+	Then I choose the "Yes" radio button
 	When I press the "Continue" button
 	
 	#earnmorethan
-	Then I set the radio button to "No"
+	Then I choose the "No" radio button
 	When I press the "Continue" button
 	
 	#dailyearnings
@@ -310,7 +310,7 @@ Scenario Outline: expensesJDB-4345_0earningsandexpenses>or<64.95
 	When I press the "Continue" button
 	
 	#otherexpenses
-	Then I set the radio button to "Yes"
+	Then I choose the "Yes" radio button
 	When I press the "Continue" button
 	
 	#dailyexpenses
@@ -338,7 +338,7 @@ Scenario Outline: expensesJDB-4345_0earningsandexpenses>or<64.95
 	When I press the "Continue" button
 	
 	#payforparking?
-	Then I set the radio button to "Yes"
+	Then I choose the "Yes" radio button
 	When I press the "Continue" button
 	
 	#cantclaimforparking

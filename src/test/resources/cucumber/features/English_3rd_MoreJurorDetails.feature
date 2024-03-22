@@ -52,7 +52,7 @@ Scenario Outline: English_3rd_MoreJurorDetails
 	When I set the radio button to "The person is not here"
 	And I press the "Continue" button
 	Then I see "Is the name we have for them correct?" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	When I click on the "What happens if they have changed their name?" link
@@ -70,7 +70,7 @@ Scenario Outline: English_3rd_MoreJurorDetails
 	
 	#Check juror address
 	When I see "Juror Details" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	Then I see "Give the date of birth for the person you're replying for" on the page
 	

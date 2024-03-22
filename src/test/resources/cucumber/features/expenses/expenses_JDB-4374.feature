@@ -10,7 +10,7 @@ Scenario: expensesJDB-4374
 	And I press the "Start now" button
 	
 	#loseincome
-	Then I set the radio button to "Yes"
+	Then I choose the "Yes" radio button
 	When I press the "Continue" button
 	
 	#earnmorethan
@@ -30,13 +30,13 @@ Scenario: expensesJDB-4374
 	
 	#Select Yes
 	
-	Then I set the radio button to "Yes"
+	Then I choose the "Yes" radio button
 	Then the radio button "Yes" is "selected"
 	Then the radio button "No" is "unselected"
 
 	#Select No
 	
-	Then I set the radio button to "No"
+	Then I choose the "No" radio button
 	Then the radio button "No" is "selected"
 	Then the radio button "Yes" is "unselected"
 	

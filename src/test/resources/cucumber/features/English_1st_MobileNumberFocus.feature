@@ -5,7 +5,7 @@ Scenario Outline:
 #	Given I am on "Public" "juror-test02"
 	Given I am on "Public" "bau-test"
 	
-	Given auto straight through processing has been disabled
+	Given auto straight through processing has been disabled new schema
 	
 	Given the juror numbers have not been processed
 		| part_no 	| pool_no 	| owner |
@@ -30,10 +30,10 @@ Scenario Outline:
 	
 	#Moving past Name Section
 	
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	Then I see "Is this your address?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	When I press the "Continue" button
 	
 	
@@ -66,13 +66,13 @@ Scenario Outline:
 	#Residency JDB-3378
 	
 	When I see "Eligibility" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 
 	#CJS no
 	
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#JDB-3371
@@ -82,7 +82,7 @@ Scenario Outline:
 	#Bail JDB-3377
 	
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#JDB-3370
@@ -92,21 +92,21 @@ Scenario Outline:
 	#Convictions JDB-3376
 	
 	When I see "Eligibility" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Sectioned JDB-3363
 	
 	Then I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page	
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Capacity JDB-3364
 	
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	Then I see "Check your start date" on the page
@@ -120,7 +120,7 @@ Scenario Outline:
 	#RA no
 	
 	Then I see "Will you need help when you're at the court?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	Then I see "Check your answers now" on the page
 	Then I see "0207 8211 818" on the page
@@ -141,7 +141,7 @@ Scenario Outline:
 	And I press the "Submit" button
 	Then I see "You have completed your reply" on the page
 	
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	
 #	When I have completed the response for
 #		| part_no 	|

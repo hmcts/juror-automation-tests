@@ -65,7 +65,7 @@ Scenario Outline: 1st Party English ST, answers in English
 	Given the juror numbers have not been processed
 	|part_no	|pool_no 	|Owner 	|
 	|<part_no>	|<pool_no> 	|400	|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	And "<juror_number>" has "RET_DATE" as "1 mondays time"
 	And "<juror_number>" has "NEXT_DATE" as "1 mondays time"
 	And I have submitted a first party English straight through response
@@ -109,7 +109,7 @@ Scenario Outline: 1st Party English ST, answers in Welsh
 	Given the juror numbers have not been processed
 	|part_no	|pool_no 	|Owner 	|
 	|<part_no>	|<pool_no> 	|400	|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	And "<juror_number>" has "RET_DATE" as "1 mondays time"
 	And "<juror_number>" has "NEXT_DATE" as "1 mondays time"
 	And I have submitted a first party Welsh straight through response
@@ -158,7 +158,7 @@ Scenario Outline: 1st Party Welsh ST, answers in Welsh
 	Given the juror numbers have not been processed
 	|part_no		|pool_no 	|Owner 		|
 	|<part_no>		|<pool_no>	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	And "<juror_number>" has "RET_DATE" as "1 mondays time"
 	And "<juror_number>" has "NEXT_DATE" as "1 mondays time"
 	And I have submitted a first party Welsh straight through response
@@ -205,7 +205,7 @@ Scenario Outline: 1st Party Welsh ST, answers in English
 	Given the juror numbers have not been processed
 	|part_no		|pool_no 	|Owner 		|
 	|<part_no>		|<pool_no> 	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	And "<juror_number>" has "RET_DATE" as "1 mondays time"
 	And "<juror_number>" has "NEXT_DATE" as "1 mondays time"
 #	And I have submitted a first party Welsh straight through response
@@ -256,7 +256,7 @@ Scenario Outline: 1st Party English ST, responds in English
 	Given the juror numbers have not been processed
 	|part_no	|pool_no 	|Owner 	|
 	|<part_no>	|<pool_no> 	|400	|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	And "<juror_number>" has "RET_DATE" as "2 mondays time"
 	And "<juror_number>" has "NEXT_DATE" as "2 mondays time"
 	And I have submitted a first party English straight through response
@@ -306,7 +306,7 @@ Scenario Outline: 1st Party Welsh Age Disqualified, responds in Welsh
 	Given the juror numbers have not been processed
 	|part_no	|pool_no 	|Owner 		|
 	|<part_no>	|<pool_no>	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	And "<juror_number>" has "RET_DATE" as "4 mondays time"
 	And "<juror_number>" has "NEXT_DATE" as "4 mondays time"
 	And I have submitted a first party Welsh underage response
@@ -343,7 +343,7 @@ Scenario Outline: 1st Party English ST, responds in Welsh
 	Given the juror numbers have not been processed
 	|part_no	|pool_no 	|Owner 	|
 	|<part_no>	|<pool_no> 	|400	|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	And "<juror_number>" has "RET_DATE" as "2 mondays time"
 	And "<juror_number>" has "NEXT_DATE" as "2 mondays time"
 	And I have submitted a first party Welsh straight through response
@@ -393,7 +393,7 @@ Scenario Outline: 1st Party Welsh Age Disqualified, responds in English
 	Given the juror numbers have not been processed
 	|part_no	|pool_no 	|Owner 	|
 	|<part_no>	|<pool_no>	|400	|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	And "<juror_number>" has "RET_DATE" as "4 mondays time"
 	And "<juror_number>" has "NEXT_DATE" as "4 mondays time"
 #	And I have submitted a first party Welsh underage response
@@ -430,7 +430,7 @@ Scenario Outline: 1st Party Welsh Excusal refused, juror replies in English
 	Given the juror numbers have not been processed
 	|part_no	|pool_no 	|Owner 	|
 	|<part_no>	|<pool_no> 	|400	|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	And "<juror_number>" has "RET_DATE" as "4 mondays time"
 	And "<juror_number>" has "NEXT_DATE" as "4 mondays time"
 #	And I have submitted a first party Welsh excusal response
@@ -480,7 +480,7 @@ Scenario Outline: 1st Party Welsh Excusal refused, juror replies in Welsh
 	Given the juror numbers have not been processed
 	|part_no	|pool_no 	|Owner 	|
 	|<part_no>	|<pool_no> 	|400	|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	And "<juror_number>" has "RET_DATE" as "4 mondays time"
 	And "<juror_number>" has "NEXT_DATE" as "4 mondays time"
 	And I have submitted a first party Welsh excusal response
@@ -530,7 +530,7 @@ Scenario Outline: 1st Party English Excusal refused, juror replies in Welsh
 	Given the juror numbers have not been processed
 	|part_no	|pool_no 	|Owner 	|
 	|<part_no>	|<pool_no> 	|400	|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	And "<juror_number>" has "RET_DATE" as "4 mondays time"
 	And "<juror_number>" has "NEXT_DATE" as "4 mondays time"
 	And I have submitted a first party Welsh excusal response
@@ -580,7 +580,7 @@ Scenario Outline: 1st Party English Excusal refused, juror replies in English
 	Given the juror numbers have not been processed
 	|part_no	|pool_no 	|Owner 	|
 	|<part_no>	|<pool_no> 	|400	|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	And "<juror_number>" has "RET_DATE" as "4 mondays time"
 	And "<juror_number>" has "NEXT_DATE" as "4 mondays time"
 #	And I have submitted a first party Welsh excusal response
@@ -630,7 +630,7 @@ Scenario Outline: 1st Party English Excusal accepted, juror responds in English
 	Given the juror numbers have not been processed
 	|part_no	|pool_no 	|Owner 	|
 	|<part_no>	|<pool_no> 	|400	|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	And "<juror_number>" has "RET_DATE" as "4 mondays time"
 	And "<juror_number>" has "NEXT_DATE" as "4 mondays time"
 	And I have submitted a first party English excusal response
@@ -675,7 +675,7 @@ Scenario Outline: 1st Party English Excusal accepted, juror responds in Welsh
 	Given the juror numbers have not been processed
 	|part_no	|pool_no 	|Owner 	|
 	|<part_no>	|<pool_no> 	|400	|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	And "<juror_number>" has "RET_DATE" as "4 mondays time"
 	And "<juror_number>" has "NEXT_DATE" as "4 mondays time"
 	And I have submitted a first party Welsh excusal response
@@ -720,7 +720,7 @@ Scenario Outline: 1st Party English Welsh accepted, juror responds in Welsh
 	Given the juror numbers have not been processed
 	|part_no	|pool_no 	|Owner 	|
 	|<part_no>	|<pool_no> 	|400	|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	And "<juror_number>" has "RET_DATE" as "4 mondays time"
 	And "<juror_number>" has "NEXT_DATE" as "4 mondays time"
 	And I have submitted a first party Welsh excusal response
@@ -765,7 +765,7 @@ Scenario Outline: 1st Party English Welsh accepted, juror responds in English
 	Given the juror numbers have not been processed
 	|part_no	|pool_no 	|Owner 	|
 	|<part_no>	|<pool_no> 	|400	|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	And "<juror_number>" has "RET_DATE" as "4 mondays time"
 	And "<juror_number>" has "NEXT_DATE" as "4 mondays time"
 	And I have submitted a first party English excusal response
@@ -810,7 +810,7 @@ Scenario Outline: 1st Party English Deferral refused, answers in welsh
 	Given the juror numbers have not been processed
 	|part_no	|pool_no 	|Owner 	|
 	|<part_no>	|<pool_no> 	|400	|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	And "<juror_number>" has "RET_DATE" as "4 mondays time"
 	And "<juror_number>" has "NEXT_DATE" as "4 mondays time"
 	And I have submitted a first party Welsh deferral response
@@ -852,7 +852,7 @@ Scenario Outline: 1st Party English Deferral refused, answers in english
 	Given the juror numbers have not been processed
 	|part_no	|pool_no 	|Owner 	|
 	|<part_no>	|<pool_no> 	|400	|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	And "<juror_number>" has "RET_DATE" as "4 mondays time"
 	And "<juror_number>" has "NEXT_DATE" as "4 mondays time"
 	And I have submitted a first party English deferral response
@@ -894,7 +894,7 @@ Scenario Outline: 1st Party Welsh Deferral refused, answers in english
 	Given the juror numbers have not been processed
 	|part_no	|pool_no 	|Owner 	|
 	|<part_no>	|<pool_no> 	|400	|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	And "<juror_number>" has "RET_DATE" as "4 mondays time"
 	And "<juror_number>" has "NEXT_DATE" as "4 mondays time"
 	And I have submitted a first party English deferral response
@@ -936,7 +936,7 @@ Scenario Outline: 1st Party Welsh Deferral refused, answers in welsh
 	Given the juror numbers have not been processed
 	|part_no	|pool_no 	|Owner 	|
 	|<part_no>	|<pool_no> 	|400	|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	And "<juror_number>" has "RET_DATE" as "4 mondays time"
 	And "<juror_number>" has "NEXT_DATE" as "4 mondays time"
 	And I have submitted a first party Welsh deferral response
@@ -978,7 +978,7 @@ Scenario Outline: 1st Party Welsh Postponement, responds in English
 	Given the juror numbers have not been processed
 	|part_no	|pool_no 	|Owner 		|
 	|<part_no>	|<pool_no>	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	And "<juror_number>" has "RET_DATE" as "4 mondays time"
 	And "<juror_number>" has "NEXT_DATE" as "4 mondays time"
 #	And I have submitted a first party Welsh ineligibilty response
@@ -1029,7 +1029,7 @@ Scenario Outline: 1st Party Welsh Postponement, responds in Welsh
 	Given the juror numbers have not been processed
 	|part_no	|pool_no 	|Owner 		|
 	|<part_no>	|<pool_no>	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	And "<juror_number>" has "RET_DATE" as "4 mondays time"
 	And "<juror_number>" has "NEXT_DATE" as "4 mondays time"
 	And I have submitted a first party Welsh ineligibilty response
@@ -1080,7 +1080,7 @@ Scenario Outline: 1st Party English Postponement, responds in English
 	Given the juror numbers have not been processed
 	|part_no	|pool_no 	|Owner 		|
 	|<part_no>	|<pool_no>	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	And "<juror_number>" has "RET_DATE" as "4 mondays time"
 	And "<juror_number>" has "NEXT_DATE" as "4 mondays time"
 #	And I have submitted a first party Welsh ineligibilty response
@@ -1131,7 +1131,7 @@ Scenario Outline: 1st Party English Postponement, responds in Welsh
 	Given the juror numbers have not been processed
 	|part_no	|pool_no 	|Owner 		|
 	|<part_no>	|<pool_no>	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	And "<juror_number>" has "RET_DATE" as "4 mondays time"
 	And "<juror_number>" has "NEXT_DATE" as "4 mondays time"
 	And I have submitted a first party Welsh ineligibilty response
@@ -1182,7 +1182,7 @@ Scenario Outline: 1st Party Welsh Deferral accepted, responds in Welsh
 	Given the juror numbers have not been processed
 	|part_no		|pool_no 	|Owner 		|
 	|<part_no>		|<pool_no> 	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 
 
 	And I have submitted a first party Welsh deferral response
@@ -1233,7 +1233,7 @@ Scenario Outline: 1st Party Welsh Deferral accepted, responds in English
 	Given the juror numbers have not been processed
 	|part_no		|pool_no 	|Owner 		|
 	|<part_no>		|<pool_no> 	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 
 
 #	And I have submitted a first party Welsh deferral response
@@ -1284,7 +1284,7 @@ Scenario Outline: 1st Party English Deferral accepted, responds in English
 	Given the juror numbers have not been processed
 	|part_no		|pool_no 	|Owner 		|
 	|<part_no>		|<pool_no> 	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 
 
 #	And I have submitted a first party Welsh deferral response
@@ -1335,7 +1335,7 @@ Scenario Outline: 1st Party English Deferral accepted, responds in Welsh
 	Given the juror numbers have not been processed
 	|part_no		|pool_no 	|Owner 		|
 	|<part_no>		|<pool_no> 	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 
 
 	And I have submitted a first party Welsh deferral response

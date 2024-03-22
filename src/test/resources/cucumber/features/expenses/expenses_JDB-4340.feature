@@ -7,9 +7,9 @@ Scenario: expensesJDB-4340 How many miles - car
 	
 	And I press the "Start now" button
 
-	Then I set the radio button to "No"
+	Then I choose the "No" radio button
 	When I press the "Continue" button
-	Then I set the radio button to "Yes"
+	Then I choose the "Yes" radio button
 	When I press the "Continue" button
 	Then I set "£" to "1000.00"	
 	When I press the "Continue" button
@@ -96,7 +96,7 @@ Scenario: expensesJDB-4340 How many miles - car
 	When I press the "Continue" button
 	
 	#payforparking?
-	Then I set the radio button to "No"
+	Then I choose the "No" radio button
 	When I press the "Continue" button
 	
 	When I click on the "Change" link in the same row as "Miles by car each day"

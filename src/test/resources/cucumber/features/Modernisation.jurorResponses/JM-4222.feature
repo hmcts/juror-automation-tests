@@ -455,7 +455,7 @@ Feature: JM-4222
     Then I see "There are no active pools for this date" on the page
     When I press the "Put in deferral maintenance" button
     Then I see "Do you want to print a postponement letter?" on the page
-    And I set the radio button to "No"
+    And I choose the "No" radio button
     And I press the "Continue" button
     Then I see "Juror record updated: Postponed" on the page
 
@@ -546,7 +546,7 @@ Feature: JM-4222
     And I set the radio button to "Grant deferral"
     And I press the "Continue" button
     Then I see "Do you want to print a deferral granted letter?" on the page
-    And I set the radio button to "No"
+    And I choose the "No" radio button
     And I press the "Continue" button
     And I see "Deferral granted (other)" on the page
 

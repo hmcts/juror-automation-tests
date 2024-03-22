@@ -4,7 +4,7 @@ Feature: Bureau Process Options
 Scenario Outline: Cycle through process options
 
 	Given I am on "Public" "test"
-	Given auto straight through processing has been disabled
+	Given auto straight through processing has been disabled new schema
 	Given the juror numbers have not been processed
 		|part_no 	|pool_no 	|owner	|
 		|<part_no> 	|<pool_no>	|400 	|
@@ -19,7 +19,7 @@ Scenario Outline: Cycle through process options
 		|<part_no>	|<pool_no>	|<last_name>	|<postcode>	|a@a.com|
 	
 	Given I am on "Bureau" "test"
-	And I log in	
+	And I log in as "MODTESTBUREAU"
 
 	When I click on the "Assign Replies" link
 	And I assign all the New Replies to "ARAMIS1"
@@ -84,7 +84,7 @@ Scenario Outline: Cycle through process options
 
 	#re-enable auto processing
 	
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 
 Examples:
 	|part_no		|pool_no 	|last_name 			|postcode 	|
@@ -94,7 +94,7 @@ Examples:
 Scenario Outline: Send to court process options
 
 	Given I am on "Public" "test"
-	Given auto straight through processing has been disabled
+	Given auto straight through processing has been disabled new schema
 	Given the juror numbers have not been processed
 		|part_no 	|pool_no 	|owner	|
 		|<part_no> 	|<pool_no>	|400 	|
@@ -115,7 +115,7 @@ Scenario Outline: Send to court process options
 	Then the "SUPER_URGENT" for juror "<juror_number>" is set to "Y"
 	
 	Given I am on "Bureau" "test"
-	And I log in	
+	And I log in as "MODTESTBUREAU"
 
 	When I click on the "Assign Replies" link
 	And I assign all the New Replies to "ARAMIS1"
@@ -145,7 +145,7 @@ Scenario Outline: Send to court process options
 
 	#re-enable auto processing
 	
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 
 Examples:
 	|part_no		|pool_no 	|last_name 			|postcode 	|
@@ -155,7 +155,7 @@ Examples:
 Scenario Outline: Urgent process options
 
 	Given I am on "Public" "test"
-	Given auto straight through processing has been disabled
+	Given auto straight through processing has been disabled new schema
 	Given the juror numbers have not been processed
 		|part_no 	|pool_no 	|owner	|
 		|<part_no> 	|<pool_no>	|400 	|
@@ -192,7 +192,7 @@ Scenario Outline: Urgent process options
 	# allocate to me
 	
 	Given I am on "Bureau" "test"
-	And I log in
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Assign Replies" link
 	And I assign all the New Replies to "ARAMIS1"
@@ -230,7 +230,7 @@ Scenario Outline: Urgent process options
 
 	#re-enable auto processing
 	
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 
 Examples:
 	|part_no		|pool_no 	|last_name 			|postcode 	|
@@ -240,7 +240,7 @@ Examples:
 Scenario Outline: Closed process options
 
 	Given I am on "Public" "test"
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	Given the juror numbers have not been processed
 		|part_no 	|pool_no 	|owner	|
 		|<part_no> 	|<pool_no>	|400 	|
@@ -255,7 +255,7 @@ Scenario Outline: Closed process options
 		|<part_no>	|<pool_no>	|<last_name>	|<postcode>	|a@a.com|
 	
 	Given I am on "Bureau" "test"
-	And I log in	
+	And I log in as "MODTESTBUREAU"
 
 	And I click on the "Search" link
 	And I set "Juror's pool number" to "<pool_no>"

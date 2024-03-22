@@ -27,12 +27,12 @@ Scenario Outline: English 1st Party RA
 	
 	#name
 	Then I see "Is the name we have for you correct?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#address
 	Then I see "Is this your address?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#phone
@@ -59,32 +59,32 @@ Scenario Outline: English 1st Party RA
 	
 	#residency
 	Then I see "Since you turned 13, has your main address" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#CJS
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#bail
 	Then I see "Are you currently on bail" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#crim offence
 	Then I see "Have you been found guilty of a criminal offence" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#MHQ1
 	Then I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#MHQ2
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#confirm date
@@ -96,7 +96,7 @@ Scenario Outline: English 1st Party RA
 	#Help in Court
 	#3608
 	Then I see "Will you need help when you're at the court?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	Then I see "Select if you have limited mobility, a hearing impairment, diabetes, a severe sight impairment or other disability or impairment" on the page
 	Then I check the "Diabetes" checkbox
@@ -143,12 +143,12 @@ Scenario Outline: Reasonable adjustments (DIABETES) to automatically update Juro
 	
 	#name
 	Then I see "Is the name we have for you correct?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#address
 	Then I see "Is this your address?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#phone
@@ -175,32 +175,32 @@ Scenario Outline: Reasonable adjustments (DIABETES) to automatically update Juro
 	
 	#residency
 	Then I see "Since you turned 13, has your main address" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#CJS
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#bail
 	Then I see "Are you currently on bail" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#crim offence
 	Then I see "Have you been found guilty of a criminal offence" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#MHQ1
 	Then I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#MHQ2
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#confirm date
@@ -211,7 +211,7 @@ Scenario Outline: Reasonable adjustments (DIABETES) to automatically update Juro
 	
 	#Help in Court
 	Then I see "Will you need help when you're at the court?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	Then I check the "Diabetes" checkbox
 	And I see "Tell us about any special arrangements or help you need while you're doing jury service." on the page
 	Then I set "Tell us about any special arrangements or help you need while you're doing jury service." to "Special Need is DIABETES"
@@ -277,12 +277,12 @@ Scenario Outline: Reasonable adjustments (OTHER) to automatically update Juror d
 	
 	#name
 	Then I see "Is the name we have for you correct?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#address
 	Then I see "Is this your address?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#phone
@@ -309,32 +309,32 @@ Scenario Outline: Reasonable adjustments (OTHER) to automatically update Juror d
 	
 	#residency
 	Then I see "Since you turned 13, has your main address" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#CJS
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#bail
 	Then I see "Are you currently on bail" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#crim offence
 	Then I see "Have you been found guilty of a criminal offence" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#MHQ1
 	Then I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#MHQ2
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#confirm date
@@ -345,7 +345,7 @@ Scenario Outline: Reasonable adjustments (OTHER) to automatically update Juror d
 	
 	#Help in Court
 	Then I see "Will you need help when you're at the court?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	Then I check the "Other" checkbox
 	Then I set "Provide details" to "Some further details"
 	Then I see "Tell us about any special arrangements or help you need while you're doing jury service." on the page
@@ -411,12 +411,12 @@ Scenario Outline: Reasonable adjustments (MULTIPLE) to automatically update Juro
 	
 	#name
 	Then I see "Is the name we have for you correct?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#address
 	Then I see "Is this your address?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#phone
@@ -443,32 +443,32 @@ Scenario Outline: Reasonable adjustments (MULTIPLE) to automatically update Juro
 	
 	#residency
 	Then I see "Since you turned 13, has your main address" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#CJS
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#bail
 	Then I see "Are you currently on bail" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#crim offence
 	Then I see "Have you been found guilty of a criminal offence" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#MHQ1
 	Then I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#MHQ2
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#confirm date
@@ -479,7 +479,7 @@ Scenario Outline: Reasonable adjustments (MULTIPLE) to automatically update Juro
 	
 	#Help in Court
 	Then I see "Will you need help when you're at the court?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	Then I check the "Other" checkbox
 	Then I set "Provide details" to "Some further details"
 	Then I check the "Limited mobility" checkbox

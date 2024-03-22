@@ -7,9 +7,9 @@ Scenario: expensesJDB-4337 Value of Additional Expenses
 	
 	And I press the "Start now" button
 
-	Then I set the radio button to "No"
+	Then I choose the "No" radio button
 	When I press the "Continue" button
-	Then I set the radio button to "Yes"
+	Then I choose the "Yes" radio button
 	When I press the "Continue" button
 	
 	#footer

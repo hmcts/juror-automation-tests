@@ -4,7 +4,7 @@ Feature: Bureau Functionality - NEW
 @RegressionSingle 
 Scenario Outline: Your Work 
 	Given I am on "Public" "test"
-	Given auto straight through processing has been disabled
+	Given auto straight through processing has been disabled new schema
 	Given the juror numbers have not been processed
 		|part_no 			|pool_no 	|owner	|
 		|<part_no> 			|457170501	|400 	|
@@ -235,7 +235,7 @@ Scenario Outline: Your Work
 	When I click on the "Completed" link
 	Then I see "<part_no_four>" on the page
 
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	
 Examples:
 	|part_no		|part_no_two	|part_no_three	|part_no_four	|pool_no 	|last_name 	|last_name_two	|last_name_three	|last_name_four	|postcode 	|
@@ -244,7 +244,7 @@ Examples:
 @RegressionSingle 
 Scenario Outline: Edit Response
 	Given I am on "Public" "test"
-	Given auto straight through processing has been disabled
+	Given auto straight through processing has been disabled new schema
 	Given the juror numbers have not been processed
 		|part_no 			|pool_no 	|owner	|
 		|<part_no> 			|457170501	|400 	|
@@ -337,7 +337,7 @@ Scenario Outline: Edit Response
 	Then I click on the "Back" link
 	And I see "Your work" on the page
 	
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	
 Examples:
 	|part_no		|part_no_two	|part_no_three	|pool_no 	|last_name 		|last_name_two	|last_name_three	|postcode 	|
@@ -347,7 +347,7 @@ Examples:
 Scenario Outline: Search as Team Member
 	Given I am on "Public" "test"
 	Given "ARAMIS1" has court 9 set as "457"
-	Given auto straight through processing has been disabled
+	Given auto straight through processing has been disabled new schema
 	Given the juror numbers have not been processed
 		|part_no 			|pool_no 	|owner	|
 		|<part_no> 			|457170501	|400 	|
@@ -502,7 +502,7 @@ Scenario Outline: Search as Team Member
 	And I see "ARAMIS1" in the same row as "<juror_number>"
 	And I see "TO DO" on the page
 	
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	
 Examples:
 	|part_no		|part_no_two	|part_no_three	|pool_no 	|last_name 		|last_name_two	|last_name_three	|postcode 	|
@@ -511,7 +511,7 @@ Examples:
 @RegressionSingle 
 Scenario Outline: Search as Team Leader
 	Given I am on "Public" "test"
-	Given auto straight through processing has been disabled
+	Given auto straight through processing has been disabled new schema
 	Given the juror numbers have not been processed
 		|part_no 			|pool_no 	|owner	|
 		|<part_no> 			|457170501	|400 	|
@@ -741,7 +741,7 @@ Scenario Outline: Search as Team Leader
 	And I see "LNAMEURGENT" in the same row as "<part_no_two>"
 	And I see "LNAMESUPERURGENT" in the same row as "<part_no_three>"
 	
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	
 Examples:
 	|part_no		|part_no_two	|part_no_three	|pool_no 	|last_name 		|last_name_two	|last_name_three	|postcode 	|
@@ -897,7 +897,7 @@ Scenario Outline: Work Allocation
 	#submit responses with auto-processing disabled
 	
 	Given I am on "Public" "test"
-	And auto straight through processing has been disabled
+	And auto straight through processing has been disabled new schema
 	And I have submitted a first party English straight through response
 	| part_no			|pool_number| last_name		|postcode	| email |
 	|<part_no_four>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
@@ -971,7 +971,7 @@ Scenario Outline: Work Allocation
 	And I see "" in "allocateSuperUrgent" Allocate Replies box
 	And the "Assign replies" button is disabled
 	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "STAFF_LOGIN" is "ARAMIS1" where "JUROR_NUMBER" is "<part_no_six>"
-	And auto straight through processing has been enabled
+	And auto straight through processing has been enabled new schema
 	
 Examples:
 	|part_no_four	|part_no_five	|part_no_six	|pool_no 	|last_name 	|postcode 	|email				|
@@ -999,7 +999,7 @@ Given I am on "Bureau" "test"
 	#submit response with auto-processing enabled
 	
 	Given I am on "Public" "test"
-	And auto straight through processing has been enabled
+	And auto straight through processing has been enabled new schema
 	And I have submitted a first party English straight through response
 	| part_no		|pool_number| last_name		|postcode	| email |
 	|<part_no_seven>|<pool_no>	| <last_name>	|<postcode>	|<email>|
@@ -1090,7 +1090,7 @@ Scenario: Manage Team
 	And I set "Name" to "New Name"
 	And I set "Username" to "NEWUSER"
 	And the radio button "No" is "selected"
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	
 	Then I press the "Save" button
 	And I see "Manage team" on the page
@@ -1104,7 +1104,7 @@ Scenario: Manage Team
 	And "Username" is "NEWUSER"
 	And I see "/NEWUSER" in the URL
 	And the radio button "No" is "selected"
-	Then I set the radio button to "Yes"
+	Then I choose the "Yes" radio button
 	Then I press the "Save" button
 	And I see "Manage team" on the page
 	Then I see "ACTIVE" in the same row as "New Name"
@@ -1182,7 +1182,7 @@ Scenario Outline: Results grid updates when status changes are made
 	
 	#turn off auto processing
 	
-	Given auto straight through processing has been disabled
+	Given auto straight through processing has been disabled new schema
 	
 	# Submit response in pool
 	
