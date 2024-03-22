@@ -1890,7 +1890,7 @@ Scenario Outline: Multiple reply types
 
 	Given I am on "Bureau" "test"
 
-	When I log in as "SYSTEM"
+	When I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
 	And I set "Juror's pool number" to "<pool_number>"

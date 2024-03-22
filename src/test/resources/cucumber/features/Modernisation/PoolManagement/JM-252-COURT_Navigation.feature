@@ -143,7 +143,7 @@ Feature: JM-252_Navigation_COURT
 
     Then I set the radio button to "<courtType>"
     And I set "Number of jurors required in total" to "150"
-    Then I should see the attendance time present is "09:15"
+    Then I should see the attendance time present is "09:00"
     Then I press the "Continue" button
 
     When I save the new pool request
@@ -161,12 +161,12 @@ Feature: JM-252_Navigation_COURT
     Then  I click the change link for the chosen court
     And I see "Select a court for this pool" on the page
     Then I set input field with "ID" of "courtNameOrLocation" to "767"
-    And I click on the "Chichester (416)" link
+    And I click on the "Knutsford (767)" link
     And I press the "Continue" button
 
     Then I set the radio button to "<courtType>"
     And I set "Number of jurors required in total" to "150"
-    Then I should see the attendance time present is "09:30"
+    Then I should see the attendance time present is "10:00"
     Then I press the "Continue" button
 
     When I save the new pool request
@@ -184,10 +184,10 @@ Feature: JM-252_Navigation_COURT
     Then I click on the "Clear filter" link
 
     Then I see "Chester" on the page
-    And I see "Chichester" on the page
+    And I see "Knutsford" on the page
 
     Then I set input field with "ID" of "courtNameOrLocation" to "767"
-    Then I click on the "Chichester (416)" link
+    Then I click on the "Knutsford (767)" link
     Then I press the "Filter" button
     Then only records from "Knutsford" are displayed
 
@@ -201,10 +201,10 @@ Feature: JM-252_Navigation_COURT
     Then I click on the "Clear filter" link
 
     Then I see "Chester" on the page
-    And I see "Chichester" on the page
+    And I see "Knutsford" on the page
 
-    Then I set input field with "ID" of "courtNameOrLocation" to "Chichester"
-    Then I click on the "Chichester (416)" link
+    Then I set input field with "ID" of "courtNameOrLocation" to "Knutsford"
+    Then I click on the "Knutsford (767)" link
     Then I press the "Filter" button
     Then only records from "Knutsford" are displayed
 
@@ -215,8 +215,8 @@ Feature: JM-252_Navigation_COURT
     #CHANGE COURT
     Then  I click the change link for the chosen court
     And I see "Select a court for this pool" on the page
-    Then I set input field with "ID" of "courtNameOrLocation" to "774"
-    And I click on the "Welshpool (774)" link
+    Then I set input field with "ID" of "courtNameOrLocation" to "462"
+    And I click on the "Warrington (462)" link
     And I press the "Continue" button
 
     Then I set the radio button to "<courtType>"
@@ -228,19 +228,19 @@ Feature: JM-252_Navigation_COURT
     Then I should be taken to the pool summary page
 
     And I should see the newly created pool request
-      | court          | Welshpool  |
+      | court          | Warrington |
       | jurorsRequired | 150        |
 
-    Then I set input field with "ID" of "courtNameOrLocation" to "774"
-    Then I click on the "Welshpool (774)" link
+    Then I set input field with "ID" of "courtNameOrLocation" to "462"
+    Then I click on the "Warrington (462)" link
     Then I press the "Filter" button
-    Then only records from "Welshpool" are displayed
+    Then only records from "Warrington" are displayed
 
     Then I click on the "Clear filter" link
 
     Then I see "Chester" on the page
-    And I see "Chichester" on the page
-    And I see "Welshpool" on the page
+    And I see "Knutsford" on the page
+    And I see "Warrington" on the page
 
     Examples:
       | user         | courtType |

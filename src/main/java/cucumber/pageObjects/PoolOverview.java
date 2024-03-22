@@ -42,7 +42,7 @@ public class PoolOverview {
     @FindBy(xpath = "//span[contains(text(),'Court start date')]/following-sibling::span")
     WebElement courtStartDate;
 
-    @FindBy(xpath = "//span[contains(text(),'Court start date')]//ancestor::div/span[2]")
+    @FindBy(xpath = "//span[contains(text(),'Service start date') or contains(text(), 'Court start date')]//ancestor::div/span[2]")
     WebElement overviewCourtStartDate;
 
     @FindBy(xpath = "//span[contains(text(),'Additional requirements')]/following-sibling::span")

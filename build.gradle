@@ -41,8 +41,8 @@ dependencyCheck {
 
 dependencies {
   implementation 'log4j:log4j:1.2.17'
-  implementation 'org.slf4j:slf4j-api:1.7.5'
-  implementation 'org.slf4j:slf4j-log4j12:1.7.5'
+  implementation 'org.slf4j:slf4j-api:1.7.36'
+  implementation 'org.slf4j:slf4j-log4j12:1.7.36'
 
   implementation 'org.seleniumhq.selenium:selenium-java:4.13.0'
 
@@ -57,7 +57,7 @@ dependencies {
 
   testImplementation 'io.cucumber:cucumber-jvm-deps:1.0.6'
 
-  testImplementation 'io.cucumber:cucumber-core:7.15.0'
+  testImplementation 'io.cucumber:cucumber-core:7.16.0'
 
   testImplementation 'io.cucumber:cucumber-java:7.15.0'
   implementation 'org.hamcrest:hamcrest-core:2.2'

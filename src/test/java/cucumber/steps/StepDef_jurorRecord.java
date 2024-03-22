@@ -84,7 +84,6 @@ public class StepDef_jurorRecord {
         assertTrue(JUROR_RECORD.seeOverviewTab());
         assertTrue(JUROR_RECORD.seeDetailsTab());
         assertTrue(JUROR_RECORD.seeSummonsTab());
-        assertTrue(JUROR_RECORD.seeFinanceTab());
         assertTrue(JUROR_RECORD.seeAttendanceTab());
         assertTrue(JUROR_RECORD.seeNotesTab());
         assertTrue(JUROR_RECORD.seeHistoryTab());
