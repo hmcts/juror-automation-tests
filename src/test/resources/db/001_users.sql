@@ -1,10 +1,10 @@
-delete from juror_mod.user_courts;
-commit;
+--delete from juror_mod.user_courts;
+--commit;
+--
+--delete from juror_mod.user_roles;
+--commit;
 
-delete from juror_mod.user_roles;
-commit;
-
-delete from juror_mod.users;
+TRUNCATE TABLE juror_mod.users CASCADE;
 commit;
 
 INSERT INTO juror_mod.users (owner, user_type, username, email, name, active, version)
@@ -23,6 +23,7 @@ commit;
 
 INSERT INTO juror_mod.user_roles (username, role)
 VALUES ('MODTESTBUREAU', 'TEAM_LEADER'),
+       ('CPASS', 'TEAM_LEADER'),
        ('SJOUSER1', 'SENIOR_JUROR_OFFICER');
 commit;
 

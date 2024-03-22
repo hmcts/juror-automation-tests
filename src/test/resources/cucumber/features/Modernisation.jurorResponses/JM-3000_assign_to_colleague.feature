@@ -13,7 +13,7 @@ Scenario Outline: JM-3000 Assign Reply Happy Path
 		| part_no 			| pool_no 	| owner |
 		| <part_no> 		|<pool_no>	| 400 	|
 
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 
 	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
 	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
@@ -90,7 +90,7 @@ Examples:
 			| <part_no> 		|<pool_no>	| 400 	|
 			| <part_no_two> 	|<pool_no>	| 400 	|
 
-		Given auto straight through processing has been enabled
+		Given auto straight through processing has been enabled new schema
 
 		And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
 		And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema

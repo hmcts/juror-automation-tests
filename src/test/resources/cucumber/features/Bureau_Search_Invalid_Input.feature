@@ -6,7 +6,7 @@ Scenario: Bureau Search with Invalid Input
 	#log in and navigate to search
 	
 	Given I am on "Bureau" "test"
-	When I log in
+	When I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	
 	#try to enter ... in juror number

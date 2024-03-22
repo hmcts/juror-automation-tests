@@ -66,14 +66,13 @@ Scenario Outline: English 3rd Deceased
 	And I see "Jurors are selected at random from the electoral roll. This is not always completely up to date. That's why we sent a jury summons to this person. We do apologise for this and hope it has not caused too much distress." on the page
 
 	Given I am on "Bureau" "test"
-#	And I log in
 	And I log in as "MODTESTBUREAU"
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
 	Then I see "<juror_number>" on the page
 
-	Then I see "<juror_number>" has reply type indicator "COMPLETED"
+	Then I see "<juror_number>" has reply type indicator "Completed"
 	
 Examples:
 	| juror_number	| pool_number| last_name| postcode	| email 	|

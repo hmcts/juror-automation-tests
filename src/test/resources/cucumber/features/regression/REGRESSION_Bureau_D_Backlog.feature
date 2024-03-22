@@ -11,7 +11,7 @@ Scenario Outline: Bureau D script
 		| part_no 	| pool_no 	| owner |
 		| <part_no> |<pool_no>	| 400 	|
 	
-	And auto straight through processing has been enabled
+	And auto straight through processing has been enabled new schema
 	
 	Given "<juror_number>" has "RET_DATE" as "5 mondays time"
 
@@ -29,7 +29,7 @@ Scenario Outline: Bureau D script
 	
 	
 	Given I am on "Bureau" "juror-test01"
-	When I log in
+	When I log in as "MODTESTBUREAU"
 	And I click on the "Assign Replies" link
 #	And I press the "Send" button
 #	Then I see "Please check the form" on the page

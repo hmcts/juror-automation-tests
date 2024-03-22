@@ -24,7 +24,7 @@ Scenario Outline: JDB-1820 - Happy Path
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 	Then I see "Is the name we have for you correct?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	
 	#Check name
 	When I press the "Continue" button
@@ -36,7 +36,7 @@ Scenario Outline: JDB-1820 - Happy Path
 	Then I see "If your address will change soon, give us your current address. This is so we can still contact you." on the page
 	Then I see "After you've moved, contact the jury central summoning bureau by calling 0300 456 1024, and give them your new address." on the page
 	Then I see "If you are moving away from the area where you currently live, we may change the location of your jury service." on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	
 	#Check address
 	When I press the "Continue" button
@@ -66,32 +66,32 @@ Scenario Outline: JDB-1820 - Happy Path
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	
 	#Residency Yes
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#CJS no
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Bail no
 	Then I see "Are you currently on bail for a criminal offence?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Convictions no
 	Then I see "Have you been found guilty of a criminal offence?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental health part 1 no
 	Then I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental health part 2 no
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#I can attend
@@ -102,7 +102,7 @@ Scenario Outline: JDB-1820 - Happy Path
 	
 	#RA no
 	Then I see "Will you need help when you're at the court?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	Then I see "Check your answers now" on the page
 	

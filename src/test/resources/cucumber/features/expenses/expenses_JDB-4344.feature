@@ -9,13 +9,13 @@ Scenario: expenses-JDB-4344
 	
 	And I press the "Start now" button
 		
-	Then I set the radio button to "Yes"
+	Then I choose the "Yes" radio button
 	When I press the "Continue" button
-	Then I set the radio button to "No"
+	Then I choose the "No" radio button
 	When I press the "Continue" button
 	Then I set "£ each day" to "25"
 	When I press the "Continue" button
-	Then I set the radio button to "Yes"
+	Then I choose the "Yes" radio button
 	When I press the "Continue" button
 	Then I set "£ each day" to "10"	
 	When I press the "Continue" button
@@ -31,7 +31,7 @@ Scenario: expenses-JDB-4344
 	When I press the "Continue" button
 	Then I set "Miles each day" to "2"	
 	When I press the "Continue" button
-	Then I set the radio button to "Yes"
+	Then I choose the "Yes" radio button
 	When I press the "Continue" button
 	When I press the "Continue" button
 	Then I set "Cost of all your tickets in £ each day" to "20"	
@@ -53,16 +53,16 @@ Scenario: expenses-JDB-4344
 	And I see text "Yes" in the same row as "Will you lose income?"
 	And I click on the "Change" link in the same row as "Will you lose income?"
 	
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	When I press the "Continue" button
 	Then I see "Check your answers" on the page
 	And I see text "No" in the same row as "Will you lose income?"
 	
 	And I click on the "Change" link in the same row as "Will you lose income?"
 	
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	When I press the "Continue" button
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	When I press the "Continue" button
 	Then I set "£ each day" to "25"	
 	When I press the "Continue" button
@@ -86,7 +86,7 @@ Scenario: expenses-JDB-4344
 	And I see text "Yes" in the same row as "Extra costs you wouldn't normally have?"
 	And I click on the "Change" link in the same row as "Extra costs you wouldn't normally have?"
 	
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	When I press the "Continue" button
 	Then I see "Check your answers" on the page
 	And I see text "No" in the same row as "Extra costs you wouldn't normally have?"

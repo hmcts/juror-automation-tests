@@ -23,13 +23,13 @@ Scenario Outline: Confirm_DoB_ErrorValidation
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 	Then I see "Is the name we have for you correct?" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	
 	#Moving past Name Section
 	
 	When I press the "Continue" button
 	Then I see "Is this your address?" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	
 	When I press the "Continue" button
 	Then I see "What is your phone number?" on the page
@@ -55,7 +55,7 @@ Scenario Outline: Confirm_DoB_ErrorValidation
 	And I press the "Continue" button
 	Then I see "Is your date of birth correct?" on the page
 	
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	And I set "Day" to ""

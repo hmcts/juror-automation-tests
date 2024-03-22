@@ -26,12 +26,12 @@ Scenario Outline: English 1st RA Char Counter
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 	Then I see "Is the name we have for you correct?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	
 	#Check name
 	When I press the "Continue" button
 	Then I see "Is this your address?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	
 	#Check address
 	When I press the "Continue" button
@@ -60,32 +60,32 @@ Scenario Outline: English 1st RA Char Counter
 	
 	#Residency Yes
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#CJS no
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Bail no
 	Then I see "Are you currently on bail for a criminal offence?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Convictions no
 	Then I see "Have you been found guilty of a criminal offence?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental health part 1 no
 	Then I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental health part 2 no
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#I can attend
@@ -96,7 +96,7 @@ Scenario Outline: English 1st RA Char Counter
 	
 	#RA no
 	Then I see "Will you need help when you're at the court?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 
 	When I check the "Other" checkbox
 	And I set "Provide details" to "Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful te"
@@ -174,10 +174,10 @@ Scenario Outline: English 3rd RA Char Counter
 	And I press the "Continue" button
 
 	Then I see "Is the name we have for them correct?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	Then I see "Is this their address?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	Then I see "Give the date of birth for the person you're replying for" on the page
@@ -207,12 +207,12 @@ Scenario Outline: English 3rd RA Char Counter
 	
 	#Residency
 	When I see "Eligibility" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#CJS no
 	Then I see "Has the person you're replying for worked in the criminal justice system in the last 5 years?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#JDB-3371
@@ -220,7 +220,7 @@ Scenario Outline: English 3rd RA Char Counter
 	
 	#Bail
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#JDB-3370
@@ -228,19 +228,19 @@ Scenario Outline: English 3rd RA Char Counter
 	
 	#Convictions
 	When I see "Eligibility" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Sectioned
 	Then I see "Is the person you're replying for being detained, looked after or treated under the Mental Health Act?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Capacity
 	Then I see "Has it been decided that the person you're replying for 'lacks mental capacity'?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#The person can attend
@@ -250,7 +250,7 @@ Scenario Outline: English 3rd RA Char Counter
 	
 	#RA no
 	Then I see "Will the person you're replying for need help when they're at the court?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I set "Tell us about any special arrangements or help the person you're answering for needs while they're doing jury service." to "Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful text here and this should cut."
 
 	When I check the "Other" checkbox

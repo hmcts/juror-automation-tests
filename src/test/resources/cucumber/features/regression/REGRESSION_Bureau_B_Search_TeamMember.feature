@@ -5,7 +5,7 @@ Scenario Outline: Lift from QC Script for Bureau B Search
 	
 	Given I am on "Public" "test"
 	
-	Given auto straight through processing has been disabled
+	Given auto straight through processing has been disabled new schema
 	
 	Given the juror numbers have not been processed
 		|part_no 		|pool_no 	|owner 	|
@@ -80,7 +80,7 @@ Scenario Outline: Lift from QC Script for Bureau B Search
 	Then I see "Reply status" on the page
 	And I see "COMPLETED" on the page
 
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	
 Examples:
 	|part_no		|part_no_two	|pool_no 	|last_name 			|postcode 	|email				|date			|

@@ -26,7 +26,7 @@ Scenario Outline: Checking email error validation
 	Then I see "Is the name we have for you correct?" on the page
 	
 	#Check Name
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	Then I set "First name" to ""
 	And I set "Last name" to ""
@@ -40,12 +40,12 @@ Scenario Outline: Checking email error validation
 	When I click on the "Back" link
 	Then I see "FirstNamea" on the page
 	And I see "LastNameb" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	When I press the "Continue" button
 	Then I see "Is this your address?" on the page
 	
 	#Check Address
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	When I press the "Continue" button
 	Then I set "Address line 1" to ""
 	And I set "Town or city" to ""
@@ -67,7 +67,7 @@ Scenario Outline: Checking email error validation
 	Then I see "123 Street" on the page
 	And I see "London" on the page
 	And I see "CH1 2AN" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 
 	Then I see "What is your phone number?" on the page

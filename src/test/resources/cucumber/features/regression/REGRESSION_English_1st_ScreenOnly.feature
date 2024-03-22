@@ -29,7 +29,7 @@ Scenario Outline: English 1st Screen Only
 		| Your details |
 		| Is the name we have for you correct? |
 	
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	And I set "First name" to ""
@@ -51,7 +51,7 @@ Scenario Outline: English 1st Screen Only
 		| Your details |
 		| Is this your address? |
 	
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#JDB-3361
