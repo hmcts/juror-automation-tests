@@ -1067,7 +1067,7 @@ public class StepDef_jurorpool {
     public void enterDateOfBirthTMorethan75Years() {
         String datePattern = "dd/MM/yyyy";
         Calendar date = Calendar.getInstance();
-        date.add(Calendar.MONTH, 1);
+        date.add(Calendar.MONTH, 2);
         date.add(Calendar.YEAR, -76);
         String enterDOBDate = new SimpleDateFormat(datePattern).format(date.getTime());
         SUMMONS_REPLY.enterDateOfBirth(enterDOBDate);
