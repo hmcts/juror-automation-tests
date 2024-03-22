@@ -115,6 +115,22 @@ public class Expenses {
 
     @FindBy(xpath = "//*[@id=\"submitExpensesForm\"]/div[2]/div/table/tbody/tr[2]/td[9]")
     public WebElement totalDueTotalApproveExpenseTable;
+    @FindBy(id = "totalInDraftTag-link")
+    public WebElement viewDraftExpensesLink;
+    @FindBy(id = "totalForApprovalTag-link")
+    public WebElement viewApprovalExpensesLink;
+    @FindBy(id = "totalForApprovedTag-link")
+    public WebElement viewApprovedExpensesLink;
+    @FindBy(id = "nonAttendanceDayButton")
+    public WebElement clickNonAttendanceDayButton;
+    @FindBy(id = "check-all-expenses")
+    public WebElement clickCheckAllExpensesCheckbox;
+    @FindBy(id = "addSmartCardSpendButton")
+    public WebElement clickAddSmartcardSpendButton;
+    @FindBy(id = "smartcardAmount")
+    public WebElement setSmartcardSpendField;
+    @FindBy(xpath = "//*[@id=\"main-content\"]/div/div/form/div[2]/button")
+    public WebElement clickAddSmartcardSpendSubmitButton;
 
 
     public void pressViewAllExpensesButton() {
@@ -261,4 +277,16 @@ public class Expenses {
             }
         }
     }
+    public void clickViewDraftExpensesLink() {viewDraftExpensesLink.click();}
+    public void clickViewApprovalExpensesLink() {viewApprovalExpensesLink.click();}
+    public void clickViewApprovedExpensesLink() {viewApprovedExpensesLink.click();}
+    public void clickNonAttendanceDayButton() {clickNonAttendanceDayButton.click();}
+    public void clickCheckAllExpensesCheckbox() {clickCheckAllExpensesCheckbox.click();}
+    public void clickAddSmartcardSpendButton() {clickAddSmartcardSpendButton.click();}
+    public void setSmartcardSpendField(String amount) {
+        setSmartcardSpendField.clear();
+        setSmartcardSpendField.sendKeys(amount);
+    }
+    public void clickAddSmartcardSpendSubmitButton() {clickAddSmartcardSpendSubmitButton.click();}
+
 }
