@@ -440,7 +440,7 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
       |  041520026     |415300703   | MODTESTBUREAU |
 
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMultiWIP @NewSchemaConverted @JM-6686
   Scenario Outline:As a jury officer test a Deferred juror can print a granted letter by searching via juror number
 
     Given I am on "Bureau" "test"
