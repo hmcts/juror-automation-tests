@@ -5,7 +5,7 @@ Scenario Outline:
 #	Given I am on "Public" "juror-test02"
 	Given I am on "Public" "bau-test"
 	
-	Given auto straight through processing has been disabled
+	Given auto straight through processing has been disabled new schema
 	
 	Given the juror numbers have not been processed
 		| part_no 	| pool_no 	| owner |
@@ -141,7 +141,7 @@ Scenario Outline:
 	And I press the "Submit" button
 	Then I see "You have completed your reply" on the page
 	
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	
 #	When I have completed the response for
 #		| part_no 	|

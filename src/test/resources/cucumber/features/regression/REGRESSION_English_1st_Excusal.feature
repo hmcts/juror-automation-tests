@@ -125,7 +125,7 @@ Scenario Outline: English 1st Party Excusal Accepted
 	And I see "Why do you need to be excused from jury service?" on the page
 	
 	Given I am on "Bureau" "test"
-	And I log in
+	And I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
@@ -138,7 +138,7 @@ Scenario Outline: English 1st Party Excusal Accepted
 	And I see link with text "Excusal"
 	
 	Given I am on "Bureau" "test"
-	And I log in
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -153,7 +153,7 @@ Scenario Outline: English 1st Party Excusal Accepted
 	Then I see "Your work" on the page
 	
 	Then I click on the "Sign out" link
-	When I log in with "CPASS" and "Password2!"
+	When I log in as "CPASS"
 	Then I see "<juror_number>" on the page
 	Then I see "<juror_number>" has reply type indicator "EXCUSAL"
 	And I click on "<juror_number>" in the same row as "<juror_number>"
@@ -297,7 +297,7 @@ Scenario Outline: English 1st Party Excusal Refused
 	And I see "You have completed your reply" on the page
 	
 	Given I am on "Bureau" "test"
-	And I log in
+	And I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
@@ -441,7 +441,7 @@ Scenario Outline: English 1st Party Excusal Super Urgent
 	Then the "SUPER_URGENT" for juror "<juror_number>" is set to "Y"
 	
 	Given I am on "Bureau" "test"
-	When I log in with "CPASS" and "Password2!"
+	When I log in as "CPASS"
 	
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -571,7 +571,7 @@ Scenario Outline: English 1st Party Excusal error messages
 	And I see "You have completed your reply" on the page
 	
 	Given I am on "Bureau" "test"
-	And I log in
+	And I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
@@ -726,7 +726,7 @@ Scenario Outline: English 1st Party Excusal Reason Special Character (£) check
 	
 	#check Bureau
 	Given I am on "Bureau" "test"
-	And I log in
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -741,7 +741,7 @@ Scenario Outline: English 1st Party Excusal Reason Special Character (£) check
 	Then I see "Your work" on the page
 	
 	Then I click on the "Sign out" link
-	When I log in with "CPASS" and "Password2!"
+	When I log in as "CPASS"
 	Then I see "<juror_number>" on the page
 	Then I see "<juror_number>" has reply type indicator "EXCUSAL"
 	And I click on "<juror_number>" in the same row as "<juror_number>"
@@ -1169,7 +1169,7 @@ Scenario Outline: English 1st Party Excusal Reason Special Character 1000 x (£)
 	And I see "You have completed your reply" on the page
 	
 	Given I am on "Bureau" "test"
-	And I log in
+	And I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button

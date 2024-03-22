@@ -258,7 +258,7 @@ Scenario Outline: English 3rd Party Deferral
 	And I validate the "Third" deferral date is "11" weeks in the future
 
 	Given I am on "Bureau" "test"
-	And I log in
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"

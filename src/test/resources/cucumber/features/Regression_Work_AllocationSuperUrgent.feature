@@ -107,7 +107,7 @@ Scenario Outline: Check that Urgent ST is not auto assigned
 	
 	#Bureau
 	Given I am on "Bureau" "test"
-	And I log in
+	And I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
@@ -242,7 +242,7 @@ Scenario Outline: Check that Super Urgent ST is not auto assigned
 	
 	#Bureau
 	Given I am on "Bureau" "test"
-	And I log in
+	And I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button

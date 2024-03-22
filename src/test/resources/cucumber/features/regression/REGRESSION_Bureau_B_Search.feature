@@ -112,7 +112,7 @@ Examples:
 Scenario: Attempt to input alpha characters into Juror Number and Pool Number fields on Seach screen on Bureau
 	
 	Given I am on "Bureau" "test"
-	When I log in
+	When I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	And I set "Juror number" to "abcdefghijklmnopqrstuvwxyz"
 	And I set "Juror's pool number" to "abcdefghijklmnopqrstuvwxyz"

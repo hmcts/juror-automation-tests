@@ -429,7 +429,7 @@ Scenario Outline: Checking MH questions have been split in Bureau and no text ME
 	
 	#Bureau
 	Given I am on "Bureau" "test"
-	And I log in
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"

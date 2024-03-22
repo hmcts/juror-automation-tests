@@ -4,7 +4,7 @@ Feature: Bureau Auto Allocation of Responses
 #@RegressionSingle @JDB-3761 
 Scenario Outline: 1. Edit Juror Details on PENDING ALLOCATION
 	Given I am on "Public" "juror-test02"
-	Given auto straight through processing has been disabled
+	Given auto straight through processing has been disabled new schema
 	Given the juror numbers have not been processed
 		| part_no 	| pool_no 	| owner |
 		| <part_no> |457170401	| 400 	|
@@ -57,7 +57,7 @@ Examples:
 #@RegressionSingle @JDB-3761 
 Scenario Outline: 2. Edit Eligibility on PENDING ALLOCATION response
 	Given I am on "Public" "juror-test02"
-	Given auto straight through processing has been disabled
+	Given auto straight through processing has been disabled new schema
 	Given the juror numbers have not been processed
 		|part_no 		|pool_no 	|owner 	|
 		|<part_no_one> 	|457170401	|400 	|
@@ -106,7 +106,7 @@ Scenario Outline: 2. Edit Eligibility on PENDING ALLOCATION response
 
 	# re-enable auto processing
 	
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	
 Examples:
 	|part_no_one|part_no_three	|pool_no 	|last_name 			|postcode 	|
@@ -116,7 +116,7 @@ Examples:
 #@RegressionSingle @JDB-3761 
 Scenario Outline: 3. Edit Deferral on PENDING ALLOCATION response
 	Given I am on "Public" "juror-test02"
-	Given auto straight through processing has been disabled
+	Given auto straight through processing has been disabled new schema
 	Given the juror numbers have not been processed
 		|part_no 		|pool_no 	|owner 	|
 		|<part_no_two> 	|457170401	|400 	|
@@ -253,7 +253,7 @@ Scenario Outline: 3. Edit Deferral on PENDING ALLOCATION response
 	
 	# re-enable auto processing
 	
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 
 Examples:
 	|part_no_two|pool_no 	|last_name 			|postcode 	|email		|
@@ -263,7 +263,7 @@ Examples:
 #@RegressionSingle @JDB-3761 
 Scenario Outline: 4. Edit Excusal on PENDING ALLOCATION response
 	Given I am on "Public" "juror-test02"
-	Given auto straight through processing has been disabled
+	Given auto straight through processing has been disabled new schema
 	Given the juror numbers have not been processed
 		|part_no 		|pool_no 	|owner 	|
 		|<part_no_three>|457170401	|400 	|
@@ -388,7 +388,7 @@ Scenario Outline: 4. Edit Excusal on PENDING ALLOCATION response
 	
 	# re-enable auto processing
 	
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	
 Examples:
 	|part_no_three	|pool_no 	|last_name 			|postcode 	|email		|
@@ -398,7 +398,7 @@ Examples:
 #@RegressionSingle @JDB-3761 
 Scenario Outline: 5. Edit CJS Employment on PENDING ALLOCATION response
 	Given I am on "Public" "juror-test02"
-	Given auto straight through processing has been disabled
+	Given auto straight through processing has been disabled new schema
 	Given the juror numbers have not been processed
 		| part_no 		| pool_no 	| owner |
 		| <part_no_four>|457170401	| 400 	|
@@ -447,7 +447,7 @@ Scenario Outline: 5. Edit CJS Employment on PENDING ALLOCATION response
 
 	# re-enable auto processing 
 	
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	
 Examples:
 	|part_no_four	|pool_no 	|last_name 			|postcode 	|
@@ -457,7 +457,7 @@ Examples:
 #@RegressionSingle @JDB-3761 
 Scenario Outline: 6. Edit Reasonable Adjustments on PENDING ALLOCATION response
 	Given I am on "Public" "juror-test02"
-	Given auto straight through processing has been disabled
+	Given auto straight through processing has been disabled new schema
 	Given the juror numbers have not been processed
 		| part_no 		| pool_no 	| owner |
 		| <part_no_five>|457170401	| 400 	|
@@ -610,7 +610,7 @@ Scenario Outline: 6. Edit Reasonable Adjustments on PENDING ALLOCATION response
 	
 	# re-enable auto processing
 	
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 
 Examples:
 	|part_no_five	|pool_no 	|last_name 			|postcode 	|email		|
@@ -620,7 +620,7 @@ Examples:
 Scenario Outline: 7. Edit Notes and Logs on PENDING ALLOCATION response
 
 	Given I am on "Public" "juror-test02"
-	Given auto straight through processing has been disabled
+	Given auto straight through processing has been disabled new schema
 	Given the juror numbers have not been processed
 		|part_no 		|pool_no 	|owner 	|
 		|<part_no_six> 	|457170401	|400 	|
@@ -735,7 +735,7 @@ Scenario Outline: 7. Edit Notes and Logs on PENDING ALLOCATION response
 
 	# re-enable auto processing
 	
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 
 Examples:
 	|part_no_six|pool_no 	|last_name 			|postcode 	|e@mail		|
@@ -744,7 +744,7 @@ Examples:
 @RegressionSingle @JDB-3761 
 Scenario Outline: 8. Set to Awaiting Response on PENDING ALLOCATION response
 	Given I am on "Public" "juror-test01"
-	Given auto straight through processing has been disabled
+	Given auto straight through processing has been disabled new schema
 	Given the juror numbers have not been processed
 		| part_no 			| pool_no 	| owner |
 		| <part_no_seven> 	|457170401	| 400 	|
@@ -790,7 +790,7 @@ Scenario Outline: 8. Set to Awaiting Response on PENDING ALLOCATION response
 
 	# re-enable auto processing
 	
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	
 Examples:
 	|part_no_seven	|pool_no 	|last_name 			|postcode 	|
@@ -799,7 +799,7 @@ Examples:
 @RegressionSingle @JDB-3761 
 Scenario Outline: 9. Complete a PENDING ALLOCATION response
 	Given I am on "Public" "juror-test02"
-	Given auto straight through processing has been disabled
+	Given auto straight through processing has been disabled new schema
 	Given the juror numbers have not been processed
 		| part_no 			| pool_no 	| owner |
 		| <part_no_eight> 	|457170401	| 400 	|
@@ -843,7 +843,7 @@ Scenario Outline: 9. Complete a PENDING ALLOCATION response
 	
 	# re-enable auto processing
 	
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 
 Examples:
 	|part_no_eight	|pool_no 	|last_name 			|postcode 	|
@@ -853,7 +853,7 @@ Examples:
 #@RegressionSingle @JDB-3761 
 Scenario Outline: 10. test that editing an allocated response doesnt auto allocate to me
 	Given I am on "Public" "juror-test02"
-	Given auto straight through processing has been disabled
+	Given auto straight through processing has been disabled new schema
 	Given the juror numbers have not been processed
 		| part_no 			| pool_no 	| owner |
 		| <part_no_nine> 	|457170401	| 400 	|
@@ -923,7 +923,7 @@ Scenario Outline: 10. test that editing an allocated response doesnt auto alloca
 	
 	# re enable auto processing
 	
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 
 Examples:
 	|part_no_nine	|pool_no 	|last_name 			|postcode 	|
@@ -933,7 +933,7 @@ Examples:
 Scenario Outline: 11. Complete a PENDING ALLOCATION response that has been processed in Juror DB before Juror Digital
 	
 	Given I am on "Public" "juror-test02"
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	Given the juror numbers have not been processed
 		|part_no 		|pool_no 	|owner 	|
 		|<part_no_ten> 	|<pool_no>	|400 	|

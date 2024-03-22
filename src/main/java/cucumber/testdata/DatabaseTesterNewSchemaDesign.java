@@ -1111,7 +1111,7 @@ public class DatabaseTesterNewSchemaDesign {
 		else
 			conn = db.getConnection("demo");
 		try {
-			pStmt = conn.prepareStatement("update juror_digital.app_settings set value='TRUE' where setting in ("
+			pStmt = conn.prepareStatement("update juror_mod.app_setting set value='TRUE' where setting in ("
 					+ "'STRAIGHT_THROUGH_ACCEPTANCE_DISABLED', "
 					+ "'STRAIGHT_THROUGH_AGE_EXCUSAL_DISABLED',"
 					+ "'STRAIGHT_THROUGH_DECEASED_EXCUSAL_DISABLED')");
@@ -1139,7 +1139,7 @@ public class DatabaseTesterNewSchemaDesign {
 		else
 			conn = db.getConnection("demo");
 		try {
-			pStmt = conn.prepareStatement("update juror_digital.app_settings set value='FALSE' where setting in ("
+			pStmt = conn.prepareStatement("update juror_mod.app_setting set value='FALSE' where setting in ("
 					+ "'STRAIGHT_THROUGH_ACCEPTANCE_DISABLED', "
 					+ "'STRAIGHT_THROUGH_AGE_EXCUSAL_DISABLED',"
 					+ "'STRAIGHT_THROUGH_DECEASED_EXCUSAL_DISABLED')");
@@ -2826,8 +2826,8 @@ public class DatabaseTesterNewSchemaDesign {
 
 			pStmt = conn.prepareStatement("delete from JUROR_mod.JUROR_HISTORY where juror_number like '1" + court + "%' or juror_number like '2%'");
 			pStmt.execute();
-//
-//			//populate voters
+
+			//populate voters
 //			pStmt = conn.prepareStatement("update JUROR.VOTERS" + court + " set part_no = '1'||substr(part_no,2,8) where part_no like '6%'");
 //			pStmt.executeUpdate();
 //			pStmt = conn.prepareStatement("insert into JUROR_MOD.VOTERS SELECT '" + court + "' as LOC_CODE, PART_NO, REGISTER_LETT, POLL_NUMBER, NEW_MARKER, TITLE, LNAME, FNAME, DOB, FLAGS, ADDRESS_LINE_1, ADDRESS_LINE_2, ADDRESS_LINE_3, ADDRESS_LINE_4, ADDRESS_LINE_5, POSTCODE, DATE_SELECTED1, DATE_SELECTED2, DATE_SELECTED3, REC_NUM, PERM_DISQUAL, SOURCE_ID FROM JUROR.VOTERS" + court + " where part_no like '1%'");

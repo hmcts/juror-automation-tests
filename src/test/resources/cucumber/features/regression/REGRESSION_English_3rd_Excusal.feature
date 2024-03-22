@@ -169,7 +169,7 @@ Scenario Outline: English 3rd Party Excusal
 	And I see "You have completed your reply" on the page
 	
 	Given I am on "Bureau" "test"
-	And I log in
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"

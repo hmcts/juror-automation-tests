@@ -125,14 +125,14 @@ Scenario Outline: English 1st Party Underage
 	Then I see "<juror_number>" on the page
 	
 	Given I am on "Bureau" "test"
-	And I log in
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
 	Then I see "<juror_number>" on the page
 
-	Then I see "<juror_number>" has reply type indicator "COMPLETED"
+	Then I see "<juror_number>" has reply type indicator "Completed"
 	
 Examples:
 	| juror_number	| last_name			| postcode	| email 		| pool_number	|

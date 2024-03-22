@@ -113,7 +113,7 @@ Scenario Outline: Change postcode - old postcode in >1 loc_code SHOWS CHANGE COU
 	
 	#bureau
 	Given I am on "Bureau" "test"
-	When I log in
+	When I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
@@ -244,7 +244,7 @@ Scenario Outline: Change Postcode but same loc_code CHANGE COURT FLAG NOT SHOWN
 	
 	#bureau
 	Given I am on "Bureau" "test"
-	When I log in
+	When I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
@@ -374,7 +374,7 @@ Scenario Outline: Change postcode - different loc_code SHOWS CHANGE COURT
 	
 	#bureau
 	Given I am on "Bureau" "test"
-	When I log in
+	When I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
@@ -504,7 +504,7 @@ Scenario Outline: Change postcode - new postcode in >1 loc_code SHOWS CHANGE COU
 	
 	#bureau
 	Given I am on "Bureau" "test"
-	When I log in
+	When I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
@@ -634,7 +634,7 @@ Scenario Outline: Change postcode - new postcode not in court_catchment_area SHO
 	
 	#bureau
 	Given I am on "Bureau" "test"
-	When I log in
+	When I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
@@ -764,7 +764,7 @@ Scenario Outline: Change postcode - old postcode not in court_catchment_area DOE
 	
 	#bureau
 	Given I am on "Bureau" "bau-test"
-	When I log in
+	When I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
@@ -894,7 +894,7 @@ Scenario Outline: Change Postcode but same loc_code CHANGE COURT FLAG NOT SHOWN 
 	
 	#bureau
 	Given I am on "Bureau" "bau-test"
-	When I log in
+	When I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
@@ -1028,7 +1028,7 @@ Scenario Outline: Record displays Change Court, Bureau officer updates postcode 
 	
 	#bureau
 	Given I am on "Bureau" "test"
-	When I log in
+	When I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button

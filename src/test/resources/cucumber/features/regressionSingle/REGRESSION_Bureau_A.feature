@@ -3,7 +3,7 @@ Feature: Bureau A Test
 @RegressionSingle
 Scenario Outline: Lift from QC Script for Bureau A Functionality
 	Given I am on "Public" "test"
-	Given auto straight through processing has been disabled
+	Given auto straight through processing has been disabled new schema
 	Given the juror numbers have not been processed
 		|part_no 			|pool_no 	|owner	|
 		|<part_no> 			|457170501	|400 	|
@@ -148,7 +148,7 @@ Scenario Outline: Lift from QC Script for Bureau A Functionality
 
 	#re-enable auto processing
 	
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 
 Examples:
 	|part_no		|part_no_two	|part_no_three	|pool_no 	|last_name 			|postcode 	|

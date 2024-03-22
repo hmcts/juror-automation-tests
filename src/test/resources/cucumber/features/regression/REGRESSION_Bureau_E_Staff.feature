@@ -5,7 +5,7 @@ Scenario: Bureau E Test
 
 	Given I am on "Bureau" "test"
 
-	And I log in
+	And I log in as "MODTESTBUREAU"
 	And staff with name "AutomationStaffMemberONE" does not exist
 	And staff with name "AutomationStaffMemberTWO" does not exist
 	And staff with name "AutomationStaffMembe" does not exist
@@ -45,7 +45,7 @@ Scenario: Bureau E Test
 Scenario: Bureau Team Picklist Name Change
 	Given I am on "Bureau" "test"
 	Given test team is deleted
-	And I log in
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Manage team" link
 	And I press the "Add a new team member" button

@@ -97,7 +97,7 @@ Scenario Outline: English 1st Party + Juror Details Change
 	And I see "You answered the eligibility questions" on the page
 	
 	Given I am on "Bureau" "test"
-	And I log in
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -232,7 +232,7 @@ Scenario Outline: English 1st Party + RA
 	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "N" where "JUROR_NUMBER" is "<juror_number>"
 	
 	Given I am on "Bureau" "test"
-	And I log in
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -353,7 +353,7 @@ Scenario Outline: English 1st Party + Residency
 	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "N" where "JUROR_NUMBER" is "<juror_number>"
 	
 	Given I am on "Bureau" "test"
-	And I log in
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -474,7 +474,7 @@ Scenario Outline: English 1st Party + Bail
 	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "N" where "JUROR_NUMBER" is "<juror_number>"
 	
 	Given I am on "Bureau" "test"
-	And I log in
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -605,7 +605,7 @@ Scenario Outline: English 3rd Party + Convictions
 	And I see "You have completed your reply" on the page
 	
 	Given I am on "Bureau" "test"
-	And I log in
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -734,7 +734,7 @@ Scenario Outline: English 3rd Party + Residency
 	And I see "You have completed your reply" on the page
 	
 	Given I am on "Bureau" "test"
-	And I log in
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -863,7 +863,7 @@ Scenario Outline: English 3rd Party + Bail
 	And I see "You have completed your reply" on the page
 	
 	Given I am on "Bureau" "test"
-	And I log in
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -993,7 +993,7 @@ Scenario Outline: English 3rd Party + Mental Health
 	And I see "You have completed your reply" on the page
 	
 	Given I am on "Bureau" "test"
-	And I log in
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -1026,7 +1026,7 @@ Scenario Outline: Multiple reply types
 
 	Given I am on "Public" "test"
 
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  			| pool_number			| att_date_weeks_in_future	| owner |
@@ -2126,7 +2126,7 @@ Scenario Outline: Multiple reply types in Awaiting Information
 
 	Given I am on "Public" "test"
 
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  			| pool_number			| att_date_weeks_in_future	| owner |
@@ -2963,7 +2963,7 @@ Scenario Outline: Multiple reply types in Awaiting Information
 
 	#BUREAU
 	Given I am on "Bureau" "test"
-	And I log in
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
 	And I set "Juror's pool number" to "<pool_number>"

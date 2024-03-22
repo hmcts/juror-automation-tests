@@ -1490,7 +1490,7 @@ Scenario Outline: 1st Party Ineligible
 	And I see "What did you think of this service? (Takes 30 seconds)" on the page
 	
 	Given I am on "Bureau" "test"
-	And I log in
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -1651,7 +1651,7 @@ Scenario Outline: New CJS Options 3rd party
 	And I see "What did you think of this service? (Takes 30 seconds)" on the page
 	
 	Given I am on "Bureau" "test"
-	And I log in
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"

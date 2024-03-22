@@ -208,7 +208,7 @@ Scenario Outline: English 1st Party Deferral
 	And I validate the "Third" deferral date is "18" weeks in the future
 	
 	Given I am on "Bureau" "btest"
-	And I log in
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -490,7 +490,7 @@ Scenario Outline: English 1st Party Deferral - do not accept dates
 	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "N" where "JUROR_NUMBER" is "<juror_number>"
 	
 	Given I am on "Bureau" "test"
-	And I log in
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -662,7 +662,7 @@ Scenario Outline: 1st English Deferral (Duplicate?)
 	And I see "You have completed your reply" on the page
 	
 	Given I am on "Bureau" "bau-test"
-	And I log in
+	And I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
@@ -815,7 +815,7 @@ Scenario Outline: 1st English Deferral with Bureau Check
 	And I see "You have completed your reply" on the page
 	
 	Given I am on "Bureau" "bau-test"
-	And I log in
+	And I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
@@ -1762,7 +1762,7 @@ Scenario Outline: English 1st Party Deferral - date 1 selected is a BH
 	And I validate the "Third" deferral date is "10" weeks in the future
 	
 	Given I am on "Bureau" "test"
-	And I log in
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -1977,7 +1977,7 @@ Scenario Outline: English 1st Party Deferral - date 2 selected is a BH
 	And I validate the "Third" deferral date is "11" weeks in the future
 	
 	Given I am on "Bureau" "test"
-	And I log in
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -2193,7 +2193,7 @@ Scenario Outline: English 1st Party Deferral - date 3 selected is a BH
 	And I validate the "Third" deferral date is "11" weeks in the future
 	
 	Given I am on "Bureau" "test"
-	And I log in
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -2408,7 +2408,7 @@ Scenario Outline: English 1st Party Deferral - >1 date selected is a BH
 	And I validate the "Third" deferral date is "11" weeks in the future
 	
 	Given I am on "Bureau" "test"
-	And I log in
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -2670,7 +2670,7 @@ Scenario Outline: English 1st Party Deferral - Navigate back from BH page
 	And I validate the "Third" deferral date is "11" weeks in the future
 	
 	Given I am on "Bureau" "test"
-	And I log in
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -2904,7 +2904,7 @@ Scenario Outline: English 1st Party Deferral - selected date makes juror >76
 	And I validate the "Third" deferral date is "11" weeks in the future
 	
 	Given I am on "Bureau" "test"
-	And I log in
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -3126,7 +3126,7 @@ Scenario Outline: English 1st Party Deferral + Bail + Name change
 	And I validate the "Third" deferral date is "8" weeks in the future
 	
 	Given I am on "Bureau" "test"
-	And I log in
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -3270,7 +3270,7 @@ Scenario Outline: English 1st Party Deferral - NEW PAGE
 	Then I see "<juror_number>" on the page
 	
 	Given I am on "Bureau" "test"
-	And I log in
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -3473,7 +3473,7 @@ Scenario Outline: English 1st Party Deferral - refuse deferral
 	Then I see "<juror_number>" on the page
 
 	Given I am on "Bureau" "bau-test"
-	And I log in
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"

@@ -127,7 +127,7 @@ Scenario Outline: Dashboard - Summons Sent and responded and not responded
 #	And "<part_no17>" has "NEXT_DATE" as "2 mondays time"
 	
 	# Submit response in juror digital
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	Given I have submitted a first party English straight through response
 		|part_no	|pool_number	|last_name		|postcode	|email 	|
 		|<part_no1>	|<pool_no>		|<last_name>	|<postcode>	|<email>|

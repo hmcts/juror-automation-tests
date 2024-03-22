@@ -343,7 +343,8 @@ public class StepDef_navigation {
 	public void select_fromProcessReply(String optionValue) throws Throwable {
 		try {
 			NAV.press_buttonByName("Process reply");
-			NAV.setProcessReplyTo_(optionValue);
+			GRP.chooseRadioButtonWithLabel(optionValue);
+			NAV.press_buttonByName("Continue");
 		} catch (Exception e) {
 			NAV.waitForPageLoad();
 			NAV.setProcessReplyTo_(optionValue);

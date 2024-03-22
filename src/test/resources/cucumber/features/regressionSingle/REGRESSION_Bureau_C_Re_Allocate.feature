@@ -13,7 +13,7 @@ Scenario Outline: Bureau C script
 		| <part_no_two> 	|<pool_no>	| 400 	|
 		| <part_no_three> 	|<pool_no>	| 400 	|
 	
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	
 	And "<juror_number>" has "RET_DATE" as "6 mondays time"
 	And "<juror_number>" has "NEXT_DATE" as "6 mondays time"

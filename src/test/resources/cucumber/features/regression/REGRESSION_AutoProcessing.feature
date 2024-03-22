@@ -142,12 +142,12 @@ Scenario Outline: submit responses which are auto processed
 	When I check the "The information I have given is true to the best of my knowledge" checkbox
 	
 	#Enable auto processing
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	
 	And I press the "Submit" button
 	
 	#Disable auto processing
-	Given auto straight through processing has been disabled
+	Given auto straight through processing has been disabled new schema
 	And I do not see any links on the page that open to a new page without an alt text
 	
 	#Auto Processed Deceased
@@ -302,7 +302,7 @@ Scenario Outline: submit responses which are auto processed
 	Given auto straight through processing has been disabled new schema
 
 	Given I am on "Bureau" "test"
-	And I log in
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
 	And I set "Juror's pool number" to "<pool_no>"
@@ -344,7 +344,7 @@ Scenario Outline: submit responses which are auto processed
 	
 	# finish test with auto processing enabled
 	
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	
 Examples:
 	|part_no		|part_no_two	|part_no_three	|part_no_four	|pool_no 	|last_name 	|postcode	|email		|
@@ -474,7 +474,7 @@ Scenario Outline: Check that when name is changed, the response is NOT auto proc
 	
 	#Bureau
 	Given I am on "Bureau" "test"
-	When I log in
+	When I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
@@ -613,7 +613,7 @@ Scenario Outline: Check that when address is changed, the response is NOT auto p
 	
 	#Bureau
 	Given I am on "Bureau" "test"
-	When I log in
+	When I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
@@ -749,7 +749,7 @@ Scenario Outline: Check that when Address2 is changed from (null), the response 
 	
 	#Bureau
 	Given I am on "Bureau" "test"
-	When I log in
+	When I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
@@ -890,7 +890,7 @@ Scenario Outline: Check that when Address3 is changed from (null), the response 
 	
 	#Bureau
 	Given I am on "Bureau" "test"
-	When I log in
+	When I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
@@ -1032,7 +1032,7 @@ Scenario Outline: Check that when Address4 is changed from (null), the response 
 	
 	#Bureau
 	Given I am on "Bureau" "test"
-	When I log in
+	When I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
@@ -1173,7 +1173,7 @@ Scenario Outline: Check that when Address5 is changed from (null), the response 
 	
 	#Bureau
 	Given I am on "Bureau" "test"
-	When I log in
+	When I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
@@ -1314,7 +1314,7 @@ Scenario Outline: Check that when Address2 is changed from string value, the res
 	
 	#Bureau
 	Given I am on "Bureau" "test"
-	When I log in
+	When I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
@@ -1455,7 +1455,7 @@ Scenario Outline: Check that when Address3 is changed from string value, the res
 	
 	#Bureau
 	Given I am on "Bureau" "test"
-	When I log in
+	When I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
@@ -1596,7 +1596,7 @@ Scenario Outline: Check that when Address4 is changed from string value, the res
 	
 	#Bureau
 	Given I am on "Bureau" "test"
-	When I log in
+	When I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
@@ -1737,7 +1737,7 @@ Scenario Outline: Check that when Address5 is changed from string value, the res
 	
 	#Bureau
 	Given I am on "Bureau" "test"
-	When I log in
+	When I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
