@@ -67,7 +67,7 @@ static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
 
 GradleBuilder builder = new GradleBuilder(this, product)
 
-withNightlyPipeline(type, product, component) {
+withNightlyPipeline(type, product, component, 600) {
   loadVaultSecrets(secrets)
   enableFullFunctionalTest(600)
   enableSlackNotifications('#juror-build-notices')
