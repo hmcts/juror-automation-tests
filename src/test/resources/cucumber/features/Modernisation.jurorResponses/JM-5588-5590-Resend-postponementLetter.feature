@@ -41,12 +41,12 @@ Feature:As a Bureau/jury officer I want to re send a postponement letter
         And I click continue on the juror summons reply page
 
   #confirm/sign
-        Then the juror summons reply Signature page is displayed
+        And the juror summons reply Signature page is displayed
         When I select that the summons reply has been signed
         And I click done on the juror summons reply page
         Then I see "Do you want to process this summons reply as responded now?" on the page
-        When I press the "Yes, process now" button
-        When I click on the "<juror_number>" link
+        And I press the "Yes, process now" button
+        And I click on the "<juror_number>" link
         And I press the "Update juror record" button
         And I set the radio button to "Postpone service start date"
         And I press the "Continue" button
@@ -294,7 +294,7 @@ Feature:As a Bureau/jury officer I want to re send a postponement letter
         And I click continue on the juror summons reply page
 
   #confirm/sign
-        Then the juror summons reply Signature page is displayed
+        And the juror summons reply Signature page is displayed
         When I select that the summons reply has been signed
         And I click done on the juror summons reply page
         Then I see "Do you want to process this summons reply as responded now?" on the page
@@ -371,7 +371,7 @@ Feature:As a Bureau/jury officer I want to re send a postponement letter
         And I click continue on the juror summons reply page
 
   #confirm/sign
-        Then the juror summons reply Signature page is displayed
+        And the juror summons reply Signature page is displayed
         When I select that the summons reply has been signed
         And I click done on the juror summons reply page
         Then I see "Do you want to process this summons reply as responded now?" on the page
@@ -487,7 +487,7 @@ Feature:As a Bureau/jury officer I want to re send a postponement letter
         And I see "Search" on the page
         When I set the radio button to "Pool"
         And I press the "Search" button
-        And I see error "Enter pool number"
+        Then I see error "Enter pool number"
         When I set "Enter pool number" to "<pool_number>"
         And I check the "Include printed" checkbox
         And I press the "Search" button
@@ -500,5 +500,5 @@ Feature:As a Bureau/jury officer I want to re send a postponement letter
 
         Examples:
             | juror_number  | pool_number | user          |
-            |  041530028    | 415300305   | MODTESTCOURT   |
+            |  041530028    | 415300305   | MODTESTCOURT  |
 
