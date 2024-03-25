@@ -157,7 +157,7 @@ Scenario Outline: Dashboard - Summons Sent and responded and not responded
 	And I set "Juror number" to "<part_no1>"
 	And I press the "Search" button
 	And I click on "<part_no1>" in the same row as "<part_no1>"
-	When I select "Responded" from Process reply
+	When I select "Mark as responded" from Process reply
 	And I check the "Mark juror as 'responded'" checkbox
 	And I press the "Confirm" button
 	Then I see "Completed" on the page
@@ -166,7 +166,7 @@ Scenario Outline: Dashboard - Summons Sent and responded and not responded
 	And I set "Juror number" to "<part_no6>"
 	And I press the "Search" button
 	And I click on "<part_no6>" in the same row as "<part_no6>"
-	When I select "Responded" from Process reply
+	When I select "Mark as responded" from Process reply
 	And I check the "Mark juror as 'responded'" checkbox
 	And I press the "Confirm" button
 	Then I see "Completed" on the page
@@ -175,7 +175,7 @@ Scenario Outline: Dashboard - Summons Sent and responded and not responded
 	And I set "Juror number" to "<part_no7>"
 	And I press the "Search" button
 	And I click on "<part_no7>" in the same row as "<part_no7>"
-	When I select "Responded" from Process reply
+	When I select "Mark as responded" from Process reply
 	And I check the "Mark juror as 'responded'" checkbox
 	And I press the "Confirm" button
 	Then I see "Completed" on the page
@@ -184,7 +184,7 @@ Scenario Outline: Dashboard - Summons Sent and responded and not responded
 	And I set "Juror number" to "<part_no12>"
 	And I press the "Search" button
 	And I click on "<part_no12>" in the same row as "<part_no12>"
-	When I select "Responded" from Process reply
+	When I select "Mark as responded" from Process reply
 	And I check the "Mark juror as 'responded'" checkbox
 	And I press the "Confirm" button
 	Then I see "Completed" on the page

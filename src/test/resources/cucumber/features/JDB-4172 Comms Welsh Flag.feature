@@ -82,7 +82,7 @@ Scenario Outline: 1st Party English ST, answers in English
 	
 	#process in Bureau as Responded
 	
-	When I select "Responded" from Process reply
+	When I select "Mark as responded" from Process reply
 	And I check the "Mark juror as 'responded'" checkbox
 	And I press the "Confirm" button
 	Then I see "Completed" on the page
@@ -131,7 +131,7 @@ Scenario Outline: 1st Party English ST, answers in Welsh
 	And I click on "<juror_number>" in the same row as "<juror_number>"
 
 ##	#process in Bureau as Responded
-#	When I select "Responded" from Process reply
+#	When I select "Mark as responded" from Process reply
 #	And I check the "Mark juror as 'responded'" checkbox
 #	And I press the "Confirm" button
 #	Then I see "Completed" on the page
@@ -178,7 +178,7 @@ Scenario Outline: 1st Party Welsh ST, answers in Welsh
 	And I click on "<juror_number>" in the same row as "<juror_number>"
 
 #	#process in Bureau as Responded
-#	When I select "Responded" from Process reply
+#	When I select "Mark as responded" from Process reply
 	And I check the "Mark juror as 'responded'" checkbox
 	And I press the "Confirm" button
 #	Then I see "Completed" on the page
@@ -229,7 +229,7 @@ Scenario Outline: 1st Party Welsh ST, answers in English
 #	And I see "Urgent" on the page
 #	
 #	#process in Bureau as Responded
-#	When I select "Responded" from Process reply
+#	When I select "Mark as responded" from Process reply
 #	And I check the "Mark juror as 'responded'" checkbox
 #	And I press the "Confirm" button
 #	Then I see "Completed" on the page
@@ -273,7 +273,7 @@ Scenario Outline: 1st Party English ST, responds in English
 	Then I see "Summoned" on the page
 	
 	#process in Bureau as Responded
-	When I select "Responded" from Process reply
+	When I select "Mark as responded" from Process reply
 	And I check the "Mark juror as 'responded'" checkbox
 	And I press the "Confirm" button
 	Then I see "Completed" on the page
@@ -360,7 +360,7 @@ Scenario Outline: 1st Party English ST, responds in Welsh
 	Then I see "Summoned" on the page
 	
 	#process in Bureau as Responded
-	When I select "Responded" from Process reply
+	When I select "Mark as responded" from Process reply
 	And I check the "Mark juror as 'responded'" checkbox
 	And I press the "Confirm" button
 	Then I see "Completed" on the page

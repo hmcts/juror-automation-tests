@@ -831,7 +831,7 @@ Scenario Outline: 9. Complete a PENDING ALLOCATION response
 	
 	When I click on "<part_no_eight>" in the same row as "<part_no_eight>"
 	Then I see "Process reply" on the page
-	When I select "Responded" from Process reply
+	When I select "Mark as responded" from Process reply
 	And I check the "Mark juror as 'responded'" checkbox
 	And I press the "Confirm" button
 	

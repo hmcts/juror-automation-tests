@@ -236,7 +236,7 @@ Scenario Outline: Reasonable adjustments (DIABETES) to automatically update Juro
 	And I click on "<juror_number>" in the same row as "<juror_number>"
 	
 	#process response
-	When I select "Responded" from Process reply
+	When I select "Mark as responded" from Process reply
 	And I check the "Mark juror as 'responded'" checkbox
 	And I press the "Confirm" button
 	
@@ -371,13 +371,13 @@ Scenario Outline: Reasonable adjustments (OTHER) to automatically update Juror d
 	And I click on "<juror_number>" in the same row as "<juror_number>"
 	
 	#process response
-	When I select "Responded" from Process reply
+	When I select "Mark as responded" from Process reply
 	And I check the "Mark juror as 'responded'" checkbox
 	And I press the "Confirm" button
 	
 	#check db
-	Then I see "Responded" on the page
-	And I see "COMPLETED" on the page
+	Then I see the juror record updated banner containing "Responded"
+
 	Then on "JUROR_MOD" . "JUROR_REASONABLE_ADJUSTMENT" I see "REASONABLE_ADJUSTMENT" is "O" where "JUROR_NUMBER" is "<juror_number>"
 
 Examples:
@@ -505,13 +505,12 @@ Scenario Outline: Reasonable adjustments (MULTIPLE) to automatically update Juro
 	And I click on "<juror_number>" in the same row as "<juror_number>"
 	
 	#process response
-	When I select "Responded" from Process reply
+	When I select "Mark as responded" from Process reply
 	And I check the "Mark juror as 'responded'" checkbox
 	And I press the "Confirm" button
-	
+
 	#check db
-	Then I see "Responded" on the page
-	And I see "COMPLETED" on the page
+	Then I see the juror record updated banner containing "Responded"
 	Then on "JUROR_MOD" . "JUROR_REASONABLE_ADJUSTMENT" I see "REASONABLE_ADJUSTMENT" is "M" where "JUROR_NUMBER" is "<juror_number>"
 
 Examples:

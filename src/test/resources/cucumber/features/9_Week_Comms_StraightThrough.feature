@@ -62,7 +62,7 @@ Scenario Outline: 1st Party English ST, 3 weeks in advance, PNC fail
 	Then I see "Summoned" on the page
 	
 	#process in Bureau as Responded
-	When I select "Responded" from Process reply
+	When I select "Mark as responded" from Process reply
 	And I check the "Mark juror as 'responded'" checkbox
 	And I press the "Confirm" button
 	Then I see "Completed" on the page
@@ -119,7 +119,7 @@ Scenario Outline: 1st Party English ST, 4 weeks in advance, PNC pass
 #	Then I see "Summoned" on the page
 #	
 #	#process in Bureau as Responded
-	When I select "Responded" from Process reply
+	When I select "Mark as responded" from Process reply
 	And I check the "Mark juror as 'responded'" checkbox
 	And I press the "Confirm" button
 	Then I see "Completed" on the page
@@ -164,7 +164,7 @@ Scenario Outline: 1st Party English ST, 3 weeks in advance, PNC pass
 	And I see "Urgent" on the page
 	
 	#process in Bureau as Responded
-	When I select "Responded" from Process reply
+	When I select "Mark as responded" from Process reply
 	And I check the "Mark juror as 'responded'" checkbox
 	And I press the "Confirm" button
 	Then I see "Completed" on the page
@@ -209,7 +209,7 @@ Scenario Outline: 1st Party English ST, 2 weeks in advance, PNC pass
 	And I see "Urgent" on the page
 	
 	#process in Bureau as Responded
-	When I select "Responded" from Process reply
+	When I select "Mark as responded" from Process reply
 	And I check the "Mark juror as 'responded'" checkbox
 	And I press the "Confirm" button
 	Then I see "Completed" on the page
@@ -406,7 +406,7 @@ Scenario Outline: 1st Party Welsh ST, 4 weeks in advance, PNC pass
 	And I see "Urgent" on the page
 	
 	#process in Bureau as Responded
-	When I select "Responded" from Process reply
+	When I select "Mark as responded" from Process reply
 	And I check the "Mark juror as 'responded'" checkbox
 	And I press the "Confirm" button
 	Then I see "Completed" on the page
@@ -451,7 +451,7 @@ Scenario Outline: 1st Party Welsh ST, 3 weeks in advance, PNC pass
 	And I see "Urgent" on the page
 	
 	#process in Bureau as Responded
-	When I select "Responded" from Process reply
+	When I select "Mark as responded" from Process reply
 	And I check the "Mark juror as 'responded'" checkbox
 	And I press the "Confirm" button
 	Then I see "Completed" on the page
@@ -500,7 +500,7 @@ Scenario Outline: 1st Party Welsh ST, 2 weeks in advance, PNC pass
 	And I see "Urgent" on the page
 	
 	#process in Bureau as Responded
-	When I select "Responded" from Process reply
+	When I select "Mark as responded" from Process reply
 	And I check the "Mark juror as 'responded'" checkbox
 	And I press the "Confirm" button
 	Then I see "Completed" on the page
@@ -2192,7 +2192,7 @@ Scenario Outline: English 3rd Party Straight Through, 2 weeks in advance, PNC pa
 	Then I see "Summoned" on the page
 	
 	#process in Bureau as Responded
-	When I select "Responded" from Process reply
+	When I select "Mark as responded" from Process reply
 	And I check the "Mark juror as 'responded'" checkbox
 	And I press the "Confirm" button
 	Then I see "Completed" on the page
@@ -2234,7 +2234,7 @@ Scenario Outline: 3rd Party English ST, 5 weeks in advance, PNC pass
 	Then I see "Summoned" on the page
 	
 	#process in Bureau as Responded
-	When I select "Responded" from Process reply
+	When I select "Mark as responded" from Process reply
 	And I check the "Mark juror as 'responded'" checkbox
 	And I press the "Confirm" button
 	Then I see "Completed" on the page
@@ -2283,7 +2283,7 @@ Scenario Outline: 3rd Party Welsh ST, 5 weeks in advance, PNC pass
 #	Then I see "Summoned" on the page
 	
 	#process in Bureau as Responded
-	When I select "Responded" from Process reply
+	When I select "Mark as responded" from Process reply
 	And I check the "Mark juror as 'responded'" checkbox
 	And I press the "Confirm" button
 	Then I see "Completed" on the page

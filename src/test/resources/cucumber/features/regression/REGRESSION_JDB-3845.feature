@@ -571,7 +571,7 @@ Scenario Outline: English_1st Party_CJS_A
 #	And I see "Other" on the page
 #	And I see "Another part of the CJS" on the page
 	
-	When I select "Responded" from Process reply
+	When I select "Mark as responded" from Process reply
 	And I check the "Mark juror as 'responded'" checkbox
 	And I press the "Confirm" button
 	Then I see "COMPLETED" on the page

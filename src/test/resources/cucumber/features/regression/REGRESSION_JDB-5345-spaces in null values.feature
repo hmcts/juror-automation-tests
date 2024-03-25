@@ -110,7 +110,7 @@ Scenario Outline: 3rd Party English null values are not saved as spaces
 	And I press the "Search" button
 	Then I see "<juror_number>" in the same row as "<juror_number>"
 	When I click on "<juror_number>" in the same row as "<juror_number>"
-	When I select "Responded" from Process reply
+	When I select "Mark as responded" from Process reply
 	And I check the "Mark juror as 'responded'" checkbox
 	And I press the "Confirm" button
 	Then I see "COMPLETED" on the page

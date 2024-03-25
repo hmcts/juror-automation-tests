@@ -569,7 +569,7 @@ Scenario Outline: Secrets Change Bureau
 	And I set "Please give a reason for the change to this summons reply" to "resonableAdjustmentsNote"
 	And I press the "Save" button
 	
-	When I select "Responded" from Process reply
+	When I select "Mark as responded" from Process reply
 	And I check the "Mark juror as 'responded'" checkbox
 	And I press the "Confirm" button
 	Then I see "Completed" on the page

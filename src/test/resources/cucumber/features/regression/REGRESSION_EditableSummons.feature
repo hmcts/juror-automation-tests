@@ -283,7 +283,7 @@ Scenario Outline:
 	Then I click on the "Cancel" link
 	
 	Then I see "Process reply" on the page
-	When I select "Responded" from Process reply
+	When I select "Mark as responded" from Process reply
 	And I check the "Mark juror as 'responded'" checkbox
 	And I press the "Confirm" button
 	
@@ -668,7 +668,7 @@ Scenario Outline: jdb-3644
 	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PHONE_NUMBER" is "0333333339" where "JUROR_NUMBER" is "<juror_number>"
 	Then on "JUROR" . "POOL" I see "H_PHONE" is "" where "PART_NUMBER" is "<juror_number>"
 	
-	When I select "Responded" from Process reply
+	When I select "Mark as responded" from Process reply
 	And I check the "Mark juror as 'responded'" checkbox
 	And I press the "Confirm" button
 	Then I see "COMPLETED" on the page

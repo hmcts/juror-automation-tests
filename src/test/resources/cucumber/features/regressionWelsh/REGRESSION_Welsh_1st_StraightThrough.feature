@@ -534,7 +534,7 @@ Scenario Outline: Welsh 1st Party Straight Through (welsh court)
 	
 	When I click on "<juror_number>" in the same row as "<juror_number>"
 	
-#	When I select "Responded" from Process reply
+#	When I select "Mark as responded" from Process reply
 #	And I set the radio button to "Accept juror as responded"
 #
 #	And I press the "Mark as completed" button
