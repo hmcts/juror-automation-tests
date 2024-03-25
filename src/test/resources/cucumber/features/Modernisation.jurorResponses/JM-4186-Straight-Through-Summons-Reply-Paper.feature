@@ -60,7 +60,7 @@ Feature: JM-4186
     And I log in as "<user>"
 
     And the user searches for juror record "<juror_number>" from the global search bar
-    Then I am on the court Juror Record for juror "<juror_number>"
+    Then I am on the Juror Record for juror "<juror_number>"
     And I click the Enter summons reply button
     Then the juror details form is displayed
     And I enter a date of birth that will make the juror between 18 and 75
