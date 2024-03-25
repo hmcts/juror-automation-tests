@@ -198,7 +198,7 @@ Feature: JM-252_Validation_and_Errors_COURT
 
     #leaving in single thread as it deletes and sets up BHs which may break other tests
 
-    Given I am on "Bureau" "postgres"
+    Given I am on "Bureau" "test"
 
     Given I have deleted all holidays new schema
 

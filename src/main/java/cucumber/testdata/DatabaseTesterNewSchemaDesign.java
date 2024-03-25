@@ -2525,7 +2525,7 @@ public class DatabaseTesterNewSchemaDesign {
 
 		try {
 
-			pStmt = conn.prepareStatement("INSERT INTO JUROR_MOD.HOLIDAY(OWNER,HOLIDAY,DESCRIPTION,PUBLIC)"
+			pStmt = conn.prepareStatement("INSERT INTO JUROR_MOD.HOLIDAY(LOC_CODE,HOLIDAY,DESCRIPTION,PUBLIC)"
 					+ "VALUES ('" + owner + "','" + mondayDate + "','Test holiday', 'N')");
 			pStmt.execute();
 
@@ -2563,7 +2563,7 @@ public class DatabaseTesterNewSchemaDesign {
 
 		try {
 
-			pStmt = conn.prepareStatement("INSERT INTO JUROR_MOD.HOLIDAY(OWNER,HOLIDAY,DESCRIPTION,PUBLIC)"
+			pStmt = conn.prepareStatement("INSERT INTO JUROR_MOD.HOLIDAY(LOC_CODE,HOLIDAY,DESCRIPTION,PUBLIC)"
 					+ "VALUES ('" + owner + "','" + localDateMonday + "','Test holiday', 'N')");
 			pStmt.execute();
 
@@ -2642,7 +2642,7 @@ public class DatabaseTesterNewSchemaDesign {
 
 		try {
 
-			pStmt = conn.prepareStatement("DELETE FROM JUROR_MOD.HOLIDAY WHERE OWNER='" + holidayOwner + "' AND HOLIDAY='" + holidayDate + "'");
+			pStmt = conn.prepareStatement("DELETE FROM JUROR_MOD.HOLIDAY WHERE LOC_CODE='" + holidayOwner +"'");
 			pStmt.executeQuery();
 
 
