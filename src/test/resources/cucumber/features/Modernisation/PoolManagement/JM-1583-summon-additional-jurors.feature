@@ -50,7 +50,7 @@ Feature: JM-1583 Summon Additional Jurors
       |courtLocationCode|415|
       |courtStartDate||
       |additionalRequirements||
-    Then I press the "Juror number" button
+    Then I click on the "Juror number" link
     Then The "11" new jurors have been sent a summons letter new schema
 
   @JurorTransformationMulti @NewSchemaConverted
