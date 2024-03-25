@@ -10,6 +10,7 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
       | court | juror_number  | pool_number     | att_date_weeks_in_future  | owner |
       | 415   | <juror_number>| <pool_number>   | 5                         | 400   |
 
+    And I update the bureau transfer date of the juror "<juror_number>"
     And the user searches for juror record "<juror_number>" from the global search bar
 
   #record paper summons response
