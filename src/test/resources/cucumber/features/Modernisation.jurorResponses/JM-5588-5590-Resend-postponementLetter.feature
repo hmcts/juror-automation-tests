@@ -1,6 +1,6 @@
-Feature: JM-5588
+Feature:As a Bureau/jury officer I want to re send a postponement letter
 
-    @JurorTransformationWIP @JM-6648
+    @JurorTransformationMulti
     Scenario Outline:As a bureau officer test a postponement juror can resend a letter by searching via juror number
 
         Given I am on "Bureau" "test"
@@ -58,9 +58,9 @@ Feature: JM-5588
         When I click on the "Documents" link
         And I click on the "Postponement letters" link
         Then I see "Juror" on the page
-        Then I see "Pool" on the page
-        Then I see "Show all letters queued for printing" on the page
-        And I press the "Search" button
+        And I see "Pool" on the page
+        And I see "Show all letters queued for printing" on the page
+        When I press the "Search" button
         Then I see error "Select whether you want to search by juror or pool"
         And I set the radio button to "Juror"
         And I press the "Search" button
@@ -78,15 +78,14 @@ Feature: JM-5588
         And I set "Enter juror name, number or postcode" to "<juror_number>"
         And I press the "Search" button
         And I see the printed letter for juror number "<juror_number>" in the letters table
-        #Below step will fail due to defect -JM-6648
         And I am able to see and interact with the jurors Postponement letter tabs and fields
         And I check the "<juror_number>" checkbox
-        And I press the "Resend postponement letter" button
-        And I see "1 document sent for printing" on the page
+        When I press the "Resend postponement letter" button
+        Then I see "1 document sent for printing" on the page
 
         Examples:
             | juror_number  | pool_number | user          |
-                |  041520045    | 415300721   | MODTESTBUREAU |
+            |  041520045    | 415300721   | MODTESTBUREAU |
 
     @JurorTransformationMulti @NewSchemaConverted
     Scenario Outline:Verify as bureau officer postponement juror can delete the letter in pending stage
@@ -133,7 +132,7 @@ Feature: JM-5588
         When I select that the summons reply has been signed
         And I click done on the juror summons reply page
         Then I see "Do you want to process this summons reply as responded now?" on the page
-        When I press the "Yes, process now" button
+        And I press the "Yes, process now" button
         And I click on the "<juror_number>" link
         And I press the "Update juror record" button
         And I set the radio button to "Postpone service start date"
@@ -146,9 +145,9 @@ Feature: JM-5588
         When I click on the "Documents" link
         And I click on the "Postponement letters" link
         Then I see "Juror" on the page
-        Then I see "Pool" on the page
-        Then I see "Show all letters queued for printing" on the page
-        And I press the "Search" button
+        And I see "Pool" on the page
+        And I see "Show all letters queued for printing" on the page
+        When I press the "Search" button
         Then I see error "Select whether you want to search by juror or pool"
         And I set the radio button to "Juror"
         And I press the "Search" button
@@ -157,16 +156,16 @@ Feature: JM-5588
         And I press the "Search" button
         And I see "Pending" on the page
         And I see "Change" on the page
-       And I see "<juror_number>" on the page
-        And I click on the "Delete" link
-        And I see "1 pending document deleted" on the page
+        And I see "<juror_number>" on the page
+        When I click on the "Delete" link
+        Then I see "1 pending document deleted" on the page
 
         Examples:
             | juror_number  | pool_number | user          |
             |  041520046    | 415300722   | MODTESTBUREAU |
 
 
-    @JurorTransformationWIP @NewSchemaConverted @JM-6648
+    @JurorTransformationMulti @NewSchemaConverted
     Scenario Outline:As a bureau officer test a postponement juror can resend a letter by searching via Pool number
 
         Given I am on "Bureau" "test"
@@ -211,8 +210,8 @@ Feature: JM-5588
         When I select that the summons reply has been signed
         And I click done on the juror summons reply page
         Then I see "Do you want to process this summons reply as responded now?" on the page
-        When I press the "Yes, process now" button
-        When I click on the "<juror_number>" link
+        And I press the "Yes, process now" button
+        And I click on the "<juror_number>" link
         And I press the "Update juror record" button
         And I set the radio button to "Postpone service start date"
         And I press the "Continue" button
@@ -224,10 +223,10 @@ Feature: JM-5588
         When I click on the "Documents" link
         And I click on the "Postponement letters" link
         Then I see "Juror" on the page
-        Then I see "Pool" on the page
-        Then I see "Show all letters queued for printing" on the page
+        And I see "Pool" on the page
+        And I see "Show all letters queued for printing" on the page
         And I press the "Search" button
-        Then I see error "Select whether you want to search by juror or pool"
+        And I see error "Select whether you want to search by juror or pool"
         And I set the radio button to "Pool"
         And I press the "Search" button
         And I see error "Enter pool number"
@@ -241,14 +240,13 @@ Feature: JM-5588
         And I click on the "Documents" link
         And I click on the "Postponement letters" link
         And I set the radio button to "Pool"
-        And I set "Enter pool number" to "<pool_number>"
+        When I set "Enter pool number" to "<pool_number>"
         And I press the "Search" button
-        And I see the printed letter for juror number "<juror_number>" in the letters table
-
+        Then I see the printed letter for juror number "<juror_number>" in the letters table
         And I am able to see and interact with the jurors Postponement letter tabs and fields
         And I check the "<juror_number>" checkbox
-        And I press the "Resend postponement letter" button
-        And I see "1 document sent for printing" on the page
+        When I press the "Resend postponement letter" button
+        Then I see "1 document sent for printing" on the page
 
         Examples:
             | juror_number  | pool_number | user          |
@@ -300,8 +298,8 @@ Feature: JM-5588
         When I select that the summons reply has been signed
         And I click done on the juror summons reply page
         Then I see "Do you want to process this summons reply as responded now?" on the page
-        When I press the "Yes, process now" button
-        When I click on the "<juror_number>" link
+        And I press the "Yes, process now" button
+        And I click on the "<juror_number>" link
         And I press the "Update juror record" button
         And I set the radio button to "Postpone service start date"
         And I press the "Continue" button
@@ -313,16 +311,16 @@ Feature: JM-5588
         When I click on the "Documents" link
         And I click on the "Postponement letters" link
         Then I see "Juror" on the page
-        Then I see "Pool" on the page
-        Then I see "Show all letters queued for printing" on the page
-        And I press the "Search" button
+        And I see "Pool" on the page
+        And I see "Show all letters queued for printing" on the page
+        When I press the "Search" button
         Then I see error "Select whether you want to search by juror or pool"
         When I set the radio button to "Show all letters queued for printing"
         And I press the "Search" button
         Then I see "<juror_number>" on the page
         And I see "Change" on the page
         When I click on "Delete" in the same row as "<juror_number>"
-        And I see "1 pending document deleted" on the page
+        Then I see "1 pending document deleted" on the page
 
         Examples:
             | juror_number  | pool_number | user          |
@@ -377,8 +375,8 @@ Feature: JM-5588
         When I select that the summons reply has been signed
         And I click done on the juror summons reply page
         Then I see "Do you want to process this summons reply as responded now?" on the page
-        When I press the "Yes, process now" button
-        When the user searches for juror record "<juror_number>" from the global search bar
+        And I press the "Yes, process now" button
+        And the user searches for juror record "<juror_number>" from the global search bar
         And I press the "Update juror record" button
         And I set the radio button to "Postpone service start date"
         And I press the "Continue" button
@@ -386,11 +384,10 @@ Feature: JM-5588
         And I press the "Continue" button
         Then I see "There are no active pools for this date" on the page
         And I press the "Put in deferral maintenance" button
-        Then I see "Do you want to print a postponement letter?" on the page
+        And I see "Do you want to print a postponement letter?" on the page
         When I set the radio button to "No"
         And I press the "Continue" button
         Then I see "Juror record updated: Postponed" on the page
-
         And I press the "Apps" button
         When I click on the "Documents" link
         And I click on the "Postponement letters" link
@@ -403,9 +400,9 @@ Feature: JM-5588
         And I set the radio button to "Juror"
         And I press the "Search" button
         And I see error "Enter juror name, number or postcode"
-        When I set "Enter juror name, number or postcode" to "<juror_number>"
+        And I set "Enter juror name, number or postcode" to "<juror_number>"
         And I press the "Search" button
-        Then I see "Change" on the page
+        And I see "Change" on the page
         And I see "Print postponement letter" on the page
         And I am able to see and interact with the jurors Postponement letter tabs and fields
         When I check the "<juror_number>" checkbox
@@ -461,19 +458,19 @@ Feature: JM-5588
         And I click continue on the juror summons reply page
 
   #confirm/sign
-        Then the juror summons reply Signature page is displayed
+        And the juror summons reply Signature page is displayed
         When I select that the summons reply has been signed
         And I click done on the juror summons reply page
         Then I see "Do you want to process this summons reply as responded now?" on the page
-        When I press the "Yes, process now" button
-        When the user searches for juror record "<juror_number>" from the global search bar
+        And I press the "Yes, process now" button
+        And the user searches for juror record "<juror_number>" from the global search bar
         And I press the "Update juror record" button
         And I set the radio button to "Postpone service start date"
         And I press the "Continue" button
         When I set the "Enter a new service start date" date to a Monday "38" weeks in the future
         And I press the "Continue" button
         Then I see "There are no active pools for this date" on the page
-        And I press the "Put in deferral maintenance" button
+        When I press the "Put in deferral maintenance" button
         Then I see "Do you want to print a postponement letter?" on the page
         When I set the radio button to "Yes"
         And I press the "Continue" button
@@ -488,13 +485,13 @@ Feature: JM-5588
         And I see "Pool" on the page
         And I see "Include printed" on the page
         And I see "Search" on the page
-        And I set the radio button to "Pool"
+        When I set the radio button to "Pool"
         And I press the "Search" button
         And I see error "Enter pool number"
         When I set "Enter pool number" to "<pool_number>"
-        When I check the "Include printed" checkbox
+        And I check the "Include printed" checkbox
         And I press the "Search" button
-        And I see "Print postponement letter" on the page
+        Then I see "Print postponement letter" on the page
         And I am able to see and interact with the jurors Postponement letter tabs and fields
         And I see the printed letter for juror number "<juror_number>" in the letters table
         When I check the "<juror_number>" checkbox
