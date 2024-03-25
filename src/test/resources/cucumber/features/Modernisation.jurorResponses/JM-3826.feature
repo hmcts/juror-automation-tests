@@ -6,11 +6,9 @@ Feature: JM-3826 Request Additional Information
    Given I am on "Bureau" "test"
    And I log in as "<user>"
 
-   Given the juror numbers have not been processed new schema
-    | part_no   | pool_no   | owner |
-    | <part_no> | <pool_no> | 400   |
-
-
+   Given a bureau owned pool is created with jurors
+    | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+    | 415   | <juror_number> 	    | <pool_number>     | 7				            | 400	|
 
 
    When the user searches for juror record "<juror_number>" from the global search bar
@@ -183,10 +181,10 @@ Feature: JM-3826 Request Additional Information
    And I see "Mark as responded" on the page
    And I check the "Mark juror as 'responded'" checkbox
    And I press the "Confirm" button
-   And I see "Summons reply for 641500413 FNAMEFOURONETHREE LNAMEFOURONETHREE successfully processed: Responded" in the response banner
+   And I see "Summons reply for 641500413 fname lname successfully processed: Responded" in the response banner
 
    And the request letter for court "415" is deleted
 
    Examples:
-    | part_no   | pool_no   | user          |
-    | 641500413 | 415170501 | MODTESTBUREAU |
+    | juror_number   | pool_number   | user          |
+    | 041540007 | 415170501 | MODTESTBUREAU |

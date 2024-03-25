@@ -44,16 +44,16 @@ Feature: JM-4079 Testing paper summons access
   Scenario Outline: Test that you cant enter paper summons as BUREAU user when record belongs to COURT
 
     Given I am on "Bureau" "test"
-    Given the juror numbers have not been processed new schema
-      |part_no   | pool_no   | owner |
-      |<part_no> | <pool_no> | 400   |
+    Given a bureau owned pool is created with jurors
+      | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number> 	    | <pool_number>     | 7				            | 400	|
 
 
     And "<juror_number>" has "NEXT_DATE" as "2 mondays time" new schema
 
     Given a new pool is inserted for where record has transferred to the court new schema
       |part_no   | pool_no   | owner |
-      |<part_no> | <pool_no> | 415   |
+      |<juror_number> | <pool_number> | 415   |
 
     And I log in as "MODTESTBUREAU"
 
@@ -64,5 +64,5 @@ Feature: JM-4079 Testing paper summons access
     Then the Enter summons reply button is not visible
 
     Examples:
-      |part_no	|pool_no	|
-      |641500946|415170402	|
+      |juror_number	|pool_number	|
+      |041540006|415300406	|
