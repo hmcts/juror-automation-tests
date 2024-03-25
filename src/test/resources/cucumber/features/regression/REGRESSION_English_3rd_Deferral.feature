@@ -1810,5 +1810,5 @@ Scenario Outline: English 3rd Party Deferral - selected date makes juror >76
 	And I validate the "Third" deferral date is "14" weeks in the future
 
 Examples:
-	| juror_number	| last_name			| postcode	| pool_number	|
-	| 045200087		| LNAMESIXSEVENSIX	| SW1H 9AJ	| 452300086		|
+	| juror_number	| last_name			| postcode	| pool_number	| email 		|
+	| 045200087		| LNAMESIXSEVENSIX	| SW1H 9AJ	| 452300086		| e@mail.com 	|

@@ -333,7 +333,7 @@ Scenario Outline: Bureau A script, steps 24 onwards
 	Then I see "Main Phone" on the page
 	And I see "Another Phone" on the page
 	
-	When I select "Responded" from Process reply
+	When I select "Mark as responded" from Process reply
 	And I check the "Mark juror as 'responded'" checkbox
 	And I press the "Confirm" button
 	Then I see "COMPLETED" on the page

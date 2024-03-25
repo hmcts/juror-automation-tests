@@ -83,8 +83,8 @@ Scenario Outline: English 1st Party - Accessibility Statement on each page
 
 	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
 	And juror "<juror_number>" has "FIRST_NAME" as "FNAMESEVENONETHREE" new schema
-	And juror juror "<juror_number>" has "ADDRESS_LINE_1" as "855 STREET NAME" new schema
-	And juror juror "<juror_number>" has "ADDRESS_LINE_4" as "LONDON" new schema
+	And juror "<juror_number>" has "ADDRESS_LINE_1" as "855 STREET NAME" new schema
+	And juror "<juror_number>" has "ADDRESS_LINE_4" as "LONDON" new schema
 	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	
 	Then I see "Reply to a jury summons" on the page

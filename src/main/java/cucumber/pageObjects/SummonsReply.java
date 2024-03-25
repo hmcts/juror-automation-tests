@@ -258,6 +258,9 @@ public class SummonsReply {
     @FindBy(xpath = "//input[@value='otherDate']")
     WebElement deferralOptionDifferent;
 
+    @FindBy(xpath = "//input[@id='deferralOption-1']")
+    WebElement deferralOption1;
+
 
     @FindBy(xpath = "/html/body/div[2]/main/form/div[3]/div/div[1]/div/div[1]/button")
     WebElement dateOfBirthButton;
@@ -637,6 +640,8 @@ public class SummonsReply {
     public void setAltChoicePaper(String altChoiceDate){altChoicePaper.clear(); altChoicePaper.sendKeys(altChoiceDate);}
 
     public void deferralOptionDifferent(){deferralOptionDifferent.click();}
+
+    public void deferralOption1(){deferralOption1.click();}
 
     public void clickPoolCreatedForDeferral(String poolNumber) {
         driver.findElement(By.xpath("//*[contains(text(),'"+poolNumber+"')]/../../input")).click();

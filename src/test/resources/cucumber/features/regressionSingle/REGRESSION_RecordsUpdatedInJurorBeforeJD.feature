@@ -33,7 +33,7 @@ Scenario Outline: Can Complete Record when juror.pool.status=1 (summoned)
 	
 	Then I see "Summoned" on the page
 	
-	When I select "Responded" from Process reply
+	When I select "Mark as responded" from Process reply
 	And I check the "Mark juror as 'responded'" checkbox
 	And I press the "Confirm" button
 	

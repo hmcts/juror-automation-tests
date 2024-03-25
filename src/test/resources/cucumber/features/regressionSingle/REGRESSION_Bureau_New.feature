@@ -200,7 +200,7 @@ Scenario Outline: Your Work
 	
 	When I click on the "Awaiting information" link
 	When I click on "<juror_number>" in the same row as "<juror_number>"
-	When I select "Responded" from Process reply
+	When I select "Mark as responded" from Process reply
 	And I check the "Mark juror as 'responded'" checkbox
 	And I press the "Confirm" button
 	Then I see "COMPLETED" on the page
@@ -212,7 +212,7 @@ Scenario Outline: Your Work
 	
 	When I click on the "Awaiting information" link
 	When I click on "<part_no_two>" in the same row as "<part_no_two>"
-	When I select "Responded" from Process reply
+	When I select "Mark as responded" from Process reply
 	And I check the "Mark juror as 'responded'" checkbox
 	And I press the "Confirm" button
 	Then I see "COMPLETED" on the page
@@ -225,7 +225,7 @@ Scenario Outline: Your Work
 	
 	When I click on the "Awaiting information" link
 	When I click on "<part_no_four>" in the same row as "<part_no_four>"
-	When I select "Responded" from Process reply
+	When I select "Mark as responded" from Process reply
 	And I check the "Mark juror as 'responded'" checkbox
 	And I press the "Confirm" button
 	Then I see "COMPLETED" on the page
@@ -1237,7 +1237,7 @@ Scenario Outline: Results grid updates when status changes are made
 	
 	When I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Record status" on the page
-	When I select "Responded" from Process reply
+	When I select "Mark as responded" from Process reply
 	And I check the "Mark juror as 'responded'" checkbox
 	And I press the "Confirm" button
 	Then I see "COMPLETED" on the page

@@ -275,6 +275,11 @@ public class StepDef_jurorRecord {
         JUROR_RECORD.clickDeferralChange();
     }
 
+    @And("^I select the first deferral choice$")
+    public void iSelectFirstChoice() {
+        SUMMONS_REPLY.deferralOption1();
+    }
+
     @And("^I see under pool details the pool number is \"([^\"]*)\"$")
     public void iSeeUnderPoolDetailsThePoolNumberIs(String poolNumberValue) {
         assertEquals(poolNumberValue, JUROR_RECORD.getPoolNumberValue());
