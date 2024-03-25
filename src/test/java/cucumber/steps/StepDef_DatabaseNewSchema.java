@@ -595,4 +595,8 @@ public class StepDef_DatabaseNewSchema {
     public void insertConfirmationLetterPlaceholder(String jurorNumber) throws SQLException {
         DBTNSD.insertConfirmationLetter(jurorNumber);
     }
+    @Then("^I update the bureau transfer date of the juror \"([^\"]*)\"$")
+    public void updatebureautransferDateofCourtUser(String jurorNumber) throws SQLException{
+        DBTNSD.updateBureauTransferDate(jurorNumber);
+    }
 }

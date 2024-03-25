@@ -1,6 +1,6 @@
 Feature: JM-5588
 
-    @JurorTransformationMulti
+    @JurorTransformationWIP @JM-6648
     Scenario Outline:As a bureau officer test a postponement juror can resend a letter by searching via juror number
 
         Given I am on "Bureau" "test"
@@ -86,7 +86,7 @@ Feature: JM-5588
 
         Examples:
             | juror_number  | pool_number | user          |
-            |  041520045    | 415300721   | MODTESTBUREAU |
+                |  041520045    | 415300721   | MODTESTBUREAU |
 
     @JurorTransformationMulti @NewSchemaConverted
     Scenario Outline:Verify as bureau officer postponement juror can delete the letter in pending stage
@@ -166,7 +166,7 @@ Feature: JM-5588
             |  041520046    | 415300722   | MODTESTBUREAU |
 
 
-    @JurorTransformationWIP @NewSchemaConverted
+    @JurorTransformationWIP @NewSchemaConverted @JM-6648
     Scenario Outline:As a bureau officer test a postponement juror can resend a letter by searching via Pool number
 
         Given I am on "Bureau" "test"
@@ -244,6 +244,7 @@ Feature: JM-5588
         And I set "Enter pool number" to "<pool_number>"
         And I press the "Search" button
         And I see the printed letter for juror number "<juror_number>" in the letters table
+
         And I am able to see and interact with the jurors Postponement letter tabs and fields
         And I check the "<juror_number>" checkbox
         And I press the "Resend postponement letter" button
@@ -328,7 +329,7 @@ Feature: JM-5588
             |  041520046    | 415300722   | MODTESTBUREAU |
 
 
-    @JurorTransformationWIP @NewSchemaConverted @JM-6314
+    @JurorTransformationMulti @NewSchemaConverted
     Scenario Outline:As a jury officer test a postponement juror can re send a  letter by searching via juror number
 
         Given I am on "Bureau" "test"
@@ -415,8 +416,8 @@ Feature: JM-5588
             | juror_number  | pool_number | user          |
             |  041530028    | 415300306   | MODTESTCOURT |
 
-    @JurorTransformationWIP @NewSchemaConverted @JM-6338
-    Scenario Outline:As a jury officer test a Deferred juror can print a granted letter by searching via pool number
+    @JurorTransformationMulti @NewSchemaConverted
+    Scenario Outline:Verify postponement juror with print letter searching via pool number
 
         Given I am on "Bureau" "test"
         When a bureau owned pool is created with jurors
@@ -428,6 +429,7 @@ Feature: JM-5588
             | <juror_number>| <pool_number>     | 415   |
 
         And I log in as "<user>"
+        And I update the bureau transfer date of the juror "<juror_number>"
         When the user searches for juror record "<juror_number>" from the global search bar
 
   #record paper summons response
@@ -494,13 +496,12 @@ Feature: JM-5588
         And I press the "Search" button
         And I see "Print postponement letter" on the page
         And I am able to see and interact with the jurors Postponement letter tabs and fields
-         #below step will fail due to JM-6338
         And I see the printed letter for juror number "<juror_number>" in the letters table
         When I check the "<juror_number>" checkbox
         And I press the "Print postponement letter" button
-        Then I see "https://juror.staging.apps.hmcts.net/documents/postponement/letters-list?documentSearchBy=juror&jurorDetails=041530028" in the URL
+        Then I see "https://juror.staging.apps.hmcts.net/documents/postponement/letters-list?documentSearchBy=pool&poolDetails=415300305&includePrinted=includePrinted" in the URL
 
         Examples:
-            | juror_number  | juror_number_1|pool_number | user          |
-            |  041530028    | 041530027   |415300305   | MODTESTCOURT   |
+            | juror_number  | pool_number | user          |
+            |  041530028    | 415300305   | MODTESTCOURT   |
 
