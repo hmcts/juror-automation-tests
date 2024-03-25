@@ -42,7 +42,7 @@ Scenario Outline: English 1st Party Straight Through
 	And I see "steps/your-details/name" in the URL
 	And I do not see "Beta" on the page
 	And I see "Give feedback (opens in a new window or tab)" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	
 	And I press the "Continue" button
 	Then on the page I see
@@ -52,7 +52,7 @@ Scenario Outline: English 1st Party Straight Through
 	And I see "steps/your-details/address" in the URL
 	And I do not see "Beta" on the page
 	And I see "Give feedback (opens in a new window or tab)" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	
 	When I press the "Continue" button
 	
@@ -141,7 +141,7 @@ Scenario Outline: English 1st Party Straight Through
 	And I see "Give feedback (opens in a new window or tab)" on the page
 	And I click on the "Need help answering this?" link
 	And I see "You must contact us to get advice on your specific situation." on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#CJS no
@@ -151,14 +151,14 @@ Scenario Outline: English 1st Party Straight Through
 	When I see "Eligibility" on the page
 	And I do not see "Qualifying for jury service" on the page
 	And I see "Give feedback (opens in a new window or tab)" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I click on the "Why do we ask this?" link
 	And I click on the "Back" link
 	And I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	And the radio button "Yes" is "Selected"
 	And I press the "Continue" button
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Bail
@@ -174,7 +174,7 @@ Scenario Outline: English 1st Party Straight Through
 	And the radio button "No" is "Selected"
 	And I press the "Continue" button
 	Then I see "Are you currently on bail for a criminal offence?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Convictions
@@ -189,7 +189,7 @@ Scenario Outline: English 1st Party Straight Through
 	And the radio button "No" is "Selected"
 	And I press the "Continue" button
 	And I see "Have you been found guilty of a criminal offence?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 		
 	#Mental Health Sectioned
@@ -204,7 +204,7 @@ Scenario Outline: English 1st Party Straight Through
 	And the radio button "No" is "Selected"
 	And I press the "Continue" button
 	And I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Capacity
@@ -219,7 +219,7 @@ Scenario Outline: English 1st Party Straight Through
 	And the radio button "No" is "Selected"
 	And I press the "Continue" button
 	And I see "Has it been decided that you 'lack mental capacity'?" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	Then I see "Check your start date" on the page
 	And I do not see "Eligibility" on the page
@@ -240,7 +240,7 @@ Scenario Outline: English 1st Party Straight Through
 	And the radio button "Yes, I can start on" is "Selected"
 	And I press the "Continue" button
 	Then I see "Will you need help when you're at the court?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	Then I see "Check your answers now" on the page
 	
@@ -259,14 +259,14 @@ Scenario Outline: English 1st Party Straight Through
 	And I see "You answered the eligibility questions" on the page
 	
 	Given I am on "Bureau" "test"
-	And I log in
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
 	Then I see "<juror_number>" on the page
 
-	Then I see "<juror_number>" has reply type indicator "COMPLETED"
+	Then I see "<juror_number>" has reply type indicator "Completed"
 	
 Examples:
 	|juror_number	|last_name			|postcode	|email 		|pool_number|
@@ -294,11 +294,11 @@ Scenario Outline: English 1st Party Straight Through Change Links
 	And I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	
 	And I press the "Continue" button
 
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	
 	When I press the "Continue" button
 
@@ -334,7 +334,7 @@ Scenario Outline: English 1st Party Straight Through Change Links
 	And I do not see "Qualifying for jury service" on the page
 	When I see "Eligibility" on the page
 
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#CJS no
@@ -343,7 +343,7 @@ Scenario Outline: English 1st Party Straight Through Change Links
 	When I see "Eligibility" on the page
 	And I do not see "Qualifying for jury service" on the page
 	
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Bail
@@ -352,7 +352,7 @@ Scenario Outline: English 1st Party Straight Through Change Links
 	And I do not see "Qualifying for jury service" on the page
 	And I see "Eligibility" on the page
 
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Convictions
@@ -361,7 +361,7 @@ Scenario Outline: English 1st Party Straight Through Change Links
 	And I do not see "Qualifying for jury service" on the page
 	When I see "Eligibility" on the page
 
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 		
 	#Mental Health Sectioned
@@ -370,7 +370,7 @@ Scenario Outline: English 1st Party Straight Through Change Links
 	And I do not see "Qualifying for jury service" on the page
 	When I see "Eligibility" on the page
 
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Capacity
@@ -379,7 +379,7 @@ Scenario Outline: English 1st Party Straight Through Change Links
 	And I do not see "Qualifying for jury service" on the page
 	When I see "Eligibility" on the page
 
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#I can attend
@@ -393,7 +393,7 @@ Scenario Outline: English 1st Party Straight Through Change Links
 	#RA no
 	Then I see "Will you need help when you're at the court?" on the page
 
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Check your answers
@@ -404,7 +404,7 @@ Scenario Outline: English 1st Party Straight Through Change Links
 	When I click on the "Change" link in the same row as "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?"
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	When I see "Eligibility" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I set "Provide details" to "Residency information"
 	And I press the "Continue" button
 	Then I see text "No - Residency information" in the same row as "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?"
@@ -412,7 +412,7 @@ Scenario Outline: English 1st Party Straight Through Change Links
 	When I click on the "Change" link in the same row as "Have you worked in the criminal justice system in the last 5 years?"
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
 	When I see "Eligibility" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I check the "Police service" checkbox
 	And I set "Which police service?" to "London Met Police"
 	And I press the "Continue" button
@@ -421,7 +421,7 @@ Scenario Outline: English 1st Party Straight Through Change Links
 	When I click on the "Change" link in the same row as "Are you being detained, looked after or treated under the Mental Health Act?"
 	Then I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
 	When I see "Eligibility" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I set "Provide details" to "I am sectioned and detained"
 	And I press the "Continue" button
 	Then I see text "Yes - I am sectioned and detained" in the same row as "Are you being detained, looked after or treated under the Mental Health Act?"
@@ -429,7 +429,7 @@ Scenario Outline: English 1st Party Straight Through Change Links
 	When I click on the "Change" link in the same row as "Has it been decided that you 'lack mental capacity'?"
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
 	When I see "Eligibility" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I set "Provide brief details about why it was decided you lack mental capacity" to "I lack capacity"
 	And I press the "Continue" button
 	Then I see text "Yes - I lack capacity" in the same row as "Has it been decided that you 'lack mental capacity'?"
@@ -437,7 +437,7 @@ Scenario Outline: English 1st Party Straight Through Change Links
 	When I click on the "Change" link in the same row as "Are you currently on bail for a criminal offence?"
 	Then I see "Are you currently on bail for a criminal offence?" on the page
 	When I see "Eligibility" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I set "Provide details" to "I am on bail for crimes"
 	And I press the "Continue" button
 	Then I see text "Yes - I am on bail for crimes" in the same row as "Are you currently on bail for a criminal offence?"
@@ -445,7 +445,7 @@ Scenario Outline: English 1st Party Straight Through Change Links
 	When I click on the "Change" link in the same row as "Have you been convicted of a criminal offence and been given a sentence?"
 	Then I see "Have you been found guilty of a criminal offence?" on the page
 	When I see "Eligibility" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I set text area with "id" of "convictedDetails" to "I am a convicted criminal"
 	And I press the "Continue" button
 	Then I see text "Yes - I am a convicted criminal" in the same row as "Have you been convicted of a criminal offence and been given a sentence?"
@@ -482,11 +482,11 @@ Scenario Outline: English 1st Party Straight Through Navigate Back
 	And I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	
 	And I press the "Continue" button
 
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	
 	When I press the "Continue" button
 
@@ -522,7 +522,7 @@ Scenario Outline: English 1st Party Straight Through Navigate Back
 	And I do not see "Qualifying for jury service" on the page
 	When I see "Eligibility" on the page
 
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#CJS no
@@ -531,7 +531,7 @@ Scenario Outline: English 1st Party Straight Through Navigate Back
 	When I see "Eligibility" on the page
 	And I do not see "Qualifying for jury service" on the page
 	
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Bail
@@ -540,7 +540,7 @@ Scenario Outline: English 1st Party Straight Through Navigate Back
 	And I do not see "Qualifying for jury service" on the page
 	And I see "Eligibility" on the page
 
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Convictions
@@ -549,7 +549,7 @@ Scenario Outline: English 1st Party Straight Through Navigate Back
 	And I do not see "Qualifying for jury service" on the page
 	When I see "Eligibility" on the page
 
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 		
 	#Mental Health Sectioned
@@ -558,7 +558,7 @@ Scenario Outline: English 1st Party Straight Through Navigate Back
 	And I do not see "Qualifying for jury service" on the page
 	When I see "Eligibility" on the page
 
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Capacity
@@ -567,7 +567,7 @@ Scenario Outline: English 1st Party Straight Through Navigate Back
 	And I do not see "Qualifying for jury service" on the page
 	When I see "Eligibility" on the page
 
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	Then I see "Check your start date" on the page
@@ -637,7 +637,7 @@ Scenario Outline: English 1st Party Straight Through Navigate Back
 	#RA no
 	Then I see "Will you need help when you're at the court?" on the page
 
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	
 	And I press the "Continue" button
 	
@@ -679,11 +679,11 @@ Examples:
 		And I press the "Continue" button
 
 		#name
-		And I set the radio button to "Yes"
+		And I choose the "Yes" radio button
 		And I press the "Continue" button
 
 		#address
-		And I set the radio button to "Yes"
+		And I choose the "Yes" radio button
 		When I press the "Continue" button
 
 		#phone
@@ -705,27 +705,27 @@ Examples:
 		When I press the "Continue" button
 
 		#Residency
-		And I set the radio button to "Yes"
+		And I choose the "Yes" radio button
 		And I press the "Continue" button
 
 		#CJS no
-		When I set the radio button to "No"
+		When I choose the "No" radio button
 		And I press the "Continue" button
 
 		#Bail
-		When I set the radio button to "No"
+		When I choose the "No" radio button
 		And I press the "Continue" button
 
 		#Convictions
-		When I set the radio button to "No"
+		When I choose the "No" radio button
 		And I press the "Continue" button
 
 		#Mental Health Sectioned
-		And I set the radio button to "No"
+		And I choose the "No" radio button
 		And I press the "Continue" button
 
 		#Mental Health Capacity
-		And I set the radio button to "No"
+		And I choose the "No" radio button
 		And I press the "Continue" button
 
 		#I can attend
@@ -733,7 +733,7 @@ Examples:
 		And  I press the "Continue" button
 
 		#RA no
-		When I set the radio button to "No"
+		When I choose the "No" radio button
 		Given PCQs has been enabled
 		And I press the "Continue" button
 		Given PCQs has been disabled
@@ -783,11 +783,11 @@ Examples:
 		And I press the "Continue" button
 
 		#name
-		And I set the radio button to "Yes"
+		And I choose the "Yes" radio button
 		And I press the "Continue" button
 
 		#address
-		And I set the radio button to "Yes"
+		And I choose the "Yes" radio button
 		When I press the "Continue" button
 
 		#phone
@@ -809,27 +809,27 @@ Examples:
 		When I press the "Continue" button
 
 		#Residency
-		And I set the radio button to "Yes"
+		And I choose the "Yes" radio button
 		And I press the "Continue" button
 
 		#CJS no
-		When I set the radio button to "No"
+		When I choose the "No" radio button
 		And I press the "Continue" button
 
 		#Bail
-		When I set the radio button to "No"
+		When I choose the "No" radio button
 		And I press the "Continue" button
 
 		#Convictions
-		When I set the radio button to "No"
+		When I choose the "No" radio button
 		And I press the "Continue" button
 
 		#Mental Health Sectioned
-		And I set the radio button to "No"
+		And I choose the "No" radio button
 		And I press the "Continue" button
 
 		#Mental Health Capacity
-		And I set the radio button to "No"
+		And I choose the "No" radio button
 		And I press the "Continue" button
 
 		#I can attend
@@ -837,7 +837,7 @@ Examples:
 		And  I press the "Continue" button
 
 		#RA no
-		When I set the radio button to "No"
+		When I choose the "No" radio button
 		Given PCQs has been enabled
 		And I press the "Continue" button
 		Given PCQs has been disabled
@@ -887,7 +887,7 @@ Examples:
 		Then I see "Check your answers" on the page
 
 		When I click on the "Change" link in the same row as "Do you have a disability or impairment that means you'll need extra support or facilities in the court building where you are doing your Jury Service?"
-		Then I set the radio button to "No"
+		Then I choose the "No" radio button
 		And I press the "Continue" button
 
 	#do not see pcqs again
@@ -925,11 +925,11 @@ Examples:
 		And I press the "Continue" button
 
 		#name
-		And I set the radio button to "Yes"
+		And I choose the "Yes" radio button
 		And I press the "Continue" button
 
 		#address
-		And I set the radio button to "Yes"
+		And I choose the "Yes" radio button
 		When I press the "Continue" button
 
 		#phone
@@ -951,27 +951,27 @@ Examples:
 		When I press the "Continue" button
 
 		#Residency
-		And I set the radio button to "Yes"
+		And I choose the "Yes" radio button
 		And I press the "Continue" button
 
 		#CJS no
-		When I set the radio button to "No"
+		When I choose the "No" radio button
 		And I press the "Continue" button
 
 		#Bail
-		When I set the radio button to "No"
+		When I choose the "No" radio button
 		And I press the "Continue" button
 
 		#Convictions
-		When I set the radio button to "No"
+		When I choose the "No" radio button
 		And I press the "Continue" button
 
 		#Mental Health Sectioned
-		And I set the radio button to "No"
+		And I choose the "No" radio button
 		And I press the "Continue" button
 
 		#Mental Health Capacity
-		And I set the radio button to "No"
+		And I choose the "No" radio button
 		And I press the "Continue" button
 
 		#I can attend
@@ -979,7 +979,7 @@ Examples:
 		And  I press the "Continue" button
 
 		#RA no
-		When I set the radio button to "No"
+		When I choose the "No" radio button
 		Given PCQs has been enabled
 		And I press the "Continue" button
 		Given PCQs has been disabled
@@ -1059,11 +1059,11 @@ Examples:
 		And I press the "Continue" button
 
 	#Check juror name
-		And I set the radio button to "Yes"
+		And I choose the "Yes" radio button
 		And I press the "Continue" button
 
 	#Check juror address
-		And I set the radio button to "Yes"
+		And I choose the "Yes" radio button
 		And I press the "Continue" button
 
 	#DoB
@@ -1081,27 +1081,27 @@ Examples:
 		When I press the "Continue" button
 
 	#Residency
-		And I set the radio button to "Yes"
+		And I choose the "Yes" radio button
 		And I press the "Continue" button
 
 	#CJS no
-		When I set the radio button to "No"
+		When I choose the "No" radio button
 		And I press the "Continue" button
 
 	#Bail
-		When I set the radio button to "No"
+		When I choose the "No" radio button
 		And I press the "Continue" button
 
 	#Convictions
-		When I set the radio button to "No"
+		When I choose the "No" radio button
 		And I press the "Continue" button
 
 	#Mental Health Sectioned
-		And I set the radio button to "No"
+		And I choose the "No" radio button
 		And I press the "Continue" button
 
 	#Mental Health Capacity
-		And I set the radio button to "No"
+		And I choose the "No" radio button
 		And I press the "Continue" button
 
 	#The person can attend
@@ -1109,7 +1109,7 @@ Examples:
 		And  I press the "Continue" button
 
 	#RA no
-		When I set the radio button to "No"
+		When I choose the "No" radio button
 		Given PCQs has been enabled
 		And I press the "Continue" button
 		Given PCQs has been disabled

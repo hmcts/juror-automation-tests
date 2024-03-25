@@ -88,7 +88,7 @@ Feature: Grant excusal digital
     And I select "<dropDown>" from the dropdown
     And I select the Grant Excusal radio button
     And I click continue on the process reply page
-    And I set the radio button to "No"
+    And I choose the "No" radio button
     And I press the "Continue" button
     Then I see "<bannerText>" on the page
 

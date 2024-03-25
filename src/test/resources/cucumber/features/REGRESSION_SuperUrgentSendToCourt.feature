@@ -55,7 +55,7 @@ Scenario Outline: A response is submitted after pool is transferred to court
 	And I see "Summoned" on the page
 	And I see "SEND TO COURT" on the page
 	
-	When I select "PDF sent to court..." from Process reply
+	When I select "Download as a PDF" from Process reply
 	And I check the "PDF sent to court" checkbox
 	And I press the "Confirm" button
 	

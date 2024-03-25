@@ -37,7 +37,7 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
 
   #reasonable adjustments
     Then the juror summons reply reasonable adjustments page is displayed
-    And I set the radio button to "No"
+    And I choose the "No" radio button
     And I click continue on the juror summons reply page
 
   #confirm/sign
@@ -142,7 +142,7 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
 
   #reasonable adjustments
     Then the juror summons reply reasonable adjustments page is displayed
-    And I set the radio button to "No"
+    And I choose the "No" radio button
     And I click continue on the juror summons reply page
 
   #confirm/sign
@@ -220,7 +220,7 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
 
   #reasonable adjustments
     Then the juror summons reply reasonable adjustments page is displayed
-    And I set the radio button to "No"
+    And I choose the "No" radio button
     And I click continue on the juror summons reply page
 
   #confirm/sign
@@ -281,7 +281,7 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
 
   #reasonable adjustments
     Then the juror summons reply reasonable adjustments page is displayed
-    And I set the radio button to "No"
+    And I choose the "No" radio button
     And I click continue on the juror summons reply page
 
   #confirm/sign
@@ -390,7 +390,7 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
 
   #reasonable adjustments
     Then the juror summons reply reasonable adjustments page is displayed
-    And I set the radio button to "No"
+    And I choose the "No" radio button
     And I click continue on the juror summons reply page
 
   #confirm/sign
@@ -480,7 +480,7 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
 
   #reasonable adjustments
     Then the juror summons reply reasonable adjustments page is displayed
-    And I set the radio button to "No"
+    And I choose the "No" radio button
     And I click continue on the juror summons reply page
 
   #confirm/sign
@@ -512,7 +512,7 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
     And I press the "Continue" button
 
     And I see "Do you want to print a deferral granted letter?" on the page
-    And I set the radio button to "No"
+    And I choose the "No" radio button
     And I press the "Continue" button
 
     Then I see "Deferral granted (other)" on the page
@@ -582,7 +582,7 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
 
   #reasonable adjustments
     Then the juror summons reply reasonable adjustments page is displayed
-    And I set the radio button to "No"
+    And I choose the "No" radio button
     And I click continue on the juror summons reply page
 
   #confirm/sign
@@ -613,7 +613,7 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
     When I set the radio button to "Grant deferral"
     And I press the "Continue" button
     Then I see "Do you want to print a deferral granted letter?" on the page
-    And I set the radio button to "Yes"
+    And I choose the "Yes" radio button
     And I press the "Continue" button
     And I return to the previous tab
     When I press the "Apps" button

@@ -42,11 +42,11 @@ Scenario Outline: English 3rd Party Underage
 	When I set the radio button to "The person is unable to reply by themselves"
 	And I press the "Continue" button
 	Then I see "Is the name we have for them correct?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	
 	When I press the "Continue" button
 	Then I see "Is this their address?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	
 	When I press the "Continue" button
 	Then I see "Give the date of birth for the person you're replying for" on the page
@@ -67,7 +67,7 @@ Scenario Outline: English 3rd Party Underage
 	Then I see "There is a problem" on the page
 	And I see "Tell us if their date of birth is correct" on the page
 	
-	Then I set the radio button to "No"
+	Then I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#DoB
@@ -116,7 +116,7 @@ Scenario Outline: English 3rd Party Underage
 	And I set "Year" to "2006"
 	And I press the "Continue" button
 	
-	Then I set the radio button to "Yes"
+	Then I choose the "Yes" radio button
 	And I press the "Continue" button
 
 	Then I see "Check your answers now" on the page

@@ -98,7 +98,7 @@ Scenario Outline: English 3rd Party Straight Through with Skip to Main Content C
 	Then the page language is "en"
 	Then I click on the "Skip to main content" link
 	Then I see "Is the name we have for them correct?" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	
 	And I press the "Continue" button
 
@@ -108,7 +108,7 @@ Scenario Outline: English 3rd Party Straight Through with Skip to Main Content C
 	Then the page language is "en"
 	Then I click on the "Skip to main content" link
 	Then I see "Is this their address?" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	
 	And I press the "Continue" button
 	
@@ -153,7 +153,7 @@ Scenario Outline: English 3rd Party Straight Through with Skip to Main Content C
 	Then I click on the "Skip to main content" link
 	Then I see "Since they turned 13," on the page
 	
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#JDB-3357 Skip to main content check
@@ -163,7 +163,7 @@ Scenario Outline: English 3rd Party Straight Through with Skip to Main Content C
 	Then I click on the "Skip to main content" link
 	Then I see "Has the person you're replying for worked in the criminal justice system in the last 5 years?" on the page
 	
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#JDB-3357 Skip to main content check
@@ -173,7 +173,7 @@ Scenario Outline: English 3rd Party Straight Through with Skip to Main Content C
 	Then I click on the "Skip to main content" link
 	Then I see "Is the person currently on bail" on the page
 	
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#JDB-3357 Skip to main content check
@@ -183,7 +183,7 @@ Scenario Outline: English 3rd Party Straight Through with Skip to Main Content C
 	Then I click on the "Skip to main content" link
 	Then I see "Has the person been found guilty of a criminal offence?" on the page
 	
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#JDB-3357 Skip to main content check
@@ -193,7 +193,7 @@ Scenario Outline: English 3rd Party Straight Through with Skip to Main Content C
 	Then I click on the "Skip to main content" link
 	Then I see "Is the person you're replying for being detained" on the page
 	
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#JDB-3357 Skip to main content check
@@ -203,7 +203,7 @@ Scenario Outline: English 3rd Party Straight Through with Skip to Main Content C
 	Then I click on the "Skip to main content" link
 	Then I see "Has it been decided that the person you're replying for 'lacks mental capacity'?" on the page
 	
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#JDB-3357 Skip to main content check
@@ -223,7 +223,7 @@ Scenario Outline: English 3rd Party Straight Through with Skip to Main Content C
 	Then I click on the "Skip to main content" link
 	Then I see "Will the person you're replying for need help when they're at the court?" on the page
 	
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#JDB-3357 Skip to main content check

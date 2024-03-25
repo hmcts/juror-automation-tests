@@ -38,7 +38,7 @@ Feature: 1)JM-5409 As a Bureau officer I need to resend a deferral refusal lette
 
   #reasonable adjustments
     Then the juror summons reply reasonable adjustments page is displayed
-    And I set the radio button to "No"
+    And I choose the "No" radio button
     And I click continue on the juror summons reply page
 
   #confirm/sign
@@ -138,7 +138,7 @@ Feature: 1)JM-5409 As a Bureau officer I need to resend a deferral refusal lette
 
   #reasonable adjustments
     Then the juror summons reply reasonable adjustments page is displayed
-    And I set the radio button to "No"
+    And I choose the "No" radio button
     And I click continue on the juror summons reply page
 
   #confirm/sign
@@ -223,7 +223,7 @@ Feature: 1)JM-5409 As a Bureau officer I need to resend a deferral refusal lette
 
   #reasonable adjustments
     Then the juror summons reply reasonable adjustments page is displayed
-    And I set the radio button to "No"
+    And I choose the "No" radio button
     And I click continue on the juror summons reply page
 
   #confirm/sign
@@ -313,7 +313,7 @@ Feature: 1)JM-5409 As a Bureau officer I need to resend a deferral refusal lette
 
   #reasonable adjustments
     Then the juror summons reply reasonable adjustments page is displayed
-    And I set the radio button to "No"
+    And I choose the "No" radio button
     And I click continue on the juror summons reply page
 
   #confirm/sign
@@ -344,7 +344,7 @@ Feature: 1)JM-5409 As a Bureau officer I need to resend a deferral refusal lette
     When I set the radio button to "Refuse deferral"
     And I press the "Continue" button
     Then I see "Do you want to print a deferral refused letter?" on the page
-    When I set the radio button to "No"
+    When I choose the "No" radio button
     And I press the "Continue" button
     Then I see "Deferral refused (other)" on the page
 
@@ -415,7 +415,7 @@ Feature: 1)JM-5409 As a Bureau officer I need to resend a deferral refusal lette
 
   #reasonable adjustments
     Then the juror summons reply reasonable adjustments page is displayed
-    And I set the radio button to "No"
+    And I choose the "No" radio button
     And I click continue on the juror summons reply page
 
   #confirm/sign
@@ -446,7 +446,7 @@ Feature: 1)JM-5409 As a Bureau officer I need to resend a deferral refusal lette
     When I set the radio button to "Refuse deferral"
     And I press the "Continue" button
     Then I see "Do you want to print a deferral refused letter?" on the page
-    When I set the radio button to "Yes"
+    When I choose the "Yes" radio button
     And I press the "Continue" button
     Then I see "Deferral refused (other)" on the page
 

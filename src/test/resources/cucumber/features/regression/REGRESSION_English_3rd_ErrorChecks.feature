@@ -230,7 +230,7 @@ Scenario Outline: English_3rd_ErrorChecks
 	#Check Juror Name
 	#JDB-4281
 	#JDB-4125
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	And I set "First name" to ""
 	And I set "Last name" to ""
@@ -244,7 +244,7 @@ Scenario Outline: English_3rd_ErrorChecks
 	Then I see "Is this their address?" on the page
 	
 	#Check address
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	And I set "Address line 1" to ""
 	And I set "Town or city" to ""
@@ -471,13 +471,13 @@ Scenario Outline: English_3rd_ErrorChecks
 	When I press the "Continue" button
 	Then I see "There is a problem" on the page
 	And I see error "Select yes if their main address has been in the UK, Channel Islands or Isle of Man for any period of at least 5 years, since they turned 13"
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I see "Provide details about where the person you are answering for has lived since their 13th birthday" on the page
 	And I press the "Continue" button
 	Then I see "There is a problem" on the page
 	And I see error "Provide details about where the person you are answering for has lived since their 13th birthday"
 	
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#CJS no
@@ -485,7 +485,7 @@ Scenario Outline: English_3rd_ErrorChecks
 	When I press the "Continue" button
 	Then I see "There is a problem" on the page
 	And I see error "Select whether the person you're replying for has worked in the criminal justice system in the last 5 years"
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	Then I see "Choose any organisations the person you're replying for has worked for" on the page
 	And I press the "Continue" button
 	Then I see error "Tick any organisations the person worked for directly (not as a third party or subcontractor)"
@@ -501,7 +501,7 @@ Scenario Outline: English_3rd_ErrorChecks
 	Then I see error "Give details of where and when the person worked for HM Prison Service"
 	Then I see error "Give details of where and when the person has worked for another Criminal Justice System employer"
 	
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Bail no
@@ -510,13 +510,13 @@ Scenario Outline: English_3rd_ErrorChecks
 	Then I see "There is a problem" on the page
 	And I see error "Select yes if the person is currently on bail for a criminal offence"
 	
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	Then I see "Provide details about the person's bail and criminal offence" on the page
 	And I press the "Continue" button
 	Then I see "There is a problem" on the page
 	And I see error "Provide details about the person's bail and criminal offence"
 	
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Convictions no
@@ -525,13 +525,13 @@ Scenario Outline: English_3rd_ErrorChecks
 	Then I see "There is a problem" on the page
 	And I see error "Select yes if the person has been found guilty of a criminal offence"
 	
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	Then I see "Provide details about the person's criminal offence" on the page
 	And I press the "Continue" button
 	Then I see "There is a problem" on the page
 	And I see error "Provide details about the person's criminal offence"
 	
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental health part 1 no
@@ -540,13 +540,13 @@ Scenario Outline: English_3rd_ErrorChecks
 	Then I see "There is a problem" on the page
 	And I see error "Select yes if the person you're replying for is being detained, looked after or treated under the Mental Health Act"
 	
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	Then I see "Provide details about how they're being detained, looked after or treated under the Mental Health Act" on the page
 	And I press the "Continue" button
 	Then I see "There is a problem" on the page
 	And I see error "Provide details about how they're being detained, looked after or treated under the Mental Health Act"
 	
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental health part 2 no
@@ -555,13 +555,13 @@ Scenario Outline: English_3rd_ErrorChecks
 	Then I see "There is a problem" on the page
 	And I see error "Select yes if it's been decided that the person you're replying for 'lacks mental capacity'"
 	
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	Then I see "Provide brief details about why it was decided they lack mental capacity" on the page
 	And I press the "Continue" button
 	Then I see "There is a problem" on the page
 	Then I see error "Provide brief details about why it was decided they lack mental capacity"
 	
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#I can attend
@@ -579,7 +579,7 @@ Scenario Outline: English_3rd_ErrorChecks
 	Then I see "There is a problem" on the page
 	And I see "Select yes if the person you are answering for will need help when they're at court" on the page
 	
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#JDB-3638
@@ -589,7 +589,7 @@ Scenario Outline: English_3rd_ErrorChecks
 	And I press the "Continue" button
 	Then I see "There is a problem" on the page
 
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Check Your Answers
@@ -651,7 +651,7 @@ Scenario Outline: English_3rd_ErrorChecks
 	And I press the "Continue" button
 	
 	#confirm
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	Then I see "Check your answers now" on the page

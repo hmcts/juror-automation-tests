@@ -7,9 +7,9 @@ Scenario: expensesJDB-4338 Travel to Court
 	
 	And I press the "Start now" button	
 	
-	Then I set the radio button to "No"
+	Then I choose the "No" radio button
 	When I press the "Continue" button
-	Then I set the radio button to "Yes"
+	Then I choose the "Yes" radio button
 	When I press the "Continue" button
 	Then I set "£" to "1000,00"	
 	When I press the "Continue" button

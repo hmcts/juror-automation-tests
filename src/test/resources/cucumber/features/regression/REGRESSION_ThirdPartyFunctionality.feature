@@ -78,7 +78,7 @@ Scenario Outline: Third Party Functionality Regression
 	And I see text "LastNameBChanged" in the same row as "Your name"
 	
 	Then I check the "The answers I have given for the person I'm replying for are true as far as I know." checkbox
-	Given auto straight through processing has been disabled
+	Given auto straight through processing has been disabled new schema
 	When I press the "Submit" button
 	
 	Then I see "You have completed your reply" on the page
@@ -88,7 +88,7 @@ Scenario Outline: Third Party Functionality Regression
 	#Continue from Step 17
 	
 	Given I am on "Bureau" "test"
-	And I log in
+	And I log in as "MODTESTBUREAU"
 	Then I see "To do" on the page
 	Then I see "Your work" on the page
 	Then I see "Search" on the page
@@ -108,19 +108,23 @@ Scenario Outline: Third Party Functionality Regression
 	Then I see "LastNameB" on the page
 	And I see "Juror details" on the page
 	
-	Then I see "FirstNameAChanged" in the same row as "Third party name"
+	Then I see "FirstNameAChanged" in the same row as "Name"
 	Then I see "<address>" in the same row as "Address"
 	
-	When I select "Deferral" from Process reply
-	
-	And I select "O - OTHER" from the "Reason for the deferral request" dropdown
-	And I set the radio button to "Accept deferral"
-	And I set the radio button to "Other"
+#	When I select "Deferral" from Process reply
+	When I select "Deferral request" from Process reply
 
-	When I set the "Deferral" single date field to a Monday "10" weeks in the future
+	Then I set "First choice" to "10 mondays time"
+	And I press the "Continue" button
+
+	And I select "O - OTHER" from the "Reason for the deferral request" dropdown
+	And I set the radio button to "Choose a different date"
+
+	Then I set "Date to defer to" to "10 mondays time"
+	And I press the "Continue" button
 	
-	And I press the "Confirm" button
-	Then I see "COMPLETED" on the page
+	And I press the "Put in deferral maintenance" button
+	Then I see the juror record updated banner containing "Deferral granted (other)"
 	
 	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "CLOSED" where "JUROR_NUMBER" is "<juror_number>"
 	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "Y" where "JUROR_NUMBER" is "<juror_number>"
@@ -130,7 +134,7 @@ Scenario Outline: Third Party Functionality Regression
 	Then on "JUROR_MOD" . "JUROR_HISTORY" I see "HISTORY_CODE" is "RESP" where "JUROR_NUMBER" is "<juror_number>"
 	
 	# re-enable auto processing
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	
 Examples:
 	| juror_number	| pool_number	| last_name			| postcode	| email           	| address 			|

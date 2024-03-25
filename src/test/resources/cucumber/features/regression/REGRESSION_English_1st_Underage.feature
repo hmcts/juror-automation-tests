@@ -22,12 +22,12 @@ Scenario Outline: English 1st Party Underage
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 	Then I see "Is the name we have for you correct?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	
 	#Moving past Name Section
 	When I press the "Continue" button
 	Then I see "Is this your address?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	
 	When I press the "Continue" button
 	Then I see "What is your phone number?" on the page
@@ -59,7 +59,7 @@ Scenario Outline: English 1st Party Underage
 	Then I see "There is a problem" on the page
 	And I see "Tell us if your date of birth is correct" on the page
 	
-	Then I set the radio button to "No"
+	Then I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#On DoB Screen
@@ -112,7 +112,7 @@ Scenario Outline: English 1st Party Underage
 	And I press the "Continue" button
 
 	#confirm DOB
-	Then I set the radio button to "Yes"
+	Then I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	Then I see "Check your answers now" on the page
@@ -125,14 +125,14 @@ Scenario Outline: English 1st Party Underage
 	Then I see "<juror_number>" on the page
 	
 	Given I am on "Bureau" "test"
-	And I log in
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
 	Then I see "<juror_number>" on the page
 
-	Then I see "<juror_number>" has reply type indicator "COMPLETED"
+	Then I see "<juror_number>" has reply type indicator "Completed"
 	
 Examples:
 	| juror_number	| last_name			| postcode	| email 		| pool_number	|
@@ -160,12 +160,12 @@ Scenario Outline: English 1st Party Underage with Error Check
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 	Then I see "Is the name we have for you correct?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	
 	#Moving past Name Section
 	And I press the "Continue" button
 	Then I see "Is this your address?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	
 	When I press the "Continue" button
 	Then I see "What is your phone number?" on the page
@@ -188,7 +188,7 @@ Scenario Outline: English 1st Party Underage with Error Check
 	And I press the "Continue" button
 	Then I see "Is your date of birth correct?" on the page
 	
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 
 	And I click on the "Change" link in the same row as "Date of birth"
@@ -200,7 +200,7 @@ Scenario Outline: English 1st Party Underage with Error Check
 	
 	Then I see "Is your date of birth correct?" on the page
 	
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	And I set "Day" to ""
@@ -222,7 +222,7 @@ Scenario Outline: English 1st Party Underage with Error Check
 	And I set the date of birth to a Monday "-884" weeks in the future
 	And I press the "Continue" button
 	
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	Then I see "Check your answers now" on the page
@@ -260,12 +260,12 @@ Scenario Outline: English 1st Party Underage with Back Check
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 	Then I see "Is the name we have for you correct?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	
 	#Moving past Name Section
 	When I press the "Continue" button
 	Then I see "Is this your address?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	
 	When I press the "Continue" button
 	Then I see "What is your phone number?" on the page
@@ -302,7 +302,7 @@ Scenario Outline: English 1st Party Underage with Back Check
 	
 	Then I see "Is your date of birth correct?" on the page
 	
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	Then I press the "Continue" button
 	
 	And I set "Day" to ""
@@ -317,7 +317,7 @@ Scenario Outline: English 1st Party Underage with Back Check
 	And I set the date of birth to a Monday "-884" weeks in the future
 	And I press the "Continue" button
 	
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	Then I press the "Continue" button
 	
 	Then I see "Check your answers now" on the page

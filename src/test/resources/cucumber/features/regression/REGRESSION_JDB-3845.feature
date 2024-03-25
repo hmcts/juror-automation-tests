@@ -303,12 +303,12 @@ Scenario Outline: English_3rd party_CJS
 	
 	#Check juror name
 	Then I see "Is the name we have for them correct?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#Check juror address
 	Then I see "Is this their address?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	Then I see "Give the date of birth for the person you're replying for" on the page
@@ -332,11 +332,11 @@ Scenario Outline: English_3rd party_CJS
 	And I press the "Continue" button
 	
 	#Eligibility questions
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#CJS Emp
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I check the "Police service" checkbox
 	And I set "Which police service?" to "London Met Police Force"
 	And I check the "HM Prison Service" checkbox
@@ -348,20 +348,20 @@ Scenario Outline: English_3rd party_CJS
 	And I set "Which other part of the Criminal Justice System?" to "Another part of the CJS"
 	And I press the "Continue" button
 	
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	Then I set the radio button to "Yes, they can start on"
 	And I press the "Continue" button
 
 	#Help in court
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 
 	#Check your answers
@@ -420,11 +420,11 @@ Scenario Outline: English_1st Party_CJS_A
 	And I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	
 	And I press the "Continue" button
 
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	
 	When I press the "Continue" button
 
@@ -446,12 +446,12 @@ Scenario Outline: English_1st Party_CJS_A
 	When I press the "Continue" button
 
 	#Residency
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#CJS Emp
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I check the "Police service" checkbox
 	And I set "Which police service?" to "London Met Police Force"
 	And I check the "HM Prison Service" checkbox
@@ -464,19 +464,19 @@ Scenario Outline: English_1st Party_CJS_A
 	And I press the "Continue" button
 	
 	#Bail
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Convictions
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Sectioned
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Capacity
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#I can attend
@@ -485,7 +485,7 @@ Scenario Outline: English_1st Party_CJS_A
 	And  I press the "Continue" button
 
 	#Help in court
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 
 	#Check your answers
@@ -538,12 +538,12 @@ Scenario Outline: English_1st Party_CJS_A
 #	And "Other" is unchecked
 #	And I see "Another part of the CJS" on the page
 #	
-#	And I set the radio button to "No" under "CJS Employment"
+#	And I choose the "No" radio button under "CJS Employment"
 #	And I do not see "London Met Police Force" on the page
 #	And I do not see "Wandsworth Prison" on the page
 #	And I do not see "Another part of the CJS" on the page
 #	
-#	And I set the radio button to "Yes" under "CJS Employment"
+#	And I choose the "Yes" radio button under "CJS Employment"
 #	And I see "CJS Employment" on the page
 #	And the radio button "Yes" is "selected"
 #	And "Police Force" is checked
@@ -602,11 +602,11 @@ Scenario Outline: English_1st Party_CJS
 	And I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	
 	And I press the "Continue" button
 
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	
 	When I press the "Continue" button
 
@@ -628,12 +628,12 @@ Scenario Outline: English_1st Party_CJS
 	When I press the "Continue" button
 
 	#Residency
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#CJS Emp
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I check the "Police service" checkbox
 	And I set "Which police service?" to "London Met Police Force"
 	And I check the "HM Prison Service" checkbox
@@ -646,19 +646,19 @@ Scenario Outline: English_1st Party_CJS
 	And I press the "Continue" button
 	
 	#Bail
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Convictions
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Sectioned
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Capacity
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#I can attend
@@ -667,7 +667,7 @@ Scenario Outline: English_1st Party_CJS
 	And  I press the "Continue" button
 
 	#Help in court
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 
 	#Check your answers
@@ -711,11 +711,11 @@ Scenario Outline: English_1st Party_CJS_Change Selection
 	And I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	
 	And I press the "Continue" button
 
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	
 	When I press the "Continue" button
 
@@ -737,12 +737,12 @@ Scenario Outline: English_1st Party_CJS_Change Selection
 	When I press the "Continue" button
 
 	#Residency
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#CJS Emp No
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And  I press the "Continue" button
 	
 	And I click on the "Back" link
@@ -751,7 +751,7 @@ Scenario Outline: English_1st Party_CJS_Change Selection
 	And I do not see "the Judiciary" on the page
 	And I do not see "HM Courts & Tribunal Service" on the page
 	
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I check the "Police service" checkbox
 	And I set "Which police service?" to "London Met Police Force"
 	And I check the "HM Prison Service" checkbox
@@ -762,11 +762,11 @@ Scenario Outline: English_1st Party_CJS_Change Selection
 	And I check the "Other" checkbox
 	And I set "Which other part of the Criminal Justice System?" to "Another part of the CJS"
 	
-	Then I set the radio button to "No"
+	Then I choose the "No" radio button
 	And I do not see "the Judiciary" on the page
 	And I do not see "HM Courts & Tribunal Service" on the page
 	
-	Then I set the radio button to "Yes"
+	Then I choose the "Yes" radio button
 	Then the radio button "Yes" is "selected"
 	And "Police service" is checked
 	And "Which police service?" is "London Met Police Force"
@@ -781,19 +781,19 @@ Scenario Outline: English_1st Party_CJS_Change Selection
 	And I press the "Continue" button
 	
 	#Bail
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Convictions
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Sectioned
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Capacity
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#I can attend
@@ -802,7 +802,7 @@ Scenario Outline: English_1st Party_CJS_Change Selection
 	And  I press the "Continue" button
 	
 	#Help in court
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 
 	#Check your answers
@@ -830,7 +830,7 @@ Scenario Outline: English_1st Party_CJS_Change Selection
 	And "Other" is checked
 	And "Which other part of the Criminal Justice System?" is "Another part of the CJS"
 	
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 
 	#Check your answers
@@ -865,11 +865,11 @@ Scenario Outline: English_1st Party_CJS_Errors
 	And I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	
 	And I press the "Continue" button
 
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	
 	When I press the "Continue" button
 
@@ -891,7 +891,7 @@ Scenario Outline: English_1st Party_CJS_Errors
 	When I press the "Continue" button
 
 	#Residency
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#CJS Emp no selection errors
@@ -901,7 +901,7 @@ Scenario Outline: English_1st Party_CJS_Errors
 	And I see "Select whether you've worked in the criminal justice system in the last 5 years" on the page
 	
 	#CJS Emp Yes but so selection errors
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	And I see "There is a problem" on the page
 	And I see "Tick any organisations you worked for directly (not as a third party or subcontractor)" on the page
@@ -943,26 +943,26 @@ Scenario Outline: English_1st Party_CJS_Errors
 	And I see "There is a problem" on the page
 	And I see "Tick any organisations you worked for directly (not as a third party or subcontractor)" on the page
 	
-	Then I set the radio button to "No"
+	Then I choose the "No" radio button
 	And I do not see "the Judiciary" on the page
 	And I do not see "HM Courts & Tribunal Service" on the page
 	
 	And I press the "Continue" button
 	
 	#Bail
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Convictions
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Sectioned
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Capacity
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#I can attend
@@ -971,7 +971,7 @@ Scenario Outline: English_1st Party_CJS_Errors
 	And I press the "Continue" button
 	
 	#Help in court
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 
 	#Check your answers

@@ -27,12 +27,12 @@ Scenario Outline: English_1st_Eligibility_Hint_Text
 	Then I see "Is the name we have for you correct?" on the page
 	
 	#Check name
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	When I press the "Continue" button
 	Then I see "Is this your address?" on the page
 	
 	#Check address
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	When I press the "Continue" button
 	Then I see "What is your phone number?" on the page
 	
@@ -59,7 +59,7 @@ Scenario Outline: English_1st_Eligibility_Hint_Text
 	
 	#Residency Yes
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	
 	#help text
 	Then I click on the "Need help answering this?" link
@@ -98,15 +98,15 @@ Scenario Outline: English_1st_Eligibility_Hint_Text
 	
 	#CJS no
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Bail no
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Convictions no
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I click on the "Guidance on jury service if you have a conviction" link
 	
 	And on the page I see
@@ -143,7 +143,7 @@ Scenario Outline: English_1st_Eligibility_Hint_Text
 	
 	And I do not see "When you can do jury service" on the page
 	
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	
 	And on the page I see
 	|text|
@@ -153,16 +153,16 @@ Scenario Outline: English_1st_Eligibility_Hint_Text
 	|where you were convicted|
 	|length of sentence|
 	
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	
 	And I press the "Continue" button
 	
 	#Mental health part 1 no
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental health part 2 no
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#I can attend
@@ -172,7 +172,7 @@ Scenario Outline: English_1st_Eligibility_Hint_Text
 	
 	#RA no
 	Then I see "Will you need help when you're at the court?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Check Your Answers
@@ -238,12 +238,12 @@ Scenario Outline: English_3rd_Eligibility_Hint_Text
 	Then I see "Is the name we have for them correct?" on the page
 
 	#Check Juror Name
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	Then I see "Is this their address?" on the page
 	
 	#Check address
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	Then I see "Give the date of birth for the person you're replying for" on the page
 	
@@ -266,7 +266,7 @@ Scenario Outline: English_3rd_Eligibility_Hint_Text
 	
 	#Residency Yes
 	Then I see "Since they turned 13, has their main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	
 	#help text
 	Then I click on the "Need help answering this?" link
@@ -301,15 +301,15 @@ Scenario Outline: English_3rd_Eligibility_Hint_Text
 	
 	#CJS no
 	Then I see "Has the person you're replying for worked in the criminal justice system in the last 5 years?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Bail no
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Convictions no
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I click on the "Guidance on jury service if you have a conviction" link
 	
 	And on the page I see
@@ -345,7 +345,7 @@ Scenario Outline: English_3rd_Eligibility_Hint_Text
 	
 	And I do not see "When they can do jury service" on the page
 	
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	
 	And on the page I see
 	|text|
@@ -355,16 +355,16 @@ Scenario Outline: English_3rd_Eligibility_Hint_Text
 	|where they were convicted|
 	|length of sentence|
 	
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	
 	And I press the "Continue" button
 	
 	#Mental health part 1 no
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental health part 2 no
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#I can attend
@@ -374,7 +374,7 @@ Scenario Outline: English_3rd_Eligibility_Hint_Text
 	
 	#RA no
 	Then I see "Will the person you're replying for need help when they're at the court?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	Then I see "Check your answers now" on the page
