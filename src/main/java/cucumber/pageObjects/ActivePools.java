@@ -1,9 +1,13 @@
 package cucumber.pageObjects;
 
+import cucumber.utils.WaitUtil_v2;
+import cucumber.utils.WaitUtils;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -14,6 +18,7 @@ import java.util.Random;
 public class ActivePools {
 
     private static WebDriver driver;
+
     private static final Logger log = Logger.getLogger(ActivePools.class);
     private final NavigationShared NAV;
 
@@ -68,6 +73,9 @@ public class ActivePools {
     }
     public void bureauCheckSelectAllCheckboxOnPoolOverview() {
         log.info("Clicked select all checkbox on pool overview");
+        Actions actions = new Actions(driver);
+        actions.moveToElement(bureauPoolOverviewSelectAll);
+        actions.perform();
         bureauPoolOverviewSelectAll.click();
 
     }

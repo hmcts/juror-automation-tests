@@ -4,12 +4,12 @@ Feature: JM-3812 JM-3893
   Scenario Outline: Test to mark juror as deceased for a paper record
     Given I am on "Bureau" "test"
 
-    Given the juror numbers have not been processed new schema
-      |part_no   | pool_no   | owner |
-      |<part_no> | <pool_no> | 400   |
+    Given a bureau owned pool is created with jurors
+      | court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+      | 452   |<juror_number>| <pool_number>	| 5				            | 400	|
 
     And I log in as "<user>"
-    And I search for juror "<part_no>"
+    And I search for juror "<juror_number>"
     And I click the update juror record button
     And I select the mark as deceased radio button
 
@@ -19,8 +19,8 @@ Feature: JM-3812 JM-3893
     And I see the juror status on the juror record screen has updated to "Deceased"
 
     Examples:
-      |user			|part_no    |pool_no  |
-      |MODTESTBUREAU|641500236  |415170402|
+      |user			|juror_number    |pool_number  |
+      |MODTESTBUREAU|041540005  |415300405|
 
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Test to mark juror as deceased for a paper record - Validation
