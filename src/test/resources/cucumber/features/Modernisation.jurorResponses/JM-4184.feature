@@ -1,6 +1,6 @@
 Feature: JM-4184 - The system shall allow the jury officer to process a summons reply that has been returned late
 
-  @JurorTransformationMulti
+  @JurorTransformationMultiWIP @JM-6571
   Scenario Outline: Process summons reply that has been returned late (Disqualify)
     Given I am on "Bureau" "test"
 
@@ -38,7 +38,7 @@ Feature: JM-4184 - The system shall allow the jury officer to process a summons 
       | MODTESTCOURT  | 041500064     | 415300154    |
 
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMultiWIP @NewSchemaConverted @JM-6571
   Scenario Outline: Process summons reply that has been returned late (Deferral)
     Given I am on "Bureau" "test"
 
@@ -90,7 +90,7 @@ Feature: JM-4184 - The system shall allow the jury officer to process a summons 
       | MODTESTCOURT  | 041500065   | 415300155   |
 
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMultiWIP @NewSchemaConverted @JM-6571
   Scenario Outline: Process summons reply that has been returned late (Excusal)
     Given I am on "Bureau" "test"
 

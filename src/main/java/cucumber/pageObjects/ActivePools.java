@@ -26,7 +26,7 @@ public class ActivePools {
     @FindBy(xpath = "//input[@name='check-all-jurors' or @id='check-all-jurors']")
     WebElement poolOverviewSelectAll;
 
-    @FindBy(id = "selectAllCheckbox")
+    @FindBy(id = "check-all-jurors")
     WebElement bureauPoolOverviewSelectAll;
 
     public ActivePools(WebDriver driver) {
