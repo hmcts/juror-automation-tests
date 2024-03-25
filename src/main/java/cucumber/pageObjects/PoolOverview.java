@@ -90,7 +90,7 @@ public class PoolOverview {
     @FindBy(xpath = "//*[@id=\"main-content\"]/div[1]/div/div/strong")
     WebElement status;
 
-    @FindBy(id = "poolJurorReassign")
+    @FindBy(id = "jurorOverview")
     WebElement jurorsTable;
 
     public String getCourtName() {
