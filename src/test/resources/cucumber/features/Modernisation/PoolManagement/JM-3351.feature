@@ -2,7 +2,7 @@ Feature: JM-3351
 
   @JurorTransformationMulti
   Scenario: Test to filter pool requests
-    Given I am on "Bureau" "postgres"
+    Given I am on "Bureau" "test"
 
     And I log in as "MODTESTBUREAU"
 
@@ -16,7 +16,7 @@ Feature: JM-3351
 
   @JurorTransformationMulti
   Scenario: Test to filter pool requests with no pools available
-    Given I am on "Bureau" "postgres"
+    Given I am on "Bureau" "test"
 
     And I log in as "MODTESTBUREAU"
 

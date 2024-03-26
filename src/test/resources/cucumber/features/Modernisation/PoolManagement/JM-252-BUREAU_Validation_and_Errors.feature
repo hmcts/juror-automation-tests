@@ -339,10 +339,10 @@ Feature: JM-252_Validation_and_Errors
     Then I see "Number of deferrals is too high" on the page
 
     Examples:
-      | user	        | selectedCourt    | displayCourt     | courtType    | courtCode | juror_number| pool_number |
-      | MODTESTBUREAU	| SWANSEA          | Swansea Crown Court          | Crown        | 457       | 045700003   | 457300003   |
-      | MODTESTBUREAU	| SWANSEA          | Swansea Crown Court          | Civil        | 457       | 045700003   | 457300003   |
-      | MODTESTBUREAU	| SWANSEA          | Swansea Crown Court          | High         | 457       | 045700003   | 457300003   |
+      | user          | selectedCourt | displayCourt        | courtType   | courtCode | juror_number | pool_number |
+      | MODTESTBUREAU | SWANSEA       | Swansea Crown Court | Crown court | 457       | 045700003    | 457300003   |
+      | MODTESTBUREAU | SWANSEA       | Swansea Crown Court | Civil court | 457       | 045700003    | 457300003   |
+      | MODTESTBUREAU | SWANSEA       | Swansea Crown Court | High court  | 457       | 045700003    | 457300003   |
 
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Errors and Warnings on Change Number Of Deferrals - Zero Deferrals
