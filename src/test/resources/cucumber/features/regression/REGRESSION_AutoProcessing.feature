@@ -11,7 +11,19 @@ Scenario Outline: submit responses which are auto processed
 		| 415	| <juror_number2> 	| <pool_number> | 5				            | 400	|
 		| 415	| <juror_number3> 	| <pool_number> | 5				            | 400	|
 		| 415	| <juror_number4> 	| <pool_number> | 5				            | 400	|
-	
+
+	And juror "<juror_number1>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number1>" has "POSTCODE" as "<postcode>" new schema
+
+	And juror "<juror_number2>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number2>" has "POSTCODE" as "<postcode>" new schema
+
+	And juror "<juror_number3>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number3>" has "POSTCODE" as "<postcode>" new schema
+
+	And juror "<juror_number4>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number4>" has "POSTCODE" as "<postcode>" new schema
+
 	#Auto Processed 1st ST
 	
 	Then I see "Reply to a jury summons" on the page
@@ -229,7 +241,7 @@ Scenario Outline: submit responses which are auto processed
 	#On DoB Screen, underage
 	When I set "Day" to "27"
 	And I set "Month" to "04"
-	And I set "Year" to "2006"
+	And I set "Year" to "2016"
 	
 	#Moving past DoB Section
 	And I press the "Continue" button
@@ -305,49 +317,49 @@ Scenario Outline: submit responses which are auto processed
 	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
-	And I set "Juror's pool number" to "<pool_no>"
+	And I set "Juror's pool number" to "<pool_number>"
 	And I press the "Search" button
 
-	Then I see "COMPLETED" in the same row as "<juror_number>"
-	And I see "AUTO" in the same row as "<juror_number>"
-	Then I see "COMPLETED" in the same row as "<part_no_two>"
-	And I see "AUTO" in the same row as "<part_no_two>"
-	Then I see "COMPLETED" in the same row as "<part_no_three>"
-	And I see "AUTO" in the same row as "<part_no_three>"
-	Then I see "COMPLETED" in the same row as "<part_no_four>"
-	And I see "AUTO" in the same row as "<part_no_four>"
+	Then I see "CLOSED" in the same row as "<juror_number1>"
+	And I see "AUTO" in the same row as "<juror_number1>"
+	Then I see "CLOSED" in the same row as "<juror_number2>"
+	And I see "AUTO" in the same row as "<juror_number2>"
+	Then I see "CLOSED" in the same row as "<juror_number3>"
+	And I see "AUTO" in the same row as "<juror_number3>"
+	Then I see "CLOSED" in the same row as "<juror_number4>"
+	And I see "AUTO" in the same row as "<juror_number4>"
 	
-	Then on "JUROR" . "POOL" I see "RESPONDED" is "Y" where "part_no" is "<juror_number>"
-	Then on "JUROR" . "POOL" I see "USER_EDTQ" is "AUTO" where "part_no" is "<juror_number>"
-	
-	#JDB-3453
-	
-	Then on "JUROR" . "POOL" I see "WELSH" is null where "part_no" is "<juror_number>" and "owner" is "400"
-	Then on "JUROR" . "POOL" I see "RESPONDED" is "Y" where "part_no" is "<part_no_two>"
-	Then on "JUROR" . "POOL" I see "USER_EDTQ" is "AUTO" where "part_no" is "<part_no_two>"
+	Then on "JUROR" . "POOL" I see "RESPONDED" is "Y" where "juror_number" is "<juror_number1>"
+	Then on "JUROR" . "POOL" I see "USER_EDTQ" is "AUTO" where "juror_number" is "<juror_number1>"
 	
 	#JDB-3453
 	
-	Then on "JUROR" . "POOL" I see "WELSH" is null where "part_no" is "<part_no_two>" and "owner" is "400"
-	Then on "JUROR" . "POOL" I see "RESPONDED" is "Y" where "part_no" is "<part_no_three>"
-	Then on "JUROR" . "POOL" I see "USER_EDTQ" is "AUTO" where "part_no" is "<part_no_three>"
+	Then on "JUROR_MOD" . "JUROR" I see "WELSH" is null where "juror_number" is "<juror_number1>"
+	Then on "JUROR_MOD" . "JUROR" I see "RESPONDED" is "Y" where "juror_number" is "<juror_number2>"
+	Then on "JUROR_MOD" . "JUROR" I see "USER_EDTQ" is "AUTO" where "juror_number" is "<juror_number2>"
 	
 	#JDB-3453
 	
-	Then on "JUROR" . "POOL" I see "WELSH" is null where "part_no" is "<part_no_three>" and "owner" is "400"
-	Then on "JUROR" . "POOL" I see "RESPONDED" is "Y" where "part_no" is "<part_no_four>"
-	Then on "JUROR" . "POOL" I see "USER_EDTQ" is "AUTO" where "part_no" is "<part_no_four>"
+	Then on "JUROR_MOD" . "JUROR" I see "WELSH" is null where "juror_number" is "<juror_number2>" and "owner" is "400"
+	Then on "JUROR_MOD" . "JUROR" I see "RESPONDED" is "Y" where "juror_number" is "<juror_number3>"
+	Then on "JUROR_MOD" . "JUROR" I see "USER_EDTQ" is "AUTO" where "juror_number" is "<juror_number3>"
 	
 	#JDB-3453
 	
-	Then on "JUROR" . "POOL" I see "WELSH" is null where "part_no" is "<part_no_four>" and "owner" is "400"
+	Then on "JUROR_MOD" . "JUROR" I see "WELSH" is null where "juror_number" is "<juror_number3>" and "owner" is "400"
+	Then on "JUROR_MOD" . "JUROR" I see "RESPONDED" is "Y" where "juror_number" is "<juror_number4>"
+	Then on "JUROR_MOD" . "JUROR" I see "USER_EDTQ" is "AUTO" where "juror_number" is "<juror_number4>"
+	
+	#JDB-3453
+	
+	Then on "JUROR_MOD" . "JUROR" I see "WELSH" is null where "juror_number" is "<juror_number4>"
 	
 	# finish test with auto processing enabled
 	
 	Given auto straight through processing has been enabled new schema
 	
 Examples:
-	|part_no		|part_no_two	|part_no_three	|part_no_four	|pool_no 	|last_name 	|postcode	|email		|
+	|juror_number1	|juror_number2	|juror_number3	|juror_number4	|pool_number|last_name 	|postcode	|email		|
 	|641500607		|641500327		|641500339		|641500376 		|415170401	|LNAME 		|CH1 2AN	|e@mail.com	|
 
 @Regression @NewSchemaConverted

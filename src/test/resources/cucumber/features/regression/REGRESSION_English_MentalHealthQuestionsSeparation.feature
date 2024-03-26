@@ -39,7 +39,7 @@ Scenario Outline: 1st party MHQ1=Y MHQ2=Y
 	And I press the "Continue" button
 
 	#Email
-	When I set "Enter your email address" to <email>"
+	When I set "Enter your email address" to "<email>"
 	And I set "Enter your email address again" to "<email>"
 	And I press the "Continue" button
 	

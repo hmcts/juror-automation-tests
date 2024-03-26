@@ -661,7 +661,7 @@ Scenario Outline: English 1st Party Excusal Reason Special Character (£) check
 	
 	#Email
 	When I set "Enter your email address" to "<email>"
-	And I set "Enter your email address again" to <email>"
+	And I set "Enter your email address again" to "<email>"
 	And I press the "Continue" button
 	Then I see "What is your date of birth?" on the page
 	
