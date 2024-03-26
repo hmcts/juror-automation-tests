@@ -181,7 +181,7 @@ Feature: JM-3826 Request Additional Information
    And I see "Mark as responded" on the page
    And I check the "Mark juror as 'responded'" checkbox
    And I press the "Confirm" button
-   And I see "Summons reply for 641500413 fname lname successfully processed: Responded" in the response banner
+   And I see "Summons reply for <juror_number> fname lname successfully processed: Responded" in the response banner
 
    And the request letter for court "415" is deleted
 

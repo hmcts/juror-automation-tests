@@ -55,7 +55,7 @@ Feature: JM-3770
 
     And I set the radio button to "R - Residency"
     And I press the "Continue" button
-    And I see "Summons reply for 641500575 FNAMEFIVESEVENFIVE LNAMEFIVESEVENFIVE successfully processed: Disqualified (Residency)" on the page
+    And I see "Summons reply for 041500144 fname lname successfully processed: Disqualified (Residency)" on the page
 
     Examples:
       | juror_number| pool_number   | user         |

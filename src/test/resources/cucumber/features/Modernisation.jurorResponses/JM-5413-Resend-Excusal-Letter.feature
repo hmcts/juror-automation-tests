@@ -419,7 +419,7 @@ Feature: JM-5413-5415 - Resend excusal granted letter for Bureau and Jury users
     And I see "Print excusal granted letter" on the page
     When I check the "<juror_number>" checkbox
     And I press the "Print excusal granted letter" button
-    Then I see "https://juror-test-bureau.clouddev.online/documents/excusal-granted/letters-list" in the URL
+    Then I see "/documents/excusal-granted/letters-list" in the URL
 
     Examples:
       | juror_number  | pool_number | user          |
