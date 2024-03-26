@@ -52,7 +52,7 @@ public class DatabaseSetup {
             String str;
 
             while ((str = in.readLine()) != null) {
-                sb.append(str);
+                sb.append(str).append("\n");;
             }
             in.close();
 
