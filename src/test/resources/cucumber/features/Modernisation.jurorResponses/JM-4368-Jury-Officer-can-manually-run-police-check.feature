@@ -66,9 +66,8 @@ Feature: JM-4368 Jury Officer Can Manually Run a Police Check
       |part_no   	  | pool_no   	  | owner |
       |<juror_number> | <pool_number> | 415   |
 
-#    Given I set Police Check to "F" and Phoenix Checked to "C" for "<juror_number>"
-    And I search for juror "<juror_number>"
     Given I set Police Check to "INELIGIBLE" for "<juror_number>" new schema
+    And I search for juror "<juror_number>"
     And I see the police check value is "Failed"
     And I do not see the link to run a police check
 
@@ -101,7 +100,7 @@ Feature: JM-4368 Jury Officer Can Manually Run a Police Check
       | juror_number| pool_number |
       | 041500129	| 415300229	  |
 
-  @JurorTransformationMulti @Not_Implemented_In_Backend
+  @JurorTransformationWIP @Not_Implemented_In_Backend @JM-4580
   Scenario Outline: Manually run police check - police check runs NOT IMPLEMENTED IN BACKEND
     Given I am on "Bureau" "test"
 
