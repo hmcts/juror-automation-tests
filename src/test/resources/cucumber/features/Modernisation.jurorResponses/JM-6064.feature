@@ -1,6 +1,6 @@
 Feature: JM-6064 - As a jury officer, I want to edit a juror's draft daily expenses
 
-    @JurorTransformation @NewSchemaConverted
+    @JurorTransformationWIP @NewSchemaConverted
     Scenario Outline: Edit draft expenses - Unhappy Path
 
         Given I am on "Bureau" "test"
