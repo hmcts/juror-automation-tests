@@ -1860,6 +1860,7 @@ public class StepDef_jurorpool {
         GRP.click_radioButtonWithLabel("Request new pool");
         NAV.press_buttonByName("Continue");
         NAV.set_valueTo("Enter a court name or location code", court);
+        NAV.click_link_by_text(court);
         NAV.press_buttonByName("Continue");
         NAV.waitForPageLoad();
         POOL_REQUESTS_PAGE.clickToChangeDeferrals();
