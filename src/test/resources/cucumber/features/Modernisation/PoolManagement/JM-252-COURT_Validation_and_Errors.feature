@@ -282,8 +282,8 @@ Feature: JM-252_Validation_and_Errors_COURT
 
     #CHANGE COURT TO ONE YOU DO HAVE ACCESS TO
     Then I clear field with id "courtNameOrLocation"
-    Then I set input field with "ID" of "courtNameOrLocation" to "774"
-    And I click on the "Welshpool (774)" link
+    Then I set input field with "ID" of "courtNameOrLocation" to "462"
+    And I click on the "Warrington (462)" link
     And I press the "Continue" button
 
     #complete new pool fields
@@ -313,4 +313,4 @@ Feature: JM-252_Validation_and_Errors_COURT
 
     Examples:
       | user          | courtCode | displayCourt   | courtTypeFull |
-      | MODTESTCOURT  | 774       | Welshpool      | Crown court   |
+      | MODTESTCOURT  | 462       | Warrington      | Crown court   |

@@ -26,6 +26,16 @@ Feature: JM-3899
     And I set the radio button to "Deferral - grant or refuse"
     Then I click continue on the update juror record screen
     And I select "O - OTHER" from the "Reason for the deferral request" dropdown
+    # Grant first deferral as first deferral cannot be declined
+    And I set the radio button to "Grant deferral"
+    Then I select to Choose a different date
+    Then I set the "new" choice to "51" Mondays in the future
+    And I press the "Continue" button
+    And I see "Deferral granted (other)" on the page
+    And I click the update juror record button
+    And I set the radio button to "Deferral - grant or refuse"
+    Then I click continue on the update juror record screen
+    And I select "O - OTHER" from the "Reason for the deferral request" dropdown
     And I set the radio button to "Refuse deferral"
     And I press the "Continue" button
     And I see "Deferral refused (other)" on the page
