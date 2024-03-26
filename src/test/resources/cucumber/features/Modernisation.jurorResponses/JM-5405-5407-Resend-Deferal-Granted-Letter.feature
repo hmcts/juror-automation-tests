@@ -354,7 +354,7 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
         |  041520026    | 041520027             |415300703   | MODTESTBUREAU |
 
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationWIP @NewSchemaConverted @JM-6703
   Scenario Outline:Verify as a bureau user can view letters queued for printing and can delete it
 
     Given I am on "Bureau" "test"
@@ -420,6 +420,8 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
     And I click continue on the update juror record screen
     And I select "O - OTHER" from the "Reason for the deferral request" dropdown
     When I set the radio button to "Grant deferral"
+    Then I select to Choose a different date
+    Then I set the "new" choice to "51" Mondays in the future
     And I press the "Continue" button
     Then I see "Deferral granted (other)" on the page
 
