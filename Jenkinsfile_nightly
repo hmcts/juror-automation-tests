@@ -68,6 +68,7 @@ static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
 GradleBuilder builder = new GradleBuilder(this, product)
 
 withNightlyPipeline(type, product, component, 600) {
+  currentBuild.displayName = "#${BUILD_NUMBER} - ${params.EnvironmentChoice}"
   loadVaultSecrets(secrets)
   enableFullFunctionalTest(600)
   enableSlackNotifications('#juror-build-notices')

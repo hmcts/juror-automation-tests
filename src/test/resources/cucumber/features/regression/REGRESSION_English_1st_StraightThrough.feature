@@ -1129,8 +1129,8 @@ Examples:
 		And I see "Download a copy of your summons reply PDF (65KB)" on the page
 
 		Examples:
-			|part_no	|last_name			|postcode	|email 		|pool_no	|
-			|645200349	|LNAMETHREEFOURNINE	|SY2 6LU	|a@eeee.com	|452170401	|
+			|juror_number	|last_name			|postcode	|email 		|pool_number|
+			|645200349		|LNAMETHREEFOURNINE	|SY2 6LU	|a@eeee.com	|452170401	|
 
 	@Regression @PCQ @NewSchemaConverted
 	Scenario Outline: Welsh 1st Party PCQ - answer questions
