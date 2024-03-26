@@ -7,7 +7,7 @@ Feature: JM-5687 - Resend Confirmation letter
 
     When a bureau owned pool is created with jurors
       | court | juror_number  | pool_number     | att_date_weeks_in_future   | owner |
-      | 415     | <juror_number>| <pool_number> | 1                          | 400  |
+      | 415     | <juror_number>| <pool_number> | 5                          | 400  |
 
     And I log in as "<user>"
     
@@ -53,7 +53,7 @@ Feature: JM-5687 - Resend Confirmation letter
 
     Examples:
       | juror_number  | pool_number | user          |
-      |  041581977    | 415981285   | MODTESTBUREAU |
+      |  041540013    | 415300413   | MODTESTBUREAU |
 
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline:As a bureau officer can delete a confirmation letter while its pending
@@ -98,7 +98,7 @@ Feature: JM-5687 - Resend Confirmation letter
 
     Examples:
       | juror_number  | pool_number | user          |
-      |  041588977    | 415981285   | MODTESTBUREAU |
+      |  041540014    | 415300414   | MODTESTBUREAU |
 
 
   @JurorTransformationMulti @NewSchemaConverted
