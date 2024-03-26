@@ -58,10 +58,10 @@ Scenario Outline: English 3rd Party Excused - contact details same as 3rd party
 	
 	#process in Bureau as Excused
 	When I select "Excusal" from Process reply
-	Then I select "D - DECEASED" from the "Reason for the excusal request" dropdown
-	And I set the radio button to "Accept excusal request"
-	And I press the "Confirm" button
-	Then I see "COMPLETED" on the page
+	Then I select "O - OTHER" from the "Reason for excusal request" dropdown
+	And I set the radio button to "Grant excusal"
+	And I press the "Continue" button
+	Then I see the juror record updated banner containing "Excusal granted (other)"
 	
 	Then on "JUROR_MOD" . "JUROR" I see "RESPONDED" is "Y" where "JUROR_NUMBER" is "<juror_number>"
 	Then on "JUROR_MOD" . "JUROR" I see "H_EMAIL" is null where "JUROR_NUMBER" is "<juror_number>"
@@ -102,11 +102,10 @@ Scenario Outline: English 3rd Party Deferred - contact details same as 3rd party
 	When I select "Deferral" from Process reply
 	
 	And I select "O - OTHER" from the "Reason for the deferral request" dropdown
-	And I set the radio button to "Accept deferral"
-	And I select deferral date "14" weeks in the future
-	
-	And I press the "Confirm" button
-	Then I see "COMPLETED" on the page
+	And I select the first deferral choice
+
+	And I press the "Continue" button
+	And I see the juror record updated banner containing "Deferral granted (other)"
 	
 	Then on "JUROR_MOD" . "JUROR" I see "RESPONDED" is "Y" where "JUROR_NUMBER" is "<juror_number>"
 	Then on "JUROR_MOD" . "JUROR" I see "H_EMAIL" is null where "JUROR_NUMBER" is "<juror_number>"
@@ -147,8 +146,7 @@ Scenario Outline: English 3rd Party ST - contact details same as 3rd party
 	When I select "Mark as responded" from Process reply
 	And I check the "Mark juror as 'responded'" checkbox
 	And I press the "Confirm" button
-	Then I see "COMPLETED" on the page
-	And I see "Responded" on the page
+	Then I see the juror record updated banner containing "Responded"
 	
 	Then on "JUROR_MOD" . "JUROR" I see "RESPONDED" is "Y" where "JUROR_NUMBER" is "<juror_number>"
 	Then on "JUROR_MOD" . "JUROR" I see "H_EMAIL" is null where "JUROR_NUMBER" is "<juror_number>"
@@ -186,16 +184,16 @@ Scenario Outline: English 3rd Party Disqualified - contact details same as 3rd p
 	And I press the "Search" button
 	And I click on "<juror_number>" in the same row as "<juror_number>"
 	
-	When I select "Disqualified" from Process reply
+	When I select "Disqualify" from Process reply
 	
 	#check error message
-	And I press the "Confirm" button
-	And I see "Select the reason that the juror is disqualified" on the page
+	And I press the "Continue" button
+	And I see "Select the reason why you're disqualifying this juror" on the page
 	
-	When I set the radio button to "M - Suffering From a Mental Disorder"
-	And I press the "Confirm" button
-	Then I see "COMPLETED" on the page
-	
+	And I choose the "N - Mental Capacity Act" radio button
+	And I press the "Continue" button
+	Then I see the juror record updated banner containing "Disqualified (Mental Capacity Act)"
+
 	Then on "JUROR_MOD" . "JUROR" I see "RESPONDED" is "Y" where "JUROR_NUMBER" is "<juror_number>"
 	Then on "JUROR_MOD" . "JUROR" I see "H_EMAIL" is null where "JUROR_NUMBER" is "<juror_number>"
 	Then on "JUROR_MOD" . "JUROR" I see "M_PHONE" is null where "JUROR_NUMBER" is "<juror_number>"
@@ -404,8 +402,7 @@ Scenario Outline: English 3rd Party Welsh - contact details different for juror
 	When I select "Mark as responded" from Process reply
 	And I check the "Mark juror as 'responded'" checkbox
 	And I press the "Confirm" button
-	Then I see "COMPLETED" on the page
-	And I see "Responded" on the page
+	Then I see the juror record updated banner containing "Responded"
 	
 	Then on "JUROR_MOD" . "JUROR" I see "RESPONDED" is "Y" where "JUROR_NUMBER" is "<juror_number>"
 	Then on "JUROR_MOD" . "JUROR" I see "H_EMAIL" is null where "JUROR_NUMBER" is "<juror_number>"
@@ -451,8 +448,7 @@ Scenario Outline: English 3rd Party Straight Through - Juror already has contact
 	When I select "Mark as responded" from Process reply
 	And I check the "Mark juror as 'responded'" checkbox
 	And I press the "Confirm" button
-	Then I see "COMPLETED" on the page
-	And I see "Responded" on the page
+	Then I see the juror record updated banner containing "Responded"
 	
 	Then on "JUROR_MOD" . "JUROR" I see "RESPONDED" is "Y" where "JUROR_NUMBER" is "<juror_number>"
 	Then on "JUROR_MOD" . "JUROR" I see "H_EMAIL" is "eeeee@mail.com" where "JUROR_NUMBER" is "<juror_number>"

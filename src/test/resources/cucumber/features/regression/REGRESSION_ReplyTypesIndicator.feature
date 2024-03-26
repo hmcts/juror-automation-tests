@@ -268,7 +268,7 @@ Scenario Outline: English 1st Party + Residency
 		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
 	
 	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
-	And juror "<juror_number>" has "FIRST_NAME" as "FNAMESEVENONETHREE"  new schema
+	And juror "<juror_number>" has "FIRST_NAME" as "FNAMESEVENONETHREE" new schema
 
 	And juror "<juror_number>" has "ADDRESS_LINE_1" as "855 STREET NAME" new schema
 	And juror "<juror_number>" has "ADDRESS_LINE_4" as "LONDON" new schema
