@@ -575,24 +575,39 @@ public class StepDef_DatabaseNewSchema {
     }
 
     @Given("^I update juror \"([^\"]*)\" to have a status of Panel in order to record attendance$")
-    public void setJurorAsPanelForRecordingAttendance (String jurorNumber) throws SQLException {
+    public void setJurorAsPanelForRecordingAttendance(String jurorNumber) throws SQLException {
         DBTNSD.setJurorsStatusAsPanelNSD(jurorNumber);
-        }
+    }
+
     @Given("^I clear messages for juror \"([^\"]*)\"$")
     public void clearMessagesForJuror(String jurorNumber) throws SQLException {
         DBTNSD.clearMessagesForJuror(jurorNumber);
     }
+
     @Given("^I update juror \"([^\"]*)\" to have a status of \"([^\"]*)\"$")
     public void setJurorStatus(String jurorNumber, String statusName) throws SQLException {
         int statusNumber = DBTNSD.getStatusNumber(statusName);
         DBTNSD.setJurorStatus(jurorNumber, Integer.toString(statusNumber));
     }
+
     @Given("^I update juror \"([^\"]*)\" to change the status of printed in order to resend letter$")
     public void setJurorAsPrinted(String jurorNumber) throws SQLException {
         DBTNSD.setJurorsStatusAsPrintedforResendDeferralLetter(jurorNumber);
     }
+
     @Given("^a confirmation letter inserted for juror \"([^\"]*)\"$")
     public void insertConfirmationLetterPlaceholder(String jurorNumber) throws SQLException {
         DBTNSD.insertConfirmationLetter(jurorNumber);
+    }
+
+    @Given("^I print all letters within the pool \"([^\"]*)\" for the initial summons letter$")
+    public void updatePendingLetterForInitialSummons(String poolNumber) throws SQLException {
+        DBTNSD.updatePendingLetterForInitialSummons(poolNumber);
+    }
+
+    @Given("^I delete all letters within the pool for the initial summons letter$")
+    public void deletePendingLettersForInitialSummons() throws SQLException {
+        DBTNSD.deletePendingLettersForInitialSummons();
+
     }
 }

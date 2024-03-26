@@ -508,5 +508,14 @@ public class StepDef_jurorRecord {
         JUROR_RECORD.deferralGrantedjurorsTabPresent("Date printed");
     }
 
+    @When("^I check all the checkboxes in the letters table for the initial summons letter$")
+    public void selectAllCheckboxesInLettersTable(){
+        NAV.waitForPageLoad(2);
+        JUROR_RECORD.selectAllCheckboxesInLettersTable();
+    }
 
+    @When("^I see the documents sent banner for the initial summons letters$")
+    public void seeIntialSummonsLetterBanner() {
+        JUROR_RECORD.initialSummonsBanner();
+    }
 }
