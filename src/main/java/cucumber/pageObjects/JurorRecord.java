@@ -24,10 +24,13 @@ public class JurorRecord {
     private static final Logger log = Logger.getLogger(JurorRecord.class);
     private final DatabaseTester DBT;
 
+    private NavigationShared NAV;
+
     public JurorRecord(WebDriver webDriver) {
         JurorRecord.driver = webDriver;
         PageFactory.initElements(webDriver, this);
         DBT = new DatabaseTester();
+        NAV = new NavigationShared(driver);
     }
 
     @FindBy(className = "govuk-heading-l")
@@ -626,5 +629,21 @@ public class JurorRecord {
         }
 
     }
+    public void  selectAllCheckboxesInLettersTable() {
+        try {
+            List<WebElement> checkboxes = driver.findElements(By.xpath("//*[@id=\"main-content\"]/div[4]/div/table//input[@name='checked-jurors']"));
+            for (WebElement checkbox : checkboxes) {
+                if (!checkbox.isSelected()) {
+                    checkbox.click();
+                }
+            }
+            log.info("All checkboxes in the table selected successfully.");
+        } catch (Exception e) {
+            log.error("Error occurred while selecting checkboxes: " + e.getMessage());
+        }
+    }
 
+    public void initialSummonsBanner() {
+        NAV.messageBanner.isDisplayed();
+    }
 }
