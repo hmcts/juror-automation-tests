@@ -151,6 +151,7 @@ public class StepDef_navigation {
 
 	@When("^I press the \"([^\"]*)\" button$")
 	public void press_button(String arg1) throws Throwable {
+		NAV.waitForDocumentReady();
 		try {
 			NAV.press_buttonByName(arg1);
 		} catch (Exception | Error e) {

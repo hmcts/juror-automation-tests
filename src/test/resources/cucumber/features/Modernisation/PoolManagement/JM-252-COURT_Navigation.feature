@@ -114,7 +114,7 @@ Feature: JM-252_Navigation_COURT
     #Can submit the new pool request
     When I save the new pool request
     Then I should be taken to the pool summary page
-
+    And I click on the "Service start date" link
     And I should see the newly created pool request
       | court          | <displayCourt> |
       | jurorsRequired | 49             |
@@ -171,6 +171,7 @@ Feature: JM-252_Navigation_COURT
 
     When I save the new pool request
     Then I should be taken to the pool summary page
+    And I click on the "Service start date" link
 
     And I should see the newly created pool request
       | court          | Knutsford |
@@ -226,6 +227,7 @@ Feature: JM-252_Navigation_COURT
 
     When I save the new pool request
     Then I should be taken to the pool summary page
+    And I click on the "Service start date" link
 
     And I should see the newly created pool request
       | court          | Warrington |

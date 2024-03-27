@@ -58,7 +58,7 @@ Feature: JM-5054-As a jury officer I need to be able to return jurors from a tri
     And I see "<juror_number_4>" in the same row as "1:30pm"
     And I press the "Apps" button
     And I click on the "Trial management" link
-    And I click on the "<trial_number>" from the search results
+    And I click on the "<trial_number>" link
     When I press the "Generate panel" button
     Then I see "Generate a panel" on the page
     And I see "Which jurors do you want to generate a panel from?" on the page
@@ -87,6 +87,8 @@ Feature: JM-5054-As a jury officer I need to be able to return jurors from a tri
     When I press the "Return" button
 
     #will require end trial functionality implemented here
+    And I set the radio button to "Yes"
+    And I press the "Continue" button
     Then I verify the banner message "4 jurors returned" on the page
 
 
