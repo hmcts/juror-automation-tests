@@ -498,7 +498,7 @@ public class JurorRecord {
                 Assert.assertTrue("Expected Text not found", DeferralGrantedResultsheaderTableName.get(4).getText().equals(tabName));
                 log.info(" Text - " + DeferralGrantedResultsheaderTableName.get(2).getText() + " - is visible on the page ");
                 break;
-            case "Deferred to":
+            case "Date refuse":
                 Assert.assertTrue("Expected Text not found", DeferralGrantedResultsheaderTableName.get(5).getText().equals(tabName));
                 log.info(" Text - " + DeferralGrantedResultsheaderTableName.get(2).getText() + " - is visible on the page ");
                 break;

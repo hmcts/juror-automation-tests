@@ -3069,4 +3069,11 @@ public class StepDef_jurorpool {
         NAV.waitForPageLoad();
         JUROR_RECORD_SEARCH.searchForRecordFromGlobalSearch(jurorRecordNumber);
     }
+
+    @Given("^I clear down the bulk print data table for Juror \"([^\"]*)\"$")
+    public void deleteBulkdatajuror(String createdJurorRecordNumber) throws SQLException {
+        DBT.deleteBulkDataJuror(createdJurorRecordNumber);
+
     }
+
+}

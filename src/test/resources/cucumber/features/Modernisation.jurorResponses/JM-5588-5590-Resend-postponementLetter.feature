@@ -9,10 +9,10 @@ Feature:As a Bureau/jury officer I want to re send a postponement letter
         When a bureau owned pool is created with jurors
             | court | juror_number  | pool_number     | att_date_weeks_in_future  | owner |
             | 415   | <juror_number>| <pool_number>   | 5                         | 400   |
-
+        
         And the user searches for juror record "<juror_number>" from the global search bar
-
-  #record paper summons response
+       And I clear down the bulk print data table for Juror "<juror_number>"
+      #record paper summons response
         And I click the Enter summons reply button
         Then the juror details form is displayed
 
