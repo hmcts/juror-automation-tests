@@ -5,7 +5,7 @@ properties([
   parameters([
     choice(choices: ['chrome', 'firefox', 'msedge'], name: 'Browser'),
     // Default to using 'test' to avoid conflict with testers using 'staging'
-    choice(choices: ['test', 'stg', 'demo', 'ithc'], name: 'EnvironmentChoice'),
+    choice(choices: ['test', 'stg', 'demo'], name: 'EnvironmentChoice'),
     booleanParam(name: 'runExpenses', defaultValue: false, description: 'Include Expenses tests'),
     booleanParam(name: 'runFeatures', defaultValue: false, description: 'Include Features tests'),
     booleanParam(name: 'runJurorTransformation', defaultValue: true, description: 'Include JurorTransformation tests'),
@@ -49,10 +49,6 @@ def secrets = [
   'juror-demo': [
     secret('api-POSTGRES-USER', 'DATABASE_DEMO_USERNAME'),
     secret('api-POSTGRES-PASS', 'DATABASE_DEMO_PASSWORD'),
-  ],
-  'juror-ithc': [
-    secret('api-POSTGRES-USER', 'DATABASE_ITHC_USERNAME'),
-    secret('api-POSTGRES-PASS', 'DATABASE_ITHC_PASSWORD'),
   ],
 ]
 
