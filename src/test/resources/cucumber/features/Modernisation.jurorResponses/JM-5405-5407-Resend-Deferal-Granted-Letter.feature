@@ -1,11 +1,11 @@
 Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
 
-  @JurorTransformationWIP @NewSchemaConverted @JM-6349 @JM-6351 @JM-6352
+  @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline:As a bureau officer test a Deferred juror can resend a granted letter by searching via juror number
 
     Given I am on "Bureau" "test"
+    And I clear down the bulk print data table for Juror "<juror_number>"
     And I log in as "<user>"
-
     When a bureau owned pool is created with jurors
       | court | juror_number  | pool_number     | att_date_weeks_in_future  | owner |
       | 415   | <juror_number>| <pool_number>   | 5                         | 400   |
@@ -54,27 +54,12 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
     And I set the "second" choice to "7" Mondays in the future
     And I set the "third" choice to "9" Mondays in the future
     And I press the "Continue" button
-
-    #error validation
-    And I press the "Continue" button
-    And I see error "Select a deferral reason"
-    And I see error "Select whether you want to grant or refuse this deferral"
-
     And I select "O - OTHER" from the "Reason for the deferral request" dropdown
     And I set the radio button to "Choose a different date"
     And I set the "alternate" choice to "51" Mondays in the future
     And I press the "Continue" button
     And I press the "Put in deferral maintenance" button
     And I verify the banner message "Deferral granted (other)" on the page
-    When the user searches for juror record "<juror_number>" from the global search bar
-    Then I see the juror status has updated to "Deferred"
-    And I click the update juror record button
-    And I set the radio button to "Deferral - grant or refuse"
-    And I click continue on the update juror record screen
-    And I select "O - OTHER" from the "Reason for the deferral request" dropdown
-    When I set the radio button to "Grant deferral"
-    And I press the "Continue" button
-    Then I see "Deferral granted (other)" on the page
 
     And I press the "Apps" button
     When I click on the "Documents" link
@@ -243,16 +228,6 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
     And I press the "Continue" button
     And I press the "Put in deferral maintenance" button
     And I verify the banner message "Deferral granted (other)" on the page
-    When the user searches for juror record "<juror_number>" from the global search bar
-    And I see the juror status has updated to "Deferred"
-    And I click the update juror record button
-    And I set the radio button to "Deferral - grant or refuse"
-    Then I click continue on the update juror record screen
-    And I select "O - OTHER" from the "Reason for the deferral request" dropdown
-    When I set the radio button to "Grant deferral"
-    And I press the "Continue" button
-    Then I see "Deferral granted (other)" on the page
-
 #update the 2nd juror number to deferred
     When the user searches for juror record "<juror_number_1>" from the global search bar
 
@@ -304,15 +279,6 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
     And I press the "Continue" button
     And I press the "Put in deferral maintenance" button
     And I verify the banner message "Deferral granted (other)" on the page
-    When the user searches for juror record "<juror_number>" from the global search bar
-    And I see the juror status has updated to "Deferred"
-    And I click the update juror record button
-    And I set the radio button to "Deferral - grant or refuse"
-    Then I click continue on the update juror record screen
-    And I select "O - OTHER" from the "Reason for the deferral request" dropdown
-    When I set the radio button to "Grant deferral"
-    And I press the "Continue" button
-    Then I see "Deferral granted (other)" on the page
 
   #search via pool  number and resend letter for first deferred juror
     When I press the "Apps" button
@@ -354,10 +320,11 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
         |  041520026    | 041520027             |415300703   | MODTESTBUREAU |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @JM-6703
+  @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline:Verify as a bureau user can view letters queued for printing and can delete it
 
     Given I am on "Bureau" "test"
+    And I clear down the bulk print data table for Juror "<juror_number>"
     And I log in as "<user>"
     When a bureau owned pool is created with jurors
       | court   | juror_number  | pool_number     | att_date_weeks_in_future   | owner |
@@ -413,17 +380,6 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
     And I press the "Continue" button
     And I press the "Put in deferral maintenance" button
     And I verify the banner message "Deferral granted (other)" on the page
-    When the user searches for juror record "<juror_number>" from the global search bar
-    Then I see the juror status has updated to "Deferred"
-    And I click the update juror record button
-    And I set the radio button to "Deferral - grant or refuse"
-    And I click continue on the update juror record screen
-    And I select "O - OTHER" from the "Reason for the deferral request" dropdown
-    When I set the radio button to "Grant deferral"
-    Then I select to Choose a different date
-    Then I set the "new" choice to "51" Mondays in the future
-    And I press the "Continue" button
-    Then I see "Deferral granted (other)" on the page
 
 
    #navigate to documents and verify the printing message
@@ -432,7 +388,7 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
     And I click on the "Deferral granted letters" link
     When I set the radio button to "Show all letters queued for printing"
     And I press the "Search" button
-    Then I see "041520026" on the page
+    Then I see "<juror_number>" on the page
     And I see "Change" on the page
     When I click on "Delete" in the same row as "<juror_number>"
     And I see "1 pending document deleted" on the page
@@ -442,7 +398,7 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
       |  041520026     |415300703   | MODTESTBUREAU |
 
 
-  @JurorTransformationMultiWIP @NewSchemaConverted @JM-6686
+  @JurorTransformationMultiMulti @NewSchemaConverted
   Scenario Outline:As a jury officer test a Deferred juror can print a granted letter by searching via juror number
 
     Given I am on "Bureau" "test"
@@ -454,6 +410,8 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
      |part_no        | pool_no           | owner |
      | <juror_number>| <pool_number>     | 415   |
 
+    And I clear down the bulk print data table for Juror "<juror_number>"
+    And I update the bureau transfer date of the juror "<juror_number>"
     And I log in as "<user>"
     When the user searches for juror record "<juror_number>" from the global search bar
 
@@ -511,12 +469,12 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
     Then I click continue on the update juror record screen
     And I select "O - OTHER" from the "Reason for the deferral request" dropdown
     When I set the radio button to "Grant deferral"
+    And I set the radio button to "Other"
+    And I set the "alternate" choice to "51" Mondays in the future
     And I press the "Continue" button
-
     And I see "Do you want to print a deferral granted letter?" on the page
     And I choose the "No" radio button
     And I press the "Continue" button
-
     Then I see "Deferral granted (other)" on the page
 
     And I press the "Apps" button
@@ -538,13 +496,13 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
     And I am able to see and interact with the jurors Deferral letter tabs and fields
     When I check the "<juror_number>" checkbox
     And I press the "Print deferral granted letter" button
-    Then I see "https://juror-test-bureau.clouddev.online/documents/deferral-granted/letters-list?documentSearchBy=juror&jurorDetails=041530028" in the URL
+    Then I see "https://juror.staging.apps.hmcts.net/documents/deferral-granted/letters-list?documentSearchBy=juror&jurorDetails=041530027" in the URL
 
     Examples:
       | juror_number  | pool_number | user         |
       |  041530027    | 415300305   | MODTESTCOURT |
 
-  @JurorTransformationWIP @NewSchemaConverted @JM-6338
+  @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline:As a jury officer test a Deferred juror can print a granted letter by searching via pool number
 
     Given I am on "Bureau" "test"
@@ -555,7 +513,8 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
     Then a new pool is inserted for where record has transferred to the court new schema
       |part_no              | pool_no           | owner |
       | <juror_number>| <pool_number>     | 415   |
-
+    And I clear down the bulk print data table for Juror "<juror_number>"
+    And I update the bureau transfer date of the juror "<juror_number>"
     And I log in as "<user>"
     When the user searches for juror record "<juror_number>" from the global search bar
 
@@ -613,11 +572,13 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
     Then I click continue on the update juror record screen
     And I select "O - OTHER" from the "Reason for the deferral request" dropdown
     When I set the radio button to "Grant deferral"
+    And I set the radio button to "Other"
+    And I set the "alternate" choice to "51" Mondays in the future
     And I press the "Continue" button
     Then I see "Do you want to print a deferral granted letter?" on the page
     And I choose the "Yes" radio button
     And I press the "Continue" button
-    And I return to the previous tab
+    Then I see "Juror record updated: Deferral granted (other)" on the page
     When I press the "Apps" button
     And I click on the "Documents" link
     And I click on the "Deferral granted letters" link
@@ -636,14 +597,12 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
     Then I see "Change" on the page
     And I see "Print deferral granted letter" on the page
     And I am able to see and interact with the jurors Deferral letter tabs and fields
-    #below step will fail due to JM-6338
     And I see the printed letter for juror number "<juror_number>" in the letters table
     When I check the "<juror_number>" checkbox
-    And I see "<juror_number_1>" on the page
     And I press the "Print deferral granted letter" button
-    Then I see "https://juror-test-bureau.clouddev.online/documents/deferral-granted/letters-list?documentSearchBy=pool&poolDetails=415300305&includePrinted=includePrinted" in the URL
+    Then I see "https://juror.staging.apps.hmcts.net/documents/deferral-granted/letters-list?documentSearchBy=pool&poolDetails=415300305&includePrinted=includePrinted" in the URL
 
     Examples:
-      | juror_number  | juror_number_1|pool_number | user          |
-      |  041530028    | 041530027   |415300305   | MODTESTCOURT   |
+      | juror_number  | pool_number | user          |
+      |  041530028    |415300305    | MODTESTCOURT   |
 

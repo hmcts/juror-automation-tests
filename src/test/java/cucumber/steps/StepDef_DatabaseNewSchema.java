@@ -610,4 +610,16 @@ public class StepDef_DatabaseNewSchema {
         DBTNSD.deletePendingLettersForInitialSummons();
 
     }
+
+    @Given("^I clear down the bulk print data table for Juror \"([^\"]*)\"$")
+    public void deleteBulkdatajuror(String createdJurorRecordNumber) throws SQLException {
+        DBT.deleteBulkDataJuror(createdJurorRecordNumber);
+
+    }
+
+    @Then("^I update the bureau transfer date of the juror \"([^\"]*)\"$")
+    public void updatebureautransferDateofCourtUser(String jurorNumber) throws SQLException{
+        DBTNSD.updateBureauTransferDate(jurorNumber);
+    }
+
 }
