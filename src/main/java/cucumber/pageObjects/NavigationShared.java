@@ -470,9 +470,11 @@ public class NavigationShared {
         log.info("Buttons: " + buttons);
         try {
             button = return_oneVisibleFromList(buttons);
+            wait.waitForClickableElement(button);
         } catch (Exception | Error e) {
             log.error("unexpected exception when waiting for element to be clickable", e);
             button = return_oneVisibleFromList(getButtonsByExactText(button_name));
+            wait.waitForClickableElement(button);
         }
 
         try { // Investigate purpose of this
