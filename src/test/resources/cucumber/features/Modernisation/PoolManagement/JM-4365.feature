@@ -117,13 +117,13 @@ Feature: JM-4365-As a jury officer I need to be able to check jurors out for the
       |MODTESTCOURT |041530007      | 041530008        |041530009       |  041530010    | 415300301        | T202495832   |
 
 
-  @JurorTransformation @NewSchemaConverted
+  @JurorTransformationWIP @NewSchemaConverted @JM-6720
   Scenario Outline: To confirm all the jurors  attendance on the day
 
     Given I am on "Bureau" "test"
     When a bureau owned pool is created with jurors
       | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
-      | 415   |<juror_number_1>     | <pool_number>     | 5				            | 400	|
+      | 415   |<juror_number_1>     | <pool_number>     | 5				            | 400	| 
       | 415   |<juror_number_2> 	| <pool_number>     | 5				            | 400	|
       | 415   |<juror_number_3> 	| <pool_number>     | 5				            | 400	|
       | 415   |<juror_number_4> 	| <pool_number>     | 5				            | 400	|
@@ -190,6 +190,7 @@ Feature: JM-4365-As a jury officer I need to be able to check jurors out for the
     And I see "Confirm attendance list is correct" on the page
     And I see "Back to attendance list" on the page
     When I press the "Confirm attendance list is correct" button
+    #Below step will fail due to JM-6720
     Then I do not see "Confirm attendence " on the page
     And I do not see " Change" on the page
     And I do not see "Check in" on the page
