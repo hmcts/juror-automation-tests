@@ -83,8 +83,8 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
     And I see the printed letter for juror number "<juror_number>" in the letters table
     And I am able to see and interact with the jurors Deferral letter tabs and fields
     And I check the "<juror_number>" checkbox
-    And I press the "Resend deferral granted letter" button
-    And I see "1 document sent for printing" on the page
+    When I press the "Resend deferral granted letter" button
+    Then I see "1 document sent for printing" on the page
 
     Examples:
       | juror_number  | pool_number | user          |
@@ -160,8 +160,8 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
     And I press the "Search" button
     Then I see "Pending" on the page
     And I see "Change" on the page
-    And I click on the "Delete" link
-    And I see "1 pending document deleted" on the page
+    When I click on the "Delete" link
+    Then I see "1 pending document deleted" on the page
 
     Examples:
       | juror_number  | pool_number | user          |
@@ -310,7 +310,7 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
     Then I see error "Select whether you want to search by juror or pool"
     And I set the radio button to "Pool"
     And I set "Enter pool number" to "<pool_number>"
-    And I press the "Search" button
+    When I press the "Search" button
     Then I see "<juror_number>" in the same row as "Deferred"
     #Script will fail due to JM-6227
     And I see "<juror_number_1>" in the same row as "Excused"
@@ -391,7 +391,7 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
     Then I see "<juror_number>" on the page
     And I see "Change" on the page
     When I click on "Delete" in the same row as "<juror_number>"
-    And I see "1 pending document deleted" on the page
+    Then I see "1 pending document deleted" on the page
 
     Examples:
       | juror_number  |  pool_number | user          |
@@ -466,16 +466,16 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
     Then I see the juror status has updated to "Deferred"
     And I click the update juror record button
     And I set the radio button to "Deferral - grant or refuse"
-    Then I click continue on the update juror record screen
+    And I click continue on the update juror record screen
     And I select "O - OTHER" from the "Reason for the deferral request" dropdown
-    When I set the radio button to "Grant deferral"
+    And I set the radio button to "Grant deferral"
     And I set the radio button to "Other"
-    And I set the "alternate" choice to "51" Mondays in the future
+    When I set the "alternate" choice to "51" Mondays in the future
     And I press the "Continue" button
-    And I see "Do you want to print a deferral granted letter?" on the page
+    Then I see "Do you want to print a deferral granted letter?" on the page
     And I choose the "No" radio button
     And I press the "Continue" button
-    Then I see "Deferral granted (other)" on the page
+    And I see "Deferral granted (other)" on the page
 
     And I press the "Apps" button
     When I click on the "Documents" link
