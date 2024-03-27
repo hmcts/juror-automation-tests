@@ -13,8 +13,8 @@ Scenario Outline: Testing all change links on Check your answers screen
 	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	
 	Then I see "Reply to a jury summons" on the page
-	
-	And I set the radio button to "I am replying for myself"
+
+	And I choose the "I am replying for myself" radio button
 	And I press the "Continue" button
 	Then I see "Your juror details" on the page
 	
@@ -24,12 +24,12 @@ Scenario Outline: Testing all change links on Check your answers screen
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 	Then I see "Is the name we have for you correct?" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	
 	#Check name
 	When I press the "Continue" button
 	Then I see "Is this your address?" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	
 	#Check address
 	When I press the "Continue" button
@@ -58,32 +58,32 @@ Scenario Outline: Testing all change links on Check your answers screen
 	
 	#Residency Yes
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
-	When I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#CJS no
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
-	When I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Bail no
 	Then I see "Are you currently on bail for a criminal offence?" on the page
-	When I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Convictions no
 	Then I see "Have you been found guilty of a criminal offence?" on the page
-	When I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental health part 1 no
 	Then I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental health part 2 no
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#I can attend
@@ -94,7 +94,7 @@ Scenario Outline: Testing all change links on Check your answers screen
 	
 	#RA no
 	Then I see "Will you need help when you're at the court?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	Then I see "Check your answers now" on the page
 	
@@ -110,7 +110,7 @@ Scenario Outline: Testing all change links on Check your answers screen
 	And I set "Address line 1" to "123 STREET NAME"
 	And I set "Town or city" to "ChangedTown"
 	And I press the "Continue" button
-	Then I see text "123 STREET NAME, ANYTOWN, ChangedTown, CH1 2AN" in the same row as "Address"
+	Then I see text "123 STREET NAME, ChangedTown, CH1 2AN" in the same row as "Address"
 	
 	When I click on the "Change" link in the same row as "Main phone"
 	Then I see "What is your phone number?" on the page
@@ -137,35 +137,35 @@ Scenario Outline: Testing all change links on Check your answers screen
 	
 	When I click on the "Change" link in the same row as "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?"
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I set "Provide details" to "Residency information"
 	And I press the "Continue" button
 	Then I see text "No - Residency information" in the same row as "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?"
 
 	When I click on the "Change" link in the same row as "Are you being detained, looked after or treated under the Mental Health Act?"
 	Then I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I set "Provide details" to "I am sectioned and detained"
 	And I press the "Continue" button
 	Then I see text "Yes - I am sectioned and detained" in the same row as "Are you being detained, looked after or treated under the Mental Health Act?"
 
 	When I click on the "Change" link in the same row as "Has it been decided that you 'lack mental capacity'?"
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I set "Provide brief details about why it was decided you lack mental capacity" to "I lack capacity"
 	And I press the "Continue" button
 	Then I see text "Yes - I lack capacity" in the same row as "Has it been decided that you 'lack mental capacity'?"
 	
 	When I click on the "Change" link in the same row as "Are you currently on bail for a criminal offence?"
 	Then I see "Are you currently on bail for a criminal offence?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I set "Provide details" to "I am on bail for crimes"
 	And I press the "Continue" button
 	Then I see text "Yes - I am on bail for crimes" in the same row as "Are you currently on bail for a criminal offence?"
 	
 	When I click on the "Change" link in the same row as "Have you been convicted of a criminal offence and been given a sentence?"
 	Then I see "Have you been found guilty of a criminal offence?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I set text area with "id" of "convictedDetails" to "I am a convicted criminal"
 	And I press the "Continue" button
 	Then I see text "Yes - I am a convicted criminal" in the same row as "Have you been convicted of a criminal offence and been given a sentence?"
@@ -181,7 +181,7 @@ Scenario Outline: Testing all change links on Check your answers screen
 	
 	When I click on the "Change" link in the same row as "Have you worked in the criminal justice system in the last 5 years?"
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I check the "Police service" checkbox
 	And I set "Which police service?" to "London Met Police"
 	And I press the "Continue" button
@@ -189,7 +189,7 @@ Scenario Outline: Testing all change links on Check your answers screen
 
 	When I click on the "Change" link in the same row as "Do you have a disability or impairment that means you'll need extra support or facilities in the court building where you are doing your Jury Service?"
 	Then I see "Will you need help when you're at the court?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I check the "Limited mobility" checkbox
 	And I set "Tell us about any special arrangements or help you need while you're doing jury service." to "Wheelchair user"
 	And I press the "Continue" button

@@ -33,7 +33,7 @@ Scenario Outline: Can Complete Record when juror.pool.status=1 (summoned)
 	
 	Then I see "Summoned" on the page
 	
-	When I select "Responded" from Process reply
+	When I select "Mark as responded" from Process reply
 	And I check the "Mark juror as 'responded'" checkbox
 	And I press the "Confirm" button
 	
@@ -483,13 +483,13 @@ Scenario Outline: Cannot Complete Record when juror.pool.status=2 (Responded) an
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 	Then I see "Is the name we have for you correct?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	
 	#Check name
 	
 	When I press the "Continue" button
 	Then I see "Is this your address?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	
 	#Check address
 	
@@ -523,33 +523,33 @@ Scenario Outline: Cannot Complete Record when juror.pool.status=2 (Responded) an
 	
 	#Residency
 	
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I set "Provide details" to "Not a resident"
 	And I press the "Continue" button
 	
 	#CJS 
 	
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Bail
 	
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Convictions
 	
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental health part 1
 	
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental health part 2
 	
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#I can attend
@@ -560,7 +560,7 @@ Scenario Outline: Cannot Complete Record when juror.pool.status=2 (Responded) an
 	
 	#RA 
 	
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Check Your Answers

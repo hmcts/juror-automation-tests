@@ -43,11 +43,11 @@ Scenario Outline:
 	And I set the radio button to "The person is not here"
 	And I press the "Continue" button
 	Then I see "Is the name we have for them correct?" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	
 	When I press the "Continue" button
 	Then I see "Is this their address?" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	
 	When I press the "Continue" button
 	And I set "Day" to "01"
@@ -66,33 +66,33 @@ Scenario Outline:
 	When I press the "Continue" button
 	
 	Then I see "Since they turned 13, has their main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	Then I see "Has the person you're replying for worked in the criminal justice system in the last 5 years?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	Then I see "Is the person currently on bail for a criminal offence?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	Then I see "Has the person been found guilty of a criminal offence?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	Then I see "Is the person you're replying for being detained, looked after or treated under the Mental Health Act?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	Then I see "Has it been decided that the person you're replying for 'lacks mental capacity'?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	Then I set the radio button to "Yes, they can start on"
 	And I press the "Continue" button
 	
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	When I press the "Continue" button
 	Then I see "Check your answers now" on the page
 	
@@ -283,7 +283,7 @@ Scenario Outline:
 	Then I click on the "Cancel" link
 	
 	Then I see "Process reply" on the page
-	When I select "Responded" from Process reply
+	When I select "Mark as responded" from Process reply
 	And I check the "Mark juror as 'responded'" checkbox
 	And I press the "Confirm" button
 	
@@ -387,11 +387,11 @@ Scenario Outline: jdb-3644
 	And I set the radio button to "The person is not here"
 	And I press the "Continue" button
 	Then I see "Is the name we have for them correct?" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	
 	When I press the "Continue" button
 	Then I see "Is this their address?" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	
 	When I press the "Continue" button
 	And I set "Day" to "01"
@@ -410,33 +410,33 @@ Scenario Outline: jdb-3644
 	When I press the "Continue" button
 	
 	Then I see "Since they turned 13, has their main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	Then I see "Has the person you're replying for worked in the criminal justice system in the last 5 years?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	Then I see "Is the person currently on bail for a criminal offence?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	Then I see "Has the person been found guilty of a criminal offence?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	Then I see "Is the person you're replying for being detained, looked after or treated under the Mental Health Act?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	Then I see "Has it been decided that the person you're replying for 'lacks mental capacity'?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	Then I set the radio button to "Yes, they can start on"
 	And I press the "Continue" button
 	
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	When I press the "Continue" button
 	Then I see "Check your answers now" on the page
 	
@@ -545,10 +545,10 @@ Scenario Outline: jdb-3644
 	
 	When I click on the "Change" link
 	And on Bureau I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" under "Residency"
-	And I set the radio button to "No" under "Residency"
-	And I set the radio button to "Yes" under "Mental health"
-	And I set the radio button to "Yes" under "Bail"
-	And I set the radio button to "Yes" under "Convictions"
+	And I choose the "No" radio button under "Residency"
+	And I choose the "Yes" radio button under "Mental health"
+	And I choose the "Yes" radio button under "Bail"
+	And I choose the "Yes" radio button under "Convictions"
 	And I click link with ID "eligibilitySaveButton"
 	
 	Then I see "Please give details about the person's residency" on the page
@@ -556,20 +556,20 @@ Scenario Outline: jdb-3644
 	And I see "Please give details about the person's bail" on the page
 	And I see "Please give details about the person's criminal offence" on the page
 	
-	When I set the radio button to "Yes" under "Residency"
+	When I choose the "Yes" radio button under "Residency"
 	Then I do not see "Please give details about the person's residency" on the page
 	
-	And I set the radio button to "No" under "Mental health"
+	And I choose the "No" radio button under "Mental health"
 	And I do not see "Please give details about the Mental Health and Capacity acts" on the page
 		
-	And I set the radio button to "No" under "Bail"
+	And I choose the "No" radio button under "Bail"
 	And I do not see "Please give details about the person's bail" on the page
 	
-	And I set the radio button to "No" under "Convictions"
+	And I choose the "No" radio button under "Convictions"
 	And I see "Have you been found guilty of a criminal offence" on the page
 	And I do not see "Provide details" on the page
 	
-	And I set the radio button to "No" under "Residency"
+	And I choose the "No" radio button under "Residency"
 	And I see "Please give details about the person's residency" on the page
 	And I set text area with "id" of "residencyDetails" to "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Naaaaaa"
 	Then "Provide details" is "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. N"
@@ -607,7 +607,7 @@ Scenario Outline: jdb-3644
 	Then I see "N/A" in the same row as "CJS employment"
 	
 	When I click on the "Change" link
-	And I set the radio button to "Yes" under "CJS Employment"
+	And I choose the "Yes" radio button under "CJS Employment"
 	And I see "Organisations" on the page
 	And I check the "Police service" checkbox
 	And I check the "HM Prison Service" checkbox
@@ -668,7 +668,7 @@ Scenario Outline: jdb-3644
 	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PHONE_NUMBER" is "0333333339" where "JUROR_NUMBER" is "<juror_number>"
 	Then on "JUROR" . "POOL" I see "H_PHONE" is "" where "PART_NUMBER" is "<juror_number>"
 	
-	When I select "Responded" from Process reply
+	When I select "Mark as responded" from Process reply
 	And I check the "Mark juror as 'responded'" checkbox
 	And I press the "Confirm" button
 	Then I see "COMPLETED" on the page

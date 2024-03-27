@@ -56,13 +56,13 @@ Scenario Outline: English 3rd Party Deferral
 	
 	#Check juror name
 	When I see "Juror Details" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	Then I see "Is this their address?" on the page
 	
 	#Check juror address
 	When I see "Juror Details" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	Then I see "Give the date of birth for the person you're replying for" on the page
 	
@@ -89,37 +89,37 @@ Scenario Outline: English 3rd Party Deferral
 	#Residency
 	Then I see "Since they turned 13, has their main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#Have you ever worke
 	Then I see "Has the person you're replying for worked in the criminal justice system in the last 5 years?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Bail
 	Then I see "Is the person currently on bail for a criminal offence?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Convictions
 	Then I see "Has the person been found guilty of a criminal offence?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I set text area with "id" of "convictedDetails" to "Criminal Convictions"
 	And I press the "Continue" button
 	
 	#Mental Health Sectioned
 	Then I see "Is the person you're replying for being detained, looked after or treated under the Mental Health Act?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Capacity
 	Then I see "Has it been decided that the person you're replying for 'lacks mental capacity'?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Confirm Date of Jury
@@ -194,12 +194,12 @@ Scenario Outline: English 3rd Party Deferral
 	Then I click on the "What if there's a problem nearer the time and they cannot serve?" link
 	And I do not see "You or they must contact us at that time to let us know." on the page
 	
-	Then I set the radio button to "Yes"
+	Then I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#help at court
 	Then I see "Will the person you're replying for need help when they're at the court?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#check answers
@@ -258,7 +258,7 @@ Scenario Outline: English 3rd Party Deferral
 	And I validate the "Third" deferral date is "11" weeks in the future
 
 	Given I am on "Bureau" "test"
-	And I log in
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -338,13 +338,13 @@ Scenario Outline: English 3rd Party Deferral - validation and errors
 	
 	#Check juror name
 	When I see "Juror Details" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	Then I see "Is this their address?" on the page
 	
 	#Check juror address
 	When I see "Juror Details" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	Then I see "Give the date of birth for the person you're replying for" on the page
 	
@@ -371,37 +371,37 @@ Scenario Outline: English 3rd Party Deferral - validation and errors
 	#Residency
 	Then I see "Since they turned 13, has their main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#Have you ever worked
 	Then I see "Has the person you're replying for worked in the criminal justice system in the last 5 years?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Bail
 	Then I see "Is the person currently on bail for a criminal offence?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Convictions
 	Then I see "Has the person been found guilty of a criminal offence?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I set text area with "id" of "convictedDetails" to "Criminal Convictions"
 	And I press the "Continue" button
 	
 	#Mental Health Sectioned
 	Then I see "Is the person you're replying for being detained, looked after or treated under the Mental Health Act?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Capacity
 	Then I see "Has it been decided that the person you're replying for 'lacks mental capacity'?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Confirm Date of Jury
@@ -530,12 +530,12 @@ Scenario Outline: English 3rd Party Deferral - validation and errors
 	|There is a problem|
 	|Select whether you want to proceed with these dates|
 
-	Then I set the radio button to "Yes"
+	Then I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#help at court
 	Then I see "Will the person you're replying for need help when they're at the court?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	Then I check the "Diabetes" checkbox
 	And I press the "Continue" button
 	
@@ -655,13 +655,13 @@ Scenario Outline: English 3rd Party Deferral - Deferral Bank Holiday
 	
 	#Check juror name
 	When I see "Juror Details" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	Then I see "Is this their address?" on the page
 	
 	#Check juror address
 	When I see "Juror Details" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	Then I see "Give the date of birth for the person you're replying for" on the page
 	
@@ -688,37 +688,37 @@ Scenario Outline: English 3rd Party Deferral - Deferral Bank Holiday
 	#Residency
 	Then I see "Since they turned 13, has their main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#Have you ever worked
 	Then I see "Has the person you're replying for worked in the criminal justice system in the last 5 years?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Bail
 	Then I see "Is the person currently on bail for a criminal offence?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Convictions
 	Then I see "Has the person been found guilty of a criminal offence?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I set text area with "id" of "convictedDetails" to "Criminal Convictions"
 	And I press the "Continue" button
 	
 	#Mental Health Sectioned
 	Then I see "Is the person you're replying for being detained, looked after or treated under the Mental Health Act?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Capacity
 	Then I see "Has it been decided that the person you're replying for 'lacks mental capacity'?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Confirm Date of Jury
@@ -759,7 +759,7 @@ Scenario Outline: English 3rd Party Deferral - Deferral Bank Holiday
 	And I validate the "Second" deferral date is "10" weeks in the future
 	And I validate the "Third" deferral date is "11" weeks in the future
 	
-	Then I set the radio button to "Yes"
+	Then I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#Bank Holiday
@@ -774,7 +774,7 @@ Scenario Outline: English 3rd Party Deferral - Deferral Bank Holiday
 	
 	#help at court
 	Then I see "Will the person you're replying for need help when they're at the court?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#check answers
@@ -892,13 +892,13 @@ Scenario Outline: English 3rd Party Deferral - Deferral >1 date is a Bank Holida
 	
 	#Check juror name
 	When I see "Juror Details" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	Then I see "Is this their address?" on the page
 	
 	#Check juror address
 	When I see "Juror Details" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	Then I see "Give the date of birth for the person you're replying for" on the page
 	
@@ -925,37 +925,37 @@ Scenario Outline: English 3rd Party Deferral - Deferral >1 date is a Bank Holida
 	#Residency
 	Then I see "Since they turned 13, has their main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#Have you ever worked
 	Then I see "Has the person you're replying for worked in the criminal justice system in the last 5 years?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Bail
 	Then I see "Is the person currently on bail for a criminal offence?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Convictions
 	Then I see "Has the person been found guilty of a criminal offence?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I set text area with "id" of "convictedDetails" to "Criminal Convictions"
 	And I press the "Continue" button
 	
 	#Mental Health Sectioned
 	Then I see "Is the person you're replying for being detained, looked after or treated under the Mental Health Act?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Capacity
 	Then I see "Has it been decided that the person you're replying for 'lacks mental capacity'?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Confirm Date of Jury
@@ -996,7 +996,7 @@ Scenario Outline: English 3rd Party Deferral - Deferral >1 date is a Bank Holida
 	And I validate the "First" deferral date is "9" weeks in the future
 	And I validate the "Second" deferral date is "10" weeks in the future
 	And I validate the "Third" deferral date is "11" weeks in the future
-	Then I set the radio button to "Yes"
+	Then I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#Bank Holiday
@@ -1011,7 +1011,7 @@ Scenario Outline: English 3rd Party Deferral - Deferral >1 date is a Bank Holida
 	
 	#help at court
 	Then I see "Will the person you're replying for need help when they're at the court?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#check answers
@@ -1127,13 +1127,13 @@ Scenario Outline: English 3rd Party Deferral - Deferral date 2 is a Bank Holiday
 	
 	#Check juror name
 	When I see "Juror Details" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	Then I see "Is this their address?" on the page
 	
 	#Check juror address
 	When I see "Juror Details" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	Then I see "Give the date of birth for the person you're replying for" on the page
 	
@@ -1160,37 +1160,37 @@ Scenario Outline: English 3rd Party Deferral - Deferral date 2 is a Bank Holiday
 	#Residency
 	Then I see "Since they turned 13, has their main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#Have you ever worked
 	Then I see "Has the person you're replying for worked in the criminal justice system in the last 5 years?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Bail
 	Then I see "Is the person currently on bail for a criminal offence?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Convictions
 	Then I see "Has the person been found guilty of a criminal offence?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I set text area with "id" of "convictedDetails" to "Criminal Convictions"
 	And I press the "Continue" button
 	
 	#Mental Health Sectioned
 	Then I see "Is the person you're replying for being detained, looked after or treated under the Mental Health Act?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Capacity
 	Then I see "Has it been decided that the person you're replying for 'lacks mental capacity'?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Confirm Date of Jury
@@ -1230,7 +1230,7 @@ Scenario Outline: English 3rd Party Deferral - Deferral date 2 is a Bank Holiday
 	And I validate the "Second" deferral date is "10" weeks in the future
 	And I validate the "Third" deferral date is "11" weeks in the future
 	
-	Then I set the radio button to "Yes"
+	Then I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#Bank Holiday
@@ -1245,7 +1245,7 @@ Scenario Outline: English 3rd Party Deferral - Deferral date 2 is a Bank Holiday
 	
 	#help at court
 	Then I see "Will the person you're replying for need help when they're at the court?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#check answers
@@ -1363,13 +1363,13 @@ Scenario Outline: English 3rd Party Deferral - Deferral date 3 is a Bank Holiday
 	
 	#Check juror name
 	When I see "Juror Details" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	Then I see "Is this their address?" on the page
 	
 	#Check juror address
 	When I see "Juror Details" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	Then I see "Give the date of birth for the person you're replying for" on the page
 	
@@ -1396,37 +1396,37 @@ Scenario Outline: English 3rd Party Deferral - Deferral date 3 is a Bank Holiday
 	#Residency
 	Then I see "Since they turned 13, has their main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#Have you ever worked
 	Then I see "Has the person you're replying for worked in the criminal justice system in the last 5 years?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Bail
 	Then I see "Is the person currently on bail for a criminal offence?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Convictions
 	Then I see "Has the person been found guilty of a criminal offence?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I set text area with "id" of "convictedDetails" to "Criminal Convictions"
 	And I press the "Continue" button
 	
 	#Mental Health Sectioned
 	Then I see "Is the person you're replying for being detained, looked after or treated under the Mental Health Act?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Capacity
 	Then I see "Has it been decided that the person you're replying for 'lacks mental capacity'?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Confirm Date of Jury
@@ -1466,7 +1466,7 @@ Scenario Outline: English 3rd Party Deferral - Deferral date 3 is a Bank Holiday
 	And I validate the "Second" deferral date is "10" weeks in the future
 	And I validate the "Third" deferral date is "11" weeks in the future
 	
-	Then I set the radio button to "Yes"
+	Then I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#Bank Holiday
@@ -1481,7 +1481,7 @@ Scenario Outline: English 3rd Party Deferral - Deferral date 3 is a Bank Holiday
 	
 	#help at court
 	Then I see "Will the person you're replying for need help when they're at the court?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#check answers
@@ -1601,13 +1601,13 @@ Scenario Outline: English 3rd Party Deferral - selected date makes juror >76
 	
 	#Check juror name
 	When I see "Juror Details" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	Then I see "Is this their address?" on the page
 	
 	#Check juror address
 	When I see "Juror Details" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	Then I see "Give the date of birth for the person you're replying for" on the page
 	
@@ -1631,37 +1631,37 @@ Scenario Outline: English 3rd Party Deferral - selected date makes juror >76
 	#Residency
 	Then I see "Since they turned 13, has their main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#Have you ever worked
 	Then I see "Has the person you're replying for worked in the criminal justice system in the last 5 years?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Bail
 	Then I see "Is the person currently on bail for a criminal offence?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Convictions
 	Then I see "Has the person been found guilty of a criminal offence?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I set text area with "id" of "convictedDetails" to "Criminal Convictions"
 	And I press the "Continue" button
 	
 	#Mental Health Sectioned
 	Then I see "Is the person you're replying for being detained, looked after or treated under the Mental Health Act?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Capacity
 	Then I see "Has it been decided that the person you're replying for 'lacks mental capacity'?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Confirm Date of Jury
@@ -1746,12 +1746,12 @@ Scenario Outline: English 3rd Party Deferral - selected date makes juror >76
 	Then I click on the "What if there's a problem nearer the time and they cannot serve?" link
 	And I do not see "You or they must contact us at that time to let us know." on the page
 	
-	Then I set the radio button to "Yes"
+	Then I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#help at court
 	Then I see "Will the person you're replying for need help when they're at the court?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	#check answers
@@ -1810,5 +1810,5 @@ Scenario Outline: English 3rd Party Deferral - selected date makes juror >76
 	And I validate the "Third" deferral date is "14" weeks in the future
 
 Examples:
-	| juror_number	| last_name			| postcode	| pool_number	|
-	| 045200087		| LNAMESIXSEVENSIX	| SW1H 9AJ	| 452300086		|
+	| juror_number	| last_name			| postcode	| pool_number	| email 		|
+	| 045200087		| LNAMESIXSEVENSIX	| SW1H 9AJ	| 452300086		| e@mail.com 	|

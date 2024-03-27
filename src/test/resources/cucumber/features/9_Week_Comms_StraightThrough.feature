@@ -7,7 +7,7 @@ Scenario Outline: 1st Party English ST, 5 weeks in advance, PNC pass
 	Given the juror numbers have not been processed
 	|part_no		|pool_no 	|Owner 		|
 	|741500438		|415181001 	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	And "<juror_number>" has "RET_DATE" as "2 mondays time"
 	And "<juror_number>" has "NEXT_DATE" as "2 mondays time"
 	And I have submitted a first party English straight through response
@@ -45,7 +45,7 @@ Scenario Outline: 1st Party English ST, 3 weeks in advance, PNC fail
 	Given the juror numbers have not been processed
 	|part_no		|pool_no 	|Owner 		|
 	|741500543		|415181001 	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	And "<juror_number>" has "RET_DATE" as "3 mondays time"
 	And "<juror_number>" has "NEXT_DATE" as "3 mondays time"
 	And I have submitted a first party English straight through response
@@ -62,7 +62,7 @@ Scenario Outline: 1st Party English ST, 3 weeks in advance, PNC fail
 	Then I see "Summoned" on the page
 	
 	#process in Bureau as Responded
-	When I select "Responded" from Process reply
+	When I select "Mark as responded" from Process reply
 	And I check the "Mark juror as 'responded'" checkbox
 	And I press the "Confirm" button
 	Then I see "Completed" on the page
@@ -95,7 +95,7 @@ Scenario Outline: 1st Party English ST, 4 weeks in advance, PNC pass
 	Given the juror numbers have not been processed
 	|part_no		|pool_no 	|Owner 		|
 	|741500586		|415181001 	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	And "<juror_number>" has "RET_DATE" as "2 mondays time"
 	And "<juror_number>" has "NEXT_DATE" as "2 mondays time"
 	And I have submitted a first party Welsh straight through response
@@ -119,7 +119,7 @@ Scenario Outline: 1st Party English ST, 4 weeks in advance, PNC pass
 #	Then I see "Summoned" on the page
 #	
 #	#process in Bureau as Responded
-	When I select "Responded" from Process reply
+	When I select "Mark as responded" from Process reply
 	And I check the "Mark juror as 'responded'" checkbox
 	And I press the "Confirm" button
 	Then I see "Completed" on the page
@@ -146,7 +146,7 @@ Scenario Outline: 1st Party English ST, 3 weeks in advance, PNC pass
 	Given the juror numbers have not been processed
 	|part_no		|pool_no 	|Owner 		|
 	|741500654		|415181001 	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	And "<juror_number>" has "RET_DATE" as "3 mondays time"
 	And "<juror_number>" has "NEXT_DATE" as "3 mondays time"
 	And I have submitted a first party English straight through response
@@ -164,7 +164,7 @@ Scenario Outline: 1st Party English ST, 3 weeks in advance, PNC pass
 	And I see "Urgent" on the page
 	
 	#process in Bureau as Responded
-	When I select "Responded" from Process reply
+	When I select "Mark as responded" from Process reply
 	And I check the "Mark juror as 'responded'" checkbox
 	And I press the "Confirm" button
 	Then I see "Completed" on the page
@@ -191,7 +191,7 @@ Scenario Outline: 1st Party English ST, 2 weeks in advance, PNC pass
 	Given the juror numbers have not been processed
 	|part_no		|pool_no 	|Owner 		|
 	|741500057		|415181001 	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	And "<juror_number>" has "RET_DATE" as "2 mondays time"
 	And "<juror_number>" has "NEXT_DATE" as "2 mondays time"
 	And I have submitted a first party English straight through response
@@ -209,7 +209,7 @@ Scenario Outline: 1st Party English ST, 2 weeks in advance, PNC pass
 	And I see "Urgent" on the page
 	
 	#process in Bureau as Responded
-	When I select "Responded" from Process reply
+	When I select "Mark as responded" from Process reply
 	And I check the "Mark juror as 'responded'" checkbox
 	And I press the "Confirm" button
 	Then I see "Completed" on the page
@@ -236,7 +236,7 @@ Scenario Outline: 1st Party English ST, 2 weeks in advance, PNC fail
 	Given the juror numbers have not been processed
 	|part_no		|pool_no 	|Owner 		|
 	|741500065		|415181001 	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	And "<juror_number>" has "RET_DATE" as "2 mondays time"
 	And "<juror_number>" has "NEXT_DATE" as "2 mondays time"
 	And I have submitted a first party English straight through response
@@ -270,7 +270,7 @@ Scenario Outline: 1st Party English ST, 1 week in advance, PNC pass
 	Given the juror numbers have not been processed
 	|part_no		|pool_no 	|Owner 		|
 	|<part_no>		|<pool_no> 	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	And "<juror_number>" has "RET_DATE" as "1 mondays time"
 	And "<juror_number>" has "NEXT_DATE" as "1 mondays time"
 	And "<juror_number>" has "READ_ONLY" as "Y"
@@ -305,7 +305,7 @@ Scenario Outline: 1st Party English ST, 1 day in advance, PNC pass
 	Given the juror numbers have not been processed
 	|part_no		|pool_no 	|Owner 		|
 	|741500514		|415181001 	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	And "<juror_number>" has "RET_DATE" as "1 days time"
 	And "<juror_number>" has "NEXT_DATE" as "1 days time"
 	And "<juror_number>" has "READ_ONLY" as "Y"
@@ -340,7 +340,7 @@ Scenario Outline: 1st Party Welsh ST, 5 weeks in advance, PNC pass
 	Given the juror numbers have not been processed
 	|part_no		|pool_no 	|Owner 		|
 	|<part_no>		|<pool_no>	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	And "<juror_number>" has "RET_DATE" as "2 mondays time"
 	And "<juror_number>" has "NEXT_DATE" as "2 mondays time"
 	And I have submitted a first party Welsh straight through response
@@ -382,7 +382,7 @@ Scenario Outline: 1st Party Welsh ST, 4 weeks in advance, PNC pass
 	Given the juror numbers have not been processed
 	|part_no		|pool_no 	|Owner 		|
 	|645700112		|457170401 	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	And "<juror_number>" has "RET_DATE" as "4 mondays time"
 	And "<juror_number>" has "NEXT_DATE" as "4 mondays time"
 #	And I have submitted a first party Welsh straight through response
@@ -406,7 +406,7 @@ Scenario Outline: 1st Party Welsh ST, 4 weeks in advance, PNC pass
 	And I see "Urgent" on the page
 	
 	#process in Bureau as Responded
-	When I select "Responded" from Process reply
+	When I select "Mark as responded" from Process reply
 	And I check the "Mark juror as 'responded'" checkbox
 	And I press the "Confirm" button
 	Then I see "Completed" on the page
@@ -433,7 +433,7 @@ Scenario Outline: 1st Party Welsh ST, 3 weeks in advance, PNC pass
 	Given the juror numbers have not been processed
 	|part_no		|pool_no 	|Owner 		|
 	|645700142		|457170401 	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	And "<juror_number>" has "RET_DATE" as "3 mondays time"
 	And "<juror_number>" has "NEXT_DATE" as "3 mondays time"
 	And I have submitted a first party Welsh straight through response
@@ -451,7 +451,7 @@ Scenario Outline: 1st Party Welsh ST, 3 weeks in advance, PNC pass
 	And I see "Urgent" on the page
 	
 	#process in Bureau as Responded
-	When I select "Responded" from Process reply
+	When I select "Mark as responded" from Process reply
 	And I check the "Mark juror as 'responded'" checkbox
 	And I press the "Confirm" button
 	Then I see "Completed" on the page
@@ -478,7 +478,7 @@ Scenario Outline: 1st Party Welsh ST, 2 weeks in advance, PNC pass
 	Given the juror numbers have not been processed
 	|part_no		|pool_no 	|Owner 		|
 	|<part_no>		|<pool_no> 	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	And "<juror_number>" has "RET_DATE" as "2 mondays time"
 	And "<juror_number>" has "NEXT_DATE" as "2 mondays time"
 	And I have submitted a first party Welsh straight through response
@@ -500,7 +500,7 @@ Scenario Outline: 1st Party Welsh ST, 2 weeks in advance, PNC pass
 	And I see "Urgent" on the page
 	
 	#process in Bureau as Responded
-	When I select "Responded" from Process reply
+	When I select "Mark as responded" from Process reply
 	And I check the "Mark juror as 'responded'" checkbox
 	And I press the "Confirm" button
 	Then I see "Completed" on the page
@@ -527,7 +527,7 @@ Scenario Outline: 1st Party Welsh ST, 1 week in advance, PNC pass
 	Given the juror numbers have not been processed
 	|part_no		|pool_no 	|Owner 		|
 	|645700937		|457170401 	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	And "<juror_number>" has "RET_DATE" as "1 mondays time"
 	And "<juror_number>" has "NEXT_DATE" as "1 mondays time"
 	And "<juror_number>" has "READ_ONLY" as "Y"
@@ -566,7 +566,7 @@ Scenario Outline: 1st Party Welsh ST, 1 day in advance, PNC pass
 	Given the juror numbers have not been processed
 	|part_no		|pool_no 	|Owner 		|
 	|841501931		|415181001 	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	And "<juror_number>" has "RET_DATE" as "1 days time"
 	And "<juror_number>" has "NEXT_DATE" as "1 days time"
 	And "<juror_number>" has "READ_ONLY" as "Y"
@@ -601,7 +601,7 @@ Scenario Outline: 1st Party Deferral accepted, 5 weeks in advance, PNC pass
 	Given the juror numbers have not been processed
 	|part_no		|pool_no 	|Owner 		|
 	|741500528		|415181001 	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 
 
 	And I have submitted a first party English deferral response
@@ -648,7 +648,7 @@ Scenario Outline: 1st Party Deferral refused, 5 weeks in advance, PNC pass
 	Given the juror numbers have not been processed
 	|part_no		|pool_no 	|Owner 		|
 	|741500533		|415181001 	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	And "<juror_number>" has "RET_DATE" as "4 mondays time"
 	And "<juror_number>" has "NEXT_DATE" as "4 mondays time"
 	And I have submitted a first party English deferral response
@@ -694,7 +694,7 @@ Scenario Outline: 1st Party Deferral accepted, 4 weeks in advance, PNC pass
 	Given the juror numbers have not been processed
 	|part_no		|pool_no 	|Owner 		|
 	|741500558		|415181001 	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	And "<juror_number>" has "RET_DATE" as "4 mondays time"
 	And "<juror_number>" has "NEXT_DATE" as "4 mondays time"
 	And I have submitted a first party English deferral response
@@ -743,7 +743,7 @@ Scenario Outline: 1st Party Deferral refused, 4 weeks in advance, PNC pass
 	Given the juror numbers have not been processed
 	|part_no		|pool_no 	|Owner 		|
 	|741500580		|415181001 	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	And "<juror_number>" has "RET_DATE" as "4 mondays time"
 	And "<juror_number>" has "NEXT_DATE" as "4 mondays time"
 	And I have submitted a first party English deferral response
@@ -779,7 +779,7 @@ Scenario Outline: 1st Party Deferral accepted, 3 weeks in advance, PNC pass
 	Given the juror numbers have not been processed
 	|part_no		|pool_no 	|Owner 		|
 	|741500614		|415181001 	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	And "<juror_number>" has "RET_DATE" as "3 mondays time"
 	And "<juror_number>" has "NEXT_DATE" as "3 mondays time"
 	And I have submitted a first party English deferral response
@@ -827,7 +827,7 @@ Scenario Outline: 1st Party Deferral refused, 3 weeks in advance, PNC pass
 	Given the juror numbers have not been processed
 	|part_no		|pool_no 	|Owner 		|
 	|741500627		|415181001 	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	And "<juror_number>" has "RET_DATE" as "3 mondays time"
 	And "<juror_number>" has "NEXT_DATE" as "3 mondays time"
 	And I have submitted a first party English deferral response
@@ -861,7 +861,7 @@ Scenario Outline: 1st Party Deferral accepted, 2 weeks in advance, PNC pass
 	Given the juror numbers have not been processed
 	|part_no		|pool_no 	|Owner 		|
 	|741500657		|415181001 	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	And "<juror_number>" has "RET_DATE" as "2 mondays time"
 	And "<juror_number>" has "NEXT_DATE" as "2 mondays time"
 	And I have submitted a first party English deferral response
@@ -909,7 +909,7 @@ Scenario Outline: 1st Party Deferral refused, 2 weeks in advance, PNC pass
 	Given the juror numbers have not been processed
 	|part_no		|pool_no 	|Owner 		|
 	|741500674		|415181001 	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	And "<juror_number>" has "RET_DATE" as "2 mondays time"
 	And "<juror_number>" has "NEXT_DATE" as "2 mondays time"
 	And I have submitted a first party English deferral response
@@ -943,7 +943,7 @@ Scenario Outline: 1st Party Deferral accepted, 1 week in advance, PNC pass
 	Given the juror numbers have not been processed
 	|part_no		|pool_no 	|Owner 		|
 	|741500779		|415181001 	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	And "<juror_number>" has "RET_DATE" as "1 mondays time"
 	And "<juror_number>" has "NEXT_DATE" as "1 mondays time"
 	And "<juror_number>" has "READ_ONLY" as "Y"
@@ -978,7 +978,7 @@ Scenario Outline: 1st Party Deferral refused, 1 week in advance, PNC pass
 	Given the juror numbers have not been processed
 	|part_no		|pool_no 	|Owner 		|
 	|741500790		|415181001 	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	And "<juror_number>" has "RET_DATE" as "1 mondays time"
 	And "<juror_number>" has "NEXT_DATE" as "1 mondays time"
 	And "<juror_number>" has "READ_ONLY" as "Y"
@@ -1013,7 +1013,7 @@ Scenario Outline: 1st Party Excusal accepted, 5 weeks in advance, PNC pass
 	Given the juror numbers have not been processed
 	|part_no		|pool_no 	|Owner 		|
 	|741500795		|415181001 	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 
 
 	And I have submitted a first party English excusal response
@@ -1058,7 +1058,7 @@ Scenario Outline: 1st Party Excusal refused, 5 weeks in advance, PNC pass
 	Given the juror numbers have not been processed
 	|part_no		|pool_no 	|Owner 		|
 	|741500827		|415181001  |400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	And "<juror_number>" has "RET_DATE" as "3 mondays time"
 	And "<juror_number>" has "NEXT_DATE" as "3 mondays time"
 	And I have submitted a first party English excusal response
@@ -1104,7 +1104,7 @@ Scenario Outline: 1st Party Excusal accepted, 4 weeks in advance, PNC pass
 	Given the juror numbers have not been processed
 	|part_no		|pool_no 	|Owner 		|
 	|741500520		|415181001 	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	And "<juror_number>" has "RET_DATE" as "4 mondays time"
 	And "<juror_number>" has "NEXT_DATE" as "4 mondays time"
 	And I have submitted a first party English excusal response
@@ -1151,7 +1151,7 @@ Scenario Outline: 1st Party Excusal refused, 4 weeks in advance, PNC pass
 	Given the juror numbers have not been processed
 	|part_no		|pool_no 	|Owner 		|
 	|<part_no>		|<pool_no> 	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	And "<juror_number>" has "RET_DATE" as "4 mondays time"
 	And "<juror_number>" has "NEXT_DATE" as "4 mondays time"
 	And I have submitted a first party English excusal response
@@ -1187,7 +1187,7 @@ Scenario Outline: 1st Party Excusal accepted, 3 weeks in advance, PNC pass
 	Given the juror numbers have not been processed
 	|part_no		|pool_no 	|Owner 		|
 	|741500473		|415181001 	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	And "<juror_number>" has "RET_DATE" as "3 mondays time"
 	And "<juror_number>" has "NEXT_DATE" as "3 mondays time"
 	And I have submitted a first party English excusal response
@@ -1233,7 +1233,7 @@ Scenario Outline: 1st Party Excusal refused, 3 weeks in advance, PNC pass
 	Given the juror numbers have not been processed
 	|part_no		|pool_no 	|Owner 		|
 	|841500029		|415181001 	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	And "<juror_number>" has "RET_DATE" as "3 mondays time"
 	And "<juror_number>" has "NEXT_DATE" as "3 mondays time"
 	And I have submitted a first party English excusal response
@@ -1267,7 +1267,7 @@ Scenario Outline: 1st Party Excusal accepted, 2 weeks in advance, PNC pass
 	Given the juror numbers have not been processed
 	|part_no		|pool_no 	|Owner 		|
 	|841500034		|415181001 	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	And "<juror_number>" has "RET_DATE" as "2 mondays time"
 	And "<juror_number>" has "NEXT_DATE" as "2 mondays time"
 	And I have submitted a first party English excusal response
@@ -1313,7 +1313,7 @@ Scenario Outline: 1st Party Excusal refused, 2 weeks in advance, PNC pass
 	Given the juror numbers have not been processed
 	|part_no		|pool_no 	|Owner 		|
 	|841500038		|415181001 	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	And "<juror_number>" has "RET_DATE" as "2 mondays time"
 	And "<juror_number>" has "NEXT_DATE" as "2 mondays time"
 	And I have submitted a first party English excusal response
@@ -1347,7 +1347,7 @@ Scenario Outline: 1st Party Excusal accepted, 1 week in advance, PNC pass
 	Given the juror numbers have not been processed
 	|part_no		|pool_no 	|Owner 		|
 	|841501637		|415181001 	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	And "<juror_number>" has "RET_DATE" as "1 mondays time"
 	And "<juror_number>" has "NEXT_DATE" as "1 mondays time"
 	And "<juror_number>" has "READ_ONLY" as "Y"
@@ -1382,7 +1382,7 @@ Scenario Outline: 1st Party Excusal refused, 1 week in advance, PNC pass
 	Given the juror numbers have not been processed
 	|part_no		|pool_no 	|Owner 		|
 	|841501641		|415181001 	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	And "<juror_number>" has "RET_DATE" as "1 mondays time"
 	And "<juror_number>" has "NEXT_DATE" as "1 mondays time"
 	And "<juror_number>" has "READ_ONLY" as "Y"
@@ -1417,7 +1417,7 @@ Scenario Outline: 1st Party Disqualify, 5 weeks in advance, PNC n/a
 	Given the juror numbers have not been processed
 	|part_no		|pool_no 	|Owner 		|
 	|841501651		|415181001 	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 
 
 	And I have submitted a first party English ineligibilty response
@@ -1473,7 +1473,7 @@ Scenario Outline: 1st Party Ineligible, 2 weeks in advance, PNC n/a
 	Given the juror numbers have not been processed
 	|part_no		|pool_no 	|Owner 		|
 	|841501672		|415181001 	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	And "<juror_number>" has "RET_DATE" as "2 mondays time"
 	And "<juror_number>" has "NEXT_DATE" as "2 mondays time"
 	And I have submitted a first party English ineligibilty response
@@ -1507,7 +1507,7 @@ Scenario Outline: 1st Party Ineligible, 1 week in advance, PNC n/a
 	Given the juror numbers have not been processed
 	|part_no		|pool_no 	|Owner 		|
 	|841501673		|415181001 	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	And "<juror_number>" has "RET_DATE" as "1 mondays time"
 	And "<juror_number>" has "NEXT_DATE" as "1 mondays time"
 	And "<juror_number>" has "READ_ONLY" as "Y"
@@ -1542,7 +1542,7 @@ Scenario Outline: 3rd Party Deceased, 5 weeks in advance, PNC n/a
 	Given the juror numbers have not been processed
 	|part_no		|pool_no 	|Owner 		|
 	|645100496		|451170401 	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 
 
 	And I have submitted a third party English deceased response
@@ -1575,7 +1575,7 @@ Scenario Outline: 3rd Party Welsh Deceased, 5 weeks in advance, PNC n/a
 	Given the juror numbers have not been processed
 	|part_no		|pool_no 	|Owner 		|
 	|645700230		|457170401 	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 
 
 	And I have submitted a third party Welsh deceased response
@@ -1612,7 +1612,7 @@ Scenario Outline: 3rd Party Deceased, 2 weeks in advance, PNC n/a
 	Given the juror numbers have not been processed
 	|part_no		|pool_no 	|Owner 		|
 	|841501691		|415181001 	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	And "<juror_number>" has "RET_DATE" as "2 mondays time"
 	And "<juror_number>" has "NEXT_DATE" as "2 mondays time"
 	And I have submitted a first party English ineligibilty response
@@ -1646,7 +1646,7 @@ Scenario Outline: 1st Party Ineligible, 1 week in advance, PNC n/a
 	Given the juror numbers have not been processed
 	|part_no		|pool_no 	|Owner 		|
 	|<part_no>		|<pool_no> 	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	And "<juror_number>" has "RET_DATE" as "1 mondays time"
 	And "<juror_number>" has "NEXT_DATE" as "1 mondays time"
 	And "<juror_number>" has "READ_ONLY" as "Y"
@@ -1681,7 +1681,7 @@ Scenario Outline: 1st Party English Age Disqualified, 5 weeks in advance, PNC n/
 	Given the juror numbers have not been processed
 	|part_no		|pool_no 	|Owner 		|
 	|841501936		|415181001 	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 
 
 	And I have submitted a first party English underage response
@@ -1714,7 +1714,7 @@ Scenario Outline: 3rd Party English Age Disqualified, 5 weeks in advance, PNC n/
 	Given the juror numbers have not been processed
 	|part_no		|pool_no 	|Owner 		|
 	|841501948		|415181001 	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 
 
 	And I have submitted a third party English overage response
@@ -1747,7 +1747,7 @@ Scenario Outline: 1st Party Welsh Age Disqualified, 5 weeks in advance, PNC n/a
 	Given the juror numbers have not been processed
 	|part_no		|pool_no 	|Owner 		|
 	|841501955		|415181001 	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 
 
 	And I have submitted a first party Welsh underage response
@@ -1784,7 +1784,7 @@ Scenario Outline: 3rd Party Welsh Age Disqualified, 5 weeks in advance, PNC n/a
 	Given the juror numbers have not been processed
 	|part_no		|pool_no 	|Owner 		|
 	|841501948		|415181001 	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 
 
 	And I have submitted a third party Welsh overage response
@@ -1821,7 +1821,7 @@ Scenario Outline: 1st Party Postponement, 5 weeks in advance, PNC pass, creation
 	Given the juror numbers have not been processed
 	|part_no		|pool_no 	|Owner 		|
 	|641500490		|415170401 	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 
 
 	And I have submitted a first party English ineligibilty response
@@ -1868,7 +1868,7 @@ Scenario Outline: 1st Party Postponement, 5 weeks in advance, PNC pass, creation
 	Given the juror numbers have not been processed
 	|part_no		|pool_no 	|Owner 		|
 	|644200857		|442170401	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 
 
 	And I have submitted a first party English ineligibilty response
@@ -1915,7 +1915,7 @@ Scenario Outline: 1st Party Postponement, 5 weeks in advance, PNC pass, creation
 	Given the juror numbers have not been processed
 	|part_no		|pool_no 	|Owner 		|
 	|644200858		|442170401	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 
 
 	And I have submitted a first party English ineligibilty response
@@ -1963,7 +1963,7 @@ Scenario Outline: 1st Party paper response with no email, 5 weeks in advance, PN
 	Given the juror numbers have not been processed
 	|part_no		|pool_no 	|Owner 		|
 	|644200896		|442170401 	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 
 
 	And "<juror_number>" has "RESPONDED" as "Y"
@@ -1991,7 +1991,7 @@ Scenario Outline: 1st Party paper response with email, 5 weeks in advance, PNC p
 	Given the juror numbers have not been processed
 	|part_no		|pool_no 	|Owner 		|
 	|644200960		|442170401 	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 
 
 	And "<juror_number>" has "RESPONDED" as "Y"
@@ -2020,7 +2020,7 @@ Scenario Outline: 1st Party English ST, 5 weeks in advance, PNC pass, invalid em
 	Given the juror numbers have not been processed
 	|part_no		|pool_no 	|Owner 		|
 	|644200977		|442170401 	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 
 
 	And I have submitted a first party English straight through response
@@ -2058,7 +2058,7 @@ Scenario Outline: English 3rd Party Straight Through, 2 weeks in advance, PNC pa
 	Given the juror numbers have not been processed
 		| part_no 	| pool_no 	| owner |
 		| <part_no> |<pool_no>	| 400 	|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	And "<juror_number>" has "RET_DATE" as "1 mondays time"
 	And "<juror_number>" has "NEXT_DATE" as "1 mondays time"
 	And "<juror_number>" has "READ_ONLY" as "Y"
@@ -2106,10 +2106,10 @@ Scenario Outline: English 3rd Party Straight Through, 2 weeks in advance, PNC pa
 	#Check juror name
 	
 	Then I see "Is the name we have for them correct?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	Then I see "Is this their address?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#DoB
@@ -2137,27 +2137,27 @@ Scenario Outline: English 3rd Party Straight Through, 2 weeks in advance, PNC pa
 
 	#Residency
 	
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 
 	#Mental Health Sectioned
 	
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Capacity
 	
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Bail
 	
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Convictions
 	
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#The person can attend
@@ -2167,12 +2167,12 @@ Scenario Outline: English 3rd Party Straight Through, 2 weeks in advance, PNC pa
 	
 	#CJS no
 	
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#RA no
 	
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Check your answers
@@ -2192,7 +2192,7 @@ Scenario Outline: English 3rd Party Straight Through, 2 weeks in advance, PNC pa
 	Then I see "Summoned" on the page
 	
 	#process in Bureau as Responded
-	When I select "Responded" from Process reply
+	When I select "Mark as responded" from Process reply
 	And I check the "Mark juror as 'responded'" checkbox
 	And I press the "Confirm" button
 	Then I see "Completed" on the page
@@ -2215,7 +2215,7 @@ Scenario Outline: 3rd Party English ST, 5 weeks in advance, PNC pass
 	Given the juror numbers have not been processed
 	|part_no		|pool_no 	|Owner 		|
 	|<part_no>		|<pool_no> 	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	And "<juror_number>" has "RET_DATE" as "1 mondays time"
 	And "<juror_number>" has "NEXT_DATE" as "1 mondays time"
 	And "<juror_number>" has "READ_ONLY" as "Y"
@@ -2234,7 +2234,7 @@ Scenario Outline: 3rd Party English ST, 5 weeks in advance, PNC pass
 	Then I see "Summoned" on the page
 	
 	#process in Bureau as Responded
-	When I select "Responded" from Process reply
+	When I select "Mark as responded" from Process reply
 	And I check the "Mark juror as 'responded'" checkbox
 	And I press the "Confirm" button
 	Then I see "Completed" on the page
@@ -2261,7 +2261,7 @@ Scenario Outline: 3rd Party Welsh ST, 5 weeks in advance, PNC pass
 	Given the juror numbers have not been processed
 	|part_no	|pool_no 	|Owner 		|
 	|<part_no>	|<pool_no> 	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	And "<juror_number>" has "RET_DATE" as "3 mondays time"
 	And "<juror_number>" has "NEXT_DATE" as "3 mondays time"
 #	And "<juror_number>" has "READ_ONLY" as "Y"
@@ -2283,7 +2283,7 @@ Scenario Outline: 3rd Party Welsh ST, 5 weeks in advance, PNC pass
 #	Then I see "Summoned" on the page
 	
 	#process in Bureau as Responded
-	When I select "Responded" from Process reply
+	When I select "Mark as responded" from Process reply
 	And I check the "Mark juror as 'responded'" checkbox
 	And I press the "Confirm" button
 	Then I see "Completed" on the page
@@ -2310,7 +2310,7 @@ Scenario Outline: 1st Party Welsh Excusal accepted, 5 weeks in advance, PNC pass
 	Given the juror numbers have not been processed
 	|part_no		|pool_no 	|Owner 		|
 	|645700291		|457170401	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 
 
 	And I have submitted a first party Welsh excusal response
@@ -2359,7 +2359,7 @@ Scenario Outline: 3rd Party English Excusal accepted, 5 weeks in advance, PNC pa
 	Given the juror numbers have not been processed
 	|part_no	|pool_no 	|Owner 		|
 	|644200976	|442170401 	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 
 
 	And I have submitted a third party English excusal response
@@ -2404,7 +2404,7 @@ Scenario Outline: 3rd Party Welsh Excusal accepted, 5 weeks in advance, PNC pass
 	Given the juror numbers have not been processed
 	|part_no	|pool_no 	|Owner 		|
 	|645700183	|457170401 	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 
 
 	And I have submitted a third party Welsh excusal response
@@ -2453,7 +2453,7 @@ Scenario Outline: 1st Party Welsh Deferral accepted, 5 weeks in advance, PNC pas
 	Given the juror numbers have not been processed
 	|part_no		|pool_no 	|Owner 		|
 	|<part_no>		|<pool_no> 	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 
 
 #	And I have submitted a first party Welsh deferral response
@@ -2504,7 +2504,7 @@ Scenario Outline: 3rd Party English Deferral accepted, 5 weeks in advance, PNC p
 	Given the juror numbers have not been processed
 	|part_no	|pool_no 	|Owner 		|
 	|641500631	|415170401 	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 
 
 	And I have submitted a third party English deferral response
@@ -2551,7 +2551,7 @@ Scenario Outline: 3rd Party Welsh Deferral accepted, 5 weeks in advance, PNC pas
 	Given the juror numbers have not been processed
 	|part_no	|pool_no 	|Owner 		|
 	|645700247	|457170401 	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 
 
 	And I have submitted a third party Welsh deferral response
@@ -2602,7 +2602,7 @@ Scenario Outline: 1st Party Welsh Excusal refused, 5 weeks in advance, PNC pass
 	Given the juror numbers have not been processed
 	|part_no	|pool_no 	|Owner 		|
 	|645700261	|457170401 	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	And "<juror_number>" has "RET_DATE" as "3 mondays time"
 	And "<juror_number>" has "NEXT_DATE" as "3 mondays time"
 #	And I have submitted a first party Welsh excusal response
@@ -2652,7 +2652,7 @@ Scenario Outline: 3rd Party Excusal refused, 5 weeks in advance, PNC pass
 	Given the juror numbers have not been processed
 	|part_no	|pool_no 	|Owner 		|
 	|<part_no>	|<pool_no> 	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	And "<juror_number>" has "RET_DATE" as "3 mondays time"
 	And "<juror_number>" has "NEXT_DATE" as "3 mondays time"
 	And I have submitted a third party English excusal response
@@ -2698,7 +2698,7 @@ Scenario Outline: 3rd Party Welsh Excusal refused, 5 weeks in advance, PNC pass
 	Given the juror numbers have not been processed
 	|part_no	|pool_no 	|Owner 		|
 	|645700185	|457170401	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	And "<juror_number>" has "RET_DATE" as "3 mondays time"
 	And "<juror_number>" has "NEXT_DATE" as "3 mondays time"
 #	And I have submitted a third party Welsh excusal response
@@ -2748,7 +2748,7 @@ Scenario Outline: 1st Party Welsh Deferral refused, 5 weeks in advance, PNC pass
 	Given the juror numbers have not been processed
 	|part_no		|pool_no 	|Owner 		|
 	|645700237		|457170401 	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	And "<juror_number>" has "RET_DATE" as "3 mondays time"
 	And "<juror_number>" has "NEXT_DATE" as "3 mondays time"
 #	And I have submitted a first party Welsh deferral response
@@ -2798,7 +2798,7 @@ Scenario Outline: 3rd Party Deferral refused, 5 weeks in advance, PNC pass
 	Given the juror numbers have not been processed
 	|part_no	|pool_no 	|Owner 		|
 	|<part_no>	|<pool_no> 	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	And "<juror_number>" has "RET_DATE" as "3 mondays time"
 	And "<juror_number>" has "NEXT_DATE" as "3 mondays time"
 	And I have submitted a third party English deferral response
@@ -2844,7 +2844,7 @@ Scenario Outline: 3rd Party Welsh Deferral refused, 5 weeks in advance, PNC pass
 	Given the juror numbers have not been processed
 	|part_no	|pool_no 	|Owner 		|
 	|645700246	|457170401	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	And "<juror_number>" has "RET_DATE" as "3 mondays time"
 	And "<juror_number>" has "NEXT_DATE" as "3 mondays time"
 #	And I have submitted a third party Welsh deferral response
@@ -2894,7 +2894,7 @@ Scenario Outline: 3rd Party Welsh Postponement, 5 weeks in advance, PNC pass
 	Given the juror numbers have not been processed
 	|part_no		|pool_no 	|Owner 		|
 	|645700260		|457170401	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 
 
 	And I have submitted a third party Welsh ineligibilty response
@@ -2945,7 +2945,7 @@ Scenario Outline: 1st Party Welsh Postponement, 5 weeks in advance, PNC pass
 	Given the juror numbers have not been processed
 	|part_no	|pool_no 	|Owner 		|
 	|645700786	|457170401	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 
 
 	And I have submitted a first party Welsh ineligibilty response
@@ -2997,7 +2997,7 @@ Scenario Outline: 3rd Party Postponement, 5 weeks in advance, PNC pass
 	Given the juror numbers have not been processed
 	|part_no		|pool_no 	|Owner 		|
 	|<part_no>		|<pool_no>	|400		|
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	And "<juror_number>" has "RET_DATE" as "1 mondays time"
 	And "<juror_number>" has "NEXT_DATE" as "1 mondays time"
 	And "<juror_number>" has "READ_ONLY" as "Y"

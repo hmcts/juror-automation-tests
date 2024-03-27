@@ -27,13 +27,13 @@ Scenario: expensesJDB-4373
 	
 	#Select Yes
 	
-	Then I set the radio button to "Yes"
+	Then I choose the "Yes" radio button
 	Then the radio button "Yes" is "selected"
 	Then the radio button "No" is "unselected"
 
 	#Select No
 	
-	Then I set the radio button to "No"
+	Then I choose the "No" radio button
 	Then the radio button "No" is "selected"
 	Then the radio button "Yes" is "unselected"
 	

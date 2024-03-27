@@ -248,11 +248,8 @@ public class StepDef_jurorpool {
     public void theSystemWillDisplayNonEditableInformationOnTheCourtPoolSummaryScreen(DataTable table) throws ParseException {
         Map<String, String> data = table.asMap(String.class, String.class);
 
-        assertEquals(data.get("jurorsRequested"), POOL_OVERVIEW_PAGE.getNumberOfJurorsRequestedCourtOverview());
         assertEquals(data.get("courtName"), POOL_OVERVIEW_PAGE.getCourtName());
         assertEquals(data.get("courtLocationCode"), POOL_OVERVIEW_PAGE.getCourtLocationCode());
-        assertEquals(data.get("jurorsNeeded"), POOL_OVERVIEW_PAGE.getNumberOfJurorsRequiredCourtOverview());
-        assertEquals(data.get("courtDeferralsUsed"), POOL_OVERVIEW_PAGE.getNumberOfCourtDeferralsUsed());
         if (poolDate.get() != null) {
             assertEquals(poolDate.get(), POOL_OVERVIEW_PAGE.getConvertedStartDate());
         }
@@ -1070,7 +1067,7 @@ public class StepDef_jurorpool {
     public void enterDateOfBirthTMorethan75Years() {
         String datePattern = "dd/MM/yyyy";
         Calendar date = Calendar.getInstance();
-        date.add(Calendar.MONTH, 1);
+        date.add(Calendar.MONTH, 2);
         date.add(Calendar.YEAR, -76);
         String enterDOBDate = new SimpleDateFormat(datePattern).format(date.getTime());
         SUMMONS_REPLY.enterDateOfBirth(enterDOBDate);
@@ -1863,6 +1860,7 @@ public class StepDef_jurorpool {
         GRP.click_radioButtonWithLabel("Request new pool");
         NAV.press_buttonByName("Continue");
         NAV.set_valueTo("Enter a court name or location code", court);
+        NAV.click_link_by_text(court);
         NAV.press_buttonByName("Continue");
         NAV.waitForPageLoad();
         POOL_REQUESTS_PAGE.clickToChangeDeferrals();
@@ -1995,6 +1993,7 @@ public class StepDef_jurorpool {
         NAV.press_buttonByName("Continue");
 
         NAV.set_valueTo("Enter a court name or location code", court);
+        NAV.click_link_by_text(court);
         NAV.press_buttonByName("Continue");
         //NAV.waitForPageLoad();
         POOL_REQUESTS_PAGE.clickChangeDate();

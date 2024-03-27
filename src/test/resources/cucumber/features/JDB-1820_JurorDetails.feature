@@ -24,7 +24,7 @@ Scenario Outline: Back and forward navigation all screens for 1st Party
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 	Then I see "Is the name we have for you correct?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Check Name
@@ -40,12 +40,12 @@ Scenario Outline: Back and forward navigation all screens for 1st Party
 	When I click on the "Back" link
 	Then I see "FirstNamea" on the page
 	And I see "LastNameb" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	When I press the "Continue" button
 	Then I see "Is this your address?" on the page
 	
 	#Check Address
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	When I press the "Continue" button
 	Then I set "Address line 1" to ""
 	And I set "Town or city" to ""
@@ -67,13 +67,13 @@ Scenario Outline: Back and forward navigation all screens for 1st Party
 	Then I see "123 Street" on the page
 	And I see "London" on the page
 	And I see "CH1 2AN" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	Then I see "What is your phone number?" on the page
 	When I click on the "Back" link
 	Then I see "123 Street" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	Then I see "What is your phone number?" on the page
 	
@@ -120,10 +120,10 @@ Scenario Outline: Back and forward navigation all screens for 1st Party
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	When I press the "Continue" button
 	Then I see "Select yes if your main address has been in the UK, Channel Islands or Isle of Man for any period of at least 5 years, since you turned 13" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	Then I see "Provide details about where you have lived since your 13th birthday" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
 	When I click on the "Back" link
@@ -134,7 +134,7 @@ Scenario Outline: Back and forward navigation all screens for 1st Party
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
 	When I press the "Continue" button
 	Then I see "Select whether you've worked in the criminal justice system in the last 5 years" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	Then I see "Tick any organisations you worked for directly (not as a third party or subcontractor)" on the page
 	When I check the "Police service" checkbox
@@ -147,7 +147,7 @@ Scenario Outline: Back and forward navigation all screens for 1st Party
 	When I check the "Police service" checkbox
 	And I check the "HM Prison Service" checkbox
 	And I check the "Other" checkbox
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	Then I see "Are you currently on bail for a criminal offence?" on the page
 	When I click on the "Back" link
@@ -158,10 +158,10 @@ Scenario Outline: Back and forward navigation all screens for 1st Party
 	Then I see "Are you currently on bail for a criminal offence?" on the page
 	When I press the "Continue" button
 	Then I see "Select yes if you are currently on bail for a criminal offence" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	Then I see "Provide details about your bail and criminal offence" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	Then I see "Have you been found guilty of a criminal offence?" on the page
 	When I click on the "Back" link
@@ -172,20 +172,20 @@ Scenario Outline: Back and forward navigation all screens for 1st Party
 	Then I see "Have you been found guilty of a criminal offence?" on the page
 	When I press the "Continue" button
 	Then I see "Select yes if you have been found guilty of a criminal offence" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	Then I see "Provide details about your criminal offence" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health part 1
 	Then I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
 	When I press the "Continue" button
 	Then I see "Select yes if you're being detained, looked after or treated under the Mental Health Act" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	Then I see "Provide details about how you're being detained, looked after or treated under the Mental Health Act" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
 	When I click on the "Back" link
@@ -197,10 +197,10 @@ Scenario Outline: Back and forward navigation all screens for 1st Party
 	When I press the "Continue" button
 	Then I see "Select yes if it's been decided that you 'lack mental capacity'" on the page
 
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	Then I see "Provide brief details about why it was decided you lack mental capacity" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	Then I see "Check your start date" on the page
 	When I click on the "Back" link
@@ -230,7 +230,7 @@ Scenario Outline: Back and forward navigation all screens for 1st Party
 	When I press the "Continue" button
 	Then I see "There is a problem" on the page
 	And I see "Select yes if you will need help when you're at court" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#JDB-3638
@@ -239,7 +239,7 @@ Scenario Outline: Back and forward navigation all screens for 1st Party
 	Then I see "Give details of your disability or impairment" on the page
 	
 	When I check the "Other" checkbox
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Check your answers

@@ -47,7 +47,7 @@ Scenario Outline: English 1st Deferral Skip to Main Content Check
 	Then I see "Skip to main content" on the page
 	Then I click on the "Skip to main content" link
 	Then I see "Is the name we have for you correct?" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	
 	And I press the "Continue" button
 	
@@ -56,7 +56,7 @@ Scenario Outline: English 1st Deferral Skip to Main Content Check
 	Then I see "Skip to main content" on the page
 	Then I click on the "Skip to main content" link
 	Then I see "Is this your address?" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	
 	And I press the "Continue" button
 	
@@ -104,7 +104,7 @@ Scenario Outline: English 1st Deferral Skip to Main Content Check
 	Then I click on the "Skip to main content" link
 	Then I see "Since you turned 13," on the page
 	
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#CJS
@@ -114,7 +114,7 @@ Scenario Outline: English 1st Deferral Skip to Main Content Check
 	Then I click on the "Skip to main content" link
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
 	
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#JDB-3357 Skip to main content check
@@ -123,7 +123,7 @@ Scenario Outline: English 1st Deferral Skip to Main Content Check
 	Then I click on the "Skip to main content" link
 	Then I see "Are you currently on bail" on the page
 	
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#JDB-3357 Skip to main content check
@@ -132,7 +132,7 @@ Scenario Outline: English 1st Deferral Skip to Main Content Check
 	Then I click on the "Skip to main content" link
 	Then I see "Have you been found guilty of a criminal offence" on the page
 	
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#JDB-3357 Skip to main content check
@@ -141,7 +141,7 @@ Scenario Outline: English 1st Deferral Skip to Main Content Check
 	Then I click on the "Skip to main content" link
 	Then I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
 	
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#JDB-3357 Skip to main content check
@@ -150,7 +150,7 @@ Scenario Outline: English 1st Deferral Skip to Main Content Check
 	Then I click on the "Skip to main content" link
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
 	
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#JDB-3357 Skip to main content check
@@ -187,7 +187,7 @@ Scenario Outline: English 1st Deferral Skip to Main Content Check
 	Then I click on the "Skip to main content" link
 	And I see "Check your dates" on the page
 	
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#JDB-3357 Skip to main content check
@@ -196,7 +196,7 @@ Scenario Outline: English 1st Deferral Skip to Main Content Check
 	Then I click on the "Skip to main content" link
 	Then I see "Will you need help when you're at the court?" on the page
 	
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#JDB-3357 Skip to main content check

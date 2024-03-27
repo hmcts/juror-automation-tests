@@ -55,7 +55,7 @@ Scenario Outline: A response is submitted after pool is transferred to court
 	And I see "Summoned" on the page
 	And I see "SEND TO COURT" on the page
 	
-	When I select "PDF sent to court..." from Process reply
+	When I select "Download as a PDF" from Process reply
 	And I check the "PDF sent to court" checkbox
 	And I press the "Confirm" button
 	
@@ -103,7 +103,7 @@ Scenario Outline: Regression test that Urgents still calculated correctly
 	Then I see "Summoned" on the page
 	And I see "URGENT" on the page
 	
-	When I select "Responded" from Process reply
+	When I select "Mark as responded" from Process reply
 	And I check the "Mark juror as 'responded'" checkbox
 	And I press the "Confirm" button
 	
@@ -164,7 +164,7 @@ Scenario Outline: Test that a response with ret_date in 1 week and read_only='N'
 #	Then I see "Summoned" on the page
 #	And I do not see "SEND TO COURT" on the page
 #
-#	When I select "Responded" from Process reply
+#	When I select "Mark as responded" from Process reply
 #	And I check the "Mark juror as 'responded'" checkbox
 #	And I press the "Confirm" button
 #

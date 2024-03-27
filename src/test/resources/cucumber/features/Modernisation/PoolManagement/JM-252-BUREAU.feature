@@ -130,6 +130,7 @@ Feature: JM-252 Bureau user create new pools
 
     When I save the new pool request
     Then I should be taken to the pool summary page
+    And I click on the "Service start date" link
 
     And I should see the newly created pool request
       | court          | <displayCourt> |
@@ -137,9 +138,9 @@ Feature: JM-252 Bureau user create new pools
 
     Examples:
       | user	      |     | selectedCourt | courtType | courtTypeFull | courtCode | displayCourt | noJurors |
-      | MODTESTBUREAU |   | CHESTER       | Crown     | Crown court   | 415       | Chester      | 0        |
-      | MODTESTBUREAU |   | CHESTER       | Civil     | Civil court   | 415       | Chester      | 0        |
-      | MODTESTBUREAU |   | CHESTER       | High      | High court    | 415       | Chester      | 0        |
+      | MODTESTBUREAU |   | CHESTER       | Crown court    | Crown court   | 415       | Chester      | 0        |
+      | MODTESTBUREAU |   | CHESTER       | Civil court    | Civil court   | 415       | Chester      | 0        |
+      | MODTESTBUREAU |   | CHESTER       | High court     | High court    | 415       | Chester      | 0        |
 
   @JurorTransformation @NewSchemaConverted
   Scenario Outline: Happy Path Test to create a new pool and change pool_no

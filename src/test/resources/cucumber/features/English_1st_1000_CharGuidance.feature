@@ -28,12 +28,12 @@ Scenario Outline: English 1st Party - Character count warning should be on all a
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 	Then I see "Is the name we have for you correct?" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	
 	#Check name
 	When I press the "Continue" button
 	Then I see "Is this your address?" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	
 	#Check address
 	When I press the "Continue" button
@@ -62,42 +62,42 @@ Scenario Outline: English 1st Party - Character count warning should be on all a
 	
 	#Residency JDB-3620
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I see "You have 1,000 characters remaining" on the page
 	And I set "Provide details" to "Not a resident"
 	And I press the "Continue" button	
 		
 	#CJS no JDB-3625
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I check the "Other" checkbox
 	And I see "You have 1,000 characters remaining" on the page
 	And I set "Which other part of the Criminal Justice System?" to "Other CJS part"
 	And I press the "Continue" button
 	
 	#Bail JDB-3623
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I see "You have 1,000 characters remaining" on the page
 	And I set "Provide details" to "I am bailed"
 	And I press the "Continue" button
 	
 	#Convictions JDB-3624
 	Then I see "Have you been found guilty of a criminal offence?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I see "You have 1,000 characters remaining" on the page
 	And I set text area with "id" of "convictedDetails" to "I am convicted"
 	And I press the "Continue" button
 	
 	#Mental health part 1 JDB-3621
 	Then I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I see "You have 1,000 characters remaining" on the page
 	And I set "Provide details" to "I am sectioned"
 	And I press the "Continue" button
 	
 	#Mental health part 2 JDB-3622
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I see "You have 1,000 characters remaining" on the page
 	And I set "Provide brief details about why it was decided you lack mental capacity" to "I lack capacity"
 	And I press the "Continue" button
@@ -110,7 +110,7 @@ Scenario Outline: English 1st Party - Character count warning should be on all a
 	
 	#RA no JDB-3627 and JDB-3628
 	Then I see "Will you need help when you're at the court?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I see "You have 1,000 characters remaining" on the page
 	And I set "Tell us about any special arrangements or help you need while you're doing jury service." to "Wheelchair user"
 	When I check the "Other" checkbox
@@ -141,7 +141,7 @@ Scenario Outline: English 1st Party - Character count warning should be on all a
 	And I press the "Continue" button
 	
 	#confirm
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	Then I see "Check your answers now" on the page

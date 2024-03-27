@@ -24,12 +24,12 @@ Scenario Outline: JDB-4296
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 	Then I see "Is the name we have for you correct?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	
 	#Name
 	And I press the "Continue" button
 	Then I see "Is this your address?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	
 	#Address
 	And I press the "Continue" button
@@ -56,7 +56,7 @@ Scenario Outline: JDB-4296
 	
 	#Residency
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#now start clicking Back
@@ -74,7 +74,7 @@ Scenario Outline: JDB-4296
 	And I set "Year" to "1901"
 	And I press the "Continue" button
 	Then I see "Confirm your date of birth" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	When I press the "Continue" button 
 	
 	#Submit

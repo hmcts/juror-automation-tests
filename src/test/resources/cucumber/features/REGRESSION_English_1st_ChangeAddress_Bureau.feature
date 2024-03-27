@@ -27,12 +27,12 @@ Scenario Outline: Change postcode - old postcode in >1 loc_code SHOWS CHANGE COU
 	And I press the "Continue" button
 
 	#name
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#address
 	Then I see "Is this your address?" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	And I set "Postcode" to "CH1 2AN"
 	And I press the "Continue" button
@@ -62,36 +62,36 @@ Scenario Outline: Change postcode - old postcode in >1 loc_code SHOWS CHANGE COU
 	#Residency
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#CJS no
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Bail
 	Then I see "Are you currently on bail for a criminal offence?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Convictions
 	Then I see "Have you been found guilty of a criminal offence?" on the page
 	When I see "Eligibility" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Sectioned
 	Then I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button 
 	
 	#Mental Health Capacity
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#I can attend
@@ -102,7 +102,7 @@ Scenario Outline: Change postcode - old postcode in >1 loc_code SHOWS CHANGE COU
 	
 	#RA no
 	Then I see "Will you need help when you're at the court?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Check your answers
@@ -113,7 +113,7 @@ Scenario Outline: Change postcode - old postcode in >1 loc_code SHOWS CHANGE COU
 	
 	#bureau
 	Given I am on "Bureau" "test"
-	When I log in
+	When I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
@@ -157,12 +157,12 @@ Scenario Outline: Change Postcode but same loc_code CHANGE COURT FLAG NOT SHOWN
 	And I press the "Continue" button
 
 	#name
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#address
 	Then I see "Is this your address?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	And I set "Postcode" to "SA2 2AN"
@@ -193,36 +193,36 @@ Scenario Outline: Change Postcode but same loc_code CHANGE COURT FLAG NOT SHOWN
 	#Residency
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#CJS no
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Bail
 	Then I see "Are you currently on bail for a criminal offence?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Convictions
 	Then I see "Have you been found guilty of a criminal offence?" on the page
 	When I see "Eligibility" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Sectioned
 	Then I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button 
 	
 	#Mental Health Capacity
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#I can attend
@@ -233,7 +233,7 @@ Scenario Outline: Change Postcode but same loc_code CHANGE COURT FLAG NOT SHOWN
 	
 	#RA no
 	Then I see "Will you need help when you're at the court?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Check your answers
@@ -244,7 +244,7 @@ Scenario Outline: Change Postcode but same loc_code CHANGE COURT FLAG NOT SHOWN
 	
 	#bureau
 	Given I am on "Bureau" "test"
-	When I log in
+	When I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
@@ -286,13 +286,13 @@ Scenario Outline: Change postcode - different loc_code SHOWS CHANGE COURT
 	And I press the "Continue" button
 
 	#name
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#address
 	Then I see "Is this your address?" on the page
 	
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	And I set "Postcode" to "WV1 2AN"
@@ -323,36 +323,36 @@ Scenario Outline: Change postcode - different loc_code SHOWS CHANGE COURT
 	#Residency
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#CJS no
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Bail
 	Then I see "Are you currently on bail for a criminal offence?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Convictions
 	Then I see "Have you been found guilty of a criminal offence?" on the page
 	When I see "Eligibility" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Sectioned
 	Then I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button 
 	
 	#Mental Health Capacity
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#I can attend
@@ -363,7 +363,7 @@ Scenario Outline: Change postcode - different loc_code SHOWS CHANGE COURT
 	
 	#RA no
 	Then I see "Will you need help when you're at the court?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Check your answers
@@ -374,7 +374,7 @@ Scenario Outline: Change postcode - different loc_code SHOWS CHANGE COURT
 	
 	#bureau
 	Given I am on "Bureau" "test"
-	When I log in
+	When I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
@@ -416,13 +416,13 @@ Scenario Outline: Change postcode - new postcode in >1 loc_code SHOWS CHANGE COU
 	And I press the "Continue" button
 
 	#name
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#address
 	Then I see "Is this your address?" on the page
 	
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	And I set "Postcode" to "CH2 2AN"
@@ -453,36 +453,36 @@ Scenario Outline: Change postcode - new postcode in >1 loc_code SHOWS CHANGE COU
 	#Residency
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#CJS no
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Bail
 	Then I see "Are you currently on bail for a criminal offence?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Convictions
 	Then I see "Have you been found guilty of a criminal offence?" on the page
 	When I see "Eligibility" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Sectioned
 	Then I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button 
 	
 	#Mental Health Capacity
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#I can attend
@@ -493,7 +493,7 @@ Scenario Outline: Change postcode - new postcode in >1 loc_code SHOWS CHANGE COU
 	
 	#RA no
 	Then I see "Will you need help when you're at the court?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Check your answers
@@ -504,7 +504,7 @@ Scenario Outline: Change postcode - new postcode in >1 loc_code SHOWS CHANGE COU
 	
 	#bureau
 	Given I am on "Bureau" "test"
-	When I log in
+	When I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
@@ -546,13 +546,13 @@ Scenario Outline: Change postcode - new postcode not in court_catchment_area SHO
 	And I press the "Continue" button
 
 	#name
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#address
 	Then I see "Is this your address?" on the page
 	
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	And I set "Postcode" to "SW1H 2AN"
@@ -583,36 +583,36 @@ Scenario Outline: Change postcode - new postcode not in court_catchment_area SHO
 	#Residency
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#CJS no
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Bail
 	Then I see "Are you currently on bail for a criminal offence?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Convictions
 	Then I see "Have you been found guilty of a criminal offence?" on the page
 	When I see "Eligibility" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Sectioned
 	Then I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button 
 	
 	#Mental Health Capacity
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#I can attend
@@ -623,7 +623,7 @@ Scenario Outline: Change postcode - new postcode not in court_catchment_area SHO
 	
 	#RA no
 	Then I see "Will you need help when you're at the court?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Check your answers
@@ -634,7 +634,7 @@ Scenario Outline: Change postcode - new postcode not in court_catchment_area SHO
 	
 	#bureau
 	Given I am on "Bureau" "test"
-	When I log in
+	When I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
@@ -676,13 +676,13 @@ Scenario Outline: Change postcode - old postcode not in court_catchment_area DOE
 	And I press the "Continue" button
 
 	#name
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#address
 	Then I see "Is this your address?" on the page
 	
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	And I set "Postcode" to "CH1 2AN"
@@ -713,36 +713,36 @@ Scenario Outline: Change postcode - old postcode not in court_catchment_area DOE
 	#Residency
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#CJS no
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Bail
 	Then I see "Are you currently on bail for a criminal offence?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Convictions
 	Then I see "Have you been found guilty of a criminal offence?" on the page
 	When I see "Eligibility" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Sectioned
 	Then I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button 
 	
 	#Mental Health Capacity
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#I can attend
@@ -753,7 +753,7 @@ Scenario Outline: Change postcode - old postcode not in court_catchment_area DOE
 	
 	#RA no
 	Then I see "Will you need help when you're at the court?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Check your answers
@@ -764,7 +764,7 @@ Scenario Outline: Change postcode - old postcode not in court_catchment_area DOE
 	
 	#bureau
 	Given I am on "Bureau" "bau-test"
-	When I log in
+	When I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
@@ -806,13 +806,13 @@ Scenario Outline: Change Postcode but same loc_code CHANGE COURT FLAG NOT SHOWN 
 	And I press the "Continue" button
 
 	#name
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#address
 	Then I see "Is this your address?" on the page
 	
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 
 	And I set "Postcode" to "NN3 2AN"
@@ -843,36 +843,36 @@ Scenario Outline: Change Postcode but same loc_code CHANGE COURT FLAG NOT SHOWN 
 	#Residency
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#CJS no
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Bail
 	Then I see "Are you currently on bail for a criminal offence?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Convictions
 	Then I see "Have you been found guilty of a criminal offence?" on the page
 	When I see "Eligibility" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Sectioned
 	Then I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Capacity
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#I can attend
@@ -883,7 +883,7 @@ Scenario Outline: Change Postcode but same loc_code CHANGE COURT FLAG NOT SHOWN 
 	
 	#RA no
 	Then I see "Will you need help when you're at the court?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Check your answers
@@ -894,7 +894,7 @@ Scenario Outline: Change Postcode but same loc_code CHANGE COURT FLAG NOT SHOWN 
 	
 	#bureau
 	Given I am on "Bureau" "bau-test"
-	When I log in
+	When I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
@@ -937,16 +937,16 @@ Scenario Outline: Record displays Change Court, Bureau officer updates postcode 
 	And I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 	Then I see "Is the name we have for you correct?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 
 	#name
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	When I press the "Continue" button
 	
 	#address
 	Then I see "Is this your address?" on the page
 	
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	And I set "Postcode" to "WA1 2AN"
@@ -977,36 +977,36 @@ Scenario Outline: Record displays Change Court, Bureau officer updates postcode 
 	#Residency
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#CJS no
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Bail
 	Then I see "Are you currently on bail for a criminal offence?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Convictions
 	Then I see "Have you been found guilty of a criminal offence?" on the page
 	When I see "Eligibility" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Sectioned
 	Then I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button 
 	
 	#Mental Health Capacity
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#I can attend
@@ -1017,7 +1017,7 @@ Scenario Outline: Record displays Change Court, Bureau officer updates postcode 
 	
 	#RA no
 	Then I see "Will you need help when you're at the court?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Check your answers
@@ -1028,7 +1028,7 @@ Scenario Outline: Record displays Change Court, Bureau officer updates postcode 
 	
 	#bureau
 	Given I am on "Bureau" "test"
-	When I log in
+	When I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button

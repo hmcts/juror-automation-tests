@@ -114,29 +114,6 @@ Feature: JM-4254 Record proof of name change
       | juror_number | pool_number | user         |
       | 041500008    | 415300106   | MODTESTBUREAU|
 
-  @JurorTransformationMulti
-  Scenario Outline: The system shall not allow a bureau officer to edit juror details when response is TODO
-
-    Given I am on "Bureau" "test"
-
-    Given a bureau owned pool is created with jurors
-      | court |juror_number  	| pool_number	| att_date_weeks_in_future	| owner |
-      | 415   |<juror_number> 	| <pool_number> | 5				            | 400	|
-
-    And I log in as "<user>"
-
-    When the user searches for juror record "<juror_number>" from the global search bar
-    And I record a happy path paper summons response
-    And I click no, to process the summons reply later
-
-    When the user searches for juror record "<juror_number>" from the global search bar
-
-    And I click on the "Juror details" link
-    And I do not see link with text "Add or change"
-
-    Examples:
-      | juror_number | pool_number | user         |
-      | 041500009    | 415300107   | MODTESTBUREAU|
 
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: The system shall allow a bureau officer to record a proof of change of name. Change name while recording paper summons

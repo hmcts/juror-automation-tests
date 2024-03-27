@@ -239,12 +239,12 @@ Scenario Outline: English_3rd_Char_Counts_and_warnings
 	
 	#Check juror name
 	Then I see "Is the name we have for them correct?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#Check juror address
 	Then I see "Is this their address?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	Then I see "Give the date of birth for the person you're replying for" on the page
@@ -269,7 +269,7 @@ Scenario Outline: English_3rd_Char_Counts_and_warnings
 	
 	#Eligibility questions
 	#residency
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	
 	And I see "You have 1,000 characters remaining" on the page
 	And I set "Provide details about where the person you are answering for has lived since their 13th birthday" to "These are the details."
@@ -290,7 +290,7 @@ Scenario Outline: English_3rd_Char_Counts_and_warnings
 	And I press the "Continue" button
 	
 	#CJS Emp
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I check the "Other" checkbox
 	
 	And I see "You have 1,000 characters remaining" on the page
@@ -314,7 +314,7 @@ Scenario Outline: English_3rd_Char_Counts_and_warnings
 	And I press the "Continue" button
 	
 	#bail
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	
 	And I see "You have 1,000 characters remaining" on the page
 	And I set "Provide details about the person's bail and criminal offence" to "These are the details."
@@ -337,7 +337,7 @@ Scenario Outline: English_3rd_Char_Counts_and_warnings
 	And I press the "Continue" button
 
 	#criminaloffence
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	
 	And I see "You have 1,000 characters remaining" on the page
 	And I set text area with "id" of "convictedDetails" to "These are the details."
@@ -359,7 +359,7 @@ Scenario Outline: English_3rd_Char_Counts_and_warnings
 	And I press the "Continue" button
 	
 	#mentalhealth1
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	
 	And I see "You have 1,000 characters remaining" on the page
 	And I set "Provide details about how they're being detained, looked after or treated under the Mental Health Act" to "These are the details."
@@ -380,7 +380,7 @@ Scenario Outline: English_3rd_Char_Counts_and_warnings
 	And I press the "Continue" button
 	
 	#mentalhealth2
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	
 	And I see "You have 1,000 characters remaining" on the page
 	And I set "Provide brief details about why it was decided they lack mental capacity" to "These are the details."
@@ -458,7 +458,7 @@ Scenario Outline: English_3rd_Char_Counts_and_warnings
 	And I press the "Continue" button
 
 	#Help in court
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I check the "Other" checkbox
 	
 	And I see "You have 1,000 characters remaining" on the page
@@ -512,16 +512,16 @@ Scenario Outline: English_Special_Chars
 	And I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 	Then I see "Is the name we have for you correct?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 
 	#name
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	When I press the "Continue" button
 	
 	#address
 	Then I see "Is this your address?" on the page
 	
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#phone
@@ -548,7 +548,7 @@ Scenario Outline: English_Special_Chars
 	
 	#Residency
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	
 	And I see "You have 1,000 characters remaining" on the page
 	And I set "Provide details about where you have lived since your 13th birthday" to "1234567890"
@@ -633,31 +633,31 @@ Scenario Outline: English_Special_Chars
 	
 	#CJS no
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Bail
 	Then I see "Are you currently on bail for a criminal offence?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Convictions
 	Then I see "Have you been found guilty of a criminal offence?" on the page
 	When I see "Eligibility" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Sectioned
 	Then I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Capacity
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#I can attend
@@ -668,7 +668,7 @@ Scenario Outline: English_Special_Chars
 	
 	#RA no
 	Then I see "Will you need help when you're at the court?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	Then I see "Check your answers now" on the page
 	
@@ -703,12 +703,12 @@ Scenario Outline: English_1st_Char_Counts_and_warnings
 	
 	#name
 	Then I see "Is the name we have for you correct?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#address
 	Then I see "Is this your address?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#phone
@@ -735,7 +735,7 @@ Scenario Outline: English_1st_Char_Counts_and_warnings
 	And I press the "Continue" button
 	
 	#residency
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	
 	And I see "You have 1,000 characters remaining" on the page
 	And I set "Provide details about where you have lived since your 13th birthday" to "These are the details."
@@ -756,7 +756,7 @@ Scenario Outline: English_1st_Char_Counts_and_warnings
 	And I press the "Continue" button
 	
 	#CJS Emp
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I check the "Other" checkbox
 	
 	And I see "You have 1,000 characters remaining" on the page
@@ -780,7 +780,7 @@ Scenario Outline: English_1st_Char_Counts_and_warnings
 	And I press the "Continue" button
 	
 	#bail
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	
 	And I see "You have 1,000 characters remaining" on the page
 	And I set "Provide details about your bail and criminal offence" to "These are the details."
@@ -803,7 +803,7 @@ Scenario Outline: English_1st_Char_Counts_and_warnings
 	And I press the "Continue" button
 
 	#criminaloffence
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	
 	And I see "You have 1,000 characters remaining" on the page
 	And I set text area with "id" of "convictedDetails" to "These are the details."
@@ -825,7 +825,7 @@ Scenario Outline: English_1st_Char_Counts_and_warnings
 	And I press the "Continue" button
 	
 	#mentalhealth1
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	
 	And I see "You have 1,000 characters remaining" on the page
 	And I set "Provide details" to "These are the details."
@@ -848,7 +848,7 @@ Scenario Outline: English_1st_Char_Counts_and_warnings
 	And I press the "Continue" button
 	
 	#mentalhealth2
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	
 	And I see "You have 1,000 characters remaining" on the page
 	And I set "Provide brief details about why it was decided you lack mental capacity" to "These are the details."
@@ -920,7 +920,7 @@ Scenario Outline: English_1st_Char_Counts_and_warnings
 	And I press the "Continue" button
 	
 	#Help in court
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I check the "Other" checkbox
 	
 	And I see "You have 1,000 characters remaining" on the page
@@ -975,12 +975,12 @@ Scenario Outline: English_1st_Char_Counts_YesToNo
 	
 	#name
 	Then I see "Is the name we have for you correct?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#address
 	Then I see "Is this your address?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#phone
@@ -1007,76 +1007,76 @@ Scenario Outline: English_1st_Char_Counts_YesToNo
 	And I press the "Continue" button
 	
 	#residency
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	
 	And I see "You have 1,000 characters remaining" on the page
 	And I set "Provide details" to "These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are t"
 	And I see "You have 0 characters remaining" on the page
 
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I do not see "You have 0 characters remaining" on the page
 	
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I see "You have 0 characters remaining" on the page
 
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	
 	And I press the "Continue" button
 	
 	#CJS Emp
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I check the "Other" checkbox
 	
 	And I see "You have 1,000 characters remaining" on the page
 	And I set "Which other part of the Criminal Justice System?" to "These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are t"
 	And I see "You have 0 characters remaining" on the page
 	
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I do not see "You have 0 characters remaining" on the page
 	
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I see "You have 0 characters remaining" on the page
 
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	
 	And I press the "Continue" button
 	
 	#bail
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	
 	And I see "You have 1,000 characters remaining" on the page
 	And I set "Provide details" to "These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are t"
 	And I see "You have 0 characters remaining" on the page
 
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I do not see "You have 0 characters remaining" on the page
 	
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I see "You have 0 characters remaining" on the page
 
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	
 	And I press the "Continue" button
 
 	#criminaloffence
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	
 	And I see "You have 1,000 characters remaining" on the page
 	And I set text area with "id" of "convictedDetails" to "These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are t"
 	And I see "You have 0 characters remaining" on the page
 
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I do not see "You have 0 characters remaining" on the page
 	
-#	And I set the radio button to "Yes"
+#	And I choose the "Yes" radio button
 #	And I see "You have 1,000 characters remaining" on the page
 #
-#	And I set the radio button to "No"
+#	And I choose the "No" radio button
 	
 	And I press the "Continue" button
 	
 	#mentalhealth1
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	
 	And I see "You have 1,000 characters remaining" on the page
 	And I set "Provide details about how you're being detained, looked after or treated under the Mental Health Act" to "These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are t"
@@ -1084,22 +1084,22 @@ Scenario Outline: English_1st_Char_Counts_YesToNo
 
 	And I press the "Continue" button
 	
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	
 	#mentalhealth2
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	
 	And I see "You have 1,000 characters remaining" on the page
 	And I set "Provide brief details about why it was decided you lack mental capacity" to "These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are t"
 	And I see "You have 0 characters remaining" on the page
 
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I do not see "You have 0 characters remaining" on the page
 	
-#	And I set the radio button to "Yes"
+#	And I choose the "Yes" radio button
 #	And I see "You have 1,000 characters remaining" on the page
 #
-#	And I set the radio button to "No"
+#	And I choose the "No" radio button
 	
 	And I press the "Continue" button
 	
@@ -1109,20 +1109,20 @@ Scenario Outline: English_1st_Char_Counts_YesToNo
 	And I press the "Continue" button
 
 	#Help in court
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I check the "Other" checkbox
 	
 	And I see "You have 1,000 characters remaining" on the page
 	And I set "Provide details" to "These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are t"
 	And I see "You have 0 characters remaining" on the page
 	
-#	And I set the radio button to "No"
+#	And I choose the "No" radio button
 #	And I do not see "You have 0 characters remaining" on the page
 #	
-#	And I set the radio button to "Yes"
+#	And I choose the "Yes" radio button
 #	And I see "You have 0 characters remaining" on the page
 #
-#	And I set the radio button to "No"
+#	And I choose the "No" radio button
 	
 	And I press the "Continue" button
 

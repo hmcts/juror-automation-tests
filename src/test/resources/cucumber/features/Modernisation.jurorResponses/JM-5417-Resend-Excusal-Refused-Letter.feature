@@ -295,7 +295,7 @@ Feature: JM-5417-5586 - Resend excusal refused letter for Bureau and Jury users
     And I set the radio button to "Refuse excusal"
     And I press the "Continue" button
     And I see "Do you want to print an excusal refused letter?" on the page
-    And I set the radio button to "No"
+    And I choose the "No" radio button
     And I press the "Continue" button
 
     #return to juror record - status will be responded due to refusal
@@ -358,7 +358,7 @@ Feature: JM-5417-5586 - Resend excusal refused letter for Bureau and Jury users
     And I set the radio button to "Refuse excusal"
     And I press the "Continue" button
     And I see "Do you want to print an excusal refused letter?" on the page
-    And I set the radio button to "Yes"
+    And I choose the "Yes" radio button
     And I press the "Continue" button
     Then I see "https://juror-test-bureau.clouddev.online/documents/excusal-refused/letters-list?documentSearchBy=pool&poolDetails=415980685&includePrinted=includePrinted" in the URL
 

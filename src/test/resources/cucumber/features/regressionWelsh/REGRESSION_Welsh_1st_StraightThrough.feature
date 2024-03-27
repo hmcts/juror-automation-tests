@@ -7,7 +7,7 @@ Feature: Regression Welsh_1st_StraightThrough
 @JDB-3908 @JDB-3909 @JDB-3911 @JDB-3914 @JDB-2237 @JDB-3790 @JDB-4089 @JDB-4249 
 Scenario Outline: Welsh 1st Party Straight Through (english court)
 	Given I am on the welsh version of "Public" "bau-test"
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	Given the juror numbers have not been processed
 		| part_no 	| pool_no 	| owner |
 		| <part_no> |<pool_no>	| 400 	|
@@ -534,7 +534,7 @@ Scenario Outline: Welsh 1st Party Straight Through (welsh court)
 	
 	When I click on "<juror_number>" in the same row as "<juror_number>"
 	
-#	When I select "Responded" from Process reply
+#	When I select "Mark as responded" from Process reply
 #	And I set the radio button to "Accept juror as responded"
 #
 #	And I press the "Mark as completed" button

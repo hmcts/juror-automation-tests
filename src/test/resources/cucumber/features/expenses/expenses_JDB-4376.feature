@@ -8,7 +8,7 @@ Scenario: expensesJDB-4376
     And I press the "Start now" button
 	
 	Then I see "Will you lose any income while doing jury service?" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	When I press the "Continue" button
 	
 	Then I see "Check what you can claim for jury service" on the page
@@ -40,6 +40,6 @@ Scenario: expensesJDB-4376
 	
 	Then I click on the "Back" link
 	And I see "Will doing jury service mean you have extra costs that you wouldn't normally have?" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	When I press the "Continue" button
 	And I see "How will you travel to the court?" on the page

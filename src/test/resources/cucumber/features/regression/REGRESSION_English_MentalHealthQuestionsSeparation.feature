@@ -24,12 +24,12 @@ Scenario Outline: 1st party MHQ1=Y MHQ2=Y
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 	Then I see "Is the name we have for you correct?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	
 	#Check Name
 	And I press the "Continue" button
 	Then I see "Is this your address?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	
 	#Check Address
 	And I press the "Continue" button
@@ -39,7 +39,7 @@ Scenario Outline: 1st party MHQ1=Y MHQ2=Y
 	And I press the "Continue" button
 
 	#Email
-	When I set "Enter your email address" to <email>"
+	When I set "Enter your email address" to "<email>"
 	And I set "Enter your email address again" to "<email>"
 	And I press the "Continue" button
 	
@@ -54,34 +54,34 @@ Scenario Outline: 1st party MHQ1=Y MHQ2=Y
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	
 	#Residency
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
 		
 	#CJS no
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	Then I see "Are you currently on bail for a criminal offence?" on the page
 		
 	#Bail
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	Then I see "Have you been found guilty of a criminal offence?" on the page
 	
 	#Convictions
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health part 1
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I set "Provide details about how you're being detained, looked after or treated under the Mental Health Act" to "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. N"
 	And I press the "Continue" button
 	
 	#Mental Health part 2
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I set "Provide brief details about why it was decided you lack mental capacity" to "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. N"
 	And I press the "Continue" button
 	
@@ -95,7 +95,7 @@ Scenario Outline: 1st party MHQ1=Y MHQ2=Y
 	Then I see "Will you need help when you're at the court?" on the page
 	
 	#RA no
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	Then I see "Check your answers now" on the page
 	
@@ -149,12 +149,12 @@ Scenario Outline: 1st party MHQ1=Y MHQ2=N
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 	Then I see "Is the name we have for you correct?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	
 	#Check Name
 	And I press the "Continue" button
 	Then I see "Is this your address?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	
 	#Check Address
 	And I press the "Continue" button
@@ -179,34 +179,34 @@ Scenario Outline: 1st party MHQ1=Y MHQ2=N
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	
 	#Residency
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
 	
 	#CJS no
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	Then I see "Are you currently on bail for a criminal offence?" on the page
 		
 	#Bail
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	Then I see "Have you been found guilty of a criminal offence?" on the page
 	
 	#Convictions
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health part 1
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I set "Provide details" to "I am sectioned"
 	And I press the "Continue" button
 	
 	#Mental Health part 2
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 		
 	Then I see "Check your start date" on the page
@@ -219,7 +219,7 @@ Scenario Outline: 1st party MHQ1=Y MHQ2=N
 	Then I see "Will you need help when you're at the court?" on the page
 	
 	#RA no
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	Then I see "Check your answers now" on the page
 	
@@ -275,13 +275,13 @@ Scenario Outline: 1st party MHQ1=N MHQ2=Y
 	Then I see "Is the name we have for you correct?" on the page
 	
 	#Check Name
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	Then I see "Is this your address?" on the page
 	
 	#Check Address
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#Phone Details
@@ -304,33 +304,33 @@ Scenario Outline: 1st party MHQ1=N MHQ2=Y
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	
 	#Residency
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
 	
 	#CJS no
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	Then I see "Are you currently on bail for a criminal offence?" on the page
 		
 	#Bail
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	Then I see "Have you been found guilty of a criminal offence?" on the page
 	
 	#Convictions
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health part 1
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health part 2
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I set "Provide brief details about why it was decided you lack mental capacity" to "I lack capacity"
 	And I press the "Continue" button
 	
@@ -338,13 +338,13 @@ Scenario Outline: 1st party MHQ1=N MHQ2=Y
 	
 	#I can attend
 	And I see "Yes, I can start on" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And  I press the "Continue" button
 	
 	Then I see "Will you need help when you're at the court?" on the page
 	
 	#RA no
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	Then I see "Check your answers now" on the page
 	
@@ -400,12 +400,12 @@ Scenario Outline: 1st party MHQ1=N MHQ2=N
 	Then I see "Is the name we have for you correct?" on the page
 	
 	#Check Name
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	Then I see "Is this your address?" on the page
 	
 	#Check Address
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#Phone Details
@@ -428,45 +428,45 @@ Scenario Outline: 1st party MHQ1=N MHQ2=N
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	
 	#Residency
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
 	
 	#CJS no
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	Then I see "Are you currently on bail for a criminal offence?" on the page
 		
 	#Bail
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	Then I see "Have you been found guilty of a criminal offence?" on the page
 	
 	#Convictions
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health part 1
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health part 2
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	Then I see "Check your start date" on the page
 	
 	#I can attend
 	And I see "Yes, I can start on" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And  I press the "Continue" button
 	
 	Then I see "Will you need help when you're at the court?" on the page
 	
 	#RA no
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	Then I see "Check your answers now" on the page
 	
@@ -547,12 +547,12 @@ Scenario Outline: English_3rd_YY
 	When I set the radio button to "The person is not here"
 	And I press the "Continue" button
 	Then I see "Is the name we have for them correct?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	
 	#Check Juror Name
 	And I press the "Continue" button
 	Then I see "Is this their address?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	
 	#Check address
 	And I press the "Continue" button
@@ -577,22 +577,22 @@ Scenario Outline: English_3rd_YY
 	Then I see "Since they turned 13, has their main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	
 	#Residency Yes
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#CJS no
 	Then I see "Has the person you're replying for worked in the criminal justice system in the last 5 years?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button	
 
 	#Bail no
 	Then I see "Is the person currently on bail for a criminal offence?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Convictions no
 	Then I see "Has the person been found guilty of a criminal offence?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental health part 1
@@ -611,7 +611,7 @@ Scenario Outline: English_3rd_YY
 	|If they have mental health issues (including depression and anxiety) but are not being detained, looked after or treated under the Mental Health Act, they can still be on a jury.|
 	|(If they feel they cannot complete jury service because of significant mental health issues, you can still ask for them to be excused or change their dates.)|
 
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I set "Provide details about how they're being detained, looked after or treated under the Mental Health Ac" to "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. N"
 	
 	And I press the "Continue" button
@@ -633,7 +633,7 @@ Scenario Outline: English_3rd_YY
 	|Someone else may then need to be appointed to make decisions on their behalf.|
 	|If a person lacks mental capacity, they cannot do jury service.|
 
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I set "Provide brief details about why it was decided they lack mental capacity" to "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. N"
 		
 	And I press the "Continue" button
@@ -645,7 +645,7 @@ Scenario Outline: English_3rd_YY
 
 	#RA no
 	Then I see "Will the person you're replying for need help when they're at the court?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 
 	#Check your answers
@@ -745,14 +745,14 @@ Scenario Outline: English_3rd_YN
 	When I set the radio button to "The person is not here"
 	And I press the "Continue" button
 	Then I see "Is the name we have for them correct?" on the page
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	
 	#Check Juror Name
 	And I press the "Continue" button
 	Then I see "Is this their address?" on the page
 	
 	#Check address
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	Then I see "Give the date of birth for the person you're replying for" on the page
 	
@@ -775,37 +775,37 @@ Scenario Outline: English_3rd_YN
 	Then I see "Since they turned 13, has their main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	
 	#Residency Yes
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	Then I see "Has the person you're replying for worked in the criminal justice system in the last 5 years?" on the page
 	
 	#CJS no
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	Then I see "Is the person currently on bail for a criminal offence?" on the page
 	
 	#Bail no
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	Then I see "Has the person been found guilty of a criminal offence?" on the page
 	
 	#Convictions no
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	Then I see "Is the person you're replying for being detained, looked after or treated under the Mental Health Act?" on the page
 	
 	#Mental health part 1
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I set "Provide details" to "They are sectioned"
 
 	And I press the "Continue" button
 	Then I see "Has it been decided that the person you're replying for 'lacks mental capacity'?" on the page
 	
 	#Mental health part 2
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	
 	And I press the "Continue" button
 	
@@ -818,7 +818,7 @@ Scenario Outline: English_3rd_YN
 	Then I see "Will the person you're replying for need help when they're at the court?" on the page
 	
 	#RA no
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	Then I see "Check your answers now" on the page
@@ -904,13 +904,13 @@ Scenario Outline: English_3rd_NY
 	Then I see "Is the name we have for them correct?" on the page
 	
 	#Check Juror Name
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	Then I see "Is this their address?" on the page
 	
 	#Check address
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	Then I see "Give the date of birth for the person you're replying for" on the page
@@ -936,36 +936,36 @@ Scenario Outline: English_3rd_NY
 	Then I see "Since they turned 13, has their main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	
 	#Residency Yes
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	Then I see "Has the person you're replying for worked in the criminal justice system in the last 5 years?" on the page
 	
 	#CJS no
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	Then I see "Is the person currently on bail for a criminal offence?" on the page
 	
 	#Bail no
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	Then I see "Has the person been found guilty of a criminal offence?" on the page
 	
 	#Convictions no
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	Then I see "Is the person you're replying for being detained, looked after or treated under the Mental Health Act?" on the page
 	
 	#Mental health part 1
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 
 	And I press the "Continue" button
 	Then I see "Has it been decided that the person you're replying for 'lacks mental capacity'?" on the page
 	
 	#Mental health part 2
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I set "Provide brief details about why it was decided they lack mental capacity" to "They lack capacity"
 	
 	And I press the "Continue" button
@@ -979,7 +979,7 @@ Scenario Outline: English_3rd_NY
 	Then I see "Will the person you're replying for need help when they're at the court?" on the page
 	
 	#RA no
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	Then I see "Check your answers now" on the page
 	
@@ -1061,13 +1061,13 @@ Scenario Outline: English_3rd_NN
 	Then I see "Is the name we have for them correct?" on the page
 	
 	#Check Juror Name
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	Then I see "Is this their address?" on the page
 	
 	#Check address
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	Then I see "Give the date of birth for the person you're replying for" on the page
@@ -1092,37 +1092,37 @@ Scenario Outline: English_3rd_NN
 	Then I see "Since they turned 13, has their main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	
 	#Residency Yes
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	Then I see "Has the person you're replying for worked in the criminal justice system in the last 5 years?" on the page
 	
 	#CJS no
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	Then I see "Is the person currently on bail for a criminal offence?" on the page
 	
 	#Bail no
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	Then I see "Has the person been found guilty of a criminal offence?" on the page
 	
 	#Convictions no
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	Then I see "Is the person you're replying for being detained, looked after or treated under the Mental Health Act?" on the page
 	
 	#Mental health part 1
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 
 	And I press the "Continue" button
 	Then I see "Has it been decided that the person you're replying for 'lacks mental capacity'?" on the page
 	
 	#Mental health part 2
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	
 	And I press the "Continue" button
 	
@@ -1135,7 +1135,7 @@ Scenario Outline: English_3rd_NN
 	Then I see "Will the person you're replying for need help when they're at the court?" on the page
 	
 	#RA no
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	Then I see "Check your answers now" on the page

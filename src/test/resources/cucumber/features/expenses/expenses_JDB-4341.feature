@@ -7,9 +7,9 @@ Scenario: expensesJDB-4341 Parking - how much
 	
 	And I press the "Start now" button
 	
-	Then I set the radio button to "No"
+	Then I choose the "No" radio button
 	When I press the "Continue" button
-	Then I set the radio button to "Yes"
+	Then I choose the "Yes" radio button
 	When I press the "Continue" button
 	Then I set "£" to "1000.00"	
 	When I press the "Continue" button
@@ -49,13 +49,13 @@ Scenario: expensesJDB-4341 Parking - how much
 	
 	#Select Yes
 	
-	Then I set the radio button to "Yes"
+	Then I choose the "Yes" radio button
 	Then the radio button "Yes" is "selected"
 	Then the radio button "No" is "unselected"
 
 	#Select No
 	
-	Then I set the radio button to "No"
+	Then I choose the "No" radio button
 	Then the radio button "No" is "selected"
 	Then the radio button "Yes" is "unselected"
 	

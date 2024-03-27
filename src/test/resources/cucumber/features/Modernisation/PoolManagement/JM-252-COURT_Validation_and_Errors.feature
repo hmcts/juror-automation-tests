@@ -6,9 +6,9 @@ Feature: JM-252_Validation_and_Errors_COURT
 
     And I log in as "<user>"
 
-    Given the juror numbers have not been processed new schema
-      |part_no   | pool_no   | owner    |
-      |641500136 | 415170402 | 400      |
+    Given a bureau owned pool is created with jurors
+      | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number> 	    | <pool_number>     | 7				            | 400	|
 
     And "641500136" has "NEXT_DATE" as "5 mondays time" new schema
     And "641500136" is not active new schema
@@ -17,7 +17,7 @@ Feature: JM-252_Validation_and_Errors_COURT
     #insert new pool
     Given a new pool is inserted which is owned by the court and includes a deferred juror new schema
       |owner  | pool_no   | part_no    | no_weeks   |
-      |415    | 415170402 | 641500136  | 9          |
+      |415    | <pool_number> | <juror_number>   | 9          |
 
     #Can see the pool request courts table tabs and fields
     When I navigate to the pool request screen
@@ -43,7 +43,7 @@ Feature: JM-252_Validation_and_Errors_COURT
       |Number of court deferrals to include in this pool|
 
     And I see the attendance date of the pool
-    Then I should see the attendance time present is "09:15"
+    Then I should see the attendance time present is "09:00"
 
     #change number of deferrals
     When I click the change link for the court deferrals
@@ -156,10 +156,10 @@ Feature: JM-252_Validation_and_Errors_COURT
       | jurorsRequired | 149            |
 
     Examples:
-      | user	        | displayCourt     | courtType    | courtTypeFull   | courtCode |
-      | MODTESTCOURT	| Chester          | Crown        | Crown court     | 415       |
-      | MODTESTCOURT	| Chester          | Civil        | Civil court     | 415       |
-      | MODTESTCOURT	| Chester          | High         | High court      | 415       |
+      | user	        | displayCourt     | courtType    | courtTypeFull   | courtCode |juror_number|pool_number|
+      | MODTESTCOURT	| Chester          | Crown        | Crown court     | 415       |041540010|415300410|
+      | MODTESTCOURT	| Chester          | Civil        | Civil court     | 415       |041540011|415300411|
+      | MODTESTCOURT	| Chester          | High         | High court      | 415       |041540012|415300412|
 
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Test to assure that a warning appears if the attendance date is set to a weekend date for Court user
@@ -198,7 +198,7 @@ Feature: JM-252_Validation_and_Errors_COURT
 
     #leaving in single thread as it deletes and sets up BHs which may break other tests
 
-    Given I am on "Bureau" "postgres"
+    Given I am on "Bureau" "test"
 
     Given I have deleted all holidays new schema
 
@@ -282,8 +282,8 @@ Feature: JM-252_Validation_and_Errors_COURT
 
     #CHANGE COURT TO ONE YOU DO HAVE ACCESS TO
     Then I clear field with id "courtNameOrLocation"
-    Then I set input field with "ID" of "courtNameOrLocation" to "774"
-    And I click on the "Welshpool (774)" link
+    Then I set input field with "ID" of "courtNameOrLocation" to "462"
+    And I click on the "Warrington (462)" link
     And I press the "Continue" button
 
     #complete new pool fields
@@ -313,4 +313,4 @@ Feature: JM-252_Validation_and_Errors_COURT
 
     Examples:
       | user          | courtCode | displayCourt   | courtTypeFull |
-      | MODTESTCOURT  | 774       | Welshpool      | Crown court   |
+      | MODTESTCOURT  | 462       | Warrington      | Crown court   |

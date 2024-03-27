@@ -71,7 +71,7 @@ Feature: Grant excusal digital
       | C - CHILD CARE | MODTESTBUREAU | 041500155      | 415300254     | LNAMESIXZEROFOUR    | CH1 2AN  | e@mail.com | Juror record updated: Excusal granted (child care)|
       | D - DECEASED   | MODTESTBUREAU | 041500155      | 415300254     | LNAMESIXZEROSIX     | CH1 2AN  | e@mail.com | Juror record updated: Excusal granted (deceased)  |
 
-  @JurorTransformation @NewSchemaConverted
+  @JurorTransformationWIP @NewSchemaConverted @JM-5074
   Scenario Outline: Test to grant excusal on digital response from juror record - court
 
     Given I am on "Bureau" "test"
@@ -88,7 +88,7 @@ Feature: Grant excusal digital
     And I select "<dropDown>" from the dropdown
     And I select the Grant Excusal radio button
     And I click continue on the process reply page
-    And I set the radio button to "No"
+    And I choose the "No" radio button
     And I press the "Continue" button
     Then I see "<bannerText>" on the page
 

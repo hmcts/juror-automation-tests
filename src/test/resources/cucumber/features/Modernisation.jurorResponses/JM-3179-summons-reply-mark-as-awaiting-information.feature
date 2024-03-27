@@ -94,7 +94,7 @@ Feature: JM-3179
       | 415   | <juror_number> 	    | <pool_number>     | 7				            | 400	|
 
     And I log in as "<user>"
-    When the user searches for juror record "<part_no>" from the global search bar
+    When the user searches for juror record "<juror_number>" from the global search bar
     And I record a happy path paper summons response
     When the user searches for juror record "<juror_number>" from the global search bar
     And I click on the "Summons reply" link

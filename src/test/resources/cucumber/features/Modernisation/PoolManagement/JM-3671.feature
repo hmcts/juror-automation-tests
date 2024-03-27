@@ -110,8 +110,8 @@ Feature: JM-3671
     And I see "The number of citizens available in each postcode area is shown in brackets." on the page
     And I see "CH1 (" on the page
     And I see "CH2 (" on the page
-    Then I set "CH1 (" to "100"
-    And I set "CH2 (" to "50"
+    Then I set "CH1 (" to "10"
+    And I set "CH2 (" to "5"
 
     And I press the "Add citizens" button
 
@@ -119,9 +119,9 @@ Feature: JM-3671
       | court          | <displayCourt> |
       | courtCode      | <courtCode>    |
       | poolType       | Coroner’s court|
-      | jurorsAdded    | 150            |
+      | jurorsAdded    | 15            |
       | jurorsRequired | <noJurors>     |
-      | rowsOfCitizens | 150            |
+      | rowsOfCitizens | 15            |
     Then I click on the "s court contact details" link
 
     And coroners court contact details are
@@ -145,7 +145,7 @@ Feature: JM-3671
     Then I see "Enter the number of citizens to include from each postcode area" on the page
     And I see "SA1 (" on the page
 
-    Then I set "SA1 (" to "30"
+    Then I set "SA1 (" to "5"
 
     And I press the "Add citizens" button
 
@@ -155,9 +155,9 @@ Feature: JM-3671
       | court          | <displayCourt> |
       | courtCode      | <courtCode>    |
       | poolType       | Coroner’s court|
-      | jurorsAdded    | 180            |
+      | jurorsAdded    | 20            |
       | jurorsRequired | <noJurors>     |
-      | rowsOfCitizens | 180            |
+      | rowsOfCitizens | 20            |
 
     Then I am able to see the coroners pool juror headers
     And I see pool status is "Active"

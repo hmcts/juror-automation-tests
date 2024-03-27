@@ -98,7 +98,7 @@ Feature: JM-252 JM-4302 Court user create new pools
     When I click the link for the successfully created court only pool
     Then I see "Pool record" on the page
     And I see "ACTIVE" on the page
-    And I see "This pool has no members." on the page
+    And I see "There are no results to display" on the page
 
     Examples:
       | user         | courtTypeFull | displayCourt | courtCode |

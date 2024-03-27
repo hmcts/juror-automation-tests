@@ -11,7 +11,19 @@ Scenario Outline: submit responses which are auto processed
 		| 415	| <juror_number2> 	| <pool_number> | 5				            | 400	|
 		| 415	| <juror_number3> 	| <pool_number> | 5				            | 400	|
 		| 415	| <juror_number4> 	| <pool_number> | 5				            | 400	|
-	
+
+	And juror "<juror_number1>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number1>" has "POSTCODE" as "<postcode>" new schema
+
+	And juror "<juror_number2>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number2>" has "POSTCODE" as "<postcode>" new schema
+
+	And juror "<juror_number3>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number3>" has "POSTCODE" as "<postcode>" new schema
+
+	And juror "<juror_number4>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number4>" has "POSTCODE" as "<postcode>" new schema
+
 	#Auto Processed 1st ST
 	
 	Then I see "Reply to a jury summons" on the page
@@ -28,13 +40,13 @@ Scenario Outline: submit responses which are auto processed
 		| Is the name we have for you correct?	|
 
 	And I do not see any links on the page that open to a new page without an alt text
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	Then on the page I see
 		| text	|
 		| Is this your address? |
 	And I do not see any links on the page that open to a new page without an alt text
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	When I press the "Continue" button
 	
 	Then on the page I see
@@ -86,13 +98,13 @@ Scenario Outline: submit responses which are auto processed
 	
 	#Residency JDB-3378
 	When I see "Eligibility" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#CJS no
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
 	And I do not see any links on the page that open to a new page without an alt text
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#JDB-3371
@@ -101,7 +113,7 @@ Scenario Outline: submit responses which are auto processed
 	
 	#Bail JDB-3377
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#JDB-3370
@@ -110,21 +122,21 @@ Scenario Outline: submit responses which are auto processed
 	
 	#Convictions JDB-3376
 	When I see "Eligibility" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Sectioned JDB-3363 JDB-3353
 	Then I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
 	And I do not see any links on the page that open to a new page without an alt text
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Capacity JDB-3364
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
 	And I do not see any links on the page that open to a new page without an alt text
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#I can attend
@@ -136,18 +148,18 @@ Scenario Outline: submit responses which are auto processed
 	
 	#RA no
 	Then I see "Will you need help when you're at the court?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	And I do not see any links on the page that open to a new page without an alt text
 	When I check the "The information I have given is true to the best of my knowledge" checkbox
 	
 	#Enable auto processing
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	
 	And I press the "Submit" button
 	
 	#Disable auto processing
-	Given auto straight through processing has been disabled
+	Given auto straight through processing has been disabled new schema
 	And I do not see any links on the page that open to a new page without an alt text
 	
 	#Auto Processed Deceased
@@ -211,10 +223,10 @@ Scenario Outline: submit responses which are auto processed
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 	
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	When I set "Main phone" to "02078211818"
@@ -229,12 +241,12 @@ Scenario Outline: submit responses which are auto processed
 	#On DoB Screen, underage
 	When I set "Day" to "27"
 	And I set "Month" to "04"
-	And I set "Year" to "2006"
+	And I set "Year" to "2016"
 	
 	#Moving past DoB Section
 	And I press the "Continue" button
 	
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	And I do not see any links on the page that open to a new page without an alt text
@@ -264,11 +276,11 @@ Scenario Outline: submit responses which are auto processed
 	And I press the "Continue" button
 	
 	And I see "Is the name we have for you correct?" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	When I press the "Continue" button
 	
 	And I see "Is this your address?" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	When I press the "Continue" button
 	
 	When I set "Main phone" to "02078211818"
@@ -287,7 +299,7 @@ Scenario Outline: submit responses which are auto processed
 	#Moving past DoB Section
 	And I press the "Continue" button
 
-	Then I set the radio button to "Yes"
+	Then I choose the "Yes" radio button
 	
 	And I press the "Continue" button
 	
@@ -302,52 +314,52 @@ Scenario Outline: submit responses which are auto processed
 	Given auto straight through processing has been disabled new schema
 
 	Given I am on "Bureau" "test"
-	And I log in
+	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
-	And I set "Juror's pool number" to "<pool_no>"
+	And I set "Juror's pool number" to "<pool_number>"
 	And I press the "Search" button
 
-	Then I see "COMPLETED" in the same row as "<juror_number>"
-	And I see "AUTO" in the same row as "<juror_number>"
-	Then I see "COMPLETED" in the same row as "<part_no_two>"
-	And I see "AUTO" in the same row as "<part_no_two>"
-	Then I see "COMPLETED" in the same row as "<part_no_three>"
-	And I see "AUTO" in the same row as "<part_no_three>"
-	Then I see "COMPLETED" in the same row as "<part_no_four>"
-	And I see "AUTO" in the same row as "<part_no_four>"
+	Then I see "CLOSED" in the same row as "<juror_number1>"
+	And I see "AUTO" in the same row as "<juror_number1>"
+	Then I see "CLOSED" in the same row as "<juror_number2>"
+	And I see "AUTO" in the same row as "<juror_number2>"
+	Then I see "CLOSED" in the same row as "<juror_number3>"
+	And I see "AUTO" in the same row as "<juror_number3>"
+	Then I see "CLOSED" in the same row as "<juror_number4>"
+	And I see "AUTO" in the same row as "<juror_number4>"
 	
-	Then on "JUROR" . "POOL" I see "RESPONDED" is "Y" where "part_no" is "<juror_number>"
-	Then on "JUROR" . "POOL" I see "USER_EDTQ" is "AUTO" where "part_no" is "<juror_number>"
-	
-	#JDB-3453
-	
-	Then on "JUROR" . "POOL" I see "WELSH" is null where "part_no" is "<juror_number>" and "owner" is "400"
-	Then on "JUROR" . "POOL" I see "RESPONDED" is "Y" where "part_no" is "<part_no_two>"
-	Then on "JUROR" . "POOL" I see "USER_EDTQ" is "AUTO" where "part_no" is "<part_no_two>"
+	Then on "JUROR" . "POOL" I see "RESPONDED" is "Y" where "juror_number" is "<juror_number1>"
+	Then on "JUROR" . "POOL" I see "USER_EDTQ" is "AUTO" where "juror_number" is "<juror_number1>"
 	
 	#JDB-3453
 	
-	Then on "JUROR" . "POOL" I see "WELSH" is null where "part_no" is "<part_no_two>" and "owner" is "400"
-	Then on "JUROR" . "POOL" I see "RESPONDED" is "Y" where "part_no" is "<part_no_three>"
-	Then on "JUROR" . "POOL" I see "USER_EDTQ" is "AUTO" where "part_no" is "<part_no_three>"
+	Then on "JUROR_MOD" . "JUROR" I see "WELSH" is null where "juror_number" is "<juror_number1>"
+	Then on "JUROR_MOD" . "JUROR" I see "RESPONDED" is "Y" where "juror_number" is "<juror_number2>"
+	Then on "JUROR_MOD" . "JUROR" I see "USER_EDTQ" is "AUTO" where "juror_number" is "<juror_number2>"
 	
 	#JDB-3453
 	
-	Then on "JUROR" . "POOL" I see "WELSH" is null where "part_no" is "<part_no_three>" and "owner" is "400"
-	Then on "JUROR" . "POOL" I see "RESPONDED" is "Y" where "part_no" is "<part_no_four>"
-	Then on "JUROR" . "POOL" I see "USER_EDTQ" is "AUTO" where "part_no" is "<part_no_four>"
+	Then on "JUROR_MOD" . "JUROR" I see "WELSH" is null where "juror_number" is "<juror_number2>" and "owner" is "400"
+	Then on "JUROR_MOD" . "JUROR" I see "RESPONDED" is "Y" where "juror_number" is "<juror_number3>"
+	Then on "JUROR_MOD" . "JUROR" I see "USER_EDTQ" is "AUTO" where "juror_number" is "<juror_number3>"
 	
 	#JDB-3453
 	
-	Then on "JUROR" . "POOL" I see "WELSH" is null where "part_no" is "<part_no_four>" and "owner" is "400"
+	Then on "JUROR_MOD" . "JUROR" I see "WELSH" is null where "juror_number" is "<juror_number3>" and "owner" is "400"
+	Then on "JUROR_MOD" . "JUROR" I see "RESPONDED" is "Y" where "juror_number" is "<juror_number4>"
+	Then on "JUROR_MOD" . "JUROR" I see "USER_EDTQ" is "AUTO" where "juror_number" is "<juror_number4>"
+	
+	#JDB-3453
+	
+	Then on "JUROR_MOD" . "JUROR" I see "WELSH" is null where "juror_number" is "<juror_number4>"
 	
 	# finish test with auto processing enabled
 	
-	Given auto straight through processing has been enabled
+	Given auto straight through processing has been enabled new schema
 	
 Examples:
-	|part_no		|part_no_two	|part_no_three	|part_no_four	|pool_no 	|last_name 	|postcode	|email		|
+	|juror_number1	|juror_number2	|juror_number3	|juror_number4	|pool_number|last_name 	|postcode	|email		|
 	|641500607		|641500327		|641500339		|641500376 		|415170401	|LNAME 		|CH1 2AN	|e@mail.com	|
 
 @Regression @NewSchemaConverted
@@ -372,14 +384,14 @@ Scenario Outline: Check that when name is changed, the response is NOT auto proc
 	And I press the "Continue" button
 	Then I see "Is the name we have for you correct?" on the page
 		
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	And I set "Title" to "Mrs"
 	And I set "First name" to "FirstNameChanged"
 	And I set "Last name" to "LastNameChanged"
 	And I press the "Continue" button
 	Then I see "Is this your address?" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 
 	When I press the "Continue" button
 	Then on the page I see
@@ -423,36 +435,36 @@ Scenario Outline: Check that when name is changed, the response is NOT auto proc
 	#Residency
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#CJS no
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Bail
 	Then I see "Are you currently on bail for a criminal offence?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Convictions
 	Then I see "Have you been found guilty of a criminal offence?" on the page
 	When I see "Eligibility" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Sectioned
 	Then I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Capacity
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#I can attend
@@ -463,7 +475,7 @@ Scenario Outline: Check that when name is changed, the response is NOT auto proc
 	
 	#RA no
 	Then I see "Will you need help when you're at the court?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Check Your Answers
@@ -474,7 +486,7 @@ Scenario Outline: Check that when name is changed, the response is NOT auto proc
 	
 	#Bureau
 	Given I am on "Bureau" "test"
-	When I log in
+	When I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
@@ -511,12 +523,12 @@ Scenario Outline: Check that when address is changed, the response is NOT auto p
 	And I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 	Then I see "Is the name we have for you correct?" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 		
 	When I press the "Continue" button
 	Then I see "Is this your address?" on the page
 
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	When I press the "Continue" button
 	
 	And I set "Address line 1" to "123 CHANGED ADDRESS"
@@ -562,36 +574,36 @@ Scenario Outline: Check that when address is changed, the response is NOT auto p
 	#Residency
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#CJS no
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Bail
 	Then I see "Are you currently on bail for a criminal offence?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Convictions
 	Then I see "Have you been found guilty of a criminal offence?" on the page
 	When I see "Eligibility" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Sectioned
 	Then I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Capacity
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#I can attend
@@ -602,7 +614,7 @@ Scenario Outline: Check that when address is changed, the response is NOT auto p
 	
 	#RA no
 	Then I see "Will you need help when you're at the court?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Check Your Answers
@@ -613,7 +625,7 @@ Scenario Outline: Check that when address is changed, the response is NOT auto p
 	
 	#Bureau
 	Given I am on "Bureau" "test"
-	When I log in
+	When I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
@@ -648,11 +660,11 @@ Scenario Outline: Check that when Address2 is changed from (null), the response 
 	And I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 	Then I see "Is the name we have for you correct?" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 		
 	When I press the "Continue" button
 	Then I see "Is this your address?" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	When I press the "Continue" button
 	
 	And I set input field with "id" of "addressLineTwo" to "Second Address Line"
@@ -698,36 +710,36 @@ Scenario Outline: Check that when Address2 is changed from (null), the response 
 	#Residency
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#CJS no
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Bail
 	Then I see "Are you currently on bail for a criminal offence?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Convictions
 	Then I see "Have you been found guilty of a criminal offence?" on the page
 	When I see "Eligibility" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Sectioned
 	Then I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Capacity
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#I can attend
@@ -738,7 +750,7 @@ Scenario Outline: Check that when Address2 is changed from (null), the response 
 	
 	#RA no
 	Then I see "Will you need help when you're at the court?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Check Your Answers
@@ -749,7 +761,7 @@ Scenario Outline: Check that when Address2 is changed from (null), the response 
 	
 	#Bureau
 	Given I am on "Bureau" "test"
-	When I log in
+	When I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
@@ -789,11 +801,11 @@ Scenario Outline: Check that when Address3 is changed from (null), the response 
 	And I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 	Then I see "Is the name we have for you correct?" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 		
 	When I press the "Continue" button
 	Then I see "Is this your address?" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	When I press the "Continue" button
 	
 	And I set input field with "id" of "addressLineThree" to "Third Address Line"
@@ -839,36 +851,36 @@ Scenario Outline: Check that when Address3 is changed from (null), the response 
 	#Residency
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#CJS no
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Bail
 	Then I see "Are you currently on bail for a criminal offence?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Convictions
 	Then I see "Have you been found guilty of a criminal offence?" on the page
 	When I see "Eligibility" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Sectioned
 	Then I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Capacity
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#I can attend
@@ -879,7 +891,7 @@ Scenario Outline: Check that when Address3 is changed from (null), the response 
 	
 	#RA no
 	Then I see "Will you need help when you're at the court?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Check Your Answers
@@ -890,7 +902,7 @@ Scenario Outline: Check that when Address3 is changed from (null), the response 
 	
 	#Bureau
 	Given I am on "Bureau" "test"
-	When I log in
+	When I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
@@ -930,11 +942,11 @@ Scenario Outline: Check that when Address4 is changed from (null), the response 
 	And I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 	Then I see "Is the name we have for you correct?" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 
 	When I press the "Continue" button
 	Then I see "Is this your address?" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	And I set "Town or city" to "NewTown"
@@ -980,36 +992,36 @@ Scenario Outline: Check that when Address4 is changed from (null), the response 
 	#Residency
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#CJS no
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Bail
 	Then I see "Are you currently on bail for a criminal offence?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Convictions
 	Then I see "Have you been found guilty of a criminal offence?" on the page
 	When I see "Eligibility" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Sectioned
 	Then I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Capacity
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#I can attend
@@ -1020,7 +1032,7 @@ Scenario Outline: Check that when Address4 is changed from (null), the response 
 	
 	#RA no
 	Then I see "Will you need help when you're at the court?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Check Your Answers
@@ -1032,7 +1044,7 @@ Scenario Outline: Check that when Address4 is changed from (null), the response 
 	
 	#Bureau
 	Given I am on "Bureau" "test"
-	When I log in
+	When I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
@@ -1072,11 +1084,11 @@ Scenario Outline: Check that when Address5 is changed from (null), the response 
 	And I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 	Then I see "Is the name we have for you correct?" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 		
 	When I press the "Continue" button
 	Then I see "Is this your address?" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 
 	And I press the "Continue" button
 	And I set "County (optional)" to "NewCounty"
@@ -1122,36 +1134,36 @@ Scenario Outline: Check that when Address5 is changed from (null), the response 
 	#Residency
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#CJS no
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Bail
 	Then I see "Are you currently on bail for a criminal offence?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Convictions
 	Then I see "Have you been found guilty of a criminal offence?" on the page
 	When I see "Eligibility" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Sectioned
 	Then I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Capacity
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#I can attend
@@ -1162,7 +1174,7 @@ Scenario Outline: Check that when Address5 is changed from (null), the response 
 	
 	#RA no
 	Then I see "Will you need help when you're at the court?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Check Your Answers
@@ -1173,7 +1185,7 @@ Scenario Outline: Check that when Address5 is changed from (null), the response 
 	
 	#Bureau
 	Given I am on "Bureau" "test"
-	When I log in
+	When I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
@@ -1213,11 +1225,11 @@ Scenario Outline: Check that when Address2 is changed from string value, the res
 	And I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 	Then I see "Is the name we have for you correct?" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 		
 	When I press the "Continue" button
 	Then I see "Is this your address?" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 
 	When I press the "Continue" button
 	And I set input field with "id" of "addressLineTwo" to "Second Address Line CHANGED"
@@ -1263,36 +1275,36 @@ Scenario Outline: Check that when Address2 is changed from string value, the res
 	#Residency
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#CJS no
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Bail
 	Then I see "Are you currently on bail for a criminal offence?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Convictions
 	Then I see "Have you been found guilty of a criminal offence?" on the page
 	When I see "Eligibility" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Sectioned
 	Then I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Capacity
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#I can attend
@@ -1303,7 +1315,7 @@ Scenario Outline: Check that when Address2 is changed from string value, the res
 	
 	#RA no
 	Then I see "Will you need help when you're at the court?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Check Your Answers
@@ -1314,7 +1326,7 @@ Scenario Outline: Check that when Address2 is changed from string value, the res
 	
 	#Bureau
 	Given I am on "Bureau" "test"
-	When I log in
+	When I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
@@ -1354,11 +1366,11 @@ Scenario Outline: Check that when Address3 is changed from string value, the res
 	And I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 	Then I see "Is the name we have for you correct?" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 		
 	When I press the "Continue" button
 	Then I see "Is this your address?" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	When I press the "Continue" button
 
 	And I set input field with "id" of "addressLineThree" to "Third Address Line CHANGED"
@@ -1404,36 +1416,36 @@ Scenario Outline: Check that when Address3 is changed from string value, the res
 	#Residency
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#CJS no
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Bail
 	Then I see "Are you currently on bail for a criminal offence?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Convictions
 	Then I see "Have you been found guilty of a criminal offence?" on the page
 	When I see "Eligibility" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Sectioned
 	Then I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Capacity
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#I can attend
@@ -1444,7 +1456,7 @@ Scenario Outline: Check that when Address3 is changed from string value, the res
 	
 	#RA no
 	Then I see "Will you need help when you're at the court?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Check Your Answers
@@ -1455,7 +1467,7 @@ Scenario Outline: Check that when Address3 is changed from string value, the res
 	
 	#Bureau
 	Given I am on "Bureau" "test"
-	When I log in
+	When I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
@@ -1495,11 +1507,11 @@ Scenario Outline: Check that when Address4 is changed from string value, the res
 	And I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 	Then I see "Is the name we have for you correct?" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 		
 	When I press the "Continue" button
 	Then I see "Is this your address?" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 
 	When I press the "Continue" button
 	And I set "Town or city" to "NewTownCHANGED"
@@ -1545,36 +1557,36 @@ Scenario Outline: Check that when Address4 is changed from string value, the res
 	#Residency
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#CJS no
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Bail
 	Then I see "Are you currently on bail for a criminal offence?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Convictions
 	Then I see "Have you been found guilty of a criminal offence?" on the page
 	When I see "Eligibility" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Sectioned
 	Then I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Capacity
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#I can attend
@@ -1585,7 +1597,7 @@ Scenario Outline: Check that when Address4 is changed from string value, the res
 	
 	#RA no
 	Then I see "Will you need help when you're at the court?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Check Your Answers
@@ -1596,7 +1608,7 @@ Scenario Outline: Check that when Address4 is changed from string value, the res
 	
 	#Bureau
 	Given I am on "Bureau" "test"
-	When I log in
+	When I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
@@ -1636,11 +1648,11 @@ Scenario Outline: Check that when Address5 is changed from string value, the res
 	And I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 	Then I see "Is the name we have for you correct?" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 		
 	When I press the "Continue" button
 	Then I see "Is this your address?" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	When I press the "Continue" button
 
 	And I set "County (optional)" to "NewCountyCHANGED"
@@ -1686,36 +1698,36 @@ Scenario Outline: Check that when Address5 is changed from string value, the res
 	#Residency
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#CJS no
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Bail
 	Then I see "Are you currently on bail for a criminal offence?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Convictions
 	Then I see "Have you been found guilty of a criminal offence?" on the page
 	When I see "Eligibility" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Sectioned
 	Then I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Capacity
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#I can attend
@@ -1726,7 +1738,7 @@ Scenario Outline: Check that when Address5 is changed from string value, the res
 	
 	#RA no
 	Then I see "Will you need help when you're at the court?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Check Your Answers
@@ -1737,7 +1749,7 @@ Scenario Outline: Check that when Address5 is changed from string value, the res
 	
 	#Bureau
 	Given I am on "Bureau" "test"
-	When I log in
+	When I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button

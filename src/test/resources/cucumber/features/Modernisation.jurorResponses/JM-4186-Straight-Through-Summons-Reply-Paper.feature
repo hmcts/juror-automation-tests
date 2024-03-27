@@ -5,14 +5,14 @@ Feature: JM-4186
 
     Given I am on "Bureau" "test"
 
-    Given the juror numbers have not been processed new schema
-      |part_no   | pool_no   | owner  |
-      |<part_no> | <pool_no> | 400    |
+    Given a bureau owned pool is created with jurors
+      | court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+      | 452   |<juror_no>| <pool_number>	| 5				            | 400	|
 
     And I log in as "<user>"
 
-    And the user searches for juror record "<juror_number>" from the global search bar
-    Then I am on the Juror Record for juror "<juror_number>"
+    And the user searches for juror record "<juror_no>" from the global search bar
+    Then I am on the Juror Record for juror "<juror_no>"
     And I click the Enter summons reply button
     Then the juror details form is displayed
     And I enter a date of birth that will make the juror between 18 and 75
@@ -38,15 +38,15 @@ Feature: JM-4186
     Then I see "The juror’s answers mean this is a straight-through reply. So you can process it as responded now, or return later." on the page
     When I press the "Yes, process now" button
     Then I see "Your work" on the page
-    And I see "Summons reply for <part_no> FNAMESEVENONEFIVE LNAMESEVENONEFIVE successfully processed: Responded" on the page
+    And I see "Summons reply for <juror_no> fname lname successfully processed: Responded" on the page
 
-    And I click on the "<juror_number>" link
+    And I click on the "<juror_no>" link
     Then I see the Juror Record tag
     And the Enter summons reply button is not visible
 
     Examples:
-      |part_no	|pool_no   |user         |
-      |641500715|415170402 |MODTESTBUREAU|
+      |juror_no	|pool_number   |user         |
+      |041540004|415300404 |MODTESTBUREAU|
 
   @JurorTransformationMulti
   Scenario Outline: Straight through paper summons reply - null criteria

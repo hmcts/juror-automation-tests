@@ -98,6 +98,7 @@ Feature: JM-251
 			|courtName			|Chester	|
 			|courtLocationCode	|415		|
 			|courtStartDate		|			|
+		And I do not see "Jurors requested from Bureau" on the page
 
 		And I see the pool status is REQUESTED
 

@@ -124,4 +124,36 @@ public class StepDef_expenses {
     public void seeAuditReportInTable() {
         EXPENSES.auditReportDisplayedInTable();
     }
+    @When("^I click on view draft expenses link$")
+    public void clickViewDraftExpensesLink(){
+        EXPENSES.clickViewDraftExpensesLink();
+    }
+    @When("^I click on view approval expenses link$")
+    public void clickViewApprovalExpensesLink(){
+        EXPENSES.clickViewApprovalExpensesLink();
+    }
+    @When("^I click on view approved expenses link$")
+    public void clickViewApprovedExpensesLink(){
+        EXPENSES.clickViewApprovedExpensesLink();
+    }
+    @When("^I click the add non-attendance day button$")
+    public void clickNonAttendanceDayButton(){
+        EXPENSES.clickNonAttendanceDayButton();
+    }
+    @When("^I click the check all expenses checkbox$")
+    public void clickCheckAllExpensesCheckbox(){
+        EXPENSES.clickCheckAllExpensesCheckbox();
+    }
+    @When("^I click the add smartcard spend button$")
+    public void clickAddSmartcardSpendButton(){
+        EXPENSES.clickAddSmartcardSpendButton();
+    }
+    @When("^I set smart card amount field to \"([^\"]*)\"$")
+    public void setSmartcardSpendField(String amount){
+        EXPENSES.setSmartcardSpendField(amount);
+    }
+    @When("^I click the add smartcard spend submit button$")
+    public void clickAddSmartcardSpendSubmitButton(){
+        EXPENSES.clickAddSmartcardSpendSubmitButton();
+    }
 }

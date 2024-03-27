@@ -43,7 +43,7 @@ Scenario Outline: English 1st Party ST JDB-4539
 		| Your details |
 		| Is the name we have for you correct? |
 	
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	
 	And I press the "Continue" button
 	Then on the page I see
@@ -56,7 +56,7 @@ Scenario Outline: English 1st Party ST JDB-4539
 	Then I click on the "Will your address change soon?" link
     And I do not see "If your address will change soon, give us your current address. This is so we can still contact you." on the page
 
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	
 	When I press the "Continue" button
 	
@@ -116,7 +116,7 @@ Scenario Outline: English 1st Party ST JDB-4539
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	When I see "Eligibility" on the page
 
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#CJS
@@ -130,31 +130,31 @@ Scenario Outline: English 1st Party ST JDB-4539
 	
 	#CJS no
 	
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Bail
 	
 	Then I see "Are you currently on bail for a criminal offence?" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Convictions
 	
 	Then I see "Have you been found guilty of a criminal offence?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Sectioned
 	
 	Then I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Capacity
 	
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#I can attend
@@ -174,7 +174,7 @@ Scenario Outline: English 1st Party ST JDB-4539
 	Then I click on the "Why do we ask this?" link
     And I do not see "If you tell us you have an impairment or disability, we'll do all we can to help you and meet your needs in the court building when you do jury service." on the page
 	
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	Then I see "Check your answers now" on the page
 	
@@ -271,7 +271,7 @@ Scenario Outline: English 3rd Party St JDB-4539
 	
 	#Check juror name
 	When I see "Juror Details" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#Check juror address
@@ -283,7 +283,7 @@ Scenario Outline: English 3rd Party St JDB-4539
     Then I click on the "Will their address change soon?" link
     And I do not see "If their address will change soon, give us their current address. This is so we can still contact them." on the page
 	
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	Then I see "Give the date of birth for the person you're replying for" on the page
 	
@@ -319,7 +319,7 @@ Scenario Outline: English 3rd Party St JDB-4539
 	#Residency
 	Then I see "Since they turned 13, has their main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#CJS no
@@ -331,27 +331,27 @@ Scenario Outline: English 3rd Party St JDB-4539
     Then I click on the "Why do we ask this?" link
     
 	And I do not see "Working in the Criminal Justice system does not stop a person doing jury service. But we may get in touch to find out more." on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Bail
 	Then I see "Is the person currently on bail for a criminal offence?" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Convictions
 	Then I see "Has the person been found guilty of a criminal offence?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Sectioned
 	Then I see "Is the person you're replying for being detained, looked after or treated under the Mental Health Act?" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Capacity
 	Then I see "Has it been decided that the person you're replying for 'lacks mental capacity'?" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#The person can attend
@@ -368,7 +368,7 @@ Scenario Outline: English 3rd Party St JDB-4539
     Then I click on the "Why do we ask this?" link
     And I do not see "If you tell us the person you're replying for has an impairment or disability," on the page
     
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	Then I see "Check your answers now" on the page
 	
@@ -425,7 +425,7 @@ Scenario Outline: English 1st Party Deferral JDB-4539
 		| Your details |
 		| Is the name we have for you correct? |
 	
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	
 	And I press the "Continue" button
 
@@ -439,7 +439,7 @@ Scenario Outline: English 1st Party Deferral JDB-4539
 	Then I click on the "Will your address change soon?" link
     And I do not see "If your address will change soon, give us your current address. This is so we can still contact you." on the page
 
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	
 	When I press the "Continue" button
 	
@@ -496,7 +496,7 @@ Scenario Outline: English 1st Party Deferral JDB-4539
 	#Residency
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#CJS
@@ -506,27 +506,27 @@ Scenario Outline: English 1st Party Deferral JDB-4539
 	Then I click on the "Why do we ask this?" link
     And I do not see "Your job in the Criminal Justice System does not stop you doing jury service. But we may get in touch to find out more." on the page
 	
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Bail
 	Then I see "Are you currently on bail for a criminal offence?" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Convictions
 	Then I see "Have you been found guilty of a criminal offence?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Sectioned
 	Then I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Capacity
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	Then I see "Check your start date" on the page
@@ -548,11 +548,11 @@ Scenario Outline: English 1st Party Deferral JDB-4539
 	And I press the "Continue" button
 
 	#confirm dates
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#help in court
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	Then I see "Check your answers now" on the page
@@ -655,7 +655,7 @@ Scenario Outline: English 3rd Party Deferral JDB-4539
 	
 	#Check juror name
 	When I see "Juror Details" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#Check juror address
@@ -667,7 +667,7 @@ Scenario Outline: English 3rd Party Deferral JDB-4539
     Then I click on the "Will their address change soon?" link
     And I do not see "If their address will change soon, give us their current address. This is so we can still contact them." on the page
 	
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	Then I see "Give the date of birth for the person you're replying for" on the page
 	
@@ -703,7 +703,7 @@ Scenario Outline: English 3rd Party Deferral JDB-4539
 	#Residency
 	Then I see "Since they turned 13, has their main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	# Have you ever worked
@@ -714,27 +714,27 @@ Scenario Outline: English 3rd Party Deferral JDB-4539
     And I see "Working in the Criminal Justice system does not stop a person doing jury service. But we may get in touch to find out more." on the page
     Then I click on the "Why do we ask this?" link
 	And I do not see "Working in the Criminal Justice system does not stop a person doing jury service. But we may get in touch to find out more." on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Bail
 	Then I see "Is the person currently on bail for a criminal offence?" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Convictions
 	Then I see "Has the person been found guilty of a criminal offence?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Sectioned
 	Then I see "Is the person you're replying for being detained, looked after or treated under the Mental Health Act?" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Capacity
 	Then I see "Has it been decided that the person you're replying for 'lacks mental capacity'?" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	Then I see "Check your start date" on the page
@@ -755,18 +755,18 @@ Scenario Outline: English 3rd Party Deferral JDB-4539
 	When I set the "Third" single date field to a Monday "11" weeks in the future
 	And I press the "Continue" button
 	
-	Then I set the radio button to "Yes"
+	Then I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	When I click on the "Back" link 
 	And I press the "Continue" button
 	
-	Then I set the radio button to "Yes"
+	Then I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	Then I see "Will the person you're replying for need help when they're at the court?" on the page
 	
-	When I set the radio button to "Yes"
+	When I choose the "Yes" radio button
 	Then I check the "Diabetes" checkbox
 	And I press the "Continue" button
 	
@@ -821,7 +821,7 @@ Scenario Outline: English 1st Party Excusal JDB-4539
 		| Your details |
 		| Is the name we have for you correct? |
 	
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	
 	And I press the "Continue" button
 	Then on the page I see
@@ -834,7 +834,7 @@ Scenario Outline: English 1st Party Excusal JDB-4539
 	Then I click on the "Will your address change soon?" link
     And I do not see "If your address will change soon, give us your current address. This is so we can still contact you." on the page
 
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	
 	When I press the "Continue" button
 	
@@ -892,7 +892,7 @@ Scenario Outline: English 1st Party Excusal JDB-4539
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	When I see "Eligibility" on the page
 
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#CJS
@@ -904,27 +904,27 @@ Scenario Outline: English 1st Party Excusal JDB-4539
 	Then I click on the "Why do we ask this?" link
     And I do not see "Your job in the Criminal Justice System does not stop you doing jury service. But we may get in touch to find out more." on the page
 	
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Bail
 	Then I see "Are you currently on bail for a criminal offence?" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Convictions
 	Then I see "Have you been found guilty of a criminal offence?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Sectioned
 	Then I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Capacity
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	Then I see "Check your start date" on the page
@@ -952,7 +952,7 @@ Scenario Outline: English 1st Party Excusal JDB-4539
 	Then I click on the "Why do we ask this?" link
     And I do not see "If you tell us you have an impairment or disability, we'll do all we can to help you and meet your needs in the court building when you do jury service." on the page
 	
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	Then I see "Check your answers now" on the page
 	
@@ -1047,7 +1047,7 @@ Scenario Outline: English 3rd Party Excusal JDB-4539
 	
 	#Check juror name
 	When I see "Juror Details" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#Check juror address
@@ -1059,7 +1059,7 @@ Scenario Outline: English 3rd Party Excusal JDB-4539
     Then I click on the "Will their address change soon?" link
     And I do not see "If their address will change soon, give us their current address. This is so we can still contact them." on the page
 	
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	Then I see "Give the date of birth for the person you're replying for" on the page
 	
@@ -1095,7 +1095,7 @@ Scenario Outline: English 3rd Party Excusal JDB-4539
 	#Residency
 	Then I see "Since they turned 13, has their main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	When I see "Eligibility" on the page
-	And I set the radio button to "Yes"
+	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
 	#CJS
@@ -1107,27 +1107,27 @@ Scenario Outline: English 3rd Party Excusal JDB-4539
     Then I click on the "Why do we ask this?" link
     
 	And I do not see "Working in the Criminal Justice system does not stop a person doing jury service. But we may get in touch to find out more." on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Bail
 	Then I see "Is the person currently on bail for a criminal offence?" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Convictions
 	Then I see "Has the person been found guilty of a criminal offence?" on the page
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Sectioned
 	Then I see "Is the person you're replying for being detained, looked after or treated under the Mental Health Act?" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Mental Health Capacity
 	Then I see "Has it been decided that the person you're replying for 'lacks mental capacity'?" on the page
-	And I set the radio button to "No"
+	And I choose the "No" radio button
 	And I press the "Continue" button
 	
 	Then I see "Check your start date" on the page
@@ -1153,7 +1153,7 @@ Scenario Outline: English 3rd Party Excusal JDB-4539
     Then I click on the "Why do we ask this?" link
     And I do not see "If you tell us the person you're replying for has an impairment or disability, we'll do all we can to help them and meet their needs in the court building when they do jury service." on the page
 	
-	When I set the radio button to "No"
+	When I choose the "No" radio button
 	And I press the "Continue" button
 	
 	#Check Your Answers

@@ -2,7 +2,7 @@
 properties([
   parameters([
     choice(choices: ['chrome', 'firefox', 'msedge'], name: 'Browser'),
-    choice(choices: ['stg', 'test', 'demo', 'ithc'], name: 'EnvironmentChoice'),
+    choice(choices: ['stg', 'test', 'demo'], name: 'EnvironmentChoice'),
     booleanParam(name: 'runExpenses', defaultValue: false, description: 'Include Expenses tests'),
     booleanParam(name: 'runFeatures', defaultValue: false, description: 'Include Features tests'),
     booleanParam(name: 'runJurorTransformation', defaultValue: false, description: 'Include JurorTransformation tests'),
@@ -47,10 +47,6 @@ def secrets = [
     secret('api-POSTGRES-USER', 'DATABASE_DEMO_USERNAME'),
     secret('api-POSTGRES-PASS', 'DATABASE_DEMO_PASSWORD'),
   ],
-  'juror-ithc': [
-    secret('api-POSTGRES-USER', 'DATABASE_ITHC_USERNAME'),
-    secret('api-POSTGRES-PASS', 'DATABASE_ITHC_PASSWORD'),
-  ],
 ]
 
 static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
@@ -64,7 +60,8 @@ static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
 
 GradleBuilder builder = new GradleBuilder(this, product)
 
-withNightlyPipeline(type, product, component) {
+withNightlyPipeline(type, product, component, 600) {
+  currentBuild.displayName = "#${BUILD_NUMBER} - ${params.EnvironmentChoice}"
   loadVaultSecrets(secrets)
   enableFullFunctionalTest(600)
   enableSlackNotifications('#juror-build-notices')

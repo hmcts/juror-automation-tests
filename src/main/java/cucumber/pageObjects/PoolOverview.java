@@ -42,7 +42,7 @@ public class PoolOverview {
     @FindBy(xpath = "//span[contains(text(),'Court start date')]/following-sibling::span")
     WebElement courtStartDate;
 
-    @FindBy(xpath = "//span[contains(text(),'Court start date')]//ancestor::div/span[2]")
+    @FindBy(xpath = "//span[contains(text(),'Service start date') or contains(text(), 'Court start date')]//ancestor::div/span[2]")
     WebElement overviewCourtStartDate;
 
     @FindBy(xpath = "//span[contains(text(),'Additional requirements')]/following-sibling::span")
@@ -90,7 +90,7 @@ public class PoolOverview {
     @FindBy(xpath = "//*[@id=\"main-content\"]/div[1]/div/div/strong")
     WebElement status;
 
-    @FindBy(id = "poolJurorReassign")
+    @FindBy(id = "jurorOverview")
     WebElement jurorsTable;
 
     public String getCourtName() {
