@@ -3068,4 +3068,5 @@ public class StepDef_jurorpool {
         NAV.waitForPageLoad();
         JUROR_RECORD_SEARCH.searchForRecordFromGlobalSearch(jurorRecordNumber);
     }
-    }
+
+}

@@ -3900,4 +3900,29 @@ public class DatabaseTester {
 		return 0;
 	}
 
+	public void deleteBulkDataJuror(String createdJurorRecordNumber) throws SQLException {
+		db = new DBConnection();
+
+		String env_property = System.getProperty("env.database");
+
+		if (env_property != null)
+			conn = db.getConnection(env_property);
+		else
+			conn = db.getConnection("demo");
+
+		try {
+			//Delete the specified Juror from bulk print table
+			pStmt = conn.prepareStatement("DELETE FROM juror_mod.bulk_print_data WHERE JUROR_NO ='" + createdJurorRecordNumber + "'");
+			pStmt.execute();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			conn.commit();
+			pStmt.close();
+			conn.close();
+		}
+	}
+
+
 }
