@@ -1,6 +1,6 @@
 Feature: Create Juror Record scenarios
 
-  @JurorTransformationWIP @JM-5220
+  @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Create Juror Record via existing pool - Happy Path
 
     Given I am on "Bureau" "test"
@@ -44,15 +44,14 @@ Feature: Create Juror Record scenarios
 
     #create juror record
     And I press the "Create juror record" button
-    #will fail here as a result of @JM-5220 - issue around active pools at court
-    And I see "Draft juror record created for Mrs Jane Doe - senior jury officer will need to approve this" on the page
+    And I see "Draft juror record created for John Doe - senior jury officer will need to approve this" on the page
 
 
     Examples:
       |user			|
       |MODTESTCOURT |
 
-  @JurorTransformationWIP @JM-5220 @JM-5808
+  @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Create Juror Record via existing pool - Unhappy Path
 
     Given I am on "Bureau" "test"
@@ -126,14 +125,12 @@ Feature: Create Juror Record scenarios
     And I see "What's the juror's name?" on the page
     And I set "First name" to "Tony"
     And I press the "Continue" button
-     #Will fail here onwards because of @JM-5808
     And I click on the "Change" link in the same row as "Main phone" on Check your answers
     And I click on the "Cancel" link
 
 
     #create juror record
     And I press the "Create juror record" button
-    #will fail here as a result of @JM-5220 - issue around active pools at court
     And I see "Draft juror record created for Tony Stark - senior jury officer will need to approve this" on the page
 
 
