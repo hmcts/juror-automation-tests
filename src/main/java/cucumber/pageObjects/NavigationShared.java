@@ -1940,6 +1940,9 @@ public class NavigationShared {
     @FindBy(id = "postponeTo")
     WebElement postponeServiceStartDateField;
 
+    @FindBy(id = "nonAttendanceDay")
+    WebElement nonAttendanceDayDateField;
+
     @FindBy(id = "startDate")
     WebElement trialStartDate;
 
@@ -2088,6 +2091,12 @@ public class NavigationShared {
                 postponeServiceStartDateField.clear();
                 postponeServiceStartDateField.sendKeys(mondayDateValue);
                 break;
+
+            case "Enter a date for the non-attendance day":
+                nonAttendanceDayDateField.clear();
+                nonAttendanceDayDateField.sendKeys(mondayDateValue);
+                break;
+
         }
     }
 

@@ -132,6 +132,9 @@ public class Expenses {
     @FindBy(xpath = "//*[@id=\"main-content\"]/div/div/form/div[2]/button")
     public WebElement clickAddSmartcardSpendSubmitButton;
 
+    @FindBy(xpath = "//*[@id=\"expenseDateLink\"]")
+    public List <WebElement> clickNonAttendanceDayExpenseLink;
+
 
     public void pressViewAllExpensesButton() {
         viewAllExpensesButton.click();
@@ -288,5 +291,8 @@ public class Expenses {
         setSmartcardSpendField.sendKeys(amount);
     }
     public void clickAddSmartcardSpendSubmitButton() {clickAddSmartcardSpendSubmitButton.click();}
+    public void NonAttendencedayExpenseDate() {clickNonAttendanceDayExpenseLink.get(1).click();}
+
+
 
 }

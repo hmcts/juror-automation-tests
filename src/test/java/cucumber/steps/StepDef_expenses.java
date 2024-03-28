@@ -157,4 +157,10 @@ public class StepDef_expenses {
     public void clickAddSmartcardSpendSubmitButton(){
         EXPENSES.clickAddSmartcardSpendSubmitButton();
     }
+
+    @When("^I click on the non attendance expense link$")
+    public void clickNonAttendencedayExpenseDateLink() {
+        EXPENSES.NonAttendencedayExpenseDate();
+    }
+
 }
