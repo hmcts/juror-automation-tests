@@ -1,6 +1,6 @@
 Feature: Bureau B Search for Team Member
 
-@RegressionSingle @JDB-3484 
+@RegressionSingle @NewSchemaConverted
 Scenario Outline: Lift from QC Script for Bureau B Search
 	
 	Given I am on "Public" "test"
@@ -8,19 +8,20 @@ Scenario Outline: Lift from QC Script for Bureau B Search
 	Given auto straight through processing has been disabled new schema
 
 	Given a bureau owned pool is created with jurors
-		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
-		| 452   |<juror_number1>| <pool_number>	| 4				            | 400	|
-		| 452   |<juror_number2>| <pool_number>	| 4				            | 400	|
+			| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+			| 452   |<juror_number1>| <pool_number>	| 5				            | 400	|
+			| 452   |<juror_number2>| <pool_number>	| 5				            | 400	|
 
 	And juror "<juror_number1>" has "LAST_NAME" as "<last_name>" new schema
 	And juror "<juror_number1>" has "POSTCODE" as "<postcode>" new schema
+
 	And juror "<juror_number2>" has "LAST_NAME" as "<last_name>" new schema
 	And juror "<juror_number2>" has "POSTCODE" as "<postcode>" new schema
 		
 	Given I have submitted a first party English straight through response
-		|part_no		|pool_number	|last_name			|postcode	|email 	|
-		|<juror_number1>|<pool_number>		|<last_name>	|<postcode>	|<email>|
-		|<juror_number2>|<pool_number>		|<last_name>	|<postcode>	|<email>|
+		|part_no		|pool_number	|last_name		|postcode	|email 	|
+		|<juror_number1>|<pool_number>	|<last_name>	|<postcode>	|<email>|
+		|<juror_number2>|<pool_number>	|<last_name>	|<postcode>	|<email>|
 	
 	Given I am on "Bureau" "test"
 
@@ -32,10 +33,14 @@ Scenario Outline: Lift from QC Script for Bureau B Search
 	And I click on "<juror_number2>" in the same row as "<juror_number2>"
 	
 	And I press the "Process reply" button
-	And I click on the "Excusal" link
-	Then I select "D - DECEASED" from the "Reason for the excusal request" dropdown
-	And I set the radio button to "Accept excusal request"
-	And I press the "Confirm" button
+	And I choose the "Excusal - grant or refuse" radio button
+	And I press the "Continue" button
+
+	Then I select "D - DECEASED" from the "Reason for excusal request" dropdown
+	And I choose the "Grant excusal" radio button
+	And I press the "Continue" button
+
+	Then I see the juror record updated banner containing "Excusal granted (deceased)"
 		
 	And I click on the "Search" link
 	And I set "Juror's pool number" to "<pool_number>"
@@ -76,7 +81,7 @@ Scenario Outline: Lift from QC Script for Bureau B Search
 	Then I see "1 results for" on the page
 	And I see "COMPLETE" in the same row as "<juror_number2>"
 	
-	When I click on "<part_no_two>" in the same row as "<juror_number2>"
+	When I click on "<juror_number2>" in the same row as "<juror_number2>"
 	Then I see "Reply status" on the page
 	And I see "COMPLETED" on the page
 
@@ -84,5 +89,5 @@ Scenario Outline: Lift from QC Script for Bureau B Search
 	
 Examples:
 	|juror_number1	|juror_number2	|pool_number|last_name 			|postcode 	|email				|
-	|045200170		|045200171		|452300155 	|LNAMEONEFIVEFOUR 	|CH1 2AN	|ab@automation.com	|
+	|045200172		|045200173		|452300156 	|LNAMEONEFIVEFOUR 	|CH1 2AN	|ab@automation.com	|
 	
