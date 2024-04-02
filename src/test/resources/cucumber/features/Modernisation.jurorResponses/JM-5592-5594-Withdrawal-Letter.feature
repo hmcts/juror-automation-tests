@@ -91,7 +91,7 @@ Feature: JM-5592-5594 - Resend withdrawal letter for Bureau and Jury users
 
 
   @JurorTransformationMulti @NewSchemaConverted
-  Scenario Outline: Withdrawal granted letter - via pool Number happy path bulk
+  Scenario Outline: Withdrawal letter - via pool Number happy path bulk
 
     Given I am on "Bureau" "test"
     And I log in as "<user>"
