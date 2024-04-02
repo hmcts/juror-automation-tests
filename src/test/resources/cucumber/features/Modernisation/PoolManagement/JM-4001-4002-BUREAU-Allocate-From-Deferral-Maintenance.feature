@@ -34,7 +34,7 @@ Feature: JM-4001 and JM-4002 - Bureau User
     Then The first deferral in the table is "041500000, 0FNAME0, TESTNAME, 415000000" with a deferral date "1" Mondays in the future
     And Row "3" deferral in the table is "041500002, 0FNAME2, TESTNAME, 415000002" with a deferral date "1" Mondays in the future
 
-  @JurorTransformationWIP @JM-5873
+  @JurorTransformation
     Scenario: Happy path to allocate one juror to a pool from deferral maintenance
 
     #needs to stay in single thread pack
@@ -47,7 +47,7 @@ Feature: JM-4001 and JM-4002 - Bureau User
       And I press the "Continue" button
       Then I see "Selected jurors added to pool 415111111" on the page
 
-  @JurorTransformationWIP @JM-5873
+  @JurorTransformation
     Scenario: Happy path to allocate multiple juror to a pool from deferral maintenance
 
     #needs to stay in single thread pack
@@ -61,23 +61,23 @@ Feature: JM-4001 and JM-4002 - Bureau User
       And I press the "Continue" button
       Then I see "Selected jurors added to pool 415111111" on the page
 
-  @JurorTransformationWIP @JM-5873
+  @JurorTransformation
     Scenario: Test to change selected court while on deferral maintenance
 
     #needs to stay in single thread pack
 
       #select juror deferral to add to active pool
-      Given "1" new pool's are inserted for court "767" with owner "400" and a deferral date "1" Mondays in the future
+      Given "1" new pool's are inserted for court "416" with owner "400" and a deferral date "1" Mondays in the future new schema
       #select court
       When I set input field with "ID" of "courtNameOrLocationCode" to "CHICHESTER"
       And I click on the "Chichester (416)" link
       And I press the "Find" button
-      Then I am taken to the deferral maintenance screen for the selected court "Knutsford (767)"
+      Then I am taken to the deferral maintenance screen for the selected court "Lewes Sitting At Chichester (416)"
       And The deferrals table is displayed
       When I press the "Juror number" button
-      And The first deferral in the table is "041600000, 0FNAME0, TESTNAME, 416000000" with a deferral date "1" Mondays in the future
+      And The first deferral in the table is "041600000, fname, lname, 416000000" with a deferral date "1" Mondays in the future
 
-  @JurorTransformationWIP @JM-5873
+  @JurorTransformation
     Scenario: Test to check sort functionality on deferral maintenance page
 
     #needs to stay in single thread pack
@@ -113,12 +113,12 @@ Feature: JM-4001 and JM-4002 - Bureau User
     Then Row "3" from last deferral in the table is "041500002, 0FNAME2, TESTNAME, 415000002" with a deferral date "1" Mondays in the future
     And The last deferral in the table is "041500000, 0FNAME0, TESTNAME, 415000000" with a deferral date "1" Mondays in the future
       #change data
-      Then juror "041500000" has "LNAME" as "TESTNAMEA" new schema
-      Then juror "041500001" has "LNAME" as "TESTNAMEB" new schema
-      Then juror "041500002" has "LNAME" as "TESTNAMEC" new schema
-      Then juror "041500000" has "FNAME" as "TESTFNAME" new schema
-      Then juror "041500001" has "FNAME" as "TESTFNAME" new schema
-      Then juror "041500002" has "FNAME" as "TESTFNAME" new schema
+      Then juror "041500000" has "LAST_NAME" as "TESTNAMEA" new schema
+      Then juror "041500001" has "LAST_NAME" as "TESTNAMEB" new schema
+      Then juror "041500002" has "LAST_NAME" as "TESTNAMEC" new schema
+      Then juror "041500000" has "FIRST_NAME" as "TESTFNAME" new schema
+      Then juror "041500001" has "FIRST_NAME" as "TESTFNAME" new schema
+      Then juror "041500002" has "FIRST_NAME" as "TESTFNAME" new schema
 
       #refresh def maintenance results set as the data has been updated
       And I click on deferral maintenance
@@ -143,7 +143,7 @@ Feature: JM-4001 and JM-4002 - Bureau User
       Then Row "3" from last deferral in the table is "041500002, TESTFNAME, TESTNAMEC, 415000002" with a deferral date "1" Mondays in the future
       And The last deferral in the table is "041500000, TESTFNAME, TESTNAMEA, 415000000" with a deferral date "1" Mondays in the future
 
-  @JurorTransformationWIP @JM-5873
+  @JurorTransformation
     Scenario: Test to check filter functionality on deferral maintenance page
 
     #needs to stay in single thread pack
@@ -165,7 +165,7 @@ Feature: JM-4001 and JM-4002 - Bureau User
       When I set the "juror number" deferral filter to "000000000"
       Then I see "There are no results to display" on the page
 
-  @JurorTransformationWIP @JM-5873
+  @JurorTransformation
     Scenario: Test to check juror number hyperlink on deferral maintenance page
 
     #needs to stay in single thread pack
@@ -174,7 +174,7 @@ Feature: JM-4001 and JM-4002 - Bureau User
       When I click on the "041500000" link
       Then I am on the Juror Record for juror "041500000"
 
-  @JurorTransformationWIP @JM-5873
+  @JurorTransformation
     Scenario: Test to check error for empty court search
 
     #needs to stay in single thread pack
