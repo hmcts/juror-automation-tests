@@ -14,7 +14,7 @@ Feature: JM-252 Bureau user create new pools
     #select court
 
     Then I set input field with "ID" of "courtNameOrLocation" to "<selectedCourt>"
-    Then I click on the "<displayCourt> (<courtCode>)" link
+    And I select the "<displayCourt> (<courtCode>)" court selection link
     Then I press the "Continue" button
 
     #check page content
@@ -88,7 +88,7 @@ Feature: JM-252 Bureau user create new pools
     #select court
 
     Then I set input field with "ID" of "courtNameOrLocation" to "<selectedCourt>"
-    Then I click on the "<displayCourt> (<courtCode>)" link
+    And I select the "<displayCourt> (<courtCode>)" court selection link
     Then I press the "Continue" button
 
     #check page content
@@ -159,7 +159,7 @@ Feature: JM-252 Bureau user create new pools
     #select court
 
     Then I set input field with "ID" of "courtNameOrLocation" to "<selectedCourt>"
-    Then I click on the "<displayCourt> (<courtCode>)" link
+    And I select the "<displayCourt> (<courtCode>)" court selection link
     Then I press the "Continue" button
 
     #check page content

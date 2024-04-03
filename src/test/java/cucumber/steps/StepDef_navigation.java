@@ -7,12 +7,16 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.temporal.TemporalAdjusters;
@@ -316,6 +320,26 @@ public class StepDef_navigation {
 			NAV.click_link_by_text(arg1);
 		} catch (Exception e) {
 			NAV.waitForPageLoad();
+			NAV.click_link_by_text(arg1);
+		}
+	}
+
+	@When("^I select the \"(.*)\" court selection link$")
+	public void clickCourtSelectionLink(String arg1) throws Throwable {
+
+		try {
+			if (CO.checkWhetherInList(arg1))
+				return;
+		} catch (Exception e) {
+		}
+
+		WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
+		try {
+			NAV.click_link_by_text(arg1);
+			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("autocomplete__menu--visible")));
+		} catch (Exception e) {
+			NAV.waitForPageLoad();
+			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("autocomplete__menu--visible")));
 			NAV.click_link_by_text(arg1);
 		}
 	}
