@@ -38,7 +38,7 @@ Feature: JM-3671 Validation and Errors
     #select court only and continue
 
     Then I set input field with "ID" of "courtNameOrLocation" to "<selectedCourt>"
-    Then I click on the "<displayCourt> (<courtCode>)" link
+    And I select the "<displayCourt> (<courtCode>)" court selection link
     Then I press the "Continue" button
 
     Then I press the "Continue" button
@@ -87,7 +87,7 @@ Feature: JM-3671 Validation and Errors
     #select court
 
     Then I set input field with "ID" of "courtNameOrLocation" to "<selectedCourt>"
-    Then I click on the "<displayCourt> (<courtCode>)" link
+    And I select the "<displayCourt> (<courtCode>)" court selection link
 
     #enter invalid number of jurors - negative
 
@@ -132,7 +132,7 @@ Feature: JM-3671 Validation and Errors
     #select court
 
     Then I set input field with "ID" of "courtNameOrLocation" to "<selectedCourt>"
-    Then I click on the "<displayCourt> (<courtCode>)" link
+    And I select the "<displayCourt> (<courtCode>)" court selection link
     And I set input field with "ID" of "jurorsRequested" to "150"
     Then I press the "Continue" button
 
@@ -187,7 +187,7 @@ Feature: JM-3671 Validation and Errors
 
     #select court
     Then I set input field with "ID" of "courtNameOrLocation" to "<selectedCourt>"
-    Then I click on the "<displayCourt> (<courtCode>)" link
+    And I select the "<displayCourt> (<courtCode>)" court selection link
     And I set input field with "ID" of "jurorsRequested" to "<noJurors>"
     Then I press the "Continue" button
 
@@ -230,7 +230,7 @@ Feature: JM-3671 Validation and Errors
     #select court
 
     Then I set input field with "ID" of "courtNameOrLocation" to "<selectedCourt>"
-    Then I click on the "<displayCourt> (<courtCode>)" link
+    And I select the "<displayCourt> (<courtCode>)" court selection link
     And I set input field with "ID" of "jurorsRequested" to "150"
     Then I press the "Continue" button
 
@@ -340,7 +340,7 @@ Feature: JM-3671 Validation and Errors
     #select court
 
     Then I set input field with "ID" of "courtNameOrLocation" to "<courtCode>"
-    Then I click on the "<displayCourt> (<courtCode>)" link
+    And I select the "<displayCourt> (<courtCode>)" court selection link
     And I set input field with "ID" of "jurorsRequested" to "<noJurors>"
     Then I press the "Continue" button
 

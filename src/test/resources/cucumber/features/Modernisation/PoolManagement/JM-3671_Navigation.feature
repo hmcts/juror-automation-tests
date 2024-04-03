@@ -13,7 +13,7 @@ Feature: JM-3671 Navigation
     #select court
 
     Then I set input field with "ID" of "courtNameOrLocation" to "<selectedCourt>"
-    Then I click on the "<displayCourt> (<courtCode>)" link
+    And I select the "<displayCourt> (<courtCode>)" court selection link
     And I set input field with "ID" of "jurorsRequested" to "<noJurors>"
     Then I press the "Continue" button
 
