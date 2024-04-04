@@ -3075,10 +3075,6 @@ public class StepDef_jurorpool {
         NAV.waitForPageLoad();
         JUROR_RECORD_SEARCH.searchForRecordFromGlobalSearch(jurorRecordNumber);
     }
-    @Then("^I see the pool filter on display$")
-    public void poolFilterIsDisplayed() {
-        assertTrue(POOL_OVERVIEW_PAGE.poolFilterTable());
-    }
     @And("^I select \"([^\"]*)\" from the adjustments reason dropdown$")
     public void iSelectFromTheAdjustmentsReasonDropdown(String reason) {
         SUMMONS_REPLY.selectAdjustmentReason(reason);
