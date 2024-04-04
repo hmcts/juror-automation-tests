@@ -1529,8 +1529,8 @@ public class StepDef_jurorpool {
         assertFalse(SUMMONS_REPLY.processReplyButtonIsPresent());
     }
 
-    @And("^I record an unhappy path paper summons response$")
-    public void iRecordUnhappyPathPaperResponse() throws Throwable {
+    @And("^I record an unhappy path paper summons response with a reasonable adjustment of \"([^\"]*)\"$")
+    public void iRecordUnhappyPathPaperResponse(String adjustmentReason ) throws Throwable {
         SUMMONS_REPLY.clickEnterSummonsReplyButton();
 
         SUMMONS_REPLY.clickChangeName();
@@ -1572,6 +1572,7 @@ public class StepDef_jurorpool {
         SUMMONS_REPLY.clickContinue();
 
         SUMMONS_REPLY.clickAdjustmentsYes();
+        SUMMONS_REPLY.selectAdjustmentReason(adjustmentReason);
         NAV.set_valueTo("What help does the juror need at court?", "Reasonable adjustments reasons");
         SUMMONS_REPLY.clickContinue();
 
