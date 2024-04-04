@@ -144,7 +144,7 @@ Feature: JM-6388 - As a jury officer I need to be able to manually add an attend
       | user         | juror_number | pool_number  |
       | MODTESTCOURT | 041536965    | 415360964    |
 
-  @JurorTransformationWIP @NewSchemaConverted @JM-6799
+  @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: As a jury officer I want to manually add an attendance day - Ineligible juror
 
     Given I am on "Bureau" "test"
