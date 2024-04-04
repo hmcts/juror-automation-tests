@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -645,5 +646,11 @@ public class SummonsReply {
 
     public void clickPoolCreatedForDeferral(String poolNumber) {
         driver.findElement(By.xpath("//*[contains(text(),'"+poolNumber+"')]/../../input")).click();
+    }
+
+    public void selectAdjustmentReason(String reason) {
+        WebElement dropdown = driver.findElement(By.id("adjustmentsReason"));
+        Select select = new Select(dropdown);
+        select.selectByVisibleText(reason);
     }
 }

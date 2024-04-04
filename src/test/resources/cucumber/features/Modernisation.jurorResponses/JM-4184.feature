@@ -151,7 +151,7 @@ Feature: JM-4184 - The system shall allow the jury officer to process a summons 
     And I log in as "<user>"
 
     When the user searches for juror record "<juror_number>" from the global search bar
-    And I record a paper summons response with reasonable adjustments
+    And I record a paper summons response with reasonable adjustment of "C - Caring Responsibilities"
 
     When the user searches for juror record "<juror_number>" from the global search bar
 
@@ -182,7 +182,7 @@ Feature: JM-4184 - The system shall allow the jury officer to process a summons 
       | MODTESTCOURT  | 041516913     | 415308241    |
 
 
-  @JurorTransformationMultiWIP @NewSchemaConverted @JM-6716
+  @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Process summons reply that has been returned late (Reassign)
     Given I am on "Bureau" "test"
 
@@ -198,12 +198,11 @@ Feature: JM-4184 - The system shall allow the jury officer to process a summons 
     And I log in as "<user>"
 
     When the user searches for juror record "<juror_number>" from the global search bar
-    And I record a paper summons response with reasonable adjustments
-
+    And I record a paper summons response with reasonable adjustment of "C - Caring Responsibilities"
     When the user searches for juror record "<juror_number>" from the global search bar
 
     Then I click the summons reply tab
-    And I click on the view summons reply link
+    And I click on the "View summons reply" link
     And I see "Juror’s service start date has passed" on the page
 
     And I press the "Process reply" button
@@ -216,10 +215,9 @@ Feature: JM-4184 - The system shall allow the jury officer to process a summons 
     And I see "Choose a pool to reassign to" on the page
     And I select one of the active pools available
     And I press the "Continue" button
-
-    #will error here due to JM-6716, will continue script once bug is resolved
+    And I see "Juror record updated: Reassigned to pool" on the page
 
 
     Examples:
       | user		  | juror_number  | pool_number  |
-      | MODTESTCOURT  | 041518963     | 415308241    |
+      | MODTESTCOURT  | 041518965     | 415308241    |
