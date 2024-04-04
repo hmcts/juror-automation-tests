@@ -78,7 +78,8 @@ public class StepDef_expenses {
         EXPENSES.setApplyToAllDraftCheckbox();
     }
     @When("^I see the unpaid expenses table$")
-    public void seeUnpaidExpensesTable() {assertTrue(EXPENSES.unpaidExpensesTable());
+    public void seeUnpaidExpensesTable() {
+        assertTrue(EXPENSES.unpaidExpensesTable());
     }
     @Then("^I see the following expenses on the jurors unpaid expenses form$")
     public void iSeeTheFollowingInformationOnUnpaidExpenseTable(DataTable dataTable) {

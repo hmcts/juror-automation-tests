@@ -129,7 +129,15 @@ Feature: JM-6062 - As a jury officer, I want to set default expenses in the syst
     And I set smart card amount field to "97"
     And I click the add smartcard spend submit button
     Then I see "Totals" in the same row as "(£97.00)"
-    And I see the date "5" weeks from now in the same row as "£1.50"
+    # Test JM-6066 as part of this test
+    And I see the expense date "5" weeks from now in the same row as "£1.50"
+    And I click the expense date "5" weeks from now in the same row as "£1.50"
+    And I set "Loss of earnings or benefits" to "100"
+    And I set "Other costs" to "100"
+    And I set "Description of other costs" to "description"
+    Then I do not see "Financial loss (capped)" on the page
+    And I click on the "Recalculate totals." link
+    And I see "Financial loss (capped)" on the page
 
     Examples:
       |user       |juror_number_1 |    pool_number   |
