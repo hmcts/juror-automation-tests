@@ -39,6 +39,7 @@ Feature: JM-4082
     #reasonable adjustments
     Then the juror summons reply reasonable adjustments page is displayed
     When I select that the juror does need adjustments
+    And I select "C - Caring Responsibilities" from the adjustments reason dropdown
     And I set "What help does the juror need at court?" to "Childcare"
 
     And I click continue on the juror summons reply page
@@ -103,5 +104,5 @@ Feature: JM-4082
     And I click the juror details adjustments tab
     And I see "12345678" in the same row as "Optic reference"
     Examples:
-      | user          | juror_number   | pool_number   | jurorAdjustmentNeeded   | jurorAdjustmentFull     |
-      | MODTESTBUREAU | 045200012      | 452300008     | Childcare               |C - Childcare problems   |
+      | user          | juror_number   | pool_number   | jurorAdjustmentNeeded   | jurorAdjustmentFull          |
+      | MODTESTBUREAU | 045200012      | 452300008     | Childcare               |C - Caring Responsibilities   |

@@ -13,7 +13,7 @@ Feature: JM-4222
 
     When the user searches for juror record "<juror_number>" from the global search bar
 
-    And I record a paper summons response with reasonable adjustments
+    And I record a paper summons response with reasonable adjustment of "C - Caring Responsibilities"
 
     And I click the juror details adjustments tab
     When I press the "Check court can accommodate" button
@@ -78,7 +78,7 @@ Feature: JM-4222
       | 452	  |<juror_number>| <pool_number>| 5				            | 400	|
 
     When the user searches for juror record "<juror_number>" from the global search bar
-    And I record a paper summons response with reasonable adjustments
+    And I record a paper summons response with reasonable adjustment of "C - Caring Responsibilities"
 
     And I select the reasonable adjustments tab from the summons reply page
     And I do not see "Optic reference" on the page
@@ -115,7 +115,7 @@ Feature: JM-4222
 
     When the user searches for juror record "<juror_number>" from the global search bar
 
-    And I record a paper summons response with reasonable adjustments
+    And I record a paper summons response with reasonable adjustment of "C - Caring Responsibilities"
     And I select the reasonable adjustments tab from the summons reply page
     When I press the "Check court can accommodate" button
     Then I am on the check can accommodate screen
@@ -191,6 +191,7 @@ Feature: JM-4222
     #reasonable adjustments
     Then the juror summons reply reasonable adjustments page is displayed
     When I select that the juror does need adjustments
+    And I select "C - Caring Responsibilities" from the adjustments reason dropdown
     And I set "What help does the juror need at court?" to "Childcare"
     And I click continue on the juror summons reply page
 
@@ -253,7 +254,7 @@ Feature: JM-4222
 
     When the user searches for juror record "<juror_number>" from the global search bar
 
-    And I record a paper summons response with reasonable adjustments
+    And I record a paper summons response with reasonable adjustment of "C - Caring Responsibilities"
     And I click the juror details adjustments tab
     When I press the "Check court can accommodate" button
     Then I am on the check can accommodate screen
@@ -316,7 +317,7 @@ Feature: JM-4222
     #respond juror as bureau user
     And I log in as "MODTESTBUREAU"
     When the user searches for juror record "<juror_number>" from the global search bar
-    And I record a paper summons response with reasonable adjustments
+    And I record a paper summons response with reasonable adjustment of "C - Caring Responsibilities"
     And I select Process reply
     And I mark the reply as responded
     And I press the "Continue" button
@@ -399,7 +400,7 @@ Feature: JM-4222
 
     When the user searches for juror record "<juror_number>" from the global search bar
 
-    And I record a paper summons response with reasonable adjustments
+    And I record a paper summons response with reasonable adjustment of "C - Caring Responsibilities"
     And I click on the "Reasonable adjustments" link
     And I do not see "Optic reference" on the page
     When I press the "Check court can accommodate" button
@@ -438,7 +439,7 @@ Feature: JM-4222
       | <juror_number> | <pool_number>| 415   |
 
     When the user searches for juror record "<juror_number>" from the global search bar
-    And I record a paper summons response with reasonable adjustments
+    And I record a paper summons response with reasonable adjustment of "C - Caring Responsibilities"
     And I click on the "Reasonable adjustments" link
     When I press the "Check court can accommodate" button
     Then I am on the check can accommodate screen
@@ -521,6 +522,7 @@ Feature: JM-4222
     #reasonable adjustments
     Then the juror summons reply reasonable adjustments page is displayed
     When I select that the juror does need adjustments
+    And I select "C - Caring Responsibilities" from the adjustments reason dropdown
     And I set "What help does the juror need at court?" to "Childcare"
     And I click continue on the juror summons reply page
 

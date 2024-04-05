@@ -2,6 +2,7 @@ package cucumber.steps;
 
 import cucumber.pageObjects.*;
 import cucumber.testdata.DatabaseTester;
+import cucumber.testdata.DatabaseTesterNewSchemaDesign;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.PendingException;
 import io.cucumber.java.en.And;
@@ -77,6 +78,8 @@ public class StepDef_jurorpool {
     public static ThreadLocal<String> opticReference = new ThreadLocal<>();
     private static final Logger log = Logger.getLogger(ActivePools.class);
 
+    private DatabaseTesterNewSchemaDesign DBTNSD;
+
     public StepDef_jurorpool(CoronersPool coroners_pool_page, SharedDriver webDriver, DatabaseTester dbt, TrialsAndAttendance trl) {
         CORONERS_POOL_PAGE = coroners_pool_page;
         this.webDriver = webDriver;
@@ -99,6 +102,7 @@ public class StepDef_jurorpool {
         DEFERRAL_MAINTENANCE = PageFactory.initElements(webDriver, DeferralMaintenance.class);
         GRP = PageFactory.initElements(webDriver, Groups.class);
         TRL = PageFactory.initElements(webDriver, TrialsAndAttendance.class);
+        DBTNSD = new DatabaseTesterNewSchemaDesign();
     }
 
     @Given("^I go to the launch screen of the bureau app$")
@@ -1071,7 +1075,7 @@ public class StepDef_jurorpool {
         date.add(Calendar.YEAR, -76);
         String enterDOBDate = new SimpleDateFormat(datePattern).format(date.getTime());
         SUMMONS_REPLY.enterDateOfBirth(enterDOBDate);
-        }
+    }
 
     @And("^I enter a date of birth in the summons reply that will make the juror too young$")
     public void enterDateOfBirthTooYoung() {
@@ -1525,8 +1529,8 @@ public class StepDef_jurorpool {
         assertFalse(SUMMONS_REPLY.processReplyButtonIsPresent());
     }
 
-    @And("^I record an unhappy path paper summons response$")
-    public void iRecordUnhappyPathPaperResponse() throws Throwable {
+    @And("^I record an unhappy path paper summons response with a reasonable adjustment of \"([^\"]*)\"$")
+    public void iRecordUnhappyPathPaperResponse(String adjustmentReason ) throws Throwable {
         SUMMONS_REPLY.clickEnterSummonsReplyButton();
 
         SUMMONS_REPLY.clickChangeName();
@@ -1568,6 +1572,7 @@ public class StepDef_jurorpool {
         SUMMONS_REPLY.clickContinue();
 
         SUMMONS_REPLY.clickAdjustmentsYes();
+        SUMMONS_REPLY.selectAdjustmentReason(adjustmentReason);
         NAV.set_valueTo("What help does the juror need at court?", "Reasonable adjustments reasons");
         SUMMONS_REPLY.clickContinue();
 
@@ -1704,8 +1709,8 @@ public class StepDef_jurorpool {
         SUMMONS_REPLY.clickDoneButton();
     }
 
-    @And("^I record a paper summons response with reasonable adjustments$")
-    public void iRecordAPaperResponseWithReasonableAdjustments() throws Throwable {
+    @And("^I record a paper summons response with reasonable adjustment of \"([^\"]*)\"$")
+    public void iRecordAPaperResponseWithReasonableAdjustments(String adjustmentReason) throws Throwable {
         SUMMONS_REPLY.clickEnterSummonsReplyButton();
 
         SUMMONS_REPLY.enterDateOfBirth("18/07/1976");
@@ -1730,6 +1735,7 @@ public class StepDef_jurorpool {
         SUMMONS_REPLY.clickContinue();
 
         SUMMONS_REPLY.clickAdjustmentsYes();
+        SUMMONS_REPLY.selectAdjustmentReason(adjustmentReason);
         NAV.set_valueTo("What help does the juror need at court?", "Reasonable adjustments reasons");
         SUMMONS_REPLY.clickContinue();
 
@@ -3034,6 +3040,7 @@ public class StepDef_jurorpool {
         NAV.waitForPageLoad();
         ACTIVE_POOLS_PAGE.checkSelectAllCheckboxOnPoolOverview();
     }
+
     @When("^I check the select all checkbox on pool overview as bureau user$")
     public void checkSelectAllCheckboxOnPoolOverviewForBureau() {
         NAV.waitForPageLoad();
@@ -3044,6 +3051,7 @@ public class StepDef_jurorpool {
     public void selectAnyPoolNoList() {
         ACTIVE_POOLS_PAGE.selectAnyActivePool();
     }
+
     @When("^I see juror \"([^\"]*)\" in the jurors cannot be moved table$")
     public void seeJurorsInCannotBeMovedTableStep(String jurorNumber) {
         boolean isJurorPresent = ACTIVE_POOLS_PAGE.seeJurorsInCannotBeMovedTable(jurorNumber);
@@ -3068,4 +3076,8 @@ public class StepDef_jurorpool {
         NAV.waitForPageLoad();
         JUROR_RECORD_SEARCH.searchForRecordFromGlobalSearch(jurorRecordNumber);
     }
+    @And("^I select \"([^\"]*)\" from the adjustments reason dropdown$")
+    public void iSelectFromTheAdjustmentsReasonDropdown(String reason) {
+        SUMMONS_REPLY.selectAdjustmentReason(reason);
     }
+}
