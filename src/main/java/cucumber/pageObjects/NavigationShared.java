@@ -82,6 +82,11 @@ public class NavigationShared {
     @FindBy(id = "checkOutTimeHour")
     WebElement changeTimeCheckOut;
 
+    @FindBy(id = "saveAndNextButton")
+    WebElement expenseSave;
+
+
+
 
     public NavigationShared accessLoginPage(String environment) {
         String url;
@@ -2212,5 +2217,19 @@ public class NavigationShared {
             System.out.println("Message template does not contain the date: " + specificDate);
         }
         return messageText;
+    }
+
+    public void press_Savebutton() {
+        waitForDocumentReady();
+        try {
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", expenseSave);
+            log.info("Clicked on element as normal - Continuing");
+            return;
+        } catch (Exception e) {
+            log.info("Unable to click on element using Selenium, trying via Javascript. Element is =>" + expenseSave);
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", expenseSave);
+            log.info("Clicked on element using javascript - Continuing");
+        }
+        waitForDocumentReady();
     }
 }

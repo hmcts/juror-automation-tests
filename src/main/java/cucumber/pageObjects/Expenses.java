@@ -5,7 +5,11 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
@@ -16,11 +20,14 @@ public class Expenses {
     private static WebDriver driver;
     private static final Logger log = Logger.getLogger(JurorRecord.class);
     private final DatabaseTester DBT;
+    private NavigationShared NAV;
 
     public Expenses(WebDriver webDriver) {
         Expenses.driver = webDriver;
         PageFactory.initElements(webDriver, this);
         DBT = new DatabaseTester();
+        NAV = PageFactory.initElements(webDriver, NavigationShared.class);
+
     }
 
     @FindBy(id = "viewAllExpensesAnchor")
@@ -135,6 +142,14 @@ public class Expenses {
     @FindBy(xpath = "//*[@id=\"expenseDateLink\"]")
     public List <WebElement> clickNonAttendanceDayExpenseLink;
 
+    @FindBy(xpath = "//div[@id=\"totalDueTag\"]/span[2]")
+    public WebElement totalDueAmt;
+    @FindBy(xpath = "//a[@id=\"recalculate-totals\"]")
+    public WebElement clickRecalculateTotalLink;
+
+
+    @FindBy(xpath = "//*[@class=\"govuk-summary-list__value\"]")
+    public List <WebElement> financialLossGetAmt;
 
     public void pressViewAllExpensesButton() {
         viewAllExpensesButton.click();
@@ -292,7 +307,24 @@ public class Expenses {
     }
     public void clickAddSmartcardSpendSubmitButton() {clickAddSmartcardSpendSubmitButton.click();}
     public void NonAttendencedayExpenseDate() {clickNonAttendanceDayExpenseLink.get(1).click();}
+    public void clickRecalculateTotalLink() {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(0,350)", "");
+        js.executeScript("arguments[0].click();", clickRecalculateTotalLink);
+        // clickRecalculateTotalLink.click();}
+    }
+
+    public Map<String, String> getExpenseDetailAfterRecalculate() {
+        Map<String, String> details = new HashMap<>();
+        NAV.waitForPageLoad();
+        details.put("Total due",totalDueAmt.getText().replaceAll("\\s", ""));
+        System.out.println(totalDueAmt.getText());
+                details.put("Financial loss (capped)", financialLossGetAmt.get(2).getText());
+        System.out.println(financialLossGetAmt.get(2).getText());
+
+        return details;
+            }
+
+        }
 
 
-
-}

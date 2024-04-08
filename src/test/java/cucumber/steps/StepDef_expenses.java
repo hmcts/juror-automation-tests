@@ -162,5 +162,18 @@ public class StepDef_expenses {
     public void clickNonAttendencedayExpenseDateLink() {
         EXPENSES.NonAttendencedayExpenseDate();
     }
+    @When("^I click the Recalculate totals link$")
+    public void clickRecalculateTotalLink() {
+        EXPENSES.clickRecalculateTotalLink();
+    }
 
+    @When("^I see the following details on the enter expenses form$")
+    public void iSeeTheFollowingInformationOnEnterExpenseForm(DataTable dataTable) {
+        Map<String, String> expectedData = dataTable.asMap(String.class, String.class);
+        Map<String, String> actualData = EXPENSES.getExpenseDetailAfterRecalculate();
+
+        assertEquals(expectedData.get("Total due"), actualData.get("Total due"));
+        assertEquals(expectedData.get("Financial loss (capped)"), actualData.get("Financial loss (capped)"));
+
+    }
 }
