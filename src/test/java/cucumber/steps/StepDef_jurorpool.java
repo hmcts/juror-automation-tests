@@ -3081,4 +3081,8 @@ public class StepDef_jurorpool {
     public void iSelectFromTheAdjustmentsReasonDropdown(String reason) {
         SUMMONS_REPLY.selectAdjustmentReason(reason);
     }
+    @And("^I see the banner for next due at court date$")
+    public void iSeeMessageSentBannerContaining() {
+        POOL_OVERVIEW_PAGE.nextDueAtCourtBanner();
+    }
 }
