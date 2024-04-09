@@ -243,10 +243,8 @@ Examples:
 	| juror_number	| last_name			| postcode	| email         	| pool_number	|
 	| 045200198		| LNAMEFOURFIVEZERO	| NN1 3HQ	| email@outlook.com	| 452300183		|
 	
-@Features @NewSchemaConvertes
+@RegressionWelsh @NewSchemaConverted
 Scenario Outline: English 3rd Party Welsh - contact details different for juror
-
-	#moved to Features 02-01-24 return to RegressionWelsh
 
 	Given I am on the welsh version of "Public" "test"
 
@@ -412,7 +410,7 @@ Scenario Outline: English 3rd Party Welsh - contact details different for juror
 
 Examples:
 	| juror_number	| last_name			| postcode	| email         	| pool_number	|
-	| 045200199		| LNAMESIXSEVENFIVE	| NN1 3HQ	| email@outlook.com	| 452300184		|
+	| 045700199		| LNAMESIXSEVENFIVE	| NN1 3HQ	| email@outlook.com	| 457300184		|
 
 @Features @NewSchemaConverted
 Scenario Outline: English 3rd Party Straight Through - Juror already has contact details
