@@ -78,11 +78,11 @@ Feature: JM-5967 - As a jury officer I need to be able to print a show cause let
     And I do not see "<juror_number_2>" on the page
 
     And I press the "Apps" button
-    When I click on the "Documents" link
-    Then I update the appearance of juror "<juror_number>" for show cause letter
-    Then I update the appearance of juror "<juror_number_2>" for show cause letter
+    And I click on the "Documents" link
+    And I update the appearance of juror "<juror_number>" for show cause letter
+    And I update the appearance of juror "<juror_number_2>" for show cause letter
     And I click on the "Show cause letters" link
-    Then I set the "Show cause" date to a Monday "5" weeks in the future
+    And I set the "Show cause" date to a Monday "5" weeks in the future
     And I set "Hour" to "9"
     And I set "Minute" to "00"
     And I set the radio button to "am"
@@ -92,8 +92,8 @@ Feature: JM-5967 - As a jury officer I need to be able to print a show cause let
     And I see the absence date for juror "<juror_number>" in the letters table
     And I see the absence date for juror "<juror_number_2>" in the letters table
 
-    Then I check the "<juror_number>" checkbox
-    Then I check the "<juror_number_2>" checkbox
+    And I check the "<juror_number>" checkbox
+    And I check the "<juror_number_2>" checkbox
     And I press the "Print show cause letter" button
     #will fail here as a result of JM-6827 - new tab opens but technical error instead of PDF
 
@@ -137,7 +137,7 @@ Feature: JM-5967 - As a jury officer I need to be able to print a show cause let
     And I see "<juror_number_2>" in the same row as "9:00am"
 
     And I press the "Apps" button
-    When I click on the "Documents" link
+    And I click on the "Documents" link
     And I click on the "Show cause letters" link
 
     And I press the "Continue" button
@@ -163,7 +163,7 @@ Feature: JM-5967 - As a jury officer I need to be able to print a show cause let
     And I see error "Hearing date must only include numbers and forward slashes"
 
     And I press the "Apps" button
-    When I click on the "Documents" link
+    And I click on the "Documents" link
     And I click on the "Show cause letters" link
 
     Then I set the "Show cause" date to a Monday "12" weeks in the future
