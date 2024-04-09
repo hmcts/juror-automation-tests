@@ -4540,7 +4540,7 @@ public class DatabaseTesterNewSchemaDesign {
 			conn = db.getConnection("demo");
 
 		try {
-			pStmt = conn.prepareStatement("UPDATE juror_mod.bulk_print_data set extracted_flag='Y' where juror_no='" + jurorNumber + "'");
+			pStmt = conn.prepareStatement("UPDATE juror_mod.bulk_print_data set extracted_flag=true where juror_no='" + jurorNumber + "'");
 			pStmt.executeUpdate();
 
 		} catch (SQLException e) {
@@ -4729,7 +4729,7 @@ public class DatabaseTesterNewSchemaDesign {
 			pStmt.executeUpdate();
 
 			pStmt = conn.prepareStatement("INSERT INTO juror_mod.bulk_print_data (juror_no,creation_date,form_type,detail_rec,extracted_flag,digital_comms)"
-					+ "VALUES ('" + jurorNumber + "',NOW(),'5224A','THE CROWN COURT AT CHESTER JURY CENTRAL SUMMONING BUREAU THE COURT SERVICE',NULL,NULL)");
+					+ "VALUES ('" + jurorNumber + "',NOW(),'5224A','THE CROWN COURT AT CHESTER JURY CENTRAL SUMMONING BUREAU THE COURT SERVICE',false,NULL)");
 			pStmt.executeUpdate();
 
 		} catch (SQLException e) {
@@ -4754,7 +4754,8 @@ public class DatabaseTesterNewSchemaDesign {
 			conn = db.getConnection("demo");
 
 		try {
-			pStmt = conn.prepareStatement("UPDATE juror_mod.bulk_print_data SET extracted_flag='Y' WHERE detail_rec LIKE '%" + poolNumber + "%' AND creation_date = NOW()");
+			log.info("Printing letters for pool: " + poolNumber);
+			pStmt = conn.prepareStatement("UPDATE juror_mod.bulk_print_data SET extracted_flag=true WHERE detail_rec LIKE '%" + poolNumber + "%'");
 			pStmt.executeUpdate();
 
 		} catch (SQLException e) {
@@ -4767,7 +4768,7 @@ public class DatabaseTesterNewSchemaDesign {
 		}
 	}
 
-	public void deletePendingLettersForInitialSummons() throws SQLException {
+	public void deletePendingLettersForInitialSummons(String pool) throws SQLException {
 		db = new DBConnection();
 
 		String env_property = System.getProperty("env.database");
@@ -4778,7 +4779,7 @@ public class DatabaseTesterNewSchemaDesign {
 			conn = db.getConnection("demo");
 
 		try {
-			pStmt = conn.prepareStatement("DELETE FROM juror_mod.bulk_print_data WHERE form_type='5221' AND extracted_flag IS NULL");
+			pStmt = conn.prepareStatement("DELETE FROM juror_mod.bulk_print_data WHERE form_type='5221' AND juror_no in (select juror_number from juror_mod.juror_pool where pool_number = '" + pool + "')");
 			pStmt.executeUpdate();
 
 		} catch (SQLException e) {

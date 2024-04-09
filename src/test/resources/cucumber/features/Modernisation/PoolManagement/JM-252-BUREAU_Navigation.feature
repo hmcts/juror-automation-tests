@@ -113,6 +113,7 @@ Feature: JM-252_Navigation
     #Can submit the new pool request
     When I save the new pool request
     Then I should be taken to the pool summary page
+    And I click on the "Service start date" link
 
     And I should see the newly created pool request
       | court          | <displayCourt> |
@@ -158,6 +159,7 @@ Feature: JM-252_Navigation
 
     When I save the new pool request
     Then I should be taken to the pool summary page
+    And I click on the "Service start date" link
 
     And I should see the newly created pool request
       | court          | Chester |
@@ -180,6 +182,7 @@ Feature: JM-252_Navigation
 
     When I save the new pool request
     Then I should be taken to the pool summary page
+    And I click on the "Service start date" link
 
     And I should see the newly created pool request
       | court          | Swansea Crown Court |
@@ -258,6 +261,7 @@ Feature: JM-252_Navigation
 
     When I save the new pool request
     Then I should be taken to the pool summary page
+    And I click on the "Service start date" link
 
     And I should see the newly created pool request
       | court          | Chester |

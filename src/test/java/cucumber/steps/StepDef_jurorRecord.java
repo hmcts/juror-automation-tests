@@ -495,6 +495,59 @@ public class StepDef_jurorRecord {
             NAV.seeText_inSameRow_asText(dateFormat.format(newDate), nextToText);
         }
     }
+
+    @Then("^I see the expense date \"([^\"]*)\" weeks from now in the same row as \"([^\"]*)\"$")
+    public void seeText_inSameRow_asExpenseDate(String Weeks, String nextToText) {
+
+        int weeks;
+        try {
+            weeks = Integer.parseInt(Weeks);
+            }
+        catch (NumberFormatException e) {
+            weeks = 0;
+        }
+
+        DateFormat dateFormat = new SimpleDateFormat("EEE dd MMM yyyy");
+        Date today = Calendar.getInstance().getTime();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(today);
+        calendar.add(Calendar.WEEK_OF_MONTH, weeks);
+        Date newDate = calendar.getTime();
+
+        try {
+            NAV.seeText_inSameRow_asText(dateFormat.format(newDate), nextToText);
+        } catch (Exception e) {
+            NAV.waitForPageLoad();
+            NAV.seeText_inSameRow_asText(dateFormat.format(newDate), nextToText);
+        }
+    }
+
+
+    @Then("^I click the expense date \"([^\"]*)\" weeks from now in the same row as \"([^\"]*)\"$")
+    public void clickText_inSameRow_asExpenseDate(String Weeks, String nextToText) throws InterruptedException {
+
+        int weeks;
+        try {
+            weeks = Integer.parseInt(Weeks);
+            }
+        catch (NumberFormatException e) {
+            weeks = 0;
+        }
+
+        DateFormat dateFormat = new SimpleDateFormat("EEE dd MMM yyyy");
+        Date today = Calendar.getInstance().getTime();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(today);
+        calendar.add(Calendar.WEEK_OF_MONTH, weeks);
+        Date newDate = calendar.getTime();
+
+        try {
+            NAV.click_link_by_text(dateFormat.format(newDate));
+        } catch (Exception e) {
+            NAV.waitForPageLoad();
+            NAV.click_link_by_text(dateFormat.format(newDate));
+        }
+    }
   
     @Then("^I am able to see and interact with the jurors Deferral Refused letter tabs and fields$")
     public void iAmAbleToSeeAndInteractWithTheDeferralRefusedLetterTabsAndFields() {

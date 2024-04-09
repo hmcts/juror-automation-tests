@@ -1,6 +1,6 @@
 Feature: JM-4184 - The system shall allow the jury officer to process a summons reply that has been returned late
 
-  @JurorTransformationMultiWIP @JM-6571
+  @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Process summons reply that has been returned late (Disqualify)
     Given I am on "Bureau" "test"
 
@@ -38,7 +38,7 @@ Feature: JM-4184 - The system shall allow the jury officer to process a summons 
       | MODTESTCOURT  | 041500064     | 415300154    |
 
 
-  @JurorTransformationMultiWIP @NewSchemaConverted @JM-6571
+  @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Process summons reply that has been returned late (Deferral)
     Given I am on "Bureau" "test"
 
@@ -90,7 +90,7 @@ Feature: JM-4184 - The system shall allow the jury officer to process a summons 
       | MODTESTCOURT  | 041500065   | 415300155   |
 
 
-  @JurorTransformationMultiWIP @NewSchemaConverted @JM-6571
+  @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Process summons reply that has been returned late (Excusal)
     Given I am on "Bureau" "test"
 
@@ -135,4 +135,89 @@ Feature: JM-4184 - The system shall allow the jury officer to process a summons 
       | user		  | juror_number  | pool_number  |
       | MODTESTCOURT  | 041500066     | 415300156    |
 
-    #postpone and reassign scenarios are mentioned in the ticket as 'yet to be affirmed', if those scenarios are implemented in a new ticket i will update this script
+  @JurorTransformationMulti @NewSchemaConverted
+  Scenario Outline: Process summons reply that has been returned late (Postponed)
+    Given I am on "Bureau" "test"
+
+    Given a bureau owned pool is created with jurors
+      | court  |juror_number  	| pool_number	   | att_date_weeks_in_future	| owner |
+      | 415    |<juror_number>  | <pool_number>    | -1				            | 400	|
+
+    Then a new pool is inserted for where record has transferred to the court new schema
+      |part_no        | pool_no       | owner |
+      |<juror_number> | <pool_number> | 415   |
+
+    #log on and search for juror
+    And I log in as "<user>"
+
+    When the user searches for juror record "<juror_number>" from the global search bar
+    And I record a paper summons response with reasonable adjustment of "C - Caring Responsibilities"
+
+    When the user searches for juror record "<juror_number>" from the global search bar
+
+    Then I click the summons reply tab
+    And I click on the view summons reply link
+    And I see "Juror’s service start date has passed" on the page
+
+    And I press the "Process reply" button
+    And I press the "Continue" button
+    And I see error "Please select a response process type"
+
+    #select postpone
+    And I set the radio button to "Postpone"
+    Then I press the "Continue" button
+    And I see "Enter a new service start date" on the page
+    And I set the "Postpone service start date" date to a Monday "43" weeks in the future
+    Then I press the "Continue" button
+    And I see "There are no active pools for this date" on the page
+    And I press the "Put in deferral maintenance" button
+    And I see "Do you want to print a postponement letter?" on the page
+    And I set the radio button to "No"
+    Then I press the "Continue" button
+    And I see "Juror record updated: Postponed" on the page
+    And I see the juror status has updated to "Deferred"
+
+    Examples:
+      | user		  | juror_number  | pool_number  |
+      | MODTESTCOURT  | 041516913     | 415308241    |
+
+
+  @JurorTransformationMulti @NewSchemaConverted
+  Scenario Outline: Process summons reply that has been returned late (Reassign)
+    Given I am on "Bureau" "test"
+
+    Given a bureau owned pool is created with jurors
+      | court  |juror_number  	| pool_number	   | att_date_weeks_in_future	| owner |
+      | 415    |<juror_number>  | <pool_number>    | -4				            | 400	|
+
+    Then a new pool is inserted for where record has transferred to the court new schema
+      |part_no        | pool_no       | owner |
+      |<juror_number> | <pool_number> | 415   |
+
+    #log on and search for juror
+    And I log in as "<user>"
+
+    When the user searches for juror record "<juror_number>" from the global search bar
+    And I record a paper summons response with reasonable adjustment of "C - Caring Responsibilities"
+    When the user searches for juror record "<juror_number>" from the global search bar
+
+    Then I click the summons reply tab
+    And I click on the "View summons reply" link
+    And I see "Juror’s service start date has passed" on the page
+
+    And I press the "Process reply" button
+    And I press the "Continue" button
+    And I see error "Please select a response process type"
+
+    #select postpone
+    And I set the radio button to "Re-assign to an active pool"
+    Then I press the "Continue" button
+    And I see "Choose a pool to reassign to" on the page
+    And I select one of the active pools available
+    And I press the "Continue" button
+    And I see "Juror record updated: Reassigned to pool" on the page
+
+
+    Examples:
+      | user		  | juror_number  | pool_number  |
+      | MODTESTCOURT  | 041518965     | 415308241    |

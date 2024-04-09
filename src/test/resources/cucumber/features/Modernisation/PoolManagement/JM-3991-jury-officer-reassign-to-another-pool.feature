@@ -17,7 +17,7 @@ Feature: JM-3991 Reassign Juror as Court User
     And I log in as "MODTESTBUREAU"
 
     When the user searches for juror record "<juror_number1>" from the global search bar
-    And I record a paper summons response with reasonable adjustments
+    And I record a paper summons response with reasonable adjustment of "C - Caring Responsibilities"
     And I select Process reply
     And I mark the reply as responded
     And I press the "Continue" button
@@ -26,7 +26,7 @@ Feature: JM-3991 Reassign Juror as Court User
     Then I see "Summons reply for 041500041 fname lname successfully processed: Responded" on the page
 
     When the user searches for juror record "<juror_number2>" from the global search bar
-    And I record a paper summons response with reasonable adjustments
+    And I record a paper summons response with reasonable adjustment of "C - Caring Responsibilities"
     And I select Process reply
     And I mark the reply as responded
     And I press the "Continue" button

@@ -47,6 +47,7 @@ Feature: JM-252 JM-4302 Court user create new pools
     # Can submit the new pool request
     When I save the new pool request
     Then I should be taken to the pool summary page
+    And I click on the "Service start date" link
 
     And I should see the newly created pool request
       | court          | <displayCourt> |
@@ -154,6 +155,7 @@ Feature: JM-252 JM-4302 Court user create new pools
     # Can submit the new pool request
     When I save the new pool request
     Then I should be taken to the pool summary page
+    And I click on the "Service start date" link
 
     And I should see the newly created pool request
       | court          | <displayCourt> |
@@ -199,6 +201,7 @@ Feature: JM-252 JM-4302 Court user create new pools
     When I save the changes to the pool request
     Then I save the new pool request
     Then I should be taken to the pool summary page
+    And I click on the "Service start date" link
 
     And I should see the newly created pool request
       | court          | Knutsford  |
@@ -259,6 +262,7 @@ Feature: JM-252 JM-4302 Court user create new pools
     # Can submit the new pool request
     When I save the new pool request
     Then I should be taken to the pool summary page
+    And I click on the "Service start date" link
 
     And I should see the newly created pool request
       | court          | <displayCourt> |

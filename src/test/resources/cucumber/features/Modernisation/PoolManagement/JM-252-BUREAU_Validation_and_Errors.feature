@@ -13,7 +13,7 @@ Feature: JM-252_Validation_and_Errors
     And I set the radio button to "Request new pool"
     And I press the "Continue" button
     Then I set input field with "ID" of "courtNameOrLocation" to "<selectedCourt>"
-    Then I click on the "<displayCourt> (<courtCode>)" link
+    And I select the "<displayCourt> (<courtCode>)" court selection link
     Then I press the "Continue" button
     Then I click the change link for the court deferrals
     Then I change the number of court deferrals to "0"
@@ -67,7 +67,7 @@ Feature: JM-252_Validation_and_Errors
     And I set the radio button to "Request new pool"
     And I press the "Continue" button
     Then I set input field with "ID" of "courtNameOrLocation" to "<selectedCourt>"
-    Then I click on the "<displayCourt> (<courtCode>)" link
+    And I select the "<displayCourt> (<courtCode>)" court selection link
     Then I press the "Continue" button
     Then I click the change link for the court deferrals
     Then I change the number of court deferrals to "0"
@@ -122,7 +122,7 @@ Feature: JM-252_Validation_and_Errors
     And I set the radio button to "Request new pool"
     And I press the "Continue" button
     Then I set input field with "ID" of "courtNameOrLocation" to "<selectedCourt>"
-    Then I click on the "<displayCourt> (<courtCode>)" link
+    And I select the "<displayCourt> (<courtCode>)" court selection link
     Then I press the "Continue" button
     Then I click the change link for the court deferrals
     Then I change the number of court deferrals to "0"
@@ -189,7 +189,7 @@ Feature: JM-252_Validation_and_Errors
 
     #select court
     Then I set input field with "ID" of "courtNameOrLocation" to "<selectedCourt>"
-    Then I click on the "<displayCourt> (<courtCode>)" link
+    And I select the "<displayCourt> (<courtCode>)" court selection link
     Then I press the "Continue" button
     Then I set the radio button to "<courtType>"
 
@@ -249,7 +249,7 @@ Feature: JM-252_Validation_and_Errors
 
     #select court
     Then I set input field with "ID" of "courtNameOrLocation" to "<selectedCourt>"
-    Then I click on the "<displayCourt> (<courtCode>)" link
+    And I select the "<displayCourt> (<courtCode>)" court selection link
     Then I press the "Continue" button
     Then I set the radio button to "<courtType>"
 
@@ -309,7 +309,7 @@ Feature: JM-252_Validation_and_Errors
 
     #select court
     Then I set input field with "ID" of "courtNameOrLocation" to "<selectedCourt>"
-    Then I click on the "<displayCourt> (<courtCode>)" link
+    And I select the "<displayCourt> (<courtCode>)" court selection link
     Then I press the "Continue" button
     Then I set the radio button to "<courtType>"
 
@@ -360,7 +360,7 @@ Feature: JM-252_Validation_and_Errors
 
     #select court
     Then I set input field with "ID" of "courtNameOrLocation" to "<selectedCourt>"
-    Then I click on the "<displayCourt> (<courtCode>)" link
+    And I select the "<displayCourt> (<courtCode>)" court selection link
     Then I press the "Continue" button
     Then I set the radio button to "<courtType>"
 
@@ -433,7 +433,7 @@ Feature: JM-252_Validation_and_Errors
 
     #select court
     Then I set input field with "ID" of "courtNameOrLocation" to "<selectedCourt>"
-    Then I click on the "<displayCourt> (<courtCode>)" link
+    And I select the "<displayCourt> (<courtCode>)" court selection link
     Then I press the "Continue" button
     Then I set the radio button to "<courtType>"
 
@@ -484,7 +484,7 @@ Feature: JM-252_Validation_and_Errors
 
     #select court
     Then I set input field with "ID" of "courtNameOrLocation" to "<selectedCourt>"
-    Then I click on the "<displayCourt> (<courtCode>)" link
+    And I select the "<displayCourt> (<courtCode>)" court selection link
     Then I press the "Continue" button
 
     #error on Continue with no selections made
@@ -514,7 +514,7 @@ Feature: JM-252_Validation_and_Errors
     #select court
 
     Then I set input field with "ID" of "courtNameOrLocation" to "<selectedCourt>"
-    Then I click on the "<displayCourt> (<courtCode>)" link
+    And I select the "<displayCourt> (<courtCode>)" court selection link
     Then I press the "Continue" button
 
     #error on Continue with only number of jurors entered
@@ -544,7 +544,7 @@ Feature: JM-252_Validation_and_Errors
     #select court
 
     Then I set input field with "ID" of "courtNameOrLocation" to "<selectedCourt>"
-    Then I click on the "<displayCourt> (<courtCode>)" link
+    And I select the "<displayCourt> (<courtCode>)" court selection link
     Then I press the "Continue" button
 
     #error on Continue with only pool type set
@@ -586,7 +586,7 @@ Feature: JM-252_Validation_and_Errors
 
     #select court
     Then I set input field with "ID" of "courtNameOrLocation" to "<selectedCourt>"
-    Then I click on the "<displayCourt> (<courtCode>)" link
+    And I select the "<displayCourt> (<courtCode>)" court selection link
     Then I press the "Continue" button
 
     #change number of deferrals
@@ -648,7 +648,7 @@ Feature: JM-252_Validation_and_Errors
 
     #select court
     Then I set input field with "ID" of "courtNameOrLocation" to "<selectedCourt>"
-    Then I click on the "<displayCourt> (<courtCode>)" link
+    And I select the "<displayCourt> (<courtCode>)" court selection link
     Then I press the "Continue" button
 
     #complete new pool fields
@@ -711,7 +711,7 @@ Feature: JM-252_Validation_and_Errors
 
     #select court
     Then I set input field with "ID" of "courtNameOrLocation" to "<selectedCourt>"
-    Then I click on the "<displayCourt> (<courtCode>)" link
+    And I select the "<displayCourt> (<courtCode>)" court selection link
     Then I press the "Continue" button
 
     #complete new pool fields
@@ -775,7 +775,7 @@ Feature: JM-252_Validation_and_Errors
 
     #select court
     Then I set input field with "ID" of "courtNameOrLocation" to "<selectedCourt>"
-    Then I click on the "<displayCourt> (<courtCode>)" link
+    And I select the "<displayCourt> (<courtCode>)" court selection link
     Then I press the "Continue" button
 
     #complete new pool fields
@@ -845,7 +845,7 @@ Feature: JM-252_Validation_and_Errors
 
     #select court
     Then I set input field with "ID" of "courtNameOrLocation" to "<selectedCourt>"
-    Then I click on the "<displayCourt> (<courtCode>)" link
+    And I select the "<displayCourt> (<courtCode>)" court selection link
     Then I press the "Continue" button
 
     #complete new pool fields
@@ -909,7 +909,7 @@ Feature: JM-252_Validation_and_Errors
 
     #select court
     Then I set input field with "ID" of "courtNameOrLocation" to "<selectedCourt>"
-    Then I click on the "<displayCourt> (<courtCode>)" link
+    And I select the "<displayCourt> (<courtCode>)" court selection link
     Then I press the "Continue" button
 
     #complete new pool fields
@@ -977,7 +977,7 @@ Feature: JM-252_Validation_and_Errors
 
     #select court
     Then I set input field with "ID" of "courtNameOrLocation" to "<selectedCourt>"
-    Then I click on the "<displayCourt> (<courtCode>)" link
+    And I select the "<displayCourt> (<courtCode>)" court selection link
     Then I press the "Continue" button
 
     #complete new pool fields
@@ -1044,7 +1044,7 @@ Feature: JM-252_Validation_and_Errors
 
     #select court
     Then I set input field with "ID" of "courtNameOrLocation" to "<selectedCourt>"
-    Then I click on the "<displayCourt> (<courtCode>)" link
+    And I select the "<displayCourt> (<courtCode>)" court selection link
     Then I press the "Continue" button
 
     #complete new pool fields
@@ -1077,6 +1077,7 @@ Feature: JM-252_Validation_and_Errors
 
     #Request Pool
     And I submit the pool request
+    And I click on the "Service start date" link
 
     And I should see the newly created pool request
       | court          | <displayCourt> |
@@ -1103,7 +1104,7 @@ Feature: JM-252_Validation_and_Errors
 
     #select court
     Then I set input field with "ID" of "courtNameOrLocation" to "<selectedCourt>"
-    Then I click on the "<displayCourt> (<courtCode>)" link
+    And I select the "<displayCourt> (<courtCode>)" court selection link
     Then I press the "Continue" button
 
     When I click the change link for the attendance date
@@ -1147,7 +1148,7 @@ Feature: JM-252_Validation_and_Errors
 
     #select court
     Then I set input field with "ID" of "courtNameOrLocation" to "<selectedCourt>"
-    Then I click on the "<displayCourt> (<courtCode>)" link
+    And I select the "<displayCourt> (<courtCode>)" court selection link
     Then I press the "Continue" button
 
     When I click the change link for the attendance date
@@ -1189,6 +1190,7 @@ Feature: JM-252_Validation_and_Errors
     # Can submit the new pool request
     When I save the new pool request
     Then I should be taken to the pool summary page
+    And I click on the "Service start date" link
 
     And I should see the newly created pool request
       | court          | <displayCourt>  |

@@ -36,6 +36,7 @@ Feature: JM-3457 and JM-3456 - Paper Response
     #reasonable adjustments
     Then the juror summons reply reasonable adjustments page is displayed
     When I select that the juror does need adjustments
+    And I select "C - Caring Responsibilities" from the adjustments reason dropdown
     And I set "What help does the juror need at court?" to "Childcare"
 
     And I click continue on the juror summons reply page
@@ -92,6 +93,6 @@ Feature: JM-3457 and JM-3456 - Paper Response
     And I see the reply status has updated to "AWAITING COURT REPLY"
 
     Examples:
-      | user          | juror_number  | pool_number | jurorAdjustmentNeeded | jurorAdjustmentFull          |
-      | MODTESTBUREAU | 045200008     | 452300004   | Childcare             | C - Childcare problems       |
+      | user          | juror_number  | pool_number | jurorAdjustmentNeeded | jurorAdjustmentFull               |
+      | MODTESTBUREAU | 045200008     | 452300004   | Childcare             | C - Caring Responsibilities       |
 

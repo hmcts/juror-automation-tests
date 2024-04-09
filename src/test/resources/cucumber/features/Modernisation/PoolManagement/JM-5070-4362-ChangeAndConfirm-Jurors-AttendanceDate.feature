@@ -1,7 +1,7 @@
 Feature: 1)JM-5070 As a jury officer I need to be able to change a jurors attendance date (FE)
   2)JM-4362 As a Jury officer I need to be able to confirm a jurors attendance (FE)
 
-  @JurorTransformationWIP @newSchemaConverted @JM-5811
+  @JurorTransformationWIP @newSchemaConverted @JM-6795
   Scenario Outline: Happy Path Test to create a new pool of jurors and change a jurors attendance date
 
     Given I am on "Bureau" "test"

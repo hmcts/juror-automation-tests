@@ -511,7 +511,7 @@ Scenario Outline: Reasonable adjustments (MULTIPLE) to automatically update Juro
 
 	#check db
 	Then I see the juror record updated banner containing "Responded"
-	Then on "JUROR_MOD" . "JUROR_REASONABLE_ADJUSTMENT" I see "REASONABLE_ADJUSTMENT" is "M" where "JUROR_NUMBER" is "<juror_number>"
+	Then on "JUROR_MOD" . "JUROR" I see "REASONABLE_ADJ_CODE" is "M" where "JUROR_NUMBER" is "<juror_number>"
 
 Examples:
 	| juror_number	| pool_number	| last_name			| postcode	| email 		|
