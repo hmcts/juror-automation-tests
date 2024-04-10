@@ -6,6 +6,7 @@ import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -176,6 +177,11 @@ public class StepDef_navigation {
 		}
 	}
 
+	@When("^I set \"([^\"]*)\" with character length \"([^\"]*)\"$")
+	public void set_value_to_stringlength(String arg1, int arg2) throws Throwable {
+		String string = StringUtils.repeat("a", arg2);
+		set_value_to(arg1, string);
+	}
 
 	@When("^I set \"([^\"]*)\" to \"([^\"]*)\"$")
 	public void set_value_to(String arg1, String arg2) throws Throwable {
