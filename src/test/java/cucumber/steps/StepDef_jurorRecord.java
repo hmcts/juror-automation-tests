@@ -571,4 +571,18 @@ public class StepDef_jurorRecord {
     public void seeIntialSummonsLetterBanner() {
         JUROR_RECORD.initialSummonsBanner();
     }
+
+    @Then("^I am able to see and interact with the jurors Postponement letter tabs and fields$")
+    public void iAmAbleToSeeAndInteractWithThePostponementLetterTabsAndFields() {
+        JUROR_RECORD.postponementjurorsTabPresent("Juror number");
+        JUROR_RECORD.postponementjurorsTabPresent("First name");
+        JUROR_RECORD.postponementjurorsTabPresent("Last name");
+        JUROR_RECORD.postponementjurorsTabPresent("Postcode");
+        JUROR_RECORD.postponementjurorsTabPresent("Status");
+        JUROR_RECORD.postponementjurorsTabPresent("Postponed to");
+        JUROR_RECORD.postponementjurorsTabPresent("Reason");
+        JUROR_RECORD.postponementjurorsTabPresent("Date printed");
+    }
+
+
 }

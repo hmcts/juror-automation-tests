@@ -883,4 +883,16 @@ public class StepDef_navigation {
 			System.out.println("Message template does not contain the date: " + mondayDateValue);
 		}
 	}
+
+	@When("^I press \"([^\"]*)\" button$")
+	public void press_Savebutton(String arg1) throws Throwable {
+		NAV.waitForDocumentReady();
+		try {
+			NAV.press_Savebutton();
+		} catch (Exception | Error e) {
+			log.error("unexpected error when pressing button", e);
+			NAV.press_Savebutton();
+		}
+		NAV.waitForDocumentReady();
+	}
 }
