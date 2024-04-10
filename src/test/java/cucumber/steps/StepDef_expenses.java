@@ -191,6 +191,17 @@ public class StepDef_expenses {
         assertEquals(expectedData.get("Juror's loss"), actualData.get("Juror's loss"));
         assertEquals(expectedData.get("Daily limit (Full day)"), actualData.get("Daily limit (Full day)"));
     }
+    @Then("^I see the following Half day daily day limit details on the loss over limit form$")
+    public void iSeeTheFollowingHalfDayInformationOnlossOverLimitForm(DataTable dataTable) {
+
+        NAV.waitForPageLoad(3);
+        Map<String, String> expectedData = dataTable.asMap(String.class, String.class);
+        Map<String, String> actualData = EXPENSES.getLossOverHalfDayLimitDetails();
+
+        assertEquals(expectedData.get("Juror's loss"), actualData.get("Juror's loss"));
+        assertEquals(expectedData.get("Daily limit (Half day)"), actualData.get("Daily limit (Half day)"));
+
+    }
 
     @When("^I see the following public expenses on travel overlimit page$")
     public void travelOverLimitExpense(DataTable dataTable){

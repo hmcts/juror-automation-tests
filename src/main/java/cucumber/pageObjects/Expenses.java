@@ -347,6 +347,13 @@ public class Expenses {
         details.put("Daily limit (Full day)", jurorsFinancialLossAmt.get(1).getText());
         return details;
     }
+    public Map<String, String> getLossOverHalfDayLimitDetails() {
+        Map<String, String> details = new HashMap<>();
+
+        details.put("Juror's loss", jurorsFinancialLossAmt.get(0).getText());
+        details.put("Daily limit (Half day)", jurorsFinancialLossAmt.get(1).getText());
+        return details;
+    }
     public Map<String, String> getTravelOverLimitDetails() {
         Map<String, String> details = new HashMap<>();
         details.put("Daily limit", dailyLimitExpenseValue.get(0).getText());
