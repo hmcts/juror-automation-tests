@@ -147,6 +147,17 @@ public class Expenses {
     @FindBy(xpath = "//a[@id=\"recalculate-totals\"]")
     public WebElement clickRecalculateTotalLink;
 
+    @FindBy(xpath = "//*[@id=\"expenseDateLink\"]")
+    public WebElement clickExpenseDatelink;
+
+    @FindBy(xpath = "//*[@class='govuk-summary-list__value']")
+    public List <WebElement> jurorsFinancialLossAmt;
+
+    @FindBy(xpath = "//*[@class='govuk-summary-list__value']")
+    public List <WebElement> dailyLimitExpenseValue;
+
+    @FindBy(xpath = "//*[@class='govuk-summary-list__value mod-red-text']")
+    public List <WebElement> dailyLimitAmountEntered;
 
     @FindBy(xpath = "//*[@class=\"govuk-summary-list__value\"]")
     public List <WebElement> financialLossGetAmt;
@@ -325,6 +336,35 @@ public class Expenses {
         return details;
             }
 
-        }
+    public void clickADraftExpensesTodaysDate() {
+        clickExpenseDatelink.click();
+
+    }
+    public Map<String, String> getLossOverLimitDetails() {
+        Map<String, String> details = new HashMap<>();
+
+        details.put("Juror's loss", jurorsFinancialLossAmt.get(0).getText());
+        details.put("Daily limit (Full day)", jurorsFinancialLossAmt.get(1).getText());
+        return details;
+    }
+    public Map<String, String> getTravelOverLimitDetails() {
+        Map<String, String> details = new HashMap<>();
+        details.put("Daily limit", dailyLimitExpenseValue.get(0).getText());
+        details.put("Amount entered", dailyLimitAmountEntered.get(0).getText());
+        System.out.println(dailyLimitAmountEntered.get(0).getText());
+        System.out.println(dailyLimitExpenseValue.get(0).getText());
+        return details;
+    }
+
+    public Map<String, String> getTaxiOverLimitDetails() {
+        Map<String, String> details = new HashMap<>();
+        details.put("Daily limit", dailyLimitExpenseValue.get(1).getText());
+        details.put("Amount entered", dailyLimitAmountEntered.get(1).getText());
+        return details;
+    }
+
+}
+
+
 
 

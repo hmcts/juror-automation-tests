@@ -176,4 +176,39 @@ public class StepDef_expenses {
         assertEquals(expectedData.get("Financial loss (capped)"), actualData.get("Financial loss (capped)"));
 
     }
+
+    @When("^I click on my draft expense link with todays date$")
+    public void clickdraftExpensesWithTodaysDate(){
+        EXPENSES.clickADraftExpensesTodaysDate();
+    }
+    @Then("^I see the following details on the loss over limit form$")
+    public void iSeeTheFollowingInformationOnlossOverLimitForm(DataTable dataTable) {
+
+        NAV.waitForPageLoad(3);
+        Map<String, String> expectedData = dataTable.asMap(String.class, String.class);
+        Map<String, String> actualData = EXPENSES.getLossOverLimitDetails();
+
+        assertEquals(expectedData.get("Juror's loss"), actualData.get("Juror's loss"));
+        assertEquals(expectedData.get("Daily limit (Full day)"), actualData.get("Daily limit (Full day)"));
+    }
+
+    @When("^I see the following public expenses on travel overlimit page$")
+    public void travelOverLimitExpense(DataTable dataTable){
+        NAV.waitForPageLoad(3);
+        Map<String, String> expectedData = dataTable.asMap(String.class, String.class);
+        Map<String, String> actualData = EXPENSES.getTravelOverLimitDetails();
+        assertEquals(expectedData.get("Daily limit"), actualData.get("Daily limit"));
+        assertEquals(expectedData.get("Amount entered"), actualData.get("Amount entered"));
+
+    }
+    @When("^I see the following taxi expenses on travel overlimit page$")
+    public void taxiOverLimitExpense(DataTable dataTable){
+        NAV.waitForPageLoad(3);
+        Map<String, String> expectedData = dataTable.asMap(String.class, String.class);
+        Map<String, String> actualData = EXPENSES.getTaxiOverLimitDetails();
+        assertEquals(expectedData.get("Daily limit"), actualData.get("Daily limit"));
+        assertEquals(expectedData.get("Amount entered"), actualData.get("Amount entered"));
+
+    }
 }
+
