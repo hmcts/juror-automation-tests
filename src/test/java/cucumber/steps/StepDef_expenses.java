@@ -49,6 +49,14 @@ public class StepDef_expenses {
     public void pressChangeJurorBankDetailsButton(){
         EXPENSES.pressChangeJurorBankDetailsButton();
     }
+    @When("^I press change juror change address button$")
+    public void pressChangeJurorAddressButton(){
+        EXPENSES.pressChangeJurorAddressButton();
+    }
+    @When("^I press Add or Change internal note button$")
+    public void pressChangeInternalNoteButton(){
+        EXPENSES.pressChangeInternalNoteButton();
+    }
     @When("^I set financial loss field to \"([^\"]*)\"$")
     public void setFinancialLossField(String loss){
         EXPENSES.setFinancialLossField(loss);

@@ -31,6 +31,10 @@ public class Expenses {
 
     @FindBy(id = "changeJurorBankDetailsAnchor")
     public WebElement changeJurorBankDetailsButton;
+    @FindBy(xpath = "//*[@id=\"addressChangeAnchor\"]")
+    public WebElement changeJurorAddressButton;
+    @FindBy(xpath = "//*[@id=\"notesChangeAnchor\"]")
+    public WebElement changeJurorInternalNoteButton;
 
     @FindBy(id = "financialLoss")
     public WebElement financialLossField;
@@ -143,6 +147,14 @@ public class Expenses {
 
     public void pressChangeJurorBankDetailsButton() {
         changeJurorBankDetailsButton.click();
+    }
+
+    public void pressChangeJurorAddressButton() {
+        changeJurorAddressButton.click();
+    }
+
+    public void pressChangeInternalNoteButton() {
+        changeJurorInternalNoteButton.click();
     }
 
     public void setFinancialLossField(String loss) {
