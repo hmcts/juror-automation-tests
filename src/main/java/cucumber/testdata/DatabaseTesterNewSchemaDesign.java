@@ -312,17 +312,17 @@ public class DatabaseTesterNewSchemaDesign {
 			conn = db.getConnection("demo");
 
 		try {
-			pStmt = conn.prepareStatement("update juror_mod.juror_response set " + column + "=? where juror_number=" + part_no + "");
+			pStmt = conn.prepareStatement("update juror_mod.juror_response set " + column + "=? where juror_number='" + part_no + "'");
 			pStmt.setString(1, value);
 
 			if (value.contains("-") && value.contains(":")) {
-				pStmt = conn.prepareStatement("update juror_mod.juror_response set " + column + "=TO_DATE(?, 'YYYY-MM-DD HH24:MI:SS') where juror_number=" + part_no + "");
+				pStmt = conn.prepareStatement("update juror_mod.juror_response set " + column + "=TO_DATE(?, 'YYYY-MM-DD HH24:MI:SS') where juror_number='" + part_no + "'");
 				pStmt.setString(1, value);
 			} else if (column.contains("COMPLETED_AT")) {
-				pStmt = conn.prepareStatement("update juror_mod.juror_response set " + column + "=TO_TIMESTAMP(?, 'YYYY-MM-DD HH24:MI:SS') where juror_number=" + part_no + "");
+				pStmt = conn.prepareStatement("update juror_mod.juror_response set " + column + "=TO_TIMESTAMP(?, 'YYYY-MM-DD HH24:MI:SS') where juror_number='" + part_no + "'");
 				pStmt.setString(1, value);
 			}
-			pStmt.executeQuery();
+			pStmt.execute();
 			log.info("Updated juror_response " + column + "");
 
 		} finally {
@@ -587,6 +587,11 @@ public class DatabaseTesterNewSchemaDesign {
 			pStmt.execute();
 			conn.commit();
 			log.info("Deleted from juror_mod.appearance where juror_number=>" + juror_number);
+
+			pStmt = conn.prepareStatement("delete from juror_mod.appearance_audit where juror_number='" + juror_number + "'");
+			pStmt.execute();
+			conn.commit();
+			log.info("Deleted from juror_mod.appearance_audit where juror_number=>" + juror_number);
 
 			pStmt = conn.prepareStatement("delete from juror_mod.juror_pool where juror_number='" + juror_number + "'");
 			pStmt.execute();
