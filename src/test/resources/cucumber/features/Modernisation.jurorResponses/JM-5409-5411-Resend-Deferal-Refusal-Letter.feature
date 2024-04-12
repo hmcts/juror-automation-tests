@@ -4,11 +4,11 @@ Feature: 1)JM-5409,JM-5411 - As a Bureau/jury officer I need to resend a deferra
   Scenario Outline:Verify as a bureau officer can able to resend a deferral refusal letter
 
     Given I am on "Bureau" "test"
-    And I clear down the bulk print data table for Juror "<juror_number>"
     And I log in as "<user>"
+
     When a bureau owned pool is created with jurors
-      | court | juror_number  | pool_number     | att_date_weeks_in_future   | owner |
-      | 415     | <juror_number>| <pool_number> | 5                       | 400  |
+      | court | juror_number  | pool_number   | att_date_weeks_in_future   | owner |
+      | 415   | <juror_number>| <pool_number> | 5                          | 400   |
 
     And the user searches for juror record "<juror_number>" from the global search bar
 
@@ -278,12 +278,12 @@ Feature: 1)JM-5409,JM-5411 - As a Bureau/jury officer I need to resend a deferra
 
     Given I am on "Bureau" "test"
     When a bureau owned pool is created with jurors
-      | court |juror_number         | pool_number      | att_date_weeks_in_future | owner |
-      | 415   | <juror_number>| <pool_number>   | 5                          | 400  |
+      | court | juror_number   | pool_number     | att_date_weeks_in_future | owner |
+      | 415   | <juror_number> | <pool_number>   | 5                        | 400   |
 
     Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no              | pool_no           | owner |
-      | <juror_number>| <pool_number>     | 415   |
+      | part_no         | pool_no           | owner |
+      | <juror_number>  | <pool_number>     | 415   |
 
     And I log in as "<user>"
     And I update the bureau transfer date of the juror "<juror_number>"
@@ -365,13 +365,13 @@ Feature: 1)JM-5409,JM-5411 - As a Bureau/jury officer I need to resend a deferra
     And I press the "Search" button
     Then I see "Change" on the page
     And I see "Print deferral refused letter" on the page
-    And I am able to see and interact with the jurors Deferral letter tabs and fields
+    And I am able to see and interact with the jurors Deferral Refused letter tabs and fields
     When I check the "<juror_number>" checkbox
     And I press the "Print deferral refused letter" button
     Then I see "https://juror.staging.apps.hmcts.net/documents/deferral-refused/letters-list?documentSearchBy=juror&jurorDetails=041530028" in the URL
 
     Examples:
-      | juror_number  | pool_number | user          |
+      | juror_number  | pool_number | user         |
       |  041530028    | 415300305   | MODTESTCOURT |
 
   @JurorTransformationMulti @NewSchemaConverted
