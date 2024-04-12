@@ -1948,6 +1948,9 @@ public class NavigationShared {
     @FindBy(id = "nonAttendanceDay")
     WebElement nonAttendanceDayDateField;
 
+    @FindBy(id = "attendanceDay")
+    WebElement attendanceDayDateField;
+
     @FindBy(id = "startDate")
     WebElement trialStartDate;
 
@@ -2102,6 +2105,10 @@ public class NavigationShared {
                 nonAttendanceDayDateField.sendKeys(mondayDateValue);
                 break;
 
+            case "Attendance Day":
+                attendanceDayDateField.clear();
+                attendanceDayDateField.sendKeys(mondayDateValue);
+                break;
         }
     }
 
