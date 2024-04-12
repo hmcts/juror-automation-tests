@@ -1969,6 +1969,12 @@ public class NavigationShared {
     @FindBy(id = "sentenceDate")
     WebElement sentenceDate;
 
+    @FindBy(id = "attendanceDay")
+    WebElement attendanceDay;
+
+    @FindBy(id = "hearingDate")
+    WebElement  hearingDate;
+
     public void enterNewDate(String attDateSequence, final String day, final String month, final String year) {
         log.info("Entering new date");
         switch (attDateSequence) {
@@ -2102,6 +2108,20 @@ public class NavigationShared {
                 nonAttendanceDayDateField.sendKeys(mondayDateValue);
                 break;
 
+            case "Attendance Day":
+                attendanceDay.clear();
+                attendanceDay.sendKeys(mondayDateValue);
+                break;
+
+            case "Next due date":
+                newAttendanceDateField.clear();
+                newAttendanceDateField.sendKeys(mondayDateValue);
+                break;
+
+            case "Show cause":
+                hearingDate.clear();
+                hearingDate.sendKeys(mondayDateValue);
+                break;
         }
     }
 

@@ -640,7 +640,7 @@ public class DatabaseTesterNewSchemaDesign {
 
 		try {
 			if (getCountFromJurorPoolByPoolNoNSD(pool_number) == 0)
-			pStmt = conn.prepareStatement("delete from juror_mod.pool where pool_no='" + pool_number + "'");
+				pStmt = conn.prepareStatement("delete from juror_mod.pool where pool_no='" + pool_number + "'");
 			pStmt.execute();
 			conn.commit();
 			log.info("Deleted from juror_mod.pool where pool_number=>" + pool_number);
@@ -2647,7 +2647,7 @@ public class DatabaseTesterNewSchemaDesign {
 
 		try {
 
-			pStmt = conn.prepareStatement("DELETE FROM JUROR_MOD.HOLIDAY WHERE LOC_CODE='" + holidayOwner +"'");
+			pStmt = conn.prepareStatement("DELETE FROM JUROR_MOD.HOLIDAY WHERE LOC_CODE='" + holidayOwner + "'");
 			pStmt.executeQuery();
 
 
@@ -4401,7 +4401,7 @@ public class DatabaseTesterNewSchemaDesign {
 			int judgeCode = rs.getInt(1);
 
 			pStmt = conn.prepareStatement("INSERT INTO juror_mod.trial (trial_number,loc_code,description,courtroom,judge,trial_type,trial_start_date,trial_end_date,anonymous,juror_requested,jurors_sent)"
-					+ "VALUES ('" + trialNumber + "','415','John Stark',653," + judgeCode +",'CRI','2024-08-28',NULL,false,NULL,NULL)");
+					+ "VALUES ('" + trialNumber + "','415','John Stark',653," + judgeCode + ",'CRI','2024-08-28',NULL,false,NULL,NULL)");
 			pStmt.executeUpdate();
 
 		} catch (SQLException e) {
@@ -4661,6 +4661,7 @@ public class DatabaseTesterNewSchemaDesign {
 			conn.close();
 		}
 	}
+
 	public void setJurorStatus(String jurorNumber, String jurorStatus) throws SQLException {
 		db = new DBConnection();
 
@@ -4685,6 +4686,7 @@ public class DatabaseTesterNewSchemaDesign {
 			conn.close();
 		}
 	}
+
 	public int getStatusNumber(String statusName) {
 		switch (statusName) {
 			case "Summoned":
@@ -4748,6 +4750,7 @@ public class DatabaseTesterNewSchemaDesign {
 		}
 
 	}
+
 	public void updatePendingLetterForInitialSummons(String poolNumber) throws SQLException {
 		db = new DBConnection();
 
@@ -4797,6 +4800,7 @@ public class DatabaseTesterNewSchemaDesign {
 			log.info("Database was updated successfully");
 		}
 	}
+
 	public void updateBureauTransferDate(String jurorNumber) throws SQLException {
 		db = new DBConnection();
 
@@ -4846,6 +4850,32 @@ public class DatabaseTesterNewSchemaDesign {
 			conn.close();
 		}
 	}
+	public void updateAppearanceForShowCause(String jurorNumber) throws SQLException {
+		db = new DBConnection();
 
+		String env_property = System.getProperty("env.database");
+
+		if (env_property != null)
+			conn = db.getConnection(env_property);
+		else
+			conn = db.getConnection("demo");
+
+		try {
+
+			pStmt = conn.prepareStatement("UPDATE juror_mod.appearance set no_show='true' where juror_number='" + jurorNumber + "'");
+			pStmt.executeUpdate();
+
+			pStmt = conn.prepareStatement("UPDATE juror_mod.appearance set attendance_type='ABSENT' where juror_number='" + jurorNumber + "'");
+			pStmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.error("Message:" + e.getMessage());
+
+		} finally {
+			conn.commit();
+			pStmt.close();
+			conn.close();
+		}
+	}
 }
-

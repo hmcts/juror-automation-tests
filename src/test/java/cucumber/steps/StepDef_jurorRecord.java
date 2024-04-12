@@ -583,6 +583,9 @@ public class StepDef_jurorRecord {
         JUROR_RECORD.postponementjurorsTabPresent("Reason");
         JUROR_RECORD.postponementjurorsTabPresent("Date printed");
     }
-
-
+    @Then("I see the absence date for juror \"([^\"]*)\" in the letters table$")
+    public void seeAbsenceDateInTable(String jurorNumber) {
+        NAV.waitForPageLoad(2);
+        JUROR_RECORD.seeAbsenceDateInTable(jurorNumber);
+    }
 }

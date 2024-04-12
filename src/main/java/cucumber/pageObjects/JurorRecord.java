@@ -691,5 +691,33 @@ public class JurorRecord {
         }
 
     }
+    public void seeAbsenceDateInTable(String jurorNumber) {
+        SimpleDateFormat formatter = new SimpleDateFormat("EEE d MMM yyyy");
+        String absenceDate = formatter.format(new Date());
 
+        WebElement table = driver.findElement(By.xpath("//*[@id=\"main-content\"]/div[4]/div/table"));
+        List<WebElement> rows = table.findElements(By.tagName("tr"));
+
+        for (WebElement row : rows) {
+            List<WebElement> cells = row.findElements(By.tagName("td"));
+            boolean jurorFound = false;
+            boolean dateFound = false;
+
+            for (WebElement cell : cells) {
+                String cellText = cell.getText();
+
+                if (cellText.contains(jurorNumber)) {
+                    jurorFound = true;
+                }
+                if (cellText.contains(absenceDate)) {
+                    dateFound = true;
+                }
+            }
+            if (jurorFound && dateFound) {
+                System.out.println("Found matching juror and date: " + jurorNumber + ", " + absenceDate);
+                return;
+            }
+        }
+        System.out.println("Matching juror and date not found: " + jurorNumber + ", " + absenceDate);
+    }
 }

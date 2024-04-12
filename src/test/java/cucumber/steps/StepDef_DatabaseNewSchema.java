@@ -618,14 +618,16 @@ public class StepDef_DatabaseNewSchema {
     }
 
     @Then("^I update the bureau transfer date of the juror \"([^\"]*)\"$")
-    public void updatebureautransferDateofCourtUser(String jurorNumber) throws SQLException{
+    public void updatebureautransferDateofCourtUser(String jurorNumber) throws SQLException {
         DBTNSD.updateBureauTransferDate(jurorNumber);
     }
-
-
     @Given("^I update daily expense amounts entered are more than court’s suggested daily limits$")
     public void setDailyExpensePubicTrasportAndTaxi() throws SQLException {
         DBTNSD.setExpenseDailyTransportLimit();
     }
 
+    @Given("^I update the appearance of juror \"([^\"]*)\" for show cause letter$")
+    public void updateAppearanceForShowCauseLetter(String jurorNumber) throws SQLException {
+        DBTNSD.updateAppearanceForShowCause(jurorNumber);
+    }
 }
