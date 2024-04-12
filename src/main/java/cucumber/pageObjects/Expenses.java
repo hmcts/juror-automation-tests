@@ -166,6 +166,9 @@ public class Expenses {
     @FindBy(xpath = "//*[@class=\"govuk-summary-list__value\"]")
     public List <WebElement> financialLossGetAmt;
 
+    @FindBy(xpath = "//*[@id=\"editExpensesForApprovalButton\"]")
+    public WebElement clickEditExpensesForApprovalButton;
+
     public void pressViewAllExpensesButton() {
         viewAllExpensesButton.click();
     }
@@ -380,6 +383,22 @@ public class Expenses {
         details.put("Daily limit", dailyLimitExpenseValue.get(1).getText());
         details.put("Amount entered", dailyLimitAmountEntered.get(1).getText());
         return details;
+    }
+    public void clickEditExpensesForApprovalButton(){
+        clickEditExpensesForApprovalButton.click();
+    }
+    public void clickLinkWithExpenseDate() {
+
+        LocalDate today = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("E dd MMM yyyy");
+        String formattedDate = today.format(formatter);
+
+        try {
+            NAV.click_link_by_text(formattedDate);
+        } catch (Exception e) {
+            NAV.waitForPageLoad();
+            NAV.click_link_by_text(formattedDate);
+        }
     }
 
 }

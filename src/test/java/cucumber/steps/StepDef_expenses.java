@@ -229,5 +229,13 @@ public class StepDef_expenses {
         assertEquals(expectedData.get("Amount entered"), actualData.get("Amount entered"));
 
     }
+    @When("^I click the edit expenses for approval button$")
+    public void clickEditExpensesForApprovalButton(){
+        EXPENSES.clickEditExpensesForApprovalButton();
+    }
+    @When("^I click on my expense link with todays date$")
+    public void clickLinkWithExpenseDate(){
+        EXPENSES.clickLinkWithExpenseDate();
+    }
 }
 
