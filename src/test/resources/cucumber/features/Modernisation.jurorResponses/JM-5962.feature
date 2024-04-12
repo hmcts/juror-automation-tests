@@ -73,10 +73,6 @@ Feature: JM-5962 - As a jury officer I need to be able to bulk change jurors att
     And I update juror "<juror_number_1>" to have a status of "Responded"
     And I update juror "<juror_number_2>" to have a status of "Responded"
 
-<<<<<<< HEAD
-=======
-
->>>>>>> fd4bb17 (Show cause letter and next due at court date scripts)
     And I log in as "<user>"
     Then I press the "Apps" button
     And I click on the "Pool management" link
