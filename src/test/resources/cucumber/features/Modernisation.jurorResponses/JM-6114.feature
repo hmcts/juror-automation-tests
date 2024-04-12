@@ -18,7 +18,7 @@ Feature: JM-6114 - As a jury officer, I want to edit submitted expenses before a
     #set juror as responded
     And I update juror "<juror_number>" to have a status of responded in order to record attendance
 
-    #check in jurors & I set default expenses
+    #check in jurors and set default expenses
     And I press the "Apps" button
     And I click on the "Juror management" link
     And I click on the "Record attendance" link
