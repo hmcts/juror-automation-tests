@@ -630,9 +630,4 @@ public class StepDef_DatabaseNewSchema {
     public void updateAppearanceForShowCauseLetter(String jurorNumber) throws SQLException {
         DBTNSD.updateAppearanceForShowCause(jurorNumber);
     }
-
-    @Given("^I update daily expense amounts entered are more than court’s suggested daily limits$")
-    public void setDailyExpensePubicTrasportAndTaxi() throws SQLException {
-        DBTNSD.setExpenseDailyTransportLimit();
-    }
 }
