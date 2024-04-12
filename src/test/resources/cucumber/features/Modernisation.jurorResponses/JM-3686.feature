@@ -76,7 +76,7 @@ Feature: JM-3686
    And I see "Will the juror need extra support or facilities at court?" on the page
    And I choose the "Yes" radio button
    And I see "Select reason" on the page
-   When I select "D - Diet" from the "Select reason" dropdown
+   When I select "D - Allergies" from the "Select reason" dropdown
    And I set "What help does the juror need at court" to "Nutritional Guidance"
    And I press the "Continue" button
 
