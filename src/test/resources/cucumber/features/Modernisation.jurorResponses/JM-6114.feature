@@ -18,8 +18,8 @@ Feature: JM-6114 - As a jury officer, I want to edit submitted expenses before a
     #set juror as responded
     And I update juror "<juror_number>" to have a status of responded in order to record attendance
 
-    #check in jurors
-    When I press the "Apps" button
+    #check in jurors & I set default expenses
+    And I press the "Apps" button
     And I click on the "Juror management" link
     And I click on the "Record attendance" link
     And I set the radio button to "Check in"
@@ -28,9 +28,7 @@ Feature: JM-6114 - As a jury officer, I want to edit submitted expenses before a
     And I set the radio button to "am"
     And I input juror "<juror_number>" to be checked in
     And I press the "Check in juror" button
-
-    #I set default expenses
-    When the user searches for juror record "<juror_number>" from the global search bar
+    And the user searches for juror record "<juror_number>" from the global search bar
     And I click on the "Expenses" link
     And I see "Daily expenses" on the page
     And I press change default expenses button
