@@ -556,7 +556,7 @@ public class StepDef_jurorRecord {
         JUROR_RECORD.deferralRefusedjurorsTabPresent("Last name");
         JUROR_RECORD.deferralRefusedjurorsTabPresent("Postcode");
         JUROR_RECORD.deferralRefusedjurorsTabPresent("Status");
-        JUROR_RECORD.deferralRefusedjurorsTabPresent("Refused to");
+        JUROR_RECORD.deferralRefusedjurorsTabPresent("Date refused");
         JUROR_RECORD.deferralRefusedjurorsTabPresent("Reason");
         JUROR_RECORD.deferralGrantedjurorsTabPresent("Date printed");
     }
