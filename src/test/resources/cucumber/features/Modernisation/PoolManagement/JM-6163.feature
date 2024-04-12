@@ -27,7 +27,7 @@ Feature: JM-6163 - As a Jury Officer, I need to add a non-attendance day for a j
 
     Examples:
       |user			|juror_number_1 |    pool_number   |
-      |MODTESTCOURT |041510001      | 416100301        |
+      |MODTESTCOURT |041510001      | 415100301        |
 
   @JurorTransformation @NewSchemaConverted
   Scenario Outline: unhappy path add non-attendance day with error checks
@@ -83,4 +83,4 @@ Feature: JM-6163 - As a Jury Officer, I need to add a non-attendance day for a j
 
     Examples:
       |user			|juror_number_1 |    pool_number   |
-      |MODTESTCOURT |041610001      | 416100301        |
+      |MODTESTCOURT |041510002      | 415100302        |

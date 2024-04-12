@@ -152,4 +152,4 @@ Feature: JM-6060 - As a jury officer, I want to be able to add or change juror's
 
     Examples:
       |user       |juror_number |   pool_number   |
-      |MODTESTCOURT |041536766    | 415360585       |
+      |MODTESTCOURT |041536766    | 415360586       |
