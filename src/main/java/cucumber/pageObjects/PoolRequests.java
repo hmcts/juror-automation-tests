@@ -464,8 +464,13 @@ public class PoolRequests {
         List<WebElement> poolLink = driver.findElements(By.xpath("//a[contains(text(),'" + poolNumber + "')]"));
 
         while (poolLink.size() != 1) {
-            log.info("Clicking next pagination");
-            clickNextPagination();
+            List<WebElement> nextPagination = driver.findElements(By.xpath("//a[@rel='next']"));
+            if (!nextPagination.isEmpty()) {
+                log.info("Clicking next pagination");
+                clickNextPagination();
+            } else {
+                log.info("Reached last page of pagination");
+            }
             poolLink = driver.findElements(By.xpath("//a[contains(text(),'" + poolNumber + "')]"));
             System.out.println("Pool Found: "+ poolLink.size());
         }
