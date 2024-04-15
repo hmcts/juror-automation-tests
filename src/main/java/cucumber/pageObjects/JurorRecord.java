@@ -218,6 +218,8 @@ public class JurorRecord {
 
     @FindBy(xpath = "//thead[@class=\"govuk-table__head\"]/tr/th/button")
     public List<WebElement> DeferralRefusedResultsheaderTableName;
+    @FindBy(xpath = "//thead[@class=\"govuk-table__head\"]/tr/th/button")
+    public List<WebElement> postponementJurorsResultsheaderTableName;
 
 
 
@@ -645,5 +647,77 @@ public class JurorRecord {
 
     public void initialSummonsBanner() {
         NAV.messageBanner.isDisplayed();
+    }
+
+    public void postponementjurorsTabPresent(final String tabName) {
+        log.info("Clicking tab");
+        switch (tabName) {
+            case "Juror number":
+                Assert.assertTrue("Expected Text not found", postponementJurorsResultsheaderTableName.get(0).getText().equals(tabName));
+                log.info(" Text - " + postponementJurorsResultsheaderTableName.get(0).getText() + " - is visible on the page ");
+                break;
+            case "First name":
+                Assert.assertTrue("Expected Text not found", postponementJurorsResultsheaderTableName.get(1).getText().equals(tabName));
+                log.info(" Text - " + postponementJurorsResultsheaderTableName.get(1).getText() + " - is visible on the page ");
+                break;
+            case "Last name":
+                Assert.assertTrue("Expected Text not found", postponementJurorsResultsheaderTableName.get(2).getText().equals(tabName));
+                log.info(" Text - " + postponementJurorsResultsheaderTableName.get(2).getText() + " - is visible on the page ");
+                break;
+            case "Postcode":
+                Assert.assertTrue("Expected Text not found", postponementJurorsResultsheaderTableName.get(3).getText().equals(tabName));
+                log.info(" Text - " + postponementJurorsResultsheaderTableName.get(3).getText() + " - is visible on the page ");
+                break;
+            case "Status":
+                Assert.assertTrue("Expected Text not found", postponementJurorsResultsheaderTableName.get(4).getText().equals(tabName));
+                log.info(" Text - " + postponementJurorsResultsheaderTableName.get(4).getText() + " - is visible on the page ");
+                break;
+            case "Postponed to":
+                Assert.assertTrue("Expected Text not found", postponementJurorsResultsheaderTableName.get(5).getText().equals(tabName));
+                log.info(" Text - " + postponementJurorsResultsheaderTableName.get(5).getText() + " - is visible on the page ");
+                break;
+            case "Reason":
+                Assert.assertTrue("Expected Text not found", postponementJurorsResultsheaderTableName.get(6).getText().equals(tabName));
+                log.info(" Text - " + postponementJurorsResultsheaderTableName.get(6).getText() + " - is visible on the page ");
+                break;
+            case "Date printed":
+                Assert.assertTrue("Expected Text not found", postponementJurorsResultsheaderTableName.get(7).getText().equals(tabName));
+                log.info(" Text - " + postponementJurorsResultsheaderTableName.get(7).getText() + " - is visible on the page ");
+                break;
+
+            default:
+                log.info("Expected element text is not present on the page");
+                break;
+        }
+
+    }
+    public void seeAbsenceDateInTable(String jurorNumber) {
+        SimpleDateFormat formatter = new SimpleDateFormat("EEE d MMM yyyy");
+        String absenceDate = formatter.format(new Date());
+
+        WebElement table = driver.findElement(By.xpath("//*[@id=\"main-content\"]/div[4]/div/table"));
+        List<WebElement> rows = table.findElements(By.tagName("tr"));
+
+        for (WebElement row : rows) {
+            List<WebElement> cells = row.findElements(By.tagName("td"));
+            boolean jurorFound = false;
+            boolean dateFound = false;
+
+            for (WebElement cell : cells) {
+                String cellText = cell.getText();
+
+                if (cellText.contains(jurorNumber)) {
+                    jurorFound = true;
+                }
+                if (cellText.contains(absenceDate)) {
+                    dateFound = true;
+                }
+            }
+            if (jurorFound && dateFound) {
+                System.out.println("Found matching juror and date: " + jurorNumber + ", " + absenceDate);
+                return;
+            }
+        }
+        System.out.println("Matching juror and date not found: " + jurorNumber + ", " + absenceDate);
     }
 }

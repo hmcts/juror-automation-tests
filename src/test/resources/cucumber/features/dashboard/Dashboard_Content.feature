@@ -2,18 +2,18 @@ Feature: Dashboard
 
 @dashboard @ostest
 Scenario: Dashboard - Content
-	Given I am on "Dashboard" "juror-test01"
+	Given I am on "Dashboard" "test"
 	
 	And I see "Reply to a jury summons" on the page
 	And I see "This dashboard shows information about how the Reply to a jury summons service is currently performing." on the page
-	And I see "These figures are valid from July 2018 when the service launched." on the page
+	And I see "These figures are since September 2019 when more detailed reporting was implemented." on the page
 	
 	Then I see "Total summonses sent" on the page
 	Then I see "Number of online replies" on the page
 	Then I see "Digital take-up" on the page
 	
 	And I see link with text "contact the product manager"
-	Then I see "These figures are since August 2019 when more detailed reporting was implemented. If you require data before August 2019 please contact the product manager, Janet Healey." on the page
+	Then I see "These figures are since September 2019 when more detailed reporting was implemented. If you require data before September 2019 please contact the product manager, Andrew Singleton Bisby." on the page
 	Then I see "Select a monthly date range" on the page
 	
 	When I select "January" from the "startMonth" dropdown on the Dashboard

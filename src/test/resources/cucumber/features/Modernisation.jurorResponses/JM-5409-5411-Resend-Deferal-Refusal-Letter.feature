@@ -1,15 +1,14 @@
-Feature: 1)JM-5409 As a Bureau officer I need to resend a deferral refusal letters
-  2) JM-5411 As a Jury officer I need to resend a deferral refusal letters
-
+Feature: 1)JM-5409,JM-5411 - As a Bureau/jury officer I need to resend a deferral refusal letters
 
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline:Verify as a bureau officer can able to resend a deferral refusal letter
 
     Given I am on "Bureau" "test"
     And I log in as "<user>"
+
     When a bureau owned pool is created with jurors
-      | court | juror_number  | pool_number     | att_date_weeks_in_future   | owner |
-      | 415     | <juror_number>| <pool_number> | 5                       | 400  |
+      | court | juror_number  | pool_number   | att_date_weeks_in_future   | owner |
+      | 415   | <juror_number>| <pool_number> | 5                          | 400   |
 
     And the user searches for juror record "<juror_number>" from the global search bar
 
@@ -106,6 +105,7 @@ Feature: 1)JM-5409 As a Bureau officer I need to resend a deferral refusal lette
   Scenario Outline:As a bureau officer verify a deferred juror letter in printing stage can delete
 
     Given I am on "Bureau" "test"
+    And I clear down the bulk print data table for Juror "<juror_number>"
     And I log in as "<user>"
     When a bureau owned pool is created with jurors
       | court | juror_number  | pool_number     | att_date_weeks_in_future   | owner |
@@ -191,6 +191,7 @@ Feature: 1)JM-5409 As a Bureau officer I need to resend a deferral refusal lette
   Scenario Outline:Verify as a bureau user can view letters queued for printing and can delete it
 
     Given I am on "Bureau" "test"
+    And I clear down the bulk print data table for Juror "<juror_number>"
     And I log in as "<user>"
     When a bureau owned pool is created with jurors
       | court   | juror_number  | pool_number     | att_date_weeks_in_future   | owner |
@@ -256,7 +257,6 @@ Feature: 1)JM-5409 As a Bureau officer I need to resend a deferral refusal lette
     And I press the "Continue" button
     Then I see "Deferral refused (other)" on the page
 
-
    #navigate to documents and verify the printing message
     And I press the "Apps" button
     And I click on the "Documents" link
@@ -273,19 +273,20 @@ Feature: 1)JM-5409 As a Bureau officer I need to resend a deferral refusal lette
       |  041520026     |415300703   | MODTESTBUREAU  |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @JM-6314
+  @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline:As a jury officer test a Deferred juror can resend a refused letter by searching via juror number
 
     Given I am on "Bureau" "test"
     When a bureau owned pool is created with jurors
-      | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
-      | 415   | <juror_number>| <pool_number>   | 5                          | 400  |
+      | court | juror_number   | pool_number     | att_date_weeks_in_future | owner |
+      | 415   | <juror_number> | <pool_number>   | 5                        | 400   |
 
     Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no              | pool_no           | owner |
-      | <juror_number>| <pool_number>     | 415   |
+      | part_no         | pool_no           | owner |
+      | <juror_number>  | <pool_number>     | 415   |
 
     And I log in as "<user>"
+    And I update the bureau transfer date of the juror "<juror_number>"
     When the user searches for juror record "<juror_number>" from the global search bar
 
   #record paper summons response
@@ -348,7 +349,6 @@ Feature: 1)JM-5409 As a Bureau officer I need to resend a deferral refusal lette
     And I press the "Continue" button
     Then I see "Deferral refused (other)" on the page
 
-
     And I press the "Apps" button
     When I click on the "Documents" link
     And I click on the "Deferral refused letters" link
@@ -364,23 +364,22 @@ Feature: 1)JM-5409 As a Bureau officer I need to resend a deferral refusal lette
     When I set "Enter juror name, number or postcode" to "<juror_number>"
     And I press the "Search" button
     Then I see "Change" on the page
-    #Below step will fail due to JM-6314
     And I see "Print deferral refused letter" on the page
-    And I am able to see and interact with the jurors Deferral letter tabs and fields
+    And I am able to see and interact with the jurors Deferral Refused letter tabs and fields
     When I check the "<juror_number>" checkbox
     And I press the "Print deferral refused letter" button
-    Then I see "https://juror-test-bureau.clouddev.online/documents/deferral-granted/letters-list?documentSearchBy=juror&jurorDetails=041530028" in the URL
+    Then I see "https://juror.staging.apps.hmcts.net/documents/deferral-refused/letters-list?documentSearchBy=juror&jurorDetails=041530028" in the URL
 
     Examples:
-      | juror_number  | pool_number | user          |
+      | juror_number  | pool_number | user         |
       |  041530028    | 415300305   | MODTESTCOURT |
 
-  @JurorTransformationWIP @NewSchemaConverted @JM-6314 @JM-6338
+  @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline:As a jury officer test a Deferred juror can resend a granted refused letter by searching via pool number
 
     Given I am on "Bureau" "test"
     When a bureau owned pool is created with jurors
-      | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+      | court |juror_number         | pool_number      | att_date_weeks_in_future | owner |
       | 415   | <juror_number>| <pool_number>   | 5                          | 400  |
 
     Then a new pool is inserted for where record has transferred to the court new schema
@@ -388,6 +387,7 @@ Feature: 1)JM-5409 As a Bureau officer I need to resend a deferral refusal lette
       | <juror_number>| <pool_number>     | 415   |
 
     And I log in as "<user>"
+    And I update the bureau transfer date of the juror "<juror_number>"
     When the user searches for juror record "<juror_number>" from the global search bar
 
   #record paper summons response
@@ -465,15 +465,13 @@ Feature: 1)JM-5409 As a Bureau officer I need to resend a deferral refusal lette
     When I set "Enter pool number" to "<pool_number>"
     And I check the "Include printed" checkbox
     And I press the "Search" button
-    #Below step will fail due to @JM-6314 @JM-6338
     Then I see "Change" on the page
     And I see the printed letter for juror number "<juror_number>" in the letters table
     And I see "Print deferral refused letter" on the page
     When I check the "<juror_number>" checkbox
     And I press the "Print deferral refused letter" button
-    Then I see "https://juror-test-bureau.clouddev.online/documents/deferral-granted/letters-list?documentSearchBy=pool&poolDetails=415300305&includePrinted=includePrinted" in the URL
+    Then I see "https://juror.staging.apps.hmcts.net/documents/deferral-refused/letters-list?documentSearchBy=pool&poolDetails=415300305&includePrinted=includePrinted" in the URL
 
     Examples:
       | juror_number  | pool_number | user          |
       |  041530029    | 415300305   | MODTESTCOURT |
-

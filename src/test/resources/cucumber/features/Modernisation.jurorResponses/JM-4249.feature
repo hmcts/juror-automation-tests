@@ -55,7 +55,7 @@ Feature: JM-4249 Edit Juror Record as Bureau User
     And I see "Will the juror need extra support or facilities at court" on the page
     When I select the yes radio button from the Additional Requirements Juror details
     And I see "Select a reason" on the page
-    When I select "D - Diet" from the "Select a reason" dropdown
+    When I select "D - Allergies" from the "Select a reason" dropdown
     And I set "What help does this juror need at court" to "Nutritional Guidance"
     And I press the "Save" button
     And I see "Testing Test" on the page

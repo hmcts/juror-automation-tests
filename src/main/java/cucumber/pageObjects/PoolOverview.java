@@ -93,6 +93,9 @@ public class PoolOverview {
     @FindBy(id = "jurorOverview")
     WebElement jurorsTable;
 
+    @FindBy(id = "pool-overview-filter")
+    WebElement poolFilterTable;
+
     public String getCourtName() {
         log.info("Getting court name");
         return courtName.getText();
@@ -258,5 +261,9 @@ public class PoolOverview {
         return elementsInPosition;
 
     }
+    public void nextDueAtCourtBanner() {
+        NAV.messageBanner.isDisplayed();
+        System.out.println("See Next due at court banner");
 
+    }
 }

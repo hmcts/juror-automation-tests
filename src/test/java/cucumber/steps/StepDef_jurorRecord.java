@@ -556,7 +556,7 @@ public class StepDef_jurorRecord {
         JUROR_RECORD.deferralRefusedjurorsTabPresent("Last name");
         JUROR_RECORD.deferralRefusedjurorsTabPresent("Postcode");
         JUROR_RECORD.deferralRefusedjurorsTabPresent("Status");
-        JUROR_RECORD.deferralRefusedjurorsTabPresent("Refused to");
+        JUROR_RECORD.deferralRefusedjurorsTabPresent("Date refused");
         JUROR_RECORD.deferralRefusedjurorsTabPresent("Reason");
         JUROR_RECORD.deferralGrantedjurorsTabPresent("Date printed");
     }
@@ -570,5 +570,22 @@ public class StepDef_jurorRecord {
     @When("^I see the documents sent banner for the initial summons letters$")
     public void seeIntialSummonsLetterBanner() {
         JUROR_RECORD.initialSummonsBanner();
+    }
+
+    @Then("^I am able to see and interact with the jurors Postponement letter tabs and fields$")
+    public void iAmAbleToSeeAndInteractWithThePostponementLetterTabsAndFields() {
+        JUROR_RECORD.postponementjurorsTabPresent("Juror number");
+        JUROR_RECORD.postponementjurorsTabPresent("First name");
+        JUROR_RECORD.postponementjurorsTabPresent("Last name");
+        JUROR_RECORD.postponementjurorsTabPresent("Postcode");
+        JUROR_RECORD.postponementjurorsTabPresent("Status");
+        JUROR_RECORD.postponementjurorsTabPresent("Postponed to");
+        JUROR_RECORD.postponementjurorsTabPresent("Reason");
+        JUROR_RECORD.postponementjurorsTabPresent("Date printed");
+    }
+    @Then("I see the absence date for juror \"([^\"]*)\" in the letters table$")
+    public void seeAbsenceDateInTable(String jurorNumber) {
+        NAV.waitForPageLoad(2);
+        JUROR_RECORD.seeAbsenceDateInTable(jurorNumber);
     }
 }

@@ -312,17 +312,17 @@ public class DatabaseTesterNewSchemaDesign {
 			conn = db.getConnection("demo");
 
 		try {
-			pStmt = conn.prepareStatement("update juror_mod.juror_response set " + column + "=? where juror_number=" + part_no + "");
+			pStmt = conn.prepareStatement("update juror_mod.juror_response set " + column + "=? where juror_number='" + part_no + "'");
 			pStmt.setString(1, value);
 
 			if (value.contains("-") && value.contains(":")) {
-				pStmt = conn.prepareStatement("update juror_mod.juror_response set " + column + "=TO_DATE(?, 'YYYY-MM-DD HH24:MI:SS') where juror_number=" + part_no + "");
+				pStmt = conn.prepareStatement("update juror_mod.juror_response set " + column + "=TO_DATE(?, 'YYYY-MM-DD HH24:MI:SS') where juror_number='" + part_no + "'");
 				pStmt.setString(1, value);
 			} else if (column.contains("COMPLETED_AT")) {
-				pStmt = conn.prepareStatement("update juror_mod.juror_response set " + column + "=TO_TIMESTAMP(?, 'YYYY-MM-DD HH24:MI:SS') where juror_number=" + part_no + "");
+				pStmt = conn.prepareStatement("update juror_mod.juror_response set " + column + "=TO_TIMESTAMP(?, 'YYYY-MM-DD HH24:MI:SS') where juror_number='" + part_no + "'");
 				pStmt.setString(1, value);
 			}
-			pStmt.executeQuery();
+			pStmt.execute();
 			log.info("Updated juror_response " + column + "");
 
 		} finally {
@@ -588,6 +588,11 @@ public class DatabaseTesterNewSchemaDesign {
 			conn.commit();
 			log.info("Deleted from juror_mod.appearance where juror_number=>" + juror_number);
 
+			pStmt = conn.prepareStatement("delete from juror_mod.appearance_audit where juror_number='" + juror_number + "'");
+			pStmt.execute();
+			conn.commit();
+			log.info("Deleted from juror_mod.appearance_audit where juror_number=>" + juror_number);
+
 			pStmt = conn.prepareStatement("delete from juror_mod.juror_pool where juror_number='" + juror_number + "'");
 			pStmt.execute();
 			conn.commit();
@@ -635,7 +640,7 @@ public class DatabaseTesterNewSchemaDesign {
 
 		try {
 			if (getCountFromJurorPoolByPoolNoNSD(pool_number) == 0)
-			pStmt = conn.prepareStatement("delete from juror_mod.pool where pool_no='" + pool_number + "'");
+				pStmt = conn.prepareStatement("delete from juror_mod.pool where pool_no='" + pool_number + "'");
 			pStmt.execute();
 			conn.commit();
 			log.info("Deleted from juror_mod.pool where pool_number=>" + pool_number);
@@ -829,6 +834,13 @@ public class DatabaseTesterNewSchemaDesign {
 		try {
 			pStmt = conn.prepareStatement("INSERT INTO juror_mod.juror_history (juror_number,date_created, history_code, user_id, other_information,pool_number)"
 					+ "VALUES ('" + part_no + "', NOW(), 'RSUM', 'CPASS', 'File -JURY081001.0001', '" + pool_no + "')");
+			pStmt.execute();
+
+			pStmt = conn.prepareStatement("insert into juror_mod.rev_info (revision_number, revision_timestamp) values ((select MAX(revision_number)+1 from juror.juror_mod.rev_info), EXTRACT(EPOCH FROM current_date))");
+			pStmt.execute();
+
+			pStmt = conn.prepareStatement("INSERT INTO juror_mod.juror_audit (revision,juror_number,rev_type,title,first_name,last_name,dob,address_line_1,address_line_2,address_line_3,address_line_4,address_line_5,address6,postcode,h_email,h_phone,m_phone,w_phone,w_ph_local,bank_acct_no,bldg_soc_roll_no,sort_code,pending_title,pending_first_name,pending_last_name,claiming_subsistence_allowance,smart_card_number)"
+					+ "VALUES ((select max(revision_number) from juror_mod.rev_info),'" + part_no + "',1,NULL,'FNAME','LNAME',NULL,'Line 1','Testtown',NULL,'Testcity',NULL,NULL,'CH1 2NN',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,FALSE,NULL)");
 			pStmt.execute();
 		} finally {
 			conn.commit();
@@ -2642,7 +2654,7 @@ public class DatabaseTesterNewSchemaDesign {
 
 		try {
 
-			pStmt = conn.prepareStatement("DELETE FROM JUROR_MOD.HOLIDAY WHERE LOC_CODE='" + holidayOwner +"'");
+			pStmt = conn.prepareStatement("DELETE FROM JUROR_MOD.HOLIDAY WHERE LOC_CODE='" + holidayOwner + "'");
 			pStmt.executeQuery();
 
 
@@ -4396,7 +4408,7 @@ public class DatabaseTesterNewSchemaDesign {
 			int judgeCode = rs.getInt(1);
 
 			pStmt = conn.prepareStatement("INSERT INTO juror_mod.trial (trial_number,loc_code,description,courtroom,judge,trial_type,trial_start_date,trial_end_date,anonymous,juror_requested,jurors_sent)"
-					+ "VALUES ('" + trialNumber + "','415','John Stark',653," + judgeCode +",'CRI','2024-08-28',NULL,false,NULL,NULL)");
+					+ "VALUES ('" + trialNumber + "','415','John Stark',653," + judgeCode + ",'CRI','2024-08-28',NULL,false,NULL,NULL)");
 			pStmt.executeUpdate();
 
 		} catch (SQLException e) {
@@ -4656,6 +4668,7 @@ public class DatabaseTesterNewSchemaDesign {
 			conn.close();
 		}
 	}
+
 	public void setJurorStatus(String jurorNumber, String jurorStatus) throws SQLException {
 		db = new DBConnection();
 
@@ -4680,6 +4693,7 @@ public class DatabaseTesterNewSchemaDesign {
 			conn.close();
 		}
 	}
+
 	public int getStatusNumber(String statusName) {
 		switch (statusName) {
 			case "Summoned":
@@ -4743,6 +4757,7 @@ public class DatabaseTesterNewSchemaDesign {
 		}
 
 	}
+
 	public void updatePendingLetterForInitialSummons(String poolNumber) throws SQLException {
 		db = new DBConnection();
 
@@ -4790,6 +4805,84 @@ public class DatabaseTesterNewSchemaDesign {
 			pStmt.close();
 			conn.close();
 			log.info("Database was updated successfully");
+		}
+	}
+
+	public void updateBureauTransferDate(String jurorNumber) throws SQLException {
+		db = new DBConnection();
+
+		String env_property = System.getProperty("env.database");
+
+		if (env_property != null)
+			conn = db.getConnection(env_property);
+		else
+			conn = db.getConnection("demo");
+
+		try {
+
+			pStmt = conn.prepareStatement("update juror_mod.juror set bureau_transfer_date =CURRENT_DATE-1  where juror_number='" + jurorNumber + "'");
+			pStmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.error("Message:" + e.getMessage());
+
+		} finally {
+			conn.commit();
+			pStmt.close();
+			conn.close();
+		}
+	}
+	public void setExpenseDailyTransportLimit() throws SQLException {
+		db = new DBConnection();
+
+		String env_property = System.getProperty("env.database");
+
+		if (env_property != null)
+			conn = db.getConnection(env_property);
+		else
+			conn = db.getConnection("demo");
+
+		try {
+			pStmt = conn.prepareStatement("update juror_mod.court_location set public_transport_soft_limit = 10,taxi_soft_limit = 10 where loc_code = '415'");
+			pStmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.error("Message:" + e.getMessage());
+
+		} finally {
+			conn.commit();
+			pStmt.close();
+			conn.close();
+		}
+	}
+	public void updateAppearanceForShowCause(String jurorNumber) throws SQLException {
+		db = new DBConnection();
+
+		String env_property = System.getProperty("env.database");
+
+		if (env_property != null)
+			conn = db.getConnection(env_property);
+		else
+			conn = db.getConnection("demo");
+
+		try {
+
+			pStmt = conn.prepareStatement("UPDATE juror_mod.appearance set no_show='true' where juror_number='" + jurorNumber + "'");
+			pStmt.executeUpdate();
+
+			pStmt = conn.prepareStatement("UPDATE juror_mod.appearance set attendance_type='ABSENT' where juror_number='" + jurorNumber + "'");
+			pStmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.error("Message:" + e.getMessage());
+
+		} finally {
+			conn.commit();
+			pStmt.close();
+			conn.close();
 		}
 	}
 }
