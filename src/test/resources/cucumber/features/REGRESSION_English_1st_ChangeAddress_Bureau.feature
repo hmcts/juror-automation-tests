@@ -638,12 +638,12 @@ Scenario Outline: Change postcode - new postcode not in court_catchment_area SHO
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	Then I see "results for “<part_no>”" on the page
+	Then I see "results for "<juror_number>"" on the page
 	
 	#JDB-3629
 	When I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "SW1H 2AN" on the page
-	And I see "Check catchment area" on the page
+	And I see "Juror's address is outside the catchment area of the court they were summoned to" on the page
 	
 Examples:
 	| juror_number	| last_name	| postcode	| email 		| pool_number	|
