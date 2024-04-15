@@ -677,7 +677,7 @@ public class DatabaseTesterNewSchemaDesign {
 
 			if (getCountFromUniquePoolNSD(pool_number) == 0)
 				pStmt = conn.prepareStatement("INSERT INTO juror_mod.pool (pool_no, owner, return_date, no_requested, pool_type, loc_code, new_request, last_update, additional_summons, attend_time, nil_pool, total_no_required, date_created)"
-						+ "VALUES ('" + pool_number + "', '" + owner + "', '" + attDate + "', 20, 'CRO', '" + court + "', 'N', NOW(), NULL, null, false, 0, NOW())");
+						+ "VALUES ('" + pool_number + "', '" + owner + "', '" + attDate + "', 20, 'CRO', '" + court + "', 'N', NOW(), NULL, (timestamp '" + attDate + " 10:00:00'), false, 0, NOW())");
 			pStmt.execute();
 
 		} finally {
