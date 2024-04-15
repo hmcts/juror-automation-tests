@@ -6,7 +6,7 @@ Feature: JM-6070 - As a jury officer, I want to record a juror's financial loss 
     Given I am on "Bureau" "test"
     When a bureau owned pool is created with jurors
       | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
-      | 415   |<juror_number>     | <pool_number>     | 5				            | 400	|
+      | 415   |<juror_number>     | <pool_number>     | -1				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
       |part_no              | pool_no           | owner |
@@ -28,6 +28,7 @@ Feature: JM-6070 - As a jury officer, I want to record a juror's financial loss 
     And I set the radio button to "am"
     And I input juror "<juror_number>" to be checked in
     And I press the "Check in juror" button
+
 
     And the user searches for juror record "<juror_number>" from the global search bar
     And I click on the "Expenses" link
@@ -64,12 +65,13 @@ Feature: JM-6070 - As a jury officer, I want to record a juror's financial loss 
     And I set the radio button to "pm"
     And I press the "Continue" button
     And I press the "Confirm attendance list is correct" button
+
     And the user searches for juror record "<juror_number>" from the global search bar
     And I click on the "Expenses" link
     And I click on the "View all expenses" link
     And I click on the "View expenses" link
     And I press the "Add a non-attendance day" button
-    And I set the "Enter a date for the non-attendance day" date to a Monday "21" weeks in the future
+    And I set the non-attendance date to yesterday
     And I press the "Add non-attendance day" button
     When I click on the non attendance expense link
     Then I see "fname lname" on the page
@@ -88,6 +90,7 @@ Feature: JM-6070 - As a jury officer, I want to record a juror's financial loss 
     And I press "Save and next" button
     And I see "Juror’s financial loss is over the daily limit" on the page
     And I press the "Continue" button
+    And I press "Save and next" button
     And I see "Add a non-attendance day" on the page
 
     Examples:

@@ -182,7 +182,7 @@ Feature: JM-4184 - The system shall allow the jury officer to process a summons 
       | MODTESTCOURT  | 041516913     | 415308241    |
 
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti @NewSchemaConverted @JM-6998
   Scenario Outline: Process summons reply that has been returned late (Reassign)
     Given I am on "Bureau" "test"
 
