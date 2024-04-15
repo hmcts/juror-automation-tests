@@ -577,7 +577,7 @@ public class StepDef_navigation {
 
 	}
 	@When("^I set the non-attendance date to yesterday$")
-	public void iSetTheAttendanceDateToToday() {
+	public void iSetTheAttendanceDateToYesterday() {
 		String datePattern = "dd/MM/yyyy";
 		Calendar calendar = Calendar.getInstance();
 		calendar.add(Calendar.DATE, -1);
