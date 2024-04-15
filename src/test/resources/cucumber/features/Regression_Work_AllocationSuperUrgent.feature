@@ -133,7 +133,7 @@ Scenario Outline: Check that Super Urgent ST is not auto assigned
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |
-		| 452   | <juror_number>| <pool_number>	| 2				            | 400	|
+		| 452   | <juror_number>| <pool_number>	| 1				            | 400	|
 
 	Given a new pool is inserted for where record has transferred to the court new schema
 		| part_no         | pool_no       | owner |
@@ -246,7 +246,7 @@ Scenario Outline: Check that Super Urgent ST is not auto assigned
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	Then I see "TO DO" in the same row as "<juror_number>"
+	Then I see "To do" in the same row as "<juror_number>"
 	When I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "SEND TO COURT" on the page
 	
