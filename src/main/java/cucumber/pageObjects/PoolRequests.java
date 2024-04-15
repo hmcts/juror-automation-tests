@@ -470,6 +470,7 @@ public class PoolRequests {
                 clickNextPagination();
             } else {
                 log.info("Reached last page of pagination");
+                break;
             }
             poolLink = driver.findElements(By.xpath("//a[contains(text(),'" + poolNumber + "')]"));
             System.out.println("Pool Found: "+ poolLink.size());

@@ -614,13 +614,10 @@ public class StepDef_jurorpool {
     public void iShouldSeeTheDetailsOfTheNilPool(DataTable table) {
         Map<String, String> data = table.asMap(String.class, String.class);
         poolRequestNumber.set(CHECK_POOL_REQUEST_PAGE.getPoolNumber());
+        poolNumber.set(CHECK_POOL_REQUEST_PAGE.getPoolNumber());
 
         assertEquals(data.get("courtName"), CHECK_POOL_REQUEST_PAGE.getCourtName());
         assertEquals(data.get("poolType"), CHECK_POOL_REQUEST_PAGE.getPoolType());
-        assertEquals(data.get("additionalRequirements"), CHECK_POOL_REQUEST_PAGE.getAdditionalRequirements());
-        assertEquals(data.get("totalJurorsRequired"), CHECK_POOL_REQUEST_PAGE.getNumberOfJurors());
-        assertEquals(data.get("numberOfDeferrals"), CHECK_POOL_REQUEST_PAGE.getNumberOfDeferrals());
-        assertEquals(data.get("additionalJurors"), CHECK_POOL_REQUEST_PAGE.getNumberOfAdditionalJurors());
     }
 
     @When("^I click the change button for the check pool request page$")

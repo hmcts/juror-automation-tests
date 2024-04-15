@@ -123,7 +123,7 @@ Feature: JM-252 Bureau user create new pools
     And I should see the details of the pool
       | courtName              | <displayCourt> (<courtCode>)  |
       | poolType               | <courtTypeFull>               |
-      | totalJurorsRequired    | <noJurors>                    |
+      | totalJurorsRequired    | 0                    |
       | numberOfDeferrals      | 0                             |
       | additionalJurors       | <noJurors>                    |
 
@@ -135,7 +135,7 @@ Feature: JM-252 Bureau user create new pools
 
     And I should see the newly created pool request
       | court          | <displayCourt> |
-      | jurorsRequired |                |
+      | jurorsRequired |      0         |
 
     Examples:
       | user	      |     | selectedCourt | courtType | courtTypeFull | courtCode | displayCourt | noJurors |

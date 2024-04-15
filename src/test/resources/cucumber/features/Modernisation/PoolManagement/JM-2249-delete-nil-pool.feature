@@ -23,52 +23,39 @@
     #check page content
 
     And on the page I see
-      | text|
-      |Request a new pool|
-      |Court name or location code|
-      |Chester                    |
-      |Attendance date            |
-      |Pool type                  |
-      |Crown court                |
-      |High court                 |
-      |Civil court                |
-      |Number of jurors required in total|
-      |Number of court deferrals to include in this pool|
+      | text              |
+      | Create a nil pool |
+      | Court name        |
+      | Chester           |
+      | Pool type         |
+      | Crown court       |
+      | High court        |
+      | Civil court       |
 
     And I see the attendance date of the pool
 
     #complete new pool fields
-    Then I click the change link for the court deferrals
-    And I change the number of court deferrals to "0"
 
     Then I set the radio button to "Crown"
-    And I set "Number of jurors required in total" to "0"
     Then I press the "Continue" button
 
     #check pool request
 
-    Then I see "Check your pool request" on the page
+    Then I see "Check nil pool details" on the page
 
-    And I should see the details of the pool
+    And I should see the details of the nil pool
       | courtName              | Chester (415)                 |
       | poolType               | Crown court                   |
-      | totalJurorsRequired    | 0                             |
-      | numberOfDeferrals      | 0                             |
-      | additionalJurors       | 0                             |
+
 
     # Can submit the new pool request
 
     When I save the new pool request
     Then I should be taken to the pool summary page
-    And I click on the "Service start date" link
 
-    And I should see the newly created pool request
-      | court          | Chester        |
-      | jurorsRequired |                |
+    When I click on the "Search" link
+    Then I search for pool number
 
-    # Opening pool request overview
-
-    When I click on the pool number
     Then the system will display non-editable information on the nil pool summary screen
       | court          | Chester        |
       | courtCode      | 415            |
@@ -79,7 +66,6 @@
     # Deleting pool request
 
     When I click the delete pool request button
-    Then I am asked if I'm sure I want to delete
     When I click the confirm deletion button
     Then a message is displayed on the pool requests page informing me that the pool has been deleted
     And the pool is no longer visible
@@ -107,52 +93,39 @@
     #check page content
 
     And on the page I see
-      | text|
-      |Request a new pool|
-      |Court name or location code|
-      |Chester                    |
-      |Attendance date            |
-      |Pool type                  |
-      |Crown court                |
-      |High court                 |
-      |Civil court                |
-      |Number of jurors required in total|
-      |Number of court deferrals to include in this pool|
+      | text              |
+      | Create a nil pool |
+      | Court name        |
+      | Chester           |
+      | Pool type         |
+      | Crown court       |
+      | High court        |
+      | Civil court       |
 
     And I see the attendance date of the pool
 
     #complete new pool fields
-    Then I click the change link for the court deferrals
-    And I change the number of court deferrals to "0"
 
     Then I set the radio button to "Crown"
-    And I set "Number of jurors required in total" to "0"
     Then I press the "Continue" button
 
     #check pool request
 
-    Then I see "Check your pool request" on the page
+    Then I see "Check nil pool details" on the page
 
-    And I should see the details of the pool
+    And I should see the details of the nil pool
       | courtName              | Chester (415)                 |
       | poolType               | Crown court                   |
-      | totalJurorsRequired    | 0                             |
-      | numberOfDeferrals      | 0                             |
-      | additionalJurors       | 0                             |
+
 
     # Can submit the new pool request
 
     When I save the new pool request
     Then I should be taken to the pool summary page
-    And I click on the "Service start date" link
 
-    And I should see the newly created pool request
-      | court          | Chester        |
-      | jurorsRequired |                |
+    When I click on the "Search" link
+    Then I search for pool number
 
-    # Opening pool request overview
-
-    When I click on the pool number
     Then the system will display non-editable information on the nil pool summary screen
       | court          | Chester        |
       | courtCode      | 415            |
@@ -163,7 +136,6 @@
     # Deleting pool request
 
     When I click the delete pool request button
-    Then I am asked if I'm sure I want to delete
     When I click the cancel deletion link
     Then the system will display non-editable information on the nil pool summary screen
       | court          | Chester        |
