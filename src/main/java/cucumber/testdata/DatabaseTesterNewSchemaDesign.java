@@ -835,6 +835,13 @@ public class DatabaseTesterNewSchemaDesign {
 			pStmt = conn.prepareStatement("INSERT INTO juror_mod.juror_history (juror_number,date_created, history_code, user_id, other_information,pool_number)"
 					+ "VALUES ('" + part_no + "', NOW(), 'RSUM', 'CPASS', 'File -JURY081001.0001', '" + pool_no + "')");
 			pStmt.execute();
+
+			pStmt = conn.prepareStatement("insert into juror_mod.rev_info (revision_number, revision_timestamp) values ((select MAX(revision_number)+1 from juror.juror_mod.rev_info), EXTRACT(EPOCH FROM current_date))");
+			pStmt.execute();
+
+			pStmt = conn.prepareStatement("INSERT INTO juror_mod.juror_audit (revision,juror_number,rev_type,title,first_name,last_name,dob,address_line_1,address_line_2,address_line_3,address_line_4,address_line_5,address6,postcode,h_email,h_phone,m_phone,w_phone,w_ph_local,bank_acct_no,bldg_soc_roll_no,sort_code,pending_title,pending_first_name,pending_last_name,claiming_subsistence_allowance,smart_card_number)"
+					+ "VALUES ((select max(revision_number) from juror_mod.rev_info),'" + part_no + "',1,NULL,'FNAME','LNAME',NULL,'Line 1','Testtown',NULL,'Testcity',NULL,NULL,'CH1 2NN',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,FALSE,NULL)");
+			pStmt.execute();
 		} finally {
 			conn.commit();
 			pStmt.close();
