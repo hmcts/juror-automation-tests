@@ -576,6 +576,21 @@ public class StepDef_navigation {
 		NAV.waitForPageLoad();
 
 	}
+	@When("^I set the non-attendance date to yesterday$")
+	public void iSetTheAttendanceDateToToday() {
+		String datePattern = "dd/MM/yyyy";
+		Calendar calendar = Calendar.getInstance();
+		calendar.add(Calendar.DATE, -1);
+
+		LocalDate localDate = calendar.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+		Date dateValue = Date.from(localDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+
+		String yesterdayDate = new SimpleDateFormat(datePattern).format((dateValue).getTime());
+		NAV.enterNewSingleDate("Enter a date for the non-attendance day", yesterdayDate);
+		NAV.waitForPageLoad();
+
+	}
+
 
 	@When("^I set the date of birth to a Monday \"([^\"]*)\" weeks in the future$")
 	public void iSetTheDateOfBirthToAMondayInTheFuture(Integer noOfWeeks) {

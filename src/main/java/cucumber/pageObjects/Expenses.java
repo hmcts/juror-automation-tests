@@ -332,7 +332,7 @@ public class Expenses {
         setSmartcardSpendField.sendKeys(amount);
     }
     public void clickAddSmartcardSpendSubmitButton() {clickAddSmartcardSpendSubmitButton.click();}
-    public void NonAttendencedayExpenseDate() {clickNonAttendanceDayExpenseLink.get(1).click();}
+    public void NonAttendencedayExpenseDate() {clickNonAttendanceDayExpenseLink.get(0).click();}
     public void clickRecalculateTotalLink() {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollBy(0,350)", "");
