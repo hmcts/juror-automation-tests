@@ -1,6 +1,6 @@
 Feature: As a jury officer I need to be able to print a failed to attend letter
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformation @NewSchemaConverted
   Scenario Outline:Verify jury officer able to print a failed to attend letter
 
     Given I am on "Bureau" "test"
@@ -11,41 +11,25 @@ Feature: As a jury officer I need to be able to print a failed to attend letter
     And a new pool is inserted for where record has transferred to the court new schema
       |part_no               | pool_no           | owner |
       |<juror_number>       | <pool_number>      | 415   |
-
+    And I Confirm all the data in the record attendance table is cleared
     #log on and search for juror
+    And I update juror "<juror_number>" to have confirm attendance date as todays date
     And I log in as "<user>"
-
-    #put juror in state to have their attendance status set
-    When the user searches for juror record "<juror_number>" from the global search bar
-    And I record a happy path paper summons response
-    And I click on the "No, skip and process later" link
-    When the user searches for juror record "<juror_number>" from the global search bar
-    Then I click the summons reply tab
-    And I click on the view summons reply link
-    And I press the "Process reply" button
-    And I see "How do you want to process this reply?" on the page
-    And I set the radio button to "Mark as responded"
-    And I press the "Continue" button
-    And I see "Mark as responded" on the page
-    And I check the "Mark juror as 'responded'" checkbox
-    And I press the "Confirm" button
-
-    #mark as failed to attend/error checks
-    When the user searches for juror record "<juror_number>" from the global search bar
-    And I press the "Update juror record" button
-    And I press the "Continue" button
-    And I see error "Select how you want to update the juror record"
-    And I set the radio button to "Change juror status to ‘Failed to attend’"
-    And I press the "Continue" button
-    And I see "This will complete their service and they will not be expected at court again" on the page
-    And I press the "Change status to ‘Failed to attend’" button
-    And I see "You must tick the box if you want to change this juror’s status to ‘Failed to attend’" in the error banner
-    And I check the failed to attend checkbox
-    And I press the "Change status to ‘Failed to attend’" button
-    And I see the juror record updated banner containing "Failed to attend"
-    And I see the juror status has updated to "Failed to attend"
+    And I update juror "<juror_number>" to have a status of responded in order to record attendance
+    And I press the "Apps" button
+    And I click on the "Juror management" link
+    And I click on the "Record attendance" link
+    And I press the "Confirm attendance" button
+    And I press the "Confirm attendance list is correct" button
+    And I update pool number "<pool_number>" on the appearance table for the "<juror_number>"
+    And I press the "Apps" button
+    And I click on the "Documents" link
+    And I click on the "Failed to attend letters" link
+    And I check the "<juror_number>" checkbox
+    And I press the "Print failed to attend letter" button
+    Then I see "documents/failed-to-attend/letters-list" in the URL
 
     Examples:
-      | juror_number  | pool_number | user          |
-      |  041530028    |415300305    | MODTESTCOURT   |
+      | juror_number  | pool_number | user           |
+      |  041530031    |415300306  | MODTESTCOURT   |
 
