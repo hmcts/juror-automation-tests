@@ -411,7 +411,7 @@ Feature:As a Bureau/jury officer I want to re send a postponement letter
 
         Examples:
             | juror_number  | pool_number | user          |
-            |  041530028    | 415300306   | MODTESTCOURT |
+            |  041530090    | 415300306   | MODTESTCOURT |
 
     @JurorTransformationMulti @NewSchemaConverted
     Scenario Outline:Verify postponement juror with print letter searching via pool number
@@ -500,7 +500,7 @@ Feature:As a Bureau/jury officer I want to re send a postponement letter
 
         Examples:
             | juror_number  | pool_number | user          |
-            |  041530028    | 415300305   | MODTESTCOURT  |
+            |  041530031    | 415300313   | MODTESTCOURT  |
 
 
 
