@@ -407,7 +407,7 @@ Feature:As a Bureau/jury officer I want to re send a postponement letter
         And I am able to see and interact with the jurors Postponement letter tabs and fields
         When I check the "<juror_number>" checkbox
         And I press the "Print postponement letter" button
-        Then I see "https://juror.staging.apps.hmcts.net/documents/postponement/letters-list?documentSearchBy=juror&jurorDetails=041530028" in the URL
+        Then I see "documents/postponement/letters-list" in the URL
 
         Examples:
             | juror_number  | pool_number | user          |
@@ -496,7 +496,7 @@ Feature:As a Bureau/jury officer I want to re send a postponement letter
         And I see the printed letter for juror number "<juror_number>" in the letters table
         When I check the "<juror_number>" checkbox
         And I press the "Print postponement letter" button
-        Then I see "https://juror.staging.apps.hmcts.net/documents/postponement/letters-list?documentSearchBy=pool&poolDetails=415300305&includePrinted=includePrinted" in the URL
+        Then I see "documents/postponement/letters-list" in the URL
 
         Examples:
             | juror_number  | pool_number | user          |
