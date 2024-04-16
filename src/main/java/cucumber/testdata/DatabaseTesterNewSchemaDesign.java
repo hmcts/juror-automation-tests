@@ -4794,7 +4794,7 @@ public class DatabaseTesterNewSchemaDesign {
 			conn = db.getConnection("demo");
 
 		try {
-			pStmt = conn.prepareStatement("DELETE FROM juror_mod.bulk_print_data WHERE form_type='5221' AND juror_no in (select juror_number from juror_mod.juror_pool where pool_number = '" + pool + "')");
+			pStmt = conn.prepareStatement("DELETE FROM juror_mod.bulk_print_data WHERE form_type='5221' AND extracted_flag IS NULL AND juror_no in (select juror_number from juror_mod.juror_pool where pool_number = '" + pool + "')");
 			pStmt.executeUpdate();
 
 		} catch (SQLException e) {
