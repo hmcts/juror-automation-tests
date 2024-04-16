@@ -21,6 +21,7 @@ VALUES ('400', 'BUREAU', 'MODTESTBUREAU', 'MODTESTBUREAU@email.gov.uk', 'MODTEST
        ('400', 'BUREAU', 'ARAMIS1', 'ARAMIS1@email.gov.uk', 'ARAMIS1', true, 1, 0),
        ('415', 'COURT', 'CMANAGER', 'CMANAGER@email.gov.uk', 'CMANAGER', true, 1, 1000),
        ('415', 'COURT', 'CMANAGER2', 'CMANAGER2@email.gov.uk', 'CMANAGER2', true, 1, 1000),
+       ('452', 'COURT', 'SHREWSBURY', 'SHREWSBURY@email.gov.uk', 'SHREWSBURY', true, 1, 0),
        ('415', 'COURT', 'MODCOURT', 'MODCOURT@email.gov.uk', 'MODCOURT', true, 1, 0);
 commit;
 
@@ -49,5 +50,6 @@ VALUES ('MODTESTBUREAU', '400'),
        ('ARAMIS1', '400'),
        ('CMANAGER', '415'),
        ('CMANAGER2', '415'),
+       ('SHREWSBURY', '452'),
        ('NEWUSER', '400');
 commit;
