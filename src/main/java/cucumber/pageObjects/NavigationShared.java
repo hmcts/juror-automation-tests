@@ -2273,14 +2273,17 @@ public class NavigationShared {
         System.out.println(dateFormat.format(newDate));
         System.out.println(bankHoliday.get(2).getText());
 
+        String noOfWeeksConverted=Integer.toString(noOfWeeks);
 
-        switch (noOfWeeks) {
-            case 6:
+        switch (noOfWeeksConverted) {
+            case "6":
                    Assert.assertEquals(dateFormat.format(newDate), bankHoliday.get(0).getText());
                 break;
-            case 24:
+            case "24":
                 Assert.assertEquals(dateFormat.format(newDate), bankHoliday.get(2).getText());
                 break;
+            default:
+                throw new Error("Unexpected switch case");
         }
     }
 
