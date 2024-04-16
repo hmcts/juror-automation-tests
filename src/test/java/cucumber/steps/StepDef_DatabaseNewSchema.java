@@ -635,12 +635,5 @@ public class StepDef_DatabaseNewSchema {
     public void clearBankHolidayTableData() throws SQLException {
         DBTNSD.clearBankHolidayTableData();
     }
-    @Given("^I add the bank holiday for the year 2024 in the database$")
-    public void addBankHOlidaydetailsInDB2024() throws SQLException {
-        DBTNSD.addBankHolidayForYear2024();
-    }
-    @Given("^I add the bank holiday for the year 2025 in the database$")
-    public void addBankHOlidaydetailsInDB2025() throws SQLException {
-        DBTNSD.addBankHolidayForYear2025();
-    }
+
 }
