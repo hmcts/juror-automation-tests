@@ -6,6 +6,7 @@ import cucumber.utils.GenUtils;
 import cucumber.utils.ReadProperties;
 import cucumber.utils.WaitUtil_v2;
 import cucumber.utils.WaitUtils;
+import io.cucumber.datatable.DataTable;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -21,6 +22,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
 import java.time.Duration;
@@ -85,9 +87,8 @@ public class NavigationShared {
     @FindBy(id = "saveAndNextButton")
     WebElement expenseSave;
 
-    @FindBy(xpath="//*[@class='govuk-table__cell']")
-    List <WebElement> bankHoliday;
-
+    @FindBy(xpath = "//*[@class='govuk-table__cell']")
+    List<WebElement> bankHoliday;
 
 
     public NavigationShared accessLoginPage(String environment) {
@@ -1975,7 +1976,7 @@ public class NavigationShared {
     WebElement attendanceDay;
 
     @FindBy(id = "hearingDate")
-    WebElement  hearingDate;
+    WebElement hearingDate;
 
     public void enterNewDate(String attDateSequence, final String day, final String month, final String year) {
         log.info("Entering new date");
@@ -2226,11 +2227,13 @@ public class NavigationShared {
             }
         }
     }
+
     public String messageSentBanner() {
         String bannerText = messageBanner.getText();
         System.out.println("Message Sent Banner Text: " + bannerText);
         return bannerText;
     }
+
     public String seeMessageTemplateDate(String specificDate) {
         String messageText = messageTemplate.getText();
         if (messageText.contains(specificDate)) {
@@ -2254,17 +2257,20 @@ public class NavigationShared {
         }
         waitForDocumentReady();
     }
+
     public Map<String, String> GetHolidayListDetails2024() {
 
-                Map<String, String> details = new HashMap<>();
+        Map<String, String> details = new HashMap<>();
 
-                details.put("Friday 28 March", bankHoliday.get(1).getText());
-                details.put("Monday 1 April", bankHoliday.get(3).getText());
-                details.put("Monday 6 May", bankHoliday.get(5).getText());
-                details.put("Monday 27 May", bankHoliday.get(7).getText());
-                details.put("Monday 26 August", bankHoliday.get(9).getText());;
-                details.put("Wednesday 25 December", bankHoliday.get(11).getText());
-                details.put("Thursday 26 December",  bankHoliday.get(13).getText());;
+        details.put("Friday 28 March", bankHoliday.get(1).getText());
+        details.put("Monday 1 April", bankHoliday.get(3).getText());
+        details.put("Monday 6 May", bankHoliday.get(5).getText());
+        details.put("Monday 27 May", bankHoliday.get(7).getText());
+        details.put("Monday 26 August", bankHoliday.get(9).getText());
+        ;
+        details.put("Wednesday 25 December", bankHoliday.get(11).getText());
+        details.put("Thursday 26 December", bankHoliday.get(13).getText());
+        ;
 
         return details;
     }
@@ -2277,13 +2283,30 @@ public class NavigationShared {
         details.put("Friday 18 April", bankHoliday.get(17).getText());
         details.put("Monday 21 April", bankHoliday.get(19).getText());
         details.put("Monday 5 May", bankHoliday.get(21).getText());
-        details.put("Monday 26 May", bankHoliday.get(23).getText());;
+        details.put("Monday 26 May", bankHoliday.get(23).getText());
+        ;
         details.put("August 25 Monday", bankHoliday.get(25).getText());
-        details.put("Thursday 25 December",  bankHoliday.get(27).getText());;
-        details.put("Friday 26 December",  bankHoliday.get(29).getText());;
+        details.put("Thursday 25 December", bankHoliday.get(27).getText());
+        ;
+        details.put("Friday 26 December", bankHoliday.get(29).getText());
+        ;
 
         return details;
     }
 
-}
+    public void insertHolidayInTheFrontScreen(Integer noOfWeeks) {
+        String datePattern = "YYYY-MM-DD";
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.WEEK_OF_MONTH, noOfWeeks);
 
+        LocalDate localDate = calendar.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        Date mondayDate = Date.from(localDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+        System.out.println(mondayDate);
+        System.out.println(bankHoliday.get(1).getText());
+
+        Assert.assertEquals(mondayDate, bankHoliday.get(1).getText());
+
+    }
+
+
+}
