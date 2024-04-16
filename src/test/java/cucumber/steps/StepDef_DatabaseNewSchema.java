@@ -605,7 +605,7 @@ public class StepDef_DatabaseNewSchema {
         DBTNSD.updatePendingLetterForInitialSummons(poolNumber);
     }
 
-    @Given("^I delete all letters within the pool \"([^\"]*)\" for the initial summons letter$")
+    @Given("^I delete all letters within the pool \"([^\"]*)\" for the letter$")
     public void deletePendingLettersForInitialSummons(String pool) throws SQLException {
         DBTNSD.deletePendingLettersForInitialSummons(pool);
 
