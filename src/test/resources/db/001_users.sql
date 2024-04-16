@@ -26,8 +26,8 @@ VALUES ('400', 'BUREAU', 'MODTESTBUREAU', 'MODTESTBUREAU@email.gov.uk', 'MODTEST
 commit;
 
 INSERT INTO juror_mod.user_roles (username, role)
-VALUES ('MODTESTBUREAU', 'TEAM_LEADER'),
-       ('CPASS', 'TEAM_LEADER'),
+VALUES ('MODTESTBUREAU', 'MANAGER'),
+       ('CPASS', 'MANAGER'),
        ('SJOUSER1', 'SENIOR_JUROR_OFFICER'),
        ('SJOUSER', 'SENIOR_JUROR_OFFICER'),
        ('CMANAGER', 'MANAGER'),
