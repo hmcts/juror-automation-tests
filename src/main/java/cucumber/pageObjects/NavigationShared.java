@@ -2264,19 +2264,26 @@ public class NavigationShared {
        // Calendar calendar = Calendar.getInstance();
         //calendar.add(Calendar.WEEK_OF_MONTH, noOfWeeks);
 
-        DateFormat dateFormat = new SimpleDateFormat("EEEE dd MMM");
+        DateFormat dateFormat = new SimpleDateFormat("EEEE d MMMMMMMMMM");
         Date today = Calendar.getInstance().getTime();
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(today);
         calendar.add(Calendar.WEEK_OF_MONTH, noOfWeeks);
         Date newDate = calendar.getTime();
-
         System.out.println(dateFormat.format(newDate));
-        System.out.println(bankHoliday.get(0).getText());
+        System.out.println(bankHoliday.get(2).getText());
 
-       Assert.assertEquals(dateFormat.format(newDate), bankHoliday.get(0).getText());
 
+        switch (noOfWeeks) {
+            case 6:
+                   Assert.assertEquals(dateFormat.format(newDate), bankHoliday.get(0).getText());
+                break;
+            case 24:
+                Assert.assertEquals(dateFormat.format(newDate), bankHoliday.get(2).getText());
+                break;
+        }
     }
+
 
 
 }
