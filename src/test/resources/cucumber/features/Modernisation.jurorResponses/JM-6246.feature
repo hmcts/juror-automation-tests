@@ -1,72 +1,42 @@
-Feature: As a system administrator I want to view a list of bank holidays
+Feature: As a system administrator, I want to view a list of bank holidays
 
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Verify system administrator can able to view the list of bank holiday
 
     Given I am on "Bureau" "test"
+    When I log in as "<user>"
+    And I clear the bank holiday table data in the database
+    And I add the bank holiday for the year 2024 in the database
+    And I add the bank holiday for the year 2025 in the database
+    And I click on the "Bank holidays" link
+    Then I see the following details on bank holiday for the year 2024
 
-    Given a bureau owned pool is created with jurors
-      | court |juror_number  	| pool_number	| att_date_weeks_in_future	| owner |
-      | 415   |<juror_number1> 	| <pool_number> | 5				            | 400	|
-      | 415   |<juror_number2> 	| <pool_number> | 5				            | 400	|
-      | 415   |<juror_number3> 	| <pool_number> | 5				            | 400	|
+      | Friday 28 March       | Good Friday           |
+      | Monday 1 April	      | Easter Monday         |
+      | Monday 6 May	      | Early May bank holiday|
+      | Monday 27 May	      | Spring bank holiday   |
+      | Monday 26 August	  | Summer bank holiday   |
+      | Wednesday 25 December | Christmas Day         |
+      | Thursday 26 December  | Boxing Day            |
+    
+    And I see the following details on bank holiday for the year 2025
 
-    Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no          | pool_no       | owner |
-      |<juror_number1>  | <pool_number> | 415   |
-      |<juror_number2>  | <pool_number> | 415   |
-      |<juror_number3>  | <pool_number> | 415   |
+      | Wednesday 1 January   | New years Day        |
+      | Friday 18 April	      | Good Friday           |
+      | Monday 21 April	      | Easter Monday         |
+      | Monday 5 May	      | Early May bank holiday|
+      | Monday 26 May	      | Spring bank holiday   |
+      | August 25 Monday      | Summer bank holiday   |
+      | Thursday 25 December | Christmas Day         |
+      | Friday 26 December    | Boxing Day            |
 
-    And I log in as "<user>"
+    When I clear the bank holiday table data in the database
+    And I click on the "Bank holidays" link
+    Then I do not see "2024" on the page
+    And I do not see "2025" on the page
+    And I do not see "Friday 28 March" on the page
+    And I do not see "New years Day" on the page
 
-    When I navigate to the pool request screen
-    And I click on active pools
-    And I click on the "At court" link
-    When I navigate to the active pool "<pool_number>" overview
-    And I select the checkbox in the same row as "<juror_number1>" in pool table
-    And I select the checkbox in the same row as "<juror_number2>" in pool table
-    And I select the checkbox in the same row as "<juror_number3>" in pool table
-    And I see "3 of selected" on the page
-
-    And I press the "Transfer" button
-    Then I see "Select a court to transfer to" on the page
-
-    #error check
-    And I press the "Continue" button
-    And I see error "Enter a court name or location code to transfer to"
-    And I see error "Enter a transfer date in the correct format, for example, 31/01/2023"
-    Then I set input field with "ID" of "courtNameOrLocation" to "767"
-    And I click on the "Knutsford (767)" link
-    And I set the "Change the service start date for this pool" single date field to a Monday "60" weeks in the future
-
-    And I press the "Continue" button
-    And I see error "Service start date must be within the next 12 months"
-
-    #transfer to another court
-    Then I set input field with "ID" of "courtNameOrLocation" to "767"
-    And I click on the "Knutsford (767)" link
-
-    And I set the "Change the service start date for this pool" single date field to a Monday "5" weeks in the future
-    And I press the "Continue" button
-    And I see "Transfer to Knutsford" on the page
-    And I press the "Continue" button
-    And I see "3 jurors transferred" on the page
-
-    Given I am on "Bureau" "test"
-    And I log in as "MODTESTBUREAU"
-
-    #search jurors have been transferred
-    When the user searches for juror record "<juror_number1>" from the global search bar
-    And I click on "<juror_number1>" in the same row as "Knutsford"
-    And I see the juror status has updated to "Responded"
-
-    When the user searches for juror record "<juror_number2>" from the global search bar
-    And I click on "<juror_number2>" in the same row as "Knutsford"
-    And I see the juror status has updated to "Responded"
-
-    When the user searches for juror record "<juror_number3>" from the global search bar
-    And I click on "<juror_number3>" in the same row as "Knutsford"
-    And I see the juror status has updated to "Responded"
     Examples:
-      | user         | pool_number| juror_number1 | juror_number2   | juror_number3 |
-      | MODTESTCOURT | 010000004  | 011000004     | 011000005       | 011000006     |
+      | user         |
+      | SYSTEMADMIN  |

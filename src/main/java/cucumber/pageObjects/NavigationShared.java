@@ -85,6 +85,8 @@ public class NavigationShared {
     @FindBy(id = "saveAndNextButton")
     WebElement expenseSave;
 
+    @FindBy(xpath="//*[@class='govuk-table__cell']")
+    List <WebElement> bankHoliday;
 
 
 
@@ -2252,4 +2254,36 @@ public class NavigationShared {
         }
         waitForDocumentReady();
     }
+    public Map<String, String> GetHolidayListDetails2024() {
+
+                Map<String, String> details = new HashMap<>();
+
+                details.put("Friday 28 March", bankHoliday.get(1).getText());
+                details.put("Monday 1 April", bankHoliday.get(3).getText());
+                details.put("Monday 6 May", bankHoliday.get(5).getText());
+                details.put("Monday 27 May", bankHoliday.get(7).getText());
+                details.put("Monday 26 August", bankHoliday.get(9).getText());;
+                details.put("Wednesday 25 December", bankHoliday.get(11).getText());
+                details.put("Thursday 26 December",  bankHoliday.get(13).getText());;
+
+        return details;
+    }
+
+    public Map<String, String> GetHolidayListDetails2025() {
+
+        Map<String, String> details = new HashMap<>();
+
+        details.put("Wednesday 1 January", bankHoliday.get(15).getText());
+        details.put("Friday 18 April", bankHoliday.get(17).getText());
+        details.put("Monday 21 April", bankHoliday.get(19).getText());
+        details.put("Monday 5 May", bankHoliday.get(21).getText());
+        details.put("Monday 26 May", bankHoliday.get(23).getText());;
+        details.put("August 25 Monday", bankHoliday.get(25).getText());
+        details.put("Thursday 25 December",  bankHoliday.get(27).getText());;
+        details.put("Friday 26 December",  bankHoliday.get(29).getText());;
+
+        return details;
+    }
+
 }
+

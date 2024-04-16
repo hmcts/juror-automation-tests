@@ -910,4 +910,41 @@ public class StepDef_navigation {
 		}
 		NAV.waitForDocumentReady();
 	}
+
+	@Then("^I see the following details on bank holiday for the year 2024$")
+	public void iSeeTheFollowingInformationOnBankHoliday2024(DataTable dataTable) {
+
+		NAV.waitForPageLoad(3);
+		Map<String, String> expectedData = dataTable.asMap(String.class, String.class);
+		Map<String, String> actualData = NAV.GetHolidayListDetails2024();
+
+		assertEquals(expectedData.get("Friday 28 March"), actualData.get("Friday 28 March"));
+		assertEquals(expectedData.get("Monday 1 April"), actualData.get("Monday 1 April"));
+		assertEquals(expectedData.get("Monday 6 May"), actualData.get("Monday 6 May"));
+		assertEquals(expectedData.get("Monday 27 May"), actualData.get("Monday 27 May"));
+		assertEquals(expectedData.get("Monday 26 August"), actualData.get("Monday 26 August"));
+		assertEquals(expectedData.get("Wednesday 25 December"), actualData.get("Wednesday 25 December"));
+		assertEquals(expectedData.get("Thursday 26 December"), actualData.get("Thursday 26 December"));
+
+	}
+
+	@Then("^I see the following details on bank holiday for the year 2025$")
+	public void iSeeTheFollowingInformationOnBankHoliday2025(DataTable dataTable) {
+
+		NAV.waitForPageLoad(3);
+		Map<String, String> expectedData = dataTable.asMap(String.class, String.class);
+		Map<String, String> actualData = NAV.GetHolidayListDetails2025();
+
+		assertEquals(expectedData.get("Wednesday 1 January"), actualData.get("Wednesday 1 January"));
+		assertEquals(expectedData.get("Friday 18 April"), actualData.get("Friday 18 April"));
+		assertEquals(expectedData.get("Monday 21 April"), actualData.get("Monday 21 April"));
+		assertEquals(expectedData.get("Monday 5 May"), actualData.get("Monday 5 May"));
+		assertEquals(expectedData.get("Monday 26 May"), actualData.get("Monday 26 May"));
+		assertEquals(expectedData.get("August 25 Monday"), actualData.get("August 25 Monday"));
+		assertEquals(expectedData.get("Thursday 25 December"), actualData.get("Thursday 25 December"));
+		assertEquals(expectedData.get("Friday 26 December"), actualData.get("Friday 26 December"));
+
+	}
+
+
 }
