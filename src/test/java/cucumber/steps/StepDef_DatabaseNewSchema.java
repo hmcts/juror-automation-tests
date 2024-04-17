@@ -626,8 +626,5 @@ public class StepDef_DatabaseNewSchema {
         DBTNSD.setExpenseDailyTransportLimit();
     }
 
-    @Given("^I update the appearance of juror \"([^\"]*)\" for show cause letter$")
-    public void updateAppearanceForShowCauseLetter(String jurorNumber) throws SQLException {
-        DBTNSD.updateAppearanceForShowCause(jurorNumber);
-    }
+
 }

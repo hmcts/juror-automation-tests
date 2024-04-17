@@ -1,4 +1,4 @@
-Feature: JM-6062 - As a jury officer, I want to set default expenses in the system
+   Feature: JM-6062 - As a jury officer, I want to set default expenses in the system
 
   Scenario Outline: Set default expenses happy path
 

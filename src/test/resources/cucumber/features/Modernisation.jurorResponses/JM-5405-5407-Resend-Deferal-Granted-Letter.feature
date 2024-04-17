@@ -302,7 +302,7 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
     When I press the "Resend deferral granted letter" button
     Then I see "1 document sent for printing" on the page
     And I update juror "<juror_number_1>" to have a status of "Excused"
-
+    And I update juror "<juror_number_1>" to change the status of printed in order to resend letter
     And I press the "Apps" button
     When I click on the "Documents" link
     And I click on the "Deferral granted letters" link
