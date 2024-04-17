@@ -31,7 +31,7 @@ Feature: As a jury officer I need to be able to print a failed to attend letter
 
     Examples:
       | juror_number  | pool_number | user           |
-      |  041530031    |415300306  | MODTESTCOURT   |
+      |  041530039    |415300355 | MODTESTCOURT   |
 
   @JurorTransformation @NewSchemaConverted
   Scenario Outline:Verify jury officer able to print the failed to attend letter from the juror record under the attendance tab.
@@ -63,4 +63,4 @@ Feature: As a jury officer I need to be able to print a failed to attend letter
 
     Examples:
       | juror_number  | pool_number | user           |
-      |  041530031    |415300306  | MODTESTCOURT   |
+      |  041530040    |415300355    | MODTESTCOURT   |
