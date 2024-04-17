@@ -15,6 +15,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
 import java.time.Duration;
@@ -909,5 +910,10 @@ public class StepDef_navigation {
 			NAV.press_Savebutton();
 		}
 		NAV.waitForDocumentReady();
+	}
+
+	@When("^I see the bank holiday \"([^\"]*)\" weeks in the future on the admin screen$")
+	public void verifyBankHolidayOnAdminScreen(Integer noOfWeeks) {
+		NAV.insertHolidayInTheFrontScreen(noOfWeeks);
 	}
 }

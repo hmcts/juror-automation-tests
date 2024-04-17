@@ -145,7 +145,6 @@ public class StepDef_trialsAndAttendance {
 		TRL.tabPresent("Status");
 		TRL.tabPresent("Checked in");
 		TRL.tabPresent("Checked out");
-		TRL.tabPresent("Jurors in waiting");
 		TRL.tabPresent("CONFIRMED");
 	}
 

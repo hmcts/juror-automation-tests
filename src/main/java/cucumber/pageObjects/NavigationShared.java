@@ -6,6 +6,7 @@ import cucumber.utils.GenUtils;
 import cucumber.utils.ReadProperties;
 import cucumber.utils.WaitUtil_v2;
 import cucumber.utils.WaitUtils;
+import io.cucumber.datatable.DataTable;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -21,6 +22,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
 import java.time.Duration;
@@ -85,7 +87,8 @@ public class NavigationShared {
     @FindBy(id = "saveAndNextButton")
     WebElement expenseSave;
 
-
+    @FindBy(xpath = "//*[@class='govuk-table__cell']")
+    List<WebElement> bankHoliday;
 
 
     public NavigationShared accessLoginPage(String environment) {
@@ -1973,7 +1976,7 @@ public class NavigationShared {
     WebElement attendanceDay;
 
     @FindBy(id = "hearingDate")
-    WebElement  hearingDate;
+    WebElement hearingDate;
 
     public void enterNewDate(String attDateSequence, final String day, final String month, final String year) {
         log.info("Entering new date");
@@ -2224,11 +2227,13 @@ public class NavigationShared {
             }
         }
     }
+
     public String messageSentBanner() {
         String bannerText = messageBanner.getText();
         System.out.println("Message Sent Banner Text: " + bannerText);
         return bannerText;
     }
+
     public String seeMessageTemplateDate(String specificDate) {
         String messageText = messageTemplate.getText();
         if (messageText.contains(specificDate)) {
@@ -2252,4 +2257,36 @@ public class NavigationShared {
         }
         waitForDocumentReady();
     }
+
+
+    public void insertHolidayInTheFrontScreen(Integer noOfWeeks) {
+        //String datePattern = "EEEE-DD-MM";
+       // Calendar calendar = Calendar.getInstance();
+        //calendar.add(Calendar.WEEK_OF_MONTH, noOfWeeks);
+
+        DateFormat dateFormat = new SimpleDateFormat("EEEE d MMMMMMMMMM");
+        Date today = Calendar.getInstance().getTime();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(today);
+        calendar.add(Calendar.WEEK_OF_MONTH, noOfWeeks);
+        Date newDate = calendar.getTime();
+        System.out.println(dateFormat.format(newDate));
+        System.out.println(bankHoliday.get(2).getText());
+
+        String noOfWeeksConverted=Integer.toString(noOfWeeks);
+
+        switch (noOfWeeksConverted) {
+            case "6":
+                   Assert.assertEquals(dateFormat.format(newDate), bankHoliday.get(0).getText());
+                break;
+            case "24":
+                Assert.assertEquals(dateFormat.format(newDate), bankHoliday.get(2).getText());
+                break;
+            default:
+                throw new Error("Unexpected switch case");
+        }
+    }
+
+
+
 }

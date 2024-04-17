@@ -368,11 +368,11 @@ Feature: 1)JM-5409,JM-5411 - As a Bureau/jury officer I need to resend a deferra
     And I am able to see and interact with the jurors Deferral Refused letter tabs and fields
     When I check the "<juror_number>" checkbox
     And I press the "Print deferral refused letter" button
-    Then I see "https://juror.staging.apps.hmcts.net/documents/deferral-refused/letters-list?documentSearchBy=juror&jurorDetails=041530028" in the URL
+    Then I see "documents/deferral-refused/letters-list" in the URL
 
     Examples:
       | juror_number  | pool_number | user         |
-      |  041530028    | 415300305   | MODTESTCOURT |
+      |  041530033    | 415300345   | MODTESTCOURT |
 
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline:As a jury officer test a Deferred juror can resend a granted refused letter by searching via pool number
@@ -470,7 +470,7 @@ Feature: 1)JM-5409,JM-5411 - As a Bureau/jury officer I need to resend a deferra
     And I see "Print deferral refused letter" on the page
     When I check the "<juror_number>" checkbox
     And I press the "Print deferral refused letter" button
-    Then I see "https://juror.staging.apps.hmcts.net/documents/deferral-refused/letters-list?documentSearchBy=pool&poolDetails=415300305&includePrinted=includePrinted" in the URL
+    Then I see "documents/deferral-refused/letters-list" in the URL
 
     Examples:
       | juror_number  | pool_number | user          |

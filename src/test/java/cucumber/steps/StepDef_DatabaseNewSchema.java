@@ -630,4 +630,10 @@ public class StepDef_DatabaseNewSchema {
     public void updateAppearanceForShowCauseLetter(String jurorNumber) throws SQLException {
         DBTNSD.updateAppearanceForShowCause(jurorNumber);
     }
+
+    @Given("^I clear the bank holiday table data in the database$")
+    public void clearBankHolidayTableData() throws SQLException {
+        DBTNSD.clearBankHolidayTableData();
+    }
+
 }
