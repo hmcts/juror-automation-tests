@@ -724,6 +724,10 @@ public class StepDef_jurorpoolNewSchema {
     public void insertHolidayAndDisplayOnSCreens(Integer noOfWeeks, String holidayOwner) throws SQLException {
         DBTNSD.insertHolidayInTheFrontScreen(noOfWeeks, holidayOwner);
     }
+    @Given("^I clear the bank holiday table data in the database$")
+    public void clearBankHolidayTableData() throws SQLException {
+        DBTNSD.clearBankHolidayTableData();
+    }
 
     @When("^I create a bank holiday \"([^\"]*)\" Mondays in the future for court/bureau \"([^\"]*)\" new schema$")
     public void insertHolidayMondayInTheFutureNSD(Integer noOfWeeks, String holidayOwner) throws SQLException {
