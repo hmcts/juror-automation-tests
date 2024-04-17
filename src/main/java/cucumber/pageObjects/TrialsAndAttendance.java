@@ -467,6 +467,12 @@ public class TrialsAndAttendance {
         WebElement availableJurorsButton = driver.findElement(By.xpath("//button[normalize-space()='Calculate available jurors']"));
         availableJurorsButton.click();
     }
+
+    public void verifyAbsenceCount(String absenceNumber) {
+        WebElement availableJurorsButton = driver.findElement(By.xpath("//button[normalize-space()='Calculate available jurors']"));
+        availableJurorsButton.click();
+    }
+
 }
 
 

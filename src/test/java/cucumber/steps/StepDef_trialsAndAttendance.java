@@ -259,4 +259,10 @@ public class StepDef_trialsAndAttendance {
 		TRL.clickAvailableJurorsButton();
 		NAV.waitForPageLoad(2);
 	}
+	@When("^I see Absence displayed as \"([^\"]*)\" on the attendance table$")
+	public void verifyAbsenceCount(String absenceNumber) {
+		TRL.verifyAbsenceCount(absenceNumber);
+
+	}
+
 }
