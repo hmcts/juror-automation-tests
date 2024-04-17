@@ -15,6 +15,7 @@ Feature: JM-4368 Jury Officer Can Manually Run a Police Check
       |part_no   	  | pool_no   	  | owner |
       |<juror_number> | <pool_number> | 415   |
 
+    And I update juror "<juror_number>" to have a status of "Responded"
     And I search for juror "<juror_number>"
     And I see the police check value is "Not Checked"
     And I see the link to run a police check
