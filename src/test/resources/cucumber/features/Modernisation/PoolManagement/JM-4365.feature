@@ -117,7 +117,7 @@ Feature: JM-4365-As a jury officer I need to be able to check jurors out for the
       |MODTESTCOURT |041530007      | 041530008        |041530009       |  041530010    | 415300301        | T202495832   |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @JM-6720
+  @JurorTransformation @NewSchemaConverted
   Scenario Outline: To confirm all the jurors  attendance on the day
 
     Given I am on "Bureau" "test"
