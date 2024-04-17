@@ -1,3 +1,4 @@
+
 Feature: As a system administrator,I want to view a list of bank holidays
 
   @JurorTransformationMulti @NewSchemaConverted
@@ -18,3 +19,4 @@ Feature: As a system administrator,I want to view a list of bank holidays
     Examples:
       | user         |courtCode|
       | SYSTEMADMIN  |415      |
+
