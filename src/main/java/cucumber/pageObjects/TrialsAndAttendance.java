@@ -155,6 +155,9 @@ public class TrialsAndAttendance {
     @FindBy(className = "govuk-pagination__next")
     WebElement nextPaginationLink;
 
+    @FindBy(className = "govuk-summary-list__value")
+    List <WebElement> absenceCountValue;
+
     public Map<String, String> getTrialDetails() {
         Map<String, String> details = new HashMap<>();
 
@@ -469,8 +472,15 @@ public class TrialsAndAttendance {
     }
 
     public void verifyAbsenceCount(String absenceNumber) {
-        WebElement availableJurorsButton = driver.findElement(By.xpath("//button[normalize-space()='Calculate available jurors']"));
-        availableJurorsButton.click();
+        boolean absenceCount = false;
+       String Count=absenceCountValue.get(2).getText();
+        if (Count.equals(absenceNumber)) {
+            log.info("verified absence count is expected value on attendance screen");
+            absenceCount=true;
+        } else {
+            throw new AssertionError("Absence count is wrong as expected");
+
+        }
     }
 
 }
