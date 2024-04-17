@@ -625,6 +625,11 @@ public class StepDef_DatabaseNewSchema {
     public void setDailyExpensePubicTrasportAndTaxi() throws SQLException {
         DBTNSD.setExpenseDailyTransportLimit();
     }
+
+    @Given("^I update the appearance of juror \"([^\"]*)\" for show cause letter$")
+    public void updateAppearanceForShowCauseLetter(String jurorNumber) throws SQLException {
+        DBTNSD.updateAppearanceForShowCause(jurorNumber);
+    }
     @Given("^I update juror \"([^\"]*)\" to have confirm attendance date as todays date$")
     public void setJurorattendanceDateAsTodaysDate(String jurorNumber) throws SQLException {
         DBTNSD.setJurorsAttendanceDate(jurorNumber);
