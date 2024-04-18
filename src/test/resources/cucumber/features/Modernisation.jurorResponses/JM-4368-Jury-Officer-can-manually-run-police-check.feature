@@ -15,8 +15,9 @@ Feature: JM-4368 Jury Officer Can Manually Run a Police Check
       |part_no   	  | pool_no   	  | owner |
       |<juror_number> | <pool_number> | 415   |
 
+    And I update juror "<juror_number>" to have a status of "Responded"
     And I search for juror "<juror_number>"
-    And I see the police check value is "Not checked"
+    And I see the police check value is "Not Checked"
     And I see the link to run a police check
     When I click the link to run a police check
     And I see "Run a police check on this juror" on the page
@@ -31,7 +32,7 @@ Feature: JM-4368 Jury Officer Can Manually Run a Police Check
 
     Given I am on "Bureau" "test"
 
-    Given I log in as "MODTESTCOURT"
+    Given I log in as "MODTESTBUREAU"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
@@ -41,7 +42,7 @@ Feature: JM-4368 Jury Officer Can Manually Run a Police Check
       |part_no   	  | pool_no   	  | owner |
       |<juror_number> | <pool_number> | 415   |
 
-#    Given I set Police Check to "P" and Phoenix Checked to "U" for "<juror_number>"
+    Given I set Police Check to "P" and Phoenix Checked to "U" for "<juror_number>"
     Given I set Police Check to "<police_check_value>" for "<juror_number>" new schema
     And I search for juror "<juror_number>"
     And I see the police check value is "<police_check_status>"
@@ -49,9 +50,9 @@ Feature: JM-4368 Jury Officer Can Manually Run a Police Check
 
     Examples:
       | juror_number| pool_number | police_check_value               | police_check_status                |
-      | 041500127   | 415300227   | UNCHECKED_MAX_RETRIES_EXCEEDED   | Not checked - there was a problem. |
-      | 041500127   | 415300227   | ERROR_RETRY_OTHER_ERROR_CODE     | In progress                        |
-      | 041500127   | 415300227   | ERROR_RETRY_UNEXPECTED_EXCEPTION | In progress                        |
+      | 041500127   | 415300227   | UNCHECKED_MAX_RETRIES_EXCEEDED   | Not Checked - There was a problem |
+      | 041500127   | 415300227   | ERROR_RETRY_OTHER_ERROR_CODE     | In Progress                        |
+      | 041500127   | 415300227   | ERROR_RETRY_UNEXPECTED_EXCEPTION | In Progress                        |
 
   @JurorTransformationMulti
   Scenario Outline: Manually run police check - presence of link - failed
