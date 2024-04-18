@@ -17,16 +17,14 @@ Feature: JM-3351
   @JurorTransformationMulti
   Scenario: Test to filter pool requests with no pools available
     Given I am on "Bureau" "test"
-
     And I log in as "MODTESTBUREAU"
-
     When I navigate to the pool request screen
     When the user filters by "Reading"
     Then no records are displayed
 
   @JurorTransformationMulti
   Scenario: Test to filter active pools
-    Given I am on "Bureau" "postgres"
+    Given I am on "Bureau" "test"
     And I log in as "MODTESTBUREAU"
     When I navigate to the pool request screen
     And I click on active pools
@@ -36,10 +34,8 @@ Feature: JM-3351
 
   @JurorTransformationMulti
   Scenario: Test to filter active pools with no pools available
-    Given I am on "Bureau" "postgres"
-
+    Given I am on "Bureau" "test"
     And I log in as "MODTESTBUREAU"
-
     When I navigate to the pool request screen
     And I click on active pools
     When the user filters by "Reading"
