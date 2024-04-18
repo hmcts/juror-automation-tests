@@ -185,16 +185,14 @@ Scenario Outline: Your Work
 	When I click on the "To do" link
 	When I click on "<part_no_three>" in the same row as "<part_no_three>"
 	And I do not see "edit" on the page
-	When I select "PDF sent to court" from Process reply
-	When I check the "PDF sent to court" checkbox
-	And I press the "Confirm" button
-	Then I see "COMPLETED" on the page
-	And I do not see "SEND TO COURT" on the page
+	When I press the "More actions" button
+	When I click on the "Download as a PDF" link
+
 	When I click on the "Your work" link
-	Then I do not see "<part_no_three>" on the page
+	Then I see "<part_no_three>" on the page
 	When I click on the "Completed" link
 	And I see "/completed" in the URL
-	Then I see "<part_no_three>" on the page
+	Then I do not see "<part_no_three>" on the page
 	
 	#complete
 	

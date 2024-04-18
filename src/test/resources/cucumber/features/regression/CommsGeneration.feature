@@ -68,8 +68,8 @@ Scenario Outline: Create data for comms generation
 	And I set "Juror number" to "<juror_number3>"
 	And I press the "Search" button
 	And I click on "<juror_number3>" in the same row as "<juror_number3>"
-	When I select "PDF sent to court..." from Process reply
-	And I check the "PDF sent to court" checkbox
+	When I press the "More actions" button
+	And I click on the "Download as a PDF" link
 	And I press the "Confirm" button
 
 Examples:

@@ -64,7 +64,7 @@ public class StepDef_bureau {
 	@When("^I assign all the New Replies to \"([^\"]*)\"$")
 	public void assignNewReplies_toStaff(String staffMember) throws Throwable {
 		try {
-			BUR.assignNewReplies_toStaff(staffMember);
+ 			BUR.assignNewReplies_toStaff(staffMember);
 		} catch (Exception e) {
 			NAV.waitForPageLoad();
 			BUR.assignNewReplies_toStaff(staffMember);
