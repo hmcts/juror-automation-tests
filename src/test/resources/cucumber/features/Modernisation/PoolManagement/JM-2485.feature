@@ -25,6 +25,7 @@ Feature: JM-2485
 
     When I navigate to the pool request screen
     And I click on active pools
+    And I click on the "With the Bureau" link
     Then I see the following active pools headers
       | Pool number        |
       | Jurors requested   |

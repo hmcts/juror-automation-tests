@@ -33,13 +33,13 @@ Feature: JM-5963 - As a jury I need to be able to print a certificate of attenda
     And I click on the "Documents" link
     And I click on the "Certificate of attendance" link
     And I set the radio button to "Juror"
-    And I set "Enter juror name, number or postcode" to "<juror_number>"
+    And I set "Enter juror number" to "<juror_number>"
     And I press the "Search" button
 
     And I see "Certificates of attendance" on the page
-    And I check the juror "<juror_number>" checkbox
+    And I check the "<juror_number>" checkbox
     And I press the "Print certificate of attendance" button
-    And I see "https://juror.staging.apps.hmcts.net/documents/certificate-attendance/letters-list?documentSearchBy=juror&jurorDetails=041587205" in the URL
+    And I see "https://juror.staging.apps.hmcts.net/documents/certificate-attendance/letters-list?documentSearchBy=juror_number&jurorNumber=041587205" in the URL
 
 
     Examples:
