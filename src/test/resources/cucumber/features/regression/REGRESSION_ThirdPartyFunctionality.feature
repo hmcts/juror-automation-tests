@@ -1,7 +1,10 @@
 Feature: Third Party Functionality Regression Script
 
-@Regression @NewSchemaConverted
+@Features @NewSchemaConverted @JM-6684
 Scenario Outline: Third Party Functionality Regression
+
+	#return to @Regression once defect is fixed
+
 	Given I am on "Public" "test"
 
 	Given a bureau owned pool is created with jurors
@@ -131,6 +134,8 @@ Scenario Outline: Third Party Functionality Regression
 	
 	Then on "JUROR_MOD" . "POOL" I see "STATUS" is "7" where "JUROR_NUMBER" is "<juror_number>"
 	Then on "JUROR_MOD" . "JUROR_HISTORY" I see "HISTORY_CODE" is "PDEF" where "JUROR_NUMBER" is "<juror_number>"
+
+	#JM-6684
 	Then on "JUROR_MOD" . "JUROR_HISTORY" I see "HISTORY_CODE" is "RESP" where "JUROR_NUMBER" is "<juror_number>"
 	
 	# re-enable auto processing

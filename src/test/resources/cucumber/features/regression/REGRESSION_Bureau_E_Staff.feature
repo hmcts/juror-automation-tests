@@ -5,42 +5,64 @@ Scenario: Bureau E Test
 
 	Given I am on "Bureau" "test"
 
-	And I log in as "MODTESTBUREAU"
-	And staff with name "AutomationStaffMemberONE" does not exist
-	And staff with name "AutomationStaffMemberTWO" does not exist
-	And staff with name "AutomationStaffMembe" does not exist
-	
-	When I click on the "Manage team" link
-	And I press the "Add a new team member" button
-	And I set "Name" to "AutomationStaffMemberONE"
-	And I set "Username" to "AutomationStaffMembe"
-	And the radio button "No" is "selected"
-	And I press the "Save" button
-	
+	And staff with name "AutomationStaffMemberONE" does not exist new schema
+	And staff with name "AutomationStaffMemberTWO" does not exist new schema
+	And staff with name "AutomationStaffMembe" does not exist new schema
+
+	And I log in as "SYSTEMADMIN"
+
+	And I see "administration/users" in the URL
+
+	And I press the "Create new user" button
+
+	And I press the "Continue" button
+	Then I see "Select a user type" on the page
+
+	And I choose the "Bureau" radio button
+	And I press the "Continue" button
+
+	And I press the "Continue" button
+
+	Then I see "Enter the user's full name" on the page
+	And I see "Enter the user's email" on the page
+
+	And I click on the "Cancel" link
+
+	And I press the "Create new user" button
+
+	And I choose the "Bureau" radio button
+	And I press the "Continue" button
+
+	And I set "Full name" to "AutomationStaffMemberONE"
+	And I set "Email" to "AutomationStaff@email.com"
+	And "Manager" is unchecked
+	And I press the "Continue" button
+	And I press the "Create user" button
+
+	And I click on the "Back to users" link
+
 	Then I see "AutomationStaffMemberONE" on the page
-	
-	And I press the "Add a new team member" button
-	And I press the "Save" button
-	Then I see "Please provide a name for the new staff member" on the page
-	And I see "Please enter the staff member Juror application user name" on the page
-	
-	When I click on the "Manage team" link
-	Then I see "Manage team" on the page
-	And I see "AutomationStaffMemberONE" on the page
-	
+
 	When I click on "AutomationStaffMemberONE" in the same row as "AutomationStaffMemberONE"
-	Then "Name" is "AutomationStaffMemberONE"
-	And I cannot set "Username" to "abc"
-	
-	When I set "Name" to "AutomationStaffMemberTWO"
-	And I set the radio button to "Active"
-	And I press the "Save" button
+	Then I see "AutomationStaffMemberONE" in the same row as "Full name"
+	Then I see "AutomationStaff@email.com" in the same row as "Email"
+	Then I see "Bureau" in the same row as "User type"
+
+	And I press the "Edit user" button
+
+	When I set "Full name" to "AutomationStaffMemberTWO"
+	And I set "Email" to "AutomationStaffTWO@email.com"
+	And the radio button "Active" is "selected"
+	And I press the "Save changes" button
+
 	Then I do not see "AutomationStaffMemberONE" on the page
 	And I see "AutomationStaffMemberTWO" on the page
-	
-	#defect 2637 -teamID is nulled
-	When I click on "AutomationStaffMemberTWO" in the same row as "AutomationStaffMemberTWO"
-	
+
+	And I click on the "Back to users" link
+
+	Then I do not see "AutomationStaffMemberONE" on the page
+	And I see "AutomationStaffMemberTWO" on the page
+
 @JDB-2928 @JDB-2637 
 Scenario: Bureau Team Picklist Name Change
 	Given I am on "Bureau" "test"

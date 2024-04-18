@@ -421,19 +421,16 @@ public class DatabaseTesterNewSchemaDesign {
 			conn = db.getConnection("demo");
 		try {
 
-			pStmt = conn.prepareStatement("delete from juror_mod.user_roles where username=?");
-			pStmt.setString(1, staffName);
-			pStmt.executeQuery();
-			log.info("Delete all JUROR_MOD.USER_ROLES rows where username =>" + staffName);
-
 			pStmt = conn.prepareStatement("delete from juror_mod.user_courts where username=?");
 			pStmt.setString(1, staffName);
-			pStmt.executeQuery();
-			log.info("Delete all JUROR_MOD.USER_COURTS rows where username =>" + staffName);
+			pStmt.execute();
+			conn.commit();
+			log.info("Delete all JUROR_MOD.USER_COURTS rows where name =>" + staffName);
 
 			pStmt = conn.prepareStatement("delete from juror_mod.users where name=?");
 			pStmt.setString(1, staffName);
-			pStmt.executeQuery();
+			pStmt.execute();
+			conn.commit();
 			log.info("Delete all JUROR_MOD.USERS rows where Name =>" + staffName);
 
 		} catch (SQLException e) {
