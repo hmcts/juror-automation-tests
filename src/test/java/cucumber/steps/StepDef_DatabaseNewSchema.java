@@ -639,5 +639,9 @@ public class StepDef_DatabaseNewSchema {
         DBTNSD.setPoolNumberInAttendanceTable(poolnumber,jurornumber);
     }
 
+    @Given("^I clear the bank holiday table data in the database$")
+    public void clearBankHolidayTableData() throws SQLException {
+        DBTNSD.clearBankHolidayTableData();
+    }
 
 }
