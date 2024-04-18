@@ -639,10 +639,7 @@ public class StepDef_DatabaseNewSchema {
         DBTNSD.setPoolNumberInAttendanceTable(poolnumber,jurornumber);
     }
 
-    @Given("^I update the appearance of juror \"([^\"]*)\" for show cause letter$")
-    public void updateAppearanceForShowCauseLetter(String jurorNumber) throws SQLException {
-        DBTNSD.updateAppearanceForShowCause(jurorNumber);
-    }
+
 
     @Given("^I clear the bank holiday table data in the database$")
     public void clearBankHolidayTableData() throws SQLException {
