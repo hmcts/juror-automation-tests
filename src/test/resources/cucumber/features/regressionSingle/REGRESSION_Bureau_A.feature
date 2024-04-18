@@ -114,18 +114,11 @@ Scenario Outline: Lift from QC Script for Bureau A Functionality
 	Then I see "Record status" on the page
 	And I do not see "Edit" on the page
 	And I do not see "edit" on the page
-	When I select "PDF sent to court..." from Process reply
-	
-	When I check the "PDF sent to court" checkbox
-	And I press the "Confirm" button
+	And I press the "More actions" button
+	When I click on the "Download as a PDF" link
+
 	And I see "<part_no_three>" on the page
-	Then I see "COMPLETED" on the page
-	
-	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "Y" where "JUROR_NUMBER" is "<part_no_three>"
-	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "CLOSED" where "JUROR_NUMBER" is "<part_no_three>"
-	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "SUPER_URGENT" is "Y" where "JUROR_NUMBER" is "<part_no_three>"
-	
-	Then on "JUROR" . "pool" I see "RESPONDED" is "N" where "part_no" is "<part_no_three>" and "OWNER" is "400"
+	Then I do not see "COMPLETED" on the page
 
 	When I click on the "Back" link
 		

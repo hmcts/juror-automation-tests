@@ -328,7 +328,11 @@ Scenario Outline: English 1st Party Excusal Super Urgent
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
-		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
+		| 452   |<juror_number>| <pool_number>	| 1				            | 400	|
+
+	Then a new pool is inserted for where record has transferred to the court new schema
+		|part_no         | pool_no       | owner |
+		|<juror_number>  | <pool_number> | 452   |
 	
 	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
 	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
@@ -408,7 +412,7 @@ Scenario Outline: English 1st Party Excusal Super Urgent
 	
 	#Confirm Date of Jury
 	Then I see "Check your start date" on the page
-	When I set the radio button to "No, I cannot do jury service and need to be excused" 
+	When I set the radio button to "No, I cannot do jury service and need to be excused"
 	And I press the "Continue" button
 	
 	#Excusal Reason
@@ -419,8 +423,8 @@ Scenario Outline: English 1st Party Excusal Super Urgent
 	And I see "We'll contact you later if we need this." on the page
 	And I click on the "Will I need to provide evidence soon?" link
 	And I see "If we need evidence, we'll contact you separately to tell you." on the page
-	And I see "For example, if you're too ill for jury service, we might ask for a letter from your doctor." on the page
-	And I see "You'll be given time to gather any evidence so do not worry about trying to gather this now." on the page
+	And I see "For example, if you're too ill to do jury service, we might ask you to provide a medical certificate from an appropriate regulated healthcare professional, such as a doctor, nurse, physiotherapist, pharmacist or occupational therapist." on the page
+	And I see "You will be given time to gather any evidence so do not need to worry about trying to get this now." on the page
 	And I see "You should wait until we've told you what evidence we need, if any." on the page
 	Then I set text area with "id" of "excusalReason" to "Excuse me please"
 	And I press the "Continue" button
@@ -448,10 +452,11 @@ Scenario Outline: English 1st Party Excusal Super Urgent
 	And I press the "Search" button
 	Then I see "<juror_number>" on the page
 	And I click on "<juror_number>" in the same row as "<juror_number>"
-	
-	And I press the "Process reply" button
-	And I do not see link with text "Excusal"
-	And I see link with text "PDF sent to court..."
+
+	And I press the "More actions" button
+	And I click on the "Download as a PDF" link
+	And I switch to the new window
+	And I see "<juror_number>/download-pdf" in the URL
 	
 Examples:
 	| juror_number	| last_name			| postcode	| email           	| pool_number	|
