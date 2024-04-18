@@ -4886,85 +4886,7 @@ public class DatabaseTesterNewSchemaDesign {
 		}
 	}
 
-
-	public void setJurorsAttendanceDate(String jurorNumber ) throws SQLException {
-		db = new DBConnection();
-
-		String env_property = System.getProperty("env.database");
-
-		if (env_property != null)
-			conn = db.getConnection(env_property);
-		else
-			conn = db.getConnection("demo");
-
-		try {
-
-			pStmt = conn.prepareStatement("UPDATE juror_mod.appearance set no_show='true' where juror_number='" + jurorNumber + "'");
-			pStmt.executeUpdate();
-
-			pStmt = conn.prepareStatement("UPDATE juror_mod.appearance set attendance_type='ABSENT' where juror_number='" + jurorNumber + "'");
-			pStmt = conn.prepareStatement("update  juror_mod.juror_pool set next_date = CURRENT_TIMESTAMP  where juror_number='" + jurorNumber + "'");
-			pStmt.executeUpdate();
-			pStmt = conn.prepareStatement("delete from juror_mod.holiday");
-			pStmt.executeUpdate();
-
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-			log.error("Message:" + e.getMessage());
-
-		} finally {
-			conn.commit();
-			pStmt.close();
-			conn.close();
-		}
-	}
-
-
-	public void setPoolNumberInAttendanceTable(String poolnumber,String jurornumber ) throws SQLException {
-
-		db = new DBConnection();
-
-		String env_property = System.getProperty("env.database");
-
-		if (env_property != null)
-			conn = db.getConnection(env_property);
-		else
-			conn = db.getConnection("demo");
-
-		try {
-			pStmt = conn.prepareStatement("update juror_mod.appearance set pool_number ='" + poolnumber + "' where juror_number='"+jurornumber+"'");
-			pStmt.executeUpdate();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-			log.error("Message:" + e.getMessage());
-
-		String datePattern = "YYYY-MM-DD";
-		Calendar calendar = Calendar.getInstance();
-		calendar.add(Calendar.WEEK_OF_MONTH, noOfWeeks);
-
-		LocalDate localDate = calendar.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-		Date mondayDate = Date.from(localDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
-
-		try {
-
-			pStmt = conn.prepareStatement("INSERT INTO JUROR_MOD.HOLIDAY(LOC_CODE,HOLIDAY,DESCRIPTION,PUBLIC)"
-					+ "VALUES ('" + owner + "','" + mondayDate + "','Test holiday',true)");
-			pStmt.execute();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-			log.error("Message:inserted bank holiday for '" + owner + "' on '" + mondayDate + "' " + e.getMessage());
- 
-		} finally {
-			conn.commit();
-			pStmt.close();
-			conn.close();
-		}
-	}
-    
-    public void clearBankHolidayTableData() throws SQLException {
+	public void clearBankHolidayTableData() throws SQLException {
 		db = new DBConnection();
 
 		String env_property = System.getProperty("env.database");
@@ -5024,7 +4946,6 @@ public class DatabaseTesterNewSchemaDesign {
 			conn.close();
 		}
 	}
-
 	public void setJurorsAttendanceDate(String jurorNumber ) throws SQLException {
 		db = new DBConnection();
 
@@ -5057,8 +4978,6 @@ public class DatabaseTesterNewSchemaDesign {
 			conn.close();
 		}
 	}
-
-
 	public void setPoolNumberInAttendanceTable(String poolnumber,String jurornumber ) throws SQLException {
 
 		db = new DBConnection();
@@ -5074,13 +4993,16 @@ public class DatabaseTesterNewSchemaDesign {
 			pStmt = conn.prepareStatement("update juror_mod.appearance set pool_number ='" + poolnumber + "' where juror_number='"+jurornumber+"'");
 			pStmt.executeUpdate();
 
-			} catch (SQLException e) {
-				e.printStackTrace();
-			} finally {
-				conn.commit();
-				pStmt.close();
-				conn.close();
-			}
-		}
+		}catch (SQLException e) {
+		e.printStackTrace();
+		log.error("Message:" + e.getMessage());
+
+	} finally {
+		conn.commit();
+		pStmt.close();
+		conn.close();
+	}
+}
+
 
 }
