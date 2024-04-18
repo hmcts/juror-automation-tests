@@ -588,4 +588,15 @@ public class StepDef_jurorRecord {
         NAV.waitForPageLoad(2);
         JUROR_RECORD.seeAbsenceDateInTable(jurorNumber);
     }
+
+    @Then("I open new tab on the same browser$")
+    public void openNewTabonSameBrowser() {
+        NAV.openNewTab();
+    }
+    @Then("I return to the previous tab for letters$")
+    public void returnbackpreviousBrowser() {
+        NAV.selectpreviousTab();
+    }
+
+
 }
