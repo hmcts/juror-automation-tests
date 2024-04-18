@@ -9,7 +9,7 @@ Feature: JM-3686
 
     Given a bureau owned pool is created with jurors
       | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
-      | 415   | <juror_number> 	    | <pool_number>     | 1				            | 400	|
+      | 415   | <juror_number> 	    | <pool_number>     | 5				            | 400	|
 
     Given the request letter for part_no "<juror_number>" is deleted
 
@@ -40,31 +40,31 @@ Feature: JM-3686
     And I press the "Continue" button
 
    #eligibility
-    Then I select the Eligibility tab from the summons reply page
+    Then I click on the "Eligibility" link
     And I click on the "Add or change" link
     Then I set residency in the UK radio button to No
     And I press the "Continue" button
-    Then I select the Eligibility tab from the summons reply page
+    Then I click on the "Eligibility" link
     And I see "Attention" in the same row as "Residency"
 
    #Deferral or excusal
-    Then I select the Deferral or Excusal tab from the summons reply page
+    Then I click on the "Deferral or excusal" link
     And I click on the "Add or change" link
     And I set the radio button to "Excusal request"
     And I press the "Continue" button
-    Then I select the Deferral or Excusal tab from the summons reply page
+    Then I click on the "Deferral or excusal" link
     And I see "Attention" on the page
     And I see "Excusal request" on the page
 
    #CJS Employment
-    Then I select the CJS Employment tab from the summons reply page
+    Then I click on the "CJS employment" link
     And I see "CJS employment" on the page
     And I click on the "Add or change" link
     And I choose the "Yes" radio button
     And I check the "Police force" checkbox
     And I set "Which police force?" to "Metropolitan police"
     And I press the "Continue" button
-    Then I select the CJS Employment tab from the summons reply page
+    Then I click on the "CJS employment" link
     And I see "Attention" on the page
     And I see "Police Force" on the page
 
