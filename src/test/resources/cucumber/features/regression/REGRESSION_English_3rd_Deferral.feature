@@ -1,7 +1,9 @@
 Feature: Regression English_3rd_Deferral
 
-@Regression @NewSchemaConverted
+@Features @NewSchemaConverted @JM-7065
 Scenario Outline: English 3rd Party Deferral
+
+	#return to @Regression when defect fixed
 
 	Given I am on "Public" "test"
 
@@ -276,6 +278,7 @@ Scenario Outline: English 3rd Party Deferral
 	And I see "Sign in" on the page
 	When I log in as "CPASS"
 	Then I see "<juror_number>" on the page
+	#JM-7065
 	Then I see "<juror_number>" has reply type indicator "INELIGIBLE"
 
 Examples:

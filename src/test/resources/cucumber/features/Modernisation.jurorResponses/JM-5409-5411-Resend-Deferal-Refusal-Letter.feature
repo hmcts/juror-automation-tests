@@ -360,15 +360,15 @@ Feature: 1)JM-5409,JM-5411 - As a Bureau/jury officer I need to resend a deferra
     And I see "Search" on the page
     And I set the radio button to "Juror"
     And I press the "Search" button
-    And I see error "Enter juror name, number or postcode"
-    When I set "Enter juror name, number or postcode" to "<juror_number>"
+    And I see error "Enter juror number"
+    When I set "Enter juror number" to "<juror_number>"
     And I press the "Search" button
     Then I see "Change" on the page
     And I see "Print deferral refused letter" on the page
     And I am able to see and interact with the jurors Deferral Refused letter tabs and fields
     When I check the "<juror_number>" checkbox
     And I press the "Print deferral refused letter" button
-    Then I see "documents/deferral-refused/letters-list" in the URL
+    Then I see "https://juror.staging.apps.hmcts.net/documents/deferral-refused/letters-list?documentSearchBy=juror_number&jurorNumber=041530028" in the UR
 
     Examples:
       | juror_number  | pool_number | user         |

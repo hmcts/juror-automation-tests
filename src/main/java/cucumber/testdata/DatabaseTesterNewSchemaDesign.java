@@ -421,19 +421,16 @@ public class DatabaseTesterNewSchemaDesign {
 			conn = db.getConnection("demo");
 		try {
 
-			pStmt = conn.prepareStatement("delete from juror_mod.user_roles where username=?");
-			pStmt.setString(1, staffName);
-			pStmt.executeQuery();
-			log.info("Delete all JUROR_MOD.USER_ROLES rows where username =>" + staffName);
-
 			pStmt = conn.prepareStatement("delete from juror_mod.user_courts where username=?");
 			pStmt.setString(1, staffName);
-			pStmt.executeQuery();
-			log.info("Delete all JUROR_MOD.USER_COURTS rows where username =>" + staffName);
+			pStmt.execute();
+			conn.commit();
+			log.info("Delete all JUROR_MOD.USER_COURTS rows where name =>" + staffName);
 
 			pStmt = conn.prepareStatement("delete from juror_mod.users where name=?");
 			pStmt.setString(1, staffName);
-			pStmt.executeQuery();
+			pStmt.execute();
+			conn.commit();
 			log.info("Delete all JUROR_MOD.USERS rows where Name =>" + staffName);
 
 		} catch (SQLException e) {
@@ -4946,5 +4943,63 @@ public class DatabaseTesterNewSchemaDesign {
 			conn.close();
 		}
 	}
+	public void setJurorsAttendanceDate(String jurorNumber ) throws SQLException {
+		db = new DBConnection();
+
+		String env_property = System.getProperty("env.database");
+
+		if (env_property != null)
+			conn = db.getConnection(env_property);
+		else
+			conn = db.getConnection("demo");
+
+		try {
+
+			pStmt = conn.prepareStatement("UPDATE juror_mod.appearance set no_show='true' where juror_number='" + jurorNumber + "'");
+			pStmt.executeUpdate();
+
+			pStmt = conn.prepareStatement("UPDATE juror_mod.appearance set attendance_type='ABSENT' where juror_number='" + jurorNumber + "'");
+			pStmt = conn.prepareStatement("update  juror_mod.juror_pool set next_date = CURRENT_TIMESTAMP  where juror_number='" + jurorNumber + "'");
+			pStmt.executeUpdate();
+			pStmt = conn.prepareStatement("delete from juror_mod.holiday");
+			pStmt.executeUpdate();
+
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.error("Message:" + e.getMessage());
+
+		} finally {
+			conn.commit();
+			pStmt.close();
+			conn.close();
+		}
+	}
+	public void setPoolNumberInAttendanceTable(String poolnumber,String jurornumber ) throws SQLException {
+
+		db = new DBConnection();
+
+		String env_property = System.getProperty("env.database");
+
+		if (env_property != null)
+			conn = db.getConnection(env_property);
+		else
+			conn = db.getConnection("demo");
+
+		try {
+			pStmt = conn.prepareStatement("update juror_mod.appearance set pool_number ='" + poolnumber + "' where juror_number='"+jurornumber+"'");
+			pStmt.executeUpdate();
+
+		}catch (SQLException e) {
+		e.printStackTrace();
+		log.error("Message:" + e.getMessage());
+
+	} finally {
+		conn.commit();
+		pStmt.close();
+		conn.close();
+	}
+}
+
 
 }

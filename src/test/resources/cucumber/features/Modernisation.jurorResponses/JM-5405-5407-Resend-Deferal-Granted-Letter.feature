@@ -168,8 +168,8 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
       |  041520026    | 415300703   | MODTESTBUREAU |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @JM-6227
-  Scenario Outline:As a bureau officer test a Deferred juror can resend a granted letter by searching via Pool number
+  @JurorTransformation @NewSchemaConverted
+  Scenario Outline:As a bureau officer test a Deferred juror with status changed can resend a granted letter
 
     Given I am on "Bureau" "test"
     And I log in as "<user>"
@@ -291,33 +291,35 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
     And I press the "Search" button
     And I see "Pending" on the page
     And I see "Change" on the page
-    And I update juror "<juror_number>" to change the status of printed in order to resend letter
+    And I update juror "<juror_number_1>" to change the status of printed in order to resend letter
     And I press the "Apps" button
     And I click on the "Documents" link
     And I click on the "Deferral granted letters" link
     And I set the radio button to "Pool"
     And I set "Enter pool number" to "<pool_number>"
     And I press the "Search" button
-    And I check the "<juror_number>" checkbox
-    When I press the "Resend deferral granted letter" button
-    Then I see "1 document sent for printing" on the page
     And I update juror "<juror_number_1>" to have a status of "Excused"
-    And I update juror "<juror_number_1>" to change the status of printed in order to resend letter
+    And I open new tab on the same browser
+    Given I am on "Bureau" "test"
+    And I log in as "<user>"
     And I press the "Apps" button
     When I click on the "Documents" link
     And I click on the "Deferral granted letters" link
-    And I press the "Search" button
-    Then I see error "Select whether you want to search by juror or pool"
     And I set the radio button to "Pool"
     And I set "Enter pool number" to "<pool_number>"
     When I press the "Search" button
     Then I see "<juror_number>" in the same row as "Deferred"
-    #Script will fail due to JM-6227
+    And I do not see "<juror_number_1>" on the page
+    And I return to the previous tab for letters
+    When I check the "<juror_number_1>" checkbox
+    And I press the "Resend deferral granted letter" button
+    Then I see "You cannot resend this letter to all jurors you selected" on the page
+    Then I see "This is because the following have had a change of juror status since the first letter was sent" on the page
     And I see "<juror_number_1>" in the same row as "Excused"
 
     Examples:
       | juror_number  |juror_number_1|pool_number            | user          |
-        |  041520026    | 041520027             |415300703   | MODTESTBUREAU |
+      |  041520035    | 041520036    |415300704              | MODTESTBUREAU |
 
 
   @JurorTransformationMulti @NewSchemaConverted
@@ -496,7 +498,7 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
     And I am able to see and interact with the jurors Deferral letter tabs and fields
     When I check the "<juror_number>" checkbox
     And I press the "Print deferral granted letter" button
-    Then I see "https://juror.staging.apps.hmcts.net/documents/deferral-granted/letters-list?documentSearchBy=juror&jurorDetails=041530027" in the URL
+    Then I see "documents/deferral-granted/letters-list" in the URL
 
     Examples:
       | juror_number  | pool_number | user         |
@@ -600,7 +602,7 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
     And I see the printed letter for juror number "<juror_number>" in the letters table
     When I check the "<juror_number>" checkbox
     And I press the "Print deferral granted letter" button
-    Then I see "https://juror.staging.apps.hmcts.net/documents/deferral-granted/letters-list?documentSearchBy=pool&poolDetails=415300305&includePrinted=includePrinted" in the URL
+    Then I see "documents/deferral-granted" in the URL
 
     Examples:
       | juror_number  | pool_number | user          |

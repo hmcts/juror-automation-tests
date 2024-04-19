@@ -2286,6 +2286,17 @@ public class NavigationShared {
                 throw new Error("Unexpected switch case");
         }
     }
+    public void openNewTab() {
+
+        ((JavascriptExecutor) driver).executeScript("window.open()");
+        ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(1));
+    }
+    public void selectpreviousTab() {
+
+        ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(0));
+    }
 
 
 

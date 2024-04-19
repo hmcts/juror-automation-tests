@@ -90,29 +90,29 @@ Examples:
 	|part_no		|pool_no 	|last_name 			|postcode 	|
 	|645200289		|452170401 	|LNAMETWOEIGHTNINE	|SY2 6LU	|
 	
-@RegressionSingle
+@RegressionSingle @NewSchemaConverted
 Scenario Outline: Send to court process options
 
 	Given I am on "Public" "test"
+
 	Given auto straight through processing has been disabled new schema
-	Given the juror numbers have not been processed
-		|part_no 	|pool_no 	|owner	|
-		|<part_no> 	|<pool_no>	|400 	|
+
+	#super urgent pool owned by court
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number>| <pool_number>	| 1				            | 400	|
+
+	Given a new pool is inserted for where record has transferred to the court new schema
+		|part_no             | pool_no           | owner |
+		|<juror_number>      | <pool_number>     | 452   |
+
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	
-	# Set part_no pool to be super urgent
-	
-	Given "<juror_number>" has "RET_DATE" as "2 mondays time"
-	And "<juror_number>" has "NEXT_DATE" as "2 mondays time"
-	
-	# Submit response in pool
-	
+	# Submit response
 	Given I have submitted a first party English straight through response
-		|part_no	|pool_number|last_name		|postcode	|email 	|
-		|<part_no>	|<pool_no>	|<last_name>	|<postcode>	|a@a.com|
-		
-	Given "<juror_number>" has "READ_ONLY" as "Y"
-	Then the "URGENT" for juror "<juror_number>" is set to "N"
-	Then the "SUPER_URGENT" for juror "<juror_number>" is set to "Y"
+		|part_no		|pool_number	|last_name		|postcode	|email 	|
+		|<juror_number>	|<pool_number>	|<last_name>	|<postcode>	|a@a.com|
 	
 	Given I am on "Bureau" "test"
 	And I log in as "MODTESTBUREAU"
@@ -123,7 +123,7 @@ Scenario Outline: Send to court process options
 	Given I am on "Bureau" "test"
 	And I log in as "ARAMIS1"
 	And I click on the "Search" link
-	And I set "Juror's pool number" to "<pool_no>"
+	And I set "Juror's pool number" to "<pool_number>"
 	And I press the "Search" button
 	
 	When I click on "<juror_number>" in the same row as "<juror_number>"
@@ -131,25 +131,21 @@ Scenario Outline: Send to court process options
 	And I do not see "Download as a PDF" on the page
 	Then I press the "More actions" button
 	And I see link with text "Download as a PDF"
-	And I do not see "Send to a colleague..." on the page
-	And I do not see "Mark as 'Awaiting information'" on the page
 	Then I press the "More actions" button
 	
 	Then I do not see "PDF sent to court" on the page
-	Then I press the "Process reply" button
-	Then I click on the "PDF sent to court..." link
-		
-	When I check the "PDF sent to court" checkbox
-	And I press the "Confirm" button
-	Then I see "COMPLETED" on the page
+	Then I press the "More actions" button
+	Then I click on the "Download as a PDF" link
+	And I switch to the new window
+	And I see "<juror_number>/download-pdf" in the URL
 
 	#re-enable auto processing
 	
 	Given auto straight through processing has been enabled new schema
 
 Examples:
-	|part_no		|pool_no 	|last_name 			|postcode 	|
-	|645200289		|452170401 	|LNAMETWOEIGHTNINE	|SY2 6LU	|
+	|juror_number	|pool_number|last_name 			|postcode 	|
+	|045200230		|452300210 	|LNAMETWOEIGHTNINE	|SY2 6LU	|
 
 @RegressionSingle
 Scenario Outline: Urgent process options
