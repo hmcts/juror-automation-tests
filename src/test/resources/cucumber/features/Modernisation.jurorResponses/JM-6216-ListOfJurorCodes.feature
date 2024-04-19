@@ -74,7 +74,7 @@ Feature: As a jury/bureau officer I want to see a list of juror status codes
     And I click on the "Expenses" link
     And I click on the "View all expenses" link
     And I see "Unpaid attendance" on the page
-    
+
     Then I click on "View expenses" in the same row as "<juror_number>"
     And I see the unpaid expenses table
     And I check the checkbox containing my expense date
