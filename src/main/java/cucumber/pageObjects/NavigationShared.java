@@ -2298,6 +2298,10 @@ public class NavigationShared {
         driver.switchTo().window(tabs.get(0));
     }
 
+    public void selectNextTab() {
 
+        ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(1));
+    }
 
 }
