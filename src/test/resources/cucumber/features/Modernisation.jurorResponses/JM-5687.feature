@@ -35,8 +35,8 @@ Feature: JM-5687 - Resend Confirmation letter
     Then I see error "Select whether you want to search by juror or pool"
     And I set the radio button to "Juror"
     And I press the "Search" button
-    And I see error "Enter juror name, number or postcode"
-    And I set "Enter juror name, number or postcode" to "<juror_number>"
+    And I see error "Enter juror number"
+    And I set "Enter juror number" to "<juror_number>"
     And I press the "Search" button
     And I see "Pending" in the same row as "<juror_number>"
     And I press the "Apps" button
@@ -88,8 +88,8 @@ Feature: JM-5687 - Resend Confirmation letter
     Then I see error "Select whether you want to search by juror or pool"
     And I set the radio button to "Juror"
     And I press the "Search" button
-    And I see error "Enter juror name, number or postcode"
-    And I set "Enter juror name, number or postcode" to "<juror_number>"
+    And I see error "Enter juror number"
+    And I set "Enter juror number" to "<juror_number>"
     And I press the "Search" button
     And I see "Pending" in the same row as "<juror_number>"
     And I see "Change" on the page
