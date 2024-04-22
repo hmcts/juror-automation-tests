@@ -52,8 +52,8 @@ def secrets = [
     secret('api-POSTGRES-PASS', 'DATABASE_DEMO_PASSWORD'),
   ],
   'juror-ithc': [
-    secret('api-POSTGRES-USER', 'DATABASE_DEMO_USERNAME'),
-    secret('api-POSTGRES-PASS', 'DATABASE_DEMO_PASSWORD'),
+    secret('api-POSTGRES-USER', 'DATABASE_ITHC_USERNAME'),
+    secret('api-POSTGRES-PASS', 'DATABASE_ITHC_PASSWORD'),
   ],
 ]
 
