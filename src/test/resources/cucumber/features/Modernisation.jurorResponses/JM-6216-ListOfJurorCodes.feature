@@ -1,97 +1,34 @@
 Feature: As a jury/bureau officer I want to see a list of juror status codes
 
-  @JurorTransformation @NewSchemaConverted
-  Scenario Outline: Test a bureau user can able to view the list of juror codes
+  @JurorTransformationMulti @NewSchemaConverted
+  Scenario Outline: Test a bureau officer can see list of juror status codes
 
     Given I am on "Bureau" "test"
-    When a bureau owned pool is created with jurors
-      | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
-      | 415   |<juror_number>     | <pool_number>       | 5				            | 400	|
-
-    Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no              | pool_no           | owner |
-      |<juror_number>     | <pool_number>     | 415   |
-
-    And I Confirm all the data in the record attendance table is cleared
-    And I log in as "<user>"
-
-    #set juror as responded
-    And I update juror "<juror_number>" to have a status of responded in order to record attendance
-
-    #check in jurors
-    And I press the "Apps" button
-    And I click on the "Juror management" link
-    And I click on the "Record attendance" link
-    And I set the radio button to "Check in"
-
-    And I set "Hour" to "09"
-    And I set "Minute" to "00"
-    And I set the radio button to "am"
-    And I input juror "<juror_number>" to be checked in
-    And I press the "Check in juror" button
-
-
-    And the user searches for juror record "<juror_number>" from the global search bar
-    And I click on the "Expenses" link
-    And I see "Daily expenses" on the page
-    And I press change default expenses button
-    And I see "Set Default Expenses" on the page
-    And I click on the "Cancel without saving" link
-    And I see "Set default expenses" on the page
-    And I press change default expenses button
-
-    And I set "Loss of earnings or benefits per day" to "100"
-    And I set "Hour" to "3"
-    And I set "Minute" to "15"
-    And I set "Miles travelled by car, motorcycle or bicycle per day" to "3"
-    And I choose the "Yes" radio button
-    And I set "Smartcard Number" to "123456789"
-    And I check the "Tick to overwrite any existing draft expenses with these amounts for this juror." checkbox
-    And I press the "Save default expenses" button
-    Then I see "Daily expenses" on the page
-    And I see "3 hours 15 minutes" in the same row as "Travel time"
-    And I see "£100.00" in the same row as "Loss of earnings or benefits per day"
-    And I see "3 miles" in the same row as "Miles travelled"
-    And I see "123456789" in the same row as "Smartcard number"
-
-    And I press change juror bank details button
-    And I set "Account number" to "12345678"
-    And I set "Sort code" to "123456"
-    And I set "Account holder's name" to "Account Holder"
-    Then I press the "Save" button
-
-    And I press the "Apps" button
-    And I click on the "Juror management" link
-    And I click on the "Record attendance" link
-    When I press the "Confirm attendance" button
-    And I set "Hour" to "11"
-    And I set "Minute" to "30"
-    And I set the radio button to "pm"
-    And I press the "Continue" button
-    And I press the "Confirm attendance list is correct" button
-
-    And the user searches for juror record "<juror_number>" from the global search bar
-    And I click on the "Expenses" link
-    And I click on the "View all expenses" link
-    And I see "Unpaid attendance" on the page
-
-    Then I click on "View expenses" in the same row as "<juror_number>"
-    And I see the unpaid expenses table
-    And I check the checkbox containing my expense date
-    And I press the "Submit for approval" button
-    Then I see "Expenses submitted for approval" on the page
-    And I click on the "For approval" link
-    And I see the audit report for my expense in the table
-
-    And I see the following details on the expenses for approval form
-      | Attendance                 | 1                         |
-      | Financial loss             | £64.95                    |
-      | Travel                     | £0.00                     |
-      | Food and drink             | £12.17                    |
-      | Smartcard                  | (£0.00)                   |
-      | Total due                  | £77.12                    |
-
+    When I log in as "<user>"
+    And I click on the "Apps" link
+    And I click on the "Bureau administration" link
+    And I click on the "System codes" link
+    Then I verify the system codes inside administration page
+    When I click on the "Juror status codes" link
+    Then I verify the list of juror codes
 
     Examples:
-      |user			|juror_number |   pool_number   |
-      |MODTESTCOURT |041536689    | 415360983       |
+      | user           |
+      | MODTESTBUREAU  |
+
+
+  @JurorTransformationMulti @NewSchemaConverted
+  Scenario Outline: Test a Jury manager can see list of juror status codes
+
+    Given I am on "Bureau" "test"
+    When I log in as "<user>"
+    And I click on the "Apps" link
+    And I click on the "Court administration" link
+    And I click on the "System codes" link
+    Then I verify the system codes inside administration page
+    When I click on the "Juror status codes" link
+    Then I verify the list of juror codes
+
+    Examples:
+      | user      |
+      | CMANAGER  |
