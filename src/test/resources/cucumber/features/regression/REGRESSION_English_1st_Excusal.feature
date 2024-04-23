@@ -103,8 +103,8 @@ Scenario Outline: English 1st Party Excusal Accepted
 	Then I set text area with "id" of "excusalReason" to "Excuse me please"
 	And I click on the "Will I need to provide evidence soon?" link
 	And I see "If we need evidence, we'll contact you separately to tell you." on the page
-	And I see "For example, if you're too ill for jury service, we might ask for a letter from your doctor." on the page
-	And I see "You'll be given time to gather any evidence so do not worry about trying to gather this now." on the page
+	And I see "For example, if you're too ill to do jury service, we might ask you to provide a medical certificate from an appropriate regulated healthcare professional, such as a doctor, nurse, physiotherapist, pharmacist or occupational therapist." on the page
+	And I see "You will be given time to gather any evidence so do not need to worry about trying to get this now." on the page
 	And I see "You should wait until we've told you what evidence we need, if any." on the page
 
 	And I press the "Continue" button
@@ -134,12 +134,6 @@ Scenario Outline: English 1st Party Excusal Accepted
 	
 	Then I see "Excuse me please" on the page
 	
-	And I press the "Process reply" button
-	And I see link with text "Excusal"
-	
-	Given I am on "Bureau" "test"
-	And I log in as "MODTESTBUREAU"
-	
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
@@ -159,23 +153,25 @@ Scenario Outline: English 1st Party Excusal Accepted
 	And I click on "<juror_number>" in the same row as "<juror_number>"
 	
 	And I press the "Process reply" button
-	And I click on the "Excusal" link
-	Then I select "D - DECEASED" from the "Reason for the excusal request" dropdown
-	And I set the radio button to "Accept excusal request"
-	And the radio button "Accept excusal request" is "selected"
-	And the radio button "Refuse excusal request" is "unselected"
-	And I set the radio button to "Refuse excusal request"
-	And the radio button "Refuse excusal request" is "selected"
-	And the radio button "Accept excusal request" is "unselected"
+	And I choose the "Excusal - grant or refuse" radio button
+	And I press the "Continue" button
+	And I select "D - DECEASED" from the "Reason for excusal request" dropdown
+
+	And I choose the "Grant excusal" radio button
+	And the radio button "Grant excusal" is "selected"
+	And the radio button "Refuse excusal" is "unselected"
+	And I choose the "Refuse excusal" radio button
+	And the radio button "Refuse excusal" is "selected"
+	And the radio button "Grant excusal" is "unselected"
 	And I click on the "Cancel" link
 	
 	And I press the "Process reply" button
-	And I click on the "Excusal" link
-	Then I select "D - DECEASED" from the "Reason for the excusal request" dropdown
-	And I set the radio button to "Accept excusal request"
-	And I press the "Confirm" button
-	And I see "Excused" on the page
-	And I see "COMPLETED" on the page
+	And I choose the "Excusal - grant or refuse" radio button
+	And I press the "Continue" button
+	And I select "D - DECEASED" from the "Reason for excusal request" dropdown
+	And I choose the "Grant excusal" radio button
+	And I press the "Continue" button
+	And I see the juror record updated banner containing "Excusal granted (deceased)"
 	
 Examples:
 	| juror_number	| last_name		| postcode	| email           	| pool_number	|
@@ -279,8 +275,8 @@ Scenario Outline: English 1st Party Excusal Refused
 	And I see "We'll contact you later if we need this." on the page
 	And I click on the "Will I need to provide evidence soon?" link
 	And I see "If we need evidence, we'll contact you separately to tell you." on the page
-	And I see "For example, if you're too ill for jury service, we might ask for a letter from your doctor." on the page
-	And I see "You'll be given time to gather any evidence so do not worry about trying to gather this now." on the page
+	And I see "For example, if you're too ill to do jury service, we might ask you to provide a medical certificate from an appropriate regulated healthcare professional, such as a doctor, nurse, physiotherapist, pharmacist or occupational therapist." on the page
+	And I see "You will be given time to gather any evidence so do not need to worry about trying to get this now." on the page
 	And I see "You should wait until we've told you what evidence we need, if any." on the page
 	Then I set text area with "id" of "excusalReason" to "Excuse me please"
 	And I press the "Continue" button
@@ -307,15 +303,15 @@ Scenario Outline: English 1st Party Excusal Refused
 	Then I see "Excuse me please" on the page
 	
 	And I press the "Process reply" button
-	And I click on the "Excusal" link
-	Then I select "M - MEDICAL" from the "Reason for the excusal request" dropdown
-	And I set the radio button to "Refuse excusal request"
-	And the radio button "Refuse excusal request" is "selected"
-	And the radio button "Accept excusal request" is "unselected"
+	And I choose the "Excusal - grant or refuse" radio button
+	And I press the "Continue" button
+	Then I select "M - MEDICAL" from the "Reason for excusal request" dropdown
+	And I choose the "Refuse excusal" radio button
+	And the radio button "Refuse excusal" is "selected"
+	And the radio button "Grant excusal" is "unselected"
 
-	And I press the "Confirm" button
-	And I see "Responded" on the page
-	And I see "COMPLETED" on the page
+	And I press the "Continue" button
+	And I see the juror record updated banner containing "Excusal refused (medical)"
 	
 Examples:
 	| juror_number	| last_name			| postcode	| email           	| pool_number	|
@@ -440,10 +436,6 @@ Scenario Outline: English 1st Party Excusal Super Urgent
 	And I press the "Submit" button
 	And I see "You have completed your reply" on the page
 	
-	Given "<juror_number>" has "READ_ONLY" as "Y"
-	Then the "URGENT" for juror "<juror_number>" is set to "N"
-	Then the "SUPER_URGENT" for juror "<juror_number>" is set to "Y"
-	
 	Given I am on "Bureau" "test"
 	When I log in as "CPASS"
 	
@@ -470,16 +462,16 @@ Scenario Outline: English 1st Party Excusal error messages
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
 		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
-	
+
 	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
 	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
-	
+
 	Then I see "Reply to a jury summons" on the page
 
 	And I set the radio button to "I am replying for myself"
 	And I press the "Continue" button
 	Then I see "Your juror details" on the page
-	
+
 	#Juror Log In
 	When I set "9-digit juror number" to "<juror_number>"
 	When I set "Juror last name" to "<last_name>"
@@ -487,69 +479,69 @@ Scenario Outline: English 1st Party Excusal error messages
 	And I press the "Continue" button
 	Then I see "Is the name we have for you correct?" on the page
 	When I choose the "Yes" radio button
-	
+
 	#Check Name
 	When I press the "Continue" button
 	Then I see "Is this your address?" on the page
 	When I choose the "Yes" radio button
-	
+
 	#Check Address
 	And I press the "Continue" button
 	Then I see "What is your phone number?" on the page
-	
+
 	#Phone Details
 	When I set "Main phone" to "0207 821 1818"
 	And I press the "Continue" button
 	Then I see "What is your email address?" on the page
-	
+
 	#Email
 	When I set "Enter your email address" to "<email>"
 	And I set "Enter your email address again" to "<email>"
 	And I press the "Continue" button
 	Then I see "What is your date of birth?" on the page
-	
+
 	#DoB
 	When I set "Day" to "27"
 	And I set "Month" to "04"
 	And I set "Year" to "1981"
 	And I press the "Continue" button
 	Then I see "Confirm you're eligible for jury service" on the page
-	
+
 	When I press the "Continue" button
-	
+
 	#Residency
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	When I choose the "Yes" radio button
 	And I press the "Continue" button
-	
+
 	#CJS
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
 	When I choose the "No" radio button
 	And I press the "Continue" button
-	
+
 	#Bail
 	When I choose the "No" radio button
 	And I press the "Continue" button
-	
+
 	#Convictions
 	Then I see "Have you been found guilty of a criminal offence?" on the page
 	When I choose the "No" radio button
 	And I press the "Continue" button
-	
+
 	#Mental Health part 1
 	Then I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
 	When I choose the "No" radio button
 	And I press the "Continue" button
-	
+
 	#Mental Health part 2
 	When I choose the "No" radio button
 	And I press the "Continue" button
-	
+
 	#Confirm Date of Jury
 	Then I see "Check your start date" on the page
-	When I set the radio button to "No, I cannot do jury service and need to be excused" 
+	When I set the radio button to "No, I cannot do jury service and need to be excused"
 	And I press the "Continue" button
-	
+
 	#Excusal Reason
 	And I see "steps/confirm-date/excusal" in the URL
 	Then I see "Why do you need to be excused from jury service?" on the page
@@ -558,23 +550,23 @@ Scenario Outline: English 1st Party Excusal error messages
 	And I see "We'll contact you later if we need this." on the page
 	And I click on the "Will I need to provide evidence soon?" link
 	And I see "If we need evidence, we'll contact you separately to tell you." on the page
-	And I see "For example, if you're too ill for jury service, we might ask for a letter from your doctor." on the page
-	And I see "You'll be given time to gather any evidence so do not worry about trying to gather this now." on the page
+	And I see "For example, if you're too ill to do jury service, we might ask you to provide a medical certificate from an appropriate regulated healthcare professional, such as a doctor, nurse, physiotherapist, pharmacist or occupational therapist." on the page
+	And I see "You will be given time to gather any evidence so do not need to worry about trying to get this now." on the page
 	And I see "You should wait until we've told you what evidence we need, if any." on the page
 	Then I set text area with "id" of "excusalReason" to "Excuse me please"
 	And I press the "Continue" button
-	
+
 	#RA
 	Then I see "Will you need help when" on the page
 	When I choose the "No" radio button
 	And I press the "Continue" button
 	Then I see "Check your answers now" on the page
-	
+
 	#Check Your Answers Now
 	When I check the "The information" checkbox
 	And I press the "Submit" button
 	And I see "You have completed your reply" on the page
-	
+
 	Given I am on "Bureau" "test"
 	And I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
@@ -586,35 +578,41 @@ Scenario Outline: English 1st Party Excusal error messages
 	Then I see "Excuse me please" on the page
 	
 	And I press the "Process reply" button
-	And I click on the "Excusal" link
-	
+
 	# error when dont select anything
-	And I press the "Confirm" button
+	And I press the "Continue" button
 	Then I see "There is a problem" on the page
-	And I see "Select a reason for the excusal request" on the page
-	And I see "Select your decision for this excusal request" on the page
+	
+	And I see "Please select a response process type" on the page
+
+	And I choose the "Excusal - grant or refuse" radio button
+	And I press the "Continue" button
 	
 	# error when I dont select a decision
-	Then I select "M - MEDICAL" from the "Reason for the excusal request" dropdown
+	And I press the "Continue" button
+	And I see "Select the juror’s reason for requesting this excusal" on the page
+	And I see "Select whether you want to grant or refuse an excusal for this juror" on the page
+
+	Then I select "M - MEDICAL" from the "Reason for excusal request" dropdown
+	And I press the "Continue" button
 	
-	And I press the "Confirm" button
 	Then I see "There is a problem" on the page
-	And I see "Select your decision for this excusal request" on the page
+	And I see "Select whether you want to grant or refuse an excusal for this juror" on the page
 
 	# error when I dont select a reason
-	And I set the radio button to "Accept excusal request"
-	And I select "Select a reason..." from the "Reason for the excusal request" dropdown
+	And I choose the "Grant excusal" radio button
+	And I select "Select a reason..." from the "Reason for excusal request" dropdown
 	
-	And I press the "Confirm" button
+	And I press the "Continue" button
 	Then I see "There is a problem" on the page
-	And I see "Select a reason for the excusal request" on the page
+	And I see "Select the juror’s reason for requesting this excusal" on the page
 
 	# select both and process
-	Then I select "M - MEDICAL" from the "Reason for the excusal request" dropdown
+	Then I select "M - MEDICAL" from the "Reason for excusal request" dropdown
+	And I choose the "Grant excusal" radio button
+	And I press the "Continue" button
 	
-	And I press the "Confirm" button
-	And I see "Excused" on the page
-	And I see "COMPLETED" on the page
+	And I see the juror record updated banner containing "Excusal granted (medical)"
 	
 Examples:
 	| juror_number	| last_name			| postcode	| email           	| pool_number|

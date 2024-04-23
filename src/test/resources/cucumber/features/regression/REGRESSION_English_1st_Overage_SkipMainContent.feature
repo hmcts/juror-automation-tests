@@ -5,6 +5,8 @@ Scenario Outline: English 1st Overage Skip to Main Content Check
 
 	Given I am on "Public" "test"
 
+	And auto straight through processing has been enabled new schema
+
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
 		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
