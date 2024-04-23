@@ -221,7 +221,11 @@ public class JurorRecord {
     @FindBy(xpath = "//thead[@class=\"govuk-table__head\"]/tr/th/button")
     public List<WebElement> postponementJurorsResultsheaderTableName;
 
+    @FindBy(xpath = "//*[@class='govuk-table__cell']")
+    public List<WebElement> listofJurorCodes;
 
+    @FindBy(xpath = "//*[@class='govuk-link govuk-link--no-visited-state']")
+    public List<WebElement> listofSystemCodes;
 
     public String getHeading() {
         return heading.getText();
@@ -520,6 +524,7 @@ public class JurorRecord {
         }
 
     }
+
     public void seePrintedLetterInLettersTable(String jurorNumber) {
         Calendar today = Calendar.getInstance();
         SimpleDateFormat formatter = new SimpleDateFormat("EEE d MMM yyyy");
@@ -580,15 +585,20 @@ public class JurorRecord {
             log.info("There is only one tab open. Cannot return to the previous tab.");
         }
     }
-    public void pressNonAttendanceDayButton() {addNonAttendanceDayButton.click();}
 
-    public void PressConfirmNonAttendanceDateButton() {confirmNonAttendanceDateButton.click();}
+    public void pressNonAttendanceDayButton() {
+        addNonAttendanceDayButton.click();
+    }
+
+    public void PressConfirmNonAttendanceDateButton() {
+        confirmNonAttendanceDateButton.click();
+    }
 
     public void setNonAttendanceDate(String date) {
         nonAttendanceDate.clear();
         nonAttendanceDate.sendKeys(date);
     }
-  
+
     public void deferralRefusedjurorsTabPresent(final String tabName) {
         log.info("Clicking tab");
         switch (tabName) {
@@ -631,7 +641,8 @@ public class JurorRecord {
         }
 
     }
-    public void  selectAllCheckboxesInLettersTable() {
+
+    public void selectAllCheckboxesInLettersTable() {
         try {
             List<WebElement> checkboxes = driver.findElements(By.xpath("//*[@id=\"main-content\"]/div[4]/div/table//input[@name='checked-jurors']"));
             for (WebElement checkbox : checkboxes) {
@@ -691,6 +702,7 @@ public class JurorRecord {
         }
 
     }
+
     public void seeAbsenceDateInTable(String jurorNumber) {
         SimpleDateFormat formatter = new SimpleDateFormat("EEE d MMM yyyy");
         String absenceDate = formatter.format(new Date());
@@ -719,5 +731,133 @@ public class JurorRecord {
             }
         }
         System.out.println("Matching juror and date not found: " + jurorNumber + ", " + absenceDate);
+    }
+
+    public void getListOfSystemCodes(String systemcodes) {
+
+
+        switch (systemcodes) {
+
+            case "Disqualified code":
+                Assert.assertTrue("Expected Text not found", listofSystemCodes.get(0).getText().equals(systemcodes));
+                log.info(" Text - " + listofSystemCodes.get(0).getText() + " - is visible on the page ");
+                break;
+
+            case "Excusal and deferral codes":
+                Assert.assertTrue("Expected Text not found", listofSystemCodes.get(1).getText().equals(systemcodes));
+                log.info(" Text - " + listofSystemCodes.get(1).getText() + " - is visible on the page ");
+                break;
+
+            case "ID check codes":
+                Assert.assertTrue("Expected Text not found", listofSystemCodes.get(2).getText().equals(systemcodes));
+                log.info(" Text - " + listofSystemCodes.get(2).getText() + " - is visible on the page ");
+                break;
+
+            case "Juror status codes":
+                Assert.assertTrue("Expected Text not found", listofSystemCodes.get(3).getText().equals(systemcodes));
+                log.info(" Text - " + listofSystemCodes.get(3).getText() + " - is visible on the page ");
+                break;
+
+            case "Phone log codes":
+                Assert.assertTrue("Expected Text not found", listofSystemCodes.get(4).getText().equals(systemcodes));
+                log.info(" Text - " + listofSystemCodes.get(4).getText() + " - is visible on the page ");
+                break;
+
+            case "Reasonable adjustment code":
+                Assert.assertTrue("Expected Text not found", listofSystemCodes.get(5).getText().equals(systemcodes));
+                log.info(" Text - " + listofSystemCodes.get(5).getText() + " - is visible on the page ");
+                break;
+
+            case "Trial type":
+                Assert.assertTrue("Expected Text not found", listofSystemCodes.get(6).getText().equals(systemcodes));
+                log.info(" Text - " + listofSystemCodes.get(6).getText() + " - is visible on the page ");
+                break;
+
+            default:
+                log.info("Expected element text is not present on the page");
+                break;
+
+        }
+    }
+
+
+    public void getListOfJurorCodeStatus(String listOfJurorCode) {
+
+        switch (listOfJurorCode) {
+
+            case "Pool":
+                Assert.assertTrue("Expected Text not found", listofJurorCodes.get(1).getText().equals(listOfJurorCode));
+                log.info(" Text - " + listofJurorCodes.get(1).getText() + " - is visible on the page ");
+                break;
+
+            case "Summoned":
+                Assert.assertTrue("Expected Text not found", listofJurorCodes.get(4).getText().equals(listOfJurorCode));
+                log.info(" Text - " + listofJurorCodes.get(4).getText() + " - is visible on the page ");
+                break;
+
+            case "Responded":
+                Assert.assertTrue("Expected Text not found", listofJurorCodes.get(7).getText().equals(listOfJurorCode));
+                log.info(" Text - " + listofJurorCodes.get(7).getText() + " - is visible on the page ");
+                break;
+
+            case "Panel":
+                Assert.assertTrue("Expected Text not found", listofJurorCodes.get(10).getText().equals(listOfJurorCode));
+                log.info(" Text - " + listofJurorCodes.get(10).getText() + " - is visible on the page ");
+                break;
+
+            case "Juror":
+                Assert.assertTrue("Expected Text not found", listofJurorCodes.get(13).getText().equals(listOfJurorCode));
+                log.info(" Text - " + listofJurorCodes.get(13).getText() + " - is visible on the page ");
+                break;
+
+            case "Excused":
+                Assert.assertTrue("Expected Text not found", listofJurorCodes.get(16).getText().equals(listOfJurorCode));
+                log.info(" Text - " + listofJurorCodes.get(16).getText() + " - is visible on the page ");
+                break;
+
+            case "Disqualified":
+                Assert.assertTrue("Expected Text not found", listofJurorCodes.get(19).getText().equals(listOfJurorCode));
+                log.info(" Text - " + listofJurorCodes.get(19).getText() + " - is visible on the page ");
+                break;
+
+
+            case "Deferred":
+                Assert.assertTrue("Expected Text not found", listofJurorCodes.get(22).getText().equals(listOfJurorCode));
+                log.info(" Text - " + listofJurorCodes.get(22).getText() + " - is visible on the page ");
+                break;
+
+            case "Reassigned":
+                Assert.assertTrue("Expected Text not found", listofJurorCodes.get(25).getText().equals(listOfJurorCode));
+                log.info(" Text - " + listofJurorCodes.get(25).getText() + " - is visible on the page ");
+                break;
+            case "Undeliverable":
+                Assert.assertTrue("Expected Text not found", listofJurorCodes.get(28).getText().equals(listOfJurorCode));
+                log.info(" Text - " + listofJurorCodes.get(28).getText() + " - is visible on the page ");
+                break;
+            case "Transferred":
+                Assert.assertTrue("Expected Text not found", listofJurorCodes.get(31).getText().equals(listOfJurorCode));
+                log.info(" Text - " + listofJurorCodes.get(31).getText() + " - is visible on the page ");
+                break;
+            case "Awaiting info":
+                Assert.assertTrue("Expected Text not found", listofJurorCodes.get(34).getText().equals(listOfJurorCode));
+                log.info(" Text - " + listofJurorCodes.get(34).getText() + " - is visible on the page ");
+                break;
+
+            case "Failed to attend":
+                Assert.assertTrue("Expected Text not found", listofJurorCodes.get(37).getText().equals(listOfJurorCode));
+                log.info(" Text - " + listofJurorCodes.get(37).getText() + " - is visible on the page ");
+                break;
+
+            case "Completed":
+                Assert.assertTrue("Expected Text not found", listofJurorCodes.get(40).getText().equals(listOfJurorCode));
+                log.info(" Text - " + listofJurorCodes.get(40).getText() + " - is visible on the page ");
+                break;
+
+            default:
+                log.info("Expected element text is not present on the page");
+                break;
+
+        }
+
     }
 }
