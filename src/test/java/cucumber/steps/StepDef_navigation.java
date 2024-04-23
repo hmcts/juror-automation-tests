@@ -916,4 +916,9 @@ public class StepDef_navigation {
 	public void verifyBankHolidayOnAdminScreen(Integer noOfWeeks) {
 		NAV.insertHolidayInTheFrontScreen(noOfWeeks);
 	}
+
+	@When("^I select the first juror in the search results$")
+	public void selectFirstJurorInList() {
+		NAV.firstJurorInSearch();
+	}
 }

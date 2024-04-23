@@ -18,8 +18,8 @@ Scenario:
 	And I press the "Search" button
 
 	And I see "results for "is urgent"" on the page
-	
-	When I click on "045" in the same row as "MODTESTBUREAU"
+
+	And I select the first juror in the search results
 	And I see "Juror details" on the page
 
 	
