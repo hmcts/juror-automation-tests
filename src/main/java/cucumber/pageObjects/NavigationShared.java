@@ -90,6 +90,8 @@ public class NavigationShared {
     @FindBy(xpath = "//*[@class='govuk-table__cell']")
     List<WebElement> bankHoliday;
 
+    @FindBy(xpath = "//*[@id=\"searchResultTable\"]/tbody/tr[1]/td[1]/div/a")
+    WebElement firstJurorInSearch;
 
     public NavigationShared accessLoginPage(String environment) {
         String url;
@@ -2296,6 +2298,10 @@ public class NavigationShared {
 
         ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
         driver.switchTo().window(tabs.get(0));
+    }
+    public void firstJurorInSearch() {
+        log.info("Click on the first juror in the search results");
+        firstJurorInSearch.click();
     }
 
 
