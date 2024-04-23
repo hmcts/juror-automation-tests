@@ -80,7 +80,7 @@ Feature: JM-5963 - As a jury I need to be able to print a certificate of attenda
     And I click on the "Documents" link
     And I click on the "Certificate of attendance" link
     And I set the radio button to "Juror"
-    And I set "Enter juror name, number or postcode" to "<juror_number>"
+    And I set "Enter juror number" to "<juror_number>"
     And I press the "Search" button
 
     And I see "Certificates of attendance" on the page
@@ -92,7 +92,7 @@ Feature: JM-5963 - As a jury I need to be able to print a certificate of attenda
     And I click on the "Documents" link
     And I click on the "Certificate of attendance" link
     And I set the radio button to "Juror"
-    And I set "Enter juror name, number or postcode" to "<juror_number>"
+    And I set "Enter juror number" to "<juror_number>"
     And I press the "Search" button
     
     And I see "Do you want to remove previously printed records?" on the page

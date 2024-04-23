@@ -143,7 +143,7 @@ Feature: JM-252_Navigation_COURT
 
     Then I set the radio button to "<courtType>"
     And I set "Number of jurors required in total" to "150"
-    Then I should see the attendance time present is "09:00"
+    Then I should see the attendance time present is "09:30"
     Then I press the "Continue" button
 
     When I save the new pool request

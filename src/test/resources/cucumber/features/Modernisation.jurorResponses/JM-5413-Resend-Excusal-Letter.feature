@@ -34,8 +34,8 @@ Feature: JM-5413-5415 - Resend excusal granted letter for Bureau and Jury users
     Then I see error "Select whether you want to search by juror or pool"
     And I set the radio button to "Juror"
     And I press the "Search" button
-    And I see error "Enter juror name, number or postcode"
-    And I set "Enter juror name, number or postcode" to "<juror_number>"
+    And I see error "Enter juror number"
+    And I set "Enter juror number" to "<juror_number>"
     And I press the "Search" button
     And I see "Pending" in the same row as "<juror_number>"
     And I press the "Apps" button
@@ -43,7 +43,7 @@ Feature: JM-5413-5415 - Resend excusal granted letter for Bureau and Jury users
     Then I update juror "<juror_number>" to change the status of printed in order to resend letter
     And I click on the "Excusal granted letters" link
     And I set the radio button to "Juror"
-    And I set "Enter juror name, number or postcode" to "<juror_number>"
+    And I set "Enter juror number" to "<juror_number>"
     And I press the "Search" button
     And I see the printed letter for juror number "<juror_number>" in the letters table
     And I see "Excusal granted letters" on the page
@@ -85,7 +85,7 @@ Feature: JM-5413-5415 - Resend excusal granted letter for Bureau and Jury users
     And I click on the "Documents" link
     And I click on the "Excusal granted letters" link
     And I set the radio button to "Juror"
-    When I set "Enter juror name, number or postcode" to "<juror_number>"
+    When I set "Enter juror number" to "<juror_number>"
     And I press the "Search" button
     Then I see "Pending" on the page
     And I see "Change" on the page
