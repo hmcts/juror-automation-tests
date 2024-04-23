@@ -599,4 +599,40 @@ public class StepDef_jurorRecord {
     }
 
 
+    @Then("^I verify the system codes inside administration page$")
+    public void iSeeTheFollowingSystemCodesInsideAdministration() {
+
+        JUROR_RECORD.getListOfSystemCodes("Disqualified codes");
+        JUROR_RECORD.getListOfSystemCodes("Excusal and deferral codes");
+        JUROR_RECORD.getListOfSystemCodes("ID check codes");
+        JUROR_RECORD.getListOfSystemCodes("Juror status codes");
+        JUROR_RECORD.getListOfSystemCodes("Phone log codes");
+        JUROR_RECORD.getListOfSystemCodes("Reasonable adjustment codes");
+        JUROR_RECORD.getListOfSystemCodes("Trial types");
+
+        }
+
+
+    @Then("^I verify the list of juror codes$")
+    public void iSeeTheFollowingListofJurorCode( ) {
+
+
+        JUROR_RECORD.getListOfJurorCodeStatus("Pool");
+        JUROR_RECORD.getListOfJurorCodeStatus("Summoned");
+        JUROR_RECORD.getListOfJurorCodeStatus("Responded");
+        JUROR_RECORD.getListOfJurorCodeStatus("Juror status codes");
+        JUROR_RECORD.getListOfJurorCodeStatus("Panel");
+        JUROR_RECORD.getListOfJurorCodeStatus("Juror");
+        JUROR_RECORD.getListOfJurorCodeStatus("Excused");
+        JUROR_RECORD.getListOfJurorCodeStatus("Disqualified");
+        JUROR_RECORD.getListOfJurorCodeStatus("Deferred");
+        JUROR_RECORD.getListOfJurorCodeStatus("Reassigned");
+        JUROR_RECORD.getListOfJurorCodeStatus("Undeliverable");
+        JUROR_RECORD.getListOfJurorCodeStatus("Transferred");
+        JUROR_RECORD.getListOfJurorCodeStatus("waiting info");
+        JUROR_RECORD.getListOfJurorCodeStatus("Failed to attend");
+        JUROR_RECORD.getListOfJurorCodeStatus("Completed");
+    }
+
+
 }
