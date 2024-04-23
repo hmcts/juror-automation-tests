@@ -598,6 +598,11 @@ public class StepDef_jurorRecord {
         NAV.selectpreviousTab();
     }
 
+    @Then("I focus page to the new tab$")
+    public void closeMainBrowser() {
+        NAV.selectNextTab();
+    }
+
 
     @Then("^I verify the system codes inside administration page$")
     public void iSeeTheFollowingSystemCodesInsideAdministration() {

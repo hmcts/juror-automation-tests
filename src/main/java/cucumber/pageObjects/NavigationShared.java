@@ -2304,6 +2304,10 @@ public class NavigationShared {
         firstJurorInSearch.click();
     }
 
+    public void selectNextTab() {
 
+        ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(1));
+    }
 
 }
