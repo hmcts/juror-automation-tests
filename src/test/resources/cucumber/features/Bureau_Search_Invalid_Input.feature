@@ -26,4 +26,5 @@ Scenario: Bureau Search with Invalid Input
 	Then "Juror number" is "111"
 
 	And I press the "Search" button
-	Then I see "0 results for “111”" on the page
+	Then I see "There is a problem" on the page
+	Then I see "Juror number must be 9 characters" on the page

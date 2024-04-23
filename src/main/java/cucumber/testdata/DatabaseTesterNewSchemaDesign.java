@@ -427,7 +427,7 @@ public class DatabaseTesterNewSchemaDesign {
 			conn.commit();
 			log.info("Delete all JUROR_MOD.USER_COURTS rows where name =>" + staffName);
 
-			pStmt = conn.prepareStatement("delete from juror_mod.users where name=?");
+			pStmt = conn.prepareStatement("delete from juror_mod.users where username=?");
 			pStmt.setString(1, staffName);
 			pStmt.execute();
 			conn.commit();

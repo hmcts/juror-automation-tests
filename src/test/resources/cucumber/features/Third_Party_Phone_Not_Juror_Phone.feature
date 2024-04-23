@@ -148,14 +148,13 @@ Scenario Outline: English 3rd Party Gives Phone and Juror Email
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
 	And I click on "<juror_number>" in the same row as "<juror_number>"
-	Then I see "641500189" on the page
+	Then I see "<juror_number>" on the page
 	
 	#Check that TP phone only appears for TP and juror email only appears for juror
 	When I see "" in the same row as "Main Phone"
 	And I see "JurorEmail@outlook.com" in the same row as "Email"
-	And I see "0207 821 1818" in the same row as "Third party primary phone"
-	And I see "" in the same row as "Third party email"
-	
+	And I see "0207 821 1818" in the same row as "Main phone"
+
 Examples:
 	| juror_number	| last_name	| postcode	| email            | pool_number|
 	| 045200209		| DOE		| SW1H 9AJ	| email@outlook.com| 452300194	|

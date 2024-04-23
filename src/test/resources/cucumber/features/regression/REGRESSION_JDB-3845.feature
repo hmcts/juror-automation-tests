@@ -574,8 +574,7 @@ Scenario Outline: English_1st Party_CJS_A
 	When I select "Mark as responded" from Process reply
 	And I check the "Mark juror as 'responded'" checkbox
 	And I press the "Confirm" button
-	Then I see "COMPLETED" on the page
-	And I see "Responded" on the page
+	Then I see the juror record updated banner containing "Responded"
 	
 Examples:
 	| juror_number	| last_name	| postcode	| email 	| pool_number	|
