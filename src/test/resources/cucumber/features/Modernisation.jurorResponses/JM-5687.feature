@@ -44,7 +44,7 @@ Feature: JM-5687 - Resend Confirmation letter
     And I update juror "<juror_number>" to change the status of printed in order to resend letter
     And I click on the "Confirmation letters" link
     And I set the radio button to "Juror"
-    And I set "Enter juror name, number or postcode" to "<juror_number>"
+    And I set "Enter juror number" to "<juror_number>"
     And I press the "Search" button
     And I see "Confirmation letters" on the page
     And I check the "<juror_number>" checkbox

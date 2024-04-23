@@ -266,7 +266,7 @@ Feature: JM-252 JM-4302 Court user create new pools
 
     And I should see the newly created pool request
       | court          | <displayCourt> |
-      | jurorsRequired |                |
+      | jurorsRequired |        0       |
 
     Examples:
       | user	      | courtType | courtTypeFull | courtCode | displayCourt | noJurors |

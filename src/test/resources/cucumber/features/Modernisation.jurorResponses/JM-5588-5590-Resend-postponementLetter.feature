@@ -64,8 +64,8 @@ Feature:As a Bureau/jury officer I want to re send a postponement letter
         Then I see error "Select whether you want to search by juror or pool"
         And I set the radio button to "Juror"
         And I press the "Search" button
-        And I see error "Enter juror name, number or postcode"
-        And I set "Enter juror name, number or postcode" to "<juror_number>"
+        And I see error "Enter juror number"
+        And I set "Enter juror number" to "<juror_number>"
         And I press the "Search" button
         And I see "Pending" on the page
         And I see "Change" on the page
@@ -75,7 +75,7 @@ Feature:As a Bureau/jury officer I want to re send a postponement letter
         And I click on the "Documents" link
         And I click on the "Postponement letters" link
         And I set the radio button to "Juror"
-        And I set "Enter juror name, number or postcode" to "<juror_number>"
+        And I set "Enter juror number" to "<juror_number>"
         And I press the "Search" button
         And I see the printed letter for juror number "<juror_number>" in the letters table
         And I am able to see and interact with the jurors Postponement letter tabs and fields
@@ -151,8 +151,8 @@ Feature:As a Bureau/jury officer I want to re send a postponement letter
         Then I see error "Select whether you want to search by juror or pool"
         And I set the radio button to "Juror"
         And I press the "Search" button
-        And I see error "Enter juror name, number or postcode"
-        And I set "Enter juror name, number or postcode" to "<juror_number>"
+        And I see error "Enter juror number"
+        And I set "Enter juror number" to "<juror_number>"
         And I press the "Search" button
         And I see "Pending" on the page
         And I see "Change" on the page
@@ -399,8 +399,8 @@ Feature:As a Bureau/jury officer I want to re send a postponement letter
         And I see "Search" on the page
         And I set the radio button to "Juror"
         And I press the "Search" button
-        And I see error "Enter juror name, number or postcode"
-        And I set "Enter juror name, number or postcode" to "<juror_number>"
+        And I see error "Enter juror number"
+        And I set "Enter juror number" to "<juror_number>"
         And I press the "Search" button
         And I see "Change" on the page
         And I see "Print postponement letter" on the page

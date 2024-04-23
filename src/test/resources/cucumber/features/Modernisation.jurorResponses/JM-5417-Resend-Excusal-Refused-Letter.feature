@@ -36,8 +36,8 @@ Feature: JM-5417-5586 - Resend excusal refused letter for Bureau and Jury users
     Then I see error "Select whether you want to search by juror or pool"
     And I set the radio button to "Juror"
     And I press the "Search" button
-    And I see error "Enter juror name, number or postcode"
-    And I set "Enter juror name, number or postcode" to "<juror_number>"
+    And I see error "Enter juror number"
+    And I set "Enter juror number" to "<juror_number>"
     And I press the "Search" button
     And I see "Pending" in the same row as "<juror_number>"
     And I press the "Apps" button
@@ -45,7 +45,7 @@ Feature: JM-5417-5586 - Resend excusal refused letter for Bureau and Jury users
     And I update juror "<juror_number>" to change the status of printed in order to resend letter
     And I click on the "Excusal refused letters" link
     And I set the radio button to "Juror"
-    And I set "Enter juror name, number or postcode" to "<juror_number>"
+    And I set "Enter juror number" to "<juror_number>"
     And I press the "Search" button
 
     #will fail here because of JM-6314
@@ -92,7 +92,7 @@ Feature: JM-5417-5586 - Resend excusal refused letter for Bureau and Jury users
     And I click on the "Documents" link
     And I click on the "Excusal refused letters" link
     And I set the radio button to "Juror"
-    When I set "Enter juror name, number or postcode" to "<juror_number>"
+    When I set "Enter juror number" to "<juror_number>"
     And I press the "Search" button
 
     #will fail here because of JM-6314
@@ -314,8 +314,8 @@ Feature: JM-5417-5586 - Resend excusal refused letter for Bureau and Jury users
     And I see "Search" on the page
     And I set the radio button to "Juror"
     And I press the "Search" button
-    And I see error "Enter juror name, number or postcode"
-    When I set "Enter juror name, number or postcode" to "<juror_number>"
+    And I see error "Enter juror number"
+    When I set "Enter juror number" to "<juror_number>"
     And I press the "Search" button
 
     #will fail here because of JM-6314

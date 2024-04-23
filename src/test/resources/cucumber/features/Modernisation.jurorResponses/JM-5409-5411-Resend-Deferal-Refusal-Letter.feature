@@ -77,9 +77,8 @@ Feature: 1)JM-5409,JM-5411 - As a Bureau/jury officer I need to resend a deferra
     Then I see error "Select whether you want to search by juror or pool"
     And I set the radio button to "Juror"
     And I press the "Search" button
-        # below step will fail due to @JM-6314
-    And I see error "Enter juror name, number or postcode"
-    And I set "Enter juror name, number or postcode" to "<juror_number>"
+    And I see error "Enter juror number"
+    And I set "Enter juror number" to "<juror_number>"
     And I press the "Search" button
 
     And I see "Pending" on the page
@@ -89,7 +88,7 @@ Feature: 1)JM-5409,JM-5411 - As a Bureau/jury officer I need to resend a deferra
     And I click on the "Documents" link
     And I click on the "Deferral refused letters" link
     And I set the radio button to "Juror"
-    When I set "Enter juror name, number or postcode" to "<juror_number>"
+    When I set "Enter juror number" to "<juror_number>"
     And I press the "Search" button
     And I see the printed letter for juror number "<juror_number>" in the letters table
     Then I am able to see and interact with the jurors Deferral Refused letter tabs and fields
@@ -175,7 +174,7 @@ Feature: 1)JM-5409,JM-5411 - As a Bureau/jury officer I need to resend a deferra
     And I click on the "Documents" link
     And I click on the "Deferral refused letters" link
     And I set the radio button to "Juror"
-    When I set "Enter juror name, number or postcode" to "<juror_number>"
+    When I set "Enter juror number" to "<juror_number>"
     And I press the "Search" button
     Then I see "Pending" on the page
     And I see "Change" on the page
