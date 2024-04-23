@@ -548,6 +548,15 @@ public class StepDef_navigation {
 			NAV.clickText_inSameRow_asText_Two(clickText, nextToText);
 		}
 	}
+	@When("^I click on the radio button on the same row as \"([^\"]*)\"$")
+	public void clickRadioBtn_inSameRow_asText_Two(String nextToText) throws Exception {
+		try {
+			NAV.clickRadioBtn_inSameRow_asText(nextToText);
+		} catch (Exception e) {
+			NAV.waitForPageLoad();
+			NAV.clickRadioBtn_inSameRow_asText(nextToText);
+		}
+	}
 
 	@Then("^\"([^\"]*)\" text is bold$")
 	public void seeText_isBold(String text) {
@@ -916,4 +925,11 @@ public class StepDef_navigation {
 	public void verifyBankHolidayOnAdminScreen(Integer noOfWeeks) {
 		NAV.insertHolidayInTheFrontScreen(noOfWeeks);
 	}
+
+	@When("^I select the first juror in the search results$")
+	public void selectFirstJurorInList() {
+		NAV.firstJurorInSearch();
+	}
+
+
 }
