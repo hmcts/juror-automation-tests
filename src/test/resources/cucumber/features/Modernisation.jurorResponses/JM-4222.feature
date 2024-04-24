@@ -8,8 +8,8 @@ Feature: JM-4222
     And I log in as "<user>"
 
     Given a bureau owned pool is created with jurors
-      | court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
-      | 452	  |<juror_number>| <pool_number>| 5				            | 400	|
+      | court |juror_number  | pool_number  | att_date_weeks_in_future | owner |
+      | 452   |<juror_number>| <pool_number>| 5                         | 400  |
 
     When the user searches for juror record "<juror_number>" from the global search bar
 
@@ -74,8 +74,8 @@ Feature: JM-4222
     And I log in as "<user>"
 
     Given a bureau owned pool is created with jurors
-      | court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
-      | 452	  |<juror_number>| <pool_number>| 5				            | 400	|
+      | court |juror_number  | pool_number  | att_date_weeks_in_future | owner |
+      | 452   |<juror_number>| <pool_number>| 5                         | 400  |
 
     When the user searches for juror record "<juror_number>" from the global search bar
     And I record a paper summons response with reasonable adjustment of "C - Caring Responsibilities"
@@ -110,8 +110,8 @@ Feature: JM-4222
     And I log in as "<user>"
 
     Given a bureau owned pool is created with jurors
-      | court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
-      | 452	  |<juror_number>| <pool_number>| 5				            | 400	|
+      | court |juror_number  | pool_number  | att_date_weeks_in_future | owner |
+      | 452   |<juror_number>| <pool_number>| 5                         | 400  |
 
     When the user searches for juror record "<juror_number>" from the global search bar
 
@@ -160,8 +160,8 @@ Feature: JM-4222
     And I log in as "<user>"
 
     Given a bureau owned pool is created with jurors
-      | court | juror_number  | pool_number	  | att_date_weeks_in_future	| owner |
-      | 452	  | <juror_number>| <pool_number> | 5				            | 400	|
+      | court | juror_number  | pool_number   | att_date_weeks_in_future   | owner |
+      | 452   | <juror_number>| <pool_number> | 5                       | 400  |
 
     When the user searches for juror record "<juror_number>" from the global search bar
 
@@ -245,13 +245,16 @@ Feature: JM-4222
     And I log in as "<user>"
 
     Given a bureau owned pool is created with jurors
-      | court | juror_number  | pool_number	  | att_date_weeks_in_future	| owner |
-      | 415	  | <juror_number>| <pool_number> | 5				            | 400	|
+      | court | juror_number  | pool_number   | att_date_weeks_in_future   | owner |
+      | 415   | <juror_number>| <pool_number> | 5                       | 400  |
+      | 415   | <juror_number_1>| <pool_number_1> | 5                       | 400  |
 
     Then a new pool is inserted for where record has transferred to the court new schema
       |part_no        | pool_no       | owner |
       |<juror_number> | <pool_number> | 415   |
+      |<juror_number_1> | <pool_number_1> | 415   |
 
+    And I update juror "<juror_number_1>" to have a status of responded in order to record attendance
     When the user searches for juror record "<juror_number>" from the global search bar
 
     And I record a paper summons response with reasonable adjustment of "C - Caring Responsibilities"
@@ -285,7 +288,7 @@ Feature: JM-4222
     Then I see "Active pools at Chester (415)" on the page
     And I see "Choose a pool to reassign to" on the page
     And I see the reassign active pools table
-    And I select one of the active pools available
+    When I select pool "<pool_number_1>" from the active pools table
     And I press the "Continue" button
     And I check optic reference in the database for juror "<juror_number>" is "12345678" new schema
 
@@ -302,8 +305,8 @@ Feature: JM-4222
     And I see "Reasonable adjustments reasons" on the page
 
     Examples:
-      | user         | juror_number  | pool_number |
-      | MODTESTCOURT | 041500049     | 415300139   |
+      | user         | juror_number  | pool_number |juror_number_1|pool_number_1|
+      | MODTESTCOURT | 041500049     | 415300139   |041500050     |415300140  |
 
 
   @JurorTransformationMulti @NewSchemaConverted
@@ -311,8 +314,8 @@ Feature: JM-4222
     Given I am on "Bureau" "test"
 
     Given a bureau owned pool is created with jurors
-      | court | juror_number  | pool_number	 | att_date_weeks_in_future	| owner |
-      | 415	  | <juror_number>| <pool_number>| 5				        | 400	|
+      | court | juror_number  | pool_number  | att_date_weeks_in_future    | owner |
+      | 415   | <juror_number>| <pool_number>| 5                    | 400  |
 
     #respond juror as bureau user
     And I log in as "MODTESTBUREAU"
@@ -391,8 +394,8 @@ Feature: JM-4222
     And I log in as "<user>"
 
     Given a bureau owned pool is created with jurors
-      | court | juror_number  | pool_number	  | att_date_weeks_in_future	| owner |
-      | 415	  | <juror_number>| <pool_number> | 5				            | 400	|
+      | court | juror_number  | pool_number   | att_date_weeks_in_future   | owner |
+      | 415   | <juror_number>| <pool_number> | 5                       | 400  |
 
     Then a new pool is inserted for where record has transferred to the court new schema
       |part_no        | pool_no       | owner |
@@ -431,8 +434,8 @@ Feature: JM-4222
     And I log in as "<user>"
 
     Given a bureau owned pool is created with jurors
-      | court | juror_number  | pool_number	  | att_date_weeks_in_future	| owner |
-      | 415	  | <juror_number>| <pool_number> | 5				            | 400	|
+      | court | juror_number  | pool_number   | att_date_weeks_in_future   | owner |
+      | 415   | <juror_number>| <pool_number> | 5                       | 400  |
 
     Then a new pool is inserted for where record has transferred to the court new schema
       | part_no        | pool_no      | owner |
@@ -487,8 +490,8 @@ Feature: JM-4222
     And I log in as "<user>"
 
     Given a bureau owned pool is created with jurors
-      | court | juror_number  | pool_number	  | att_date_weeks_in_future	| owner |
-      | 415	  | <juror_number>| <pool_number> | 5				            | 400	|
+      | court | juror_number  | pool_number   | att_date_weeks_in_future   | owner |
+      | 415   | <juror_number>| <pool_number> | 5                       | 400  |
 
     Then a new pool is inserted for where record has transferred to the court new schema
       |part_no        | pool_no       | owner |
@@ -570,3 +573,4 @@ Feature: JM-4222
     Examples:
       | juror_number  | pool_number | user         |
       | 041500052     | 415300142   | MODTESTCOURT |
+
