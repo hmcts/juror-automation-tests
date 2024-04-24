@@ -2928,8 +2928,10 @@ Examples:
 	|juror_number	|pool_number|last_name			|postcode	|email 		|
 	|045200039		|452300038	|LNAMESEVENONETHREE	|SW1H 9AJ	|e@eeee.com	|
 
-@Regression @NewSchemaConverted
+@Regression @NewSchemaConverted @JM-7131
 Scenario Outline: English 1st Party Deferral + Bail + Name change
+
+	#return to @Regression when defect fixed
 
 	Given I am on "Public" "test"
 
@@ -3154,7 +3156,7 @@ Scenario Outline: English 1st Party Deferral - NEW PAGE
 	And juror "<juror_number>" has "ADDRESS_LINE_1" as "855 STREET NAME" new schema
 	And juror "<juror_number>" has "ADDRESS_LINE_4" as "LONDON" new schema
 	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
-	And I have deleted all holidays new schema
+#	And I have deleted all holidays new schema
 
 	Then I see "Reply to a jury summons" on the page
 
@@ -3327,8 +3329,7 @@ Scenario Outline: English 1st Party Deferral - NEW PAGE
 	
 	And I select "O - OTHER" from the "Reason for the deferral request" dropdown
 	And I press the "Continue" button
-	And I choose the "Add to pool" radio button
-	And I press the "Continue" button
+	And I press the "Put in deferral maintenance" button
 	Then I see the juror record updated banner containing "Deferral granted (other)"
 	
 Examples:

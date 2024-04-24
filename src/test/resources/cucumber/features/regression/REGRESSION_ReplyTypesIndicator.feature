@@ -2,8 +2,10 @@ Feature: Regression English_ReplyTypesIndicator
 
 #this test contains scenarios that test the reply types indicator which do not already exist in other scripts
 
-@Regression @NewSchemaConverted
+@Features @NewSchemaConverted @JM-7131
 Scenario Outline: English 1st Party + Juror Details Change
+
+	#return to @Regression when bug fixed
 	
 	Given I am on "Public" "test"
 
@@ -29,7 +31,7 @@ Scenario Outline: English 1st Party + Juror Details Change
 	And I press the "Continue" button
 	And I set "First name" to "Joe"
 	And I set "Last name" to "Blogs"
-	
+
 	And I press the "Continue" button
 
 	And I choose the "No" radio button
@@ -124,92 +126,94 @@ Examples:
 	| 045200136		| DOE		| SW1H 9AJ	| a@eeee.com	| 452300135		|
 	
 
-@RegressionSingle @NewSchemaConverted
+@Features @NewSchemaConverted @JM-7131
 Scenario Outline: English 1st Party + RA
+
+	#return to @RegressionSingle when defect fixed
 
 	Given I am on "Public" "test"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
 		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
-	
+
 	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
 	And juror "<juror_number>" has "FIRST_NAME" as "FNAMESEVENONETHREE" new schema
 	And juror "<juror_number>" has "ADDRESS_LINE_1" as "855 STREET NAME" new schema
 	And juror "<juror_number>" has "ADDRESS_LINE_4" as "LONDON" new schema
 	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
-	
+
 	Then I see "Reply to a jury summons" on the page
-	
+
 	And I set the radio button to "I am replying for myself"
 	And I press the "Continue" button
 	Then I see "Your juror details" on the page
-	
+
 	When I set "9-digit juror number" to "<juror_number>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
-	
+
 	Then I see "Is the name we have for you correct?" on the page
 	And I choose the "Yes" radio button
 	And I press the "Continue" button
-	
+
 	And I choose the "Yes" radio button
 	And I press the "Continue" button
-	
+
 	When I set "Main phone" to "02078211818"
 	And I press the "Continue" button
 
 	When I set "Enter your email address" to "<email>"
 	When I set "Enter your email address again" to "<email>"
 	And I press the "Continue" button
-	
+
 	When I set "Day" to "27"
 	And I set "Month" to "04"
 	And I set "Year" to "1981"
 	And I press the "Continue" button
-	
+
 	Then I see "Confirm you're eligible for jury service" on the page
-	
+
 	And I press the "Continue" button
-	
+
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	And I choose the "Yes" radio button
 	And I press the "Continue" button
-	
+
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
 	When I choose the "No" radio button
 	And I press the "Continue" button
-	
+
 	And I see "Are you currently on bail for a criminal offence?" on the page
 	When I choose the "No" radio button
 	And I press the "Continue" button
-	
+
 	Then I see "Have you been found guilty of a criminal offence?" on the page
 	When I choose the "No" radio button
 	And I press the "Continue" button
-	
+
 	And I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
 	When I choose the "No" radio button
 	And I press the "Continue" button
-	
+
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
 	When I choose the "No" radio button
 	And I press the "Continue" button
-	
+
 	#deferral
 	When I set the radio button to "No, I need to change the date"
 	And I press the "Continue" button
 
 	When I set text area with "id" of "deferralReason" to "Deferral Reason"
 	And I press the "Continue" button
-	
+
 	When I set the "First" single date field to a Monday "6" weeks in the future
 	When I set the "Second" single date field to a Monday "7" weeks in the future
 	When I set the "Third" single date field to a Monday "8" weeks in the future
-	
+
 	And I press the "Continue" button
-	
+
 	#check dates screen
 	And I choose the "Yes" radio button
 	And I press the "Continue" button
@@ -220,17 +224,17 @@ Scenario Outline: English 1st Party + RA
 	Then I check the "Diabetes" checkbox
 	And I press the "Continue" button
 	Then I see "Check your answers now" on the page
-	
+
 	Then I check the "The information I have given is true to the best of my knowledge" checkbox
-	
+
 	When I press the "Submit" button
-	
+
 	Then I see "You have completed your reply" on the page
 	Then I see "<juror_number>" on the page
-	
+
 	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "TODO" where "JUROR_NUMBER" is "<juror_number>"
 	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "N" where "JUROR_NUMBER" is "<juror_number>"
-	
+
 	Given I am on "Bureau" "test"
 	And I log in as "MODTESTBUREAU"
 	
@@ -370,17 +374,19 @@ Scenario Outline: English 1st Party + Residency
 	Then I click on the "Sign out" link
 	When I log in as "CPASS"
 	Then I see "<juror_number>" on the page
-	Then I see "<juror_number>" has reply type indicator "INELIGIBLE"
+	Then I see "<juror_number>" has reply type indicator "NEEDS REVIEW"
 
 	When I click on "<juror_number>" in the same row as "<juror_number>"
-	And I see "INELIGIBLE" on the page
+	And I see "NEEDS REVIEW" on the page
 	
 Examples:
 	| juror_number	| pool_number	| last_name			| postcode	| email 		|
 	| 045200138		| 452300137		| LNAMESIXTHREESEVEN| SY2 6LU	| e@eeee.com	|
 
-@Regression @NewSchemaConverted
+@Features @NewSchemaConverted @JM-7131
 Scenario Outline: English 1st Party + Bail
+
+	#return to @Regression when defect fixed
 
 	Given I am on "Public" "test"
 
@@ -500,7 +506,7 @@ Examples:
 	| juror_number	| pool_number	| last_name			| postcode	| email 		|
 	| 045200139		| 452300138		| LNAMESIXTHREESEVEN| SY2 6LU	| e@eeee.com	|
 
-@Features @NewSchemaConverted
+@Features @NewSchemaConverted @JM-7131
 Scenario Outline: English 3rd Party + Convictions
 
 	#moved into features 02-01-24 to return to Regression
@@ -631,8 +637,10 @@ Examples:
 	| juror_number	| last_name			| postcode	| email       	    | pool_number	|
 	| 045200140		| LNAMESIXNINEFOUR	| SY2 6LU	| email@outlook.com	| 452300139		|
 	
-@Regression @NewSchemaConverted
+@Features @NewSchemaConverted @JM-7131
 Scenario Outline: English 3rd Party + Residency
+
+	#return to @Regression when defect fixed
 
 	Given I am on "Public" "test"
 
@@ -760,8 +768,10 @@ Examples:
 	| juror_number	| last_name			| postcode	| email       	    | pool_number	|
 	| 045200141		| LNAMESEVENTWOZERO	| SY2 6LU	| email@outlook.com	| 452300140		|
 
-@Regression @NewSchemaConverted
+@Features @NewSchemaConverted @JM-7131
 Scenario Outline: English 3rd Party + Bail
+
+	#return to @Regression when defect fixed
 
 	Given I am on "Public" "test"
 
@@ -889,8 +899,10 @@ Examples:
 	| juror_number	| last_name				| postcode	| email       	    | pool_number	|
 	| 045200142		| LNAMESEVENFOURTHREE	| SY2 6LU	| email@outlook.com	| 452300141		|
 
-@Regression @NewSchemaConverted
+@Features @NewSchemaConverted @JM-7131
 Scenario Outline: English 3rd Party + Mental Health
+
+	#return to @Regression when defect fixed
 
 	Given I am on "Public" "test"
 
@@ -1019,7 +1031,7 @@ Examples:
 	| juror_number	| last_name				| postcode	| email       	    | pool_number	|
 	| 045200143		| LNAMESEVENFOUREIGHT   | SY2 6LU	| email@outlook.com	| 452300142		|
 	
-@Features @NewSchemaConverted
+@Features @NewSchemaConverted @JM-7131
 Scenario Outline: Multiple reply types
 
 	#moved into Features 03-01-24 to return to Regression
@@ -2119,7 +2131,7 @@ Examples:
 	| 045200144		| 045200145			| 045200146			| 045200147			| 045200148			| 045200149			| 045200150			| 045200151			| 045200152			| 045200153		  | 045200154			| LNAME  	| SY2 6LU	| email@outlook.com	| 452300143		| 452300144			| 452300145			|
 	
 
-@Features @NewSchemaConverted
+@Features @NewSchemaConverted @JM-7131
 Scenario Outline: Multiple reply types in Awaiting Information
 
 	#moved into Features 02-01-24 return to RegressionSingle

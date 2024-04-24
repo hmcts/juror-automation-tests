@@ -116,5 +116,5 @@ Scenario Outline: 3rd Party Account Locked
 	And I do not see any links on the page that open to a new page without an alt text
 
 Examples:
-	| juror_number	| last_name			| postcode	| pool_no	|
-	| 045200096		| LNAMEFOURSIXONE	| CH1 2AN	| 452300095	|
+	| juror_number	| last_name			| postcode	| pool_number	|
+	| 045200096		| LNAMEFOURSIXONE	| CH1 2AN	| 452300095		|
