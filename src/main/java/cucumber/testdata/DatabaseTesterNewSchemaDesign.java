@@ -595,10 +595,15 @@ public class DatabaseTesterNewSchemaDesign {
 			conn.commit();
 			log.info("Deleted from juror_mod.juror_pool where juror_number=>" + juror_number);
 
-			pStmt = conn.prepareStatement("delete from juror_mod.financial_audit_details_appearances where pool_number='" + pool_number + "'");
+			pStmt = conn.prepareStatement("delete from juror_mod.financial_audit_details_appearances where FINANCIAL_AUDIT_ID in (select ID from juror_mod.financial_audit_details where JUROR_NUMBER ='" + juror_number + "')");
 			pStmt.execute();
 			conn.commit();
-			log.info("Deleted from juror_mod.financial_audit_details_appearances where pool_number=>" + pool_number);
+			log.info("Deleted from juror_mod.financial_audit_details_appearances where juror_number=>" + juror_number);
+
+			pStmt = conn.prepareStatement("delete from juror_mod.financial_audit_details where JUROR_NUMBER ='" + juror_number + "'");
+			pStmt.execute();
+			conn.commit();
+			log.info("Deleted from juror_mod.financial_audit_details where juror_number=>" + juror_number);
 
 			pStmt = conn.prepareStatement("delete from juror_mod.juror where juror_number='" + juror_number + "'");
 			pStmt.execute();
