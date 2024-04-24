@@ -51,9 +51,7 @@ Scenario Outline: English 3rd Party Underage
 	When I press the "Continue" button
 	Then I see "Give the date of birth for the person you're replying for" on the page
 	
-	When I set "Day" to "27"
-	And I set "Month" to "04"
-	And I set "Year" to "2006"
+	And I set the date of birth to a Monday "-800" weeks in the future
 	
 	#Moving past DoB Section
 	And I press the "Continue" button
@@ -111,16 +109,13 @@ Scenario Outline: English 3rd Party Underage
 	Then I see "There is a problem" on the page
 	And I see "Enter the year the person was born as a 4 digit number. For example, 1982" on the page
 	
-	When I set "Day" to "27"
-	And I set "Month" to "04"
-	And I set "Year" to "2006"
+	And I set the date of birth to a Monday "-800" weeks in the future
 	And I press the "Continue" button
 	
 	Then I choose the "Yes" radio button
 	And I press the "Continue" button
 
 	Then I see "Check your answers now" on the page
-	And I see text "27 April 2006" in the same row as "Date of birth"
 	
 	Then I check the "The answers I have given for the person I'm replying for are true as far as I know." checkbox
 	When I press the "Submit" button

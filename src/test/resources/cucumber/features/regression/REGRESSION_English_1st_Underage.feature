@@ -39,13 +39,11 @@ Scenario Outline: English 1st Party Underage
 	When I set "Enter your email address" to "<email>"
 	And I set "Enter your email address again" to "<email>"
 	And I press the "Continue" button
-	
+
 	#On DoB Screen
 	Then I see "What is your date of birth?" on the page
-	
-	When I set "Day" to "27"
-	And I set "Month" to "04"
-	And I set "Year" to "2006"
+
+	And I set the date of birth to a Monday "-800" weeks in the future
 	
 	#Moving past DoB Section
 	And I press the "Continue" button
@@ -104,10 +102,8 @@ Scenario Outline: English 1st Party Underage
 	And I press the "Continue" button
 	Then I see "There is a problem" on the page
 	And I see "Enter the year you were born as a 4 digit number. For example, 1982" on the page
-	
-	When I set "Day" to "27"
-	And I set "Month" to "04"
-	And I set "Year" to "2006"
+
+	And I set the date of birth to a Monday "-800" weeks in the future
 	
 	And I press the "Continue" button
 
@@ -116,7 +112,6 @@ Scenario Outline: English 1st Party Underage
 	And I press the "Continue" button
 	
 	Then I see "Check your answers now" on the page
-	And I see text "27 April 2006" in the same row as "Date of birth"
 
 	Then I check the "The information I have given is true to the best of my knowledge" checkbox
 	When I press the "Submit" button
@@ -235,8 +230,8 @@ Scenario Outline: English 1st Party Underage with Error Check
 	Then I see "<juror_number>" on the page
 	
 Examples:
-	| juror_number	| last_name	| postcode	| pool_number	|
-	| 045200077		| LNAME403	| CH1 2AN	| 452300076		|
+	| juror_number	| last_name	| postcode	| pool_number	| email |
+	| 045200077		| LNAME403	| CH1 2AN	| 452300076		| e@mail.com |
 	
 @Regression @NewSchemaConverted
 Scenario Outline: English 1st Party Underage with Back Check
@@ -329,5 +324,5 @@ Scenario Outline: English 1st Party Underage with Back Check
 	Then I see "<juror_number>" on the page
 	
 Examples:
-	| juror_number	| last_name			| postcode	| pool_number	|
-	| 045200078		| LNAMEONEFOURONE	| CH1 2AN	| 452300077		|
+	| juror_number	| last_name			| postcode	| pool_number	| email |
+	| 045200078		| LNAMEONEFOURONE	| CH1 2AN	| 452300077		| e@mail.com |

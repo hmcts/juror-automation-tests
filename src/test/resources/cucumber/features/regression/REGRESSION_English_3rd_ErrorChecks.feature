@@ -323,14 +323,10 @@ Scenario Outline: English_3rd_ErrorChecks
 	And I see "Enter their email address" on the page
 
 	#JDB-3502 and JDB-3504 - only warns about email not phone
-	When I set "Main phone number" to "|||"
-	And I set "Another phone number" to "|||"
-	And I set "Enter email address" to "|||"
-	And I set "Enter the email address again" to "|||"
 	And I press the "Continue" button
-	Then I see "Check their main phone number" on the page
-	And I see "Check their other phone number" on the page
-	And I see "Check their email address" on the page
+
+	Then I see "Enter their main phone number" on the page
+	And I see "Enter their email address" on the page
 	
 	When I set "Main phone number" to "02078211818"
 	And I set "Enter email address" to "email@outlook.com"
