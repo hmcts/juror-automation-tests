@@ -1,6 +1,6 @@
 Feature: JM-3899
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti @NewSchemaConverted @JM-7143
   Scenario Outline: Decline Deferral Request for Paper Response as Bureau user - Juror Record View
 
     Given I am on "Bureau" "test"
@@ -38,7 +38,8 @@ Feature: JM-3899
     And I select "O - OTHER" from the "Reason for the deferral request" dropdown
     And I set the radio button to "Refuse deferral"
     And I press the "Continue" button
-    And I see error "Date cannot be earlier than original summons date"
+    #Test will fail here due to JM-7143
+    And I see "Deferral refused (other)" on the page
 
     Examples:
       |juror_number	|pool_number 	|user          |
