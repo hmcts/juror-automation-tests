@@ -1,6 +1,6 @@
 Feature: JM-3899
 
-  @JurorTransformationMulti @NewSchemaConverted @JM-7143
+  @JurorTransformationWIP @NewSchemaConverted @JM-7143
   Scenario Outline: Decline Deferral Request for Paper Response as Bureau user - Juror Record View
 
     Given I am on "Bureau" "test"
