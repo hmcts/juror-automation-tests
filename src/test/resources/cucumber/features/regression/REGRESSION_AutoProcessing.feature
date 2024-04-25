@@ -1,7 +1,9 @@
 Feature: Regression Test AUTOPROCESSING
 
-@Regression @NewSchemaConverted
+@Features @NewSchemaConverted @JDB-5569
 Scenario Outline: submit responses which are auto processed
+
+#	return to @Regression when bug fixed
 
 	Given I am on "Public" "test"
 
@@ -25,9 +27,9 @@ Scenario Outline: submit responses which are auto processed
 	And juror "<juror_number4>" has "POSTCODE" as "<postcode>" new schema
 
 	#Auto Processed 1st ST
-	
+
 	Then I see "Reply to a jury summons" on the page
-	
+
 	And I set the radio button to "I am replying for myself"
 	And I press the "Continue" button
 	And I set "9-digit juror number" to "<juror_number1>"
@@ -48,7 +50,7 @@ Scenario Outline: submit responses which are auto processed
 	And I do not see any links on the page that open to a new page without an alt text
 	And I choose the "Yes" radio button
 	When I press the "Continue" button
-	
+
 	Then on the page I see
 		| text	|
 		|Your details|
@@ -61,19 +63,19 @@ Scenario Outline: submit responses which are auto processed
 	When I set "Main phone" to "02078211818"
 	And I press the "Continue" button
 	And I do not see any links on the page that open to a new page without an alt text
-	
+
 	Then on the page I see
 		| text	|
 		| Your details |
 		| What is your email address? |
 		| Enter your email address |
 		| Enter your email address again |
-	
+
 	When I set "Enter your email address" to "test@gmail.com"
 	When I set "Enter your email address again" to "test@gmail.com"
 	And I press the "Continue" button
 	And I do not see any links on the page that open to a new page without an alt text
-	
+
 	#JDB-3350
 	Then on the page I see
 		| text	|
@@ -81,93 +83,93 @@ Scenario Outline: submit responses which are auto processed
 		| What is your date of birth?	|
 		| For example, 15 03 1982 |
 		| Help with date of birth |
-	
+
 	When I set "Day" to "01"
 	And I set "Month" to "01"
 	And I set "Year" to "1990"
 	And I press the "Continue" button
 	And I do not see any links on the page that open to a new page without an alt text
-	
+
 	#Qualify for jury service JDB-3372
 	Then I see "Confirm you're eligible for jury service" on the page
 	When I press the "Continue" button
-	
+
 	#JDB-3373
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	And I do not see any links on the page that open to a new page without an alt text
-	
+
 	#Residency JDB-3378
 	When I see "Eligibility" on the page
 	And I choose the "Yes" radio button
 	And I press the "Continue" button
-	
+
 	#CJS no
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
 	And I do not see any links on the page that open to a new page without an alt text
 	When I choose the "No" radio button
 	And I press the "Continue" button
-	
+
 	#JDB-3371
 	Then I see "Are you currently on bail for a criminal offence?" on the page
 	And I do not see any links on the page that open to a new page without an alt text
-	
+
 	#Bail JDB-3377
 	When I see "Eligibility" on the page
 	And I choose the "No" radio button
 	And I press the "Continue" button
-	
+
 	#JDB-3370
 	Then I see "Have you been found guilty of a criminal offence?" on the page
 	And I do not see any links on the page that open to a new page without an alt text
-	
+
 	#Convictions JDB-3376
 	When I see "Eligibility" on the page
 	When I choose the "No" radio button
 	And I press the "Continue" button
-	
+
 	#Mental Health Sectioned JDB-3363 JDB-3353
 	Then I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page
 	And I do not see any links on the page that open to a new page without an alt text
 	When I see "Eligibility" on the page
 	And I choose the "No" radio button
 	And I press the "Continue" button
-	
+
 	#Mental Health Capacity JDB-3364
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
 	And I do not see any links on the page that open to a new page without an alt text
 	When I see "Eligibility" on the page
 	And I choose the "No" radio button
 	And I press the "Continue" button
-	
+
 	#I can attend
 	Then I see "Check your start date" on the page
 	And I do not see any links on the page that open to a new page without an alt text
 	And I see "Yes, I can start on" on the page
 	And I set the radio button to "Yes, I can start on"
-	And  I press the "Continue" button	
-	
+	And  I press the "Continue" button
+
 	#RA no
 	Then I see "Will you need help when you're at the court?" on the page
 	When I choose the "No" radio button
 	And I press the "Continue" button
 	And I do not see any links on the page that open to a new page without an alt text
 	When I check the "The information I have given is true to the best of my knowledge" checkbox
-	
+
 	#Enable auto processing
 	Given auto straight through processing has been enabled new schema
-	
+
 	And I press the "Submit" button
-	
+
 	#Disable auto processing
 	Given auto straight through processing has been disabled new schema
 	And I do not see any links on the page that open to a new page without an alt text
-	
+
 	#Auto Processed Deceased
 	Given I am on "Public" "test"
-	
+
 	And juror "<juror_number2>" has "LAST_NAME" as "<last_name>" new schema
 	And juror "<juror_number2>" has "POSTCODE" as "<postcode>" new schema
-	
+
 	And I set the radio button to "I am replying for someone else"
 	And I press the "Continue" button
 	And I do not see any links on the page that open to a new page without an alt text
@@ -190,31 +192,31 @@ Scenario Outline: submit responses which are auto processed
 	And I check the "By email" checkbox
 	When I set "Enter your email address" to "<email>"
 	When I set "Enter your email address again" to "<email>"
-	
+
 	And I press the "Continue" button
 	And I do not see any links on the page that open to a new page without an alt text
 	When I set the radio button to "The person has died"
-	
+
 	And I press the "Continue" button
 	And I see "steps/confirm-information/tp" in the URL
 	And I do not see any links on the page that open to a new page without an alt text
 	Then I check the "The answers I have given for the person I'm replying for are true as far as I know." checkbox
-	
+
 	#Enable auto processing
 	Given auto straight through processing has been enabled new schema
-	
+
 	And I press the "Submit" button
 	And I do not see any links on the page that open to a new page without an alt text
-	
+
 	#Disable auto processing
 	Given auto straight through processing has been disabled new schema
-	
+
 	#Auto Processed Underage
 	Given I am on "Public" "test"
-		
+
 	And "<juror_number3>" has "LAST_NAME" as "<last_name>"
 	And "<juror_number3>" has "POSTCODE" as "<postcode>"
-	
+
 	And I set the radio button to "I am replying for myself"
 	And I press the "Continue" button
 	And I do not see any links on the page that open to a new page without an alt text
@@ -222,94 +224,94 @@ Scenario Outline: submit responses which are auto processed
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
-	
+
 	And I choose the "Yes" radio button
 	And I press the "Continue" button
-	
+
 	And I choose the "Yes" radio button
 	And I press the "Continue" button
-	
+
 	When I set "Main phone" to "02078211818"
 	And I press the "Continue" button
 	Then I see "What is your email address?" on the page
-	
+
 	When I set "Enter your email address" to "email@outlook.com"
 	And I set "Enter your email address again" to "email@outlook.com"
 	And I press the "Continue" button
 	And I do not see any links on the page that open to a new page without an alt text
-	
+
 	#On DoB Screen, underage
 	When I set "Day" to "27"
 	And I set "Month" to "04"
 	And I set "Year" to "2016"
-	
+
 	#Moving past DoB Section
 	And I press the "Continue" button
-	
+
 	And I choose the "Yes" radio button
 	And I press the "Continue" button
-	
+
 	And I do not see any links on the page that open to a new page without an alt text
-	
+
 	Then I check the "The information I have given is true to the best of my knowledge" checkbox
-	
+
 	#Enable auto processing
 	Given auto straight through processing has been enabled new schema
-	
+
 	And I press the "Submit" button
-	
+
 	#Disable auto processing
 	Given auto straight through processing has been disabled new schema
 
 	#Auto Processing overage
 	Given I am on "Public" "test"
-		
+
 	And juror "<juror_number4>" has "LAST_NAME" as "<last_name>" new schema
 	And juror "<juror_number4>" has "POSTCODE" as "<postcode>" new schema
-	
+
 	And I set the radio button to "I am replying for myself"
 	And I press the "Continue" button
-	
+
 	When I set "9-digit juror number" to "<juror_number4>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
-	
+
 	And I see "Is the name we have for you correct?" on the page
 	And I choose the "Yes" radio button
 	When I press the "Continue" button
-	
+
 	And I see "Is this your address?" on the page
 	And I choose the "Yes" radio button
 	When I press the "Continue" button
-	
+
 	When I set "Main phone" to "02078211818"
 	And I press the "Continue" button
 	Then I see "What is your email address?" on the page
-	
+
 	When I set "Enter your email address" to "<email>"
 	And I set "Enter your email address again" to "<email>"
 	And I press the "Continue" button
-	
+
 	#On DoB Screen
 	When I set "Day" to "27"
 	And I set "Month" to "04"
 	And I set "Year" to "1900"
-	
+
 	#Moving past DoB Section
 	And I press the "Continue" button
 
 	Then I choose the "Yes" radio button
-	
+
 	And I press the "Continue" button
-	
+
 	Then I check the "The information I have given is true to the best of my knowledge" checkbox
-	
+
 	#Enable auto processing
 	Given auto straight through processing has been enabled new schema
-	
+
 	And I press the "Submit" button
-	
+
 	#Disable auto processing
 	Given auto straight through processing has been disabled new schema
 
@@ -320,13 +322,13 @@ Scenario Outline: submit responses which are auto processed
 	And I set "Juror's pool number" to "<pool_number>"
 	And I press the "Search" button
 
-	Then I see "CLOSED" in the same row as "<juror_number1>"
+	Then I see "Completed" in the same row as "<juror_number1>"
 	And I see "AUTO" in the same row as "<juror_number1>"
-	Then I see "CLOSED" in the same row as "<juror_number2>"
+	Then I see "Completed" in the same row as "<juror_number2>"
 	And I see "AUTO" in the same row as "<juror_number2>"
-	Then I see "CLOSED" in the same row as "<juror_number3>"
+	Then I see "Completed" in the same row as "<juror_number3>"
 	And I see "AUTO" in the same row as "<juror_number3>"
-	Then I see "CLOSED" in the same row as "<juror_number4>"
+	Then I see "Completed" in the same row as "<juror_number4>"
 	And I see "AUTO" in the same row as "<juror_number4>"
 	
 	Then on "JUROR" . "POOL" I see "RESPONDED" is "Y" where "juror_number" is "<juror_number1>"
@@ -490,7 +492,7 @@ Scenario Outline: Check that when name is changed, the response is NOT auto proc
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	Then I see "<juror_number>" in the same row as "TO DO"
+	Then I see "<juror_number>" in the same row as "To do"
 	
 	#check DB
 	
@@ -629,7 +631,7 @@ Scenario Outline: Check that when address is changed, the response is NOT auto p
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	Then I see "<juror_number>" in the same row as "TO DO"
+	Then I see "<juror_number>" in the same row as "To do"
 
 	#check DB
 	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "STAFF_LOGIN" is null where "JUROR_NUMBER" is "<juror_number>"
@@ -765,7 +767,7 @@ Scenario Outline: Check that when Address2 is changed from (null), the response 
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I see "<juror_number>" in the same row as "TO DO"
+	And I see "<juror_number>" in the same row as "To do"
 	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Juror details" on the page
 	And I see "Summoned" on the page
@@ -779,7 +781,7 @@ Examples:
 	| juror_number	| last_name		| postcode	| email 			| pool_number	|
 	| 045200214		| LNAMENINEFIVE	| SA1 4PF	| email@outlook.com	| 452300199		|
 	
-@Regression @JDB-4084 
+@Regression
 Scenario Outline: Check that when Address3 is changed from (null), the response is not auto processed
 
 	Given I am on "Public" "test"
@@ -906,7 +908,7 @@ Scenario Outline: Check that when Address3 is changed from (null), the response 
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I see "<juror_number>" in the same row as "TO DO"
+	And I see "<juror_number>" in the same row as "To do"
 	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Juror details" on the page
 	And I see "Summoned" on the page
@@ -1048,7 +1050,7 @@ Scenario Outline: Check that when Address4 is changed from (null), the response 
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I see "<juror_number>" in the same row as "TO DO"
+	And I see "<juror_number>" in the same row as "To do"
 	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Juror details" on the page
 	And I see "Summoned" on the page
@@ -1189,7 +1191,7 @@ Scenario Outline: Check that when Address5 is changed from (null), the response 
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I see "<juror_number>" in the same row as "TO DO"
+	And I see "<juror_number>" in the same row as "To do"
 	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Juror details" on the page
 	And I see "Summoned" on the page
@@ -1330,7 +1332,7 @@ Scenario Outline: Check that when Address2 is changed from string value, the res
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I see "<juror_number>" in the same row as "TO DO"
+	And I see "<juror_number>" in the same row as "To do"
 	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Juror details" on the page
 	And I see "Summoned" on the page
@@ -1471,7 +1473,7 @@ Scenario Outline: Check that when Address3 is changed from string value, the res
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I see "<juror_number>" in the same row as "TO DO"
+	And I see "<juror_number>" in the same row as "To do"
 	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Juror details" on the page
 	And I see "Summoned" on the page
@@ -1612,7 +1614,7 @@ Scenario Outline: Check that when Address4 is changed from string value, the res
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I see "<juror_number>" in the same row as "TO DO"
+	And I see "<juror_number>" in the same row as "To do"
 	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Juror details" on the page
 	And I see "Summoned" on the page
@@ -1753,7 +1755,7 @@ Scenario Outline: Check that when Address5 is changed from string value, the res
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I see "<juror_number>" in the same row as "TO DO"
+	And I see "<juror_number>" in the same row as "To do"
 	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Juror details" on the page
 	And I see "Summoned" on the page

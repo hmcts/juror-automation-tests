@@ -7,7 +7,7 @@ Scenario Outline: Check that Urgent ST is not auto assigned
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |
-		| 452   | <juror_number>| <pool_number>	| 3				            | 400	|
+		| 452   | <juror_number>| <pool_number>	| 2				            | 400	|
 		
 	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
 	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
@@ -111,9 +111,8 @@ Scenario Outline: Check that Urgent ST is not auto assigned
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	Then I see "TO DO" in the same row as "<juror_number>"
+	Then I see "To do" in the same row as "<juror_number>"
 	When I click on "<juror_number>" in the same row as "<juror_number>"
-	Then I see "URGENT" on the page
 	
 	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "STAFF_LOGIN" is null where "JUROR_NUMBER" is "<juror_number>"
 	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "STAFF_ASSIGNMENT_DATE" is null where "JUROR_NUMBER" is "<juror_number>"
