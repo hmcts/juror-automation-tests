@@ -237,8 +237,10 @@ Examples:
 	| juror_number	| last_name			| postcode	| email           	| pool_number	|
 	| 045200060		| LNAMESEVENFOURFIVE| CH1 2AN	| email@outlook.com	| 452300059		|
 	
-@Regression @NewSchemaConverted
+@Features @NewSchemaConverted @JM-7131
 Scenario Outline: Checking MH questions have been split in Bureau and no text MENTAL HEALTH Q2 is visible
+
+	#return to @Regression when defect fixed
 
 	Given I am on "Public" "test"
 

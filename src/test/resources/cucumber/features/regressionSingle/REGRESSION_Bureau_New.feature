@@ -751,7 +751,7 @@ Scenario Outline: Work Allocation Fields and Labels Checks
 	Given I am on "Bureau" "test"
 #	And pool no "<pool_no>" is reset to pending allocation
 	And I have cleared down the juror digital database
-	When I log in
+	When I log in as "MODTESTBUREAU"
 	And I click on the "Assign Replies" link
 	
 	Then I see "Number of replies in the backlog" on the page

@@ -113,7 +113,7 @@ Scenario Outline: English_Max_Chars HTML Response Summary
 	And I see "<last_name>" in the same row as "Name"
 	And I see "<juror_number>" in the same row as "Juror number"
 	And I see "Your jury summons details" on the page
-	And I see "THE CROWN COURT AT SHEFFIELD" in the same row as "Court"
+	And I see "THE CROWN COURT AT SHREWSBURY" in the same row as "Court"
 	And I see "You have said that you can do jury service on the date shown." on the page
 	And I see "What happens next" on the page
 	And I see "Your answers mean that you might not be able to do jury service." on the page
@@ -239,7 +239,7 @@ Scenario Outline: English 1st Party Excusal HTML Response Summary
 	And I see "<last_name>" in the same row as "Name"
 	And I see "<juror_number>" in the same row as "Juror number"
 	And I see "Your jury summons details" on the page
-	And I see "THE CROWN COURT AT SHEFFIELD" in the same row as "Court"
+	And I see "THE CROWN COURT AT SHREWSBURY" in the same row as "Court"
 	And I see "You have said that you cannot do jury service and would like to be excused." on the page
 	And I see "What happens next" on the page
 	And I see "We'll write to you within the next 7 days to let you know if you must do jury service or if you can be excused." on the page
@@ -381,7 +381,7 @@ Scenario Outline: English 1st Party Deferral HTML Response Summary
 	And I see "<last_name>" in the same row as "Name"
 	And I see "<juror_number>" in the same row as "Juror number"
 	And I see "Your jury summons details" on the page
-	And I see "THE CROWN COURT AT SHEFFIELD" in the same row as "Court"
+	And I see "THE CROWN COURT AT SHREWSBURY" in the same row as "Court"
 	And I see "You have said that you need to change the date of your jury service." on the page
 	And I see "What happens next" on the page
 	And I see "We'll write to you within the next 7 days to let you know if you can change the date of your jury service." on the page
@@ -522,7 +522,7 @@ Scenario Outline: Welsh 1st Party Straight Through (welsh court)
 	And I see "<last_name>" in the same row as "Enw"
 	And I see "<juror_number>" in the same row as "Rhif rheithiwr"
 	And I see "Manylion eich gwŷs rheithgor" on the page
-	And I see "THE CROWN COURT AT SHEFFIELD" in the same row as "Llys"
+	And I see "THE CROWN COURT AT SHREWSBURY" in the same row as "Llys"
 	And I see "Rydych wedi dweud eich bod yn gallu gwasanaethu ar reithgor ar y dyddiad a nodir" on the page
 	And I see "Beth fydd yn digwydd nesaf?" on the page
 	And I see "O leiaf 2 wythnos cyn ichi ddechrau gwasanaethu ar reithgor, byddwn yn anfon y canlynol atoch:" on the page
@@ -693,7 +693,7 @@ Scenario Outline: English 3rd Party Deferral HTML Response summary
 	And I see "<last_name>" in the same row as "Name"
 	And I see "<juror_number>" in the same row as "Juror number"
 	And I see "Your jury summons details" on the page
-	And I see "THE CROWN COURT AT SHEFFIELD" in the same row as "Court"
+	And I see "THE CROWN COURT AT SHREWSBURY" in the same row as "Court"
 	And I see "You have said that you need to change the date of your jury service." on the page
 	And I see "What happens next" on the page
 	And I see "We'll write to you within the next 7 days to let you know if you can change the date of your jury service." on the page
@@ -831,7 +831,7 @@ Scenario Outline: English 1st Party Overage HTML Response Summary
 	And I see "<last_name>" in the same row as "Name"
 	And I see "<juror_number>" in the same row as "Juror number"
 	And I see "Your jury summons details" on the page
-	And I see "THE CROWN COURT AT SHEFFIELD" in the same row as "Court"
+	And I see "THE CROWN COURT AT SHREWSBURY" in the same row as "Court"
 	And I see "Your age makes you ineligible to do jury service." on the page
 	And I see "What happens next" on the page
 	And I see "By law, jurors must be aged 18 to 75. You do not have to do jury service because you are younger than 18 or older than 75." on the page
@@ -920,7 +920,7 @@ Scenario Outline: English 3rd Deceased HTML Response Summary
 	And I see "<last_name>" in the same row as "Name"
 	And I see "<juror_number>" in the same row as "Juror number"
 	And I see "Your jury summons details" on the page
-	And I see "THE CROWN COURT AT SHEFFIELD" in the same row as "Court"
+	And I see "THE CROWN COURT AT SHREWSBURY" in the same row as "Court"
 	And I see "You have said that the person summoned is deceased." on the page
 	And I see "What happens next" on the page
 	And I see "You do not need to do anything else." on the page
@@ -1062,7 +1062,7 @@ Scenario Outline: English 1st ST HTML Check
 	And I see "<last_name>" in the same row as "Name"
 	And I see "<juror_number>" in the same row as "Juror number"
 	And I see "Your jury summons details" on the page
-	And I see "THE CROWN COURT AT SHEFFIELD" in the same row as "Court"
+	And I see "THE CROWN COURT AT SHREWSBURY" in the same row as "Court"
 	And I see "You have said that you can do jury service on the date shown." on the page
 	And I see "What happens next" on the page
 	And I see "At least 2 weeks before your jury service starts, we'll send you:" on the page
@@ -1225,7 +1225,7 @@ Scenario Outline: English 1st Ineligible HTML Check
 	And I see "<last_name>" in the same row as "Name"
 	And I see "<juror_number>" in the same row as "Juror number"
 	And I see "Your jury summons details" on the page
-	And I see "THE CROWN COURT AT SHEFFIELD" in the same row as "Court"
+	And I see "THE CROWN COURT AT SHREWSBURY" in the same row as "Court"
 	And I see "You have said that you need to change the date of your jury service." on the page
 	And I see "What happens next?" on the page
 	And I see "Your answers mean that you might not be able to do jury service. We will now check your answers." on the page
