@@ -140,9 +140,9 @@ Scenario Outline: English 3rd Party Excusal
 	And I see "We'll get in touch later if we need this." on the page
 	And I click on the "Will we need to provide evidence soon?" link
 	And I see "If we need evidence, we'll contact you separately to tell you." on the page
-	And I see "For example, if they're too ill for jury service, we might ask for a letter from their doctor." on the page
-	And I see "They'll be given time to gather any evidence so do not worry about trying to gather this now." on the page
-	And I see "Wait until we've told you what evidence we need, if any." on the page
+	And I see "For example, if they're too ill to do jury service, we might ask you to provide a medical certificate from an appropriate regulated healthcare professional, such as a doctor, nurse, physiotherapist, pharmacist or occupational therapist." on the page
+	And I see "They will be given time to gather any evidence so do not need to worry about trying to get this now." on the page
+	And I see "You should wait until we've told you what evidence we need, if any." on the page
 	
 	And I press the "Continue" button
 	Then I see "Enter reason why they cannot do jury service in the next 12 months" on the page

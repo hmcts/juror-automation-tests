@@ -957,6 +957,7 @@ Scenario Outline: English 1st ST HTML Check
 		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
 
 	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "FIRST_NAME" as "<first_name>" new schema
 	And juror "<juror_number>" has "ADDRESS_LINE_4" as "LONDON" new schema
 	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	
