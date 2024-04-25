@@ -227,6 +227,9 @@ public class JurorRecord {
     @FindBy(xpath = "//*[@class='govuk-link govuk-link--no-visited-state']")
     public List<WebElement> listofSystemCodes;
 
+    @FindBy(xpath = "//*[@class='govuk-table']/tbody/tr/td")
+    public List<WebElement> listDisqualificationCode;
+
     public String getHeading() {
         return heading.getText();
     }
@@ -860,4 +863,20 @@ public class JurorRecord {
         }
 
     }
-}
+
+    public Map<String, String> getQualificationCode() {
+        Map<String, String> details = new HashMap<>();
+
+                details.put("A", listDisqualificationCode.get(1).getText());
+                details.put("B", listDisqualificationCode.get(4).getText());
+                details.put("C", listDisqualificationCode.get(7).getText());
+                details.put("D", listDisqualificationCode.get(10).getText());
+                details.put("E", listDisqualificationCode.get(13).getText());
+                details.put("M", listDisqualificationCode.get(16).getText());
+                details.put("R", listDisqualificationCode.get(19).getText());
+                return details;
+            }
+
+
+    }
+

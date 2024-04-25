@@ -639,5 +639,20 @@ public class StepDef_jurorRecord {
         JUROR_RECORD.getListOfJurorCodeStatus("Completed");
     }
 
+    @Then("^I verify the below list of Disqualification codes$")
+    public void iVerifyListofDIsqualificationCodes(DataTable dataTable) {
+
+        Map<String, String> expectedData = dataTable.asMap(String.class, String.class);
+        Map<String, String> actualData = JUROR_RECORD.getQualificationCode();
+
+        assertEquals(expectedData.get("A"), actualData.get("A"));
+        assertEquals(expectedData.get("B"), actualData.get("B"));
+        assertEquals(expectedData.get("C"), actualData.get("C"));
+        assertEquals(expectedData.get("D"), actualData.get("D"));
+        assertEquals(expectedData.get("E"), actualData.get("E"));
+        assertEquals(expectedData.get("M"), actualData.get("M"));
+        assertEquals(expectedData.get("R"), actualData.get("R"));
+
+    }
 
 }
