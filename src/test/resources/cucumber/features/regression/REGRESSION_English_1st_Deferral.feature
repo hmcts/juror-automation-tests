@@ -2928,7 +2928,7 @@ Examples:
 	|juror_number	|pool_number|last_name			|postcode	|email 		|
 	|045200039		|452300038	|LNAMESEVENONETHREE	|SW1H 9AJ	|e@eeee.com	|
 
-@Regression @NewSchemaConverted @JM-7131
+@Features @NewSchemaConverted @JM-7131
 Scenario Outline: English 1st Party Deferral + Bail + Name change
 
 	#return to @Regression when defect fixed

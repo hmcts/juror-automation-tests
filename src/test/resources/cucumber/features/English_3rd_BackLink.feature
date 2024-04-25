@@ -3,7 +3,7 @@ Feature: English 3rd BackLink
 @Regression @NewSchemaConverted
 Scenario Outline: Back and forward navigation all screens for 3rd Party
 
-	Given I am on "Public" "juror-test02"
+	Given I am on "Public" "test"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -81,7 +81,7 @@ Scenario Outline: Back and forward navigation all screens for 3rd Party
 	Then I see "Is the name we have for them correct?" on the page
 	
 	#Check juror name
-	When I see "FNAME132" on the page
+	When I see "fname" on the page
 	And I see "LNAME132" on the page
 	When I choose the "Yes" radio button
 	And I press the "Continue" button
