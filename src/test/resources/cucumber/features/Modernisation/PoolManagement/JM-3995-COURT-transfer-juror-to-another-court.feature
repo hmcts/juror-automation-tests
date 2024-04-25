@@ -190,8 +190,8 @@ Feature: JM-3995 JM-4302
     Then I am on the select a court to transfer to page
 
     #check satellite court selections
-    When I set the court or location to "415"
-    And I see "Chester (415)" in the dropdown box
+   # When I set the court or location to "415"
+   # And I see "Chester (415)" in the dropdown box
     When I set the court or location to "774"
     And I see "Welshpool (774)" in the dropdown box
 

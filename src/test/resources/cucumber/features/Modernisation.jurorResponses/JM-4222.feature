@@ -321,12 +321,16 @@ Feature: JM-4222
     And I log in as "MODTESTBUREAU"
     When the user searches for juror record "<juror_number>" from the global search bar
     And I record a paper summons response with reasonable adjustment of "C - Caring Responsibilities"
-    And I select Process reply
-    And I mark the reply as responded
-    And I press the "Continue" button
-    And I click the checkbox to mark the reply as responded
-    And I press the "Confirm" button
-    Then I see "Summons reply for <juror_number> fname lname successfully processed: Responded" on the page
+    And I click the juror details adjustments tab
+    When I press the "Check court can accommodate" button
+    Then I am on the check can accommodate screen
+
+    #for this to work in Jenkins, we need a later version of Selenium which includes the setPermissions method and would allow this to work. Commenting out for now
+    #When I press the "Copy juror information" button
+    When I enter the optic reference number "12345678"
+    And I press the "Save" button
+    And I click the juror details adjustments tab
+    And I see "12345678" in the same row as "Optic reference"
 
     Given I am on "Bureau" "test"
     And I log in as "<user>"
@@ -340,13 +344,13 @@ Feature: JM-4222
     And I click on the Summons Reply tab
     And I click on the "View summons reply" link
     And I click on the "Reasonable adjustments" link
-    When I press the "Check court can accommodate" button
-    Then I am on the check can accommodate screen
-
-    #for this to work in Jenkins, we need a later version of Selenium which includes the setPermissions method and would allow this to work. Commenting out for now
-    #When I press the "Copy juror information" button
-    When I enter the optic reference number "12233445"
-    And I press the "Save" button
+    And I see "12345678" in the same row as "Optic reference"
+    And I see "Reasonable adjustments reasons" on the page
+    Then I click the process reply button
+    Then I mark the reply as responded
+    And I press the "Continue" button
+    Then I click the checkbox to mark the reply as responded
+    And I press the "Confirm" button
 
     When the user searches for juror record "<juror_number>" from the global search bar
     And I press the "Update juror record" button
@@ -363,7 +367,7 @@ Feature: JM-4222
     And I click the summons reply tab
     And I click on the "View summons reply" link
     And I click on the "Reasonable adjustments" link
-    And I see "12233445" in the same row as "Optic reference"
+    And I see "12345678" in the same row as "Optic reference"
 
     Given I am on "Bureau" "test"
     And I log in as "MODTESTBUREAU"
@@ -379,7 +383,7 @@ Feature: JM-4222
     When the user searches for juror record "<juror_number>" from the global search bar
     And I click on "<juror_number>" in the same row as "Swansea"
     And I see "Additional requirements" on the page
-    And I see "12233445" in the same row as "Optic reference"
+    And I see "12345678" in the same row as "Optic reference"
     And I see "Reasonable adjustments reasons" on the page
 
     Examples:
