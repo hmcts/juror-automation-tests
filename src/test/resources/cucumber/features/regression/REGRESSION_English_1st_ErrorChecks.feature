@@ -3,7 +3,7 @@ Feature: Regression English_1st_ErrorChecks
 @Regression @NewSchemaConverted
 Scenario Outline: English 1st ErrorChecks - status is Undeliverable
 
-	Given I am on "Public" "test"
+	Given I am on "Bureau" "test"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -11,7 +11,15 @@ Scenario Outline: English 1st ErrorChecks - status is Undeliverable
 
 	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
 	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
-	And "<juror_number>" has "STATUS" as "9" new schema
+
+	And I log in as "MODTESTBUREAU"
+	And I search for juror "<juror_number>"
+	And I press the "Update juror record" button
+	And I choose the "Mark summons as undeliverable" radio button
+	And I press the "Continue" button
+	Then I see the juror record updated banner containing "Summons undeliverable"
+
+	Given I am on "Public" "test"
 
 	Then I see "Reply to a jury summons" on the page
 	Then I see "Are you replying for yourself or for someone else?" on the page
@@ -67,7 +75,7 @@ Scenario Outline: English_1st_ErrorChecks - Court date is in the past
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
-		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
+		| 452   |<juror_number>| <pool_number>	| -1			            | 400	|
 		
 	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
 	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
@@ -612,15 +620,26 @@ Examples:
 @Regression @NewSchemaConverted
 Scenario Outline: English response completed in Legacy and login attempted on Digital
 
-	Given I am on "Public" "test"
+	Given I am on "Bureau" "test"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
 		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
 
-	And "<juror_number>" has "RESPONDED" as "Y" new schema
-	And juror "<juror_number>" has "STATUS" as "2" new schema
-	
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
+
+	And I log in as "MODTESTBUREAU"
+	And I search for juror "<juror_number>"
+	And I press the "Update juror record" button
+	And I choose the "Mark as responded" radio button
+	And I press the "Continue" button
+	And I check the "Mark juror as 'responded'" checkbox
+	And I press the "Confirm" button
+	Then I see "Responded" on the page
+
+	Given I am on "Public" "test"
+
 	Then I see "Reply to a jury summons" on the page
 	
 	Then I see "Are you replying for yourself or for someone else?" on the page
@@ -666,7 +685,12 @@ Examples:
 
 		And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
 		And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
-		And "<juror_number>" has "STATUS" as "9" new schema
+
+		And I have submitted a first party English straight through response
+			| part_no			| pool_number	| last_name		| postcode	| email 	|
+			| <juror_number>	| <pool_number>	| <last_name>	| <postcode>| <email>	|
+
+		Given I am on "Public" "test"
 
 		Then I see "Reply to a jury summons" on the page
 
@@ -699,5 +723,5 @@ Examples:
 		And I see "You cannot tell us extra information through this digital service." on the page
 
 		Examples:
-			| juror_number	| last_name	       | postcode   | pool_number	|
-			| 045200050	 	| LNAMESIXSEVENSIX | SW1H 9AJ   | 452300049		|
+			| juror_number	| last_name	       | postcode   | pool_number	| email 		|
+			| 045200050	 	| LNAMESIXSEVENSIX | SW1H 9AJ   | 452300049		| e@mail.com 	|
