@@ -38,7 +38,7 @@ Feature: JM-4180 DB values reflected on UI
     When I set Police Check to "INSUFFICIENT_INFORMATION" for "<juror_number>" new schema
     And the user searches for the juror record from the global search bar
     Then I see "<juror_number>" on the page
-    And I see police check has updated to "Not checked"
+    And I see police check has updated to "Not Checked"
 
     Examples:
       | juror_number | pool_number  | last_name | postcode |
@@ -59,7 +59,7 @@ Feature: JM-4180 DB values reflected on UI
     When I set Police Check to "IN_PROGRESS" for "<juror_number>" new schema
     And the user searches for the juror record from the global search bar
     Then I see "<juror_number>" on the page
-    And I see police check has updated to "In progress"
+    And I see police check has updated to "In Progress"
 
     Examples:
       | juror_number  | pool_number |
@@ -82,7 +82,7 @@ Feature: JM-4180 DB values reflected on UI
     When I set Police Check to "" for "<juror_number>" new schema
     And the user searches for the juror record from the global search bar
     Then I see "<juror_number>" on the page
-    And I see police check has updated to "Not checked"
+    And I see police check has updated to "Not Checked"
 
     Examples:
       | juror_number  | pool_number   | last_name | postcode |
