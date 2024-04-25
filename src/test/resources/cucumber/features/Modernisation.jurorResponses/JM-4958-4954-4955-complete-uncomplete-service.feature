@@ -94,12 +94,15 @@ Feature: JM-4958, JM-4954, JM-4955 As a jury officer i need to be able to comple
     And I click on the pool number link on Juror Record
     And I check the select all checkbox on pool overview
     And I press the "Complete service" button
+    And I press the "Complete service" button
 
    #attempt complete service of ineligible juror/complete service for eligible juror
-    And I see "You cannot complete service for one or more jurors" on the page
-    And I see "You can only complete service for jurors with a status of 'responded'." on the page
+    And I see "Juror number <juror_number2> is not in a valid state to complete service" on the page
     And I see "Summoned" in the same row as "<juror_number2>"
-    And I press the "Continue with responded jurors only" button
+    And I refresh the page
+    And I check the juror "<juror_number1>" checkbox
+
+    And I press the "Complete service" button
     And I set the "Completion date" single date field to a Monday "17" weeks in the future
     And I press the "Complete service" button
     And I see "Service completed for 1 juror" on the page
