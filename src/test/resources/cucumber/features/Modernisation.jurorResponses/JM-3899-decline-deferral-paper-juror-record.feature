@@ -38,7 +38,7 @@ Feature: JM-3899
     And I select "O - OTHER" from the "Reason for the deferral request" dropdown
     And I set the radio button to "Refuse deferral"
     And I press the "Continue" button
-    And I see "Deferral refused (other)" on the page
+    And I see error "Date cannot be earlier than original summons date"
 
     Examples:
       |juror_number	|pool_number 	|user          |
