@@ -447,7 +447,8 @@ Scenario Outline: English 1st Party Excusal Super Urgent
 
 	And I press the "More actions" button
 	And I click on the "Download as a PDF" link
-	And I switch to the new window
+#	And I switch to the new window
+	And I focus page to the new tab
 	And I see "<juror_number>/download-pdf" in the URL
 	
 Examples:
