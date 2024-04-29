@@ -14,10 +14,12 @@ import org.openqa.selenium.ie.InternetExplorerOptions;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriverService;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.support.events.EventFiringDecorator;
 
 import java.util.concurrent.TimeUnit;
 
-public class SharedDriver extends WebDriveDecorator {
+public class SharedDriver extends EventFiringDecorator<WebDriver>
+    implements WebDriveDecorator {
 
     private static WebDriver REAL_DRIVER;
     private static Thread CLOSE_THREAD = new Thread() {
@@ -26,6 +28,11 @@ public class SharedDriver extends WebDriveDecorator {
             REAL_DRIVER.quit();
         }
     };
+
+    public SharedDriver() {
+        super();
+        decorate(REAL_DRIVER);
+    }
 
     static {
         String usingDriver = ReadProperties.machine("usingDriver");

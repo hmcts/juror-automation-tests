@@ -7,73 +7,61 @@ import org.openqa.selenium.WebElement;
 import java.util.List;
 import java.util.Set;
 
-public abstract class WebDriveDecorator implements WebDriver {
+public interface WebDriveDecorator extends WebDriver {
 
-    
-    public abstract WebDriver getDriver();
-    
-    @Override
-    public void get(String url) {
+
+    WebDriver getDriver();
+
+
+    default void get(String url) {
         this.getDriver().get(url);
     }
 
-    @Override
-    public String getCurrentUrl() {
+    default String getCurrentUrl() {
         return this.getDriver().getCurrentUrl();
     }
 
-    @Override
-    public String getTitle() {
+    default String getTitle() {
         return this.getDriver().getTitle();
     }
 
-    @Override
-    public List<WebElement> findElements(By by) {
+    default List<WebElement> findElements(By by) {
         return this.getDriver().findElements(by);
     }
 
-    @Override
-    public WebElement findElement(By by) {
+    default WebElement findElement(By by) {
         return this.getDriver().findElement(by);
     }
 
-    @Override
-    public String getPageSource() {
+    default String getPageSource() {
         return this.getDriver().getPageSource();
     }
 
-    @Override
-    public void close() {
+    default void close() {
         this.getDriver().close();
     }
 
-    @Override
-    public void quit() {
+    default void quit() {
         this.getDriver().quit();
     }
 
-    @Override
-    public Set<String> getWindowHandles() {
+    default Set<String> getWindowHandles() {
         return this.getDriver().getWindowHandles();
     }
 
-    @Override
-    public String getWindowHandle() {
+    default String getWindowHandle() {
         return this.getDriver().getWindowHandle();
     }
 
-    @Override
-    public TargetLocator switchTo() {
+    default TargetLocator switchTo() {
         return this.getDriver().switchTo();
     }
 
-    @Override
-    public Navigation navigate() {
+    default Navigation navigate() {
         return this.getDriver().navigate();
     }
 
-    @Override
-    public Options manage() {
+    default Options manage() {
         return this.getDriver().manage();
     }
 }
