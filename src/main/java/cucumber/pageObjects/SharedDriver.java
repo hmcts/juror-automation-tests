@@ -19,6 +19,7 @@ import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriverService;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
+//import org.openqa.selenium.support.events.EventFiringWebDriver;
 //msedge
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
@@ -36,15 +37,15 @@ import cucumber.utils.ReadProperties;
 
 public class SharedDriver {
 
-	private static WebDriver REAL_DRIVER;
-	private static Thread CLOSE_THREAD = new Thread() {
-		@Override
-		public void run() {
-			REAL_DRIVER.quit();
-		}
-	};
+	public WebDriver REAL_DRIVER;
+	//private static Thread CLOSE_THREAD = new Thread() {
+	//	@Override
+	//	public void run() {
+	//		REAL_DRIVER.quit();
+	//	}
+	//};
 
-	static {
+	public SharedDriver() {
 		String usingDriver = ReadProperties.machine("usingDriver");
 		String usingProxy = ReadProperties.machine("usingProxy");
 		String headlessChrome = ReadProperties.machine("headlessChrome");
@@ -128,21 +129,21 @@ public class SharedDriver {
 		REAL_DRIVER.manage().deleteAllCookies();
 
 		// REAL_DRIVER.manage().window().setSize(new Dimension(1024,728));
-		Runtime.getRuntime().addShutdownHook(CLOSE_THREAD);
+		//Runtime.getRuntime().addShutdownHook(CLOSE_THREAD);
 	}
 
-//	public SharedDriver() {
-//		super(REAL_DRIVER);
-//
-//	}
+	//public SharedDriver() {
+	//	super(REAL_DRIVER);
+    //
+	//}
 
-//	@Override
-//	public void close() {
-//		if (Thread.currentThread() != CLOSE_THREAD) {
-//			throw new UnsupportedOperationException(
-//					"You shouldn't close this WebDriver. It's shared and will close when the JVM exits.");
-//		}
-//		super.close();
-//	}
+	//@Override
+	//public void close() {
+	//	if (Thread.currentThread() != CLOSE_THREAD) {
+	//		throw new UnsupportedOperationException(
+	//				"You shouldn't close this WebDriver. It's shared and will close when the JVM exits.");
+	//	}
+	//	super.close();
+	//}
 
 }
