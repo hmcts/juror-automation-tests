@@ -19,7 +19,6 @@ import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriverService;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.support.events.EventFiringWebDriver;
 //msedge
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
@@ -35,7 +34,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import cucumber.utils.ReadProperties;
 
-public class SharedDriver extends EventFiringWebDriver {
+public class SharedDriver {
 
 	private static WebDriver REAL_DRIVER;
 	private static Thread CLOSE_THREAD = new Thread() {
@@ -132,18 +131,18 @@ public class SharedDriver extends EventFiringWebDriver {
 		Runtime.getRuntime().addShutdownHook(CLOSE_THREAD);
 	}
 
-	public SharedDriver() {
-		super(REAL_DRIVER);
+//	public SharedDriver() {
+//		super(REAL_DRIVER);
+//
+//	}
 
-	}
-
-	@Override
-	public void close() {
-		if (Thread.currentThread() != CLOSE_THREAD) {
-			throw new UnsupportedOperationException(
-					"You shouldn't close this WebDriver. It's shared and will close when the JVM exits.");
-		}
-		super.close();
-	}
+//	@Override
+//	public void close() {
+//		if (Thread.currentThread() != CLOSE_THREAD) {
+//			throw new UnsupportedOperationException(
+//					"You shouldn't close this WebDriver. It's shared and will close when the JVM exits.");
+//		}
+//		super.close();
+//	}
 
 }
