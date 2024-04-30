@@ -1980,6 +1980,10 @@ public class NavigationShared {
     @FindBy(id = "hearingDate")
     WebElement hearingDate;
 
+    @FindBy(id = "differentDate")
+    WebElement differentDate;
+
+
     public void enterNewDate(String attDateSequence, final String day, final String month, final String year) {
         log.info("Entering new date");
         switch (attDateSequence) {
@@ -2126,6 +2130,11 @@ public class NavigationShared {
             case "Show cause":
                 hearingDate.clear();
                 hearingDate.sendKeys(mondayDateValue);
+                break;
+
+            case "Different date":
+                differentDate.clear();
+                differentDate.sendKeys(mondayDateValue);
                 break;
         }
     }

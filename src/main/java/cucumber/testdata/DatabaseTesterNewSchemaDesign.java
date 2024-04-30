@@ -4840,6 +4840,7 @@ public class DatabaseTesterNewSchemaDesign {
 			conn.close();
 		}
 	}
+
 	public void setExpenseDailyTransportLimit() throws SQLException {
 		db = new DBConnection();
 
@@ -4864,6 +4865,7 @@ public class DatabaseTesterNewSchemaDesign {
 			conn.close();
 		}
 	}
+
 	public void updateAppearanceForShowCause(String jurorNumber) throws SQLException {
 		db = new DBConnection();
 
@@ -4953,7 +4955,8 @@ public class DatabaseTesterNewSchemaDesign {
 			conn.close();
 		}
 	}
-	public void setJurorsAttendanceDate(String jurorNumber ) throws SQLException {
+
+	public void setJurorsAttendanceDate(String jurorNumber) throws SQLException {
 		db = new DBConnection();
 
 		String env_property = System.getProperty("env.database");
@@ -4985,7 +4988,8 @@ public class DatabaseTesterNewSchemaDesign {
 			conn.close();
 		}
 	}
-	public void setPoolNumberInAttendanceTable(String poolnumber,String jurornumber ) throws SQLException {
+
+	public void setPoolNumberInAttendanceTable(String poolnumber, String jurornumber) throws SQLException {
 
 		db = new DBConnection();
 
@@ -4997,19 +5001,47 @@ public class DatabaseTesterNewSchemaDesign {
 			conn = db.getConnection("demo");
 
 		try {
-			pStmt = conn.prepareStatement("update juror_mod.appearance set pool_number ='" + poolnumber + "' where juror_number='"+jurornumber+"'");
+			pStmt = conn.prepareStatement("update juror_mod.appearance set pool_number ='" + poolnumber + "' where juror_number='" + jurornumber + "'");
 			pStmt.executeUpdate();
 
-		}catch (SQLException e) {
-		e.printStackTrace();
-		log.error("Message:" + e.getMessage());
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.error("Message:" + e.getMessage());
 
-	} finally {
-		conn.commit();
-		pStmt.close();
-		conn.close();
+		} finally {
+			conn.commit();
+			pStmt.close();
+			conn.close();
+		}
 	}
-}
 
+	public void updatePoliceCheck(String jurorNumber, String policeCheck) throws SQLException {
+
+		db = new DBConnection();
+
+		String env_property = System.getProperty("env.database");
+
+		if (env_property != null)
+			conn = db.getConnection(env_property);
+		else
+			conn = db.getConnection("demo");
+
+		try {
+			pStmt = conn.prepareStatement("update juror_mod.juror set police_check ='" + policeCheck + "' where juror_number='" + jurorNumber + "'");
+			pStmt.executeUpdate();
+
+			pStmt = conn.prepareStatement("update juror_mod.juror_pool set status='6' where juror_number='" + jurorNumber + "'");
+			pStmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.error("Message:" + e.getMessage());
+
+		} finally {
+			conn.commit();
+			pStmt.close();
+			conn.close();
+		}
+	}
 
 }

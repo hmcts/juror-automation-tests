@@ -621,6 +621,7 @@ public class StepDef_DatabaseNewSchema {
     public void updatebureautransferDateofCourtUser(String jurorNumber) throws SQLException {
         DBTNSD.updateBureauTransferDate(jurorNumber);
     }
+
     @Given("^I update daily expense amounts entered are more than court’s suggested daily limits$")
     public void setDailyExpensePubicTrasportAndTaxi() throws SQLException {
         DBTNSD.setExpenseDailyTransportLimit();
@@ -630,13 +631,15 @@ public class StepDef_DatabaseNewSchema {
     public void updateAppearanceForShowCauseLetter(String jurorNumber) throws SQLException {
         DBTNSD.updateAppearanceForShowCause(jurorNumber);
     }
+
     @Given("^I update juror \"([^\"]*)\" to have confirm attendance date as todays date$")
     public void setJurorattendanceDateAsTodaysDate(String jurorNumber) throws SQLException {
         DBTNSD.setJurorsAttendanceDate(jurorNumber);
     }
+
     @Given("^I update pool number \"([^\"]*)\" on the appearance table for the \"([^\"]*)\"$")
     public void setPoolNumber(String poolnumber, String jurornumber) throws SQLException {
-        DBTNSD.setPoolNumberInAttendanceTable(poolnumber,jurornumber);
+        DBTNSD.setPoolNumberInAttendanceTable(poolnumber, jurornumber);
     }
 
     @Given("^I clear the bank holiday table data in the database$")
@@ -644,4 +647,8 @@ public class StepDef_DatabaseNewSchema {
         DBTNSD.clearBankHolidayTableData();
     }
 
+    @Given("^I update juror \"([^\"]*)\" to have a police check status of \"([^\"]*)\"$")
+    public void updatePoliceCheck(String jurorNumber, String policeCheck) throws SQLException {
+        DBTNSD.updatePoliceCheck(jurorNumber,policeCheck);
+    }
 }
