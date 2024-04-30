@@ -79,6 +79,46 @@ withNightlyPipeline(type, product, component, 600) {
   env.runRegressionWelsh = params.runRegressionWelsh
   env.runShakedown = params.runShakedown
   
+  before('fullFunctionalTest') {
+    sh '''      
+      if [[ $envName == 'stg' ]]; then
+        envName='staging'
+      fi
+
+      juror_current_ip=$(awk -v envName="$envName" '/juror.{print envName}.apps.hmcts.net/ {print $1}' /etc/hosts)
+      juror_new_ip=$(dig @8.8.8.8 juror.$envName.apps.hmcts.net +short | tail -n1 | grep '^[.0-9]*$')
+      public_current_ip=$(awk -v envName="$envName" '/juror-public.{print envName}.apps.hmcts.net/ {print $1}' /etc/hosts)
+      public_new_ip=$(dig @8.8.8.8 juror-public.$envName.apps.hmcts.net +short | tail -n1 | grep '^[.0-9]*$')
+
+      if ! [[ -z $juror_new_ip ]]; then
+        echo "Juror IP: $juror_new_ip"
+        if [[ -z $juror_current_ip ]]; then
+          echo "No existing hosts entry, adding one..."
+          echo "$juror_new_ip juror.$envName.apps.hmcts.net" >> /etc/hosts
+        else
+          if sed "s/$juror_current_ip/$juror_new_ip/" /etc/hosts > /tmp/etchosts; then
+            echo "Existing hosts entry found, updating..."
+            cat /tmp/etchosts > /etc/hosts
+            rm /tmp/etchosts
+          fi
+        fi
+      fi
+
+      if ! [[ -z $public_new_ip ]]; then
+        echo "Juror Public IP: $public_new_ip"
+        if [[ -z $public_current_ip ]]; then
+          echo "No existing hosts entry, adding one..."
+          echo "$public_new_ip juror-public.$envName.apps.hmcts.net" >> /etc/hosts
+        else
+          if sed "s/$public_current_ip/$public_new_ip/" /etc/hosts > /tmp/etchosts; then
+            echo "Existing hosts entry found, updating..."
+            cat /tmp/etchosts > /etc/hosts
+            rm /tmp/etchosts
+          fi
+        fi
+      fi
+    '''
+  }
 
   afterAlways('fullFunctionalTest') {
 
