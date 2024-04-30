@@ -78,6 +78,7 @@ withNightlyPipeline(type, product, component, 600) {
   env.runRegressionSingle = params.runRegressionSingle
   env.runRegressionWelsh = params.runRegressionWelsh
   env.runShakedown = params.runShakedown
+  env.HOSTALIASES = ${WORKSPACE}/hostoverride
   
 
   afterAlways('fullFunctionalTest') {
