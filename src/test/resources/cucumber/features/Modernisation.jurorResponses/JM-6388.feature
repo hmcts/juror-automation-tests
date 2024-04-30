@@ -159,24 +159,23 @@ Feature: JM-6388 - As a jury officer I need to be able to manually add an attend
     And I log in as "<user>"
     When the user searches for juror record "<juror_number>" from the global search bar
     And I click on the "Attendance" link
-    And I see "Attendance" on the page
-    And I press the "Add attendance day" button
-    And I see "Add an attendance day" on the page
+    Then I see "Attendance" on the page
+    And I do not see "Add attendance day" on the page
 
-    And I set the "Attendance Day" date to a Monday "-8" weeks in the future
-    And I set juror check in hour to "9" on confirm attendance
-    And I set juror check in minute to "30" on confirm attendance
-    And I click on the am radio button for juror check in on confirm attendance
+    When I press the "Apps" button
+    And I click on the "Juror management" link
+    And I click on the "Record attendance" link
+    And I set the radio button to "Check in"
 
-    #check out on confirm attendance
-    And I set juror check out hour to "2" on confirm attendance
-    And I set juror check out minute to "45" on confirm attendance
-    And I click on the pm radio button for juror check out on confirm attendance
-    And I press the "Add attendance day" button
-    And I see "Cannot check in or out a juror with an invalid status" in the error banner
+    And I set "Hour" to "09"
+    And I set "Minute" to "00"
+    And I set the radio button to "am"
+    And I input juror "<juror_number>" to be checked in
+    And I press the "Check in juror" button
+    Then I see "Check in failed for one or more jurors" on the page
 
-    Then I update juror "<juror_number>" to have a status of "Responded"
-    When the user searches for juror record "<juror_number>" from the global search bar
+    When I update juror "<juror_number>" to have a status of "Responded"
+    And the user searches for juror record "<juror_number>" from the global search bar
     And I click on the "Attendance" link
     And I see "Attendance" on the page
     And I press the "Add attendance day" button
