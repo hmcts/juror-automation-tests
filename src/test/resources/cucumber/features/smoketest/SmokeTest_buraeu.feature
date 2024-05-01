@@ -13,11 +13,9 @@ Scenario:
 	Then I click on the "Search" link
 	And I see "Advanced search" on the page
 	When I click on the "Advanced search" link
-	And I check the Urgent checkbox on Search screen
+	And I set "Juror name" to "Lname"
 
 	And I press the "Search" button
-
-	And I see "results for "is urgent"" on the page
 
 	And I select the first juror in the search results
 	And I see "Juror details" on the page

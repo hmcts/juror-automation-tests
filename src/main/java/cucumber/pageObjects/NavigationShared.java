@@ -90,7 +90,7 @@ public class NavigationShared {
     @FindBy(xpath = "//*[@class='govuk-table__cell']")
     List<WebElement> bankHoliday;
 
-    @FindBy(xpath = "//*[@id=\"searchResultTable\"]/tbody/tr[1]/td[1]/div/a")
+    @FindBy(xpath = "(//td/a[@class='govuk-link'])[1]")
     WebElement firstJurorInSearch;
 
     public NavigationShared accessLoginPage(String environment) {

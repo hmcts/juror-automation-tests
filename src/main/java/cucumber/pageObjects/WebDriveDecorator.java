@@ -1,13 +1,14 @@
 package cucumber.pageObjects;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
 import java.util.Set;
 
-public interface WebDriveDecorator extends WebDriver {
+public interface WebDriveDecorator extends WebDriver, JavascriptExecutor {
 
 
     WebDriver getDriver();
@@ -63,5 +64,13 @@ public interface WebDriveDecorator extends WebDriver {
 
     default Options manage() {
         return this.getDriver().manage();
+    }
+
+    default Object executeScript(String script, Object... args) {
+        return ((JavascriptExecutor) getDriver()).executeScript(script, args);
+    }
+
+    default Object executeAsyncScript(String script, Object... args) {
+        return ((JavascriptExecutor) getDriver()).executeAsyncScript(script, args);
     }
 }
