@@ -25,7 +25,7 @@ public class JurorRecordSearch {
     @FindBy(id = "search-button")
     WebElement globalSearchExpand;
 
-    @FindBy(id = "super-nav-search")
+    @FindBy(id = "globalSearch")
     WebElement globalSearchField;
 
     @FindBy(id = "poolNumber")
