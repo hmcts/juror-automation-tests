@@ -13,7 +13,7 @@ Scenario:
 	Then I click on the "Search" link
 	And I see "Advanced search" on the page
 	When I click on the "Advanced search" link
-	And I set "Juror name" to "Lname"
+	And I set "Juror postcode" to "CH1"
 
 	And I press the "Search" button
 
