@@ -178,12 +178,14 @@ Feature: JM-4958, JM-4954, JM-4955 As a jury officer i need to be able to comple
     Then I record a happy path paper summons response
     And I click on the "No, skip and process later" link
 
-
     #view juror and complete
     When the user searches for juror record "<juror_number>" from the global search bar
-    And I click the update juror record button
+    And I update juror "<juror_number>" to have a status of "Responded"
+    When the user searches for juror record "<juror_number>" from the global search bar
+    And I press the "Update juror record" button
     And I set the radio button to "Complete service"
     And I click continue on the update juror record screen
+    And I update juror "<juror_number>" to have a status of "Summoned"
     And I set the "Completion date" single date field to a Monday "17" weeks in the future
     And I press the "Complete service" button
     # Assuming error is same as for bulk process as it doesn't appear in design files
@@ -191,7 +193,7 @@ Feature: JM-4958, JM-4954, JM-4955 As a jury officer i need to be able to comple
 
     Examples:
       |user			|juror_number  |pool_number  |
-      |MODTESTCOURT |415300135     |041500045    |
+      |MODTESTCOURT |041500045     |415300135    |
 
   @JurorTransformationMulti
   Scenario Outline: Uncomplete Service as an SJO
