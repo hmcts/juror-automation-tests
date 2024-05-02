@@ -1147,33 +1147,31 @@ Feature: JM-252_Validation_and_Errors
     Then I see "Select a court for this pool" on the page
 
     #select court
-    Then I set input field with "ID" of "courtNameOrLocation" to "<selectedCourt>"
+    When I set input field with "ID" of "courtNameOrLocation" to "<selectedCourt>"
     And I select the "<displayCourt> (<courtCode>)" court selection link
-    Then I press the "Continue" button
-
-    When I click the change link for the attendance date
-
+    And I press the "Continue" button
+    And I click the change link for the attendance date
     And I create a bank holiday "6" weeks in the future for court/bureau "<courtCode>" new schema
-
-    When I set the "Change the attendance date for this pool" date to a Monday "6" weeks in the future
-
+    And I set the "Change the attendance date for this pool" date to a Monday "6" weeks in the future
     And I press the "Change" button
+    Then I see "You’ve selected an attendance date that’s a UK bank holiday. You can continue or go back and change the date." on the page
+    And I see "The attendance date is a bank holiday" on the page
 
-    Then I should see a warning stating I have selected a bank holiday
+
 
     When I click the link to continue from the warning page
-
     Then I see "Request a new pool" on the page
 
     #complete new pool fields
-    Then I click the change link for the court deferrals
-    Then I change the number of court deferrals to "0"
+    When I click the change link for the court deferrals
+    And I change the number of court deferrals to "0"
 
     Then I set the radio button to "<courtTypeFull>"
     And I set "Number of jurors required in total" to "150"
     Then I press the "Continue" button
 
-    Then I should see a warning stating I have selected a bank holiday
+    Then I see "You’ve selected an attendance date that’s a UK bank holiday. You can continue or go back and change the date." on the page
+    And I see "The attendance date is a bank holiday" on the page
 
     When I click the link to continue from the warning page
 

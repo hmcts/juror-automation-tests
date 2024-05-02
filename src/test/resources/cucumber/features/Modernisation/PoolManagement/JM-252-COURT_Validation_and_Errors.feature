@@ -174,13 +174,15 @@ Feature: JM-252_Validation_and_Errors_COURT
 
     When I click the change link for the attendance date
     And I set the attendance date to a weekend
-    Then I should see a warning stating I have selected a weekend
+    Then I see "You’ve selected an attendance date that’s a Saturday or a Sunday. You can continue or go back and change the date." on the page
+    And I see "The attendance date is a weekend" on the page
     When I click the link to continue from the warning page
     When I change the pool type to "Civil"
 
     And I set the number of jurors to "10"
     And I click the request pool button
-    Then I should see a warning stating I have selected a weekend
+    Then I see "You’ve selected an attendance date that’s a Saturday or a Sunday. You can continue or go back and change the date." on the page
+    And I see "The attendance date is a weekend" on the page
     When I click the link to continue from the warning page
     Then I should be taken to the check pool request page
     And I should see the details of the pool

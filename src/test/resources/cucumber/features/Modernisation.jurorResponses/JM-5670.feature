@@ -76,7 +76,7 @@ Scenario Outline: Postpone a juror to another court as a Bureau officer - Bulk f
         And I press the "Continue" button
         And I see "There are no active pools for this date" on the page
         And I press the "Put in deferral maintenance" button
-        Then I verify reassign error message with the text "The following jurors cannot be moved because they'll be 76 years old by the new date and no longer eligible for jury service."
+        Then I see "The following jurors cannot be moved because they'll be 76 years old by the new date and no longer eligible for jury service." on the page
         And I press the "Continue and move remaining jurors" button
         And I see "1 juror postponed to deferral maintenance" on the page
 
