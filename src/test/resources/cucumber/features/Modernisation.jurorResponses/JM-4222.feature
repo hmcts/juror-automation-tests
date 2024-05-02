@@ -237,7 +237,7 @@ Feature: JM-4222
       | juror_number  | pool_number | user          |
       | 045200023     | 452300022   | MODTESTBUREAU |
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationWIP @NewSchemaConverted @JM-6998
   Scenario Outline: As a Jury officer when I reassign a juror the optic reference should be copied over to the new record
 
     Given I am on "Bureau" "test"
@@ -282,14 +282,12 @@ Feature: JM-4222
 
     #reassign juror
     When the user searches for juror record "<juror_number>" from the global search bar
-    When I click the update juror record button
-    And I click the reassign to another pool radio button
+    And I click on the pool number link on Juror Record
+    And I check the juror "<juror_number>" checkbox
+    And I press the "Reassign" button
+    And I select one of the active pools available
     And I press the "Continue" button
-    Then I see "Active pools at Chester (415)" on the page
-    And I see "Choose a pool to reassign to" on the page
-    And I see the reassign active pools table
-    When I select pool "<pool_number_1>" from the active pools table
-    And I press the "Continue" button
+    And I see "1 jurors reassigned to pool" on the page
     And I check optic reference in the database for juror "<juror_number>" is "12345678" new schema
 
     #check optic reference has been copied

@@ -82,11 +82,11 @@ Feature: JM-5072 - Dismiss random jurors
 
     Examples:
       |user			|juror_number    | juror_number_2  |   pool_number    |
-      |MODTESTCOURT |041588770       | 041588773       |    415388771     |
+      |MODTESTCOURT |041588770       | 041588773       |    415388671     |
 
 
   @JurorTransformationMulti @NewSchemaConverted
-  Scenario Outline: As a jury officer I want to dismiss random jurors - Unhappy Path
+  Scenario Outline:   As a jury officer I want to dismiss random jurors - Unhappy Path
 
     Given I am on "Bureau" "test"
     Given a bureau owned pool is created with jurors
