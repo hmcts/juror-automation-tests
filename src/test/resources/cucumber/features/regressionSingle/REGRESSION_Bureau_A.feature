@@ -101,7 +101,7 @@ Scenario Outline: Lift from QC Script for Bureau A Functionality
 	When I click on "<part_no_two>" in the same row as "<part_no_two>"
 	Then I see "Record status" on the page
 	Then I press the "More actions" button
-	And I click on the "Mark as 'Awaiting information'" link
+	And I click on the "Mark as awaiting information" link
 	Then I see "Mark this reply as awaiting information" on the page
 	When I set the radio button to "Awaiting court reply"
 	And I press the "Confirm" button
@@ -308,7 +308,7 @@ Scenario Outline: Bureau A script, steps 24 onwards
 	And I see "TO DO" on the page
 	
 	Then I press the "More actions" button
-	And I click on the "Mark as 'Awaiting information'" link
+	And I click on the "Mark as awaiting information" link
 	And I set the radio button to "Awaiting court reply"
 	And I press the "Confirm" button
 	Then I see "AWAITING COURT REPLY" on the page

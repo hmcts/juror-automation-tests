@@ -215,7 +215,7 @@ Scenario Outline: edit links and buttons disabled
 	Then I see "Process reply" on the page
 	And I see "More actions" on the page
 	Then I press the "More actions" button
-	And I click on the "Mark as 'Awaiting information'" link
+	And I click on the "Mark as awaiting information" link
 	When I set the radio button to "Awaiting juror"
 	And I press the "Confirm" button
 	

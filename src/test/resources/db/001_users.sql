@@ -37,6 +37,7 @@ commit;
 
 INSERT INTO juror_mod.user_courts (username, loc_code)
 VALUES ('MODTESTBUREAU', '400'),
+       ('SYSTEMADMIN', '400'),
        ('MODTESTCOURT', '415'),
        ('MODCOURT', '415'),
        ('MODCOURT', '769'),

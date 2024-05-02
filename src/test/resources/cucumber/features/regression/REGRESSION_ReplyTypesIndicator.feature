@@ -3038,7 +3038,7 @@ Scenario Outline: Multiple reply types in Awaiting Information
 	And I see "INELIGIBLE" on the page
 	
 	Then I press the "More actions" button
-	Then I click on the "Mark as 'Awaiting information'" link
+	Then I click on the "Mark as awaiting information" link
 	And I set the radio button to "Awaiting juror"
 	And I press the "Confirm" button
 	Then I see "AWAITING JUROR REPLY" on the page
@@ -3052,7 +3052,7 @@ Scenario Outline: Multiple reply types in Awaiting Information
 	And I see "INELIGIBLE" on the page
 	
 	Then I press the "More actions" button
-	Then I click on the "Mark as 'Awaiting information'" link
+	Then I click on the "Mark as awaiting information" link
 	And I set the radio button to "Awaiting juror"
 	And I press the "Confirm" button
 	Then I see "AWAITING JUROR REPLY" on the page
@@ -3066,7 +3066,7 @@ Scenario Outline: Multiple reply types in Awaiting Information
 	And I see "INELIGIBLE" on the page
 	
 	Then I press the "More actions" button
-	Then I click on the "Mark as 'Awaiting information'" link
+	Then I click on the "Mark as awaiting information" link
 	And I set the radio button to "Awaiting juror"
 	And I press the "Confirm" button
 	Then I see "AWAITING JUROR REPLY" on the page
@@ -3080,7 +3080,7 @@ Scenario Outline: Multiple reply types in Awaiting Information
 	And I see "INELIGIBLE" on the page
 	
 	Then I press the "More actions" button
-	Then I click on the "Mark as 'Awaiting information'" link
+	Then I click on the "Mark as awaiting information" link
 	And I set the radio button to "Awaiting juror"
 	And I press the "Confirm" button
 	Then I see "AWAITING JUROR REPLY" on the page
@@ -3094,7 +3094,7 @@ Scenario Outline: Multiple reply types in Awaiting Information
 	And I see "INELIGIBLE" on the page
 	
 	Then I press the "More actions" button
-	Then I click on the "Mark as 'Awaiting information'" link
+	Then I click on the "Mark as awaiting information" link
 	And I set the radio button to "Awaiting juror"
 	And I press the "Confirm" button
 	Then I see "AWAITING JUROR REPLY" on the page
@@ -3108,7 +3108,7 @@ Scenario Outline: Multiple reply types in Awaiting Information
 	And I see "INELIGIBLE" on the page
 	
 	Then I press the "More actions" button
-	Then I click on the "Mark as 'Awaiting information'" link
+	Then I click on the "Mark as awaiting information" link
 	And I set the radio button to "Awaiting juror"
 	And I press the "Confirm" button
 	Then I see "AWAITING JUROR REPLY" on the page
@@ -3122,7 +3122,7 @@ Scenario Outline: Multiple reply types in Awaiting Information
 	And I see "NEEDS REVIEW" on the page
 	
 	Then I press the "More actions" button
-	Then I click on the "Mark as 'Awaiting information'" link
+	Then I click on the "Mark as awaiting information" link
 	And I set the radio button to "Awaiting juror"
 	And I press the "Confirm" button
 	Then I see "AWAITING JUROR REPLY" on the page
@@ -3136,7 +3136,7 @@ Scenario Outline: Multiple reply types in Awaiting Information
 	And I see "DEFERRAL" on the page
 	
 	Then I press the "More actions" button
-	Then I click on the "Mark as 'Awaiting information'" link
+	Then I click on the "Mark as awaiting information" link
 	And I set the radio button to "Awaiting juror"
 	And I press the "Confirm" button
 	Then I see "AWAITING JUROR REPLY" on the page
@@ -3150,7 +3150,7 @@ Scenario Outline: Multiple reply types in Awaiting Information
 	And I see "EXCUSAL" on the page
 	
 	Then I press the "More actions" button
-	Then I click on the "Mark as 'Awaiting information'" link
+	Then I click on the "Mark as awaiting information" link
 	And I set the radio button to "Awaiting juror"
 	And I press the "Confirm" button
 	Then I see "AWAITING JUROR REPLY" on the page
