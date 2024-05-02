@@ -1,32 +1,145 @@
 package cucumber.pageObjects;
 
 import cucumber.utils.AngularJsHTTPCallWait;
-import cucumber.utils.ReadProperties;
 import cucumber.utils.WaitUtil_v2;
 import cucumber.utils.WaitUtils;
 import org.apache.log4j.Logger;
-import org.junit.Assert;
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class PoolRequests {
 
-    private static WebDriver driver;
     private static final Logger log = Logger.getLogger(Search.class);
+    private static WebDriver driver;
     private final WaitUtils wait;
     private final WaitUtil_v2 wait1;
     private final AngularJsHTTPCallWait aJsWait;
     private final NavigationShared NAV;
-
-    private Groups GRP;
     private final Header HEADER_PAGE;
+    @FindBy(xpath = "//div[@class=\"govuk-summary-list__row govuk-summary-list__row--no-actions\"]//dd[@class=\"govuk-summary-list__value\"]")
+    public List<WebElement> courtAttendanceTime;
+    @FindBy(linkText = "Create pool")
+    WebElement requestNewPoolLink;
+    @FindBy(xpath = "//h1")
+    WebElement pageHeading;
+    @FindBy(id = "continueButton")
+    WebElement continueButton;
+    @FindBy(id = "deferralMaintenanceAnchor")
+    WebElement deferraMaintenanceLink;
+    @FindBy(id = "confirmButton")
+    WebElement confirmButton;
+    @FindBy(xpath = "//label[@for=\"selectedCourtName\"]/following-sibling::dl[1]//dd[@class=\"govuk-summary-list__value\"]")
+    WebElement courtName;
+    @FindBy(xpath = "//dl[@id=\"attendanceDate\"]//dd[1]")
+    WebElement courtDate;
+    @FindBy(xpath = "//dl[@id=\"requestDetails\"]//div[3]//dd[1]")
+    WebElement courtDateCheckDetails;
+    @FindBy(xpath = "//dl[@id=\"attendanceDate\"]//dd[1]")
+    WebElement courtDateRequestPool;
+    @FindBy(xpath = "//dl[@id=\"attendanceTime\"]//dd[@class=\"govuk-summary-list__value\"]")
+    WebElement courtTime;
+    @FindBy(xpath = "//label[@for=\"selectedCourtName\"]/following-sibling::dl[1]//a[@class=\"govuk-link\"]")
+    WebElement changeCourtLink;
+    @FindBy(css = "#attendanceDate a")
+    WebElement changeDateLink;
+    @FindBy(css = "#attendanceTime a")
+    WebElement changeTimeLink;
+    @FindBy(css = "#poolNumber a")
+    WebElement changePoolNumberLink;
+    @FindBy(id = "attendanceTimeHour")
+    WebElement timeHours;
+    @FindBy(id = "attendanceTimeMinute")
+    WebElement timeMinutes;
+    @FindBy(xpath = "//input[@id=\"courtNameOrLocation\"]")
+    WebElement courtTextBox;
+    @FindBy(xpath = "//button[@type=\"submit\"]")
+    WebElement submitButton;
+    @FindBy(id = "courtNameOrLocation__option--0")
+    WebElement courtDropdownFirstOption;
+    @FindBy(id = "attendanceDate")
+    WebElement attendanceDateField;
+    @FindBy(id = "additionalRequirements-2")
+    WebElement onCallPoolCheckbox;
+    @FindBy(id = "numberOfJurorsRequired")
+    WebElement numberOfJurorsField;
+    @FindBy(className = "govuk-error-summary")
+    WebElement errorSummary;
+    @FindBy(css = "#numberOfCourtDeferrals a")
+    WebElement changeDeferralsLink;
+    @FindBy(id = "numberOfDeferrals")
+    WebElement numberOfDeferralsField;
+    @FindBy(linkText = "Cancel")
+    WebElement cancelLink;
+    @FindBy(id = "courtNameOrLocation")
+    WebElement filterField;
+    @FindBy(className = "autocomplete__option")
+    WebElement filterAutocompleteOption;
+    @FindBy(xpath = "//button[@type=\"submit\"]")
+    WebElement filterButton;
+    @FindBy(className = "govuk-body")
+    WebElement attendanceDateWarning;
+    @FindBy(linkText = "Continue")
+    WebElement warningContinue;
+    @FindBy(css = "#poolRequestsTable td:nth-child(1) .govuk-link ")
+    WebElement firstPoolRequestLink;
+    @FindBy(className = "moj-banner__message")
+    WebElement bannerMessage;
+    @FindBy(id = "courtNameOrLocation")
+    WebElement courtNameTextBox;
+    @FindBy(id = "courtNameOrLocation__option--0")
+    WebElement courtNameLocationOption1;
+    @FindBy(css = ".govuk-summary-list__key.govuk-heading-m")
+    WebElement tableHeading;
+    @FindBy(id = "activePoolsAnchor")
+    WebElement activePoolsLink;
+    @FindBy(xpath = "//dt[@class=\"govuk-summary-list__key\"]/a")
+    WebElement existingPoolNumber;
+    @FindBy(xpath = "//span[@class='govuk-caption-l']")
+    WebElement summonCitizensPoolNumber;
+    @FindBy(id = "poolNumber")
+    WebElement poolNumberInput;
+    @FindBy(id = "searchAnchor")
+    WebElement searchTab;
+    @FindBy(xpath = "//*[@id=\"poolRequestsTable\"]/tbody/tr/td[1]/a[1]")
+    WebElement poolNumberSummary;
+    @FindBy(xpath = "//*[@id=\"poolNumber\"]/div[2]/dd")
+    WebElement poolNumberOnDetails;
+    @FindBy(xpath = "/html/body/div[3]/main/div[3]/div[3]/div/div/div[1]/p/time")
+    WebElement timelineDateAndTime;
+    @FindBy(xpath = "/html/body/div[3]/main/div[1]/div[2]/a")
+    WebElement requestNewPoolButton;
+    @FindBy(xpath = "/html/body/div[3]/main/div/div/form/div/button")
+    WebElement requestPoolButton;
+    @FindBy(xpath = "/html/body/div[3]/main/div[3]/div[4]/a")
+    WebElement summonJurorsButton;
+    @FindBy(xpath = "/html/body/div[3]/main/div/div/form/div[5]/button")
+    WebElement createPoolAndSummonCitizensButton;
+    @FindBy(id = "membersListTable")
+    WebElement jurorPartNumbertable;
+    @FindBy(xpath = ("//button[contains(text(),'Create a pool')]"))
+    WebElement createAPool;
+    @FindBy(xpath = ("//a[contains(text(),'Create a nil pool')]"))
+    WebElement createNilPool;
+    @FindBy(xpath = "//div/strong[@class='govuk-tag govuk-tag--blue']")
+    WebElement poolStatusRequestedTag;
+    @FindBy(xpath = "//strong[contains(text(),'Active')]")
+    WebElement poolStatusActiveTag;
+    @FindBy(className = "govuk-pagination__next")
+    WebElement nextPaginationLink;
+    @FindBy(id = "poolRequestsTable")
+    WebElement activePoolsTable;
+    @FindBy(xpath = "//td[2]/a")
+    WebElement firstJurorInList;
+    @FindBy(xpath = "//div[@class='moj-banner moj-banner--success']//a")
+    WebElement courtOnlyPoolRequestSuccessLink;
+    private Groups GRP;
 
     public PoolRequests(WebDriver driver) {
         PoolRequests.driver = driver;
@@ -38,155 +151,6 @@ public class PoolRequests {
         HEADER_PAGE = PageFactory.initElements(driver, Header.class);
     }
 
-    @FindBy(linkText = "Create pool")
-    WebElement requestNewPoolLink;
-
-    @FindBy(xpath = "//h1")
-    WebElement pageHeading;
-
-    @FindBy(id = "continueButton")
-    WebElement continueButton;
-
-    @FindBy(id = "deferralMaintenanceAnchor")
-    WebElement deferraMaintenanceLink;
-
-    @FindBy(id = "confirmButton")
-    WebElement confirmButton;
-
-    @FindBy(xpath = "//label[@for=\"selectedCourtName\"]/following-sibling::dl[1]//dd[@class=\"govuk-summary-list__value\"]")
-    WebElement courtName;
-
-    @FindBy(xpath = "//dl[@id=\"attendanceDate\"]//dd[1]")
-    WebElement courtDate;
-    @FindBy(xpath = "//dl[@id=\"requestDetails\"]//div[3]//dd[1]")
-    WebElement courtDateCheckDetails;
-
-    @FindBy(xpath = "//dl[@id=\"attendanceDate\"]//dd[1]")
-    WebElement courtDateRequestPool;
-
-    @FindBy(xpath = "//dl[@id=\"attendanceTime\"]//dd[@class=\"govuk-summary-list__value\"]")
-    WebElement courtTime;
-
-    @FindBy(xpath = "//div[@class=\"govuk-summary-list__row govuk-summary-list__row--no-actions\"]//dd[@class=\"govuk-summary-list__value\"]")
-    public List<WebElement> courtAttendanceTime;
-
-    @FindBy(xpath = "//label[@for=\"selectedCourtName\"]/following-sibling::dl[1]//a[@class=\"govuk-link\"]")
-    WebElement changeCourtLink;
-
-    @FindBy(css = "#attendanceDate a")
-    WebElement changeDateLink;
-
-    @FindBy(css = "#attendanceTime a")
-    WebElement changeTimeLink;
-
-    @FindBy(css = "#poolNumber a")
-    WebElement changePoolNumberLink;
-
-    @FindBy(id = "attendanceTimeHour")
-    WebElement timeHours;
-
-    @FindBy(id = "attendanceTimeMinute")
-    WebElement timeMinutes;
-
-    @FindBy(xpath = "//input[@id=\"courtNameOrLocation\"]")
-    WebElement courtTextBox;
-
-    @FindBy(xpath = "//button[@type=\"submit\"]")
-    WebElement submitButton;
-
-    @FindBy(id = "courtNameOrLocation__option--0")
-    WebElement courtDropdownFirstOption;
-
-
-    @FindBy(id = "attendanceDate")
-    WebElement attendanceDateField;
-
-    @FindBy(id = "additionalRequirements-2")
-    WebElement onCallPoolCheckbox;
-
-    @FindBy(id = "numberOfJurorsRequired")
-    WebElement numberOfJurorsField;
-
-    @FindBy(className = "govuk-error-summary")
-    WebElement errorSummary;
-
-    @FindBy(css = "#numberOfCourtDeferrals a")
-    WebElement changeDeferralsLink;
-
-    @FindBy(id = "numberOfDeferrals")
-    WebElement numberOfDeferralsField;
-
-    @FindBy(linkText = "Cancel")
-    WebElement cancelLink;
-
-    @FindBy(id = "courtNameOrLocation")
-    WebElement filterField;
-
-    @FindBy(className = "autocomplete__option")
-    WebElement filterAutocompleteOption;
-
-    @FindBy(xpath = "//button[@type=\"submit\"]")
-    WebElement filterButton;
-
-    @FindBy(className = "govuk-body")
-    WebElement attendanceDateWarning;
-
-    @FindBy(linkText = "Continue")
-    WebElement warningContinue;
-
-    @FindBy(css = "#poolRequestsTable td:nth-child(1) .govuk-link ")
-    WebElement firstPoolRequestLink;
-
-    @FindBy(className = "moj-banner__message")
-    WebElement bannerMessage;
-
-    @FindBy(id = "courtNameOrLocation")
-    WebElement courtNameTextBox;
-
-    @FindBy(id = "courtNameOrLocation__option--0")
-    WebElement courtNameLocationOption1;
-
-    @FindBy(css = ".govuk-summary-list__key.govuk-heading-m")
-    WebElement tableHeading;
-
-    @FindBy(id = "activePoolsAnchor")
-    WebElement activePoolsLink;
-
-    @FindBy(xpath = "//dt[@class=\"govuk-summary-list__key\"]/a")
-    WebElement existingPoolNumber;
-
-    @FindBy(xpath = "//span[@class='govuk-caption-l']")
-    WebElement summonCitizensPoolNumber;
-
-
-    @FindBy(id = "poolNumber")
-    WebElement poolNumberInput;
-
-
-    @FindBy(id = "searchAnchor")
-    WebElement searchTab;
-    @FindBy(xpath = "//*[@id=\"poolRequestsTable\"]/tbody/tr/td[1]/a[1]")
-    WebElement poolNumberSummary;
-    @FindBy(xpath = "//*[@id=\"poolNumber\"]/div[2]/dd")
-    WebElement poolNumberOnDetails;
-    @FindBy(xpath = "/html/body/div[3]/main/div[3]/div[3]/div/div/div[1]/p/time")
-    WebElement timelineDateAndTime;
-
-    @FindBy(xpath = "/html/body/div[3]/main/div[1]/div[2]/a")
-    WebElement requestNewPoolButton;
-
-    @FindBy(xpath = "/html/body/div[3]/main/div/div/form/div/button")
-    WebElement requestPoolButton;
-
-    @FindBy(xpath = "/html/body/div[3]/main/div[3]/div[4]/a")
-    WebElement summonJurorsButton;
-
-    @FindBy(xpath = "/html/body/div[3]/main/div/div/form/div[5]/button")
-    WebElement createPoolAndSummonCitizensButton;
-
-    @FindBy(id = "membersListTable")
-    WebElement jurorPartNumbertable;
-
     public void clickSearchTab() {
         searchTab.click();
     }
@@ -197,31 +161,6 @@ public class PoolRequests {
         courtNameLocationOption1.click();
         submitButton.click();
     }
-
-    @FindBy(xpath = ("//button[contains(text(),'Create a pool')]"))
-    WebElement createAPool;
-
-    @FindBy(xpath = ("//a[contains(text(),'Create a nil pool')]"))
-    WebElement createNilPool;
-
-    @FindBy(xpath = "//div/strong[@class='govuk-tag govuk-tag--blue']")
-    WebElement poolStatusRequestedTag;
-
-    @FindBy(xpath = "//strong[contains(text(),'Active')]")
-    WebElement poolStatusActiveTag;
-
-
-    @FindBy(className = "govuk-pagination__next")
-    WebElement nextPaginationLink;
-
-    @FindBy(id = "poolRequestsTable")
-    WebElement activePoolsTable;
-
-    @FindBy(xpath = "//td[2]/a")
-    WebElement firstJurorInList;
-
-    @FindBy(xpath = "//div[@class='moj-banner moj-banner--success']//a")
-    WebElement courtOnlyPoolRequestSuccessLink;
 
     public void clickNewlyCreatedCourtOnlyPoolLink() {
         courtOnlyPoolRequestSuccessLink.click();
@@ -372,6 +311,7 @@ public class PoolRequests {
         log.info("Getting attendance time");
         return courtTime.getText();
     }
+
     public void clickChangeTime() {
         log.info("Clicking change time");
         changeTimeLink.click();
@@ -459,21 +399,37 @@ public class PoolRequests {
     }
 
     public Map<String, String> getPoolRequestByNumber(final String poolNumber) {
-        log.info("Getting pool request for pool: " + poolNumber);
+        List<String> numbers = new ArrayList<String>();
+
+        log.info(Thread.currentThread() + " - Getting pool request for pool: " + poolNumber);
 
         List<WebElement> poolLink = driver.findElements(By.xpath("//a[contains(text(),'" + poolNumber + "')]"));
+        List<WebElement> poolNumbers = driver.findElements(By.xpath("//table[@id='poolRequestsTable']//td/a"));
+        for(WebElement e : poolNumbers){
+            numbers.add(e.getText());
+        }
+        log.info(Thread.currentThread() + " - pool numbers on page - " + numbers);
 
         while (poolLink.size() != 1) {
+            log.info(Thread.currentThread() + " - " + poolLink);
+
             List<WebElement> nextPagination = driver.findElements(By.xpath("//a[@rel='next']"));
             if (!nextPagination.isEmpty()) {
-                log.info("Clicking next pagination");
+                log.info(Thread.currentThread() + " - Clicking next pagination");
                 clickNextPagination();
+                poolNumbers = driver.findElements(By.xpath("//table[@id='poolRequestsTable']//td/a"));
+                for(WebElement e : poolNumbers){
+                    numbers.add(e.getText());
+                }
             } else {
-                log.info("Reached last page of pagination");
-                break;
+                log.info(Thread.currentThread() + " - Reached last page of pagination");
+                poolNumbers = driver.findElements(By.xpath("//table[@id='poolRequestsTable']//td/a"));
+                for(WebElement e : poolNumbers){
+                    numbers.add(e.getText());
+                }                break;
             }
             poolLink = driver.findElements(By.xpath("//a[contains(text(),'" + poolNumber + "')]"));
-            System.out.println("Pool Found: "+ poolLink.size());
+            log.info(Thread.currentThread() + " - Pool Found: " + poolLink.size());
         }
 
         String jurorsRequired = driver.findElement(By.xpath(
@@ -577,12 +533,6 @@ public class PoolRequests {
         }
     }
 
-    public enum PoolType {
-        CIVIL,
-        CROWN,
-        HIGH
-    }
-
     public boolean seePoolStatusRequestedTag() {
         return poolStatusRequestedTag.isDisplayed();
     }
@@ -631,7 +581,6 @@ public class PoolRequests {
             }
         }
     }
-
 
     public void clickInactivePoolNumber(String poolNo) {
         log.info("Finding and clicking active pool number");
@@ -687,6 +636,12 @@ public class PoolRequests {
         checkbox.click();
         log.info("Checked checkbox which was in the same row as =>" + nextToText);
 
+    }
+
+    public enum PoolType {
+        CIVIL,
+        CROWN,
+        HIGH
     }
 }
 
