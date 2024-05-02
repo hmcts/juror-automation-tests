@@ -1,23 +1,24 @@
 Feature: Bureau Process Options
 
-@RegressionSingle
+@RegressionSingle @NewSchemaConverted
 Scenario Outline: Cycle through process options
 
 	Given I am on "Public" "test"
 	Given auto straight through processing has been disabled new schema
-	Given the juror numbers have not been processed
-		|part_no 	|pool_no 	|owner	|
-		|<part_no> 	|<pool_no>	|400 	|
-	
-	Given "<juror_number>" has "RET_DATE" as "5 mondays time"
 
-	
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
+
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
+
 	# Submit response in pool
-	
+
 	Given I have submitted a first party English straight through response
-		|part_no	|pool_number|last_name		|postcode	|email 	|
-		|<part_no>	|<pool_no>	|<last_name>	|<postcode>	|a@a.com|
-	
+		|part_no		|pool_number	|last_name		|postcode	|email 	|
+		|<juror_number>	|<pool_number>	|<last_name>	|<postcode>	|a@a.com|
+
 	Given I am on "Bureau" "test"
 	And I log in as "MODTESTBUREAU"
 
@@ -27,7 +28,7 @@ Scenario Outline: Cycle through process options
 	Given I am on "Bureau" "test"
 	And I log in as "ARAMIS1"
 	And I click on the "Search" link
-	And I set "Juror's pool number" to "<pool_no>"
+	And I set "Juror's pool number" to "<pool_number>"
 	And I press the "Search" button
 	
 	When I click on "<juror_number>" in the same row as "<juror_number>"
@@ -35,19 +36,19 @@ Scenario Outline: Cycle through process options
 	#process options as team member where record assigned to me
 	
 	And I do not see "Download as a PDF" on the page
-	And I do not see "Mark as 'Awaiting information'" on the page
+	And I do not see "Mark as awaiting information" on the page
 	And I do not see "Send to a colleague..." on the page
 	
 	Then I press the "More actions" button
 	
 	And I see link with text "Download as a PDF"
-	And I see link with text "Mark as 'Awaiting information'"
+	And I see link with text "Mark as awaiting information"
 	And I see link with text "Send to a colleague..."
 	
-	Then I click on the "Mark as 'Awaiting information'" link
-	And I see "Awaiting juror" on the page
-	And I see "Awaiting court reply" on the page
-	And I see "Awaiting translation" on the page
+	Then I click on the "Mark as awaiting information" link
+	And I see "Juror" on the page
+	And I see "Court" on the page
+	And I see "Translation unit" on the page
 	
 	Then I click on the "Cancel" link
 	
@@ -58,28 +59,32 @@ Scenario Outline: Cycle through process options
 	
 	Then I do not see "PDF sent to court" on the page
 	Then I press the "Process reply" button
-	Then I see link with text "Responded"
-	Then I see link with text "Deferral"
-	Then I see link with text "Excusal"
-	Then I see link with text "Disqualified"
+	Then I see "Mark as responded" on the page
+	Then I see "Deferral request" on the page
+	Then I see "Excusal - grant or refuse" on the page
+	Then I see "Disqualify" on the page
 	
-	Then I click on the "Responded" link
+	Then I choose the "Mark as responded" radio button
+	And I press the "Continue" button
 	And I see "Mark juror as 'responded'" on the page
 	Then I click on the "Cancel" link
 	
 	Then I press the "Process reply" button
-	Then I click on the "Deferral" link
-	And I see "Accept deferral" on the page
+	Then I choose the "Deferral request" radio button
+	And I press the "Continue" button
+	And I see "Enter the juror's preferred start dates" on the page
 	Then I click on the "Cancel" link
 	
 	Then I press the "Process reply" button
-	Then I click on the "Excusal" link
-	And I see "Accept excusal request" on the page
+	Then I choose the "Excusal - grant or refuse" radio button
+	And I press the "Continue" button
+	And I see "Grant or refuse an excusal" on the page
 	Then I click on the "Cancel" link
 	
 	Then I press the "Process reply" button
-	Then I click on the "Disqualified" link
-	And I see "Select why the juror is disqualified" on the page
+	Then I choose the "Disqualify" radio button
+	And I press the "Continue" button
+	And I see "Disqualify this juror" on the page
 	Then I click on the "Cancel" link
 
 	#re-enable auto processing
@@ -87,8 +92,8 @@ Scenario Outline: Cycle through process options
 	Given auto straight through processing has been enabled new schema
 
 Examples:
-	|part_no		|pool_no 	|last_name 			|postcode 	|
-	|645200289		|452170401 	|LNAMETWOEIGHTNINE	|SY2 6LU	|
+	| juror_number	| pool_number 	| last_name 		| postcode 	|
+	| 045200231		| 452300211 	| LNAMETWOEIGHTNINE	| SY2 6LU	|
 	
 @RegressionSingle @NewSchemaConverted
 Scenario Outline: Send to court process options
@@ -147,42 +152,43 @@ Examples:
 	|juror_number	|pool_number|last_name 			|postcode 	|
 	|045200230		|452300210 	|LNAMETWOEIGHTNINE	|SY2 6LU	|
 
-@RegressionSingle
+@Features @JM-7205 @NewSchemaConverted
 Scenario Outline: Urgent process options
 
+	#return to regressionSingle when defect fixed
+
 	Given I am on "Public" "test"
+
 	Given auto straight through processing has been disabled new schema
-	Given the juror numbers have not been processed
-		|part_no 	|pool_no 	|owner	|
-		|<part_no> 	|<pool_no>	|400 	|
-	
-	# Set part_no pool to be urgent
-	
-	Given "<juror_number>" has "RET_DATE" as "2 mondays time"
-	And "<juror_number>" has "NEXT_DATE" as "2 mondays time"
-	
+
+	Given a bureau owned pool is created with jurors
+		| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   | <juror_number>| <pool_number>	| 2				            | 400	|
+
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
+
 	# Submit response in pool
-	
 	Given I have submitted a first party English straight through response
-		|part_no	|pool_number|last_name		|postcode	|email 	|
-		|<part_no>	|<pool_no>	|<last_name>	|<postcode>	|a@a.com|
-		
+		| part_no		| pool_number	| last_name		| postcode	| email 	|
+		| <juror_number>| <pool_number>	| <last_name>	| <postcode>| a@a.com	|
+
 	Given I am on "Bureau" "test"
 	And I log in as "ARAMIS1"
 	And I click on the "Search" link
-	And I set "Juror's pool number" to "<pool_no>"
+	And I set "Juror's pool number" to "<pool_number>"
 	And I press the "Search" button
 	
 	When I click on "<juror_number>" in the same row as "<juror_number>"
 
+	#JM-7205
 	# cannot assign to anyone as response not allocated to me
-	
 	And I do not see "Download as a PDF" on the page
-	And I do not see "Mark as 'Awaiting information'" on the page
+	And I do not see "Mark as awaiting information" on the page
 	And I do not see "Send to a colleague..." on the page
 	Then I press the "More actions" button
 	And I see "Download as a PDF" on the page
-	And I see "Mark as 'Awaiting information'" on the page
+	And I see "Mark as awaiting information" on the page
 	And I do not see "Send to a colleague..." on the page
 
 	# allocate to me
@@ -194,30 +200,29 @@ Scenario Outline: Urgent process options
 	And I assign all the New Replies to "ARAMIS1"
 	
 	# now I can allocate to someone else
-	
 	Given I am on "Bureau" "test"
 	And I log in as "ARAMIS1"
 	And I click on the "Search" link
-	And I set "Juror's pool number" to "<pool_no>"
+	And I set "Juror's pool number" to "<pool_number>"
 	And I press the "Search" button
 	
 	When I click on "<juror_number>" in the same row as "<juror_number>"
 
 	And I do not see "Download as a PDF" on the page
-	And I do not see "Mark as 'Awaiting information'" on the page
+	And I do not see "Mark as awaiting information" on the page
 	And I do not see "Send to a colleague..." on the page
 	Then I press the "More actions" button
 	And I see "Download as a PDF" on the page
-	And I see "Mark as 'Awaiting information'" on the page
+	And I see "Mark as awaiting information" on the page
 	And I see "Send to a colleague..." on the page
 	
 	Then I press the "More actions" button
 	Then I press the "Process reply" button
-	Then I see "Responded" on the page
-	Then I see "Deferral" on the page
-	Then I see "Excusal" on the page
-	Then I see "Disqualified" on the page
-	Then I click on the "Responded" link
+	Then I see "Mark as responded" on the page
+	Then I see "Deferral request" on the page
+	Then I see "Excusal - grant or refuse" on the page
+	Then I see "Disqualify" on the page
+	Then I choose the "Mark as responded" radio button
 	
 	And I check the "Mark juror as 'responded'" checkbox
 	And I press the "Confirm" button
@@ -225,36 +230,36 @@ Scenario Outline: Urgent process options
 	Then I see "COMPLETED" on the page
 
 	#re-enable auto processing
-	
 	Given auto straight through processing has been enabled new schema
 
 Examples:
-	|part_no		|pool_no 	|last_name 			|postcode 	|
-	|645200289		|452170401 	|LNAMETWOEIGHTNINE	|SY2 6LU	|
+	| juror_number	| pool_number 	| last_name 		| postcode 	|
+	| 045200232		| 452300212 	| LNAMETWOEIGHTNINE	| SY2 6LU	|
 
-@RegressionSingle
+@RegressionSingle @NewSchemaConverted
 Scenario Outline: Closed process options
 
 	Given I am on "Public" "test"
-	Given auto straight through processing has been enabled new schema
-	Given the juror numbers have not been processed
-		|part_no 	|pool_no 	|owner	|
-		|<part_no> 	|<pool_no>	|400 	|
-	
-	Given "<juror_number>" has "RET_DATE" as "5 mondays time"
 
+	Given auto straight through processing has been enabled new schema
+
+	Given a bureau owned pool is created with jurors
+		| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   | <juror_number>| <pool_number>	| 5				            | 400	|
+
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	
 	# Submit response in pool
-	
 	Given I have submitted a first party English straight through response
-		|part_no	|pool_number|last_name		|postcode	|email 	|
-		|<part_no>	|<pool_no>	|<last_name>	|<postcode>	|a@a.com|
+		| part_no			| pool_number	| last_name		| postcode		| email 	|
+		| <juror_number>	| <pool_number>	| <last_name>	| <postcode>	| a@a.com	|
 	
 	Given I am on "Bureau" "test"
 	And I log in as "MODTESTBUREAU"
 
 	And I click on the "Search" link
-	And I set "Juror's pool number" to "<pool_no>"
+	And I set "Juror's pool number" to "<pool_number>"
 	And I press the "Search" button
 	
 	When I click on "<juror_number>" in the same row as "<juror_number>"
@@ -263,12 +268,12 @@ Scenario Outline: Closed process options
 	And I see link with text "Download as a PDF"
 	And I do not see "Mark as 'Awaiting information" on the page
 	And I do not see "Send to a colleague..." on the page
-	
-	Then the "Process reply" button is disabled
+
+	Then the process reply button is not visible
 	Then I do not see "PDF sent to court" on the page
 
 	Then I see "COMPLETED" on the page
 
 Examples:
-	|part_no		|pool_no 	|last_name 			|postcode 	|
-	|645200289		|452170401 	|LNAMETWOEIGHTNINE	|SY2 6LU	|
+	| juror_number	| pool_number 	| last_name 		| postcode 	|
+	| 045200233		| 452300213 	| LNAMETWOEIGHTNINE	| SY2 6LU	|

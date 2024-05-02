@@ -777,7 +777,7 @@ Scenario Outline: 8. Set to Awaiting Response on PENDING ALLOCATION response
 	When I click on "<part_no_seven>" in the same row as "<part_no_seven>"
 	Then I see "Process reply" on the page
 	Then I press the "More actions" button
-	And I click on the "Mark as 'Awaiting information'" link
+	And I click on the "Mark as awaiting information" link
 	When I set the radio button to "Awaiting juror"
 	And I press the "Confirm" button
 	

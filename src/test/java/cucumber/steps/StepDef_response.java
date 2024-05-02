@@ -2089,4 +2089,8 @@ public class StepDef_response {
 		assertTrue("enter summons reply button is  not visible", SUMMONS_REPLY.enterSummonsReplyButtonInvisible());
 	}
 
+	@When("^the process reply button is not visible$")
+	public void processReplyButtonInvisible() {
+		assertTrue("process reply button is  not visible", SUMMONS_REPLY.processReplyButtonInvisible());
+	}
 }

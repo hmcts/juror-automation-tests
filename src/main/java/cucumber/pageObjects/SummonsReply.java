@@ -616,6 +616,12 @@ public class SummonsReply {
 
     }
 
+    public Boolean    processReplyButtonInvisible() {
+        List<WebElement> elements = driver.findElements(By.xpath("//a[contains(text(),'Process reply')]"));
+        return elements.isEmpty();
+
+    }
+
     public void clickNoToReplyLater() { cancelAnchorProcessLater.click(); }
 
     public void setJurorNumber(String jurorNo){ jurorNumber.sendKeys(jurorNo);}

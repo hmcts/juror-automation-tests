@@ -117,7 +117,7 @@ Scenario Outline: Your Work
 	And I see "OVERDUE" on the page
 
 	Then I press the "More actions" button
-	And I click on the "Mark as 'Awaiting information'" link
+	And I click on the "Mark as awaiting information" link
 	And I see "Awaiting juror" on the page
 	And I set the radio button to "Awaiting juror"
 	
@@ -126,7 +126,7 @@ Scenario Outline: Your Work
 	Then I see "AWAITING JUROR" on the page
 	
 	Then I press the "More actions" button	
-	Then I click on the "Mark as 'Awaiting information'" link
+	Then I click on the "Mark as awaiting information" link
 	When I set the radio button to "Awaiting court reply"
 	And I press the "Confirm" button
 	Then I see "AWAITING COURT REPLY" on the page
@@ -143,7 +143,7 @@ Scenario Outline: Your Work
 	Then I see "Record status" on the page
 	And I see "URGENT" on the page
 	Then I press the "More actions" button	
-	Then I click on the "Mark as 'Awaiting information'" link
+	Then I click on the "Mark as awaiting information" link
 	And I see "Awaiting court reply" on the page
 	When I set the radio button to "Awaiting court reply"
 	And I press the "Confirm" button
@@ -169,7 +169,7 @@ Scenario Outline: Your Work
 	When I click on "<part_no_four>" in the same row as "<part_no_four>"
 	Then I see "Record status" on the page
 	Then I press the "More actions" button	
-	Then I click on the "Mark as 'Awaiting information'" link
+	Then I click on the "Mark as awaiting information" link
 	Then I see "Who is the bureau waiting for information from?" on the page
 	When I set the radio button to "Awaiting court reply"
 	And I press the "Confirm" button
