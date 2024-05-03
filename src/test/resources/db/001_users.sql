@@ -7,23 +7,23 @@
 TRUNCATE TABLE juror_mod.users CASCADE;
 commit;
 
-INSERT INTO juror_mod.users (owner, user_type, username, email, name, active, version, approval_limit)
-VALUES ('400', 'BUREAU', 'MODTESTBUREAU', 'MODTESTBUREAU@email.gov.uk', 'MODTESTBUREAU', true, 1, 0),
-       ('415', 'COURT', 'MODTESTCOURT', 'MODTESTCOURT@email.gov.uk', 'MODTESTCOURT', true, 1, 0),
-       ('400', 'SYSTEM', 'AUTO', 'AUTO@email.gov.uk', 'AUTO', true, 1, 0),
-       ('400', 'BUREAU', 'TeamPickListUser', 'TeamPickListUser@email.gov.uk', 'TeamPickListUser', true, 1, 0),
-       ('400', 'BUREAU', 'AutomationStaffTWO', 'AutomationStaffTWO@email.gov.uk', 'AutomationStaffTWO', true, 1, 0),
-       ('400', 'SYSTEM', 'SYSTEM', 'SYSTEM@email.gov.uk', 'SYSTEM', true, 1, 0),
-       ('416', 'COURT', 'SJOUSER1', 'SJOUSER1@email.gov.uk', 'SJOUSER1', true, 1, 0),
-       ('415', 'COURT', 'SJOUSER', 'SJOUSER@email.gov.uk', 'SJOUSER', true, 1, 0),
-       ('400', 'BUREAU', 'CPASS', 'CPASS@email.gov.uk', 'CPASS', true, 1, 0),
-       ('400', 'BUREAU', 'NEWUSER', 'NEWUSER@email.gov.uk', 'NEWUSER', true, 1, 0),
-       ('400', 'BUREAU', 'ARAMIS1', 'ARAMIS1@email.gov.uk', 'ARAMIS1', true, 1, 0),
-       ('415', 'COURT', 'CMANAGER', 'CMANAGER@email.gov.uk', 'CMANAGER', true, 1, 1000),
-       ('415', 'COURT', 'CMANAGER2', 'CMANAGER2@email.gov.uk', 'CMANAGER2', true, 1, 1000),
-       ('452', 'COURT', 'SHREWSBURY', 'SHREWSBURY@email.gov.uk', 'SHREWSBURY', true, 1, 0),
-       ('400', 'ADMINISTRATOR', 'SYSTEMADMIN', 'SYSTEMADMIN@email.gov.uk', 'SYSTEMADMIN', true, 1, 0),
-       ('415', 'COURT', 'MODCOURT', 'MODCOURT@email.gov.uk', 'MODCOURT', true, 1, 0);
+INSERT INTO juror_mod.users (owner, user_type, username, email, name, active, version, approval_limit, last_logged_in, team_id, created_by, updated_by)
+VALUES ('400', 'BUREAU', 'MODTESTBUREAU', 'MODTESTBUREAU@email.gov.uk', 'MODTESTBUREAU', true, 1, 0, NULL, NULL, 'MODTESTBUREAU', 'MODTESTBUREAU'),
+       ('415', 'COURT', 'MODTESTCOURT', 'MODTESTCOURT@email.gov.uk', 'MODTESTCOURT', true, 1, 0, NULL, NULL, 'MODTESTBUREAU', 'MODTESTBUREAU'),
+       ('400', 'SYSTEM', 'AUTO', 'AUTO@email.gov.uk', 'AUTO', true, 1, 0, NULL, NULL, 'MODTESTBUREAU', 'MODTESTBUREAU'),
+       ('400', 'BUREAU', 'TeamPickListUser', 'TeamPickListUser@email.gov.uk', 'TeamPickListUser', true, 1, 0, NULL, NULL, 'MODTESTBUREAU', 'MODTESTBUREAU'),
+       ('400', 'BUREAU', 'AutomationStaffTWO', 'AutomationStaffTWO@email.gov.uk', 'AutomationStaffTWO', true, 1, 0, NULL, NULL, 'MODTESTBUREAU', 'MODTESTBUREAU'),
+       ('400', 'SYSTEM', 'SYSTEM', 'SYSTEM@email.gov.uk', 'SYSTEM', true, 1, 0, NULL, NULL, 'MODTESTBUREAU', 'MODTESTBUREAU'),
+       ('416', 'COURT', 'SJOUSER1', 'SJOUSER1@email.gov.uk', 'SJOUSER1', true, 1, 0, NULL, NULL, 'MODTESTBUREAU', 'MODTESTBUREAU'),
+       ('415', 'COURT', 'SJOUSER', 'SJOUSER@email.gov.uk', 'SJOUSER', true, 1, 0, NULL, NULL, 'MODTESTBUREAU', 'MODTESTBUREAU'),
+       ('400', 'BUREAU', 'CPASS', 'CPASS@email.gov.uk', 'CPASS', true, 1, 0, NULL, NULL, 'MODTESTBUREAU', 'MODTESTBUREAU'),
+       ('400', 'BUREAU', 'NEWUSER', 'NEWUSER@email.gov.uk', 'NEWUSER', true, 1, 0, NULL, NULL, 'MODTESTBUREAU', 'MODTESTBUREAU'),
+       ('400', 'BUREAU', 'ARAMIS1', 'ARAMIS1@email.gov.uk', 'ARAMIS1', true, 1, 0, NULL, NULL, 'MODTESTBUREAU', 'MODTESTBUREAU'),
+       ('415', 'COURT', 'CMANAGER', 'CMANAGER@email.gov.uk', 'CMANAGER', true, 1, 1000, NULL, NULL, 'MODTESTBUREAU', 'MODTESTBUREAU'),
+       ('415', 'COURT', 'CMANAGER2', 'CMANAGER2@email.gov.uk', 'CMANAGER2', true, 1, 1000, NULL, NULL, 'MODTESTBUREAU', 'MODTESTBUREAU'),
+       ('452', 'COURT', 'SHREWSBURY', 'SHREWSBURY@email.gov.uk', 'SHREWSBURY', true, 1, 0, NULL, NULL, 'MODTESTBUREAU', 'MODTESTBUREAU'),
+       ('400', 'ADMINISTRATOR', 'SYSTEMADMIN', 'SYSTEMADMIN@email.gov.uk', 'SYSTEMADMIN', true, 1, 0, NULL, NULL, 'MODTESTBUREAU', 'MODTESTBUREAU'),
+       ('415', 'COURT', 'MODCOURT', 'MODCOURT@email.gov.uk', 'MODCOURT', true, 1, 0, NULL, NULL, 'MODTESTBUREAU', 'MODTESTBUREAU');
 commit;
 
 INSERT INTO juror_mod.user_roles (username, role)
