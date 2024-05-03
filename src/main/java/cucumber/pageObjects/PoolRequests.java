@@ -31,6 +31,9 @@ public class PoolRequests {
     WebElement pageHeading;
     @FindBy(id = "continueButton")
     WebElement continueButton;
+
+    @FindBy(xpath = "//*[@id=\"poolSearchForm\"]/descendant::button[contains(text(),'Continue')]")
+    WebElement poolSearchContinue;
     @FindBy(id = "deferralMaintenanceAnchor")
     WebElement deferraMaintenanceLink;
     @FindBy(id = "confirmButton")
@@ -398,54 +401,39 @@ public class PoolRequests {
         driver.findElement(By.linkText(poolNumber)).click();
     }
 
-    public Map<String, String> getPoolRequestByNumber(final String poolNumber) {
-        List<String> numbers = new ArrayList<String>();
-
-        log.info(Thread.currentThread() + " - Getting pool request for pool: " + poolNumber);
-
-        List<WebElement> poolLink = driver.findElements(By.xpath("//a[contains(text(),'" + poolNumber + "')]"));
-        List<WebElement> poolNumbers = driver.findElements(By.xpath("//table[@id='poolRequestsTable']//td/a"));
-        for(WebElement e : poolNumbers){
-            numbers.add(e.getText());
+    public List<String> getPoolNumbersOnPage(){
+        List<String> poolNumbers = new ArrayList<>();
+        List<WebElement> poolNumberLinks = driver.findElements(By.xpath("//table[@id='poolRequestsTable']//td/a"));
+        for(WebElement e : poolNumberLinks){
+            poolNumbers.add(e.getText());
         }
-        log.info(Thread.currentThread() + " - pool numbers on page - " + numbers);
+        return poolNumbers;
+    }
 
-        while (poolLink.size() != 1) {
-            log.info(Thread.currentThread() + " - " + poolLink);
+    public Map<String, String> SearchPoolRequestByNumber(final String poolNumber, String type) {
+        log.info(Thread.currentThread().getName() + " - Getting pool request for pool: " + poolNumber);
 
-            List<WebElement> nextPagination = driver.findElements(By.xpath("//a[@rel='next']"));
-            if (!nextPagination.isEmpty()) {
-                log.info(Thread.currentThread() + " - Clicking next pagination");
-                clickNextPagination();
-                poolNumbers = driver.findElements(By.xpath("//table[@id='poolRequestsTable']//td/a"));
-                for(WebElement e : poolNumbers){
-                    numbers.add(e.getText());
-                }
-            } else {
-                log.info(Thread.currentThread() + " - Reached last page of pagination");
-                poolNumbers = driver.findElements(By.xpath("//table[@id='poolRequestsTable']//td/a"));
-                for(WebElement e : poolNumbers){
-                    numbers.add(e.getText());
-                }                break;
-            }
-            poolLink = driver.findElements(By.xpath("//a[contains(text(),'" + poolNumber + "')]"));
-            log.info(Thread.currentThread() + " - Pool Found: " + poolLink.size());
-        }
-
-        String jurorsRequired = driver.findElement(By.xpath(
-                String.format("//td[@data-sort-value=\"%s\"]/../td[2]", poolNumber)
-        )).getText();
-        String court = driver.findElement(By.xpath(
-                String.format("//td[@data-sort-value=\"%s\"]/../td[3]", poolNumber)
-        )).getText();
-        String attendanceDate = driver.findElement(By.xpath(
-                String.format("//td[@data-sort-value=\"%s\"]/../td[4]", poolNumber)
-        )).getText();
+        clickSearchTab();
+        inputExistingPoolNumberAlt(poolNumber);
+        poolSearchContinue.click();
 
         Map<String, String> data = new HashMap<>();
-        data.put("jurorsRequired", jurorsRequired);
+        if (Objects.equals(type, "Bureau")) {
+            String jurorsRequired = driver.findElement(By.xpath(
+                    "//*[@class='pool-values__bureau-summoning']/descendant::span[contains(text(), 'Jurors requested')]/../span[2]"
+            )).getText();
+            data.put("jurorsRequired", jurorsRequired);
+        }
+        String court = driver.findElement(By.xpath(
+                "//*[@class='court-details__grid']/descendant::span[contains(text(), 'Court name')]/../span[2]"
+        )).getText();
         data.put("court", court);
+
+        String attendanceDate = driver.findElement(By.xpath(
+                "//*[@class='court-details__grid']/descendant::span[contains(text(), 'start date')]/../span[2]"
+        )).getText();
         data.put("attendanceDate", attendanceDate);
+
         return data;
     }
 

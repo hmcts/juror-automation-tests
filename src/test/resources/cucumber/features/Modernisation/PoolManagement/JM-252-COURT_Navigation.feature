@@ -6,15 +6,15 @@ Feature: JM-252_Navigation_COURT
     And I log in as "<user>"
 
     Given a bureau owned pool is created with jurors
-      | court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
-      | 415	  |<juror_number>| <pool_number>| 5				            | 400	|
+      | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
+      | 415   | <juror_number> | <pool_number> | 5                        | 400   |
 
     And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
     And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 
     Given a new pool is inserted which is owned by the court and includes a deferred juror new schema
-      |owner  | pool_no       | part_no         | no_weeks   |
-      |415    | <pool_number> | <juror_number>  | 9          |
+      | owner | pool_no       | part_no        | no_weeks |
+      | 415   | <pool_number> | <juror_number> | 9        |
 
     #request a pool
     When I navigate to the pool request screen
@@ -87,11 +87,11 @@ Feature: JM-252_Navigation_COURT
     And I should see the attendance Pool time present is "9:29am"
 
     And I should see the details of the pool with a bank holiday date
-      | courtName              | <displayCourt> (<courtCode>) |
-      | poolType               | High court                   |
-      | totalJurorsRequired    | 150                          |
-      | numberOfDeferrals      | 1                            |
-      | additionalJurors       | 149                          |
+      | courtName           | <displayCourt> (<courtCode>) |
+      | poolType            | High court                   |
+      | totalJurorsRequired | 150                          |
+      | numberOfDeferrals   | 1                            |
+      | additionalJurors    | 149                          |
 
     #change
     Then I click the change button for the check pool request page
@@ -105,17 +105,19 @@ Feature: JM-252_Navigation_COURT
     Then I should be taken to the check pool request page
 
     And I should see the details of the pool with a bank holiday date
-      | courtName              | <displayCourt> (<courtCode>) |
-      | poolType               | <courtTypeFull>              |
-      | totalJurorsRequired    | 50                           |
-      | numberOfDeferrals      | 1                            |
-      | additionalJurors       | 49                           |
+      | courtName           | <displayCourt> (<courtCode>) |
+      | poolType            | <courtTypeFull>              |
+      | totalJurorsRequired | 50                           |
+      | numberOfDeferrals   | 1                            |
+      | additionalJurors    | 49                           |
 
     #Can submit the new pool request
     When I save the new pool request
     Then I should be taken to the pool summary page
     And I click on the "Service start date" link
     And I should see the newly created pool request
+      | type           | Court          |
+      | type           | Court          |
       | court          | <displayCourt> |
       | jurorsRequired | 49             |
 
@@ -150,6 +152,7 @@ Feature: JM-252_Navigation_COURT
     Then I should be taken to the pool summary page
     And I click on the "Service start date" link
     And I should see the newly created pool request
+      | type           | Court   |
       | court          | Chester |
       | jurorsRequired | 150     |
 
@@ -174,8 +177,9 @@ Feature: JM-252_Navigation_COURT
     And I click on the "Service start date" link
 
     And I should see the newly created pool request
+      | type           | Court     |
       | court          | Knutsford |
-      | jurorsRequired | 150                         |
+      | jurorsRequired | 150       |
 
     Then I set input field with "ID" of "courtNameOrLocation" to "415"
     Then I click on the "Chester (415)" link
@@ -230,6 +234,7 @@ Feature: JM-252_Navigation_COURT
     And I click on the "Service start date" link
 
     And I should see the newly created pool request
+      | type           | Court      |
       | court          | Warrington |
       | jurorsRequired | 150        |
 
@@ -245,8 +250,8 @@ Feature: JM-252_Navigation_COURT
     And I see "Warrington" on the page
 
     Examples:
-      | user         | courtType |
-      | MODCOURT     | Crown     |
+      | user     | courtType |
+      | MODCOURT | Crown     |
 
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Create pool and check cannot change pool number
