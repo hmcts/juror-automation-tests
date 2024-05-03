@@ -47,11 +47,11 @@ Feature: JM-252 Bureau user create new pools
     Then I see "Check your pool request" on the page
 
     And I should see the details of the pool
-      | courtName              | <displayCourt> (<courtCode>)  |
-      | poolType               | <courtTypeFull>               |
-      | totalJurorsRequired    | <noJurors>                    |
-      | numberOfDeferrals      | 0                             |
-      | additionalJurors       | <noJurors>                    |
+      | courtName           | <displayCourt> (<courtCode>) |
+      | poolType            | <courtTypeFull>              |
+      | totalJurorsRequired | <noJurors>                   |
+      | numberOfDeferrals   | 0                            |
+      | additionalJurors    | <noJurors>                   |
 
     # Can submit the new pool request
 
@@ -60,6 +60,7 @@ Feature: JM-252 Bureau user create new pools
     And I click on the "Service start date" link
 
     And I should see the newly created pool request
+      | type           | Bureau         |
       | court          | <displayCourt> |
       | jurorsRequired | <noJurors>     |
 
@@ -68,7 +69,7 @@ Feature: JM-252 Bureau user create new pools
     Then I am taken to summons management
 
     Examples:
-      | user	      | selectedCourt | courtType | courtTypeFull | courtCode | displayCourt | noJurors |
+      | user          | selectedCourt | courtType | courtTypeFull | courtCode | displayCourt | noJurors |
       | MODTESTBUREAU | CHESTER       | Crown     | Crown court   | 415       | Chester      | 150      |
       | MODTESTBUREAU | CHESTER       | Civil     | Civil court   | 415       | Chester      | 150      |
       | MODTESTBUREAU | CHESTER       | High      | High court    | 415       | Chester      | 150      |
@@ -121,11 +122,11 @@ Feature: JM-252 Bureau user create new pools
     Then I see "Check your pool request" on the page
 
     And I should see the details of the pool
-      | courtName              | <displayCourt> (<courtCode>)  |
-      | poolType               | <courtTypeFull>               |
-      | totalJurorsRequired    | 0                    |
-      | numberOfDeferrals      | 0                             |
-      | additionalJurors       | <noJurors>                    |
+      | courtName           | <displayCourt> (<courtCode>) |
+      | poolType            | <courtTypeFull>              |
+      | totalJurorsRequired | 0                            |
+      | numberOfDeferrals   | 0                            |
+      | additionalJurors    | <noJurors>                   |
 
     # Can submit the new pool request
 
@@ -134,14 +135,15 @@ Feature: JM-252 Bureau user create new pools
     And I click on the "Service start date" link
 
     And I should see the newly created pool request
+      | type           | Bureau         |
       | court          | <displayCourt> |
-      | jurorsRequired |      0         |
+      | jurorsRequired | 0              |
 
     Examples:
-      | user	      |     | selectedCourt | courtType | courtTypeFull | courtCode | displayCourt | noJurors |
-      | MODTESTBUREAU |   | CHESTER       | Crown court    | Crown court   | 415       | Chester      | 0        |
-      | MODTESTBUREAU |   | CHESTER       | Civil court    | Civil court   | 415       | Chester      | 0        |
-      | MODTESTBUREAU |   | CHESTER       | High court     | High court    | 415       | Chester      | 0        |
+      | user          |  | selectedCourt | courtType   | courtTypeFull | courtCode | displayCourt | noJurors |
+      | MODTESTBUREAU |  | CHESTER       | Crown court | Crown court   | 415       | Chester      | 0        |
+      | MODTESTBUREAU |  | CHESTER       | Civil court | Civil court   | 415       | Chester      | 0        |
+      | MODTESTBUREAU |  | CHESTER       | High court  | High court    | 415       | Chester      | 0        |
 
   @JurorTransformation @NewSchemaConverted
   Scenario Outline: Happy Path Test to create a new pool and change pool_no
@@ -193,11 +195,11 @@ Feature: JM-252 Bureau user create new pools
     Then I see "Check your pool request" on the page
 
     And I should see the details of the pool
-      | courtName              | <displayCourt> (<courtCode>)  |
-      | poolType               | <courtTypeFull>               |
-      | totalJurorsRequired    | <noJurors>                    |
-      | numberOfDeferrals      | 0                             |
-      | additionalJurors       | <noJurors>                    |
+      | courtName           | <displayCourt> (<courtCode>) |
+      | poolType            | <courtTypeFull>              |
+      | totalJurorsRequired | <noJurors>                   |
+      | numberOfDeferrals   | 0                            |
+      | additionalJurors    | <noJurors>                   |
 
     #Change pool no
 
@@ -212,6 +214,7 @@ Feature: JM-252 Bureau user create new pools
     And I click on the "Service start date" link
 
     And I should see the newly created pool request
+      | type           | Bureau         |
       | court          | <displayCourt> |
       | jurorsRequired |                |
 
@@ -222,7 +225,7 @@ Feature: JM-252 Bureau user create new pools
     And the pool is no longer visible
 
     Examples:
-      | user	      | selectedCourt | courtType | courtTypeFull | courtCode | displayCourt | noJurors |
+      | user          | selectedCourt | courtType | courtTypeFull | courtCode | displayCourt | noJurors |
       | MODTESTBUREAU | CHESTER       | Crown     | Crown court   | 415       | Chester      | 0        |
       | MODTESTBUREAU | CHESTER       | Civil     | Civil court   | 415       | Chester      | 0        |
       | MODTESTBUREAU | CHESTER       | High      | High court    | 415       | Chester      | 0        |

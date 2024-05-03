@@ -7,8 +7,8 @@ Feature: JM-252_Validation_and_Errors_COURT
     And I log in as "<user>"
 
     Given a bureau owned pool is created with jurors
-      | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
-      | 415   | <juror_number> 	    | <pool_number>     | 7				            | 400	|
+      | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
+      | 415   | <juror_number> | <pool_number> | 7                        | 400   |
 
     And "641500136" has "NEXT_DATE" as "5 mondays time" new schema
     And "641500136" is not active new schema
@@ -16,8 +16,8 @@ Feature: JM-252_Validation_and_Errors_COURT
 
     #insert new pool
     Given a new pool is inserted which is owned by the court and includes a deferred juror new schema
-      |owner  | pool_no   | part_no    | no_weeks   |
-      |415    | <pool_number> | <juror_number>   | 9          |
+      | owner | pool_no       | part_no        | no_weeks |
+      | 415   | <pool_number> | <juror_number> | 9        |
 
     #Can see the pool request courts table tabs and fields
     When I navigate to the pool request screen
@@ -29,18 +29,18 @@ Feature: JM-252_Validation_and_Errors_COURT
     #check page content
 
     And on the page I see
-      | text|
-      |Request a new pool|
-      |Court name or location code|
-      |<displayCourt>             |
-      |Attendance date            |
-      |Attendance time            |
-      |Pool type                  |
-      |Crown court                |
-      |High court                 |
-      |Civil court                |
-      |Number of jurors required in total|
-      |Number of court deferrals to include in this pool|
+      | text                                              |
+      | Request a new pool                                |
+      | Court name or location code                       |
+      | <displayCourt>                                    |
+      | Attendance date                                   |
+      | Attendance time                                   |
+      | Pool type                                         |
+      | Crown court                                       |
+      | High court                                        |
+      | Civil court                                       |
+      | Number of jurors required in total                |
+      | Number of court deferrals to include in this pool |
 
     And I see the attendance date of the pool
     Then I should see the attendance time present is "09:30"
@@ -140,12 +140,12 @@ Feature: JM-252_Validation_and_Errors_COURT
     Then I see "Check your pool request" on the page
 
     And I should see the details of the pool
-      | courtName              | <displayCourt> (<courtCode>)  |
-      | poolType               | <courtTypeFull>               |
-      | additionalRequirements | None                          |
-      | totalJurorsRequired    | 150                           |
-      | numberOfDeferrals      | 1                             |
-      | additionalJurors       | 149                           |
+      | courtName              | <displayCourt> (<courtCode>) |
+      | poolType               | <courtTypeFull>              |
+      | additionalRequirements | None                         |
+      | totalJurorsRequired    | 150                          |
+      | numberOfDeferrals      | 1                            |
+      | additionalJurors       | 149                          |
 
     # Can submit the new pool request
     When I save the new pool request
@@ -153,14 +153,15 @@ Feature: JM-252_Validation_and_Errors_COURT
     And I click on the "Service start date" link
 
     And I should see the newly created pool request
+      | type           | Court          |
       | court          | <displayCourt> |
       | jurorsRequired | 149            |
 
     Examples:
-      | user	        | displayCourt     | courtType    | courtTypeFull   | courtCode |juror_number|pool_number|
-      | MODTESTCOURT	| Chester          | Crown        | Crown court     | 415       |041540010|415300410|
-      | MODTESTCOURT	| Chester          | Civil        | Civil court     | 415       |041540011|415300411|
-      | MODTESTCOURT	| Chester          | High         | High court      | 415       |041540012|415300412|
+      | user         | displayCourt | courtType | courtTypeFull | courtCode | juror_number | pool_number |
+      | MODTESTCOURT | Chester      | Crown     | Crown court   | 415       | 041540010    | 415300410   |
+      | MODTESTCOURT | Chester      | Civil     | Civil court   | 415       | 041540011    | 415300411   |
+      | MODTESTCOURT | Chester      | High      | High court    | 415       | 041540012    | 415300412   |
 
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Test to assure that a warning appears if the attendance date is set to a weekend date for Court user
@@ -186,15 +187,15 @@ Feature: JM-252_Validation_and_Errors_COURT
     When I click the link to continue from the warning page
     Then I should be taken to the check pool request page
     And I should see the details of the pool
-      | courtName              | <displayCourt> (<courtCode>)  |
-      | poolType               | <courtTypeFull>               |
-      | totalJurorsRequired    | 10                            |
-      | numberOfDeferrals      | 0                             |
-      | additionalJurors       | 10                            |
+      | courtName           | <displayCourt> (<courtCode>) |
+      | poolType            | <courtTypeFull>              |
+      | totalJurorsRequired | 10                           |
+      | numberOfDeferrals   | 0                            |
+      | additionalJurors    | 10                           |
 
     Examples:
-      | user	        | displayCourt     | courtTypeFull   | courtCode |
-      | MODTESTCOURT	| Chester          | Civil court     | 415       |
+      | user         | displayCourt | courtTypeFull | courtCode |
+      | MODTESTCOURT | Chester      | Civil court   | 415       |
 
   @JurorTransformation @NewSchemaConverted
   Scenario Outline: Test to assure that a warning appears if the attendance date is set to a bank holiday date for court user
@@ -244,11 +245,11 @@ Feature: JM-252_Validation_and_Errors_COURT
     Then I see "Check your pool request" on the page
 
     And I should see the details of the pool with a bank holiday date
-      | courtName              | <displayCourt> (<courtCode>) |
-      | poolType               | <courtTypeFull>              |
-      | totalJurorsRequired    | 150                          |
-      | numberOfDeferrals      | 0                            |
-      | additionalJurors       | 150                          |
+      | courtName           | <displayCourt> (<courtCode>) |
+      | poolType            | <courtTypeFull>              |
+      | totalJurorsRequired | 150                          |
+      | numberOfDeferrals   | 0                            |
+      | additionalJurors    | 150                          |
 
     #Can submit the new pool request
     When I save the new pool request
@@ -256,14 +257,15 @@ Feature: JM-252_Validation_and_Errors_COURT
     And I click on the "Service start date" link
 
     And I should see the newly created pool request
-      | court          | <displayCourt>  |
-      | jurorsRequired | 150             |
+      | type           | Court          |
+      | court          | <displayCourt> |
+      | jurorsRequired | 150            |
 
     Then I delete bank holiday new schema
 
     Examples:
-      | user          | courtCode | displayCourt | courtTypeFull |
-      | MODTESTCOURT  | 415       | Chester      | Crown court   |
+      | user         | courtCode | displayCourt | courtTypeFull |
+      | MODTESTCOURT | 415       | Chester      | Crown court   |
 
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Test to assure court user cannot see courts they dont have access to
@@ -301,11 +303,11 @@ Feature: JM-252_Validation_and_Errors_COURT
     Then I see "Check your pool request" on the page
 
     And I should see the details of the pool
-      | courtName              | <displayCourt> (<courtCode>) |
-      | poolType               | <courtTypeFull>              |
-      | totalJurorsRequired    | 150                          |
-      | numberOfDeferrals      | 0                            |
-      | additionalJurors       | 150                          |
+      | courtName           | <displayCourt> (<courtCode>) |
+      | poolType            | <courtTypeFull>              |
+      | totalJurorsRequired | 150                          |
+      | numberOfDeferrals   | 0                            |
+      | additionalJurors    | 150                          |
 
     # Can submit the new pool request
     When I save the new pool request
@@ -313,9 +315,10 @@ Feature: JM-252_Validation_and_Errors_COURT
     And I click on the "Service start date" link
 
     And I should see the newly created pool request
-      | court          | <displayCourt>  |
-      | jurorsRequired | 150             |
+      | type           | Court          |
+      | court          | <displayCourt> |
+      | jurorsRequired | 150            |
 
     Examples:
-      | user          | courtCode | displayCourt   | courtTypeFull |
-      | MODTESTCOURT  | 462       | Warrington      | Crown court   |
+      | user         | courtCode | displayCourt | courtTypeFull |
+      | MODTESTCOURT | 462       | Warrington   | Crown court   |

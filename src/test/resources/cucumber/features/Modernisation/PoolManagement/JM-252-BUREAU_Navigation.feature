@@ -47,7 +47,7 @@ Feature: JM-252_Navigation
       | text                                              |
       | Request a new pool                                |
       | Court name or location code                       |
-      | Swansea Crown Court                                           |
+      | Swansea Crown Court                               |
       | Attendance date                                   |
       | Pool type                                         |
       | Crown court                                       |
@@ -86,11 +86,11 @@ Feature: JM-252_Navigation
     Then I press the "Continue" button
 
     And I should see the details of the pool with a bank holiday date
-      | courtName              | <displayCourt> (<courtCode>) |
-      | poolType               | High court                   |
-      | totalJurorsRequired    | 150                          |
-      | numberOfDeferrals      | 1                            |
-      | additionalJurors       | 149                          |
+      | courtName           | <displayCourt> (<courtCode>) |
+      | poolType            | High court                   |
+      | totalJurorsRequired | 150                          |
+      | numberOfDeferrals   | 1                            |
+      | additionalJurors    | 149                          |
 
     #change
     Then I click the change button for the check pool request page
@@ -104,11 +104,11 @@ Feature: JM-252_Navigation
     Then I should be taken to the check pool request page
 
     And I should see the details of the pool with a bank holiday date
-      | courtName              | <displayCourt> (<courtCode>) |
-      | poolType               | <courtTypeFull>              |
-      | totalJurorsRequired    | 50                           |
-      | numberOfDeferrals      | 1                            |
-      | additionalJurors       | 49                           |
+      | courtName           | <displayCourt> (<courtCode>) |
+      | poolType            | <courtTypeFull>              |
+      | totalJurorsRequired | 50                           |
+      | numberOfDeferrals   | 1                            |
+      | additionalJurors    | 49                           |
 
     #Can submit the new pool request
     When I save the new pool request
@@ -116,6 +116,7 @@ Feature: JM-252_Navigation
     And I click on the "Service start date" link
 
     And I should see the newly created pool request
+      | type           | Bureau         |
       | court          | <displayCourt> |
       | jurorsRequired | 49             |
 
@@ -162,6 +163,7 @@ Feature: JM-252_Navigation
     And I click on the "Service start date" link
 
     And I should see the newly created pool request
+      | type           | Bureau  |
       | court          | Chester |
       | jurorsRequired | 150     |
 
@@ -185,8 +187,9 @@ Feature: JM-252_Navigation
     And I click on the "Service start date" link
 
     And I should see the newly created pool request
+      | type           | Bureau              |
       | court          | Swansea Crown Court |
-      | jurorsRequired | 150     |
+      | jurorsRequired | 150                 |
 
     Then I set input field with "ID" of "courtNameOrLocation" to "415"
     Then I click on the "Chester (415)" link
@@ -264,6 +267,7 @@ Feature: JM-252_Navigation
     And I click on the "Service start date" link
 
     And I should see the newly created pool request
+      | type           | Bureau  |
       | court          | Chester |
       | jurorsRequired | 150     |
 

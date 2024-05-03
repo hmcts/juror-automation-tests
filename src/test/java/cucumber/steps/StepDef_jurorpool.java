@@ -660,14 +660,18 @@ public class StepDef_jurorpool {
     public void iShouldSeeTheNewlyCreatedPoolRequest(DataTable table) {
         Map<String, String> expectedData = table.asMap(String.class, String.class);
 
-        Map<String, String> actualData = POOL_REQUESTS_PAGE.getPoolRequestByNumber(poolRequestNumber.get());
+        Map<String, String> actualData = POOL_REQUESTS_PAGE.SearchPoolRequestByNumber(poolRequestNumber.get(), expectedData.get("type"));
         assertEquals(expectedData.get("court"), actualData.get("court"));
 
+        if(Objects.equals(expectedData.get("type"), "Bureau")){
         String expectedJurorsRequired = expectedData.get("jurorsRequired");
         if (expectedJurorsRequired == null) {
             expectedJurorsRequired = "";
         }
         assertEquals(expectedJurorsRequired, actualData.get("jurorsRequired"));
+    }
+    iNavigateToThePoolRequestScreen();
+
     }
 
     @When("^I click the link to the choose court screen$")

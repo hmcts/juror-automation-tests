@@ -13,17 +13,17 @@ Feature: JM-252 JM-4302 Court user create new pools
 
     #check page content
     And on the page I see
-      |text                                               |
-      |Request a new pool                                 |
-      |Court name or location code                        |
-      |<displayCourt>                                     |
-      |Attendance date                                    |
-      |Pool type                                          |
-      |Crown court                                        |
-      |High court                                         |
-      |Civil court                                        |
-      |Number of jurors required in total                 |
-      |Number of court deferrals to include in this pool  |
+      | text                                              |
+      | Request a new pool                                |
+      | Court name or location code                       |
+      | <displayCourt>                                    |
+      | Attendance date                                   |
+      | Pool type                                         |
+      | Crown court                                       |
+      | High court                                        |
+      | Civil court                                       |
+      | Number of jurors required in total                |
+      | Number of court deferrals to include in this pool |
 
     And I see the attendance date of the pool
 
@@ -38,11 +38,11 @@ Feature: JM-252 JM-4302 Court user create new pools
     Then I see "Check your pool request" on the page
 
     And I should see the details of the pool
-      | courtName              | <displayCourt> (<courtCode>)  |
-      | poolType               | <courtTypeFull>               |
-      | totalJurorsRequired    | <noJurors>                    |
-      | numberOfDeferrals      | 0                             |
-      | additionalJurors       | <noJurors>                    |
+      | courtName           | <displayCourt> (<courtCode>) |
+      | poolType            | <courtTypeFull>              |
+      | totalJurorsRequired | <noJurors>                   |
+      | numberOfDeferrals   | 0                            |
+      | additionalJurors    | <noJurors>                   |
 
     # Can submit the new pool request
     When I save the new pool request
@@ -50,6 +50,7 @@ Feature: JM-252 JM-4302 Court user create new pools
     And I click on the "Service start date" link
 
     And I should see the newly created pool request
+      | type           | Court          |
       | court          | <displayCourt> |
       | jurorsRequired | <noJurors>     |
 
@@ -120,17 +121,17 @@ Feature: JM-252 JM-4302 Court user create new pools
 
     #check page content
     And on the page I see
-      |text                                               |
-      |Request a new pool                                 |
-      |Court name or location code                        |
-      |<displayCourt>                                     |
-      |Attendance date                                    |
-      |Pool type                                          |
-      |Crown court                                        |
-      |High court                                         |
-      |Civil court                                        |
-      |Number of jurors required in total                 |
-      |Number of court deferrals to include in this pool  |
+      | text                                              |
+      | Request a new pool                                |
+      | Court name or location code                       |
+      | <displayCourt>                                    |
+      | Attendance date                                   |
+      | Pool type                                         |
+      | Crown court                                       |
+      | High court                                        |
+      | Civil court                                       |
+      | Number of jurors required in total                |
+      | Number of court deferrals to include in this pool |
 
     And I see the attendance date of the pool
 
@@ -146,11 +147,11 @@ Feature: JM-252 JM-4302 Court user create new pools
     Then I see "Check your pool request" on the page
 
     And I should see the details of the pool
-      | courtName              | <displayCourt> (<courtCode>)  |
-      | poolType               | <courtTypeFull>               |
-      | totalJurorsRequired    | <noJurors>                    |
-      | numberOfDeferrals      | 0                             |
-      | additionalJurors       | <noJurors>                    |
+      | courtName           | <displayCourt> (<courtCode>) |
+      | poolType            | <courtTypeFull>              |
+      | totalJurorsRequired | <noJurors>                   |
+      | numberOfDeferrals   | 0                            |
+      | additionalJurors    | <noJurors>                   |
 
     # Can submit the new pool request
     When I save the new pool request
@@ -158,6 +159,7 @@ Feature: JM-252 JM-4302 Court user create new pools
     And I click on the "Service start date" link
 
     And I should see the newly created pool request
+      | type           | Court          |
       | court          | <displayCourt> |
       | jurorsRequired | <noJurors>     |
 
@@ -167,17 +169,17 @@ Feature: JM-252 JM-4302 Court user create new pools
 
     #check page content
     And on the page I see
-      |text                                               |
-      |Request a new pool                                 |
-      |Court name or location code                        |
-      |<displayCourt>                                     |
-      |Attendance date                                    |
-      |Pool type                                          |
-      |Crown court                                        |
-      |High court                                         |
-      |Civil court                                        |
-      |Number of jurors required in total                 |
-      |Number of court deferrals to include in this pool  |
+      | text                                              |
+      | Request a new pool                                |
+      | Court name or location code                       |
+      | <displayCourt>                                    |
+      | Attendance date                                   |
+      | Pool type                                         |
+      | Crown court                                       |
+      | High court                                        |
+      | Civil court                                       |
+      | Number of jurors required in total                |
+      | Number of court deferrals to include in this pool |
 
     Then I click the change link for the court deferrals
     Then I change the number of court deferrals to "0"
@@ -204,14 +206,15 @@ Feature: JM-252 JM-4302 Court user create new pools
     And I click on the "Service start date" link
 
     And I should see the newly created pool request
-      | court          | Knutsford  |
-      | jurorsRequired | 150        |
+      | type           | Court     |
+      | court          | Knutsford |
+      | jurorsRequired | 150       |
 
     Examples:
-      | user	      | courtType    | displayCourt | noJurors | courtCode | courtTypeFull |
-      | MODCOURT      | Crown        | Chester      | 150      | 415       | Crown court   |
-      | MODCOURT      | Civil        | Chester      | 150      | 415       | Civil court   |
-      | MODCOURT      | High         | Chester      | 150      | 415       | High court    |
+      | user     | courtType | displayCourt | noJurors | courtCode | courtTypeFull |
+      | MODCOURT | Crown     | Chester      | 150      | 415       | Crown court   |
+      | MODCOURT | Civil     | Chester      | 150      | 415       | Civil court   |
+      | MODCOURT | High      | Chester      | 150      | 415       | High court    |
 
 
   @JurorTransformationMulti @NewSchemaConverted
@@ -227,17 +230,17 @@ Feature: JM-252 JM-4302 Court user create new pools
 
     #check page content
     And on the page I see
-      |text                                               |
-      |Request a new pool                                 |
-      |Court name or location code                        |
-      |<displayCourt>                                     |
-      |Attendance date                                    |
-      |Pool type                                          |
-      |Crown court                                        |
-      |High court                                         |
-      |Civil court                                        |
-      |Number of jurors required in total                 |
-      |Number of court deferrals to include in this pool  |
+      | text                                              |
+      | Request a new pool                                |
+      | Court name or location code                       |
+      | <displayCourt>                                    |
+      | Attendance date                                   |
+      | Pool type                                         |
+      | Crown court                                       |
+      | High court                                        |
+      | Civil court                                       |
+      | Number of jurors required in total                |
+      | Number of court deferrals to include in this pool |
 
     And I see the attendance date of the pool
 
@@ -253,11 +256,11 @@ Feature: JM-252 JM-4302 Court user create new pools
     Then I see "Check your pool request" on the page
 
     And I should see the details of the pool
-      | courtName              | <displayCourt> (<courtCode>)  |
-      | poolType               | <courtTypeFull>               |
-      | totalJurorsRequired    | <noJurors>                    |
-      | numberOfDeferrals      | 0                             |
-      | additionalJurors       | <noJurors>                    |
+      | courtName           | <displayCourt> (<courtCode>) |
+      | poolType            | <courtTypeFull>              |
+      | totalJurorsRequired | <noJurors>                   |
+      | numberOfDeferrals   | 0                            |
+      | additionalJurors    | <noJurors>                   |
 
     # Can submit the new pool request
     When I save the new pool request
@@ -265,11 +268,12 @@ Feature: JM-252 JM-4302 Court user create new pools
     And I click on the "Service start date" link
 
     And I should see the newly created pool request
+      | type           | Court          |
       | court          | <displayCourt> |
-      | jurorsRequired |        0       |
+      | jurorsRequired | 0              |
 
     Examples:
-      | user	      | courtType | courtTypeFull | courtCode | displayCourt | noJurors |
-      | MODTESTCOURT  | Crown     | Crown court   | 415       | Chester      | 0        |
-      | MODTESTCOURT  | Civil     | Civil court   | 415       | Chester      | 0        |
-      | MODTESTCOURT  | High      | High court    | 415       | Chester      | 0        |
+      | user         | courtType | courtTypeFull | courtCode | displayCourt | noJurors |
+      | MODTESTCOURT | Crown     | Crown court   | 415       | Chester      | 0        |
+      | MODTESTCOURT | Civil     | Civil court   | 415       | Chester      | 0        |
+      | MODTESTCOURT | High      | High court    | 415       | Chester      | 0        |

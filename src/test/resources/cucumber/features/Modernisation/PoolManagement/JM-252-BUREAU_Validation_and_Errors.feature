@@ -24,12 +24,12 @@ Feature: JM-252_Validation_and_Errors
     And I see the attendance date of the pool
 
     And I should see the details of the pool
-      | courtName              | <displayCourt> (<courtCode>)  |
-      | poolType               | <courtTypeFull>               |
-      | additionalRequirements | None                          |
-      | totalJurorsRequired    | 150                           |
-      | numberOfDeferrals      | 0                             |
-      | additionalJurors       | 150                           |
+      | courtName              | <displayCourt> (<courtCode>) |
+      | poolType               | <courtTypeFull>              |
+      | additionalRequirements | None                         |
+      | totalJurorsRequired    | 150                          |
+      | numberOfDeferrals      | 0                            |
+      | additionalJurors       | 150                          |
 
     When I save the new pool request
 
@@ -49,10 +49,10 @@ Feature: JM-252_Validation_and_Errors
     And I see "Court name or location is missing" on the page
 
     Examples:
-      | user	        | selectedCourt    | displayCourt     | courtType    | courtTypeFull   | courtCode |
-      | MODTESTBUREAU	| CHESTER          | Chester          | Crown        | Crown court     | 415       |
-      | MODTESTBUREAU	| CHESTER          | Chester          | Civil        | Civil court     | 415       |
-      | MODTESTBUREAU	| CHESTER          | Chester          | High         | High court      | 415       |
+      | user          | selectedCourt | displayCourt | courtType | courtTypeFull | courtCode |
+      | MODTESTBUREAU | CHESTER       | Chester      | Crown     | Crown court   | 415       |
+      | MODTESTBUREAU | CHESTER       | Chester      | Civil     | Civil court   | 415       |
+      | MODTESTBUREAU | CHESTER       | Chester      | High      | High court    | 415       |
 
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Errors and Warnings on Create New Pool - Continue With Invalid loc_code
@@ -78,12 +78,12 @@ Feature: JM-252_Validation_and_Errors
     And I see the attendance date of the pool
 
     And I should see the details of the pool
-      | courtName              | <displayCourt> (<courtCode>)  |
-      | poolType               | <courtTypeFull>               |
-      | additionalRequirements | None                          |
-      | totalJurorsRequired    | 150                           |
-      | numberOfDeferrals      | 0                             |
-      | additionalJurors       | 150                           |
+      | courtName              | <displayCourt> (<courtCode>) |
+      | poolType               | <courtTypeFull>              |
+      | additionalRequirements | None                         |
+      | totalJurorsRequired    | 150                          |
+      | numberOfDeferrals      | 0                            |
+      | additionalJurors       | 150                          |
 
     When I save the new pool request
 
@@ -104,10 +104,10 @@ Feature: JM-252_Validation_and_Errors
     And I see "This court does not exist. Please enter a name or code of an existing court" on the page
 
     Examples:
-      | user	        | selectedCourt    | displayCourt     | courtType    | courtTypeFull   | courtCode |
-      | MODTESTBUREAU	| CHESTER          | Chester          | Crown        | Crown court     | 415       |
-      | MODTESTBUREAU	| CHESTER          | Chester          | Civil        | Civil court     | 415       |
-      | MODTESTBUREAU	| CHESTER          | Chester          | High         | High court      | 415       |
+      | user          | selectedCourt | displayCourt | courtType | courtTypeFull | courtCode |
+      | MODTESTBUREAU | CHESTER       | Chester      | Crown     | Crown court   | 415       |
+      | MODTESTBUREAU | CHESTER       | Chester      | Civil     | Civil court   | 415       |
+      | MODTESTBUREAU | CHESTER       | Chester      | High      | High court    | 415       |
 
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Errors and Warnings on Create New Pool - Continue With Invalid Court Name
@@ -133,12 +133,12 @@ Feature: JM-252_Validation_and_Errors
     And I see the attendance date of the pool
 
     And I should see the details of the pool
-      | courtName              | <displayCourt> (<courtCode>)  |
-      | poolType               | <courtTypeFull>               |
-      | additionalRequirements | None                          |
-      | totalJurorsRequired    | 150                           |
-      | numberOfDeferrals      | 0                             |
-      | additionalJurors       | 150                           |
+      | courtName              | <displayCourt> (<courtCode>) |
+      | poolType               | <courtTypeFull>              |
+      | additionalRequirements | None                         |
+      | totalJurorsRequired    | 150                          |
+      | numberOfDeferrals      | 0                            |
+      | additionalJurors       | 150                          |
 
     When I save the new pool request
 
@@ -159,10 +159,10 @@ Feature: JM-252_Validation_and_Errors
     And I see "This court does not exist. Please enter a name or code of an existing court" on the page
 
     Examples:
-      | user	        |  selectedCourt    | displayCourt     | courtType    | courtTypeFull   | courtCode |
-      | MODTESTBUREAU	| CHESTER          | Chester          | Crown        | Crown court     | 415       |
-      | MODTESTBUREAU	| CHESTER          | Chester          | Civil        | Civil court     | 415       |
-      | MODTESTBUREAU	| CHESTER          | Chester          | High         | High court      | 415       |
+      | user          | selectedCourt | displayCourt | courtType | courtTypeFull | courtCode |
+      | MODTESTBUREAU | CHESTER       | Chester      | Crown     | Crown court   | 415       |
+      | MODTESTBUREAU | CHESTER       | Chester      | Civil     | Civil court   | 415       |
+      | MODTESTBUREAU | CHESTER       | Chester      | High      | High court    | 415       |
 
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Errors and Warnings on Change Number Of Deferrals - Continue With No Input
@@ -171,13 +171,13 @@ Feature: JM-252_Validation_and_Errors
     And I log in as "<user>"
 
     Given a bureau owned pool is created with jurors
-      | court         |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
-      | <courtCode>   |<juror_number> 	    | <pool_number>     | 5				            | 400	|
+      | court       | juror_number   | pool_number   | att_date_weeks_in_future | owner |
+      | <courtCode> | <juror_number> | <pool_number> | 5                        | 400   |
 
     #insert new pool
     Given a deferral is inserted for an existing juror new schema
-      |owner       | pool_no        | part_no         | no_weeks|
-      |<courtCode> | <pool_number>  | <juror_number>  | 9       |
+      | owner       | pool_no       | part_no        | no_weeks |
+      | <courtCode> | <pool_number> | <juror_number> | 9        |
 
     #Can see the pool request courts table tabs and fields
     When I navigate to the pool request screen
@@ -195,17 +195,17 @@ Feature: JM-252_Validation_and_Errors
 
     #check page content
     And on the page I see
-      | text|
-      |Request a new pool|
-      |Court name or location code|
-      |<displayCourt>             |
-      |Attendance date            |
-      |Pool type                  |
-      |Crown court                |
-      |High court                 |
-      |Civil court                |
-      |Number of jurors required in total|
-      |Number of court deferrals to include in this pool|
+      | text                                              |
+      | Request a new pool                                |
+      | Court name or location code                       |
+      | <displayCourt>                                    |
+      | Attendance date                                   |
+      | Pool type                                         |
+      | Crown court                                       |
+      | High court                                        |
+      | Civil court                                       |
+      | Number of jurors required in total                |
+      | Number of court deferrals to include in this pool |
 
     And I see the attendance date of the pool
     And I do not see "Attendance time" on the page
@@ -220,10 +220,10 @@ Feature: JM-252_Validation_and_Errors
 
 
     Examples:
-      | user	        | selectedCourt    | displayCourt     | courtType    | courtCode | juror_number  | pool_number |
-      | MODTESTBUREAU	| SWANSEA          | Swansea Crown Court          | Crown        | 457       | 045700001     | 457300001   |
-      | MODTESTBUREAU	| SWANSEA          | Swansea Crown Court          | Civil        | 457       | 045700001     | 457300001   |
-      | MODTESTBUREAU	| SWANSEA          | Swansea Crown Court          | High         | 457       | 045700001     | 457300001   |
+      | user          | selectedCourt | displayCourt        | courtType | courtCode | juror_number | pool_number |
+      | MODTESTBUREAU | SWANSEA       | Swansea Crown Court | Crown     | 457       | 045700001    | 457300001   |
+      | MODTESTBUREAU | SWANSEA       | Swansea Crown Court | Civil     | 457       | 045700001    | 457300001   |
+      | MODTESTBUREAU | SWANSEA       | Swansea Crown Court | High      | 457       | 045700001    | 457300001   |
 
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Errors and Warnings on Change Number Of Deferrals - Continue An Invalid Input
@@ -232,13 +232,13 @@ Feature: JM-252_Validation_and_Errors
     And I log in as "<user>"
 
     Given a bureau owned pool is created with jurors
-      | court         |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
-      | <courtCode>   |<juror_number> 	    | <pool_number>     | 5				            | 400	|
+      | court       | juror_number   | pool_number   | att_date_weeks_in_future | owner |
+      | <courtCode> | <juror_number> | <pool_number> | 5                        | 400   |
 
     #insert new pool
     Given a deferral is inserted for an existing juror new schema
-      |owner       | pool_no       | part_no         | no_weeks|
-      |<courtCode> | <pool_number> | <juror_number>  | 9       |
+      | owner       | pool_no       | part_no        | no_weeks |
+      | <courtCode> | <pool_number> | <juror_number> | 9        |
 
     When I navigate to the pool request screen
 
@@ -255,17 +255,17 @@ Feature: JM-252_Validation_and_Errors
 
     #check page content
     And on the page I see
-      | text|
-      |Request a new pool|
-      |Court name or location code|
-      |<displayCourt>             |
-      |Attendance date            |
-      |Pool type                  |
-      |Crown court                |
-      |High court                 |
-      |Civil court                |
-      |Number of jurors required in total|
-      |Number of court deferrals to include in this pool|
+      | text                                              |
+      | Request a new pool                                |
+      | Court name or location code                       |
+      | <displayCourt>                                    |
+      | Attendance date                                   |
+      | Pool type                                         |
+      | Crown court                                       |
+      | High court                                        |
+      | Civil court                                       |
+      | Number of jurors required in total                |
+      | Number of court deferrals to include in this pool |
 
     And I see the attendance date of the pool
     And I do not see "Attendance time" on the page
@@ -291,13 +291,13 @@ Feature: JM-252_Validation_and_Errors
     And I log in as "<user>"
 
     Given a bureau owned pool is created with jurors
-      | court         |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
-      | <courtCode>   |<juror_number> 	    | <pool_number>     | 5				            | 400	|
+      | court       | juror_number   | pool_number   | att_date_weeks_in_future | owner |
+      | <courtCode> | <juror_number> | <pool_number> | 5                        | 400   |
 
     #insert new pool
     Given a deferral is inserted for an existing juror new schema
-      |owner       | pool_no        | part_no         | no_weeks|
-      |<courtCode> | <pool_number>  | <juror_number>  | 9       |
+      | owner       | pool_no       | part_no        | no_weeks |
+      | <courtCode> | <pool_number> | <juror_number> | 9        |
 
     #Can see the pool request courts table tabs and fields
     When I navigate to the pool request screen
@@ -315,17 +315,17 @@ Feature: JM-252_Validation_and_Errors
 
     #check page content
     And on the page I see
-      | text|
-      |Request a new pool|
-      |Court name or location code|
-      |<displayCourt>             |
-      |Attendance date            |
-      |Pool type                  |
-      |Crown court                |
-      |High court                 |
-      |Civil court                |
-      |Number of jurors required in total|
-      |Number of court deferrals to include in this pool|
+      | text                                              |
+      | Request a new pool                                |
+      | Court name or location code                       |
+      | <displayCourt>                                    |
+      | Attendance date                                   |
+      | Pool type                                         |
+      | Crown court                                       |
+      | High court                                        |
+      | Civil court                                       |
+      | Number of jurors required in total                |
+      | Number of court deferrals to include in this pool |
 
     And I see the attendance date of the pool
     And I do not see "Attendance time" on the page
@@ -366,17 +366,17 @@ Feature: JM-252_Validation_and_Errors
 
     #check page content
     And on the page I see
-      | text|
-      |Request a new pool|
-      |Court name or location code|
-      |<displayCourt>             |
-      |Attendance date            |
-      |Pool type                  |
-      |Crown court                |
-      |High court                 |
-      |Civil court                |
-      |Number of jurors required in total|
-      |Number of court deferrals to include in this pool|
+      | text                                              |
+      | Request a new pool                                |
+      | Court name or location code                       |
+      | <displayCourt>                                    |
+      | Attendance date                                   |
+      | Pool type                                         |
+      | Crown court                                       |
+      | High court                                        |
+      | Civil court                                       |
+      | Number of jurors required in total                |
+      | Number of court deferrals to include in this pool |
 
     And I see the attendance date of the pool
     And I do not see "Attendance time" on the page
@@ -386,13 +386,13 @@ Feature: JM-252_Validation_and_Errors
 
     #insert new pool
     Given a bureau owned pool is created with jurors
-      | court         |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
-      | <courtCode>   |<juror_number> 	    | <pool_number>     | 5				            | 400	|
+      | court       | juror_number   | pool_number   | att_date_weeks_in_future | owner |
+      | <courtCode> | <juror_number> | <pool_number> | 5                        | 400   |
 
     #insert new pool
     Given a deferral is inserted for an existing juror new schema
-      |owner       | pool_no      | part_no         | no_weeks|
-      |<courtCode> | <pool_number>| <juror_number>  | 9       |
+      | owner       | pool_no       | part_no        | no_weeks |
+      | <courtCode> | <pool_number> | <juror_number> | 9        |
 
     #select 0 deferrals
     When I set "Number of deferred jurors to include in this pool" to "0"
@@ -403,10 +403,10 @@ Feature: JM-252_Validation_and_Errors
     Then I do not see "Number of deferrals is too high" on the page
 
     Examples:
-      | user	        | selectedCourt    | displayCourt     | courtType    | courtCode | juror_number | pool_number  |
-      | MODTESTBUREAU	| SWANSEA          | Swansea Crown Court          | Crown        | 457       | 045700004    | 457300004    |
-      | MODTESTBUREAU	| SWANSEA          | Swansea Crown Court          | Civil        | 457       | 045700004    | 457300004    |
-      | MODTESTBUREAU	| SWANSEA          | Swansea Crown Court          | High         | 457       | 045700004    | 457300004    |
+      | user          | selectedCourt | displayCourt        | courtType | courtCode | juror_number | pool_number |
+      | MODTESTBUREAU | SWANSEA       | Swansea Crown Court | Crown     | 457       | 045700004    | 457300004   |
+      | MODTESTBUREAU | SWANSEA       | Swansea Crown Court | Civil     | 457       | 045700004    | 457300004   |
+      | MODTESTBUREAU | SWANSEA       | Swansea Crown Court | High      | 457       | 045700004    | 457300004   |
 
   @JurorTransformation @NewSchemaConverted
   Scenario Outline: Errors and Warnings on Change Number Of Deferrals - One Deferral
@@ -415,13 +415,13 @@ Feature: JM-252_Validation_and_Errors
     And I log in as "<user>"
 
     Given a bureau owned pool is created with jurors
-      | court         |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
-      | <courtCode>   |<juror_number> 	    | <pool_number>     | 5				            | 400	|
+      | court       | juror_number   | pool_number   | att_date_weeks_in_future | owner |
+      | <courtCode> | <juror_number> | <pool_number> | 5                        | 400   |
 
     #insert new pool
     Given a deferral is inserted for an existing juror new schema
-      |owner       | pool_no        | part_no         | no_weeks|
-      |<courtCode> | <pool_number>  | <juror_number>  | 9       |
+      | owner       | pool_no       | part_no        | no_weeks |
+      | <courtCode> | <pool_number> | <juror_number> | 9        |
 
     #Can see the pool request courts table tabs and fields
     When I navigate to the pool request screen
@@ -439,17 +439,17 @@ Feature: JM-252_Validation_and_Errors
 
     #check page content
     And on the page I see
-      | text|
-      |Request a new pool|
-      |Court name or location code|
-      |<displayCourt>             |
-      |Attendance date            |
-      |Pool type                  |
-      |Crown court                |
-      |High court                 |
-      |Civil court                |
-      |Number of jurors required in total|
-      |Number of court deferrals to include in this pool|
+      | text                                              |
+      | Request a new pool                                |
+      | Court name or location code                       |
+      | <displayCourt>                                    |
+      | Attendance date                                   |
+      | Pool type                                         |
+      | Crown court                                       |
+      | High court                                        |
+      | Civil court                                       |
+      | Number of jurors required in total                |
+      | Number of court deferrals to include in this pool |
 
     And I see the attendance date of the pool
     And I do not see "Attendance time" on the page
@@ -463,10 +463,10 @@ Feature: JM-252_Validation_and_Errors
     Then I do not see "Number of deferrals is too high" on the page
 
     Examples:
-      | user	        | selectedCourt    | displayCourt     | courtType    | courtCode | juror_number  | pool_number |
-      | MODTESTBUREAU	| SWANSEA          | Swansea Crown Court          | Crown        | 457       | 045700005     | 457300005   |
-      | MODTESTBUREAU	| SWANSEA          | Swansea Crown Court          | Civil        | 457       | 045700005     | 457300005   |
-      | MODTESTBUREAU	| SWANSEA          | Swansea Crown Court          | High         | 457       | 045700005     | 457300005   |
+      | user          | selectedCourt | displayCourt        | courtType | courtCode | juror_number | pool_number |
+      | MODTESTBUREAU | SWANSEA       | Swansea Crown Court | Crown     | 457       | 045700005    | 457300005   |
+      | MODTESTBUREAU | SWANSEA       | Swansea Crown Court | Civil     | 457       | 045700005    | 457300005   |
+      | MODTESTBUREAU | SWANSEA       | Swansea Crown Court | High      | 457       | 045700005    | 457300005   |
 
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Errors and Warnings on Continue - No Selections
@@ -495,8 +495,8 @@ Feature: JM-252_Validation_and_Errors
     And I see "Enter the number of jurors required" on the page
 
     Examples:
-      | user	        | selectedCourt    | displayCourt     | courtCode |
-      | MODTESTBUREAU	| CHESTER          | Chester          | 415       |
+      | user          | selectedCourt | displayCourt | courtCode |
+      | MODTESTBUREAU | CHESTER       | Chester      | 415       |
 
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Errors and Warnings on Continue - Only Number of Jurors
@@ -525,8 +525,8 @@ Feature: JM-252_Validation_and_Errors
     And I do not see "Number of jurors required is missing" on the page
     And I do not see "Enter the number of jurors required" on the page
     Examples:
-      | user	        | selectedCourt    | displayCourt     | courtCode |
-      | MODTESTBUREAU	| CHESTER          | Chester          | 415       |
+      | user          | selectedCourt | displayCourt | courtCode |
+      | MODTESTBUREAU | CHESTER       | Chester      | 415       |
 
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Errors and Warnings on Continue - Only Pool Type Set
@@ -557,10 +557,10 @@ Feature: JM-252_Validation_and_Errors
     And I see "Enter the number of jurors required" on the page
 
     Examples:
-      | user	        | selectedCourt    | displayCourt     | courtType    | courtCode |
-      | MODTESTBUREAU	| CHESTER          | Chester          | Crown        | 415       |
-      | MODTESTBUREAU	| CHESTER          | Chester          | Civil        | 415       |
-      | MODTESTBUREAU	| CHESTER          | Chester          | High         | 415       |
+      | user          | selectedCourt | displayCourt | courtType | courtCode |
+      | MODTESTBUREAU | CHESTER       | Chester      | Crown     | 415       |
+      | MODTESTBUREAU | CHESTER       | Chester      | Civil     | 415       |
+      | MODTESTBUREAU | CHESTER       | Chester      | High      | 415       |
 
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Errors and Warnings on Continue - Complete New Pool Fields
@@ -569,13 +569,13 @@ Feature: JM-252_Validation_and_Errors
     And I log in as "<user>"
 
     Given a bureau owned pool is created with jurors
-      | court         |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
-      | <courtCode>   |<juror_number> 	    | <pool_number>     | 5				            | 400	|
+      | court       | juror_number   | pool_number   | att_date_weeks_in_future | owner |
+      | <courtCode> | <juror_number> | <pool_number> | 5                        | 400   |
 
     #insert new pool
     Given a deferral is inserted for an existing juror new schema
-      |owner       | pool_no        | part_no         | no_weeks|
-      |<courtCode> | <pool_number>  | <juror_number>  | 9       |
+      | owner       | pool_no       | part_no        | no_weeks |
+      | <courtCode> | <pool_number> | <juror_number> | 9        |
 
     When I navigate to the pool request screen
 
@@ -610,18 +610,18 @@ Feature: JM-252_Validation_and_Errors
     Then I see "Check your pool request" on the page
     And I see the attendance date of the pool
     And I should see the details of the pool
-      | courtName              | <displayCourt> (<courtCode>)  |
-      | poolType               | <courtTypeFull>               |
-      | additionalRequirements | None                          |
-      | totalJurorsRequired    | 150                           |
-      | numberOfDeferrals      | 1                             |
-      | additionalJurors       | 149                           |
+      | courtName              | <displayCourt> (<courtCode>) |
+      | poolType               | <courtTypeFull>              |
+      | additionalRequirements | None                         |
+      | totalJurorsRequired    | 150                          |
+      | numberOfDeferrals      | 1                            |
+      | additionalJurors       | 149                          |
 
     Examples:
-      | user	        | selectedCourt    | displayCourt     | courtType    | courtTypeFull   | courtCode | juror_number  | pool_number |
-      | MODTESTBUREAU	| SWANSEA          | Swansea Crown Court          | Crown        | Crown court     | 457       | 045700006     | 457300006   |
-      | MODTESTBUREAU	| SWANSEA          | Swansea Crown Court          | Civil        | Civil court     | 457       | 045700006     | 457300006   |
-      | MODTESTBUREAU	| SWANSEA          | Swansea Crown Court          | High         | High court      | 457       | 045700006     | 457300006   |
+      | user          | selectedCourt | displayCourt        | courtType | courtTypeFull | courtCode | juror_number | pool_number |
+      | MODTESTBUREAU | SWANSEA       | Swansea Crown Court | Crown     | Crown court   | 457       | 045700006    | 457300006   |
+      | MODTESTBUREAU | SWANSEA       | Swansea Crown Court | Civil     | Civil court   | 457       | 045700006    | 457300006   |
+      | MODTESTBUREAU | SWANSEA       | Swansea Crown Court | High      | High court    | 457       | 045700006    | 457300006   |
 
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Errors and Warnings on Change Pool Number - No Pool Number
@@ -630,13 +630,13 @@ Feature: JM-252_Validation_and_Errors
     And I log in as "<user>"
 
     Given a bureau owned pool is created with jurors
-      | court         |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
-      | <courtCode>   |<juror_number> 	    | <pool_number>     | 5				            | 400	|
+      | court       | juror_number   | pool_number   | att_date_weeks_in_future | owner |
+      | <courtCode> | <juror_number> | <pool_number> | 5                        | 400   |
 
     #insert new pool
     Given a deferral is inserted for an existing juror new schema
-      |owner       | pool_no       | part_no         | no_weeks|
-      |<courtCode> | <pool_number> | <juror_number>  | 9       |
+      | owner       | pool_no       | part_no        | no_weeks |
+      | <courtCode> | <pool_number> | <juror_number> | 9        |
 
     #Can see the pool request courts table tabs and fields
     When I navigate to the pool request screen
@@ -665,12 +665,12 @@ Feature: JM-252_Validation_and_Errors
     Then I see "Check your pool request" on the page
 
     And I should see the details of the pool
-      | courtName              | <displayCourt> (<courtCode>)  |
-      | poolType               | <courtTypeFull>               |
-      | additionalRequirements | None                          |
-      | totalJurorsRequired    | 150                           |
-      | numberOfDeferrals      | 1                             |
-      | additionalJurors       | 149                           |
+      | courtName              | <displayCourt> (<courtCode>) |
+      | poolType               | <courtTypeFull>              |
+      | additionalRequirements | None                         |
+      | totalJurorsRequired    | 150                          |
+      | numberOfDeferrals      | 1                            |
+      | additionalJurors       | 149                          |
 
     #Change pool no
     Then I click the change link for the pool number
@@ -681,10 +681,10 @@ Feature: JM-252_Validation_and_Errors
     And I see "Please enter a pool number" on the page
 
     Examples:
-      | user	        | selectedCourt    | displayCourt     | courtType    | courtTypeFull   | courtCode | juror_number  | pool_number |
-      | MODTESTBUREAU	| SWANSEA          | Swansea Crown Court          | Crown        | Crown court     | 457       | 045700007     | 457300007   |
-      | MODTESTBUREAU	| SWANSEA          | Swansea Crown Court          | Civil        | Civil court     | 457       | 045700007     | 457300007   |
-      | MODTESTBUREAU	| SWANSEA          | Swansea Crown Court          | High         | High court      | 457       | 045700007     | 457300007   |
+      | user          | selectedCourt | displayCourt        | courtType | courtTypeFull | courtCode | juror_number | pool_number |
+      | MODTESTBUREAU | SWANSEA       | Swansea Crown Court | Crown     | Crown court   | 457       | 045700007    | 457300007   |
+      | MODTESTBUREAU | SWANSEA       | Swansea Crown Court | Civil     | Civil court   | 457       | 045700007    | 457300007   |
+      | MODTESTBUREAU | SWANSEA       | Swansea Crown Court | High      | High court    | 457       | 045700007    | 457300007   |
 
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Errors and Warnings on Change Pool Number - Pool Number Does Not Contain Court Location Code
@@ -693,13 +693,13 @@ Feature: JM-252_Validation_and_Errors
     And I log in as "<user>"
 
     Given a bureau owned pool is created with jurors
-      | court         |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
-      | <courtCode>   |<juror_number> 	    | <pool_number>     | 5				            | 400	|
+      | court       | juror_number   | pool_number   | att_date_weeks_in_future | owner |
+      | <courtCode> | <juror_number> | <pool_number> | 5                        | 400   |
 
     #insert new pool
     Given a deferral is inserted for an existing juror new schema
-      |owner       | pool_no        | part_no         | no_weeks|
-      |<courtCode> | <pool_number>  | <juror_number>  | 9       |
+      | owner       | pool_no       | part_no        | no_weeks |
+      | <courtCode> | <pool_number> | <juror_number> | 9        |
 
     #Can see the pool request courts table tabs and fields
     When I navigate to the pool request screen
@@ -728,12 +728,12 @@ Feature: JM-252_Validation_and_Errors
     Then I see "Check your pool request" on the page
 
     And I should see the details of the pool
-      | courtName              | <displayCourt> (<courtCode>)  |
-      | poolType               | <courtTypeFull>               |
-      | additionalRequirements | None                          |
-      | totalJurorsRequired    | 150                           |
-      | numberOfDeferrals      | 1                             |
-      | additionalJurors       | 149                           |
+      | courtName              | <displayCourt> (<courtCode>) |
+      | poolType               | <courtTypeFull>              |
+      | additionalRequirements | None                         |
+      | totalJurorsRequired    | 150                          |
+      | numberOfDeferrals      | 1                            |
+      | additionalJurors       | 149                          |
 
     #Change pool no
     Then I click the change link for the pool number
@@ -745,10 +745,10 @@ Feature: JM-252_Validation_and_Errors
     And I see error "Pool number must use court location code"
 
     Examples:
-      | user	        | selectedCourt    | displayCourt     | courtType    | courtTypeFull   | courtCode | juror_number  | pool_number |
-      | MODTESTBUREAU	| SWANSEA          | Swansea Crown Court          | Crown        | Crown court     | 457       | 045700008     | 457300008   |
-      | MODTESTBUREAU	| SWANSEA          | Swansea Crown Court          | Civil        | Civil court     | 457       | 045700008     | 457300008   |
-      | MODTESTBUREAU	| SWANSEA          | Swansea Crown Court          | High         | High court      | 457       | 045700008     | 457300008   |
+      | user          | selectedCourt | displayCourt        | courtType | courtTypeFull | courtCode | juror_number | pool_number |
+      | MODTESTBUREAU | SWANSEA       | Swansea Crown Court | Crown     | Crown court   | 457       | 045700008    | 457300008   |
+      | MODTESTBUREAU | SWANSEA       | Swansea Crown Court | Civil     | Civil court   | 457       | 045700008    | 457300008   |
+      | MODTESTBUREAU | SWANSEA       | Swansea Crown Court | High      | High court    | 457       | 045700008    | 457300008   |
 
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Errors and Warnings on Change Pool Number - Pool Number Does Not Contain Months Of Attendance Date
@@ -757,13 +757,13 @@ Feature: JM-252_Validation_and_Errors
     And I log in as "<user>"
 
     Given a bureau owned pool is created with jurors
-      | court         |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
-      | <courtCode>   |<juror_number> 	    | <pool_number>     | 5				            | 400	|
+      | court       | juror_number   | pool_number   | att_date_weeks_in_future | owner |
+      | <courtCode> | <juror_number> | <pool_number> | 5                        | 400   |
 
     #insert new pool
     Given a deferral is inserted for an existing juror new schema
-      |owner       | pool_no       | part_no         | no_weeks|
-      |<courtCode> | <pool_number> | <juror_number>  | 9       |
+      | owner       | pool_no       | part_no        | no_weeks |
+      | <courtCode> | <pool_number> | <juror_number> | 9        |
 
     #Can see the pool request courts table tabs and fields
     When I navigate to the pool request screen
@@ -792,12 +792,12 @@ Feature: JM-252_Validation_and_Errors
     Then I see "Check your pool request" on the page
 
     And I should see the details of the pool
-      | courtName              | <displayCourt> (<courtCode>)  |
-      | poolType               | <courtTypeFull>               |
-      | additionalRequirements | None                          |
-      | totalJurorsRequired    | 150                           |
-      | numberOfDeferrals      | 1                             |
-      | additionalJurors       | 149                           |
+      | courtName              | <displayCourt> (<courtCode>) |
+      | poolType               | <courtTypeFull>              |
+      | additionalRequirements | None                         |
+      | totalJurorsRequired    | 150                          |
+      | numberOfDeferrals      | 1                            |
+      | additionalJurors       | 149                          |
 
     #Change pool no
     Then I click the change link for the pool number
@@ -815,10 +815,10 @@ Feature: JM-252_Validation_and_Errors
     And I see error "Pool number must use year of attendance date"
 
     Examples:
-      | user	        | selectedCourt    | displayCourt     | courtType    | courtTypeFull   | courtCode | juror_number  | pool_number |
-      | MODTESTBUREAU	| SWANSEA          | Swansea Crown Court          | Crown        | Crown court     | 457       | 045700009     | 457300009   |
-      | MODTESTBUREAU	| SWANSEA          | Swansea Crown Court          | Civil        | Civil court     | 457       | 045700009     | 457300009   |
-      | MODTESTBUREAU	| SWANSEA          | Swansea Crown Court          | High         | High court      | 457       | 045700009     | 457300009   |
+      | user          | selectedCourt | displayCourt        | courtType | courtTypeFull | courtCode | juror_number | pool_number |
+      | MODTESTBUREAU | SWANSEA       | Swansea Crown Court | Crown     | Crown court   | 457       | 045700009    | 457300009   |
+      | MODTESTBUREAU | SWANSEA       | Swansea Crown Court | Civil     | Civil court   | 457       | 045700009    | 457300009   |
+      | MODTESTBUREAU | SWANSEA       | Swansea Crown Court | High      | High court    | 457       | 045700009    | 457300009   |
 
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Errors and Warnings on Change Pool Number - Pool Number Too Long
@@ -827,13 +827,13 @@ Feature: JM-252_Validation_and_Errors
     And I log in as "<user>"
 
     Given a bureau owned pool is created with jurors
-      | court         |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
-      | <courtCode>   |<juror_number> 	    | <pool_number>     | 5				            | 400	|
+      | court       | juror_number   | pool_number   | att_date_weeks_in_future | owner |
+      | <courtCode> | <juror_number> | <pool_number> | 5                        | 400   |
 
     #insert new pool
     Given a deferral is inserted for an existing juror new schema
-      |owner       | pool_no        | part_no         | no_weeks|
-      |<courtCode> | <pool_number>  | <juror_number>  | 9       |
+      | owner       | pool_no       | part_no        | no_weeks |
+      | <courtCode> | <pool_number> | <juror_number> | 9        |
 
     #Can see the pool request courts table tabs and fields
     When I navigate to the pool request screen
@@ -862,12 +862,12 @@ Feature: JM-252_Validation_and_Errors
     Then I see "Check your pool request" on the page
 
     And I should see the details of the pool
-      | courtName              | <displayCourt> (<courtCode>)  |
-      | poolType               | <courtTypeFull>               |
-      | additionalRequirements | None                          |
-      | totalJurorsRequired    | 50                            |
-      | numberOfDeferrals      | 1                             |
-      | additionalJurors       | 49                            |
+      | courtName              | <displayCourt> (<courtCode>) |
+      | poolType               | <courtTypeFull>              |
+      | additionalRequirements | None                         |
+      | totalJurorsRequired    | 50                           |
+      | numberOfDeferrals      | 1                            |
+      | additionalJurors       | 49                           |
 
     #Change pool no
     Then I click the change link for the pool number
@@ -879,10 +879,10 @@ Feature: JM-252_Validation_and_Errors
     And I see error "Pool number must have a maximum of 9 characters"
 
     Examples:
-      | user	        | selectedCourt    | displayCourt     | courtType    | courtTypeFull   | courtCode | juror_number  | pool_number |
-      | MODTESTBUREAU	| SWANSEA          | Swansea Crown Court          | Crown        | Crown court     | 457       | 045700010     | 457300010   |
-      | MODTESTBUREAU	| SWANSEA          | Swansea Crown Court          | Civil        | Civil court     | 457       | 045700010     | 457300010   |
-      | MODTESTBUREAU	| SWANSEA          | Swansea Crown Court          | High         | High court      | 457       | 045700010     | 457300010   |
+      | user          | selectedCourt | displayCourt        | courtType | courtTypeFull | courtCode | juror_number | pool_number |
+      | MODTESTBUREAU | SWANSEA       | Swansea Crown Court | Crown     | Crown court   | 457       | 045700010    | 457300010   |
+      | MODTESTBUREAU | SWANSEA       | Swansea Crown Court | Civil     | Civil court   | 457       | 045700010    | 457300010   |
+      | MODTESTBUREAU | SWANSEA       | Swansea Crown Court | High      | High court    | 457       | 045700010    | 457300010   |
 
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Errors and Warnings on Change Pool Number - Pool Number Too Short
@@ -891,13 +891,13 @@ Feature: JM-252_Validation_and_Errors
     And I log in as "<user>"
 
     Given a bureau owned pool is created with jurors
-      | court         |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
-      | <courtCode>   |<juror_number> 	    | <pool_number>     | 5				            | 400	|
+      | court       | juror_number   | pool_number   | att_date_weeks_in_future | owner |
+      | <courtCode> | <juror_number> | <pool_number> | 5                        | 400   |
 
     #insert new pool
     Given a deferral is inserted for an existing juror new schema
-      |owner       | pool_no      | part_no         | no_weeks|
-      |<courtCode> | <pool_number>| <juror_number>  | 9       |
+      | owner       | pool_no       | part_no        | no_weeks |
+      | <courtCode> | <pool_number> | <juror_number> | 9        |
 
     #Can see the pool request courts table tabs and fields
     When I navigate to the pool request screen
@@ -926,12 +926,12 @@ Feature: JM-252_Validation_and_Errors
     Then I see "Check your pool request" on the page
 
     And I should see the details of the pool
-      | courtName              | <displayCourt> (<courtCode>)  |
-      | poolType               | <courtTypeFull>               |
-      | additionalRequirements | None                          |
-      | totalJurorsRequired    | 50                            |
-      | numberOfDeferrals      | 1                             |
-      | additionalJurors       | 49                            |
+      | courtName              | <displayCourt> (<courtCode>) |
+      | poolType               | <courtTypeFull>              |
+      | additionalRequirements | None                         |
+      | totalJurorsRequired    | 50                           |
+      | numberOfDeferrals      | 1                            |
+      | additionalJurors       | 49                           |
 
     #Change pool no
     Then I click the change link for the pool number
@@ -943,10 +943,10 @@ Feature: JM-252_Validation_and_Errors
     And I see error "Pool number must have a minimum of 9 characters"
 
     Examples:
-      | user	        | selectedCourt    | displayCourt     | courtType    | courtTypeFull   | courtCode | juror_number  | pool_number |
-      | MODTESTBUREAU	| SWANSEA          | Swansea Crown Court          | Crown        | Crown court     | 457       | 045700011     | 457300011   |
-      | MODTESTBUREAU	| SWANSEA          | Swansea Crown Court          | Civil        | Civil court     | 457       | 045700011     | 457300011   |
-      | MODTESTBUREAU	| SWANSEA          | Swansea Crown Court          | High         | High court      | 457       | 045700011     | 457300011   |
+      | user          | selectedCourt | displayCourt        | courtType | courtTypeFull | courtCode | juror_number | pool_number |
+      | MODTESTBUREAU | SWANSEA       | Swansea Crown Court | Crown     | Crown court   | 457       | 045700011    | 457300011   |
+      | MODTESTBUREAU | SWANSEA       | Swansea Crown Court | Civil     | Civil court   | 457       | 045700011    | 457300011   |
+      | MODTESTBUREAU | SWANSEA       | Swansea Crown Court | High      | High court    | 457       | 045700011    | 457300011   |
 
   @JurorTransformation @NewSchemaConverted
   Scenario Outline: Errors and Warnings on Change Pool Number - Pool Number Already in Use
@@ -955,13 +955,13 @@ Feature: JM-252_Validation_and_Errors
     And I log in as "<user>"
 
     Given a bureau owned pool is created with jurors
-      | court         |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
-      | <courtCode>   |<juror_number> 	    | <pool_number>     | 5				            | 400	|
+      | court       | juror_number   | pool_number   | att_date_weeks_in_future | owner |
+      | <courtCode> | <juror_number> | <pool_number> | 5                        | 400   |
 
     #insert new pool
     Given a deferral is inserted for an existing juror new schema
-      |owner       | pool_no       | part_no         | no_weeks|
-      |<courtCode> | <pool_number> | <juror_number>  | 9       |
+      | owner       | pool_no       | part_no        | no_weeks |
+      | <courtCode> | <pool_number> | <juror_number> | 9        |
 
     #create a pool so there is always one there for this court/year/month
     When I navigate to the pool request screen
@@ -994,12 +994,12 @@ Feature: JM-252_Validation_and_Errors
     Then I see "Check your pool request" on the page
 
     And I should see the details of the pool
-      | courtName              | <displayCourt> (<courtCode>)  |
-      | poolType               | <courtTypeFull>               |
-      | additionalRequirements | None                          |
-      | totalJurorsRequired    | 50                            |
-      | numberOfDeferrals      | 1                             |
-      | additionalJurors       | 49                            |
+      | courtName              | <displayCourt> (<courtCode>) |
+      | poolType               | <courtTypeFull>              |
+      | additionalRequirements | None                         |
+      | totalJurorsRequired    | 50                           |
+      | numberOfDeferrals      | 1                            |
+      | additionalJurors       | 49                           |
 
     #Change pool no
     Then I click the change link for the pool number
@@ -1011,10 +1011,10 @@ Feature: JM-252_Validation_and_Errors
     And I see error "Pool number is already being used"
 
     Examples:
-      | user	        | selectedCourt    | displayCourt     | courtType    | courtTypeFull   | courtCode | juror_number  | pool_number |
-      | MODTESTBUREAU	| SWANSEA          | Swansea Crown Court          | Crown        | Crown court     | 457       | 045700012     | 457300012   |
-      | MODTESTBUREAU	| SWANSEA          | Swansea Crown Court          | Civil        | Civil court     | 457       | 045700012     | 457300012   |
-      | MODTESTBUREAU	| SWANSEA          | Swansea Crown Court          | High         | High court      | 457       | 045700012     | 457300012   |
+      | user          | selectedCourt | displayCourt        | courtType | courtTypeFull | courtCode | juror_number | pool_number |
+      | MODTESTBUREAU | SWANSEA       | Swansea Crown Court | Crown     | Crown court   | 457       | 045700012    | 457300012   |
+      | MODTESTBUREAU | SWANSEA       | Swansea Crown Court | Civil     | Civil court   | 457       | 045700012    | 457300012   |
+      | MODTESTBUREAU | SWANSEA       | Swansea Crown Court | High      | High court    | 457       | 045700012    | 457300012   |
 
   @JurorTransformation @NewSchemaConverted
   Scenario Outline: Errors and Warnings on Change Pool Number - Valid Pool Number
@@ -1023,13 +1023,13 @@ Feature: JM-252_Validation_and_Errors
     And I log in as "<user>"
 
     Given a bureau owned pool is created with jurors
-      | court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
-      | 457	  |<juror_number>| <pool_number>| 5				            | 400	|
+      | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
+      | 457   | <juror_number> | <pool_number> | 5                        | 400   |
 
     #insert new pool
     Given a deferral is inserted for an existing juror new schema
-      | owner| pool_no        | part_no        | no_weeks|
-      | 457  | <pool_number> | <juror_number>  | 9       |
+      | owner | pool_no       | part_no        | no_weeks |
+      | 457   | <pool_number> | <juror_number> | 9        |
 
     #Can see the pool request courts table tabs and fields
     When I navigate to the pool request screen
@@ -1068,28 +1068,29 @@ Feature: JM-252_Validation_and_Errors
     Then I see "Check your pool request" on the page
 
     And I should see the details of the pool
-      | courtName              | <displayCourt> (<courtCode>)  |
-      | poolType               | <courtTypeFull>               |
-      | additionalRequirements | None                          |
-      | totalJurorsRequired    | 50                            |
-      | numberOfDeferrals      | 1                             |
-      | additionalJurors       | 49                            |
+      | courtName              | <displayCourt> (<courtCode>) |
+      | poolType               | <courtTypeFull>              |
+      | additionalRequirements | None                         |
+      | totalJurorsRequired    | 50                           |
+      | numberOfDeferrals      | 1                            |
+      | additionalJurors       | 49                           |
 
     #Request Pool
     And I submit the pool request
     And I click on the "Service start date" link
 
     And I should see the newly created pool request
+      | type           | Bureau         |
       | court          | <displayCourt> |
       | jurorsRequired | 49             |
 
     And the pool created in this test is deleted new schema
 
     Examples:
-      | user	        | selectedCourt    | displayCourt     | courtType    | courtTypeFull   | courtCode | juror_number  | pool_number   |
-      | MODTESTBUREAU	| SWANSEA          | Swansea Crown Court          | Crown        | Crown court     | 457       | 041500047     | 415300130     |
-      | MODTESTBUREAU	| SWANSEA          | Swansea Crown Court          | Civil        | Civil court     | 457       | 041500047     | 415300130     |
-      | MODTESTBUREAU	| SWANSEA          | Swansea Crown Court          | High         | High court      | 457       | 041500047     | 415300130     |
+      | user          | selectedCourt | displayCourt        | courtType | courtTypeFull | courtCode | juror_number | pool_number |
+      | MODTESTBUREAU | SWANSEA       | Swansea Crown Court | Crown     | Crown court   | 457       | 041500047    | 415300130   |
+      | MODTESTBUREAU | SWANSEA       | Swansea Crown Court | Civil     | Civil court   | 457       | 041500047    | 415300130   |
+      | MODTESTBUREAU | SWANSEA       | Swansea Crown Court | High      | High court    | 457       | 041500047    | 415300130   |
 
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Test to assure that a warning appears if the attendance date is set to a weekend date
@@ -1123,15 +1124,15 @@ Feature: JM-252_Validation_and_Errors
     When I click the link to continue from the warning page
     Then I should be taken to the check pool request page
     And I should see the details of the pool
-      | courtName              | <displayCourt> (<courtCode>)  |
-      | poolType               | <courtTypeFull>               |
-      | totalJurorsRequired    | 10                            |
-      | numberOfDeferrals      | 0                             |
-      | additionalJurors       | 10                            |
+      | courtName           | <displayCourt> (<courtCode>) |
+      | poolType            | <courtTypeFull>              |
+      | totalJurorsRequired | 10                           |
+      | numberOfDeferrals   | 0                            |
+      | additionalJurors    | 10                           |
 
     Examples:
-      | user	        | selectedCourt    | displayCourt     | courtTypeFull   | courtCode |
-      | MODTESTBUREAU	| CHESTER          | Chester          | Civil court     | 415       |
+      | user          | selectedCourt | displayCourt | courtTypeFull | courtCode |
+      | MODTESTBUREAU | CHESTER       | Chester      | Civil court   | 415       |
 
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Test to assure that a warning appears if the attendance date is set to a bank holiday date
@@ -1179,11 +1180,11 @@ Feature: JM-252_Validation_and_Errors
     Then I see "Check your pool request" on the page
 
     And I should see the details of the pool with a bank holiday date
-      | courtName              | <displayCourt> (<courtCode>) |
-      | poolType               | <courtTypeFull>              |
-      | totalJurorsRequired    | 150                          |
-      | numberOfDeferrals      | 0                            |
-      | additionalJurors       | 150                          |
+      | courtName           | <displayCourt> (<courtCode>) |
+      | poolType            | <courtTypeFull>              |
+      | totalJurorsRequired | 150                          |
+      | numberOfDeferrals   | 0                            |
+      | additionalJurors    | 150                          |
 
     # Can submit the new pool request
     When I save the new pool request
@@ -1191,8 +1192,9 @@ Feature: JM-252_Validation_and_Errors
     And I click on the "Service start date" link
 
     And I should see the newly created pool request
-      | court          | <displayCourt>  |
-      | jurorsRequired | 150             |
+      | type           | Bureau         |
+      | court          | <displayCourt> |
+      | jurorsRequired | 150            |
 
     Then I delete bank holiday new schema
 
