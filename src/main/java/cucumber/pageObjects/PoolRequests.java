@@ -410,7 +410,7 @@ public class PoolRequests {
         return poolNumbers;
     }
 
-    public Map<String, String> SearchPoolRequestByNumber(final String poolNumber, String type){
+    public Map<String, String> SearchPoolRequestByNumber(final String poolNumber, String type) {
         log.info(Thread.currentThread().getName() + " - Getting pool request for pool: " + poolNumber);
 
         clickSearchTab();
@@ -418,7 +418,7 @@ public class PoolRequests {
         poolSearchContinue.click();
 
         Map<String, String> data = new HashMap<>();
-        if(Objects.equals(type, "Bureau")) {
+        if (Objects.equals(type, "Bureau")) {
             String jurorsRequired = driver.findElement(By.xpath(
                     "//*[@class='pool-values__bureau-summoning']/descendant::span[contains(text(), 'Jurors requested')]/../span[2]"
             )).getText();
@@ -433,9 +433,6 @@ public class PoolRequests {
                 "//*[@class='court-details__grid']/descendant::span[contains(text(), 'start date')]/../span[2]"
         )).getText();
         data.put("attendanceDate", attendanceDate);
-
-
-
 
         return data;
     }
