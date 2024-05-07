@@ -12,7 +12,7 @@ Need to clear the data for juror number = 641500990
 		change_log
 			change_log_item
 		
-		staff_juror_response_audit
+		user_juror_response_audit
 		
 		
 		
