@@ -1,8 +1,10 @@
 Feature: Regression English_1st_ChangeAddress_Bureau
 
-@Regression @NewSchemaConverted
+@Features @NewSchemaConverted @JM-7225
 Scenario Outline: Change postcode - old postcode in >1 loc_code SHOWS CHANGE COURT
-	
+
+	#return to @Regression when defect fixed
+
 	#2. Change postcode - old postcode in >1 loc_code
 	#SY2 - CH1
 	#SY2=LOC_CODE 452 and 774

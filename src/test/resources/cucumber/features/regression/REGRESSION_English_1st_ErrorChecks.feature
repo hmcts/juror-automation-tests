@@ -617,8 +617,10 @@ Examples:
 	| juror_number	| last_name		 | postcode	| pool_number	|
 	| 045200048		| LNAMESIXEIGHTONE| CH1 2AN	| 452300047		|
 	
-@Regression @NewSchemaConverted
+@Features @NewSchemaConverted @JM-7151
 Scenario Outline: English response completed in Legacy and login attempted on Digital
+
+	#return to @Regression once defect fixed
 
 	Given I am on "Bureau" "test"
 

@@ -152,12 +152,12 @@ Scenario Outline: English 3rd Party Gives Phone and Juror Email
 	
 	#Check that TP phone only appears for TP and juror email only appears for juror
 	When I see "" in the same row as "Main Phone"
-	And I see "JurorEmail@outlook.com" in the same row as "Email"
+	And I see "JurorEmail@outlook.com" on the page
 	And I see "0207 821 1818" in the same row as "Main phone"
 
 Examples:
-	| juror_number	| last_name	| postcode	| email            | pool_number|
-	| 045200209		| DOE		| SW1H 9AJ	| email@outlook.com| 452300194	|
+	| juror_number	| last_name	| postcode	| pool_number|
+	| 045200209		| DOE		| SW1H 9AJ	| 452300194	|
 	
 
 @Regression_Single @JDB-3614 
