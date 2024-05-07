@@ -86,7 +86,7 @@ public class PoolRequests {
     WebElement filterAutocompleteOption;
     @FindBy(xpath = "//button[@type=\"submit\"]")
     WebElement filterButton;
-    @FindBy(className = "govuk-body")
+    @FindBy(xpath = "//div[@Class='govuk-grid-column-full']/p[@Class='govuk-body']")
     WebElement attendanceDateWarning;
     @FindBy(linkText = "Continue")
     WebElement warningContinue;
