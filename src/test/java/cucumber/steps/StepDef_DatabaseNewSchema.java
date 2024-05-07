@@ -600,6 +600,11 @@ public class StepDef_DatabaseNewSchema {
         DBTNSD.insertConfirmationLetter(jurorNumber);
     }
 
+    @Given("^a initial summons letter inserted for juror \"([^\"]*)\"$")
+    public void insertInitialSummonsLetterPlaceholder(String jurorNumber) throws SQLException {
+        DBTNSD.insertInitialSummonsLetter(jurorNumber);
+    }
+
     @Given("^I print all letters within the pool \"([^\"]*)\" for the initial summons letter$")
     public void updatePendingLetterForInitialSummons(String poolNumber) throws SQLException {
         DBTNSD.updatePendingLetterForInitialSummons(poolNumber);
