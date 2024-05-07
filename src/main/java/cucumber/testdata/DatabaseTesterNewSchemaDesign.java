@@ -4764,6 +4764,36 @@ public class DatabaseTesterNewSchemaDesign {
 		}
 
 	}
+	public void insertInitialSummonsLetter(String jurorNumber) throws SQLException {
+		db = new DBConnection();
+
+		String env_property = System.getProperty("env.database");
+
+		if (env_property != null)
+			conn = db.getConnection(env_property);
+		else
+			conn = db.getConnection("demo");
+
+		try {
+
+			pStmt = conn.prepareStatement("DELETE from juror_mod.bulk_print_data where juror_no='" + jurorNumber + "'");
+			pStmt.executeUpdate();
+
+			pStmt = conn.prepareStatement("INSERT INTO juror_mod.bulk_print_data (juror_no,creation_date,form_type,detail_rec,extracted_flag,digital_comms)"
+					+ "VALUES ('" + jurorNumber + "',NOW(),'5221','" + jurorNumber + "          Fname Lname',true,NULL)");
+			pStmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.error("Message:" + e.getMessage());
+
+		} finally {
+			conn.commit();
+			pStmt.close();
+			conn.close();
+		}
+
+	}
 
 	public void updatePendingLetterForInitialSummons(String poolNumber) throws SQLException {
 		db = new DBConnection();
@@ -4801,7 +4831,7 @@ public class DatabaseTesterNewSchemaDesign {
 			conn = db.getConnection("demo");
 
 		try {
-			pStmt = conn.prepareStatement("DELETE FROM juror_mod.bulk_print_data WHERE form_type='5221' AND extracted_flag IS NULL AND juror_no in (select juror_number from juror_mod.juror_pool where pool_number = '" + pool + "')");
+			pStmt = conn.prepareStatement("DELETE FROM juror_mod.bulk_print_data WHERE form_type='5221' AND extracted_flag IS FALSE AND juror_no in (select juror_number from juror_mod.juror_pool where pool_number = '" + pool + "')");
 			pStmt.executeUpdate();
 
 		} catch (SQLException e) {

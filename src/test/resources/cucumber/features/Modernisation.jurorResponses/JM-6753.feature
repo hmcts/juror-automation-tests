@@ -27,6 +27,7 @@ Feature: JM-6753 - As a jury officer I want to be able to confirm the attendance
     And I set "Defendants" to "Defendant"
     And I set the "Start date for Trial" date to a Monday "0" weeks in the future
     And I set "Judge" to "PATRICIA H AITKEN"
+    And I set the radio button to "Chester"
     And I set "Courtroom" to "JURY ASSEMBLY ROOM"
     And I press the "Create trial" button
 
