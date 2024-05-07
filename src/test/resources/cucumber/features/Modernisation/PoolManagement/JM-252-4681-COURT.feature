@@ -212,9 +212,9 @@ Feature: JM-252 JM-4302 Court user create new pools
 
     Examples:
       | user     | courtType | displayCourt | noJurors | courtCode | courtTypeFull |
-      | MODCOURT | Crown     | Chester      | 150      | 415       | Crown court   |
-      | MODCOURT | Civil     | Chester      | 150      | 415       | Civil court   |
-      | MODCOURT | High      | Chester      | 150      | 415       | High court    |
+      | MODTESTCOURT | Crown     | Chester      | 150      | 415       | Crown court   |
+      | MODTESTCOURT | Civil     | Chester      | 150      | 415       | Civil court   |
+      | MODTESTCOURT | High      | Chester      | 150      | 415       | High court    |
 
 
   @JurorTransformationMulti @NewSchemaConverted
