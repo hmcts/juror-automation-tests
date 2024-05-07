@@ -115,7 +115,7 @@ Scenario Outline: Regression test that Urgents still calculated correctly
 	#now check status
 	And I do not see "URGENT" on the page
 	Then I see "Responded" on the page
-	And I see "COMPLETED" on the page
+	And I see the juror record updated banner containing "Responded"
 	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "URGENT" is "Y" where "JUROR_NUMBER" is "<juror_number>"
 	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "SUPER_URGENT" is "N" where "JUROR_NUMBER" is "<juror_number>"
 	

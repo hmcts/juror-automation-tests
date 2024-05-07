@@ -247,7 +247,7 @@ Scenario Outline: Check that Super Urgent ST is not auto assigned
 	And I press the "Search" button
 	Then I see "To do" in the same row as "<juror_number>"
 	When I click on "<juror_number>" in the same row as "<juror_number>"
-	Then I see "SEND TO COURT" on the page
+	Then I see "URGENT" on the page
 	
 	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "STAFF_LOGIN" is null where "JUROR_NUMBER" is "<juror_number>"
 	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "STAFF_ASSIGNMENT_DATE" is null where "JUROR_NUMBER" is "<juror_number>"

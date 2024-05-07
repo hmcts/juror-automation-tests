@@ -117,10 +117,10 @@ public class Bureau {
 		WebElement allocateUrgent = driver.findElement(By.xpath("//input[contains(@id,'allocateUrgent')]"));
 		WebElement allocateNonUrgent = driver.findElement(By.xpath("//input[contains(@id,'allocateNonUrgent')]"));
 
-		allocateNonUrgent.clear();
-		allocateNonUrgent.sendKeys(driver.findElement(By.xpath("//div[contains(@class,'jd-assign-replies-send')]")).getText());
 		allocateUrgent.clear();
-		allocateUrgent.sendKeys(driver.findElement(By.xpath("//div[contains(@class,'jd-assign-replies-standard')]")).getText());
+		allocateUrgent.sendKeys(driver.findElement(By.xpath("//div[contains(@class,'jd-assign-replies-send')]")).getText());
+		allocateNonUrgent.clear();
+		allocateNonUrgent.sendKeys(driver.findElement(By.xpath("//div[contains(@class,'jd-assign-replies-standard')]")).getText());
 		NAV.check_checkbox(staffMember);
 		NAV.press_buttonByName("Assign replies");
 	}

@@ -1308,6 +1308,8 @@ public class NavigationShared {
                                 + "//table//tr//*[contains(text(),\"" + nextToText + "\")]//ancestor::tr//*[text()[contains(., \"" + searchText + "\")]]"
                                 + " | "
                                 + "//div//dd[contains(text(),\"" + searchText + "\")]//ancestor::div//dt[text()[contains(., \"" + nextToText + "\")]]"
+                                + " | "
+                                + "//div//dd/*[contains(text(),\"" + nextToText + "\")]//ancestor::dd/div[contains(text(),\"" + searchText + "\")]"
                 ));
         log.info("Found =>" + searchText + "<= in the same row as =>" + nextToText + "<= as expected");
 

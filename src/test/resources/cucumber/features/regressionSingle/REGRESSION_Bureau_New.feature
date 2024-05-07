@@ -1,79 +1,69 @@
 Feature: Bureau Functionality - NEW
 
 
-@RegressionSingle 
-Scenario Outline: Your Work 
+@RegressionSingle @NewSchemaConverted @JM-7167 @JM-7213
+Scenario Outline: Your Work
+
 	Given I am on "Public" "test"
+
 	Given auto straight through processing has been disabled new schema
-	Given the juror numbers have not been processed
-		|part_no 			|pool_no 	|owner	|
-		|<part_no> 			|457170501	|400 	|
-		|<part_no_two> 		|457170501	|400 	|
-		|<part_no_three> 	|457170501	|400 	|
-		|<part_no_four> 	|457170501	|400 	|
 
-	# Using Staff Member CPASS
+	Given a bureau owned pool is created with jurors
+		| court | juror_number  		| pool_number		| att_date_weeks_in_future	| owner |
+		| 452   | <juror_number_one>	| <pool_number_one>	| 5				            | 400	|
+		| 452   | <juror_number_four>	| <pool_number_one>	| 5				            | 400	|
 
-	# Set part_no pool to not be urgent
+	Given a bureau owned pool is created with jurors
+		| court | juror_number  		| pool_number		| att_date_weeks_in_future	| owner |
+		| 452   | <juror_number_two>	| <pool_number_two>	| 3				            | 400	|
 
-	Given "<juror_number>" has "RET_DATE" as "5 mondays time"
+	Given a bureau owned pool is created with jurors
+		| court | juror_number  		| pool_number			| att_date_weeks_in_future	| owner |
+		| 452   | <juror_number_three>	| <pool_number_three>	| 2				            | 400	|
 
-	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
-	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
+	Given a new pool is inserted for where record has transferred to the court new schema
+		| part_no             	| pool_no           	| owner |
+		| <juror_number_three>	| <pool_number_three>   | 452   |
+
+	And juror "<juror_number_one>" has "LAST_NAME" as "<last_name_one>" new schema
+	And juror "<juror_number_one>" has "POSTCODE" as "<postcode>" new schema
+	And juror "<juror_number_two>" has "LAST_NAME" as "<last_name_two>" new schema
+	And juror "<juror_number_two>" has "POSTCODE" as "<postcode>" new schema
+	And juror "<juror_number_three>" has "LAST_NAME" as "<last_name_three>" new schema
+	And juror "<juror_number_three>" has "POSTCODE" as "<postcode>" new schema
+	And juror "<juror_number_four>" has "LAST_NAME" as "<last_name_four>" new schema
+	And juror "<juror_number_four>" has "POSTCODE" as "<postcode>" new schema
 
 	# Submit response in pool
-
 	Given I have submitted a first party English straight through response
-		|part_no	|pool_number|last_name	|postcode	|email 	|
-		|<part_no>	|<pool_no>	|<last_name>|CH1 2AN	|a@a.com|
+		| part_no				| pool_number		| last_name			| postcode	| email 	|
+		| <juror_number_one>	| <pool_number_one>	| <last_name_one>	| CH1 2AN	| a@a.com	|
 
 	#update response to have been received 6 days ago
+	Given the "DATE_RECEIVED" for juror "<juror_number_one>" is set to "-2 mondays time" new schema
 
-	Given the "DATE_RECEIVED" for juror "<juror_number>" is set to "-2 mondays time"
-
-	# Set part_no pool to be urgent
-
-	Given "<part_no_two>" has "RET_DATE" as "3 mondays time"
-	And "<part_no_two>" has "NEXT_DATE" as "3 mondays time"
-	And "<part_no_two>" has "LNAME" as "<last_name_two>"
-	And "<part_no_two>" has "ZIP" as "<postcode>"
+	Given I am on "Public" "test"
 
 	# Submit response in pool
-
 	Given I have submitted a first party English straight through response
-		|part_no		|pool_number|last_name		|postcode	| email |
-		|<part_no_two>	|<pool_no>	|<last_name_two>|CH1 2AN	|a@a.com|
+		| part_no				| pool_number		| last_name			| postcode	| email 	|
+		| <juror_number_two>	| <pool_number_two>	| <last_name_two>	| CH1 2AN	| a@a.com	|
 
-	# Set part_no pool to be super urgent
-
-	Given "<part_no_three>" has "RET_DATE" as "2 mondays time"
-	And "<part_no_three>" has "NEXT_DATE" as "2 mondays time"
-	And "<part_no_three>" has "LNAME" as "<last_name_three>"
-	And "<part_no_three>" has "ZIP" as "<postcode>"
+	Given I am on "Public" "test"
 
 	# Submit response in pool
+	Given I have submitted a first party English straight through response
+		| part_no				| pool_number			| last_name			| postcode	| email 	|
+		| <juror_number_three>	| <pool_number_three>	| <last_name_three>	| CH1 2AN	| a@a.com	|
+
+	Given I am on "Public" "test"
 
 	Given I have submitted a first party English straight through response
-		|part_no		|pool_number|last_name			|postcode	|email 	|
-		|<part_no_three>|<pool_no>	|<last_name_three>	|CH1 2AN	|a@a.com|
-
-	Given "<part_no_three>" has "READ_ONLY" as "Y"
-	Then the "URGENT" for juror "<part_no_three>" is set to "N"
-	Then the "SUPER_URGENT" for juror "<part_no_three>" is set to "Y"
-
-	# Submit response in pool
-
-	Given "<part_no_four>" has "RET_DATE" as "5 mondays time"
-	And "<part_no_four>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no_four>" has "LNAME" as "<last_name_four>"
-	And "<part_no_four>" has "ZIP" as "<postcode>"
-
-	Given I have submitted a first party English straight through response
-		|part_no		|pool_number|last_name			|postcode	|email 	|
-		|<part_no_four>	|<pool_no>	|<last_name_four>	|CH1 2AN	|a@a.com|
+		| part_no				| pool_number		| last_name			| postcode	| email 	|
+		| <juror_number_four>	| <pool_number_one>	| <last_name_four>	| CH1 2AN	| a@a.com	|
 
 	Given I am on "Bureau" "test"
-	And I log in
+	And I log in as "CPASS"
 
 	When I click on the "Assign Replies" link
 	And I assign all the New Replies to "ARAMIS1"
@@ -81,9 +71,9 @@ Scenario Outline: Your Work
 
 	Given I am on "Bureau" "test"
 	And I log in as "ARAMIS1"
-	And I see "Manage replies to jury summons" on the page
+	And I see "Summons replies" on the page
 	And I see "Your work" on the page
-	And I see link with text "ARAMIS1"
+	And I see "ARAMIS1" on the page
 	And I see link with text "Sign out"
 	And I see link with text "To do"
 	And I see link with text "Awaiting information"
@@ -91,153 +81,158 @@ Scenario Outline: Your Work
 	And I see link with text "Your work"
 	And I see link with text "Search"
 	And I see "/inbox" in the URL
-	
-	Then I see "<juror_number>" on the page
-#	And on Bureau I see "<juror_number>" under "High priority"
-	And I see "<juror_number>" is flagged as overdue
-	And I see "LNAMEONE" in the same row as "<juror_number>"
-	And I see "SWANSEA" in the same row as "<juror_number>"
-	
-	Then I see "<part_no_two>" on the page
-	Then I see "URGENT" icon in the same row as "<part_no_two>"
-	And I see "LNAMETWO" in the same row as "<part_no_two>"
-	And I see "SWANSEA" in the same row as "<part_no_two>"
-	
-	Then I see "<part_no_three>" on the page
-	And I see "SEND TO COURT" icon in the same row as "<part_no_three>"
-	And I see "LNAMETHREE" in the same row as "<part_no_three>"
-	And I see "SWANSEA" in the same row as "<part_no_three>"
-	
-	Then I see "<part_no_four>" on the page
-	And I see "LNAMEFOUR" in the same row as "<part_no_four>"
-	And I see "SWANSEA" in the same row as "<part_no_four>"
 
-	When I click on "<juror_number>" in the same row as "<juror_number>"
-	Then I see "Record status" on the page
+	#JM-7213
+	Then I see "<juror_number_one>" on the page
+#	And I see "<juror_number_one>" is flagged as overdue
+	And I see "LNAMEONE" in the same row as "<juror_number_one>"
+	And I see "SHREWSBURY" in the same row as "<juror_number_one>"
+
+	Then I see "<juror_number_two>" on the page
+	Then I see "URGENT" icon in the same row as "<juror_number_two>"
+	And I see "LNAMETWO" in the same row as "<juror_number_two>"
+	And I see "SHREWSBURY" in the same row as "<juror_number_two>"
+
+	Then I see "<juror_number_three>" on the page
+	And I see "SEND TO COURT" icon in the same row as "<juror_number_three>"
+	And I see "LNAMETHREE" in the same row as "<juror_number_three>"
+	And I see "SHREWSBURY" in the same row as "<juror_number_three>"
+
+	Then I see "<juror_number_four>" on the page
+	And I see "LNAMEFOUR" in the same row as "<juror_number_four>"
+	And I see "SHREWSBURY" in the same row as "<juror_number_four>"
+
+	When I click on "<juror_number_one>" in the same row as "<juror_number_one>"
+	Then I see "Reply status" on the page
 	And I see "OVERDUE" on the page
 
 	Then I press the "More actions" button
 	And I click on the "Mark as awaiting information" link
-	And I see "Awaiting juror" on the page
-	And I set the radio button to "Awaiting juror"
-	
+	And I see "Juror" on the page
+	And I choose the "Juror" radio button
+
 	Then I press the "Confirm" button
 
 	Then I see "AWAITING JUROR" on the page
-	
-	Then I press the "More actions" button	
+
+	Then I press the "More actions" button
 	Then I click on the "Mark as awaiting information" link
-	When I set the radio button to "Awaiting court reply"
+	When I choose the "Court" radio button
 	And I press the "Confirm" button
 	Then I see "AWAITING COURT REPLY" on the page
 	When I click on the "Your work" link
-	Then I do not see "<juror_number>" on the page
+	Then I do not see "<juror_number_one>" on the page
 	When I click on the "Awaiting information" link
 	And I see "/pending" in the URL
-	Then I see "<juror_number>" on the page
-	Then I see "AWAITING COURT REPLY" in the same row as "<juror_number>"
-	And I see "<juror_number>" is flagged as overdue
-	
+	Then I see "<juror_number_one>" on the page
+	Then I see "AWAITING COURT REPLY" in the same row as "<juror_number_one>"
+#	And I see "<juror_number_one>" is flagged as overdue
+
 	When I click on the "To do" link
-	When I click on "<part_no_two>" in the same row as "<part_no_two>"
-	Then I see "Record status" on the page
+	When I click on "<juror_number_two>" in the same row as "<juror_number_two>"
+	Then I see "Reply status" on the page
 	And I see "URGENT" on the page
-	Then I press the "More actions" button	
+	Then I press the "More actions" button
 	Then I click on the "Mark as awaiting information" link
-	And I see "Awaiting court reply" on the page
-	When I set the radio button to "Awaiting court reply"
+	When I choose the "Court" radio button
 	And I press the "Confirm" button
 	Then I see "AWAITING COURT REPLY" on the page
 	When I click on the "Your work" link
-	Then I do not see "<part_no_two>" on the page
+	Then I do not see "<juror_number_two>" on the page
 	When I click on the "Awaiting information" link
 	And I see "/pending" in the URL
-	Then I see "<part_no_two>" on the page
-	Then I see "AWAITING COURT REPLY" in the same row as "<part_no_two>"
-	Then I see "URGENT" icon in the same row as "<part_no_two>"
-	
+	Then I see "<juror_number_two>" on the page
+	Then I see "AWAITING COURT REPLY" in the same row as "<juror_number_two>"
+	Then I see "URGENT" icon in the same row as "<juror_number_two>"
+
 	When I click on the "Your work" link
 
 	When I click on the "To do" link
-	And I see "SEND TO COURT" icon in the same row as "<part_no_three>"
-	When I click on "<part_no_three>" in the same row as "<part_no_three>"
-	And I see "SEND TO COURT" on the page
-	
+
+	#JM-7167
+	#this will only be seen by the court now
+#	And I do not see "<juror_number_three>" on the page
+
 	When I click on the "Your work" link
-	Then I see "<part_no_four>" on the page
-	Then I see link with text "<part_no_four>"
-	When I click on "<part_no_four>" in the same row as "<part_no_four>"
-	Then I see "Record status" on the page
-	Then I press the "More actions" button	
+	Then I see "<juror_number_four>" on the page
+	Then I see link with text "<juror_number_four>"
+	When I click on "<juror_number_four>" in the same row as "<juror_number_four>"
+	Then I see "Reply status" on the page
+	Then I press the "More actions" button
 	Then I click on the "Mark as awaiting information" link
-	Then I see "Who is the bureau waiting for information from?" on the page
-	When I set the radio button to "Awaiting court reply"
+	When I check the "Court" checkbox
 	And I press the "Confirm" button
 	Then I see "AWAITING COURT REPLY" on the page
 	When I click on the "Your work" link
-	Then I do not see "<part_no_four>" on the page
+	Then I do not see "<juror_number_four>" on the page
 	When I click on the "Awaiting information" link
-	Then I see "<part_no_four>" on the page
-	Then I see "AWAITING COURT REPLY" in the same row as "<part_no_four>"
+	Then I see "<juror_number_four>" on the page
+	Then I see "AWAITING COURT REPLY" in the same row as "<juror_number_four>"
 
-	#send to court
-
-	When I click on the "To do" link
-	When I click on "<part_no_three>" in the same row as "<part_no_three>"
-	And I do not see "edit" on the page
-	When I press the "More actions" button
-	When I click on the "Download as a PDF" link
-
-	When I click on the "Your work" link
-	Then I see "<part_no_three>" on the page
-	When I click on the "Completed" link
-	And I see "/completed" in the URL
-	Then I do not see "<part_no_three>" on the page
-	
 	#complete
-	
 	When I click on the "Awaiting information" link
-	When I click on "<juror_number>" in the same row as "<juror_number>"
-	When I select "Mark as responded" from Process reply
+	When I click on "<juror_number_one>" in the same row as "<juror_number_one>"
+	And I select Process reply
+	And I choose the "Mark as responded" radio button
+	And I press the "Continue" button
 	And I check the "Mark juror as 'responded'" checkbox
 	And I press the "Confirm" button
-	Then I see "COMPLETED" on the page
+	Then I see the juror record updated banner containing "Responded"
 	And I do not see "OVERDUE" on the page
 	When I click on the "Your work" link
-	And I do not see "<juror_number>" on the page
+	And I see the juror record updated banner containing "Responded"
 	When I click on the "Completed" link
-	Then I see "<juror_number>" on the page
-	
+	Then I see "<juror_number_one>" on the page
+
 	When I click on the "Awaiting information" link
-	When I click on "<part_no_two>" in the same row as "<part_no_two>"
+	When I click on "<juror_number_two>" in the same row as "<juror_number_two>"
 	When I select "Mark as responded" from Process reply
 	And I check the "Mark juror as 'responded'" checkbox
 	And I press the "Confirm" button
-	Then I see "COMPLETED" on the page
-	And I do not see "URGENT" on the page
+	And I see the juror record updated banner containing "Responded"
 	When I click on the "Your work" link
 	When I click on the "Awaiting information" link
-	And I do not see "<part_no_two>" on the page
+	And I do not see "<juror_number_two>" on the page
 	When I click on the "Completed" link
-	Then I see "<part_no_two>" on the page
-	
+	Then I see "<juror_number_two>" on the page
+
 	When I click on the "Awaiting information" link
-	When I click on "<part_no_four>" in the same row as "<part_no_four>"
+	When I click on "<juror_number_four>" in the same row as "<juror_number_four>"
 	When I select "Mark as responded" from Process reply
 	And I check the "Mark juror as 'responded'" checkbox
 	And I press the "Confirm" button
-	Then I see "COMPLETED" on the page
+	And I see the juror record updated banner containing "Responded"
 	When I click on the "Your work" link
 	When I click on the "Awaiting information" link
-	And I do not see "<part_no_four>" on the page
+	And I do not see "<juror_number_four>" on the page
 	When I click on the "Completed" link
-	Then I see "<part_no_four>" on the page
+	Then I see "<juror_number_four>" on the page
 
 	Given auto straight through processing has been enabled new schema
-	
+
+	Given I am on "Bureau" "test"
+	And I log in as "SHREWSBURY"
+
+	#this will only be seen by the court now
+	#send to court
+	And I search for juror "<juror_number_three>"
+	And I click on the "Summons reply" link
+	And I click on the "View summons reply" link
+	And I see "URGENT" on the page
+	And I select Process reply
+	And I choose the "Mark as responded" radio button
+	And I press the "Continue" button
+	And I check the "Mark juror as 'responded'" checkbox
+	And I press the "Confirm" button
+
+	And I search for juror "<juror_number_three>"
+	Then I see the juror status has updated to "Responded"
+	And I click on the "Summons reply" link
+	Then I see "COMPLETED" on the page
+
 Examples:
-	|part_no		|part_no_two	|part_no_three	|part_no_four	|pool_no 	|last_name 	|last_name_two	|last_name_three	|last_name_four	|postcode 	|
-	|645700184		|645700878		|645700884		|645700585		|457170501 	|LNAMEONE	|LNAMETWO 		|LNAMETHREE			|LNAMEFOUR		|CH1 2AN	|
+	| juror_number_one	| juror_number_two	| juror_number_three	| juror_number_four	| pool_number_one 	| pool_number_two | pool_number_three | last_name_one 	| last_name_two	| last_name_three	| last_name_four| postcode 	|
+	| 045200234			| 045200235			| 045200236				| 045200237			| 452300214 		| 452300215	      | 452300216         | LNAMEONE		| LNAMETWO 		| LNAMETHREE		| LNAMEFOUR		| CH1 2AN	|
 
 @RegressionSingle 
 Scenario Outline: Edit Response
