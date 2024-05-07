@@ -249,8 +249,8 @@ Feature: JM-252_Navigation_COURT
     And I see "Warrington" on the page
 
     Examples:
-      | user     | courtType |
-      | MODCOURT | Crown     |
+      | user         | courtType |
+      | MODTESTCOURT | Crown     |
 
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Create pool and check cannot change pool number
