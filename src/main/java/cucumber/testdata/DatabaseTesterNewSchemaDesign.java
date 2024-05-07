@@ -489,10 +489,10 @@ public class DatabaseTesterNewSchemaDesign {
 			pStmt.execute();
 			log.info("Deleted from juror_reasonable_adjustment where juror_number=>" + part_no);
 
-			pStmt = conn.prepareStatement("delete from juror_mod.STAFF_JUROR_RESPONSE_AUDIT where juror_number=?");
+			pStmt = conn.prepareStatement("delete from juror_mod.USER_JUROR_RESPONSE_AUDIT where juror_number=?");
 			pStmt.setString(1, part_no);
 			pStmt.execute();
-			log.info("Deleted from STAFF_JUROR_RESPONSE_AUDIT where juror_number=>" + part_no);
+			log.info("Deleted from USER_JUROR_RESPONSE_AUDIT where juror_number=>" + part_no);
 
 			pStmt = conn.prepareStatement("delete from juror_mod.juror_response where juror_number=?");
 			pStmt.setString(1, part_no);
@@ -545,10 +545,10 @@ public class DatabaseTesterNewSchemaDesign {
 			conn.commit();
 			log.info("Deleted from juror_reasonable_adjustment where juror_number=>" + juror_number);
 
-			pStmt = conn.prepareStatement("delete from juror_mod.STAFF_JUROR_RESPONSE_AUDIT where juror_number='" + juror_number + "'");
+			pStmt = conn.prepareStatement("delete from juror_mod.USER_JUROR_RESPONSE_AUDIT where juror_number='" + juror_number + "'");
 			pStmt.execute();
 			conn.commit();
-			log.info("Deleted from STAFF_JUROR_RESPONSE_AUDIT where juror_number=>" + juror_number);
+			log.info("Deleted from USER_JUROR_RESPONSE_AUDIT where juror_number=>" + juror_number);
 
 			pStmt = conn.prepareStatement("delete from juror_mod.juror_response where juror_number='" + juror_number + "'");
 			pStmt.execute();
@@ -1216,7 +1216,7 @@ public class DatabaseTesterNewSchemaDesign {
 			pStmt = conn.prepareStatement("Delete from juror_digital.change_log Where juror_number in (select juror_number from juror_digital.juror_response where processing_status = 'TODO')");
 			pStmt.executeQuery();
 
-			pStmt = conn.prepareStatement("Delete from juror_digital.staff_juror_response_audit Where juror_number in (select juror_number from juror_digital.juror_response where processing_status = 'TODO')");
+			pStmt = conn.prepareStatement("Delete from juror_digital.USER_JUROR_response_audit Where juror_number in (select juror_number from juror_digital.juror_response where processing_status = 'TODO')");
 			pStmt.executeQuery();
 
 			pStmt = conn.prepareStatement("Delete from juror_digital.juror_response_aud Where juror_number in (select juror_number from juror_digital.juror_response where processing_status = 'TODO')");
@@ -1864,7 +1864,7 @@ public class DatabaseTesterNewSchemaDesign {
 			pStmt = conn.prepareStatement("DELETE FROM JUROR_MOD.juror_reasonable_adjustment");
 			pStmt.execute();
 
-			pStmt = conn.prepareStatement("DELETE FROM JUROR_MOD.STAFF_JUROR_RESPONSE_AUDIT");
+			pStmt = conn.prepareStatement("DELETE FROM JUROR_MOD.USER_JUROR_RESPONSE_AUDIT");
 			pStmt.execute();
 
 			pStmt = conn.prepareStatement("DELETE FROM JUROR_MOD.JUROR_RESPONSE");
@@ -2884,7 +2884,7 @@ public class DatabaseTesterNewSchemaDesign {
 			pStmt = conn.prepareStatement("Delete from juror_mod.juror_audit where juror_number in (select juror_number from juror_mod.juror_pool where pool_number like '" + poolNo + ")");
 			pStmt.execute();
 
-			pStmt = conn.prepareStatement("Delete from juror_mod.staff_juror_response_audit where juror_number in (select juror_number from juror_mod.juror_pool where pool_number like '" + poolNo + ")");
+			pStmt = conn.prepareStatement("Delete from juror_mod.user_juror_response_audit where juror_number in (select juror_number from juror_mod.juror_pool where pool_number like '" + poolNo + ")");
 			pStmt.execute();
 
 			pStmt = conn.prepareStatement("Delete from juror_mod.juror_response_aud where juror_number in (select juror_number from juror_mod.juror_pool where pool_number like '" + poolNo + ")");

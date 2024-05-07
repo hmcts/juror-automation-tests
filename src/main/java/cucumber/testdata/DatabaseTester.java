@@ -602,7 +602,7 @@ public class DatabaseTester {
             change_log
                 change_log_item
 
-            staff_juror_response_audit
+            user_juror_response_audit
      */
 	public void clean_juror_digital(String part_no) throws SQLException {
 		db = new DBConnection();
@@ -637,10 +637,10 @@ public class DatabaseTester {
 			pStmt.execute();
 			log.info("Deleted from change_log where juror_number=>" + part_no);
 
-			pStmt = conn.prepareStatement("delete from juror_digital.STAFF_JUROR_RESPONSE_AUDIT where juror_number=?");
+			pStmt = conn.prepareStatement("delete from juror_digital.USER_JUROR_RESPONSE_AUDIT where juror_number=?");
 			pStmt.setString(1, part_no);
 			pStmt.execute();
-			log.info("Deleted from STAFF_JUROR_RESPONSE_AUDIT where juror_number=>" + part_no);
+			log.info("Deleted from USER_JUROR_RESPONSE_AUDIT where juror_number=>" + part_no);
 
 			pStmt = conn.prepareStatement("delete from juror_digital.juror_response where juror_number=?");
 			pStmt.setString(1, part_no);
@@ -1168,7 +1168,7 @@ public class DatabaseTester {
 			pStmt = conn.prepareStatement("Delete from juror_digital.change_log Where juror_number in (select juror_number from juror_digital.juror_response where processing_status = 'TODO')");
 			pStmt.execute();
 
-			pStmt = conn.prepareStatement("Delete from juror_digital.staff_juror_response_audit Where juror_number in (select juror_number from juror_digital.juror_response where processing_status = 'TODO')");
+			pStmt = conn.prepareStatement("Delete from juror_digital.user_juror_response_audit Where juror_number in (select juror_number from juror_digital.juror_response where processing_status = 'TODO')");
 			pStmt.execute();
 
 			pStmt = conn.prepareStatement("Delete from juror_digital.juror_response_aud Where juror_number in (select juror_number from juror_digital.juror_response where processing_status = 'TODO')");
