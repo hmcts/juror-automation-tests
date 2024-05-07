@@ -1,7 +1,7 @@
 Feature: JM-2895
 
   @JurorTransformationMulti @NewSchemaConverted
-  Scenario Outline: Test to manually enter super urgent paper summons reply as a jury officer - happy path
+  Scenario Outline: Test to manually enter urgent paper summons reply as a jury officer - happy path
     Given I am on "Bureau" "test"
 
     Given a bureau owned pool is created with jurors
@@ -27,7 +27,7 @@ Feature: JM-2895
     Then the view summons reply page is displayed
     And I see the reply "status" on the response is "TO DO"
     And I see the reply "type" on the response is "NEEDS REVIEW"
-    And I see the super urgent flag
+    And I see "URGENT" on the page
     And I see Reply Method is "Paper"
     And I see the process reply button
 
@@ -36,7 +36,7 @@ Feature: JM-2895
       |041500010	|415300108	|MODTESTCOURT |
 
   @JurorTransformationMulti @NewSchemaConverted
-  Scenario Outline: Test to manually enter super urgent paper summons reply as jury officer - juror details validation
+  Scenario Outline: Test to manually enter urgent paper summons reply as jury officer - juror details validation
     Given I am on "Bureau" "test"
 
     Given a bureau owned pool is created with jurors
@@ -63,7 +63,7 @@ Feature: JM-2895
       |041500011	|415300109	|MODTESTCOURT |
 
   @JurorTransformationMulti @NewSchemaConverted
-  Scenario Outline: Test to manually enter super urgent summons reply as jury officer - change name and address
+  Scenario Outline: Test to manually enter urgent summons reply as jury officer - change name and address
     Given I am on "Bureau" "test"
 
     Given a bureau owned pool is created with jurors
@@ -95,7 +95,7 @@ Feature: JM-2895
       |041500012	|415300110	  |MODTESTCOURT |
 
   @JurorTransformationMulti @NewSchemaConverted
-  Scenario Outline: Test to manually enter super urgent summons reply as jury officer - too many characters
+  Scenario Outline: Test to manually enter urgent summons reply as jury officer - too many characters
     Given I am on "Bureau" "test"
 
     Given a bureau owned pool is created with jurors
