@@ -2006,7 +2006,7 @@ Examples:
 	|juror_number	|pool_number|last_name			|postcode	|email 		|
 	|045200035		|452300034	|LNAMESEVENONETHREE	|CH1 2AN	|e@eeee.com	|
 	
-@RegressionSingle @JDNewSchemaConverted
+@RegressionSingle @NewSchemaConverted
 Scenario Outline: English 1st Party Deferral - date 3 selected is a BH
 
 	Given I am on "Public" "test"

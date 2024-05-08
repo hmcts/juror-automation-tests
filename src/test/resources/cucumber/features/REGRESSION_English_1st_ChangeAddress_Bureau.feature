@@ -262,10 +262,12 @@ Scenario Outline: Change Postcode but same loc_code CHANGE COURT FLAG NOT SHOWN
 Examples:
 	| juror_number	| last_name	| postcode	| email 		| pool_number	|
 	| 045200186		| DOE		| SA1 4EE	| a@eeee.com	| 452300171		|
-	
-@Regression @NewSchemaConverted
+
+@Features @NewSchemaConverted @JM-7225
 Scenario Outline: Change postcode - different loc_code SHOWS CHANGE COURT
-	
+
+	#return to @regression when defect fixed
+
 	#6. Change postcode - different loc_code
 	#WV1 - WA1
 	#WV1=LOC_CODE 421
@@ -395,10 +397,12 @@ Scenario Outline: Change postcode - different loc_code SHOWS CHANGE COURT
 Examples:
 	| juror_number	| last_name	| postcode	| email 		| pool_number	|
 	| 045200187		| DOE		| CH1 6LU	| a@eeee.com	| 452300172		|
-	
-@Regression @NewSchemaConverted
+
+@Features @NewSchemaConverted @JM-7225
 Scenario Outline: Change postcode - new postcode in >1 loc_code SHOWS CHANGE COURT
-	
+
+	#return to @Regression when defect fixed
+
 	#1. Change postcode - new postcode in >1 loc_code
 	#CH1 - CH2
 	#CH1=LOC_CODE 415
@@ -525,10 +529,12 @@ Scenario Outline: Change postcode - new postcode in >1 loc_code SHOWS CHANGE COU
 Examples:
 	| juror_number	| last_name	| postcode	| email 		| pool_number	|
 	| 045200188		| DOE		| CH1 6LU	| a@eeee.com	| 452300173		|
-	
-@Regression @NewSchemaConverted
+
+@Features @NewSchemaConverted @JM-7225
 Scenario Outline: Change postcode - new postcode not in court_catchment_area
-	
+
+	#return to @regression when defect fixed
+
 	#3. Change postcode - new postcode not in court_catchment_area
 	#CH1 - SW1H
 	#CH1=LOC_CODE 415
@@ -655,10 +661,12 @@ Scenario Outline: Change postcode - new postcode not in court_catchment_area
 Examples:
 	| juror_number	| last_name	| postcode	| email 		| pool_number	|
 	| 045200189		| DOE		| CH1 6LU	| a@eeee.com	| 452300174		|
-	
-@Regression @NewSchemaConverted
+
+@Features @NewSchemaConverted @JM-7225
 Scenario Outline: Change postcode - old postcode not in court_catchment_area DOES NOT SHOW CHANGE COURT
-	
+
+	#return to @regression when defect fixed
+
 	#4. Change postcode - old postcode not in court_catchment_area
 	#SW1H - CH1
 	#SW1H not in court_catchment_area
@@ -785,10 +793,12 @@ Scenario Outline: Change postcode - old postcode not in court_catchment_area DOE
 Examples:
 	| juror_number	| last_name	| postcode	| email 		| pool_number	|
 	| 045200190		| DOE		| SW1H 6LU	| a@eeee.com	| 452300175		|
-	
-@Regression @NewSchemaConverted
+
+@Features @NewSchemaConverted @JM-7225
 Scenario Outline: Change Postcode but same loc_code CHANGE COURT FLAG NOT SHOWN two
-	
+
+	#return to @regression when defect fixed
+
 	#5a. Change Postcode but same loc_code
 	#NN1 - NN3
 	#NN1=LOC_CODE 442

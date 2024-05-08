@@ -299,6 +299,26 @@ public class SummonsReply {
     @FindBy(id = "processReply")
     WebElement processNowButton;
 
+    @FindBy(xpath = "//*[@id=\"residency\"]/div[contains(text(),\"Attention\")]")
+    WebElement residencyAttention;
+
+    @FindBy(xpath = "//*[@id=\"mentalHealth\"]/div[contains(text(),\"Attention\")]")
+    WebElement mentalHealthAttention;
+
+    @FindBy(xpath = "//*[@id=\"bail\"]/div[contains(text(),\"Attention\")]")
+    WebElement bailAttention;
+
+    @FindBy(xpath = "//*[@id=\"convictions\"]/div[contains(text(),\"Attention\")]")
+    WebElement convictionsAttention;
+
+    @FindBy(xpath = "//*[@id=\"deferralOrExcusal\"]/div[contains(text(),\"Attention\")]")
+    WebElement deferralExcusalAttention;
+
+    @FindBy(xpath = "//*[@id=\"cjsEmploymentDetails\"]/div[contains(text(),\"Attention\")]")
+    WebElement cjsEmploymentAttention;
+
+    @FindBy(xpath = "//*[@id=\"disability\"]/div[contains(text(),\"Attention\")]")
+    WebElement reasonableAdjustmentsAttention;
 
     public String getReplyStatus() {
         return replyStatus.getText();
@@ -658,5 +678,39 @@ public class SummonsReply {
         WebElement dropdown = driver.findElement(By.id("adjustmentsReason"));
         Select select = new Select(dropdown);
         select.selectByVisibleText(reason);
+    }
+
+    public void eligibilityAttentionIndicatorVisible(String eligibilityCriteria) {
+
+        switch (eligibilityCriteria) {
+            case "Residency":
+                residencyAttention.isDisplayed();
+                break;
+
+            case "Mental health act":
+                mentalHealthAttention.isDisplayed();
+                break;
+
+            case "Bail":
+                bailAttention.isDisplayed();
+                break;
+
+            case "Convictions":
+                convictionsAttention.isDisplayed();
+                break;
+
+            case "Deferral or excusal":
+                deferralExcusalAttention.isDisplayed();
+                break;
+
+            case "CJS employment":
+                cjsEmploymentAttention.isDisplayed();
+                break;
+
+            case "Reasonable adjustments":
+                reasonableAdjustmentsAttention.isDisplayed();
+                break;
+
+        }
     }
 }

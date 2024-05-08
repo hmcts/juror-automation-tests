@@ -1,67 +1,58 @@
 Feature: Bureau C Test
 	
-@RegressionSingle 
+@Features @NewSchemaConverted @JM-7246
 Scenario Outline: Bureau C script
 
+	#return to @RegressionSingle wqhen defect fixed
+
 	Given I am on "Bureau" "test"
 
-	And pool no "<pool_no>" is reset to pending allocation
-	And I have cleared down the juror digital database
-	Given the juror numbers have not been processed
-		| part_no 			| pool_no 	| owner |
-		| <part_no> 		|<pool_no>	| 400 	|
-		| <part_no_two> 	|<pool_no>	| 400 	|
-		| <part_no_three> 	|<pool_no>	| 400 	|
-	
+	Given a bureau owned pool is created with jurors
+		| court | juror_number  			| pool_number	| att_date_weeks_in_future	| owner |
+		| 452   | <juror_number_one>		| <pool_number>	| 6				            | 400	|
+		| 452   | <juror_number_two>		| <pool_number>	| 6				            | 400	|
+		| 452   | <juror_number_three>		| <pool_number>	| 6				            | 400	|
+
+	And juror "<juror_number_one>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number_one>" has "POSTCODE" as "<postcode>" new schema
+
+	And juror "<juror_number_two>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number_two>" has "POSTCODE" as "<postcode>" new schema
+
+	And juror "<juror_number_three>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number_three>" has "POSTCODE" as "<postcode>" new schema
+
 	Given auto straight through processing has been enabled new schema
-	
-	And "<juror_number>" has "RET_DATE" as "6 mondays time"
-	And "<juror_number>" has "NEXT_DATE" as "6 mondays time"
-	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
-	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
-	
-	And "<part_no_two>" has "RET_DATE" as "6 mondays time"
-	And "<part_no_two>" has "NEXT_DATE" as "6 mondays time"
-	And "<part_no_two>" has "LNAME" as "<last_name>" 
-	And "<part_no_two>" has "ZIP" as "<postcode>"
-	
-	And "<part_no_three>" has "RET_DATE" as "6 mondays time"
-	And "<part_no_three>" has "NEXT_DATE" as "6 mondays time"
-	And "<part_no_three>" has "LNAME" as "<last_name>" 
-	And "<part_no_three>" has "ZIP" as "<postcode>"
 
 	Given I have submitted a first party English ineligibilty response
-		| part_no			|pool_number	| last_name			|postcode		| email 	|details	|
-		|<part_no>			|<pool_no>		| <last_name>		|<postcode>		|<email>	|<details>	|
-		|<part_no_two>		|<pool_no>		| <last_name>		|<postcode>		|<email>	|<details>	|
-		|<part_no_three>	|<pool_no>		| <last_name>		|<postcode>		|<email>	|<details>	|
-		
+		| part_no				| pool_number	| last_name			|postcode		| email 	|details	|
+		| <juror_number_one>	| <pool_number>	| <last_name>		|<postcode>		|<email>	|<details>	|
+		| <juror_number_two>	| <pool_number>	| <last_name>		|<postcode>		|<email>	|<details>	|
+		| <juror_number_three>	| <pool_number>	| <last_name>		|<postcode>		|<email>	|<details>	|
+
 	Given I am on "Bureau" "test"
 	
-	When I log in
+	When I log in as "CPASS"
 	And I click on the "Assign Replies" link
-	
-	#And I see "3" in the same row as "Non urgent" in Backlog box
-	And I set input field with "name" of "allocateNonUrgent" to "3"
-	When I check the "ARAMIS1" checkbox
-	And I press the "Assign replies" button
+
+	And I assign all the New Replies to "ARAMIS1"
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<juror_number>"
+	And I set "Juror number" to "<juror_number_one>"
 	And I press the "Search" button
 	
 	And I press the "Select all" button
 	And I press the "Send to..." button
-	And I set input field with "id" of "sendToOfficer" to "MODTESTBUREAU"
+	And I set input field with "id" of "sendToOfficer" to "CPASS"
 	And I press the "Send" button
 	And I press the "Send" button
-	Then I see "Your work" on the page
-	Then I see "<juror_number>" in the same row as "<juror_number>"
+	Then I click on the "Your work" link
+	Then I see "<juror_number_one>" in the same row as "<juror_number_one>"
 	When I click on the "To do" link
 	
 	# Proves that I have sent from Backlog to SYSTEM/Logged in USer
 	
-	When I click on "<juror_number>" in the same row as "<juror_number>"
+	When I click on "<juror_number_one>" in the same row as "<juror_number_one>"
 	Then I press the "More actions" button
 	And I click on the "Send to a colleague" link
 	
@@ -79,7 +70,7 @@ Scenario Outline: Bureau C script
 	Then I do not see "<juror_number>" on the page
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<juror_number>"
+	And I set "Juror number" to "<juror_number_one>"
 	And I press the "Search" button
 	And I press the "Select all" button
 	And I press the "Send to" button
@@ -92,25 +83,25 @@ Scenario Outline: Bureau C script
 
 	Given I am on "Bureau" "test"
 	And I log in as "ARAMIS1"
-	Then I see "<juror_number>" on the page
+	Then I see "<juror_number_one>" on the page
 
-	When I click on "<juror_number>" in the same row as "<juror_number>"
+	When I click on "<juror_number_one>" in the same row as "<juror_number_one>"
 	Then I press the "More actions" button
 	And I click on the "Send to a colleague" link
 	And I set input field with "id" of "sendToOfficer" to "MODTESTBUREAU"
 	And I press the "Send" button
 	And I press the "Send" button
 	Then I see "Your work" on the page
-	Then I do not see "<juror_number>" on the page
+	Then I do not see "<juror_number_one>" on the page
 	
 	And I click on the "Sign out" link
 
 	Given I am on "Bureau" "test"
-	And I log in
-	Then I see "<juror_number>" on the page
+	And I log in as "MODTESTBUREAU"
+	Then I see "<juror_number_one>" on the page
 	
 	When I click on the "Search" link
-	And I set "Juror's pool number" to "<pool_no>"
+	And I set "Juror's pool number" to "<pool_number>"
 	And I press the "Search" button
 	And I click on the "Select all" link
 	And I press the "Send to..." button
@@ -123,16 +114,18 @@ Scenario Outline: Bureau C script
 
 	Given I am on "Bureau" "test"
 	And I log in as "ARAMIS1"
-	Then I see "<juror_number>" on the page
-	Then I see "<part_no_two>" on the page
-	Then I see "<part_no_three>" on the page
+	Then I see "<juror_number_one>" on the page
+	Then I see "<juror_number_two>" on the page
+	Then I see "<juror_number_three>" on the page
 	
 	And I click on the "Sign out" link
 	
 	Given I am on "Bureau" "test"
-	And I log in
+	And I log in as "MODTESTBUREAU"
 	When I click on the "Search" link
-	And I set "Juror's pool number" to "<pool>"
+	And I set "Juror's pool number" to "<pool_number>"
+
+	#JM-7246
 	And I click on the "Advanced search" link
 	And I check the "To do" checkbox
 	And I press the "Search" button
@@ -147,12 +140,10 @@ Scenario Outline: Bureau C script
 
 	Given I am on "Bureau" "test"
 	And I log in as "CPASS"
-	Then I do not see "<juror_number>" on the page
-	Then I do not see "<part_no_two>" on the page
-	Then I do not see "<part_no_three>" on the page
-	
-	
-	
+	Then I do not see "<juror_number_one>" on the page
+	Then I do not see "<juror_number_two>" on the page
+	Then I do not see "<juror_number_three>" on the page
+
 	#And I send to Backlog
 	
 	## New Replies cannot be assigned to the backlog if they are assigned to the current user
@@ -179,6 +170,6 @@ Scenario Outline: Bureau C script
 
 	
 Examples:
-	|part_no 	|part_no_two|part_no_three	|pool_no	|last_name		|postcode	|email				|details	|
-	|641500613	|641500616	|641500618		|415170401	|LNAMEEIGHTFOUR	|CH1 2AN	|email@bureauA.com	|12345abcde	|
+	| juror_number_one 	| juror_number_two	| juror_number_three	| pool_number	| last_name			| postcode	| email				| details		|
+	| 045200242			| 045200243			| 045200244			| 452300221		| LNAMEEIGHTFOUR	| CH1 2AN	| email@bureauA.com	| 12345abcde	|
 	

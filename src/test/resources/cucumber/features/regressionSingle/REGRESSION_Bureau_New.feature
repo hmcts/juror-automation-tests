@@ -234,63 +234,49 @@ Examples:
 	| juror_number_one	| juror_number_two	| juror_number_three	| juror_number_four	| pool_number_one 	| pool_number_two | pool_number_three | last_name_one 	| last_name_two	| last_name_three	| last_name_four| postcode 	|
 	| 045200234			| 045200235			| 045200236				| 045200237			| 452300214 		| 452300215	      | 452300216         | LNAMEONE		| LNAMETWO 		| LNAMETHREE		| LNAMEFOUR		| CH1 2AN	|
 
-@RegressionSingle 
+@RegressionSingle @NewSchemaConverted
 Scenario Outline: Edit Response
+
 	Given I am on "Public" "test"
+
 	Given auto straight through processing has been disabled new schema
-	Given the juror numbers have not been processed
-		|part_no 			|pool_no 	|owner	|
-		|<part_no> 			|457170501	|400 	|
-		|<part_no_two> 		|457170501	|400 	|
-		|<part_no_three> 	|457170501	|400 	|
-	
-	# Using Staff Member CPASS
-	
-	# Set part_no pool to not be urgent
-	
-	Given "<juror_number>" has "RET_DATE" as "5 mondays time"
 
-	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
-	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
+	Given a bureau owned pool is created with jurors
+		| court | juror_number  		| pool_number		| att_date_weeks_in_future	| owner |
+		| 452   | <juror_number_one>	| <pool_number_one>	| 5				            | 400	|
+
+	Given a bureau owned pool is created with jurors
+		| court | juror_number  		| pool_number		| att_date_weeks_in_future	| owner |
+		| 452   | <juror_number_two>	| <pool_number_two>	| 3				            | 400	|
+
+	Given a bureau owned pool is created with jurors
+		| court | juror_number  		| pool_number			| att_date_weeks_in_future	| owner |
+		| 452   | <juror_number_three>	| <pool_number_three>	| 2				            | 400	|
+
+	And juror "<juror_number_one>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number_one>" has "POSTCODE" as "<postcode>" new schema
+
+	And juror "<juror_number_two>" has "LAST_NAME" as "<last_name_two>" new schema
+	And juror "<juror_number_two>" has "POSTCODE" as "<postcode>" new schema
+
+	And juror "<juror_number_three>" has "LAST_NAME" as "<last_name_three>" new schema
+	And juror "<juror_number_three>" has "POSTCODE" as "<postcode>" new schema
 	
 	# Submit response in pool
-	
 	Given I have submitted a first party English straight through response
-		|part_no	|pool_number|last_name	|postcode	|email 	|
-		|<part_no>	|<pool_no>	|<last_name>|CH1 2AN	|a@a.com|
+		| part_no			| pool_number		| last_name		| postcode	| email 	|
+		| <juror_number_one>| <pool_number_one>	| <last_name>	| CH1 2AN	| a@a.com	|
 
-	# Set part_no pool to be urgent
-	
-	Given "<part_no_two>" has "RET_DATE" as "3 mondays time"
-	And "<part_no_two>" has "NEXT_DATE" as "3 mondays time"
-	And "<part_no_two>" has "LNAME" as "<last_name_two>"
-	And "<part_no_two>" has "ZIP" as "<postcode>"
-	
-	# Submit response in pool
-	
 	Given I have submitted a first party English straight through response
-		|part_no		|pool_number|last_name		|postcode	| email |
-		|<part_no_two>	|<pool_no>	|<last_name_two>|CH1 2AN	|a@a.com|
+		| part_no				| pool_number		| last_name			| postcode	| email |
+		| <juror_number_two>	| <pool_number_two>	| <last_name_two>	| CH1 2AN	| a@a.com|
 
-	# Set part_no pool to be super urgent
-	
-	Given "<part_no_three>" has "RET_DATE" as "2 mondays time"
-	And "<part_no_three>" has "NEXT_DATE" as "2 mondays time"
-	And "<part_no_three>" has "LNAME" as "<last_name_three>"
-	And "<part_no_three>" has "ZIP" as "<postcode>"
-	
-	# Submit response in pool
-	
 	Given I have submitted a first party English straight through response
-		|part_no		|pool_number|last_name			|postcode	|email 	|
-		|<part_no_three>|<pool_no>	|<last_name_three>	|CH1 2AN	|a@a.com|
-		
-	Given "<part_no_three>" has "READ_ONLY" as "Y"
-	Then the "URGENT" for juror "<part_no_three>" is set to "N"
-	Then the "SUPER_URGENT" for juror "<part_no_three>" is set to "Y"
+		| part_no				| pool_number			| last_name			| postcode	| email 	|
+		| <juror_number_three>	| <pool_number_three>	| <last_name_three>	| CH1 2AN	| a@a.com	|
 	
 	Given I am on "Bureau" "test"
-	And I log in	
+	And I log in as "MODTESTBUREAU"
 
 	When I click on the "Assign Replies" link
 	And I assign all the New Replies to "ARAMIS1"
@@ -303,11 +289,11 @@ Scenario Outline: Edit Response
 	|text|
 	|Your work|
 	|To do|
-	|<part_no>|
-	|<part_no_two>|
-	|<part_no_three>|
+	|<juror_number_one>|
+	|<juror_number_two>|
+	|<juror_number_three>|
 	
-	And I click on the "<juror_number>" link
+	And I click on the "<juror_number_one>" link
 	
 	And on the page I see
 	|text|
@@ -315,17 +301,17 @@ Scenario Outline: Edit Response
 	|Reply status|
 	|Reply type|
 	|Juror number|
-	|<part_no>|
-	|Record status|
+	|<juror_number_one>|
+	|Juror status|
 	|Summoned|
 	|Reply received|
 	|Pool number|
-	|<pool_no>|
-	|Court start date|
+	|<pool_number_one>|
+	|Service start date|
 	|Court name|
-	|SWANSEA|
+	|Shrewsbury|
 	|Juror's reply|
-	|Logs|
+	|Notes and logs|
 	
 	Then I click on the "Back" link
 	And I see "Your work" on the page
@@ -333,8 +319,8 @@ Scenario Outline: Edit Response
 	Given auto straight through processing has been enabled new schema
 	
 Examples:
-	|part_no		|part_no_two	|part_no_three	|pool_no 	|last_name 		|last_name_two	|last_name_three	|postcode 	|
-	|645700184		|645700878		|645700884		|457170501 	|LNAMESTANDARD	|LNAMEURGENT 	|LNAMESUPERURGENT	|CH1 2AN	|
+	| juror_number_one	| juror_number_two	| juror_number_three	| pool_number_one 	| pool_number_two | pool_number_three 	| last_name 	| last_name_two	| last_name_three	| postcode 	|
+	| 045200245			| 045200246			| 045200247				| 452300222 		| 452300223 	  | 452300224           | LNAMESTANDARD	| LNAMEURGENT 	| LNAMESUPERURGENT	| CH1 2AN	|
 
 @RegressionSingle 
 Scenario Outline: Search as Team Member

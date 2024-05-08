@@ -3086,4 +3086,9 @@ public class StepDef_jurorpool {
     public void iSeeMessageSentBannerContaining() {
         POOL_OVERVIEW_PAGE.nextDueAtCourtBanner();
     }
+
+    @Then("^\"([^\"]*)\" is marked as requiring attention$")
+    public void iSeeAttentionIndicator(String eligibilityAttentionType) {
+        SUMMONS_REPLY.eligibilityAttentionIndicatorVisible(eligibilityAttentionType);
+    }
 }
