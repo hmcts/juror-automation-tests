@@ -45,7 +45,7 @@ Feature: JM-3686
     Then I set residency in the UK radio button to No
     And I press the "Continue" button
     Then I click on the "Eligibility" link
-    And I see "Attention" in the same row as "Residency"
+    And I see the eligibility of "Residency" is "Attention"
 
    #Deferral or excusal
     Then I click on the "Deferral or excusal" link

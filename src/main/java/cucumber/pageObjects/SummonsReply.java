@@ -142,7 +142,7 @@ public class SummonsReply {
     @FindBy(className = "govuk-heading-l")
     WebElement heading;
 
-    @FindBy(id= "fixNameAnchor")
+    @FindBy(id = "fixNameAnchor")
     WebElement changeName;
     @FindBy(id = "addressChangeAnchor")
     WebElement changeAddress;
@@ -209,7 +209,7 @@ public class SummonsReply {
     @FindBy(xpath = "//a[@ID='cancelAnchor'][contains(text(),'process later')]")
     WebElement cancelAnchorProcessLater;
 
-    @FindBy(xpath ="//*[@class='info with-icon']")
+    @FindBy(xpath = "//*[@class='info with-icon']")
     WebElement jurorStatus;
     @FindBy(xpath = "//*[@class='govuk-body']")
     WebElement reassignErrorText;
@@ -299,6 +299,9 @@ public class SummonsReply {
     @FindBy(id = "processReply")
     WebElement processNowButton;
 
+    public String getStatusOfItemInEligiability(String item) {
+        return driver.findElement(By.xpath("//*[@Id='eligibility']/descendant::dt[contains(text(),'" + item + "')]/../dd")).getText();
+    }
 
     public String getReplyStatus() {
         return replyStatus.getText();
@@ -363,9 +366,11 @@ public class SummonsReply {
         altPhone.clear();
         altPhone.sendKeys(text);
     }
+
     public String reassignErrorText() {
         return reassignErrorText.getText();
     }
+
     public void enterEmail(String text) {
         email.clear();
         email.sendKeys(text);
@@ -382,6 +387,7 @@ public class SummonsReply {
     public void selectThirdPartyReasonNotHere() {
         thirdPartyReasonNotHere.click();
     }
+
     public void clickContinue() {
         continueButton.click();
     }
@@ -398,7 +404,10 @@ public class SummonsReply {
         mentalHealthActYes.click();
     }
 
-    public void clickMentalHealthActNo() {mentalHealthActNo.click();}
+    public void clickMentalHealthActNo() {
+        mentalHealthActNo.click();
+    }
+
     public void clickLackCapacityYes() {
         lackCapacityYes.click();
     }
@@ -443,7 +452,9 @@ public class SummonsReply {
         cjsEmploymentNo.click();
     }
 
-    public void clickAdjustmentsYes() {adjustmentsYes.click();}
+    public void clickAdjustmentsYes() {
+        adjustmentsYes.click();
+    }
 
     public void clickAdjustmentsNo() {
         adjustmentsNo.click();
@@ -515,9 +526,10 @@ public class SummonsReply {
         residencyNoButton.click();
 
     }
-        public void  clickProcessNowButton() {
-            processNowButton.click();
-        }
+
+    public void clickProcessNowButton() {
+        processNowButton.click();
+    }
 
     public List<String> getErrors() {
         return driver.findElements(By.xpath(
@@ -533,9 +545,11 @@ public class SummonsReply {
         firstNameField.clear();
         firstNameField.sendKeys(name);
     }
+
     public void clickChangeAddress() {
         changeAddress.click();
     }
+
     public void enterAddressLineOne(String address) {
         address1.clear();
         address1.sendKeys(address);
@@ -561,29 +575,39 @@ public class SummonsReply {
         policeForceTextBox.sendKeys(text);
     }
 
-    public String getSuperUrgentFlag(){ return superUrgentFlag.getText();}
+    public String getSuperUrgentFlag() {
+        return superUrgentFlag.getText();
+    }
 
     public boolean processReplyButtonIsPresent() {
         return processReplyButton.isDisplayed();
     }
 
-    public void clickProcessReplyButton(){ processReplyButton.click();}
+    public void clickProcessReplyButton() {
+        processReplyButton.click();
+    }
 
-    public static Boolean    processedSuccessBannerInvisible() {
+    public static Boolean processedSuccessBannerInvisible() {
         List<WebElement> elements = driver.findElements(By.xpath("//div[@class=\"moj-banner moj-banner--success\"]"));
         return elements.isEmpty();
     }
 
-    public String getResponseBannerText() { return responseBanner.getText();
+    public String getResponseBannerText() {
+        return responseBanner.getText();
     }
 
     public void clickMarkAsResponded() {
         markAsResponded.click();
     }
+
     public void clickProcessAcionDeferralRequest() {
         processActionDeferralRequest.click();
     }
-    public void clickMarkAsRespondedCheckbox(){confirmMarkAsRespondedCheckbox.click();}
+
+    public void clickMarkAsRespondedCheckbox() {
+        confirmMarkAsRespondedCheckbox.click();
+    }
+
     public void clickConfirmMarkAsRespondedButton() {
         markAsRespondedConfirmButton.click();
     }
@@ -591,9 +615,14 @@ public class SummonsReply {
     public boolean processedSuccessBannerIsPresent() {
         return processedSuccessBanner.isDisplayed();
     }
-    public String processSuccessBannerLink(){ return processedSuccessBannerLink.getText();}
 
-    public void clickProcessSuccessBannerLink(){ processedSuccessBannerLink.click();}
+    public String processSuccessBannerLink() {
+        return processedSuccessBannerLink.getText();
+    }
+
+    public void clickProcessSuccessBannerLink() {
+        processedSuccessBannerLink.click();
+    }
 
     public void clickCancelLink() {
         cancelLink.click();
@@ -602,6 +631,7 @@ public class SummonsReply {
     public String getJurorStatus() {
         return jurorStatus.getText();
     }
+
     public boolean errorIsPresent() {
         return respondedError.isDisplayed();
     }
@@ -610,48 +640,83 @@ public class SummonsReply {
         return respondedErrorText.getText();
     }
 
-    public Boolean    enterSummonsReplyButtonInvisible() {
+    public Boolean enterSummonsReplyButtonInvisible() {
         List<WebElement> elements = driver.findElements(By.xpath("//a[contains(text(),'Enter summons reply')]"));
         return elements.isEmpty();
 
     }
 
-    public Boolean    processReplyButtonInvisible() {
+    public Boolean processReplyButtonInvisible() {
         List<WebElement> elements = driver.findElements(By.xpath("//a[contains(text(),'Process reply')]"));
         return elements.isEmpty();
 
     }
 
-    public void clickNoToReplyLater() { cancelAnchorProcessLater.click(); }
+    public void clickNoToReplyLater() {
+        cancelAnchorProcessLater.click();
+    }
 
-    public void setJurorNumber(String jurorNo){ jurorNumber.sendKeys(jurorNo);}
+    public void setJurorNumber(String jurorNo) {
+        jurorNumber.sendKeys(jurorNo);
+    }
 
-    public void setJurorLname(String jurorLname){ jurorLastName.sendKeys(jurorLname);}
+    public void setJurorLname(String jurorLname) {
+        jurorLastName.sendKeys(jurorLname);
+    }
 
-    public void setJurorPostcode(String jurorPost){jurorPostcode.sendKeys(jurorPost);}
+    public void setJurorPostcode(String jurorPost) {
+        jurorPostcode.sendKeys(jurorPost);
+    }
 
-    public void setDigitalDeferralReason(String deferralReason){digitalDeferralReason.sendKeys(deferralReason);}
+    public void setDigitalDeferralReason(String deferralReason) {
+        digitalDeferralReason.sendKeys(deferralReason);
+    }
 
-    public void setFirstChoice(String firstChoiceDate){firstChoice.clear(); firstChoice.sendKeys(firstChoiceDate);}
+    public void setFirstChoice(String firstChoiceDate) {
+        firstChoice.clear();
+        firstChoice.sendKeys(firstChoiceDate);
+    }
 
-    public void setSecondChoice(String secondChoiceDate){secondChoice.clear(); secondChoice.sendKeys(secondChoiceDate);}
+    public void setSecondChoice(String secondChoiceDate) {
+        secondChoice.clear();
+        secondChoice.sendKeys(secondChoiceDate);
+    }
 
-    public void setThirdChoice(String thirdChoiceDate){thirdChoice.clear(); thirdChoice.sendKeys(thirdChoiceDate);}
+    public void setThirdChoice(String thirdChoiceDate) {
+        thirdChoice.clear();
+        thirdChoice.sendKeys(thirdChoiceDate);
+    }
 
-    public void setFirstChoicePaper(String firstChoiceDate){firstChoicePaper.clear(); firstChoicePaper.sendKeys(firstChoiceDate);}
+    public void setFirstChoicePaper(String firstChoiceDate) {
+        firstChoicePaper.clear();
+        firstChoicePaper.sendKeys(firstChoiceDate);
+    }
 
-    public void setSecondChoicePaper(String secondChoiceDate){secondChoicePaper.clear(); secondChoicePaper.sendKeys(secondChoiceDate);}
+    public void setSecondChoicePaper(String secondChoiceDate) {
+        secondChoicePaper.clear();
+        secondChoicePaper.sendKeys(secondChoiceDate);
+    }
 
-    public void setThirdChoicePaper(String thirdChoiceDate){thirdChoicePaper.clear(); thirdChoicePaper.sendKeys(thirdChoiceDate);}
+    public void setThirdChoicePaper(String thirdChoiceDate) {
+        thirdChoicePaper.clear();
+        thirdChoicePaper.sendKeys(thirdChoiceDate);
+    }
 
-    public void setAltChoicePaper(String altChoiceDate){altChoicePaper.clear(); altChoicePaper.sendKeys(altChoiceDate);}
+    public void setAltChoicePaper(String altChoiceDate) {
+        altChoicePaper.clear();
+        altChoicePaper.sendKeys(altChoiceDate);
+    }
 
-    public void deferralOptionDifferent(){deferralOptionDifferent.click();}
+    public void deferralOptionDifferent() {
+        deferralOptionDifferent.click();
+    }
 
-    public void deferralOption1(){deferralOption1.click();}
+    public void deferralOption1() {
+        deferralOption1.click();
+    }
 
     public void clickPoolCreatedForDeferral(String poolNumber) {
-        driver.findElement(By.xpath("//*[contains(text(),'"+poolNumber+"')]/../../input")).click();
+        driver.findElement(By.xpath("//*[contains(text(),'" + poolNumber + "')]/../../input")).click();
     }
 
     public void selectAdjustmentReason(String reason) {
