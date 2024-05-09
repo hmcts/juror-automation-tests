@@ -139,4 +139,9 @@ public class StepDef_summoningprogress {
         ArrayList<String> pools = StepDef_jurorpool.poolNumbers.get();
         pools.clear();
     }
+
+    @And("^I see the eligibility of \"([^\"]*)\" is \"([^\"]*)\"$")
+    public void checkEligibilityOfItem(String item, String expected) {
+        assertEquals(expected, SUMMONS_REPLY.getStatusOfItemInEligiability(item));
+    }
 }
