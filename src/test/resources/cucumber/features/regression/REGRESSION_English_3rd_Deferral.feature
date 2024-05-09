@@ -1074,7 +1074,7 @@ Examples:
 	| juror_number	| last_name			| postcode	| email           	| pool_number	|
 	| 045200084		| LNAMESIXSEVENSIX	| SW1H 9AJ	| email@outlook.com	| 452300083		|
 
-@RegressionSingle @NewSchemaUpdated
+@RegressionSingle @NewSchemaConverted
 Scenario Outline: English 3rd Party Deferral - Deferral date 2 is a Bank Holiday
 
 	Given I am on "Public" "test"

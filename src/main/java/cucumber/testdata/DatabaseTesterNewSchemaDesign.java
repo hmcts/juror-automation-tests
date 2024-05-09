@@ -2572,7 +2572,7 @@ public class DatabaseTesterNewSchemaDesign {
 
 		Date mondayDate = Date.from(localDateMonday.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
 
-		holidayDate = new SimpleDateFormat(datePattern).format((mondayDate).getTime());
+		holidayDate = String.valueOf(localDateMonday);
 		holidayOwner = owner;
 
 		try {
@@ -2656,8 +2656,8 @@ public class DatabaseTesterNewSchemaDesign {
 
 		try {
 
-			pStmt = conn.prepareStatement("DELETE FROM JUROR_MOD.HOLIDAY WHERE LOC_CODE='" + holidayOwner + "'");
-			pStmt.executeQuery();
+			pStmt = conn.prepareStatement("DELETE FROM JUROR_MOD.HOLIDAY WHERE LOC_CODE='" + holidayOwner + "' AND HOLIDAY='" + holidayDate + "'");
+			pStmt.execute();
 
 
 		} catch (SQLException e) {
