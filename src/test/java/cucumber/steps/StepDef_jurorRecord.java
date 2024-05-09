@@ -562,6 +562,7 @@ public class StepDef_jurorRecord {
     }
 
     @When("^I check all the checkboxes in the letters table for the initial summons letter$")
+    @When("^I check all the checkboxes in the letters table$")
     public void selectAllCheckboxesInLettersTable(){
         NAV.waitForPageLoad(2);
         JUROR_RECORD.selectAllCheckboxesInLettersTable();
