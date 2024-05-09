@@ -1,6 +1,6 @@
 Feature: Regression Welsh_1st_Deferral
 
-@RegressionWelsh @JDB-3516 @JDB-3089 @JDB-3089A @JDB-3409 @JDB-3445 @JDB-3448 @JDB-3503 @JDB-3071 @JDB-3603 @JDB-3819 @JDB-4249
+@RegressionWelsh
 Scenario Outline: Welsh 1st Party Deferral
 	Given I am on the welsh version of "Public" "bau-test"
 	Given the juror numbers have not been processed
@@ -259,16 +259,17 @@ Examples:
 	|part_no	|last_name			|postcode	|email 		|pool_no	|
 	|641500997	|LNAMENINENINESEVEN	|CH1 2AN	|a@eeee.com	|415170401	|
 
-@RegressionSingle
+@RegressionSingle @NewSchemaConverted
 Scenario Outline: Welsh 1st Party Deferral - bank holiday
+
 	Given I am on the welsh version of "Public" "test"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+
+	Given a bureau owned pool is created with jurors
+		| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 457   | <juror_number>| <pool_number>	| 5			            	| 400	|
+
 	
 	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
-
-
 	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 
 	And I do not see any links on the page that open to a new page without an alt text
@@ -284,21 +285,18 @@ Scenario Outline: Welsh 1st Party Deferral - bank holiday
 	Then I see "A yw'r enw sydd gennym ar eich cyfer chi yn gywir?" on the page
 	
 	#Juror's details
-
 	And I set the radio button to "Ydy"
 	When I press the "Parhau" button
 	Then I see "Eich cyfeiriad chi yw hwn?" on the page
 	And I do not see any links on the page that open to a new page without an alt text
 	
 	#Juror's address
-
 	And I set the radio button to "Ie"
 	When I press the "Parhau" button
 	Then I see "Beth yw eich rhif ffôn?" on the page
 	And I do not see any links on the page that open to a new page without an alt text
 	
 	#Juror's phone
-
 	And I see "Darparwch rif ffôn yn y DU y gallwn ei ddefnyddio i gysylltu â chi rhwng 9am a 5pm, dydd Llun i ddydd Gwener." on the page
 	When I set "Prif rif ffôn" to "02078211818"
 	And I press the "Parhau" button
@@ -306,16 +304,14 @@ Scenario Outline: Welsh 1st Party Deferral - bank holiday
 	And I do not see any links on the page that open to a new page without an alt text
 	
 	#Juror's email
-
 	When I see "Pam fod arnom angen eich cyfeiriad e-bost?" on the page
-	And I set "Nodwch eich cyfeiriad e-bost" to "email@outlook.com"
-	And I set "Nodwch eich cyfeiriad e-bost eto" to "email@outlook.com"
+	And I set "Nodwch eich cyfeiriad e-bost" to "<email>"
+	And I set "Nodwch eich cyfeiriad e-bost eto" to "<email>"
 	And I press the "Parhau" button
 	Then I see "Beth yw eich dyddiad geni?" on the page
 	And I do not see any links on the page that open to a new page without an alt text
 	
 	#DoB and JDB-3409
-
 	And I see "Cymorth gyda'ch dyddiad geni" on the page
 	When I set "Diwrnod" to "27"
 	And I set "Mis" to "04"
@@ -325,11 +321,9 @@ Scenario Outline: Welsh 1st Party Deferral - bank holiday
 	And I do not see any links on the page that open to a new page without an alt text
 	
 	#Do you qualify for jury service?
-
 	When I press the "Parhau" button
 	
 	#Residency
-
 	Then I see "Ers i chi droi'n 13 oed, a yw eich prif gyfeiriad wedi bod yn y DU, Ynysoedd y Sianel neu Ynys Manaw am unrhyw gyfnod o 5 mlynedd o leiaf?" on the page
 	And I do not see any links on the page that open to a new page without an alt text
 	And I set the radio button to "Do"
@@ -337,7 +331,6 @@ Scenario Outline: Welsh 1st Party Deferral - bank holiday
 	And I do not see any links on the page that open to a new page without an alt text
 
 	#CJS
-
 	Then I see "A ydych chi wedi gweithio yn y system cyfiawnder troseddol yn y 5 mlynedd diwethaf?" on the page
 	And I do not see any links on the page that open to a new page without an alt text
 	And I set the radio button to "Nac ydw"
@@ -345,31 +338,26 @@ Scenario Outline: Welsh 1st Party Deferral - bank holiday
 	And I do not see any links on the page that open to a new page without an alt text
 	
 	#Bail
-
 	And I set the radio button to "Nac ydw"
 	And I press the "Parhau" button
 	And I do not see any links on the page that open to a new page without an alt text
 
 	#Criminal convictions
-
 	And I set the radio button to "Naddo"
 	And I press the "Parhau" button
 	And I do not see any links on the page that open to a new page without an alt text
 	
 	#Mental health sectioned
-
 	And I set the radio button to "Na"
 	And I press the "Parhau" button
 	And I do not see any links on the page that open to a new page without an alt text
 	
 	#Mental health capacity
-
 	And I set the radio button to "Na"
 	And I press the "Parhau" button
 	And I do not see any links on the page that open to a new page without an alt text
 
 	#Can you attend
-
 	And I see "Gwiriwch eich dyddiad dechrau" on the page
 	And I see "Rydych wedi cael gwŷs i ddechrau gwasanaeth rheithgor ar" on the page
 	And I see "Ydych chi'n gallu dechrau gwasanaeth rheithgor ar y dyddiad hwn?" on the page
@@ -393,7 +381,6 @@ Scenario Outline: Welsh 1st Party Deferral - bank holiday
 	And I do not see any links on the page that open to a new page without an alt text
 	
 	#JDB-3448 and JDB-3503
-	
 	And I see "steps/confirm-date/deferral-reason" in the URL
 	Then I see "Dywedwch wrthym pam fod angen dyddiad arall arnoch i wneud eich gwasanaeth rheithgor" on the page
 	And I see "Mae'n rhaid i chi gael rheswm da dros newid dyddiad, er enghraifft:" on the page
@@ -405,7 +392,6 @@ Scenario Outline: Welsh 1st Party Deferral - bank holiday
 	And I do not see any links on the page that open to a new page without an alt text
 	
 	#Deferral Reason
-	
 	And I press the "Parhau" button
 	And I see "Nodwch y rheswm dros fod angen dyddiad arall ar gyfer eich gwasanaeth rheithgor" on the page
 	
@@ -418,10 +404,7 @@ Scenario Outline: Welsh 1st Party Deferral - bank holiday
 	When I set text area with "id" of "deferralReason" to "askForAnotherDateReasonWhy"
 	And I press the "Parhau" button
 	And I do not see any links on the page that open to a new page without an alt text
-	
-	#JDB-3445 Deferral Date Screen Layout
-	#JDB-3603
-	
+
 	And I see "steps/confirm-date/deferral-dates" in the URL
 	Then I see "Dewiswch 3 dydd Llun pan allwch ddechrau gwasanaeth rheithgor" on the page
 	And I see "Rhaid i'r rhain fod rhwng" on the page
@@ -430,8 +413,7 @@ Scenario Outline: Welsh 1st Party Deferral - bank holiday
 	And I see "Ail ddewis" on the page
 	And I see "Trydydd dewis" on the page
 	
-	#help text 
-	
+	#help text
 	And I click on the "A fydd angen i mi wasanaethu'n hirach na phythefnos?" link
 	And I see "Dim ond pythefnos y mae angen i'r rhan fwyaf o bobl wasanaethu ar reithgor." on the page
 	And I see "Efallai y bydd y llys yn gofyn i chi wasanaethu am fwy o amser pan fyddwch yn cyrraedd y llys." on the page
@@ -461,7 +443,6 @@ Scenario Outline: Welsh 1st Party Deferral - bank holiday
 	And I press the "Parhau" button
 		
 	#Bank holiday
-	
 	And on the page I see
 	|text|
 	|Mae o leiaf un dydd Llun a ddewiswyd gennych yn ŵyl banc|
@@ -472,13 +453,11 @@ Scenario Outline: Welsh 1st Party Deferral - bank holiday
 	And I press the "Parhau" button
 	
 	#Special Requirements
-
 	And I set the radio button to "Nac oes"
 	When I press the "Parhau" button
 	And I do not see any links on the page that open to a new page without an alt text
 	
 	#Check your answers page
-
 	Then I see "Gwiriwch eich ymatebion nawr" on the page
 	And I see text "askForAnotherDateReasonWhy" in the same row as "Eglurwch pam eich bod angen newid dyddiad eich gwasanaeth rheithgor"
 	And I do not see any links on the page that open to a new page without an alt text
@@ -492,7 +471,6 @@ Scenario Outline: Welsh 1st Party Deferral - bank holiday
 	And I do not see any links on the page that open to a new page without an alt text
 	
 	#JDB-3071
-	
 	And I see "Byddwn yn ysgrifennu atoch yn y 7 diwrnod nesaf i roi gwybod ichi os gallwch newid dyddiad eich gwasanaeth rheithgor." on the page
 	And I see "Yna, o leiaf bythefnos cyn i'ch gwasanaeth rheithgor ddechrau, byddwn yn anfon y canlynol atoch:" on the page
 	And I do not see any links on the page that open to a new page without an alt text
@@ -500,5 +478,5 @@ Scenario Outline: Welsh 1st Party Deferral - bank holiday
 	And I delete bank holiday new schema
 
 Examples:
-	|part_no	|last_name	|postcode	|email 		|pool_no	|
-	|645100984	|LNAME4823	|SW1H 9AJ	|a@eeee.com	|451170401	|
+	| juror_number	| last_name	| postcode	| email 		| pool_number 	|
+	| 645100984		| LNAME4823	| SW1H 9AJ	| a@eeee.com	| 451170401		|
