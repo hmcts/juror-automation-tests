@@ -1,36 +1,31 @@
 Feature: JDB-3198
 
-#currently fails due to JDB-3761 which is coming in sprint 14
-
-@RegressionSingle @JDB-3198
+@RegressionSingle @NewSchemaConverted
 Scenario Outline: Can Complete Record when juror.pool.status=1 (summoned)
 	
-	Given I am on "Public" "juror-test02"
-	Given the juror numbers have not been processed
-		|part_no 		|pool_no 	|owner 	|
-		|<part_no_one> 	|<pool_no>	|400 	|
-	
-	#Set part_no pool to be urgent
-	Given "<part_no_one>" has "RET_DATE" as "3 mondays time"
-	And "<part_no_one>" has "NEXT_DATE" as "3 mondays time"
-	And "<part_no_one>" has "LNAME" as "<last_name>"
-	And "<part_no_one>" has "ZIP" as "<postcode>"
-	
+	Given I am on "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number>| <pool_number>	| 3				            | 400	|
+
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
+
 	# Submit response in pool
 	Given I have submitted a first party English straight through response
 		|part_no			|pool_number	|last_name		|postcode	|email 	|
-		|<part_no_one>		|<pool_no>		|<last_name>	|<postcode>	|<email>|
-		
-	Given I am on "Bureau" "juror-test02" 	
+		|<juror_number>		|<pool_number>	|<last_name>	|<postcode>	|<email>|
+
+	Given I am on "Bureau" "test"
 	And I log in as "CPASS"
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no_one>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no_one>" in the same row as "<part_no_one>"
+	When I click on "<juror_number>" in the same row as "<juror_number>"
 	
 	#check status = summoned
-	
 	Then I see "Summoned" on the page
 	
 	When I select "Mark as responded" from Process reply
@@ -39,55 +34,54 @@ Scenario Outline: Can Complete Record when juror.pool.status=1 (summoned)
 	
 	#now check status = responded
 	
-	Then I see "Responded" on the page
-	And I see "COMPLETED" on the page
-	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "CLOSED" where "JUROR_NUMBER" is "<part_no_one>"
-	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "Y" where "JUROR_NUMBER" is "<part_no_one>"
+	Then I see the juror record updated banner containing "Responded"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "CLOSED" where "JUROR_NUMBER" is "<juror_number>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "Y" where "JUROR_NUMBER" is "<juror_number>"
 	
 	#check record is now in "completed today"
-	
 	When I click on the "Your work" link
 	Then I click on the "Completed" link
-	Then I see "<part_no_one>" on the page
-		
+	Then I see "<juror_number>" on the page
+
 Examples:
-	|part_no_one|pool_no	|last_name	|postcode	|email 	|
-	|645100458	|451170401	|DOE		|SW1H 9AJ	|a@a.com|
+	| juror_number	| pool_number	| last_name	| postcode	| email 	|
+	| 045200252		| 452300229		| DOE		| SW1H 9AJ	| a@a.com	|
 	
-@RegressionSingle @JDB-3198 @JDB-3732 
+@RegressionSingle @NewSchemaConverted
 Scenario Outline: Cannot Complete Record when juror.pool.status=2 (Responded)
 	
-	Given I am on "Public" "juror-test01"
-	Given the juror numbers have not been processed
-		|part_no 		|pool_no 	|owner 	|
-		|<part_no_two> 	|<pool_no>	|400 	|
-	
-	#Set part_no pool to be urgent
-	Given "<part_no_two>" has "RET_DATE" as "3 mondays time"
-	And "<part_no_two>" has "NEXT_DATE" as "3 mondays time"
-	And "<part_no_two>" has "LNAME" as "<last_name>"
-	And "<part_no_two>" has "ZIP" as "<postcode>"
-	And "<part_no_two>" has "DOB" as "01-JAN-1977"
+	Given I am on "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number>| <pool_number>	| 3				            | 400	|
+
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
+	And juror "<juror_number>" has "DOB" as "01-JAN-1977" new schema
 	
 	# Submit response in pool
 	Given I have submitted a first party English straight through response
-		|part_no		|pool_number|last_name		|postcode	|email 	|
-		|<part_no_two>	|<pool_no>	|<last_name>	|<postcode>	|<email>|
-		
-	#update JUROR to responded
-	Given "<part_no_two>" has "RESPONDED" as "Y"
-	Given "<part_no_two>" has "STATUS" as "2"
+		|part_no		|pool_number	|last_name		|postcode	|email 	|
+		|<juror_number>	|<pool_number>	|<last_name>	|<postcode>	|<email>|
 	
-	Given I am on "Bureau" "juror-test01" 	
+	Given I am on "Bureau" "test"
 	And I log in as "CPASS"
-	
+
+	And I search for juror "<juror_number>"
+	And I click the update juror record button
+	And I choose the "Mark as responded" radio button
+	And I press the "Continue" button
+	And I check the "Mark juror as 'responded'" checkbox
+	And I press the "Confirm" button
+
+	When I click on the "Summons management" link
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no_two>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no_two>" in the same row as "<part_no_two>"
+	And I click on "<juror_number>" in the same row as "<juror_number>"
 	
 	#check I get a warning that the record is completed
-	
 	Then I see "Response Completed" on the page
 	Then I see "This response has already been processed in Juror, please check the details are correct" on the page
 	
@@ -99,18 +93,18 @@ Scenario Outline: Cannot Complete Record when juror.pool.status=2 (Responded)
 	
 	Then I see "Responded" on the page
 	And I see "COMPLETED" on the page
-	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "CLOSED" where "JUROR_NUMBER" is "<part_no_two>"
-	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "Y" where "JUROR_NUMBER" is "<part_no_two>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "CLOSED" where "JUROR_NUMBER" is "<juror_number>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "Y" where "JUROR_NUMBER" is "<juror_number>"
 	
 	#check record is now in "completed today"
 	
 	When I click on the "Your work" link
 	Then I click on the "Completed" link
-	Then I see "<part_no_two>" on the page
+	Then I see "<juror_number>" on the page
 	
 Examples:
-	|part_no_two|pool_no	|last_name			|postcode	|email	|
-	|645100454	|451170401	|LNAMETWOSIXZERO	|CH1 2AN	|a@a.com|
+	| juror_number	| pool_number	| last_name			| postcode	| email	|
+	| 045200253		| 452300230		| LNAMETWOSIXZERO	| CH1 2AN	| a@a.com|
 	
 @RegressionSingle @JDB-3198 @JDB-3732 
 Scenario Outline: Cannot Complete Record when juror.pool.status=5 (Excused)
