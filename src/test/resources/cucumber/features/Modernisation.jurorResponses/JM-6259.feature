@@ -88,7 +88,7 @@ Feature: JM-6259 - As a bureau officer I need to be able to send/resend a summon
     And I set "Enter pool number" to "<pool_number>"
     And I press the "Search" button
     And I see "<pool_number>" on the page
-    Then  I check all the checkboxes in the letters table
+    Then I check all the checkboxes in the letters table
     And I press the "Send summons reminder" button
     And I see "1 document sent for printing" on the page
 
