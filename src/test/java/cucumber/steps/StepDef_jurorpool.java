@@ -3078,6 +3078,11 @@ public class StepDef_jurorpool {
         JUROR_RECORD_SEARCH.searchForRecordFromGlobalSearch(jurorRecordNumber);
     }
 
+    @When("^I select the global search$")
+    public void clickGlobalSearch() throws Throwable {
+        JUROR_RECORD_SEARCH.clickGlobalSearch();
+    }
+
     @And("^I select \"([^\"]*)\" from the adjustments reason dropdown$")
     public void iSelectFromTheAdjustmentsReasonDropdown(String reason) {
         SUMMONS_REPLY.selectAdjustmentReason(reason);

@@ -90,6 +90,11 @@ public class JurorRecordSearch {
         globalSearchSubmit.click();
     }
 
+    public void clickGlobalSearch() {
+
+        globalSearchExpand.click();
+    }
+
     public void searchForRecordFromPoolSearch(final String jurorNumber) {
         poolSearchField.sendKeys(jurorNumber);
         clickContinue();
