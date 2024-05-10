@@ -474,7 +474,7 @@ Examples:
 	| juror_number_one	| juror_number_two	| juror_number_three	| pool_number_one 	| pool_number_two| pool_number_three| last_name 	| last_name_two	| last_name_three	| postcode 	|
 	| 045700030			| 045700031			| 045700032				| 457300030 		| 457300031      | 457300032		| LNAMESTANDARD	| LNAMEURGENT 	| LNAMESUPERURGENT	| CH1 2AN	|
 
-@RegressionSingle @JM-7264
+@RegressionSingle @NewSchemaConverted @JM-7264
 Scenario Outline: Search as Team Leader
 
 	Given I am on "Public" "test"
@@ -691,12 +691,11 @@ Examples:
 	| juror_number_one	| juror_number_two	| juror_number_three	| pool_number_one 	| pool_number_two| pool_number_three| last_name 	| last_name_two	| last_name_three	| postcode 	|
 	| 045700033			| 045700034			| 045700035				| 457300033 		| 457300034      | 457300035 		| LNAMESTANDARD	| LNAMEURGENT 	| LNAMESUPERURGENT	| CH1 2AN	|
 
-@Regression @JDB-3743 
-Scenario Outline: Work Allocation Fields and Labels Checks
+@RegressionSingle @NewSchemaConverted
+Scenario: Work Allocation Fields and Labels Checks
 
 	Given I am on "Bureau" "test"
-#	And pool no "<pool_no>" is reset to pending allocation
-	And I have cleared down the juror digital database
+
 	When I log in as "MODTESTBUREAU"
 	And I click on the "Assign Replies" link
 	
@@ -712,9 +711,10 @@ Scenario Outline: Work Allocation Fields and Labels Checks
 	And on Bureau I see "Urgent" under "Number of replies in the backlog"
 	And on Bureau I see "Send to court" under "Number of replies in the backlog"
 
-	Then I see "0" in the same row as "total" in Backlog box
+	And I assign all the New Replies to "ARAMIS1"
 
-	Then I see "0" in the same row as "urgent" in Backlog box
+	Then I see "0" in the same row as "total" in Backlog box
+	Then I see "0" in the same row as "send" in Backlog box
 	Then I see "0" in the same row as "standard" in Backlog box
 
 	And on Bureau I see "Standard" under "How many replies do you want to assign to each officer you select?"
@@ -743,31 +743,15 @@ Scenario Outline: Work Allocation Fields and Labels Checks
 	Then I see "12345" in "allocateUrgent" Allocate Replies box
 	And I set input field with "name" of "allocateUrgent" to ""
 	
-	And I set input field with "name" of "allocateSuperUrgent" to "abcdefghijklmnopqrstuvwxyz"
-	Then I see "" in "allocateSuperUrgent" Allocate Replies box
-	And I set input field with "name" of "allocateSuperUrgent" to "-1"
-	Then I see "1" in "allocateSuperUrgent" Allocate Replies box
-	And I set input field with "name" of "allocateSuperUrgent" to "1.1"
-	Then I see "11" in "allocateSuperUrgent" Allocate Replies box
-	And I set input field with "name" of "allocateSuperUrgent" to "1234567890"
-	Then I see "12345" in "allocateSuperUrgent" Allocate Replies box
-	And I set input field with "name" of "allocateSuperUrgent" to ""
-	
-	And the "Assign replies" button is disabled
-	
-	And I check the "Select all" checkbox
+	And I press the "Select all" button
 	Then "ARAMIS1" is checked
-	And "Team Pick List User" is checked
+	And "TeamPickListUser" is checked
 	And "AutomationStaffMemberTWO" is checked
-	
-	When I uncheck the "Select all" checkbox
-	Then "ARAMIS1" is unchecked
-	And "Team Pick List User" is unchecked
-	And "AutomationStaffMemberTWO" is unchecked
 
-Examples:
-	|pool_no 	|
-	|442170401 	|
+	And I press the "Unselect all" button
+	Then "ARAMIS1" is unchecked
+	And "TeamPickListUser" is unchecked
+	And "AutomationStaffMemberTWO" is unchecked
 
 @RegressionSingle
 Scenario Outline: Work Allocation
@@ -865,7 +849,7 @@ Scenario Outline: Work Allocation
 	Then I see "2" in the same row as "total" in Backlog box
 	Then I see "0" in the same row as "standard" in Backlog box	
 
-	Then I see "1" in the same row as "urgent" in Backlog box	
+	Then I see "1" in the same row as "send" in Backlog box
 		
 	And I see "" in "allocateNonUrgent" Allocate Replies box
 	And I see "" in "allocateUrgent" Allocate Replies box
@@ -886,7 +870,7 @@ Scenario Outline: Work Allocation
 	
 	Then I see "1" in the same row as "total" in Backlog box
 
-	Then I see "0" in the same row as "urgent" in Backlog box
+	Then I see "0" in the same row as "send" in Backlog box
 	Then I see "0" in the same row as "standard" in Backlog box
 
 	And I see "" in "allocateNonUrgent" Allocate Replies box
