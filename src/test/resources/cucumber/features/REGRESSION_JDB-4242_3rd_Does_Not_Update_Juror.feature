@@ -204,8 +204,10 @@ Examples:
 	| juror_number	| last_name			| postcode	| email         	| pool_number	|
 	| 452300182		| LNAMEFOURFOURNINE	| NN1 3HQ	| email@outlook.com	| 045200197		|
 	
-@Regression @NewSchemaConverted
+@Features @NewSchemaConverted
 Scenario Outline: English 3rd Party Super Urgent - contact details same as 3rd party
+
+	#return to @Regression when we have resolved getting jenkins to focus on new page
 
 	Given I am on "Public" "test"
 
