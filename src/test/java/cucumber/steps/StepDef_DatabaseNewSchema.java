@@ -594,6 +594,11 @@ public class StepDef_DatabaseNewSchema {
     public void setJurorAsPrinted(String jurorNumber) throws SQLException {
         DBTNSD.setJurorsStatusAsPrintedforResendDeferralLetter(jurorNumber);
     }
+    @Given("^I update a juror in the pool to change the status of printed in order to resend letter$")
+    public void setAJurorInPoolAsPrinted() throws SQLException {
+        String jurorNumber = StepDef_jurorpool.summonedJurors.get().get(StepDef_jurorpool.summonedJurors.get().size()-1);
+        DBTNSD.setJurorsStatusAsPrintedforResendDeferralLetter(jurorNumber);
+    }
 
     @Given("^a confirmation letter inserted for juror \"([^\"]*)\"$")
     public void insertConfirmationLetterPlaceholder(String jurorNumber) throws SQLException {

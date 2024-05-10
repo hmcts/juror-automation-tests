@@ -17,10 +17,15 @@ Feature: JM-6259 - As a bureau officer I need to be able to send/resend a summon
     And I click on the "Search" link
     And I set "Pool number" to "<pool_number>"
     And I press the "Continue" button
+    And I get an initial list of the jurors that have been summoned
     And I press the "Summon jurors" button
     And I set "Extra citizens to summon" to "1"
     And I press the "Summon more citizens" button
+    And I get a new list of the jurors that have been summoned
+    And I remove the initial jurors from the list
 
+    #Send summons reminder
+    Then I update a juror in the pool to change the status of printed in order to resend letter
     And I press the "Apps" button
     And I click on the "Documents" link
     And I click on the "Summons reminder" link
@@ -28,7 +33,7 @@ Feature: JM-6259 - As a bureau officer I need to be able to send/resend a summon
     And I set "Enter pool number" to "<pool_number>"
     And I press the "Search" button
     And I see "<pool_number>" on the page
-    Then  I check all the checkboxes in the letters table
+    Then I check the checkbox for one of the jurors in the pool
     And I press the "Send summons reminder" button
     And I see "1 document sent for printing" on the page
 
@@ -41,16 +46,17 @@ Feature: JM-6259 - As a bureau officer I need to be able to send/resend a summon
     And I see "<pool_number>" on the page
     And I see "Pending" on the page
 
+    #Resend summons reminder
     And I press the "Apps" button
     And I click on the "Documents" link
-    Then I update juror "<juror_number>" to change the status of printed in order to resend letter
+    Then I update a juror in the pool to change the status of printed in order to resend letter
     And I click on the "Summons reminder" link
     And I set the radio button to "Pool"
     And I set "Enter pool number" to "<pool_number>"
     And I press the "Search" button
     And I see "<pool_number>" on the page
 
-    Then  I check all the checkboxes in the letters table
+    Then I check the checkbox for one of the jurors in the pool
     And I press the "Send summons reminder" button
     And I see "1 document sent for printing" on the page
 
@@ -77,9 +83,12 @@ Feature: JM-6259 - As a bureau officer I need to be able to send/resend a summon
     And I click on the "Search" link
     And I set "Pool number" to "<pool_number>"
     And I press the "Continue" button
+    And I get an initial list of the jurors that have been summoned
     And I press the "Summon jurors" button
     And I set "Extra citizens to summon" to "1"
     And I press the "Summon more citizens" button
+    And I get a new list of the jurors that have been summoned
+    And I remove the initial jurors from the list
 
     And I press the "Apps" button
     And I click on the "Documents" link
@@ -88,7 +97,7 @@ Feature: JM-6259 - As a bureau officer I need to be able to send/resend a summon
     And I set "Enter pool number" to "<pool_number>"
     And I press the "Search" button
     And I see "<pool_number>" on the page
-    Then I check all the checkboxes in the letters table
+    Then I check the checkbox for one of the jurors in the pool
     And I press the "Send summons reminder" button
     And I see "1 document sent for printing" on the page
 
@@ -99,8 +108,8 @@ Feature: JM-6259 - As a bureau officer I need to be able to send/resend a summon
     And I set "Enter pool number" to "<pool_number>"
     And I press the "Search" button
     And I see "<pool_number>" on the page
-    And I see "Pending" in the same row as "<juror_number>"
-    And I click on "Delete" in the same row as "<juror_number>"
+    And I see "Pending" in the same row as one of the juror numbers in my pool
+    And I click on "Delete" in the same row as one of the juror numbers in my pool
     And I see "1 pending document deleted" on the page
     And I do not see "<juror_number>" on the page
 

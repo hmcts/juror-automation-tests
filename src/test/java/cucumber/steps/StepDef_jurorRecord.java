@@ -568,6 +568,12 @@ public class StepDef_jurorRecord {
         JUROR_RECORD.selectAllCheckboxesInLettersTable();
     }
 
+    @When("^I check the checkbox for one of the jurors in the pool$")
+    public void selectOneCheckboxForJurorInPool(){
+        String jurorNumber = StepDef_jurorpool.summonedJurors.get().get(StepDef_jurorpool.summonedJurors.get().size()-1);
+        JUROR_RECORD.selectCheckboxesInLettersTableForJuror(jurorNumber);
+    }
+
     @When("^I see the documents sent banner for the initial summons letters$")
     public void seeIntialSummonsLetterBanner() {
         JUROR_RECORD.initialSummonsBanner();

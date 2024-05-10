@@ -76,6 +76,11 @@ public class StepDef_jurorpool {
     public static ArrayList<String> dateTimeRecordedHigher = new ArrayList<>();
     public static ArrayList<String> dateTimeRecordedLower = new ArrayList<>();
     public static ThreadLocal<String> opticReference = new ThreadLocal<>();
+
+    public static ThreadLocal<ArrayList<String>> summonedJurorsOld = new ThreadLocal<>();
+    public static ThreadLocal<ArrayList<String>> summonedJurorsNew = new ThreadLocal<>();
+    public static ThreadLocal<ArrayList<String>> summonedJurors = new ThreadLocal<>();
+
     private static final Logger log = Logger.getLogger(ActivePools.class);
 
     private DatabaseTesterNewSchemaDesign DBTNSD;
@@ -3020,7 +3025,28 @@ public class StepDef_jurorpool {
     public void selectFirstJurorInList() {
         POOL_REQUESTS_PAGE.selectFirstJurorInList();
     }
-
+    @And("^I get an initial list of the jurors that have been summoned$")
+    public void iGetInitialListOfTheJurorsThatHaveBeenSummoned() {
+        summonedJurorsOld.set(POOL_OVERVIEW_PAGE.getJurorNumbers());
+    }
+    @And("^I get a new list of the jurors that have been summoned$")
+    public void iGetNewListOfTheJurorsThatHaveBeenSummoned() {
+        summonedJurorsNew.set(POOL_OVERVIEW_PAGE.getJurorNumbers());
+    }
+    @And("^I remove the initial jurors from the list$")
+    public void iRemoveJurorFromSummonedJurorList(){
+        /*linked to:
+        iGetInitialListOfTheJurorsThatHaveBeenSummoned()
+        iGetNewListOfTheJurorsThatHaveBeenSummoned()
+         */
+        log.info("Original jurors: "+ summonedJurorsOld.get());
+        log.info("New jurors     : "+ summonedJurorsNew.get());
+        for (String number : summonedJurorsOld.get()) {
+            summonedJurorsNew.get().remove(number);
+        }
+        summonedJurors.set(summonedJurorsNew.get());
+        log.info("New juror      : "+ summonedJurors.get());
+    }
     @When("^I select one of the active pools available$")
     public void selectFirstPoolNoInList() {
         ACTIVE_POOLS_PAGE.selectFirstPoolNoInList();
