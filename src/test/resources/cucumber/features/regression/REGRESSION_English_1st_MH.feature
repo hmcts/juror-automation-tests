@@ -453,7 +453,7 @@ Scenario Outline: Checking MH questions have been split in Bureau and no text ME
 	And I click on "<juror_number>" in the same row as "<juror_number>"
 	
 	When I click on the "Eligibility" link
-	Then I see "Attention" in the same row as "Mental health"
+	Then "Mental health act" is marked as requiring attention
 	And I see "I am sectioned" on the page
 	And I see "I lack capacity" on the page
 	And I do not see "[MENTAL HEALTH Q2]" on the page

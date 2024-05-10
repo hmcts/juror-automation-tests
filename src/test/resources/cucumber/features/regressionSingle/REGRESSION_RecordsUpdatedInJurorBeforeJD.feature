@@ -289,96 +289,90 @@ Examples:
 	|part_no_five	|pool_no	|last_name			|postcode	|email	|
 	|645100747		|451170401	|LNAMETWOSIXZERO	|CH1 2AN	|a@a.com|
 
-@RegressionSingle @JDB-3198 
+@RegressionSingle @NewSchemaConverted
 Scenario Outline: Cannot Complete Record when juror.pool.status=11 (Awaiting info)
 	
-	Given I am on "Public" "juror-test01"
-	Given the juror numbers have not been processed
-		|part_no 		|pool_no 	|owner 	|
-		|<part_no_six>	|<pool_no>	|400 	|
-	
+	Given I am on "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number>| <pool_number>	| 2				            | 400	|
+
 	#Set part_no pool to be urgent
-	
-	Given "<part_no_six>" has "RET_DATE" as "2 mondays time"
-	And "<part_no_six>" has "NEXT_DATE" as "2 mondays time"
-	And "<part_no_six>" has "LNAME" as "<last_name>"
-	And "<part_no_six>" has "ZIP" as "<postcode>"
-	And "<part_no_six>" has "DOB" as "01-JAN-1977"
-	
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
+	And juror "<juror_number>" has "DOB" as "01-JAN-1977" new schema
+
 	# Submit response in pool
-	
 	Given I have submitted a first party English straight through response
 		|part_no		|pool_number	|last_name		|postcode	|email 	|
-		|<part_no_six>	|<pool_no>		|<last_name>	|<postcode>	|<email>|
-		
-	#update JUROR to awaiting info
+		|<juror_number>	|<pool_number>	|<last_name>	|<postcode>	|<email>|
 	
-	Given "<part_no_six>" has "RESPONDED" as "Y"
-	And "<part_no_six>" has "STATUS" as "11"
-	
-	Given I am on "Bureau" "juror-test01" 	
+	Given I am on "Bureau" "test"
 	And I log in as "CPASS"
+
+	#update JUROR to awaiting info
+	And I search for juror "<juror_number>"
+	And I press the "More actions" button
+	And I click on the "Mark as awaiting information" link
+	And I choose the "Juror" radio button
+	Then I press the "Confirm" button
+	Then I see "AWAITING JUROR" on the page
+
+#	Given juror "<juror_number>" has "RESPONDED" as "Y" new schema
+#	And "<juror_number>" has "STATUS" as "11" new schema
+
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no_six>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	And I click on "<part_no_six>" in the same row as "<part_no_six>"
+	And I click on the "<juror_number>" link
 	
 	#check I get a warning that the record is awaiting* in legacy juror
-	
 	Then I see "The status of this reply was changed in the Juror app to 'Awaiting information'. Select below the party that the bureau is waiting on information from." on the page
 	And I see "You cannot access this juror record until the status has been updated." on the page
 	And I see "Who is the bureau waiting for information from?" on the page
 	
-	#error when nothing selected 
-	
+	#error when nothing selected
 	And I press the "Confirm" button
 	Then I see "Select who the bureau is waiting for a reply from" on the page
 
 	#select a status
-	
-	Then I set the radio button to "Awaiting court reply"
-	Then I set the radio button to "Awaiting translation"
-	Then I set the radio button to "Awaiting juror"
+	Then I choose the "Court" radio button
+	Then I choose the "Translation unit" radio button
+	Then I choose the "Juror" radio button
 	
 	#back
-	
 	And I click on the "Back" link
 	
 	#re-search
-	
 	When I click on the "Search" link
-	And I set "Juror number" to "<part_no_six>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	Then I see "1 results for “<part_no_six>”" on the page
+	Then I see "1 results for “<juror_number>”" on the page
 	
 	#select again
-	
-	And I click on "<part_no_six>" in the same row as "<part_no_six>"
+	And I click on the "<juror_number>" link
 	
 	#check I get a warning that the record is awaiting* in legacy juror
-	
 	Then I see "The status of this reply was changed in the Juror app to 'Awaiting information'. Select below the party that the bureau is waiting on information from." on the page
 	And I see "You cannot access this juror record until the status has been updated." on the page
 	And I see "Who is the bureau waiting for information from?" on the page
 	
 	#select a status
-	
-	Then I set the radio button to "Awaiting juror"
+	Then I choose the "Juror" radio button
 	
 	#ok message
-	
 	And I press the "Confirm" button
 	
 	#check status = awaiting info
-
 	And I see "AWAITING JUROR" on the page
 	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "AWAITING_CONTACT" where "JUROR_NUMBER" is "<part_no_six>"
 	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "N" where "JUROR_NUMBER" is "<part_no_six>"
 
 Examples:
-	|part_no_six	|pool_no	|last_name			|postcode	|email	|
-	|645100718		|451170401	|LNAMETWOSIXZERO	|CH1 2AN	|a@a.com|
+	| juror_number	| pool_number	| last_name			| postcode	| email	|
+	| 045200249		| 452300226		| LNAMETWOSIXZERO	| CH1 2AN	| a@a.com|
 
 @RegressionSingle @JDB-3198 
 Scenario Outline: Cannot Complete Record when juror.pool.status=2 and processing status=AWAITING*

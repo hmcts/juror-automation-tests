@@ -240,7 +240,7 @@ Scenario Outline: 1st party MHQ1=Y MHQ2=N
 	And I click on "<juror_number>" in the same row as "<juror_number>"
 	
 	When I click on the "Eligibility" link
-	Then I see "Attention" in the same row as "Mental health"
+	Then "Mental health act" is marked as requiring attention
 	And I see "I am sectioned" on the page
 	And I do not see "I lack capacity" on the page
 	And I do not see "[MENTAL HEALTH Q2]" on the page
@@ -365,7 +365,7 @@ Scenario Outline: 1st party MHQ1=N MHQ2=Y
 	And I click on "<juror_number>" in the same row as "<juror_number>"
 	
 	When I click on the "Eligibility" link
-	Then I see "Attention" in the same row as "Mental health"
+	Then "Mental health act" is marked as requiring attention
 	And I do not see "I am sectioned" on the page
 	And I see "I lack capacity" on the page
 	And I do not see "[MENTAL HEALTH Q2]" on the page
@@ -684,7 +684,7 @@ Scenario Outline: English_3rd_YY
 	And I click on "<juror_number>" in the same row as "<juror_number>"
 	
 	When I click on the "Eligibility" link
-	Then I see "Attention" in the same row as "Mental health"
+	Then "Mental health act" is marked as requiring attention
 	And I see "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. N" on the page
 	And I see "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. N" on the page
 
@@ -838,7 +838,7 @@ Scenario Outline: English_3rd_YN
 	And I click on "<juror_number>" in the same row as "<juror_number>"
 	
 	When I click on the "Eligibility" link
-	Then I see "Attention" in the same row as "Mental health"
+	Then "Mental health act" is marked as requiring attention
 	And I see "They are sectioned" on the page
 	And I do not see "They lack capacity" on the page
 	And I do not see "[MENTAL HEALTH Q2]" on the page
@@ -998,7 +998,7 @@ Scenario Outline: English_3rd_NY
 	And I click on "<juror_number>" in the same row as "<juror_number>"
 	
 	When I click on the "Eligibility" link
-	Then I see "Attention" in the same row as "Mental health"
+	Then "Mental health act" is marked as requiring attention
 	And I do not see "They are sectioned" on the page
 	And I see "They lack capacity" on the page
 	And I do not see "[MENTAL HEALTH Q2]" on the page
