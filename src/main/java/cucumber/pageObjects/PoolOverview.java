@@ -266,4 +266,14 @@ public class PoolOverview {
         System.out.println("See Next due at court banner");
 
     }
+
+    public ArrayList<String> getJurorNumbers() {
+        List<WebElement> numbersOnPage = driver.findElements(By.xpath("//*[@Id='jurorOverview']/descendant::tbody/descendant::a"));
+        ArrayList<String> jurorNumbers = new ArrayList<>();
+        for(WebElement e : numbersOnPage){
+            jurorNumbers.add(e.getText());
+        }
+        log.info("Juror Numbers: "+jurorNumbers);
+        return jurorNumbers;
+    }
 }

@@ -658,6 +658,19 @@ public class JurorRecord {
             log.error("Error occurred while selecting checkboxes: " + e.getMessage());
         }
     }
+        public void selectCheckboxesInLettersTableForJuror(String juror){
+        try {
+            List<WebElement> checkboxes = driver.findElements(By.xpath("//*[@id='main-content']/div[4]/div/table//input[@id='juror-"+ juror +"']"));
+            for (WebElement checkbox : checkboxes) {
+                if (!checkbox.isSelected()) {
+                    checkbox.click();
+                }
+            }
+            log.info("Selecting checkboxes for juror: " + juror);
+        } catch (Exception e) {
+            log.error("Error occurred while selecting checkboxes: " + e.getMessage());
+        }
+    }
 
     public void initialSummonsBanner() {
         NAV.messageBanner.isDisplayed();

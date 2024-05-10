@@ -509,7 +509,15 @@ public class StepDef_navigation {
 			NAV.seeText_inSameRow_asText(searchText, nextToText);
 		}
 	}
-
+	@Then("^I see \"([^\"]*)\" in the same row as one of the juror numbers in my pool$")
+	public void seeText_inSameRow_JurorFromPool(String searchText) {
+		try {
+			NAV.seeText_inSameRow_asText(searchText, StepDef_jurorpool.summonedJurors.get().get(0));
+		} catch (Exception e) {
+			NAV.waitForPageLoad();
+			NAV.seeText_inSameRow_asText(searchText, StepDef_jurorpool.summonedJurors.get().get(0));
+		}
+	}
 
 	;
 
@@ -536,7 +544,15 @@ public class StepDef_navigation {
 		}
 	}
 
-	;
+	@When("^I click on \"([^\"]*)\" in the same row as one of the juror numbers in my pool$")
+	public void clickText_inSameRow_asJurorFromPool(String clickText) throws Exception {
+		try {
+			NAV.clickText_inSameRow_asText(clickText, StepDef_jurorpool.summonedJurors.get().get(0));
+		} catch (Exception e) {
+			NAV.waitForPageLoad();
+			NAV.clickText_inSameRow_asText(clickText, StepDef_jurorpool.summonedJurors.get().get(0));
+		}
+	}
 
 	//New Click Change Link
 	@When("^I click on the \"([^\"]*)\" link in the same row as \"([^\"]*)\"$")
