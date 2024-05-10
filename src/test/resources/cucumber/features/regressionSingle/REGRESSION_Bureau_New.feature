@@ -773,8 +773,7 @@ Examples:
 Scenario Outline: Work Allocation
 
 	Given I am on "Bureau" "test"
-	And pool no "<pool_no>" is reset to pending allocation
-	And I have cleared down the juror digital database
+
 	And the juror numbers have not been processed
 		| part_no 			| pool_no 	| owner |
 		| <part_no_four> 	|<pool_no>	| 400 	|
@@ -921,37 +920,34 @@ Examples:
 	|part_no_four	|part_no_five	|part_no_six	|pool_no 	|last_name 	|postcode 	|email				|
 	|644200456		|644200458		|644200811		|442170401 	|LNAME		|NN1 3HQ	|email@outlook.com	|
 
-@RegressionSingle 
+@RegressionSingle @NewSchemaConverted
 Scenario Outline: Work Allocation - AUTO are not counted
 
-Given I am on "Bureau" "test"
-	And pool no "<pool_no>" is reset to pending allocation
-	And I have cleared down the juror digital database
-	And the juror numbers have not been processed
-		| part_no 			| pool_no 	| owner |
-		| <part_no_seven> 	|<pool_no>	| 400 	|
-	
-	#set up some a response
-	
-	#non-urgent
-	
-	And "<part_no_seven>" has "LNAME" as "<last_name>"
-	And "<part_no_seven>" has "ZIP" as "<postcode>"
-	And "<part_no_seven>" has "RET_DATE" as "5 mondays time"
-	And "<part_no_seven>" has "NEXT_DATE" as "5 mondays time"
-	
-	#submit response with auto-processing enabled
-	
-	Given I am on "Public" "test"
-	And auto straight through processing has been enabled new schema
-	And I have submitted a first party English straight through response
-	| part_no		|pool_number| last_name		|postcode	| email |
-	|<part_no_seven>|<pool_no>	| <last_name>	|<postcode>	|<email>|
-	
-	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "STAFF_LOGIN" is "AUTO" where "JUROR_NUMBER" is "<part_no_seven>"
-	
 	Given I am on "Bureau" "test"
-	When I log in
+
+	And I log in as "MODTESTBUREAU"
+	And I click on the "Assign Replies" link
+	And I assign all the New Replies to "MODTESTBUREAU"
+
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
+
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
+
+	Given I am on "Public" "test"
+
+	And auto straight through processing has been enabled new schema
+
+	And I have submitted a first party English straight through response
+	| part_no		|pool_number	| last_name		|postcode	| email |
+	|<juror_number>	|<pool_number>	| <last_name>	|<postcode>	|<email>|
+
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "STAFF_LOGIN" is "AUTO" where "JUROR_NUMBER" is "<juror_number>" new schema
+
+	Given I am on "Bureau" "test"
+	When I log in as "MODTESTBUREAU"
 	And I click on the "Assign Replies" link
 	
 	And I do not see "AUTO" on the page
@@ -959,8 +955,7 @@ Given I am on "Bureau" "test"
 	#check counts
 
 	Then I see "0" in the same row as "total" in Backlog box
-
-	Then I see "0" in the same row as "urgent" in Backlog box
+	Then I see "0" in the same row as "send" in Backlog box
 	Then I see "0" in the same row as "standard" in Backlog box
 	
 	And "total-all" assigned replies count is "0" 	
@@ -969,19 +964,18 @@ Given I am on "Bureau" "test"
 	And "total-send" assigned replies count is "0"
 	
 Examples:
-	|part_no_seven	|pool_no 	|last_name 	|postcode 	|email				|
-	|644200477		|442170401 	|LNAME		|NN1 3HQ	|email@outlook.com	|
+	| juror_number	| pool_number 	| last_name | postcode 	| email				|
+	| 045200251		| 452300228 	| LNAME		| NN1 3HQ	| email@outlook.com	|
 
 
-@RegressionSingle 
+@RegressionSingle @NewSchemaConverted
 Scenario: Manage Team
 
 	Given I am on "Bureau" "test"
-	And I log in
+	And I log in as "MODTESTBUREAU"
 	And staff with name "New Name" does not exist
 	And I see "Summons replies" on the page
 	And I see "Your work" on the page
-	And I see link with text "MODTESTBUREAU"
 	And I see link with text "Sign out"
 	And I see link with text "To do"
 	And I see link with text "Awaiting information"
@@ -993,169 +987,160 @@ Scenario: Manage Team
 	And I see "/inbox" in the URL
 	
 	And I click on the "Manage team" link
-	And I see "/staff" in the URL
-	And I see "Manage team" on the page
-	And I see "Staff name" on the page
-	And I see "Team leader" on the page
+	And I see "/users" in the URL
+	And I see "Users" on the page
+	And I see "Name" on the page
+	And I see "Manager" on the page
 	And I see "Status" on the page
-	And I see "-" in the same row as "ARAMIS1"
-	And I see "Team leader" in the same row as "MODTESTBUREAU"
-	Then I see "ACTIVE" in the same row as "ARAMIS1"
+	And I see "No" in the same row as "ARAMIS1"
+	And I see "Yes" in the same row as "MODTESTBUREAU"
+	Then I see "Active" in the same row as "ARAMIS1"
 	
 	# Inactive hidden by default
-	
-	And I do not see "INACTIVE" on the page
+	And I do not see "Inactive" on the page
 	And I do not see "LEVEL1" on the page
-	And the radio button "Show active team members only" is "Selected"
-	Then I set the radio button to "Show all team members" 
-	Then I see "INACTIVE" in the same row as "AutomationStaffTWO"
-	Then I set the radio button to "Show active team members only" 
-	And I do not see "INACTIVE" on the page
+	And the radio button "Active users" is "Selected"
+	Then I choose the "All users" radio button
+	Then I see "Inactive" in the same row as "AutomationStaffTWO"
+	Then I choose the "Active users" radio button
+	And I do not see "Inactive" on the page
 	And I do not see "AutomationStaffTWO" on the page
-	Then I set the radio button to "Show all team members" 
-	Then I click on the "Your work" link
-	And I click on the "Manage team" link
-	And the radio button "Show all team members" is "Selected"
+	Then I choose the "All users" radio button
+	Then I click on the "System codes" link
+	And I click on the "Users" link
+	And the radio button "Active users" is "Selected"
+
+	And I click on the "Sign out" link
+	And I log in as "SYSTEMADMIN"
 	
 	#add team member
-	
-	Then I press the "Add a new team member" button
-	And I see "Add a new team member" on the page
-	And I see "/create" in the URL
+	Then I press the "Create a new user" button
+	And I see "Select user type" on the page
+	And I see "/create-user/type" in the URL
 	
 	#error check when fields not completed
-	
-	Then I press the "Save" button
-	And I see "Please provide a name for the new staff member" on the page
-	And I see "Please enter the staff member Juror application user name" on the page
-	
+	Then I press the "Continue" button
+	And I see "Select a user type" on the page
+
+	And I choose the "Bureau" radio button
+	Then I press the "Continue" button
+
 	#successfully add user
+	And I set "Full name" to "New Name"
+	And I set "Email" to "newname@email.com"
+
+	Then I press the "Continue" button
+	Then I see "Check new user details" on the page
+	And I see "Bureau" in the same row as "User type"
+	And I see "New Name" in the same row as "Full name"
+	And I see "newname@email" in the same row as "Email"
+	And I see "-" in the same row as "Extra permissions"
+	And I press the "Create user" button
+	Then I see "New user created" on the page
 	
-	And I set "Name" to "New Name"
-	And I set "Username" to "NEWUSER"
-	And the radio button "No" is "selected"
-	And I choose the "Yes" radio button
-	
-	Then I press the "Save" button
-	And I see "Manage team" on the page
-	Then I see "ACTIVE" in the same row as "New Name"
-	Then I see "Team leader" in the same row as "New Name"
-	
-	#set team member to team leader
-	
-	Then I click on the "New Name" link
-	And "Name" is "New Name"
-	And "Username" is "NEWUSER"
-	And I see "/NEWUSER" in the URL
-	And the radio button "No" is "selected"
-	Then I choose the "Yes" radio button
-	Then I press the "Save" button
-	And I see "Manage team" on the page
-	Then I see "ACTIVE" in the same row as "New Name"
-	Then I see "Team leader" in the same row as "New Name"
+	#set team member to manager
+	Then I press the "Edit user" button
+	And "Full name" is "New Name"
+
+	And I see "/edit-user/newname" in the URL
+	And I check the "Manager" checkbox
+	And the radio button "Active" is "selected"
+
+	Then I press the "Save changes" button
+	And I see "Bureau" in the same row as "User type"
+	And I see "New Name" in the same row as "Full name"
+	And I see "newname@email" in the same row as "Email"
+	And I see "Manager" in the same row as "Extra permissions"
 	
 	#edit user's name
-	
-	Then I click on the "New Name" link
-	And "Name" is "New Name"
-	And "Username" is "NEWUSER"
-	And I see "/NEWUSER" in the URL
-	#fails due to JDB-5504
-	And the radio button "Yes" is "selected"
+	Then I press the "Edit user" button
+	And "Full name" is "New Name"
+
+	And I see "/edit-user/newname" in the URL
+	And I set "Full name" to "Updated New Name"
 	And the radio button "Active" is "selected"
-	Then I set "Name" to "Updated New Name"
-	Then I press the "Save" button
-	And I see "Manage team" on the page
-	Then I see "ACTIVE" in the same row as "Updated New Name"
+
+	Then I press the "Save changes" button
+	And I see "Bureau" in the same row as "User type"
+	And I see "Updated New Name" in the same row as "Full name"
+	And I see "newname@email" in the same row as "Email"
+	And I see "Manager" in the same row as "Extra permissions"
 	
 	#set team leader as inactive
-	
-	Then I click on the "Updated New Name" link
-	And "Name" is "Updated New Name"
-	And "Username" is "NEWUSER"
-	And I see "/NEWUSER" in the URL
-	And the radio button "Yes" is "selected"
-	And I set the radio button to "Inactive"
-	And the radio button "Inactive" is "selected"
-	Then I press the "Save" button
-	And I see "Manage team" on the page
-	Then I see "INACTIVE" in the same row as "Updated New Name"
-	
-	#attempt to re-activate user who is not known in heritage
-	
-	Then I click on the "Updated New Name" link
-	And "Name" is "Updated New Name"
-	And "Username" is "NEWUSER"
-	And I see "/NEWUSER" in the URL
-	And the radio button "Yes" is "selected"
-	And the radio button "Inactive" is "selected"
-	Then I set the radio button to "Active"
-	Then I press the "Save" button
-	And I see "There is a problem" on the page
-	And I see "The staff profile you are trying to activate has been made inactive in the Juror application. Please reactivate in Juror and then try again." on the page
-	Then I click on the "Cancel" link
-	And I see "Manage team" on the page
+	Then I press the "Edit user" button
+	And "Full name" is "New Name"
+
+	And I see "/edit-user/newname" in the URL
+	And I choose the "Inactive" radio button
+	And the radio button "Active" is "unselected"
+
+	Then I press the "Save changes" button
+	And I see "Bureau" in the same row as "User type"
+	And I see "Updated New Name" in the same row as "Full name"
+	And I see "newname@email" in the same row as "Email"
+	And I see "Manager" in the same row as "Extra permissions"
+	And I see "INACTIVE" on the page
 	
 	#attempt to add duplicate
-	
-	Then I press the "Add a new team member" button
-	And I see "Add a new team member" on the page
-	And I set "Name" to "New Name"
-	And I set "Username" to "NEWUSER"
-	And the radio button "Yes" is "selected"
-	Then I press the "Save" button
-	And I see "There is a problem" on the page
-	And I see "This Juror username has already been allocated to Updated New Name" on the page
+	When I click on the "Back to users" link
+	Then I press the "Create a new user" button
+
+	And I choose the "Bureau" radio button
+	Then I press the "Continue" button
+
+	And I set "Full name" to "Updated New Name"
+	And I set "Email" to "newname@email.com"
+
+	Then I press the "Continue" button
+
+	And I see "Email address already in use" on the page
 	
 	#attempt to deactivate when user has assigned responses
 
-@RegressionSingle 
+@RegressionSingle @NewSchemaConverted
 Scenario Outline: Results grid updates when status changes are made
+
 	Given I am on "Bureau" "test"
-		
-	Given the juror numbers have not been processed
-		|part_no 			|pool_no 	|owner	|
-		|<part_no> 			|<pool_no>	|400 	|
+
+	Given a bureau owned pool is created with jurors
+		| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   | <juror_number>| <pool_number>	| 5				            | 400	|
 
 	# Set part_no pool to not be urgent
-	
-	Given "<juror_number>" has "RET_DATE" as "5 mondays time"
-
 	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
 	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
-	
+
 	#turn off auto processing
-	
 	Given auto straight through processing has been disabled new schema
-	
+
 	# Submit response in pool
-	
 	Given I have submitted a first party English straight through response
-		|part_no	|pool_number|last_name	|postcode	|email 	|
-		|<part_no>	|<pool_no>	|<last_name>|<postcode>	|a@a.com|
-	
+		|part_no		|pool_number	|last_name	|postcode	|email 	|
+		|<juror_number>	|<pool_number>	|<last_name>|<postcode>	|a@a.com|
+
+	#turn on auto processing
+	Given auto straight through processing has been enabled new schema
+
 	Given I am on "Bureau" "test"
-	When I log in
+	When I log in as "MODTESTBUREAU"
 	
 	Then I click on the "Search" link
-	And I set "Juror's pool number" to "<pool_no>"
+	And I set "Juror's pool number" to "<pool_number>"
 	And I press the "Search" button
 	
 	#record notes
-	
 	When I click on "<juror_number>" in the same row as "<juror_number>"
-	When I click on the "Logs" link
+	When I click on the "Notes and logs" link
 	And I click on the "Notes" link
-	And I click on the "Add or Edit" link
+	And I click on the "Add or change" link
 	And I set text area with "id" of "notes" to "Some notes here"
 	And I press the "Save" button
-	
+
+	#should this have been assigned to the user who added notes??
 	When I click on the "Back" link
-	Then I see "MODTESTBUREAU" in the same row as "<last_name>"
-	
-	
+	Then I see "<juror_number>" on the page
+
 	#now reassign
-	
 	And I press the "Select all" button
 	And I press the "Send to..." button
 	And I set input field with "id" of "sendToOfficer" to "ARAMIS1"
@@ -1163,9 +1148,8 @@ Scenario Outline: Results grid updates when status changes are made
 	And I press the "Send" button
 	
 	Then I see "ARAMIS1" in the same row as "<last_name>"
-	
+
 	#now mark as awaiting info
-	
 	When I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Record status" on the page
 	Then I press the "More actions" button
@@ -1178,7 +1162,6 @@ Scenario Outline: Results grid updates when status changes are made
 	Then I see "AWAITING COURT REPLY" in the same row as "<juror_number>"
 	
 	#now mark as responded
-	
 	When I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Record status" on the page
 	When I select "Mark as responded" from Process reply
@@ -1190,7 +1173,6 @@ Scenario Outline: Results grid updates when status changes are made
 	When I click on the "Back" link
 	Then I see "COMPLETED" in the same row as "<juror_number>"
 	
-	
 Examples:
-	|part_no	|pool_no 	|last_name 	|postcode 	|email				|
-	|644200477	|442170401 	|LNAMEUPDATE|NN1 3HQ	|email@outlook.com	|
+	| juror_number	| pool_number 	| last_name 	| postcode 	|
+	| 045200250		| 452300227 	| LNAMEUPDATE	| NN1 3HQ	|
