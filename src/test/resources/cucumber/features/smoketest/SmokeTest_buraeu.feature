@@ -9,10 +9,10 @@ Scenario:
 	And I see "Sign in" on the page
 	And I log in as "MODTESTBUREAU"
 	Then I see "To do" on the page
-	
-	Then I click on the "Search" link
-	And I see "Advanced search" on the page
-	When I click on the "Advanced search" link
+
+	And I select the global search
+	And I see "Advanced juror search" on the page
+	When I click on the "Advanced juror search" link
 	And I set "Juror postcode" to "CH1"
 
 	And I press the "Search" button
