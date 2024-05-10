@@ -714,7 +714,7 @@ Scenario Outline: Work Allocation Fields and Labels Checks
 
 	Then I see "0" in the same row as "total" in Backlog box
 
-	Then I see "0" in the same row as "urgent" in Backlog box
+	Then I see "0" in the same row as "send" in Backlog box
 	Then I see "0" in the same row as "standard" in Backlog box
 
 	And on Bureau I see "Standard" under "How many replies do you want to assign to each officer you select?"
@@ -865,7 +865,7 @@ Scenario Outline: Work Allocation
 	Then I see "2" in the same row as "total" in Backlog box
 	Then I see "0" in the same row as "standard" in Backlog box	
 
-	Then I see "1" in the same row as "urgent" in Backlog box	
+	Then I see "1" in the same row as "send" in Backlog box
 		
 	And I see "" in "allocateNonUrgent" Allocate Replies box
 	And I see "" in "allocateUrgent" Allocate Replies box
@@ -886,7 +886,7 @@ Scenario Outline: Work Allocation
 	
 	Then I see "1" in the same row as "total" in Backlog box
 
-	Then I see "0" in the same row as "urgent" in Backlog box
+	Then I see "0" in the same row as "send" in Backlog box
 	Then I see "0" in the same row as "standard" in Backlog box
 
 	And I see "" in "allocateNonUrgent" Allocate Replies box
@@ -907,7 +907,7 @@ Scenario Outline: Work Allocation
 	And "ARAMIS1-total" assigned replies count is "3"
 	Then I see "0" in the same row as "total" in Backlog box
 
-	Then I see "0" in the same row as "urgent" in Backlog box
+	Then I see "0" in the same row as "send" in Backlog box
 	Then I see "0" in the same row as "standard" in Backlog box
 	And I see "" in "allocateNonUrgent" Allocate Replies box
 	And I see "" in "allocateUrgent" Allocate Replies box

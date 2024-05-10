@@ -657,7 +657,7 @@ Examples:
 	| 045200071		| LNAMEONEONENINE	| CH1 2AN	| a@eeee.com| 452300070		|
 
 
-	@Regression @PCQ @NewSchemaConverted
+	@Features @PCQ @NewSchemaConverted
 	Scenario Outline: English 1st Party PCQ - decline to answer
 
 		Given I am on "Public" "test"
@@ -761,7 +761,7 @@ Examples:
 			| juror_number	| last_name			| postcode	| email 		| pool_number	|
 			| 045200072		| LNAMETHREEFOURNINE| SY2 6LU	| a@eeee.com	| 452300071		|
 
-	@Regression @PCQ @NewSchemaConverted
+	@Features @PCQ @NewSchemaConverted
 	Scenario Outline: English 1st Party PCQ - answer questions
 
 		Given I am on "Public" "test"
@@ -903,7 +903,7 @@ Examples:
 			| juror_number	| last_name			| postcode	| email 	| pool_number	|
 			| 045200073		| LNAMETHREEFOURNINE| SY2 6LU	| a@eeee.com| 452300072		|
 
-	@Regression @PCQ @NewSchemaConverted
+	@Features @PCQ @NewSchemaConverted
 	Scenario Outline: English 1st Party PCQ - cancel out of questions
 
 		Given I am on "Public" "test"
@@ -1014,7 +1014,7 @@ Examples:
 			| juror_number	| last_name			| postcode	| email 		| pool_number	|
 			| 045200074		| LNAMETHREEFOURNINE| SY2 6LU	| a@eeee.com	| 452300073		|
 
-	@Regression @PCQ @NewSchemaConverted
+	@Features @PCQ @NewSchemaConverted
 	Scenario Outline: English 3rd Party PCQ - questions do not appear
 
 		Given I am on "Public" "test"
@@ -1132,7 +1132,7 @@ Examples:
 			|juror_number	|last_name			|postcode	|email 		|pool_number|
 			|645200349		|LNAMETHREEFOURNINE	|SY2 6LU	|a@eeee.com	|452170401	|
 
-	@Regression @PCQ @NewSchemaConverted
+	@Features @PCQ @NewSchemaConverted
 	Scenario Outline: Welsh 1st Party PCQ - answer questions
 
 		Given I am on the welsh version of "Public" "test"

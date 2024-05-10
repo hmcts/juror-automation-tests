@@ -377,7 +377,7 @@ Scenario Outline: English 1st Party + Residency
 	Then I see "<juror_number>" has reply type indicator "NEEDS REVIEW"
 
 	When I click on "<juror_number>" in the same row as "<juror_number>"
-	And I see "NEEDS REVIEW" on the page
+	And I see "INELIGIBLE" on the page
 	
 Examples:
 	| juror_number	| pool_number	| last_name			| postcode	| email 		|
