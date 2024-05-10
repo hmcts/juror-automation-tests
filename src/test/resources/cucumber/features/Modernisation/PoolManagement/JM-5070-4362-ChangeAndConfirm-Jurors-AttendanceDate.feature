@@ -1,27 +1,47 @@
-Feature: 1)JM-5070 As a jury officer I need to be able to change a jurors attendance date (FE)
-  2)JM-4362 As a Jury officer I need to be able to confirm a jurors attendance (FE)
+Feature: JM-5070 As a jury officer I need to be able to change a jurors attendance date - 4362 As a Jury officer I need to be able to confirm a jurors attendance
 
-  @JurorTransformationWIP @newSchemaConverted @JM-6795
+  @JurorTransformationWIP @newSchemaConverted @JM-7278
   Scenario Outline: Happy Path Test to create a new pool of jurors and change a jurors attendance date
 
     Given I am on "Bureau" "test"
-    When a new pool with "3" responded jurors is inserted for court "415" with owner "415" and attendance date of today new schema
+
+    When a bureau owned pool is created with jurors
+      | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   |<juror_number_1>     | <pool_number>     | 5				            | 400	|
+      | 415   |<juror_number_2> 	| <pool_number>     | 5				            | 400	|
+      | 415   |<juror_number_3> 	| <pool_number>     | 5				            | 400	|
+
+    Then a new pool is inserted for where record has transferred to the court new schema
+      |part_no              | pool_no            | owner |
+      |<juror_number_1>     | <pool_number>      | 415   |
+      |<juror_number_2>     | <pool_number>      | 415   |
+      |<juror_number_3>     | <pool_number>      | 415   |
+
+    And I update juror "<juror_number_1>" to have a status of "Responded"
+    And I update juror "<juror_number_2>" to have a status of "Responded"
+    And I update juror "<juror_number_3>" to have a status of "Responded"
+
     And I log in as "<user>"
-    And I navigate to the pool request screen
-    And I click on active pools
+    And I press the "Apps" button
+    And I click on the "Pool management" link
     And I click on the "Search" link
-    And I set "Pool number" to "<pool_no>"
+
+    And I set "Pool number" to "<pool_number>"
     And I press the "Continue" button
-    And I check the juror "<juror_number>" checkbox
+    And I check the juror "<juror_number_1>" checkbox
+    And I check the juror "<juror_number_2>" checkbox
+    And I check the juror "<juror_number_3>" checkbox
+
     And I press the "Change next due at court" button
-    And I enter a date "4" mondays in the future for the next due at court
+    #will fail here because of JM-7278
+    And I set the "Next due at court" date to a Monday "4" weeks in the future
     And I press the "Continue" button
-    Then I verify confirmation text of jurors next due to attend "1 jurors will be next due to attend on:" on the page
+    Then I verify confirmation text of jurors next due to attend "3 jurors will be next due to attend on:" on the page
     And I verify button "Continue" on the page
 
     Examples:
-      |user       |juror_number   | pool_no   |
-      |MODTESTCOURT |041500010      | 415333333 |
+      |user         |juror_number_1 | juror_number_2 | juror_number_3    | pool_number   |
+      |MODTESTCOURT |041566732      | 041566733      | 041566734         | 415835633     |
 
 
   @JurorTransformation @newSchemaConverted
