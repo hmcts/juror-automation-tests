@@ -891,7 +891,7 @@ Scenario Outline: Work Allocation
 	And "ARAMIS1-total" assigned replies count is "3"
 	Then I see "0" in the same row as "total" in Backlog box
 
-	Then I see "0" in the same row as "urgent" in Backlog box
+	Then I see "0" in the same row as "send" in Backlog box
 	Then I see "0" in the same row as "standard" in Backlog box
 	And I see "" in "allocateNonUrgent" Allocate Replies box
 	And I see "" in "allocateUrgent" Allocate Replies box
