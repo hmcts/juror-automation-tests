@@ -322,77 +322,62 @@ Examples:
 	| juror_number_one	| juror_number_two	| juror_number_three	| pool_number_one 	| pool_number_two | pool_number_three 	| last_name 	| last_name_two	| last_name_three	| postcode 	|
 	| 045200245			| 045200246			| 045200247				| 452300222 		| 452300223 	  | 452300224           | LNAMESTANDARD	| LNAMEURGENT 	| LNAMESUPERURGENT	| CH1 2AN	|
 
-@RegressionSingle 
+@RegressionSingle @NewSchemaConverted
 Scenario Outline: Search as Team Member
+
 	Given I am on "Public" "test"
+
 	Given "ARAMIS1" has court 9 set as "457"
+
+	Given a bureau owned pool is created with jurors
+		| court | juror_number  		| pool_number		| att_date_weeks_in_future	| owner |
+		| 457   | <juror_number_one>	| <pool_number_one>	| 5			            	| 400	|
+
+	Given a bureau owned pool is created with jurors
+		| court | juror_number  		| pool_number		| att_date_weeks_in_future	| owner |
+		| 457   | <juror_number_two>	| <pool_number_two>	| 3			            	| 400	|
+
+	Given a bureau owned pool is created with jurors
+		| court | juror_number  		| pool_number			| att_date_weeks_in_future	| owner |
+		| 457   | <juror_number_three>	| <pool_number_three>	| 2			            	| 400	|
+
+	And juror "<juror_number_one>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number_one>" has "POSTCODE" as "<postcode>" new schema
+	And juror "<juror_number_two>" has "LAST_NAME" as "<last_name_two>" new schema
+	And juror "<juror_number_two>" has "POSTCODE" as "<postcode>" new schema
+	And juror "<juror_number_three>" has "LAST_NAME" as "<last_name_three>" new schema
+	And juror "<juror_number_three>" has "POSTCODE" as "<postcode>" new schema
+
 	Given auto straight through processing has been disabled new schema
-	Given the juror numbers have not been processed
-		|part_no 			|pool_no 	|owner	|
-		|<part_no> 			|457170501	|400 	|
-		|<part_no_two> 		|457170501	|400 	|
-		|<part_no_three> 	|457170501	|400 	|
-	
-	# Using Staff Member CPASS
-	
-	# Set part_no pool to not be urgent
-	
-	Given "<juror_number>" has "RET_DATE" as "5 mondays time"
 
-	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
-	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
-	
 	# Submit response in pool
-	
 	Given I have submitted a first party English straight through response
-		|part_no	|pool_number|last_name	|postcode	|email 	|
-		|<part_no>	|<pool_no>	|<last_name>|CH1 2AN	|a@a.com|
+		|part_no			|pool_number		|last_name	|postcode	|email 	|
+		|<juror_number_one>	|<pool_number_one>	|<last_name>|CH1 2AN	|a@a.com|
 
-	# Set part_no pool to be urgent
-	
-	Given "<part_no_two>" has "RET_DATE" as "3 mondays time"
-	And "<part_no_two>" has "NEXT_DATE" as "3 mondays time"
-	And "<part_no_two>" has "LNAME" as "<last_name_two>"
-	And "<part_no_two>" has "ZIP" as "<postcode>"
-	
 	# Submit response in pool
-	
 	Given I have submitted a first party English straight through response
-		|part_no		|pool_number|last_name		|postcode	| email |
-		|<part_no_two>	|<pool_no>	|<last_name_two>|CH1 2AN	|a@a.com|
+		|part_no			|pool_number		|last_name		|postcode	| email |
+		|<juror_number_two>	|<pool_number_two>	|<last_name_two>|CH1 2AN	|a@a.com|
 
-	# Set part_no pool to be super urgent
-	
-	Given "<part_no_three>" has "RET_DATE" as "2 mondays time"
-	And "<part_no_three>" has "NEXT_DATE" as "2 mondays time"
-	And "<part_no_three>" has "LNAME" as "<last_name_three>"
-	And "<part_no_three>" has "ZIP" as "<postcode>"
-	
 	# Submit response in pool
-	
 	Given I have submitted a first party English straight through response
-		|part_no		|pool_number|last_name			|postcode	|email 	|
-		|<part_no_three>|<pool_no>	|<last_name_three>	|CH1 2AN	|a@a.com|
-		
-	Given "<part_no_three>" has "READ_ONLY" as "Y"
-	Then the "URGENT" for juror "<part_no_three>" is set to "N"
-	Then the "SUPER_URGENT" for juror "<part_no_three>" is set to "Y"
-	
+		|part_no				|pool_number			|last_name			|postcode	|email 	|
+		|<juror_number_three>	|<pool_number_three>	|<last_name_three>	|CH1 2AN	|a@a.com|
+
+	Given auto straight through processing has been enabled new schema
+
 	Given I am on "Bureau" "test"
-	And I log in	
+	And I log in as "MODTESTBUREAU"
 
 	When I click on the "Assign Replies" link
 	And I assign all the New Replies to "ARAMIS1"
 	And I do not see any links on the page that open to a new page without an alt text
-	
-	# Go to New Replies count
-	# Set the team members allocation count, set others to 0 and click send
 
 	Given I am on "Bureau" "test"
 	And I log in as "ARAMIS1"
-	And I see "Manage replies to jury summons" on the page
+	And I see "Summons replies" on the page
 	And I see "Your work" on the page
-	And I see link with text "ARAMIS1"
 	And I see link with text "Sign out"
 	And I see link with text "To do"
 	And I see link with text "Awaiting information"
@@ -438,120 +423,113 @@ Scenario Outline: Search as Team Member
 	Then "Juror's pool number" is ""
 
 	#no results
-	
 	Then I press the "Search" button
-	And I see "0 results for " on the page
-	And I see "No responses were found that match your search criteria." on the page
+	And I see "There are no matching results." on the page
 	
 	#one result - search on name
-	
 	Then I click on the "Clear search" link
 	And I set "Juror's last name" to "<last_name>"
 	Then "Juror's last name" is "<last_name>"
 	
 	Then I press the "Search" button
-	And I see "1 results for " on the page
-	And I see "<last_name>" in the same row as "<juror_number>"
+	And I see "results for "LNAMESTANDARD"" on the page
+	And I see "<juror_number_one>" on the page
 	
 	#three results - search on pool no
-	
 	Then I click on the "Clear search" link
 	Then I do not see "<juror_number>" on the page
 	
-	And I set "Juror's pool number" to "<pool_no>"
-	Then "Juror's pool number" is "<pool_no>"
+	And I set "Juror's pool number" to "<pool_number_one>"
+	Then "Juror's pool number" is "<pool_number_one>"
 	
 	Then I press the "Search" button
 	And I see "results for " on the page
-	And I see "<last_name>" in the same row as "<juror_number>"
-	And I see "<last_name_two>" in the same row as "<part_no_two>"
-	And I see "<last_name_three>" in the same row as "<part_no_three>"
-	
-	Then I see "Urgent" icon in the same row as "<part_no_two>"
-	Then I see "Send to court" icon in the same row as "<part_no_three>"
-	
+	And I see "<juror_number_one>" on the page
+
+	And I set "Juror's pool number" to "<pool_number_two>"
+	Then "Juror's pool number" is "<pool_number_two>"
+
+	Then I press the "Search" button
+	And I see "results for " on the page
+	And I see "<juror_number_two>" on the page
+
+	And I set "Juror's pool number" to "<pool_number_three>"
+	Then "Juror's pool number" is "<pool_number_three>"
+
+	Then I press the "Search" button
+	And I see "results for " on the page
+	And I see "<juror_number_three>" on the page
+
 	#search on juror number
-	
 	Then I click on the "Clear search" link
-	And I set "Juror number" to "<juror_number>"
+	And I set "Juror number" to "<juror_number_one>"
 	Then I press the "Search" button
 	And I see "results for " on the page
-	And I see "<last_name>" in the same row as "<juror_number>"
-	And I see "<pool_no>" in the same row as "<juror_number>"
-	And I see "ARAMIS1" in the same row as "<juror_number>"
+	And I see "<juror_number_one>" on the page
+	And I see "<pool_number_one>" in the same row as "<juror_number_one>"
+	And I see "ARAMIS1" in the same row as "<juror_number_one>"
 	And I see "TO DO" on the page
 	
-	Given auto straight through processing has been enabled new schema
-	
 Examples:
-	|part_no		|part_no_two	|part_no_three	|pool_no 	|last_name 		|last_name_two	|last_name_three	|postcode 	|
-	|645700184		|645700878		|645700884		|457170501 	|LNAMESTANDARD	|LNAMEURGENT 	|LNAMESUPERURGENT	|CH1 2AN	|
+	| juror_number_one	| juror_number_two	| juror_number_three	| pool_number_one 	| pool_number_two| pool_number_three| last_name 	| last_name_two	| last_name_three	| postcode 	|
+	| 045700030			| 045700031			| 045700032				| 457300030 		| 457300031      | 457300032		| LNAMESTANDARD	| LNAMEURGENT 	| LNAMESUPERURGENT	| CH1 2AN	|
 
-@RegressionSingle 
+@RegressionSingle @JM-7264
 Scenario Outline: Search as Team Leader
+
 	Given I am on "Public" "test"
+
 	Given auto straight through processing has been disabled new schema
-	Given the juror numbers have not been processed
-		|part_no 			|pool_no 	|owner	|
-		|<part_no> 			|457170501	|400 	|
-		|<part_no_two> 		|457170501	|400 	|
-		|<part_no_three> 	|457170501	|400 	|
-	
-	# Set part_no pool to not be urgent
-	
-	Given "<juror_number>" has "RET_DATE" as "5 mondays time"
 
-	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
-	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
-	
-	# Submit response in pool
-	
-	Given I have submitted a first party English straight through response
-		|part_no	|pool_number|last_name	|postcode	|email 	|
-		|<part_no>	|<pool_no>	|<last_name>|CH1 2AN	|a@a.com|
+	Given a bureau owned pool is created with jurors
+		| court | juror_number  		| pool_number		| att_date_weeks_in_future	| owner |
+		| 457   | <juror_number_one>	| <pool_number_one>	| 5			            	| 400	|
 
-	# Set part_no pool to be urgent
-	
-	Given "<part_no_two>" has "RET_DATE" as "3 mondays time"
-	And "<part_no_two>" has "NEXT_DATE" as "3 mondays time"
-	And "<part_no_two>" has "LNAME" as "<last_name_two>"
-	And "<part_no_two>" has "ZIP" as "<postcode>"
-	
-	# Submit response in pool
-	
-	Given I have submitted a first party English straight through response
-		|part_no		|pool_number|last_name		|postcode	| email |
-		|<part_no_two>	|<pool_no>	|<last_name_two>|CH1 2AN	|a@a.com|
+	Given a bureau owned pool is created with jurors
+		| court | juror_number  		| pool_number		| att_date_weeks_in_future	| owner |
+		| 457   | <juror_number_two>	| <pool_number_two>	| 3			            	| 400	|
 
-	# Set part_no pool to be super urgent
-	
-	Given "<part_no_three>" has "RET_DATE" as "2 mondays time"
-	And "<part_no_three>" has "NEXT_DATE" as "2 mondays time"
-	And "<part_no_three>" has "LNAME" as "<last_name_three>"
-	And "<part_no_three>" has "ZIP" as "<postcode>"
-	
+	Given a bureau owned pool is created with jurors
+		| court | juror_number  		| pool_number			| att_date_weeks_in_future	| owner |
+		| 457   | <juror_number_three>	| <pool_number_three>	| 2			            	| 400	|
+
+	And juror "<juror_number_one>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number_one>" has "POSTCODE" as "<postcode>" new schema
+	And juror "<juror_number_two>" has "LAST_NAME" as "<last_name_two>" new schema
+	And juror "<juror_number_two>" has "POSTCODE" as "<postcode>" new schema
+	And juror "<juror_number_three>" has "LAST_NAME" as "<last_name_three>" new schema
+	And juror "<juror_number_three>" has "POSTCODE" as "<postcode>" new schema
+
+	Given auto straight through processing has been disabled new schema
+
 	# Submit response in pool
-	
 	Given I have submitted a first party English straight through response
-		|part_no		|pool_number|last_name			|postcode	|email 	|
-		|<part_no_three>|<pool_no>	|<last_name_three>	|CH1 2AN	|a@a.com|
-		
-	Given "<part_no_three>" has "READ_ONLY" as "Y"
-	Then the "URGENT" for juror "<part_no_three>" is set to "N"
-	Then the "SUPER_URGENT" for juror "<part_no_three>" is set to "Y"
-	
+		|part_no			|pool_number		|last_name	|postcode	|email 	|
+		|<juror_number_one>	|<pool_number_one>	|<last_name>|CH1 2AN	|a@a.com|
+
+	# Submit response in pool
+	Given I have submitted a first party English straight through response
+		|part_no			|pool_number		|last_name		|postcode	| email |
+		|<juror_number_two>	|<pool_number_two>	|<last_name_two>|CH1 2AN	|a@a.com|
+
+	# Submit response in pool
+	Given I have submitted a first party English straight through response
+		|part_no				|pool_number			|last_name			|postcode	|email 	|
+		|<juror_number_three>	|<pool_number_three>	|<last_name_three>	|CH1 2AN	|a@a.com|
+
+	Given auto straight through processing has been enabled new schema
+
 	#assign to CPASS
 
 	Given I am on "Bureau" "test"
-	And I log in	
+	And I log in as "MODTESTBUREAU"
 
 	When I click on the "Assign Replies" link
 	And I assign all the New Replies to "ARAMIS1"
 	And I do not see any links on the page that open to a new page without an alt text
 
-	And I see "Manage replies to jury summons" on the page
+	And I see "Summons replies" on the page
 	And I click on the "Your work" link
-	And I see link with text "MODTESTBUREAU"
 	And I see link with text "Sign out"
 	And I see link with text "To do"
 	And I see link with text "Awaiting information"
@@ -581,7 +559,7 @@ Scenario Outline: Search as Team Leader
 	And I do not see "Completed" on the page
 	
 	And I click on the "Advanced search" link
-	And I see "Officer assigned" on the page
+	And I see "Select an officer assigned" on the page
 	And I see "Alerts" on the page
 	And I see "Urgent" on the page
 	And I see "Status" on the page
@@ -601,13 +579,10 @@ Scenario Outline: Search as Team Leader
 	Then "Juror's pool number" is ""
 
 	#no results
-	
 	Then I press the "Search" button
-	And I see "0 results for " on the page
-	And I see "No responses were found that match your search criteria." on the page
+	And I see "There are no matching results." on the page
 	
 	#one result
-	
 	Then I click on the "Clear search" link
 	Then I do not see "NORESULTS" on the page
 	And I set "Juror's last name" to "LNAMESTANDARD"
@@ -615,53 +590,48 @@ Scenario Outline: Search as Team Leader
 	
 	Then I press the "Search" button
 	And I see "results for " on the page
-	And I see "LNAMESTANDARD" in the same row as "<juror_number>"
+	And I see "<juror_number_one>" on the page
 	
 	#name appears if it's just 1
-	
 	And I press the "Select all" button
 	And I press the "Send to..." button
-	And I see "Send this reply to a colleague" on the page
-	And I see "LNAMESTANDARD" on the page
+	And I see "replies to a colleague" on the page
+	And I see "Select an officer to send to" on the page
 	And I see "Cancel" on the page
 	And I click on the "Cancel" link
 		
 	#three results
-	
 	Then I click on the "Clear search" link
-	Then I do not see "<juror_number>" on the page
+	Then I do not see "<juror_number_one>" on the page
 	And I do not see "<last_name>" on the page
-	And I set "Juror's pool number" to "457170501"
-	Then "Juror's pool number" is "457170501"
+	And I set "Juror's pool number" to "<pool_number_one>"
+	Then "Juror's pool number" is "<pool_number_one>"
 	
 	Then I press the "Search" button
 
-	And I see "LNAMESTANDARD" in the same row as "<juror_number>"
-	And I see "LNAMEURGENT" in the same row as "<part_no_two>"
-	And I see "LNAMESUPERURGENT" in the same row as "<part_no_three>"
+	And I see "<juror_number_one>" on the page
 	
 	#names do not appear
-	
 	And I press the "Select all" button
 	And I press the "Send to..." button
-	And I see "Send 3 replies to a colleague" on the page
-	And I do not see "LNAMESTANDARD" on the page
+	And I see "Send this reply to a colleague" on the page
+
+	And I see "LNAMESTANDARD" on the page
 	And I do not see "LNAMEURGENT" on the page
 	And I do not see "LNAMESUPERURGENT" on the page
+
 	And I see "Cancel" on the page
 	And I click on the "Cancel" link
 	
 	#more than 250 results
-	
 	Then I click on the "Clear search" link
 	And I click on the "Advanced search" link
-	And I check the "closed" checkbox
+	And I check the "Completed" checkbox
 	Then I press the "Search" button
-	And I see "250 results for " on the page
-	And I see "The specified search resulted in more than 250 results. This list only shows the oldest 250." on the page
+	And I see "100 results for " on the page
+	And I see "The specified search resulted in more than 100 results. This list only shows the oldest 100." on the page
 	
 	#search on a specific user
-	
 	Then I click on the "Clear search" link
 	And I click on the "Advanced search" link
 	And I select "ARAMIS1" from the "Officer assigned" dropdown
@@ -669,18 +639,16 @@ Scenario Outline: Search as Team Leader
 	And I see "results for " on the page
 	
 	#search on urgent
-	
 	Then I click on the "Clear search" link
 	And I click on the "Advanced search" link
 	And I check the "urgentsOnly" checkbox
 	And I select "ARAMIS1" from the "Officer assigned" dropdown
 	Then I press the "Search" button
 	And I do not see "LNAMESTANDARD" on the page
-	And I see "LNAMEURGENT" in the same row as "<part_no_two>"
-	And I see "LNAMESUPERURGENT" in the same row as "<part_no_three>"
+	And I see "LNAMEURGENT" in the same row as "<juror_number_two>"
+	And I see "LNAMESUPERURGENT" in the same row as "<juror_number_three>"
 	
 	#allocate from search results
-	
 	And I press the "Select all" button
 	And I press the "Unselect all" button
 	And I press the "Select all" button
@@ -701,7 +669,6 @@ Scenario Outline: Search as Team Leader
 	And I see "Your work" on the page
 	
 	#check responses have moved
-	
 	And I click on the "Search" link
 	And I click on the "Advanced search" link
 	Then I click on the "Clear search" link
@@ -717,14 +684,12 @@ Scenario Outline: Search as Team Leader
 	And I select "MODTESTBUREAU" from the "Officer assigned" dropdown
 	Then I press the "Search" button
 	And I do not see "LNAMESTANDARD" on the page
-	And I see "LNAMEURGENT" in the same row as "<part_no_two>"
-	And I see "LNAMESUPERURGENT" in the same row as "<part_no_three>"
-	
-	Given auto straight through processing has been enabled new schema
+	And I see "LNAMEURGENT" in the same row as "<juror_number_two>"
+	And I see "LNAMESUPERURGENT" in the same row as "<juror_number_three>"
 	
 Examples:
-	|part_no		|part_no_two	|part_no_three	|pool_no 	|last_name 		|last_name_two	|last_name_three	|postcode 	|
-	|645700184		|645700878		|645700884		|457170501 	|LNAMESTANDARD	|LNAMEURGENT 	|LNAMESUPERURGENT	|CH1 2AN	|
+	| juror_number_one	| juror_number_two	| juror_number_three	| pool_number_one 	| pool_number_two| pool_number_three| last_name 	| last_name_two	| last_name_three	| postcode 	|
+	| 045700033			| 045700034			| 045700035				| 457300033 		| 457300034      | 457300035 		| LNAMESTANDARD	| LNAMEURGENT 	| LNAMESUPERURGENT	| CH1 2AN	|
 
 @Regression @JDB-3743 
 Scenario Outline: Work Allocation Fields and Labels Checks
@@ -1014,7 +979,7 @@ Scenario: Manage Team
 	Given I am on "Bureau" "test"
 	And I log in
 	And staff with name "New Name" does not exist
-	And I see "Manage replies to jury summons" on the page
+	And I see "Summons replies" on the page
 	And I see "Your work" on the page
 	And I see link with text "MODTESTBUREAU"
 	And I see link with text "Sign out"
