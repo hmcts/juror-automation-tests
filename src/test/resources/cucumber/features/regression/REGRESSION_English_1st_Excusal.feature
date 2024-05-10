@@ -317,8 +317,10 @@ Examples:
 	| juror_number	| last_name			| postcode	| email           	| pool_number	|
 	| 045200052		| LNAMEEIGHTONETWO	| SY2 6LU	| email@outlook.com	| 452300051		|
 
-@Regression @NewSchemaConverted
+@Features @NewSchemaConverted
 Scenario Outline: English 1st Party Excusal Super Urgent
+
+	#move back to @Regression when we work out how to get Jankins to focus on new window
 
 	Given I am on "Public" "test"
 

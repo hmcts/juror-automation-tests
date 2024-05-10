@@ -95,12 +95,12 @@ Examples:
 	| juror_number	| pool_number 	| last_name 		| postcode 	|
 	| 045200231		| 452300211 	| LNAMETWOEIGHTNINE	| SY2 6LU	|
 	
-@RegressionSingle @NewSchemaConverted
+@Features @NewSchemaConverted
 Scenario Outline: Send to court process options
 
-	Given I am on "Public" "test"
+	#put back in @RegressionSingle when we work out how to focus on new page
 
-	Given auto straight through processing has been disabled new schema
+	Given I am on "Public" "test"
 
 	#super urgent pool owned by court
 	Given a bureau owned pool is created with jurors
@@ -113,12 +113,17 @@ Scenario Outline: Send to court process options
 
 	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
 	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
-	
+
+	Given auto straight through processing has been disabled new schema
+
 	# Submit response
 	Given I have submitted a first party English straight through response
 		|part_no		|pool_number	|last_name		|postcode	|email 	|
 		|<juror_number>	|<pool_number>	|<last_name>	|<postcode>	|a@a.com|
-	
+
+	#re-enable auto processing
+	Given auto straight through processing has been enabled new schema
+
 	Given I am on "Bureau" "test"
 	And I log in as "MODTESTBUREAU"
 
@@ -143,10 +148,6 @@ Scenario Outline: Send to court process options
 	Then I click on the "Download as a PDF" link
 	And I switch to the new window
 	And I see "<juror_number>/download-pdf" in the URL
-
-	#re-enable auto processing
-	
-	Given auto straight through processing has been enabled new schema
 
 Examples:
 	|juror_number	|pool_number|last_name 			|postcode 	|

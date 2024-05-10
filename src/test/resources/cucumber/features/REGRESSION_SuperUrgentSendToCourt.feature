@@ -8,9 +8,11 @@ Feature: JDB-3759 SuperUrgentSendToCourt
 #cover assigned/unassigned (test manually with prev test)
 #read_only turns to Y before response is U or SU (test manually)
 
-@Regression @NewSchemaConverted
+@Features @NewSchemaConverted
 Scenario Outline: A response is submitted after pool is transferred to court
-	
+
+	#move back to @Regression when we work out how to get Jenkins to refocus on new page
+
 	Given I am on "Public" "test"
 
 	Given a bureau owned pool is created with jurors

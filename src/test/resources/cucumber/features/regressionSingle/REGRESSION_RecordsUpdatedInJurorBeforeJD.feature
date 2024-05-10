@@ -374,7 +374,7 @@ Examples:
 	| juror_number	| pool_number	| last_name			| postcode	| email	|
 	| 045200249		| 452300226		| LNAMETWOSIXZERO	| CH1 2AN	| a@a.com|
 
-@RegressionSingle @JDB-3198 
+@RegressionSingle
 Scenario Outline: Cannot Complete Record when juror.pool.status=2 and processing status=AWAITING*
 	
 	Given I am on "Public" "juror-test02"
@@ -446,10 +446,11 @@ Examples:
 	|part_no_seven	|pool_no	|last_name			|postcode	|email	|
 	|645100075		|451170401	|LNAMETWOSIXZERO	|CH1 2AN	|a@a.com|
 
-@RegressionSingle @JDB-3198 @JDB-3732 
+@RegressionSingle
 Scenario Outline: Cannot Complete Record when juror.pool.status=2 (Responded) and record is pending allocation
 	
-	Given I am on "Public" "juror-test02"
+	Given I am on "Public" "test"
+
 	Given the juror numbers have not been processed
 		|part_no 		|pool_no 	|owner 	|
 		|<part_no_eight>|<pool_no>	|400 	|

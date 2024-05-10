@@ -26,13 +26,12 @@ Scenario: Analytics Cookies opt in
 	Then I do not see "Hide cookie message" on the page
 	And I do not see "You’ve accepted analytics cookies. You can change your cookie settings at any time." on the page
 	
-@RegressionSingle @JDB-4860 
+@RegressionSingle @NewSchemaConverted
 Scenario: Analytics Cookies opt out
 
-	Given I am looking at cookies on "Public" "bau-test"
+	Given I am looking at cookies on "Public" "test"
 	
 	#new cookies banner
-	
 	And I see "Cookies on Reply to a jury summons" on the page
 	And I see "We use some essential cookies to make this service work." on the page
 	And I see "We’d also like to use analytics cookies so we can understand how you use the service and make improvements." on the page
@@ -53,13 +52,12 @@ Scenario: Analytics Cookies opt out
 	And I do not see "You’ve rejected analytics cookies. You can change your cookie settings at any time." on the page
 
 
-@RegressionSingle @JDB-4528 
+@RegressionSingle @NewSchemaConverted
 Scenario: English View Cookies
 	
-	Given I am looking at cookies on "Public" "bau-test"
+	Given I am looking at cookies on "Public" "test"
 	
 	#new cookies banner
-	
 	And I see "Cookies on Reply to a jury summons" on the page
 	And I see link with text "View cookies"
    	Then I click on the "View cookies" link
@@ -242,10 +240,10 @@ Scenario: English Privacy Policy
 	And I see "We do not accept liability for loss or damage incurred by users of this service, whether direct, indirect or consequential, whether caused by tort, breach of contract or otherwise. This includes loss of income or revenue, business, profits or contracts, anticipated savings, data, goodwill, tangible property or wasted time in connection with this service or any websites linked to it and any materials posted on it. This condition shall not prevent claims for loss of or damage to your tangible property or any other claims for direct financial loss that are not excluded by any of the categories set out above." on the page
 	And I see "This does not affect our liability for death or personal injury arising from our negligence, nor our liability for fraudulent misrepresentation or misrepresentation as to a fundamental matter, nor any other liability which cannot be excluded or limited under applicable law." on the page
 
-	@RegressionSingle
+	@RegressionSingle @NewSchemaConverted
 	Scenario: Welsh Analytics Cookies opt in
 
-		Given I am looking at cookies on Welsh "Public" "bau-test"
+		Given I am looking at cookies on Welsh "Public" "test"
 		And I see "Cwcis ar ffurflen Ymateb i wŷs rheithgor" on the page
 		And I see "Rydym yn defnyddio rhai cwcis hanfodol i wneud i'r gwasanaeth hwn weithio." on the page
 		And I see "Hoffem hefyd ddefnyddio cwcis dadansoddol fel y gallwn ddeall sut rydych yn defnyddio'r gwasanaeth a gwneud gwelliannau." on the page
@@ -253,10 +251,10 @@ Scenario: English Privacy Policy
 		And I press the "Derbyn cwcis dadansoddol" button
 		And I see "Cuddio'r neges ynghylch cwcis" on the page
 
-	@RegressionSingle
+	@RegressionSingle @NewSchemaConverted
 	Scenario: Welsh Privacy Policy
 
-		Given I am looking at cookies on Welsh "Public" "bau-test"
+		Given I am looking at cookies on Welsh "Public" "test"
 
 		And I see link with text "Polisi preifatrwydd"
 		Then I click on the "Polisi preifatrwydd" link
