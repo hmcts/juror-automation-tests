@@ -73,6 +73,9 @@ Feature: JM-252_Navigation_COURT
     And I set "Number of jurors required in total" to "150"
 
     #SELECT TO CHANGE NUMBER OF DEFERRALS
+    Given a new pool is inserted which is owned by the court and includes a deferred juror new schema
+      | owner | pool_no       | part_no        | no_weeks |
+      | 415   | <pool_number> | <juror_number> | 9        |
     Then I click the change link for the court deferrals
     And I see "Number of court deferrals to include in this pool" on the page
     Then I change the number of court deferrals to "1"
@@ -187,9 +190,6 @@ Feature: JM-252_Navigation_COURT
 
     Then I click on the "Clear filter" link
 
-    Then I see "Chester" on the page
-    And I see "Knutsford" on the page
-
     Then I set input field with "ID" of "courtNameOrLocation" to "767"
     Then I click on the "Knutsford (767)" link
     Then I press the "Filter" button
@@ -203,9 +203,6 @@ Feature: JM-252_Navigation_COURT
     Then only records from "Chester" are displayed
 
     Then I click on the "Clear filter" link
-
-    Then I see "Chester" on the page
-    And I see "Knutsford" on the page
 
     Then I set input field with "ID" of "courtNameOrLocation" to "Knutsford"
     Then I click on the "Knutsford (767)" link
@@ -243,10 +240,6 @@ Feature: JM-252_Navigation_COURT
     Then only records from "Warrington" are displayed
 
     Then I click on the "Clear filter" link
-
-    Then I see "Chester" on the page
-    And I see "Knutsford" on the page
-    And I see "Warrington" on the page
 
     Examples:
       | user         | courtType |

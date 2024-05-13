@@ -977,6 +977,11 @@ public class StepDef_jurorpool {
         List<String> courtList = POOL_REQUESTS_PAGE.getPoolRequestCourtNames();
         assertTrue(courtList.isEmpty());
     }
+    @Then("^records are displayed$")
+    public void recordsAreDisplayed() {
+        List<String> courtList = POOL_REQUESTS_PAGE.getPoolRequestCourtNames();
+        assertFalse(courtList.isEmpty());
+    }
 
     @Then("^only active records from \"([^\"]*)\" are displayed$")
     public void onlyActiveRecordsFromAreDisplayed(String expectedCourt) {

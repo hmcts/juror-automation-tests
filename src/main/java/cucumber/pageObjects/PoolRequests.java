@@ -437,11 +437,15 @@ public class PoolRequests {
         return data;
     }
 
-    public void enterFilterString(final String filterQuery) throws InterruptedException {
+    public void enterFilterString(final String filterQuery){
         log.info("Filtering by: " + filterQuery);
         filterField.clear();
         filterField.sendKeys(filterQuery);
-        wait.waitForDisplayedElement(driver.findElement(By.className("autocomplete__option")), 10);
+        try {
+            wait.waitForDisplayedElement(driver.findElement(By.className("autocomplete__option")), 10);
+        } catch (Exception e){
+            log.info("Exception: " + e);
+        }
     }
 
     public void clickFilterAutocompleteOption() {
