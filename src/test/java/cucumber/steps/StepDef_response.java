@@ -482,7 +482,9 @@ public class StepDef_response {
 			NAV.set_valueTo("Juror postcode", postcode);
 			NAV.press_buttonByName("Continue");
 			NAV.textPresentOnPage("Is the name we have for you correct?");
-			GRP.click_radioButtonWithLabel("Yes");
+			GRP.click_radioButtonWithLabel("No");
+			NAV.press_buttonByName("Continue");
+			NAV.set_value_to("Last name", "Changed");
 			NAV.press_buttonByName("Continue");
 			NAV.textPresentOnPage("Is this your address?");
 			GRP.click_radioButtonWithLabel("Yes");
