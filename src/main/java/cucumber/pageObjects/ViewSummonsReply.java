@@ -92,7 +92,7 @@ public class ViewSummonsReply {
     @FindBy(id = "adjustments-section-menu-item")
     WebElement adjustmentsTab;
 
-    @FindBy(id = "disability")
+    @FindBy(id = "reasonableAdjustments")
     WebElement adjustmentsStatus;
 
     @FindBy(id = "reasonableAdjustment")

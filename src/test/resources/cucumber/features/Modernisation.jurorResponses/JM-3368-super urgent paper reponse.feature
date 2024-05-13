@@ -1,7 +1,7 @@
 Feature: JM-3368 Super Urgent Paper Response Court
 
 	@JurorTransformationMulti @NewSchemaConverted
-	Scenario Outline: JM-3368 As Court User, record super urgent UNHAPPY PATH Paper Response
+	Scenario Outline: JM-3368 As Court User, record urgent UNHAPPY PATH Paper Response
 
 		Given I am on "bureau" "test"
 		Given a bureau owned pool is created with jurors
@@ -51,7 +51,7 @@ Feature: JM-3368 Super Urgent Paper Response Court
 
 		And I see the reply "status" on the response is "TO DO"
 		And I see the reply "type" on the response is "INELIGIBLE"
-		And I see the super urgent flag
+		And I see "URGENT" on the page
 		And I see "Summons reply is missing essential information - reply cannot be processed until this information is entered." in the response banner
 
 		And I click on the "Sign out" link

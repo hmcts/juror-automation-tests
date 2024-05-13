@@ -168,10 +168,7 @@ public class SummonsReply {
     @FindBy(id = "cjsSystemPoliceDetails")
     WebElement policeForceTextBox;
 
-    @FindBy(xpath = "//*[@Class='moj-badge moj-badge--red']")
-    WebElement superUrgentFlag;
-
-    @FindBy(id = "processReply")
+   @FindBy(id = "processReply")
     WebElement processReplyButton;
 
     @FindBy(xpath = "//input[@value='excusal']")
@@ -589,10 +586,6 @@ public class SummonsReply {
 
     public void enterPoliceForceDetails(String text) {
         policeForceTextBox.sendKeys(text);
-    }
-
-    public String getSuperUrgentFlag() {
-        return superUrgentFlag.getText();
     }
 
     public boolean processReplyButtonIsPresent() {
