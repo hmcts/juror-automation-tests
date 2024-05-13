@@ -1510,11 +1510,6 @@ public class StepDef_jurorpool {
         assertEquals(jurorStatus, VIEW_SUMMONS_REPLY.getJurorStatus());
     }
 
-    @And("^I see the super urgent flag$")
-    public void iSeeTheSuperUrgentFlag() {
-        assertEquals("SUPER URGENT", SUMMONS_REPLY.getSuperUrgentFlag());
-    }
-
     @And("^I see \"([^\"]*)\" in the response banner$")
     public void iSeeResponseBannerText(String bannerText) {
         assertEquals(bannerText, SUMMONS_REPLY.getResponseBannerText());
