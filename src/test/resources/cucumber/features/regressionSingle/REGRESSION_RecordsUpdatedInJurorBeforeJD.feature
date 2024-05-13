@@ -1,7 +1,7 @@
 Feature: JDB-3198
 
 @RegressionSingle @NewSchemaConverted
-Scenario Outline: Can Complete Record when juror.pool.status=1 (summoned)
+Scenario Outline: Can Set Juror Record to responded while response is TODO
 	
 	Given I am on "Public" "test"
 
@@ -13,58 +13,10 @@ Scenario Outline: Can Complete Record when juror.pool.status=1 (summoned)
 	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 
 	# Submit response in pool
-	Given I have submitted a first party English straight through response
+	Given I have submitted a first party English ineligibilty response
 		|part_no			|pool_number	|last_name		|postcode	|email 	|
 		|<juror_number>		|<pool_number>	|<last_name>	|<postcode>	|<email>|
 
-	Given I am on "Bureau" "test"
-	And I log in as "CPASS"
-	
-	When I click on the "Search" link
-	And I set "Juror number" to "<juror_number>"
-	And I press the "Search" button
-	When I click on "<juror_number>" in the same row as "<juror_number>"
-	
-	#check status = summoned
-	Then I see "Summoned" on the page
-	
-	When I select "Mark as responded" from Process reply
-	And I check the "Mark juror as 'responded'" checkbox
-	And I press the "Confirm" button
-	
-	#now check status = responded
-	
-	Then I see the juror record updated banner containing "Responded"
-	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "CLOSED" where "JUROR_NUMBER" is "<juror_number>"
-	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "Y" where "JUROR_NUMBER" is "<juror_number>"
-	
-	#check record is now in "completed today"
-	When I click on the "Your work" link
-	Then I click on the "Completed" link
-	Then I see "<juror_number>" on the page
-
-Examples:
-	| juror_number	| pool_number	| last_name	| postcode	| email 	|
-	| 045200252		| 452300229		| DOE		| SW1H 9AJ	| a@a.com	|
-	
-@RegressionSingle @NewSchemaConverted
-Scenario Outline: Cannot Complete Record when juror.pool.status=2 (Responded)
-	
-	Given I am on "Public" "test"
-
-	Given a bureau owned pool is created with jurors
-		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
-		| 452   |<juror_number>| <pool_number>	| 3				            | 400	|
-
-	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
-	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
-	And juror "<juror_number>" has "DOB" as "01-JAN-1977" new schema
-	
-	# Submit response in pool
-	Given I have submitted a first party English straight through response
-		|part_no		|pool_number	|last_name		|postcode	|email 	|
-		|<juror_number>	|<pool_number>	|<last_name>	|<postcode>	|<email>|
-	
 	Given I am on "Bureau" "test"
 	And I log in as "CPASS"
 
@@ -75,527 +27,365 @@ Scenario Outline: Cannot Complete Record when juror.pool.status=2 (Responded)
 	And I check the "Mark juror as 'responded'" checkbox
 	And I press the "Confirm" button
 
-	When I click on the "Summons management" link
-	When I click on the "Search" link
-	And I set "Juror number" to "<juror_number>"
-	And I press the "Search" button
-	And I click on "<juror_number>" in the same row as "<juror_number>"
-	
-	#check I get a warning that the record is completed
-	Then I see "Response Completed" on the page
-	Then I see "This response has already been processed in Juror, please check the details are correct" on the page
-	
-	#ok message
-	
-	And I press the "Ok" button
-	
-	#check status on screen
-	
-	Then I see "Responded" on the page
-	And I see "COMPLETED" on the page
+	And I click on the "Summons reply" link
+	Then I see "COMPLETED" on the page
+	And I see "Responded" on the page
+
+	And I click on the "Juror details" link
+	And I see "Fname Changed" on the page
+
 	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "CLOSED" where "JUROR_NUMBER" is "<juror_number>"
 	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "Y" where "JUROR_NUMBER" is "<juror_number>"
-	
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "LAST_NAME" is "Changed" where "JUROR_NUMBER" is "<juror_number>"
+
 	#check record is now in "completed today"
-	
-	When I click on the "Your work" link
+	When I click on the "Apps" link
+	And I click on the "Summons management" link
 	Then I click on the "Completed" link
 	Then I see "<juror_number>" on the page
-	
-Examples:
-	| juror_number	| pool_number	| last_name			| postcode	| email	|
-	| 045200253		| 452300230		| LNAMETWOSIXZERO	| CH1 2AN	| a@a.com|
-	
-@RegressionSingle @JDB-3198 @JDB-3732 
-Scenario Outline: Cannot Complete Record when juror.pool.status=5 (Excused)
-	
-	Given I am on "Public" "juror-test02"
-	Given the juror numbers have not been processed
-		|part_no 			|pool_no 	|owner 	|
-		|<part_no_three> 	|<pool_no>	|400 	|
-	
-	#Set part_no pool to be urgent
-	
-	Given "<part_no_three>" has "RET_DATE" as "3 mondays time"
-	And "<part_no_three>" has "NEXT_DATE" as "3 mondays time"
-	And "<part_no_three>" has "LNAME" as "<last_name>"
-	And "<part_no_three>" has "ZIP" as "<postcode>"
-	And "<part_no_three>" has "DOB" as "01-JAN-1977"
-	
-	# Submit response in pool
-	Given I have submitted a first party English straight through response
-		|part_no			|pool_number	|last_name		|postcode	|email 	|
-		|<part_no_three>	|<pool_no>		|<last_name>	|<postcode>	|<email>|
-		
-	#update JUROR to excused
-	
-	Given "<part_no_three>" has "RESPONDED" as "Y"
-	And "<part_no_three>" has "STATUS" as "5"
-	And "<part_no_three>" has "DATE_EXCUS" as "01-JAN-2019"
-	And "<part_no_three>" has "EXC_CODE" as "D"
-	And "<part_no_three>" has "USER_EDTQ" as "CPASS"
-	
-	Given I am on "Bureau" "juror-test02" 	
-	And I log in as "CPASS"
-	
-	When I click on the "Search" link
-	And I set "Juror number" to "<part_no_three>"
-	And I press the "Search" button
-	And I click on "<part_no_three>" in the same row as "<part_no_three>"
-	
-	#check I get a warning that the record is completed
-	
-	Then I see "Response Completed" on the page
-	Then I see "This response has already been processed in Juror, please check the details are correct" on the page
-	
-	#ok message
-	
-	And I press the "Ok" button
-	
-	#check status on screen
 
- 	Then I see "Excused" on the page
-	And I see "COMPLETED" on the page
-	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "CLOSED" where "JUROR_NUMBER" is "<part_no_three>"
-	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "Y" where "JUROR_NUMBER" is "<part_no_three>"
-	
-	#check record is now in "completed today"
-	
-	When I click on the "Your work" link
-	Then I click on the "Completed" link
-	Then I see "<part_no_three>" on the page
-	
 Examples:
-	|part_no_three	|pool_no	|last_name			|postcode	|email	|
-	|645100746		|451170401	|LNAMETWOSIXZERO	|CH1 2AN	|a@a.com|
+	| juror_number	| pool_number	| last_name	| postcode	| email 	|
+	| 045200252		| 452300229		| DOE		| SW1H 9AJ	| a@a.com	|
 	
-@RegressionSingle @JDB-3198 @JDB-3732 
-Scenario Outline: Cannot Complete Record when juror.pool.status=6 (Disqualified)
-	
-	Given I am on "Public" "juror-test02"
-	Given the juror numbers have not been processed
-		|part_no 		|pool_no 	|owner 	|
-		|<part_no_four>	|<pool_no>	|400 	|
-	
-	#Set part_no pool to be urgent
-	Given "<part_no_four>" has "RET_DATE" as "2 mondays time"
-	And "<part_no_four>" has "NEXT_DATE" as "2 mondays time"
-	And "<part_no_four>" has "LNAME" as "<last_name>"
-	And "<part_no_four>" has "ZIP" as "<postcode>"
-	And "<part_no_four>" has "DOB" as "01-JAN-1977"
-	
-	# Submit response in pool
-	Given I have submitted a first party English straight through response
-		|part_no		|pool_number	|last_name		|postcode	|email 	|
-		|<part_no_four>	|<pool_no>		|<last_name>	|<postcode>	|<email>|
-		
-	#update JUROR to disq
-	Given "<part_no_four>" has "RESPONDED" as "Y"
-	And "<part_no_four>" has "STATUS" as "6"
-	
-	Given I am on "Bureau" "juror-test02" 	
-	And I log in as "CPASS"
-	
-	When I click on the "Search" link
-	And I set "Juror number" to "<part_no_four>"
-	And I press the "Search" button
-	And I click on "<part_no_four>" in the same row as "<part_no_four>"
-	
-	#check I get a warning that the record is completed
-	
-	Then I see "Response Completed" on the page
-	Then I see "This response has already been processed in Juror, please check the details are correct" on the page
-	
-	#ok message
-	
-	And I press the "Ok" button
-	
-	#check status on screen
-	
-	Then I see "Disqualified" on the page
-	And I see "COMPLETED" on the page
-	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "CLOSED" where "JUROR_NUMBER" is "<part_no_four>"
-	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "Y" where "JUROR_NUMBER" is "<part_no_four>"
-	
-	#check record is now in "completed today"
-	
-	When I click on the "Your work" link
-	Then I click on the "Completed" link
-	Then I see "<part_no_four>" on the page
-	
-Examples:
-	|part_no_four	|pool_no	|last_name			|postcode	|email	|
-	|645100572		|451170401	|LNAMETWOSIXZERO	|CH1 2AN	|a@a.com|
-
-@RegressionSingle @JDB-3198 @JDB-3732 
-Scenario Outline: Cannot Complete Record when juror.pool.status=7 (Deferred)
-	
-	Given I am on "Public" "juror-test02"
-	Given the juror numbers have not been processed
-		|part_no 		|pool_no 	|owner 	|
-		|<part_no_five>	|<pool_no>	|400 	|
-	
-	#Set part_no pool to be urgent
-	Given "<part_no_five>" has "RET_DATE" as "2 mondays time"
-	And "<part_no_five>" has "NEXT_DATE" as "2 mondays time"
-	And "<part_no_five>" has "LNAME" as "<last_name>"
-	And "<part_no_five>" has "ZIP" as "<postcode>"
-	And "<part_no_five>" has "DOB" as "01-JAN-1977"
-	
-	# Submit response in pool
-	Given I have submitted a first party English straight through response
-		|part_no			|pool_number	|last_name		|postcode	|email 	|
-		|<part_no_five>		|<pool_no>		|<last_name>	|<postcode>	|<email>|
-		
-	#update JUROR to deferred
-	Given "<part_no_five>" has "RESPONDED" as "Y"
-	And "<part_no_five>" has "STATUS" as "7"
-	
-	Given I am on "Bureau" "juror-test02" 	
-	And I log in as "CPASS"
-	
-	When I click on the "Search" link
-	And I set "Juror number" to "<part_no_five>"
-	And I press the "Search" button
-	And I click on "<part_no_five>" in the same row as "<part_no_five>"
-	
-	#check I get a warning that the record is completed
-	
-	Then I see "Response Completed" on the page
-	Then I see "This response has already been processed in Juror, please check the details are correct" on the page
-	
-	#ok message
-	
-	And I press the "Ok" button
-
-	Then I see "Deferred" on the page
-	And I see "COMPLETED" on the page
-	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "CLOSED" where "JUROR_NUMBER" is "<part_no_five>"
-	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "Y" where "JUROR_NUMBER" is "<part_no_five>"
-	
-	#check record is now in "completed today"
-	
-	When I click on the "Your work" link
-	Then I click on the "Completed" link
-	Then I see "<part_no_five>" on the page
-	
-Examples:
-	|part_no_five	|pool_no	|last_name			|postcode	|email	|
-	|645100747		|451170401	|LNAMETWOSIXZERO	|CH1 2AN	|a@a.com|
-
 @RegressionSingle @NewSchemaConverted
-Scenario Outline: Cannot Complete Record when juror.pool.status=11 (Awaiting info)
+Scenario Outline: Can Set Juror Record to Excused while response is TODO
 	
 	Given I am on "Public" "test"
 
 	Given a bureau owned pool is created with jurors
-		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
-		| 452   |<juror_number>| <pool_number>	| 2				            | 400	|
+		| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   | <juror_number>| <pool_number>	| 3				            | 400	|
 
-	#Set part_no pool to be urgent
 	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
 	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
-	And juror "<juror_number>" has "DOB" as "01-JAN-1977" new schema
+	
+	# Submit response in pool
+	Given I have submitted a first party English ineligibilty response
+		|part_no		|pool_number	|last_name		|postcode	|email 	|
+		|<juror_number>	|<pool_number>	|<last_name>	|<postcode>	|<email>|
+	
+	Given I am on "Bureau" "test" 	
+	And I log in as "CPASS"
+
+	##excuse juror
+	When the user searches for juror record "<juror_number>" from the global search bar
+	And I press the "Update juror record" button
+	And I choose the "Excusal - grant or refuse" radio button
+	And I press the "Continue" button
+	And I select "I - ILL" from the "Reason for excusal request" dropdown
+	And I choose the "Grant excusal" radio button
+	And I press the "Continue" button
+	Then I see the juror record updated banner containing "Excusal granted (ill)"
+	
+	#check that the response has been completed
+	When I click on the "Summons reply" link
+	Then I see "COMPLETED" on the page
+	And I see "Excusal granted (ill)" on the page
+
+	And I click on the "Juror details" link
+	And I see "Fname Changed" on the page
+
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "CLOSED" where "JUROR_NUMBER" is "<juror_number>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "Y" where "JUROR_NUMBER" is "<juror_number>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "LAST_NAME" is "Changed" where "JUROR_NUMBER" is "<juror_number>"
+	
+	#check record is now in "completed today"
+	When I click on the "Apps" link
+	And I click on the "Summons management" link
+	Then I click on the "Completed" link
+	Then I see "<juror_number>" on the page
+	
+Examples:
+	| juror_number	| pool_number	| last_name			| postcode	| email		|
+	| 045200255		| 452300232		| LNAMETWOSIXZERO	| CH1 2AN	| a@a.com	|
+	
+@RegressionSingle @NewSchemaConverted
+Scenario Outline: Can Set Juror Record to Disqualified while response is TODO
+	
+	Given I am on "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   | <juror_number>| <pool_number>	| 2				            | 400	|
+
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 
 	# Submit response in pool
-	Given I have submitted a first party English straight through response
+	Given I have submitted a first party English ineligibilty response
 		|part_no		|pool_number	|last_name		|postcode	|email 	|
 		|<juror_number>	|<pool_number>	|<last_name>	|<postcode>	|<email>|
 	
 	Given I am on "Bureau" "test"
 	And I log in as "CPASS"
+	
+	##disqualify juror
+	When the user searches for juror record "<juror_number>" from the global search bar
+	And I press the "Update juror record" button
+	And I choose the "Disqualify juror" radio button
+	And I press the "Continue" button
+	And I choose the "A - Age" radio button
+	And I press the "Continue" button
+	Then I see the juror record updated banner containing "Disqualified"
 
-	#update JUROR to awaiting info
-	And I search for juror "<juror_number>"
-	And I press the "More actions" button
-	And I click on the "Mark as awaiting information" link
-	And I choose the "Juror" radio button
-	Then I press the "Confirm" button
-	Then I see "AWAITING JUROR" on the page
+	#check that the response has been completed
+	When I click on the "Summons reply" link
+	Then I see "COMPLETED" on the page
+	And I see "Disqualified" on the page
 
-#	Given juror "<juror_number>" has "RESPONDED" as "Y" new schema
-#	And "<juror_number>" has "STATUS" as "11" new schema
+	And I click on the "Juror details" link
+	And I see "Fname Changed" on the page
 
-	
-	When I click on the "Search" link
-	And I set "Juror number" to "<juror_number>"
-	And I press the "Search" button
-	And I click on the "<juror_number>" link
-	
-	#check I get a warning that the record is awaiting* in legacy juror
-	Then I see "The status of this reply was changed in the Juror app to 'Awaiting information'. Select below the party that the bureau is waiting on information from." on the page
-	And I see "You cannot access this juror record until the status has been updated." on the page
-	And I see "Who is the bureau waiting for information from?" on the page
-	
-	#error when nothing selected
-	And I press the "Confirm" button
-	Then I see "Select who the bureau is waiting for a reply from" on the page
-
-	#select a status
-	Then I choose the "Court" radio button
-	Then I choose the "Translation unit" radio button
-	Then I choose the "Juror" radio button
-	
-	#back
-	And I click on the "Back" link
-	
-	#re-search
-	When I click on the "Search" link
-	And I set "Juror number" to "<juror_number>"
-	And I press the "Search" button
-	Then I see "1 results for “<juror_number>”" on the page
-	
-	#select again
-	And I click on the "<juror_number>" link
-	
-	#check I get a warning that the record is awaiting* in legacy juror
-	Then I see "The status of this reply was changed in the Juror app to 'Awaiting information'. Select below the party that the bureau is waiting on information from." on the page
-	And I see "You cannot access this juror record until the status has been updated." on the page
-	And I see "Who is the bureau waiting for information from?" on the page
-	
-	#select a status
-	Then I choose the "Juror" radio button
-	
-	#ok message
-	And I press the "Confirm" button
-	
-	#check status = awaiting info
-	And I see "AWAITING JUROR" on the page
-	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "AWAITING_CONTACT" where "JUROR_NUMBER" is "<part_no_six>"
-	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "N" where "JUROR_NUMBER" is "<part_no_six>"
-
-Examples:
-	| juror_number	| pool_number	| last_name			| postcode	| email	|
-	| 045200249		| 452300226		| LNAMETWOSIXZERO	| CH1 2AN	| a@a.com|
-
-@RegressionSingle
-Scenario Outline: Cannot Complete Record when juror.pool.status=2 and processing status=AWAITING*
-	
-	Given I am on "Public" "juror-test02"
-	Given the juror numbers have not been processed
-		|part_no 		|pool_no 	|owner 	|
-		|<part_no_seven>|<pool_no>	|400 	|
-	
-	#Set part_no pool to be urgent
-	
-	Given "<part_no_seven>" has "RET_DATE" as "2 mondays time"
-	And "<part_no_seven>" has "NEXT_DATE" as "2 mondays time"
-	And "<part_no_seven>" has "LNAME" as "<last_name>"
-	And "<part_no_seven>" has "ZIP" as "<postcode>"
-	And "<part_no_seven>" has "DOB" as "01-JAN-1977"
-	
-	# Submit response in pool
-	
-	Given I have submitted a first party English straight through response
-		|part_no			|pool_number	|last_name		|postcode	|email 	|
-		|<part_no_seven>	|<pool_no>		|<last_name>	|<postcode>	|<email>|
-	
-	#update JUROR DIGITAL to awaiting information
-	
-	Given I am on "Bureau" "juror-test02" 	
-	And I log in as "CPASS"
-	
-	When I click on the "Search" link
-	And I set "Juror number" to "<part_no_seven>"
-	And I press the "Search" button
-	And I click on "<part_no_seven>" in the same row as "<part_no_seven>"
-	Then I press the "More actions" button
-	And I click on the "Mark as 'Awaiting information" link
-	And I set the radio button to "Awaiting juror"
-	
-	#update JUROR to responded
-	
-	Given "<part_no_seven>" has "RESPONDED" as "Y"
-	And "<part_no_seven>" has "STATUS" as "2"
-	
-	Given I am on "Bureau" "juror-test02" 	
-	And I log in as "CPASS"
-	
-	When I click on the "Search" link
-	And I set "Juror number" to "<part_no_seven>"
-	And I press the "Search" button
-	And I click on "<part_no_seven>" in the same row as "<part_no_seven>"
-	
-	#check I get a warning that the record is completed
-	
-	Then I see "Response Completed" on the page
-	Then I see "This response has already been processed in Juror, please check the details are correct" on the page
-	
-	#ok message
-	
-	And I press the "Ok" button
-
-	Then I see "Responded" on the page
-	And I see "COMPLETED" on the page
-	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "CLOSED" where "JUROR_NUMBER" is "<part_no_seven>"
-	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "Y" where "JUROR_NUMBER" is "<part_no_seven>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "CLOSED" where "JUROR_NUMBER" is "<juror_number>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "Y" where "JUROR_NUMBER" is "<juror_number>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "LAST_NAME" is "Changed" where "JUROR_NUMBER" is "<juror_number>"
 	
 	#check record is now in "completed today"
-	
-	When I click on the "Your work" link
+	When I click on the "Apps" link
+	And I click on the "Summons management" link
 	Then I click on the "Completed" link
-	Then I see "<part_no_seven>" on the page
+	Then I see "<juror_number>" on the page
 	
 Examples:
-	|part_no_seven	|pool_no	|last_name			|postcode	|email	|
-	|645100075		|451170401	|LNAMETWOSIXZERO	|CH1 2AN	|a@a.com|
+	| juror_number	| pool_number	| last_name			| postcode	| email		|
+	| 045200256		| 452300233		| LNAMETWOSIXZERO	| CH1 2AN	| a@a.com	|
 
-@RegressionSingle
-Scenario Outline: Cannot Complete Record when juror.pool.status=2 (Responded) and record is pending allocation
-	
+@Features @JM-6706 @NewSchemaConverted
+Scenario Outline: Can Set Juror Record to Deferred while response is TODO
+
+	#return to @RegressionSingle when defect resolved
+
 	Given I am on "Public" "test"
 
-	Given the juror numbers have not been processed
-		|part_no 		|pool_no 	|owner 	|
-		|<part_no_eight>|<pool_no>	|400 	|
-	
-	#Set part_no pool to be not urgent
-	Given "<part_no_eight>" has "RET_DATE" as "5 mondays time"
-	And "<part_no_eight>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no_eight>" has "LNAME" as "<last_name>"
-	And "<part_no_eight>" has "ZIP" as "<postcode>"
-	And "<part_no_eight>" has "DOB" as "01-JAN-1977"
-	
-	Then I see "Reply to a jury summons" on the page
-	
-	
-	Then I see "Are you replying for yourself or for someone else?" on the page
-	
-	When I set the radio button to "I am replying for myself"
-	And I press the "Continue" button
-	Then I see "Your juror details" on the page
-	
-	#Juror Log In
-	
-	When I set "9-digit juror number" to "<part_no_eight>"
-	When I set "Juror last name" to "<last_name>"
-	When I set "Juror postcode" to "<postcode>"
-	And I press the "Continue" button
-	Then I see "Is the name we have for you correct?" on the page
-	When I choose the "Yes" radio button
-	
-	#Check name
-	
-	When I press the "Continue" button
-	Then I see "Is this your address?" on the page
-	When I choose the "Yes" radio button
-	
-	#Check address
-	
-	When I press the "Continue" button
-	Then I see "What is your phone number?" on the page
-	
-	#Phone details
-	
-	When I set "Main phone" to "0207 821 1818"
-	And I press the "Continue" button
-	Then I see "What is your email address?" on the page
-	
-	#Email details
-	
-	When I set "Enter your email address" to "email@outlook.com"
-	And I set "Enter your email address again" to "email@outlook.com"
-	And I press the "Continue" button
-	Then I see "What is your date of birth?" on the page
-	
-	#DoB
-	
-	When I set "Day" to "27"
-	And I set "Month" to "04"
-	And I set "Year" to "1981"
-	And I press the "Continue" button
-	
-	Then I see "Confirm you're eligible for jury service" on the page
-	
-	When I press the "Continue" button
-	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
-	
-	#Residency
-	
-	When I choose the "No" radio button
-	And I set "Provide details" to "Not a resident"
-	And I press the "Continue" button
-	
-	#CJS 
-	
-	When I choose the "No" radio button
-	And I press the "Continue" button
-	
-	#Bail
-	
-	When I choose the "No" radio button
-	And I press the "Continue" button
-	
-	#Convictions
-	
-	When I choose the "No" radio button
-	And I press the "Continue" button
-	
-	#Mental health part 1
-	
-	When I choose the "No" radio button
-	And I press the "Continue" button
-	
-	#Mental health part 2
-	
-	When I choose the "No" radio button
-	And I press the "Continue" button
-	
-	#I can attend
-	
-	And I see "Yes, I can start on" on the page
-	And I set the radio button to "Yes, I can start on"
-	And  I press the "Continue" button
-	
-	#RA 
-	
-	When I choose the "No" radio button
-	And I press the "Continue" button
-	
-	#Check Your Answers
+	Given a bureau owned pool is created with jurors
+		| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   | <juror_number>| <pool_number>	| 2				            | 400	|
 
-	Then I see "Check your answers now" on the page
-		
-	#When I press the "Submit" button
-	
-	When I check the "The information I have given is true to the best of my knowledge" checkbox
-	And I press the "Submit" button
-	Then I see "We have sent you an email to say you have replied to your jury summons." on the page
-		
-	#update JUROR to responded
-	Given "<part_no_eight>" has "RESPONDED" as "Y"
-	Given "<part_no_eight>" has "STATUS" as "2"
-	
-	Given I am on "Bureau" "juror-test02" 	
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
+
+	# Submit response in pool
+	Given I have submitted a first party English ineligibilty response
+		|part_no		|pool_number	|last_name		|postcode	|email 	|
+		|<juror_number>	|<pool_number>	|<last_name>	|<postcode>	|<email>|
+
+	Given I am on "Bureau" "test"
 	And I log in as "CPASS"
-	
-	When I click on the "Search" link
-	And I set "Juror number" to "<part_no_eight>"
-	And I press the "Search" button
-	And I click on "<part_no_eight>" in the same row as "<part_no_eight>"
-	
-	#check I get a warning that the record is completed
-	
-	Then I see "Response Completed" on the page
-	Then I see "This response has already been processed in Juror, please check the details are correct" on the page
-	
-	#ok message
-	
-	And I press the "Ok" button
-	
-	#check status on screen
-	
-	Then I see "Responded" on the page
-	And I see "COMPLETED" on the page
-	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "CLOSED" where "JUROR_NUMBER" is "<part_no_eight>"
-	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "Y" where "JUROR_NUMBER" is "<part_no_eight>"
-	
+
+	##defer juror
+	When the user searches for juror record "<juror_number>" from the global search bar
+	And I press the "Update juror record" button
+	And I choose the "Deferral - grant or refuse" radio button
+	And I press the "Continue" button
+	And I select "I - ILL" from the "Reason for the deferral request" dropdown
+	And I choose the "Grant deferral" radio button
+	And I choose the "Other" radio button
+	And I set the "Deferral" date to a Monday "10" weeks in the future
+	And I press the "Continue" button
+	Then I see the juror record updated banner containing "Deferral granted (ill)"
+
+	#check that the response has been completed
+	When I click on the "Summons reply" link
+
+	#JM-6706
+	Then I see "COMPLETED" on the page
+	And I see "Deferral granted (ill)" on the page
+
+	And I click on the "Juror details" link
+	And I see "Fname Changed" on the page
+
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "CLOSED" where "JUROR_NUMBER" is "<juror_number>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "Y" where "JUROR_NUMBER" is "<juror_number>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "LAST_NAME" is "Changed" where "JUROR_NUMBER" is "<juror_number>"
+
 	#check record is now in "completed today"
-	
-	When I click on the "Your work" link
+	When I click on the "Apps" link
+	And I click on the "Summons management" link
 	Then I click on the "Completed" link
-	Then I see "<part_no_eight>" on the page
+	Then I see "<juror_number>" on the page
 	
 Examples:
-	|part_no_eight	|pool_no	|last_name			|postcode	|email	|
-	|645700901		|457170401	|LNAMENINEZEROONE	|CH1 2AN	|a@a.com|
+	| juror_number	| pool_number	| last_name			| postcode	| email		|
+	| 045200257		| 452300234		| LNAMETWOSIXZERO	| CH1 2AN	| a@a.com	|
+
+@Features @JM-6706 @NewSchemaConverted
+Scenario Outline: Can Set Juror Record to Postponed while response is TODO
+
+	#return to @RegressionSingle when defect resolved
+
+	Given I am on "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   | <juror_number>| <pool_number>	| 2				            | 400	|
+
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
+
+	# Submit response in pool
+	Given I have submitted a first party English ineligibilty response
+		|part_no		|pool_number	|last_name		|postcode	|email 	|
+		|<juror_number>	|<pool_number>	|<last_name>	|<postcode>	|<email>|
+
+	Given I am on "Bureau" "test"
+	And I log in as "CPASS"
+
+	##postpose juror
+	When the user searches for juror record "<juror_number>" from the global search bar
+	And I press the "Update juror record" button
+	And I choose the "Postpone service start date" radio button
+	And I press the "Continue" button
+	And I press the "Continue" button
+	And I choose the "Add to pool" radio button
+	And I press the "Continue" button
+	Then I see the juror record updated banner containing "Postponed"
+
+	#check that the response has been completed
+	When I click on the "Summons reply" link
+
+	#JM-6706
+	Then I see "COMPLETED" on the page
+	And I see "Responded" on the page
+
+	And I click on the "Juror details" link
+	And I see "Fname Changed" on the page
+
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "CLOSED" where "JUROR_NUMBER" is "<juror_number>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "Y" where "JUROR_NUMBER" is "<juror_number>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "LAST_NAME" is "Changed" where "JUROR_NUMBER" is "<juror_number>"
+
+	#check record is now in "completed today"
+	When I click on the "Apps" link
+	And I click on the "Summons management" link
+	Then I click on the "Completed" link
+	Then I see "<juror_number>" on the page
+
+	Examples:
+		| juror_number	| pool_number	| last_name			| postcode	| email		|
+		| 045200258		| 452300235		| LNAMETWOSIXZERO	| CH1 2AN	| a@a.com	|
+
+@RegressionSingle @NewSchemaConverted
+Scenario Outline: Can Set Juror Record to Reassigned while response is TODO
+
+	Given I am on "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   | <juror_number>| <pool_number>	| 2				            | 400	|
+
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
+
+	# Submit response in pool
+	Given I have submitted a first party English ineligibilty response
+		|part_no		|pool_number	|last_name		|postcode	|email 	|
+		|<juror_number>	|<pool_number>	|<last_name>	|<postcode>	|<email>|
+
+	Given I am on "Bureau" "test"
+	And I log in as "CPASS"
+
+	##reassign juror
+	When the user searches for juror record "<juror_number>" from the global search bar
+	And I press the "Update juror record" button
+	And I choose the "Reassign to another pool" radio button
+	And I press the "Continue" button
+	And I select one of the active pools available
+	And I press the "Continue" button
+	Then I see "Reassigned to pool" on the page
+
+	#check that the response has been completed
+	When I click on the "Summons reply" link
+
+	#JM-6706
+	Then I see "TO DO" on the page
+
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "TODO" where "JUROR_NUMBER" is "<juror_number>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "N" where "JUROR_NUMBER" is "<juror_number>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "LAST_NAME" is "Changed" where "JUROR_NUMBER" is "<juror_number>"
+
+	#check record is now in "completed today"
+	When I click on the "Apps" link
+	And I click on the "Summons management" link
+	Then I click on the "Completed" link
+	Then I do not see "<juror_number>" on the page
+
+	Examples:
+		| juror_number	| pool_number	| last_name			| postcode	| email		|
+		| 045200259		| 452300236		| LNAMETWOSIXZERO	| CH1 2AN	| a@a.com	|
+
+@RegressionSingle @NewSchemaConverted
+Scenario Outline: Can Set Juror Record to Deceased while response is TODO
+
+	Given I am on "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   | <juror_number>| <pool_number>	| 2				            | 400	|
+
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
+
+	# Submit response in pool
+	Given I have submitted a first party English ineligibilty response
+		|part_no		|pool_number	|last_name		|postcode	|email 	|
+		|<juror_number>	|<pool_number>	|<last_name>	|<postcode>	|<email>|
+
+	Given I am on "Bureau" "test"
+	And I log in as "CPASS"
+
+	##mark juror as deceased
+	When the user searches for juror record "<juror_number>" from the global search bar
+	And I press the "Update juror record" button
+	And I choose the "Mark as deceased" radio button
+	And I set "Comments to record in the juror’s history" to "some notes here"
+	And I press the "Continue" button
+	Then I see the juror record updated banner containing "Deceased"
+
+	#check that the response has been completed
+	When I click on the "Summons reply" link
+	Then I see "COMPLETED" on the page
+	And I see "Excusal granted (deceased)" on the page
+
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "CLOSED" where "JUROR_NUMBER" is "<juror_number>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "Y" where "JUROR_NUMBER" is "<juror_number>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "LAST_NAME" is "Changed" where "JUROR_NUMBER" is "<juror_number>"
+
+	Examples:
+		| juror_number	| pool_number	| last_name			| postcode	| email		|
+		| 045200260		| 452300237		| LNAMETWOSIXZERO	| CH1 2AN	| a@a.com	|
+
+@RegressionSingle @NewSchemaConverted
+Scenario Outline: Can Set Juror Record to undelivered while response is TODO
+
+		Given I am on "Public" "test"
+
+		Given a bureau owned pool is created with jurors
+			| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+			| 452   |<juror_number>| <pool_number>	| 3				            | 400	|
+
+		And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+		And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
+
+	# Submit response in pool
+		Given I have submitted a first party English ineligibilty response
+			|part_no			|pool_number	|last_name		|postcode	|email 	|
+			|<juror_number>		|<pool_number>	|<last_name>	|<postcode>	|<email>|
+
+		Given I am on "Bureau" "test"
+		And I log in as "CPASS"
+
+		And I search for juror "<juror_number>"
+		And I click the update juror record button
+		And I choose the "Mark summons as undeliverable" radio button
+		And I press the "Continue" button
+		And I see the juror record updated banner containing "Summons undeliverable"
+
+		And I click on the "Summons reply" link
+		Then I see "SUMMONS NOT RECEIVED" on the page
+
+		Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "LAST_NAME" is "Changed" where "JUROR_NUMBER" is "<juror_number>"
+
+		Examples:
+			| juror_number	| pool_number	| last_name	| postcode	| email 	|
+			| 045200260		| 452300237		| DOE		| SW1H 9AJ	| a@a.com	|

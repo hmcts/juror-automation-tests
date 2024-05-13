@@ -1,20 +1,15 @@
 Feature: 1st_Straight Spaces in Phone number
 
-@JDB-2988 @JDB-3373 @RegressionSingle 
-Scenario Outline: 
-#	Given I am on "Public" "juror-test02"
-	Given I am on "Public" "bau-test"
-	
-	Given auto straight through processing has been disabled new schema
-	
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
-		
+@RegressionSingle @NewSchemaConverted
+Scenario Outline: 1st_Straight Spaces in Phone number
+
+	Given I am on "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court | juror_number  	| pool_number	| att_date_weeks_in_future	| owner |
+		| 457   | <juror_number>	| <pool_number>	| 5			            	| 400	|
 	
 	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
-
-
 	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	
 	Then I see "Reply to a jury summons" on the page
@@ -29,15 +24,11 @@ Scenario Outline:
 	And I press the "Continue" button
 	
 	#Moving past Name Section
-	
 	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	Then I see "Is this your address?" on the page
 	When I choose the "Yes" radio button
 	When I press the "Continue" button
-	
-	
-	#JDB-2988	
 
 	When I set "Main phone" to "0207 8211 818"
 	When I set "Another phone (optional)" to "0207 1111 111"
@@ -47,7 +38,6 @@ Scenario Outline:
 	And I press the "Continue" button
 
 	#On DoB Screen
-	
 	Then I see "date of birth" on the page
 	
 	When I set "Day" to "27"
@@ -59,51 +49,39 @@ Scenario Outline:
 	
 	When I press the "Continue" button
 	
-	#JDB-3373
-	
 	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
 	
-	#Residency JDB-3378
-	
+	#Residency
 	When I see "Eligibility" on the page
 	And I choose the "Yes" radio button
 	And I press the "Continue" button
 
 	#CJS no
-	
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
 	When I choose the "No" radio button
 	And I press the "Continue" button
-	
-	#JDB-3371
-	
+
 	Then I see "Are you currently on bail for a criminal offence?" on the page
 	
-	#Bail JDB-3377
-	
+	#Bail
 	When I see "Eligibility" on the page
 	And I choose the "No" radio button
 	And I press the "Continue" button
-	
-	#JDB-3370
-	
+
 	Then I see "Have you been found guilty of a criminal offence?" on the page
 	
-	#Convictions JDB-3376
-	
+	#Convictions
 	When I see "Eligibility" on the page
 	When I choose the "No" radio button
 	And I press the "Continue" button
 	
-	#Mental Health Sectioned JDB-3363
-	
+	#Mental Health Sectioned
 	Then I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page	
 	When I see "Eligibility" on the page
 	And I choose the "No" radio button
 	And I press the "Continue" button
 	
-	#Mental Health Capacity JDB-3364
-	
+	#Mental Health Capacity
 	Then I see "Has it been decided that you 'lack mental capacity'?" on the page
 	When I see "Eligibility" on the page
 	And I choose the "No" radio button
@@ -112,13 +90,11 @@ Scenario Outline:
 	Then I see "Check your start date" on the page
 	
 	#I can attend
-	
 	And I see "Yes, I can start on" on the page
 	And I set the radio button to "Yes, I can start on"
 	And  I press the "Continue" button
 	
 	#RA no
-	
 	Then I see "Will you need help when you're at the court?" on the page
 	When I choose the "No" radio button
 	And I press the "Continue" button
@@ -138,17 +114,15 @@ Scenario Outline:
 	When I press the "Continue" button
 	
 	And I check the "The information" checkbox
+
+	Given auto straight through processing has been disabled new schema
+
 	And I press the "Submit" button
 	Then I see "You have completed your reply" on the page
 	
 	Given auto straight through processing has been enabled new schema
 	
-#	When I have completed the response for
-#		| part_no 	|
-#		| <part_no>|
-#	Then I see "COMPLETED" on the page
-	
-	Given I am on "Bureau" "bau-test"
+	Given I am on "Bureau" "test"
 	When I log in as "CPASS"
 	
 	When I click on the "Search" link
@@ -165,9 +139,9 @@ Scenario Outline:
 	And I see "Excused" on the page
 	And I see "COMPLETED" on the page
 	
-	Then on "JUROR" . "POOL" I see "H_PHONE" is "0207 8211 818" where "PART_NO" is "<juror_number>"
-	Then on "JUROR" . "POOL" I see "W_PHONE" is "0207 1111 112" where "PART_NO" is "<juror_number>"
+	Then on "JUROR_MOD" . "JUROR" I see "H_PHONE" is "0207 8211 818" where "JUROR_NUMBER" is "<juror_number>"
+	Then on "JUROR_MOD" . "JUROR" I see "W_PHONE" is "0207 1111 112" where "JUROR_NUMBER" is "<juror_number>"
 	
 Examples:
-	|part_no		|last_name			|postcode	| email 	| pool_no	|
-	|645700360		|LNAMETHREESIXZERO	|SA1 4PF	|a@eeee.com	| 457170401	|
+	| juror_number	| last_name			| postcode	| email 	| pool_number	|
+	| 045200254		|LNAMETHREESIXZERO	|SA1 4PF	|a@eeee.com	| 452300231		|
