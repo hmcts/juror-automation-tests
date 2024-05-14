@@ -1,7 +1,9 @@
 Feature: Bureau B Search for Team Member
 
-@RegressionSingle @NewSchemaConverted
+@Features @NewSchemaConverted @JM-6728
 Scenario Outline: Lift from QC Script for Bureau B Search
+
+	#return to @RegressionSingle when defect fixed
 	
 	Given I am on "Public" "test"
 	

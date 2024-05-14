@@ -182,11 +182,12 @@ Scenario Outline: Urgent process options
 	
 	When I click on "<juror_number>" in the same row as "<juror_number>"
 
-	#JM-7205
-	# cannot assign to anyone as response not allocated to me
 	And I do not see "Download as a PDF" on the page
 	And I do not see "Mark as awaiting information" on the page
 	And I do not see "Send to a colleague..." on the page
+
+	#JM-7205
+	# cannot assign to anyone as response not allocated to me
 	Then I press the "More actions" button
 	And I see "Download as a PDF" on the page
 	And I see "Mark as awaiting information" on the page
