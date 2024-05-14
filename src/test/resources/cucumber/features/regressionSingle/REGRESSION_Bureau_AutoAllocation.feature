@@ -616,130 +616,112 @@ Examples:
 	|part_no_five	|pool_no 	|last_name 			|postcode 	|email		|
 	|645700224		|457170401 	|LNAMEONEFIVEFOUR 	|CH1 2AN	|e@mail.com	|
 
-@RegressionSingle @JDB-3761 
+@Features @NewSchemaConverted @JM-7281
 Scenario Outline: 7. Edit Notes and Logs on PENDING ALLOCATION response
 
-	Given I am on "Public" "juror-test02"
-	Given auto straight through processing has been disabled new schema
-	Given the juror numbers have not been processed
-		|part_no 		|pool_no 	|owner 	|
-		|<part_no_six> 	|457170401	|400 	|
-	
-	# Set part_no pool to not be urgent
-	
-	Given "<part_no_six>" has "RET_DATE" as "5 mondays time"
-	And "<part_no_six>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no_six>" has "LNAME" as "<last_name>"
-	And "<part_no_six>" has "ZIP" as "<postcode>"
-	
-	# Submit response in pool
-	
-	Given I have submitted a first party English straight through response
-		| part_no		|pool_number| last_name		|postcode	| email |
-		|<part_no_six>	|<pool_no>	| <last_name>	|CH1 2AN	|a@a.com|
+	#return to @Regression when defect fixed
 
-	Given I am on "Bureau" "juror-test02"
+	Given I am on "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   | <juror_number>| <pool_number>	| 5				            | 400	|
+
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
+
+	# Submit response in pool
+	Given I have submitted a first party English ineligibilty response
+		| part_no		|pool_number	| last_name		|postcode	| email |
+		| <juror_number>| <pool_number>	| <last_name>	| CH1 2AN	| a@a.com|
+
+	Given I am on "Bureau" "test"
 	And I log in as "CPASS"
 	
 	#check response is pending allocation
-	
 	And I click on the "Search" link
-	And I set "Juror number" to "<part_no_six>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	Then I see "TO DO" in the same row as "<part_no_six>"
+	Then I see "To do" in the same row as "<juror_number>"
 	
 	#add notes
-	
-	When I click on "<part_no_six>" in the same row as "<part_no_six>"
+	When I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Process reply" on the page
-	When I click on the "Logs" link
-	And I click on the "Add or Edit" link
-	And I see "Notes" on the page
-	And I see "<last_name>" on the page
-	And I see "/<part_no_six>/notes/edit" in the URL
+	When I click on the "Notes and logs" link
+	And I click on the "Add or change" link
+	And I see "Internal notes" on the page
+	And I see "/<juror_number>/digital/notes/edit" in the URL
 	And I set text area with "id" of "notes" to "Some notes in the notes field"
 	And I press the "Save" button
-	Then I see "Notes" on the page
+	Then I see "Internal notes" on the page
 	And "notes" is "Some notes in the notes field"
 	
 	#edit notes
-	
-	And I click on the "Add or Edit" link
+	And I click on the "Add or change" link
 	And I append text area with "id" of "notes" with " and some more notes"
 	And I press the "Save" button
 	Then I see "Notes" on the page
 	And "notes" is "Some notes in the notes field and some more notes"
 	
 	#check I can enter special characters
-	
-	And I click on the "Add or Edit" link
+	And I click on the "Add or change" link
 	And I set text area with "id" of "notes" to "Some-one 0% £300 & * ! @ + [] her's ?'"
 	And I press the "Save" button
 	And "notes" is "Some-one 0% £300 & * ! @ + [] her's ?'"
 	
 	#check I can enter 2000 chars
-	
-	And I click on the "Add or Edit" link
+	And I click on the "Add or change" link
 	And I set text area with "id" of "notes" to "These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are tThese are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are t"
 	And I see "You have 0 characters remaining" on the page
 	And I press the "Save" button
 	And "notes" is "These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are tThese are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are t"
 	
 	#check I cannot enter >2000 chars
-	
-	And I click on the "Add or Edit" link
+	And I click on the "Add or change" link
 	And I set text area with "id" of "notes" to "These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are tThese are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details"
 	And I see "You have 10 characters too many" on the page
 	And I press the "Save" button
 	And I see "There is a problem" on the page
-	And I see "Notes must be 2000 characters or fewer" on the page
-	And I press "back_space" in "Notes"
-	And I press "back_space" in "Notes"
-	And I press "back_space" in "Notes"
-	And I press "back_space" in "Notes"
-	And I press "back_space" in "Notes"
-	And I press "back_space" in "Notes"
-	And I press "back_space" in "Notes"
-	And I press "back_space" in "Notes"
-	And I press "back_space" in "Notes"
-	And I press "back_space" in "Notes"
+	And I see "The notes provided are too long" on the page
+	And I press "back_space" in "Add a note"
+	And I press "back_space" in "Add a note"
+	And I press "back_space" in "Add a note"
+	And I press "back_space" in "Add a note"
+	And I press "back_space" in "Add a note"
+	And I press "back_space" in "Add a note"
+	And I press "back_space" in "Add a note"
+	And I press "back_space" in "Add a note"
+	And I press "back_space" in "Add a note"
+	And I press "back_space" in "Add a note"
 	And I see "You have 0 characters remaining" on the page
 	And I press the "Save" button
 	And "notes" is "These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are tThese are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are t"
 	
-	#check I cannot leave notes empty
-	
-	And I click on the "Add or Edit" link
+	#check I can leave notes empty
+	And I click on the "Add or change" link
 	And I set text area with "id" of "notes" to ""
 	And I press the "Save" button
-	And I see "There is a problem" on the page
-	And I see "Enter notes text" on the page
-	
-	#click cancel
-	
-	Then I click on the "Cancel" link
-	And "notes" is "These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are tThese are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are t"
-	
+	And I do not see "There is a problem" on the page
+	And I do not see "Enter notes text" on the page
+
+	And I click on the "Add or change" link
+	And I set text area with "id" of "notes" to "These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are tThese are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are t"
+	And I press the "Save" button
+
 	#check the response is now allocated to CPASS
-	
 	And I click on the "Search" link
-	And I set "Juror number" to "<part_no_six>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	Then I see "CPASS" in the same row as "<part_no_six>"
+	Then I see "CPASS" in the same row as "<juror_number>"
 	
 	#check notes are still there
-	
-	When I click on "<part_no_six>" in the same row as "<part_no_six>"
+	When I click on "<juror_number>" in the same row as "<juror_number>"
 	When I click on the "Logs" link
 	And "notes" is "These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are tThese are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are t"
 
-	# re-enable auto processing
-	
-	Given auto straight through processing has been enabled new schema
-
 Examples:
-	|part_no_six|pool_no 	|last_name 			|postcode 	|e@mail		|
-	|645700267	|457170401 	|LNAMEONEFIVEFOUR 	|CH1 2AN	|e@mail.com	|
+	| juror_number	| pool_number 	| last_name 		| postcode 	|
+	| 045200261		| 452300238 	| LNAMEONEFIVEFOUR 	| CH1 2AN	|
 	
 @RegressionSingle @JDB-3761 
 Scenario Outline: 8. Set to Awaiting Response on PENDING ALLOCATION response
