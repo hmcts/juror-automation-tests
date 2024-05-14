@@ -720,98 +720,82 @@ Scenario Outline: 7. Edit Notes and Logs on PENDING ALLOCATION response
 	And "notes" is "These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are tThese are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are t"
 
 Examples:
-	| juror_number	| pool_number 	| last_name 		| postcode 	|
-	| 045200261		| 452300238 	| LNAMEONEFIVEFOUR 	| CH1 2AN	|
+	| juror_number	| pool_number 	| last_name 		| postcode 	| email 		|
+	| 045200261		| 452300238 	| LNAMEONEFIVEFOUR 	| CH1 2AN	| e@mail.com 	|
 	
-@RegressionSingle @JDB-3761 
+@RegressionSingle @NewSchemaConverted
 Scenario Outline: 8. Set to Awaiting Response on PENDING ALLOCATION response
-	Given I am on "Public" "juror-test01"
-	Given auto straight through processing has been disabled new schema
-	Given the juror numbers have not been processed
-		| part_no 			| pool_no 	| owner |
-		| <part_no_seven> 	|457170401	| 400 	|
-	
-	# Set part_no pool to not be urgent
-	
-	Given "<part_no_seven>" has "RET_DATE" as "5 mondays time"
-	And "<part_no_seven>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no_seven>" has "LNAME" as "<last_name>"
-	And "<part_no_seven>" has "ZIP" as "<postcode>"
-	
-	# Submit response in pool
-	
-	Given I have submitted a first party English straight through response
-		| part_no			|pool_number| last_name		|postcode	| email |
-		|<part_no_seven>	|<pool_no>	| <last_name>	|CH1 2AN	|a@a.com|
 
-	Given I am on "Bureau" "juror-test01"
+	Given I am on "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   | <juror_number>| <pool_number>	| 5				            | 400	|
+
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
+
+	# Submit response in pool
+	Given I have submitted a first party English ineligibilty response
+		|part_no		|pool_number	|last_name		|postcode	|email 	|
+		|<juror_number>	|<pool_number>	|<last_name>	|<postcode>	|<email>|
+
+	Given I am on "Bureau" "test"
 	And I log in as "CPASS"
 	
 	#check response is pending allocation
-	
 	And I click on the "Search" link
-	And I set "Juror number" to "<part_no_seven>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	Then I see "TO DO" in the same row as "<part_no_seven>"
+	Then I see "To do" in the same row as "<juror_number>"
 	
 	#set response to awaiting information
-	
-	When I click on "<part_no_seven>" in the same row as "<part_no_seven>"
+	When I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Process reply" on the page
 	Then I press the "More actions" button
 	And I click on the "Mark as awaiting information" link
-	When I set the radio button to "Awaiting juror"
+	When I choose the "Juror" radio button
 	And I press the "Confirm" button
 	
 	#check the response is now allocated to CPASS
-	
 	And I click on the "Search" link
-	And I set "Juror number" to "<part_no_seven>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	Then I see "CPASS" in the same row as "<part_no_seven>"
-
-	# re-enable auto processing
-	
-	Given auto straight through processing has been enabled new schema
+	Then I see "CPASS" in the same row as "<juror_number>"
 	
 Examples:
-	|part_no_seven	|pool_no 	|last_name 			|postcode 	|
-	|645700135		|457170401 	|LNAMEONEFIVEFOUR 	|CH1 2AN	|
+	| juror_number	| pool_number 	| last_name 		| postcode 	| email 		|
+	| 045200262		| 452300239 	| LNAMEONEFIVEFOUR 	| CH1 2AN	| e@mail.com	|
 
-@RegressionSingle @JDB-3761 
+@RegressionSingle @NewSchemaConverted
 Scenario Outline: 9. Complete a PENDING ALLOCATION response
-	Given I am on "Public" "juror-test02"
-	Given auto straight through processing has been disabled new schema
-	Given the juror numbers have not been processed
-		| part_no 			| pool_no 	| owner |
-		| <part_no_eight> 	|457170401	| 400 	|
-	
-	# Set part_no pool to not be urgent
-	
-	Given "<part_no_eight>" has "RET_DATE" as "5 mondays time"
-	And "<part_no_eight>" has "NEXT_DATE" as "5 mondays time"
-	And "<part_no_eight>" has "LNAME" as "<last_name>"
-	And "<part_no_eight>" has "ZIP" as "<postcode>"
-	
-	# Submit response in pool
-	
-	Given I have submitted a first party English straight through response
-		| part_no			|pool_number| last_name		|postcode	| email |
-		|<part_no_eight>	|<pool_no>	| <last_name>	|CH1 2AN	|a@a.com|
 
-	Given I am on "Bureau" "juror-test02"
+	Given I am on "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   | <juror_number>| <pool_number>	| 5				            | 400	|
+
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
+
+	# Submit response in pool
+	Given I have submitted a first party English ineligibilty response
+		|part_no		|pool_number	|last_name		|postcode	|email 	|
+		|<juror_number>	|<pool_number>	|<last_name>	|<postcode>	|<email>|
+
+	Given I am on "Bureau" "test"
 	And I log in as "CPASS"
 	
 	#check response is pending allocation
-	
 	And I click on the "Search" link
-	And I set "Juror number" to "<part_no_eight>"
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	Then I see "TO DO" in the same row as "<part_no_eight>"
+	Then I see "To do" in the same row as "<juror_number>"
 	
 	#set response to responded
 	
-	When I click on "<part_no_eight>" in the same row as "<part_no_eight>"
+	When I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Process reply" on the page
 	When I select "Mark as responded" from Process reply
 	And I check the "Mark juror as 'responded'" checkbox
@@ -820,16 +804,13 @@ Scenario Outline: 9. Complete a PENDING ALLOCATION response
 	#check the response is now allocated to CPASS
 	
 	And I click on the "Search" link
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	Then I see "CPASS" in the same row as "<part_no_eight>"
-	
-	# re-enable auto processing
-	
-	Given auto straight through processing has been enabled new schema
+	Then I see "CPASS" in the same row as "<juror_number>"
 
 Examples:
-	|part_no_eight	|pool_no 	|last_name 			|postcode 	|
-	|645700136		|457170401 	|LNAMEONEFIVEFOUR 	|CH1 2AN	|
+	| juror_number	| pool_number 	| last_name 		| postcode 	| email			|
+	| 045200263		| 452300240 	| LNAMEONEFIVEFOUR 	| CH1 2AN	| e@mail.com	|
 	
 #	Test commented out as bureau edit links disabled
 #@RegressionSingle @JDB-3761 
@@ -910,64 +891,3 @@ Scenario Outline: 10. test that editing an allocated response doesnt auto alloca
 Examples:
 	|part_no_nine	|pool_no 	|last_name 			|postcode 	|
 	|645700138		|457170401 	|LNAMEONEFIVEFOUR 	|CH1 2AN	|
-
-@RegressionSingle @JDB-3761
-Scenario Outline: 11. Complete a PENDING ALLOCATION response that has been processed in Juror DB before Juror Digital
-	
-	Given I am on "Public" "juror-test02"
-	Given auto straight through processing has been enabled new schema
-	Given the juror numbers have not been processed
-		|part_no 		|pool_no 	|owner 	|
-		|<part_no_ten> 	|<pool_no>	|400 	|
-	
-	#Set part_no pool to be urgent
-	Given "<part_no_ten>" has "RET_DATE" as "3 mondays time"
-	And "<part_no_ten>" has "NEXT_DATE" as "3 mondays time"
-	And "<part_no_ten>" has "LNAME" as "<last_name>"
-	And "<part_no_ten>" has "ZIP" as "<postcode>"
-	And "<part_no_ten>" has "DOB" as "01-JAN-1977"
-	
-	# Submit response in pool
-	
-	Given I have submitted a first party English straight through response
-		|part_no		|pool_number|last_name	|postcode	|email 	|
-		|<part_no_ten>	|<pool_no>	|<last_name>|<postcode>	|<email>|
-		
-	#update JUROR to responded
-	Given "<part_no_ten>" has "RESPONDED" as "Y"
-	Given "<part_no_ten>" has "STATUS" as "2"
-	
-	Given I am on "Bureau" "juror-test02" 	
-	And I log in as "CPASS"
-	
-	When I click on the "Search" link
-	And I set "Juror number" to "<part_no_ten>"
-	And I press the "Search" button
-	And I click on "<part_no_ten>" in the same row as "<part_no_ten>"
-	
-	#check I get a warning that the record is completed
-	
-	Then I see "Response Completed" on the page
-	Then I see "This response has already been processed in Juror, please check the details are correct" on the page
-	
-	#ok message
-	
-	And I press the "Ok" button
-	
-	#check status on screen
-	
-	Then I see "Responded" on the page
-	And I see "COMPLETED" on the page
-	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "CLOSED" where "JUROR_NUMBER" is "<part_no_ten>"
-	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "Y" where "JUROR_NUMBER" is "<part_no_ten>"
-	
-	#check record is now in "completed today"
-	
-	When I click on the "Your work" link
-	Then I click on the "Completed" link
-	Then I see "<part_no_ten>" on the page
-	
-Examples:
-	|part_no_ten|pool_no	|last_name		|postcode	|email	|
-	|645700296	|457170401	|LNAMETWOSIXZERO|CH1 2AN	|a@a.com|
-	

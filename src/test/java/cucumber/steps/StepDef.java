@@ -39,13 +39,13 @@ public class StepDef {
 
 	@Given("^I am looking at cookies on \"([^\"]*)\" \"([^\"]*)\"$")
 	public void loadPage_forCookies(String publicBureau, String env) throws Throwable {
-		NAV.accessLoginPage(publicBureau, env);
+		NAV.accessLoginPageWithCookies(publicBureau, env);
 	}
 
 
 	@Given("^I am looking at cookies on Welsh \"([^\"]*)\" \"([^\"]*)\"$")
-	public void loadPage_forCookiesWelsh(String publicBureau, String env) throws Throwable {
-		NAV.accessLoginPageWelsh(publicBureau, env);
+	public void loadPage_forCookiesWelshWithCookies(String publicBureau, String env) throws Throwable {
+		NAV.accessLoginPageWelshWithCookies(publicBureau, env);
 	}
 
 	;
@@ -60,9 +60,6 @@ public class StepDef {
 		} catch (Exception e) {
 		}
 	}
-
-	;
-
 
 	@Given("^I am on the welsh version of \"([^\"]*)\" \"([^\"]*)\"")
 	public void loadPage_for_Welsh(String publicBureau, String env) throws Throwable {

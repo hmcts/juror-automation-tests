@@ -1,9 +1,9 @@
 Feature: Regression JDB-4528 Cookies and Privacy Policy
 
-@Cookies @JDB-4860 
+@RegressionSingle @Cookies @NewSchemaConverted
 Scenario: Analytics Cookies opt in
 	
-	Given I am looking at cookies on "Public" "bau-test"
+	Given I am looking at cookies on "Public" "test"
 	
 	#new cookies banner
 	
@@ -26,7 +26,7 @@ Scenario: Analytics Cookies opt in
 	Then I do not see "Hide cookie message" on the page
 	And I do not see "You’ve accepted analytics cookies. You can change your cookie settings at any time." on the page
 	
-@RegressionSingle @NewSchemaConverted
+@RegressionSingle @Cookies @NewSchemaConverted
 Scenario: Analytics Cookies opt out
 
 	Given I am looking at cookies on "Public" "test"
@@ -52,7 +52,7 @@ Scenario: Analytics Cookies opt out
 	And I do not see "You’ve rejected analytics cookies. You can change your cookie settings at any time." on the page
 
 
-@RegressionSingle @NewSchemaConverted
+@RegressionSingle @Cookies @NewSchemaConverted
 Scenario: English View Cookies
 	
 	Given I am looking at cookies on "Public" "test"
@@ -118,10 +118,10 @@ Scenario: English View Cookies
 	And I click on the "change which cookies you're happy for us to use" link
 	And I see "/cookie-settings" in the URL
 
-@Cookies @JDB-4528 
+@RegressionSingle @Cookies @NewSchemaConverted
 Scenario: English Cookie Settings
 	
-	Given I am looking at cookies on "Public" "bau-test"
+	Given I am looking at cookies on "Public" "test"
 	
 	#new cookies banner
 	
@@ -156,10 +156,10 @@ Scenario: English Cookie Settings
 	Then I press the "back" button on my browser
 	And I press the "Save changes" button
 
-@Cookies @JDB-4528 
+@RegressionSingle @Cookies @NewSchemaConverted
 Scenario: English Privacy Policy
 	
-	Given I am looking at cookies on "Public" "bau-test"
+	Given I am looking at cookies on "Public" "test"
 	
 	And I see link with text "Privacy policy"
    	Then I click on the "Privacy policy" link
@@ -240,7 +240,7 @@ Scenario: English Privacy Policy
 	And I see "We do not accept liability for loss or damage incurred by users of this service, whether direct, indirect or consequential, whether caused by tort, breach of contract or otherwise. This includes loss of income or revenue, business, profits or contracts, anticipated savings, data, goodwill, tangible property or wasted time in connection with this service or any websites linked to it and any materials posted on it. This condition shall not prevent claims for loss of or damage to your tangible property or any other claims for direct financial loss that are not excluded by any of the categories set out above." on the page
 	And I see "This does not affect our liability for death or personal injury arising from our negligence, nor our liability for fraudulent misrepresentation or misrepresentation as to a fundamental matter, nor any other liability which cannot be excluded or limited under applicable law." on the page
 
-	@RegressionSingle @NewSchemaConverted
+	@RegressionSingle @Cookies @NewSchemaConverted
 	Scenario: Welsh Analytics Cookies opt in
 
 		Given I am looking at cookies on Welsh "Public" "test"
@@ -251,14 +251,15 @@ Scenario: English Privacy Policy
 		And I press the "Derbyn cwcis dadansoddol" button
 		And I see "Cuddio'r neges ynghylch cwcis" on the page
 
-	@RegressionSingle @NewSchemaConverted
+	@RegressionSingle @Cookies @NewSchemaConverted
 	Scenario: Welsh Privacy Policy
 
 		Given I am looking at cookies on Welsh "Public" "test"
 
 		And I see link with text "Polisi preifatrwydd"
 		Then I click on the "Polisi preifatrwydd" link
-		And I switch to the new window
+
+		And I focus page to the new tab
 		And I see "Telerau ac amodau a pholisi preifatrwydd" on the page
 
 		And I see "Drwy ddefnyddio’r gwasanaeth ar-lein Ymateb i’r Wŷs Rheithgor, rydych yn cytuno i’n polisi preifatrwydd a’r telerau ac amodau hyn. Darllenwch nhw’n ofalus, os gwelwch yn dda." on the page
