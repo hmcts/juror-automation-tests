@@ -474,8 +474,10 @@ Examples:
 	| juror_number_one	| juror_number_two	| juror_number_three	| pool_number_one 	| pool_number_two| pool_number_three| last_name 	| last_name_two	| last_name_three	| postcode 	|
 	| 045700030			| 045700031			| 045700032				| 457300030 		| 457300031      | 457300032		| LNAMESTANDARD	| LNAMEURGENT 	| LNAMESUPERURGENT	| CH1 2AN	|
 
-@RegressionSingle @NewSchemaConverted @JM-7264
+@Features @NewSchemaConverted @JM-7282
 Scenario Outline: Search as Team Leader
+
+	#return to @RegressionSingle when defect fixed
 
 	Given I am on "Public" "test"
 
@@ -753,68 +755,62 @@ Scenario: Work Allocation Fields and Labels Checks
 	And "TeamPickListUser" is unchecked
 	And "AutomationStaffMemberTWO" is unchecked
 
-@RegressionSingle
+@RegressionSingle @NewSchemaConverted
 Scenario Outline: Work Allocation
 
 	Given I am on "Bureau" "test"
 
-	And the juror numbers have not been processed
-		| part_no 			| pool_no 	| owner |
-		| <part_no_four> 	|<pool_no>	| 400 	|
-		| <part_no_five> 	|<pool_no>	| 400 	|
-		| <part_no_six>		|<pool_no>	| 400 	|
-	
-	#set up some responses
-	
-	#non-urgent
-	
-	And "<part_no_four>" has "LNAME" as "<last_name>"
-	And "<part_no_four>" has "ZIP" as "<postcode>"
-	And "<part_no_four>" has "RET_DATE" as "5 mondays time"
-	And "<part_no_four>" has "NEXT_DATE" as "5 mondays time"
-	
-	#urgent
-	
-	And "<part_no_five>" has "LNAME" as "<last_name>"
-	And "<part_no_five>" has "ZIP" as "<postcode>"
-	And "<part_no_five>" has "RET_DATE" as "3 mondays time"
-	And "<part_no_five>" has "NEXT_DATE" as "3 mondays time"
-	
-	#super urgent
-	
-	And "<part_no_six>" has "LNAME" as "<last_name>" 
-	And "<part_no_six>" has "ZIP" as "<postcode>"
-	And "<part_no_six>" has "RET_DATE" as "1 mondays time"
-	And "<part_no_six>" has "NEXT_DATE" as "1 mondays time"
-	And "<part_no_six>" has "READ_ONLY" as "Y"
+	Given a bureau owned pool is created with jurors
+		| court | juror_number  	| pool_number		| att_date_weeks_in_future	| owner |
+		| 452   | <juror_number_one>| <pool_number_one>	| 5				            | 400	|
+
+	Given a bureau owned pool is created with jurors
+		| court | juror_number  	| pool_number		| att_date_weeks_in_future	| owner |
+		| 452   | <juror_number_two>| <pool_number_two>	| 3				            | 400	|
+
+	Given a bureau owned pool is created with jurors
+		| court | juror_number  		| pool_number			| att_date_weeks_in_future	| owner |
+		| 452   | <juror_number_three>	| <pool_number_three>	| 2				            | 400	|
+
+	And juror "<juror_number_one>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number_one>" has "POSTCODE" as "<postcode>" new schema
+
+	And juror "<juror_number_two>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number_two>" has "POSTCODE" as "<postcode>" new schema
+
+	And juror "<juror_number_three>" has "LAST_NAME" as "<last_name>" new schema 
+	And juror "<juror_number_three>" has "POSTCODE" as "<postcode>" new schema
 
 	Given I am on "Bureau" "test"
-	And I log in
+	And I log in as "MODTESTBUREAU"
+	
 	And I click on the "Assign Replies" link
 	
-	And the "Assign replies" button is disabled
+	And I press the "Assign replies" button
+	Then I see "There is a problem" on the page
+	And I see "Enter how many replies you want to assign to each selected officer - you must enter a number in at least one box" on the page
+	And I see "Select at least 1 officer to assign replies to" on the page
 	
 	And I set input field with "name" of "allocateNonUrgent" to "12345"
 	And I set input field with "name" of "allocateUrgent" to "12345"
-	And I set input field with "name" of "allocateSuperUrgent" to "12345"
-	
-	And the "Assign replies" button is disabled
+
+	And I press the "Assign replies" button
+	Then I see "There is a problem" on the page
+	And I see "Select at least 1 officer to assign replies to" on the page
 	
 	And I set input field with "name" of "allocateNonUrgent" to ""
 	And I set input field with "name" of "allocateUrgent" to ""
-	And I set input field with "name" of "allocateSuperUrgent" to ""
 	
 	And I check the "ARAMIS1" checkbox
-	
-	And the "Assign replies" button is disabled
-	
-	#AC13
+
+	And I press the "Assign replies" button
+	Then I see "There is a problem" on the page
+	And I see "Enter how many replies you want to assign to each selected officer - you must enter a number in at least one box" on the page
 	
 	And I set input field with "name" of "allocateNonUrgent" to "12345"
 	And I set input field with "name" of "allocateUrgent" to "12345"
-	And I set input field with "name" of "allocateSuperUrgent" to "12345"
 	
-	And I uncheck the "ARAMIS1" checkbox
+	And I check the "ARAMIS1" checkbox
 	When I press the "Assign replies" button
 	And "ARAMIS1-standard" assigned replies count is "0"
 	And "ARAMIS1-urgent" assigned replies count is "0"
@@ -952,8 +948,10 @@ Examples:
 	| 045200251		| 452300228 	| LNAME		| NN1 3HQ	| email@outlook.com	|
 
 
-@RegressionSingle @NewSchemaConverted
+@Features @NewSchemaConverted @JM-7276
 Scenario: Manage Team
+
+	#return to @RegressionSingle when defect fixed
 
 	Given I am on "Bureau" "test"
 	And I log in as "MODTESTBUREAU"
@@ -1081,8 +1079,10 @@ Scenario: Manage Team
 	
 	#attempt to deactivate when user has assigned responses
 
-@RegressionSingle @NewSchemaConverted
+@Featues @NewSchemaConverted @JM-6728
 Scenario Outline: Results grid updates when status changes are made
+
+	#return to @RegressionSingle when defect fixed
 
 	Given I am on "Bureau" "test"
 

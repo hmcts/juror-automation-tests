@@ -141,6 +141,21 @@ public class NavigationShared {
         log.info("Navigated to the expected environment");
     }
 
+    public void accessLoginPageWithCookies(String publicBureau, String env) {
+        log.info("Going to access =>" + publicBureau + "<= for environment =>" + env + "");
+        String url;
+        env = ReadProperties.systemPropertyEnvironmentOverrideCheck(env);
+
+        url = ReadProperties.main(publicBureau.toLowerCase() + "_" + env.toLowerCase()) + "/?clang=en";
+
+        System.setProperty("env.database", env.toLowerCase());
+        System.setProperty("envName", env.toLowerCase());
+
+        driver.manage().deleteAllCookies();
+        driver.get(url);
+        log.info("Navigated to the expected environment");
+    }
+
     public void accessLoginPageWelsh(String publicBureau, String env) {
         log.info("Going to access =>" + publicBureau + "<= for environment =>" + env + "");
         String url;
@@ -151,6 +166,21 @@ public class NavigationShared {
         System.setProperty("env.database", env.toLowerCase());
         System.setProperty("envName", env.toLowerCase());
 
+        driver.get(url);
+        log.info("Navigated to the expected environment");
+    }
+
+    public void accessLoginPageWelshWithCookies(String publicBureau, String env) {
+        log.info("Going to access =>" + publicBureau + "<= for environment =>" + env + "");
+        String url;
+        env = ReadProperties.systemPropertyEnvironmentOverrideCheck(env);
+
+        url = ReadProperties.main(publicBureau.toLowerCase() + "_" + env.toLowerCase()) + "/?clang=cy";
+
+        System.setProperty("env.database", env.toLowerCase());
+        System.setProperty("envName", env.toLowerCase());
+
+        driver.manage().deleteAllCookies();
         driver.get(url);
         log.info("Navigated to the expected environment");
     }
