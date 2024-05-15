@@ -1509,7 +1509,7 @@ Scenario Outline: 1st Party Ineligible
 	Given I am on "Bureau" "test"
 	When I log in as "CPASS"
 	Then I see "<juror_number>" on the page
-	Then I see "<juror_number>" has reply type indicator "INELIGIBLE"
+	Then I see "<juror_number>" has reply type indicator "NEEDS REVIEW"
 
 Examples:
 	| juror_number	| last_name			| postcode	| email           	| pool_number	|
