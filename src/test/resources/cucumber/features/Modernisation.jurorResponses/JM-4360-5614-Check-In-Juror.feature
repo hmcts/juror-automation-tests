@@ -16,12 +16,8 @@ Feature: JM-4360 - As a jury officer I need to be able to check jurors in for th
 
     And I log in as "<user>"
 
-    #enter responses in order to be in a state to be checked in
-    When the user searches for juror record "<juror_number1>" from the global search bar
-    And I record a happy path paper summons response and process now
-
-    When the user searches for juror record "<juror_number2>" from the global search bar
-    And I record a happy path paper summons response and process now
+    And I update juror "<juror_number1>" to have a status of "Responded"
+    And I update juror "<juror_number2>" to have a status of "Responded"
 
     And I press the "Apps" button
     And I click on the "Juror management" link
