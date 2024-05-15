@@ -57,25 +57,24 @@ Scenario Outline: Survey Link 3rd Party Eng
 	
 	And I see "Give feedback (opens in a new window or tab)" on the page
 	And I click on the "Give feedback (opens in a new window or tab)" link
-#	And I switch to the new window
-#	Then I see "Were you able to do what you needed to do today?" on the page
-#	And I see "https://www.smartsurvey.co.uk/s/DL1RCF/" in the URL
+	And I focus page to the new tab
+	Then I see "Were you able to do what you needed to do today?" on the page
+	And I see "https://www.smartsurvey.co.uk/s/DL1RCF/" in the URL
 	
 Examples:
 	| juror_number	| last_name			| postcode	| pool_number	|
 	| 045200206		| LNAMEONEONENINE	| CH1 2AN	| 452300191		|
 	
-@RegressionWelsh
+@RegressionWelsh @NewSchemaConverted
 Scenario Outline: Survey Link 1st Party Welsh
 	
-	Given I am on the welsh version of "Public" "juror-test01"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
-	
+	Given I am on the welsh version of "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 457   |<juror_number>| <pool_number>	| 5				            | 400	|
+
 	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
-
-
 	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 
 	And I set the radio button to "n ymateb dros fy hun"
@@ -90,25 +89,24 @@ Scenario Outline: Survey Link 1st Party Welsh
 	
 	And I see "Give feedback (opens in a new window or tab)" on the page
 	And I click on the "Give feedback (opens in a new window or tab)" link
-#	And I switch to the new window
-#	Then I see "Were you able to do what you needed to do today?" on the page
-#	And I see "https://www.smartsurvey.co.uk/s/DL1RCF/" in the URL
+	And I focus page to the new tab
+	Then I see "Were you able to do what you needed to do today?" on the page
+	And I see "https://www.smartsurvey.co.uk/s/DL1RCF/" in the URL
 	
 Examples:
-	|part_no	|last_name		|postcode	|email 		|pool_no	|
-	|645700927	|LNAMEONEONENINE|CH1 2AN	|a@eeee.com	|457170501	|
+	| juror_number	| last_name			| postcode	| pool_number	|
+	| 045700039		| LNAMEONEONENINE	| CH1 2AN	| 457300039		|
 
-@RegressionWelsh
+@RegressionWelsh @NewSchemaConverted
 Scenario Outline: Survey Link 3rd Party Welsh
 	
-	Given I am on the welsh version of "Public" "juror-test01"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
-		
+	Given I am on the welsh version of "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 457   |<juror_number>| <pool_number>	| 5				            | 400	|
+
 	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
-
-
 	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	
 	And I set the radio button to "Rwy'n ymateb ar ran rhywun arall"
@@ -121,10 +119,10 @@ Scenario Outline: Survey Link 3rd Party Welsh
 	
 	And I see "Give feedback (opens in a new window or tab)" on the page
 	And I click on the "Give feedback (opens in a new window or tab)" link
-#	And I switch to the new window
-#	Then I see "Were you able to do what you needed to do today?" on the page
-#	And I see "https://www.smartsurvey.co.uk/s/DL1RCF/" in the URL
+	And I focus page to the new tab
+	Then I see "Were you able to do what you needed to do today?" on the page
+	And I see "https://www.smartsurvey.co.uk/s/DL1RCF/" in the URL
 	
 Examples:
-	|part_no	|last_name		|postcode	|email 		|pool_no	|
-	|645700924	|LNAMEONEONENINE|CH1 2AN	|a@eeee.com	|457170501	|
+	| juror_number	| last_name			| postcode	| pool_number	|
+	| 045700038		| LNAMEONEONENINE	| CH1 2AN	| 457300038		|
