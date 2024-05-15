@@ -1,9 +1,9 @@
 Feature: 1st Party Welsh Logon
 
-@RegressionWelsh @JDB-3402 @JDB-4325
+@RegressionWelsh @NewSchemaConverted
 Scenario: 1st Party Welsh Logon
 
-	Given I am on the welsh version of "Public" "juror-test01"
+	Given I am on the welsh version of "Public" "test"
 	
 	And I set the radio button to "n ymateb dros fy hun"
 	And I press the "Parhau" button
