@@ -8,8 +8,12 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 
 import java.sql.SQLException;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.temporal.TemporalAdjusters;
 import java.util.List;
 import java.util.Map;
+import org.apache.log4j.Logger;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -660,5 +664,12 @@ public class StepDef_DatabaseNewSchema {
     @Given("^I update juror \"([^\"]*)\" to have a police check status of \"([^\"]*)\"$")
     public void updatePoliceCheck(String jurorNumber, String policeCheck) throws SQLException {
         DBTNSD.updatePoliceCheck(jurorNumber,policeCheck);
+    }
+
+    @Given("^I update service start date to (\\d+) Mondays ago for pool number \"([^\"]*)\"$")
+    public void updateServiceStartDate(int mondaysAgo, String poolNumber) throws SQLException {
+        LocalDate today = LocalDate.now();
+        LocalDate xMondaysAgo = today.with(TemporalAdjusters.previous(DayOfWeek.MONDAY)).minusWeeks(Long.parseLong(String.valueOf(mondaysAgo)));
+        DBTNSD.updateServiceStartDateForDismissal(String.valueOf(xMondaysAgo), poolNumber);
     }
 }
