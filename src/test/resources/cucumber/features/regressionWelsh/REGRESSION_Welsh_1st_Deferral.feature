@@ -51,8 +51,7 @@ Scenario Outline: Welsh 1st Party Deferral
 	Then I see "Beth yw eich dyddiad geni?" on the page
 	And I do not see any links on the page that open to a new page without an alt text
 	
-	#DoB and JDB-3409
-
+	#DoB
 	And I see "Cymorth gyda'ch dyddiad geni" on the page
 	When I set "Diwrnod" to "27"
 	And I set "Mis" to "04"
@@ -124,7 +123,7 @@ Scenario Outline: Welsh 1st Party Deferral
 	When I set the radio button to "Nac ydw, hoffwn newid y dyddiad"
 	And I press the "Parhau" button
 	And I do not see any links on the page that open to a new page without an alt text
-	
+
 	And I see "steps/confirm-date/deferral-reason" in the URL
 	Then I see "Dywedwch wrthym pam fod angen dyddiad arall arnoch i wneud eich gwasanaeth rheithgor" on the page
 	And I see "Mae'n rhaid i chi gael rheswm da dros newid dyddiad, er enghraifft:" on the page
@@ -234,7 +233,7 @@ Scenario Outline: Welsh 1st Party Deferral
 	
 Examples:
 	| juror_number	| last_name			| postcode	| pool_number	|
-	| 045700036		| LNAMENINENINESEVEN| CH1 2AN	| 457300036		|
+	| 045700052		| LNAMENINENINESEVEN| CH1 2AN	| 457300052		|
 
 @RegressionSingle @NewSchemaConverted
 Scenario Outline: Welsh 1st Party Deferral - bank holiday
@@ -455,4 +454,4 @@ Scenario Outline: Welsh 1st Party Deferral - bank holiday
 
 Examples:
 	| juror_number	| last_name	| postcode	| email 		| pool_number 	|
-	| 045700037		| LNAME4823	| SW1H 9AJ	| a@eeee.com	| 457300037		|
+	| 045700053		| LNAME4823	| SW1H 9AJ	| a@eeee.com	| 457300053		|

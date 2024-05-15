@@ -3,7 +3,7 @@ Feature: Regression Welsh_1st_ErrorChecks
 @RegressionWelsh @NewSchemaConverted
 Scenario Outline: Welsh_1st_ErrorChecks - status is Undeliverable
 
-	Given I am on the welsh version of "Public" "test"
+	Given I am on "Bureau" "test"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -12,11 +12,20 @@ Scenario Outline: Welsh_1st_ErrorChecks - status is Undeliverable
 	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
 	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 
+	And I log in as "MODTESTBUREAU"
+	And I search for juror "<juror_number>"
+	And I press the "Update juror record" button
+	And I choose the "Mark summons as undeliverable" radio button
+	And I press the "Continue" button
+	Then I see the juror record updated banner containing "Summons undeliverable"
+
 	When the user searches for juror record "<juror_number>" from the global search bar
 	And I click the update juror record button
 	And I select the mark as undeliverable radio button
 	Then I click continue on the update juror record screen
 	And I see the juror record updated banner containing "Summons undeliverable"
+
+  Given I am on the welsh version of "Public" "test"
 
 	When I set the radio button to "n ymateb dros fy hun"
 	And I press the "Parhau" button
@@ -37,7 +46,6 @@ Scenario Outline: Welsh_1st_ErrorChecks - status is Undeliverable
 	And I see "Canfod mwy am gostau galwadau" on the page
 	
 	#Juror Log In
-	
 	When I set "Rhif rheithiwr – 9 digid" to "<juror_number>"
 	When I set "Cyfenw'r Rheithiwr" to "<last_name>"
 	When I set "Cod post Rheithiwr" to "<postcode>"
@@ -63,8 +71,8 @@ Scenario Outline: Welsh_1st_ErrorChecks - status is Undeliverable
 	
 	Examples:
 	| juror_number	| last_name	| postcode	| pool_number	|
-	| 045700040		| DOE		| SW1H 9AJ	| 457300040		|
-	
+	| 045700044		  | DOE		    | SW1H 9AJ	| 457300044		|
+
 @RegressionWelsh @NewSchemaConverted
 Scenario Outline: Welsh_1st_ErrorChecks - Court date is in the past
 
@@ -72,11 +80,11 @@ Scenario Outline: Welsh_1st_ErrorChecks - Court date is in the past
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
-		| 457   |<juror_number>| <pool_number>	| -1			            | 400	|
+		| 457   |<juror_number>| <pool_number>| -1				                | 400	|
 
 	Given a new pool is inserted for where record has transferred to the court new schema
-		|part_no             | pool_no           | owner |
-		|<juror_number>      | <pool_number>     | 457   |
+		|part_no         | pool_no       | owner |
+		|<juror_number>  | <pool_number> | 457   |
 
 	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
 	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
@@ -85,7 +93,6 @@ Scenario Outline: Welsh_1st_ErrorChecks - Court date is in the past
 	And I press the "Parhau" button
 	
 	#Juror Log In
-	
 	When I set "Rhif rheithiwr – 9 digid" to "<juror_number>"
 	When I set "Cyfenw'r Rheithiwr" to "<last_name>"
 	When I set "Cod post Rheithiwr" to "<postcode>"
@@ -94,9 +101,8 @@ Scenario Outline: Welsh_1st_ErrorChecks - Court date is in the past
 	
 	Examples:
 	| juror_number	| last_name	| postcode	| pool_number	|
-	| 045700041		|DOE		|SW1H 9AJ	| 457300041		|
+	| 045700045		  | DOE		    | SW1H 9AJ	| 457300045		|
 	
-
 @RegressionWelsh @NewSchemaConverted
 Scenario Outline: Welsh_1st_ErrorChecks
 		
@@ -104,7 +110,7 @@ Scenario Outline: Welsh_1st_ErrorChecks
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
-		| 457   |<juror_number>| <pool_number>	| 5				            | 400	|
+		| 457   |<juror_number>| <pool_number>	| 5				        	| 400	|
 
 	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
 	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
@@ -114,7 +120,7 @@ Scenario Outline: Welsh_1st_ErrorChecks
 	
 	When I set "Rhif rheithiwr – 9 digid" to "<juror_number>"
 	When I set "Cyfenw'r Rheithiwr" to "<last_name>"
-	When I set "Cod post Rheithiwr" to "<Postcode>"
+	When I set "Cod post Rheithiwr" to "<postcode>"
 	And I press the "Parhau" button
 	Then I see "A yw'r enw sydd gennym ar eich cyfer chi yn gywir?" on the page
 
@@ -202,6 +208,7 @@ Scenario Outline: Welsh_1st_ErrorChecks
 	And I set "Blwyddyn" to "198a"
 	And I press the "Parhau" button
 	Then I see "Mae problem" on the page
+
 	And I see "Rhowch y flwyddyn y cawsoch eich geni fel rhif 4 digid. Er enghraifft, 1982" on the page
 	
 	When I set "Diwrnod" to "27"
@@ -227,7 +234,7 @@ Scenario Outline: Welsh_1st_ErrorChecks
 	
 	When I set the radio button to "Do"
 	And I press the "Parhau" button
-	
+
 	#CJS
 	Then I see "A ydych chi wedi gweithio yn y system cyfiawnder troseddol yn y 5 mlynedd diwethaf?" on the page
 	When I press the "Parhau" button
@@ -237,9 +244,7 @@ Scenario Outline: Welsh_1st_ErrorChecks
 	When I set the radio button to "Ydw"
 	Then I see "Dewiswch unrhyw sefydliadau rydych wedi gweithio iddynt." on the page
 	And I press the "Parhau" button
-	
-	#JDB-3525 test, should NOT allow to progress straight to RA (Now fixed)
-	
+
 	Then I see error "Ticiwch unrhyw sefydliadau rydych wedi gweithio iddynt yn uniongyrchol (nid fel trydydd parti neu is-gontractwr)"
 	
 	When I check the "Yr heddlu" checkbox
@@ -431,21 +436,21 @@ Scenario Outline: Welsh_1st_ErrorChecks
 	
 Examples:
 	| juror_number	| last_name				| postcode  | pool_number	|
-	| 045700042		| LNAMENINENINEEIGHT	| CH1 2AN	| 457300042		|
+	| 045700046		| LNAMENINENINEEIGHT	| CH1 2AN	| 457300046		|
 	
 @RegressionWelsh @NewSchemaConverted
 Scenario Outline: Welsh response completed in Juror and login attempted on Digital
 
-	Given a bureau owned pool is created with jurors
+Given I am on "Bureau" "test"
+
+Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
-		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
+		| 457   |<juror_number>| <pool_number>| 5				                  | 400	|
 
 	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
 	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 
-	#mark juror as responded
-	Given I am on "Bureau" "test"
-	And I log in as "CPASS"
+	And I log in as "MODTESTBUREAU"
 
 	And I search for juror "<juror_number>"
 	And I click on the "Juror details" link
@@ -488,54 +493,57 @@ Scenario Outline: Welsh response completed in Juror and login attempted on Digit
 	And I see "BD3 7BH" on the page
 
 	And I see "Ni allwch ddefnyddio'r gwasanaeth digidol hwn i roi gwybodaeth ychwanegol i ni." on the page
-
+	
 Examples:
-	| juror_number	| pool_number | last_name	| postcode 	|
-	| 045700043		| 457300043   |DOE			|SW1H 9AJ 	|
+	| juror_number	| pool_number | last_name	| postcode |
+	| 045700047		| 457300047   |DOE			| SW1H 9AJ |
 
+@RegressionWelsh @NewSchemaConverted
+Scenario Outline: Welsh Already Replied info page
 
-	@RegressionWelsh @4485
-	Scenario Outline: Welsh Already Replied info page
-		Given I am on the welsh version of "Public" "bau-test"
-		Given the juror numbers have not been processed
-			| part_no 	| pool_no 	| owner |
-			| <part_no> |<pool_no>	| 400 	|
+	Given I am on the welsh version of "Public" "test"
 
-		And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 457   |<juror_number>| <pool_number>	| 5				            | 400	|
 
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 
-		And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
-		And "<juror_number>" has "STATUS" as "9"
+	And I have submitted a first party Welsh ineligibilty response
+		| part_no		| pool_number	| last_name		| postcode	| email 	|
+		| <juror_number>| <pool_number>	| <last_name>	| <postcode>| <email>	|
 
+	Given I am on the welsh version of "Public" "test"
 
-		Then I see "A ydych yn ymateb dros eich hun neu ar ran rhywun arall?" on the page
+	Then I see "A ydych yn ymateb dros eich hun neu ar ran rhywun arall?" on the page
 
-		When I set the radio button to "n ymateb dros fy hun"
-		And I press the "Parhau" button
+	When I set the radio button to "n ymateb dros fy hun"
+	And I press the "Parhau" button
 
-		When I set "Rhif rheithiwr – 9 digid" to "<juror_number>"
-		And I set "Cyfenw'r Rheithiwr" to "<last_name>"
-		And I set "Cod post Rheithiwr" to "<postcode>"
-		And I press the "Parhau" button
+	When I set "Rhif rheithiwr – 9 digid" to "<juror_number>"
+	And I set "Cyfenw'r Rheithiwr" to "<last_name>"
+	And I set "Cod post Rheithiwr" to "<postcode>"
+	And I press the "Parhau" button
 
-		And I see "Mae ein cofnodion yn dangos eich bod eisoes wedi ymateb i'r wŷs rheithgor hon" on the page
-		And I see "Os ydych eisiau dweud wrthym am newidiadau neu os ydym wedi gofyn am ragor o wybodaeth gennych, mae angen ichi gysylltu â ni ar e-bost, dros y ffôn neu lythyr." on the page
-		And I see "Swyddfa Ganolog Gwysio Rheithgor" on the page
-		And I see "jurysummoning@justice.gov.uk" on the page
-		And I see "Rhif ffôn: 0300 456 1024" on the page
-		And I see "Llinell Gymraeg: 0300 303 5173" on the page
-		And I see "Dydd Llun i Ddydd Iau 9am – 5pm" on the page
-		And I see "Dydd Gwener 9am – 3pm" on the page
-		And I see "Canfod mwy am gostau galwadau" on the page
+	And I see "Mae ein cofnodion yn dangos eich bod eisoes wedi ymateb i'r wŷs rheithgor hon" on the page
+	And I see "Os ydych eisiau dweud wrthym am newidiadau neu os ydym wedi gofyn am ragor o wybodaeth gennych, mae angen ichi gysylltu â ni ar e-bost, dros y ffôn neu lythyr." on the page
+	And I see "Swyddfa Ganolog Gwysio Rheithgor" on the page
+	And I see "jurysummoning@justice.gov.uk" on the page
+	And I see "Rhif ffôn: 0300 456 1024" on the page
+	And I see "Llinell Gymraeg: 0300 303 5173" on the page
+	And I see "Dydd Llun i Ddydd Iau 9am – 5pm" on the page
+	And I see "Dydd Gwener 9am – 3pm" on the page
+	And I see "Canfod mwy am gostau galwadau" on the page
 
-		And I see "Swyddfa Ganolog Gwysio Rheithgor" on the page
-		And I see "Phoenix House" on the page
-		And I see "Rushton Avenue" on the page
-		And I see "Bradford" on the page
-		And I see "BD3 7BH" on the page
+	And I see "Swyddfa Ganolog Gwysio Rheithgor" on the page
+	And I see "Phoenix House" on the page
+	And I see "Rushton Avenue" on the page
+	And I see "Bradford" on the page
+	And I see "BD3 7BH" on the page
 
-		And I see "Ni allwch ddefnyddio'r gwasanaeth digidol hwn i roi gwybodaeth ychwanegol i ni." on the page
+	And I see "Ni allwch ddefnyddio'r gwasanaeth digidol hwn i roi gwybodaeth ychwanegol i ni." on the page
 
-		Examples:
-			|part_no	|last_name	      |postcode   |pool_no|
-			|645200277	|LNAMESIXSEVENSIX |SW1H 9AJ   |452170501|
+	Examples:
+		| juror_number	| last_name	      	| postcode   | pool_number	| email 		|
+		| 045700048		| LNAMESIXSEVENSIX 	| SW1H 9AJ   | 457300048	| e@mail.com 	|
