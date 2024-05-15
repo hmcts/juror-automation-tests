@@ -137,6 +137,7 @@ public class NavigationShared {
         System.setProperty("env.database", env.toLowerCase());
         System.setProperty("envName", env.toLowerCase());
 
+        driver.manage().deleteAllCookies();
         driver.get(url);
         log.info("Navigated to the expected environment");
     }
@@ -2130,8 +2131,8 @@ public class NavigationShared {
                 break;
 
             case "Next due at court":
-                nextDueAtCourtDate.clear();
-                nextDueAtCourtDate.sendKeys(mondayDateValue);
+                newAttendanceDateField.clear();
+                newAttendanceDateField.sendKeys(mondayDateValue);
                 break;
 
             case "Sentence":

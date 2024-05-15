@@ -1,6 +1,6 @@
 Feature: JM-5070 As a jury officer I need to be able to change a jurors attendance date - 4362 As a Jury officer I need to be able to confirm a jurors attendance
 
-  @JurorTransformationWIP @newSchemaConverted @JM-7278
+  @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Happy Path Test to create a new pool of jurors and change a jurors attendance date
 
     Given I am on "Bureau" "test"
@@ -33,11 +33,14 @@ Feature: JM-5070 As a jury officer I need to be able to change a jurors attendan
     And I check the juror "<juror_number_3>" checkbox
 
     And I press the "Change next due at court" button
-    #will fail here because of JM-7278
+    And I see "Enter date next due at court" on the page
     And I set the "Next due at court" date to a Monday "4" weeks in the future
     And I press the "Continue" button
-    Then I verify confirmation text of jurors next due to attend "3 jurors will be next due to attend on:" on the page
-    And I verify button "Continue" on the page
+    And I see "3 jurors will be next due to attend on:" on the page
+    And I press the "Continue" button
+    And I see the banner for next due at court date
+    And I see "3 jurors next due at court on" on the page
+
 
     Examples:
       |user         |juror_number_1 | juror_number_2 | juror_number_3    | pool_number   |
