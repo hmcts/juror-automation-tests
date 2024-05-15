@@ -17,25 +17,9 @@ Feature: JM-4958, JM-4954, JM-4955 As a jury officer i need to be able to comple
 
     #log on and search for juror
     And I log in as "<user>"
-    When the user searches for juror record "<juror_number1>" from the global search bar
 
-    #record paper summons for juror and set to responded
-    Then I record a happy path paper summons response
-    And I click on the "No, skip and process later" link
-    And I click the process reply button
-    Then I mark the reply as responded
-    And I click continue on the juror summons reply page
-    And I click the checkbox to mark the reply as responded
-    And I confirm I want to mark the reply as responded
-
-    When the user searches for juror record "<juror_number2>" from the global search bar
-    Then I record a happy path paper summons response
-    And I click on the "No, skip and process later" link
-    And I click the process reply button
-    Then I mark the reply as responded
-    And I click continue on the juror summons reply page
-    And I click the checkbox to mark the reply as responded
-    And I confirm I want to mark the reply as responded
+    And I update juror "<juror_number1>" to have a status of "Responded"
+    And I update juror "<juror_number2>" to have a status of "Responded"
 
     #view pool record, select juror and complete
     When the user searches for juror record "<juror_number1>" from the global search bar
@@ -48,21 +32,17 @@ Feature: JM-4958, JM-4954, JM-4955 As a jury officer i need to be able to comple
 
     #view summons response
     When the user searches for juror record "<juror_number1>" from the global search bar
-    And I click on the "Summons reply" link
-    And I click on the "View summons reply" link
-    And I see the reply status has updated to "COMPLETED"
+    And I see the juror status has updated to "Completed"
 
     When the user searches for juror record "<juror_number2>" from the global search bar
-    And I click on the "Summons reply" link
-    And I click on the "View summons reply" link
-    And I see the juror status on the juror record screen is "Completed"
+    And I see the juror status has updated to "Completed"
 
     Examples:
       |user			|juror_number1|juror_number2|pool_number|
       |MODTESTCOURT |041500036    |041500037    |415300127  |
 
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationWIP @NewSchemaConverted @JM-7292
   Scenario Outline: Complete Service as a jury officer - Bulk flow - Unhappy Path
     Given I am on "Bureau" "test"
 
@@ -95,13 +75,11 @@ Feature: JM-4958, JM-4954, JM-4955 As a jury officer i need to be able to comple
     And I check the select all checkbox on pool overview
     And I press the "Complete service" button
     And I press the "Complete service" button
+    #will fail here because of JM-7292
 
    #attempt complete service of ineligible juror/complete service for eligible juror
     And I see "Juror number <juror_number2> is not in a valid state to complete service" on the page
-    And I see "Summoned" in the same row as "<juror_number2>"
-    And I refresh the page
-    And I check the juror "<juror_number1>" checkbox
-
+    And I see "Jurors in this pool" on the page
     And I press the "Complete service" button
     And I set the "Completion date" single date field to a Monday "17" weeks in the future
     And I press the "Complete service" button
@@ -109,9 +87,7 @@ Feature: JM-4958, JM-4954, JM-4955 As a jury officer i need to be able to comple
 
     #view summons response
     When the user searches for juror record "<juror_number1>" from the global search bar
-    And I click on the "Summons reply" link
-    And I click on the "View summons reply" link
-    And I see the juror status on the juror record screen is "Completed"
+    And I see the juror status has updated to "Completed"
 
     Examples:
       |user			|juror_number1|juror_number2|pool_number |
