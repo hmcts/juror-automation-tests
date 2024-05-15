@@ -137,7 +137,6 @@ public class NavigationShared {
         System.setProperty("env.database", env.toLowerCase());
         System.setProperty("envName", env.toLowerCase());
 
-        driver.manage().deleteAllCookies();
         driver.get(url);
         log.info("Navigated to the expected environment");
     }
