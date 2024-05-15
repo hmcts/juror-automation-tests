@@ -1,17 +1,25 @@
 Feature: Regression Welsh_1st_ErrorChecks
 
-@RegressionWelsh @4485 
+@RegressionWelsh @NewSchemaConverted
 Scenario Outline: Welsh_1st_ErrorChecks - status is Undeliverable
-	Given I am on the welsh version of "Public" "bau-test"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
-		
+
+	Given I am on "Bureau" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 457   |<juror_number>| <pool_number>	| 5				            | 400	|
+
 	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
-
-
 	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
-	And "<juror_number>" has "STATUS" as "9"
+
+	And I log in as "MODTESTBUREAU"
+	And I search for juror "<juror_number>"
+	And I press the "Update juror record" button
+	And I choose the "Mark summons as undeliverable" radio button
+	And I press the "Continue" button
+	Then I see the juror record updated banner containing "Summons undeliverable"
+
+	Given I am on the welsh version of "Public" "test"
 
 	When I set the radio button to "n ymateb dros fy hun"
 	And I press the "Parhau" button
@@ -32,7 +40,6 @@ Scenario Outline: Welsh_1st_ErrorChecks - status is Undeliverable
 	And I see "Canfod mwy am gostau galwadau" on the page
 	
 	#Juror Log In
-	
 	When I set "Rhif rheithiwr – 9 digid" to "<juror_number>"
 	When I set "Cyfenw'r Rheithiwr" to "<last_name>"
 	When I set "Cod post Rheithiwr" to "<postcode>"
@@ -55,29 +62,31 @@ Scenario Outline: Welsh_1st_ErrorChecks - status is Undeliverable
 	And I see "BD3 7BH" on the page
 
 	And I see "Ni allwch ddefnyddio'r gwasanaeth digidol hwn i roi gwybodaeth ychwanegol i ni." on the page
-
 	
 	Examples:
-	|part_no	|last_name	|postcode	|email           	|pool_no	|
-	|645100311	|DOE		|SW1H 9AJ	|email@outlook.com	|451170401	|
+	| juror_number	| last_name	| postcode	| pool_number	|
+	| 045700044		| DOE		| SW1H 9AJ	| 457300044		|
 	
-@RegressionWelsh @4494 @4488 
+@RegressionWelsh @NewSchemaConverted
 Scenario Outline: Welsh_1st_ErrorChecks - Court date is in the past
-	Given I am on the welsh version of "Public" "juror-test02"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
-		
+
+	Given I am on the welsh version of "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 457   |<juror_number>| <pool_number>	| -1				        | 400	|
+
+	Given a new pool is inserted for where record has transferred to the court new schema
+		|part_no         | pool_no       | owner |
+		|<juror_number>  | <pool_number> | 457   |
+
 	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
-	And "<juror_number>" has "RET_DATE" as "-1 mondays time"
-	And "<juror_number>" has "NEXT_DATE" as "-1 mondays time"
 	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 
 	When I set the radio button to "n ymateb dros fy hun"
 	And I press the "Parhau" button
 	
 	#Juror Log In
-	
 	When I set "Rhif rheithiwr – 9 digid" to "<juror_number>"
 	When I set "Cyfenw'r Rheithiwr" to "<last_name>"
 	When I set "Cod post Rheithiwr" to "<postcode>"
@@ -85,23 +94,20 @@ Scenario Outline: Welsh_1st_ErrorChecks - Court date is in the past
 	Then I see "Mae'r dyddiad ar gyfer eich gwŷs rheithgor wedi mynd heibio. Ni allwch ymateb drwy ddefnyddio'r gwasanaeth hwn." on the page
 	
 	Examples:
-	|part_no	|last_name	|postcode	|email           	|pool_no	|
-	|645100653	|DOE		|SW1H 9AJ	|email@outlook.com	|451170401	|
+	| juror_number	| last_name	| postcode	| pool_number	|
+	| 045700045		| DOE		| SW1H 9AJ	| 457300045		|
 	
 
-@RegressionWelsh @JDB-3348 @JDB-3499 @JDB-3525 @JDB-3564 @JDB-3589 @JDB-3572 @JDB-3668 @JDB-3669 @JDB-3670 @JDB-3671 
-@JDB-3672 @JDB-3573 @JDB-3711 @JDB-3715 @JDB-3817 
+@RegressionWelsh @NewSchemaConverted
 Scenario Outline: Welsh_1st_ErrorChecks
 		
-	Given I am on the welsh version of "Public" "bau-test"
-	
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+	Given I am on the welsh version of "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 457   |<juror_number>| <pool_number>	| 5				        	| 400	|
 
 	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
-
-
 	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 
 	And I set the radio button to "n ymateb dros fy hun"
@@ -109,12 +115,11 @@ Scenario Outline: Welsh_1st_ErrorChecks
 	
 	When I set "Rhif rheithiwr – 9 digid" to "<juror_number>"
 	When I set "Cyfenw'r Rheithiwr" to "<last_name>"
-	When I set "Cod post Rheithiwr" to "<Postcode>"
+	When I set "Cod post Rheithiwr" to "<postcode>"
 	And I press the "Parhau" button
 	Then I see "A yw'r enw sydd gennym ar eich cyfer chi yn gywir?" on the page
 
 	#Check name
-	
 	And I set the radio button to "Nac ydy"
 	And I press the "Parhau" button
 	
@@ -130,7 +135,6 @@ Scenario Outline: Welsh_1st_ErrorChecks
 	Then I see "Eich cyfeiriad chi yw hwn?" on the page
 	
 	#Check address
-	
 	And I set the radio button to "Na"
 	And I press the "Parhau" button
 	And I set "Llinell Cyfeiriad 1" to ""
@@ -144,7 +148,6 @@ Scenario Outline: Welsh_1st_ErrorChecks
 	And I see "Nodwch eich cod post" on the page
 	
 	#Checking Invalids check with Jorge
-	
 	When I set "Llinell Cyfeiriad 1" to "|||"
 	And I set "Tref neu ddinas" to "|||"
 	And I set "Sir (dewisol)" to "|||"
@@ -166,7 +169,6 @@ Scenario Outline: Welsh_1st_ErrorChecks
 	Then I see "Beth yw eich rhif ffôn?" on the page
 	
 	#Phone details
-	
 	When I press the "Parhau" button
 	Then I see "Mae problem" on the page
 	When I set "Prif rif ffôn" to "0207 821 1818"
@@ -174,7 +176,6 @@ Scenario Outline: Welsh_1st_ErrorChecks
 	Then I see "Beth yw eich cyfeiriad e-bost?" on the page
 	
 	#Email details
-	
 	When I press the "Parhau" button
 	Then I see "Mae problem" on the page
 	And I see "Nodwch eich cyfeiriad e-bost" on the page
@@ -190,7 +191,6 @@ Scenario Outline: Welsh_1st_ErrorChecks
 	Then I see "Beth yw eich dyddiad geni?" on the page
 	
 	#DoB
-	
 	When I press the "Parhau" button
 	Then I see "Mae problem" on the page
 
@@ -203,7 +203,7 @@ Scenario Outline: Welsh_1st_ErrorChecks
 	And I set "Blwyddyn" to "198a"
 	And I press the "Parhau" button
 	Then I see "Mae problem" on the page
-#	And I see "Gwiriwch eich dyddiad geni" on the page
+
 	And I see "Rhowch y flwyddyn y cawsoch eich geni fel rhif 4 digid. Er enghraifft, 1982" on the page
 	
 	When I set "Diwrnod" to "27"
@@ -216,7 +216,6 @@ Scenario Outline: Welsh_1st_ErrorChecks
 	When I press the "Parhau" button
 	
 	#Residency Yes
-	
 	Then I see "Ers i chi droi'n 13 oed, a yw eich prif gyfeiriad wedi bod yn y DU, Ynysoedd y Sianel neu Ynys Manaw am unrhyw gyfnod o 5 mlynedd o leiaf?" on the page
 	When I press the "Parhau" button
 	Then I see "Mae problem" on the page
@@ -225,16 +224,13 @@ Scenario Outline: Welsh_1st_ErrorChecks
 	Then I see "Rhowch fanylion am ble rydych wedi byw ers eich pen-blwydd yn 13 mlwydd oed" on the page
 	And I press the "Parhau" button
 	Then I see "Mae problem" on the page
-	
-	#JDB-3572
-	  
+
 	And I see error "Rhowch fanylion am ble rydych wedi byw ers eich pen-blwydd yn 13 mlwydd oed"
 	
 	When I set the radio button to "Do"
 	And I press the "Parhau" button
-	
-	#CJS JDB-3817
-	
+
+	#CJS
 	Then I see "A ydych chi wedi gweithio yn y system cyfiawnder troseddol yn y 5 mlynedd diwethaf?" on the page
 	When I press the "Parhau" button
 	Then I see "Mae problem" on the page
@@ -243,9 +239,7 @@ Scenario Outline: Welsh_1st_ErrorChecks
 	When I set the radio button to "Ydw"
 	Then I see "Dewiswch unrhyw sefydliadau rydych wedi gweithio iddynt." on the page
 	And I press the "Parhau" button
-	
-	#JDB-3525 test, should NOT allow to progress straight to RA (Now fixed)
-	
+
 	Then I see error "Ticiwch unrhyw sefydliadau rydych wedi gweithio iddynt yn uniongyrchol (nid fel trydydd parti neu is-gontractwr)"
 	
 	When I check the "Yr heddlu" checkbox
@@ -267,7 +261,6 @@ Scenario Outline: Welsh_1st_ErrorChecks
 	And I press the "Parhau" button
 	
 	#Bail no
-	
 	Then I see "Ydych chi ar fechnïaeth ar hyn o bryd am gyflawni trosedd?" on the page
 	When I press the "Parhau" button
 	Then I see "Mae problem" on the page
@@ -283,7 +276,6 @@ Scenario Outline: Welsh_1st_ErrorChecks
 	And I press the "Parhau" button
 	
 	#Convictions no
-	
 	Then I see "Ydych chi wedi'ch cael yn euog o drosedd?" on the page
 	When I press the "Parhau" button
 	Then I see "Mae problem" on the page
@@ -298,8 +290,6 @@ Scenario Outline: Welsh_1st_ErrorChecks
 	And I press the "Parhau" button
 	
 	#Mental health part 1 no
-	# JDB-3573 
-	
 	Then I see "Ydych chi'n cael eich cadw, yn cael eich gwarchod neu eich trin o dan y Ddeddf Galluedd Meddyliol?" on the page
 	When I press the "Parhau" button
 	Then I see "Mae problem" on the page
@@ -315,8 +305,6 @@ Scenario Outline: Welsh_1st_ErrorChecks
 	And I press the "Parhau" button
 	
 	#Mental health part 2 no
-	#JDB-3574
-	
 	Then I see "A benderfynwyd nad oes gennych y gallu meddyliol?" on the page
 	When I press the "Parhau" button
 	Then I see "Mae problem" on the page
@@ -332,7 +320,6 @@ Scenario Outline: Welsh_1st_ErrorChecks
 	And I press the "Parhau" button
 	
 	#I can attend
-	
 	Then I see "Gwiriwch eich dyddiad dechrau" on the page
 	
 	When I press the "Parhau" button
@@ -343,7 +330,6 @@ Scenario Outline: Welsh_1st_ErrorChecks
 	And  I press the "Parhau" button
 	
 	#RA no
-	
 	Then I see "A fyddech chi angen cymorth pan fyddwch yn y llys?" on the page
 	When I press the "Parhau" button
 	Then I see "Mae problem" on the page
@@ -366,7 +352,6 @@ Scenario Outline: Welsh_1st_ErrorChecks
 	Then I see "Gwiriwch eich ymatebion nawr" on the page
 	
 	#Check Your Answers
-	
 	When I press the "Cyflwyno" button
 	Then I see "Mae problem" on the page
 	Then I see "Cadarnhewch fod eich gwybodaeth yn gywir cyn ichi anfon eich ymateb" on the page
@@ -379,7 +364,6 @@ Scenario Outline: Welsh_1st_ErrorChecks
 	Then I see "Dywedwch wrthym pam fod angen dyddiad arall arnoch i wneud eich gwasanaeth rheithgor" on the page
 	
 	#Deferral Reason
-	
 	When I press the "Parhau" button
 	Then I see "Mae problem" on the page
 	And I see "Dywedwch wrthym pam fod angen dyddiad arall arnoch i wneud eich gwasanaeth rheithgor" on the page
@@ -389,7 +373,6 @@ Scenario Outline: Welsh_1st_ErrorChecks
 	Then I see "Dewiswch 3 dydd Llun pan allwch ddechrau gwasanaeth rheithgor" on the page
 	
 	#Deferral Dates
-	
 	When I press the "Parhau" button
 	Then I see "Mae problem" on the page
 	And I see "Rhowch y dydd Llun cyntaf y byddai'n well gennych ddechrau gwasanaeth rheithgor" on the page
@@ -425,7 +408,6 @@ Scenario Outline: Welsh_1st_ErrorChecks
 	Then I see "Gwiriwch eich ymatebion nawr" on the page
 	
 	#Check Your Answers
-	
 	When I click on the "Newid" link in the same row as "Cadarnhewch ddyddiad eich gwasanaeth rheithgor"
 	Then I see "Gwiriwch eich dyddiad dechrau" on the page
 	
@@ -434,7 +416,6 @@ Scenario Outline: Welsh_1st_ErrorChecks
 	Then I see "Pam fod angen ichi gael eich esgusodi rhag gwasanaethu ar reithgor?" on the page
 	
 	#Excusal Reason
-	
 	When I press the "Parhau" button
 	Then I see "Mae problem" on the page
 	And I see "Eglurwch pam na allwch chi wasanaethu ar reithgor yn ystod y 12 mis nesaf" on the page
@@ -444,28 +425,39 @@ Scenario Outline: Welsh_1st_ErrorChecks
 	Then I see "Gwiriwch eich ymatebion nawr" on the page
 	
 	#When I press the "Submit" button
-	
 	When I check the "Mae'r wybodaeth a roddais uchod yn wir hyd eithaf fy ngwybodaeth." checkbox
 	And I press the "Cyflwyno" button
 	Then I see "Rydym wedi anfon neges e-bost atoch i gadarnhau eich bod wedi ymateb i’ch gwŷs rheithgor." on the page
 	
 Examples:
-	|part_no	|last_name			|Postcode   |pool_no	|
-	|641500998	|LNAMENINENINEEIGHT	|CH1 2AN	|415170401	|
+	| juror_number	| last_name				| postcode  | pool_number	|
+	| 045700046		| LNAMENINENINEEIGHT	| CH1 2AN	| 457300046		|
 	
-@RegressionWelsh @JDB-4100 
+@RegressionWelsh @NewSchemaConverted
 Scenario Outline: Welsh response completed in Legacy and login attempted on Digital
-	Given I am on the welsh version of "Public" "bau-test"
-	Given I have cleared down the juror digital database
-	Given the juror numbers have not been processed
-	|part_no		|pool_no 	|Owner 		|
-	|641500623		|415181001 	|400		|
-	
 
+	Given I am on "Bureau" "test"
 
-	And "<juror_number>" has "READ_ONLY" as "N"
-	And "<juror_number>" has "RESPONDED" as "Y"
-	And "<juror_number>" has "STATUS" as "2"
+	Given a bureau owned pool is created with jurors
+		| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 457   | <juror_number>| <pool_number>	| 3				            | 400	|
+
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
+
+	And I log in as "MODTESTBUREAU"
+	And I search for juror "<juror_number>"
+	And I click on the "Juror details" link
+	And I click on the "Add or change" link
+	And I change the jurors date of birth
+	And I press the "Save" button
+	And I click the update juror record button
+	And I choose the "Mark as responded" radio button
+	And I press the "Continue" button
+	And I check the "Mark juror as 'responded'" checkbox
+	And I press the "Confirm" button
+
+	Given I am on the welsh version of "Public" "test"
 	
 	Then I see "A ydych yn ymateb dros eich hun neu ar ran rhywun arall?" on the page
 	
@@ -495,55 +487,58 @@ Scenario Outline: Welsh response completed in Legacy and login attempted on Digi
 	And I see "BD3 7BH" on the page
 
 	And I see "Ni allwch ddefnyddio'r gwasanaeth digidol hwn i roi gwybodaeth ychwanegol i ni." on the page
-
 	
 Examples:
-	|part_no	|last_name	|postcode |
-	|641500661	|DOE		|SW1H 9AJ |
+	| juror_number	| pool_number | last_name	| postcode |
+	| 045700047		| 457300047   |DOE			| SW1H 9AJ |
 
 
-	@RegressionWelsh @4485
-	Scenario Outline: Welsh Already Replied info page
-		Given I am on the welsh version of "Public" "bau-test"
-		Given the juror numbers have not been processed
-			| part_no 	| pool_no 	| owner |
-			| <part_no> |<pool_no>	| 400 	|
+@RegressionWelsh @NewSchemaConverted
+Scenario Outline: Welsh Already Replied info page
 
-		And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	Given I am on the welsh version of "Public" "test"
 
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 457   |<juror_number>| <pool_number>	| 5				            | 400	|
 
-		And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
-		And "<juror_number>" has "STATUS" as "9"
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 
+	And I have submitted a first party Welsh ineligibilty response
+		| part_no		| pool_number	| last_name		| postcode	| email 	|
+		| <juror_number>| <pool_number>	| <last_name>	| <postcode>| <email>	|
 
-		Then I see "A ydych yn ymateb dros eich hun neu ar ran rhywun arall?" on the page
+	Given I am on the welsh version of "Public" "test"
 
-		When I set the radio button to "n ymateb dros fy hun"
-		And I press the "Parhau" button
+	Then I see "A ydych yn ymateb dros eich hun neu ar ran rhywun arall?" on the page
 
-		When I set "Rhif rheithiwr – 9 digid" to "<juror_number>"
-		And I set "Cyfenw'r Rheithiwr" to "<last_name>"
-		And I set "Cod post Rheithiwr" to "<postcode>"
-		And I press the "Parhau" button
+	When I set the radio button to "n ymateb dros fy hun"
+	And I press the "Parhau" button
 
-		And I see "Mae ein cofnodion yn dangos eich bod eisoes wedi ymateb i'r wŷs rheithgor hon" on the page
-		And I see "Os ydych eisiau dweud wrthym am newidiadau neu os ydym wedi gofyn am ragor o wybodaeth gennych, mae angen ichi gysylltu â ni ar e-bost, dros y ffôn neu lythyr." on the page
-		And I see "Swyddfa Ganolog Gwysio Rheithgor" on the page
-		And I see "jurysummoning@justice.gov.uk" on the page
-		And I see "Rhif ffôn: 0300 456 1024" on the page
-		And I see "Llinell Gymraeg: 0300 303 5173" on the page
-		And I see "Dydd Llun i Ddydd Iau 9am – 5pm" on the page
-		And I see "Dydd Gwener 9am – 3pm" on the page
-		And I see "Canfod mwy am gostau galwadau" on the page
+	When I set "Rhif rheithiwr – 9 digid" to "<juror_number>"
+	And I set "Cyfenw'r Rheithiwr" to "<last_name>"
+	And I set "Cod post Rheithiwr" to "<postcode>"
+	And I press the "Parhau" button
 
-		And I see "Swyddfa Ganolog Gwysio Rheithgor" on the page
-		And I see "Phoenix House" on the page
-		And I see "Rushton Avenue" on the page
-		And I see "Bradford" on the page
-		And I see "BD3 7BH" on the page
+	And I see "Mae ein cofnodion yn dangos eich bod eisoes wedi ymateb i'r wŷs rheithgor hon" on the page
+	And I see "Os ydych eisiau dweud wrthym am newidiadau neu os ydym wedi gofyn am ragor o wybodaeth gennych, mae angen ichi gysylltu â ni ar e-bost, dros y ffôn neu lythyr." on the page
+	And I see "Swyddfa Ganolog Gwysio Rheithgor" on the page
+	And I see "jurysummoning@justice.gov.uk" on the page
+	And I see "Rhif ffôn: 0300 456 1024" on the page
+	And I see "Llinell Gymraeg: 0300 303 5173" on the page
+	And I see "Dydd Llun i Ddydd Iau 9am – 5pm" on the page
+	And I see "Dydd Gwener 9am – 3pm" on the page
+	And I see "Canfod mwy am gostau galwadau" on the page
 
-		And I see "Ni allwch ddefnyddio'r gwasanaeth digidol hwn i roi gwybodaeth ychwanegol i ni." on the page
+	And I see "Swyddfa Ganolog Gwysio Rheithgor" on the page
+	And I see "Phoenix House" on the page
+	And I see "Rushton Avenue" on the page
+	And I see "Bradford" on the page
+	And I see "BD3 7BH" on the page
 
-		Examples:
-			|part_no	|last_name	      |postcode   |pool_no|
-			|645200277	|LNAMESIXSEVENSIX |SW1H 9AJ   |452170501|
+	And I see "Ni allwch ddefnyddio'r gwasanaeth digidol hwn i roi gwybodaeth ychwanegol i ni." on the page
+
+	Examples:
+		| juror_number	| last_name	      	| postcode   | pool_number	| email 		|
+		| 045700048		| LNAMESIXSEVENSIX 	| SW1H 9AJ   | 457300048	| e@mail.com 	|

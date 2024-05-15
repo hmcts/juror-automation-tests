@@ -1,22 +1,21 @@
 Feature: Regression Welsh_3rd_StraightThrough
 
-@RegressionWelsh
+@RegressionWelsh @NewSchemaConverted
 Scenario Outline: Welsh 3rd Party Straight Through
+
 	Given I am on the welsh version of "Public" "test"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
-	
+
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 457   |<juror_number>| <pool_number>	| 3				            | 400	|
+
 	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
-
-
 	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 
 	And I set the radio button to "Rwy'n ymateb ar ran rhywun arall"
 	And I press the "Parhau" button	
 	
-	#Juror Log In JDB-3808 and JDB-3940
-	
+	#Juror Log In
 	And I see "steps/login/tp" in the URL
 	When I click on the "Nid oes gennyf rif rheithiwr ar gyfer yr unigolyn" link
 	Then I see "Rhif ffôn: 0300 456 1024" on the page
@@ -29,7 +28,6 @@ Scenario Outline: Welsh 3rd Party Straight Through
     Then I see "Beth yw eich enw?" on the page
 	
 	#3rd Party Name
-	
 	And I see "branches/third-party-details/name" in the URL
 	When I see "Eich Manylion" on the page
 	When I set "Enw cyntaf" to "FirstNameA"
@@ -38,7 +36,6 @@ Scenario Outline: Welsh 3rd Party Straight Through
 	Then I see "Eich perthynas â'r unigolyn" on the page
 	
 	#Relationship to juror
-	
 	And I see "branches/third-party-details/relationship" in the URL
 	When I see "Eich Manylion" on the page
 	And I set "Sut ydych chi'n adnabod yr unigolyn rydych yn ymateb ar ei ran?" to "Friend"
@@ -46,7 +43,6 @@ Scenario Outline: Welsh 3rd Party Straight Through
 	Then I see "Eich manylion cyswllt" on the page
 	
 	#3rd Party Contact
-	
 	And I see "branches/third-party-details/contact" in the URL
 	When I see "Eich Manylion" on the page
 	And I check the "Dros y ffôn (rhifau yn y DU yn unig)" checkbox
@@ -60,7 +56,6 @@ Scenario Outline: Welsh 3rd Party Straight Through
 	And I press the "Parhau" button
 	
 	#Why are you replying title
-	
 	And I see "branches/third-party-reason" in the URL
 	Then I see "Pam ydych chi'n ymateb ar ran yr unigolyn arall?" on the page
 	And I do not see "Pam ydych chi'n ymateb?" on the page
@@ -72,20 +67,17 @@ Scenario Outline: Welsh 3rd Party Straight Through
 	Then I see "A yw'r enw sydd gennym ar ei gyfer yn gywir?" on the page
 	
 	#Check juror name
-	
 	And I see "branches/third-party-personal-details/name" in the URL
 	When I see "Manylion y Rheithiwr" on the page
 	And I set the radio button to "Ydy"
 	When I press the "Parhau" button
 	
 	#Check juror address
-	
 	And I see "branches/third-party-personal-details/address" in the URL
 	And I set the radio button to "Ie"
 	When I press the "Parhau" button
 	
-	#DoB JDB-3810
-	
+	#DoB
 	And I see "branches/third-party-personal-details/date-of-birth" in the URL
 	When I click on the "Cymorth gyda'ch dyddiad geni" link
 	Then I see "Os oes arnoch angen cymorth, ffoniwch ni ar:" on the page
@@ -101,14 +93,12 @@ Scenario Outline: Welsh 3rd Party Straight Through
 	Then I see "Efallai bydd yn rhaid inni gysylltu â'r unigolyn i ofyn rhagor o gwestiynau neu roi rhagor o wybodaeth iddynt am eu gwasanaeth rheithgor" on the page
 	
 	#Contacting the juror
-	
 	And I see "branches/third-party-contact-details" in the URL
 	When I see "Manylion y Rheithiwr" on the page
 	And I see "Nodwch rifau ffôn y gallwn eu defnyddio i gysylltu â chi rhwng 9am a 5pm, dydd Llun i ddydd Gwener." on the page
 	And I set the radio button to "Defnyddio'r rhif ffôn rydych eisoes wedi'i ddarparu i gysylltu â chi"
 	
-	#Checking field JDB-3824
-	
+	#Checking field
 	And I set the radio button to "Rhoi cyfeiriad e-bost gwahanol ar gyfer y rheithiwr"
 	And I see "Nodwch gyfeiriad e-bost" on the page
 	
@@ -116,13 +106,11 @@ Scenario Outline: Welsh 3rd Party Straight Through
 	And I press the "Parhau" button
 	
 	#Qualify for jury service
-	
 	And I see "steps/qualify/tp" in the URL
 	Then I see "Cadarnhau a yw'r unigolyn yn gymwys i wasanaethu ar reithgor" on the page
 	And I press the "Parhau" button
 	
-	#Residency JDB-3811 and JDB-3910
-	
+	#Residency
 	And I see "steps/qualify/residency/tp" in the URL
 	Then I see "Ers iddynt droi'n 13 oed, a yw eu prif gyfeiriad wedi bod yn y DU, Ynysoedd y Sianel neu Ynys Manaw am unrhyw gyfnod o 5 mlynedd o leiaf?" on the page
 	When I click on the "A ydych angen cymorth i ateb hyn?" link
@@ -136,8 +124,7 @@ Scenario Outline: Welsh 3rd Party Straight Through
 	When I set the radio button to "Do"
 	And I press the "Parhau" button
 	
-	#CJS no JDB-3822
-	
+	#CJS
 	And I see "steps/qualify/cjs-employed/tp" in the URL
 	Then I see "A yw'r person yr ydych yn ymateb ar ei ran wedi gweithio yn y system cyfiawnder troseddol yn y 5 mlynedd diwethaf?" on the page
 	When I set the radio button to "Ydy"
@@ -145,7 +132,6 @@ Scenario Outline: Welsh 3rd Party Straight Through
 	And I press the "Parhau" button
 	
 	#Bail
-	
 	And I see "steps/qualify/bail/tp" in the URL
 	When I see "Cymhwysedd" on the page
 	And I set the radio button to "Nac ydy"
@@ -153,13 +139,10 @@ Scenario Outline: Welsh 3rd Party Straight Through
 	Then I see "A yw'r unigolyn wedi'i gael yn euog o drosedd?" on the page
 	
 	#Convictions
-	
 	And I see "steps/qualify/convictions/tp" in the URL
 	When I see "Cymhwysedd" on the page
 	And I click on the "Canllawiau mewn perthynas â gwasanaethu ar reithgor os oes gennych euogfarn" link
-	
-	# JDB-4552
-	
+
 	And I see "dedfryd o garchar neu gadw yn y ddalfa am 5 mlynedd neu fwy" on the page
 	And I see "dedfryd o garchar ar gyfer diogelu'r cyhoedd neu gadw yn y ddalfa er mwyn diogelu'r cyhoedd" on the page
 	And I see "dedfryd o garchar, y ddalfa neu gadw yn y ddalfa am oes" on the page
@@ -176,14 +159,10 @@ Scenario Outline: Welsh 3rd Party Straight Through
 	Then I see "gorchymyn ymatal rhag cymryd cyffuriau" on the page
 	Then I see "Ni allant ychwaith wasanaethu ar reithgor os ydynt, yn ystod y 10 mlynedd diwethaf, wedi cael:" on the page
 
-#	And I click on the "Cliciwch i fynd yn ôl" link
-#	Then I see "A yw'r unigolyn ar fechnïaeth ar hyn o bryd am gyflawni trosedd?" on the page
-#	And I see "Os yw'r unigolyn yr ydych yn ateb ar ei ran ar fechnïaeth mewn achos troseddol, ni all wasanaethu ar reithgor." on the page
 	When I set the radio button to "Nac ydy"
 	And I press the "Parhau" button
 	
 	#Mental Health Sectioned
-	
 	And I see "steps/qualify/mental-health-sectioned/tp" in the URL
 	Then I see "A ydi'r person yr ydych yn ymateb ar ei ran yn cael ei gadw, ei warchod neu ei drin o dan y Ddeddf Iechyd Meddwl?" on the page
 	When I see "Cymhwysedd" on the page
@@ -191,8 +170,7 @@ Scenario Outline: Welsh 3rd Party Straight Through
 	And I press the "Parhau" button
 	Then I see "A wnaed penderfyniad nad oes gan y person yr ydych yn ymateb ar ei ran y 'gallu meddyliol'?" on the page
 	
-	#Mental Health Capacity JDB-3813
-	
+	#Mental Health Capacity
 	And I see "steps/qualify/mental-health-capacity/tp" in the URL
 	When I see "Cymhwysedd" on the page
 
@@ -200,15 +178,13 @@ Scenario Outline: Welsh 3rd Party Straight Through
 	And I press the "Parhau" button
 
 	#The person can attend
-	
 	And I see "steps/confirm-date/tp" in the URL
 	Then I see "Gwiriwch eich dyddiad dechrau" on the page
 	When I set the radio button to "Ydi, mae'r unigolyn yn gallu dechrau"
 	
 	And  I press the "Parhau" button
 	
-	#RA no JDB-3815
-	
+	#RA
 	And I see "steps/assistance/tp" in the URL
 	Then I see "A fydd yr unigolyn rydych yn ymateb ar ei ran angen cymorth pan fydd yn y llys?" on the page
 	When I set the radio button to "Nac oes"
@@ -220,7 +196,6 @@ Scenario Outline: Welsh 3rd Party Straight Through
 	Then I see "Gwiriwch eich ymatebion nawr" on the page
 	
 	#Check your answers
-	
 	And I see "steps/confirm-information/tp" in the URL
 	And I see "Mi wnaethoch ateb y cwestiynau cymhwysedd ar gyfer yr unigolyn yr ydych yn ymateb ar ei ran" on the page
 	When I see "A ydi'r person yr ydych yn ymateb ar ei ran yn cael ei gadw, ei warchod neu ei drin o dan y Ddeddf Iechyd Meddwl?" on the page
@@ -238,5 +213,5 @@ Scenario Outline: Welsh 3rd Party Straight Through
 	And I see "Mi wnaethoch ateb y cwestiynau cymhwysedd" on the page
 	
 Examples:
-	|part_no		|last_name			|postcode	|pool_no	|
-	|641500260		|LNAMETWOSIXZERO	|CH1 2AN	|415170402	|
+	| juror_number	| last_name			| postcode	| pool_number	|
+	| 045700055		| LNAMETWOSIXZERO	| CH1 2AN	| 457300055		|

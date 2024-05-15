@@ -1,27 +1,19 @@
 Feature: Welsh_1st_SkipMainContent
 
-@RegressionWelsh @JDB-3413 @JDB-3609 @JDB-3357 @JDB-3590 @JDB-3515 
+@RegressionWelsh @NewSchemaConverted
 Scenario Outline: Welsh 1st Party Straight Through with Skip to Main Content Checks
 
-	Given I am on the welsh version of "Public" "juror-test02"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
-		
+	Given I am on the welsh version of "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 457   |<juror_number>| <pool_number>	| 5				            | 400	|
+
 	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
-	And "<juror_number>" has "FIRST_NAME" as "FNAMESEVENONETHREE"
-
-
-	#And "<juror_number>" has "FIRST_NAME" as "FNAMEEIGHTFIVEFIVE"
-	And juror "<juror_number>" has "ADDRESS_LINE_1" as "855 STREET NAME"
-	#And "<juror_number>" has "Address2" as "ANYTOWN"
-	#And "<juror_number>" has "Address3" as ""
-	And juror "<juror_number>" has "ADDRESS_LINE_4" as "LONDON"
 	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 
 	#JDB-3357 Skip to main content check
 	#Reply to jury summons
-	
 	When I hit the tab key
 	Then I see "Ymlaen i'r prif gynnwys" on the page
 	Then the page language is "cy"
@@ -29,7 +21,6 @@ Scenario Outline: Welsh 1st Party Straight Through with Skip to Main Content Che
 	Then I see "Ymateb i wŷs rheithgor" on the page
 	
 	#JDB-3357 Skip to main content check
-
 	Then I hit the tab key
 	Then I see "Ymlaen i'r prif gynnwys" on the page
 	Then the page language is "cy"
@@ -40,7 +31,6 @@ Scenario Outline: Welsh 1st Party Straight Through with Skip to Main Content Che
 	And I press the "Parhau" button
 	
 	#JDB-3357 Skip to main content check
-
 	Then I hit the tab key
 	Then I see "Ymlaen i'r prif gynnwys" on the page
 	Then the page language is "cy"
@@ -53,7 +43,6 @@ Scenario Outline: Welsh 1st Party Straight Through with Skip to Main Content Che
 	And I press the "Parhau" button
 	
 	#JDB-3357 Skip to main content check
-
 	Then I hit the tab key
 	Then I see "Ymlaen i'r prif gynnwys" on the page
 	Then the page language is "cy"
@@ -63,7 +52,6 @@ Scenario Outline: Welsh 1st Party Straight Through with Skip to Main Content Che
 	And I press the "Parhau" button
 	
 	#JDB-3357 Skip to main content check
-
 	Then I hit the tab key
 	Then I see "Ymlaen i'r prif gynnwys" on the page
 	Then the page language is "cy"
@@ -73,7 +61,6 @@ Scenario Outline: Welsh 1st Party Straight Through with Skip to Main Content Che
 	And I press the "Parhau" button
 	
 	#JDB-3357 Skip to main content check
-
 	Then I hit the tab key
 	Then I see "Ymlaen i'r prif gynnwys" on the page
 	Then the page language is "cy"
@@ -84,7 +71,6 @@ Scenario Outline: Welsh 1st Party Straight Through with Skip to Main Content Che
 	And I press the "Parhau" button
 	
 	#JDB-3357 Skip to main content check
-
 	Then I hit the tab key
 	Then I see "Ymlaen i'r prif gynnwys" on the page
 	Then the page language is "cy"
@@ -96,7 +82,6 @@ Scenario Outline: Welsh 1st Party Straight Through with Skip to Main Content Che
 	And I press the "Parhau" button
 	
 	#JDB-3357 Skip to main content check
-
 	Then I hit the tab key
 	Then I see "Ymlaen i'r prif gynnwys" on the page
 	Then the page language is "cy"
@@ -109,7 +94,6 @@ Scenario Outline: Welsh 1st Party Straight Through with Skip to Main Content Che
 	And I press the "Parhau" button
 	
 	#JDB-3357 Skip to main content check
-
 	Then I hit the tab key
 	Then I see "Ymlaen i'r prif gynnwys" on the page
 	Then the page language is "cy"
@@ -120,7 +104,6 @@ Scenario Outline: Welsh 1st Party Straight Through with Skip to Main Content Che
 	And I press the "Parhau" button
 	
 	#JDB-3357 Skip to main content check
-
 	Then I hit the tab key
 	Then I see "Ymlaen i'r prif gynnwys" on the page
 	Then the page language is "cy"
@@ -131,7 +114,6 @@ Scenario Outline: Welsh 1st Party Straight Through with Skip to Main Content Che
 	And I press the "Parhau" button
 	
 	#JDB-3357 Skip to main content check
-
 	Then I hit the tab key
 	Then I see "Ymlaen i'r prif gynnwys" on the page
 	Then the page language is "cy"
@@ -142,7 +124,6 @@ Scenario Outline: Welsh 1st Party Straight Through with Skip to Main Content Che
 	And I press the "Parhau" button
 	
 	#JDB-3357 Skip to main content check
-
 	Then I hit the tab key
 	Then I see "Ymlaen i'r prif gynnwys" on the page
 	Then the page language is "cy"
@@ -153,7 +134,6 @@ Scenario Outline: Welsh 1st Party Straight Through with Skip to Main Content Che
 	And I press the "Parhau" button
 	
 	#JDB-3357 Skip to main content check
-
 	Then I hit the tab key
 	Then I see "Ymlaen i'r prif gynnwys" on the page
 	Then the page language is "cy"
@@ -164,7 +144,6 @@ Scenario Outline: Welsh 1st Party Straight Through with Skip to Main Content Che
 	And I press the "Parhau" button
 	
 	#JDB-3357 Skip to main content check
-
 	Then I hit the tab key
 	Then I see "Ymlaen i'r prif gynnwys" on the page
 	Then the page language is "cy"
@@ -175,7 +154,6 @@ Scenario Outline: Welsh 1st Party Straight Through with Skip to Main Content Che
 	And I press the "Parhau" button
 	
 	#JDB-3357 Skip to main content check
-
 	Then I hit the tab key
 	Then I see "Ymlaen i'r prif gynnwys" on the page
 	Then the page language is "cy"
@@ -186,7 +164,6 @@ Scenario Outline: Welsh 1st Party Straight Through with Skip to Main Content Che
 	And I press the "Parhau" button
 	
 	#JDB-3357 Skip to main content check
-
 	Then I hit the tab key
 	Then I see "Ymlaen i'r prif gynnwys" on the page
 	Then the page language is "cy"
@@ -197,7 +174,6 @@ Scenario Outline: Welsh 1st Party Straight Through with Skip to Main Content Che
 	And I press the "Parhau" button
 	
 	#JDB-3357 Skip to main content check
-
 	Then I hit the tab key
 	Then I see "Ymlaen i'r prif gynnwys" on the page
 	Then the page language is "cy"
@@ -208,7 +184,6 @@ Scenario Outline: Welsh 1st Party Straight Through with Skip to Main Content Che
 	And I press the "Parhau" button
 	
 	#JDB-3357 Skip to main content check
-
 	Then I hit the tab key
 	Then I see "Ymlaen i'r prif gynnwys" on the page
 	Then the page language is "cy"
@@ -220,7 +195,6 @@ Scenario Outline: Welsh 1st Party Straight Through with Skip to Main Content Che
 	When I press the "Cyflwyno" button
 
 	#JDB-3357 Skip to main content check
-
 	Then I hit the tab key
 	Then I see "Ymlaen i'r prif gynnwys" on the page
 	Then the page language is "cy"
@@ -228,11 +202,10 @@ Scenario Outline: Welsh 1st Party Straight Through with Skip to Main Content Che
 	Then I see "Rydych wedi cwblhau'r broses ymateb" on the page
 	
 	#JDB-3609
-	
 	Then I see "Gallwch wylio fideo am beth sy'n digwydd wrth fod yn rheithiwr ar YouTube, fel eich bod yn gwybod beth i'w ddisgwyl. Mae'r fideo'n para 13 munud." on the page
 	And I see "Rhagor o wybodaeth am wasanaethu ar reithgor. Gallwch darllenwch y rheolau ynghylch trafod y treial a chanfod sut i hawlio am gostau." on the page
 	And I see "Chyfrifo pa dreuliau a lwfansau y gallwch eu hawlio." on the page
 
 Examples:
-	|part_no	|pool_no	|last_name	|postcode	|email 		| 
-	|641500914	|415170401	|DOE		|SW1H 9AJ	|e@eeee.com	|
+	| juror_number	| pool_number	| last_name	| postcode	| email 		|
+	| 045700049		| 457300049		| DOE		| SW1H 9AJ	| e@eeee.com	|
