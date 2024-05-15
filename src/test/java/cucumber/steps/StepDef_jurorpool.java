@@ -1473,8 +1473,10 @@ public class StepDef_jurorpool {
 
     @Then("^the pool search results are found$")
     public void poolSearchFound() {
-        Integer numberOfResultsInHeader = Integer.valueOf(POOL_SEARCH.getPoolSearchResultText().replaceAll("[^0-9]", ""));
-        assertEquals(numberOfResultsInHeader, POOL_SEARCH.getPoolSearchNumberOfResults());
+        int actualNumberOfResults = POOL_SEARCH.getPoolSearchNumberOfResults();
+        int numberOfResultsInHeader = Integer.parseInt(POOL_SEARCH.getPoolSearchResultText().replaceAll("[^0-9]", ""));
+        log.info("\nNumber of results in header: "+ numberOfResultsInHeader +"\nNumber of results in list:   "+ actualNumberOfResults);
+        assertEquals(numberOfResultsInHeader, actualNumberOfResults);
     }
 
     @Then("^I am on the modernisation version of View Summons Reply$")

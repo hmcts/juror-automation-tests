@@ -4804,7 +4804,6 @@ public class DatabaseTesterNewSchemaDesign {
 			conn = db.getConnection(env_property);
 		else
 			conn = db.getConnection("demo");
-
 		try {
 			log.info("Printing letters for pool: " + poolNumber);
 			pStmt = conn.prepareStatement("UPDATE juror_mod.bulk_print_data SET extracted_flag=true WHERE detail_rec LIKE '%" + poolNumber + "%'");
@@ -5073,5 +5072,28 @@ public class DatabaseTesterNewSchemaDesign {
 			conn.close();
 		}
 	}
+	public void updateServiceStartDateForDismissal(String returnDate, String poolNumber) throws SQLException {
 
-}
+		db = new DBConnection();
+		String env_property = System.getProperty("env.database");
+
+		if (env_property != null)
+			conn = db.getConnection(env_property);
+		else
+			conn = db.getConnection("demo");
+
+		try {
+			pStmt = conn.prepareStatement("update juror_mod.pool set return_date ='" + returnDate + "' where pool_no='" + poolNumber + "'");
+			pStmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.error("Message:" + e.getMessage());
+
+		} finally {
+			conn.commit();
+			pStmt.close();
+			conn.close();
+		}
+		}
+	}
