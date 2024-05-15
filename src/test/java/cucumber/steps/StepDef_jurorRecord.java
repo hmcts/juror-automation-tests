@@ -607,6 +607,7 @@ public class StepDef_jurorRecord {
 
     @Then("I focus page to the new tab$")
     public void closeMainBrowser() {
+        NAV.waitForPageLoad();
         NAV.selectNextTab();
     }
 

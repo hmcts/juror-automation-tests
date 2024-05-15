@@ -147,8 +147,7 @@ Scenario Outline: Welsh 1st Party Deferral
 	When I set text area with "id" of "deferralReason" to "askForAnotherDateReasonWhy"
 	And I press the "Parhau" button
 	And I do not see any links on the page that open to a new page without an alt text
-	
-	#Deferral Date Screen Layout
+
 	And I see "steps/confirm-date/deferral-dates" in the URL
 	Then I see "Dewiswch 3 dydd Llun pan allwch ddechrau gwasanaeth rheithgor" on the page
 	And I see "Rhaid i'r rhain fod rhwng" on the page

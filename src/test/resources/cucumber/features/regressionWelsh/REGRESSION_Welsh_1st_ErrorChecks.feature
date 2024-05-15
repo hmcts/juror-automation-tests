@@ -19,7 +19,13 @@ Scenario Outline: Welsh_1st_ErrorChecks - status is Undeliverable
 	And I press the "Continue" button
 	Then I see the juror record updated banner containing "Summons undeliverable"
 
-	Given I am on the welsh version of "Public" "test"
+	When the user searches for juror record "<juror_number>" from the global search bar
+	And I click the update juror record button
+	And I select the mark as undeliverable radio button
+	Then I click continue on the update juror record screen
+	And I see the juror record updated banner containing "Summons undeliverable"
+
+  Given I am on the welsh version of "Public" "test"
 
 	When I set the radio button to "n ymateb dros fy hun"
 	And I press the "Parhau" button
@@ -65,8 +71,8 @@ Scenario Outline: Welsh_1st_ErrorChecks - status is Undeliverable
 	
 	Examples:
 	| juror_number	| last_name	| postcode	| pool_number	|
-	| 045700044		| DOE		| SW1H 9AJ	| 457300044		|
-	
+	| 045700044		  | DOE		    | SW1H 9AJ	| 457300044		|
+
 @RegressionWelsh @NewSchemaConverted
 Scenario Outline: Welsh_1st_ErrorChecks - Court date is in the past
 
@@ -74,7 +80,7 @@ Scenario Outline: Welsh_1st_ErrorChecks - Court date is in the past
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
-		| 457   |<juror_number>| <pool_number>	| -1				        | 400	|
+		| 457   |<juror_number>| <pool_number>| -1				                | 400	|
 
 	Given a new pool is inserted for where record has transferred to the court new schema
 		|part_no         | pool_no       | owner |
@@ -95,9 +101,8 @@ Scenario Outline: Welsh_1st_ErrorChecks - Court date is in the past
 	
 	Examples:
 	| juror_number	| last_name	| postcode	| pool_number	|
-	| 045700045		| DOE		| SW1H 9AJ	| 457300045		|
+	| 045700045		  | DOE		    | SW1H 9AJ	| 457300045		|
 	
-
 @RegressionWelsh @NewSchemaConverted
 Scenario Outline: Welsh_1st_ErrorChecks
 		
@@ -434,18 +439,19 @@ Examples:
 	| 045700046		| LNAMENINENINEEIGHT	| CH1 2AN	| 457300046		|
 	
 @RegressionWelsh @NewSchemaConverted
-Scenario Outline: Welsh response completed in Legacy and login attempted on Digital
+Scenario Outline: Welsh response completed in Juror and login attempted on Digital
 
-	Given I am on "Bureau" "test"
+Given I am on "Bureau" "test"
 
-	Given a bureau owned pool is created with jurors
-		| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |
-		| 457   | <juror_number>| <pool_number>	| 3				            | 400	|
+Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 457   |<juror_number>| <pool_number>| 5				                  | 400	|
 
 	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
 	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 
 	And I log in as "MODTESTBUREAU"
+
 	And I search for juror "<juror_number>"
 	And I click on the "Juror details" link
 	And I click on the "Add or change" link
@@ -458,7 +464,7 @@ Scenario Outline: Welsh response completed in Legacy and login attempted on Digi
 	And I press the "Confirm" button
 
 	Given I am on the welsh version of "Public" "test"
-	
+
 	Then I see "A ydych yn ymateb dros eich hun neu ar ran rhywun arall?" on the page
 	
 	When I set the radio button to "n ymateb dros fy hun"
@@ -491,7 +497,6 @@ Scenario Outline: Welsh response completed in Legacy and login attempted on Digi
 Examples:
 	| juror_number	| pool_number | last_name	| postcode |
 	| 045700047		| 457300047   |DOE			| SW1H 9AJ |
-
 
 @RegressionWelsh @NewSchemaConverted
 Scenario Outline: Welsh Already Replied info page
