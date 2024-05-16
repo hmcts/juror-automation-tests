@@ -2130,8 +2130,8 @@ public class NavigationShared {
                 break;
 
             case "Next due at court":
-                nextDueAtCourtDate.clear();
-                nextDueAtCourtDate.sendKeys(mondayDateValue);
+                newAttendanceDateField.clear();
+                newAttendanceDateField.sendKeys(mondayDateValue);
                 break;
 
             case "Sentence":
