@@ -2,7 +2,7 @@ Feature: Regression English_ReplyTypesIndicator
 
 #this test contains scenarios that test the reply types indicator which do not already exist in other scripts
 
-@Features @NewSchemaConverted @JM-7131
+@Regression @NewSchemaConverted
 Scenario Outline: English 1st Party + Juror Details Change
 
 	#return to @Regression when bug fixed
@@ -55,7 +55,6 @@ Scenario Outline: English 1st Party + Juror Details Change
 	And I press the "Continue" button
 
 	#Qualify for jury service
-	#JDB-4636
 	When I press the "Continue" button
 
 	#Residency
@@ -126,10 +125,8 @@ Examples:
 	| 045200136		| DOE		| SW1H 9AJ	| a@eeee.com	| 452300135		|
 	
 
-@Features @NewSchemaConverted @JM-7131
+@RegressionSingle @NewSchemaConverted
 Scenario Outline: English 1st Party + RA
-
-	#return to @RegressionSingle when defect fixed
 
 	Given I am on "Public" "test"
 
@@ -383,10 +380,8 @@ Examples:
 	| juror_number	| pool_number	| last_name			| postcode	| email 		|
 	| 045200138		| 452300137		| LNAMESIXTHREESEVEN| SY2 6LU	| e@eeee.com	|
 
-@Features @NewSchemaConverted @JM-7131
+@Regression @NewSchemaConverted
 Scenario Outline: English 1st Party + Bail
-
-	#return to @Regression when defect fixed
 
 	Given I am on "Public" "test"
 
@@ -506,10 +501,8 @@ Examples:
 	| juror_number	| pool_number	| last_name			| postcode	| email 		|
 	| 045200139		| 452300138		| LNAMESIXTHREESEVEN| SY2 6LU	| e@eeee.com	|
 
-@Features @NewSchemaConverted @JM-7131
+@Regression @NewSchemaConverted
 Scenario Outline: English 3rd Party + Convictions
-
-	#moved into features 02-01-24 to return to Regression
 
 	Given I am on "Public" "test"
 
@@ -637,10 +630,8 @@ Examples:
 	| juror_number	| last_name			| postcode	| email       	    | pool_number	|
 	| 045200140		| LNAMESIXNINEFOUR	| SY2 6LU	| email@outlook.com	| 452300139		|
 	
-@Features @NewSchemaConverted @JM-7131
+@Regression @NewSchemaConverted
 Scenario Outline: English 3rd Party + Residency
-
-	#return to @Regression when defect fixed
 
 	Given I am on "Public" "test"
 
@@ -768,11 +759,8 @@ Examples:
 	| juror_number	| last_name			| postcode	| email       	    | pool_number	|
 	| 045200141		| LNAMESEVENTWOZERO	| SY2 6LU	| email@outlook.com	| 452300140		|
 
-@Features @NewSchemaConverted @JM-7131
+@Regression @NewSchemaConverted
 Scenario Outline: English 3rd Party + Bail
-
-	#return to @Regression when defect fixed
-
 	Given I am on "Public" "test"
 
 	Given a bureau owned pool is created with jurors
@@ -899,10 +887,8 @@ Examples:
 	| juror_number	| last_name				| postcode	| email       	    | pool_number	|
 	| 045200142		| LNAMESEVENFOURTHREE	| SY2 6LU	| email@outlook.com	| 452300141		|
 
-@Features @NewSchemaConverted @JM-7131
+@Regression @NewSchemaConverted
 Scenario Outline: English 3rd Party + Mental Health
-
-	#return to @Regression when defect fixed
 
 	Given I am on "Public" "test"
 
@@ -1031,10 +1017,8 @@ Examples:
 	| juror_number	| last_name				| postcode	| email       	    | pool_number	|
 	| 045200143		| LNAMESEVENFOUREIGHT   | SY2 6LU	| email@outlook.com	| 452300142		|
 	
-@Features @NewSchemaConverted @JM-7131
+@Regression @NewSchemaConverted
 Scenario Outline: Multiple reply types
-
-	#moved into Features 03-01-24 to return to Regression
 
 	Given I am on "Public" "test"
 
@@ -2131,10 +2115,8 @@ Examples:
 	| 045200144		| 045200145			| 045200146			| 045200147			| 045200148			| 045200149			| 045200150			| 045200151			| 045200152			| 045200153		  | 045200154			| LNAME  	| SY2 6LU	| email@outlook.com	| 452300143		| 452300144			| 452300145			|
 	
 
-@Features @NewSchemaConverted @JM-7131
+@RegressionSingle @NewSchemaConverted
 Scenario Outline: Multiple reply types in Awaiting Information
-
-	#moved into Features 02-01-24 return to RegressionSingle
 
 	Given I am on "Public" "test"
 

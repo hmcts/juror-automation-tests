@@ -29,10 +29,8 @@ Examples:
 	| juror_number	| last_name			| postcode	| email          	| pool_number	|
 	| 045200193		| LNAMETWOSIXEIGHT	| CH1 2AN	| email@outlook.com	| 452300178		|
 	
-@Features @NewSchemaConverted
+@Regression @NewSchemaConverted
 Scenario Outline: English 3rd Party Excused - contact details same as 3rd party
-
-	#moved to Features 02-01-24 return to Regression
 
 	Given I am on "Public" "test"
 
@@ -73,10 +71,8 @@ Examples:
 	| juror_number	| last_name				| postcode	| email         	| pool_number	|
 	| 045200194		| LNAMEFOURTHREETHREE	| NN1 3HQ	| email@outlook.com	| 452300179		|
 
-@Features @NewSchemaConverted
+@Regression @NewSchemaConverted
 Scenario Outline: English 3rd Party Deferred - contact details same as 3rd party
-
-	#moved to Features 02-01-24 return to Regression
 
 	Given I am on "Public" "test"
 
@@ -117,10 +113,8 @@ Examples:
 	| juror_number	| last_name			| postcode	| email         	| pool_number	|
 	| 045200195		| LNAMESIXSEVENFOUR	| NN1 3HQ	| email@outlook.com	| 452300180		|
 
-@Features @NewSchemaConverted
+@Regression @NewSchemaConverted
 Scenario Outline: English 3rd Party ST - contact details same as 3rd party
-
-	#moved to Features 02-01-24 return to Regression
 
 	Given I am on "Public" "test"
 
@@ -158,10 +152,8 @@ Examples:
 	| juror_number	| last_name			| postcode	| email         	| pool_number	|
 	| 045200196		| LNAMESIXSEVENFOUR	| NN1 3HQ	| email@outlook.com	| 452300181		|
 	
-@Features @NewSchemaConverted
+@Regression @NewSchemaConverted
 Scenario Outline: English 3rd Party Disqualified - contact details same as 3rd party
-
-	#moved to Features 02-01-24 return to Regression
 
 	Given I am on "Public" "test"
 
@@ -412,10 +404,8 @@ Examples:
 	| juror_number	| last_name			| postcode	| email         	| pool_number	|
 	| 045700199		| LNAMESIXSEVENFIVE	| NN1 3HQ	| email@outlook.com	| 457300184		|
 
-@Features @NewSchemaConverted
+@Regression @NewSchemaConverted
 Scenario Outline: English 3rd Party Straight Through - Juror already has contact details
-
-	#moved to Features 02-01-24 return to Regression
 
 	Given I am on "Public" "test"
 
