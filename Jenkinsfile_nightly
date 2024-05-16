@@ -12,7 +12,6 @@ properties([
     booleanParam(name: 'runJurorTransformation', defaultValue: true, description: 'Include JurorTransformation tests'),
     booleanParam(name: 'runJurorTransformationMulti', defaultValue: true, description: 'Include JurorTransformationMulti tests'),
     booleanParam(name: 'runJurorTransformationWIP', defaultValue: true, description: 'Include JurorTransformationWIP tests'),
-    booleanParam(name: 'runNewSchemaConverted', defaultValue: false, description: 'Include NewSchemaConverted tests'),
     booleanParam(name: 'runRegression', defaultValue: true, description: 'Include Regression tests'),
     booleanParam(name: 'runRegressionSingle', defaultValue: true, description: 'Include RegressionSingle tests'),
     booleanParam(name: 'runRegressionWelsh', defaultValue: true, description: 'Include RegressionWelsh tests'),
@@ -81,7 +80,6 @@ withNightlyPipeline(type, product, component, 600) {
   env.runJurorTransformation = params.runJurorTransformation
   env.runJurorTransformationMulti = params.runJurorTransformationMulti
   env.runJurorTransformationWIP = params.runJurorTransformationWIP
-  env.runNewSchemaConverted = params.runNewSchemaConverted
   env.runRegression = params.runRegression
   env.runRegressionSingle = params.runRegressionSingle
   env.runRegressionWelsh = params.runRegressionWelsh
