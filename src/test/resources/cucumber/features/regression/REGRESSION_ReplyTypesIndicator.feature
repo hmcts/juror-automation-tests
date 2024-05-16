@@ -492,7 +492,7 @@ Scenario Outline: English 1st Party + Bail
 	Then I click on the "Sign out" link
 	When I log in as "CPASS"
 	Then I see "<juror_number>" on the page
-	Then I see "<juror_number>" has reply type indicator "INELIGIBLE"
+	Then I see "<juror_number>" has reply type indicator "NEEDS REVIEW"
 
 	When I click on "<juror_number>" in the same row as "<juror_number>"
 	And I see "INELIGIBLE" on the page
@@ -621,7 +621,7 @@ Scenario Outline: English 3rd Party + Convictions
 	Then I click on the "Sign out" link
 	When I log in as "CPASS"
 	Then I see "<juror_number>" on the page
-	Then I see "<juror_number>" has reply type indicator "INELIGIBLE"
+	Then I see "<juror_number>" has reply type indicator "NEEDS REVIEW"
 
 	When I click on "<juror_number>" in the same row as "<juror_number>"
 	And I see "INELIGIBLE" on the page
@@ -750,7 +750,7 @@ Scenario Outline: English 3rd Party + Residency
 	Then I click on the "Sign out" link
 	When I log in as "CPASS"
 	Then I see "<juror_number>" on the page
-	Then I see "<juror_number>" has reply type indicator "INELIGIBLE"
+	Then I see "<juror_number>" has reply type indicator "NEEDS REVIEW"
 
 	When I click on "<juror_number>" in the same row as "<juror_number>"
 	And I see "INELIGIBLE" on the page
@@ -878,7 +878,7 @@ Scenario Outline: English 3rd Party + Bail
 	Then I click on the "Sign out" link
 	When I log in as "CPASS"
 	Then I see "<juror_number>" on the page
-	Then I see "<juror_number>" has reply type indicator "INELIGIBLE"
+	Then I see "<juror_number>" has reply type indicator "NEEDS REVIEW"
 
 	When I click on "<juror_number>" in the same row as "<juror_number>"
 	And I see "INELIGIBLE" on the page
@@ -1008,7 +1008,7 @@ Scenario Outline: English 3rd Party + Mental Health
 	Then I click on the "Sign out" link
 	When I log in as "CPASS"
 	Then I see "<juror_number>" on the page
-	Then I see "<juror_number>" has reply type indicator "INELIGIBLE"
+	Then I see "<juror_number>" has reply type indicator "NEEDS REVIEW"
 
 	When I click on "<juror_number>" in the same row as "<juror_number>"
 	And I see "INELIGIBLE" on the page
@@ -1529,7 +1529,7 @@ Scenario Outline: Multiple reply types
 	When I press the "Submit" button
 
 	Then I see "You have completed your reply" on the page
-	Then I see "<part_no_five>" on the page
+	Then I see "<juror_number_five>" on the page
 
 	#RESPONSE 6
 	#1st residency
@@ -1606,7 +1606,7 @@ Scenario Outline: Multiple reply types
 	When I press the "Submit" button
 
 	Then I see "You have completed your reply" on the page
-	Then I see "<part_no_six>" on the page
+	Then I see "<juror_number_six>" on the page
 
 	#RESPONSE 7
 	#1st details change
@@ -1691,7 +1691,7 @@ Scenario Outline: Multiple reply types
 	When I press the "Submit" button
 
 	Then I see "You have completed your reply" on the page
-	Then I see "<part_no_seven>" on the page
+	Then I see "<juror_number_seven>" on the page
 
 	#RESPONSE 8
 	#1st deferral
@@ -1784,7 +1784,7 @@ Scenario Outline: Multiple reply types
 	When I press the "Submit" button
 
 	Then I see "You have completed your reply" on the page
-	Then I see "<part_no_eight>" on the page
+	Then I see "<juror_number_eight>" on the page
 
 	#RESPONSE 9
 	#1st excusal
@@ -1887,24 +1887,24 @@ Scenario Outline: Multiple reply types
 	Given I am on "Bureau" "test"
 
 	When I log in as "MODTESTBUREAU"
-	
+
 	When I click on the "Search" link
 	And I set "Juror's pool number" to "<pool_number>"
 	And I press the "Search" button
 	And I see "<juror_number>" on the page
-	
+
 	And I click link with ID "selectAllLink"
 	And I press the "Send to..." button
 	And I set input field with "id" of "sendToOfficer" to "ARAMIS1"
 	And I press the "Send" button
 	And I press the "Send" button
 	Then I see "Your work" on the page
-	
+
 	Then I click on the "Search" link
-	
+
 	And I set "Juror's pool number" to "<pool_number_two>"
 	And I press the "Search" button
-	
+
 	And I see "<juror_number_seven>" on the page
 	And I click link with ID "selectAllLink"
 	And I press the "Send to..." button
@@ -1912,12 +1912,12 @@ Scenario Outline: Multiple reply types
 	And I press the "Send" button
 	And I press the "Send" button
 	Then I see "Your work" on the page
-	
+
 	Then I click on the "Search" link
-	
+
 	And I set "Juror's pool number" to "<pool_number_three>"
 	And I press the "Search" button
-	
+
 	And I see "<juror_number_nine>" on the page
 	And I click link with ID "selectAllLink"
 	And I press the "Send to..." button
@@ -1925,130 +1925,121 @@ Scenario Outline: Multiple reply types
 	And I press the "Send" button
 	And I press the "Send" button
 	Then I see "Your work" on the page
-	
+
 	Then I click on the "Sign out" link
-	
+
 	Given I am on "Bureau" "test"
 	
 	And I log in as "ARAMIS1"
 
-	Then I see "<juror_number>" has reply type indicator "INELIGIBLE"
-	Then I see "<juror_number_two>" has reply type indicator "INELIGIBLE"
-	Then I see "<juror_number_three>" has reply type indicator "INELIGIBLE"
-	Then I see "<juror_number_four>" has reply type indicator "INELIGIBLE"
-	Then I see "<juror_number_five>" has reply type indicator "INELIGIBLE"
-	Then I see "<juror_number_six>" has reply type indicator "INELIGIBLE"
+	Then I see "<juror_number>" has reply type indicator "NEEDS REVIEW"
+	Then I see "<juror_number_two>" has reply type indicator "NEEDS REVIEW"
+	Then I see "<juror_number_three>" has reply type indicator "NEEDS REVIEW"
+	Then I see "<juror_number_four>" has reply type indicator "NEEDS REVIEW"
+	Then I see "<juror_number_five>" has reply type indicator "NEEDS REVIEW"
+	Then I see "<juror_number_six>" has reply type indicator "NEEDS REVIEW"
 	Then I see "<juror_number_seven>" has reply type indicator "NEEDS REVIEW"
 	Then I see "<juror_number_eight>" has reply type indicator "DEFERRAL"
 	Then I see "<juror_number_nine>" has reply type indicator "EXCUSAL"
-	
+
 	When I click on "<juror_number>" in the same row as "<juror_number>"
 	And I see "INELIGIBLE" on the page
-	
+
 	Then I press the "Process reply" button
-	Then I click on the "Responded" link
+	Then I choose the "Mark as responded" radio button
+	And I press the "Continue" button
 	And I check the "Mark juror as 'responded'" checkbox
 	And I press the "Confirm" button
-	Then I see "COMPLETED" on the page
-	
-	And I click on the "Your work" link
-	
+	Then I see the juror record updated banner containing "Responded"
+
 	Then I see "<juror_number_two>" on the page
 	When I click on "<juror_number_two>" in the same row as "<juror_number_two>"
 	And I see "INELIGIBLE" on the page
-	
+
 	Then I press the "Process reply" button
-	Then I click on the "Responded" link
+	Then I choose the "Mark as responded" radio button
+	And I press the "Continue" button
 	And I check the "Mark juror as 'responded'" checkbox
 	And I press the "Confirm" button
-	Then I see "COMPLETED" on the page
-	
-	And I click on the "Your work" link
-	
+	Then I see the juror record updated banner containing "Responded"
+
 	Then I see "<juror_number_three>" on the page
 	When I click on "<juror_number_three>" in the same row as "<juror_number_three>"
 	And I see "INELIGIBLE" on the page
-	
+
 	Then I press the "Process reply" button
-	Then I click on the "Responded" link
+	Then I choose the "Mark as responded" radio button
+	And I press the "Continue" button
 	And I check the "Mark juror as 'responded'" checkbox
 	And I press the "Confirm" button
-	Then I see "COMPLETED" on the page
-	
-	And I click on the "Your work" link
-	
+	Then I see the juror record updated banner containing "Responded"
+
 	Then I see "<juror_number_four>" on the page
 	When I click on "<juror_number_four>" in the same row as "<juror_number_four>"
 	And I see "INELIGIBLE" on the page
-	
+
 	Then I press the "Process reply" button
-	Then I click on the "Responded" link
+	Then I choose the "Mark as responded" radio button
+	And I press the "Continue" button
 	And I check the "Mark juror as 'responded'" checkbox
 	And I press the "Confirm" button
-	Then I see "COMPLETED" on the page
-	
-	And I click on the "Your work" link
-	
+	Then I see the juror record updated banner containing "Responded"
+
 	Then I see "<juror_number_five>" on the page
 	When I click on "<juror_number_five>" in the same row as "<juror_number_five>"
 	And I see "INELIGIBLE" on the page
-	
+
 	Then I press the "Process reply" button
-	Then I click on the "Responded" link
+	Then I choose the "Mark as responded" radio button
+	And I press the "Continue" button
 	And I check the "Mark juror as 'responded'" checkbox
 	And I press the "Confirm" button
-	Then I see "COMPLETED" on the page
-	
-	And I click on the "Your work" link
-	
+	Then I see the juror record updated banner containing "Responded"
+
 	Then I see "<juror_number_six>" on the page
 	When I click on "<juror_number_six>" in the same row as "<juror_number_six>"
 	And I see "INELIGIBLE" on the page
-	
+
 	Then I press the "Process reply" button
-	Then I click on the "Responded" link
+	Then I choose the "Mark as responded" radio button
+	And I press the "Continue" button
 	And I check the "Mark juror as 'responded'" checkbox
 	And I press the "Confirm" button
-	Then I see "COMPLETED" on the page
-	
-	And I click on the "Your work" link
-	
+	Then I see the juror record updated banner containing "Responded"
+
 	Then I see "<juror_number_seven>" on the page
 	When I click on "<juror_number_seven>" in the same row as "<juror_number_seven>"
 	And I see "NEEDS REVIEW" on the page
-	
+
 	Then I press the "Process reply" button
-	Then I click on the "Responded" link
+	Then I choose the "Mark as responded" radio button
+	And I press the "Continue" button
 	And I check the "Mark juror as 'responded'" checkbox
 	And I press the "Confirm" button
-	Then I see "COMPLETED" on the page
-	
-	And I click on the "Your work" link
-	
+	Then I see the juror record updated banner containing "Responded"
+
 	Then I see "<juror_number_eight>" on the page
 	When I click on "<juror_number_eight>" in the same row as "<juror_number_eight>"
 	And I see "DEFERRAL" on the page
-	
+
 	Then I press the "Process reply" button
-	Then I click on the "Responded" link
+	Then I choose the "Mark as responded" radio button
+	And I press the "Continue" button
 	And I check the "Mark juror as 'responded'" checkbox
 	And I press the "Confirm" button
-	Then I see "COMPLETED" on the page
-	
-	And I click on the "Your work" link
-	
+	Then I see the juror record updated banner containing "Responded"
+
 	Then I see "<juror_number_nine>" on the page
 	When I click on "<juror_number_nine>" in the same row as "<juror_number_nine>"
 	And I see "EXCUSAL" on the page
-	
+
 	Then I press the "Process reply" button
-	Then I click on the "Responded" link
+	Then I choose the "Mark as responded" radio button
+	And I press the "Continue" button
 	And I check the "Mark juror as 'responded'" checkbox
 	And I press the "Confirm" button
-	Then I see "COMPLETED" on the page
-	
-	And I click on the "Your work" link
-	
+	Then I see the juror record updated banner containing "Responded"
+
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number_ten>"
 	And I press the "Search" button
@@ -2070,42 +2061,50 @@ Scenario Outline: Multiple reply types
 	When I click on "<juror_number>" in the same row as "<juror_number>"
 	And I see "INELIGIBLE" on the page
 
-	And I click on the "Back" link
+	Then I click on the "Your work" link
+	Then I click on the "Completed" link
 	
 	When I click on "<juror_number_two>" in the same row as "<juror_number_two>"
 	And I see "INELIGIBLE" on the page
-	
-	And I click on the "Back" link
+
+	Then I click on the "Your work" link
+	Then I click on the "Completed" link
 	
 	When I click on "<juror_number_three>" in the same row as "<juror_number_three>"
 	And I see "INELIGIBLE" on the page
-	
-	And I click on the "Back" link
+
+	Then I click on the "Your work" link
+	Then I click on the "Completed" link
 	
 	When I click on "<juror_number_four>" in the same row as "<juror_number_four>"
 	And I see "INELIGIBLE" on the page
-	
-	And I click on the "Back" link
+
+	Then I click on the "Your work" link
+	Then I click on the "Completed" link
 	
 	When I click on "<juror_number_five>" in the same row as "<juror_number_five>"
 	And I see "INELIGIBLE" on the page
-	
-	And I click on the "Back" link
+
+	Then I click on the "Your work" link
+	Then I click on the "Completed" link
 	
 	When I click on "<juror_number_six>" in the same row as "<juror_number_six>"
 	And I see "INELIGIBLE" on the page
-	
-	And I click on the "Back" link
+
+	Then I click on the "Your work" link
+	Then I click on the "Completed" link
 	
 	When I click on "<juror_number_seven>" in the same row as "<juror_number_seven>"
 	And I see "NEEDS REVIEW" on the page
-	
-	And I click on the "Back" link
+
+	Then I click on the "Your work" link
+	Then I click on the "Completed" link
 	
 	When I click on "<juror_number_eight>" in the same row as "<juror_number_eight>"
 	And I see "DEFERRAL" on the page
-	
-	And I click on the "Back" link
+
+	Then I click on the "Your work" link
+	Then I click on the "Completed" link
 	
 	When I click on "<juror_number_nine>" in the same row as "<juror_number_nine>"
 	And I see "EXCUSAL" on the page
@@ -2958,24 +2957,24 @@ Scenario Outline: Multiple reply types in Awaiting Information
 	#BUREAU
 	Given I am on "Bureau" "test"
 	And I log in as "MODTESTBUREAU"
-	
+
 	When I click on the "Search" link
 	And I set "Juror's pool number" to "<pool_number>"
 	And I press the "Search" button
 	And I see "<juror_number>" on the page
-	
+
 	And I click link with ID "selectAllLink"
 	And I press the "Send to..." button
 	And I set input field with "id" of "sendToOfficer" to "CPASS"
 	And I press the "Send" button
 	And I press the "Send" button
 	Then I see "Your work" on the page
-	
+
 	Then I click on the "Search" link
-	
+
 	And I set "Juror's pool number" to "<pool_number_two>"
 	And I press the "Search" button
-	
+
 	And I see "<juror_number_seven>" on the page
 	And I click link with ID "selectAllLink"
 	And I press the "Send to..." button
@@ -2983,12 +2982,12 @@ Scenario Outline: Multiple reply types in Awaiting Information
 	And I press the "Send" button
 	And I press the "Send" button
 	Then I see "Your work" on the page
-	
+
 	Then I click on the "Search" link
-	
+
 	And I set "Juror's pool number" to "<pool_number_three>"
 	And I press the "Search" button
-	
+
 	And I see "<juror_number_nine>" on the page
 	And I click link with ID "selectAllLink"
 	And I press the "Send to..." button
@@ -2996,7 +2995,7 @@ Scenario Outline: Multiple reply types in Awaiting Information
 	And I press the "Send" button
 	And I press the "Send" button
 	Then I see "Your work" on the page
-	
+
 	Then I click on the "Sign out" link
 	
 	Given I am on "Bureau" "test"
@@ -3004,27 +3003,27 @@ Scenario Outline: Multiple reply types in Awaiting Information
 
 	#Then I take a screenshot
 	
-	Then I see "<juror_number>" has reply type indicator "INELIGIBLE"
-	Then I see "<juror_number_two>" has reply type indicator "INELIGIBLE"
-	Then I see "<juror_number_three>" has reply type indicator "INELIGIBLE"
-	Then I see "<juror_number_four>" has reply type indicator "INELIGIBLE"
-	Then I see "<juror_number_five>" has reply type indicator "INELIGIBLE"
-	Then I see "<juror_number_six>" has reply type indicator "INELIGIBLE"
+	Then I see "<juror_number>" has reply type indicator "NEEDS REVIEW"
+	Then I see "<juror_number_two>" has reply type indicator "NEEDS REVIEW"
+	Then I see "<juror_number_three>" has reply type indicator "NEEDS REVIEW"
+	Then I see "<juror_number_four>" has reply type indicator "NEEDS REVIEW"
+	Then I see "<juror_number_five>" has reply type indicator "NEEDS REVIEW"
+	Then I see "<juror_number_six>" has reply type indicator "NEEDS REVIEW"
 	Then I see "<juror_number_seven>" has reply type indicator "NEEDS REVIEW"
 	Then I see "<juror_number_eight>" has reply type indicator "DEFERRAL"
 	Then I see "<juror_number_nine>" has reply type indicator "EXCUSAL"
 	
 	When I click on "<juror_number>" in the same row as "<juror_number>"
-	
+
 	#Then I take a screenshot
 	And I see "INELIGIBLE" on the page
-	
+
 	Then I press the "More actions" button
 	Then I click on the "Mark as awaiting information" link
-	And I set the radio button to "Awaiting juror"
+	And I set the radio button to "Juror"
 	And I press the "Confirm" button
-	Then I see "AWAITING JUROR REPLY" on the page
-	
+	Then I see "AWAITING JUROR INFO" on the page
+
 	And I click on the "Your work" link
 	
 	Then I see "<juror_number_two>" on the page
@@ -3035,9 +3034,9 @@ Scenario Outline: Multiple reply types in Awaiting Information
 	
 	Then I press the "More actions" button
 	Then I click on the "Mark as awaiting information" link
-	And I set the radio button to "Awaiting juror"
+	And I set the radio button to "Juror"
 	And I press the "Confirm" button
-	Then I see "AWAITING JUROR REPLY" on the page
+	Then I see "AWAITING JUROR INFO" on the page
 	
 	And I click on the "Your work" link
 	
@@ -3049,9 +3048,9 @@ Scenario Outline: Multiple reply types in Awaiting Information
 	
 	Then I press the "More actions" button
 	Then I click on the "Mark as awaiting information" link
-	And I set the radio button to "Awaiting juror"
+	And I set the radio button to "Juror"
 	And I press the "Confirm" button
-	Then I see "AWAITING JUROR REPLY" on the page
+	Then I see "AWAITING JUROR INFO" on the page
 	
 	And I click on the "Your work" link
 	
@@ -3063,9 +3062,9 @@ Scenario Outline: Multiple reply types in Awaiting Information
 	
 	Then I press the "More actions" button
 	Then I click on the "Mark as awaiting information" link
-	And I set the radio button to "Awaiting juror"
+	And I set the radio button to "Juror"
 	And I press the "Confirm" button
-	Then I see "AWAITING JUROR REPLY" on the page
+	Then I see "AWAITING JUROR INFO" on the page
 	
 	And I click on the "Your work" link
 	
@@ -3077,9 +3076,9 @@ Scenario Outline: Multiple reply types in Awaiting Information
 	
 	Then I press the "More actions" button
 	Then I click on the "Mark as awaiting information" link
-	And I set the radio button to "Awaiting juror"
+	And I set the radio button to "Juror"
 	And I press the "Confirm" button
-	Then I see "AWAITING JUROR REPLY" on the page
+	Then I see "AWAITING JUROR INFO" on the page
 	
 	And I click on the "Your work" link
 	
@@ -3091,9 +3090,9 @@ Scenario Outline: Multiple reply types in Awaiting Information
 	
 	Then I press the "More actions" button
 	Then I click on the "Mark as awaiting information" link
-	And I set the radio button to "Awaiting juror"
+	And I set the radio button to "Juror"
 	And I press the "Confirm" button
-	Then I see "AWAITING JUROR REPLY" on the page
+	Then I see "AWAITING JUROR INFO" on the page
 	
 	And I click on the "Your work" link
 	
@@ -3105,9 +3104,9 @@ Scenario Outline: Multiple reply types in Awaiting Information
 	
 	Then I press the "More actions" button
 	Then I click on the "Mark as awaiting information" link
-	And I set the radio button to "Awaiting juror"
+	And I set the radio button to "Juror"
 	And I press the "Confirm" button
-	Then I see "AWAITING JUROR REPLY" on the page
+	Then I see "AWAITING JUROR INFO" on the page
 	
 	And I click on the "Your work" link
 	
@@ -3119,9 +3118,9 @@ Scenario Outline: Multiple reply types in Awaiting Information
 	
 	Then I press the "More actions" button
 	Then I click on the "Mark as awaiting information" link
-	And I set the radio button to "Awaiting juror"
+	And I set the radio button to "Juror"
 	And I press the "Confirm" button
-	Then I see "AWAITING JUROR REPLY" on the page
+	Then I see "AWAITING JUROR INFO" on the page
 	
 	And I click on the "Your work" link
 	
@@ -3133,9 +3132,9 @@ Scenario Outline: Multiple reply types in Awaiting Information
 	
 	Then I press the "More actions" button
 	Then I click on the "Mark as awaiting information" link
-	And I set the radio button to "Awaiting juror"
+	And I set the radio button to "Juror"
 	And I press the "Confirm" button
-	Then I see "AWAITING JUROR REPLY" on the page
+	Then I see "AWAITING JUROR INFO" on the page
 	
 	Then I click on the "Your work" link
 	Then I click on the "Awaiting information" link
@@ -3144,57 +3143,65 @@ Scenario Outline: Multiple reply types in Awaiting Information
 	
 	#Then I take a screenshot
 	And I see "NEEDS REVIEW" on the page
-	
-	And I click on the "Back" link
+
+	Then I click on the "Your work" link
+	Then I click on the "Awaiting information" link
 	
 	When I click on "<juror_number_two>" in the same row as "<juror_number_two>"
 	
 	#Then I take a screenshot
 	And I see "NEEDS REVIEW" on the page
-	
-	And I click on the "Back" link
+
+	Then I click on the "Your work" link
+	Then I click on the "Awaiting information" link
 	
 	When I click on "<juror_number_three>" in the same row as "<juror_number_three>"
 	
 	#Then I take a screenshot
 	And I see "NEEDS REVIEW" on the page
-	
-	And I click on the "Back" link
+
+	Then I click on the "Your work" link
+	Then I click on the "Awaiting information" link
 	
 	When I click on "<juror_number_four>" in the same row as "<juror_number_four>"
 	
 	#Then I take a screenshot
 	And I see "NEEDS REVIEW" on the page
-	
-	And I click on the "Back" link
+
+	Then I click on the "Your work" link
+	Then I click on the "Awaiting information" link
 	
 	When I click on "<juror_number_five>" in the same row as "<juror_number_five>"
 	
 	#Then I take a screenshot
 	And I see "NEEDS REVIEW" on the page
-	
-	And I click on the "Back" link
+
+	Then I click on the "Your work" link
+	Then I click on the "Awaiting information" link
 	
 	When I click on "<juror_number_six>" in the same row as "<juror_number_six>"
 	
 	#Then I take a screenshot
 	And I see "NEEDS REVIEW" on the page
-	
-	And I click on the "Back" link
+
+	Then I click on the "Your work" link
+	Then I click on the "Awaiting information" link
 	
 	When I click on "<juror_number_seven>" in the same row as "<juror_number_seven>"
 	
 	#Then I take a screenshot
 	And I see "NEEDS REVIEW" on the page
-	
-	And I click on the "Back" link
+
+	Then I click on the "Your work" link
+	Then I click on the "Awaiting information" link
 	
 	When I click on "<juror_number_eight>" in the same row as "<juror_number_eight>"
 	
 	#Then I take a screenshot
 	And I see "NEEDS REVIEW" on the page
-	
-	And I click on the "Back" link
+
+	Then I click on the "Your work" link
+	Then I click on the "Awaiting information" link
 	
 	When I click on "<juror_number_nine>" in the same row as "<juror_number_nine>"
 	
