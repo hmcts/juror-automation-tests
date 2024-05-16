@@ -95,19 +95,19 @@ Examples:
 	|part_no		|last_name			|postcode	|email 		|pool_no	|
 	|741500874		|LNAMEEIGHTSEVENFOUR|CH1 2AN	|b@eeee.com	|415181001	|
 	
-@JDB-3417 @JDB-3454 @RegressionWelsh 
+@RegressionWelsh @NewSchemaConverted
 Scenario Outline: Welsh 1st Underage with Error Check
-	Given I am on the welsh version of "Public" "bau-test"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
-		
+
+	Given I am on the welsh version of "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 457   |<juror_number>| <pool_number>	| 5				            | 400	|
+
 	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
-
-
 	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	
-	And I set the radio button to "n ymateb dros fy hun"
+	And I choose the "n ymateb dros fy hun" radio button
 	And I press the "Parhau" button
 	Then I see "Eich manylion rheithiwr" on the page
 	
@@ -115,28 +115,24 @@ Scenario Outline: Welsh 1st Underage with Error Check
 	When I set "Cyfenw" to "<last_name>"
 	When I set "Cod post Rheithiwr" to "<postcode>"
 	And I press the "Parhau" button
-	
-	#JDB-3358
-	
+
 	Then on the page I see
 		| text	|
 		| Eich Manylion |
 		| A yw'r enw sydd gennym ar eich cyfer chi yn gywir? |
 		
-	And I set the radio button to "Nac ydy"
+	And I choose the "Nac ydy" radio button
 	And I press the "Parhau" button
 	And I set "Enw cyntaf" to "FirstNameA"
 	And I set "Cyfenw" to "LastNameB"
 	And I press the "Parhau" button
-	
-	#JDB-3359 and JDB-3355
-	
+
 	Then on the page I see
 		| text	|
 		| Eich Manylion |
 		| Eich cyfeiriad chi yw hwn? |
 	
-	And I set the radio button to "Ie"
+	And I choose the "Ie" radio button
 	When I press the "Parhau" button
 	Then I see "Beth yw eich rhif ffôn?" on the page
 	
@@ -148,18 +144,12 @@ Scenario Outline: Welsh 1st Underage with Error Check
 	And I set "Nodwch eich cyfeiriad e-bost eto" to "email@outlook.com"
 	And I press the "Parhau" button
 	Then I see "Beth yw eich dyddiad geni?" on the page
-	
-	When I set "Diwrnod" to "27"
-	And I set "Mis" to "04"
-	#I want to set the year dynamically to current year - 16
 
-	And I set "Blwyddyn" to "2006"
+	And I set the date of birth to a Monday "-800" weeks in the future
+
 	And I press the "Parhau" button
 	Then I see "Cadarnhewch y dyddiad geni" on the page
-	
-	#JDB-3417
-	
-	And I see "Bu ichi ddweud mai eich dyddiad geni oedd 27 Ebrill 2006." on the page
+
 	And I see "A yw eich dyddiad geni yn gywir?" on the page
 	
 	And I set the radio button to "Na"
@@ -178,19 +168,17 @@ Scenario Outline: Welsh 1st Underage with Error Check
 	And I set "Blwyddyn" to "198a"
 	And I press the "Parhau" button
 	And I see "Rhowch y flwyddyn y cawsoch eich geni fel rhif 4 digid. Er enghraifft, 1982" on the page
-	
-	When I set "Diwrnod" to "02"
-	And I set "Mis" to "02"
-	And I set "Blwyddyn" to "2006"
+
+	And I set the date of birth to a Monday "-800" weeks in the future
 	And I press the "Parhau" button
 	
-	And I set the radio button to "Ie"
+	And I choose the "Ie" radio button
 	And I press the "Parhau" button
 	
 	Then I see "Gwiriwch eich ymatebion nawr" on the page
 	And I see text "2 Chwefror 2006" in the same row as "Dyddiad geni"
 
 Examples:
-	|part_no	|last_name	|postcode	|email 		|pool_no	|
-	|641500837	|DOE		|CH1 2AN	|b@eeee.com	|415170401	|
+	| juror_number	| last_name	| postcode	| pool_number	|
+	| 045700058		| DOE		| CH1 2AN	| 457300058		|
 	

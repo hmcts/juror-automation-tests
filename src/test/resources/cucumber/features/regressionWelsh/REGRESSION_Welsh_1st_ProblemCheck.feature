@@ -1,17 +1,15 @@
 Feature: Regression Welsh_1st_ProblemCheck
 
-@RegressionWelsh @JDB-3460 
+@RegressionWelsh @NewSchemaConverted
 Scenario Outline: Welsh_1st_ProblemCheck
 		
-	Given I am on the welsh version of "Public" "bau-test"
-	
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
-	
+	Given I am on the welsh version of "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  		| pool_number		| att_date_weeks_in_future	| owner |
+		| 457   |<juror_number>		| <pool_number>		| 5				            | 400	|
+
 	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
-
-
 	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 
 	Then I see "A ydych yn ymateb dros eich hun neu ar ran rhywun arall?" on the page
@@ -29,10 +27,7 @@ Scenario Outline: Welsh_1st_ProblemCheck
 	And I set "Cyfenw" to "<last_name>"
 	And I set "Cod post Rheithiwr" to "<postcode>"
 	And I press the "Parhau" button
-	
-	#JDB-4281
-	#JDB-4125
-	
+
 	Then I see "A yw'r enw sydd gennym ar eich cyfer chi yn gywir?" on the page
 	When I set the radio button to "Nac ydy"
 	And I press the "Parhau" button
@@ -186,5 +181,5 @@ Scenario Outline: Welsh_1st_ProblemCheck
 	And I see "<juror_number>" on the page
 	
 Examples:
-	|part_no		|last_name			|postcode	|email 		|pool_no	|
-	|641500799		|LNAMESEVENNINENINE	|CH1 2AN	|a@eeee.com	|415170401	|
+	| juror_number	| last_name				| postcode	| pool_number	|
+	| 045700057		| LNAMESEVENNINENINE	| CH1 2AN	| 457300057		|

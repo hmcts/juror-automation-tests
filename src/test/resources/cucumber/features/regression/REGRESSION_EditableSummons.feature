@@ -1,9 +1,7 @@
 Feature: Regression - Editable Summons
 
-@Features @NewSchemaConverted @JM-6669
+@Features @NewSchemaConverted @JM-7281
 Scenario Outline: edit links and buttons disabled
-
-	#return to RegressionSingle when JM-6669 is fixed
 
 	Given I am on "Public" "test"
 
@@ -156,43 +154,53 @@ Scenario Outline: edit links and buttons disabled
 
 	#add call log
 	And I click on the "Log new contact" link
-	And I see "Log a call" on the page
-	And I see "<last_name>" on the page
-	And I see "/<juror_number>/call-log" in the URL
-	And I set text area with "id" of "callNotes" to "Some notes in the call notes field 1"
+	And I see "Log contact" on the page
+	And I select "Discuss Deferral" from the "Select the type of enquiry made" dropdown
+	And I choose the "No" radio button
+	And I set text area with "id" of "notes" to "Some notes in the call notes field 1"
 	And I press the "Save" button
+	Then I click on the "Contact log" link
 	Then I see "Contact log" on the page
 	And I see "Some notes in the call notes field 1" on the page
 	
 	#check I can enter special characters
-	And I press the "Log a new contact" button
-	And I set text area with "id" of "callNotes" to "Some-one 0% £300 & * ! @ + [] her's ?'"
+	And I click on the "Log new contact" link
+	And I select "Discuss Deferral" from the "Select the type of enquiry made" dropdown
+	And I choose the "No" radio button
+	And I set text area with "id" of "notes" to "Some-one 0% £300 & * ! @ + [] her's ?'"
 	And I press the "Save" button
+	Then I click on the "Contact log" link
 	And I see "Some-one 0% £300 & * ! @ + [] her's ?'" on the page
 	
 	#check I can enter 2000 chars
-	And I press the "Log a new contact" button
-	And I set text area with "id" of "callNotes" to "These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are tThese are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are t"
+	And I click on the "Log new contact" link
+	And I select "Discuss Deferral" from the "Select the type of enquiry made" dropdown
+	And I choose the "No" radio button
+	And I set text area with "id" of "notes" to "These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are tThese are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are t"
 	And I see "You have 0 characters remaining" on the page
 	And I press the "Save" button
+	Then I click on the "Contact log" link
 	And I see "These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are tThese are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are t" on the page
 	
 	#check I cannot enter >2000 chars
-	And I press the "Log a new contact" button
-	And I set text area with "id" of "callNotes" to "Phese are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are tThese are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details"
+	And I click on the "Log new contact" link
+	And I select "Discuss Deferral" from the "Select the type of enquiry made" dropdown
+	And I choose the "No" radio button
+	And I set text area with "id" of "notes" to "Phese are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are tThese are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details"
 	And I see "You have 10 characters too many" on the page
 	And I press the "Save" button
 	And I see "There is a problem" on the page
-	And I see "Call notes must be 2000 characters or fewer" on the page
+	And I see "The notes provided are too long" on the page
 	
 	#check I cannot leave notes empty
-	And I set text area with "id" of "callNotes" to ""
+	And I set text area with "id" of "notes" to ""
 	And I press the "Save" button
 	And I see "There is a problem" on the page
-	And I see "Provide some notes from the call" on the page
+	And I see "Please enter the contact-log notes" on the page
 	
 	#click cancel
 	Then I click on the "Cancel" link
+	And I click on the "Contact log" link
 	And I see "These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are tThese are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are t" on the page
 	And I see "Some-one 0% £300 & * ! @ + [] her's ?'" on the page
 	And I see "Some notes in the call notes field 1" on the page
@@ -201,13 +209,14 @@ Scenario Outline: edit links and buttons disabled
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
+
+	#JM-7281
 	Then I see "CPASS" in the same row as "<juror_number>"
 	
 	#check call notes are still there
-	
 	When I click on "<juror_number>" in the same row as "<juror_number>"
-	When I click on the "Logs" link
-	When I click on the "Call log" link
+	When I click on the "Notes and logs" link
+	When I click on the "Contact log" link
 	And I see "These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are tThese are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are t" on the page
 	And I see "Some-one 0% £300 & * ! @ + [] her's ?'" on the page
 	And I see "Some notes in the call notes field 1" on the page
@@ -216,7 +225,7 @@ Scenario Outline: edit links and buttons disabled
 	And I see "More actions" on the page
 	Then I press the "More actions" button
 	And I click on the "Mark as awaiting information" link
-	When I set the radio button to "Awaiting juror"
+	When I set the radio button to "Juror"
 	And I press the "Confirm" button
 	
 	Then I click on the "Your work" link
@@ -264,13 +273,11 @@ Scenario Outline: edit links and buttons disabled
 	And I do not see link with text "change"
 	And I do not see link with text "Change"
 	
-	Then I click on the "Logs" link
+	Then I click on the "Notes and logs" link
 	
-	And I see link with text "Add or Edit"
+	Then I click on the "Contact log" link
 	
-	Then I click on the "Call log" link
-	
-	And I press the "Log a call" button
+	And I click on the "Log new contact" link
 	Then I click on the "Cancel" link
 	
 	Then I see "Process reply" on the page
@@ -323,15 +330,13 @@ Scenario Outline: edit links and buttons disabled
 	And I do not see link with text "change"
 	And I do not see link with text "Change"
 	
-	Then I click on the "Logs" link
+	Then I click on the "Notes and logs" link
 	
-	And I see link with text "Add or Edit"
+	Then I click on the "Contact log" link
 	
-	Then I click on the "Call log" link
-	
-	And I press the "Log a call" button
+	And I click on the "Log new contact" link
 	Then I click on the "Cancel" link
 	
 Examples:
-	| juror_number	| pool_number	| last_name			| postcode	| email |
-	| 045200173		| 452300157		| LNAMETWOSIXZERO	| CH1 2AN	| a@a.com|
+	| juror_number	| pool_number	| last_name			| postcode	|
+	| 045200173		| 452300157		| LNAMETWOSIXZERO	| CH1 2AN	|
