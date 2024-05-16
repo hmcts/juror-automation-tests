@@ -1014,7 +1014,7 @@ Examples:
 			| juror_number	| last_name			| postcode	| email 		| pool_number	|
 			| 045200074		| LNAMETHREEFOURNINE| SY2 6LU	| a@eeee.com	| 452300073		|
 
-	@Features @PCQ @NewSchemaConverted
+	@RegressionSingle @PCQ @NewSchemaConverted
 	Scenario Outline: English 3rd Party PCQ - questions do not appear
 
 		Given I am on "Public" "test"

@@ -2928,10 +2928,8 @@ Examples:
 	|juror_number	|pool_number|last_name			|postcode	|email 		|
 	|045200039		|452300038	|LNAMESEVENONETHREE	|SW1H 9AJ	|e@eeee.com	|
 
-@Features @NewSchemaConverted @JM-7131
+@Regression @NewSchemaConverted
 Scenario Outline: English 1st Party Deferral + Bail + Name change
-
-	#return to @Regression when defect fixed
 
 	Given I am on "Public" "test"
 
@@ -3136,7 +3134,7 @@ Scenario Outline: English 1st Party Deferral + Bail + Name change
 	Then I click on the "Sign out" link
 	When I log in as "CPASS"
 	Then I see "<juror_number>" on the page
-	Then I see "<juror_number>" has reply type indicator "INELIGIBLE"
+	Then I see "<juror_number>" has reply type indicator "NEEDS REVIEW"
 
 Examples:
 	|juror_number	|pool_number|last_name			|postcode	|email 		|

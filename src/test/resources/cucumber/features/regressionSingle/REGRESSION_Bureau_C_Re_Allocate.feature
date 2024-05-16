@@ -1,9 +1,7 @@
 Feature: Bureau C Test
 	
-@Features @NewSchemaConverted @JM-7246
+@Regression @NewSchemaConverted
 Scenario Outline: Bureau C script
-
-	#return to @RegressionSingle wqhen defect fixed
 
 	Given I am on "Bureau" "test"
 
@@ -51,13 +49,11 @@ Scenario Outline: Bureau C script
 	When I click on the "To do" link
 	
 	# Proves that I have sent from Backlog to SYSTEM/Logged in USer
-	
 	When I click on "<juror_number_one>" in the same row as "<juror_number_one>"
 	Then I press the "More actions" button
 	And I click on the "Send to a colleague" link
 	
 	#check error if no name input
-	
 	Then I see "to a colleague" on the page
 	And I press the "Send" button
 	And I see "Select an officer to send this reply to" on the page
@@ -125,7 +121,6 @@ Scenario Outline: Bureau C script
 	When I click on the "Search" link
 	And I set "Juror's pool number" to "<pool_number>"
 
-	#JM-7246
 	And I click on the "Advanced search" link
 	And I check the "To do" checkbox
 	And I press the "Search" button
@@ -172,4 +167,3 @@ Scenario Outline: Bureau C script
 Examples:
 	| juror_number_one 	| juror_number_two	| juror_number_three	| pool_number	| last_name			| postcode	| email				| details		|
 	| 045200242			| 045200243			| 045200244			| 452300221		| LNAMEEIGHTFOUR	| CH1 2AN	| email@bureauA.com	| 12345abcde	|
-	

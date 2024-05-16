@@ -237,10 +237,8 @@ Examples:
 	| juror_number	| last_name			| postcode	| email           	| pool_number	|
 	| 045200060		| LNAMESEVENFOURFIVE| CH1 2AN	| email@outlook.com	| 452300059		|
 	
-@Features @NewSchemaConverted @JM-7131
+@Regression @NewSchemaConverted
 Scenario Outline: Checking MH questions have been split in Bureau and no text MENTAL HEALTH Q2 is visible
-
-	#return to @Regression when defect fixed
 
 	Given I am on "Public" "test"
 
@@ -448,7 +446,7 @@ Scenario Outline: Checking MH questions have been split in Bureau and no text ME
 	Then I click on the "Sign out" link
 	When I log in as "CPASS"
 	Then I see "<juror_number>" on the page
-	Then I see "<juror_number>" has reply type indicator "INELIGIBLE"
+	Then I see "<juror_number>" has reply type indicator "NEEDS REVIEW"
 
 	And I click on "<juror_number>" in the same row as "<juror_number>"
 	
