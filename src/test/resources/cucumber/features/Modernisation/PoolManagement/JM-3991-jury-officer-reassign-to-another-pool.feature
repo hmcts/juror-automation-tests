@@ -7,11 +7,11 @@ Feature: JM-3991 Reassign Juror as Court User
 
     Given a bureau owned pool is created with jurors
       | court | juror_number  	| pool_number	| att_date_weeks_in_future	| owner |
-      | 415	  | <juror_number1> | <pool_number1>| 5				            | 415	|
+      | 415	  | <juror_number1> | <pool_number1>| 5				            | 400	|
 
     Given a bureau owned pool is created with jurors
       | court | juror_number  	| pool_number	| att_date_weeks_in_future	| owner |
-      | 415	  | <juror_number2> | <pool_number2>| 5				            | 415	|
+      | 415	  | <juror_number2> | <pool_number2>| 5				            | 400	|
 
     #respond juror as bureau user
     And I log in as "MODTESTBUREAU"
