@@ -112,7 +112,7 @@ Scenario Outline: Postpone a juror to another court as a Bureau officer - Bulk f
         And I see "There are no active pools for this date" on the page
         And I press the "Put in deferral maintenance" button
         And I see "Cannot be moved due to juror status" on the page
-        Then I verify reassign error message with the text "You can only move jurors with a responded or summoned status. The following jurors have a different status and cannot be moved."
+        Then I see "You can only move jurors with a responded or summoned status. The following jurors have a different status and cannot be moved." on the page
         And I press the "Continue and move remaining jurors" button
         And I see "1 juror postponed to deferral maintenance" on the page
 
