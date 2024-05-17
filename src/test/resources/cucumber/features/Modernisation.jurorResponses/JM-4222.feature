@@ -344,6 +344,11 @@ Feature: JM-4222
     And I click on the "Reasonable adjustments" link
     And I see "12345678" in the same row as "Optic reference"
     And I see "Reasonable adjustments reasons" on the page
+    Then I click the process reply button
+    Then I mark the reply as responded
+    And I press the "Continue" button
+    Then I click the checkbox to mark the reply as responded
+    And I press the "Confirm" button
 
 
     When the user searches for juror record "<juror_number>" from the global search bar
