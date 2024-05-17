@@ -176,7 +176,7 @@ Feature: JM-5592-5594 - Resend withdrawal letter for Bureau and Jury users
       | juror_number  |juror_number_2 |juror_number_3 |pool_number | user          |
       |  041549594    | 041549595     |041549596      |415999186   | MODTESTBUREAU |
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationWIP @NewSchemaConverted @JM-7316
   Scenario Outline:Verify as a bureau user can view letters queued for printing and can delete it
 
     Given I am on "Bureau" "test"
