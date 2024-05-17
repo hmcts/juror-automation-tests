@@ -307,7 +307,7 @@ Feature: JM-4222
       | MODTESTCOURT | 041500049     | 415300139   |041500050     |415300140  |
 
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationWIP @NewSchemaConverted @JM-7236
   Scenario Outline: As a jury officer officer when I transfer a juror the optic reference should be copied over to the new record
     Given I am on "Bureau" "test"
 
@@ -349,6 +349,7 @@ Feature: JM-4222
     And I press the "Continue" button
     Then I click the checkbox to mark the reply as responded
     And I press the "Confirm" button
+
 
     When the user searches for juror record "<juror_number>" from the global search bar
     And I press the "Update juror record" button

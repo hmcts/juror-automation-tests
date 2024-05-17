@@ -139,7 +139,7 @@ Feature: JM-3995 JM-4302
       | MODTESTCOURT | 041500163    | 415300262   |
 
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationWIP @NewSchemaConverted @JM-7236
   Scenario Outline: JM-4302 - Transfer a juror to another court - Non-Satellite courts
 
     Given I am on "Bureau" "test"

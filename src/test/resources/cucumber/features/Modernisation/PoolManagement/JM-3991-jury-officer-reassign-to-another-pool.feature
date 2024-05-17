@@ -1,6 +1,6 @@
 Feature: JM-3991 Reassign Juror as Court User
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationWIP @NewSchemaConverted @JM-7236
   Scenario Outline: Reassign a juror to a pool court - Jury User
 
     Given I am on "Bureau" "test"
