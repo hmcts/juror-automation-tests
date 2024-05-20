@@ -7,8 +7,8 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
     And I clear down the bulk print data table for Juror "<juror_number>"
     And I log in as "<user>"
     When a bureau owned pool is created with jurors
-      | court | juror_number  | pool_number     | att_date_weeks_in_future  | owner |
-      | 415   | <juror_number>| <pool_number>   | 5                         | 400   |
+      | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
+      | 415   | <juror_number> | <pool_number> | 5                        | 400   |
 
     And the user searches for juror record "<juror_number>" from the global search bar
 
@@ -87,8 +87,8 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
     Then I see "1 document sent for printing" on the page
 
     Examples:
-      | juror_number  | pool_number | user          |
-      |  041520026    | 415300703   | MODTESTBUREAU |
+      | juror_number | pool_number | user          |
+      | 041520126    | 415300739   | MODTESTBUREAU |
 
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline:As a bureau officer verify a deferral granted letter in printing stage can delete
@@ -97,8 +97,8 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
     And I log in as "<user>"
 
     When a bureau owned pool is created with jurors
-      | court | juror_number  | pool_number     | att_date_weeks_in_future   | owner  |
-      | 415   | <juror_number>| <pool_number>   | 5                          | 400    |
+      | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
+      | 415   | <juror_number> | <pool_number> | 5                        | 400   |
 
     And the user searches for juror record "<juror_number>" from the global search bar
 
@@ -164,8 +164,8 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
     Then I see "1 pending document deleted" on the page
 
     Examples:
-      | juror_number  | pool_number | user          |
-      |  041520026    | 415300703   | MODTESTBUREAU |
+      | juror_number | pool_number | user          |
+      | 041520127    | 415300740   | MODTESTBUREAU |
 
 
   @JurorTransformation @NewSchemaConverted
@@ -174,9 +174,9 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
     Given I am on "Bureau" "test"
     And I log in as "<user>"
     When a bureau owned pool is created with jurors
-      | court   | juror_number    | pool_number     | att_date_weeks_in_future| owner |
-      | 415     | <juror_number>  | <pool_number>   | 5                       | 400  |
-      | 415     | <juror_number_1>| <pool_number>   | 5                       | 400  |
+      | court | juror_number     | pool_number   | att_date_weeks_in_future | owner |
+      | 415   | <juror_number>   | <pool_number> | 5                        | 400   |
+      | 415   | <juror_number_1> | <pool_number> | 5                        | 400   |
 
     When the user searches for juror record "<juror_number>" from the global search bar
 
@@ -318,8 +318,8 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
     And I see "<juror_number_1>" in the same row as "Excused"
 
     Examples:
-      | juror_number  |juror_number_1|pool_number            | user          |
-      |  041520035    | 041520036    |415300704              | MODTESTBUREAU |
+      | juror_number | juror_number_1 | pool_number | user          |
+      | 041520035    | 041520036      | 415300704   | MODTESTBUREAU |
 
 
   @JurorTransformationMulti @NewSchemaConverted
@@ -329,8 +329,8 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
     And I clear down the bulk print data table for Juror "<juror_number>"
     And I log in as "<user>"
     When a bureau owned pool is created with jurors
-      | court   | juror_number  | pool_number     | att_date_weeks_in_future   | owner |
-      | 415     | <juror_number>| <pool_number>   | 5                       | 400  |
+      | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
+      | 415   | <juror_number> | <pool_number> | 5                        | 400   |
 
     And the user searches for juror record "<juror_number>" from the global search bar
 
@@ -396,8 +396,8 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
     Then I see "1 pending document deleted" on the page
 
     Examples:
-      | juror_number  |  pool_number | user          |
-      |  041520026     |415300703   | MODTESTBUREAU |
+      | juror_number | pool_number | user          |
+      | 041520129    | 415300741   | MODTESTBUREAU |
 
 
   @JurorTransformationMulti @NewSchemaConverted
@@ -405,12 +405,12 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
 
     Given I am on "Bureau" "test"
     When a bureau owned pool is created with jurors
-      | court |juror_number   | pool_number	    | att_date_weeks_in_future	| owner |
-      | 415   | <juror_number>| <pool_number>   | 5                         | 400  |
+      | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
+      | 415   | <juror_number> | <pool_number> | 5                        | 400   |
 
     Then a new pool is inserted for where record has transferred to the court new schema
-     |part_no        | pool_no           | owner |
-     | <juror_number>| <pool_number>     | 415   |
+      | part_no        | pool_no       | owner |
+      | <juror_number> | <pool_number> | 415   |
 
     And I clear down the bulk print data table for Juror "<juror_number>"
     And I update the bureau transfer date of the juror "<juror_number>"
@@ -501,20 +501,20 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
     Then I see "documents/deferral-granted/letters-list" in the URL
 
     Examples:
-      | juror_number  | pool_number | user         |
-      |  041530027    | 415300305   | MODTESTCOURT |
+      | juror_number | pool_number | user         |
+      | 041530027    | 415300305   | MODTESTCOURT |
 
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline:As a jury officer test a Deferred juror can print a granted letter by searching via pool number
 
     Given I am on "Bureau" "test"
     When a bureau owned pool is created with jurors
-      | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
-      | 415   | <juror_number>| <pool_number>   | 5                          | 400  |
+      | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
+      | 415   | <juror_number> | <pool_number> | 5                        | 400   |
 
     Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no              | pool_no           | owner |
-      | <juror_number>| <pool_number>     | 415   |
+      | part_no        | pool_no       | owner |
+      | <juror_number> | <pool_number> | 415   |
     And I clear down the bulk print data table for Juror "<juror_number>"
     And I update the bureau transfer date of the juror "<juror_number>"
     And I log in as "<user>"
@@ -605,6 +605,6 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
     Then I see "documents/deferral-granted" in the URL
 
     Examples:
-      | juror_number  | pool_number | user          |
-      |  041530028    |415300305    | MODTESTCOURT   |
+      | juror_number | pool_number | user         |
+      | 041530028    | 415300305   | MODTESTCOURT |
 

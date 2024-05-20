@@ -7,8 +7,8 @@ Feature: 1)JM-5409,JM-5411 - As a Bureau/jury officer I need to resend a deferra
     And I log in as "<user>"
 
     When a bureau owned pool is created with jurors
-      | court | juror_number  | pool_number   | att_date_weeks_in_future   | owner |
-      | 415   | <juror_number>| <pool_number> | 5                          | 400   |
+      | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
+      | 415   | <juror_number> | <pool_number> | 5                        | 400   |
 
     And the user searches for juror record "<juror_number>" from the global search bar
 
@@ -97,8 +97,8 @@ Feature: 1)JM-5409,JM-5411 - As a Bureau/jury officer I need to resend a deferra
     Then I see "1 document sent for printing" on the page
 
     Examples:
-      | juror_number  | pool_number | user          |
-      |  041520030    | 415300703   | MODTESTBUREAU |
+      | juror_number | pool_number | user          |
+      | 041520030    | 415300707   | MODTESTBUREAU |
 
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline:As a bureau officer verify a deferred juror letter in printing stage can delete
@@ -107,8 +107,8 @@ Feature: 1)JM-5409,JM-5411 - As a Bureau/jury officer I need to resend a deferra
     And I clear down the bulk print data table for Juror "<juror_number>"
     And I log in as "<user>"
     When a bureau owned pool is created with jurors
-      | court | juror_number  | pool_number     | att_date_weeks_in_future   | owner |
-      | 415     | <juror_number>| <pool_number> | 5                       | 400  |
+      | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
+      | 415   | <juror_number> | <pool_number> | 5                        | 400   |
 
     And the user searches for juror record "<juror_number>" from the global search bar
 
@@ -182,8 +182,8 @@ Feature: 1)JM-5409,JM-5411 - As a Bureau/jury officer I need to resend a deferra
     Then I see "1 pending document deleted" on the page
 
     Examples:
-      | juror_number  | pool_number | user          |
-      |  041520026    | 415300703   | MODTESTBUREAU |
+      | juror_number | pool_number | user          |
+      | 041520123    | 415300706   | MODTESTBUREAU |
 
 
   @JurorTransformationMulti @NewSchemaConverted
@@ -193,8 +193,8 @@ Feature: 1)JM-5409,JM-5411 - As a Bureau/jury officer I need to resend a deferra
     And I clear down the bulk print data table for Juror "<juror_number>"
     And I log in as "<user>"
     When a bureau owned pool is created with jurors
-      | court   | juror_number  | pool_number     | att_date_weeks_in_future   | owner |
-      | 415     | <juror_number>| <pool_number>   | 5                       | 400  |
+      | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
+      | 415   | <juror_number> | <pool_number> | 5                        | 400   |
 
     And the user searches for juror record "<juror_number>" from the global search bar
 
@@ -262,14 +262,14 @@ Feature: 1)JM-5409,JM-5411 - As a Bureau/jury officer I need to resend a deferra
     And I click on the "Deferral refused letters" link
     When I set the radio button to "Show all letters queued for printing"
     And I press the "Search" button
-    Then I see "041520026" on the page
+    Then I see "041520124" on the page
     And I see "Change" on the page
     When I click on "Delete" in the same row as "<juror_number>"
     Then I see "1 pending document deleted" on the page
 
     Examples:
-      | juror_number  |  pool_number | user          |
-      |  041520026     |415300703   | MODTESTBUREAU  |
+      | juror_number | pool_number | user          |
+      | 041520124    | 415300708   | MODTESTBUREAU |
 
 
   @JurorTransformationMulti @NewSchemaConverted
@@ -277,12 +277,12 @@ Feature: 1)JM-5409,JM-5411 - As a Bureau/jury officer I need to resend a deferra
 
     Given I am on "Bureau" "test"
     When a bureau owned pool is created with jurors
-      | court | juror_number   | pool_number     | att_date_weeks_in_future | owner |
-      | 415   | <juror_number> | <pool_number>   | 5                        | 400   |
+      | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
+      | 415   | <juror_number> | <pool_number> | 5                        | 400   |
 
     Then a new pool is inserted for where record has transferred to the court new schema
-      | part_no         | pool_no           | owner |
-      | <juror_number>  | <pool_number>     | 415   |
+      | part_no        | pool_no       | owner |
+      | <juror_number> | <pool_number> | 415   |
 
     And I log in as "<user>"
     And I update the bureau transfer date of the juror "<juror_number>"
@@ -367,23 +367,23 @@ Feature: 1)JM-5409,JM-5411 - As a Bureau/jury officer I need to resend a deferra
     And I am able to see and interact with the jurors Deferral Refused letter tabs and fields
     When I check the "<juror_number>" checkbox
     And I press the "Print deferral refused letter" button
-    Then I see "https://juror.staging.apps.hmcts.net/documents/deferral-refused/letters-list?documentSearchBy=juror_number&jurorNumber=041530028" in the UR
+    Then I see "https://juror.staging.apps.hmcts.net/documents/deferral-refused/letters-list?documentSearchBy=juror_number&jurorNumber=041530033" in the URL
 
     Examples:
-      | juror_number  | pool_number | user         |
-      |  041530033    | 415300345   | MODTESTCOURT |
+      | juror_number | pool_number | user         |
+      | 041530033    | 415300345   | MODTESTCOURT |
 
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline:As a jury officer test a Deferred juror can resend a granted refused letter by searching via pool number
 
     Given I am on "Bureau" "test"
     When a bureau owned pool is created with jurors
-      | court |juror_number         | pool_number      | att_date_weeks_in_future | owner |
-      | 415   | <juror_number>| <pool_number>   | 5                          | 400  |
+      | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
+      | 415   | <juror_number> | <pool_number> | 5                        | 400   |
 
     Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no              | pool_no           | owner |
-      | <juror_number>| <pool_number>     | 415   |
+      | part_no        | pool_no       | owner |
+      | <juror_number> | <pool_number> | 415   |
 
     And I log in as "<user>"
     And I update the bureau transfer date of the juror "<juror_number>"
@@ -472,5 +472,5 @@ Feature: 1)JM-5409,JM-5411 - As a Bureau/jury officer I need to resend a deferra
     Then I see "documents/deferral-refused/letters-list" in the URL
 
     Examples:
-      | juror_number  | pool_number | user          |
-      |  041530029    | 415300305   | MODTESTCOURT |
+      | juror_number | pool_number | user         |
+      | 041530029    | 415300305   | MODTESTCOURT |
