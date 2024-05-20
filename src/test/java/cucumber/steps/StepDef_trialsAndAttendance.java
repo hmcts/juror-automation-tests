@@ -265,4 +265,8 @@ public class StepDef_trialsAndAttendance {
 
 	}
 
+    @And("^I select the jurors from the \"([^\"]*)\" pool$")
+    public void iSelectTheJurorsFromThePool(String poolNumber) {
+		TRL.checkPoolNumberCheckboxFor(poolNumber);
+    }
 }
