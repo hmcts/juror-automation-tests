@@ -174,6 +174,10 @@ public class TrialsAndAttendance {
         log.info("Clicked pool number checkbox");
         poolNumberCheckbox.click();
     }
+    public void checkPoolNumberCheckboxFor(String poolNumber) {
+        log.info("Clicked pool number checkbox for: "+ poolNumber);
+        driver.findElement(By.id("select-"+poolNumber)).click();
+    }
 
     public void jurorsForPanel(String noOfJurors) {
         enterNoOfJurorsForPanel.clear();

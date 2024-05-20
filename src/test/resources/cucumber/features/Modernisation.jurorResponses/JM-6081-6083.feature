@@ -40,9 +40,13 @@ Feature: JM-6081 - 6083
     And I click on the "<trial_number>" link
 
     And I press the "Generate panel" button
-    And I set the radio button to "All available jurors"
+    #And I set the radio button to "All available jurors"
+    And I set the radio button to "Jurors from one or more specific pools"
     And I set "Number of jurors needed on this panel" to "1"
     And I press the "Continue" button
+    And I select the jurors from the "<pool_number>" pool
+    And I press the "Continue" button
+
     And I see "<juror_number>" in the same row as "Panel"
 
 
@@ -134,8 +138,11 @@ Feature: JM-6081 - 6083
     And I click on the "<trial_number>" link
 
     And I press the "Generate panel" button
-    And I set the radio button to "All available jurors"
+    #And I set the radio button to "All available jurors"
+    And I set the radio button to "Jurors from one or more specific pools"
     And I set "Number of jurors needed on this panel" to "1"
+    And I press the "Continue" button
+    And I select the jurors from the "<pool_number>" pool
     And I press the "Continue" button
     And I see "<juror_number>" in the same row as "Panel"
 
@@ -186,6 +193,6 @@ Feature: JM-6081 - 6083
 
     Examples:
       |user			| juror_number | pool_number | trial_number   |
-      |MODTESTCOURT | 041529858    | 415980985   | T202419999998  |
+      |MODTESTCOURT | 041529858    | 415980984   | T202419999998  |
 
 
