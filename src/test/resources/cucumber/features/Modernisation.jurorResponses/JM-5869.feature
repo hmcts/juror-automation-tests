@@ -89,6 +89,7 @@ Feature: As a Bureau Officer I need to search for a juror summon reply so that I
     When I click on the "Search" link
     And I see "Search" on the page
     And I expand the summons replies search advanced search criteria
+    And I enter pool number "<pool_number>"
     And I see "Select an officer assigned" on the page
     And I enter assigned officer "<user>"
     And I click the search button
