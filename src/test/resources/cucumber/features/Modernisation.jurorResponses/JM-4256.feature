@@ -103,7 +103,7 @@ Feature: JM-4256 Record proof of name change for a jury officer
       |MODTESTCOURT |041522367      |415303331     |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @JM-6350
+  @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: The system shall allow a jury officer to record a proof of change of name
 
 
