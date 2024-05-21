@@ -1,6 +1,6 @@
 Feature: As a jury officer I need to be able to send the bad weather message
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send bad weather message for Juror using Text including error checks
 
     Given I am on "Bureau" "test"
@@ -55,7 +55,7 @@ Feature: As a jury officer I need to be able to send the bad weather message
 
 
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send bad weather message for Juror
 
     Given I am on "Bureau" "test"
@@ -104,7 +104,7 @@ Feature: As a jury officer I need to be able to send the bad weather message
       |MODTESTCOURT | 041529898    | 415980989   |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send bad weather message for Juror via their Name
 
     Given I am on "Bureau" "test"
@@ -153,7 +153,7 @@ Feature: As a jury officer I need to be able to send the bad weather message
       |MODTESTCOURT | 041529897    | 415980989   |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send bad weather message for Juror via their Pool number
 
     Given I am on "Bureau" "test"
@@ -202,7 +202,7 @@ Feature: As a jury officer I need to be able to send the bad weather message
       |MODTESTCOURT | 041529896    | 415980989   |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send bad weather message for Juror in Trial
 
     Given I am on "Bureau" "test"
@@ -294,7 +294,7 @@ Feature: As a jury officer I need to be able to send the bad weather message
       |MODTESTCOURT | 041529895    | 415980989   |T202419999986      |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send bad weather message for Juror - Next start date
 
     Given I am on "Bureau" "test"
@@ -343,7 +343,7 @@ Feature: As a jury officer I need to be able to send the bad weather message
       |MODTESTCOURT | 041529894    | 415980989   |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send bad weather message for Juror via their deferred date
 
     Given I am on "Bureau" "test"
@@ -454,7 +454,7 @@ Feature: As a jury officer I need to be able to send the bad weather message
       |MODTESTCOURT | 041529893    | 415980989   |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send bad weather message for Juror using Text for multiple jurors
 
     Given I am on "Bureau" "test"

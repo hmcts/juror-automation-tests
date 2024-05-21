@@ -1,6 +1,6 @@
 Feature: As a jury officer I need to send a on call message
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send on call message for Juror using Text including error checks
 
     Given I am on "Bureau" "test"
@@ -61,7 +61,7 @@ Feature: As a jury officer I need to send a on call message
 
 
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send on call message for Juror
 
     Given I am on "Bureau" "test"
@@ -113,7 +113,7 @@ Feature: As a jury officer I need to send a on call message
       |MODTESTCOURT | 041529929    | 415980992   |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send on call message for Juror via their Name
 
     Given I am on "Bureau" "test"
@@ -166,7 +166,7 @@ Feature: As a jury officer I need to send a on call message
       |MODTESTCOURT | 041529928    | 415980992   |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send on call message for Juror via their Pool number
 
     Given I am on "Bureau" "test"
@@ -219,7 +219,7 @@ Feature: As a jury officer I need to send a on call message
       |MODTESTCOURT | 041529927    | 415980992   |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send on call message for Juror in Trial
 
     Given I am on "Bureau" "test"
@@ -317,7 +317,7 @@ Feature: As a jury officer I need to send a on call message
       |MODTESTCOURT | 041529926    | 415980992   |T202419999990      |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send on call message for Juror - Next start date
 
     Given I am on "Bureau" "test"
@@ -370,7 +370,7 @@ Feature: As a jury officer I need to send a on call message
       |MODTESTCOURT | 041529925    | 415980992   |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send on call message for Juror via their deferred date
 
     Given I am on "Bureau" "test"
@@ -485,7 +485,7 @@ Feature: As a jury officer I need to send a on call message
       |MODTESTCOURT | 041529924    | 415980992   |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send on call message for Juror using Text for multiple jurors
 
     Given I am on "Bureau" "test"

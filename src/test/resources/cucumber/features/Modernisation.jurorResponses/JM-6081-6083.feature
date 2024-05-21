@@ -1,6 +1,6 @@
 Feature: JM-6081 - 6083
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send jury sentencing date message - JM-6803
 
     Given I am on "Bureau" "test"
@@ -98,7 +98,7 @@ Feature: JM-6081 - 6083
       |MODTESTCOURT | 041529859    | 415980985   | T202419999999  |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @JM-7165
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send jury sentencing invite message - JM-6081
 
     Given I am on "Bureau" "test"

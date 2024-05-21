@@ -1,6 +1,6 @@
 Feature: As a jury officer I want to send the check your email message
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send check your email message for Juror using Text including error checks
 
     Given I am on "Bureau" "test"
@@ -54,7 +54,7 @@ Feature: As a jury officer I want to send the check your email message
       |user			| juror_number | pool_number |
       |MODTESTCOURT | 041529889    | 415980988   |
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send check your email message for Juror
 
     Given I am on "Bureau" "test"
@@ -103,7 +103,7 @@ Feature: As a jury officer I want to send the check your email message
       |MODTESTCOURT | 041529888    | 415980988   |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send check your email message for Juror via their Name
 
     Given I am on "Bureau" "test"
@@ -152,7 +152,7 @@ Feature: As a jury officer I want to send the check your email message
       |MODTESTCOURT | 041529887    | 415980988   |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send check your email message for Juror via their Pool number
 
     Given I am on "Bureau" "test"
@@ -201,7 +201,7 @@ Feature: As a jury officer I want to send the check your email message
       |MODTESTCOURT | 041529886    | 415980988   |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send check your email message for Juror in Trial
 
     Given I am on "Bureau" "test"
@@ -293,7 +293,7 @@ Feature: As a jury officer I want to send the check your email message
       |MODTESTCOURT | 041529885    | 415980988   |T202419999985      |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send check your email message for Juror - Next start date
 
     Given I am on "Bureau" "test"
@@ -343,7 +343,7 @@ Feature: As a jury officer I want to send the check your email message
       |MODTESTCOURT | 041529884    | 415980988   |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send check your email message for Juror via their deferred date
 
     Given I am on "Bureau" "test"
@@ -454,7 +454,7 @@ Feature: As a jury officer I want to send the check your email message
       |MODTESTCOURT | 041529883    | 415980988   |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send check your email message for Juror using Text for multiple jurors
 
     Given I am on "Bureau" "test"
