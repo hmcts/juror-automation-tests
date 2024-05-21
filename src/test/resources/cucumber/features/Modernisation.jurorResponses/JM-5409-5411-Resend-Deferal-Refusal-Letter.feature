@@ -100,7 +100,7 @@ Feature: 1)JM-5409,JM-5411 - As a Bureau/jury officer I need to resend a deferra
       | juror_number | pool_number | user          |
       | 041520030    | 415300707   | MODTESTBUREAU |
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationWIP @NewSchemaConverted @JM-7251
   Scenario Outline:As a bureau officer verify a deferred juror letter in printing stage can delete
 
     Given I am on "Bureau" "test"
