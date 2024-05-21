@@ -17,7 +17,7 @@
     When I press the "Put in deferral maintenance" button
     Then I see "Juror record updated: Postponed" on the page
 
-  @JurorTransformationWIP @NewSchemaConverted @JM-5891
+  @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Test to mark juror as postponed and add to future pool
     Given I am on "Bureau" "test"
 
@@ -25,7 +25,7 @@
       | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
       | 415   | <juror_number> 	    | <pool_number>     | 5				            | 400	|
 
-    And I log in as "MODTESTBUREAU"
+    And I log in as "<user>"
     And I navigate to the pool request screen
     And I create an active "civil" court pool request for court "415", "30" Mondays in the future
 
@@ -40,5 +40,5 @@
     Then I see "Juror record updated: Postponed" on the page
 
     Examples:
-    | juror_number  | pool_number  |
-    | 041500125     | 415300225    |
+      | user | juror_number  | pool_number  |
+      | MODTESTBUREAU | 041500125     | 415300225    |

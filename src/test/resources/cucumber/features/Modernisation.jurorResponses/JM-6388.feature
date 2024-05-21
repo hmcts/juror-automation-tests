@@ -41,7 +41,7 @@ Feature: JM-6388 - As a jury officer I need to be able to manually add an attend
 
 
 
-  @JurorTransformationWIP @NewSchemaConverted @JM-6799
+  @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: As a jury officer I want to manually add an attendance day - Unhappy Path
 
     Given I am on "Bureau" "test"
@@ -137,8 +137,7 @@ Feature: JM-6388 - As a jury officer I need to be able to manually add an attend
     And I click on the pm radio button for juror check out on confirm attendance
 
     And I press the "Add attendance day" button
-    #this will pass here, but shouldn't because of JM-6799 - shouldn't allow you to enter attendance date in future
-
+    And I see error "Attendance day cannot be in the future"
 
     Examples:
       | user         | juror_number | pool_number  |

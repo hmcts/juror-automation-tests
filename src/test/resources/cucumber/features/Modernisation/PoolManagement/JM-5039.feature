@@ -1,6 +1,6 @@
 Feature: JM-5039
 
-  @JurorTransformationWIP @NewSchemaConverted @JM-5923
+  @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Transfer a juror to another court as a jury officer - Pool Record - Unhappy Path
 
     Given I am on "Bureau" "test"
