@@ -1,6 +1,6 @@
 Feature: As a jury officer I need to send the next delayed start message
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send delayed start message for Juror using Text including error checks
 
     Given I am on "Bureau" "test"
@@ -59,7 +59,7 @@ Feature: As a jury officer I need to send the next delayed start message
       |MODTESTCOURT | 041529919    | 415980990   |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send delayed start message for Juror using Email
 
     Given I am on "Bureau" "test"
@@ -109,7 +109,7 @@ Feature: As a jury officer I need to send the next delayed start message
       |MODTESTCOURT | 041529918    | 415980990   |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send delayed start message for Juror via their Name
 
     Given I am on "Bureau" "test"
@@ -161,7 +161,7 @@ Feature: As a jury officer I need to send the next delayed start message
       |MODTESTCOURT | 041529917    | 415980990   |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send delayed start message for Juror via their Pool number
 
     Given I am on "Bureau" "test"
@@ -213,7 +213,7 @@ Feature: As a jury officer I need to send the next delayed start message
       |MODTESTCOURT | 041529916    | 415980990   |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send delayed start message for anyone at Trial
 
     Given I am on "Bureau" "test"
@@ -302,7 +302,7 @@ Feature: As a jury officer I need to send the next delayed start message
       |user			| juror_number | pool_number | trial_number  |
       |MODTESTCOURT | 041529915    | 415980990   | T202419999988 |
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send delayed start message for any juror - Next start date
 
     Given I am on "Bureau" "test"
@@ -354,7 +354,7 @@ Feature: As a jury officer I need to send the next delayed start message
       |MODTESTCOURT | 041529914    | 415980990   |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send delayed start message for Juror via their deferred date
 
     Given I am on "Bureau" "test"
@@ -464,7 +464,7 @@ Feature: As a jury officer I need to send the next delayed start message
       |MODTESTCOURT | 041529913    | 415980990   |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send delayed start message for Juror using Text and Email for multiple jurors
 
     Given I am on "Bureau" "test"

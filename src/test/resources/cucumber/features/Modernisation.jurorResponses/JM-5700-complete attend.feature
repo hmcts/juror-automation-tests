@@ -1,6 +1,6 @@
 Feature: As a jury officer I need to send a complete attend message
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send complete attend message for Juror using Text including error checks
 
     Given I am on "Bureau" "test"
@@ -54,7 +54,7 @@ Feature: As a jury officer I need to send a complete attend message
       |MODTESTCOURT | 041529960    | 415980995   |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send complete attend message for Juror
 
     Given I am on "Bureau" "test"
@@ -101,7 +101,7 @@ Feature: As a jury officer I need to send a complete attend message
       |MODTESTCOURT | 041529959    | 415980995   |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send complete attend message for Juror via their Name
 
     Given I am on "Bureau" "test"
@@ -149,7 +149,7 @@ Feature: As a jury officer I need to send a complete attend message
       |MODTESTCOURT | 041529958    | 415980995   |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send complete attend message for Juror via their Pool number
 
     Given I am on "Bureau" "test"
@@ -197,7 +197,7 @@ Feature: As a jury officer I need to send a complete attend message
       |MODTESTCOURT | 041529957    | 415980995   |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send complete attend message for Juror in Trial
 
     Given I am on "Bureau" "test"
@@ -284,7 +284,7 @@ Feature: As a jury officer I need to send a complete attend message
       |MODTESTCOURT | 041529956    | 415980995   |T202419999993      |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send complete attend message for Juror - Next start date
 
     Given I am on "Bureau" "test"
@@ -332,7 +332,7 @@ Feature: As a jury officer I need to send a complete attend message
       |MODTESTCOURT | 041529955    | 415980995   |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send complete attend message for Juror via their deferred date
 
     Given I am on "Bureau" "test"
@@ -439,7 +439,7 @@ Feature: As a jury officer I need to send a complete attend message
       |MODTESTCOURT | 041529954    | 415980995   |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send complete attend message for Juror using Text for multiple jurors
 
     Given I am on "Bureau" "test"

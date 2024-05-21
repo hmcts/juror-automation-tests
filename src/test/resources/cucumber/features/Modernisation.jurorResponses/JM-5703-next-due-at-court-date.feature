@@ -1,6 +1,6 @@
 Feature: As a jury officer i need to send a attendance date and time changed message
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send next due at court message for Juror using Text including error checks
 
     Given I am on "Bureau" "test"
@@ -65,7 +65,7 @@ Feature: As a jury officer i need to send a attendance date and time changed mes
       |MODTESTCOURT | 041529940    | 415980993   |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send next due at court message for Juror
 
     Given I am on "Bureau" "test"
@@ -120,7 +120,7 @@ Feature: As a jury officer i need to send a attendance date and time changed mes
       |MODTESTCOURT | 041529939    | 415980993   |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send next due at court for Juror via their Name
 
     Given I am on "Bureau" "test"
@@ -177,7 +177,7 @@ Feature: As a jury officer i need to send a attendance date and time changed mes
       |MODTESTCOURT | 041529938    | 415980993   |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send next due at court message for Juror via their Pool number
 
     Given I am on "Bureau" "test"
@@ -234,7 +234,7 @@ Feature: As a jury officer i need to send a attendance date and time changed mes
       |MODTESTCOURT | 041529937    | 415980993   |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send next due at court message for Juror in Trial
 
     Given I am on "Bureau" "test"
@@ -333,7 +333,7 @@ Feature: As a jury officer i need to send a attendance date and time changed mes
       |MODTESTCOURT | 041529936    | 415980993   |T202419999991  |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send next due at court message for Juror - Next start date
 
     Given I am on "Bureau" "test"
@@ -390,7 +390,7 @@ Feature: As a jury officer i need to send a attendance date and time changed mes
       |MODTESTCOURT | 041529935    | 415980993   |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send next due at court message for Juror via their deferred date
 
     Given I am on "Bureau" "test"
@@ -508,7 +508,7 @@ Feature: As a jury officer i need to send a attendance date and time changed mes
       |MODTESTCOURT | 041529934    | 415980993   |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send next due at court message for Juror using Text for multiple jurors
 
     Given I am on "Bureau" "test"

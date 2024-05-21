@@ -1,6 +1,6 @@
 Feature: As a jury officer I want to be able to send the excused message
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send excused message for Juror using Text including error checks
 
     Given I am on "Bureau" "test"
@@ -56,7 +56,7 @@ Feature: As a jury officer I want to be able to send the excused message
 
 
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send excused message for Juror using Email
 
     Given I am on "Bureau" "test"
@@ -105,7 +105,7 @@ Feature: As a jury officer I want to be able to send the excused message
       |MODTESTCOURT | 041529868    | 415980986   |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send excused message for Juror via their Name
 
     Given I am on "Bureau" "test"
@@ -155,7 +155,7 @@ Feature: As a jury officer I want to be able to send the excused message
       |MODTESTCOURT | 041529867    | 415980986   |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send excused message for Juror via their Pool number
 
     Given I am on "Bureau" "test"
@@ -205,7 +205,7 @@ Feature: As a jury officer I want to be able to send the excused message
       |MODTESTCOURT | 041529866    | 415980986   |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send excused message for anyone at Trial
 
     Given I am on "Bureau" "test"
@@ -299,7 +299,7 @@ Feature: As a jury officer I want to be able to send the excused message
       |MODTESTCOURT | 041529865    | 415980986   |T202419999983      |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send excused message for any juror - Next start date
 
     Given I am on "Bureau" "test"
@@ -350,7 +350,7 @@ Feature: As a jury officer I want to be able to send the excused message
       |MODTESTCOURT | 041529864    | 415980986   |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send excused message for Juror via their deferred date
 
     Given I am on "Bureau" "test"
@@ -462,7 +462,7 @@ Feature: As a jury officer I want to be able to send the excused message
       |MODTESTCOURT | 041529863    | 415980986   |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send excused message for Juror using Text and Email for multiple jurors
 
     Given I am on "Bureau" "test"
