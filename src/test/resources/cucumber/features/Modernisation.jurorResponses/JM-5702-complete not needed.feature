@@ -1,6 +1,6 @@
 Feature: As a jury officer I need to send a complete not needed message
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send complete not needed message for Juror using Text including error checks
 
     Given I am on "Bureau" "test"
@@ -55,7 +55,7 @@ Feature: As a jury officer I need to send a complete not needed message
 
 
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send complete not needed message for Juror
 
     Given I am on "Bureau" "test"
@@ -103,7 +103,7 @@ Feature: As a jury officer I need to send a complete not needed message
       |MODTESTCOURT | 041529949    | 415980994   |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send complete not needed message for Juror via their Name
 
     Given I am on "Bureau" "test"
@@ -152,7 +152,7 @@ Feature: As a jury officer I need to send a complete not needed message
       |MODTESTCOURT | 041529948    | 415980994   |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send complete not needed message for Juror via their Pool number
 
     Given I am on "Bureau" "test"
@@ -201,7 +201,7 @@ Feature: As a jury officer I need to send a complete not needed message
       |MODTESTCOURT | 041529947    | 415980994   |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send complete not needed message for Juror in Trial
 
     Given I am on "Bureau" "test"
@@ -293,7 +293,7 @@ Feature: As a jury officer I need to send a complete not needed message
       |MODTESTCOURT | 041529946    | 415980994   |T202419999992  |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send complete not needed message for Juror - Next start date
 
     Given I am on "Bureau" "test"
@@ -342,7 +342,7 @@ Feature: As a jury officer I need to send a complete not needed message
       |MODTESTCOURT | 041529945    | 415980994   |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send complete not needed message for Juror via their deferred date
 
     Given I am on "Bureau" "test"
@@ -453,7 +453,7 @@ Feature: As a jury officer I need to send a complete not needed message
       |MODTESTCOURT | 041529944    | 415980994   |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send complete not needed message for Juror using Text for multiple jurors
 
     Given I am on "Bureau" "test"

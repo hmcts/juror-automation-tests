@@ -1,6 +1,6 @@
 Feature: As a jury officer i need to send a attendance date and time changed message
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send attendance date and time changed message for Juror using Text including error checks
 
     Given I am on "Bureau" "test"
@@ -64,7 +64,7 @@ Feature: As a jury officer i need to send a attendance date and time changed mes
       |user			| juror_number | pool_number |
       |MODTESTCOURT | 041529979    | 415980997   |
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send attendance date and time changed message for Juror
 
     Given I am on "Bureau" "test"
@@ -118,7 +118,7 @@ Feature: As a jury officer i need to send a attendance date and time changed mes
       |user			| juror_number | pool_number |
       |MODTESTCOURT | 041529978    | 415980997   |
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send attendance date and time changed message for Juror via their Name
 
     Given I am on "Bureau" "test"
@@ -174,7 +174,7 @@ Feature: As a jury officer i need to send a attendance date and time changed mes
       |user			| juror_number | pool_number |
       |MODTESTCOURT | 041529977    | 415980997   |
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send attendance date and time changed message for Juror via their Pool number
 
     Given I am on "Bureau" "test"
@@ -230,7 +230,7 @@ Feature: As a jury officer i need to send a attendance date and time changed mes
       |user			| juror_number | pool_number |
       |MODTESTCOURT | 041529976    | 415980997   |
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send attendance date and time changed message for Juror in Trial
 
     Given I am on "Bureau" "test"
@@ -328,7 +328,7 @@ Feature: As a jury officer i need to send a attendance date and time changed mes
       |user			| juror_number | pool_number |trial_number       |
       |MODTESTCOURT | 041529975    | 415980997   |T202419999995      |
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send attendance date and time changed message for Juror - Next start date
 
     Given I am on "Bureau" "test"
@@ -384,7 +384,7 @@ Feature: As a jury officer i need to send a attendance date and time changed mes
       |MODTESTCOURT | 041529974    | 415980997   |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send attendance date and time changed message for Juror via their deferred date
 
     Given I am on "Bureau" "test"
@@ -501,7 +501,7 @@ Feature: As a jury officer i need to send a attendance date and time changed mes
       |user			| juror_number | pool_number |
       |MODTESTCOURT | 041529973    | 415980997   |
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send attendance date and time changed message for Juror using Text for multiple jurors
 
     Given I am on "Bureau" "test"

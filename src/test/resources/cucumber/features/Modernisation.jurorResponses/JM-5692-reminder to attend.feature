@@ -1,6 +1,6 @@
 Feature: As a jury officer I need to send a reminder to attend message to jurors
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send reminder to attend message for Juror using Text including error checks
 
     Given I am on "Bureau" "test"
@@ -66,7 +66,7 @@ Feature: As a jury officer I need to send a reminder to attend message to jurors
 
 
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send reminder to attend message for Juror
 
     Given I am on "Bureau" "test"
@@ -122,7 +122,7 @@ Feature: As a jury officer I need to send a reminder to attend message to jurors
       |MODTESTCOURT | 041529998    | 415980999   |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send reminder to attend message for Juror via their Name
 
     Given I am on "Bureau" "test"
@@ -180,7 +180,7 @@ Feature: As a jury officer I need to send a reminder to attend message to jurors
       |MODTESTCOURT | 041529997    | 415980999   |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send reminder to attend message for Juror via their Pool number
 
     Given I am on "Bureau" "test"
@@ -238,7 +238,7 @@ Feature: As a jury officer I need to send a reminder to attend message to jurors
       |MODTESTCOURT | 041529996    | 415980999   |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send reminder to attend message for Juror in Trial
 
     Given I am on "Bureau" "test"
@@ -339,7 +339,7 @@ Feature: As a jury officer I need to send a reminder to attend message to jurors
       |MODTESTCOURT | 041529995    | 415980999   |T202419999997      |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send reminder to attend message for Juror - Next start date
 
     Given I am on "Bureau" "test"
@@ -398,7 +398,7 @@ Feature: As a jury officer I need to send a reminder to attend message to jurors
       |MODTESTCOURT | 041529994    | 415980999   |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send reminder to attend message for Juror via their deferred date
 
     Given I am on "Bureau" "test"
@@ -517,7 +517,7 @@ Feature: As a jury officer I need to send a reminder to attend message to jurors
       |MODTESTCOURT | 041529993    | 415980999   |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send reminder to attend message for Juror using Text for multiple jurors
 
     Given I am on "Bureau" "test"

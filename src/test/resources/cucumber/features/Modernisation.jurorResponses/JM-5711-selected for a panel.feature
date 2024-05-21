@@ -1,6 +1,6 @@
 Feature: As a jury officer I need to send the selected for a panel message
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send selected for a panel message for Juror using Text including error checks
 
     Given I am on "Bureau" "test"
@@ -62,7 +62,7 @@ Feature: As a jury officer I need to send the selected for a panel message
       |MODTESTCOURT | 041529909    | 415980990   |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send selected for a panel message for Juror
 
     Given I am on "Bureau" "test"
@@ -117,7 +117,7 @@ Feature: As a jury officer I need to send the selected for a panel message
       |MODTESTCOURT | 041529908    | 415980990   |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send selected for a panel message for Juror via their Name
 
     Given I am on "Bureau" "test"
@@ -174,7 +174,7 @@ Feature: As a jury officer I need to send the selected for a panel message
       |MODTESTCOURT | 041529907    | 415980990   |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send selected for a panel message for Juror via their Pool number
 
     Given I am on "Bureau" "test"
@@ -231,7 +231,7 @@ Feature: As a jury officer I need to send the selected for a panel message
       |MODTESTCOURT | 041529906    | 415980990   |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send selected for a panel message for Juror in Trial
 
     Given I am on "Bureau" "test"
@@ -330,7 +330,7 @@ Feature: As a jury officer I need to send the selected for a panel message
       |MODTESTCOURT | 041529905    | 415980990   |T202419999987      |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send selected for a panel message for Juror - Next start date
 
     Given I am on "Bureau" "test"
@@ -387,7 +387,7 @@ Feature: As a jury officer I need to send the selected for a panel message
       |MODTESTCOURT | 041529904    | 415980990   |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send selected for a panel message for Juror via their deferred date
 
     Given I am on "Bureau" "test"
@@ -505,7 +505,7 @@ Feature: As a jury officer I need to send the selected for a panel message
       |MODTESTCOURT | 041529903    | 415980990   |
 
 
-  @@JurorTransformationWIP @NewSchemaConverted @Messages
+  @@JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send selected for a panel message for Juror using Text for multiple jurors
 
     Given I am on "Bureau" "test"

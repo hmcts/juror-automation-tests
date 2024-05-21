@@ -1,6 +1,6 @@
 Feature: As a jury officer I need to send a attendance time change message
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send attendance time change message for Juror using Text including error checks
 
     Given I am on "Bureau" "test"
@@ -61,7 +61,7 @@ Feature: As a jury officer I need to send a attendance time change message
       |MODTESTCOURT | 041529969    | 415980996   |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send attendance time change message for Juror
 
     Given I am on "Bureau" "test"
@@ -113,7 +113,7 @@ Feature: As a jury officer I need to send a attendance time change message
       |MODTESTCOURT | 041529968    | 415980996   |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send attendance time change message for Juror via their Name
 
     Given I am on "Bureau" "test"
@@ -166,7 +166,7 @@ Feature: As a jury officer I need to send a attendance time change message
       |user			| juror_number | pool_number |
       |MODTESTCOURT | 041529967    | 415980996   |
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send attendance time change message for Juror via their Pool number
 
     Given I am on "Bureau" "test"
@@ -219,7 +219,7 @@ Feature: As a jury officer I need to send a attendance time change message
       |user			| juror_number | pool_number |
       |MODTESTCOURT | 041529966    | 415980996   |
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send attendance time change message for Juror in Trial
 
     Given I am on "Bureau" "test"
@@ -314,7 +314,7 @@ Feature: As a jury officer I need to send a attendance time change message
       |MODTESTCOURT | 041529965    | 415980996   |T202419999994  |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send attendance time change message for Juror - Next start date
 
     Given I am on "Bureau" "test"
@@ -368,7 +368,7 @@ Feature: As a jury officer I need to send a attendance time change message
       |MODTESTCOURT | 041529964    | 415980996   |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send attendance time change message for Juror via their deferred date
 
     Given I am on "Bureau" "test"
@@ -483,7 +483,7 @@ Feature: As a jury officer I need to send a attendance time change message
       |user			| juror_number | pool_number |
       |MODTESTCOURT | 041529963    | 415980996   |
 
-  @JurorTransformationWIP @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send attendance time change message for Juror using Text for multiple jurors
 
     Given I am on "Bureau" "test"
