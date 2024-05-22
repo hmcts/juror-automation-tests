@@ -170,10 +170,13 @@ public class StepDef_trialsAndAttendance {
 		TRL.tabPresent("Courtroom");
 		TRL.tabPresent("Protected?");
 		TRL.tabPresent("Return panel members");
-		TRL.tabPresent("Print panel list");
-		TRL.tabPresent("Print ballot cards");
-		TRL.tabPresent("Empanel jury");
-		TRL.tabPresent("End trial");
+		NAV.linkText_visible("Empanel jury", true);
+		NAV.linkText_visible("End trial", true);
+		TRL.tabPresent("Panel list (summary)");
+		TRL.tabPresent("Panel list (detailed)");
+		TRL.tabPresent("Panel member status report");
+		TRL.tabPresent("Panel selection report");
+		TRL.tabPresent("Ballot cards");
 	}
 
 	@Then("^I am able to see and interact with the trial management status and fields$")
