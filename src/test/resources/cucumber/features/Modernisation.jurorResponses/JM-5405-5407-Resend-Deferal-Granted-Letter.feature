@@ -10,6 +10,8 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
       | 415   | <juror_number> | <pool_number> | 5                        | 400   |
 
+    And I update service start date to 4 Mondays from now for pool number "<pool_number>"
+
     And the user searches for juror record "<juror_number>" from the global search bar
 
   #record paper summons response
@@ -100,6 +102,8 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
       | 415   | <juror_number> | <pool_number> | 5                        | 400   |
 
+    And I update service start date to 4 Mondays from now for pool number "<pool_number>"
+
     And the user searches for juror record "<juror_number>" from the global search bar
 
   #record paper summons response
@@ -177,6 +181,8 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
       | court | juror_number     | pool_number   | att_date_weeks_in_future | owner |
       | 415   | <juror_number>   | <pool_number> | 5                        | 400   |
       | 415   | <juror_number_1> | <pool_number> | 5                        | 400   |
+
+    And I update service start date to 4 Mondays from now for pool number "<pool_number>"
 
     When the user searches for juror record "<juror_number>" from the global search bar
 
@@ -332,6 +338,8 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
       | 415   | <juror_number> | <pool_number> | 5                        | 400   |
 
+    And I update service start date to 4 Mondays from now for pool number "<pool_number>"
+
     And the user searches for juror record "<juror_number>" from the global search bar
 
   #record paper summons response
@@ -412,6 +420,7 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
       | part_no        | pool_no       | owner |
       | <juror_number> | <pool_number> | 415   |
 
+    And I update service start date to 4 Mondays from now for pool number "<pool_number>"
     And I clear down the bulk print data table for Juror "<juror_number>"
     And I update the bureau transfer date of the juror "<juror_number>"
     And I log in as "<user>"
@@ -515,6 +524,8 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
     Then a new pool is inserted for where record has transferred to the court new schema
       | part_no        | pool_no       | owner |
       | <juror_number> | <pool_number> | 415   |
+
+    And I update service start date to 4 Mondays from now for pool number "<pool_number>"
     And I clear down the bulk print data table for Juror "<juror_number>"
     And I update the bureau transfer date of the juror "<juror_number>"
     And I log in as "<user>"
@@ -606,5 +617,5 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
 
     Examples:
       | juror_number | pool_number | user         |
-      | 041530028    | 415300305   | MODTESTCOURT |
+      | 041530028    | 415300306   | MODTESTCOURT |
 
