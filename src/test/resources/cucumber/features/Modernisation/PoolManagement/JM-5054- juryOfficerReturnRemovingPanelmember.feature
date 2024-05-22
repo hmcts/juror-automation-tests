@@ -162,7 +162,6 @@ Feature: JM-5054-As a jury officer I need to be able to return jurors from a tri
     And I press the "Apps" button
     And I click on the "Trial management" link
     And I click on the "<trial_number>" link
-#    And I click on the "<trial_number>" from the search results
     And I press the "Generate panel" button
     And I see "Generate a panel" on the page
     And I see "Which jurors do you want to generate a panel from?" on the page
