@@ -70,8 +70,12 @@ Feature: JM-5054-As a jury officer I need to be able to return jurors from a tri
     When I press the "Continue" button
 
     #see my jurors are panelled and verify label text
-    Then I see "Print panel list" on the page
-    And I see "Print ballot cards" on the page
+    And I press the "Print" button
+    Then I see "Panel list (summary)" on the page
+    Then I see "Panel list (detailed)" on the page
+    Then I see "Panel member status report" on the page
+    Then I see "Panel selection report" on the page
+    And I see "Ballot cards" on the page
     And I see "Empanel jury" on the page
     And I see "End trial" on the page
     And I am able to see and interact with the trial management tabs and fields
@@ -157,7 +161,7 @@ Feature: JM-5054-As a jury officer I need to be able to return jurors from a tri
     And I see "<juror_number_4>" in the same row as "1:30pm"
     And I press the "Apps" button
     And I click on the "Trial management" link
-    And I click on the "<trial_number>" from the search results
+    And I click on the "<trial_number>" link
     And I press the "Generate panel" button
     And I see "Generate a panel" on the page
     And I see "Which jurors do you want to generate a panel from?" on the page
@@ -169,8 +173,10 @@ Feature: JM-5054-As a jury officer I need to be able to return jurors from a tri
     When I press the "Continue" button
 
     #see my jurors are panelled and verify label text
-    Then I see "Print panel list" on the page
-    And I see "Print ballot cards" on the page
+    And I press the "Print" button
+    Then I see "Panel list (summary)" on the page
+    Then I see "Panel list (detailed)" on the page
+    And I see "Ballot cards" on the page
     And I see "Empanel jury" on the page
     And I see "End trial" on the page
     And I am able to see and interact with the trial management tabs and fields
