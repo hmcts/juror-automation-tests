@@ -16,7 +16,8 @@ properties([
     booleanParam(name: 'runRegression', defaultValue: false, description: 'Include Regression tests'),
     booleanParam(name: 'runRegressionSingle', defaultValue: false, description: 'Include RegressionSingle tests'),
     booleanParam(name: 'runRegressionWelsh', defaultValue: false, description: 'Include RegressionWelsh tests'),
-    booleanParam(name: 'runShakedown', defaultValue: true, description: 'Include Shakedown tests')
+    booleanParam(name: 'runShakedown', defaultValue: true, description: 'Include Shakedown tests'),
+    booleanParam(name: 'prOverride', defaultValue: false, description: 'Select this if you need a PR to run more than just smoketest'), 
   ])
 ])
 
@@ -70,31 +71,30 @@ withNightlyPipeline(type, product, component, 600) {
   enableFullFunctionalTest(600)
   enableSlackNotifications('#juror-build-notices')
 
-  onMaster {
-    env.envName = params.EnvironmentChoice
-    env.envDriver = params.Browser
-    env.runExpenses = params.runExpenses
-    env.runFeatures = params.runFeatures
-    env.runJurorTransformation = params.runJurorTransformation
-    env.runJurorTransformationMulti = params.runJurorTransformationMulti
-    env.runJurorTransformationWIP = params.runJurorTransformationWIP
-    env.runRegression = params.runRegression
-    env.runRegressionSingle = params.runRegressionSingle
-    env.runRegressionWelsh = params.runRegressionWelsh
-    env.runShakedown = params.runShakedown
-  }
+  env.envName = params.EnvironmentChoice
+  env.envDriver = params.Browser
+  env.runExpenses = params.runExpenses
+  env.runFeatures = params.runFeatures
+  env.runJurorTransformation = params.runJurorTransformation
+  env.runJurorTransformationMulti = params.runJurorTransformationMulti
+  env.runJurorTransformationWIP = params.runJurorTransformationWIP
+  env.runRegression = params.runRegression
+  env.runRegressionSingle = params.runRegressionSingle
+  env.runRegressionWelsh = params.runRegressionWelsh
+  env.runShakedown = params.runShakedown
+
   onPR {
-    env.envName = params.EnvironmentChoice
-    env.envDriver = params.Browser
-    env.runExpenses = "false"
-    env.runFeatures = "false"
-    env.runJurorTransformation = "false"
-    env.runJurorTransformationMulti = "false"
-    env.runJurorTransformationWIP = "false"
-    env.runRegression = "false"
-    env.runRegressionSingle = "false"
-    env.runRegressionWelsh = "false"
-    env.runShakedown = "false"
+    if (params.prOverride == false) {
+      env.runExpenses = "false"
+      env.runFeatures = "false"
+      env.runJurorTransformation = "false"
+      env.runJurorTransformationMulti = "false"
+      env.runJurorTransformationWIP = "false"
+      env.runRegression = "false"
+      env.runRegressionSingle = "false"
+      env.runRegressionWelsh = "false"
+      env.runShakedown = "false"
+    }
   }
 
   afterAlways('fullFunctionalTest') {
