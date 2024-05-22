@@ -667,9 +667,15 @@ public class StepDef_DatabaseNewSchema {
     }
 
     @Given("^I update service start date to (\\d+) Mondays ago for pool number \"([^\"]*)\"$")
-    public void updateServiceStartDate(int mondaysAgo, String poolNumber) throws SQLException {
+    public void updateServiceStartDatePast(int mondaysAgo, String poolNumber) throws SQLException {
         LocalDate today = LocalDate.now();
         LocalDate xMondaysAgo = today.with(TemporalAdjusters.previous(DayOfWeek.MONDAY)).minusWeeks(Long.parseLong(String.valueOf(mondaysAgo)));
-        DBTNSD.updateServiceStartDateForDismissal(String.valueOf(xMondaysAgo), poolNumber);
+        DBTNSD.updateServiceStartDate(String.valueOf(xMondaysAgo), poolNumber);
+    }
+    @Given("^I update service start date to (\\d+) Mondays from now for pool number \"([^\"]*)\"$")
+    public void updateServiceStartDateFuture(int mondaysAhead, String poolNumber) throws SQLException {
+        LocalDate today = LocalDate.now();
+        LocalDate xMondaysAhead = today.with(TemporalAdjusters.nextOrSame(DayOfWeek.MONDAY)).plusWeeks(mondaysAhead);
+        DBTNSD.updateServiceStartDate(String.valueOf(xMondaysAhead), poolNumber);
     }
 }

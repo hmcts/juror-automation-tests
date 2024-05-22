@@ -5072,7 +5072,7 @@ public class DatabaseTesterNewSchemaDesign {
 			conn.close();
 		}
 	}
-	public void updateServiceStartDateForDismissal(String returnDate, String poolNumber) throws SQLException {
+	public void updateServiceStartDate(String returnDate, String poolNumber) throws SQLException {
 
 		db = new DBConnection();
 		String env_property = System.getProperty("env.database");
