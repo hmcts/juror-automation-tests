@@ -4415,7 +4415,7 @@ public class DatabaseTesterNewSchemaDesign {
 			int courtRoomNumber = rs.getInt(1);
 
 			pStmt = conn.prepareStatement("INSERT INTO juror_mod.trial (trial_number,loc_code,description,courtroom,judge,trial_type,trial_start_date,trial_end_date,anonymous,juror_requested,jurors_sent)"
-					+ "VALUES ('" + trialNumber + "','415','John Stark'," + courtRoomNumber + "," + judgeCode + ",'CRI','2024-08-28',NULL,false,NULL,NULL)");
+					+ "VALUES ('" + trialNumber + "','415','John Stark'," + courtRoomNumber + "," + judgeCode + ",'CRI',CURRENT_DATE,NULL,false,NULL,NULL)");
 			pStmt.executeUpdate();
 
 		} catch (SQLException e) {
