@@ -1,17 +1,23 @@
 #!groovy
 properties([
+  // H allow predefined but random minute see https://en.wikipedia.org/wiki/Cron#Non-standard_characters
+  // this will trigger at 7am during bst
+  pipelineTriggers([cron('H 06 * * 1-5')]),
   parameters([
     choice(choices: ['chrome', 'firefox', 'msedge'], name: 'Browser'),
+    // Default to using 'stg' to avoid conflict with BAU packs running in nightly pipeline
+    // Default to 'MOD packs'    
     choice(choices: ['stg', 'test', 'demo'], name: 'EnvironmentChoice'),
     booleanParam(name: 'runExpenses', defaultValue: false, description: 'Include Expenses tests'),
     booleanParam(name: 'runFeatures', defaultValue: false, description: 'Include Features tests'),
-    booleanParam(name: 'runJurorTransformation', defaultValue: false, description: 'Include JurorTransformation tests'),
-    booleanParam(name: 'runJurorTransformationMulti', defaultValue: false, description: 'Include JurorTransformationMulti tests'),
-    booleanParam(name: 'runJurorTransformationWIP', defaultValue: false, description: 'Include JurorTransformationWIP tests'),
+    booleanParam(name: 'runJurorTransformation', defaultValue: true, description: 'Include JurorTransformation tests'),
+    booleanParam(name: 'runJurorTransformationMulti', defaultValue: true, description: 'Include JurorTransformationMulti tests'),
+    booleanParam(name: 'runJurorTransformationWIP', defaultValue: true, description: 'Include JurorTransformationWIP tests'),
     booleanParam(name: 'runRegression', defaultValue: false, description: 'Include Regression tests'),
     booleanParam(name: 'runRegressionSingle', defaultValue: false, description: 'Include RegressionSingle tests'),
     booleanParam(name: 'runRegressionWelsh', defaultValue: false, description: 'Include RegressionWelsh tests'),
-    booleanParam(name: 'runShakedown', defaultValue: false, description: 'Include Shakedown tests')
+    booleanParam(name: 'runShakedown', defaultValue: true, description: 'Include Shakedown tests'),
+    booleanParam(name: 'prOverride', defaultValue: false, description: 'Select this if you need a PR to run more than just smoketest'), 
   ])
 ])
 
@@ -76,7 +82,20 @@ withNightlyPipeline(type, product, component, 600) {
   env.runRegressionSingle = params.runRegressionSingle
   env.runRegressionWelsh = params.runRegressionWelsh
   env.runShakedown = params.runShakedown
-  
+
+  onPR {
+    if (params.prOverride == false) {
+      env.runExpenses = "false"
+      env.runFeatures = "false"
+      env.runJurorTransformation = "false"
+      env.runJurorTransformationMulti = "false"
+      env.runJurorTransformationWIP = "false"
+      env.runRegression = "false"
+      env.runRegressionSingle = "false"
+      env.runRegressionWelsh = "false"
+      env.runShakedown = "false"
+    }
+  }
 
   afterAlways('fullFunctionalTest') {
 
