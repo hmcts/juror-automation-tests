@@ -5,8 +5,7 @@ properties([
   pipelineTriggers([cron('H 06 * * 1-5')]),
   parameters([
     choice(choices: ['chrome', 'firefox', 'msedge'], name: 'Browser'),
-    // Default to using 'ithc' to avoid conflict with testers using 'staging'
-    // Default to 'BAU packs'
+    // Default to 'BAU packs in ITHC' run in branch 'nightly-dev' - but see override onMaster below
     choice(choices: ['ithc', 'test', 'stg', 'demo'], name: 'EnvironmentChoice'),
     booleanParam(name: 'runExpenses', defaultValue: true, description: 'Include Expenses tests'),
     booleanParam(name: 'runFeatures', defaultValue: true, description: 'Include Features tests'),
@@ -16,7 +15,8 @@ properties([
     booleanParam(name: 'runRegression', defaultValue: true, description: 'Include Regression tests'),
     booleanParam(name: 'runRegressionSingle', defaultValue: true, description: 'Include RegressionSingle tests'),
     booleanParam(name: 'runRegressionWelsh', defaultValue: true, description: 'Include RegressionWelsh tests'),
-    booleanParam(name: 'runShakedown', defaultValue: false, description: 'Include Shakedown tests')
+    booleanParam(name: 'runShakedown', defaultValue: false, description: 'Include Shakedown tests'),
+    booleanParam(name: 'masterOverride', defaultValue: false, description: 'Select this if you need master to run other than MOD tests')
   ])
 ])
 
@@ -86,6 +86,21 @@ withNightlyPipeline(type, product, component, 600) {
   env.runRegressionWelsh = params.runRegressionWelsh
   env.runShakedown = params.runShakedown
   
+  onMaster {
+    if (params.masterOverride == false) {
+    // Switch to MOD tests on staging
+      env.envName = "stg"
+      env.runExpenses = "false"
+      env.runFeatures = "false"
+      env.runJurorTransformation = "true"
+      env.runJurorTransformationMulti = "true"
+      env.runJurorTransformationWIP = "true"
+      env.runRegression = "false"
+      env.runRegressionSingle = "false"
+      env.runRegressionWelsh = "false"
+      env.runShakedown = "true"
+    }
+  }
 
   afterAlways('fullFunctionalTest') {
 
