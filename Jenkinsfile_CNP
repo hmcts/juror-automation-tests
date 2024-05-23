@@ -24,9 +24,6 @@ def type = "java"
 def product = "juror"
 def component = "automation-tests"
 
-//Sync to a new long running branch, to allow overnight tests to run in parallel
-def branchesToSync = ['nightly-dev']
-
 def secrets = [
   "juror-${params.EnvironmentChoice}": [
     secret('automation-tests-modtestbureau', 'MODTESTBUREAU_PASSWORD'), 
@@ -68,7 +65,6 @@ withNightlyPipeline(type, product, component, 600) {
   loadVaultSecrets(secrets)
   enableFullFunctionalTest(600)
   enableSlackNotifications('#juror-build-notices')
-  syncBranchesWithMaster(branchesToSync)
 
   env.envName = params.EnvironmentChoice
   env.envDriver = params.Browser
@@ -188,3 +184,8 @@ withNightlyPipeline(type, product, component, 600) {
   }
 }
 
+withInfraPipeline(product) {
+  //Sync to a new long running branch, to allow overnight tests to run in parallel
+  def branchesToSync = ['nightly-dev']
+  syncBranchesWithMaster(branchesToSync)
+}
