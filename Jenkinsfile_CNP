@@ -12,8 +12,7 @@ properties([
     booleanParam(name: 'runRegression', defaultValue: false, description: 'Include Regression tests'),
     booleanParam(name: 'runRegressionSingle', defaultValue: false, description: 'Include RegressionSingle tests'),
     booleanParam(name: 'runRegressionWelsh', defaultValue: false, description: 'Include RegressionWelsh tests'),
-    booleanParam(name: 'runShakedown', defaultValue: false, description: 'Include Shakedown tests'),
-    booleanParam(name: 'prOverride', defaultValue: false, description: 'Select this if you need a PR to run more than just smoketest'), 
+    booleanParam(name: 'runShakedown', defaultValue: false, description: 'Include Shakedown tests')
   ])
 ])
 

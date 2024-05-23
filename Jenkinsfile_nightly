@@ -15,7 +15,9 @@ properties([
     booleanParam(name: 'runRegression', defaultValue: true, description: 'Include Regression tests'),
     booleanParam(name: 'runRegressionSingle', defaultValue: true, description: 'Include RegressionSingle tests'),
     booleanParam(name: 'runRegressionWelsh', defaultValue: true, description: 'Include RegressionWelsh tests'),
-    booleanParam(name: 'runShakedown', defaultValue: false, description: 'Include Shakedown tests')
+    booleanParam(name: 'runShakedown', defaultValue: false, description: 'Include Shakedown tests'),
+    booleanParam(name: 'masterOverride', defaultValue: false, description: 'Select this if you need master to run other than MOD tests'), 
+
   ])
 ])
 
@@ -86,17 +88,19 @@ withNightlyPipeline(type, product, component, 600) {
   env.runShakedown = params.runShakedown
   
   onMaster {
+    if (params.masterOverride == false) {
     // Switch to MOD tests on staging
-    env.envName = "stg"
-    env.runExpenses = "false"
-    env.runFeatures = "false"
-    env.runJurorTransformation = "true"
-    env.runJurorTransformationMulti = "true"
-    env.runJurorTransformationWIP = "true"
-    env.runRegression = "false"
-    env.runRegressionSingle = "false"
-    env.runRegressionWelsh = "false"
-    env.runShakedown = "true"
+      env.envName = "stg"
+      env.runExpenses = "false"
+      env.runFeatures = "false"
+      env.runJurorTransformation = "true"
+      env.runJurorTransformationMulti = "true"
+      env.runJurorTransformationWIP = "true"
+      env.runRegression = "false"
+      env.runRegressionSingle = "false"
+      env.runRegressionWelsh = "false"
+      env.runShakedown = "true"
+    }
   }
 
   afterAlways('fullFunctionalTest') {
