@@ -16,8 +16,7 @@ properties([
     booleanParam(name: 'runRegressionSingle', defaultValue: true, description: 'Include RegressionSingle tests'),
     booleanParam(name: 'runRegressionWelsh', defaultValue: true, description: 'Include RegressionWelsh tests'),
     booleanParam(name: 'runShakedown', defaultValue: false, description: 'Include Shakedown tests'),
-    booleanParam(name: 'masterOverride', defaultValue: false, description: 'Select this if you need master to run other than MOD tests'), 
-
+    booleanParam(name: 'masterOverride', defaultValue: false, description: 'Select this if you need master to run other than MOD tests')
   ])
 ])
 

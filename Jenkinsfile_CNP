@@ -68,6 +68,7 @@ withNightlyPipeline(type, product, component, 600) {
   loadVaultSecrets(secrets)
   enableFullFunctionalTest(600)
   enableSlackNotifications('#juror-build-notices')
+  syncBranchesWithMaster(branchesToSync)
 
   env.envName = params.EnvironmentChoice
   env.envDriver = params.Browser
