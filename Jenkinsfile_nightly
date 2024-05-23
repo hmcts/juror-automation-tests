@@ -1,12 +1,11 @@
 #!groovy
 properties([
   // H allow predefined but random minute see https://en.wikipedia.org/wiki/Cron#Non-standard_characters
-  // this will trigger at 7am during bst
+  // this will trigger at 7am during bst 
   pipelineTriggers([cron('H 06 * * 1-5')]),
   parameters([
     choice(choices: ['chrome', 'firefox', 'msedge'], name: 'Browser'),
-    // Default to using 'ithc' to avoid conflict with testers using 'staging'
-    // Default to 'BAU packs'
+    // Default to 'BAU packs in ITHC' run in branch 'nightly-dev' - but see override onMaster below
     choice(choices: ['ithc', 'test', 'stg', 'demo'], name: 'EnvironmentChoice'),
     booleanParam(name: 'runExpenses', defaultValue: true, description: 'Include Expenses tests'),
     booleanParam(name: 'runFeatures', defaultValue: true, description: 'Include Features tests'),
@@ -86,6 +85,19 @@ withNightlyPipeline(type, product, component, 600) {
   env.runRegressionWelsh = params.runRegressionWelsh
   env.runShakedown = params.runShakedown
   
+  onMaster {
+    // Switch to MOD tests on staging
+    env.envName = "stg"
+    env.runExpenses = "false"
+    env.runFeatures = "false"
+    env.runJurorTransformation = "true"
+    env.runJurorTransformationMulti = "true"
+    env.runJurorTransformationWIP = "true"
+    env.runRegression = "false"
+    env.runRegressionSingle = "false"
+    env.runRegressionWelsh = "false"
+    env.runShakedown = "true"
+  }
 
   afterAlways('fullFunctionalTest') {
 
