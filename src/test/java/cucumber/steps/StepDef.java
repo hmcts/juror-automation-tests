@@ -101,7 +101,12 @@ public class StepDef {
 
 	@Then("^I log in as \"([^\"]*)\"$")
 	public void loginWith_usernameOnly(String username) throws Throwable {
-		LGN.login(username, System.getenv(username + "_PASSWORD"));
+		switch(username){
+			case "MODTESTBUREAU":
+				LGN.loginADTestRoute(username + "@email.gov.uk");
+		}
+
+		//LGN.login(username, System.getenv(username + "_PASSWORD"));
 		NAV.waitForPageLoad(180); // 3 Minute login timeout - Up from 120 seconds - Up from 60 seconds
 	}
 	@Then("^I log in with \"([^\"]*)\" and \"([^\"]*)\"$")

@@ -70,6 +70,9 @@ public class Login {
     @FindBy(xpath = "//input[@type=\"submit\"]")
     WebElement submitAD;
 
+    @FindBy(id = "signInEmailButton")
+    WebElement signInWithEmail;
+
     public Login login(String username, String password) throws Throwable {
 
         username_field.clear();
@@ -82,6 +85,17 @@ public class Login {
         NAV.press_buttonByName("Sign in");
 
         log.info("Logging in with Username=>" + username + "- Password=>" + password);
+
+        return PageFactory.initElements(driver, Login.class);
+    }
+    public Login loginADTestRoute(String username) throws Throwable {
+
+        username_field.clear();
+        username_field.sendKeys(username);
+
+        signInWithEmail.click();
+
+        log.info("Logging in with Username=> " + username);
 
         return PageFactory.initElements(driver, Login.class);
     }
