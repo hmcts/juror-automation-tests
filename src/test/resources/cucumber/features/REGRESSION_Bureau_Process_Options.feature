@@ -129,20 +129,20 @@ Scenario Outline: Send to court process options
 
 	When I click on the "Assign Replies" link
 	And I assign all the New Replies to "ARAMIS1"
-	
+
 	Given I am on "Bureau" "test"
 	And I log in as "ARAMIS1"
 	And I click on the "Search" link
 	And I set "Juror's pool number" to "<pool_number>"
 	And I press the "Search" button
-	
+
 	When I click on "<juror_number>" in the same row as "<juror_number>"
 
 	And I do not see "Download as a PDF" on the page
 	Then I press the "More actions" button
 	And I see link with text "Download as a PDF"
 	Then I press the "More actions" button
-	
+
 	Then I do not see "PDF sent to court" on the page
 	Then I press the "More actions" button
 	Then I click on the "Download as a PDF" link
@@ -153,14 +153,10 @@ Examples:
 	|juror_number	|pool_number|last_name 			|postcode 	|
 	|045200230		|452300210 	|LNAMETWOEIGHTNINE	|SY2 6LU	|
 
-@Features @JM-7205 @NewSchemaConverted
+@RegressionSingle @NewSchemaConverted
 Scenario Outline: Urgent process options
 
-	#return to regressionSingle when defect fixed
-
 	Given I am on "Public" "test"
-
-	Given auto straight through processing has been disabled new schema
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -170,9 +166,13 @@ Scenario Outline: Urgent process options
 	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 
 	# Submit response in pool
+	Given auto straight through processing has been disabled new schema
+
 	Given I have submitted a first party English straight through response
 		| part_no		| pool_number	| last_name		| postcode	| email 	|
 		| <juror_number>| <pool_number>	| <last_name>	| <postcode>| a@a.com	|
+
+	Given auto straight through processing has been enabled new schema
 
 	Given I am on "Bureau" "test"
 	And I log in as "ARAMIS1"
@@ -186,7 +186,6 @@ Scenario Outline: Urgent process options
 	And I do not see "Mark as awaiting information" on the page
 	And I do not see "Send to a colleague..." on the page
 
-	#JM-7205
 	# cannot assign to anyone as response not allocated to me
 	Then I press the "More actions" button
 	And I see "Download as a PDF" on the page
@@ -225,14 +224,12 @@ Scenario Outline: Urgent process options
 	Then I see "Excusal - grant or refuse" on the page
 	Then I see "Disqualify" on the page
 	Then I choose the "Mark as responded" radio button
-	
+	And I press the "Continue" button
+
 	And I check the "Mark juror as 'responded'" checkbox
 	And I press the "Confirm" button
 
-	Then I see "COMPLETED" on the page
-
-	#re-enable auto processing
-	Given auto straight through processing has been enabled new schema
+	Then I see the juror record updated banner containing "Responded"
 
 Examples:
 	| juror_number	| pool_number 	| last_name 		| postcode 	|
