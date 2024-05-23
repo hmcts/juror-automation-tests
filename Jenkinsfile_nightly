@@ -1,7 +1,7 @@
 #!groovy
 properties([
   // H allow predefined but random minute see https://en.wikipedia.org/wiki/Cron#Non-standard_characters
-  // this will trigger at 7am during bst 
+  // this will trigger at 7am during bst
   pipelineTriggers([cron('H 06 * * 1-5')]),
   parameters([
     choice(choices: ['chrome', 'firefox', 'msedge'], name: 'Browser'),
