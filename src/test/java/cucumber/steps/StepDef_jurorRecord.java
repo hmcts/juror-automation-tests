@@ -453,18 +453,16 @@ public class StepDef_jurorRecord {
         JUROR_RECORD.setNonAttendanceDate(text);
     }
 
-    @When("^I set non-attendance date to \"([^\"]*)\" weeks in the future$")
-    public void setNonAttendanceDayDate(String Weeks){
-
+    @When("^I set non-attendance date to \"([^\"]*)\" weeks from now$")
+    public void setNonAttendanceDayDate(String Weeks) {
         int weeks;
-        try { weeks = Integer.parseInt(Weeks); }
-        catch (NumberFormatException e) { weeks = 0;}
+        try {
+            weeks = Integer.parseInt(Weeks);
+        } catch (NumberFormatException e) {weeks = 0;}
 
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        Date today = Calendar.getInstance().getTime();
         Calendar calendar = Calendar.getInstance();
-        calendar.setTime(today);
-        calendar.add(Calendar.WEEK_OF_MONTH, weeks);
+        calendar.add(Calendar.WEEK_OF_YEAR, weeks);
         Date newDate = calendar.getTime();
 
         JUROR_RECORD.setNonAttendanceDate(dateFormat.format(newDate));
@@ -561,7 +559,6 @@ public class StepDef_jurorRecord {
         JUROR_RECORD.deferralGrantedjurorsTabPresent("Date printed");
     }
 
-    @When("^I check all the checkboxes in the letters table for the initial summons letter$")
     @When("^I check all the checkboxes in the letters table$")
     public void selectAllCheckboxesInLettersTable(){
         NAV.waitForPageLoad(2);

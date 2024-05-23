@@ -12,6 +12,8 @@ Feature: JM-6163 - As a Jury Officer, I need to add a non-attendance day for a j
       |part_no              | pool_no           | owner |
       |<juror_number_1>     | <pool_number>     | 415   |
 
+    And I update service start date to 4 Mondays ago for pool number "<pool_number>"
+
     And I Confirm all the data in the record attendance table is cleared
     And I log in as "<user>"
      #set juror as responded
@@ -21,9 +23,9 @@ Feature: JM-6163 - As a Jury Officer, I need to add a non-attendance day for a j
     When I search for juror "<juror_number_1>"
     And I click on the "Attendance" link
     And I press non-attendance day button
-    And I set non-attendance date to "5" weeks in the future
+    And I set non-attendance date to "-4" weeks from now
     And I press confirm non-attendance day button
-    Then I see the date "5" weeks from now in the same row as "Non-attendance day"
+    Then I see the date "-4" weeks from now in the same row as "Non-attendance day"
 
     Examples:
       |user			|juror_number_1 |    pool_number   |
@@ -54,7 +56,7 @@ Feature: JM-6163 - As a Jury Officer, I need to add a non-attendance day for a j
     And I press confirm non-attendance day button
     Then I see "Enter a date for the non-attendance day" in the error banner
 
-    When I set non-attendance date to "2" weeks in the future
+    And I set non-attendance date to "-6" weeks from now
     And I press confirm non-attendance day button
     Then I see "Non-attendance date cannot be before the juror’s service start date." in the error banner
 
@@ -70,14 +72,16 @@ Feature: JM-6163 - As a Jury Officer, I need to add a non-attendance day for a j
     And I press confirm non-attendance day button
     Then I see "Please enter a valid date for the non-attendance day" in the error banner
 
+    And I update service start date to 4 Mondays ago for pool number "<pool_number>"
+
     When I click on the "Cancel" link
     And I press non-attendance day button
-    And I set non-attendance date to "5" weeks in the future
+    And I set non-attendance date to "-4" weeks from now
     And I press confirm non-attendance day button
-    Then I see the date "5" weeks from now in the same row as "Non-attendance day"
+    Then I see the date "-4" weeks from now in the same row as "Non-attendance day"
 
     And I press non-attendance day button
-    And I set non-attendance date to "5" weeks in the future
+    And I set non-attendance date to "-4" weeks from now
     And I press confirm non-attendance day button
     Then I see "You cannot mark this date as a non-attendance day because it's already been recorded as an attendance day." in the error banner
 
