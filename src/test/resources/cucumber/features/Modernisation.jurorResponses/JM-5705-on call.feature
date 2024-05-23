@@ -538,7 +538,7 @@ Feature: As a jury officer I need to send a on call message
     And I press the "Send message" button
 
     And I see "Check and send message" on the page
-    And I see "You’re sending the following message to 1 jurors. You cannot undo this after sending." on the page
+    And I see "You’re sending the following message to 3 jurors. You cannot undo this after sending." on the page
     And I see "You are not required to attend for Jury Service on" on the page
     And I see "We will be in touch by text/email with regards to your next attendance. If you have any questions, please contact the jury office on 01244 356726." on the page
     And I see the template containing my attendance date with a monday "5" weeks in the future
