@@ -3134,7 +3134,7 @@ Scenario Outline: English 1st Party Deferral + Bail + Name change
 	Then I click on the "Sign out" link
 	When I log in as "CPASS"
 	Then I see "<juror_number>" on the page
-	Then I see "<juror_number>" has reply type indicator "NEEDS REVIEW"
+	Then I see "<juror_number>" has reply type indicator "DEFERRAL"
 
 Examples:
 	|juror_number	|pool_number|last_name			|postcode	|email 		|

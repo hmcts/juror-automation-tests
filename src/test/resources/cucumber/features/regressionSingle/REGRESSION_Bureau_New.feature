@@ -1,12 +1,12 @@
 Feature: Bureau Functionality - NEW
 
 
-@RegressionSingle @NewSchemaConverted @JM-7167 @JM-7213
+@Features @NewSchemaConverted @JM-7167 @JM-7213
 Scenario Outline: Your Work
 
-	Given I am on "Public" "test"
+	#return to RegressionSingle when defects fixed
 
-	Given auto straight through processing has been disabled new schema
+	Given I am on "Public" "test"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  		| pool_number		| att_date_weeks_in_future	| owner |
@@ -33,6 +33,8 @@ Scenario Outline: Your Work
 	And juror "<juror_number_three>" has "POSTCODE" as "<postcode>" new schema
 	And juror "<juror_number_four>" has "LAST_NAME" as "<last_name_four>" new schema
 	And juror "<juror_number_four>" has "POSTCODE" as "<postcode>" new schema
+
+	Given auto straight through processing has been disabled new schema
 
 	# Submit response in pool
 	Given I have submitted a first party English straight through response
@@ -62,6 +64,8 @@ Scenario Outline: Your Work
 		| part_no				| pool_number		| last_name			| postcode	| email 	|
 		| <juror_number_four>	| <pool_number_one>	| <last_name_four>	| CH1 2AN	| a@a.com	|
 
+	Given auto straight through processing has been enabled new schema
+
 	Given I am on "Bureau" "test"
 	And I log in as "CPASS"
 
@@ -84,7 +88,7 @@ Scenario Outline: Your Work
 
 	#JM-7213
 	Then I see "<juror_number_one>" on the page
-#	And I see "<juror_number_one>" is flagged as overdue
+	And I see "<juror_number_one>" is flagged as overdue
 	And I see "LNAMEONE" in the same row as "<juror_number_one>"
 	And I see "SHREWSBURY" in the same row as "<juror_number_one>"
 
@@ -126,7 +130,7 @@ Scenario Outline: Your Work
 	And I see "/pending" in the URL
 	Then I see "<juror_number_one>" on the page
 	Then I see "AWAITING COURT REPLY" in the same row as "<juror_number_one>"
-#	And I see "<juror_number_one>" is flagged as overdue
+	And I see "<juror_number_one>" is flagged as overdue
 
 	When I click on the "To do" link
 	When I click on "<juror_number_two>" in the same row as "<juror_number_two>"
@@ -151,7 +155,7 @@ Scenario Outline: Your Work
 
 	#JM-7167
 	#this will only be seen by the court now
-#	And I do not see "<juror_number_three>" on the page
+	And I do not see "<juror_number_three>" on the page
 
 	When I click on the "Your work" link
 	Then I see "<juror_number_four>" on the page
@@ -207,8 +211,6 @@ Scenario Outline: Your Work
 	And I do not see "<juror_number_four>" on the page
 	When I click on the "Completed" link
 	Then I see "<juror_number_four>" on the page
-
-	Given auto straight through processing has been enabled new schema
 
 	Given I am on "Bureau" "test"
 	And I log in as "SHREWSBURY"
