@@ -13,7 +13,7 @@ Scenario:
 	And I select the global search
 	And I see "Advanced juror search" on the page
 	When I click on the "Advanced juror search" link
-	And I set "Juror postcode" to "CH1"
+	And I set "Juror name" to "DOE"
 
 	And I press the "Search" button
 
