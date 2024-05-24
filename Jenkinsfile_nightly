@@ -69,34 +69,26 @@ static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
 GradleBuilder builder = new GradleBuilder(this, product)
 
 def setBuildName() {
+  def suffixes = [
+    "RunExpenses"                 : ",ex",
+    "RunFeatures"                 : ",fe",
+    "RunJurorTransformationMulti" : ",jM",
+    "RunJurorTransformation"      : ",jT",
+    "RunJurorTransformationWIP"   : ",jW",
+    "RunRegression"               : ",re",
+    "RunRegressionSingle"         : ",rS",
+    "RunRegressionWelsh"          : ",rW",
+    "RunShakedown"                : ",sh"
+  ]
+
   def nameBuilder = "#${BUILD_NUMBER} - ${env.envName}"
-  if (env.RunExpenses == "true") {
-    nameBuilder += ",ex"
+  
+  suffixes.each { key, value ->
+    if (env[key] == "true") {
+      nameBuilder += value
+    }
   }
-  if (env.RunFeatures == "true") {
-    nameBuilder += ",fe"
-  }
-  if (env.RunJurorTransformationMulti == "true") {
-    nameBuilder += ",jM"
-  }
-  if (env.RunJurorTransformation == "true") {
-    nameBuilder += ",jT"
-  }
-  if (env.RunJurorTransformationWIP == "true") {
-    nameBuilder += ",jW"
-  }
-  if (env.RunRegression == "true") {
-    nameBuilder += ",re"
-  }
-  if (env.RunRegressionSingle == "true") {
-    nameBuilder += "rS"
-  }
-  if (env.RunRegressionWelsh == "true") {
-    nameBuilder += ",rW"
-  }
-  if (env.RunShakedown == "true") {
-    nameBuilder += ",sh"
-  }
+
   nameBuilder += ",sm"
   currentBuild.displayName = nameBuilder
 }
