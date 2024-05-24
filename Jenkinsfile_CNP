@@ -76,7 +76,7 @@ def setBuildName() {
   def nameBuilder = "#${BUILD_NUMBER} - ${env.envName}"
   
   suffixes.each { key, value ->
-    if (env[key] == "true") {
+    if (env."${key}" == "true") {
       nameBuilder += value
     }
   }
