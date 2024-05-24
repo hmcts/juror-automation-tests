@@ -69,36 +69,36 @@ static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
 GradleBuilder builder = new GradleBuilder(this, product)
 
 def setBuildName() {
-  currentBuild.displayName = "#${BUILD_NUMBER} - ${env.envName}"
+  def nameBuilder = "#${BUILD_NUMBER} - ${env.envName}"
   if (env.RunExpenses == "true") {
-    currentBuild.displayName = "${currentBuild.displayName},ex"
+    nameBuilder += ",ex"
   }
   if (env.RunFeatures == "true") {
-    currentBuild.displayName = "${currentBuild.displayName},fe"
+    nameBuilder += ",fe"
   }
   if (env.RunJurorTransformationMulti == "true") {
-    currentBuild.displayName = "${currentBuild.displayName},jM"
+    nameBuilder += ",jM"
   }
   if (env.RunJurorTransformation == "true") {
-    currentBuild.displayName = "${currentBuild.displayName},jT"
+    nameBuilder += ",jT"
   }
   if (env.RunJurorTransformationWIP == "true") {
-    currentBuild.displayName = "${currentBuild.displayName},jW"
+    nameBuilder += ",jW"
   }
   if (env.RunRegression == "true") {
-    currentBuild.displayName = "${currentBuild.displayName},re"
+    nameBuilder += ",re"
   }
   if (env.RunRegressionSingle == "true") {
-    currentBuild.displayName = "${currentBuild.displayName},rS"
+    nameBuilder += "rS"
   }
   if (env.RunRegressionWelsh == "true") {
-    currentBuild.displayName = "${currentBuild.displayName},rW"
+    nameBuilder += ",rW"
   }
   if (env.RunShakedown == "true") {
-    currentBuild.displayName = "${currentBuild.displayName},sh"
+    nameBuilder += ",sh"
   }
-  currentBuild.displayName = "${currentBuild.displayName},sm"
-
+  nameBuilder += ",sm"
+  currentBuild.displayName = nameBuilder
 }
 
 withNightlyPipeline(type, product, component, 600) {
