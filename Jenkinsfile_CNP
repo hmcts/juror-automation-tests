@@ -60,6 +60,38 @@ static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
 
 GradleBuilder builder = new GradleBuilder(this, product)
 
+def setBuildName() {
+  currentBuild.displayName = "#${BUILD_NUMBER} - ${env.envName}"
+  if (env.RunExpenses == "true") {
+    currentBuild.displayName = "${currentBuild.displayName},ex"
+  }
+  if (env.RunFeatures == "true") {
+    currentBuild.displayName = "${currentBuild.displayName},fe"
+  }
+  if (env.RunJurorTransformationMulti == "true") {
+    currentBuild.displayName = "${currentBuild.displayName},jM"
+  }
+  if (env.RunJurorTransformation == "true") {
+    currentBuild.displayName = "${currentBuild.displayName},jT"
+  }
+  if (env.RunJurorTransformationWIP == "true") {
+    currentBuild.displayName = "${currentBuild.displayName},jW"
+  }
+  if (env.RunRegression == "true") {
+    currentBuild.displayName = "${currentBuild.displayName},re"
+  }
+  if (env.RunRegressionSingle == "true") {
+    currentBuild.displayName = "${currentBuild.displayName},rS"
+  }
+  if (env.RunRegressionWelsh == "true") {
+    currentBuild.displayName = "${currentBuild.displayName},rW"
+  }
+  if (env.RunShakedown == "true") {
+    currentBuild.displayName = "${currentBuild.displayName},sh"
+  }
+  currentBuild.displayName = "${currentBuild.displayName},sm"
+}
+
 withNightlyPipeline(type, product, component, 600) {
   currentBuild.displayName = "#${BUILD_NUMBER} - ${params.EnvironmentChoice}"
   loadVaultSecrets(secrets)
@@ -77,6 +109,8 @@ withNightlyPipeline(type, product, component, 600) {
   env.runRegressionSingle = params.runRegressionSingle
   env.runRegressionWelsh = params.runRegressionWelsh
   env.runShakedown = params.runShakedown
+
+  setBuildName()
 
   afterAlways('fullFunctionalTest') {
 
