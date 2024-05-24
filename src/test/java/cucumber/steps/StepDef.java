@@ -10,6 +10,8 @@ import org.openqa.selenium.support.PageFactory;
 import java.util.ArrayList;
 import java.util.Objects;
 
+import static org.junit.Assert.assertTrue;
+
 public class StepDef {
 
 	private aSamplePO SPO;
@@ -176,6 +178,24 @@ public class StepDef {
 		//LGN.login(username, System.getenv(username + "_PASSWORD"));
 		NAV.waitForPageLoad(180); // 3 Minute login timeout - Up from 120 seconds - Up from 60 seconds
 	}
+
+	@Then("^I click the Change link to change the court$")
+	public void clickChangeLinkToChangeCourt(){
+		LGN.changeCourt();
+	}
+	@Then("^I change the court to \"([^\"]*)\"$")
+	public void changeCourtTo(String court){
+		LGN.selectCourt(court);
+		LGN.clickContinue();
+		NAV.waitForPageLoad(180);
+	}
+	@Then("^I do not see the link to change the court$")
+	public void changeLinkToChangeCourtIsNotDisplayed(){
+		boolean changeLinkNotDisplayed = LGN.changeCourtLinkIsNotDisplayed();
+		log.info("Change link not found: "+ changeLinkNotDisplayed);
+		assertTrue(changeLinkNotDisplayed);
+	}
+
 	@Then("^I log in with \"([^\"]*)\" and \"([^\"]*)\"$")
 	public void loginWith_usernameAndPassword(String username, String password) throws Throwable {
 		LGN.login(username, password);

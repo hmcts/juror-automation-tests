@@ -76,6 +76,9 @@ public class Login {
     @FindBy(id = "signInEmailButton")
     WebElement signInWithEmail;
 
+    @FindBy(xpath = "//a[@href='/auth/courts-list']")
+    WebElement changeCourtLink;
+
     public Login login(String username, String password) throws Throwable {
 
         username_field.clear();
@@ -180,5 +183,13 @@ public class Login {
 
     public void clickContinue() {
         continueButton.click();
+    }
+
+    public void changeCourt() {
+        changeCourtLink.click();
+    }
+    public boolean changeCourtLinkIsNotDisplayed(){
+        List<WebElement> changeCourtLink = driver.findElements(By.xpath("//a[@href='/auth/courts-list']"));
+        return changeCourtLink.isEmpty();
     }
 }
