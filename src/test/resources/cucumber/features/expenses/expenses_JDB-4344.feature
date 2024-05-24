@@ -3,7 +3,7 @@ Feature: Expenses_JDB-4344
 @expenses @JDB-4344 
 Scenario: expenses-JDB-4344 
 	
-	Given I am on expenses on "expenses" "juror-test01"
+	Given I am on expenses on "expenses" "test"
 	
 	Then I see "Check what you can claim for jury service" on the page
 	
