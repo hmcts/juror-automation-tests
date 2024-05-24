@@ -323,6 +323,15 @@ public class StepDef_navigation {
 			}
 			return;
 		}
+		if (arg1.equalsIgnoreCase("change")) {
+			try {
+				BUR.clickChangeLink();
+			} catch (Exception e) {
+				NAV.waitForPageLoad();
+				BUR.clickChangeLink();
+			}
+			return;
+		}
 		try {
 			NAV.click_link_by_text(arg1);
 		} catch (Exception e) {

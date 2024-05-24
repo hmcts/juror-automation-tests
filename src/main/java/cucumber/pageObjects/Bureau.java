@@ -142,5 +142,9 @@ public class Bureau {
 			}
 		}
 	}
+	public void clickChangeLink(){
+		WebElement changeLink = driver.findElement(By.xpath("//*[contains(text(), 'Change')][not(@href='/auth/courts-list')]"));
+		changeLink.click();
+	}
     
 }
