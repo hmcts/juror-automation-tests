@@ -1,13 +1,14 @@
 package cucumber.steps;
 
+import cucumber.testdata.DatabaseTester;
 import io.cucumber.java.en.*;
 import cucumber.pageObjects.*;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import java.util.stream.Stream;
+import java.util.ArrayList;
+import java.util.Objects;
 
 public class StepDef {
 
@@ -17,12 +18,17 @@ public class StepDef {
 	private final WebDriver webDriver;
 	private ScreenShotTaker SST;
 
+	private DatabaseTester DBT;
+	private static final Logger log = Logger.getLogger(StepDef.class);
+
+
 	public StepDef(SharedDriver webDriver) {
 		this.webDriver = webDriver;
 		SPO = PageFactory.initElements(webDriver, aSamplePO.class);
 		LGN = PageFactory.initElements(webDriver, Login.class);
 		NAV = PageFactory.initElements(webDriver, NavigationShared.class);
 		SST = PageFactory.initElements(webDriver, ScreenShotTaker.class);
+		DBT = PageFactory.initElements(webDriver, DatabaseTester.class);
 	}
 
 	@Given("^I am on the Login Page$")
@@ -100,10 +106,71 @@ public class StepDef {
 
 
 	@Then("^I log in as \"([^\"]*)\"$")
-	public void loginWith_usernameOnly(String username) throws Throwable {
+	public void loginWithUsername(String username) throws Throwable {
+		loginWithAD(username, "");
+	}
+
+
+	@Then("^I log in as \"([^\"]*)\" selecting court \"([^\"]*)\"$")
+	public void loginWithUsernameAndCourt(String username, String specifiedCourt) throws Throwable {
+		loginWithAD(username, specifiedCourt);
+	}
+
+	public void loginWithAD(String username, String specifiedCourt) throws Throwable {
+		String defaultCourt = null;
 		switch(username){
 			case "MODTESTBUREAU":
+			case "SYSTEMADMIN":
+			case "AUTO":
+			case "TeamPickListUser":
+			case "AutomationStaffTWO":
+			case "SYSTEM":
+			case "SJOUSER1":
+			case "SJOUSER":
+			case "CPASS":
+			case "ARAMIS1":
+			case "CMANAGER":
+			case "CMANAGER2":
+			case "SHREWSBURY":
+			case "NEWUSER":
 				LGN.loginADTestRoute(username + "@email.gov.uk");
+				break;
+			case "MODTESTCOURT":
+				defaultCourt = "415";
+				LGN.loginADTestRoute(username + "@email.gov.uk");
+				break;
+			case "MODCOURT":
+				defaultCourt = "415";
+				LGN.loginADTestRoute(username + "@email.gov.uk");
+				break;
+			default:
+				LGN.loginADTestRoute(username);
+				break;
+		}
+
+		if(LGN.courtOptionsDisplayed()){
+			ArrayList<String> userCourts = DBT.getUserCourts(username);
+			log.info("courts: " + userCourts);
+			if(userCourts.isEmpty()){
+				log.info("User has no courts.");
+			}
+			if(userCourts.size() == 1){
+				log.info("Selecting court: " + userCourts.get(0));
+				LGN.selectCourt(userCourts.get(0));
+			}
+			if(userCourts.size() > 1 && Objects.equals(specifiedCourt, "") && userCourts.contains("415")){
+				if (defaultCourt==null){ defaultCourt = "415";}
+				log.info("Assuming default court");
+				log.info("Selecting court: " + defaultCourt);
+				LGN.selectCourt(defaultCourt);
+			}
+			if(userCourts.size() > 1 && userCourts.contains(specifiedCourt)){
+				log.info("Selecting specified court: "+ specifiedCourt);
+				LGN.selectCourt(specifiedCourt);
+			} else if (userCourts.size() > 1 && !userCourts.contains(specifiedCourt) && !Objects.equals(specifiedCourt, "")){
+				throw new Throwable("court - " + specifiedCourt + " not in : "+ userCourts);
+			}
+			LGN.clickContinue();
 		}
 
 		//LGN.login(username, System.getenv(username + "_PASSWORD"));
