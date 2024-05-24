@@ -101,6 +101,7 @@ withNightlyPipeline(type, product, component, 600) {
       env.runShakedown = "true"
     }
   }
+  currentBuild.displayName = "#${BUILD_NUMBER} - ${env.envName}"
 
   afterAlways('fullFunctionalTest') {
 
