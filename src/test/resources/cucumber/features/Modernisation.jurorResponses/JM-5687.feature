@@ -112,6 +112,7 @@ Feature: JM-5687 - Resend Confirmation letter
       | 415     | <juror_number_2>| <pool_number>   | 5                         | 400  |
       | 415     | <juror_number_3>| <pool_number>   | 5                         | 400  |
 
+    And I update service start date to 4 Mondays from now for pool number "<pool_number>"
     Then a confirmation letter inserted for juror "<juror_number>"
     When the user searches for juror record "<juror_number>" from the global search bar
     And I record a happy path paper summons response
@@ -295,6 +296,8 @@ Feature: JM-5687 - Resend Confirmation letter
     When a bureau owned pool is created with jurors
       | court   | juror_number  | pool_number     | att_date_weeks_in_future   | owner |
       | 415     | <juror_number>| <pool_number>   | 5                       | 400  |
+
+    And I update service start date to 4 Mondays from now for pool number "<pool_number>"
 
     And I log in as "<user>"
     Then a confirmation letter inserted for juror "<juror_number>"
