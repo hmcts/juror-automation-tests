@@ -1,15 +1,15 @@
 Feature: Welsh_1st_CJS_Checks
 
-@RegressionWelsh @JDB-3873 
+@RegressionWelsh @NewSchemaConverted
 Scenario Outline: Welsh 1st Party CJS buttons, Other and Check Answers checks
-	Given I am on the welsh version of "Public" "juror-test02"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+
+	Given I am on the welsh version of "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court | juror_number  	| pool_number	| att_date_weeks_in_future	| owner |
+		| 457   | <juror_number>	| <pool_number>	| 5			            	| 400	|
 		
 	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
-
-
 	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	
 	And I set the radio button to "n ymateb dros fy hun"
@@ -95,13 +95,11 @@ Scenario Outline: Welsh 1st Party CJS buttons, Other and Check Answers checks
 	And I press the "Parhau" button
 	
 	#Qualify for jury service
-	
 	Then I see "Cadarnhau a ydych yn gymwys i wasanaethu ar reithgor" on the page
 	
 	When I press the "Parhau" button
 	
 	#Residency
-	
 	Then I see "Ers i chi droi'n 13 oed, a yw eich prif gyfeiriad wedi bod yn y DU, Ynysoedd y Sianel neu Ynys Manaw am unrhyw gyfnod o 5 mlynedd o leiaf?" on the page
 	When I click on the "A ydych angen cymorth i ateb hyn?" link
 	Then I see "Rhif ffôn: 0300 456 1024" on the page
@@ -111,8 +109,7 @@ Scenario Outline: Welsh 1st Party CJS buttons, Other and Check Answers checks
 	And I see "yn meddwl nad ydych yn gymwys" on the page
 	And I press the "Parhau" button
 	
-	#CJS JDB-3873
-	
+	#CJS
 	Then I see "Ers i chi droi'n 13 oed, a yw eich prif gyfeiriad wedi bod yn y DU, Ynysoedd y Sianel neu Ynys Manaw am unrhyw gyfnod o 5 mlynedd o leiaf?" on the page
 	When I set the radio button to "Do"
 	
@@ -124,14 +121,12 @@ Scenario Outline: Welsh 1st Party CJS buttons, Other and Check Answers checks
 	And I press the "Parhau" button
 	
 	#Bail
-	
 	Then I see "Ydych chi ar fechnïaeth ar hyn o bryd am gyflawni trosedd?" on the page
 	When I see "Cymhwysedd" on the page
 	And I set the radio button to "Nac ydw"
 	And I press the "Parhau" button
 	
 	#Convictions
-	
 	Then I see "Ydych chi wedi'ch cael yn euog o drosedd?" on the page
 	When I see "Cymhwysedd" on the page
 	And I see "Dim ond os cawsoch ddedfryd o garchar, gorchymyn cymunedol neu ddedfryd o garchar ohiriedig y mae hyn yn berthnasol." on the page
@@ -140,14 +135,12 @@ Scenario Outline: Welsh 1st Party CJS buttons, Other and Check Answers checks
 	And I press the "Parhau" button
 	
 	#Mental Health Sectioned
-	
 	Then I see "Ydych chi'n cael eich cadw, yn cael eich gwarchod neu eich trin o dan y Ddeddf Galluedd Meddyliol?" on the page
 	When I see "Cymhwysedd" on the page
 	And I set the radio button to "Na"
 	And I press the "Parhau" button
 	
 	#Mental Health Capacity
-	
 	Then I see "A benderfynwyd nad oes gennych y gallu meddyliol?" on the page
 	When I see "Cymhwysedd" on the page
 
@@ -156,15 +149,13 @@ Scenario Outline: Welsh 1st Party CJS buttons, Other and Check Answers checks
 	And I set the radio button to "Na"
 	And I press the "Parhau" button
 	
-	#Confirm attendance	
-	
+	#Confirm attendance
 	Then I see "Gwiriwch eich dyddiad dechrau" on the page
 	
 	When I set the radio button to "Ydw, rydw i'n gallu dechrau"
 	And I press the "Parhau" button
 	
 	#RA
-	
 	Then I see "A fyddech chi angen cymorth pan fyddwch yn y llys?" on the page
 	When I set the radio button to "Nac oes"
 	And I click on the "Pam ein bod yn gofyn am hyn?" link
@@ -173,7 +164,6 @@ Scenario Outline: Welsh 1st Party CJS buttons, Other and Check Answers checks
 	And I press the "Parhau" button
 	
 	#Check your answers
-	
 	And I see "Gwiriwch eich ymatebion nawr" on the page
 	When I see text "Ydw" in the same row as "A ydych chi wedi gweithio yn y system cyfiawnder troseddol yn y 5 mlynedd diwethaf?"
 	And I see text "Arall" in the same row as "A ydych chi wedi gweithio yn y system cyfiawnder troseddol yn y 5 mlynedd diwethaf?"
@@ -187,5 +177,5 @@ Scenario Outline: Welsh 1st Party CJS buttons, Other and Check Answers checks
 	Then I see "Gallwch wylio fideo am beth sy'n digwydd wrth fod yn rheithiwr ar YouTube, fel eich bod yn gwybod beth i'w ddisgwyl. Mae'r fideo'n para 13 munud." on the page
 	
 Examples:
-	|part_no		|last_name		|postcode	|email 		|pool_no	|
-	|641500777		|DOE			|SW1H 9AJ	|b@eeee.com	|415170401	|
+	| juror_number	| last_name	| postcode	| pool_number	|
+	| 045700065		| DOE		| SW1H 9AJ	| 457300065		|
