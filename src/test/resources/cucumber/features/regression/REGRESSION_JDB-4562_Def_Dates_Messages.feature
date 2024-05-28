@@ -235,8 +235,8 @@ Scenario Outline: Welsh 1st Party Deferral Dates Messaged
 	And I see "Yna, o leiaf bythefnos cyn i'ch gwasanaeth rheithgor ddechrau, byddwn yn anfon y canlynol atoch:" on the page
 	
 Examples:
-	| juror_number	| last_name			| postcode	| email 	| pool_no	|
-	| 045700017		| LNAMENINENINESEVEN| SW1H 9AJ	| a@eeee.com| 457300017	|
+	| juror_number	| last_name			| postcode	| email 	| pool_number	|
+	| 045700017		| LNAMENINENINESEVEN| SW1H 9AJ	| a@eeee.com| 457300017		|
 
 @Regression @NewSchemaConverted
 Scenario Outline: English 3rd Party Deferral Dates Messages
