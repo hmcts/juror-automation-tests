@@ -71,32 +71,28 @@ Scenario: Welsh Accessibility Statement
 #   	And I see "accessibility-statement/report" in the URL
 #   	Then I press the "back" button on my browser
 	
-@RegressionWelsh @JDB-4546  
+@RegressionWelsh @NewSchemaConverted
 Scenario Outline: Welsh 1st Party - Accessibility Statement on each page
 
-	Given I am on the welsh version of "Public" "juror-test02"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+	Given I am on the welsh version of "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court | juror_number  	| pool_number	| att_date_weeks_in_future	| owner |
+		| 457   | <juror_number>	| <pool_number>	| 5			            	| 400	|
 		
 	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
 	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
-
-
 
 	And I set the radio button to "n ymateb dros fy hun"
 	And I press the "Parhau" button
 	Then I see "Eich manylion rheithiwr" on the page
 	And I see link with text "Datganiad hygyrchedd"
 	
-	#Login JDB-3808
-	
+	#Login
 	When I click on the "Nid oes gennyf rif rheithiwr" link
 	Then I see "Gallwch ddod o hyd i'ch rhif rheithiwr ar eich llythyr gwŷs rheithgor." on the page
 	And I see link with text "Datganiad hygyrchedd"
-	
-	#JDB-3939
-	
+
 	And I see "Rhif ffôn: 0300 456 1024" on the page
 	And I see "Llinell Gymraeg: 0300 303 5173" on the page
 	
@@ -110,7 +106,6 @@ Scenario Outline: Welsh 1st Party - Accessibility Statement on each page
 	And I press the "Parhau" button
 	
 	#Check Your Name
-	
 	And I see link with text "Datganiad hygyrchedd"	
 	And I set the radio button to "Nac ydy"
 	And I press the "Parhau" button
@@ -122,8 +117,7 @@ Scenario Outline: Welsh 1st Party - Accessibility Statement on each page
 	And I press the "Parhau" button
 	And I see link with text "Datganiad hygyrchedd"
 	
-	#Check Your Address JDB-3809
-	
+	#Check Your Address
 	Then on the page I see
 		| text	|
 		| Eich Manylion |
@@ -135,7 +129,6 @@ Scenario Outline: Welsh 1st Party - Accessibility Statement on each page
 	And I see link with text "Datganiad hygyrchedd"
 	
 	#Phone
-	
 	Then on the page I see
 		| text	|
 		| Eich Manylion |
@@ -148,23 +141,19 @@ Scenario Outline: Welsh 1st Party - Accessibility Statement on each page
 	And I see link with text "Datganiad hygyrchedd"
 	
 	#Email
-
 	Then on the page I see
 		| text|
 		| Eich Manylion |
 		| Beth yw eich cyfeiriad e-bost? |
 		| Pam fod arnom angen eich cyfeiriad e-bost? |
-	
-	#JDB-3820
-	
+
 	When I see "Pam fod arnom angen eich cyfeiriad e-bost?" on the page
 	And I set "Nodwch eich cyfeiriad e-bost" to "<email>"
 	And I set "Nodwch eich cyfeiriad e-bost eto" to "<email>"
 	And I press the "Parhau" button
 	And I see link with text "Datganiad hygyrchedd"
 	
-	#DoB JDB-3810
-
+	#DoB
 	Then on the page I see
 		| text	|
 		| Eich Manylion	|
@@ -188,13 +177,11 @@ Scenario Outline: Welsh 1st Party - Accessibility Statement on each page
 	And I see link with text "Datganiad hygyrchedd"
 	
 	#Qualify for jury service
-	
 	Then I see "Cadarnhau a ydych yn gymwys i wasanaethu ar reithgor" on the page
 	When I press the "Parhau" button
 	And I see link with text "Datganiad hygyrchedd"
 	
-	#Residency JDB-3909
-	
+	#Residency
 	Then I see "Ers i chi droi'n 13 oed, a yw eich prif gyfeiriad wedi bod yn y DU, Ynysoedd y Sianel neu Ynys Manaw am unrhyw gyfnod o 5 mlynedd o leiaf?" on the page
 	When I click on the "A ydych angen cymorth i ateb hyn?" link
 	Then I see "Rhaid i chi gysylltu â ni i gael cyngor ar eich sefyllfa benodol." on the page
@@ -207,28 +194,24 @@ Scenario Outline: Welsh 1st Party - Accessibility Statement on each page
 	And I press the "Parhau" button
 	And I see link with text "Datganiad hygyrchedd"
 	
-	#CJS JDB-3873
-	
+	#CJS
 	Then I see "A ydych chi wedi gweithio yn y system cyfiawnder troseddol yn y 5 mlynedd diwethaf?" on the page
 	When I set the radio button to "Nac ydw"
 	And I press the "Parhau" button
 	And I see link with text "Datganiad hygyrchedd"
 	
 	#Bail
-	
 	Then I see "Ydych chi ar fechnïaeth ar hyn o bryd am gyflawni trosedd?" on the page
 	When I see "Cymhwysedd" on the page
 	And I set the radio button to "Nac ydw"
 	And I press the "Parhau" button
 	And I see link with text "Datganiad hygyrchedd"
 	
-	#Convictions JDB-3814
-	
+	#Convictions
 	Then I see "Ydych chi wedi'ch cael yn euog o drosedd?" on the page
 	When I see "Cymhwysedd" on the page
 	When I click on the "Canllawiau mewn perthynas â gwasanaethu ar reithgor os oes gennych euogfarn" link
-#	Then I see "NI ALLWCH" on the page
-#	And "NI ALLWCH" text is bold
+
 	And I see "dedfryd o garchar neu gadw yn y ddalfa am 5 mlynedd neu fwy" on the page
 	And I see "dedfryd o garchar ar gyfer diogelu'r cyhoedd neu gadw yn y ddalfa er mwyn diogelu'r cyhoedd" on the page
 	When I set the radio button to "Naddo"
@@ -236,15 +219,13 @@ Scenario Outline: Welsh 1st Party - Accessibility Statement on each page
 	And I see link with text "Datganiad hygyrchedd"
 	
 	#Mental Health Sectioned
-	
 	Then I see "Ydych chi'n cael eich cadw, yn cael eich gwarchod neu eich trin o dan y Ddeddf Galluedd Meddyliol?" on the page
 	When I see "Cymhwysedd" on the page
 	And I set the radio button to "Na"
 	And I press the "Parhau" button
 	And I see link with text "Datganiad hygyrchedd"
 	
-	#Mental Health Capacity JDB-3812 and JDB-3813 JDB-3880
-	
+	#Mental Health Capacity
 	Then I see "A benderfynwyd nad oes gennych y gallu meddyliol?" on the page
 	When I see "Cymhwysedd" on the page
 	And I click on the "Angen help i ateb hwn?" link
@@ -263,18 +244,15 @@ Scenario Outline: Welsh 1st Party - Accessibility Statement on each page
 	And I press the "Parhau" button
 	And I see link with text "Datganiad hygyrchedd"
 	
-	#Confirm attendance	
-
+	#Confirm attendance
 	Then I see "Gwiriwch eich dyddiad dechrau" on the page
 	
 	When I set the radio button to "Ydw, rydw i'n gallu dechrau"
-	
-	
+
 	And I press the "Parhau" button
 	And I see link with text "Datganiad hygyrchedd"
 	
-	#RA JDB-3815
-	
+	#RA
 	Then I see "A fyddech chi angen cymorth pan fyddwch yn y llys?" on the page
 	When I set the radio button to "Nac oes"
 	And I click on the "Pam ein bod yn gofyn am hyn?" link
@@ -285,16 +263,14 @@ Scenario Outline: Welsh 1st Party - Accessibility Statement on each page
 	And I see link with text "Datganiad hygyrchedd"
 	And I see "Gwiriwch eich ymatebion nawr" on the page
 	
-	#Check your answers JDB-3818 and JDB-3880
-	
+	#Check your answers
 	When I see "Ydych chi'n cael eich cadw, yn cael eich gwarchod neu eich trin o dan y Ddeddf Galluedd Meddyliol?" on the page
 	And I see "A benderfynwyd nad oes gennych y gallu meddyliol?" on the page
 	And I see "Bu ichi ymateb i'r dyddiad arfaethedig ar gyfer eich gwasanaeth rheithgor" on the page
 	Then I see text "Ie" in the same row as "A benderfynwyd nad oes gennych y gallu meddyliol?"
 	And I see "Cadarnhewch ddyddiad eich gwasanaeth rheithgor" on the page
 	
-	#change MH capacity to No JDB-3880
-	
+	#change MH capacity to No
 	Then I click on the "Newid" link in the same row as "A benderfynwyd nad oes gennych y gallu meddyliol?"
 	When I see "Cymhwysedd" on the page
 	And I set the radio button to "Na"
@@ -305,7 +281,6 @@ Scenario Outline: Welsh 1st Party - Accessibility Statement on each page
 	And I see "Rwy'n deall efallai y bydd yr atebion a roddais yn cael eu gwirio a gellir fy erlyn os wyf wedi rhoi unrhyw wybodaeth y gwn ei bod yn anwir." on the page
 	
 	#submit
-	
 	And I check the "Mae'r wybodaeth a roddais uchod yn wir hyd eithaf fy ngwybodaeth." checkbox
 	And I press the "Cyflwyno" button
 	And I see link with text "Datganiad hygyrchedd"
@@ -314,10 +289,9 @@ Scenario Outline: Welsh 1st Party - Accessibility Statement on each page
 	Then I do not see "Yna, o leiaf pythefnos cyn i’r gwasanaeth rheithgor ddechrau byddwn yn anfon y dogfennau canlynol atoch:" on the page
 	Then I see "Gallwch wylio fideo am beth sy'n digwydd wrth fod yn rheithiwr ar YouTube, fel eich bod yn gwybod beth i'w ddisgwyl. Mae'r fideo'n para 13 munud." on the page
 
-
 Examples:
-	|part_no	|pool_no	|last_name			|postcode	|email 		| 
-	|645200713	|452170401	|LNAMESEVENONETHREE	|SY2 6LU	|e@eeee.com	|
+	| juror_number	| pool_number	| last_name				| postcode	| email 		|
+	| 045700071		| 457300071		| LNAMESEVENONETHREE	| SY2 6LU	| e@eeee.com	|
 	
 
 @RegressionWelsh @JDB-4546 
