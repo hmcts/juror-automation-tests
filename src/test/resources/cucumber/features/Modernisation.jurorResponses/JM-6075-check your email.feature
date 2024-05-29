@@ -356,10 +356,8 @@ Feature: As a jury officer I want to send the check your email message
       |part_no               | pool_no          | owner |
       |<juror_number>        | <pool_number>    | 415   |
 
-    And I update juror "<juror_number>" to be able to send a message to them
-
     #log on and search for juror
-    And I log in as "<user>"
+    And I log in as "<user>" selecting court "415"
 
     When the user searches for juror record "<juror_number>" from the global search bar
 
@@ -422,6 +420,8 @@ Feature: As a jury officer I want to send the check your email message
     When the user searches for juror record "<juror_number>" from the global search bar
     And I see the juror status has updated to "Deferred"
 
+    And I update juror "<juror_number>" to be able to send a message to them
+
     And I press the "Apps" button
     And I click on the "Messaging" link
     And I see "Send messages" on the page
@@ -450,7 +450,7 @@ Feature: As a jury officer I want to send the check your email message
     And I see the juror "<juror_number>" has a message in the database
 
     Examples:
-      |user			| juror_number | pool_number |
+      |user	        | juror_number | pool_number |
       |MODTESTCOURT | 041529883    | 415980988   |
 
 
