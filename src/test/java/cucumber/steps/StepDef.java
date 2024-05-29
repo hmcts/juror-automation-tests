@@ -120,7 +120,7 @@ public class StepDef {
 
 	public void loginWithAD(String username, String specifiedCourt) throws Throwable {
 		String defaultCourt = null;
-		switch(username){
+		switch (username) {
 			case "MODTESTBUREAU":
 			case "SYSTEMADMIN":
 			case "AUTO":
@@ -150,27 +150,29 @@ public class StepDef {
 				break;
 		}
 
-		if(LGN.courtOptionsDisplayed()){
+		if (LGN.courtOptionsDisplayed()) {
 			ArrayList<String> userCourts = DBT.getUserCourts(username);
 			log.info("courts: " + userCourts);
-			if(userCourts.isEmpty()){
+			if (userCourts.isEmpty()) {
 				log.info("User has no courts.");
 			}
-			if(userCourts.size() == 1){
+			if (userCourts.size() == 1) {
 				log.info("Selecting court: " + userCourts.get(0));
 				LGN.selectCourt(userCourts.get(0));
 			}
-			if(userCourts.size() > 1 && Objects.equals(specifiedCourt, "") && userCourts.contains("415")){
-				if (defaultCourt==null){ defaultCourt = "415";}
+			if (userCourts.size() > 1 && Objects.equals(specifiedCourt, "") && userCourts.contains("415")) {
+				if (defaultCourt == null) {
+					defaultCourt = "415";
+				}
 				log.info("Assuming default court");
 				log.info("Selecting court: " + defaultCourt);
 				LGN.selectCourt(defaultCourt);
 			}
-			if(userCourts.size() > 1 && userCourts.contains(specifiedCourt)){
-				log.info("Selecting specified court: "+ specifiedCourt);
+			if (userCourts.size() > 1 && userCourts.contains(specifiedCourt)) {
+				log.info("Selecting specified court: " + specifiedCourt);
 				LGN.selectCourt(specifiedCourt);
-			} else if (userCourts.size() > 1 && !userCourts.contains(specifiedCourt) && !Objects.equals(specifiedCourt, "")){
-				throw new Throwable("court - " + specifiedCourt + " not in : "+ userCourts);
+			} else if (userCourts.size() > 1 && !userCourts.contains(specifiedCourt) && !Objects.equals(specifiedCourt, "")) {
+				throw new Throwable("court - " + specifiedCourt + " not in : " + userCourts);
 			}
 			LGN.clickContinue();
 		}
