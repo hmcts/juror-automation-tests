@@ -4610,10 +4610,44 @@ public class DatabaseTesterNewSchemaDesign {
 
 		try {
 			pStmt = conn.prepareStatement("UPDATE juror_mod.juror set h_email='test@test.com' where juror_number='" + jurorNumber + "'");
-			pStmt.executeUpdate();
+			int rowsUpdated = pStmt.executeUpdate();
+			if (rowsUpdated > 0) {
+				log.info("h_email updated successfully for juror_number: " + jurorNumber);
+			} else {
+				throw new SQLException("Failed to update h_email for juror_number: " + jurorNumber);
+			}
 
 			pStmt = conn.prepareStatement("UPDATE juror_mod.juror set h_phone='07966676543' where juror_number='" + jurorNumber + "'");
-			pStmt.executeUpdate();
+			rowsUpdated = pStmt.executeUpdate();
+			if (rowsUpdated > 0) {
+				log.info("h_phone updated successfully for juror_number: " + jurorNumber);
+			} else {
+				throw new SQLException("Failed to update h_phone for juror_number: " + jurorNumber);
+			}
+
+			pStmt = conn.prepareStatement("UPDATE juror_mod.juror set m_phone='07966274548' where juror_number='" + jurorNumber + "'");
+			rowsUpdated = pStmt.executeUpdate();
+			if (rowsUpdated > 0) {
+				log.info("m_phone updated successfully for juror_number: " + jurorNumber);
+			} else {
+				throw new SQLException("Failed to update m_phone for juror_number: " + jurorNumber);
+			}
+
+			pStmt = conn.prepareStatement("SELECT h_email, h_phone, m_phone FROM juror_mod.juror WHERE juror_number='" + jurorNumber + "'");
+			ResultSet rs = pStmt.executeQuery();
+			if (rs.next()) {
+				String hEmail = rs.getString("h_email");
+				String hPhone = rs.getString("h_phone");
+				String mPhone = rs.getString("m_phone");
+
+				if ("test@test.com".equals(hEmail) && "07966676543".equals(hPhone) && "07966274548".equals(mPhone)) {
+					log.info("All fields updated successfully for juror_number: " + jurorNumber);
+				} else {
+					throw new SQLException("Field verification failed for juror_number: " + jurorNumber);
+				}
+			} else {
+				throw new SQLException("Juror not found with juror_number: " + jurorNumber);
+			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();

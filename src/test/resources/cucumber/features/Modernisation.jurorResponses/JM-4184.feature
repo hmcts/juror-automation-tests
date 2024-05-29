@@ -141,14 +141,16 @@ Feature: JM-4184 - The system shall allow the jury officer to process a summons 
 
     Given a bureau owned pool is created with jurors
       | court  |juror_number  	| pool_number	   | att_date_weeks_in_future	| owner |
-      | 415    |<juror_number>  | <pool_number>    | -1				            | 400	|
+      | 415    |<juror_number>  | <pool_number>    | 4				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
       |part_no        | pool_no       | owner |
       |<juror_number> | <pool_number> | 415   |
 
+    And I update service start date to 3 Mondays ago for pool number "<pool_number>"
+
     #log on and search for juror
-    And I log in as "<user>"
+    And I log in as "<user>" selecting court "415"
 
     When the user searches for juror record "<juror_number>" from the global search bar
     And I record a paper summons response with reasonable adjustment of "C - Caring Responsibilities"
