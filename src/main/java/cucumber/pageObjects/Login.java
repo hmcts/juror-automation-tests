@@ -6,10 +6,7 @@ import cucumber.utils.ReadProperties;
 import cucumber.utils.WaitUtil_v2;
 import cucumber.utils.WaitUtils;
 import org.apache.log4j.Logger;
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -39,6 +36,9 @@ public class Login {
     @FindBy(id = "userID")
     WebElement username_field;
 
+    @FindBy(id = "email")
+    WebElement emailField;
+
     @FindBy(id = "password")
     WebElement password_field;
 
@@ -50,6 +50,9 @@ public class Login {
 
     @FindBy(id = "continue")
     WebElement continue_button;
+
+    @FindBy(id = "continueButton")
+    WebElement continueButton;
 
     @FindBy(xpath = "//input[@value='Sign in']")
     WebElement confirm_button;
@@ -70,6 +73,12 @@ public class Login {
     @FindBy(xpath = "//input[@type=\"submit\"]")
     WebElement submitAD;
 
+    @FindBy(id = "signInEmailButton")
+    WebElement signInWithEmail;
+
+    @FindBy(xpath = "//a[@href='/auth/courts-list']")
+    WebElement changeCourtLink;
+
     public Login login(String username, String password) throws Throwable {
 
         username_field.clear();
@@ -82,6 +91,17 @@ public class Login {
         NAV.press_buttonByName("Sign in");
 
         log.info("Logging in with Username=>" + username + "- Password=>" + password);
+
+        return PageFactory.initElements(driver, Login.class);
+    }
+    public Login loginADTestRoute(String username) throws Throwable {
+
+        emailField.clear();
+        emailField.sendKeys(username);
+
+        signInWithEmail.click();
+
+        log.info("Logging in with Username=> " + username);
 
         return PageFactory.initElements(driver, Login.class);
     }
@@ -152,4 +172,24 @@ public class Login {
     }
 
 
+    public boolean courtOptionsDisplayed() {
+        List<WebElement> courtOptions = driver.findElements(By.id("courtToManageForm"));
+        return !courtOptions.isEmpty();
+    }
+
+    public void selectCourt(String courtCode) {
+        driver.findElement(By.id("court-"+courtCode)).click();
+    }
+
+    public void clickContinue() {
+        continueButton.click();
+    }
+
+    public void changeCourt() {
+        changeCourtLink.click();
+    }
+    public boolean changeCourtLinkIsNotDisplayed(){
+        List<WebElement> changeCourtLink = driver.findElements(By.xpath("//a[@href='/auth/courts-list']"));
+        return changeCourtLink.isEmpty();
+    }
 }

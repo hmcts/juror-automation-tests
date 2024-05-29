@@ -6,10 +6,7 @@ import cucumber.utils.ReadProperties;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -18,8 +15,10 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAdjusters;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 public class DatabaseTester {
 
@@ -3925,4 +3924,33 @@ public class DatabaseTester {
 	}
 
 
+    public ArrayList<String> getUserCourts(String user) throws SQLException {
+        db = new DBConnection();
+        String env_property = System.getProperty("env.database");
+        if (env_property != null)
+            conn = db.getConnection(env_property);
+        else
+            conn = db.getConnection("demo");
+
+        ResultSet rs;
+		ArrayList<String> courtCodes = new ArrayList<>();
+        try {
+            //Delete the specified Juror from bulk print table
+            pStmt = conn.prepareStatement("select loc_code from juror_mod.court_location where owner in(select loc_code from juror_mod.user_courts where username = '" + user + "')");
+            pStmt.execute();
+			rs = pStmt.getResultSet();
+			while (rs.next()) {
+				courtCodes.add(rs.getString("loc_code"));
+			}
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+
+            conn.commit();
+            pStmt.close();
+            conn.close();
+        }
+        return courtCodes;
+    }
 }
