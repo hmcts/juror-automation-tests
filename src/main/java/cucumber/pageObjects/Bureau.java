@@ -48,6 +48,9 @@ public class Bureau {
 	@FindBy(xpath = "//table[@summary='Details about Juror']")
 	WebElement jurorTable;
 
+	@FindBy(xpath = "//*[contains(text(), 'Change')][not(@href='/auth/courts-list')]")
+	WebElement changeLink;
+
 
 	public void oldNew_jurorRowFor_containsText(String oldNew, String rowText, String text) {
 		WebElement row = jurorTable.findElement(By.xpath(
@@ -143,7 +146,6 @@ public class Bureau {
 		}
 	}
 	public void clickChangeLink(){
-		WebElement changeLink = driver.findElement(By.xpath("//*[contains(text(), 'Change')][not(@href='/auth/courts-list')]"));
 		changeLink.click();
 	}
     
