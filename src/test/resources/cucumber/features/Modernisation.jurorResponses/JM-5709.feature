@@ -516,9 +516,8 @@ Feature: As a jury officer I need to send the next delayed start message
     And I check the juror "<juror_number_3>" checkbox
 
     And I press the "Send message" button
-
     And I see "Check and send message" on the page
-    And I see "You’re sending the following message to 1 jurors. You cannot undo this after sending." on the page
+    And I see "You’re sending the following message to 3 jurors. You cannot undo this after sending." on the page
     And I see "You are due for Jury Service on" on the page
     And I see "but please do not attend the court until contacted by the Jury Team. Please attend work if you are able, you will receive sufficient notice when required to attend. If you have any questions, please contact the jury office on 01244 356726." on the page
     And I see the template containing my attendance date with a monday "5" weeks in the future

@@ -68,6 +68,31 @@ static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
 
 GradleBuilder builder = new GradleBuilder(this, product)
 
+def setBuildName() {
+  def suffixes = [
+    "RunExpenses"                 : ",ex",
+    "RunFeatures"                 : ",fe",
+    "RunJurorTransformationMulti" : ",jM",
+    "RunJurorTransformation"      : ",jT",
+    "RunJurorTransformationWIP"   : ",jW",
+    "RunRegression"               : ",re",
+    "RunRegressionSingle"         : ",rS",
+    "RunRegressionWelsh"          : ",rW",
+    "RunShakedown"                : ",sh"
+  ]
+
+  def nameBuilder = "#${BUILD_NUMBER} - ${env.envName}"
+  
+  suffixes.each { key, value ->
+    if (env."${key}" == "true") {
+      nameBuilder += value
+    }
+  }
+
+  nameBuilder += ",sm"
+  currentBuild.displayName = nameBuilder
+}
+
 withNightlyPipeline(type, product, component, 600) {
   loadVaultSecrets(secrets)
   enableFullFunctionalTest(600)
@@ -100,7 +125,8 @@ withNightlyPipeline(type, product, component, 600) {
       env.runShakedown = "true"
     }
   }
-  currentBuild.displayName = "#${BUILD_NUMBER} - ${env.envName}"
+
+  setBuildName()
 
   afterAlways('fullFunctionalTest') {
 

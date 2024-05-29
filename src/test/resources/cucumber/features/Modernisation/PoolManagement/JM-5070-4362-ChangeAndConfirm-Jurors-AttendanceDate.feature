@@ -34,7 +34,7 @@ Feature: JM-5070 As a jury officer I need to be able to change a jurors attendan
 
     And I press the "Change next due at court" button
     And I see "Enter date next due at court" on the page
-    And I set the "Next due at court" date to a Monday "4" weeks in the future
+    And I set the "Next due date" date to a Monday "4" weeks in the future
     And I press the "Continue" button
     And I see "3 jurors will be next due to attend on:" on the page
     And I press the "Continue" button

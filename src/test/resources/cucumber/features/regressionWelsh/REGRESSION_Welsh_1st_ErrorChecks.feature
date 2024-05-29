@@ -19,13 +19,7 @@ Scenario Outline: Welsh_1st_ErrorChecks - status is Undeliverable
 	And I press the "Continue" button
 	Then I see the juror record updated banner containing "Summons undeliverable"
 
-	When the user searches for juror record "<juror_number>" from the global search bar
-	And I click the update juror record button
-	And I select the mark as undeliverable radio button
-	Then I click continue on the update juror record screen
-	And I see the juror record updated banner containing "Summons undeliverable"
-
-  Given I am on the welsh version of "Public" "test"
+  	Given I am on the welsh version of "Public" "test"
 
 	When I set the radio button to "n ymateb dros fy hun"
 	And I press the "Parhau" button
@@ -71,7 +65,7 @@ Scenario Outline: Welsh_1st_ErrorChecks - status is Undeliverable
 	
 	Examples:
 	| juror_number	| last_name	| postcode	| pool_number	|
-	| 045700044		  | DOE		    | SW1H 9AJ	| 457300044		|
+	| 045700044		| DOE	 	| SW1H 9AJ	| 457300044		|
 
 @RegressionWelsh @NewSchemaConverted
 Scenario Outline: Welsh_1st_ErrorChecks - Court date is in the past
