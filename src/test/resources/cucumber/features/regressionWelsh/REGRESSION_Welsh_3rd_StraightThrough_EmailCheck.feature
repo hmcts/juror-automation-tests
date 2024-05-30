@@ -1,45 +1,41 @@
 Feature: Welsh_3rd_ST_EmailCheck
 
-@RegressionWelsh @JDB-3487 
+@RegressionWelsh @NewSchemaConverted
 Scenario Outline: Check that email fields for 3rd party Welsh are correct
-	Given I am on the welsh version of "Public" "juror-test01"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+
+	Given I am on the welsh version of "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court | juror_number  	| pool_number	| att_date_weeks_in_future	| owner |
+		| 457   | <juror_number>	| <pool_number>	| 5				            | 400	|
 	
 	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
-
-
 	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	
 	And I set the radio button to "Rwy'n ymateb ar ran rhywun arall"
 	And I press the "Parhau" button
 	
 	#Juror Log In
-	
 	When I set "Rhif rheithiwr" to "<juror_number>"
 	When I set "Cyfenw" to "<last_name>"
 	When I set "Cod post Rheithiwr" to "<postcode>"
 	And I press the "Parhau" button
     Then I see "Beth yw eich enw?" on the page
 	
-	#3rd Party Name JDB-3380 and JDB-3365
-	
+	#3rd Party Name
 	When I see "Eich Manylion" on the page
 	When I set "Enw cyntaf" to "FirstNameA"
 	And I set "Cyfenw" to "LastNameB"
 	And I press the "Parhau" button
 	Then I see "Eich perthynas â'r unigolyn" on the page
 	
-	#Relationship to juror JDB-3368 and JDB-3366
-	
+	#Relationship to juror
 	When I see "Eich Manylion" on the page
 	And I set "Sut ydych chi'n adnabod yr unigolyn rydych yn ymateb ar ei ran?" to "Friend"
 	And I press the "Parhau" button
 	Then I see "Eich manylion cyswllt" on the page
 	
-	#3rd Party Contact JDB-3379 and JDB-3367
-	
+	#3rd Party Contact
 	When I see "Eich Manylion" on the page
 	And I check the "Dros y ffôn (rhifau yn y DU yn unig)" checkbox
 	And I set "Prif rif ffôn" to "0207 821 1818"
@@ -51,5 +47,5 @@ Scenario Outline: Check that email fields for 3rd party Welsh are correct
 	And I press the "Parhau" button
 
 Examples:
-	|part_no		|last_name			|postcode	|email 		|pool_no   |
-	|641500280		|LNAMETWOEIGHTZERO	|CH1 2AN	|a@eeee.com	|415170601 |
+	| juror_number	| last_name			| postcode	| pool_number   |
+	| 045700075		| LNAMETWOEIGHTZERO	| CH1 2AN	| 457300075 	|
