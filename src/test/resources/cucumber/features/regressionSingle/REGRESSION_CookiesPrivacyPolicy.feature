@@ -1,4 +1,4 @@
-Feature: Regression JDB-4528 Cookies and Privacy Policy
+Feature: Regression Cookies and Privacy Policy
 
 @RegressionSingle @Cookies @NewSchemaConverted
 Scenario: Analytics Cookies opt in
@@ -6,14 +6,12 @@ Scenario: Analytics Cookies opt in
 	Given I am looking at cookies on "Public" "test"
 	
 	#new cookies banner
-	
 	And I see "Cookies on Reply to a jury summons" on the page
 	And I see "We use some essential cookies to make this service work." on the page
 	And I see "We’d also like to use analytics cookies so we can understand how you use the service and make improvements." on the page
 	And I see "Accept analytics cookies" on the page
 	
 	#accept cookies
-	
 	And I press the "Accept analytics cookies" button
 	And I see "Hide cookie message" on the page
 	And I see "You’ve accepted analytics cookies. You can change your cookie settings at any time." on the page
@@ -38,7 +36,6 @@ Scenario: Analytics Cookies opt out
 	And I see "Accept analytics cookies" on the page
 	
 	#reject cookies
-	
 	And I press the "Reject analytics cookies" button
 	And I see "Hide cookie message" on the page
 	And I see "You’ve rejected analytics cookies. You can change your cookie settings at any time." on the page
@@ -56,73 +53,62 @@ Scenario: Analytics Cookies opt out
 Scenario: English View Cookies
 	
 	Given I am looking at cookies on "Public" "test"
-	
+
 	#new cookies banner
 	And I see "Cookies on Reply to a jury summons" on the page
 	And I see link with text "View cookies"
    	Then I click on the "View cookies" link
-   	Then I click on the "How we use cookies" link
    	
    	And I see "Cookies" on the page
-   	And I see "Small files (known as 'cookies') are put onto your computer to collect information about how you browse the site." on the page
-   	And I see "Cookies are used to:" on the page
-	And I see "measure how you use the website so it can be updated and improved based on your needs" on the page
-	And I see "remember the notifications you've seen so that you're not shown them again" on the page
-	And I see "GOV.UK cookies are not used to identify you personally." on the page
-	And I see "You'll normally see a message on the site before a cookie is stored on your computer." on the page
-	And I see "Find out more about how to manage cookies" on the page
-	And I click on the "how to manage cookies" link
-	And I see "aboutcookies.org" in the URL
-	Then I press the "back" button on my browser
-	And I see "How cookies are used" on the page
-	And I see "Measuring website usage (Google Analytics)" on the page
-	And I see "We use Google Analytics to capture data about how our website is being used by the people who visit it. This includes information about how long you spend on each of the pages on our website and the activity you undertake while you are on there." on the page	
-	And I see "Google Analytics can capture demographic information about your age, gender, location and language preferences." on the page
-	And I see "The reports give us information on the device you are using to access the website, what browser you are using and the version of operating system you are running. This helps us to make sure the website works for everyone." on the page
-	And I see "We specifically track how many times our PDF content is downloaded, how many times users exit the site through external links and how many people access the ‘Find out more’ information that are listed against some questions on our website." on the page
-	And I see "All data we capture is anonymous and there is no personally identifiable data available to us." on the page
-	And I see "We use this information to improve the service and performance as well as wider analysis" on the page
-	And I see "The following cookies are used:" on the page
-	And I see "This helps us identify how you use GOV.UK so we can make the site better" in the same row as "_gat"
-	And I see "1 minute" in the same row as "_gat"
-#	And I see "This helps us identify unique users of GOV.UK so we can make the site better" in the same row as "_ga"
-	And I see "2 years" in the same row as "_ga"
-#	And I see "This helps us identify unique users of GOV.UK so we can make the site better" in the same row as "_gid"
-	And I see "24 hours" in the same row as "_gid"
-	And I see "You can opt out of Google Analytics cookies" on the page
-	And I click on the "out of Google Analytics cookies" link
-	And I see "/cookie-settings" in the URL
-	Then I press the "back" button on my browser
-	And I see "Sessions" on the page
-	And I see "A cookie is set to record your session activity." on the page
-	And I see "Keeps track of whether you're logged in or not" in the same row as "sessionID"
-	And I see "When you close your browser" in the same row as "sessionID"
-	And I see "Used to direct you to the same server for each request" in the same row as "ApplicationGatewayAffinity"
+   	And I see "Cookies are small files saved on your phone, tablet or computer when you visit a website." on the page
+   	And I see "We use cookies to make the 'Reply to a jury summons' service work and to collect information about how you use our service." on the page
+
+	And I see "Essential cookies" on the page
+	And I see "Essential cookies keep your information secure while you use the 'Reply to a jury summons' service . We do not need to ask permission to use them." on the page
+	And I see "Keeps track of whether you're logged in or not" in the same row as "juror_summons_reply_session"
+	And I see "When you close your browser" in the same row as "juror_summons_reply_session"
+	And I see "It enables web browser traffic to be kept assigned to a single server during certain sections of the website" in the same row as "ApplicationGatewayAffinity"
 	And I see "When you close your browser" in the same row as "ApplicationGatewayAffinity"
-	And I see "Our feedback survey" on the page
-	And I see "We use SmartSurvey to enable users of the service to provide feedback on their experience of using the service." on the page
-	And I see "Details about SmartSurveys security and privacy policy can be found at:" on the page
-	And I see link with text "https://www.smartsurvey.co.uk/security"
-	And I click on the "https://www.smartsurvey.co.uk/security" link
-	And I see "smartsurvey.co.uk/security" in the URL
-	Then I press the "back" button on my browser
-	And I see "We will use the results from completed survey responses to give us information from your experience of using the service, this will enable us to consider how we further improve the service." on the page
-	And I see "All data we capture is anonymous and there is no personally identifiable data available to us." on the page
-	And I see "If you take part, SmartSurvey will save extra cookies to your computer to track your progress through it. SmartSurvey is used to collect responses to the survey. If you take part, SmartSurvey will save extra cookies to your computer to track your progress through it. Information on how SmartSurvey uses Cookies can be found at:" on the page
-	And I see link with text "https://www.smartsurvey.co.uk/how-we-use-cookies"
-	And I click on the "https://www.smartsurvey.co.uk/how-we-use-cookies" link
-	And I see "/how-we-use-cookies" in the URL
-	Then I press the "back" button on my browser
-	And I see "Change your settings" on the page
-	And I see "You can change which cookies you're happy for us to use" on the page
-	And I click on the "change which cookies you're happy for us to use" link
-	And I see "/cookie-settings" in the URL
+
+	And I see "Analytics cookies (optional)" on the page
+	And I see "With your permission, we use Google Analytics cookies to collect data about how you use this service and helps us to improve it." on the page
+	And I see "Google Analytics stores information anonymously about:" on the page
+	And I see "how you got to this service" on the page
+	And I see "the pages you visit on this service and how long you spend on them" on the page
+	And I see "any errors you see while using this service" on the page
+	And I see "It does not capture your name or where you live." on the page
+	And I see "We also use Dynatrace cookies to measure how well this service performs with users and track errors." on the page
+	And I see "We do not allow Google or Dynatrace to use or share our analytics data with anyone." on the page
+	And I see "Used to throttle the rate of requests to Google Analytics." in the same row as "_gat"
+	And I see "1 minute" in the same row as "_gat"
+	And I see "Checks if you’ve visited this service before. This helps us count how many people visit our site." in the same row as "_ga"
+	And I see "2 years" in the same row as "_ga"
+	And I see "Registers a unique ID that is used to generate statistical data on how people use the service." in the same row as "_gid"
+	And I see "24 hours" in the same row as "_gid"
+	And I see "Used to collect information to track service performance and user errors." in the same row as "dtCookie"
+	And I see "When you close your browser" in the same row as "dtCookie"
+	And I see "Measures server latency for performance monitoring." in the same row as "dtLatC"
+	And I see "When you close your browser" in the same row as "dtLatC"
+	And I see "Used to collect information to track service performance and user errors." in the same row as "dtPC"
+	And I see "When you close your browser" in the same row as "dtPC"
+	And I see "Serves as an intermediate storage for page-spanning actions." in the same row as "dtSa"
+	And I see "When you close your browser" in the same row as "dtSa"
+	And I see "Used to determine the top-level domain." in the same row as "dtValidationCookie"
+	And I see "Immediately" in the same row as "dtValidationCookie"
+	And I see "Determines if the RUM JavaScript should be deactivated due to cost and traffic control or overload prevention." in the same row as "dtDisabled"
+	And I see "When you close your browser" in the same row as "dtDisabled"
+	And I see "Used to store the Visitor ID for returning visitors." in the same row as "rxVisitor"
+	And I see "When you close your browser" in the same row as "rxVisitor"
+	And I see "Used to store two timestamps and specifies the session timeout." in the same row as "rxvt"
+	And I see "When you close your browser" in the same row as "rxvt"
+
+	And I see "Do you want to accept analytics cookies?" on the page
 
 @RegressionSingle @Cookies @NewSchemaConverted
 Scenario: English Cookie Settings
 	
 	Given I am looking at cookies on "Public" "test"
-	
+
 	#new cookies banner
 	
 	And I see "Cookies on Reply to a jury summons" on the page
@@ -131,30 +117,41 @@ Scenario: English Cookie Settings
 	Then I click on the "change your cookie settings" link
 	
 	And I see "/cookie-settings" in the URL
-	
-	And I see "Cookies are files saved on your phone, tablet or computer when you visit a website." on the page
-	And I see "We use cookies to store information about how you use the GOV.UK website, such as the pages you visit." on the page
-	And I see "Cookie settings" on the page
-	And I see "We use 2 types of cookie. You can choose which cookies you're happy for us to use." on the page
-	And I see "Cookies that measure website use" on the page
-	And I see "We use Google Analytics to measure how you use the website so we can improve it based on user needs. We do not allow Google to use or share the data about how you use this site." on the page
-	And I see "Google Analytics sets cookies that store anonymised information about:" on the page
-	And I see "how you got to the site" on the page
-	And I see "the pages you visit on GOV.UK and government digital services, and how long you spend on each page" on the page
-	And I see "what you click on while you're visiting the site" on the page
-	And the radio button "Do not use cookies that measure my website use" is "unselected"
-	And the radio button "Use cookies that measure my website use" is "selected"
-	And I set the radio button to "Do not use cookies that measure my website use"
-	And the radio button "Do not use cookies that measure my website use" is "selected"
-	And the radio button "Use cookies that measure my website use" is "unselected"
-	And I see "Strictly necessary cookies" on the page
-	And I see "These essential cookies do things like remember your progress through a form (for example a licence application)" on the page
-	And I see "They always need to be on." on the page
-	And I see link with text "How we use cookies"
-	And I click on the "How we use cookies" link
-	And I see "/help/cookies" in the URL
-	Then I press the "back" button on my browser
+
+	And I see "Cookies" on the page
+	And I see "Cookies are small files saved on your phone, tablet or computer when you visit a website." on the page
+	And I see "We use cookies to make the 'Reply to a jury summons' service work and to collect information about how you use our service." on the page
+
+	And I see "Essential cookies" on the page
+	And I see "Essential cookies keep your information secure while you use the 'Reply to a jury summons' service . We do not need to ask permission to use them." on the page
+
+	And I see "Keeps track of whether you're logged in or not" in the same row as "juror_summons_reply_session"
+	And I see "When you close your browser" in the same row as "juror_summons_reply_session"
+
+	And I see "It enables web browser traffic to be kept assigned to a single server during certain sections of the website" in the same row as "ApplicationGatewayAffinity"
+	And I see "When you close your browser" in the same row as "ApplicationGatewayAffinity"
+
+	And I see "Analytics cookies (optional)" on the page
+	And I see "With your permission, we use Google Analytics cookies to collect data about how you use this service and helps us to improve it." on the page
+	And I see "Google Analytics stores information anonymously about:" on the page
+	And I see "how you got to this service" on the page
+	And I see "the pages you visit on this service and how long you spend on them" on the page
+	And I see "any errors you see while using this service" on the page
+	And I see "It does not capture your name or where you live." on the page
+	And I see "We also use Dynatrace cookies to measure how well this service performs with users and track errors." on the page
+	And I see "We do not allow Google or Dynatrace to use or share our analytics data with anyone." on the page
+
+	And I see "Do you want to accept analytics cookies?" on the page
+
+	And the radio button "No" is "unselected"
+	And the radio button "Yes" is "selected"
+	And I set the radio button to "No"
+	And the radio button "No" is "selected"
+	And the radio button "Yes" is "unselected"
+
 	And I press the "Save changes" button
+
+	Then I see "You’ve set your cookie preferences. Go back to the page you were looking at." on the page
 
 @RegressionSingle @Cookies @NewSchemaConverted
 Scenario: English Privacy Policy
@@ -244,12 +241,67 @@ Scenario: English Privacy Policy
 	Scenario: Welsh Analytics Cookies opt in
 
 		Given I am looking at cookies on Welsh "Public" "test"
+
+		#new cookies banner
 		And I see "Cwcis ar ffurflen Ymateb i wŷs rheithgor" on the page
-		And I see "Rydym yn defnyddio rhai cwcis hanfodol i wneud i'r gwasanaeth hwn weithio." on the page
-		And I see "Hoffem hefyd ddefnyddio cwcis dadansoddol fel y gallwn ddeall sut rydych yn defnyddio'r gwasanaeth a gwneud gwelliannau." on the page
-		And I see "A ydych yn ymateb dros eich hun neu ar ran rhywun arall?" on the page
-		And I press the "Derbyn cwcis dadansoddol" button
-		And I see "Cuddio'r neges ynghylch cwcis" on the page
+		Then I click on the "Gweld cwcis" link
+
+		And I see "Cwcis" on the page
+		And I see "Ffeiliau bach sy'n cael eu cadw ar eich ffôn, tabled neu gyfrifiadur pan fyddwch yn ymweld â gwefan yw cwcis." on the page
+		And I see "Rydym yn defnyddio cwcis i wneud i'r gwasanaeth 'Ymateb i wŷs rheithgor' weithio ac i gasglu gwybodaeth am sut rydych chi'n defnyddio ein gwasanaeth." on the page
+
+		And I see "Cwcis hanfodol" on the page
+		And I see "Mae cwcis hanfodol yn cadw'ch gwybodaeth yn ddiogel wrth i chi ddefnyddio'r gwasanaeth 'Ymateb i wŷs rheithgor'. Nid oes rhaid inni ofyn am ganiatâd i'w defnyddio." on the page
+		And I see "Nodi p'un a ydych wedi mewngofnodi ai peidio" in the same row as "juror_summons_reply_session"
+		And I see "Pan fyddwch yn cau eich porwr" in the same row as "juror_summons_reply_session"
+
+		And I see "Mae'n galluogi i draffig porwr gwe gael ei neilltuo i un gweinydd yn ystod rhai rhannau o'r wefan" in the same row as "ApplicationGatewayAffinity"
+		And I see "Pan fyddwch yn cau eich porwr" in the same row as "ApplicationGatewayAffinity"
+
+		And I see "Cwcis dadansoddol (dewisol)" on the page
+		And I see "Gyda'ch caniatâd chi, rydym yn defnyddio cwcis Google Analytics i gasglu data am sut rydych chi'n defnyddio'r gwasanaeth hwn ac maent yn ein helpu i'w wella." on the page
+		And I see "Mae Google Analytics yn storio gwybodaeth ddienw am:" on the page
+		And I see "sut y daethoch o hyd i'r gwasanaeth" on the page
+		And I see "y tudalennau rydych chi'n ymweld â nhw ar y gwasanaeth hwn a pha mor hir rydych chi'n ei dreulio arnyn nhw" on the page
+		And I see "unrhyw wallau a welwch wrth ddefnyddio'r gwasanaeth hwn" on the page
+		And I see "Nid yw'n casglu gwybodaeth am eich enw na lle'r ydych chi'n byw." on the page
+		And I see "Rydym hefyd yn defnyddio cwcis Dynatrace i fesur pa mor dda y mae'r gwasanaeth hwn yn perfformio gyda defnyddwyr a thracio gwallau." on the page
+		And I see "Nid ydym yn caniatáu i Google na Dynatrace ddefnyddio neu rannu ein data dadansoddol gydag unrhyw un." on the page
+
+		And I see "Fe'i defnyddir i leihau cyfradd y ceisiadau i Google Analytics." in the same row as "_gat"
+		And I see "1 munud" in the same row as "_gat"
+
+		And I see "Gwirio os ydych wedi ymweld â’r gwasanaeth hwn o’r blaen.  Mae'n ein helpu i gyfrif faint o bobl sy'n ymweld â'n gwefan." in the same row as "_ga"
+		And I see "2 flynedd" in the same row as "_ga"
+
+		And I see "Cofrestru ID unigryw a ddefnyddir i gynhyrchu data ystadegol ar sut mae pobl yn defnyddio'r gwasanaeth." in the same row as "_gid"
+		And I see "24 awr" in the same row as "_gid"
+
+		And I see "Fe'i defnyddir i gasglu gwybodaeth i olrhain perfformiad y gwasanaeth a gwallau defnyddwyr." in the same row as "dtCookie"
+		And I see "Pan fyddwch yn cau eich porwr" in the same row as "dtCookie"
+
+		And I see "Mesurau segurdod gweinydd ar gyfer monitro perfformiad" in the same row as "dtLatC"
+		And I see "Pan fyddwch yn cau eich porwr" in the same row as "dtLatC"
+
+		And I see "Fe'i defnyddir i gasglu gwybodaeth i olrhain perfformiad y gwasanaeth a gwallau defnyddwyr." in the same row as "dtPC"
+		And I see "Pan fyddwch yn cau eich porwr" in the same row as "dtPC"
+
+		And I see "Gwasanaethu fel storfa ganolradd ar gyfer camau gweithredu rhychwantu tudalennau." in the same row as "dtSa"
+		And I see "Pan fyddwch yn cau eich porwr" in the same row as "dtSa"
+
+		And I see "Fe'i defnyddir i bennu'r parth lefel uchaf." in the same row as "dtValidationCookie"
+		And I see "Ar unwaith" in the same row as "dtValidationCookie"
+
+		And I see "Penderfynu a ddylid dadactifadu'r JavaScript RUM oherwydd cost a rheoli traffig neu atal gorlwytho." in the same row as "dtDisabled"
+		And I see "Pan fyddwch yn cau eich porwr" in the same row as "dtDisabled"
+
+		And I see "Fe'i defnyddir i storio'r ID Ymwelydd ar gyfer ymwelwyr sy'n dychwelyd." in the same row as "rxVisitor"
+		And I see "Pan fyddwch yn cau eich porwr" in the same row as "rxVisitor"
+
+		And I see "Fe'i defnyddir i storio dau stamp amser ac yn nodi amserlen y sesiwn." in the same row as "rxvt"
+		And I see "Pan fyddwch yn cau eich porwr" in the same row as "rxvt"
+
+		And I see "Ydych chi eisiau derbyn cwcis dadansoddol?" on the page
 
 	@RegressionSingle @Cookies @NewSchemaConverted
 	Scenario: Welsh Privacy Policy

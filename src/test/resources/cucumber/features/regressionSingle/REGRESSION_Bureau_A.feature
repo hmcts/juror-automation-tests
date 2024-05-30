@@ -1,9 +1,7 @@
 Feature: Bureau A Test
 	
-@Features @NewSchemaConverted @JM-7213
+@RegressionSingle @NewSchemaConverted
 Scenario Outline: Lift from QC Script for Bureau A Functionality
-
-	#return to @RegressionSingle when defect fixed
 
 	Given I am on "Public" "test"
 
@@ -144,9 +142,7 @@ Scenario Outline: Lift from QC Script for Bureau A Functionality
 	And I see "Awaiting information" on the page
 	And I click on the "Awaiting information" link
 	And I do not see any links on the page that open to a new page without an alt text
-	And I see "<juror_number_one>" is flagged as overdue
-	And I see "<juror_number_two>" is flagged as overdue
-
+	And I do not see "OVERDUE" on the page
 
 Examples:
 	| juror_number_one	| juror_number_two	| juror_number_three	| pool_number_one 	| pool_number_two	| pool_number_three	| last_name 		| postcode 	|

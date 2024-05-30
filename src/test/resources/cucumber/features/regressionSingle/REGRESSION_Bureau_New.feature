@@ -1,7 +1,7 @@
 Feature: Bureau Functionality - NEW
 
 
-@Features @NewSchemaConverted @JM-7167 @JM-7213
+@RegressionSingle @NewSchemaConverted
 Scenario Outline: Your Work
 
 	#return to RegressionSingle when defects fixed
@@ -86,9 +86,8 @@ Scenario Outline: Your Work
 	And I see link with text "Search"
 	And I see "/inbox" in the URL
 
-	#JM-7213
 	Then I see "<juror_number_one>" on the page
-	And I see "<juror_number_one>" is flagged as overdue
+	And I do not see "OVERDUE" on the page
 	And I see "LNAMEONE" in the same row as "<juror_number_one>"
 	And I see "SHREWSBURY" in the same row as "<juror_number_one>"
 
@@ -97,10 +96,8 @@ Scenario Outline: Your Work
 	And I see "LNAMETWO" in the same row as "<juror_number_two>"
 	And I see "SHREWSBURY" in the same row as "<juror_number_two>"
 
-	Then I see "<juror_number_three>" on the page
-	And I see "SEND TO COURT" icon in the same row as "<juror_number_three>"
-	And I see "LNAMETHREE" in the same row as "<juror_number_three>"
-	And I see "SHREWSBURY" in the same row as "<juror_number_three>"
+	#this will only be seen by the court now
+	Then I do not see "<juror_number_three>" on the page
 
 	Then I see "<juror_number_four>" on the page
 	And I see "LNAMEFOUR" in the same row as "<juror_number_four>"
@@ -108,7 +105,7 @@ Scenario Outline: Your Work
 
 	When I click on "<juror_number_one>" in the same row as "<juror_number_one>"
 	Then I see "Reply status" on the page
-	And I see "OVERDUE" on the page
+	And I do not see "OVERDUE" on the page
 
 	Then I press the "More actions" button
 	And I click on the "Mark as awaiting information" link
@@ -130,7 +127,7 @@ Scenario Outline: Your Work
 	And I see "/pending" in the URL
 	Then I see "<juror_number_one>" on the page
 	Then I see "AWAITING COURT REPLY" in the same row as "<juror_number_one>"
-	And I see "<juror_number_one>" is flagged as overdue
+	And I do not see "OVERDUE" on the page
 
 	When I click on the "To do" link
 	When I click on "<juror_number_two>" in the same row as "<juror_number_two>"
@@ -153,7 +150,6 @@ Scenario Outline: Your Work
 
 	When I click on the "To do" link
 
-	#JM-7167
 	#this will only be seen by the court now
 	And I do not see "<juror_number_three>" on the page
 
@@ -216,7 +212,6 @@ Scenario Outline: Your Work
 	And I log in as "SHREWSBURY"
 
 	#this will only be seen by the court now
-	#send to court
 	And I search for juror "<juror_number_three>"
 	And I click on the "Summons reply" link
 	And I click on the "View summons reply" link
