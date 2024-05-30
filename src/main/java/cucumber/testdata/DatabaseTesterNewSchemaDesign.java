@@ -4784,7 +4784,7 @@ public class DatabaseTesterNewSchemaDesign {
 			pStmt.executeUpdate();
 
 			pStmt = conn.prepareStatement("INSERT INTO juror_mod.bulk_print_data (juror_no,creation_date,form_type,detail_rec,extracted_flag,digital_comms)"
-					+ "VALUES ('" + jurorNumber + "',NOW(),'5224A','THE CROWN COURT AT CHESTER JURY CENTRAL SUMMONING BUREAU THE COURT SERVICE',false,NULL)");
+					+ "VALUES ('" + jurorNumber + "',NOW(),'5224A','THE CROWN COURT AT CHESTER JURY CENTRAL SUMMONING BUREAU THE COURT SERVICE',false,false)");
 			pStmt.executeUpdate();
 
 		} catch (SQLException e) {
