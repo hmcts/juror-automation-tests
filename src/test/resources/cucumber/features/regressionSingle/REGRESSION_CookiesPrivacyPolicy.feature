@@ -58,7 +58,7 @@ Scenario: English View Cookies
 	And I see "Cookies on Reply to a jury summons" on the page
 	And I see link with text "View cookies"
    	Then I click on the "View cookies" link
-   	
+
    	And I see "Cookies" on the page
    	And I see "Cookies are small files saved on your phone, tablet or computer when you visit a website." on the page
    	And I see "We use cookies to make the 'Reply to a jury summons' service work and to collect information about how you use our service." on the page
@@ -387,3 +387,29 @@ Scenario: English Privacy Policy
 		And I see "Ymwrthodiad" on the page
 		And I see "Nid ydym yn derbyn atebolrwydd am golled neu ddifrod sy’n dod i ran defnyddwyr y gwasanaeth hwn, naill ai’n uniongyrchol, yn anuniongyrchol neu’n ganlyniadol, pa un ai a yw’n cael ei achosi drwy gamwedd, tor-cytundeb neu fel arall. Mae hyn yn cynnwys colli incwm neu refeniw, busnes, elw neu gytundebau, arbedion a ragwelwyd, data, ewyllys da, eiddo diriaethol neu wastraff amser sy’n gysylltiedig â’r gwasanaeth hwn neu unrhyw wefannau sy’n gysylltiedig ag ef ac unrhyw ddeunydd sy’n cael ei bostio arno. Ni fydd yr amod hwn yn atal hawliadau am golled neu ddifrod i’ch eiddo diriaethol nac unrhyw hawliadau eraill am golled ariannol uniongyrchol nad ydynt wedi’i heithrio gan unrhyw rai o’r categorïau uchod." on the page
 		And I see "Nid yw hyn yn effeithio ar ein hatebolrwydd am farwolaeth neu anaf personol sy’n codi o’n hesgeuluster, nac ar ein hatebolrwydd am gamliwio twyllodrus neu gamliwio mewn perthynas â mater sylfaenol, nac unrhyw atebolrwydd arall na ellir ei eithrio neu ei gyfyngu dan y gyfraith berthnasol." on the page
+
+	@RegressionSingle @Cookies @NewSchemaConverted
+	Scenario: English Cookie Settings from Expense Calculator
+
+		Given I am looking at cookies on "Public" "test"
+		And I navigate to "/expense-calculator" URL
+
+		And I see "Cookies on Reply to a jury summons" on the page
+		And I press the "Accept analytics cookies" button
+		And I see "You’ve accepted analytics cookies. You can change your cookie settings at any time." on the page
+		Then I click on the "change your cookie settings" link
+
+		And I see "/cookie-settings" in the URL
+
+		And I see "Cookies" on the page
+
+		And I see "Do you want to accept analytics cookies?" on the page
+
+		And the radio button "Yes" is "selected"
+
+		And I press the "Save changes" button
+
+		Then I see "You’ve set your cookie preferences. Go back to the page you were looking at." on the page
+
+		And I click on the "Go back to the page you were looking at" link
+		And I see "Check what you can claim for jury service" on the page
