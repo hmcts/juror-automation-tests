@@ -149,9 +149,8 @@ public class StepDef {
 				LGN.loginADTestRoute(username);
 				break;
 		}
-
+		NAV.waitForPageLoad(180);
 		if (LGN.courtOptionsDisplayed()) {
-			NAV.waitForPageLoad(180);
 			ArrayList<String> userCourts = DBT.getUserCourts(username);
 			log.info("courts: " + userCourts);
 			if (userCourts.isEmpty()) {
