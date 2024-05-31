@@ -110,21 +110,21 @@ public class Expenses {
     @FindBy(xpath = "//*[@id=\"submitExpensesForm\"]/div[2]/div/table/tbody/tr[2]/td[16]")
     public WebElement fullTotalTotalExpenseTable;
 
-    @FindBy(xpath = "//*[@id=\"submitExpensesForm\"]/div[2]/div/table/tbody/tr[2]/td[4]")
+    @FindBy(xpath = "//*[@id='submitExpensesForm']/descendant::tr[@id='totals-row']/td[4]")
     public WebElement attendanceTotalApproveExpenseTable;
-    @FindBy(xpath = "//*[@id=\"submitExpensesForm\"]/div[2]/div/table/tbody/tr[2]/td[5]")
+    @FindBy(xpath = "//*[@id='submitExpensesForm']/descendant::tr[@id='totals-row']/td[5]")
     public WebElement financialLossTotalApproveExpenseTable;
 
-    @FindBy(xpath = "//*[@id=\"submitExpensesForm\"]/div[2]/div/table/tbody/tr[2]/td[6]")
+    @FindBy(xpath = "//*[@id='submitExpensesForm']/descendant::tr[@id='totals-row']/td[6]")
     public WebElement travelTotalApproveExpenseTable;
 
-    @FindBy(xpath = "//*[@id=\"submitExpensesForm\"]/div[2]/div/table/tbody/tr[2]/td[7]")
+    @FindBy(xpath = "//*[@id='submitExpensesForm']/descendant::tr[@id='totals-row']/td[7]")
     public WebElement foodAndDrinkTotalApproveExpenseTable;
 
-    @FindBy(xpath = "//*[@id=\"submitExpensesForm\"]/div[2]/div/table/tbody/tr[2]/td[8]")
+    @FindBy(xpath = "//*[@id='submitExpensesForm']/descendant::tr[@id='totals-row']/td[8]")
     public WebElement smartcardTotalApproveExpenseTable;
 
-    @FindBy(xpath = "//*[@id=\"submitExpensesForm\"]/div[2]/div/table/tbody/tr[2]/td[9]")
+    @FindBy(xpath = "//*[@id='submitExpensesForm']/descendant::tr[@id='totals-row']/td[9]")
     public WebElement totalDueTotalApproveExpenseTable;
     @FindBy(id = "totalInDraftTag-link")
     public WebElement viewDraftExpensesLink;

@@ -139,9 +139,7 @@ Feature: JM-6060 - As a jury officer, I want to be able to add or change juror's
 
     #Bank details error checks
     When I press the "Save" button
-    Then I see error "Enter an account number"
-    And I see error "Enter an sort code"
-    And I see error "Enter the account holder's name"
+    Then I see "Bank details cannot be blank, enter the jurors bank details before saving" on the page
     When I set "Account number" to "123456789"
     And I set "Sort code" to "1234567"
     And I set "Account holder's name" to "Thisisaninvalidname"

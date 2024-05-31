@@ -37,7 +37,7 @@ public class DeferralMaintenance {
     @FindBy(xpath = "//*[@id=\"main-content\"]/div/div/h1")
     WebElement pageHeading;
 
-    @FindBy(xpath = "//*[@id=\"main-content\"]/div/div[2]/h2")
+    @FindBy(xpath = "//*[@id=\"main-content\"]/div/form/div/h2")
     WebElement courtName;
 
     @FindBy(id = "deferral-maintenance-show-filter")
