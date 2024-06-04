@@ -1,16 +1,15 @@
 Feature: Regression Welsh_3rd_ErrorChecks
 
-@RegressionWelsh @JDB-3348 @JDB-3525 @JDB-3526 @JDB-3502 @JDB-3524 @JDB-3564 @JDB-3589 @JDB-3588 @JDB-3668 @JDB-3669 @JDB-3670 @JDB-3671 
-@JDB-3672 @JDB-3711 @JDB-3715 @JDB-3825 @JDB-3881 
+@RegressionWelsh @NewSchemaConverted
 Scenario Outline: Welsh_3rd_ErrorChecks
+
 	Given I am on the welsh version of "Public" "test"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+
+	Given a bureau owned pool is created with jurors
+		| court | juror_number  	| pool_number	| att_date_weeks_in_future	| owner |
+		| 457   | <juror_number>	| <pool_number>	| 5				            | 400	|
 	
 	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
-
-
 	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 
 	Then I see "A ydych yn ymateb dros eich hun neu ar ran rhywun arall?" on the page
@@ -37,8 +36,7 @@ Scenario Outline: Welsh_3rd_ErrorChecks
 	And I see "Dydd Gwener 9am – 3pm" on the page
 	And I see "Canfod mwy am gostau galwadau" on the page
 	
-	#Juror Log In (Find out how to trigger all messages)
-	
+	#Juror Log In
 	When I set "Rhif rheithiwr – 9 digid" to "<juror_number>"
 	When I set "Cyfenw'r Rheithiwr" to "<last_name>"
 	When I set "Cod post Rheithiwr" to "<postcode>"
@@ -46,7 +44,6 @@ Scenario Outline: Welsh_3rd_ErrorChecks
 	Then I see "Beth yw eich enw?" on the page
 	
 	#Third Party Name
-	
 	When I press the "Parhau" button
 	Then I see "Mae problem" on the page
 	And I see "Nodwch eich enw cyntaf" on the page
@@ -57,7 +54,6 @@ Scenario Outline: Welsh_3rd_ErrorChecks
 	Then I see "Eich perthynas â'r unigolyn" on the page
 	
 	#Third Party Relationship
-	
 	When I press the "Parhau" button
 	Then I see "Mae problem" on the page
 	And I see "Nodwch sut ydych chi'n adnabod yr unigolyn sydd wedi cael gwŷs i wasanaethu ar reithgor" on the page
@@ -66,7 +62,6 @@ Scenario Outline: Welsh_3rd_ErrorChecks
 	Then I see "Eich manylion cyswllt" on the page
 	
 	#3rd Party Contact
-	
 	When I press the "Parhau" button
 	Then I see "Mae problem" on the page
 	And I see "Dewiswch sut yr hoffech i ni gysylltu â chi" on the page
@@ -92,7 +87,6 @@ Scenario Outline: Welsh_3rd_ErrorChecks
 	Then I see "Pam ydych chi'n ymateb ar ran yr unigolyn arall?" on the page
 	
 	#Why Replying
-	
 	When I press the "Parhau" button
 	Then I see "Mae problem" on the page
 	And I see "Dywedwch wrthym pam ydych chi'n ymateb ar ran yr unigolyn a enwir ar y wŷs rheithgor" on the page
@@ -108,9 +102,6 @@ Scenario Outline: Welsh_3rd_ErrorChecks
 	Then I see "A yw'r enw sydd gennym ar ei gyfer yn gywir?" on the page
 	
 	#Check Juror Name
-	#JDB-4281
-	#JDB-4125
-
 	When I set the radio button to "Na"
 	And I press the "Parhau" button
 	And I set "Enw cyntaf" to ""
@@ -128,8 +119,7 @@ Scenario Outline: Welsh_3rd_ErrorChecks
 	And I see "Os bydd ei gyfeiriad yn newid yn fuan, nodwch ei gyfeiriad presennol, er mwyn i ni allu cysylltu ag ef." on the page
 	And I see "Os ydyw yn symud o'r ardal lle mae'n byw ar hyn o bryd, mae'n bosibl y byddwn yn newid lleoliad ei wasanaeth rheithgor." on the page
 	
-	#Check address JDB-3526
-	
+	#Check address
 	When I set the radio button to "Na"
 	And I press the "Parhau" button
 	And I set "Cod post" to ""
@@ -139,16 +129,13 @@ Scenario Outline: Welsh_3rd_ErrorChecks
 	And I see "Nodwch y dref neu'r ddinas" on the page
 	And I see "Nodwch y cod post" on the page
 	
-	#Checking Invalids check with Jorge
+	#Checking Invalids heck with Jorge
 	
 	And I set input field with "id" of "addressTown" to "|||"
-#	And I set "Tref neu ddinas" to "|||"
 
 	And I set input field with "id" of "addressCounty" to "|||"
-#	And I set "Sir (dewisol)" to "|||"
 
 	And I set input field with "id" of "addressPostcode" to "|||"
-#	And I set "Cod post" to "|||"
 
 	And I press the "Parhau" button
 	Then I see "Mae problem" on the page
@@ -162,37 +149,30 @@ Scenario Outline: Welsh_3rd_ErrorChecks
 	Then I see "Nodwch ddyddiad geni'r unigolyn rydych chi'n ymateb ar ei ran" on the page
 	
 	#Juror DoB
-	
 	When I press the "Parhau" button
 	Then I see "Mae problem" on the page
 	And I see "Nodwch y diwrnod gafodd yr unigolyn ei eni" on the page
+	
+	When I set "Diwrnod" to "27"
 
-	And I set input field with "id" of "dobDay" to "27"
-#	When I set "Diwrnod" to "27"
+	And I set "Mis" to "04"
 
-	And I set input field with "id" of "dobMonth" to "04"
-#	And I set "Mis" to "04"
-
-	And I set input field with "id" of "dobYear" to "198a"
-#	And I set "Blwyddyn" to "198a"
+	And I set "Blwyddyn" to "198a"
 
 	And I press the "Parhau" button
 	Then I see "Mae problem" on the page
 	And I see "Rhowch y flwyddyn y ganwyd yr unigolyn fel rhif 4 digid. Er enghraifft, 1982" on the page
-	
-	And I set input field with "id" of "dobDay" to "27"
-#	When I set "Diwrnod" to "27"
 
-	And I set input field with "id" of "dobMonth" to "04"
-#	And I set "Mis" to "04"
+	When I set "Diwrnod" to "27"
 
-	And I set input field with "id" of "dobYear" to "1981"
-#	And I set "Blwyddyn" to "1981"
+	And I set "Mis" to "04"
+
+	And I set "Blwyddyn" to "1981"
+
 	And I press the "Parhau" button
 	Then I see "Efallai bydd yn rhaid inni gysylltu â'r unigolyn i ofyn rhagor o gwestiynau neu roi rhagor o wybodaeth iddynt am eu gwasanaeth rheithgor" on the page
 	
 	#Contacting the Juror
-	
 	When I press the "Parhau" button
 	Then I see "Mae problem" on the page
 	And I see "Dewiswch rif ffôn cyswllt i ni ei ddefnyddio i gysylltu â chi neu'r rheithiwr" on the page
@@ -206,20 +186,10 @@ Scenario Outline: Welsh_3rd_ErrorChecks
 	And I see "Nodwch y prif rif ffôn" on the page
 	And I see "Nodwch gyfeiriad e-bost cyswllt" on the page
 
-	When I set "Prif rif ffôn" to "|||"
-	And I set "Rhif ffôn arall (dewisol)" to "|||"
-	And I set "Nodwch y cyfeiriad e-bost" to "|||"
-	And I set "Nodwch y cyfeiriad e-bost unwaith eto" to "|||"
-	And I press the "Parhau" button
-	Then I see "Gwiriwch y prif rif ffôn" on the page
-	And I see "Gwiriwch y rhif ffôn arall" on the page
-	And I see "Gwiriwch y cyfeiriad e-bost" on the page
-	
 	When I set "Prif rif ffôn" to "02078211818"
 	And I set "Nodwch y cyfeiriad e-bost" to "email@outlook.com"
 	And I set "Nodwch y cyfeiriad e-bost unwaith eto" to "mismatch@outlook.com"
 	And I press the "Parhau" button
-	Then I see "Gwiriwch y rhif ffôn arall" on the page
 	Then I see "Nodwch gyfeiriad e-bost a gwiriwch eich fod yr un fath â beth sydd yn y blwch cyntaf" on the page
 	
 	When I set the radio button to "Defnyddio'r rhif ffôn rydych eisoes wedi'i ddarparu i gysylltu â chi"
@@ -227,12 +197,10 @@ Scenario Outline: Welsh_3rd_ErrorChecks
 	And I press the "Parhau" button
 	
 	#Eligibility
-	
 	Then I see "Cadarnhau a yw'r unigolyn yn gymwys i wasanaethu ar reithgor" on the page
 	When I press the "Parhau" button
 	
 	#Residency Yes
-	
 	Then I see "Ers iddynt droi'n 13 oed, a yw eu prif gyfeiriad wedi bod yn y DU, Ynysoedd y Sianel neu Ynys Manaw am unrhyw gyfnod o 5 mlynedd o leiaf?" on the page
 	When I press the "Parhau" button
 	Then I see "Mae problem" on the page
@@ -246,7 +214,6 @@ Scenario Outline: Welsh_3rd_ErrorChecks
 	And I press the "Parhau" button
 	
 	#CJS no
-	
 	Then I see "A yw'r person yr ydych yn ymateb ar ei ran wedi gweithio yn y system cyfiawnder troseddol yn y 5 mlynedd diwethaf?" on the page
 	When I press the "Parhau" button
 	Then I see "Mae problem" on the page
@@ -254,9 +221,7 @@ Scenario Outline: Welsh_3rd_ErrorChecks
 	
 	When I set the radio button to "Ydy"
 	And I press the "Parhau" button
-	
-	#JDB-3525 AND JDB-3881 test, should NOT allow to progress straight to RA
-	
+
 	Then I see "Ticiwch unrhyw sefydliadau mae'r unigolyn wedi gweithio iddynt yn uniongyrchol (nid fel trydydd parti neu is-gontractwr)" on the page
 	
 	When I check the "Yr heddlu" checkbox
@@ -274,7 +239,6 @@ Scenario Outline: Welsh_3rd_ErrorChecks
 	And I press the "Parhau" button
 	
 	#Bail no
-
 	Then I see "A yw'r unigolyn ar fechnïaeth ar hyn o bryd am gyflawni trosedd?" on the page
 	When I press the "Parhau" button
 	Then I see "Mae problem" on the page
@@ -289,7 +253,6 @@ Scenario Outline: Welsh_3rd_ErrorChecks
 	And I press the "Parhau" button
 	
 	#Convictions no
-	
 	Then I see "A yw'r unigolyn wedi'i gael yn euog o drosedd?" on the page
 	When I press the "Parhau" button
 	Then I see "Mae problem" on the page
@@ -304,7 +267,6 @@ Scenario Outline: Welsh_3rd_ErrorChecks
 	And I press the "Parhau" button
 	
 	#Mental health part 1 no
-	
 	Then I see "A ydi'r person yr ydych yn ymateb ar ei ran yn cael ei gadw, ei warchod neu ei drin o dan y Ddeddf Iechyd Meddwl?" on the page
 	When I press the "Parhau" button
 	Then I see "Mae problem" on the page
@@ -319,7 +281,6 @@ Scenario Outline: Welsh_3rd_ErrorChecks
 	And I press the "Parhau" button
 	
 	#Mental health part 2 no
-	
 	Then I see "A wnaed penderfyniad nad oes gan y person yr ydych yn ymateb ar ei ran y 'gallu meddyliol'?" on the page
 	When I press the "Parhau" button
 	Then I see "Mae problem" on the page
@@ -334,7 +295,6 @@ Scenario Outline: Welsh_3rd_ErrorChecks
 	And I press the "Parhau" button
 	
 	#I can attend
-	
 	Then I see "Gwiriwch eich dyddiad dechrau" on the page
 	When I press the "Parhau" button
 	Then I see "Mae problem" on the page
@@ -344,7 +304,6 @@ Scenario Outline: Welsh_3rd_ErrorChecks
 	And  I press the "Parhau" button
 	
 	#RA no
-	
 	Then I see "A fydd yr unigolyn rydych yn ymateb ar ei ran angen cymorth pan fydd yn y llys?" on the page
 	When I press the "Parhau" button
 	Then I see "Mae problem" on the page
@@ -366,7 +325,6 @@ Scenario Outline: Welsh_3rd_ErrorChecks
 	Then I see "Gwiriwch eich ymatebion nawr" on the page
 	
 	#Check Your Answers
-	
 	When I press the "Cyflwyno" button
 	Then I see "Mae problem" on the page
 	Then I see "Cadarnhewch fod eich gwybodaeth yn gywir cyn ichi anfon eich ymateb" on the page
@@ -378,7 +336,6 @@ Scenario Outline: Welsh_3rd_ErrorChecks
 	Then I see "Dywedwch wrthym pam fod angen dyddiad arall arnynt ar gyfer y gwasanaeth rheithgor" on the page
 	
 	#Deferral Reason
-	
 	When I press the "Parhau" button
 	Then I see "Mae problem" on the page
 	And I see "Nodwch eu rheswm dros fod angen dyddiad arall ar gyfer eu gwasanaeth rheithgor" on the page
@@ -387,8 +344,7 @@ Scenario Outline: Welsh_3rd_ErrorChecks
 	And I press the "Parhau" button
 	Then I see "Dewiswch 3 dydd Llun pan allant ddechrau gwasanaeth rheithgor" on the page
 	
-	#Deferral Dates JDB-3524
-	
+	#Deferral Dates
 	When I press the "Parhau" button
 	Then I see "Mae problem" on the page
 	And I see "Rhowch y dydd Llun cyntaf y byddai'n well ganddynt ddechrau gwasanaeth rheithgor" on the page
@@ -429,7 +385,6 @@ Scenario Outline: Welsh_3rd_ErrorChecks
 	And I press the "Parhau" button
 	
 	#Check Your Answers
-	
 	Then I see "Gwiriwch eich ymatebion nawr" on the page
 	
 	When I click on the "Newid" link in the same row as "Cadarnhewch ddyddiad ei wasanaeth rheithgor"
@@ -440,7 +395,6 @@ Scenario Outline: Welsh_3rd_ErrorChecks
 	Then I see "Pam fod angen iddo gael ei esgusodi rhag gwasanaethu ar reithgor?" on the page
 	
 	#Excusal Reason
-	
 	When I press the "Parhau" button
 	Then I see "Mae problem" on the page
 	And I see "Rhowch y rheswm pam na all wasanaethu ar reithgor yn ystod y 12 mis nesaf" on the page
@@ -450,11 +404,10 @@ Scenario Outline: Welsh_3rd_ErrorChecks
 	Then I see "Gwiriwch eich ymatebion nawr" on the page
 	
 	#When I press the "Submit" button
-	
 	When I check the "Hyd gwn i, mae'r wybodaeth rwyf wedi ei rhoi am yr unigolyn rwyf yn ymateb ar ei ran yn gywir." checkbox
 	And I press the "Cyflwyno" button
 	Then I see "Rydym wedi anfon e-bost i ddweud eich bod wedi ymateb i'r wŷs hon." on the page
 	
 Examples:
-	|part_no		|last_name	|postcode	|pool_no	|
-	|641500795		|DOE		|SW1H 9AJ	|415170401	|
+	| juror_number	| last_name	| postcode	| pool_number	|
+	| 045700074		| DOE		| SW1H 9AJ	| 457300074		|

@@ -149,7 +149,7 @@ public class StepDef {
 				LGN.loginADTestRoute(username);
 				break;
 		}
-
+		NAV.waitForPageLoad(180);
 		if (LGN.courtOptionsDisplayed()) {
 			ArrayList<String> userCourts = DBT.getUserCourts(username);
 			log.info("courts: " + userCourts);
@@ -177,7 +177,6 @@ public class StepDef {
 			LGN.clickContinue();
 		}
 
-		//LGN.login(username, System.getenv(username + "_PASSWORD"));
 		NAV.waitForPageLoad(180); // 3 Minute login timeout - Up from 120 seconds - Up from 60 seconds
 	}
 

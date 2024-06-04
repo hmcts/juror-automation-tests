@@ -12,7 +12,7 @@ Feature: JM-6261 - As a bureau officer I need to be able to resend an initial su
     #log on and search for juror
     And I delete all letters within the pool "<pool_number>" for the letter
     And a initial summons letter inserted for juror "<juror_number>"
-    And I log in as "<user>"
+    And I log in as "<user>" selecting court "415"
     And I press the "Apps" button
     And I click on the "Pool management" link     
 
@@ -25,7 +25,7 @@ Feature: JM-6261 - As a bureau officer I need to be able to resend an initial su
     And I set "Enter pool number" to "<pool_number>"
     And I press the "Search" button
     And I see "<pool_number>" on the page
-    Then I check all the checkboxes in the letters table for the initial summons letter
+    Then I check all the checkboxes in the letters table
     And I press the "Resend initial summons" button
     And I see "1 document sent for printing" on the page
 

@@ -620,6 +620,7 @@ public class DatabaseTesterNewSchemaDesign {
 			conn.commit();
 			log.info("Deleted from juror_mod.message where juror_number=>" + juror_number);
 
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 			log.error("Message:" + e.getMessage());
@@ -2065,7 +2066,7 @@ public class DatabaseTesterNewSchemaDesign {
 			pStmt.execute();
 
 			pStmt = conn.prepareStatement("insert into juror_mod.juror (juror_number,poll_number,title,last_name,first_name,dob,ADDRESS_LINE_1,ADDRESS_LINE_2,ADDRESS_LINE_3,ADDRESS_LINE_4,ADDRESS_LINE_5,POSTCODE,h_phone,w_phone,w_ph_local,responded,date_excused,excusal_code,acc_exc,date_disq,disq_code,user_edtq,notes,no_def_pos,perm_disqual,reasonable_adj_code,reasonable_adj_msg,sort_code,bank_acct_name,bank_acct_no,bldg_soc_roll_no,welsh,police_check,last_update,summons_file,m_phone,h_email,contact_preference,notifications,date_created,optic_reference,pending_title,pending_first_name,pending_last_name)"
-					+ "values ('6" + court + "11111','857',null,'lname','fname',null,'address',null,null,null,null,'CH1 2NN',null,null,null,'Y',null,null,null,null,null,null,null,'1',null,null,null,null,null,null,null,'N',null,null,null,null,null,null,'0',null,null,null,null,null)");
+					+ "values ('6" + court + "11111','857',null,'lname','fname',null,'address',null,null,null,null,'CH1 2NN',null,null,null,'Y',null,null,null,null,null,null,null,'1',null,null,null,null,null,null,null,'N','NOT_CHECKED',null,null,null,null,null,'0',null,null,null,null,null)");
 			pStmt.execute();
 
 			pStmt = conn.prepareStatement("insert into juror_mod.juror_pool (juror_number,pool_number,owner,user_edtq,is_active,status,times_sel,def_date,location,no_attendances,no_attended,no_fta,no_awol,pool_seq,edit_tag,next_date,on_call,was_deferred,deferral_code,id_checked,postpone,paid_cash,scan_code,last_update,reminder_sent,transfer_date,date_created)"
@@ -3601,7 +3602,7 @@ public class DatabaseTesterNewSchemaDesign {
 				pStmt.execute();
 
 				pStmt = conn.prepareStatement("insert into juror_mod.juror (juror_number,poll_number,title,last_name,first_name,dob,ADDRESS_LINE_1,ADDRESS_LINE_2,ADDRESS_LINE_3,ADDRESS_LINE_4,ADDRESS_LINE_5,POSTCODE,h_phone,w_phone,w_ph_local,responded,date_excused,excusal_code,acc_exc,date_disq,disq_code,user_edtq,notes,no_def_pos,perm_disqual,reasonable_adj_code,reasonable_adj_msg,sort_code,bank_acct_name,bank_acct_no,bldg_soc_roll_no,welsh,police_check,last_update,summons_file,m_phone,h_email,contact_preference,notifications,date_created,optic_reference,pending_title,pending_first_name,pending_last_name)"
-						+ "values ('0" + court + "0000" + index + "','857',null,'lname','fname',null,'address',null,null,null,null,'CH1 2NN',null,null,null,'Y',null,null,null,null,null,null,null,'1',null,null,null,null,null,null,null,'N',null,null,null,null,null,null,'0',null,null,null,null,null)");
+						+ "values ('0" + court + "0000" + index + "','857',null,'lname','fname',null,'address',null,null,null,null,'CH1 2NN',null,null,null,'Y',null,null,null,null,null,null,null,'1',null,null,null,null,null,null,null,'N','NOT_CHECKED',null,null,null,null,null,'0',null,null,null,null,null)");
 				pStmt.execute();
 
 				pStmt = conn.prepareStatement("insert into juror_mod.juror_pool (juror_number,pool_number,owner,user_edtq,is_active,status,times_sel,def_date,location,no_attendances,no_attended,no_fta,no_awol,pool_seq,edit_tag,next_date,on_call,was_deferred,deferral_code,id_checked,postpone,paid_cash,scan_code,last_update,reminder_sent,transfer_date,date_created)"
@@ -3751,7 +3752,7 @@ public class DatabaseTesterNewSchemaDesign {
 			pStmt.execute();
 
 			pStmt = conn.prepareStatement("insert into juror_mod.juror (juror_number,poll_number,title,last_name,first_name,dob,ADDRESS_LINE_1,ADDRESS_LINE_2,ADDRESS_LINE_3,ADDRESS_LINE_4,ADDRESS_LINE_5,POSTCODE,h_phone,w_phone,w_ph_local,responded,date_excused,excusal_code,acc_exc,date_disq,disq_code,user_edtq,notes,no_def_pos,perm_disqual,reasonable_adj_code,reasonable_adj_msg,sort_code,bank_acct_name,bank_acct_no,bldg_soc_roll_no,welsh,police_check,last_update,summons_file,m_phone,h_email,contact_preference,notifications,date_created,optic_reference,pending_title,pending_first_name,pending_last_name)"
-					+ "values ('9" + court + "99999','857',null,'lname','fname',null,'address',null,null,null,null,'CH1 2NN',null,null,null,false,null,null,null,null,null,null,null,'1',null,null,null,null,null,null,null,'N',null,null,null,null,null,null,'0',null,null,null,null,null)");
+					+ "values ('9" + court + "99999','857',null,'lname','fname',null,'address',null,null,null,null,'CH1 2NN',null,null,null,false,null,null,null,null,null,null,null,'1',null,null,null,null,null,null,null,'N','NOT_CHECKED',null,null,null,null,null,'0',null,null,null,null,null)");
 			pStmt.execute();
 
 			pStmt = conn.prepareStatement("insert into juror_mod.juror_pool (juror_number,pool_number,owner,user_edtq,is_active,status,times_sel,def_date,location,no_attendances,no_attended,no_fta,no_awol,pool_seq,edit_tag,next_date,on_call,was_deferred,deferral_code,id_checked,postpone,paid_cash,scan_code,last_update,reminder_sent,transfer_date,date_created)"
@@ -3759,7 +3760,7 @@ public class DatabaseTesterNewSchemaDesign {
 			pStmt.execute();
 
 			pStmt = conn.prepareStatement("insert into juror_mod.juror (juror_number,poll_number,title,last_name,first_name,dob,ADDRESS_LINE_1,ADDRESS_LINE_2,ADDRESS_LINE_3,ADDRESS_LINE_4,ADDRESS_LINE_5,POSTCODE,h_phone,w_phone,w_ph_local,responded,date_excused,excusal_code,acc_exc,date_disq,disq_code,user_edtq,notes,no_def_pos,perm_disqual,reasonable_adj_code,reasonable_adj_msg,sort_code,bank_acct_name,bank_acct_no,bldg_soc_roll_no,welsh,police_check,last_update,summons_file,m_phone,h_email,contact_preference,notifications,date_created,optic_reference,pending_title,pending_first_name,pending_last_name)"
-					+ "values ('9" + court + "99998','857',null,'lname','fname',null,'address',null,null,null,null,'CH1 2NN',null,null,null,'Y',null,null,null,null,null,null,null,'1',null,null,null,null,null,null,null,'N',null,null,null,null,null,null,'0',null,null,null,null,null)");
+					+ "values ('9" + court + "99998','857',null,'lname','fname',null,'address',null,null,null,null,'CH1 2NN',null,null,null,'Y',null,null,null,null,null,null,null,'1',null,null,null,null,null,null,null,'N','NOT_CHECKED',null,null,null,null,null,'0',null,null,null,null,null)");
 			pStmt.execute();
 
 			pStmt = conn.prepareStatement("insert into juror_mod.juror_pool (juror_number,pool_number,owner,user_edtq,is_active,status,times_sel,def_date,location,no_attendances,no_attended,no_fta,no_awol,pool_seq,edit_tag,next_date,on_call,was_deferred,deferral_code,id_checked,postpone,paid_cash,scan_code,last_update,reminder_sent,transfer_date,date_created)"
@@ -4081,7 +4082,7 @@ public class DatabaseTesterNewSchemaDesign {
 //			pStmt.execute();
 
 			pStmt = conn.prepareStatement("INSERT INTO JUROR_mod.JUROR_RESPONSE (JUROR_NUMBER,DATE_RECEIVED,TITLE,FIRST_NAME,LAST_NAME,ADDRESS_LINE_1,ADDRESS_LINE_2,ADDRESS_LINE_3,ADDRESS_LINE_4,ADDRESS_LINE_5,POSTCODE,PROCESSING_STATUS,DATE_OF_BIRTH,PHONE_NUMBER,ALT_PHONE_NUMBER,EMAIL,RESIDENCY,RESIDENCY_DETAIL,MENTAL_HEALTH_ACT,MENTAL_HEALTH_CAPACITY,MENTAL_HEALTH_ACT_DETAILS,BAIL,BAIL_DETAILS,CONVICTIONS,CONVICTIONS_DETAILS,DEFERRAL,DEFERRAL_REASON,DEFERRAL_DATE,REASONABLE_ADJUSTMENTS_ARRANGEMENTS,EXCUSAL,EXCUSAL_REASON,PROCESSING_COMPLETE,SIGNED,version,THIRDPARTY_FNAME,THIRDPARTY_LNAME,RELATIONSHIP,MAIN_PHONE,OTHER_PHONE,EMAIL_ADDRESS,THIRDPARTY_REASON,THIRDPARTY_OTHER_REASON,JUROR_PHONE_DETAILS,JUROR_EMAIL_DETAILS,STAFF_LOGIN,STAFF_ASSIGNMENT_DATE,URGENT,SUPER_URGENT,COMPLETED_AT,WELSH,REPLY_TYPE)"
-					+ "VALUES ('" + newJurorRecordNumber + "',CURRENT_DATE-1,null,'FNAMEFIVESIXFIVE','LNAMEFIVESIXFIVE','565 STREET NAME','ANYTOWN',null,'ldsadas',null,'CH1 2AN','TODO',CURRENT_DATE-10000,null,null,null,'Y',null,'N','N',NULL,'N',null,'N',null,null,null,null,null,null,null,'N','N','0',null,null,null,null,null,null,null,null,null,null,'MODTESTBUREAU',null,'N','N',null,'N',null)");
+					+ "VALUES ('" + newJurorRecordNumber + "',CURRENT_DATE-1,null,'FNAMEFIVESIXFIVE','LNAMEFIVESIXFIVE','565 STREET NAME','ANYTOWN',null,'ldsadas',null,'CH1 2AN','TODO',CURRENT_DATE-10000,null,null,null,'Y',null,'N','N',NULL,'N',null,'N',null,null,null,null,null,null,null,'N','N','0',null,null,null,null,null,null,null,null,null,null,'MODTESTBUREAU',null,'N','N',null,'N','Digital')");
 			pStmt.execute();
 
 		} catch (SQLException e) {
@@ -4610,10 +4611,44 @@ public class DatabaseTesterNewSchemaDesign {
 
 		try {
 			pStmt = conn.prepareStatement("UPDATE juror_mod.juror set h_email='test@test.com' where juror_number='" + jurorNumber + "'");
-			pStmt.executeUpdate();
+			int rowsUpdated = pStmt.executeUpdate();
+			if (rowsUpdated > 0) {
+				log.info("h_email updated successfully for juror_number: " + jurorNumber);
+			} else {
+				throw new SQLException("Failed to update h_email for juror_number: " + jurorNumber);
+			}
 
 			pStmt = conn.prepareStatement("UPDATE juror_mod.juror set h_phone='07966676543' where juror_number='" + jurorNumber + "'");
-			pStmt.executeUpdate();
+			rowsUpdated = pStmt.executeUpdate();
+			if (rowsUpdated > 0) {
+				log.info("h_phone updated successfully for juror_number: " + jurorNumber);
+			} else {
+				throw new SQLException("Failed to update h_phone for juror_number: " + jurorNumber);
+			}
+
+			pStmt = conn.prepareStatement("UPDATE juror_mod.juror set m_phone='07966274548' where juror_number='" + jurorNumber + "'");
+			rowsUpdated = pStmt.executeUpdate();
+			if (rowsUpdated > 0) {
+				log.info("m_phone updated successfully for juror_number: " + jurorNumber);
+			} else {
+				throw new SQLException("Failed to update m_phone for juror_number: " + jurorNumber);
+			}
+
+			pStmt = conn.prepareStatement("SELECT h_email, h_phone, m_phone FROM juror_mod.juror WHERE juror_number='" + jurorNumber + "'");
+			ResultSet rs = pStmt.executeQuery();
+			if (rs.next()) {
+				String hEmail = rs.getString("h_email");
+				String hPhone = rs.getString("h_phone");
+				String mPhone = rs.getString("m_phone");
+
+				if ("test@test.com".equals(hEmail) && "07966676543".equals(hPhone) && "07966274548".equals(mPhone)) {
+					log.info("All fields updated successfully for juror_number: " + jurorNumber);
+				} else {
+					throw new SQLException("Field verification failed for juror_number: " + jurorNumber);
+				}
+			} else {
+				throw new SQLException("Juror not found with juror_number: " + jurorNumber);
+			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -4750,7 +4785,7 @@ public class DatabaseTesterNewSchemaDesign {
 			pStmt.executeUpdate();
 
 			pStmt = conn.prepareStatement("INSERT INTO juror_mod.bulk_print_data (juror_no,creation_date,form_type,detail_rec,extracted_flag,digital_comms)"
-					+ "VALUES ('" + jurorNumber + "',NOW(),'5224A','THE CROWN COURT AT CHESTER JURY CENTRAL SUMMONING BUREAU THE COURT SERVICE',false,NULL)");
+					+ "VALUES ('" + jurorNumber + "',NOW(),'5224A','THE CROWN COURT AT CHESTER JURY CENTRAL SUMMONING BUREAU THE COURT SERVICE',false,false)");
 			pStmt.executeUpdate();
 
 		} catch (SQLException e) {

@@ -29,16 +29,6 @@ def product = "juror"
 def component = "automation-tests"
 
 def secrets = [
-  "juror-${params.EnvironmentChoice}": [
-    secret('automation-tests-modtestbureau', 'MODTESTBUREAU_PASSWORD'), 
-    secret('automation-tests-modtestcourt', 'MODTESTCOURT_PASSWORD'),
-    secret('automation-tests-system', 'SYSTEM_PASSWORD'),
-    secret('automation-tests-sjouser', 'SJOUSER_PASSWORD'),
-    secret('automation-tests-sjouser1', 'SJOUSER1_PASSWORD'),
-    secret('automation-tests-aramis1', 'ARAMIS1_PASSWORD'),
-    secret('automation-tests-cpass', 'CPASS_PASSWORD'),
-    secret('automation-tests-modcourt', 'MODCOURT_PASSWORD'),
-  ],
   'juror-stg': [
     secret('api-POSTGRES-USER', 'DATABASE_STG_USERNAME'),
     secret('api-POSTGRES-PASS', 'DATABASE_STG_PASSWORD'),

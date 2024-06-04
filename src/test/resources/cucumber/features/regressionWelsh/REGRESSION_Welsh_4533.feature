@@ -1,23 +1,21 @@
 Feature: Regression Welsh Cookie Policy
 
-@RegressionWelsh @JDB-4533 
+@RegressionWelsh @NewSchemaConverted
 Scenario Outline: Welsh Cookie Policy
-	Given I am on the welsh version of "Public" "bau-test"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+
+	Given I am on the welsh version of "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court | juror_number  	| pool_number	| att_date_weeks_in_future	| owner |
+		| 457   | <juror_number>	| <pool_number>	| 5				            | 400	|
 		
 	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
 	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
-
-
 	
 	#Cookies Policy
-	
 	And I click on the "Cwcis" link
 	
 	#Opens new tab
-	
 	And on the page I see
 	|text|
 	|Cwcis|
@@ -110,8 +108,8 @@ Scenario Outline: Welsh Cookie Policy
     #Then I press the "back" button on my browser
     
 Examples:
-	|part_no	|last_name	|postcode	|pool_no	|
-	|641500567	|LastNameB	|SW1H 9AJ	|415170401	|
+	| juror_number	| last_name	| postcode	| pool_number	|
+	| 045700076		| LastNameB	| SW1H 9AJ	| 457300076		|
 
 
 @RegressionWelsh @JDB-4533 

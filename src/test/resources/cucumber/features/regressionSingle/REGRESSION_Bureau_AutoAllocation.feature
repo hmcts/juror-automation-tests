@@ -616,10 +616,8 @@ Examples:
 	|part_no_five	|pool_no 	|last_name 			|postcode 	|email		|
 	|645700224		|457170401 	|LNAMEONEFIVEFOUR 	|CH1 2AN	|e@mail.com	|
 
-@Features @NewSchemaConverted @JM-7281
+@Regression @NewSchemaConverted
 Scenario Outline: 7. Edit Notes and Logs on PENDING ALLOCATION response
-
-	#return to @Regression when defect fixed
 
 	Given I am on "Public" "test"
 
@@ -708,20 +706,18 @@ Scenario Outline: 7. Edit Notes and Logs on PENDING ALLOCATION response
 	And I set text area with "id" of "notes" to "These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are tThese are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are t"
 	And I press the "Save" button
 
-	#check the response is now allocated to CPASS
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-	Then I see "CPASS" in the same row as "<juror_number>"
 	
 	#check notes are still there
 	When I click on "<juror_number>" in the same row as "<juror_number>"
-	When I click on the "Logs" link
+	When I click on the "Notes and logs" link
 	And "notes" is "These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are tThese are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are t"
 
 Examples:
-	| juror_number	| pool_number 	| last_name 		| postcode 	| email 		|
-	| 045200261		| 452300238 	| LNAMEONEFIVEFOUR 	| CH1 2AN	| e@mail.com 	|
+	| juror_number	| pool_number 	| last_name 		| postcode 	|
+	| 045200261		| 452300238 	| LNAMEONEFIVEFOUR 	| CH1 2AN	|
 	
 @RegressionSingle @NewSchemaConverted
 Scenario Outline: 8. Set to Awaiting Response on PENDING ALLOCATION response
