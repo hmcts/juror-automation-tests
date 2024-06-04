@@ -620,6 +620,7 @@ public class DatabaseTesterNewSchemaDesign {
 			conn.commit();
 			log.info("Deleted from juror_mod.message where juror_number=>" + juror_number);
 
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 			log.error("Message:" + e.getMessage());
@@ -4081,7 +4082,7 @@ public class DatabaseTesterNewSchemaDesign {
 //			pStmt.execute();
 
 			pStmt = conn.prepareStatement("INSERT INTO JUROR_mod.JUROR_RESPONSE (JUROR_NUMBER,DATE_RECEIVED,TITLE,FIRST_NAME,LAST_NAME,ADDRESS_LINE_1,ADDRESS_LINE_2,ADDRESS_LINE_3,ADDRESS_LINE_4,ADDRESS_LINE_5,POSTCODE,PROCESSING_STATUS,DATE_OF_BIRTH,PHONE_NUMBER,ALT_PHONE_NUMBER,EMAIL,RESIDENCY,RESIDENCY_DETAIL,MENTAL_HEALTH_ACT,MENTAL_HEALTH_CAPACITY,MENTAL_HEALTH_ACT_DETAILS,BAIL,BAIL_DETAILS,CONVICTIONS,CONVICTIONS_DETAILS,DEFERRAL,DEFERRAL_REASON,DEFERRAL_DATE,REASONABLE_ADJUSTMENTS_ARRANGEMENTS,EXCUSAL,EXCUSAL_REASON,PROCESSING_COMPLETE,SIGNED,version,THIRDPARTY_FNAME,THIRDPARTY_LNAME,RELATIONSHIP,MAIN_PHONE,OTHER_PHONE,EMAIL_ADDRESS,THIRDPARTY_REASON,THIRDPARTY_OTHER_REASON,JUROR_PHONE_DETAILS,JUROR_EMAIL_DETAILS,STAFF_LOGIN,STAFF_ASSIGNMENT_DATE,URGENT,SUPER_URGENT,COMPLETED_AT,WELSH,REPLY_TYPE)"
-					+ "VALUES ('" + newJurorRecordNumber + "',CURRENT_DATE-1,null,'FNAMEFIVESIXFIVE','LNAMEFIVESIXFIVE','565 STREET NAME','ANYTOWN',null,'ldsadas',null,'CH1 2AN','TODO',CURRENT_DATE-10000,null,null,null,'Y',null,'N','N',NULL,'N',null,'N',null,null,null,null,null,null,null,'N','N','0',null,null,null,null,null,null,null,null,null,null,'MODTESTBUREAU',null,'N','N',null,'N',null)");
+					+ "VALUES ('" + newJurorRecordNumber + "',CURRENT_DATE-1,null,'FNAMEFIVESIXFIVE','LNAMEFIVESIXFIVE','565 STREET NAME','ANYTOWN',null,'ldsadas',null,'CH1 2AN','TODO',CURRENT_DATE-10000,null,null,null,'Y',null,'N','N',NULL,'N',null,'N',null,null,null,null,null,null,null,'N','N','0',null,null,null,null,null,null,null,null,null,null,'MODTESTBUREAU',null,'N','N',null,'N','Digital')");
 			pStmt.execute();
 
 		} catch (SQLException e) {
