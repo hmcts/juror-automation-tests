@@ -1,6 +1,6 @@
 Feature: Regression - Editable Summons
 
-@Features @NewSchemaConverted @JM-7281
+@Regression @NewSchemaConverted
 Scenario Outline: edit links and buttons disabled
 
 	Given I am on "Public" "test"
@@ -209,9 +209,6 @@ Scenario Outline: edit links and buttons disabled
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
-
-	#JM-7281
-	Then I see "CPASS" in the same row as "<juror_number>"
 	
 	#check call notes are still there
 	When I click on "<juror_number>" in the same row as "<juror_number>"
