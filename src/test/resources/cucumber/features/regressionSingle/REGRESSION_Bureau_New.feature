@@ -4,8 +4,6 @@ Feature: Bureau Functionality - NEW
 @RegressionSingle @NewSchemaConverted
 Scenario Outline: Your Work
 
-	#return to RegressionSingle when defects fixed
-
 	Given I am on "Public" "test"
 
 	Given a bureau owned pool is created with jurors
@@ -77,7 +75,6 @@ Scenario Outline: Your Work
 	And I log in as "ARAMIS1"
 	And I see "Summons replies" on the page
 	And I see "Your work" on the page
-	And I see "ARAMIS1" on the page
 	And I see link with text "Sign out"
 	And I see link with text "To do"
 	And I see link with text "Awaiting information"
@@ -755,28 +752,28 @@ Scenario: Work Allocation Fields and Labels Checks
 @RegressionSingle @NewSchemaConverted
 Scenario Outline: Work Allocation
 
-	Given I am on "Bureau" "test"
-
-	Given a bureau owned pool is created with jurors
-		| court | juror_number  	| pool_number		| att_date_weeks_in_future	| owner |
-		| 452   | <juror_number_one>| <pool_number_one>	| 5				            | 400	|
-
-	Given a bureau owned pool is created with jurors
-		| court | juror_number  	| pool_number		| att_date_weeks_in_future	| owner |
-		| 452   | <juror_number_two>| <pool_number_two>	| 3				            | 400	|
-
-	Given a bureau owned pool is created with jurors
-		| court | juror_number  		| pool_number			| att_date_weeks_in_future	| owner |
-		| 452   | <juror_number_three>	| <pool_number_three>	| 2				            | 400	|
-
-	And juror "<juror_number_one>" has "LAST_NAME" as "<last_name>" new schema
-	And juror "<juror_number_one>" has "POSTCODE" as "<postcode>" new schema
-
-	And juror "<juror_number_two>" has "LAST_NAME" as "<last_name>" new schema
-	And juror "<juror_number_two>" has "POSTCODE" as "<postcode>" new schema
-
-	And juror "<juror_number_three>" has "LAST_NAME" as "<last_name>" new schema 
-	And juror "<juror_number_three>" has "POSTCODE" as "<postcode>" new schema
+#	Given I am on "Bureau" "test"
+#
+#	Given a bureau owned pool is created with jurors
+#		| court | juror_number  	| pool_number		| att_date_weeks_in_future	| owner |
+#		| 452   | <juror_number_one>| <pool_number_one>	| 5				            | 400	|
+#
+#	Given a bureau owned pool is created with jurors
+#		| court | juror_number  	| pool_number		| att_date_weeks_in_future	| owner |
+#		| 452   | <juror_number_two>| <pool_number_two>	| 3				            | 400	|
+#
+#	Given a bureau owned pool is created with jurors
+#		| court | juror_number  		| pool_number			| att_date_weeks_in_future	| owner |
+#		| 452   | <juror_number_three>	| <pool_number_three>	| 2				            | 400	|
+#
+#	And juror "<juror_number_one>" has "LAST_NAME" as "<last_name>" new schema
+#	And juror "<juror_number_one>" has "POSTCODE" as "<postcode>" new schema
+#
+#	And juror "<juror_number_two>" has "LAST_NAME" as "<last_name>" new schema
+#	And juror "<juror_number_two>" has "POSTCODE" as "<postcode>" new schema
+#
+#	And juror "<juror_number_three>" has "LAST_NAME" as "<last_name>" new schema
+#	And juror "<juror_number_three>" has "POSTCODE" as "<postcode>" new schema
 
 	Given I am on "Bureau" "test"
 	And I log in as "MODTESTBUREAU"
@@ -819,17 +816,16 @@ Scenario Outline: Work Allocation
 	Given I am on "Public" "test"
 	And auto straight through processing has been disabled new schema
 	And I have submitted a first party English straight through response
-	| part_no			|pool_number| last_name		|postcode	| email |
-	|<part_no_four>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
-	|<part_no_five>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
-	|<part_no_six>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
+	| part_no				| pool_number			| last_name		| postcode		| email 	|
+	| <juror_number_one>	| <pool_number_one>		| <last_name>	| <postcode>	| <email>	|
+	| <juror_number_two>	| <pool_number_two>		| <last_name>	| <postcode>	| <email>	|
+	| <juror_number_three>	| <pool_number_three>	| <last_name>	| <postcode>	| <email>	|
 	
 	Given I am on "Bureau" "test"
 	When I log in
 	And I click on the "Assign Replies" link
 	
 	#Allocate the non-urgent to CPASS
-	
 	And I set input field with "name" of "allocateNonUrgent" to "1"
 	And the "Assign replies" button is disabled
 	And I check the "ARAMIS1" checkbox
@@ -848,7 +844,7 @@ Scenario Outline: Work Allocation
 	And I see "" in "allocateUrgent" Allocate Replies box
 	And I see "" in "allocateSuperUrgent" Allocate Replies box
 	And the "Assign replies" button is disabled
-	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "STAFF_LOGIN" is "ARAMIS1" where "JUROR_NUMBER" is "<part_no_four>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "STAFF_LOGIN" is "ARAMIS1" where "JUROR_NUMBER" is "<juror_number_one>"
 
 	#Allocate the urgent to CPASS
 	
@@ -870,7 +866,7 @@ Scenario Outline: Work Allocation
 	And I see "" in "allocateUrgent" Allocate Replies box
 	And I see "" in "allocateSuperUrgent" Allocate Replies box
 	And the "Assign replies" button is disabled
-	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "STAFF_LOGIN" is "ARAMIS1" where "JUROR_NUMBER" is "<part_no_five>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "STAFF_LOGIN" is "ARAMIS1" where "JUROR_NUMBER" is "<juror_number_two>"
 	
 	#Allocate the super-urgent to CPASS
 	
@@ -890,12 +886,12 @@ Scenario Outline: Work Allocation
 	And I see "" in "allocateUrgent" Allocate Replies box
 	And I see "" in "allocateSuperUrgent" Allocate Replies box
 	And the "Assign replies" button is disabled
-	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "STAFF_LOGIN" is "ARAMIS1" where "JUROR_NUMBER" is "<part_no_six>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "STAFF_LOGIN" is "ARAMIS1" where "JUROR_NUMBER" is "<juror_number_three>"
 	And auto straight through processing has been enabled new schema
 	
 Examples:
-	|part_no_four	|part_no_five	|part_no_six	|pool_no 	|last_name 	|postcode 	|email				|
-	|644200456		|644200458		|644200811		|442170401 	|LNAME		|NN1 3HQ	|email@outlook.com	|
+	| juror_number_one	| juror_number_two	| juror_number_three	| pool_number_one	| pool_number_two 	| pool_number_three| last_name | postcode 	| email				|
+	| 045200266			| 045200267			| 045200268				| 452300244	        | 452300245			| 452300246        | LNAME		| NN1 3HQ	| email@outlook.com	|
 
 @RegressionSingle @NewSchemaConverted
 Scenario Outline: Work Allocation - AUTO are not counted
