@@ -811,7 +811,7 @@ Scenario Outline: Work Allocation
 	
 	And I set input field with "name" of "allocateNonUrgent" to "12345"
 	And I set input field with "name" of "allocateUrgent" to "12345"
-	
+
 	When I press the "Assign replies" button
 	And "ARAMIS1-standard" assigned replies count is "0"
 	And "ARAMIS1-urgent" assigned replies count is "0"
@@ -1126,7 +1126,7 @@ Scenario Outline: Results grid updates when status changes are made
 	Then I click on the "Search" link
 	And I set "Juror's pool number" to "<pool_number>"
 	And I press the "Search" button
-	
+
 	Then I see "ARAMIS1" in the same row as "<last_name>"
 
 	#now mark as awaiting info
