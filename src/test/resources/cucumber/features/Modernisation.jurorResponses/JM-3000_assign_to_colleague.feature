@@ -1,26 +1,23 @@
 Feature: JM-3000 Assign to a colleague
 
-@JurorTransformation
+@JurorTransformation @NewSchemaConverted
 Scenario Outline: JM-3000 Assign Reply Happy Path
 
 	#this test needs to stay in single threaded as it checks backlog counts which will be more dynamic in the multi threaded execution
 
 	Given I am on "Bureau" "test"
 
-	And pool no "<pool_no>" is reset to pending allocation
+	And pool no "<pool_number>" is reset to pending allocation
 	And I have cleared down the juror digital database
-	Given the juror numbers have not been processed new schema
-		| part_no 			| pool_no 	| owner |
-		| <part_no> 		|<pool_no>	| 400 	|
+	Given a bureau owned pool is created with jurors
+		| court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
+		| 415   | <juror_number> | <pool_number> | 5                        | 400   |
 
 	Given auto straight through processing has been enabled new schema
 
-	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
-	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
-
 	Given I have submitted a first party English ineligibilty response
-		| part_no			|pool_number	| last_name			|postcode		| email 	|details	|
-		|<part_no>			|<pool_no>		| <last_name>		|<postcode>		|<email>	|<details>	|
+		| part_no        | pool_number   | last_name   | postcode   | email   | details   |
+		| <juror_number> | <pool_number> | <last_name> | <postcode> | <email> | <details> |
 
 	Given I am on "Bureau" "test"
 	And I log in as "<user>"
@@ -73,40 +70,34 @@ Scenario Outline: JM-3000 Assign Reply Happy Path
 	And I click on the "Sign out" link
 
 Examples:
-	|part_no 	|user			|pool_no	|first_name |last_name		|postcode	|email				|details	|
-	|641500613	|MODTESTBUREAU	|415170401	|JOHN		|LNAMEEIGHTFOUR	|CH1 2AN	|email@bureauA.com	|12345abcde	|
+	| juror_number | user          | pool_number | first_name | last_name | postcode | email             | details    |
+	| 641500613    | MODTESTBUREAU | 415170401   | FNAME      | LNAME     | CH2 2AA  | email@bureauA.com | 12345abcde |
 
-	@JurorTransformation
+	@JurorTransformation @NewSchemaConverted
 	Scenario Outline: JM-3000 Assign Reply Errors Warnings Validations
 
 		#this test needs to stay in single threaded as it checks backlog counts which will be more dynamic in the multi threaded execution
 
 		Given I am on "Bureau" "test"
 
-		And pool no "<pool_no>" is reset to pending allocation
+		And pool no "<pool_number>" is reset to pending allocation
 		And I have cleared down the juror digital database
-		Given the juror numbers have not been processed new schema
-			| part_no 			| pool_no 	| owner |
-			| <part_no> 		|<pool_no>	| 400 	|
-			| <part_no_two> 	|<pool_no>	| 400 	|
+
+		Given a bureau owned pool is created with jurors
+			| court | juror_number       | pool_number   | att_date_weeks_in_future | owner |
+			| 415   | <juror_number>     | <pool_number> | 5                        | 400   |
+			| 415   | <juror_number_two> | <pool_number> | 5                        | 400   |
+
 
 		Given auto straight through processing has been enabled new schema
 
-		And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
-		And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
-
-		And "<part_no_two>" has "RET_DATE" as "5 mondays time"
-		And "<part_no_two>" has "NEXT_DATE" as "5 mondays time"
-		And "<part_no_two>" has "LNAME" as "<last_name_two>"
-		And "<part_no_two>" has "ZIP" as "<postcode>"
-
 		Given I have submitted a first party English ineligibilty response
-			| part_no			|pool_number	| last_name			|postcode		| email 	|details	|
-			|<part_no>			|<pool_no>		| <last_name>		|<postcode>		|<email>	|<details>	|
+			| part_no        | pool_number   | last_name   | postcode   | email   | details   |
+			| <juror_number> | <pool_number> | <last_name> | <postcode> | <email> | <details> |
 
 		Given I have submitted a first party English straight through response
-			| part_no			|pool_number	| last_name			|postcode		| email 	|details	|
-			|<part_no_two>		|<pool_no>		| <last_name_two>	|<postcode>		|<email>	|<details>	|
+			| part_no            | pool_number   | last_name       | postcode   | email   | details   |
+			| <juror_number_two> | <pool_number> | <last_name_two> | <postcode> | <email> | <details> |
 
 		Given I am on "Bureau" "test"
 		And I log in as "<user>"
@@ -174,11 +165,11 @@ Examples:
 
 		#check I cannot reassign a closed response
 		When I click on the "Search" link
-		And I set "Juror number" to "<part_no_two>"
+		And I set "Juror number" to "<juror_number_two>"
 		And I press the "Search" button
 
 	#Check it's assigned to CPASS
-		When I click on "<part_no_two>" in the same row as "<part_no_two>"
+		When I click on "<juror_number_two>" in the same row as "<juror_number_two>"
 		And I am on the modernisation version of View Summons Reply
 		Then I press the "More actions" button
 		And I do not see link with text "Send to a colleague"
@@ -187,7 +178,7 @@ Examples:
 		And I click on the "Sign out" link
 
 		Examples:
-			|user			|pool_no	|part_no 	|part_no_two 	|first_name |last_name	|last_name_two |postcode |email				|details	|
-			|MODTESTBUREAU	|415170401	|641500613	|641500616 		|JOHN		|LNAMEONE	|LNAMETWO      |CH1 2AN	 |email@bureauA.com	|12345abcde	|
+			| user          | pool_number | juror_number | juror_number_two | first_name | last_name | last_name_two | postcode | email             | details    |
+			| MODTESTBUREAU | 415170401   | 641500613    | 641500616        | FNAME      | LNAME     | LNAME         | CH2 2AA  | email@bureauA.com | 12345abcde |
 
 	
