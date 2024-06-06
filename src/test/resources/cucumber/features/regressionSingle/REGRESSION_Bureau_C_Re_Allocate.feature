@@ -29,16 +29,16 @@ Scenario Outline: Bureau C script
 		| <juror_number_three>	| <pool_number>	| <last_name>		|<postcode>		|<email>	|<details>	|
 
 	Given I am on "Bureau" "test"
-	
+
 	When I log in as "CPASS"
 	And I click on the "Assign Replies" link
 
 	And I assign all the New Replies to "ARAMIS1"
-	
+
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number_one>"
 	And I press the "Search" button
-	
+
 	And I press the "Select all" button
 	And I press the "Send to..." button
 	And I set input field with "id" of "sendToOfficer" to "CPASS"
@@ -47,24 +47,24 @@ Scenario Outline: Bureau C script
 	Then I click on the "Your work" link
 	Then I see "<juror_number_one>" in the same row as "<juror_number_one>"
 	When I click on the "To do" link
-	
+
 	# Proves that I have sent from Backlog to SYSTEM/Logged in USer
 	When I click on "<juror_number_one>" in the same row as "<juror_number_one>"
 	Then I press the "More actions" button
 	And I click on the "Send to a colleague" link
-	
+
 	#check error if no name input
 	Then I see "to a colleague" on the page
 	And I press the "Send" button
 	And I see "Select an officer to send this reply to" on the page
-	
+
 	And I set input field with "id" of "sendToOfficer" to "ARAMIS1"
 	And I press the "Send" button
 	And I press the "Send" button
 	Then I see "Your work" on the page
 	Then I see "To do" on the page
 	Then I do not see "<juror_number>" on the page
-	
+
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number_one>"
 	And I press the "Search" button
@@ -74,7 +74,7 @@ Scenario Outline: Bureau C script
 	And I press the "Send" button
 	And I press the "Send" button
 	Then I see "Your work" on the page
-	
+
 	And I click on the "Sign out" link
 
 	Given I am on "Bureau" "test"
@@ -89,13 +89,13 @@ Scenario Outline: Bureau C script
 	And I press the "Send" button
 	Then I see "Your work" on the page
 	Then I do not see "<juror_number_one>" on the page
-	
+
 	And I click on the "Sign out" link
 
 	Given I am on "Bureau" "test"
 	And I log in as "MODTESTBUREAU"
 	Then I see "<juror_number_one>" on the page
-	
+
 	When I click on the "Search" link
 	And I set "Juror's pool number" to "<pool_number>"
 	And I press the "Search" button
@@ -105,7 +105,7 @@ Scenario Outline: Bureau C script
 	And I press the "Send" button
 	And I press the "Send" button
 	Then I see "Your work" on the page
-	
+
 	And I click on the "Sign out" link
 
 	Given I am on "Bureau" "test"
@@ -113,9 +113,9 @@ Scenario Outline: Bureau C script
 	Then I see "<juror_number_one>" on the page
 	Then I see "<juror_number_two>" on the page
 	Then I see "<juror_number_three>" on the page
-	
+
 	And I click on the "Sign out" link
-	
+
 	Given I am on "Bureau" "test"
 	And I log in as "MODTESTBUREAU"
 	When I click on the "Search" link
@@ -130,7 +130,7 @@ Scenario Outline: Bureau C script
 	And I press the "Send" button
 	And I press the "Send" button
 	Then I see "Your work" on the page
-	
+
 	And I click on the "Sign out" link
 
 	Given I am on "Bureau" "test"
@@ -166,4 +166,4 @@ Scenario Outline: Bureau C script
 	
 Examples:
 	| juror_number_one 	| juror_number_two	| juror_number_three	| pool_number	| last_name			| postcode	| email				| details		|
-	| 045200242			| 045200243			| 045200244			| 452300221		| LNAMEEIGHTFOUR	| CH1 2AN	| email@bureauA.com	| 12345abcde	|
+	| 045200242			| 045200243			| 045200244				| 452300221		| LNAMEEIGHTFOUR	| CH1 2AN	| email@bureauA.com	| 12345abcde	|

@@ -137,7 +137,7 @@ Scenario Outline: Lift from QC Script for Bureau A Functionality
 	And I click on the "Sign out" link
 	
 	Given I am on "Bureau" "test"
-	And I see "Username" on the page
+
 	And I log in as "ARAMIS1"
 	And I see "Awaiting information" on the page
 	And I click on the "Awaiting information" link

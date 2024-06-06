@@ -311,7 +311,7 @@ Scenario: English Privacy Policy
 		And I see link with text "Polisi preifatrwydd"
 		Then I click on the "Polisi preifatrwydd" link
 
-		And I focus page to the new tab
+		And I switch to the new window
 		And I see "Telerau ac amodau a pholisi preifatrwydd" on the page
 
 		And I see "Drwy ddefnyddio’r gwasanaeth ar-lein Ymateb i’r Wŷs Rheithgor, rydych yn cytuno i’n polisi preifatrwydd a’r telerau ac amodau hyn. Darllenwch nhw’n ofalus, os gwelwch yn dda." on the page

@@ -91,7 +91,8 @@ Scenario Outline: Welsh_1st_ErrorChecks - Court date is in the past
 	When I set "Cyfenw'r Rheithiwr" to "<last_name>"
 	When I set "Cod post Rheithiwr" to "<postcode>"
 	And I press the "Parhau" button
-	Then I see "Mae'r dyddiad ar gyfer eich gwŷs rheithgor wedi mynd heibio. Ni allwch ymateb drwy ddefnyddio'r gwasanaeth hwn." on the page
+	Then I see "Ni allwch gwblhau'r ymateb i wŷs hon ar-lein mwyach" on the page
+	Then I see "Mae hyn oherwydd bod dyddiad y wŷs wedi mynd heibio. Rhaid i chi gysylltu â ni dros y ffôn neu drwy e-bost." on the page
 	
 	Examples:
 	| juror_number	| last_name	| postcode	| pool_number	|
