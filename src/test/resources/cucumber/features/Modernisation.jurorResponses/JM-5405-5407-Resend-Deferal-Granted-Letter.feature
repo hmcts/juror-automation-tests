@@ -483,6 +483,7 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
     And I set the radio button to "Other"
     When I set the "alternate" choice to "51" Mondays in the future
     And I press the "Continue" button
+    And I press the "Confirm deferral" button
     Then I see "Do you want to print a deferral granted letter?" on the page
     And I choose the "No" radio button
     And I press the "Continue" button
@@ -588,6 +589,7 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
     And I set the radio button to "Other"
     And I set the "alternate" choice to "51" Mondays in the future
     And I press the "Continue" button
+    And I press the "Confirm deferral" button
     Then I see "Do you want to print a deferral granted letter?" on the page
     And I choose the "Yes" radio button
     And I press the "Continue" button
