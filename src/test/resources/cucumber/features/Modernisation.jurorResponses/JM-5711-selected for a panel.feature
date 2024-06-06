@@ -447,7 +447,7 @@ Feature: As a jury officer I need to send the selected for a panel message
 
     And I press the "Process reply" button
 #    And I set the radio button to "Deferral request"
-    And I choose the "Deferral request" radio button
+    And I choose the "Defer juror" radio button
     And I press the "Continue" button
 
     And I set the "first" choice to "5" Mondays in the future
