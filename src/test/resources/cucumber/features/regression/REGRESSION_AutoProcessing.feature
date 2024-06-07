@@ -1,6 +1,6 @@
 Feature: Regression Test AUTOPROCESSING
 
-@Features @NewSchemaConverted @JDB-5569
+@Features @NewSchemaConverted @JDB-6701
 Scenario Outline: submit responses which are auto processed
 
 #	return to @Regression when bug fixed

@@ -752,28 +752,28 @@ Scenario: Work Allocation Fields and Labels Checks
 @RegressionSingle @NewSchemaConverted
 Scenario Outline: Work Allocation
 
-#	Given I am on "Bureau" "test"
-#
-#	Given a bureau owned pool is created with jurors
-#		| court | juror_number  	| pool_number		| att_date_weeks_in_future	| owner |
-#		| 452   | <juror_number_one>| <pool_number_one>	| 5				            | 400	|
-#
-#	Given a bureau owned pool is created with jurors
-#		| court | juror_number  	| pool_number		| att_date_weeks_in_future	| owner |
-#		| 452   | <juror_number_two>| <pool_number_two>	| 3				            | 400	|
-#
-#	Given a bureau owned pool is created with jurors
-#		| court | juror_number  		| pool_number			| att_date_weeks_in_future	| owner |
-#		| 452   | <juror_number_three>	| <pool_number_three>	| 2				            | 400	|
-#
-#	And juror "<juror_number_one>" has "LAST_NAME" as "<last_name>" new schema
-#	And juror "<juror_number_one>" has "POSTCODE" as "<postcode>" new schema
-#
-#	And juror "<juror_number_two>" has "LAST_NAME" as "<last_name>" new schema
-#	And juror "<juror_number_two>" has "POSTCODE" as "<postcode>" new schema
-#
-#	And juror "<juror_number_three>" has "LAST_NAME" as "<last_name>" new schema
-#	And juror "<juror_number_three>" has "POSTCODE" as "<postcode>" new schema
+	Given I am on "Bureau" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court | juror_number  	| pool_number		| att_date_weeks_in_future	| owner |
+		| 452   | <juror_number_one>| <pool_number_one>	| 5				            | 400	|
+
+	Given a bureau owned pool is created with jurors
+		| court | juror_number  	| pool_number		| att_date_weeks_in_future	| owner |
+		| 452   | <juror_number_two>| <pool_number_two>	| 3				            | 400	|
+
+	Given a bureau owned pool is created with jurors
+		| court | juror_number  		| pool_number			| att_date_weeks_in_future	| owner |
+		| 452   | <juror_number_three>	| <pool_number_three>	| 2				            | 400	|
+
+	And juror "<juror_number_one>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number_one>" has "POSTCODE" as "<postcode>" new schema
+
+	And juror "<juror_number_two>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number_two>" has "POSTCODE" as "<postcode>" new schema
+
+	And juror "<juror_number_three>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number_three>" has "POSTCODE" as "<postcode>" new schema
 
 	Given I am on "Bureau" "test"
 	And I log in as "MODTESTBUREAU"
