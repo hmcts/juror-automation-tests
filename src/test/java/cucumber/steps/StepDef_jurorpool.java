@@ -1358,7 +1358,11 @@ public class StepDef_jurorpool {
 
     @When("^I enter the pool number of the pool I have just created on the pool search screen$")
     public void enterCreatedPoolNumberInSearch() {
-        POOL_SEARCH.enterPoolNo(poolNumber.get());
+        if(poolNumber.get() == null){
+            POOL_SEARCH.enterPoolNo(poolRequestNumber.get());
+        } else {
+            POOL_SEARCH.enterPoolNo(poolNumber.get());
+        }
     }
 
     @When("^I select the newly created pool from the reassign page$")
