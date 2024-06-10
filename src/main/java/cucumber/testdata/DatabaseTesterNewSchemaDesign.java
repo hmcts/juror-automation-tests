@@ -666,14 +666,13 @@ public class DatabaseTesterNewSchemaDesign {
 		String env_property = System.getProperty("env.database");
 		if (env_property != null)
 			conn = db.getConnection(env_property);
-
 		else
 			conn = db.getConnection("demo");
 
 		Calendar calendar = Calendar.getInstance();
 		calendar.add(Calendar.WEEK_OF_MONTH, Integer.parseInt(noWeeks));
 
-		String attDate = new SimpleDateFormat("yyyy-MM-d").format(calendar.getTime());
+		String attDate = new SimpleDateFormat("yyyy-MM-dd").format(calendar.getTime());
 		newPoolDate.set(new SimpleDateFormat("E d MMM yyy").format(calendar.getTime()));
 
 		try {
@@ -682,6 +681,34 @@ public class DatabaseTesterNewSchemaDesign {
 				pStmt = conn.prepareStatement("INSERT INTO juror_mod.pool (pool_no, owner, return_date, no_requested, pool_type, loc_code, new_request, last_update, additional_summons, attend_time, nil_pool, total_no_required, date_created)"
 						+ "VALUES ('" + pool_number + "', '" + owner + "', '" + attDate + "', 20, 'CRO', '" + court + "', 'N', NOW(), NULL, (timestamp '" + attDate + " 10:00:00'), false, 0, NOW())");
 			pStmt.execute();
+
+			pStmt = conn.prepareStatement("SELECT return_date FROM juror_mod.pool WHERE pool_no = ?");
+			pStmt.setString(1, pool_number);
+			ResultSet rs = pStmt.executeQuery();
+			if (rs.next()) {
+				String insertedDate = rs.getString("return_date");
+				System.out.println("Actual return date in the database: " + insertedDate);
+				if (!attDate.equals(insertedDate)) {
+
+					pStmt = conn.prepareStatement("UPDATE juror_mod.pool SET return_date = '" + attDate + "' WHERE pool_no = '" + pool_number + "'");
+					pStmt.executeUpdate();
+
+					pStmt = conn.prepareStatement("SELECT return_date FROM juror_mod.pool WHERE pool_no = ?");
+					pStmt.setString(1, pool_number);
+					rs = pStmt.executeQuery();
+					if (rs.next()) {
+						insertedDate = rs.getString("return_date");
+						System.out.println("Updated return date in the database: " + insertedDate);
+						if (!attDate.equals(insertedDate)) {
+							throw new SQLException("The return date was not updated correctly. Expected: " + attDate + ", Actual: " + insertedDate);
+						}
+					} else {
+						throw new SQLException("The pool was not found after the update attempt.");
+					}
+				}
+			} else {
+				throw new SQLException("The updated pool was not found.");
+			}
 
 		} finally {
 			conn.commit();

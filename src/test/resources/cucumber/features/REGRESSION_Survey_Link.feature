@@ -57,7 +57,7 @@ Scenario Outline: Survey Link 3rd Party Eng
 	
 	And I see "Give feedback (opens in a new window or tab)" on the page
 	And I click on the "Give feedback (opens in a new window or tab)" link
-	And I focus page to the new tab
+	And I switch to the new window
 	Then I see "Were you able to do what you needed to do today?" on the page
 	And I see "https://www.smartsurvey.co.uk/s/DL1RCF/" in the URL
 	
@@ -119,7 +119,7 @@ Scenario Outline: Survey Link 3rd Party Welsh
 	
 	And I see "Give feedback (opens in a new window or tab)" on the page
 	And I click on the "Give feedback (opens in a new window or tab)" link
-	And I focus page to the new tab
+	And I switch to the new window
 	Then I see "Were you able to do what you needed to do today?" on the page
 	And I see "https://www.smartsurvey.co.uk/s/DL1RCF/" in the URL
 	
