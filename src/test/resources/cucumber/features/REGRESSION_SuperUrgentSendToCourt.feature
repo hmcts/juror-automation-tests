@@ -8,10 +8,8 @@ Feature: JDB-3759 SuperUrgentSendToCourt
 #cover assigned/unassigned (test manually with prev test)
 #read_only turns to Y before response is U or SU (test manually)
 
-@Features @NewSchemaConverted
+@Regression @NewSchemaConverted
 Scenario Outline: A response is submitted after pool is transferred to court
-
-	#move back to @Regression when we work out how to get Jenkins to refocus on new page
 
 	Given I am on "Public" "test"
 
@@ -35,7 +33,9 @@ Scenario Outline: A response is submitted after pool is transferred to court
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
 
-	Then I see "The court date for your jury summons has passed. You cannot reply using this service." on the page
+	Then I see "You can no longer complete this summons reply online" on the page
+	Then I see "This is because the summons date has passed. You must contact us by phone or email." on the page
+	And I see "/steps/login/summons-date" in the URL
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |

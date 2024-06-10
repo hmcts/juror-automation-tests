@@ -132,7 +132,7 @@ Scenario Outline: expensesJDB-4345_RoundUp
 	Then I press the "back" button on my browser
 	
 	Then I click on the "'Find a Court or Tribunal' service" link
-#	And I see "www.find-court-tribunal.service.gov.uk/search-option" in the URL
+	And I see "find-court-tribunal.service.gov.uk" in the URL
 	
 	Then I press the "back" button on my browser
 
@@ -277,7 +277,7 @@ Scenario Outline: expensesJDB-4345_earnings>64.95andexpenses=0
 	Then I press the "back" button on my browser
 	
 	Then I click on the "'Find a Court or Tribunal' service" link
-#	And I see "www.find-court-tribunal.service.gov.uk/search-option" in the URL
+	And I see "find-court-tribunal.service.gov.uk" in the URL
 	
 	Then I press the "back" button on my browser
 
@@ -411,7 +411,7 @@ Scenario Outline: expensesJDB-4345_0earningsandexpenses>or<64.95
 	Then I press the "back" button on my browser
 	
 	Then I click on the "'Find a Court or Tribunal' service" link
-#	And I see "www.find-court-tribunal.service.gov.uk/search-option" in the URL
+	And I see "find-court-tribunal.service.gov.uk" in the URL
 	
 	Then I press the "back" button on my browser
 

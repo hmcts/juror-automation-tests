@@ -159,7 +159,7 @@ Feature: JM-4958, JM-4954, JM-4955 As a jury officer i need to be able to comple
     And I set the "Completion date" single date field to a Monday "17" weeks in the future
     And I press the "Complete service" button
     # Assuming error is same as for bulk process as it doesn't appear in design files
-    Then I see "Juror number <juror_number> is not in a valid state to complete service" on the page
+    Then I see "Unable to complete the service for the following juror number(s) due to invalid state: <juror_number>" on the page
 
     Examples:
       |user			|juror_number  |pool_number  |
