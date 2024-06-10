@@ -4,12 +4,12 @@ Feature: JM-3987 Monitor Pools Progress
   Scenario: Test to show nil pools on the summoning progress screen
     Given I am on "Bureau" "test"
 
-    And I have cleared down deferrals for "1" weeks in the future for court "415"
+    And I have cleared down deferrals for "4" weeks in the future for court "415"
     And I log in as "MODTESTCOURT"
     And I navigate to the pool request screen
     And I select to create a nil pool
     And I click the change link for the attendance date
-    And I select a new date "1" week in the future
+    And I select a new date "4" week in the future
 
     And I change the pool type to "Civil"
     And I click the request pool button
