@@ -200,10 +200,10 @@ Feature:As a jury officer, I want to edit a juror's draft daily expenses
     And I click on the "Recalculate totals." link
     And I press the "Save and next" button
     Then I see "Juror’s financial loss is over the daily limit" on the page
-    And I see "The amounts you entered will be automatically recalculated to limit the juror’s loss to £32.47." on the page
+    And I see "The amounts you entered will be automatically recalculated to limit the juror’s loss to £37.45." on the page
     And I see the following Half day daily day limit details on the loss over limit form
       | Juror's loss                | £45                      |
-      | Daily limit (Half day)      | £32.47                      |
+      | Daily limit (Half day)      | £37.45                      |
 
     Examples:
       |user         |juror_number  |  pool_number    |

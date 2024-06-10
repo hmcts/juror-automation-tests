@@ -1918,8 +1918,7 @@ public class DatabaseTester {
 		try {
 			int numberOfDays = noWeeks * 7;
 
-			pStmt = conn.prepareStatement("DELETE FROM JUROR.DEFER_DBF WHERE LOC_CODE='"+ court +"' AND DEFER_TO=TRUNC(CURRENT_DATE + (8 - TO_NUMBER(TO_CHAR(CURRENT_DATE, 'D'))) +" + numberOfDays + ")");
-
+			pStmt = conn.prepareStatement("DELETE FROM JUROR.DEFER_DBF WHERE LOC_CODE='"+ court +"' AND DEFER_TO=DATE_TRUNC('day', CURRENT_DATE + (8 - CAST(EXTRACT(DOW FROM CURRENT_DATE) AS INTEGER)) +" + numberOfDays + ")");
 			pStmt.execute();
 
 			System.out.println("Deferrals deleted for date falling in " + noWeeks + "weeks - for court -" + court);
