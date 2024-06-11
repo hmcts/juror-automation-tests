@@ -4477,8 +4477,18 @@ public class DatabaseTesterNewSchemaDesign {
 			pStmt = conn.prepareStatement("DELETE from juror_mod.appearance_audit where trial_number='" + trialNumber + "'");
 			pStmt.executeUpdate();
 
+			pStmt = conn.prepareStatement("select id from juror_mod.courtroom where description = 'JURY ASSEMBLY ROOM'");
+			ResultSet rs = pStmt.executeQuery();
+			rs.next();
+			int courtRoomNumber = rs.getInt(1);
+
+			pStmt = conn.prepareStatement("select id from juror_mod.judge where owner = '415'");
+			rs = pStmt.executeQuery();
+			rs.next();
+			int judgeCode = rs.getInt(1);
+
 			pStmt = conn.prepareStatement("INSERT INTO juror_mod.trial (trial_number,loc_code,description,courtroom,judge,trial_type,trial_start_date,trial_end_date,anonymous,juror_requested,jurors_sent)"
-					+ "VALUES ('" + trialNumber + "','415','John Stark',31,1,'CRI','2024-08-28',NULL,true,NULL,NULL)");
+					+ "VALUES ('" + trialNumber + "','415','John Stark',"+ courtRoomNumber +","+ judgeCode +",'CRI','2024-08-28',NULL,true,NULL,NULL)");
 			pStmt.executeUpdate();
 
 		} catch (SQLException e) {
