@@ -19,8 +19,6 @@ Feature: JM-4001 and JM-4002 - Court User
     When I navigate to the pool request screen
     And I click on deferral maintenance
 
-    And I record an excusal request paper summons response
-
     And I set the deferral deferred to filter to "1" Mondays in the future
     And I filter on name "TESTNAME"
     And I press the "Juror number" button
