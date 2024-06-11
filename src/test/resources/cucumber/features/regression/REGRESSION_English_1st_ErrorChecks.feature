@@ -93,7 +93,9 @@ Scenario Outline: English_1st_ErrorChecks - Court date is in the past
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
-	Then I see "The court date for your jury summons has passed. You cannot reply using this service." on the page
+	Then I see "You can no longer complete this summons reply online" on the page
+	Then I see "This is because the summons date has passed. You must contact us by phone or email." on the page
+	And I see "/steps/login/summons-date" in the URL
 	
 	Examples:
 	|juror_number	|last_name	|postcode	|pool_number|
