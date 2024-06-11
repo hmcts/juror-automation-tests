@@ -815,29 +815,29 @@ Feature: Regression English_1st_Deferral
     And I press the "Submit" button
     And I see "You have completed your reply" on the page
 
-#    Given I am on "Bureau" "bau-test"
-#    And I log in as "MODTESTBUREAU"
-#    And I click on the "Search" link
-#    And I set "Juror number" to "<juror_number>"
-#    And I press the "Search" button
-#    And I click on "<juror_number>" in the same row as "<juror_number>"
-#    And I click on the "Deferral or excusal" link
-#
-#    Then I see "Deferral Reason" on the page
-#
-#    Then I see "First choice" on the page
-#    Then I see "Second choice" on the page
-#    Then I see "Third choice" on the page
-#    And I validate the "First" deferral date is "9" weeks in the future
-#    And I validate the "Second" deferral date is "10" weeks in the future
-#    And I validate the "Third" deferral date is "11" weeks in the future
-#
-#    When I select "Deferral" from Process reply
-#    When I select "S - RECENTLY SERVED" from the "Reason for the deferral request" dropdown
-#    And I select the first deferral choice
-#
-#    And I press the "Continue" button
-#    And I see the juror record updated banner containing "Deferral granted (recently served)"
+    Given I am on "Bureau" "bau-test"
+    And I log in as "MODTESTBUREAU"
+    And I click on the "Search" link
+    And I set "Juror number" to "<juror_number>"
+    And I press the "Search" button
+    And I click on "<juror_number>" in the same row as "<juror_number>"
+    And I click on the "Deferral or excusal" link
+
+    Then I see "Deferral Reason" on the page
+
+    Then I see "First choice" on the page
+    Then I see "Second choice" on the page
+    Then I see "Third choice" on the page
+    And I validate the "First" deferral date is "9" weeks in the future
+    And I validate the "Second" deferral date is "10" weeks in the future
+    And I validate the "Third" deferral date is "11" weeks in the future
+
+    When I select "Deferral" from Process reply
+    When I select "S - RECENTLY SERVED" from the "Reason for the deferral request" dropdown
+    And I select the first deferral choice
+
+    And I press the "Continue" button
+    And I see the juror record updated banner containing "Deferral granted (recently served)"
 
     Examples:
       | juror_number | last_name | postcode | email             | pool_number |
