@@ -310,7 +310,7 @@ Feature: JM-4949 & JM-5766
 
     And I see "Return jurors without confirming attendance" on the page
     And I see "You're returning 1 juror." on the page
-    And I see "You have not confirmed their attendance yet. You'll need to do this separately." on the page
+    And I see "You have not confirmed their attendance yet. You’ll need to do this separately." on the page
 
     And I press the "Return" button
     And I verify the text "Do you want to end this trial?" on the page

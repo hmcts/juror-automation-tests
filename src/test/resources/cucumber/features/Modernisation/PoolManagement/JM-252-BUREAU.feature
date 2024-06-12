@@ -216,9 +216,12 @@ Feature: JM-252 Bureau user create new pools
     And I should see the newly created pool request
       | type           | Bureau         |
       | court          | <displayCourt> |
-      | jurorsRequired |                |
+      | jurorsRequired | 0              |
 
-    And I click on the pool number
+    And I navigate to the pool search screen
+    When I enter the pool number of the pool I have just created on the pool search screen
+    And I press the "Continue" button
+
     When I click the delete pool request button
     When I click the confirm deletion button
     Then a message is displayed on the pool requests page informing me that the pool has been deleted

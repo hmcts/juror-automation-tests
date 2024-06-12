@@ -3145,7 +3145,7 @@ Feature: Regression English_1st_Deferral
   @Regression @NewSchemaConverted
   Scenario Outline: English 1st Party Deferral - NEW PAGE
 
-    Given I am on "Public" "test"
+    Given I am on "Bureau" "test"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
@@ -3156,7 +3156,37 @@ Feature: Regression English_1st_Deferral
     And juror "<juror_number>" has "ADDRESS_LINE_1" as "855 STREET NAME" new schema
     And juror "<juror_number>" has "ADDRESS_LINE_4" as "LONDON" new schema
     And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
-#	And I have deleted all holidays new schema
+
+    #add a pool
+    And I log in as "MODTESTBUREAU"
+    When I navigate to the pool request screen
+    When I press the "Create pool" button
+    And I set the radio button to "Request new pool"
+    And I press the "Continue" button
+    Then I set input field with "ID" of "courtNameOrLocation" to "452"
+    And I select the "Shrewsbury (452)" court selection link
+    Then I press the "Continue" button
+    #CHANGE ATTENDANCE DATE
+    Then I click the change link for the attendance date
+    And I see "Change the service start date for this pool" on the page
+    And I set the "Change the attendance date for this pool" date to a Monday "10" weeks in the future
+    And I press the "Change" button
+    #complete new pool fields
+    Then I click the change link for the court deferrals
+    Then I change the number of court deferrals to "0"
+    Then I set the radio button to "Crown"
+    And I set "Number of jurors required in total" to "5"
+    Then I press the "Continue" button
+    When I save the new pool request
+    And I click on the "Search" link
+    When I enter the pool number of the pool I have just created on the pool search screen
+    And I press the "Continue" button
+    And I press the "Summon jurors" button
+    And I set "Citizens to summon" to "5"
+    And I press the "Create pool and summon citizens" button
+    And I click on the "Sign out" link
+
+    Given I am on "Public" "test"
 
     Then I see "Reply to a jury summons" on the page
 
@@ -3322,18 +3352,17 @@ Feature: Regression English_1st_Deferral
     And I see "Date cannot be more than 12 months after the original summons date" on the page
 
 	#select the radio buttons
-    And I select the first deferral choice
     And I choose the "Choose a different date" radio button
 
 	#can input the same date as one of the radio buttons
-    When I set the "Deferral" single date field to a Monday "10" weeks in the future
+    And I set the "Deferral" date to a Monday "10" weeks in the future
 
     And I select "O - OTHER" from the "Reason for the deferral request" dropdown
     And I press the "Continue" button
-    And I press the "Put in deferral maintenance" button
+    And I choose the "Add to pool" radio button
+    And I press the "Continue" button
     Then I see the juror record updated banner containing "Deferral granted (other)"
 
     Examples:
       | juror_number | pool_number | last_name        | postcode | email      |
       | 045200041    | 452300040   | LNAMEFIVETWOZERO | SW1H 9AJ | e@eeee.com |
-

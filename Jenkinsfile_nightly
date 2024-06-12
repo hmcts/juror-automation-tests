@@ -220,5 +220,6 @@ withNightlyPipeline(type, product, component, 600) {
 
     steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'selenium.log'
     steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'target/**/*.json'
+    steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'target/**/*.html'
   }
 }
