@@ -273,7 +273,6 @@ Feature: JM-5592-5594 - Resend withdrawal letter for Bureau and Jury users
     And I see "Check the date of birth" on the page
     And I see "Is their date of birth correct?" on the page
     And I press the "Yes - disqualify juror" button
-    #will fail here because of JM-6572
 
 
 
