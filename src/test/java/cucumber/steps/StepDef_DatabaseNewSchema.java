@@ -439,17 +439,16 @@ public class StepDef_DatabaseNewSchema {
         DBTNSD.cleanAppearancesNSD();
     }
 
-    //
-//    @Given("^PCQs has been enabled new schema$")
-//    public void pcqEnabledNSD() throws SQLException {
-//        DBTNSD.pcqEnabledNSD();
-//    }
-//
-//    @Given("^PCQs has been disabled$")
-//    public void pcqDisabledNSD() throws SQLException {
-//        DBT.pcqDisabled();
-//    }
-//
+    @Given("^PCQs has been enabled new schema$")
+    public void pcqEnabledNSD() throws SQLException {
+        DBTNSD.pcqEnabledNSD();
+    }
+
+    @Given("^PCQs has been disabled new schema$")
+    public void pcqDisabledNSD() throws SQLException {
+        DBT.pcqDisabledNSD();
+    }
+
     @Given("^all \"([^\"]*)\" voters have been reset to unselected state new schema$")
     public void resetVotersNSD(String courtCode) throws SQLException {
         DBTNSD.resetVotersNSD(courtCode);

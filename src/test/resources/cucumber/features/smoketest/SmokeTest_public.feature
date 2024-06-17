@@ -3,7 +3,7 @@ Feature: Environment Smoke Tests - Public
 @SmokeTest 
 Scenario: 
 	Given I am on "Public" "test"
-	Given PCQs has been disabled
+	Given PCQs has been disabled new schema
 	Then I see "Reply to a jury summons" on the page
 	
 	And I set the radio button to "I am replying for myself"

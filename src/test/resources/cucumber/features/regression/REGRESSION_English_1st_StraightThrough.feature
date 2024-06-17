@@ -734,9 +734,9 @@ Examples:
 
 		#RA no
 		When I choose the "No" radio button
-		Given PCQs has been enabled
+		Given PCQs has been enabled new schema
 		And I press the "Continue" button
-		Given PCQs has been disabled
+		Given PCQs has been disabled new schema
 
 		#PCQ
 		Then on the page I see
@@ -838,9 +838,9 @@ Examples:
 
 		#RA no
 		When I choose the "No" radio button
-		Given PCQs has been enabled
+		Given PCQs has been enabled new schema
 		And I press the "Continue" button
-		Given PCQs has been disabled
+		Given PCQs has been disabled new schema
 
 		#PCQ
 		Then on the page I see
@@ -980,9 +980,9 @@ Examples:
 
 		#RA no
 		When I choose the "No" radio button
-		Given PCQs has been enabled
+		Given PCQs has been enabled new schema
 		And I press the "Continue" button
-		Given PCQs has been disabled
+		Given PCQs has been disabled new schema
 		
 		#PCQ
 		Then on the page I see
@@ -1110,9 +1110,9 @@ Examples:
 
 	#RA no
 		When I choose the "No" radio button
-		Given PCQs has been enabled
+		Given PCQs has been enabled new schema
 		And I press the "Continue" button
-		Given PCQs has been disabled
+		Given PCQs has been disabled new schema
 
 	#Check your answers
 		Then I see "Check your answers now" on the page
@@ -1212,9 +1212,9 @@ Examples:
 
 	#RA
 		When I set the radio button to "Nac oes"
-		Given PCQs has been enabled
+		Given PCQs has been enabled new schema
 		And I press the "Parhau" button
-		Given PCQs has been disabled
+		Given PCQs has been disabled new schema
 
 		#PCQ
 		Then on the page I see
