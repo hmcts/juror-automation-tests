@@ -446,7 +446,7 @@ public class StepDef_DatabaseNewSchema {
 
     @Given("^PCQs has been disabled new schema$")
     public void pcqDisabledNSD() throws SQLException {
-        DBT.pcqDisabledNSD();
+        DBTNSD.pcqDisabledNSD();
     }
 
     @Given("^all \"([^\"]*)\" voters have been reset to unselected state new schema$")
