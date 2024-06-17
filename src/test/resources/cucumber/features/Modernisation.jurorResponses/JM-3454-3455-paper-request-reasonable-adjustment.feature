@@ -66,7 +66,7 @@ Feature: JM-3457 and JM-3456 - Paper Response
     And I see the following juror information on the check can accommodate screen
       | jurorName             | fname lname                 |
       | jurorNumber           | <juror_number>              |
-      | jurorMainPhone        | 0777777777                  |
+      | jurorMainPhone        | 07777777777                  |
       | jurorEmail            | test@test.com               |
       | jurorAdjustmentReason | <jurorAdjustmentFull>       |
       | jurorAdjustment       | <jurorAdjustmentNeeded>     |
