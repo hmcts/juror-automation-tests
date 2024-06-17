@@ -10,6 +10,7 @@ import org.junit.runner.RunWith;
 
 @RunWith(Courgette.class)
 @CourgetteOptions(
+        reportTargetDir = "target/TestRunner_Expenses",
         threads = 5,
         runLevel = CourgetteRunLevel.SCENARIO,
         rerunFailedScenarios = false,
