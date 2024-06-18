@@ -97,16 +97,15 @@ Feature: JM-4949 & JM-5766
     And I press the "Continue" button
     And I see "1 juror returned" on the page
 
-    #check panel is no more as the only juror on there has been returned
-    And I press the "Generate panel" button
-    And I see "Which jurors do you want to generate a panel from?" on the page
+    And I press the "Add panel members" button
+    And I see "Select where to add more panel members from" on the page
+    And I click on the "Cancel" link
 
     #check juror has been returned to jurors in waiting
     And I press the "Apps" button
     And I click on the "Juror management" link
     And I click on the "Record attendance" link
     And I see "<juror_number>" in the same row as "Responded"
-
 
     Examples:
       |user			|juror_number  |  pool_number    | trial_number |
