@@ -309,6 +309,9 @@ Feature: JM-4949 & JM-5766
 
     And I see "Return jurors without confirming attendance" on the page
     And I see "You're returning 1 juror." on the page
+    And I set "Hour" to "09"
+    And I set "Minute" to "00"
+    And I set the radio button to "am"
     And I see "You have not confirmed their attendance yet. You’ll need to do this separately." on the page
 
     And I press the "Return" button
@@ -656,7 +659,7 @@ Feature: JM-4949 & JM-5766
     And I see "Trial start date" on the page
     And I see "Trial end date" on the page
     And I see "PATRICIA H AITKEN" in the same row as "Judge"
-    And I see "Court Room" in the same row as "Courtroom"
+    And I see "Juror Assembly Room" in the same row as "Courtroom"
     And I see "No" in the same row as "Protected?"
 
     Examples:
