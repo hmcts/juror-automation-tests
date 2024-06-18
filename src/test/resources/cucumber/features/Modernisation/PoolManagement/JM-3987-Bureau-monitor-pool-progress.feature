@@ -86,10 +86,7 @@ Feature: JM-3987 Monitor Pools Progress
   @JurorTransformation
   Scenario: Test for correct values on table
     Given I am on "Bureau" "test"
-#    Given new pool requests are deleted
-#    Given the poolNumbers lists is empty
-#    Given I have cleared down the modernisation staff data
-#    Given I have created the modernisation staff data
+    Given new pool requests are deleted
     And I log in as "MODTESTBUREAU"
     And I navigate to the pool request screen
     And I create "1" new "Civil" pool requests each a week apart in court "415" with "160" jurors to summon
@@ -103,18 +100,15 @@ Feature: JM-3987 Monitor Pools Progress
       | summoned    | 160  |
       | confirmed   | 0    |
       | balance     | -150 |
-#  And I clear down the data for all the pools I created for this test
+  And I clear down the data for all the pools I created for this test
 
   @JurorTransformation
   Scenario: Test to show all 8 weeks are populated when an active pool exist for that week
     Given I am on "Bureau" "test"
     Given new pool requests are deleted
     Given the poolNumbers lists is empty
-    Given I have cleared down the modernisation staff data
-    Given I have created the modernisation staff data
     And I log in as "MODTESTBUREAU"
     And I navigate to the pool request screen
-    #And I create a "Civil" court pool request for court "415", "2" weeks in the future
     And I create "8" new "Civil" pool requests each a week apart in court "415"
     And I navigate to the pool summoning progress screen
     And I see the summoning progress page banner
