@@ -37,7 +37,7 @@ Feature: JM-2251 JM-3038
       | jurorAddress   | address\nAddress Line Four\n<postcode> |
       | jurorDob       | 18 Jul 1976 (Juror will be 47 years old)     |
       | jurorMainPhone | 07777777777                                   |
-      | jurorAltPhone  | 0777777771                                   |
+      | jurorAltPhone  | 07777777711                                   |
       | jurorEmail     | test@test.com                                |
 
     #eligibility
@@ -98,7 +98,7 @@ Feature: JM-2251 JM-3038
       | jurorAddress   | 570 STREET NAME\nAddress Line Four\n<postcode>  |
       | jurorDob       | 18 Jul 1976 (Juror will be 47 years old)     |
       | jurorMainPhone | 07777777777                                   |
-      | jurorAltPhone  | 0777777771                                   |
+      | jurorAltPhone  | 07777777711                                   |
       | jurorEmail     | test@test.com                                |
 
     Examples:

@@ -1067,8 +1067,8 @@ public class StepDef_jurorpool {
     public void fillJurorDetailsForSummonsReply() {
         SUMMONS_REPLY.enterDateOfBirth("18/07/1976");
 
-        SUMMONS_REPLY.enterPrimaryPhone("0777777777");
-        SUMMONS_REPLY.enterSecondaryPhone("0777777771");
+        SUMMONS_REPLY.enterPrimaryPhone("07777777777");
+        SUMMONS_REPLY.enterSecondaryPhone("07777777711");
         SUMMONS_REPLY.enterEmail("test@test.com");
     }
 
@@ -1558,8 +1558,8 @@ public class StepDef_jurorpool {
 
         SUMMONS_REPLY.enterDateOfBirth("18/07/1976");
 
-        SUMMONS_REPLY.enterPrimaryPhone("0777777777");
-        SUMMONS_REPLY.enterSecondaryPhone("0777777771");
+        SUMMONS_REPLY.enterPrimaryPhone("07777777777");
+        SUMMONS_REPLY.enterSecondaryPhone("07777777711");
         SUMMONS_REPLY.enterEmail("test@test.com");
 
         NAV.check_checkbox("Yes, send Welsh language communications");
@@ -1598,8 +1598,8 @@ public class StepDef_jurorpool {
 
         SUMMONS_REPLY.enterDateOfBirth("18/07/1976");
 
-        SUMMONS_REPLY.enterPrimaryPhone("0777777777");
-        SUMMONS_REPLY.enterSecondaryPhone("0777777771");
+        SUMMONS_REPLY.enterPrimaryPhone("07777777777");
+        SUMMONS_REPLY.enterSecondaryPhone("07777777711");
         SUMMONS_REPLY.enterEmail("test@test.com");
 
         SUMMONS_REPLY.clickContinue();
@@ -1630,8 +1630,8 @@ public class StepDef_jurorpool {
 
         SUMMONS_REPLY.enterDateOfBirth("18/07/1976");
 
-        SUMMONS_REPLY.enterPrimaryPhone("0777777777");
-        SUMMONS_REPLY.enterSecondaryPhone("0777777771");
+        SUMMONS_REPLY.enterPrimaryPhone("07777777777");
+        SUMMONS_REPLY.enterSecondaryPhone("07777777711");
         SUMMONS_REPLY.enterEmail("test@test.com");
 
         SUMMONS_REPLY.clickContinue();
@@ -1663,8 +1663,8 @@ public class StepDef_jurorpool {
 
         SUMMONS_REPLY.enterDateOfBirth("18/07/1976");
 
-        SUMMONS_REPLY.enterPrimaryPhone("0777777777");
-        SUMMONS_REPLY.enterSecondaryPhone("0777777771");
+        SUMMONS_REPLY.enterPrimaryPhone("07777777777");
+        SUMMONS_REPLY.enterSecondaryPhone("07777777711");
         SUMMONS_REPLY.enterEmail("test@test.com");
 
         SUMMONS_REPLY.clickContinue();
@@ -1695,8 +1695,8 @@ public class StepDef_jurorpool {
 
         SUMMONS_REPLY.enterDateOfBirth("18/07/1976");
 
-        SUMMONS_REPLY.enterPrimaryPhone("0777777777");
-        SUMMONS_REPLY.enterSecondaryPhone("0777777771");
+        SUMMONS_REPLY.enterPrimaryPhone("07777777777");
+        SUMMONS_REPLY.enterSecondaryPhone("07777777711");
         SUMMONS_REPLY.enterEmail("test@test.com");
 
         SUMMONS_REPLY.clickContinue();
@@ -1727,8 +1727,8 @@ public class StepDef_jurorpool {
 
         SUMMONS_REPLY.enterDateOfBirth("18/07/1976");
 
-        SUMMONS_REPLY.enterPrimaryPhone("0777777777");
-        SUMMONS_REPLY.enterSecondaryPhone("0777777771");
+        SUMMONS_REPLY.enterPrimaryPhone("07777777777");
+        SUMMONS_REPLY.enterSecondaryPhone("07777777711");
         SUMMONS_REPLY.enterEmail("test@test.com");
 
         SUMMONS_REPLY.clickContinue();
@@ -2088,7 +2088,9 @@ public class StepDef_jurorpool {
             ArrayList<String> pools = poolNumbers.get();
             pools.add(poolNo);
 
-            POOL_REQUESTS_PAGE.clickFirstRequestLink();
+            NAV.click_link_by_text("Search");
+            JUROR_RECORD_SEARCH.searchForRecordFromPoolSearch(poolNumber.get());
+//            POOL_REQUESTS_PAGE.clickFirstRequestLink();
             NAV.press_buttonByName("Summon jurors");
             NAV.set_value_to("Citizens to summon", "1");
             NAV.press_buttonByName("Create pool and summon citizens");
