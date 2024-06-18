@@ -659,7 +659,7 @@ Feature: JM-4949 & JM-5766
     And I see "Trial start date" on the page
     And I see "Trial end date" on the page
     And I see "PATRICIA H AITKEN" in the same row as "Judge"
-    And I see "Juror Assembly Room" in the same row as "Courtroom"
+    And I see "Jury Assembly Room" in the same row as "Courtroom"
     And I see "No" in the same row as "Protected?"
 
     Examples:
