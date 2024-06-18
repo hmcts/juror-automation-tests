@@ -71,7 +71,7 @@ Feature: Grant excusal digital
       | C - CHILD CARE | MODTESTBUREAU | 041500155      | 415300254     | LNAMESIXZEROFOUR    | CH1 2AN  | e@mail.com | Juror record updated: Excusal granted (child care)|
       | D - DECEASED   | MODTESTBUREAU | 041500155      | 415300254     | LNAMESIXZEROSIX     | CH1 2AN  | e@mail.com | Juror record updated: Excusal granted (deceased)  |
 
-  @JurorTransformationWIP @NewSchemaConverted @JM-5074
+  @JurorTransformation @NewSchemaConverted
   Scenario Outline: Test to grant excusal on digital response from juror record - court
 
     Given I am on "Bureau" "test"
