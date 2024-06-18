@@ -10,6 +10,7 @@ import org.junit.runner.RunWith;
 
 @RunWith(Courgette.class)
 @CourgetteOptions(
+        reportTargetDir = "target/TestRunner_JurorTransformationWIP",
         threads = 1,
         runLevel = CourgetteRunLevel.FEATURE,
         rerunFailedScenarios = false,
