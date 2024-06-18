@@ -1004,7 +1004,7 @@ public class StepDef_jurorpoolNewSchema {
 //        SUMMONS_REPLY.enterDateOfBirth("18/07/1976");
 //
 //        SUMMONS_REPLY.enterPrimaryPhone("07777777777");
-//        SUMMONS_REPLY.enterSecondaryPhone("0777777771");
+//        SUMMONS_REPLY.enterSecondaryPhone("07777777711");
 //        SUMMONS_REPLY.enterEmail("test@test.com");
 //    }
 //
@@ -1479,7 +1479,7 @@ public class StepDef_jurorpoolNewSchema {
 //        SUMMONS_REPLY.enterDateOfBirth("18/07/1976");
 //
 //        SUMMONS_REPLY.enterPrimaryPhone("07777777777");
-//        SUMMONS_REPLY.enterSecondaryPhone("0777777771");
+//        SUMMONS_REPLY.enterSecondaryPhone("07777777711");
 //        SUMMONS_REPLY.enterEmail("test@test.com");
 //
 //        NAV.check_checkbox("Yes, send Welsh language communications");
@@ -1518,7 +1518,7 @@ public class StepDef_jurorpoolNewSchema {
 //        SUMMONS_REPLY.enterDateOfBirth("18/07/1976");
 //
 //        SUMMONS_REPLY.enterPrimaryPhone("07777777777");
-//        SUMMONS_REPLY.enterSecondaryPhone("0777777771");
+//        SUMMONS_REPLY.enterSecondaryPhone("07777777711");
 //        SUMMONS_REPLY.enterEmail("test@test.com");
 //
 //        SUMMONS_REPLY.clickContinue();
@@ -1550,7 +1550,7 @@ public class StepDef_jurorpoolNewSchema {
 //        SUMMONS_REPLY.enterDateOfBirth("18/07/1976");
 //
 //        SUMMONS_REPLY.enterPrimaryPhone("07777777777");
-//        SUMMONS_REPLY.enterSecondaryPhone("0777777771");
+//        SUMMONS_REPLY.enterSecondaryPhone("07777777711");
 //        SUMMONS_REPLY.enterEmail("test@test.com");
 //
 //        SUMMONS_REPLY.clickContinue();
@@ -1583,7 +1583,7 @@ public class StepDef_jurorpoolNewSchema {
 //        SUMMONS_REPLY.enterDateOfBirth("18/07/1976");
 //
 //        SUMMONS_REPLY.enterPrimaryPhone("07777777777");
-//        SUMMONS_REPLY.enterSecondaryPhone("0777777771");
+//        SUMMONS_REPLY.enterSecondaryPhone("07777777711");
 //        SUMMONS_REPLY.enterEmail("test@test.com");
 //
 //        SUMMONS_REPLY.clickContinue();
@@ -1615,7 +1615,7 @@ public class StepDef_jurorpoolNewSchema {
 //        SUMMONS_REPLY.enterDateOfBirth("18/07/1976");
 //
 //        SUMMONS_REPLY.enterPrimaryPhone("07777777777");
-//        SUMMONS_REPLY.enterSecondaryPhone("0777777771");
+//        SUMMONS_REPLY.enterSecondaryPhone("07777777711");
 //        SUMMONS_REPLY.enterEmail("test@test.com");
 //
 //        SUMMONS_REPLY.clickContinue();
@@ -1646,7 +1646,7 @@ public class StepDef_jurorpoolNewSchema {
 //        SUMMONS_REPLY.enterDateOfBirth("18/07/1976");
 //
 //        SUMMONS_REPLY.enterPrimaryPhone("07777777777");
-//        SUMMONS_REPLY.enterSecondaryPhone("0777777771");
+//        SUMMONS_REPLY.enterSecondaryPhone("07777777711");
 //        SUMMONS_REPLY.enterEmail("test@test.com");
 //
 //        SUMMONS_REPLY.clickContinue();
