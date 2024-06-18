@@ -10,6 +10,7 @@ import org.junit.runner.RunWith;
 
 @RunWith(Courgette.class)
 @CourgetteOptions(
+        reportTargetDir = "target/TestRunner_RegressionWelsh",
         threads = 6,
         runLevel = CourgetteRunLevel.FEATURE,
         rerunFailedScenarios = false,

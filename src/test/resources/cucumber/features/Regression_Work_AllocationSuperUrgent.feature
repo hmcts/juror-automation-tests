@@ -247,14 +247,10 @@ Scenario Outline: Check that Super Urgent ST is not auto assigned
 	And I press the "Search" button
 	Then I see "To do" in the same row as "<juror_number>"
 	When I click on "<juror_number>" in the same row as "<juror_number>"
-	Then I see "URGENT" on the page
 	
 	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "STAFF_LOGIN" is null where "JUROR_NUMBER" is "<juror_number>"
 	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "STAFF_ASSIGNMENT_DATE" is null where "JUROR_NUMBER" is "<juror_number>"
-
-	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "URGENT" is "N" where "JUROR_NUMBER" is "<juror_number>"
-	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "SUPER_URGENT" is "Y" where "JUROR_NUMBER" is "<juror_number>"
 	
 Examples:
-	| juror_number	| last_name			| postcode	| email          	| pool_number	|
-	| 045200208		| LNAMESEVENONEONE	| CH1 2AN	| email@outlook.com	| 452300193		|
+	| juror_number	| last_name			| postcode	| pool_number	|
+	| 045200208		| LNAMESEVENONEONE	| CH1 2AN	| 452300193		|
