@@ -97,16 +97,15 @@ Feature: JM-4949 & JM-5766
     And I press the "Continue" button
     And I see "1 juror returned" on the page
 
-    #check panel is no more as the only juror on there has been returned
-    And I press the "Generate panel" button
-    And I see "Which jurors do you want to generate a panel from?" on the page
+    And I press the "Add panel members" button
+    And I see "Select where to add more panel members from" on the page
+    And I click on the "Cancel" link
 
     #check juror has been returned to jurors in waiting
     And I press the "Apps" button
     And I click on the "Juror management" link
     And I click on the "Record attendance" link
     And I see "<juror_number>" in the same row as "Responded"
-
 
     Examples:
       |user			|juror_number  |  pool_number    | trial_number |
@@ -310,6 +309,9 @@ Feature: JM-4949 & JM-5766
 
     And I see "Return jurors without confirming attendance" on the page
     And I see "You're returning 1 juror." on the page
+    And I set "Hour" to "09"
+    And I set "Minute" to "00"
+    And I set the radio button to "am"
     And I see "You have not confirmed their attendance yet. You’ll need to do this separately." on the page
 
     And I press the "Return" button
@@ -657,7 +659,7 @@ Feature: JM-4949 & JM-5766
     And I see "Trial start date" on the page
     And I see "Trial end date" on the page
     And I see "PATRICIA H AITKEN" in the same row as "Judge"
-    And I see "Court Room" in the same row as "Courtroom"
+    And I see "Jury Assembly Room" in the same row as "Courtroom"
     And I see "No" in the same row as "Protected?"
 
     Examples:
