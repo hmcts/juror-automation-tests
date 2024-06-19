@@ -1,6 +1,6 @@
   Feature: JM-2249
 
-  @JurorTransformationWIP @NewSchemaConverted @JM-5347
+  @JurorTransformationMulti @NewSchemaConverted
   Scenario: Happy Path to delete a nil pool of jurors
 
     Given I am on "Bureau" "test"
@@ -70,7 +70,7 @@
     Then a message is displayed on the pool requests page informing me that the pool has been deleted
     And the pool is no longer visible
 
-  @JurorTransformationWIP @NewSchemaConverted @JM-5347
+  @JurorTransformationMulti @NewSchemaConverted
   Scenario: Cancel deletion of nil pool
 
     Given I am on "Bureau" "test"

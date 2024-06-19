@@ -275,7 +275,6 @@ Feature: JM-5413-5415 - Resend excusal granted letter for Bureau and Jury users
     And I set "Enter pool number" to "<pool_number>"
     And I press the "Search" button
     Then I see "<juror_number>" in the same row as "Excused"
-    #Script will fail due to JM-6227 - and possibly another
     And I see "<juror_number_1>" in the same row as "Deceased"
 
     Examples:
@@ -283,7 +282,7 @@ Feature: JM-5413-5415 - Resend excusal granted letter for Bureau and Jury users
         |  041529013  | 041529034  |415980685   | MODTESTBUREAU |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @JM-6341
+  @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline:Verify as a bureau user can view letters queued for printing and can delete it
 
     Given I am on "Bureau" "test"
