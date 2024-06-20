@@ -35,7 +35,7 @@ Feature: JM-2251 JM-3038
     Then I see the following summons reply details under the juror details tab
       | jurorName      | FNAMENINENINESIX <last_name>               |
       | jurorAddress   | address\nAddress Line Four\n<postcode> |
-      | jurorDob       | 18 Jul 1976 (Juror will be 47 years old)     |
+      | jurorDob       | 18 Jul 1976 (Juror will be 48 years old)     |
       | jurorMainPhone | 07777777777                                   |
       | jurorAltPhone  | 07777777711                                   |
       | jurorEmail     | test@test.com                                |
@@ -96,7 +96,7 @@ Feature: JM-2251 JM-3038
     Then I see the following summons reply details under the juror details tab
       | jurorName      | Firstname Lastname                           |
       | jurorAddress   | 570 STREET NAME\nAddress Line Four\n<postcode>  |
-      | jurorDob       | 18 Jul 1976 (Juror will be 47 years old)     |
+      | jurorDob       | 18 Jul 1976 (Juror will be 48 years old)     |
       | jurorMainPhone | 07777777777                                   |
       | jurorAltPhone  | 07777777711                                   |
       | jurorEmail     | test@test.com                                |
