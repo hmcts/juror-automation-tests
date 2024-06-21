@@ -28,6 +28,12 @@ Feature: JM-5963 - As a jury I need to be able to print a certificate of attenda
     And I input juror "<juror_number>" to be checked in
     And I press the "Check in juror" button
     And I see "<juror_number>" in the same row as "9:00am"
+    And I set the radio button to "Check out"
+    And I set "Hour" to "4"
+    And I set "Minute" to "00"
+    And I select the checkout radio button to "pm"
+    And I input juror "<juror_number>" to be checked out
+    And I press the "Check out juror" button
 
     And I press the "Apps" button
     And I click on the "Documents" link
