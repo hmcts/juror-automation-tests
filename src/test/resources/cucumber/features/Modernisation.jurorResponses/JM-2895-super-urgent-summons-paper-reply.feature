@@ -55,7 +55,7 @@ Feature: JM-2895
     When I enter a juror details phone number of "Test"
     And I enter a juror details email of "Test@Test"
     And I click continue on the juror summons reply page
-    Then an error is displayed on the juror summons reply page saying "Enter a valid main phone number"
+    Then an error is displayed on the juror summons reply page saying "Enter a UK telephone number"
     And an error is displayed on the juror summons reply page saying "Enter a valid email address"
 
     Examples:
