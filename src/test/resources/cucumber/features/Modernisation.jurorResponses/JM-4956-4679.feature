@@ -409,12 +409,11 @@ Feature: JM-4956 - 4679
     And I select the radio button with name "<juror_number_5>" and value "challenged"
     And I see "When you confirm, anyone not used or challenged will be returned to the ‘jurors in waiting’ list." on the page
     And I see "3 selected of 1 jurors needed" on the page
-
-    #jurors set to JUROR will still show in panel with status of Juror
     And I press the "Confirm and empanel jury" button
-    And I see "Juror" in the same row as "<juror_number>"
-    And I see "Juror" in the same row as "<juror_number_2>"
-    And I see "Juror" in the same row as "<juror_number_3>"
+    And I see "You must select 1 jurors to serve on the jury" on the page
+    And I select the radio button with name "<juror_number_2>" and value "unused"
+    And I select the radio button with name "<juror_number_3>" and value "unused"
+    And I press the "Confirm and empanel jury" button
 
     #jurors set to Not used or Challenged will be removed from panel and placed in jurors in waiting under status Responded
     And I press the "Apps" button
