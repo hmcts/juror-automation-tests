@@ -193,7 +193,7 @@ Feature: JM-5413-5415 - Resend excusal granted letter for Bureau and Jury users
       |  041529056    | 041529057     |041529058      |415980676   | MODTESTBUREAU |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @JM-6227
+  @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline:As a bureau officer test a excused juror can resend a granted letter by searching via Pool number - unhappy path
 
     Given I am on "Bureau" "test"
@@ -314,12 +314,11 @@ Feature: JM-5413-5415 - Resend excusal granted letter for Bureau and Jury users
     And I click on the "Excusal granted letters" link
     When I set the radio button to "Show all letters queued for printing"
     And I press the "Search" button
-
-    #will fail here as a result of JM-6341
     Then I see "041529015" on the page
     And I see "Change" on the page
+
     When I click on "Delete" in the same row as "<juror_number>"
-    And I see "1 pending document deleted" on the page
+    Then I see "1 pending document deleted" on the page
 
     Examples:
       | juror_number  |  pool_number | user          |
@@ -423,4 +422,3 @@ Feature: JM-5413-5415 - Resend excusal granted letter for Bureau and Jury users
     Examples:
       | juror_number  | pool_number | user          |
       |  041529017    | 415980685   | MODTESTCOURT  |
-
