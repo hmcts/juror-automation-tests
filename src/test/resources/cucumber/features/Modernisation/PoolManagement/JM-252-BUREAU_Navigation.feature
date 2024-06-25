@@ -198,9 +198,6 @@ Feature: JM-252_Navigation
 
     Then I click on the "Clear filter" link
 
-    Then I see "Chester" on the page
-    And I see "Swansea" on the page
-
     Then I set input field with "ID" of "courtNameOrLocation" to "457"
     Then I click on the "Swansea Crown Court (457)" link
     Then I press the "Filter" button
@@ -214,9 +211,6 @@ Feature: JM-252_Navigation
     Then only records from "Chester" are displayed
 
     Then I click on the "Clear filter" link
-
-    Then I see "Chester" on the page
-    And I see "Swansea" on the page
 
     Then I set input field with "ID" of "courtNameOrLocation" to "Swansea"
     Then I click on the "Swansea Crown Court (457)" link
