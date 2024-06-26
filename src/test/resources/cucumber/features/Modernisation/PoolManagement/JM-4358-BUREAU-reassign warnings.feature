@@ -1,6 +1,6 @@
 Feature: JM-4358
 
-  @JurorTransformationWIP @NewSchemaConverted @JM-7236
+  @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Reassign a juror Bureau User - warning cannot be reassigned when status not 1 or 2
 
     Given I am on "Bureau" "test"
