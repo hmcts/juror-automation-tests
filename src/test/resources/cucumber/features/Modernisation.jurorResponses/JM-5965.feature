@@ -3,7 +3,7 @@ Feature: JM-5965 - Certificate of Exemption
   @JurorTransformation @NewSchemaConverted
   Scenario Outline:As a jury officer I want to print a certification of exemption letter for a juror in a trial
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     When a bureau owned pool is created with jurors
       | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
       | 415   | <juror_number>| <pool_number>           | 5                          | 400  |
@@ -64,7 +64,8 @@ Feature: JM-5965 - Certificate of Exemption
     And I see "Certificates of exemption" on the page
     Then I check the juror "<juror_number>" checkbox
     And I press the "Print certificate of exemption" button
-    And I see "juror.staging.apps.hmcts.net/documents/certificate-of-exemption-list/EXEMPTIONCERT2?durationType=specific&durationYears=2" in the URL
+    And I switch to the new window
+    And I see "/documents/certificate-of-exemption-list/EXEMPTIONCERT2/print?durationType=specific&durationYears=2" in the URL
 
     Examples:
       | juror_number  | pool_number | user          | trial_number           |
@@ -131,6 +132,7 @@ Feature: JM-5965 - Certificate of Exemption
     And I see "Certificates of exemption" on the page
     Then I check the juror "<juror_number>" checkbox
     And I press the "Print certificate of exemption" button
+    And I switch to the new window
     And I see "juror.staging.apps.hmcts.net/documents/certificate-of-exemption-list/EXEMPTION2?durationType=indefinitely" in the URL
 
     Examples:
