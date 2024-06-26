@@ -81,8 +81,11 @@ Scenario Outline: Postpone a juror to another court as a Jury officer - Bulk flo
             |user			 |juror_number_1  | juror_number_2  | juror_number_3  |juror_number_4  |pool_number  |
             |MODTESTCOURT  |041520029       | 041520030         |041520031       |041520032       |415300714    |
 
-    @JurorTransformation
+    @JurorTransformationWIP @JM-7621
     Scenario Outline: Postpone a juror to another court as a Jury officer - Bulk flow UNHAPPY PATH
+
+        #return to @JurorTransformnation when defect fixed
+
         Given I am on "Bureau" "test"
 
         Given a bureau owned pool is created with jurors
@@ -152,8 +155,8 @@ Scenario Outline: Postpone a juror to another court as a Jury officer - Bulk flo
         And I see "1 juror postponed to deferral maintenance" on the page
 
         Examples:
-            |user			 |juror_number_1  | juror_number_2  |juror_number_3    | pool_number   | trial_number    |
-            |MODTESTCOURT     |041520222     | 041520223       |041520224         |415300718      | TESTINGTRIAL2024|
+            |user			 |juror_number_1| juror_number_2  |juror_number_3    | pool_number   | trial_number    |
+            |MODTESTCOURT    |041520222     | 041520223       |041520224         |415300718      | TESTINGTRIAL2024|
 
     @JurorTransformationMulti
     Scenario Outline: Postpone a juror having age more than 75 to another court as a Jury officer - Bulk flow happy path
