@@ -44,7 +44,7 @@ Scenario: Bureau E Test
 
 	When I click on "AutomationStaffMemberONE" in the same row as "AutomationStaffMemberONE"
 	Then I see "AutomationStaffMemberONE" in the same row as "Full name"
-	Then I see "AutomationStaff1@email.com" in the same row as "Email"
+	Then I see "automationstaff1@email.com" in the same row as "Email"
 	Then I see "Bureau" in the same row as "User type"
 
 	And I press the "Edit user" button
