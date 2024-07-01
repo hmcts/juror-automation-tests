@@ -136,8 +136,8 @@ public class StepDef_summoningprogress {
 
     @Given("^the poolNumbers lists is empty$")
     public void thePoolNumbersListsIsEmpty() {
-        ArrayList<String> pools = StepDef_jurorpool.poolNumbers.get();
-        pools.clear();
+        StepDef_jurorpool.poolNumbers.get().clear();
+
     }
 
     @And("^I see the eligibility of \"([^\"]*)\" is \"([^\"]*)\"$")

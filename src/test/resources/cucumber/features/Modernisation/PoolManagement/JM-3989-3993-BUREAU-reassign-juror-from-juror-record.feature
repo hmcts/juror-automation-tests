@@ -1,11 +1,8 @@
 Feature: JM-3989 JM-3993
 
-  @JurorTransformationWIP @NewSchemaConverted @JM-7664
+  @JurorTransformation @NewSchemaConverted @JM-7664
   Scenario: Reassign a juror to a pool for a different court - Bureau User
-
-    #return to JurorTransformation when defect fixed
-
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "test"
 #    And new pool requests are deleted new schema
     And the new pool for court "415" is deleted new schema
     And the new pool for court "774" is deleted new schema
