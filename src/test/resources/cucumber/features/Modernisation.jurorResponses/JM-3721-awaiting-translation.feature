@@ -3,17 +3,18 @@ Feature: JM-3721 Awaiting Translation
 @JurorTransformationMulti @NewSchemaConverted
 Scenario Outline: JM-3721 As Court User, set Paper Response status as Awaiting Translation
 
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
-		| 415   | <juror_number> 	    | <pool_number>     | 7				            | 400	|
+		| 457   | <juror_number> 	    | <pool_number>     | 7				            | 400	|
 
 	Then a new pool is inserted for where record has transferred to the court new schema
 		| part_no   	| pool_no   	| owner |
-		| <juror_number>| <pool_number> | 415   |
+		| <juror_number>| <pool_number> | 457   |
 
-	And I log in as "<user>"
+	And I log in as "<user>" selecting court "457"
+	And I click on the "HMCTS Juror" link
 
 	#view the record
 	Then I set "Search for a juror record" to "<juror_number>"
@@ -72,23 +73,23 @@ Scenario Outline: JM-3721 As Court User, set Paper Response status as Awaiting T
 	And I click on the "Sign out" link
 
 	Examples:
-		| user         | juror_number   | pool_number   |
-		| MODTESTCOURT | 041500121 		| 415300221 	|
+		| user    | juror_number| pool_number   |
+		| SWANSEA | 045700121 	| 457300221 	|
 
 	@JurorTransformationMulti @NewSchemaConverted
 	Scenario Outline: JM-3721 As Court User, set Paper Response status as Awaiting Translation - errors and warnings
 
-		Given I am on "Bureau" "test"
+		Given I am on "Bureau" "ithc"
 
 		Given a bureau owned pool is created with jurors
 			| court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
-			| 415   | <juror_number> 	    | <pool_number>     | 7				            | 400	|
+			| 457   | <juror_number> 	    | <pool_number>     | 7				            | 400	|
 
 		Then a new pool is inserted for where record has transferred to the court new schema
 			|part_no   		| pool_no   	| owner |
-			|<juror_number> | <pool_number> | 415   |
+			|<juror_number> | <pool_number> | 457   |
 
-		And I log in as "<user>"
+		And I log in as "<user>" selecting court "457"
 
 	#view the record
 		Then I set "Search for a juror record" to "<juror_number>"
@@ -152,8 +153,8 @@ Scenario Outline: JM-3721 As Court User, set Paper Response status as Awaiting T
 	And I click on the "Sign out" link
 
 		Examples:
-			| user          | juror_number  | pool_number   |
-			| MODTESTCOURT 	| 041500120 	| 415300220  	|
+			| user      | juror_number  | pool_number   |
+			| SWANSEA 	| 045700120 	| 457300220  	|
 
 	@JurorTransformationMulti @NewSchemaConverted
 	Scenario Outline: JM-3721 As Court User, set Paper Response status as Awaiting Translation - navigation
@@ -162,13 +163,13 @@ Scenario Outline: JM-3721 As Court User, set Paper Response status as Awaiting T
 
 		Given a bureau owned pool is created with jurors
 			| court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
-			| 415   | <juror_number> 	    | <pool_number>     | 7				            | 400	|
+			| 457   | <juror_number> 	    | <pool_number>     | 7				            | 400	|
 
 		Then a new pool is inserted for where record has transferred to the court new schema
 			|part_no   		| pool_no   	| owner |
-			|<juror_number> | <pool_number> | 415   |
+			|<juror_number> | <pool_number> | 457   |
 
-		And I log in as "<user>"
+		And I log in as "<user>" selecting court "457"
 
 	#view the record
 		Then I set "Search for a juror record" to "<juror_number>"
@@ -253,5 +254,5 @@ Scenario Outline: JM-3721 As Court User, set Paper Response status as Awaiting T
 		And I click on the "Sign out" link
 
 		Examples:
-			| user         | juror_number   | pool_number   |
-			| MODTESTCOURT | 041500122 		| 415300222  	|
+			| user    | juror_number   	| pool_number   |
+			| SWANSEA | 045700122 		| 457300222  	|

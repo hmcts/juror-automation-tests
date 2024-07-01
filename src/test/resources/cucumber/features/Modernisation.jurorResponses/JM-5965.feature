@@ -74,7 +74,7 @@ Feature: JM-5965 - Certificate of Exemption
   @JurorTransformation @NewSchemaConverted
   Scenario Outline:As a jury officer I want to print a certification of exemption letter for a juror in a trial - indefinitely
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     When a bureau owned pool is created with jurors
       | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
       | 415   | <juror_number>| <pool_number>           | 5                          | 400  |
@@ -133,7 +133,7 @@ Feature: JM-5965 - Certificate of Exemption
     Then I check the juror "<juror_number>" checkbox
     And I press the "Print certificate of exemption" button
     And I switch to the new window
-    And I see "juror.staging.apps.hmcts.net/documents/certificate-of-exemption-list/EXEMPTION2?durationType=indefinitely" in the URL
+    And I see "/documents/certificate-of-exemption-list/EXEMPTION2?durationType=indefinitely" in the URL
 
     Examples:
       | juror_number  | pool_number | user          | trial_number       |

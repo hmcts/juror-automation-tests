@@ -4860,7 +4860,7 @@ public class DatabaseTesterNewSchemaDesign {
 			pStmt.executeUpdate();
 
 			pStmt = conn.prepareStatement("INSERT INTO juror_mod.bulk_print_data (juror_no,creation_date,form_type,detail_rec,extracted_flag,digital_comms)"
-					+ "VALUES ('" + jurorNumber + "',NOW(),'5221','" + jurorNumber + "          Fname Lname',true,NULL)");
+					+ "VALUES ('" + jurorNumber + "',NOW(),'5221','" + jurorNumber + "          Fname Lname',true,false)");
 			pStmt.executeUpdate();
 
 		} catch (SQLException e) {

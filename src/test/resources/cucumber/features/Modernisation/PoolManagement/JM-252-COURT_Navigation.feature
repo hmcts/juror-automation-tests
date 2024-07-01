@@ -131,7 +131,7 @@ Feature: JM-252_Navigation_COURT
 
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Create pools for different courts and apply filters for court user
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     And I log in as "<user>"
 
@@ -147,7 +147,7 @@ Feature: JM-252_Navigation_COURT
 
     Then I set the radio button to "<courtType>"
     And I set "Number of jurors required in total" to "150"
-    Then I should see the attendance time present is "09:30"
+    Then I should see the attendance time present is "09:00"
     Then I press the "Continue" button
 
     When I save the new pool request
