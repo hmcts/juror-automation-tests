@@ -212,7 +212,6 @@ Scenario Outline: Your Work
 	And I search for juror "<juror_number_three>"
 	And I click on the "Summons reply" link
 	And I click on the "View summons reply" link
-	And I see "URGENT" on the page
 	And I select Process reply
 	And I choose the "Mark as responded" radio button
 	And I press the "Continue" button

@@ -148,6 +148,8 @@ public class StepDef {
 			case "CMANAGER2":
 			case "SHREWSBURY":
 			case "NEWUSER":
+			case "SWANSEA":
+				defaultCourt = "457";
 				LGN.loginADTestRoute(username + "@email.gov.uk");
 				break;
 			case "MODTESTCOURT":
