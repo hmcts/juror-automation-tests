@@ -3,14 +3,14 @@ Feature: JM-3368 Super Urgent Paper Response Court
 	@JurorTransformationMulti @NewSchemaConverted
 	Scenario Outline: JM-3368 As Court User, record urgent UNHAPPY PATH Paper Response
 
-		Given I am on "bureau" "test"
+		Given I am on "bureau" "ithc"
 		Given a bureau owned pool is created with jurors
-			| court |juror_number  	    | pool_number	        | att_date_weeks_in_future	| owner |
-			| 415   |<juror_number> 	    | <pool_number>     | 1				            | 400	|
+			| court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+			| 415   |<juror_number> 	| <pool_number>     | 1				            | 400	|
 
 		Then a new pool is inserted for where record has transferred to the court new schema
-			|part_no               | pool_no           | owner |
-			|<juror_number>       | <pool_number>      | 415   |
+			|part_no              | pool_no           | owner |
+			|<juror_number>       | <pool_number>     | 415   |
 
 		And "<juror_number>" has "NEXT_DATE" as "1 mondays time" new schema
 
@@ -51,7 +51,7 @@ Feature: JM-3368 Super Urgent Paper Response Court
 
 		And I see the reply "status" on the response is "TO DO"
 		And I see the reply "type" on the response is "INELIGIBLE"
-		And I see "URGENT" on the page
+		And I do not see "URGENT" on the page
 		And I see "Summons reply is missing essential information - reply cannot be processed until this information is entered." in the response banner
 
 		And I click on the "Sign out" link

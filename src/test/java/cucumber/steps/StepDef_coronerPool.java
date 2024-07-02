@@ -73,7 +73,7 @@ public class StepDef_coronerPool {
     @When("^I select to create a coroner's pool$")
     public void iClickCreateCoronerPool() throws Throwable {
         NAV.press_buttonByName("Create pool");
-        GRP.click_radioButtonWithLabel("Coroner’s court pool");
+        GRP.click_radioButtonWithLabel("Coroner");
         NAV.press_buttonByName("Continue");
     }
 

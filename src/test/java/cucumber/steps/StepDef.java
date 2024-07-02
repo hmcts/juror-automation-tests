@@ -110,12 +110,25 @@ public class StepDef {
 	@Then("^I log in as \"([^\"]*)\"$")
 	public void loginWithUsername(String username) throws Throwable {
 		loginWithAD(username, "");
+
+		try { NAV.click_link_by_text("Apps");
+			try {
+				NAV.click_link_by_text("Summons management");
+			} catch (Exception f) {
+				NAV.click_link_by_text("Juror management");
+			}
+
+		} catch (Exception e) {
+			NAV.waitForPageLoad();
+		}
+
 	}
 
 
 	@Then("^I log in as \"([^\"]*)\" selecting court \"([^\"]*)\"$")
 	public void loginWithUsernameAndCourt(String username, String specifiedCourt) throws Throwable {
 		loginWithAD(username, specifiedCourt);
+		NAV.click_link_by_text("Apps");
 	}
 
 	public void loginWithAD(String username, String specifiedCourt) throws Throwable {
@@ -135,6 +148,8 @@ public class StepDef {
 			case "CMANAGER2":
 			case "SHREWSBURY":
 			case "NEWUSER":
+			case "SWANSEA":
+				defaultCourt = "457";
 				LGN.loginADTestRoute(username + "@email.gov.uk");
 				break;
 			case "MODTESTCOURT":

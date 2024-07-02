@@ -12,7 +12,7 @@ import org.junit.runner.RunWith;
 @CourgetteOptions(
         reportTargetDir = "target/TestRunner_JurorTransformation",
         threads = 1,
-        runLevel = CourgetteRunLevel.FEATURE,
+        runLevel = CourgetteRunLevel.SCENARIO,
         rerunFailedScenarios = false,
 		testOutput = CourgetteTestOutput.CONSOLE,
         cucumberOptions = @CucumberOptions(

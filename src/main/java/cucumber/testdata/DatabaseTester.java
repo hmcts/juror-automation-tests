@@ -2771,19 +2771,19 @@ public class DatabaseTester {
 		try {
 
 			// USERS TABLE
-			pStmt = conn.prepareStatement("INSERT INTO juror_mod.users (owner, user_type, username, email, name, active, version) "
- 					+ "VALUES "
- 					+ "('400', 'BUREAU', 'MODTESTBUREAU', 'MODTESTBUREAU@email.gov.uk', 'MODTESTBUREAU', true, 1), "
-					+ "('415', 'COURT', 'MODTESTCOURT', 'MODTESTCOURT@email.gov.uk', 'MODTESTCOURT', true, 1), "
-					+ "('400', 'SYSTEM', 'AUTO', 'AUTO@email.gov.uk', 'AUTO', true, 1), "
-					+ "('400', 'BUREAU', 'TeamPickListUser', 'TeamPickListUser@email.gov.uk', 'TeamPickListUser', true, 1), "
- 					+ "('400', 'BUREAU', 'AutomationStaffTWO', 'AutomationStaffTWO@email.gov.uk', 'AutomationStaffTWO', true, 1), "
- 					+ "('400', 'SYSTEM', 'SYSTEM', 'SYSTEM@email.gov.uk', 'SYSTEM', true, 1), "
- 					+ "('416', 'COURT', 'SJOUSER1', 'SJOUSER1@email.gov.uk', 'SJOUSER1', true, 1), "
- 					+ "('400', 'BUREAU', 'CPASS', 'CPASS@email.gov.uk', 'CPASS', true, 1), "
- 					+ "('400', 'BUREAU', 'NEWUSER', 'NEWUSER@email.gov.uk', 'NEWUSER', true, 1), "
- 					+ "('400', 'BUREAU', 'ARAMIS1', 'ARAMIS1@email.gov.uk', 'ARAMIS1', true, 1), "
- 					+ "('415', 'COURT', 'MODCOURT', 'MODCOURT@email.gov.uk', 'MODCOURT', true, 1); ");
+			pStmt = conn.prepareStatement("INSERT INTO juror_mod.users (user_type, username, email, name, active) "
+				+ "VALUES "
+				+ "('BUREAU', 'MODTESTBUREAU', 'MODTESTBUREAU@email.gov.uk', 'MODTESTBUREAU', true), "
+				+ "('COURT', 'MODTESTCOURT', 'MODTESTCOURT@email.gov.uk', 'MODTESTCOURT', true), "
+				+ "('SYSTEM', 'AUTO', 'AUTO@email.gov.uk', 'AUTO', true), "
+				+ "('BUREAU', 'TeamPickListUser', 'TeamPickListUser@email.gov.uk', 'TeamPickListUser', true), "
+				+ "('BUREAU', 'AutomationStaffTWO', 'AutomationStaffTWO@email.gov.uk', 'AutomationStaffTWO', true), "
+				+ "('SYSTEM', 'SYSTEM', 'SYSTEM@email.gov.uk', 'SYSTEM', true), "
+				+ "('COURT', 'SJOUSER1', 'SJOUSER1@email.gov.uk', 'SJOUSER1', true), "
+				+ "('BUREAU', 'CPASS', 'CPASS@email.gov.uk', 'CPASS', true), "
+				+ "('BUREAU', 'NEWUSER', 'NEWUSER@email.gov.uk', 'NEWUSER', true), "
+				+ "('BUREAU', 'ARAMIS1', 'ARAMIS1@email.gov.uk', 'ARAMIS1', true), "
+				+ "('COURT', 'MODCOURT', 'MODCOURT@email.gov.uk', 'MODCOURT', true); ");
 			pStmt.execute();
 			conn.commit();
 

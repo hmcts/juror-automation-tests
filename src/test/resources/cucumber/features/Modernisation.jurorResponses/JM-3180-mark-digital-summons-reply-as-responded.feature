@@ -1,6 +1,6 @@
 Feature: JM-3180
 
-  @JurorTransformationWIP @NewSchemaConverted @JurorDigitalNotConverted
+  @JurorTransformation @NewSchemaConverted
   Scenario Outline: Mark Digital Summons Reply As Responded
 
     Given I am on "Public" "test"
@@ -15,7 +15,7 @@ Feature: JM-3180
 
     And I submit a digital response with reasonable adjustment
       | part_no	         | pool_number  | last_name	| postcode	| email  | adjustmentNeededCap     | details                       |
-      | <juror_number>   | <pool_number>| LNAME  	| CH1 2AN	| <email>| <adjustmentNeededCap>   | Reasonable adjustment detail  |
+      | <juror_number>   | <pool_number>| LNAME  	| CH2 2AA	| <email>| <adjustmentNeededCap>   | Reasonable adjustment detail  |
 
     Given I am on "Bureau" "test"
     And I log in as "<user>"
@@ -37,7 +37,7 @@ Feature: JM-3180
       | user          | juror_number| pool_number | email     | adjustmentNeeded   | adjustmentFullCaps    | adjustmentFull          | adjustmentNeededCap|
       | MODTESTBUREAU | 041500134   | 415300234   | e@mail.com| limited mobility   | L - LIMITED MOBILITY  | L - Limited mobility    | Limited mobility   |
 
-  @JurorTransformationWIP @NewSchemaConverted @JurorDigitalNotConverted
+  @JurorTransformation @NewSchemaConverted
   Scenario Outline: Cancel Marking Digital Summons Reply As Responded
     Given I am on "Public" "test"
 
@@ -51,7 +51,7 @@ Feature: JM-3180
 
     And I submit a digital response with reasonable adjustment
       |part_no	      |pool_number  |last_name	|postcode	|email 	|adjustmentNeededCap  |details                       |
-      |<juror_number> |<pool_number>|LNAME  	|CH1 2AN	|<email>|<adjustmentNeededCap>|Reasonable adjustment detail  |
+      |<juror_number> |<pool_number>|LNAME  	|CH2 2AA	|<email>|<adjustmentNeededCap>|Reasonable adjustment detail  |
 
     Given I am on "Bureau" "test"
     And I log in as "<user>"
@@ -70,7 +70,7 @@ Feature: JM-3180
       | user          | juror_number| pool_number | email     | adjustmentNeeded   | adjustmentFullCaps    | adjustmentFull          | adjustmentNeededCap|
       | MODTESTBUREAU | 041500135   | 415300235   | e@mail.com| limited mobility   | L - LIMITED MOBILITY  | L - Limited mobility    | Limited mobility   |
 
-  @JurorTransformationWIP @NewSchemaConverted @JurorDigitalNotConverted
+  @JurorTransformation @NewSchemaConverted
   Scenario Outline: Mark Digital Summons Reply As Responded - Mark As Responded Validation
     Given I am on "Public" "test"
 
@@ -84,7 +84,7 @@ Feature: JM-3180
 
     And I submit a digital response with reasonable adjustment
       |part_no	      |pool_number  |last_name	|postcode	|email 	|adjustmentNeededCap  |details                       |
-      |<juror_number> |<pool_number>|LNAME  	|CH1 2AN	|<email>|<adjustmentNeededCap>|Reasonable adjustment detail  |
+      |<juror_number> |<pool_number>|LNAME  	|CH2 2AA	|<email>|<adjustmentNeededCap>|Reasonable adjustment detail  |
 
     Given I am on "Bureau" "test"
     And I log in as "<user>"
@@ -103,7 +103,7 @@ Feature: JM-3180
       | user          | juror_number  | pool_number   | email     | adjustmentNeeded   | adjustmentFullCaps    | adjustmentFull          | adjustmentNeededCap|
       | MODTESTBUREAU | 041500136     | 415300236     | e@mail.com| limited mobility   | L - LIMITED MOBILITY  | L - Limited mobility    | Limited mobility   |
 
-  @JurorTransformationWIP @NewSchemaConverted @JurorDigitalNotConverted
+  @JurorTransformation @NewSchemaConverted
   Scenario Outline: Mark Digital Summons Reply As Responded - Confirm Mark As Responded validation
 
     Given I am on "Public" "test"
@@ -118,7 +118,7 @@ Feature: JM-3180
 
     And I submit a digital response with reasonable adjustment
       |part_no	      |pool_number  |last_name	|postcode	|email 	|adjustmentNeededCap  |details                       |
-      |<juror_number> |<pool_number>|LNAME  	|CH1 2AN	|<email>|<adjustmentNeededCap>|Reasonable adjustment detail  |
+      |<juror_number> |<pool_number>|LNAME  	|CH2 2AA	|<email>|<adjustmentNeededCap>|Reasonable adjustment detail  |
 
     Given I am on "Bureau" "test"
     And I log in as "<user>"

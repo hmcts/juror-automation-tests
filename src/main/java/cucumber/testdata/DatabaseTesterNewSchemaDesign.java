@@ -4830,7 +4830,7 @@ public class DatabaseTesterNewSchemaDesign {
 			pStmt.executeUpdate();
 
 			pStmt = conn.prepareStatement("INSERT INTO juror_mod.bulk_print_data (juror_no,creation_date,form_type,detail_rec,extracted_flag,digital_comms)"
-					+ "VALUES ('" + jurorNumber + "',NOW(),'5224A','THE CROWN COURT AT CHESTER JURY CENTRAL SUMMONING BUREAU THE COURT SERVICE',false,false)");
+					+ "VALUES ('" + jurorNumber + "',NOW(),'5224A','04 JULY 2024      415THE CROWN COURT AT CHESTER                                 JURY CENTRAL SUMMONING BUREAU           THE COURT SERVICE                  FREEPOST LON 19669                 POCOCK STREET                      LONDON                                                                                                   SE1 0YG   0845 3555567            MONDAY 15 JULY, 2024            09:00             0FNAME2             TESTNAME            ADDRESS                                                                                                                                                                                                           CH1 2NN   041500002JURY MANAGER                  ',false,false)");
 			pStmt.executeUpdate();
 
 		} catch (SQLException e) {
@@ -4860,7 +4860,7 @@ public class DatabaseTesterNewSchemaDesign {
 			pStmt.executeUpdate();
 
 			pStmt = conn.prepareStatement("INSERT INTO juror_mod.bulk_print_data (juror_no,creation_date,form_type,detail_rec,extracted_flag,digital_comms)"
-					+ "VALUES ('" + jurorNumber + "',NOW(),'5221','" + jurorNumber + "          Fname Lname',true,NULL)");
+					+ "VALUES ('" + jurorNumber + "',NOW(),'5221','" + jurorNumber + "          Fname Lname',true,false)");
 			pStmt.executeUpdate();
 
 		} catch (SQLException e) {

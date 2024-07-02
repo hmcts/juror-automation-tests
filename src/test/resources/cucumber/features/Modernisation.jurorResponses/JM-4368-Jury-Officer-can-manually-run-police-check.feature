@@ -3,7 +3,7 @@ Feature: JM-4368 Jury Officer Can Manually Run a Police Check
   @JurorTransformationMulti
   Scenario Outline: Manually run police check - presence of link - not checked
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     Given I log in as "MODTESTCOURT"
 
@@ -119,7 +119,7 @@ Feature: JM-4368 Jury Officer Can Manually Run a Police Check
     And I search for juror "<juror_number>"
     And I record a happy path paper summons response and process now
     And I search for juror "<juror_number>"
-    And I see the police check value is "Not checked"
+    And I see the police check value is "Not Checked"
     And I see the link to run a police check
     When I click the link to run a police check
     And I see "Run a police check on this juror" on the page

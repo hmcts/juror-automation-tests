@@ -2032,6 +2032,7 @@ public class StepDef_jurorpool {
         NAV.set_value_to("Number of jurors", "150");
         NAV.press_buttonByName("Continue");
         poolNumber.set(CHECK_POOL_REQUEST_PAGE.getCourtNewPoolRequestNumber());
+        poolNumbers.get().add(CHECK_POOL_REQUEST_PAGE.getCourtNewPoolRequestNumber());
         poolDate.set(CHECK_POOL_REQUEST_PAGE.getNewPoolAttendanceDate());
         NAV.press_buttonByName("Request pool");
     }
@@ -2083,10 +2084,10 @@ public class StepDef_jurorpool {
         Integer newPoolsCreated = 0;
         do {
             createNewPoolRequestWeeksInFuture(courtType, court, newPoolsCreated);
-            String poolNo = POOL_REQUESTS_PAGE.getNewPoolNumberOnSummary();
+            //String poolNo = POOL_REQUESTS_PAGE.getNewPoolNumberOnSummary();
 
             ArrayList<String> pools = poolNumbers.get();
-            pools.add(poolNo);
+            //pools.add(poolNo);
 
             NAV.click_link_by_text("Search");
             JUROR_RECORD_SEARCH.searchForRecordFromPoolSearch(poolNumber.get());
@@ -2106,18 +2107,21 @@ public class StepDef_jurorpool {
         Integer newPoolsCreated = 0;
         do {
             createNewPoolRequestWeeksInFuture(courtType, court, newPoolsCreated + 1);
-            String poolNo = POOL_REQUESTS_PAGE.getNewPoolNumberOnSummary();
+            //String poolNo = POOL_REQUESTS_PAGE.getNewPoolNumberOnSummary();
 
             ArrayList<String> pools = poolNumbers.get();
-            pools.add(poolNo);
+            //pools.add(poolNo);
 
-            POOL_REQUESTS_PAGE.clickFirstRequestLink();
+            NAV.click_link_by_text("Search");
+            JUROR_RECORD_SEARCH.searchForRecordFromPoolSearch(poolNumber.get());
             NAV.press_buttonByName("Summon jurors");
             NAV.set_value_to("Citizens to summon", jurorsToSummon);
             NAV.press_buttonByName("Create pool and summon citizens");
             POOL_REQUESTS_PAGE.clickTab("Pool requests");
             newPoolsCreated = newPoolsCreated + 1;
         } while (newPoolsCreated < noOfPools);
+        ArrayList<String> pools = poolNumbers.get();
+        log.info(pools);
         String poolsCreated = poolNumbers.toString().replace("[", "(").replace("]", ")");
         System.out.println("Pools Created: " + poolsCreated);
     }
