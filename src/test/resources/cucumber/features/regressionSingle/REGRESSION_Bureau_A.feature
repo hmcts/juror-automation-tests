@@ -60,14 +60,14 @@ Scenario Outline: Lift from QC Script for Bureau A Functionality
 	And I press the "Search" button
 
 	When I click on "<juror_number_three>" in the same row as "<juror_number_three>"
-	And I see "URGENT" on the page
+	And I do not see "URGENT" on the page
 
 	And I click on the "Search" link
 	And I set "Juror's pool number" to "<pool_number_two>"
 	And I press the "Search" button
 
 	When I click on "<juror_number_two>" in the same row as "<juror_number_two>"
-	And I see "URGENT" on the page
+	And I do not see "URGENT" on the page
 
 	And I click on the "Search" link
 	And I set "Juror's pool number" to "<pool_number_one>"
