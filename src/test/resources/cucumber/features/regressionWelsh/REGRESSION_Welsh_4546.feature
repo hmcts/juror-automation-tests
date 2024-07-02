@@ -294,16 +294,15 @@ Examples:
 	| 045700071		| 457300071		| LNAMESEVENONETHREE	| SY2 6LU	| e@eeee.com	|
 	
 
-@RegressionWelsh @JDB-4546 
+@RegressionWelsh @NewSchemaConverted
 Scenario Outline: Welsh 3rd Party - Accessibility statement on each page
-	Given I am on the welsh version of "Public" "juror-test02"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
-	
+	Given I am on the welsh version of "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court | juror_number  	| pool_number	| att_date_weeks_in_future	| owner |
+		| 457   | <juror_number>	| <pool_number>	| 5			            	| 400	|
+
 	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
-
-
 	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	
 	And I see link with text "Datganiad hygyrchedd"
@@ -311,8 +310,7 @@ Scenario Outline: Welsh 3rd Party - Accessibility statement on each page
 	And I press the "Parhau" button
 	And I see link with text "Datganiad hygyrchedd"
 	
-	#Juror Log In JDB-3808 and JDB-3940
-	
+	#Juror Log In
 	When I click on the "Nid oes gennyf rif rheithiwr ar gyfer yr unigolyn" link
 	Then I see "Rhif ffôn: 0300 456 1024" on the page
 	And I see "Llinell Gymraeg: 0300 303 5173" on the page
@@ -325,7 +323,6 @@ Scenario Outline: Welsh 3rd Party - Accessibility statement on each page
     Then I see "Beth yw eich enw?" on the page
 	
 	#3rd Party Name
-	
 	When I see "Eich Manylion" on the page
 	When I set "Enw cyntaf" to "FirstNameA"
 	And I set "Cyfenw" to "LastNameB"
@@ -334,7 +331,6 @@ Scenario Outline: Welsh 3rd Party - Accessibility statement on each page
 	Then I see "Eich perthynas â'r unigolyn" on the page
 	
 	#Relationship to juror
-	
 	When I see "Eich Manylion" on the page
 	And I set "Sut ydych chi'n adnabod yr unigolyn rydych yn ymateb ar ei ran?" to "Friend"
 	And I press the "Parhau" button
@@ -342,7 +338,6 @@ Scenario Outline: Welsh 3rd Party - Accessibility statement on each page
 	Then I see "Eich manylion cyswllt" on the page
 	
 	#3rd Party Contact
-	
 	When I see "Eich Manylion" on the page
 	And I check the "Dros y ffôn (rhifau yn y DU yn unig)" checkbox
 	And I set "Prif rif ffôn" to "0207 821 1818"
@@ -355,7 +350,6 @@ Scenario Outline: Welsh 3rd Party - Accessibility statement on each page
 	And I see link with text "Datganiad hygyrchedd"
 	
 	#Why are you replying title
-	
 	Then I see "Pam ydych chi'n ymateb ar ran yr unigolyn arall?" on the page
 	And I do not see "Pam ydych chi'n ymateb?" on the page
 	When I set the radio button to "Nid yw'r unigolyn yma"
@@ -367,20 +361,17 @@ Scenario Outline: Welsh 3rd Party - Accessibility statement on each page
 	Then I see "A yw'r enw sydd gennym ar ei gyfer yn gywir?" on the page
 	
 	#Check juror name
-	
 	When I see "Manylion y Rheithiwr" on the page
 	And I set the radio button to "Ydy"
 	When I press the "Parhau" button
 	And I see link with text "Datganiad hygyrchedd"
 	
 	#Check juror address
-	
 	And I set the radio button to "Ie"
 	When I press the "Parhau" button
 	And I see link with text "Datganiad hygyrchedd"
 	
-	#DoB JDB-3810
-	
+	#DoB
 	When I click on the "Cymorth gyda'ch dyddiad geni" link
 	Then I see "Os oes arnoch angen cymorth, ffoniwch ni ar:" on the page
 	And I see "Rhif ffôn: 0300 456 1024" on the page
@@ -396,12 +387,10 @@ Scenario Outline: Welsh 3rd Party - Accessibility statement on each page
 	Then I see "Efallai bydd yn rhaid inni gysylltu â'r unigolyn i ofyn rhagor o gwestiynau neu roi rhagor o wybodaeth iddynt am eu gwasanaeth rheithgor" on the page
 	
 	#Contacting the juror
-	
 	When I see "Manylion y Rheithiwr" on the page
 	And I set the radio button to "Defnyddio'r rhif ffôn rydych eisoes wedi'i ddarparu i gysylltu â chi"
 	
-	#Checking field JDB-3824
-	
+	#Checking field
 	And I set the radio button to "Rhoi cyfeiriad e-bost gwahanol ar gyfer y rheithiwr"
 	And I see "Nodwch gyfeiriad e-bost" on the page
 	
@@ -410,13 +399,11 @@ Scenario Outline: Welsh 3rd Party - Accessibility statement on each page
 	And I see link with text "Datganiad hygyrchedd"
 
 	#Qualify for jury service
-	
 	When I see "Cadarnhau a yw'r unigolyn yn gymwys i wasanaethu ar reithgor" on the page
 	And I press the "Parhau" button
 	And I see link with text "Datganiad hygyrchedd"
 	
-	#Residency JDB-3811 and JDB-3910
-	
+	#Residency
 	Then I see "Ers iddynt droi'n 13 oed, a yw eu prif gyfeiriad wedi bod yn y DU, Ynysoedd y Sianel neu Ynys Manaw am unrhyw gyfnod o 5 mlynedd o leiaf?" on the page
 	When I click on the "A ydych angen cymorth i ateb hyn?" link
 	Then I see "Rhaid i chi gysylltu â ni i gael cyngor ar eu sefyllfa benodol." on the page
@@ -427,8 +414,7 @@ Scenario Outline: Welsh 3rd Party - Accessibility statement on each page
 	And I press the "Parhau" button
 	And I see link with text "Datganiad hygyrchedd"
 	
-	#CJS no JDB-3822
-	
+	#CJS no
 	Then I see "A yw'r person yr ydych yn ymateb ar ei ran wedi gweithio yn y system cyfiawnder troseddol yn y 5 mlynedd diwethaf?" on the page
 	When I set the radio button to "Ydy"
 	And I set the radio button to "Nac ydy"
@@ -436,7 +422,6 @@ Scenario Outline: Welsh 3rd Party - Accessibility statement on each page
 	And I see link with text "Datganiad hygyrchedd"
 	
 	#Bail
-	
 	Then I see "A yw'r unigolyn ar fechnïaeth ar hyn o bryd am gyflawni trosedd?" on the page	
 	When I see "Cymhwysedd" on the page
 	And I set the radio button to "Nac ydy"
@@ -444,7 +429,6 @@ Scenario Outline: Welsh 3rd Party - Accessibility statement on each page
 	And I see link with text "Datganiad hygyrchedd"
 	
 	#Convictions
-	
 	Then I see "A yw'r unigolyn wedi'i gael yn euog o drosedd?" on the page
 	When I see "Cymhwysedd" on the page
 	And I click on the "Canllawiau mewn perthynas â gwasanaethu ar reithgor os oes gennych euogfarn" link
@@ -455,15 +439,13 @@ Scenario Outline: Welsh 3rd Party - Accessibility statement on each page
 	And I see link with text "Datganiad hygyrchedd"
 	
 	#Mental Health Sectioned
-	
 	Then I see "A ydi'r person yr ydych yn ymateb ar ei ran yn cael ei gadw, ei warchod neu ei drin o dan y Ddeddf Iechyd Meddwl?" on the page
 	When I see "Cymhwysedd" on the page
 	And I set the radio button to "Na"
 	And I press the "Parhau" button
 	And I see link with text "Datganiad hygyrchedd"
 	
-	#Mental Health Capacity JDB-3813
-	
+	#Mental Health Capacity
 	Then I see "A wnaed penderfyniad nad oes gan y person yr ydych yn ymateb ar ei ran y 'gallu meddyliol'?" on the page
 	When I see "Cymhwysedd" on the page
 	And I click on the "Angen help i ateb hwn?" link
@@ -474,15 +456,13 @@ Scenario Outline: Welsh 3rd Party - Accessibility statement on each page
 	And I see link with text "Datganiad hygyrchedd"
 
 	#The person can attend
-	
 	Then I see "Gwiriwch eich dyddiad dechrau" on the page
 	When I set the radio button to "Ydi, mae'r unigolyn yn gallu dechrau"
 
 	And  I press the "Parhau" button
 	And I see link with text "Datganiad hygyrchedd"
 	
-	#RA no JDB-3815
-	
+	#RA no
 	Then I see "A fydd yr unigolyn rydych yn ymateb ar ei ran angen cymorth pan fydd yn y llys?" on the page
 	When I set the radio button to "Nac oes"
 	And I click on the "Pam ein bod yn gofyn am hyn?" link
@@ -493,13 +473,12 @@ Scenario Outline: Welsh 3rd Party - Accessibility statement on each page
 	And I see link with text "Datganiad hygyrchedd"
 	
 	#Check your answers
-	
 	Then I see "Gwiriwch eich ymatebion nawr" on the page
 	When I check the "Hyd gwn i, mae'r wybodaeth rwyf wedi ei rhoi am yr unigolyn rwyf yn ymateb ar ei ran yn gywir." checkbox
 	And I press the "Cyflwyno" button
 	And I see link with text "Datganiad hygyrchedd"
 
 Examples:
-	|part_no	|last_name			|postcode	|email           	|pool_no	|
-	|641500676	|LNAMESIXSEVENSIX	|CH1 2AN	|email@outlook.com	|415170401	|
+	| juror_number	| last_name			| postcode	| pool_number	|
+	| 645700676	 	| LNAMESIXSEVENSIX	| CH1 2AN	| 457301040		|
 	
