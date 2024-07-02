@@ -109,6 +109,7 @@ Feature: JM-3987 Monitor Pools Progress
     Given the poolNumbers lists is empty
     And I log in as "MODTESTBUREAU"
     And I navigate to the pool request screen
+    And I delete bank holiday new schema
     And I create "8" new "Civil" pool requests each a week apart in court "415"
     And I navigate to the pool summoning progress screen
     And I see the summoning progress page banner
