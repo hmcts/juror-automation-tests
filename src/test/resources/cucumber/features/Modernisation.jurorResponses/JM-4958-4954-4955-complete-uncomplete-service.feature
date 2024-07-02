@@ -167,7 +167,7 @@ Feature: JM-4958, JM-4954, JM-4955 As a jury officer i need to be able to comple
 
   @JurorTransformationMulti
   Scenario Outline: Uncomplete Service as an SJO
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number  	| pool_number	| att_date_weeks_in_future	| owner |
@@ -199,7 +199,7 @@ Feature: JM-4958, JM-4954, JM-4955 As a jury officer i need to be able to comple
     And I press the "Complete service" button
     Then I see "Juror's service completed" on the page
     And I see the juror status on the juror record screen is "Completed"
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     # Log in as SJO and uncomplete
     And I log in as "SJOUSER"
@@ -210,7 +210,7 @@ Feature: JM-4958, JM-4954, JM-4955 As a jury officer i need to be able to comple
     And I set "Enter juror number" to "<juror_number>"
     And I press the "Continue" button
     And I set the first checkbox on the Uncomplete Service page
-    And I press the "Uncomplete juror" button
+    And I press the "Uncomplete service" button
     And I see "Their juror status will revert to 'Responded' and they must continue their jury service." on the page
     And I press the "Uncomplete service" button
     And I see "Service uncompleted for 1 juror." on the page

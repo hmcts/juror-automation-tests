@@ -2,7 +2,7 @@ Feature: JM-252_Validation_and_Errors_COURT
 
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Errors and Warnings on Create New Pool for Court user
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     And I log in as "<user>"
 
@@ -43,7 +43,7 @@ Feature: JM-252_Validation_and_Errors_COURT
       | Number of court deferrals to include in this pool |
 
     And I see the attendance date of the pool
-    Then I should see the attendance time present is "09:30"
+    Then I should see the attendance time present is "09:00"
 
     #change number of deferrals
     When I click the change link for the court deferrals

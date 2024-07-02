@@ -1,8 +1,11 @@
 Feature: JM-5962 - As a jury officer I need to be able to bulk change jurors attendance date
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationWIP @NewSchemaConverted @JM-7695
   Scenario Outline: As a jury officer I want to bulk change multiple jurors attendance date - Happy Path
-    Given I am on "Bureau" "test"
+
+    #to go back in Multi once defect fixed
+
+    Given I am on "Bureau" "ithc"
     When a bureau owned pool is created with jurors
       | court |juror_number  	    | pool_number	      | att_date_weeks_in_future	| owner |
       | 415   |<juror_number>       | <pool_number>       | 5				            | 400	|

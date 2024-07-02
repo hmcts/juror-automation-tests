@@ -129,7 +129,7 @@ Feature: JM-252_Navigation
 
   @JurorTransformation @NewSchemaConverted
   Scenario Outline: Create pools for different courts and apply filters
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     And I log in as "<user>"
 
@@ -201,7 +201,7 @@ Feature: JM-252_Navigation
     Then I set input field with "ID" of "courtNameOrLocation" to "457"
     Then I click on the "Swansea Crown Court (457)" link
     Then I press the "Filter" button
-    Then only records from "Swansea" are displayed
+    Then only records from "Swansea Crown Court" are displayed
 
     Then I click on the "Clear filter" link
 
@@ -215,7 +215,7 @@ Feature: JM-252_Navigation
     Then I set input field with "ID" of "courtNameOrLocation" to "Swansea"
     Then I click on the "Swansea Crown Court (457)" link
     Then I press the "Filter" button
-    Then only records from "Swansea" are displayed
+    Then only records from "Swansea Crown Court" are displayed
 
     Examples:
       | user          | courtType |

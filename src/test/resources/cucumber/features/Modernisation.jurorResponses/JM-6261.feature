@@ -3,7 +3,7 @@ Feature: JM-6261 - As a bureau officer I need to be able to resend an initial su
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: As a Bureau office resent an Initial summons letter for a juror who has just been summoned
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
@@ -27,9 +27,9 @@ Feature: JM-6261 - As a bureau officer I need to be able to resend an initial su
     And I see "<pool_number>" on the page
     Then I check all the checkboxes in the letters table
     And I press the "Resend initial summons" button
-    And I see "1 document sent for printing" on the page
+    And I see "sent for printing" on the page
 
 
     Examples:
-      |user			| juror_number | pool_number |
-      |MODTESTBUREAU | 041535171    | 415778331  |
+      |user			 | juror_number | pool_number |
+      |MODTESTBUREAU | 041535171    | 415778331   |

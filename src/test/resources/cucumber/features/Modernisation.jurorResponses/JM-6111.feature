@@ -3,13 +3,13 @@ Feature: JM-6111 - As a jury officer, I want to view a consolidated list of expe
   @JurorTransformation @NewSchemaConverted
   Scenario Outline: View list of draft expenses as a jury officer
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     When a bureau owned pool is created with jurors
-      | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
-      | 415   |<juror_number>     | <pool_number>     | 5				            | 400	|
+      | court |juror_number  	  | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   |<juror_number>     | <pool_number>   | 5				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no              | pool_no           | owner |
+      |part_no            | pool_no           | owner |
       |<juror_number>     | <pool_number>     | 415   |
 
     And I Confirm all the data in the record attendance table is cleared

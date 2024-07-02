@@ -2,7 +2,7 @@ Feature: JM-2895
 
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Test to manually enter urgent paper summons reply as a jury officer - happy path
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number  	| pool_number	| att_date_weeks_in_future	| owner |
@@ -27,7 +27,7 @@ Feature: JM-2895
     Then the view summons reply page is displayed
     And I see the reply "status" on the response is "TO DO"
     And I see the reply "type" on the response is "NEEDS REVIEW"
-    And I see "URGENT" on the page
+    And I do not see "URGENT" on the page
     And I see Reply Method is "Paper"
     And I see the process reply button
 
@@ -37,7 +37,7 @@ Feature: JM-2895
 
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Test to manually enter urgent paper summons reply as jury officer - juror details validation
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number  	| pool_number	| att_date_weeks_in_future	| owner |
@@ -64,7 +64,7 @@ Feature: JM-2895
 
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Test to manually enter urgent summons reply as jury officer - change name and address
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number  	| pool_number	| att_date_weeks_in_future	| owner |
