@@ -989,6 +989,9 @@ Feature: Regression Test Ineligbility
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
       | 457   | <juror_number> | <pool_number> | 5                        | 400   |
 
+    And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+    And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
+
     Given auto straight through processing has been enabled new schema
 
     And I have submitted a first party Welsh ineligibilty response
@@ -1022,10 +1025,15 @@ Feature: Regression Test Ineligbility
     And I click on "<juror_number>" in the same row as "<juror_number>"
     Then I see "Summoned" on the page
 
-    When I select "Disqualified" from Process reply
-    And I set the radio button to "B - On Bail"
-    And I press the "Confirm" button
-    Then I see "COMPLETED" on the page
+    And I press the "Process reply" button
+    And I press the "Continue" button
+    And I see error "Please select a response process type"
+    And I set the radio button to "Disqualify"
+    And I press the "Continue" button
+    And I press the "Continue" button
+    And I see error "Select the reason why you're disqualifying this juror"
+    And I set the radio button to "B - Bail"
+    And I press the "Continue" button
     And I see "Disqualified" on the page
 
     Examples:

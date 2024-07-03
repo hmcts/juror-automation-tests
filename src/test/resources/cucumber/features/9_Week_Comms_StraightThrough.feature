@@ -161,7 +161,7 @@ Scenario Outline: 1st Party English ST, 3 weeks in advance, PNC pass
 	And I press the "Search" button
 	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Summoned" on the page
-	And I see "Urgent" on the page
+	And I do not see "URGENT" on the page
 	
 	#process in Bureau as Responded
 	When I select "Mark as responded" from Process reply
@@ -206,7 +206,7 @@ Scenario Outline: 1st Party English ST, 2 weeks in advance, PNC pass
 	And I press the "Search" button
 	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Summoned" on the page
-	And I see "Urgent" on the page
+	And I do not see "URGENT" on the page
 	
 	#process in Bureau as Responded
 	When I select "Mark as responded" from Process reply
@@ -251,7 +251,7 @@ Scenario Outline: 1st Party English ST, 2 weeks in advance, PNC fail
 	And I press the "Search" button
 	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Summoned" on the page
-	And I see "Urgent" on the page
+	And I do not see "URGENT" on the page
 	
 	#DB checks (Do PNC FAIL)
 	
@@ -403,7 +403,7 @@ Scenario Outline: 1st Party Welsh ST, 4 weeks in advance, PNC pass
 	And I press the "Search" button
 	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Summoned" on the page
-	And I see "Urgent" on the page
+	And I do not see "URGENT" on the page
 	
 	#process in Bureau as Responded
 	When I select "Mark as responded" from Process reply
@@ -448,7 +448,7 @@ Scenario Outline: 1st Party Welsh ST, 3 weeks in advance, PNC pass
 	And I press the "Search" button
 	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Summoned" on the page
-	And I see "Urgent" on the page
+	And I do not see "URGENT" on the page
 	
 	#process in Bureau as Responded
 	When I select "Mark as responded" from Process reply
@@ -497,7 +497,7 @@ Scenario Outline: 1st Party Welsh ST, 2 weeks in advance, PNC pass
 	And I press the "Search" button
 	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Summoned" on the page
-	And I see "Urgent" on the page
+	And I do not see "URGENT" on the page
 	
 	#process in Bureau as Responded
 	When I select "Mark as responded" from Process reply
@@ -760,7 +760,7 @@ Scenario Outline: 1st Party Deferral refused, 4 weeks in advance, PNC pass
 	And I press the "Search" button
 	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Summoned" on the page
-	And I see "Urgent" on the page
+	And I do not see "URGENT" on the page
 	
 	#DB checks (Do PNC PASS)
 	
@@ -794,7 +794,7 @@ Scenario Outline: 1st Party Deferral accepted, 3 weeks in advance, PNC pass
 	And I press the "Search" button
 	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Summoned" on the page
-	And I see "Urgent" on the page
+	And I do not see "URGENT" on the page
 	
 	When I select "Deferral" from Process reply
 	And I set the radio button to "Accept deferral"
@@ -842,7 +842,7 @@ Scenario Outline: 1st Party Deferral refused, 3 weeks in advance, PNC pass
 	And I press the "Search" button
 	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Summoned" on the page
-	And I see "Urgent" on the page
+	And I do not see "URGENT" on the page
 	
 	#DB checks (Do PNC PASS)
 	
@@ -876,7 +876,7 @@ Scenario Outline: 1st Party Deferral accepted, 2 weeks in advance, PNC pass
 	And I press the "Search" button
 	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Summoned" on the page
-	And I see "Urgent" on the page
+	And I do not see "URGENT" on the page
 	
 	When I select "Deferral" from Process reply
 	And I set the radio button to "Accept deferral"
@@ -924,7 +924,7 @@ Scenario Outline: 1st Party Deferral refused, 2 weeks in advance, PNC pass
 	And I press the "Search" button
 	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Summoned" on the page
-	And I see "Urgent" on the page
+	And I do not see "URGENT" on the page
 	
 	#DB checks (Do PNC PASS)
 	
@@ -1168,7 +1168,7 @@ Scenario Outline: 1st Party Excusal refused, 4 weeks in advance, PNC pass
 	And I press the "Search" button
 	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Summoned" on the page
-	And I see "Urgent" on the page
+	And I do not see "URGENT" on the page
 	
 	#DB checks (Do PNC PASS)
 	
@@ -1202,7 +1202,7 @@ Scenario Outline: 1st Party Excusal accepted, 3 weeks in advance, PNC pass
 	And I press the "Search" button
 	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Summoned" on the page
-	And I see "Urgent" on the page
+	And I do not see "URGENT" on the page
 	
 	#process in Bureau as Excused
 	When I select "Excusal" from Process reply
@@ -1248,7 +1248,7 @@ Scenario Outline: 1st Party Excusal refused, 3 weeks in advance, PNC pass
 	And I press the "Search" button
 	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Summoned" on the page
-	And I see "Urgent" on the page
+	And I do not see "URGENT" on the page
 	
 	#DB checks (Do PNC PASS)
 	
@@ -1282,7 +1282,7 @@ Scenario Outline: 1st Party Excusal accepted, 2 weeks in advance, PNC pass
 	And I press the "Search" button
 	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Summoned" on the page
-	And I see "Urgent" on the page
+	And I do not see "URGENT" on the page
 	
 	#process in Bureau as Excused
 	When I select "Excusal" from Process reply
@@ -1328,7 +1328,7 @@ Scenario Outline: 1st Party Excusal refused, 2 weeks in advance, PNC pass
 	And I press the "Search" button
 	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Summoned" on the page
-	And I see "Urgent" on the page
+	And I do not see "URGENT" on the page
 	
 	#DB checks (Do PNC PASS)
 	
@@ -1488,7 +1488,7 @@ Scenario Outline: 1st Party Ineligible, 2 weeks in advance, PNC n/a
 	And I press the "Search" button
 	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Summoned" on the page
-	And I see "Urgent" on the page
+	And I do not see "URGENT" on the page
 	
 	#DB checks (Do PNC N/A)
 	
@@ -1627,7 +1627,7 @@ Scenario Outline: 3rd Party Deceased, 2 weeks in advance, PNC n/a
 	And I press the "Search" button
 	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Summoned" on the page
-	And I see "Urgent" on the page
+	And I do not see "URGENT" on the page
 	
 	#DB checks (Do PNC N/A)
 	

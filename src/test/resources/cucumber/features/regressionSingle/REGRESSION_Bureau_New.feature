@@ -129,7 +129,7 @@ Scenario Outline: Your Work
 	When I click on the "To do" link
 	When I click on "<juror_number_two>" in the same row as "<juror_number_two>"
 	Then I see "Reply status" on the page
-	And I see "URGENT" on the page
+	And I do not see "URGENT" on the page
 	Then I press the "More actions" button
 	Then I click on the "Mark as awaiting information" link
 	When I choose the "Court" radio button
@@ -556,7 +556,7 @@ Scenario Outline: Search as Team Leader
 	And I click on the "Advanced search" link
 	And I see "Select an officer assigned" on the page
 	And I see "Alerts" on the page
-	And I see "Urgent" on the page
+	And I do not see "URGENT" on the page
 	And I see "Status" on the page
 	And I see "To do" on the page
 	And I see "Awaiting court reply" on the page
@@ -803,7 +803,6 @@ Scenario Outline: Work Allocation
 	And I set input field with "name" of "allocateNonUrgent" to "12345"
 	And I set input field with "name" of "allocateUrgent" to "12345"
 	
-	And I check the "ARAMIS1" checkbox
 	When I press the "Assign replies" button
 	And "ARAMIS1-standard" assigned replies count is "0"
 	And "ARAMIS1-urgent" assigned replies count is "0"
@@ -821,12 +820,12 @@ Scenario Outline: Work Allocation
 	| <juror_number_three>	| <pool_number_three>	| <last_name>	| <postcode>	| <email>	|
 	
 	Given I am on "Bureau" "test"
-	When I log in
+	When I log in as "MODTESTBUREAU"
 	And I click on the "Assign Replies" link
 	
 	#Allocate the non-urgent to CPASS
 	And I set input field with "name" of "allocateNonUrgent" to "1"
-	And the "Assign replies" button is disabled
+
 	And I check the "ARAMIS1" checkbox
 	And I press the "Assign replies" button
 	And "ARAMIS1-standard" assigned replies count is "1"
@@ -835,47 +834,39 @@ Scenario Outline: Work Allocation
 	And "ARAMIS1-total" assigned replies count is "1"
 	
 	Then I see "2" in the same row as "total" in Backlog box
-	Then I see "0" in the same row as "standard" in Backlog box	
-
-	Then I see "1" in the same row as "send" in Backlog box
+	Then I see "0" in the same row as "standard" in Backlog box
 		
 	And I see "" in "allocateNonUrgent" Allocate Replies box
 	And I see "" in "allocateUrgent" Allocate Replies box
 	And I see "" in "allocateSuperUrgent" Allocate Replies box
-	And the "Assign replies" button is disabled
 	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "STAFF_LOGIN" is "ARAMIS1" where "JUROR_NUMBER" is "<juror_number_one>"
 
 	#Allocate the urgent to CPASS
 	
 	And I set input field with "name" of "allocateUrgent" to "1"
-	And the "Assign replies" button is disabled
 	When I check the "ARAMIS1" checkbox
 	And I press the "Assign replies" button
 	And "ARAMIS1-standard" assigned replies count is "1"
 	And "ARAMIS1-urgent" assigned replies count is "1"
-	And "ARAMIS1-send" assigned replies count is "0"
 	And "ARAMIS1-total" assigned replies count is "2"
 	
 	Then I see "1" in the same row as "total" in Backlog box
 
-	Then I see "0" in the same row as "send" in Backlog box
 	Then I see "0" in the same row as "standard" in Backlog box
 
 	And I see "" in "allocateNonUrgent" Allocate Replies box
 	And I see "" in "allocateUrgent" Allocate Replies box
 	And I see "" in "allocateSuperUrgent" Allocate Replies box
-	And the "Assign replies" button is disabled
 	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "STAFF_LOGIN" is "ARAMIS1" where "JUROR_NUMBER" is "<juror_number_two>"
 	
 	#Allocate the super-urgent to CPASS
 	
-	And I set input field with "name" of "allocateSuperUrgent" to "1"
-	And the "Assign replies" button is disabled
+	And I set input field with "name" of "allocateUrgent" to "1"
 	When I check the "ARAMIS1" checkbox
 	And I press the "Assign replies" button
 	And "ARAMIS1-standard" assigned replies count is "1"
 	And "ARAMIS1-urgent" assigned replies count is "1"
-	And "ARAMIS1-send" assigned replies count is "1"
+
 	And "ARAMIS1-total" assigned replies count is "3"
 	Then I see "0" in the same row as "total" in Backlog box
 
@@ -883,8 +874,6 @@ Scenario Outline: Work Allocation
 	Then I see "0" in the same row as "standard" in Backlog box
 	And I see "" in "allocateNonUrgent" Allocate Replies box
 	And I see "" in "allocateUrgent" Allocate Replies box
-	And I see "" in "allocateSuperUrgent" Allocate Replies box
-	And the "Assign replies" button is disabled
 	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "STAFF_LOGIN" is "ARAMIS1" where "JUROR_NUMBER" is "<juror_number_three>"
 	And auto straight through processing has been enabled new schema
 	
