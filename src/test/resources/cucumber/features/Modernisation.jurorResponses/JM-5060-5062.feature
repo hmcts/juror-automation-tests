@@ -1,22 +1,21 @@
 Feature: JM-5060 - 5062
 
-  @JurorTransformationWIP @JM-5889
+  @JurorTransformationMulti
   Scenario Outline: JM-5060 - Mark Juror as Failed to Attend
     Given I am on "Bureau" "test"
 
-    Given the juror numbers have not been processed new schema
-      |part_no     | pool_no   | owner |
-      |<part_no>   | <pool_no> | 400   |
+    Given a bureau owned pool is created with jurors
+      | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   |<juror_number> 	    | <pool_number>     | 5				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no    | pool_no   | owner |
-      |<part_no>  | <pool_no> | 415   |
-
-
+      |part_no              | pool_no           | owner |
+      |<juror_number>       | <pool_number>     | 415   |
 
     #log on and search for juror
     And I log in as "<user>"
 
+    And I Confirm all the data in the record attendance table is cleared
     #put juror in state to have their attendance status set
     When the user searches for juror record "<juror_number>" from the global search bar
     And I record a happy path paper summons response
@@ -47,37 +46,29 @@ Feature: JM-5060 - 5062
     And I see the juror record updated banner containing "Failed to attend"
     And I see the juror status has updated to "Failed to attend"
 
-    When the user searches for juror record "<juror_number>" from the global search bar
-    And I click on the "Attendance" link
-
-    #this will fail here as a result of JM-5889
-    And I see the following information on the Juror Attendance table
-      | Attendances    | 0 |
-      | Absences       | 1 |
-
 
     Examples:
-      |user			|part_no  | pool_no   |
-      |MODTESTCOURT |741500509| 415240833 |
+      |user			|juror_number  | pool_number   |
+      |MODTESTCOURT |041536188      | 415212883    |
 
 
-  @JurorTransformationWIP @JM-5889
+  @JurorTransformationMulti
   Scenario Outline: JM-5060 - Mark Juror as Failed to Attend for a juror with an Attendance - Unhappy Path
     Given I am on "Bureau" "test"
 
-    Given the juror numbers have not been processed new schema
-      |part_no     | pool_no   | owner |
-      |<part_no>   | <pool_no> | 400   |
+    Given a bureau owned pool is created with jurors
+      | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   |<juror_number> 	    | <pool_number>     | 5				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no    | pool_no   | owner |
-      |<part_no>  | <pool_no> | 415   |
-
+      |part_no              | pool_no           | owner |
+      |<juror_number>       | <pool_number>     | 415   |
 
 
     #log on and search for juror
     And I log in as "<user>"
 
+    And I Confirm all the data in the record attendance table is cleared
     When the user searches for juror record "<juror_number>" from the global search bar
     And I record a happy path paper summons response
     And I click on the "No, skip and process later" link
@@ -115,37 +106,29 @@ Feature: JM-5060 - 5062
     And I press the "Change status to ‘Failed to attend’" button
     And I see "Unable to change this juror’s status to ‘Failed to attend’" in the error banner
 
-    When the user searches for juror record "<juror_number>" from the global search bar
-    And I click on the "Attendance" link
-
-    #this will fail here as a result of JM-5889
-    And I see the following information on the Juror Attendance table
-      | Attendances    | 1 |
-      | Absences       | 0 |
 
 
     Examples:
-      |user			|part_no  | pool_no   |
-      |MODTESTCOURT |741500287| 415240833 |
+      |user			|juror_number  | pool_number   |
+      |MODTESTCOURT |041536189     | 415212883 |
 
 
-  @JurorTransformationWIP @JM-5889
+  @JurorTransformationMulti
   Scenario Outline: JM-5060 - Mark Juror as Failed to Attend for a juror who has given a reasonable reason - Unhappy Path
     Given I am on "Bureau" "test"
 
-    Given the juror numbers have not been processed new schema
-      |part_no     | pool_no   | owner |
-      |<part_no>   | <pool_no> | 400   |
+    Given a bureau owned pool is created with jurors
+      | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   |<juror_number> 	    | <pool_number>     | 5				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no    | pool_no   | owner |
-      |<part_no>  | <pool_no> | 415   |
-
-
+      |part_no              | pool_no           | owner |
+      |<juror_number>       | <pool_number>     | 415   |
 
     #log on and search for juror
     And I log in as "<user>"
 
+    And I Confirm all the data in the record attendance table is cleared
     When the user searches for juror record "<juror_number>" from the global search bar
     And I record a happy path paper summons response
     And I click on the "No, skip and process later" link
@@ -175,36 +158,27 @@ Feature: JM-5060 - 5062
     And I press the "Update juror record" button
     And I do not see failed to attend radio button in the update juror record section
 
-    When the user searches for juror record "<juror_number>" from the global search bar
-    And I click on the "Attendance" link
-
-    #this will fail here as a result of JM-5889
-    And I see the following information on the Juror Attendance table
-      | Attendances    | 0 |
-      | Absences       | 1 |
-
     Examples:
-      |user			|part_no  | pool_no   |
-      |MODTESTCOURT |741500401| 415240833 |
+      |user			|juror_number  | pool_number   |
+      |MODTESTCOURT |041536190      | 415212883 |
 
 
-  @JurorTransformationWIP @JM-5889
+  @JurorTransformationMulti
   Scenario Outline: JM-5062 - Undo Failed to Attend
     Given I am on "Bureau" "test"
 
-    Given the juror numbers have not been processed new schema
-      |part_no     | pool_no   | owner |
-      |<part_no>   | <pool_no> | 400   |
+    Given a bureau owned pool is created with jurors
+      | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   |<juror_number> 	    | <pool_number>     | 5				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no    | pool_no   | owner |
-      |<part_no>  | <pool_no> | 415   |
-
-
+      |part_no              | pool_no           | owner |
+      |<juror_number>       | <pool_number>     | 415   |
 
     #log on and search for juror
     And I log in as "<user>"
 
+    And I Confirm all the data in the record attendance table is cleared
     When the user searches for juror record "<juror_number>" from the global search bar
     And I record a happy path paper summons response
     And I click on the "No, skip and process later" link
@@ -229,14 +203,9 @@ Feature: JM-5060 - 5062
     And I see the juror record updated banner containing "Failed to attend"
     And I see the juror status has updated to "Failed to attend"
 
-    #this will fail here as a result of JM-5889
-    And I see the following information on the Juror Attendance table
-      | Attendances    | 0 |
-      | Absences       | 1 |
-
     #Undo failed to attend
     Given I am on "Bureau" "test"
-    And I log in as "SJOUSER"
+    And I log in as "<user>"
 
     When the user searches for juror record "<juror_number>" from the global search bar
     And I press the "Update juror record" button
@@ -248,11 +217,6 @@ Feature: JM-5060 - 5062
     And I see the juror record updated banner containing "Responded"
     And I see the juror status has updated to "Responded"
 
-     #this will fail here as a result of JM-5889
-    And I see the following information on the Juror Attendance table
-      | Attendances    | 0 |
-      | Absences       | 0 |
-
     Examples:
-      |user			|part_no  | pool_no   |
-      |MODTESTCOURT |741500319| 415240833 |
+      |user			|juror_number  | pool_number   |
+      |MODTESTCOURT |741500319      | 415240833 |

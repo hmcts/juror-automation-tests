@@ -14,7 +14,7 @@ Feature: JM-3457 and JM-3456 - Digital Response
 
     And I submit a digital response with reasonable adjustment
       |part_no	       | pool_number    |last_name	|postcode	|email 	|adjustmentNeededCap  |details             |
-      |<juror_number>  |<pool_number>	|LNAME  	|CH1 2AN	|<email>|<adjustmentNeededCap>|<adjustmentNeeded>  |
+      |<juror_number>  |<pool_number>	|LNAME  	|CH2 2AA	|<email>|<adjustmentNeededCap>|<adjustmentNeeded>  |
 
     Given I am on "Bureau" "test"
 
@@ -72,7 +72,7 @@ Feature: JM-3457 and JM-3456 - Digital Response
       | juror_number  | pool_number   | email     | adjustmentNeeded   | adjustmentFullCaps    | adjustmentFull          | adjustmentNeededCap    |
       | 041500138     | 415300238     | e@mail.com| limited mobility   | L - LIMITED MOBILITY  | L - Limited mobility    | Limited mobility       |
       | 041500138     | 415300238     | e@mail.com| vision impairment  | V - VISUAL IMPAIRMENT | V - Visual impairment   | Severe sight impairment|
-      | 041500138     | 415300238     | e@mail.com| hearing impairment | H - HEARING IMPAIRMENT| H - Hearing impairment  | Hearing impairment     |
+      | 041500138     | 415300238     | e@mail.com| hearing loss       | H - HEARING LOSS      | H - Hearing loss        | Hearing loss           |
 
 
   @JurorTransformationWIP @NewSchemaConverted @JurorDigitalNotConverted
@@ -86,7 +86,7 @@ Feature: JM-3457 and JM-3456 - Digital Response
 
     And I submit a digital response with reasonable adjustment
       |part_no	       |pool_number     |last_name	|postcode	|email 	|adjustmentNeededCap     |details             |
-      |<juror_number>  |<pool_number>	|LNAME  	|CH1 2AN	|<email>|<adjustmentNeededCap>   |<adjustmentNeeded>  |
+      |<juror_number>  |<pool_number>	|lname  	     |CH2 2AA	|<email>|<adjustmentNeededCap>   |<adjustmentNeeded>  |
 
     Given I am on "Bureau" "test"
     And I log in as "<user>"

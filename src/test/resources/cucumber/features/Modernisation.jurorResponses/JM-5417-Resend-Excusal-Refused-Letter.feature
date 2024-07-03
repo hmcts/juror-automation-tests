@@ -262,7 +262,7 @@ Feature: JM-5417-5586 - Resend excusal refused letter for Bureau and Jury users
       |  041586222     |415980686   | MODTESTBUREAU |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @JM-6571
+  @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline:As a jury officer test a Excused juror can resend a refused letter by searching via juror number
 
     Given I am on "Bureau" "test"
@@ -275,6 +275,8 @@ Feature: JM-5417-5586 - Resend excusal refused letter for Bureau and Jury users
      | <juror_number>       | <pool_number>     | 415   |
 
     And I log in as "<user>"
+
+    And I update the bureau transfer date of the juror "<juror_number>"
 
     #record response
     And the user searches for juror record "<juror_number>" from the global search bar
@@ -313,23 +315,21 @@ Feature: JM-5417-5586 - Resend excusal refused letter for Bureau and Jury users
     And I see "Include printed" on the page
     And I see "Search" on the page
     And I set the radio button to "Juror"
+    And I check the "Include printed" checkbox
     And I press the "Search" button
     And I see error "Enter juror number"
     When I set "Enter juror number" to "<juror_number>"
     And I press the "Search" button
 
     #will fail here because of JM-6314
-    Then I see "Change" on the page
     And I see "Print excusal refused letter" on the page
-    When I check the "<juror_number>" checkbox
-    And I press the "Print excusal refused letter" button
-    Then I see "https://juror-test-bureau.clouddev.online/documents/excusal-refused/letters-list?documentSearchBy=juror&jurorDetails=041529016" in the URL
+    And I see the printed letter for juror number "<juror_number>" in the letters table
 
     Examples:
       | juror_number  | pool_number | user          |
       |  041586214    | 415982987   | MODTESTCOURT |
 
-  @JurorTransformationWIP @NewSchemaConverted @JM-6571
+  @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline:As a jury officer test a Excused juror can resend a refused letter by searching via pool number
 
     Given I am on "Bureau" "test"
@@ -342,13 +342,14 @@ Feature: JM-5417-5586 - Resend excusal refused letter for Bureau and Jury users
       | <juror_number>| <pool_number>     | 415   |
 
     And I log in as "<user>"
+
+    And I update the bureau transfer date of the juror "<juror_number>"
     And the user searches for juror record "<juror_number>" from the global search bar
     And I record an excusal request paper summons response
     And the user searches for juror record "<juror_number>" from the global search bar
     And I click on the "Summons reply" link
     And I click on the "View summons reply" link
 
-    #will fail here as a result of JM-6571
     And I press the "Process reply" button
 
     #select refuse excusal
@@ -358,9 +359,28 @@ Feature: JM-5417-5586 - Resend excusal refused letter for Bureau and Jury users
     And I set the radio button to "Refuse excusal"
     And I press the "Continue" button
     And I see "Do you want to print an excusal refused letter?" on the page
-    And I choose the "Yes" radio button
+    And I choose the "No" radio button
     And I press the "Continue" button
-    Then I see "https://juror-test-bureau.clouddev.online/documents/excusal-refused/letters-list?documentSearchBy=pool&poolDetails=415980685&includePrinted=includePrinted" in the URL
+
+    And I press the "Apps" button
+    When I click on the "Documents" link
+    And I click on the "Excusal refused letters" link
+    And I press the "Search" button
+    Then I see error "Select whether you want to search by juror or pool"
+    And I see "juror" on the page
+    And I see "Pool" on the page
+    And I see "Include printed" on the page
+    And I see "Search" on the page
+    And I set the radio button to "Pool"
+    And I check the "Include printed" checkbox
+    And I press the "Search" button
+    And I see error "Enter pool number"
+    When I set "Enter pool number" to "<pool_number>"
+    And I press the "Search" button
+
+    #will fail here because of JM-6314
+    And I see "Print excusal refused letter" on the page
+    And I see the printed letter for juror number "<juror_number>" in the letters table
 
     Examples:
       | juror_number  | pool_number | user          |

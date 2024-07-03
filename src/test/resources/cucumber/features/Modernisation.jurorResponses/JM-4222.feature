@@ -258,6 +258,9 @@ Feature: JM-4222
     When the user searches for juror record "<juror_number>" from the global search bar
 
     And I record a paper summons response with reasonable adjustment of "C - Caring Responsibilities"
+    When the user searches for juror record "<juror_number>" from the global search bar
+    Then I click on the Summons Reply tab
+    Then I click on the view summons reply link
     And I click the juror details adjustments tab
     When I press the "Check court can accommodate" button
     Then I am on the check can accommodate screen
@@ -271,7 +274,6 @@ Feature: JM-4222
 
     #process response
     When the user searches for juror record "<juror_number>" from the global search bar
-
     Then I click on the Summons Reply tab
     Then I click on the view summons reply link
     Then I click the process reply button
@@ -290,7 +292,8 @@ Feature: JM-4222
     And I see "1 jurors reassigned to pool" on the page
     And I check optic reference in the database for juror "<juror_number>" is "12345678" new schema
 
-    #check optic reference has been copied
+
+    When the user searches for juror record "<juror_number>" from the global search bar
     And I click on the "Summons reply" link
     And I click on the "View summons reply" link
     And I click on the "Reasonable adjustments" link
@@ -352,15 +355,17 @@ Feature: JM-4222
 
 
     When the user searches for juror record "<juror_number>" from the global search bar
-    And I press the "Update juror record" button
-    And I set the radio button to "Transfer to another court"
+    And I click on the pool number link on Juror Record
+    And I check the juror "<juror_number>" checkbox
+    And I press the "Transfer" button
+    And I see "Select a court to transfer to" on the page
+    And I set "Enter a court name or location code" to "774"
+    And I set the "Service start date for transfer" date to a Monday "4" weeks in the future
     And I press the "Continue" button
-    And I set "Enter a court name or location code" to "457"
-    Then I click on the "Swansea Crown Court (457)" link
-    And I set the "Service start date for transfer" single date field to a Monday "10" weeks in the future
-    And I press the "Continue" button
-    And I see "Transfer to Swansea Crown Court (457)" on the page
-    And I press the "Continue" button
+    Then I see "Transfer to Welshpool (774)" on the page
+    When I press the "Continue" button
+    When the user searches for juror record "<juror_number>" from the global search bar
+    And I see the juror status on the juror record screen has updated to "Transferred"
 
     When the user searches for juror record "<juror_number>" from the global search bar
     And I click the summons reply tab
@@ -371,23 +376,16 @@ Feature: JM-4222
     Given I am on "Bureau" "test"
     And I log in as "MODTESTBUREAU"
 
-    When the user searches for juror record "<juror_number>" from the global search bar
-    And I click on "<juror_number>" in the same row as "Swansea"
-    And I see the juror status has updated to "Responded"
-    And I click on the "Summons reply" link
-    And I click on the "View summons reply" link
-    And I see the juror status has updated to "Responded"
-
     #check juror record for optic reference
     When the user searches for juror record "<juror_number>" from the global search bar
-    And I click on "<juror_number>" in the same row as "Swansea"
+    And I click on "<juror_number>" in the same row as "Welshpool"
     And I see "Additional requirements" on the page
     And I see "12345678" in the same row as "Optic reference"
     And I see "Reasonable adjustments reasons" on the page
 
     Examples:
       | user         | juror_number | pool_number  |
-      | MODTESTCOURT | 041500050    | 415300140    |
+      | MODTESTCOURT | 041503352    | 415300140    |
 
 
   @JurorTransformationMulti @NewSchemaConverted
