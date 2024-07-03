@@ -1840,7 +1840,7 @@ public class DatabaseTesterNewSchemaDesign {
 			conn = db.getConnection("demo");
 
 		try {
-			pStmt = conn.prepareStatement("DELETE FROM juror.bulk_print_data WHERE form_type like '5227%' and juror_no in (select juror_number from juror_mod.juror_pool where pool_number in ('" + court + "999999', '" + court + "222222', '" + court + "333333'))");
+			pStmt = conn.prepareStatement("DELETE FROM juror_mod.bulk_print_data WHERE form_type like '5227%' and juror_no in (select juror_number from juror_mod.juror_pool where pool_number in ('" + court + "999999', '" + court + "222222', '" + court + "333333'))");
 			pStmt.execute();
 
 		} catch (SQLException e) {
