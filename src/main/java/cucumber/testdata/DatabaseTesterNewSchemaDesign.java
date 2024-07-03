@@ -368,7 +368,7 @@ public class DatabaseTesterNewSchemaDesign {
 		);
 	}
 
-	public void requestInfoLetterGenerated(String jurorPartNo) throws SQLException {
+	public void requestInfoLetterGeneratedNSD(String jurorPartNo) throws SQLException {
 
 		db = new DBConnection();
 		String env_property = System.getProperty("env.database");
@@ -378,10 +378,10 @@ public class DatabaseTesterNewSchemaDesign {
 			conn = db.getConnection("demo");
 
 		try {
-			pStmt = conn.prepareStatement("select * from juror.request_lett where part_no = '" + jurorPartNo + "'");
+			pStmt = conn.prepareStatement("select * from juror.bulk_print_data where form_type like '5227%' and juror_number = '" + jurorPartNo + "'");
 
 			pStmt.executeQuery();
-			log.info("Selected info letter from request_lett for " + jurorPartNo);
+			log.info("Selected info letter from bulk_print_data for " + jurorPartNo);
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -1830,7 +1830,7 @@ public class DatabaseTesterNewSchemaDesign {
 	}
 
 	//osman testing
-	public void deleteRequestLett(String court) throws SQLException {
+	public void deleteRequestLettNSD(String court) throws SQLException {
 		db = new DBConnection();
 
 		String env_property = System.getProperty("env.database");
@@ -1840,8 +1840,8 @@ public class DatabaseTesterNewSchemaDesign {
 			conn = db.getConnection("demo");
 
 		try {
-			pStmt = conn.prepareStatement("DELETE FROM juror.request_lett WHERE part_no in (select part_no from juror.pool where pool_no in ('" + court + "999999', '" + court + "222222', '" + court + "333333'))");
-			pStmt.executeQuery();
+			pStmt = conn.prepareStatement("DELETE FROM juror.bulk_print_data WHERE form_type like '5227%' and juror_no in (select juror_number from juror_mod.juror_pool where pool_number in ('" + court + "999999', '" + court + "222222', '" + court + "333333'))");
+			pStmt.execute();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -1853,7 +1853,7 @@ public class DatabaseTesterNewSchemaDesign {
 		}
 	}
 
-	public void deleteRequestLettForPartNo(String part_no) throws SQLException {
+	public void deleteRequestLettForPartNoNSD(String part_no) throws SQLException {
 		db = new DBConnection();
 
 		String env_property = System.getProperty("env.database");
@@ -1863,12 +1863,12 @@ public class DatabaseTesterNewSchemaDesign {
 			conn = db.getConnection("demo");
 
 		try {
-			pStmt = conn.prepareStatement("DELETE FROM juror.request_lett WHERE part_no = '" + part_no + "'");
-			pStmt.executeQuery();
+			pStmt = conn.prepareStatement("DELETE FROM juror_mod.bulk_print_data WHERE form_type like '5227%' and juror_no = '" + part_no + "'");
+			pStmt.execute();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-			log.error("Message:deleted request lett for part_no '" + part_no + "' + e.getMessage()");
+			log.error("Message:deleted request lett for juror '" + part_no + "' + e.getMessage()");
 		} finally {
 			conn.commit();
 			pStmt.close();
