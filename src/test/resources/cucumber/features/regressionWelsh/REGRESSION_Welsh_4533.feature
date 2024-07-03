@@ -19,101 +19,30 @@ Scenario Outline: Welsh Cookie Policy
 	And on the page I see
 	|text|
 	|Cwcis|
-	|Ffeiliau a gedwir ar eich ffôn, eich tabled neu'ch cyfrifiadur pan fyddwch chi'n ymweld â gwefan yw cwcis.|
-	|Rydym yn defnyddio cwcis i storio gwybodaeth am sut rydych yn defnyddio gwefan GOV.UK, megis y tudalennau yr ydych yn ymweld â hwy.|
-	|Gosodiadau cwcis|
-	|Rydym yn defnyddio 2 fath o gwcis. Gallwch ddewis pa gwcis yr ydych yn hapus inni eu defnyddio.|
-	|Cwcis sy'n mesur y defnydd a wneir o wefan|
-	|Rydym yn defnyddio Google Analytics i fesur sut rydych yn defnyddio'r wefan fel y gallwn ei gwella yn seiliedig ar anghenion defnyddwyr. Nid ydym yn caniatáu i Google ddefnyddio neu rannu'r data am sut rydych yn defnyddio'r wefan hon.|	
-    |Mae Google Analytics yn gosod cwcis sy'n storio gwybodaeth gyffredinol am:|
-    |sut y daethoch i'r wefan hon|
-    |y tudalennau rydych chi'n ymweld â nhw ar GOV.UK a gwasanaethau digidol y Llywodraeth, a pha mor hir rydych chi'n ei dreulio ar bob tudalen|
-    |beth rydych chi'n clicio arno tra byddwch yn ymweld â'r wefan|
-    |Cwcis hanfodol yn unig|
-    |Mae'r cwcis hanfodol hyn yn gwneud pethau fel cofio lle'r oeddech wedi cyrraedd wrth lenwi ffurflen (er enghraifft cais am drwydded)|
-    |Mae'r cwcis hanfodol hyn yn gwneud pethau fel cofio lle'r oeddech wedi cyrraedd wrth lenwi ffurflen (er enghraifft cais am drwydded)|
+	|Ffeiliau bach sy'n cael eu cadw ar eich ffôn, tabled neu gyfrifiadur pan fyddwch yn ymweld â gwefan yw cwcis.|
+	|Rydym yn defnyddio cwcis i wneud i'r gwasanaeth 'Ymateb i wŷs rheithgor' weithio ac i gasglu gwybodaeth am sut rydych chi'n defnyddio ein gwasanaeth.|
+	|Cwcis hanfodol|
+	|Mae cwcis hanfodol yn cadw'ch gwybodaeth yn ddiogel wrth i chi ddefnyddio'r gwasanaeth 'Ymateb i wŷs rheithgor'. Nid oes rhaid inni ofyn am ganiatâd i'w defnyddio.|
+	|Cwcis dadansoddol (dewisol)|
+	|Gyda'ch caniatâd chi, rydym yn defnyddio cwcis Google Analytics i gasglu data am sut rydych chi'n defnyddio'r gwasanaeth hwn ac maent yn ein helpu i'w wella.|
+    |Mae Google Analytics yn storio gwybodaeth ddienw am:|
+    |sut y daethoch o hyd i'r gwasanaeth|
+    |y tudalennau rydych chi'n ymweld â nhw ar y gwasanaeth hwn a pha mor hir rydych chi'n ei dreulio arnyn nhw|
+    |unrhyw wallau a welwch wrth ddefnyddio'r gwasanaeth hwn|
+    |Nid yw'n casglu gwybodaeth am eich enw na lle'r ydych chi'n byw.|
+    |Rydym hefyd yn defnyddio cwcis Dynatrace i fesur pa mor dda y mae'r gwasanaeth hwn yn perfformio gyda defnyddwyr a thracio gwallau.|
+    |Nid ydym yn caniatáu i Google na Dynatrace ddefnyddio neu rannu ein data dadansoddol gydag unrhyw un.|
     
-    And the radio button "Derbyn cwcis" is "selected"
-    And the radio button "Peidio" is "unselected"
-	
-	And I click on the "Sut rydym yn defnyddio cwcis" link
-				
-	Then I see "Mesur defnydd o’r wefan (Google Analytics)" on the page
-	
-	Then I see "Mae meddalwedd Google Analytics yn casglu gwybodaeth am sut byddwch yn defnyddio'r wefan. Rydym yn gwneud hyn i helpu sicrhau bod y wefan yn cwrdd ag anghenion y defnyddwyr ac i’n helpu ni i wneud gwelliannau." on the page
-	Then I see "Mae Google Analytics yn gallu casglu gwybodaeth am eich demograffig, megis eich oedran, eich rhyw, eich lleoliad â’ch dewis iaith." on the page
-	Then I see "Mae’r adroddiadau yn rhoi gwybodaeth i ni am y ddyfais rydych yn ei ddefnyddio i gael mynediad at y wefan, pa borwr rydych yn ei ddefnyddio, a fersiwn y system weithredu sy'n cael ei defnyddio. Mae hyn yn ein cynorthwyo i sicrhau bod y wefan yn gweithio i bawb." on the page
-            
-	Then I see "Yn benodol, rydym yn cofnodi sawl gwaith y mae ein dogfennau PDF yn cael eu lawrlwytho, sawl gwaith y mae defnyddwyr yn gadael y wefan trwy glicio ar ddolenni allanol, a’r nifer o bobl sy’n clicio ar y dolenni 'Rhagor o wybodaeth' sydd wedi'u rhestru wrth ymyl rhai o’r cwestiynau ar ein gwefan." on the page
-
-    And I see "Mae’r holl ddata rydym yn eu casglu yn ddienw, ac nid oes gennym fynediad at unrhyw ddata all eich adnabod yn bersonol." on the page 
-	        
-	And I see "Rydym yn defnyddio’r wybodaeth hon i wella'r gwasanaeth a'n perfformiad yn ogystal â chynnal dadansoddi pellach" on the page
-		
-	Then I see "Mae’r cwcis canlynol yn cael eu defnyddio:" on the page
-	
-	And I see "Enw" in the same row as "Diben"
-	And I see "Diben" in the same row as "Enw"
-	
-	Then I see "Mae’r rhain yn ein helpu i weld sut yr ydych chi’n defnyddio GOV.UK er mwyn gwella’r wefan" in the same row as "_gat"
-	And I see "2 flynedd" in the same row as "_ga"
-	Then I see "24 awr" in the same row as "_gid"
-	
-	And I see "Daw i ben" in the same row as "Enw"
-	
-	Then I see "1 munud" in the same row as "_gat"
-	Then I see "Mae’r rhain yn ein helpu i weld sut yr ydych chi’n defnyddio GOV.UK er mwyn gwella’r wefan" in the same row as "_ga"
-	Then I see "Mae’r rhain yn ein helpu i weld sut yr ydych chi’n defnyddio GOV.UK er mwyn gwella’r wefan" in the same row as "_gid"
-	
-	And I see "Gallwch chi ddewis peidio derbyn cwcis Google Analytics." on the page
-	Then I click on the "ddewis peidio derbyn cwcis Google Analytics." link
-	Then I see "cookie-settings" in the URL
-	Then I press the "back" button on my browser
-	
-	And I see "Sesiynau" on the page 
-	And I see "Mae cwci yn cael ei osod i gofnodi eich gweithgaredd yn ystod y sesiwn." on the page
-
-	Then I see "Enw" in the same row as "Diben"
-	
-	Then I see "Nodi p’un a ydych wedi mewngofnodi ai peidio" in the same row as "sessionID"
-	Then I see "Fe’i defnyddir i’ch cyfeirio’n ôl at yr un gweinyddwr ar gyfer pob cais" in the same row as "ApplicationGatewayAffinity"
-	
-	Then I see "Diben" in the same row as "Enw"
-	
-	Then I see "Daw i ben" in the same row as "Enw"
-	And I see "Pan fyddwch chi’n cau’ch porwr" in the same row as "sessionID"
-	And I see "Pan fyddwch chi’n cau’ch porwr" in the same row as "ApplicationGatewayAffinity"
-
-    Then I see "Ein harolwg adborth" on the page
-    Then I see "Rydym yn defnyddio SmartSurvey i alluogi defnyddwyr y gwasanaeth i roi adborth am eu profiadau ar ddefnyddio’r gwasanaeth." on the page
-    Then I see "Ceir rhagor o fanylion am bolisi diogelwch a chyfrinachedd SmartSurvey yn:" on the page
-    
-    Then I click on the "https://www.smartsurvey.co.uk/security" link
-    And I see "www.smartsurvey.co.uk/security" in the URL
-    Then I press the "back" button on my browser
-    
-	Then I see "Byddwn yn defnyddio canlyniadau’r ymatebion i’r arolwg i roi gwybodaeth inni am eich profiad o ddefnyddio'r gwasanaeth, bydd hyn yn ein galluogi i ystyried sut allwn wella'r gwasanaeth ymhellach." on the page
-	
-	Then I see "Mae’r holl ddata rydym yn eu casglu yn ddienw, ac nid oes gennym fynediad at unrhyw ddata all eich adnabod yn bersonol." on the page
-	Then I see "Os byddwch yn cymryd rhan, bydd SmartSurvey yn cadw rhagor o gwcis ar eich cyfrifiadur i ddilyn eich cynnydd trwy'r arolwg. Mae SmartSurvey yn cael ei ddefnyddio i gasglu’r ymatebion i’r arolwg. Os byddwch yn cymryd rhan, bydd SmartSurvey yn cadw rhagor o gwcis ar eich cyfrifiadur i ddilyn eich cynnydd trwy'r arolwg. Ceir gwybodaeth am sut mae SmartSurvey yn defnyddio Cwcis yn:" on the page	
-	Then I click on the "https://www.smartsurvey.co.uk/how-we-use-cookies" link
-	And I see "/how-we-use-cookies" in the URL
-	Then I press the "back" button on my browser
-	
-	#Translations not arrived yet
-   
-    #Then I see "Change your settings" on the page 
-    #Then I see "You can change which cookies you're happy for us to use" on the page
-    #Then I click on the "change which cookies you're happy for us to use" link
-    #Then I press the "back" button on my browser
+    And the radio button "Oes" is "selected"
+    And the radio button "Nac oes" is "unselected"
     
 Examples:
 	| juror_number	| last_name	| postcode	| pool_number	|
 	| 045700076		| LastNameB	| SW1H 9AJ	| 457300076		|
 
 
-@RegressionWelsh @JDB-4533 
-Scenario Outline: Welsh 1st Party Cookies Polciy on each Page
+@RegressionWelsh
+Scenario Outline: Welsh 1st Party Cookies Policy on each Page
 	Given I am on the welsh version of "Public" "test"
 	Given the juror numbers have not been processed
 		| part_no 	| pool_no 	| owner |

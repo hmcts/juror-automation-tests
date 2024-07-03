@@ -102,17 +102,18 @@ Feature: JM-5967 - As a jury officer I need to be able to print a show cause let
       |  041549526    | 041549527      |415991188   | MODTESTCOURT  |
 
   @JurorTransformation @NewSchemaConverted
-  Scenario Outline: Create and Print a show cause letter from  the juror record under the attendance tab.
+  Scenario Outline: Create and Print a show cause letter from the juror record under the attendance tab
 
     Given I am on "Bureau" "test"
     When a bureau owned pool is created with jurors
       | court |juror_number       | pool_number      | att_date_weeks_in_future | owner |
-      | 415   |<juror_number>         | <pool_number>     | 5                         | 400  |
+      | 415   |<juror_number>     | <pool_number>    | 5                        | 400  |
 
     And a new pool is inserted for where record has transferred to the court new schema
-      |part_no               | pool_no           | owner |
-      |<juror_number>       | <pool_number>      | 415   |
+      |part_no              | pool_no           | owner |
+      |<juror_number>       | <pool_number>     | 415   |
     And I Confirm all the data in the record attendance table is cleared
+
     #log on and search for juror
     And I update juror "<juror_number>" to have confirm attendance date as todays date
     And I log in as "<user>"

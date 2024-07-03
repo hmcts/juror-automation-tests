@@ -29,11 +29,7 @@ Scenario Outline: Welsh 3rd Party Deferral
     When I set "Enw cyntaf" to "FirstNameA"
     And I set "Cyfenw" to "LastNameB"
     And I press the "Parhau" button
-    Then I see "Eich perthynas â'r unigolyn" on the page
-	When I see "Eich Manylion" on the page
-	When I set "Enw cyntaf" to "FirstNameA"
-	And I set "Cyfenw" to "LastNameB"
-	And I press the "Parhau" button
+
 	Then I see "Eich perthynas â'r unigolyn" on the page
 
 	#3rd Party Relationship
@@ -56,10 +52,6 @@ Scenario Outline: Welsh 3rd Party Deferral
 	And I press the "Parhau" button
 	Then I see "A yw'r enw sydd gennym ar ei gyfer yn gywir?" on the page
 
-    When I set the radio button to "Nid yw'r unigolyn yma"
-    And I press the "Parhau" button
-    Then I see "A yw'r enw sydd gennym ar ei gyfer yn gywir?" on the page
-
 	#Juror's Name
 	When I set the radio button to "Ydy"
 	And I press the "Parhau" button
@@ -75,7 +67,7 @@ Scenario Outline: Welsh 3rd Party Deferral
 	And I set "Mis" to "01"
 	And I set "Blwyddyn" to "1990"
 	And I press the "Parhau" button
-	
+
 	#Checking field
 	When I set the radio button to "Defnyddio'r rhif ffôn rydych eisoes wedi'i ddarparu i gysylltu â chi"
 	And I set the radio button to "Rhoi cyfeiriad e-bost gwahanol ar gyfer y rheithiwr"
@@ -213,6 +205,7 @@ Scenario Outline: Welsh 3rd Party Deferral
 	Then I see "Your work" on the page
 	
 	Then I click on the "Sign out" link
+    Given I am on "Bureau" "test"
 	And I log in as "ARAMIS1"
 	Then I see "<juror_number>" on the page
 	Then I see "<juror_number>" has reply type indicator "DEFERRAL"

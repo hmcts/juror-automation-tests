@@ -200,7 +200,7 @@ Feature: As a jury officer I need to send a contact the court message
       |MODTESTCOURT | 041529917    | 415980991   |
 
 
-  @JurorTransformationMulti @NewSchemaConverted @Messages
+  @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Send contact the court message for Juror in Trial
 
     Given I am on "Bureau" "test"
