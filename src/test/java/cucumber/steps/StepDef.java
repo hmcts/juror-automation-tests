@@ -134,6 +134,18 @@ public class StepDef {
 	public void loginWithAD(String username, String specifiedCourt) throws Throwable {
 		String defaultCourt = null;
 		switch (username) {
+			case "SWANSEA":
+				defaultCourt = "457";
+				LGN.loginADTestRoute(username + "@email.gov.uk");
+				break;
+			case "MODTESTCOURT":
+				defaultCourt = "415";
+				LGN.loginADTestRoute(username + "@email.gov.uk");
+				break;
+			case "MODCOURT":
+				defaultCourt = "415";
+				LGN.loginADTestRoute(username + "@email.gov.uk");
+				break;
 			case "MODTESTBUREAU":
 			case "SYSTEMADMIN":
 			case "AUTO":
@@ -148,20 +160,8 @@ public class StepDef {
 			case "CMANAGER2":
 			case "SHREWSBURY":
 			case "NEWUSER":
-			case "SWANSEA":
-				defaultCourt = "457";
-				LGN.loginADTestRoute(username + "@email.gov.uk");
-				break;
-			case "MODTESTCOURT":
-				defaultCourt = "415";
-				LGN.loginADTestRoute(username + "@email.gov.uk");
-				break;
-			case "MODCOURT":
-				defaultCourt = "415";
-				LGN.loginADTestRoute(username + "@email.gov.uk");
-				break;
 			default:
-				LGN.loginADTestRoute(username);
+				LGN.loginADTestRoute(username + "@email.gov.uk");
 				break;
 		}
 		NAV.waitForPageLoad(180);
