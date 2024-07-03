@@ -1,24 +1,22 @@
 Feature: JM-3895 mark juror as deferred digital
 
-  @JurorTransformationWIP @NewSchemaConverted @JurorDigitalNotConverted
+  @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Mark juror as deferred - Send to deferral maintenance Happy path digital
     Given I am on "Public" "test"
 
-    Given the juror numbers have not been processed new schema
-      | part_no   | pool_no   | owner |
-      | <part_no> | <pool_no> | 400   |
-
-
-
+    When a bureau owned pool is created with jurors
+      | court |juror_number       | pool_number      | att_date_weeks_in_future | owner |
+      | 415   |<juror_number>     | <pool_number>    | 5                        | 400  |
 
     And I record a digital response for a juror with a deferral
-      | jurorNumber   | <part_no>        |
-      | jurorLname    | LNAMESIXTHREEZERO |
-      | jurorPostcode | CH1 2AN          |
+      | jurorNumber   | <juror_number>    |
+      | jurorLname    | lname             |
+      | jurorPostcode | CH2 2AA           |
+
 
     Given I am on "Bureau" "test"
     Given I log in as "MODTESTBUREAU"
-    When the user searches for juror record "<part_no>" from the global search bar
+    When the user searches for juror record "<juror_number>" from the global search bar
     And I click the summons reply tab
     And I click on the "View summons reply" link
     And I see the reply "type" on the response is "DEFERRAL"
@@ -45,22 +43,22 @@ Feature: JM-3895 mark juror as deferred digital
     And I see the reply "status" on the response is "COMPLETED"
 
     Examples:
-      | part_no   | pool_no   |
-      | 641500630 | 415170402 |
+      | juror_number   | pool_number   |
+      | 041500131      | 415300231     |
 
-  @JurorTransformationWIP @NewSchemaConverted @JurorDigitalNotConverted
+  @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Mark juror as deferred - Add to pool Happy path digital
     # This test may pass but only because of temporary soft deletion of data until JM-4750 is closed
     Given I am on "Public" "test"
 
-    Given a bureau owned pool is created with jurors
-      | court   |juror_number  	 | pool_number	    | att_date_weeks_in_future	| owner |
-      | <court> |<juror_number>  | <pool_number>    | 5				            | 400	|
+    When a bureau owned pool is created with jurors
+      | court |juror_number       | pool_number      | att_date_weeks_in_future | owner |
+      | 415   |<juror_number>     | <pool_number>    | 5                        | 400  |
 
     And I record a digital response for a juror with a deferral
-      | jurorNumber   | <juror_number    |
-      | jurorLname    | LNAMEFOURTWOZERO |
-      | jurorPostcode | CH1 2AN          |
+      | jurorNumber   | <juror_number>    |
+      | jurorLname    | lname             |
+      | jurorPostcode | CH2 2AA           |
 
     Given I am on "Bureau" "test"
     Given I log in as "MODTESTBUREAU"
@@ -100,4 +98,4 @@ Feature: JM-3895 mark juror as deferred digital
 
     Examples:
       | juror_number  | pool_number |
-      | 045200007     | 452300003   |
+      | 041500143     | 415300243   |

@@ -1,15 +1,20 @@
 Feature: JM-4104 - As a Bureau officer I need to be able to see the pool history
 
   @JurorTransformationWIP @JM-4467
-  Scenario: Test to check Bureau officer can see Pool history - new pool - deferrals added
+  Scenario Outline: Test to check Bureau officer can see Pool history - new pool - deferrals added
   Given I am on "Bureau" "test"
-  And I log in as "MODTESTBUREAU"
+  And I log in as "<user>"
+
+    Given a bureau owned pool is created with jurors
+      | court |juror_number  	| pool_number	| att_date_weeks_in_future	| owner |
+      | 415   |<juror_number> 	| <pool_number> | 5				            | 400	|
 
   #create pool request
   And I press the "Apps" button
   And I click on the "Pool management" link
-  Given records for juror "041500046" are deleted
-  Given the juror "041500046" is inserted into pool "415300136" with a deferral date "9" Mondays in the future for court "415"
+
+  Given the juror "<juror_number>" is inserted into pool "<pool_number>" with a deferral date "9" Mondays in the future for court "415"
+  And a new pool is inserted for court "415" with a deferral date "0" weeks in the future
   And I create a "Civil" court pool request for court "415" with "1" deferral
   Then I select the pool that I have just created to move to the pool summary page
   And I click on the "History" link
@@ -24,8 +29,9 @@ Feature: JM-4104 - As a Bureau officer I need to be able to see the pool history
   And I click on the "History" link
   And I see the title "Number of Deferrals" in position "2" of the history
 
-  Then I clear down the data for the pool
-  Then records for juror "041500046" are deleted
+    Examples:
+      | user	      | juror_number  | pool_number |
+      | MODTESTBUREAU  | 041500040     | 415300129   |
 
   @JurorTransformation
   Scenario: Test to check Bureau officer can see Pool history - new pool - summons issued

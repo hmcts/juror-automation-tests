@@ -1,27 +1,22 @@
 Feature: JM-3900
 
-  @JurorTransformationWIP @JurorDigitalNotConverted @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Decline Deferral Request for Digital Response as Bureau user - Juror Record View
 
     Given I am on "Public" "test"
 
-    Given the juror numbers have not been processed new schema
-      | part_no   | pool_no   | owner |
-      | <part_no> | <pool_no> | 400   |
-
-    And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
-
-    And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
+    When a bureau owned pool is created with jurors
+      | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number>      | <pool_number>           | 5                          | 400  |
 
     And I record a digital response for a juror with a deferral
-      | jurorNumber   | <part_no>  |
+      | jurorNumber   | <juror_number>  |
       | jurorLname    | <last_name>|
       | jurorPostcode | <postcode> |
 
     Given I am on "Bureau" "test"
     And I log in as "MODTESTBUREAU"
-    When the user searches for juror record "<part_no>" from the global search bar
-    Then I am on the Juror Record for juror "<part_no>"
+    When the user searches for juror record "<juror_number>" from the global search bar
     And I click on the "Summons reply" link
     And I click on the "View summons reply" link
     And I click the process reply button
@@ -50,5 +45,5 @@ Feature: JM-3900
     And the warning icon is displayed next to the juror status
 
     Examples:
-      | part_no   | pool_no   | last_name         | postcode |
-      | 641500365 | 415170402 | LNAMETHREESIXFIVE | CH1 2AN  |
+      | juror_number   | pool_number   | last_name         | postcode |
+      | 041520027      | 415300704      | lname      | CH2 2AA  |

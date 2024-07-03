@@ -89,16 +89,7 @@ Feature: JM-5962 - As a jury officer I need to be able to bulk change jurors att
     And I check the juror "<juror_number_3>" checkbox
     And I check the juror "<juror_number_4>" checkbox
     And I press the "Change next due at court" button
-    #will continue here, but expecting an error as we cannot change next due date of summoned jurors - JM-6795
-
-    And I see "Enter date next due at court" on the page
-    Then I click on the "Cancel" link
-    And I click on the "Search" link
-    And I set "Pool number" to "<pool_number>"
-    And I press the "Continue" button
-    And I see "<pool_number>" on the page
-    And I press the "Change next due at court" button
-    #will fail here due to bug JM-6814 - expecting error message
+    And I see error "2 jurors are in an incorrect status to change next due at court date"
 
     And I update juror "<juror_number_1>" to have a status of "Responded"
     And I update juror "<juror_number_2>" to have a status of "Responded"

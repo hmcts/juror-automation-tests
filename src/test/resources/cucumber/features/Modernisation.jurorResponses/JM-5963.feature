@@ -68,6 +68,7 @@ Feature: JM-5963 - As a jury I need to be able to print a certificate of attenda
 
     And I update juror "<juror_number>" to have a status of responded in order to record attendance
     And I Confirm all the data in the record attendance table is cleared
+    And I update the bureau transfer date of the juror "<juror_number>"
     And I log in as "<user>"
 
     #check in jurors
@@ -81,6 +82,9 @@ Feature: JM-5963 - As a jury I need to be able to print a certificate of attenda
     And I input juror "<juror_number>" to be checked in
     And I press the "Check in juror" button
     And I see "<juror_number>" in the same row as "9:00am"
+    And I press the "Confirm attendance" button
+    And I see "Confirm attendance list" on the page
+    And I press the "Confirm attendance list is correct" button
 
     And I press the "Apps" button
     And I click on the "Documents" link
@@ -92,7 +96,6 @@ Feature: JM-5963 - As a jury I need to be able to print a certificate of attenda
     And I see "Certificates of attendance" on the page
     And I check the juror "<juror_number>" checkbox
     And I press the "Print certificate of attendance" button
-    And I see "https://juror.staging.apps.hmcts.net/documents/certificate-attendance/letters-list?documentSearchBy=juror&jurorDetails=041587403" in the URL
 
     And I press the "Apps" button
     And I click on the "Documents" link
@@ -100,9 +103,7 @@ Feature: JM-5963 - As a jury I need to be able to print a certificate of attenda
     And I set the radio button to "Juror"
     And I set "Enter juror number" to "<juror_number>"
     And I press the "Search" button
-    
     And I see "Do you want to remove previously printed records?" on the page
-    #will fail here because of JM-6987
  
 
 

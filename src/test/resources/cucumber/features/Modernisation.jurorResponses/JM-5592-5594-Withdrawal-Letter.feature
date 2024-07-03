@@ -217,7 +217,7 @@ Feature: JM-5592-5594 - Resend withdrawal letter for Bureau and Jury users
       |  041549597     |415980685   | MODTESTBUREAU |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @JM-6572
+  @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: As a jury officer I want to print a withdrawal letter for juror
 
     Given I am on "Bureau" "test"
@@ -229,24 +229,32 @@ Feature: JM-5592-5594 - Resend withdrawal letter for Bureau and Jury users
       |part_no              | pool_no           | owner |
      | <juror_number>       | <pool_number>     | 415   |
 
+    And I update the bureau transfer date of the juror "<juror_number>"
+
     And I log in as "<user>"
     And the user searches for juror record "<juror_number>" from the global search bar
-    Then I press the "Enter summons reply" button
-    And I see "Juror details" on the page
-    And I enter a date of birth in the summons reply that will make the juror too young
+    And I press the "Update juror record" button
+    And I set the radio button to "Disqualify juror"
     And I press the "Continue" button
-    And I see "Check the date of birth" on the page
-    And I see "Is their date of birth correct?" on the page
-    And I press the "Yes - disqualify juror" button
-
-    And I see "Do you want to print an withdrawal letter?" on the page
+    And I set the radio button to "A - Age"
+    And I press the "Continue" button
     And I choose the "Yes" radio button
     And I press the "Continue" button
-    #will fail here because of JM-6572
+
+    Given I am on "Bureau" "test"
+    And I log in as "<user>"
+    And I press the "Apps" button
+    And I click on the "Documents" link
+    And I click on the "Withdrawal letters" link
+    And I set the radio button to "Juror number"
+    And I set "Enter juror number" to "<juror_number>"
+    And I check the "Include printed" checkbox
+    And I press the "Search" button
+    And I see the printed letter for juror number "<juror_number>" in the letters table
 
     Examples:
       | juror_number  | pool_number | user          |
-      |  041549598    | 415980685   | MODTESTCOURT  |
+      |  041549598    | 415980685   | MODCOURT      |
 
 
   @JurorTransformationMulti @NewSchemaConverted

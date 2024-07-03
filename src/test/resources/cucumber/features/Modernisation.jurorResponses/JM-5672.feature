@@ -81,7 +81,7 @@ Scenario Outline: Postpone a juror to another court as a Jury officer - Bulk flo
             |user			 |juror_number_1  | juror_number_2  | juror_number_3  |juror_number_4  |pool_number  |
             |MODTESTCOURT  |041520029       | 041520030         |041520031       |041520032       |415300714    |
 
-    @JurorTransformationWIP @JM-7621
+    @JurorTransformationMulti
     Scenario Outline: Postpone a juror to another court as a Jury officer - Bulk flow UNHAPPY PATH
 
         #return to @JurorTransformnation when defect fixed
@@ -260,7 +260,7 @@ Scenario Outline: Postpone a juror to another court as a Jury officer - Bulk flo
             |MODTESTCOURT   |041520050     | 041520051    |041520052         |  415300710    |
 
 
-    @JurorTransformationWIP @JM-6146
+    @JurorTransformationMulti
     Scenario Outline: Postpone a juror having different status by filtering selective jurors using radio button
         Given I am on "Bureau" "test"
         And I Confirm all the data in the record attendance table is cleared
@@ -288,7 +288,8 @@ Scenario Outline: Postpone a juror to another court as a Jury officer - Bulk flo
         And I set "Pool number" to "<pool_number>"
         And I press the "Continue" button
         #Below step will fail due to JM-6146
-        And I check the "Responded, panelled and juror only" checkbox
+        And I set the radio button to "Responded, panelled and juror only"
+        And I check the select all checkbox on pool overview
         And I press the "Postpone" button
         When I set the "Enter a new service start date" date to a Monday "38" weeks in the future
         And I press the "Continue" button

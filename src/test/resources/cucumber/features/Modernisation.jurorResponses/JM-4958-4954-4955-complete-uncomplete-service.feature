@@ -42,7 +42,7 @@ Feature: JM-4958, JM-4954, JM-4955 As a jury officer i need to be able to comple
       |MODTESTCOURT |041500036    |041500037    |415300127  |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @JM-7292
+  @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Complete Service as a jury officer - Bulk flow - Unhappy Path
     Given I am on "Bureau" "test"
 
@@ -71,7 +71,9 @@ Feature: JM-4958, JM-4954, JM-4955 As a jury officer i need to be able to comple
     #will fail here because of JM-7292
 
    #attempt complete service of ineligible juror/complete service for eligible juror
-    And I see "Juror number <juror_number2> is not in a valid state to complete service" on the page
+    And I see "Unable to complete the service for the following juror number(s) due to invalid state: <juror_number2>" on the page
+    When the user searches for juror record "<juror_number1>" from the global search bar
+    And I click on the pool number link on Juror Record
     And I see "Jurors in this pool" on the page
     And I check the juror "<juror_number1>" checkbox
     And I press the "Complete service" button
