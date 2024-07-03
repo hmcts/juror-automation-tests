@@ -53,4 +53,4 @@ Feature: Bureau change jurors deferral date
 
     Examples:
       | juror_number| pool_number | last_name       | postcode	|
-      | 041500059	| 415300149   | LNAMEFOUREIGHT	| CH1 2AN	|
+      | 041566659	| 415300149   | lname	        | CH2 2AA	|

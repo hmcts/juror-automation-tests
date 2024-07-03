@@ -54,9 +54,9 @@ Feature: JM-3546 and JM-3466 Bureau User Marks Digital Response as Awaiting Info
 
     Examples:
       | juror_number| pool_number 	| last_name 		| postcode 	|
-      | 041500152	| 415300251 	|LNAMEONEEIGHTSIX	| SY2 6LU	|
+      | 041500152	| 415300251 	|lname	            | CH2 2AA	|
 
-  @JurorTransformationWIP @NewSchemaConverted @JurorDigitalNotConverted
+  @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Bureau User Marks Digital Response as Awaiting Info - navigation
 
     Given I am on "Public" "test"
@@ -108,9 +108,9 @@ Feature: JM-3546 and JM-3466 Bureau User Marks Digital Response as Awaiting Info
 
     Examples:
       | juror_number| pool_number 	| last_name 		| postcode 	|
-      | 041500153	| 415300252 	| LNAMETWOEIGHTNINE	| SY2 6LU	|
+      | 041500153	| 415300252 	| lname	            | CH2 2AA	|
 
-  @JurorTransformationWIP @NewSchemaConverted @JurorDigitalNotConverted
+  @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Bureau User Marks Digital Response as Awaiting Info - errors and warnings
 
     Given I am on "Public" "test"
@@ -154,4 +154,4 @@ Feature: JM-3546 and JM-3466 Bureau User Marks Digital Response as Awaiting Info
 
     Examples:
       | juror_number| pool_number 	| last_name 		| postcode 	|
-      | 041500154	| 415300253 	| LNAMETWOEIGHTNINE	| SY2 6LU	|
+      | 041500154	| 415300253 	| lname             | CH2 2AA	|

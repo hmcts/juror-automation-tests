@@ -61,7 +61,7 @@ Feature: JM-3770
       | juror_number| pool_number   | user         |
       | 041500144   | 415300244     | MODTESTBUREAU|
 
-  @JurorTransformationWIP @NewSchemaConverted @JurorDigitalNotConverted
+  @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Disqualify Juror because of Residency reasons - Digital
 
     Given I am on "Public" "test"
@@ -99,9 +99,9 @@ Feature: JM-3770
 
     And I set the radio button to "R - Residency"
     And I press the "Continue" button
-    And I see "Summons reply for 641500960 FNAMENINESIXZERO LNAMENINESIXZERO successfully processed: Disqualified (Residency)" on the page
+    And I see "Summons reply for 041500059 fname Changed successfully processed: Disqualified (Residency)" on the page
     And I see "Your work" on the page
 
     Examples:
       | juror_number  | user          | pool_number | last_name        | postcode|
-      | 041500145     | MODTESTBUREAU | 415300245   | LNAMENINESIXZERO | CH1 2AN |
+      | 041500059     | MODTESTBUREAU | 415300149   | lname            | CH2 2AA |

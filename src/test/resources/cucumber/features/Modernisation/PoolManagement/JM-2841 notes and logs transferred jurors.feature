@@ -33,14 +33,15 @@ Feature: JM-2841 Notes and Logs for Transferred Jurors
     Then I see "Phone inquiry from juror" on the page
 
     #transfer juror to 407
-    And I click the update juror record button
-    And I click the transfer to another pool radio button
-    And I press the "Continue" button
+    When the user searches for juror record "<juror_number>" from the global search bar
+    And I click on the pool number link on Juror Record
+    And I check the juror "<juror_number>" checkbox
+    And I press the "Transfer" button
 
     #select court and attendance date
-    When I set input field with "ID" of "courtNameOrLocation" to "407"
-    And I click on the "Dorchester (407)" link
-    And I set attendance date to "5" Mondays in the future
+    And I see "Select a court to transfer to" on the page
+    And I set "Enter a court name or location code" to "407"
+    And I set the "Service start date for transfer" date to a Monday "4" weeks in the future
     And I press the "Continue" button
 
     Then I see "Transfer to Dorchester (407)" on the page

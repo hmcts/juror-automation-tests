@@ -101,7 +101,7 @@ Feature: JM-4368 Jury Officer Can Manually Run a Police Check
       | juror_number| pool_number |
       | 041500129	| 415300229	  |
 
-  @JurorTransformationWIP @Not_Implemented_In_Backend @JM-4580
+  @JurorTransformationMulti @Not_Implemented_In_Backend
   Scenario Outline: Manually run police check - police check runs NOT IMPLEMENTED IN BACKEND
     Given I am on "Bureau" "test"
 

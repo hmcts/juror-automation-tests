@@ -112,7 +112,7 @@ Feature: JM-4677 - As a jury officer I need to create a trial
 
     Examples:
       |user			|
-      |MODTESTCOURT |
+      |MODCOURT |
 
   @JurorTransformationWIP @NewSchemaConverted @JM-5793
   Scenario Outline: Create a trial for user with access to multiple courts
@@ -157,19 +157,18 @@ Feature: JM-4677 - As a jury officer I need to create a trial
     And I set "Defendants" to "TESTER"
     And I set the "Start date for Trial" date to a Monday "10" weeks in the future
     And I set "Judge" to "EDWARD MATTHEWS"
-    #fails due to 5793
-    And I set the radio button to "Lewes sitting at chichester"
-    And I set "Courtroom" to "COURT ROOM 2"
+    And I set the radio button to "Knutsford"
+    And I set "Courtroom" to "COURT ROOM"
     And I press the "Create trial" button
 
     And I see the following juror information on the Trial details screen
       | Defendants           | TESTER                            |
       | Trial type           | Criminal                          |
       | Judge                | EDWARD MATTHEWS                   |
-      | Courtroom            | Court Room 2                      |
+      | Courtroom            | Court Room                        |
       | Protected?           | No                                |
 
 
     Examples:
       |user			|
-      |MODTESTCOURT |
+      |MODCOURT     |

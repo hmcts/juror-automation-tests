@@ -6,7 +6,7 @@ Feature: JM-2486
     #this test needs to stay in single threaded as it checks assignment counts which will be more dynamic in the multi threaded execution
 
     Given I am on "Bureau" "test"
-    And pool no "<pool_no>" is reset to pending allocation new schema
+    And pool no "<pool_number>" is reset to pending allocation new schema
 
     Given a bureau owned pool is created with jurors
       | court |juror_number   | pool_number	 | att_date_weeks_in_future| owner |
@@ -94,7 +94,7 @@ Feature: JM-2486
     #this test needs to stay in single threaded as it checks assignment counts which will be more dynamic in the multi threaded execution
 
     Given I am on "Bureau" "test"
-    And pool no "<pool_no>" is reset to pending allocation new schema
+    And pool no "<pool_number>" is reset to pending allocation new schema
 
     Given a bureau owned pool is created with jurors
       | court |juror_number   | pool_number	 | att_date_weeks_in_future| owner |

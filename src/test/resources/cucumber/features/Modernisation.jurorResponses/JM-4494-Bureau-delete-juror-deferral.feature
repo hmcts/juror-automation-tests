@@ -1,6 +1,6 @@
 Feature: JM-4494 Bureau Delete Juror Deferral
 
-  @JurorTransformationWIP @JurorDigitalNotYetConverted
+  @JurorTransformationMulti
   Scenario Outline: Delete Juror deferral - digital
     Given I am on "Public" "test"
 
@@ -46,7 +46,7 @@ Feature: JM-4494 Bureau Delete Juror Deferral
 
     Examples:
       | juror_number| last_name	  | postcode| pool_number |
-      | 041500062   | LNAMETWOZERO| CH1 2AN	| 415300152	  |
+      | 041500062   | lname       | CH2 2AA	| 415300152	  |
 
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Delete Juror deferral - paper
