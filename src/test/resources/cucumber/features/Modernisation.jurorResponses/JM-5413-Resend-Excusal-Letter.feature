@@ -338,8 +338,7 @@ Feature: JM-5413-5415 - Resend excusal granted letter for Bureau and Jury users
      | <juror_number>       | <pool_number>     | 415   |
 
     And I log in as "<user>"
-
-    #record response
+    And I update the bureau transfer date of the juror "<juror_number>"
     And the user searches for juror record "<juror_number>" from the global search bar
     And I record an excusal request paper summons response
 
@@ -357,12 +356,22 @@ Feature: JM-5413-5415 - Resend excusal granted letter for Bureau and Jury users
     And I see "Do you want to print an excusal granted letter?" on the page
     And I choose the "Yes" radio button
     And I press the "Continue" button
-    And I see "https://juror-test-bureau.clouddev.online/documents/excusal-granted/letters-list" in the URL
-    #will fail here because of JM-6338
+
+    Given I am on "Bureau" "test"
+    And I log in as "<user>"
+    And I press the "Apps" button
+    And I click on the "Documents" link
+    And I click on the "Excusal granted letters" link
+    And I set the radio button to "Juror number"
+    And I set "Enter juror number" to "<juror_number>"
+    And I check the "Include printed" checkbox
+    And I press the "Search" button
+    And I see the printed letter for juror number "<juror_number>" in the letters table
+
 
     Examples:
       | juror_number  | pool_number | user          |
-      |  041529016    | 415980685   | MODTESTCOURT  |
+      |  041529016    | 415980685   | MODCOURT  |
 
 
   @JurorTransformationMulti @NewSchemaConverted

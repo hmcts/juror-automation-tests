@@ -1,6 +1,6 @@
 Feature: JM-4326 - Defer a juror and then complete their service at a later date
 
-  @JurorTransformationWIP @JM-5795
+  @JurorTransformationMulti
   Scenario Outline: Mark juror as deferred - Add to pool Happy path paper - Bureau Officer
     Given I am on "Bureau" "test"
 
@@ -9,9 +9,8 @@ Feature: JM-4326 - Defer a juror and then complete their service at a later date
     Given a bureau owned pool is created with jurors
       | court |juror_number       | pool_number      | att_date_weeks_in_future | owner |
       | 415   |<juror_number>     | <pool_number>     | 5                      | 400  |
-      | 415   |<juror_number_1>     | <pool_number>     | 5                      | 400  |
 
-    And pool "<pool_no>" has attendance date as "5 mondays time" new schema
+    And pool "<pool_number>" has attendance date as "5 mondays time" new schema
 
     #create a pool to defer to
     Given I navigate to the pool request screen
@@ -46,34 +45,45 @@ Feature: JM-4326 - Defer a juror and then complete their service at a later date
 
     #check summons response
     When the user searches for juror record "<juror_number>" from the global search bar
+    And I press the "Update juror record" button
+    And I set the radio button to "Deferral - grant or refuse"
+    And I press the "Continue" button
+    Then I select "O - OTHER" from the "Reason for the deferral request" dropdown
+    And I set the radio button to "Grant deferral"
+    And I set the radio button to "Other"
+    And I set the "Deferral" date to a Monday "45" weeks in the future
+    And I press the "Continue" button
+    And I see "Confirm mutliple deferral" on the page
+    And I press the "Confirm deferral" button
+
+    When the user searches for juror record "<juror_number>" from the global search bar
     And I click on the "Summons reply" link
-    #will fail here as a result of  JM-5795
-    And I see the processing outcome of the summons reply on juror record is "Deferral - granted (other)"
+    And I see "Deferral granted (other)" in the same row as "Processing outcome"
     And I click on the "View summons reply" link
     And I see the reply status has updated to "COMPLETED"
     And I see the reply type has been updated to "DEFERRAL"
 
     Examples:
-      |user			|juror_number  |pool_number  |juror_number_1|
-      |MODTESTBUREAU|041530012     |415300301|041530014|
+      |user			|juror_number  |pool_number  |
+      |MODTESTBUREAU|041530012     |415300301    |
 
-  @JurorTransformationWIP @JM-5795
+  @JurorTransformationMulti
   Scenario Outline: Mark juror as deferred - Add to pool Happy path paper - Jury Officer
     Given I am on "Bureau" "test"
 
-    Given the juror numbers have not been processed new schema
-      |part_no   | pool_no   | owner |
-      |<part_no> | <pool_no> | 400   |
+    Given a bureau owned pool is created with jurors
+      | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   |<juror_number> 	    | <pool_number>     | 5				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no   | pool_no   | owner |
-      |<part_no> | <pool_no> | 415   |
+      |part_no              | pool_no           | owner |
+      |<juror_number>       | <pool_number>     | 415   |
 
-    And pool "<pool_no>" has attendance date as "5 mondays time"
+    And pool "<pool_number>" has attendance date as "5 mondays time"
 
     #log on and search for juror
     And I log in as "<user>"
-    When the user searches for juror record "<part_no>" from the global search bar
+    When the user searches for juror record "<juror_number>" from the global search bar
 
     #record paper summons type - deferral
     Then I record a happy path deferral paper summons response
@@ -100,36 +110,47 @@ Feature: JM-4326 - Defer a juror and then complete their service at a later date
     And I press the "Continue" button
 
 
-    #check summons response
+    When the user searches for juror record "<juror_number>" from the global search bar
+    And I press the "Update juror record" button
+    And I set the radio button to "Deferral - grant or refuse"
+    And I press the "Continue" button
+    Then I select "O - OTHER" from the "Reason for the deferral request" dropdown
+    And I set the radio button to "Grant deferral"
+    And I set the radio button to "Other"
+    And I set the "Deferral" date to a Monday "45" weeks in the future
+    And I press the "Continue" button
+    And I see "Confirm mutliple deferral" on the page
+    And I press the "Confirm deferral" button
+
     When the user searches for juror record "<juror_number>" from the global search bar
     And I click on the "Summons reply" link
-    #will fail here as a result of  JM-5795
-    And I see the processing outcome of the summons reply on juror record is "Deferral - granted (other)"
+    And I see "Deferral granted (other)" in the same row as "Processing outcome"
     And I click on the "View summons reply" link
     And I see the reply status has updated to "COMPLETED"
     And I see the reply type has been updated to "DEFERRAL"
 
 
     Examples:
-      |user			|part_no  |pool_no  |
-      |MODTESTCOURT |141500764|415240404|
+      |user			|juror_number  |pool_number  |
+      |MODTESTCOURT |041537780     |415366829    |
 
 
-  @JurorTransformationWIP @JM-5795
+  @JurorTransformationMulti
   Scenario Outline: Mark juror as deferred - Add to pool - Digital Response Bureau Officer
     Given I am on "Public" "test"
 
-    Given the juror numbers have not been processed new schema
-      | part_no   | pool_no   | owner |
-      | <part_no> | <pool_no> | 400   |
 
-    And pool "<pool_no>" has attendance date as "5 mondays time"
+    Given a bureau owned pool is created with jurors
+      | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   |<juror_number> 	    | <pool_number>     | 5				            | 400	|
+
+    And pool "<pool_number>" has attendance date as "5 mondays time"
 
     #record digital response
     And I record a digital response for a juror with a deferral
-      | jurorNumber   | <part_no>        |
-      | jurorLname    | LNAMESIXTWOFOUR  |
-      | jurorPostcode | CH1 2AN          |
+      | jurorNumber   | <juror_number>      |
+      | jurorLname    | lname            |
+      | jurorPostcode | CH2 2AA        |
 
     #log on and create a pool to defer to
     Given I am on "Bureau" "test"
@@ -168,29 +189,29 @@ Feature: JM-4326 - Defer a juror and then complete their service at a later date
 
 
     Examples:
-      |user			|part_no  |pool_no  |
-      |MODTESTBUREAU|641500624|415170501|
+      |user			|juror_number  |pool_number  |
+      |MODTESTBUREAU|041500138|415300238|
 
-  @JurorTransformationWIP @JM-4750 @JM-5795
+  @JurorTransformationMulti
   Scenario Outline: Mark juror as deferred - Add to pool - Digital Response Jury Officer
     Given I am on "Public" "test"
 
-    Given the juror numbers have not been processed new schema
-      | part_no   | pool_no   | owner |
-      | <part_no> | <pool_no> | 400   |
+    Given a bureau owned pool is created with jurors
+      | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   |<juror_number> 	    | <pool_number>     | 5				            | 400	|
 
-    And pool "<pool_no>" has attendance date as "5 mondays time"
+    And pool "<pool_number>" has attendance date as "5 mondays time"
 
     #record digital response
     And I record a digital response for a juror with a deferral
-      | jurorNumber   | <part_no>        |
-      | jurorLname    | LNAMEONEFIVENINE |
-      | jurorPostcode | CH1 2AN          |
+      | jurorNumber   | <juror_number>      |
+      | jurorLname    | lname            |
+      | jurorPostcode | CH2 2AA        |
 
     #transfer pool to court
     Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no   | pool_no   | owner |
-      |<part_no> | <pool_no> | 415   |
+      |part_no              | pool_no           | owner |
+      |<juror_number>       | <pool_number>     | 415   |
 
     Given I am on "Bureau" "test"
     And I log in as "<user>"
@@ -218,16 +239,26 @@ Feature: JM-4326 - Defer a juror and then complete their service at a later date
     And I select one of the active pools available
     And I press the "Continue" button
 
+    When the user searches for juror record "<juror_number>" from the global search bar
+    And I press the "Update juror record" button
+    And I set the radio button to "Deferral - grant or refuse"
+    And I press the "Continue" button
+    Then I select "O - OTHER" from the "Reason for the deferral request" dropdown
+    And I set the radio button to "Grant deferral"
+    And I set the radio button to "Other"
+    And I set the "Deferral" date to a Monday "45" weeks in the future
+    And I press the "Continue" button
+    And I see "Confirm mutliple deferral" on the page
+    And I press the "Confirm deferral" button
 
     #check summons response
     When the user searches for juror record "<juror_number>" from the global search bar
     And I click on the "Summons reply" link
-    #will fail here as a result of  JM-5795
-    And I see the processing outcome of the summons reply on juror record is "Deferral - granted (other)"
+    And I see "Deferral granted (other)" in the same row as "Processing outcome"
     And I click on the "View summons reply" link
     And I see the reply status has updated to "COMPLETED"
     And I see the reply type has been updated to "DEFERRAL"
 
     Examples:
-      |user			|part_no  |pool_no  |
-      |MODTESTCOURT |641500159|415240404|
+      |user			|juror_number  |pool_number  |
+      |MODTESTCOURT |041537779|415366829|

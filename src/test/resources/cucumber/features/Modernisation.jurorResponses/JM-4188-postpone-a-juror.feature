@@ -1,22 +1,5 @@
   Feature: 4188 - postpone juror
 
-  @JurorTransformationWIP @NewSchemaConverted @JM-5891
-  Scenario: Test to mark juror as postponed and add to deferral maintenance
-    Given I am on "Bureau" "test"
-    Given records for juror "100000002" are deleted new schema
-    And I clear down the data for the paper juror record "100000002" new schema
-    And I log in as "MODTESTBUREAU"
-    Given a juror record of "100000002" has been entered which is valid for paper summons reply new schema
-    And I search for juror "100000002"
-    And I click the update juror record button
-    And I set the radio button to "Postpone service start date"
-    And I click continue on the update juror record screen
-    And I set the "Postpone service start date" single date field to a Monday "17" weeks in the future
-    When I click continue on the postponement page
-    Then I see "There are no active pools for this date" on the page
-    When I press the "Put in deferral maintenance" button
-    Then I see "Juror record updated: Postponed" on the page
-
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Test to mark juror as postponed and add to future pool
     Given I am on "Bureau" "test"

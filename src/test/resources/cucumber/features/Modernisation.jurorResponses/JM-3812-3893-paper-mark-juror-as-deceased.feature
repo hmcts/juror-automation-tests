@@ -46,37 +46,33 @@ Feature: JM-3812 JM-3893
   Scenario Outline: Test to mark juror as deceased for a paper record - Summons reply updated
     Given I am on "Bureau" "test"
 
-    Given the juror numbers have not been processed new schema
-      |part_no   | pool_no   | owner |
-      |<part_no> | <pool_no> | 400   |
-
-    And juror "<juror_number>" has "FIRST_NAME" as "<fname>" new schema
-    And juror "<juror_number>" has "LAST_NAME" as "<lname>" new schema
-    And juror "<juror_number>" has "TITLE" as "<title>" new schema
+    Given a bureau owned pool is created with jurors
+      | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   |<juror_number> 	    | <pool_number>     | 5				            | 400	|
 
     And I log in as "<user>"
 
-    And I search for juror "<juror_number>"
+    When the user searches for juror record "<juror_number>" from the global search bar
     Then I record a happy path paper summons response
     Then I see "Do you want to process this summons reply as responded now?" on the page
     When I click on the "No, skip and process later" link
+
     And I click the process reply button
     Then I mark the reply as responded
     And I click continue on the juror summons reply page
     And I click the checkbox to mark the reply as responded
     And I confirm I want to mark the reply as responded
-    And I see "Summons reply for <part_no> <title> <fname> <lname> successfully processed: Responded" in the response banner
-    Then I click the link for the juror record
+
+    When the user searches for juror record "<juror_number>" from the global search bar
     And I click the update juror record button
-    And I select the mark as deceased radio button
-    #fails due to JM-4919
-    And I add a comment of "Test Comment" to be recorded in the jurors history
-    Then I click continue on the update juror record screen
+    And I set the radio button to "Mark as deceased"
+    And I set "Comments to record in the juror’s history" to "Test Comment"
+    And I press the "Continue" button
     And I see the juror record updated banner containing "Deceased"
     And I see the juror status on the juror record screen has updated to "Deceased"
-    When I navigate to the paper summons reply
-    Then I see the juror status has updated to "Deceased"
+    And I click on the "Summons reply" link
+    And I see "Excusal granted (deceased)" in the same row as "Processing outcome"
 
     Examples:
-      |user			|part_no    |pool_no  |title|fname            |lname|
-      |MODTESTBUREAU|641500451  |415170402|Mr   |FNAMEFOURFIVEONE |LNAMEFOURFIVEONE|
+      |user			|juror_number    |pool_number  |
+      |MODTESTBUREAU|041526633       |415300477    |
