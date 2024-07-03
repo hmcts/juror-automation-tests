@@ -237,7 +237,7 @@ Feature: JM-4222
       | juror_number  | pool_number | user          |
       | 045200023     | 452300022   | MODTESTBUREAU |
 
-  @JurorTransformationWIP @NewSchemaConverted @JM-6998
+  @JurorTransformation @NewSchemaConverted
   Scenario Outline: As a Jury officer when I reassign a juror the optic reference should be copied over to the new record
 
     Given I am on "Bureau" "test"
@@ -310,7 +310,7 @@ Feature: JM-4222
       | MODTESTCOURT | 041500049     | 415300139   |041500050     |415300140  |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @JM-7236
+  @JurorTransformation @NewSchemaConverted
   Scenario Outline: As a jury officer officer when I transfer a juror the optic reference should be copied over to the new record
     Given I am on "Bureau" "test"
 

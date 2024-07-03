@@ -1,6 +1,6 @@
 Feature: Decline excusal digital
 
-  @JurorTransformationWIP @NewSchemaConverted @JurorDigitalNotConverted
+  @JurorTransformation @NewSchemaConverted
   Scenario Outline: Test to decline excusal on digital response
     
     Given I am on "Public" "test"
