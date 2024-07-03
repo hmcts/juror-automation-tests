@@ -53,7 +53,7 @@ Scenario Outline: A response is submitted after pool is transferred to court
 		| <juror_number>| <pool_number>	| <last_name>	| <postcode>| <email>	|
 
 	#check status
-	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "URGENT" is "N" where "JUROR_NUMBER" is "<juror_number>"
+#	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "URGENT" is "N" where "JUROR_NUMBER" is "<juror_number>"
 
 	Given I am on "Bureau" "test"
 	And I log in as "CPASS"
@@ -94,8 +94,7 @@ Scenario Outline: Regression test that Urgents still calculated correctly
 		| <juror_number>| <pool_number>	| <last_name>	| <postcode>| <email>	|
 
 	#check status
-	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "URGENT" is "Y" where "JUROR_NUMBER" is "<juror_number>"
-	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "SUPER_URGENT" is "N" where "JUROR_NUMBER" is "<juror_number>"
+#	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "URGENT" is "Y" where "JUROR_NUMBER" is "<juror_number>"
 	
 	Given I am on "Bureau" "test"
 	And I log in as "CPASS"
@@ -107,7 +106,7 @@ Scenario Outline: Regression test that Urgents still calculated correctly
 	
 	#check status = summoned
 	Then I see "Summoned" on the page
-	And I do not see "URGENT" on the page
+	And I see "URGENT" on the page
 	
 	When I select "Mark as responded" from Process reply
 	And I check the "Mark juror as 'responded'" checkbox

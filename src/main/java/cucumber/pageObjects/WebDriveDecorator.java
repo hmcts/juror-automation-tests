@@ -9,7 +9,6 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.WrapsDriver;
 import org.openqa.selenium.interactions.Interactive;
 import org.openqa.selenium.interactions.Sequence;
 
@@ -18,7 +17,7 @@ import java.util.List;
 import java.util.Set;
 
 public interface WebDriveDecorator extends
-    WebDriver, JavascriptExecutor, TakesScreenshot, WrapsDriver, Interactive, HasCapabilities {
+    WebDriver, JavascriptExecutor, TakesScreenshot, Interactive, HasCapabilities {
 
     WebDriver getDriver();
 
@@ -89,10 +88,6 @@ public interface WebDriveDecorator extends
 
     default <X> X getScreenshotAs(OutputType<X> target) throws WebDriverException {
         return ((TakesScreenshot) getDriver()).getScreenshotAs(target);
-    }
-
-    default WebDriver getWrappedDriver() {
-        return ((WrapsDriver) getDriver()).getWrappedDriver();
     }
 
     default void perform(Collection<Sequence> actions) {

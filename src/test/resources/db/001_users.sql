@@ -7,24 +7,24 @@
 TRUNCATE TABLE juror_mod.users CASCADE;
 commit;
 
-INSERT INTO juror_mod.users (user_type, username, email, name, active, created_by)
-VALUES ('BUREAU', 'MODTESTBUREAU', 'MODTESTBUREAU@email.gov.uk', 'MODTESTBUREAU', true, 'AUTO'),
-       ('COURT', 'MODTESTCOURT', 'MODTESTCOURT@email.gov.uk', 'MODTESTCOURT', true, 'AUTO'),
-       ('SYSTEM', 'AUTO', 'AUTO@email.gov.uk', 'AUTO', true, 'AUTO'),
-       ('BUREAU', 'TeamPickListUser', 'TeamPickListUser@email.gov.uk', 'TeamPickListUser', true, 'AUTO'),
-       ('BUREAU', 'AutomationStaffTWO', 'AutomationStaffTWO@email.gov.uk', 'AutomationStaffTWO', true, 'AUTO'),
-       ('SYSTEM', 'SYSTEM', 'SYSTEM@email.gov.uk', 'SYSTEM', true, 'AUTO'),
-       ('COURT', 'SJOUSER1', 'SJOUSER1@email.gov.uk', 'SJOUSER1', true, 'AUTO'),
-       ('COURT', 'SJOUSER', 'SJOUSER@email.gov.uk', 'SJOUSER', true, 'AUTO'),
-       ('BUREAU', 'CPASS', 'CPASS@email.gov.uk', 'CPASS', true, 'AUTO'),
-       ('BUREAU', 'NEWUSER', 'NEWUSER@email.gov.uk', 'NEWUSER', true, 'AUTO'),
-       ('BUREAU', 'ARAMIS1', 'ARAMIS1@email.gov.uk', 'ARAMIS1', true, 'AUTO'),
-       ('COURT', 'CMANAGER', 'CMANAGER@email.gov.uk', 'CMANAGER', true, 'AUTO'),
-       ('COURT', 'CMANAGER2', 'CMANAGER2@email.gov.uk', 'CMANAGER2', true, 'AUTO'),
-       ('COURT', 'SHREWSBURY', 'SHREWSBURY@email.gov.uk', 'SHREWSBURY', true, 'AUTO'),
-       ('ADMINISTRATOR', 'SYSTEMADMIN', 'SYSTEMADMIN@email.gov.uk', 'SYSTEMADMIN', true, 'AUTO'),
-       ('COURT', 'MODCOURT', 'MODCOURT@email.gov.uk', 'MODCOURT', true, 'AUTO'),
-       ('ADMINISTRATOR', 'ADMINUSER', 'cade.faulkner@hmcts.net', 'ADMINUSER', true, 'AUTO');
+INSERT INTO juror_mod.users (user_type, username, email, name, active, created_by, updated_by)
+VALUES ('BUREAU', 'MODTESTBUREAU', 'MODTESTBUREAU@email.gov.uk', 'MODTESTBUREAU', true, 'AUTO', 'AUTO'),
+       ('COURT', 'MODTESTCOURT', 'MODTESTCOURT@email.gov.uk', 'MODTESTCOURT', true, 'AUTO', 'AUTO'),
+       ('SYSTEM', 'AUTO', 'AUTO@email.gov.uk', 'AUTO', true, 'AUTO', 'AUTO'),
+       ('BUREAU', 'TeamPickListUser', 'TeamPickListUser@email.gov.uk', 'TeamPickListUser', true, 'AUTO', 'AUTO'),
+       ('BUREAU', 'AutomationStaffTWO', 'AutomationStaffTWO@email.gov.uk', 'AutomationStaffTWO', true, 'AUTO', 'AUTO'),
+       ('SYSTEM', 'SYSTEM', 'SYSTEM@email.gov.uk', 'SYSTEM', true, 'AUTO', 'AUTO'),
+       ('COURT', 'SJOUSER1', 'SJOUSER1@email.gov.uk', 'SJOUSER1', true, 'AUTO', 'AUTO'),
+       ('COURT', 'SJOUSER', 'SJOUSER@email.gov.uk', 'SJOUSER', true, 'AUTO', 'AUTO'),
+       ('BUREAU', 'CPASS', 'CPASS@email.gov.uk', 'CPASS', true, 'AUTO', 'AUTO'),
+       ('BUREAU', 'NEWUSER', 'NEWUSER@email.gov.uk', 'NEWUSER', true, 'AUTO', 'AUTO'),
+       ('BUREAU', 'ARAMIS1', 'ARAMIS1@email.gov.uk', 'ARAMIS1', true, 'AUTO', 'AUTO'),
+       ('COURT', 'CMANAGER', 'CMANAGER@email.gov.uk', 'CMANAGER', true, 'AUTO', 'AUTO'),
+       ('COURT', 'CMANAGER2', 'CMANAGER2@email.gov.uk', 'CMANAGER2', true, 'AUTO', 'AUTO'),
+       ('COURT', 'SHREWSBURY', 'SHREWSBURY@email.gov.uk', 'SHREWSBURY', true, 'AUTO', 'AUTO'),
+       ('ADMINISTRATOR', 'SYSTEMADMIN', 'SYSTEMADMIN@email.gov.uk', 'SYSTEMADMIN', true, 'AUTO', 'AUTO'),
+       ('COURT', 'MODCOURT', 'MODCOURT@email.gov.uk', 'MODCOURT', true, 'AUTO', 'AUTO'),
+       ('ADMINISTRATOR', 'ADMINUSER', 'cade.faulkner@hmcts.net', 'ADMINUSER', true, 'AUTO', 'AUTO');
 commit;
 
 

@@ -1,6 +1,6 @@
 Feature: JM-3546 and JM-3466 Bureau User Marks Digital Response as Awaiting Info
 
-  @JurorTransformationWIP @NewSchemaConverted @JurorDigitalNotConverted
+  @JurorTransformation @NewSchemaConverted
   Scenario Outline: Bureau User Marks Digital Response as Awaiting Info - happy path
 
     Given I am on "Public" "test"
