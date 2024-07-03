@@ -166,9 +166,10 @@ Scenario Outline: Welsh 1st Underage with Error Check
 	And I press the "Parhau" button
 	
 	Then I see "Gwiriwch eich ymatebion nawr" on the page
-	And I see text "2 Chwefror 2006" in the same row as "Dyddiad geni"
+	#And I see text "2 Chwefror 2006" in the same row as "Dyddiad geni"
+	And I see the welsh date "-800" weeks from now in the same row as "Dyddiad geni"
 
-Examples:
+	Examples:
 	| juror_number	| last_name	| postcode	| pool_number	|
 	| 045700058		| DOE		| CH1 2AN	| 457300058		|
 	

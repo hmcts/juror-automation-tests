@@ -133,7 +133,7 @@ Feature: JM-5965 - Certificate of Exemption
     Then I check the juror "<juror_number>" checkbox
     And I press the "Print certificate of exemption" button
     And I switch to the new window
-    And I see "/documents/certificate-of-exemption-list/EXEMPTION2?durationType=indefinitely" in the URL
+    And I see "/documents/certificate-of-exemption-list/EXEMPTION2/print?durationType=indefinitely" in the URL
 
     Examples:
       | juror_number  | pool_number | user          | trial_number       |

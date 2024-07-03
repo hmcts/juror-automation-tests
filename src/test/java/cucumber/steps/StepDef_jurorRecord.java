@@ -493,6 +493,32 @@ public class StepDef_jurorRecord {
         }
     }
 
+    @Then("^I see the welsh date \"([^\"]*)\" weeks from now in the same row as \"([^\"]*)\"$")
+    public void seeWelshText_inSameRow_asText(String Weeks, String nextToText) {
+
+        int weeks;
+        try {
+            weeks = Integer.parseInt(Weeks);
+        }
+        catch (NumberFormatException e) {
+            weeks = 0;
+        }
+        Locale welshLocale = new Locale("cy", "GB");
+        DateFormat dateFormat = new SimpleDateFormat("d MMMM yyyy", welshLocale);
+        Date today = Calendar.getInstance().getTime();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(today);
+        calendar.add(Calendar.WEEK_OF_MONTH, weeks);
+        Date newDate = calendar.getTime();
+
+        try {
+            NAV.seeText_inSameRow_asText(dateFormat.format(newDate), nextToText);
+        } catch (Exception e) {
+            NAV.waitForPageLoad();
+            NAV.seeText_inSameRow_asText(dateFormat.format(newDate), nextToText);
+        }
+    }
+
     @Then("^I see the expense date \"([^\"]*)\" weeks from now in the same row as \"([^\"]*)\"$")
     public void seeText_inSameRow_asExpenseDate(String Weeks, String nextToText) {
 
