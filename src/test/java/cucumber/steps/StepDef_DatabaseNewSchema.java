@@ -13,7 +13,6 @@ import java.time.LocalDate;
 import java.time.temporal.TemporalAdjusters;
 import java.util.List;
 import java.util.Map;
-import org.apache.log4j.Logger;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -237,14 +236,14 @@ public class StepDef_DatabaseNewSchema {
         DBTNSD.deleteNewPoolRequestsNSD();
     }
 
-    //
-//
-//    @Then("^I check that a \"([^\"]*)\" letter has been generated$")
-//    public void requestInfoLetterGeneratedNSD(String jurorPartNo) throws SQLException {
-//        StepDef_jurorpool.jurorPartNumber.set(jurorPartNo);
-//
-//        DBT.requestInfoLetterGenerated(jurorPartNo);
-//    }
+
+
+    @Then("^I check that a \"([^\"]*)\" letter has been generated new schema$")
+    public void requestInfoLetterGeneratedNSD(String jurorPartNo) throws SQLException {
+        StepDef_jurorpool.jurorPartNumber.set(jurorPartNo);
+
+        DBTNSD.requestInfoLetterGeneratedNSD(jurorPartNo);
+    }
 //
 //    @Given("^a confirmation letter is generated for juror \"([^\"]*)\"$")
 //    public void insertConfLettRowNSD(String part_no) throws SQLException {
@@ -292,17 +291,17 @@ public class StepDef_DatabaseNewSchema {
         DBTNSD.deleteNewPoolMultiStatusNSD(court);
     }
 
-    //
-//    @Given("^the request letter for court \"([^\"]*)\" is deleted$")
-//    public void deleteRequestLettNSD(String court) throws SQLException {
-//        DBT.deleteRequestLett(court);
-//    }
-//
-//    @Given("^the request letter for part_no \"([^\"]*)\" is deleted$")
-//    public void deleteRequestLettForPartNoNSD(String part_no) throws SQLException {
-//        DBT.deleteRequestLettForPartNo(part_no);
-//    }
-//
+
+    @Given("^the request letter for court \"([^\"]*)\" is deleted new schema$")
+    public void deleteRequestLettNSD(String court) throws SQLException {
+        DBTNSD.deleteRequestLettNSD(court);
+    }
+
+    @Given("^the request letter for juror \"([^\"]*)\" is deleted new schema$")
+    public void deleteRequestLettForPartNoNSD(String part_no) throws SQLException {
+        DBTNSD.deleteRequestLettForPartNoNSD(part_no);
+    }
+
     @Given("^a new pool is inserted for court \"([^\"]*)\" with a deferral date \"([^\"]*)\" Mondays in the future new schema$")
     public void insertNewPoolWithDeferralNSD(String court, String noWeeks) throws SQLException {
         String partNumber = "6" + court + "11111";

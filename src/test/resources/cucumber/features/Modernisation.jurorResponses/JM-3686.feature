@@ -11,7 +11,7 @@ Feature: JM-3686
       | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
       | 415   | <juror_number> 	    | <pool_number>     | 5				            | 400	|
 
-    Given the request letter for part_no "<juror_number>" is deleted
+    Given the request letter for juror "<juror_number>" is deleted new schema
 
     When the user searches for juror record "<juror_number>" from the global search bar
 
@@ -161,7 +161,7 @@ Feature: JM-3686
     And I see link with text "View juror's record"
 
    #check request letter row
-    Then I check that a "request information" letter has been generated
+    Then I check that a "request information" letter has been generated new schema
 
     Examples:
       | juror_number| pool_number | user          |
