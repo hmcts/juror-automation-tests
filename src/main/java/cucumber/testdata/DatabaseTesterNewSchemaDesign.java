@@ -378,7 +378,7 @@ public class DatabaseTesterNewSchemaDesign {
 			conn = db.getConnection("demo");
 
 		try {
-			pStmt = conn.prepareStatement("select * from juror_mod.bulk_print_data where form_type like '5227%' and juror_number = '" + jurorPartNo + "'");
+			pStmt = conn.prepareStatement("select * from juror_mod.bulk_print_data where form_type like '5227%' and juror_no = '" + jurorPartNo + "'");
 
 			pStmt.executeQuery();
 			log.info("Selected info letter from bulk_print_data for " + jurorPartNo);
