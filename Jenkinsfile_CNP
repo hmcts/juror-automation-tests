@@ -16,7 +16,7 @@ properties([
   ])
 ])
 
-@Library("Infrastructure") 
+@Library("Infrastructure@feat/allow-sync-branches-with-master-on-nightly") 
 
 import uk.gov.hmcts.contino.GradleBuilder
 
@@ -79,9 +79,12 @@ def setBuildName() {
   currentBuild.displayName = nameBuilder
 }
 
+def branchesToSync = ['nightly-dev']
+
 withNightlyPipeline(type, product, component, 600) {
   currentBuild.displayName = "#${BUILD_NUMBER} - ${params.EnvironmentChoice}"
   loadVaultSecrets(secrets)
+  syncBranchesWithMaster(branchesToSync)
   enableFullFunctionalTest(600)
   enableSlackNotifications('#juror-build-notices')
 
