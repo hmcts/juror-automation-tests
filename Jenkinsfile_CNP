@@ -16,7 +16,7 @@ properties([
   ])
 ])
 
-@Library("Infrastructure@feat/allow-sync-branches-with-master-on-nightly") 
+@Library("Infrastructure@feat/ian-test") 
 
 import uk.gov.hmcts.contino.GradleBuilder
 
