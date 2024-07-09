@@ -209,8 +209,8 @@ withNightlyPipeline(type, product, component, 600) {
   }
 }
 
-withInfraPipeline(product) {
-  //Sync to a new long running branch, to allow overnight tests to run in parallel
-  def branchesToSync = ['nightly-dev']
-  syncBranchesWithMaster(branchesToSync)
-}
+//withInfraPipeline(product) {
+//  //Sync to a new long running branch, to allow overnight tests to run in parallel
+//  def branchesToSync = ['nightly-dev']
+//  syncBranchesWithMaster(branchesToSync)
+//}
