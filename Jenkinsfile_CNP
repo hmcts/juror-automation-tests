@@ -16,7 +16,7 @@ properties([
   ])
 ])
 
-@Library("Infrastructure") 
+@Library("Infrastructure@feat/allow-sync-branches-with-master-on-nightly") 
 
 import uk.gov.hmcts.contino.GradleBuilder
 
@@ -79,9 +79,12 @@ def setBuildName() {
   currentBuild.displayName = nameBuilder
 }
 
+def branchesToSync = ['nightly-dev']
+
 withNightlyPipeline(type, product, component, 600) {
   currentBuild.displayName = "#${BUILD_NUMBER} - ${params.EnvironmentChoice}"
   loadVaultSecrets(secrets)
+  syncBranchesWithMaster(branchesToSync)
   enableFullFunctionalTest(600)
   enableSlackNotifications('#juror-build-notices')
 
@@ -204,10 +207,4 @@ withNightlyPipeline(type, product, component, 600) {
     steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'target/**/*.json'
     steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'target/**/*.html'
   }
-}
-
-withInfraPipeline(product) {
-  //Sync to a new long running branch, to allow overnight tests to run in parallel
-  def branchesToSync = ['nightly-dev']
-  syncBranchesWithMaster(branchesToSync)
 }

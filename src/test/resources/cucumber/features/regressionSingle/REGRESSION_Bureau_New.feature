@@ -129,7 +129,7 @@ Scenario Outline: Your Work
 	When I click on the "To do" link
 	When I click on "<juror_number_two>" in the same row as "<juror_number_two>"
 	Then I see "Reply status" on the page
-	And I do not see "URGENT" on the page
+	And I see "URGENT" on the page
 	Then I press the "More actions" button
 	Then I click on the "Mark as awaiting information" link
 	When I choose the "Court" radio button
