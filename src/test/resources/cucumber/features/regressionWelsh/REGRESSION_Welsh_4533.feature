@@ -44,14 +44,12 @@ Examples:
 @RegressionWelsh
 Scenario Outline: Welsh 1st Party Cookies Policy on each Page
 	Given I am on the welsh version of "Public" "test"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
-		
-	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+
+	Given a bureau owned pool is created with jurors
+		| court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+		| 415   | <juror_number> 	    | <pool_number>     | 5				            | 400	|
+
 	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
-
-
 
 	And I set the radio button to "n ymateb dros fy hun"
 	And I see link with text "Cwcis" 
@@ -264,18 +262,16 @@ Scenario Outline: Welsh 1st Party Cookies Policy on each Page
 	And I see link with text "Cwcis" 
 	
 Examples:
-	|part_no	|last_name			|postcode	|email 		|pool_no	|
-	|641500227	|LNAMETWOTWOSEVEN	|CH1 2AN	|e@mail.com	|415170402	|
+	|juror_number	|last_name			|postcode	     |email 		|pool_number	|
+	|041592778	    |lname	            |CH2 2AA	     |e@mail.com	|415355408	|
 	
 @RegressionWelsh @JDB-4533 
 Scenario Outline: Welsh 3rd Party Cookies Policy on each page
 	Given I am on the welsh version of "Public" "test"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
-	
-	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
 
+	Given a bureau owned pool is created with jurors
+		| court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+		| 415   | <juror_number> 	    | <pool_number>     | 5				            | 400	|
 
 	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 
@@ -510,8 +506,8 @@ Scenario Outline: Welsh 3rd Party Cookies Policy on each page
 	And I check the "Hyd gwn i, mae'r wybodaeth rwyf wedi ei rhoi am yr unigolyn rwyf yn ymateb ar ei ran yn gywir." checkbox
 	And I press the "Cyflwyno" button
 	Then I see "Os byddwn yn cysylltu â nhw, efallai bydd angen iddynt ddarparu eu rhif rheithiwr. Mae'r rhif hefyd ar y llythyr bu inni anfon atynt." on the page
-	
-Examples:
-	|part_no		|last_name			|postcode	|pool_no	|
-	|641500184		|LNAMEONEEIGHTFOUR	|CH1 2AN	|415170402	|
+
+	Examples:
+		|juror_number	|last_name			|postcode	     |email 		|pool_number	|
+		|041592765	    |lname	            |CH2 2AA	     |e@mail.com	|415355407	    |
 	
