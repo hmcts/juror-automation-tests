@@ -1,14 +1,12 @@
 Feature: Welsh_LogOn_Content
 
 @RegressionWelsh @JDB-3081 @JDB-3077 @JDB-3080 
-Scenario Outline: 
-	Given I am on the welsh version of "Public" "bau-test"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
-	
-	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+Scenario Outline:
+	Given I am on the welsh version of "Public" "test"
 
+	Given a bureau owned pool is created with jurors
+		| court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+		| 415   | <juror_number> 	    | <pool_number>     | 5				            | 400	|
 
 	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 
@@ -57,11 +55,11 @@ Scenario Outline:
 	
 #I want to set the year dynamically to current year - 16
 
-	And I set "Blwyddyn" to "2006"
+	And I set "Blwyddyn" to "2008"
 	And I press the "Parhau" button
 	
 	Then I see "Cadarnhewch ddyddiad geni" on the page
-	And I see "unigolyn oedd 27 Ebrill 2006" on the page
+	And I see "unigolyn oedd 27 Ebrill 2008" on the page
 	And I see "r dyddiad geni yn gywir?" on the page
 	
 	Then I set the radio button to "Na"
@@ -76,7 +74,7 @@ Scenario Outline:
 	And I press the "Parhau" button
 	
 	Then I see "Gwiriwch eich ymatebion nawr" on the page
-	And I see text "2 Ebrill 2006" in the same row as "Dyddiad geni"
+	And I see text "2 Ebrill 2008" in the same row as "Dyddiad geni"
 	
 	Then I check the "Hyd gwn i, mae'r wybodaeth rwyf wedi ei rhoi am yr unigolyn rwyf yn ymateb ar ei ran yn gywir." checkbox
 	When I press the "Cyflwyno" button
@@ -84,7 +82,7 @@ Scenario Outline:
 	Then I see "Rydych wedi cwblhau'r broses ymateb" on the page
 	Then I see "Rydych wedi cwblhau'r broses ymateb" on the page
 	Then I see "<juror_number>" on the page
-	
-Examples:
-	| part_no		|last_name		|postcode	| email 	| pool_no	|
-	|841500146		|LNAME146		|CH1 2AN	|a@eeee.com	|415181001	|
+
+	Examples:
+		|juror_number	|last_name			|postcode	     |email 		|pool_number	|
+		|041592771	    |lname	            |CH2 2AA	     |e@mail.com	|415355402	    |

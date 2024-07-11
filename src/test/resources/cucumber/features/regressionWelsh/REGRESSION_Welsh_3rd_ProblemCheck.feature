@@ -2,15 +2,12 @@ Feature: Regression Welsh_3rd_ProblemCheck
 
 @RegressionWelsh @JDB-3460 @JDB-3516 
 Scenario Outline: Welsh_3rd_ProblemCheck
-		
-	Given I am on the welsh version of "Public" "bau-test"
-	
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
-	
-	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
 
+	Given I am on the welsh version of "Public" "test"
+
+	Given a bureau owned pool is created with jurors
+		| court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+		| 415   | <juror_number> 	    | <pool_number>     | 5				            | 400	|
 
 	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 
@@ -217,7 +214,7 @@ Scenario Outline: Welsh_3rd_ProblemCheck
 	And I press the "Cyflwyno" button
 	Then I see "Rydych wedi cwblhau'r broses ymateb" on the page
 	And I see "<juror_number>" on the page
-	
-Examples:
-	|part_no	|last_name			|postcode	|email 		|pool_no	|
-	|641500863	|LNAMEEIGHTSIXTHREE	|CH1 2AN	|a@eeee.com	|415170401	|
+
+	Examples:
+		|juror_number	|last_name			|postcode	     |email 		|pool_number	|
+		|041592773	    |lname	            |CH2 2AA	     |e@mail.com	|415355404	    |
