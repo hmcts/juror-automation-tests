@@ -3057,8 +3057,9 @@ public class StepDef_jurorpool {
             summonedJurorsNew.get().remove(number);
         }
         summonedJurors.set(summonedJurorsNew.get());
-        log.info("New juror      : "+ summonedJurors.get());
+        log.info("New juror      : " + summonedJurors.get());
     }
+
     @When("^I select one of the active pools available$")
     public void selectFirstPoolNoInList() {
         ACTIVE_POOLS_PAGE.selectFirstPoolNoInList();
@@ -3133,5 +3134,9 @@ public class StepDef_jurorpool {
     @Then("^\"([^\"]*)\" is marked as requiring attention$")
     public void iSeeAttentionIndicator(String eligibilityAttentionType) {
         SUMMONS_REPLY.eligibilityAttentionIndicatorVisible(eligibilityAttentionType);
+    }
+    @Given("I ensure that there is no data injection in my pool")
+    public void ensurePoolRowCount() throws SQLException {
+        POOL_OVERVIEW_PAGE.checkForInjection();
     }
 }

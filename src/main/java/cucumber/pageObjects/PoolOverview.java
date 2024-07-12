@@ -1,5 +1,6 @@
 package cucumber.pageObjects;
 
+import cucumber.testdata.DBConnection;
 import cucumber.utils.AngularJsHTTPCallWait;
 import cucumber.utils.WaitUtil_v2;
 import cucumber.utils.WaitUtils;
@@ -10,6 +11,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -23,6 +28,10 @@ public class PoolOverview {
     private final WaitUtil_v2 wait1;
     private final AngularJsHTTPCallWait aJsWait;
     private final NavigationShared NAV;
+
+    private DBConnection db;
+    private Connection conn;
+    private PreparedStatement pStmt = null;
 
     public PoolOverview(WebDriver driver) {
         PoolOverview.driver = driver;
@@ -224,7 +233,7 @@ public class PoolOverview {
         return data;
     }
 
-    public String getJurorTableRow(int index){
+    public String getJurorTableRow(int index) {
         log.info("Getting row " + index + " in juror table");
         List<WebElement> jurorRows = jurorsTable.findElements(By.tagName("tr"));
         WebElement jurorRow = jurorRows.get(index);
@@ -239,7 +248,7 @@ public class PoolOverview {
         return details;
     }
 
-    public String getJurorNumberInRow(int row){
+    public String getJurorNumberInRow(int row) {
         log.info("Getting juror number in row " + row + " of juror table");
         List<WebElement> jurorRows = jurorsTable.findElements(By.tagName("tr"));
         WebElement jurorRow = jurorRows.get(row);
@@ -247,7 +256,8 @@ public class PoolOverview {
         String jurorNumber = jurorDetails.get(1).getText();
         return jurorNumber;
     }
-    public String[] historyHeaderAndDescInPos(int posInList){
+
+    public String[] historyHeaderAndDescInPos(int posInList) {
         String[] elementsInPosition;
         String historyHeader = driver.findElement(By.xpath("//*[@class='moj-timeline__item'][" + posInList + "]/div[1]/h2")).getText();
         String historyDesc = driver.findElement(By.xpath("//*[@class='moj-timeline__item'][" + posInList + "]/div[2]/p")).getText();
@@ -261,6 +271,7 @@ public class PoolOverview {
         return elementsInPosition;
 
     }
+
     public void nextDueAtCourtBanner() {
         NAV.messageBanner.isDisplayed();
         System.out.println("See Next due at court banner");
@@ -270,10 +281,80 @@ public class PoolOverview {
     public ArrayList<String> getJurorNumbers() {
         List<WebElement> numbersOnPage = driver.findElements(By.xpath("//*[@Id='jurorOverview']/descendant::tbody/descendant::a"));
         ArrayList<String> jurorNumbers = new ArrayList<>();
-        for(WebElement e : numbersOnPage){
+        for (WebElement e : numbersOnPage) {
             jurorNumbers.add(e.getText());
         }
-        log.info("Juror Numbers: "+jurorNumbers);
+        log.info("Juror Numbers: " + jurorNumbers);
         return jurorNumbers;
+    }
+    public void checkForInjection() throws SQLException {
+        String poolNumber = getPoolNumber();
+
+        try {
+            db = new DBConnection();
+            String env_property = System.getProperty("env.database");
+
+            if (env_property != null)
+                conn = db.getConnection(env_property);
+            else
+                conn = db.getConnection("demo");
+
+
+            String countQuery = "SELECT COUNT(*) FROM juror_mod.juror_pool WHERE pool_number = ?";
+            pStmt = conn.prepareStatement(countQuery);
+            pStmt.setString(1, poolNumber);
+            int rowCount = 0;
+
+            try (ResultSet rs = pStmt.executeQuery()) {
+                if (rs.next()) {
+                    rowCount = rs.getInt(1);
+                }
+            }
+            System.out.println("Count query executed: " + countQuery);
+
+
+            if (rowCount > 10) {
+                int excessRows = rowCount - 10;
+
+                String deleteQuery = "DELETE FROM juror_mod.juror_pool WHERE ctid IN " +
+                        "(SELECT ctid FROM " +
+                        "(SELECT ctid, ROW_NUMBER() OVER () AS row_num " +
+                        "FROM juror_mod.juror_pool WHERE pool_number = ?) AS subquery " +
+                        "WHERE row_num > 10)";
+                pStmt = conn.prepareStatement(deleteQuery);
+                pStmt.setString(1, poolNumber);
+                int rowsDeleted = pStmt.executeUpdate();
+
+                System.out.println("Delete query executed: " + deleteQuery);
+                System.out.println(rowsDeleted + " rows deleted.");
+            } else {
+                System.out.println("No rows exceeded the limit.");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.err.println("Message:" + e.getMessage());
+            throw e;
+        } finally {
+
+            if (pStmt != null) {
+                try {
+                    pStmt.close();
+                } catch (SQLException e) {
+                    System.err.println("Failed to close PreparedStatement: " + e.getMessage());
+                }
+            }
+            if (conn != null) {
+                conn.commit();
+                conn.close();
+            }
+        }
+    }
+    public String getPoolNumber() {
+        WebElement poolNumberElement = driver.findElement(By.xpath("//*[@id=\"main-content\"]/div[1]/div/div/h1"));
+        if (poolNumberElement != null) {
+            return poolNumberElement.getText();
+        } else {
+            throw new java.util.NoSuchElementException("No pool number found at the specified XPath.");
+        }
     }
 }
