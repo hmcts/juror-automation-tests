@@ -528,7 +528,7 @@ public class JurorRecord {
 
     }
 
-    public void seePrintedLetterInLettersTable(String jurorNumber) {
+    public void  seePrintedLetterInLettersTable(String jurorNumber) {
         Calendar today = Calendar.getInstance();
         SimpleDateFormat formatter = new SimpleDateFormat("EEE d MMM yyyy");
         String printedDate = formatter.format(today.getTime());
@@ -891,5 +891,9 @@ public class JurorRecord {
             }
 
 
+    public String getMyPoolNumber() {
+        String currentPoolNumber = poolNumber.getText();
+        return currentPoolNumber;
+    }
     }
 
