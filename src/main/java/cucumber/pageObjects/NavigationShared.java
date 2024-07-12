@@ -6,7 +6,6 @@ import cucumber.utils.GenUtils;
 import cucumber.utils.ReadProperties;
 import cucumber.utils.WaitUtil_v2;
 import cucumber.utils.WaitUtils;
-import io.cucumber.datatable.DataTable;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -24,12 +23,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.DayOfWeek;
 import java.time.Duration;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.TemporalAdjusters;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -1748,14 +1742,24 @@ public class NavigationShared {
     }
 
     public void see_inURL(String urlPart) {
-        waitForPageLoad();
-        String current_url = driver.getCurrentUrl();
-        log.info("Current URL is =>" + current_url);
-        Assert.assertTrue(current_url.contains(urlPart));
-        log.info("URL =>" + current_url + "<= contains text =>" + urlPart);
-
-
-        //osman testing
+        waitForPageLoadJenkins();
+        String current_url = "";
+        try {
+            current_url = driver.getCurrentUrl();
+            log.info("Current URL is => " + current_url);
+            Assert.assertTrue(current_url.contains(urlPart));
+            log.info("URL => " + current_url + " <= contains text => " + urlPart);
+        } catch (AssertionError e) {
+            log.error("Assertion error: URL assertion failed. Current URL: " + current_url);
+            throw e;
+        } catch (Exception e) {
+            log.error("Exception occurred while verifying URL: " + e.getMessage());
+            throw new RuntimeException("Exception occurred while verifying URL", e);
+        }
+    }
+    private void waitForPageLoadJenkins() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.jsReturnsValue("return document.readyState === 'complete'"));
     }
 
 //	public void seeText_inSameRow_asText_inBacklog(String searchText, String nextToText) {
