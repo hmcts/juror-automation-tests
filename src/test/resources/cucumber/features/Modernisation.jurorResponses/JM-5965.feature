@@ -3,7 +3,7 @@ Feature: JM-5965 - Certificate of Exemption
   @JurorTransformation @NewSchemaConverted
   Scenario Outline:As a jury officer I want to print a certification of exemption letter for a juror in a trial
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "test"
     When a bureau owned pool is created with jurors
       | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
       | 415   | <juror_number>| <pool_number>           | 5                          | 400  |
@@ -74,7 +74,7 @@ Feature: JM-5965 - Certificate of Exemption
   @JurorTransformation @NewSchemaConverted
   Scenario Outline:As a jury officer I want to print a certification of exemption letter for a juror in a trial - indefinitely
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "test"
     When a bureau owned pool is created with jurors
       | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
       | 415   | <juror_number>| <pool_number>           | 5                          | 400  |
