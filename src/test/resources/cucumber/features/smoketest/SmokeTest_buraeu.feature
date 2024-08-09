@@ -3,7 +3,7 @@ Feature: Environment Smoke Tests - Bureau
 @SmokeTest @SmokeTest_Bureau @pod 
 Scenario: 
 	Given I am on "Bureau" "test"
-	Given PCQs has been disabled
+	Given PCQs has been disabled new schema
 	And I have deleted all holidays new schema
 
 	And I see "Sign in" on the page
