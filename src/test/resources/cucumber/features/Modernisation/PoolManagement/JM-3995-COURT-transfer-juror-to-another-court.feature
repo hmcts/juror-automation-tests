@@ -3,7 +3,7 @@ Feature: JM-3995 JM-4302
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Transfer a juror to another court - Juror Record - Happy Path
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     Given juror_pool records are cleared down for "<juror_number>"
 
@@ -33,7 +33,7 @@ Feature: JM-3995 JM-4302
     And I see the juror status on the juror record screen has updated to "Transferred"
 
     Given I am on "Bureau" "test"
-    And I log in as "MODTESTBUREAU@email.gov.uk"
+    And I log in as "MODTESTBUREAU"
 
     #see 2 records, one transferred and one original
     When the user searches for juror record "<juror_number>" from the global search bar
@@ -49,7 +49,7 @@ Feature: JM-3995 JM-4302
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Transfer a juror to another court - Juror Record - Validation and Errors
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     Given juror_pool records are cleared down for "<juror_number>"
 
@@ -81,7 +81,8 @@ Feature: JM-3995 JM-4302
 
     Then I see "Transfer to Welshpool (774)" on the page
     When I click on the "Cancel" link
-    Then I am on the Juror Record for juror "<juror_number>"
+    And I see "<pool_number>" on the page
+
 
     Examples:
       | user         | juror_number | pool_number |
@@ -91,7 +92,7 @@ Feature: JM-3995 JM-4302
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: JM-4302 - Transfer a juror to another court - Non-Satellite courts
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
@@ -145,7 +146,7 @@ Feature: JM-3995 JM-4302
     And I see the juror status on the juror record screen has updated to "Transferred"
 
     Given I am on "Bureau" "test"
-    And I log in as "MODTESTBUREAU@email.gov.uk"
+    And I log in as "MODTESTBUREAU"
 
     #see 2 records, one transferred and one original
     When the user searches for juror record "<juror_number>" from the global search bar

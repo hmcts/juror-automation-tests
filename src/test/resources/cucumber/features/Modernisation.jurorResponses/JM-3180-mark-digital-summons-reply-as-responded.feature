@@ -3,7 +3,7 @@ Feature: JM-3180
   @JurorTransformation @NewSchemaConverted
   Scenario Outline: Mark Digital Summons Reply As Responded
 
-    Given I am on "Public" "test"
+    Given I am on "Public" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
@@ -30,7 +30,7 @@ Feature: JM-3180
     And I click the checkbox to mark the reply as responded
     And I confirm I want to mark the reply as responded
     And I see the juror record updated banner containing "Responded"
-    Then I click the link for the juror record
+    When the user searches for juror record "<juror_number>" from the global search bar
     And I see the juror status on the juror record screen has updated to "Responded"
 
     Examples:

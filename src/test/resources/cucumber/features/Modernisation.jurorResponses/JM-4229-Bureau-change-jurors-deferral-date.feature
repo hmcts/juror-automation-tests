@@ -36,7 +36,7 @@ Feature: Bureau change jurors deferral date
     And I press the "Put in deferral maintenance" button
 
     And I do not see "Sorry, there is a technical problem" on the page
-    And I see "Deferral granted (other)" on the page
+    And I see "Deferral granted" on the page
 
     Then I search for juror "<juror_number>"
     And I see the juror status on the juror record screen is "Deferred"

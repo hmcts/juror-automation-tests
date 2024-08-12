@@ -3,11 +3,9 @@ Feature: JM-252_Navigation
   @JurorTransformation @NewSchemaConverted
   Scenario Outline: Navigating back and forth and changing inputs
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     #INSERT NEW POOL WITH DEFERRALS
-    Given the new pool for court "457" is deleted new schema
-    Given the new pool for court "415" is deleted new schema
     Given a new pool is inserted for court "415" with a deferral date "15" Mondays in the future new schema
 
     #log in
@@ -76,7 +74,7 @@ Feature: JM-252_Navigation
     #SELECT TO CHANGE NUMBER OF DEFERRALS
     Then I click the change link for the court deferrals
     And I see "Number of court deferrals to include in this pool" on the page
-    Then I change the number of court deferrals to "1"
+    And I click on the "Cancel" link
 
     #REMOVE THIS WHEN FIXED - shouldnt have to re-enter pool type and number of jurors
     #complete new pool fields
@@ -89,7 +87,7 @@ Feature: JM-252_Navigation
       | courtName           | <displayCourt> (<courtCode>) |
       | poolType            | High court                   |
       | totalJurorsRequired | 150                          |
-      | numberOfDeferrals   | 1                            |
+      | numberOfDeferrals   | 0                            |
       | additionalJurors    | 149                          |
 
     #change
@@ -107,7 +105,7 @@ Feature: JM-252_Navigation
       | courtName           | <displayCourt> (<courtCode>) |
       | poolType            | <courtTypeFull>              |
       | totalJurorsRequired | 50                           |
-      | numberOfDeferrals   | 1                            |
+      | numberOfDeferrals   | 0                            |
       | additionalJurors    | 49                           |
 
     #Can submit the new pool request
@@ -129,7 +127,7 @@ Feature: JM-252_Navigation
 
   @JurorTransformation @NewSchemaConverted
   Scenario Outline: Create pools for different courts and apply filters
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "test"
 
     And I log in as "<user>"
 

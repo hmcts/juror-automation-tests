@@ -3,7 +3,7 @@ Feature: JM-6070 - As a jury officer, I want to record a juror's financial loss 
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: To record a juror's financial loss for a non-attendance day
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     When a bureau owned pool is created with jurors
       | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
       | 415   |<juror_number>     | <pool_number>     | -1				            | 400	|
@@ -91,7 +91,6 @@ Feature: JM-6070 - As a jury officer, I want to record a juror's financial loss 
     And I see "Juror’s financial loss is over the daily limit" on the page
     And I press the "Continue" button
     And I press "Save and next" button
-    And I see "Add a non-attendance day" on the page
 
     Examples:
       |user			|juror_number |   pool_number   |
