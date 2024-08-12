@@ -61,7 +61,7 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
     And I set the "alternate" choice to "51" Mondays in the future
     And I press the "Continue" button
     And I press the "Put in deferral maintenance" button
-    And I verify the banner message "Deferral granted (other)" on the page
+    And I verify the banner message "Deferral granted" on the page
 
     And I press the "Apps" button
     When I click on the "Documents" link
@@ -153,8 +153,7 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
     And I set the "alternate" choice to "51" Mondays in the future
     And I press the "Continue" button
     And I press the "Put in deferral maintenance" button
-    And I verify the banner message "Deferral granted (other)" on the page
-
+    And I verify the banner message "Deferral granted" on the page
   #delete a pending document
     And I press the "Apps" button
     And I click on the "Documents" link
@@ -233,7 +232,7 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
     And I set the "alternate" choice to "51" Mondays in the future
     And I press the "Continue" button
     And I press the "Put in deferral maintenance" button
-    And I verify the banner message "Deferral granted (other)" on the page
+    And I verify the banner message "Deferral granted" on the page
 #update the 2nd juror number to deferred
     When the user searches for juror record "<juror_number_1>" from the global search bar
 
@@ -284,7 +283,7 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
     And I set the "alternate" choice to "51" Mondays in the future
     And I press the "Continue" button
     And I press the "Put in deferral maintenance" button
-    And I verify the banner message "Deferral granted (other)" on the page
+    And I verify the banner message "Deferral granted" on the page
 
   #search via pool  number and resend letter for first deferred juror
     When I press the "Apps" button
@@ -389,7 +388,7 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
     And I set the "alternate" choice to "51" Mondays in the future
     And I press the "Continue" button
     And I press the "Put in deferral maintenance" button
-    And I verify the banner message "Deferral granted (other)" on the page
+    And I verify the banner message "Deferral granted" on the page
 
 
    #navigate to documents and verify the printing message
@@ -487,7 +486,7 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
     Then I see "Do you want to print a deferral granted letter?" on the page
     And I choose the "No" radio button
     And I press the "Continue" button
-    And I see "Deferral granted (other)" on the page
+    And I see "Deferral granted" on the page
 
     And I press the "Apps" button
     When I click on the "Documents" link

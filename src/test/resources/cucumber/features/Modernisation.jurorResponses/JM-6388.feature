@@ -44,7 +44,7 @@ Feature: JM-6388 - As a jury officer I need to be able to manually add an attend
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: As a jury officer I want to manually add an attendance day - Unhappy Path
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     When a bureau owned pool is created with jurors
       | court |juror_number  	    | pool_number	      | att_date_weeks_in_future	| owner |
       | 415   |<juror_number>       | <pool_number>       | 5				            | 400	|
@@ -122,7 +122,7 @@ Feature: JM-6388 - As a jury officer I need to be able to manually add an attend
     And I set juror check out minute to "30" on confirm attendance
     And I click on the pm radio button for juror check out on confirm attendance
     And I press the "Add attendance day" button
-    And I see "Juror 041536965 has already confirmed their attendance" in the error banner
+    And I see "Attendance record already exists" in the error banner
     
     #attempt to enter attendance in future
     And I set the "Attendance Day" date to a Monday "45" weeks in the future

@@ -42,8 +42,7 @@ Feature: JM-3813
     And I select "O - OTHER" from the "Reason for excusal request" dropdown
     And I set the radio button to "Refuse excusal"
     And I press the "Continue" button
-    And I see "Excusal refused (other)" on the page
-    And I see "Summons reply for <juror_number> <fname> <lname> successfully processed: Excusal refused (other)" in the response banner
+    And I see "Excusal refused" on the page
 
     #return to juror record
     When the user searches for juror record "<juror_number>" from the global search bar

@@ -31,7 +31,8 @@ Feature: JM-3900
     Then I see "There are no active pools for this date" on the page
     And I press the "Put in deferral maintenance" button
 
-    Then I click the link for the juror record
+
+    When the user searches for juror record "<juror_number>" from the global search bar
     And I see the juror status on the juror record screen has updated to "Deferred"
 
     And I click the update juror record button

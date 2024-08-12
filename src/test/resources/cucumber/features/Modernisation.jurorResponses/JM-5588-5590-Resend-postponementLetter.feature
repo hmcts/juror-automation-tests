@@ -416,7 +416,7 @@ Feature:As a Bureau/jury officer I want to re send a postponement letter
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline:Verify postponement juror with print letter searching via pool number
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     When a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
       | 415   | <juror_number> | <pool_number> | 5                        | 400   |
@@ -494,7 +494,7 @@ Feature:As a Bureau/jury officer I want to re send a postponement letter
     Then I see "Print postponement letter" on the page
     And I am able to see and interact with the jurors Postponement letter tabs and fields
     And I see the printed letter for juror number "<juror_number>" in the letters table
-    When I check the "<juror_number>" checkbox
+    When I check the juror "<juror_number>" checkbox
     And I press the "Print postponement letter" button
     Then I see "documents/postponement/letters-list" in the URL
 

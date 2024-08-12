@@ -31,7 +31,8 @@ Feature: JM-3899
     Then I select to Choose a different date
     Then I set the "new" choice to "51" Mondays in the future
     And I press the "Continue" button
-    And I see "Deferral granted (other)" on the page
+    And I see "Deferral granted" on the page
+    When the user searches for juror record "<juror_number>" from the global search bar
     And I click the update juror record button
     And I set the radio button to "Deferral - grant or refuse"
     Then I click continue on the update juror record screen

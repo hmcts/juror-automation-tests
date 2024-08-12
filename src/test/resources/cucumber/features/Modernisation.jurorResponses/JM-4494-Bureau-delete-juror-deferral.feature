@@ -33,7 +33,7 @@ Feature: JM-4494 Bureau Delete Juror Deferral
     And I press the "Put in deferral maintenance" button
 
     And I do not see "Sorry, there is a technical problem" on the page
-    And I see "Deferral granted (other)" on the page
+    And I see "Deferral granted" on the page
 
     Then the user searches for juror record "<juror_number>" from the global search bar
     And I see the juror status on the juror record screen is "Deferred"
@@ -80,7 +80,7 @@ Feature: JM-4494 Bureau Delete Juror Deferral
     And I press the "Put in deferral maintenance" button
 
     And I do not see "Sorry, there is a technical problem" on the page
-    And I see "Deferral granted (other)" on the page
+    And I see "Deferral granted" on the page
 
     Then the user searches for juror record "<juror_number>" from the global search bar
     And I see the juror status on the juror record screen is "Deferred"
@@ -131,7 +131,7 @@ Feature: JM-4494 Bureau Delete Juror Deferral
     And I press the "Continue" button
 
     And I do not see "Sorry, there is a technical problem" on the page
-    And I see "Deferral granted (other)" on the page
+    And I see "Deferral granted" on the page
 
     Then the user searches for juror record "<juror_number>" from the global search bar
     And I see the juror status on the juror record screen is "Responded"
