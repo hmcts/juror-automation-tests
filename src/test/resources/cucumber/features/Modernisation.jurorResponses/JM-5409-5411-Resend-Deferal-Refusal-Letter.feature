@@ -3,7 +3,7 @@ Feature: 1)JM-5409,JM-5411 - As a Bureau/jury officer I need to resend a deferra
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline:Verify as a bureau officer can able to resend a deferral refusal letter
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     And I log in as "<user>"
 
     When a bureau owned pool is created with jurors
@@ -59,9 +59,16 @@ Feature: 1)JM-5409,JM-5411 - As a Bureau/jury officer I need to resend a deferra
     And I set the "alternate" choice to "51" Mondays in the future
     And I press the "Continue" button
     And I press the "Put in deferral maintenance" button
-    And I verify the banner message "Deferral granted (other)" on the page
+    And I verify the banner message "Deferral granted" on the page
     When the user searches for juror record "<juror_number>" from the global search bar
     Then I see the juror status has updated to "Deferred"
+    And I click the update juror record button
+    And I set the radio button to "Mark as responded"
+    And I click continue on the update juror record screen
+    And I check the "Mark juror as 'responded'" checkbox
+    And I press the "Confirm" button
+
+    When the user searches for juror record "<juror_number>" from the global search bar
     And I click the update juror record button
     And I set the radio button to "Deferral - grant or refuse"
     And I click continue on the update juror record screen
@@ -103,7 +110,7 @@ Feature: 1)JM-5409,JM-5411 - As a Bureau/jury officer I need to resend a deferra
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline:As a bureau officer verify a deferred juror letter in printing stage can delete
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     And I clear down the bulk print data table for Juror "<juror_number>"
     And I log in as "<user>"
     When a bureau owned pool is created with jurors
@@ -159,9 +166,17 @@ Feature: 1)JM-5409,JM-5411 - As a Bureau/jury officer I need to resend a deferra
     And I set the "alternate" choice to "51" Mondays in the future
     And I press the "Continue" button
     And I press the "Put in deferral maintenance" button
-    And I verify the banner message "Deferral granted (other)" on the page
+    And I verify the banner message "Deferral granted" on the page
     When the user searches for juror record "<juror_number>" from the global search bar
     Then I see the juror status has updated to "Deferred"
+
+    And I click the update juror record button
+    And I set the radio button to "Mark as responded"
+    And I click continue on the update juror record screen
+    And I check the "Mark juror as 'responded'" checkbox
+    And I press the "Confirm" button
+
+    When the user searches for juror record "<juror_number>" from the global search bar
     And I click the update juror record button
     And I set the radio button to "Deferral - grant or refuse"
     And I click continue on the update juror record screen
@@ -189,7 +204,7 @@ Feature: 1)JM-5409,JM-5411 - As a Bureau/jury officer I need to resend a deferra
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline:Verify as a bureau user can view letters queued for printing and can delete it
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     And I clear down the bulk print data table for Juror "<juror_number>"
     And I log in as "<user>"
     When a bureau owned pool is created with jurors
@@ -245,9 +260,16 @@ Feature: 1)JM-5409,JM-5411 - As a Bureau/jury officer I need to resend a deferra
     And I set the "alternate" choice to "51" Mondays in the future
     And I press the "Continue" button
     And I press the "Put in deferral maintenance" button
-    And I verify the banner message "Deferral granted (other)" on the page
+    And I verify the banner message "Deferral granted" on the page
     When the user searches for juror record "<juror_number>" from the global search bar
     Then I see the juror status has updated to "Deferred"
+    And I click the update juror record button
+    And I set the radio button to "Mark as responded"
+    And I click continue on the update juror record screen
+    And I check the "Mark juror as 'responded'" checkbox
+    And I press the "Confirm" button
+
+    When the user searches for juror record "<juror_number>" from the global search bar
     And I click the update juror record button
     And I set the radio button to "Deferral - grant or refuse"
     And I click continue on the update juror record screen

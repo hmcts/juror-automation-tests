@@ -49,7 +49,7 @@ Feature: JM-3989 JM-3993
   @JurorTransformation @NewSchemaConverted
   Scenario Outline: Reassign a juror to a pool at the same court - Bureau User
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     Given a bureau owned pool is created with jurors
       | court  |juror_number  	| pool_number	   | att_date_weeks_in_future	| owner |
       | 415    |<juror_number>  | <pool_number>    | 5				            | 400	|
@@ -84,7 +84,7 @@ Feature: JM-3989 JM-3993
   @JurorTransformation @NewSchemaConverted
   Scenario Outline: Reassign a juror to a pool - Bureau User - Errors
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     Given a bureau owned pool is created with jurors
       | court  |juror_number  	| pool_number	   | att_date_weeks_in_future	| owner |
       | 415    |<juror_number>  | <pool_number>    | 5				            | 400	|

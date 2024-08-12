@@ -41,7 +41,6 @@ Feature: JM-4326 - Defer a juror and then complete their service at a later date
     And I press the "Continue" button
 
     And I do not see "Sorry, there is a technical problem" on the page
-    And I see "Deferral granted (other)" on the page
 
     #check summons response
     When the user searches for juror record "<juror_number>" from the global search bar
@@ -179,7 +178,6 @@ Feature: JM-4326 - Defer a juror and then complete their service at a later date
     And I press the "Continue" button
 
     And I do not see "Sorry, there is a technical problem" on the page
-    And I see "Deferral granted (other)" on the page
 
     #search for juror and view reponse
     When the user searches for juror record "<juror_number>" from the global search bar

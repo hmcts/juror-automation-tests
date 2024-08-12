@@ -37,7 +37,7 @@ Feature: JM-3460 JM-3183
     And I click the checkbox to mark the reply as responded
     And I confirm I want to mark the reply as responded
     And I see the juror record updated banner containing "Responded"
-    Then I click the link for the juror record
+    When the user searches for juror record "<juror_number>" from the global search bar
     And I see the juror status on the juror record screen has updated to "Responded"
 
     Examples:
