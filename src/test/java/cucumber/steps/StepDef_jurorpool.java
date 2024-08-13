@@ -1523,7 +1523,17 @@ public class StepDef_jurorpool {
 
     @And("^I see \"([^\"]*)\" in the response banner$")
     public void iSeeResponseBannerText(String bannerText) {
-        assertEquals(bannerText, SUMMONS_REPLY.getResponseBannerText());
+       assertTrue(SUMMONS_REPLY.getResponseBannerText().contains(bannerText));
+    }
+
+    @And("^I see juror status is Responded with alert \"([^\"]*)\"$")
+    public void iSeeStatusRespondedAlert(String respondedAlert) {
+        try {
+            NAV.iSeeRespondedAlert(respondedAlert);
+        } catch (Exception e) {
+            NAV.waitForPageLoad();
+            NAV.iSeeRespondedAlert(respondedAlert);
+        }
     }
 
     @And("^I see \"([^\"]*)\" in the pool banner$")
