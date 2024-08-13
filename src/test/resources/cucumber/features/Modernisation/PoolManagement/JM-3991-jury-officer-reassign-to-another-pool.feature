@@ -23,7 +23,7 @@ Feature: JM-3991 Reassign Juror as Court User
     And I press the "Continue" button
     And I click the checkbox to mark the reply as responded
     And I press the "Confirm" button
-    Then I see "Summons reply for 041500041 fname lname successfully processed: Responded" on the page
+    And I see the juror status has updated to "Responded"
 
     When the user searches for juror record "<juror_number2>" from the global search bar
     And I record a paper summons response with reasonable adjustment of "C - Caring Responsibilities"

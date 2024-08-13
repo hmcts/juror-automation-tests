@@ -165,7 +165,7 @@ Feature: JM-5060 - 5062
 
   @JurorTransformationMulti
   Scenario Outline: JM-5062 - Undo Failed to Attend
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
@@ -204,8 +204,8 @@ Feature: JM-5060 - 5062
     And I see the juror status has updated to "Failed to attend"
 
     #Undo failed to attend
-    Given I am on "Bureau" "test"
-    And I log in as "<user>"
+    Given I am on "Bureau" "ithc"
+    And I log in as "SJOUSER"
 
     When the user searches for juror record "<juror_number>" from the global search bar
     And I press the "Update juror record" button

@@ -51,7 +51,7 @@ Feature: JM-666
   Scenario: Test to search for pool by pool number with matching pool status
     Given I am on "Bureau" "test"
     Given the new pool for court "415" is deleted new schema
-    And I log in as "MODTESTCOURT"
+    And I log in as "MODTESTBUREAU"
     And a new completed pool is inserted for court "415" new schema
     And I navigate to the pool search screen
     When I enter the pool number "415111111" on the pool search screen

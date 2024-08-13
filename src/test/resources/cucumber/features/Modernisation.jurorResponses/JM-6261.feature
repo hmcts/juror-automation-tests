@@ -12,7 +12,7 @@ Feature: JM-6261 - As a bureau officer I need to be able to resend an initial su
     #log on and search for juror
     And I delete all letters within the pool "<pool_number>" for the letter
     And a initial summons letter inserted for juror "<juror_number>"
-    And I log in as "<user>" selecting court "415"
+    And I log in as "<user>"
     And I press the "Apps" button
     And I click on the "Pool management" link     
 
@@ -32,4 +32,4 @@ Feature: JM-6261 - As a bureau officer I need to be able to resend an initial su
 
     Examples:
       |user			 | juror_number | pool_number |
-      |MODTESTBUREAU | 041535171    | 415778331   |
+      |MODTESTBUREAU | 041529024    | 415980686   |

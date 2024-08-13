@@ -113,7 +113,7 @@ Feature: JM-4360 - As a jury officer I need to be able to check jurors in for th
     And I press the "Apps" button
     And I click on the "Juror management" link
     And I click on the "Record attendance" link
-    And I do not see "<juror_number>" on the page
+    And I see "Failed" in the same row as "<juror_number>"
 
 
     Examples:

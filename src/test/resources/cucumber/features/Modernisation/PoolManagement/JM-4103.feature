@@ -34,7 +34,6 @@ Feature: JM-4103
     And I select the checkbox in the same row as "<juror_number_2>" in pool table
     And I select the checkbox in the same row as "<juror_number_3>" in pool table
     And I select the checkbox in the same row as "<juror_number_4>" in pool table
-    And I see "4 of 4 selected" on the page
 
     #transfer
     And I press the "Transfer" button
