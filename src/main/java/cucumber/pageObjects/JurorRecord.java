@@ -892,8 +892,7 @@ public class JurorRecord {
 
 
     public String getMyPoolNumber() {
-        String currentPoolNumber = poolNumber.getText();
-        return currentPoolNumber;
+        return poolNumber.getText();
     }
     }
 

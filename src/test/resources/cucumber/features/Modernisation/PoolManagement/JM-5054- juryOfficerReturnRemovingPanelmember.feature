@@ -74,7 +74,7 @@ Feature: JM-5054-As a jury officer I need to be able to return jurors from a tri
     Then I see "Panel list (summary)" on the page
     Then I see "Panel list (detailed)" on the page
     Then I see "Panel member status report" on the page
-    Then I see "Panel selection report" on the page
+    Then I see "Trial attendance report" on the page
     And I see "Ballot cards" on the page
     And I see "Empanel jury" on the page
     And I see "End trial" on the page
