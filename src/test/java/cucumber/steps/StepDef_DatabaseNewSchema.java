@@ -677,4 +677,8 @@ public class StepDef_DatabaseNewSchema {
         LocalDate xMondaysAhead = today.with(TemporalAdjusters.nextOrSame(DayOfWeek.MONDAY)).plusWeeks(mondaysAhead);
         DBTNSD.updateServiceStartDate(String.valueOf(xMondaysAhead), poolNumber);
     }
+    @Given("^I update juror \"([^\"]*)\" to have a first name of \"([^\"]*)\" and a last name of \"([^\"]*)\"$")
+    public void updateJurorName(String jurorNumber, String firstName, String lastName) throws SQLException {
+        DBTNSD.updateJurorName(firstName,lastName,jurorNumber );
+    }
 }
