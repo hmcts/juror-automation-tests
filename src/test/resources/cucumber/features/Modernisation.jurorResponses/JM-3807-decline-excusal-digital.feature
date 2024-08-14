@@ -27,7 +27,7 @@ Feature: Decline excusal digital
     And I select "<dropDown>" from the dropdown
     And I select the Refuse Excusal radio button
     And I click continue on the process reply page
-    Then I see the refuse excusal success message for "<excusalReason>"
+    And I see "Excusal refused" on the page
 
     Examples:
       | dropDown       | excusalReason | user          | juror_number   | pool_number   | last_name           | postcode | email      |

@@ -684,5 +684,11 @@ public class StepDef_jurorRecord {
         assertEquals(expectedData.get("R"), actualData.get("R"));
 
     }
+    @Then("^I confirm I have reassigned my juror in pool \"([^\"]*)\" to another pool$")
+    public void getMyJurorRecordPoolNumber(String previousPoolNo) {
+        String newPoolNo = JUROR_RECORD.getMyPoolNumber();
+        assertNotEquals(previousPoolNo, newPoolNo);
+        System.out.println("Pool number reassigned from " + previousPoolNo + " to " + newPoolNo);
+    }
 
 }

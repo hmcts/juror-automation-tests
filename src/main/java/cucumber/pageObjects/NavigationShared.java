@@ -1685,7 +1685,7 @@ public class NavigationShared {
                                 + "//table//tr//td[contains(text(),\"" + nextToText + "\")]//ancestor::tr//input[@type='checkbox']"
                 ));
         log.info("Saw checkbox in row which contained text =>" + nextToText);
-        wait.toBeClickAble(checkbox);
+        //wait.toBeClickAble(checkbox);
         checkbox.click();
         log.info("Checked checkbox which was in the same row as =>" + nextToText);
 
