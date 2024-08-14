@@ -1638,6 +1638,18 @@ public class NavigationShared {
 
     }
 
+    public void iSeeRespondedAlert(String respondedAlert) {
+        try {
+            log.info("Going to confirm responded icon is =>" + respondedAlert);
+            driver.findElement(
+                    By.xpath("//*[@class='info with-icon']/span[@title='" + respondedAlert + "']"));
+            log.info("confirm responded icon is =>" + respondedAlert);
+        } catch (Exception e) {
+            driver.findElement(
+                    By.xpath("//*[@class='info with-icon']/span[@title='" + respondedAlert +"']"));
+        }
+    }
+
     public void recordFlaggedOverdue(String nextToText) {
         try {
 

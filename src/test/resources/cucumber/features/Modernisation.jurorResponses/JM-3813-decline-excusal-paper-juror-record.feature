@@ -3,7 +3,7 @@ Feature: JM-3813
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Decline Excusal Request for Paper Response as Bureau user - Juror Record View
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court  | juror_number  	| pool_number	   | att_date_weeks_in_future	| owner |
@@ -42,7 +42,8 @@ Feature: JM-3813
     And I select "O - OTHER" from the "Reason for excusal request" dropdown
     And I set the radio button to "Refuse excusal"
     And I press the "Continue" button
-    And I see "Excusal refused" on the page
+    And I see "Excusal refused" in the response banner
+    And I see juror status is Responded with alert "Excusal refused"
 
     #return to juror record
     When the user searches for juror record "<juror_number>" from the global search bar

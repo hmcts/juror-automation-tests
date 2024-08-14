@@ -3,7 +3,7 @@ Feature: JM-3899
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Decline Deferral Request for Paper Response as Bureau user - Juror Record View
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
@@ -41,7 +41,8 @@ Feature: JM-3899
     And I press the "Continue" button
     #Test will fail here due to JM-7143
     And I see "Deferral refused (other)" on the page
+    And I see juror status is Responded with alert "Deferral refused"
 
     Examples:
-      |juror_number	|pool_number 	|user          |
-      |041540009|415300409 	|MODTESTBUREAU |
+      | juror_number | pool_number  | user          |
+      | 041540009    | 415300409 	| MODTESTBUREAU |
