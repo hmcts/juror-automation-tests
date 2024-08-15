@@ -8,11 +8,7 @@ import cucumber.utils.WaitUtil_v2;
 import cucumber.utils.WaitUtils;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -24,6 +20,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -2367,4 +2365,88 @@ public class NavigationShared {
         driver.switchTo().window(tabs.get(1));
     }
 
+    public void clickLinkWithDate(int numberOfDays, String timeFrame) {
+        String DATE_PATTERN = "EEE dd MMM yyyy";
+        Calendar calendar = Calendar.getInstance();
+
+        // Adjust the calendar based on the time frame
+        if ("in the future".equalsIgnoreCase(timeFrame)) {
+            calendar.add(Calendar.DAY_OF_MONTH, numberOfDays);
+        } else if ("in the past".equalsIgnoreCase(timeFrame)) {
+            calendar.add(Calendar.DAY_OF_MONTH, -numberOfDays);
+        } else {
+            throw new IllegalArgumentException("Time frame '" + timeFrame + "' is not valid. Use 'in the future' or 'in the past'.");
+        }
+
+        // Format the adjusted date
+        Date adjustedDate = calendar.getTime();
+        SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_PATTERN, Locale.ENGLISH);
+        String formattedDate = dateFormat.format(adjustedDate).trim(); // Ensure trimming
+
+        // Locator for the links
+        By dateLinkById = By.id("expenseDateLink");
+
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+            List<WebElement> links = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(dateLinkById));
+
+            boolean linkFound = false;
+
+            for (WebElement link : links) {
+                String linkText = link.getText().trim(); // Ensure trimming of text
+                System.out.println("Expected Date: " + formattedDate);
+                System.out.println("Link Text: " + linkText);
+
+                // Check if the link text matches the expected date
+                if (formattedDate.equals(linkText)) {
+                    link.click();
+                    linkFound = true;
+                    break;
+                }
+            }
+
+            if (!linkFound) {
+                throw new RuntimeException("No link with the date '" + formattedDate + "' was found.");
+            }
+
+        } catch (TimeoutException e) {
+            throw new RuntimeException("No links with ID 'expenseDateLink' were found or visible in time.", e);
+        } catch (Exception e) {
+            e.printStackTrace(); // Print stack trace for more detailed error information
+            throw new RuntimeException("Failed to click the link with the date '" + formattedDate + "'.", e);
+        }
+    }
+
+    public void checkParkingField(String expectedText) {
+        WebElement inputField = driver.findElement(By.id("parking"));
+        String actualText = inputField.getAttribute("value");
+        if (expectedText.equals(actualText)) {
+            System.out.println("Parking field contains the expected text: " + expectedText);
+        } else {
+            System.out.println("Parking field does not contain the expected text. Expected: " + expectedText + ", but was: " + actualText);
+        }
+        assertEquals(expectedText, actualText);
+    }
+
+    public void checkMileageField(String expectedText) {
+        WebElement inputField = driver.findElement(By.id("milesTravelled"));
+        String actualText = inputField.getAttribute("value");
+        if (expectedText.equals(actualText)) {
+            System.out.println("Mileage field contains the expected text: " + expectedText);
+        } else {
+            System.out.println("Mileage field does not contain the expected text. Expected: " + expectedText + ", but was: " + actualText);
+        }
+        assertEquals(expectedText, actualText);
+    }
+
+    public void checkPublicTransportField(String expectedText) {
+        WebElement inputField = driver.findElement(By.id("publicTransport"));
+        String actualText = inputField.getAttribute("value");
+        if (expectedText.equals(actualText)) {
+            System.out.println("Public transport field contains the expected text: " + expectedText);
+        } else {
+            System.out.println("Public transport field does not contain the expected text. Expected: " + expectedText + ", but was: " + actualText);
+        }
+        assertEquals(expectedText, actualText);
+    }
 }
