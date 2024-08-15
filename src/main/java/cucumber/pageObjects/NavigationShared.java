@@ -2369,7 +2369,7 @@ public class NavigationShared {
         String DATE_PATTERN = "EEE dd MMM yyyy";
         Calendar calendar = Calendar.getInstance();
 
-        // Adjust the calendar based on the time frame
+
         if ("in the future".equalsIgnoreCase(timeFrame)) {
             calendar.add(Calendar.DAY_OF_MONTH, numberOfDays);
         } else if ("in the past".equalsIgnoreCase(timeFrame)) {
@@ -2378,12 +2378,12 @@ public class NavigationShared {
             throw new IllegalArgumentException("Time frame '" + timeFrame + "' is not valid. Use 'in the future' or 'in the past'.");
         }
 
-        // Format the adjusted date
+
         Date adjustedDate = calendar.getTime();
         SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_PATTERN, Locale.ENGLISH);
         String formattedDate = dateFormat.format(adjustedDate).trim(); // Ensure trimming
 
-        // Locator for the links
+    
         By dateLinkById = By.id("expenseDateLink");
 
         try {
@@ -2397,7 +2397,7 @@ public class NavigationShared {
                 System.out.println("Expected Date: " + formattedDate);
                 System.out.println("Link Text: " + linkText);
 
-                // Check if the link text matches the expected date
+            
                 if (formattedDate.equals(linkText)) {
                     link.click();
                     linkFound = true;
