@@ -946,4 +946,45 @@ public class StepDef_navigation {
 	public void selectFirstJurorInList() {
 		NAV.firstJurorInSearch();
 	}
+	@When("^I set the \"([^\"]*)\" date to (\\d+) days (in the future|in the past)$")
+	public void iSetTheAttendanceDateToDaysInTheFutureOrPast(String attDateSequence, Integer numberOfDays, String timeFrame) {
+		String datePattern = "dd/MM/yyyy";
+		String fullDatePattern = "EEEEE dd MMMMM yyyy";
+
+		Calendar calendar = Calendar.getInstance();
+		if ("in the future".equals(timeFrame)) {
+			calendar.add(Calendar.DAY_OF_MONTH, numberOfDays);
+		} else if ("in the past".equals(timeFrame)) {
+			calendar.add(Calendar.DAY_OF_MONTH, -numberOfDays);
+		} else {
+			throw new IllegalArgumentException("Time frame '" + timeFrame + "' is not valid. Use 'in the future' or 'in the past'.");
+
+		}
+
+		LocalDate localDate = calendar.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+		Date adjustedDate = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+		String adjustedDateValue = new SimpleDateFormat(datePattern).format(adjustedDate);
+		holidayAttendanceDate = new SimpleDateFormat(fullDatePattern).format(adjustedDate);
+		NAV.enterNewSingleDate(attDateSequence, adjustedDateValue);
+		NAV.waitForPageLoad();
+	}
+
+	@When("^I click the link with the date (\\d+) days (in the future|in the past)$")
+	public void iClickTheLinkWithTheDateDaysInTheFutureOrPast(Integer numberOfDays, String timeFrame) {
+		NAV.clickLinkWithDate(numberOfDays, timeFrame);
+	}
+
+	@When("^I verify the parking field contains \"([^\"]*)\"$")
+	public void checkParkingField(String expectedText) {
+		NAV.checkParkingField(expectedText);
+	}
+
+	@When("^I verify the mileage field contains \"([^\"]*)\"$")
+	public void checkMilageField(String expectedText) {
+		NAV.checkMileageField(expectedText);
+	}
+	@When("^I verify the public transport field contains \"([^\"]*)\"$")
+	public void checkPublicTransportField(String expectedText) {
+		NAV.checkPublicTransportField(expectedText);
+	}
 }
