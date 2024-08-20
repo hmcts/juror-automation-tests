@@ -271,25 +271,24 @@ public class SummonsReply {
     @FindBy(id = "extraSupport")
     WebElement additionalRequirementsButton;
 
-    @FindBy(xpath = "/html/body/div[3]/main/nav/div[1]/div/div[1]/nav/ul/li[1]")
+    @FindBy(xpath = "/html/body/div[4]/main/nav/div[1]/div/div[1]/nav/ul/li[1]")
     WebElement jurorDetailsTab;
 
-    @FindBy(xpath = "/html/body/div[3]/main/nav/div[1]/div/div[1]/nav/ul/li[2]/a")
+    @FindBy(xpath = "/html/body/div[4]/main/nav/div[1]/div/div[1]/nav/ul/li[2]/a")
     WebElement eligibilityTab;
 
-    @FindBy(xpath = "/html/body/div[3]/main/nav/div[1]/div/div[1]/nav/ul/li[3]/a")
+    @FindBy(xpath = "/html/body/div[4]/main/nav/div[1]/div/div[1]/nav/ul/li[3]/a")
     WebElement deferralOrExcusalTab;
 
-    @FindBy(xpath = "/html/body/div[3]/main/nav/div[1]/div/div[1]/nav/ul/li[4]/a")
+    @FindBy(xpath = "/html/body/div[4]/main/nav/div[1]/div/div[1]/nav/ul/li[4]/a")
     WebElement cjsEmploymentTab;
-
-    @FindBy(xpath = "/html/body/div[3]/main/nav/div[1]/div/div[1]/nav/ul/li[5]/a")
+    @FindBy(xpath = "/html/body/div[4]/main/nav/div[1]/div/div[1]/nav/ul/li[5]/a")
     WebElement reasonableAdjustmentsTab;
 
-    @FindBy(xpath = "/html/body/div[3]/main/nav/div[1]/div/div[1]/nav/ul/li[6]/a")
+    @FindBy(xpath = "/html/body/div[4]/main/nav/div[1]/div/div[1]/nav/ul/li[6]/a")
     WebElement signatureTab;
 
-    @FindBy(xpath = "/html/body/div[2]/main/div/div/form/div[1]/fieldset/div/div[2]/input")
+    @FindBy(xpath = "/html/body/div[3]/main/div/div/form/div[1]/fieldset/div/div[2]/input")
     WebElement residencyNoButton;
 
     @FindBy(id = "processReply")

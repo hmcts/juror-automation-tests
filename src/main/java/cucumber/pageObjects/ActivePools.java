@@ -80,7 +80,7 @@ public class ActivePools {
 
     }
     public void selectAnyActivePool() {
-        String activePoolsTable = "/html/body/div[2]/main/div/div/form/table";
+        String activePoolsTable = "/html/body/div[3]/main/div/div/form/table";
         List<WebElement> rows = driver.findElements(By.xpath(activePoolsTable + "/tbody/tr"));
 
         Random random = new Random();

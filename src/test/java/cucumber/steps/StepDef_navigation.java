@@ -21,6 +21,7 @@ import java.time.DayOfWeek;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAdjusters;
 import java.util.Calendar;
 import java.util.Date;
@@ -76,6 +77,23 @@ public class StepDef_navigation {
 		} catch (AssertionError | Exception e) {
 			NAV.waitForPageLoad();
 			NAV.textPresentOnPage(arg1);
+		}
+	}
+
+	@When("^I verify summons reply banner processed by user \"(.*)\" and status \"(.*)\"$")
+	public void text_on_page_check_banner(String arg1, String arg2) throws Throwable {
+
+		LocalDate today = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy");
+		String formattedDate = today.format(formatter);
+
+		String banner = "Summons reply processed on "+formattedDate+" by " + arg1 +": "+arg2;
+
+		try {
+			NAV.textPresentOnPage(banner);
+		} catch (AssertionError | Exception e) {
+			NAV.waitForPageLoad();
+			NAV.textPresentOnPage(banner);
 		}
 	}
 
