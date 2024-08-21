@@ -131,7 +131,7 @@ Feature: JM-4494 Bureau Delete Juror Deferral
     And I press the "Continue" button
 
     And I do not see "Sorry, there is a technical problem" on the page
-    And I see "Deferral granted" on the page
+    And I verify summons reply banner processed by user "MODTESTBUREAU" and status "Responded"
 
     Then the user searches for juror record "<juror_number>" from the global search bar
     And I see the juror status on the juror record screen is "Responded"

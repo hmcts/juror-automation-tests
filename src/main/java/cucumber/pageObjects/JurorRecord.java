@@ -177,7 +177,7 @@ public class JurorRecord {
     @FindBy(xpath = "//*[@id='ac-courtNameOrLocation']")
     WebElement courtNameLocationValue;
 
-    @FindBy(xpath = "/html/body/div[2]/main/form/div[2]/div/p")
+    @FindBy(xpath = "/html/body/div[3]/main/form/div[2]/div/p")
     WebElement updatedJurorName;
 
     @FindBy(xpath = "//div[2]/div[2]/p")
