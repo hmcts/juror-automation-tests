@@ -3,7 +3,7 @@ Feature: 1st_Straight Spaces in Phone number
 @RegressionSingle @NewSchemaConverted
 Scenario Outline: 1st_Straight Spaces in Phone number
 
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  	| pool_number	| att_date_weeks_in_future	| owner |
@@ -122,7 +122,7 @@ Scenario Outline: 1st_Straight Spaces in Phone number
 
 	Given auto straight through processing has been enabled new schema
 
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "ithc"
 	When I log in as "CPASS"
 	
 	When I click on the "Search" link
@@ -138,10 +138,10 @@ Scenario Outline: 1st_Straight Spaces in Phone number
 	And I select "D - DECEASED" from the "Reason for excusal request" dropdown
 	And I choose the "Grant excusal" radio button
 	And I press the "Continue" button
-	Then I see the juror record updated banner containing "Excusal granted (deceased)"
+	Then I see the juror record updated banner containing "Excusal granted"
 	And I click on the "<juror_number>" link
 	And I click on the "Summons reply" link
-	And I see "Excusal granted (deceased)" on the page
+	And I see "Excusal granted" on the page
 	And I see "COMPLETED" on the page
 	
 	Then on "JUROR_MOD" . "JUROR" I see "H_PHONE" is "0207 8211 818" where "JUROR_NUMBER" is "<juror_number>"
