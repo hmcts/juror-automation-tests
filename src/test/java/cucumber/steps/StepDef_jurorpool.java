@@ -2093,7 +2093,7 @@ public class StepDef_jurorpool {
     public void createMultiplePoolRequestsWeeksApart(Integer noOfPools, String courtType, String court) throws Throwable {
         Integer newPoolsCreated = 0;
         do {
-            createNewPoolRequestWeeksInFuture(courtType, court, newPoolsCreated);
+            createNewPoolRequestWeeksInFuture(courtType, court, newPoolsCreated+2);
             //String poolNo = POOL_REQUESTS_PAGE.getNewPoolNumberOnSummary();
 
             ArrayList<String> pools = poolNumbers.get();
@@ -2116,7 +2116,7 @@ public class StepDef_jurorpool {
     public void createMultiplePoolRequestsWeeksApartSpecifiedJurorsToSummon(Integer noOfPools, String courtType, String court, String jurorsToSummon) throws Throwable {
         Integer newPoolsCreated = 0;
         do {
-            createNewPoolRequestWeeksInFuture(courtType, court, newPoolsCreated + 1);
+            createNewPoolRequestWeeksInFuture(courtType, court, newPoolsCreated + 3);
             //String poolNo = POOL_REQUESTS_PAGE.getNewPoolNumberOnSummary();
 
             ArrayList<String> pools = poolNumbers.get();
