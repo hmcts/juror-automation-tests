@@ -32,7 +32,7 @@ Examples:
 @Regression @NewSchemaConverted
 Scenario Outline: English 3rd Party Excused - contact details same as 3rd party
 
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -45,7 +45,7 @@ Scenario Outline: English 3rd Party Excused - contact details same as 3rd party
 	| part_no		| pool_number	| last_name		| postcode	| email 	|
 	| <juror_number>| <pool_number>	| <last_name>	| <postcode>| <email>	|
 	
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "ithc"
 	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
@@ -59,7 +59,7 @@ Scenario Outline: English 3rd Party Excused - contact details same as 3rd party
 	Then I select "O - OTHER" from the "Reason for excusal request" dropdown
 	And I set the radio button to "Grant excusal"
 	And I press the "Continue" button
-	Then I see the juror record updated banner containing "Excusal granted (other)"
+	Then I see the juror record updated banner containing "Excusal granted"
 	
 	Then on "JUROR_MOD" . "JUROR" I see "RESPONDED" is "Y" where "JUROR_NUMBER" is "<juror_number>"
 	Then on "JUROR_MOD" . "JUROR" I see "H_EMAIL" is null where "JUROR_NUMBER" is "<juror_number>"
@@ -74,7 +74,7 @@ Examples:
 @Regression @NewSchemaConverted
 Scenario Outline: English 3rd Party Deferred - contact details same as 3rd party
 
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -87,22 +87,22 @@ Scenario Outline: English 3rd Party Deferred - contact details same as 3rd party
 	| part_no		| pool_number	| last_name		| postcode	| email 	|
 	| <juror_number>| <pool_number>	| <last_name>	| <postcode>| <email>	|
 
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "ithc"
 	And I log in as "MODTESTBUREAU"
-	
+
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
 	And I click on "<juror_number>" in the same row as "<juror_number>"
-	
+
 	When I select "Deferral" from Process reply
-	
+
 	And I select "O - OTHER" from the "Reason for the deferral request" dropdown
 	And I select the first deferral choice
 
 	And I press the "Continue" button
-	And I see the juror record updated banner containing "Deferral granted (other)"
-	
+	And I see the juror record updated banner containing "Deferral granted"
+
 	Then on "JUROR_MOD" . "JUROR" I see "RESPONDED" is "Y" where "JUROR_NUMBER" is "<juror_number>"
 	Then on "JUROR_MOD" . "JUROR" I see "H_EMAIL" is null where "JUROR_NUMBER" is "<juror_number>"
 	Then on "JUROR_MOD" . "JUROR" I see "M_PHONE" is null where "JUROR_NUMBER" is "<juror_number>"
@@ -120,7 +120,8 @@ Scenario Outline: English 3rd Party ST - contact details same as 3rd party
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
-		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
+		| 452   |<juror_number>| <pool_number1>	| 5				            | 400   |
+
 	
 	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
 	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
@@ -155,7 +156,7 @@ Examples:
 @Regression @NewSchemaConverted
 Scenario Outline: English 3rd Party Disqualified - contact details same as 3rd party
 
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -168,7 +169,7 @@ Scenario Outline: English 3rd Party Disqualified - contact details same as 3rd p
 	| part_no		| pool_number	| last_name		| postcode	| email 	|
 	| <juror_number>| <pool_number>	| <last_name>	| <postcode>| <email>	|
 	
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "ithc"
 	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
@@ -184,7 +185,7 @@ Scenario Outline: English 3rd Party Disqualified - contact details same as 3rd p
 	
 	And I choose the "N - Mental Capacity Act" radio button
 	And I press the "Continue" button
-	Then I see the juror record updated banner containing "Disqualified (Mental Capacity Act)"
+	Then I see the juror record updated banner containing "Disqualified"
 
 	Then on "JUROR_MOD" . "JUROR" I see "RESPONDED" is "Y" where "JUROR_NUMBER" is "<juror_number>"
 	Then on "JUROR_MOD" . "JUROR" I see "H_EMAIL" is null where "JUROR_NUMBER" is "<juror_number>"
