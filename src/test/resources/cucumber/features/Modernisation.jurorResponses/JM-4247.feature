@@ -31,7 +31,7 @@ Feature: JM-4247 Edit Juror Record as Court User
 
     And I set "First name" to "Testing"
     And I set "Last name" to "Test"
-    And I press the "Save" button
+    And I press the "Review Edit" button
     And I see the juror name has updated to "Testing Test"
     And I click on the "Enter a new name" link
     And I see "Enter a new name" on the page

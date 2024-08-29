@@ -58,7 +58,7 @@ Feature: JM-5054-As a jury officer I need to be able to return jurors from a tri
     And I see "<juror_number_4>" in the same row as "1:30pm"
     And I press the "Apps" button
     And I click on the "Trial management" link
-    And I click on the "<trial_number>" link
+    And I click on the trial number "<trial_number>"
     When I press the "Generate panel" button
     Then I see "Generate a panel" on the page
     And I see "Which jurors do you want to generate a panel from?" on the page
@@ -161,7 +161,7 @@ Feature: JM-5054-As a jury officer I need to be able to return jurors from a tri
     And I see "<juror_number_4>" in the same row as "1:30pm"
     And I press the "Apps" button
     And I click on the "Trial management" link
-    And I click on the "<trial_number>" link
+    And I click on the trial number "<trial_number>"
     And I press the "Generate panel" button
     And I see "Generate a panel" on the page
     And I see "Which jurors do you want to generate a panel from?" on the page

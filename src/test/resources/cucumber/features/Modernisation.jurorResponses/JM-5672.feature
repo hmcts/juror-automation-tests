@@ -119,7 +119,8 @@ Scenario Outline: Postpone a juror to another court as a Jury officer - Bulk flo
 
         And I press the "Apps" button
         And I click on the "Trial management" link
-        And I click on the "<trial_number>" link
+        And I click on the trial number "<trial_number>"
+
 
         And I press the "Generate panel" button
         And I set the radio button to "All available jurors"

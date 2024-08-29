@@ -26,7 +26,7 @@ Feature: JM-4256 Record proof of name change for a jury officer
 
     And I set "First name" to "FnameTester"
     And I set "Last name" to "LnameTesting"
-    And I press the "Save" button
+    And I press the "Review Edit" button
     And I see "Pending approval" on the page
     And I see the juror's new name "Fnametester Lnametesting" is pending approval
     And I enter a date of birth that will make the juror between 18 and 75
@@ -79,7 +79,7 @@ Feature: JM-4256 Record proof of name change for a jury officer
 
     And I set "First name" to "Tester"
     And I set "Last name" to "Testing"
-    And I press the "Save" button
+    And I press the "Review Edit" button
     And I see "Pending approval" on the page
     And I see the juror's new name "Tester Testing" is pending approval
     And I enter a date of birth that will make the juror between 18 and 75
@@ -128,14 +128,14 @@ Feature: JM-4256 Record proof of name change for a jury officer
     #name longer than 20 characters
     And I set "First name" to "FnameTestertttttttttttttt"
     And I set "Last name" to "LnameTestinggggggggggggggg"
-    And I press the "Save" button
+    And I press the "Review Edit" button
     And I see error "Please check the first name"
     And I see error "Please check the last name"
 
     #special characters
     And I set "First name" to "FnameTester&#@!?%"
     And I set "Last name" to "FnameTester&#@!?%"
-    And I press the "Save" button
+    And I press the "Review Edit" button
 
     And I click on the "Enter a new name" link
     And I see "Enter a new name" on the page
@@ -144,7 +144,7 @@ Feature: JM-4256 Record proof of name change for a jury officer
 
     And I set "First name" to "FnameTester"
     And I set "Last name" to "LnameTesting"
-    And I press the "Save" button
+    And I press the "Review Edit" button
 
     And I see "Pending approval" on the page
     And I see the juror's new name "Fnametester Lnametesting" is pending approval
@@ -182,7 +182,7 @@ Feature: JM-4256 Record proof of name change for a jury officer
     And I see "When you enter a new name here, it will overwrite any previous pending name." on the page
     And I set "First name" to "FnameTester"
     And I set "Last name" to "LnameTesting"
-    And I press the "Save" button
+    And I press the "Review Edit" button
     And I see "Pending approval" on the page
     And I see the juror's new name "Fnametester Lnametesting" is pending approval
 
