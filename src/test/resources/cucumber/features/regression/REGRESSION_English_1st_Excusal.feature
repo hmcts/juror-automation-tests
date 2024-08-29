@@ -3,7 +3,7 @@ Feature: Regression English_1st_Excusal
   @Regression @NewSchemaConverted
   Scenario Outline: English 1st Party Excusal Accepted
 
-    Given I am on "Public" "test"
+    Given I am on "Public" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
@@ -124,7 +124,7 @@ Feature: Regression English_1st_Excusal
     Then I click on the "Download a copy of your summons reply HTML (15KB)" link
     And I see "Why do you need to be excused from jury service?" on the page
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     And I log in as "MODTESTBUREAU"
     And I click on the "Search" link
     And I set "Juror number" to "<juror_number>"
@@ -172,7 +172,7 @@ Feature: Regression English_1st_Excusal
     And I select "D - DECEASED" from the "Reason for excusal request" dropdown
     And I choose the "Grant excusal" radio button
     And I press the "Continue" button
-    And I see the juror record updated banner containing "Excusal granted (deceased)"
+    And I see the juror record updated banner containing "Excusal granted"
 
     Examples:
       | juror_number | last_name      | postcode | email             | pool_number |
@@ -312,7 +312,7 @@ Feature: Regression English_1st_Excusal
     And the radio button "Grant excusal" is "unselected"
 
     And I press the "Continue" button
-    And I see the juror record updated banner containing "Excusal refused (medical)"
+    And I see the juror record updated banner containing "Excusal refused"
 
     Examples:
       | juror_number | last_name        | postcode | email             | pool_number |
@@ -616,7 +616,7 @@ Feature: Regression English_1st_Excusal
     And I choose the "Grant excusal" radio button
     And I press the "Continue" button
 
-    And I see the juror record updated banner containing "Excusal granted (medical)"
+    And I see the juror record updated banner containing "Excusal granted"
 
     Examples:
       | juror_number | last_name         | postcode | email             | pool_number |

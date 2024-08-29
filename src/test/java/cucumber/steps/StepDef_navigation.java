@@ -21,6 +21,7 @@ import java.time.DayOfWeek;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAdjusters;
 import java.util.Calendar;
 import java.util.Date;
@@ -76,6 +77,23 @@ public class StepDef_navigation {
 		} catch (AssertionError | Exception e) {
 			NAV.waitForPageLoad();
 			NAV.textPresentOnPage(arg1);
+		}
+	}
+
+	@When("^I verify summons reply banner processed by user \"(.*)\" and status \"(.*)\"$")
+	public void text_on_page_check_banner(String arg1, String arg2) throws Throwable {
+
+		LocalDate today = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy");
+		String formattedDate = today.format(formatter);
+
+		String banner = "Summons reply processed on "+formattedDate+" by " + arg1 +": "+arg2;
+
+		try {
+			NAV.textPresentOnPage(banner);
+		} catch (AssertionError | Exception e) {
+			NAV.waitForPageLoad();
+			NAV.textPresentOnPage(banner);
 		}
 	}
 
@@ -945,5 +963,46 @@ public class StepDef_navigation {
 	@When("^I select the first juror in the search results$")
 	public void selectFirstJurorInList() {
 		NAV.firstJurorInSearch();
+	}
+	@When("^I set the \"([^\"]*)\" date to (\\d+) days (in the future|in the past)$")
+	public void iSetTheAttendanceDateToDaysInTheFutureOrPast(String attDateSequence, Integer numberOfDays, String timeFrame) {
+		String datePattern = "dd/MM/yyyy";
+		String fullDatePattern = "EEEEE dd MMMMM yyyy";
+
+		Calendar calendar = Calendar.getInstance();
+		if ("in the future".equals(timeFrame)) {
+			calendar.add(Calendar.DAY_OF_MONTH, numberOfDays);
+		} else if ("in the past".equals(timeFrame)) {
+			calendar.add(Calendar.DAY_OF_MONTH, -numberOfDays);
+		} else {
+			throw new IllegalArgumentException("Time frame '" + timeFrame + "' is not valid. Use 'in the future' or 'in the past'.");
+
+		}
+
+		LocalDate localDate = calendar.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+		Date adjustedDate = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+		String adjustedDateValue = new SimpleDateFormat(datePattern).format(adjustedDate);
+		holidayAttendanceDate = new SimpleDateFormat(fullDatePattern).format(adjustedDate);
+		NAV.enterNewSingleDate(attDateSequence, adjustedDateValue);
+		NAV.waitForPageLoad();
+	}
+
+	@When("^I click the link with the date (\\d+) days (in the future|in the past)$")
+	public void iClickTheLinkWithTheDateDaysInTheFutureOrPast(Integer numberOfDays, String timeFrame) {
+		NAV.clickLinkWithDate(numberOfDays, timeFrame);
+	}
+
+	@When("^I verify the parking field contains \"([^\"]*)\"$")
+	public void checkParkingField(String expectedText) {
+		NAV.checkParkingField(expectedText);
+	}
+
+	@When("^I verify the mileage field contains \"([^\"]*)\"$")
+	public void checkMilageField(String expectedText) {
+		NAV.checkMileageField(expectedText);
+	}
+	@When("^I verify the public transport field contains \"([^\"]*)\"$")
+	public void checkPublicTransportField(String expectedText) {
+		NAV.checkPublicTransportField(expectedText);
 	}
 }

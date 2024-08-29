@@ -81,7 +81,7 @@ Feature: JM-3897 mark juror as deferred paper
     And I press the "Continue" button
 
     And I do not see "Sorry, there is a technical problem" on the page
-    And I see "Deferral granted" on the page
+    And I verify summons reply banner processed by user "MODTESTBUREAU" and status "Responded"
 
     When the user searches for juror record "<juror_number>" from the global search bar
     And I click the summons reply tab

@@ -32,7 +32,7 @@ Feature: JM-3991 Reassign Juror as Court User
     And I press the "Continue" button
     And I click the checkbox to mark the reply as responded
     And I press the "Confirm" button
-    Then I see "Summons reply for 041500042 fname lname successfully processed: Responded" on the page
+    Then I verify summons reply banner processed by user "MODTESTBUREAU" and status "Responded"
 
     Given a new pool is inserted for where record has transferred to the court new schema
       |part_no         | pool_no        | owner |

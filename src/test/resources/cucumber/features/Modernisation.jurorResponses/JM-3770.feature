@@ -99,7 +99,7 @@ Feature: JM-3770
 
     And I set the radio button to "R - Residency"
     And I press the "Continue" button
-    And I see "Summons reply for 041500059 fname Changed successfully processed: Disqualified (Residency)" on the page
+    And I verify summons reply banner processed by user "MODTESTBUREAU" and status "Disqualified"
     And I see "Your work" on the page
 
     Examples:
