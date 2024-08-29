@@ -2381,7 +2381,7 @@ public class NavigationShared {
 
         Date adjustedDate = calendar.getTime();
         SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_PATTERN, Locale.ENGLISH);
-        String formattedDate = dateFormat.format(adjustedDate).trim(); // Ensure trimming
+        String formattedDate = dateFormat.format(adjustedDate).trim();
 
     
         By dateLinkById = By.id("expenseDateLink");
@@ -2393,7 +2393,7 @@ public class NavigationShared {
             boolean linkFound = false;
 
             for (WebElement link : links) {
-                String linkText = link.getText().trim(); // Ensure trimming of text
+                String linkText = link.getText().trim();
                 System.out.println("Expected Date: " + formattedDate);
                 System.out.println("Link Text: " + linkText);
 
@@ -2412,7 +2412,7 @@ public class NavigationShared {
         } catch (TimeoutException e) {
             throw new RuntimeException("No links with ID 'expenseDateLink' were found or visible in time.", e);
         } catch (Exception e) {
-            e.printStackTrace(); // Print stack trace for more detailed error information
+            e.printStackTrace();
             throw new RuntimeException("Failed to click the link with the date '" + formattedDate + "'.", e);
         }
     }
