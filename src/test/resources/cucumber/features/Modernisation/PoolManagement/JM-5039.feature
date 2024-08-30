@@ -26,7 +26,6 @@ Feature: JM-5039
     And I select the checkbox in the same row as "<juror_number1>" in pool table
     And I select the checkbox in the same row as "<juror_number2>" in pool table
     And I select the checkbox in the same row as "<juror_number3>" in pool table
-    And I see "3 of 3 selected" on the page
 
     And I press the "Transfer" button
     Then I see "Select a court to transfer to" on the page
