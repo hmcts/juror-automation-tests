@@ -208,6 +208,7 @@ public class SummonsReply {
 
     @FindBy(xpath = "//*[@class='info with-icon']")
     WebElement jurorStatus;
+
     @FindBy(xpath = "//*[@id='deferralForm']/descendant::p[@class='govuk-body']")
     WebElement reassignErrorText;
 
