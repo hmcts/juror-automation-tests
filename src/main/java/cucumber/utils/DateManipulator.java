@@ -1,23 +1,14 @@
 package cucumber.utils;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import org.apache.log4j.Logger;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAdjusters;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Properties;
-
-import org.apache.log4j.Logger;
-
-import cucumber.pageObjects.SuspendDelete;
+import java.util.Locale;
 
 public class DateManipulator {
 	private static Logger log = Logger.getLogger(DateManipulator.class);
@@ -124,5 +115,23 @@ public class DateManipulator {
         }
         return true;
     }
+
+	public static String getDateAsString(Long numberOfWeeksToAdd, DayOfWeek dayOfWeek,
+										 String format) {
+		return getDateAsString(LocalDate.now(), numberOfWeeksToAdd, dayOfWeek, format);
+	}
+
+	public static String getDateAsString(LocalDate startDate, Long numberOfWeeksToAdd, DayOfWeek dayOfWeek,
+										 String format) {
+		LocalDate localDate = startDate;
+		if (numberOfWeeksToAdd != null) {
+			localDate = localDate.plusWeeks(numberOfWeeksToAdd);
+		}
+		if (dayOfWeek != null) {
+			localDate = localDate.with(TemporalAdjusters.next(dayOfWeek));
+		}
+		return localDate
+				.format(DateTimeFormatter.ofPattern(format, Locale.US));
+	}
 	
 }

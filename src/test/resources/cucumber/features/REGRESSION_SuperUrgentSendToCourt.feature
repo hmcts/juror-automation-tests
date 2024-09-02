@@ -11,7 +11,7 @@ Feature: JDB-3759 SuperUrgentSendToCourt
 @Regression @NewSchemaConverted
 Scenario Outline: A response is submitted after pool is transferred to court
 
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -55,7 +55,7 @@ Scenario Outline: A response is submitted after pool is transferred to court
 	#check status
 #	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "URGENT" is "N" where "JUROR_NUMBER" is "<juror_number>"
 
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "ithc"
 	And I log in as "CPASS"
 
 	When I click on the "Search" link
@@ -64,7 +64,7 @@ Scenario Outline: A response is submitted after pool is transferred to court
 	And I click on "<juror_number>" in the same row as "<juror_number>"
 
 	#check status = summoned
-	And I see "Summoned" on the page
+	And I see "AUTO PROCESSED" on the page
 
 	And I press the "More actions" button
 	And I click on the "Download as a PDF" link

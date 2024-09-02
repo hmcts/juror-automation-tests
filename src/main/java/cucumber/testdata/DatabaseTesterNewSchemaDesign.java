@@ -4842,7 +4842,7 @@ public class DatabaseTesterNewSchemaDesign {
 		}
 
 	}
-	public void insertInitialSummonsLetter(String jurorNumber) throws SQLException {
+	public void insertInitialSummonsLetter(String jurorNumber, String poolNumber) throws SQLException {
 		db = new DBConnection();
 
 		String env_property = System.getProperty("env.database");
@@ -4858,7 +4858,7 @@ public class DatabaseTesterNewSchemaDesign {
 			pStmt.executeUpdate();
 
 			pStmt = conn.prepareStatement("INSERT INTO juror_mod.bulk_print_data (juror_no,creation_date,form_type,detail_rec,extracted_flag,digital_comms)"
-					+ "VALUES ('" + jurorNumber + "',NOW(),'5221','" + jurorNumber + "          Fname Lname',true,false)");
+					+ "VALUES ('" + jurorNumber + "',NOW(),'5221','" + poolNumber + "          FNAMESEVENTHREEEIGHTLNAMESEVENTHREEEIGHT738 STREET NAME                    ANYTOWN                            ANYCITY                            CH1 2AN                                                                                                            14150073814150073826 AUGUST 2024    TUESDAY 22 OCTOBER, 2024        9:00AM  415Y                   THE CROWN COURT AT CHESTER                                 THE CASTLE                         CHESTER                            CH1 2AN                                                                                                                                               01244 356726            JURY MANAGER                  JURY CENTRAL SUMMONING BUREAU           THE COURT SERVICE                  FREEPOST LON 19669                 POCOCK STREET                      LONDON                             SE1 0YG                                                                         0845 3555567            ',true,false)");
 			pStmt.executeUpdate();
 
 		} catch (SQLException e) {

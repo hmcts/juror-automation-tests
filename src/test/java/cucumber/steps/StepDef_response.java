@@ -581,6 +581,7 @@ public class StepDef_response {
 			NAV.set_valueTo("Main phone", "01234561234");
 			NAV.press_buttonByName("Continue");
 
+			NAV.textPresentOnPage("email address?");
 			NAV.set_valueTo("Enter your email address", email);
 			NAV.set_valueTo("Enter your email address again", email);
 			NAV.press_buttonByName("Continue");

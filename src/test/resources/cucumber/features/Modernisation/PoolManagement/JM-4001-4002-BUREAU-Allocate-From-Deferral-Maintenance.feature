@@ -4,7 +4,7 @@ Feature: JM-4001 and JM-4002 - Bureau User
 
     #needs to stay in single thread pack
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     Given "3" new pool's are inserted for court "415" with owner "400" and a deferral date "1" Mondays in the future new schema
 
     #reset data
@@ -33,6 +33,7 @@ Feature: JM-4001 and JM-4002 - Bureau User
     And I press the Juror number table header
     Then The first deferral in the table is "041500000, 0FNAME0, TESTNAME, 415000000" with a deferral date "1" Mondays in the future
     And Row "3" deferral in the table is "041500002, 0FNAME2, TESTNAME, 415000002" with a deferral date "1" Mondays in the future
+
 
   @JurorTransformation
     Scenario: Happy path to allocate one juror to a pool from deferral maintenance
@@ -74,7 +75,7 @@ Feature: JM-4001 and JM-4002 - Bureau User
       And I press the "Find" button
       Then I am taken to the deferral maintenance screen for the selected court "Lewes Sitting At Chichester (416)"
       And The deferrals table is displayed
-      When I press the "Juror number" button
+      When I click on the "Juror number" link
       And The first deferral in the table is "041600000, fname, lname, 416000000" with a deferral date "1" Mondays in the future
 
   @JurorTransformation
@@ -83,35 +84,37 @@ Feature: JM-4001 and JM-4002 - Bureau User
     #needs to stay in single thread pack
 
       #sort by Juror number (descending)
-      When I press the "Juror number" button
+      When I click on the "Juror number" link
       Then Row "3" from last deferral in the table is "041500002, 0FNAME2, TESTNAME, 415000002" with a deferral date "1" Mondays in the future
       And The last deferral in the table is "041500000, 0FNAME0, TESTNAME, 415000000" with a deferral date "1" Mondays in the future
+
       #sort by First name (ascending)
-      When I press the "First name" button
+      When I click on the "First name" link
       Then The first deferral in the table is "041500000, 0FNAME0, TESTNAME, 415000000" with a deferral date "1" Mondays in the future
       And Row "3" deferral in the table is "041500002, 0FNAME2, TESTNAME, 415000002" with a deferral date "1" Mondays in the future
       #sort by First name (descending)
-      When I press the "First name" button
+      When I click on the "First name" link
       Then Row "3" from last deferral in the table is "041500002, 0FNAME2, TESTNAME, 415000002" with a deferral date "1" Mondays in the future
       And The last deferral in the table is "041500000, 0FNAME0, TESTNAME, 415000000" with a deferral date "1" Mondays in the future
 
       #sort by Pool number (ascending)
-      When I press the "Pool number" button
+      When I click on the "Pool number" link
       Then The first deferral in the table is "041500000, 0FNAME0, TESTNAME, 415000000" with a deferral date "1" Mondays in the future
       And Row "3" deferral in the table is "041500002, 0FNAME2, TESTNAME, 415000002" with a deferral date "1" Mondays in the future
       #sort by Pool number (descending)
-      When I press the "Pool number" button
+      When I click on the "Pool number" link
       Then Row "3" from last deferral in the table is "041500002, 0FNAME2, TESTNAME, 415000002" with a deferral date "1" Mondays in the future
       And The last deferral in the table is "041500000, 0FNAME0, TESTNAME, 415000000" with a deferral date "1" Mondays in the future
-      #sort by Deferred to (ascending)
-      When I press the "Deferred to" button
 
-    Then The first deferral in the table is "041500002, 0FNAME2, TESTNAME, 415000002" with a deferral date "1" Mondays in the future
-    And Row "3" deferral in the table is "041500000, 0FNAME0, TESTNAME, 415000000" with a deferral date "1" Mondays in the future
+      #sort by Deferred to (ascending)
+      When I click on the "Deferred to" link
+      Then The first deferral in the table is "041500000, 0FNAME0, TESTNAME, 415000000" with a deferral date "1" Mondays in the future
+      And Row "3" deferral in the table is "041500002, 0FNAME2, TESTNAME, 415000002" with a deferral date "1" Mondays in the future
       #sort by Deferred to (descending)
-      When I press the "Deferred to" button
-    Then Row "3" from last deferral in the table is "041500002, 0FNAME2, TESTNAME, 415000002" with a deferral date "1" Mondays in the future
-    And The last deferral in the table is "041500000, 0FNAME0, TESTNAME, 415000000" with a deferral date "1" Mondays in the future
+      When I click on the "Deferred to" link
+      Then The first deferral in the table is "041500000, 0FNAME0, TESTNAME, 415000000" with a deferral date "1" Mondays in the future
+      And Row "3" deferral in the table is "041500002, 0FNAME2, TESTNAME, 415000002" with a deferral date "1" Mondays in the future
+
       #change data
       Then juror "041500000" has "LAST_NAME" as "TESTNAMEA" new schema
       Then juror "041500001" has "LAST_NAME" as "TESTNAMEB" new schema
@@ -135,11 +138,11 @@ Feature: JM-4001 and JM-4002 - Bureau User
       And I set the "first name" deferral filter to "TESTFNAME"
 
       #sort by Last name (ascending)
-      When I press the "Last name" button
+      When I click on the "Last name" link
       Then The first deferral in the table is "041500000, TESTFNAME, TESTNAMEA, 415000000" with a deferral date "1" Mondays in the future
       And Row "3" deferral in the table is "041500002, TESTFNAME, TESTNAMEC, 415000002" with a deferral date "1" Mondays in the future
       #sort by Last name (descending)
-      When I press the "Last name" button
+      When I click on the "Last name" link
       Then Row "3" from last deferral in the table is "041500002, TESTFNAME, TESTNAMEC, 415000002" with a deferral date "1" Mondays in the future
       And The last deferral in the table is "041500000, TESTFNAME, TESTNAMEA, 415000000" with a deferral date "1" Mondays in the future
 
@@ -148,6 +151,7 @@ Feature: JM-4001 and JM-4002 - Bureau User
 
     #needs to stay in single thread pack
 
+      And I press the "Hide filter" button
       #apply Juror number filter
       When I set the "juror number" deferral filter to "041500001"
       Then The first deferral in the table is "041500001, 0FNAME1, TESTNAME, 415000001" with a deferral date "1" Mondays in the future
@@ -157,12 +161,13 @@ Feature: JM-4001 and JM-4002 - Bureau User
 
       #apply Deferred to filter
       When I set the deferral deferred to filter to "1" Mondays in the future
-      And I press the "Juror number" button
+      And I click on the "Juror number" link
       Then The first deferral in the table is "041500000, 0FNAME0, TESTNAME, 415000000" with a deferral date "1" Mondays in the future
       And Row "3" deferral in the table is "041500002, 0FNAME2, TESTNAME, 415000002" with a deferral date "1" Mondays in the future
 
       #apply NON_EXISTENT Juror number filter
-      When I set the "juror number" deferral filter to "000000000"
+      And I set "Juror number" to "000000000"
+      And I press the "Apply filters" button
       Then I see "There are no results to display" on the page
 
   @JurorTransformation
