@@ -2,19 +2,18 @@ package cucumber.pageObjects;
 
 
 import cucumber.testdata.DatabaseTester;
-import cucumber.utils.ReadProperties;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.text.SimpleDateFormat;
 import java.time.Duration;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 
@@ -123,7 +122,8 @@ public class JurorRecord {
     @FindBy(xpath = "//*[contains(text(),'They will be transferred to a new pool')]")
     WebElement transferConfirmationBody;
 
-    @FindBy(xpath = "/html/body/div[3]/main/div[4]/div/dl/div/dd")
+//    @FindBy(xpath = "/html/body/div[2]/main/div[4]/div/dl/div/dd")
+    @FindBy(xpath = "//div/dt[contains(text(),'Police check')]//ancestor::div/dd/span")
     WebElement policeCheckStatus;
 
     @FindBy(xpath = "//dt[contains(text(),'Number of deferrals')]/../dd")

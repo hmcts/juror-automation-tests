@@ -5,9 +5,7 @@ Feature: Regression English_ReplyTypesIndicator
   @Regression @NewSchemaConverted
   Scenario Outline: English 1st Party + Juror Details Change
 
-	#return to @Regression when bug fixed
-
-    Given I am on "Public" "test"
+    Given I am on "Public" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
@@ -60,27 +58,27 @@ Feature: Regression English_ReplyTypesIndicator
 	#Residency
     And I choose the "Yes" radio button
     And I press the "Continue" button
-	
+
 	#CJS
     When I choose the "No" radio button
     And I press the "Continue" button
-	
+
 	#Bail
     When I choose the "No" radio button
     And I press the "Continue" button
-	
+
 	#Convictions
     When I choose the "No" radio button
     And I press the "Continue" button
-		
+
 	#Mental Health Sectioned
     And I choose the "No" radio button
     And I press the "Continue" button
-	
+
 	#Mental Health Capacity
     And I choose the "No" radio button
     And I press the "Continue" button
-	
+
 	#I can attend
     And I set the radio button to "Yes, I can start on"
     And  I press the "Continue" button
@@ -88,7 +86,7 @@ Feature: Regression English_ReplyTypesIndicator
 	#RA no
     When I choose the "No" radio button
     And I press the "Continue" button
-	
+
 	#Check your answers
     And I check the "The information I have given is true to the best of my knowledge" checkbox
     And I press the "Submit" button
@@ -97,7 +95,7 @@ Feature: Regression English_ReplyTypesIndicator
     Then I click on the "Download a copy of your summons reply HTML (15KB)" link
     And I see "You answered the eligibility questions" on the page
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     And I log in as "MODTESTBUREAU"
 
     When I click on the "Search" link
@@ -113,7 +111,7 @@ Feature: Regression English_ReplyTypesIndicator
     Then I see "Your work" on the page
 
     Then I click on the "Sign out" link
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     When I log in as "CPASS"
     Then I see "<juror_number>" on the page

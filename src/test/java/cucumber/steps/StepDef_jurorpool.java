@@ -3,6 +3,7 @@ package cucumber.steps;
 import cucumber.pageObjects.*;
 import cucumber.testdata.DatabaseTester;
 import cucumber.testdata.DatabaseTesterNewSchemaDesign;
+import cucumber.utils.DateManipulator;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.PendingException;
 import io.cucumber.java.en.And;
@@ -2318,32 +2319,13 @@ public class StepDef_jurorpool {
 
     @Then("^The first deferral in the table is \"([^\"]*)\" with a deferral date \"([^\"]*)\" Mondays in the future$")
     public void theFirstDeferralInTheTableIs(String deferral, String noWeeks) {
-
-        String datePattern = "E dd MMM yyyy";
-        Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.WEEK_OF_MONTH, Integer.parseInt(noWeeks));
-
-        LocalDate localDate = calendar.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        LocalDate localDateMonday = localDate.with(TemporalAdjusters.next(DayOfWeek.MONDAY));
-        Date mondayDate = Date.from(localDateMonday.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
-
-        String expectedDate = new SimpleDateFormat(datePattern).format((mondayDate).getTime());
-
+        String expectedDate = DateManipulator.getDateAsString(Long.valueOf(noWeeks),DayOfWeek.MONDAY,"EEE dd MMM yyyy");
         assertEquals(deferral + ", " + expectedDate, DEFERRAL_MAINTENANCE.getFirstDeferralTableRow());
     }
 
     @Then("^Row \"([^\"]*)\" deferral in the table is \"([^\"]*)\" with a deferral date \"([^\"]*)\" Mondays in the future$")
     public void rowDeferralInTheTableIs(String rowNo, String deferral, String noWeeks) {
-
-        String datePattern = "E dd MMM yyyy";
-        Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.WEEK_OF_MONTH, Integer.parseInt(noWeeks));
-
-        LocalDate localDate = calendar.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        LocalDate localDateMonday = localDate.with(TemporalAdjusters.next(DayOfWeek.MONDAY));
-        Date mondayDate = Date.from(localDateMonday.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
-
-        String expectedDate = new SimpleDateFormat(datePattern).format((mondayDate).getTime());
+        String expectedDate = DateManipulator.getDateAsString(Long.valueOf(noWeeks),DayOfWeek.MONDAY,"EEE dd MMM yyyy");
 
         int row = Integer.parseInt(rowNo);
 
@@ -2352,30 +2334,13 @@ public class StepDef_jurorpool {
 
     @Then("^The last deferral in the table is \"([^\"]*)\" with a deferral date \"([^\"]*)\" Mondays in the future$")
     public void theLastDeferralInTheTableIs(String deferral, String noWeeks) {
-        String datePattern = "E dd MMM yyyy";
-        Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.WEEK_OF_MONTH, Integer.parseInt(noWeeks));
-
-        LocalDate localDate = calendar.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        LocalDate localDateMonday = localDate.with(TemporalAdjusters.next(DayOfWeek.MONDAY));
-        Date mondayDate = Date.from(localDateMonday.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
-
-        String expectedDate = new SimpleDateFormat(datePattern).format((mondayDate).getTime());
+        String expectedDate = DateManipulator.getDateAsString(Long.valueOf(noWeeks),DayOfWeek.MONDAY,"EEE dd MMM yyyy");
         assertEquals(deferral + ", " + expectedDate, DEFERRAL_MAINTENANCE.getLastDeferralTableRow());
     }
 
     @Then("^Row \"([^\"]*)\" from last deferral in the table is \"([^\"]*)\" with a deferral date \"([^\"]*)\" Mondays in the future$")
     public void rowFromLastDeferralInTheTableIs(String rowNo, String deferral, String noWeeks) {
-
-        String datePattern = "E dd MMM yyyy";
-        Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.WEEK_OF_MONTH, Integer.parseInt(noWeeks));
-
-        LocalDate localDate = calendar.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        LocalDate localDateMonday = localDate.with(TemporalAdjusters.next(DayOfWeek.MONDAY));
-        Date mondayDate = Date.from(localDateMonday.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
-
-        String expectedDate = new SimpleDateFormat(datePattern).format((mondayDate).getTime());
+        String expectedDate = DateManipulator.getDateAsString(Long.valueOf(noWeeks),DayOfWeek.MONDAY,"EEE dd MMM yyyy");
 
         int row = Integer.parseInt(rowNo);
 
@@ -2395,6 +2360,7 @@ public class StepDef_jurorpool {
     @When("^I set the \"([^\"]*)\" deferral filter to \"([^\"]*)\"$")
     public void iSetTheDeferralFilterTo(String filter, String input) {
         DEFERRAL_MAINTENANCE.clickShowFilterButton();
+
         DEFERRAL_MAINTENANCE.clickClearFiltersLink();
         switch (filter) {
             case "juror number":
@@ -2419,16 +2385,7 @@ public class StepDef_jurorpool {
         DEFERRAL_MAINTENANCE.clickShowFilterButton();
         DEFERRAL_MAINTENANCE.clickClearFiltersLink();
 
-        String datePattern = "dd/MM/yyyy";
-        Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.WEEK_OF_MONTH, Integer.parseInt(noWeeks));
-
-        LocalDate localDate = calendar.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        LocalDate localDateMonday = localDate.with(TemporalAdjusters.next(DayOfWeek.MONDAY));
-        Date mondayDate = Date.from(localDateMonday.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
-
-        String expectedDate = new SimpleDateFormat(datePattern).format((mondayDate).getTime());
-
+        String expectedDate = DateManipulator.getDateAsString(Long.valueOf(noWeeks),DayOfWeek.MONDAY,"dd/MM/yyyy");
         DEFERRAL_MAINTENANCE.filterByDeferredTo(expectedDate);
         DEFERRAL_MAINTENANCE.clickApplyFiltersButton();
         DEFERRAL_MAINTENANCE.clickShowFilterButton();

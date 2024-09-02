@@ -76,7 +76,7 @@ Feature: JM-4360 - As a jury officer I need to be able to check jurors in for th
     And I press the "Save" button
     And I see "Juror details" on the page
     And I set "Date of birth" to "13/08/1971"
-    And I press the "Save" button
+    And I press the "Review Edit" button
 
     #change dob for police check
     And I click on the "Add or change" link

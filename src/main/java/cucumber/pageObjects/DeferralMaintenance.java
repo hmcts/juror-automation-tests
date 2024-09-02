@@ -37,7 +37,7 @@ public class DeferralMaintenance {
     @FindBy(xpath = "//*[@id=\"main-content\"]/div/div/h1")
     WebElement pageHeading;
 
-    @FindBy(xpath = "//*[@id=\"main-content\"]/div/form/div/h2")
+    @FindBy(xpath = "//*[@id=\"main-content\"]/div/div/h2")
     WebElement courtName;
 
     @FindBy(id = "deferral-maintenance-show-filter")
@@ -61,19 +61,19 @@ public class DeferralMaintenance {
     @FindBy(id="deferral-all")
     WebElement selectAllCheckBox;
 
-    @FindBy(xpath = "//*[@id=\"deferral-maintenance-table-wrapper\"]/div/table/thead/tr/th[2]/button")
+    @FindBy(xpath = "//*[@id=\"deferral-maintenance-table-wrapper\"]/div/table/thead/tr/th[2]/a[@id=\"jurorNumber\"]")
     WebElement jurorNumberTableHeading;
 
-    @FindBy(xpath = "//*[@id=\"deferral-maintenance-table-wrapper\"]/div/table/thead/tr/th[3]/button")
+    @FindBy(xpath = "//*[@id=\"deferral-maintenance-table-wrapper\"]/div/table/thead/tr/th[3]/a[@id=\"firstName\"]")
     WebElement firstNameTableHeading;
 
-    @FindBy(xpath = "//*[@id=\"deferral-maintenance-table-wrapper\"]/div/table/thead/tr/th[4]/button")
+    @FindBy(xpath = "//*[@id=\"deferral-maintenance-table-wrapper\"]/div/table/thead/tr/th[4]/a[@id=\"lastName\"]")
     WebElement lastNameTableHeading;
 
-    @FindBy(xpath = "//*[@id=\"deferral-maintenance-table-wrapper\"]/div/table/thead/tr/th[5]/button")
+    @FindBy(xpath = "//*[@id=\"deferral-maintenance-table-wrapper\"]/div/table/thead/tr/th[5]/a[@id=\"poolNumber\"]")
     WebElement poolNumberTableHeading;
 
-    @FindBy(xpath = "//*[@id=\"deferral-maintenance-table-wrapper\"]/div/table/thead/tr/th[6]/button")
+    @FindBy(xpath = "//*[@id=\"deferral-maintenance-table-wrapper\"]/div/table/thead/tr/th[6]/a[@id=\"deferredTo\"]")
     WebElement deferredToTableHeading;
 
     @FindBy(xpath = "//*[@id=\"poolNumber\"]/div[1]/table")
@@ -103,7 +103,7 @@ public class DeferralMaintenance {
     @FindBy(className = "govuk-pagination__list")
     WebElement paginationLinks;
 
-    @FindBy(xpath = "//button[@data-index='1']")
+    @FindBy(xpath = "//a[@id='jurorNumber']")
     WebElement jurorNumberTableHeader;
 
     public void clickJurorNumberHeader() {

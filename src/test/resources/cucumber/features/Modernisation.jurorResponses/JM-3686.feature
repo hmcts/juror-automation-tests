@@ -36,7 +36,7 @@ Feature: JM-3686
     And I click on the "Fix error in current name" link
     And I set "First name" to "Steven"
     And I set "Last name" to "Test"
-    And I press the "Save" button
+    And I press the "Review Edit" button
     And I press the "Continue" button
 
    #eligibility
