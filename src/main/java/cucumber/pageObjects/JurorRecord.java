@@ -530,9 +530,11 @@ public class JurorRecord {
 
     public void  seePrintedLetterInLettersTable(String jurorNumber) {
         Calendar today = Calendar.getInstance();
-        SimpleDateFormat formatter = new SimpleDateFormat("EEE d MMM yyyy");
+        SimpleDateFormat formatter = new SimpleDateFormat("EEE d MMM yyyy", Locale.ENGLISH);
         String printedDate = formatter.format(today.getTime());
 
+        printedDate = enforceThreeLetterMonth(printedDate);
+        System.out.println("Formatted date: " + printedDate);
         WebElement table = driver.findElement(By.xpath("//*[@id=\"main-content\"]/div[4]/div/table/tbody"));
         List<WebElement> rows = table.findElements(By.tagName("tr"));
 
@@ -544,7 +546,7 @@ public class JurorRecord {
 
             for (int i = 0; i < cells.size(); i++) {
                 WebElement cell = cells.get(i);
-                String cellText = cell.getText();
+                String cellText = cell.getText().trim();
 
                 if (cellText.contains(jurorNumber)) {
                     jurorFound = true;
@@ -555,13 +557,21 @@ public class JurorRecord {
                     dateColumnIndex = i;
                 }
             }
-
             if (jurorFound && dateFound && dateColumnIndex == 8) {
                 System.out.println("Found matching juror and date: " + jurorNumber + ", " + printedDate);
                 return;
             }
         }
         throw new RuntimeException("Matching juror and date not found: " + jurorNumber + ", " + printedDate);
+    }
+    private String enforceThreeLetterMonth(String date) {
+        String[] months3Letters = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+        for (String month : months3Letters) {
+            if (date.contains(month)) {
+                return date;
+            }
+        }
+        return date.replaceAll("Sept", "Sep");
     }
 
 
