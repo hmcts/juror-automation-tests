@@ -4494,7 +4494,7 @@ public class DatabaseTesterNewSchemaDesign {
 			int judgeCode = rs.getInt(1);
 
 			pStmt = conn.prepareStatement("INSERT INTO juror_mod.trial (trial_number,loc_code,description,courtroom,judge,trial_type,trial_start_date,trial_end_date,anonymous,juror_requested,jurors_sent)"
-					+ "VALUES ('" + trialNumber + "','415','John Stark',"+ courtRoomNumber +","+ judgeCode +",'CRI','2024-08-28',NULL,true,NULL,NULL)");
+					+ "VALUES ('" + trialNumber + "','415','John Stark'," + courtRoomNumber + "," + judgeCode + ",'CRI','2024-08-28',NULL,true,NULL,NULL)");
 			pStmt.executeUpdate();
 
 		} catch (SQLException e) {
@@ -5173,7 +5173,7 @@ public class DatabaseTesterNewSchemaDesign {
 			pStmt.close();
 			conn.close();
 		}
-		}
+	}
 
 	public void updateJurorName(String firstName, String lastName, String jurorNumber) throws SQLException {
 
@@ -5192,12 +5192,52 @@ public class DatabaseTesterNewSchemaDesign {
 			System.out.println("Juror " + jurorNumber + " was updated.");
 
 
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.error("Message:" + e.getMessage());
+
+		} finally {
+			conn.commit();
+			pStmt.close();
+			conn.close();
+		}
+	}
+	public void checkExcusalCodePresent(String jurorNumber) throws SQLException {
+		db = new DBConnection();
+		ResultSet rs = null;
+
+		String env_property = System.getProperty("env.database");
+
+		if (env_property != null)
+			conn = db.getConnection(env_property);
+		else
+			conn = db.getConnection("demo");
+
+		try {
+			pStmt = conn.prepareStatement("SELECT excusal_code FROM juror_mod.juror WHERE juror_number = ?");
+			pStmt.setString(1, jurorNumber);
+			rs = pStmt.executeQuery();
+
+			if (rs.next()) {
+				String excusalCode = rs.getString("excusal_code");
+
+				if (excusalCode == null) {
+					log.info("Juror number " + jurorNumber + " has no excusal code. Updating to 'O'.");
+
+					pStmt = conn.prepareStatement("UPDATE juror_mod.juror SET excusal_code = 'O' WHERE juror_number = ?");
+					pStmt.setString(1, jurorNumber);
+					pStmt.executeUpdate();
+				} else {
+					log.info("Juror number " + jurorNumber + " already has an excusal code: " + excusalCode);
+				}
+			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 			log.error("Message:" + e.getMessage());
 
 		} finally {
+			if (rs != null) rs.close();
 			conn.commit();
 			pStmt.close();
 			conn.close();
