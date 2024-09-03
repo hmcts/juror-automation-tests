@@ -507,15 +507,15 @@ public class StepDef_Database {
         DBT.clean_pools_created_yesterday();
     }
 
-    @Given("^PCQs has been enabled$")
-    public void pcqEnabled() throws SQLException {
-        DBT.pcqEnabled();
-    }
+    //@Given("^PCQs has been enabled$")
+    //public void pcqEnabled() throws SQLException {
+    //    DBT.pcqEnabled();
+    //}
 
-    @Given("^PCQs has been disabled$")
-    public void pcqDisabled() throws SQLException {
-        DBT.pcqDisabled();
-    }
+    //@Given("^PCQs has been disabled$")
+    //public void pcqDisabled() throws SQLException {
+    //    DBT.pcqDisabled();
+    //}
 
     @Given("^all \"([^\"]*)\" voters have been reset to unselected state$")
     public void resetVoters(String courtCode) throws SQLException {
