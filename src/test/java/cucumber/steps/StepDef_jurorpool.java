@@ -2040,7 +2040,7 @@ public class StepDef_jurorpool {
             if (poolRequestType.equals("High"))
                 POOL_REQUESTS_PAGE.selectPoolType(PoolRequests.PoolType.HIGH);
         }
-        NAV.set_value_to("Number of jurors", "150");
+        NAV.set_value_to("Number of jurors", "10");
         NAV.press_buttonByName("Continue");
         poolNumber.set(CHECK_POOL_REQUEST_PAGE.getCourtNewPoolRequestNumber());
         poolNumbers.get().add(CHECK_POOL_REQUEST_PAGE.getCourtNewPoolRequestNumber());
@@ -2073,7 +2073,7 @@ public class StepDef_jurorpool {
             if (poolRequestType.equalsIgnoreCase("High"))
                 POOL_REQUESTS_PAGE.selectPoolType(PoolRequests.PoolType.HIGH);
         }
-        NAV.set_value_to("Number of jurors", "150");
+        NAV.set_value_to("Number of jurors", "10");
         NAV.press_buttonByName("Continue");
         poolNumber.set(CHECK_POOL_REQUEST_PAGE.getCourtNewPoolRequestNumber());
 
@@ -2118,10 +2118,10 @@ public class StepDef_jurorpool {
         Integer newPoolsCreated = 0;
         do {
             createNewPoolRequestWeeksInFuture(courtType, court, newPoolsCreated + 3);
-            //String poolNo = POOL_REQUESTS_PAGE.getNewPoolNumberOnSummary();
+            String poolNo = POOL_REQUESTS_PAGE.getNewPoolNumberOnSummary();
 
             ArrayList<String> pools = poolNumbers.get();
-            //pools.add(poolNo);
+            pools.add(poolNo);
 
             NAV.click_link_by_text("Search");
             JUROR_RECORD_SEARCH.searchForRecordFromPoolSearch(poolNumber.get());

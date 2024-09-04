@@ -4012,6 +4012,9 @@ public class DatabaseTesterNewSchemaDesign {
 			pStmt = conn.prepareStatement("DELETE FROM JUROR_MOD.JUROR_HISTORY WHERE juror_number = '" + partNo + "'");
 			pStmt.execute();
 
+			pStmt = conn.prepareStatement("DELETE FROM JUROR_MOD.juror_response_aud WHERE juror_number = '" + partNo + "'");
+			pStmt.execute();
+
 			pStmt = conn.prepareStatement("DELETE FROM JUROR_MOD.JUROR_RESPONSE WHERE juror_number = '" + partNo + "'");
 			pStmt.execute();
 
@@ -4116,6 +4119,9 @@ public class DatabaseTesterNewSchemaDesign {
 
 			pStmt = conn.prepareStatement("INSERT INTO JUROR_mod.JUROR_RESPONSE (JUROR_NUMBER,DATE_RECEIVED,TITLE,FIRST_NAME,LAST_NAME,ADDRESS_LINE_1,ADDRESS_LINE_2,ADDRESS_LINE_3,ADDRESS_LINE_4,ADDRESS_LINE_5,POSTCODE,PROCESSING_STATUS,DATE_OF_BIRTH,PHONE_NUMBER,ALT_PHONE_NUMBER,EMAIL,RESIDENCY,RESIDENCY_DETAIL,MENTAL_HEALTH_ACT,MENTAL_HEALTH_CAPACITY,MENTAL_HEALTH_ACT_DETAILS,BAIL,BAIL_DETAILS,CONVICTIONS,CONVICTIONS_DETAILS,DEFERRAL,DEFERRAL_REASON,DEFERRAL_DATE,REASONABLE_ADJUSTMENTS_ARRANGEMENTS,EXCUSAL,EXCUSAL_REASON,PROCESSING_COMPLETE,SIGNED,version,THIRDPARTY_FNAME,THIRDPARTY_LNAME,RELATIONSHIP,MAIN_PHONE,OTHER_PHONE,EMAIL_ADDRESS,THIRDPARTY_REASON,THIRDPARTY_OTHER_REASON,JUROR_PHONE_DETAILS,JUROR_EMAIL_DETAILS,STAFF_LOGIN,STAFF_ASSIGNMENT_DATE,URGENT,COMPLETED_AT,WELSH,REPLY_TYPE)"
 					+ "VALUES ('" + newJurorRecordNumber + "',CURRENT_DATE-1,null,'FNAMEFIVESIXFIVE','LNAMEFIVESIXFIVE','565 STREET NAME','ANYTOWN',null,'ldsadas',null,'CH1 2AN','TODO',CURRENT_DATE-10000,null,null,null,'Y',null,'N','N',NULL,'N',null,'N',null,null,null,null,null,null,null,'N','N','0',null,null,null,null,null,null,null,null,null,null,'MODTESTBUREAU',null,'N',null,'N','Digital')");
+			pStmt.execute();
+
+			pStmt = conn.prepareStatement("UPDATE JUROR_mod.JUROR set response_entered = true where juror_number='" + newJurorRecordNumber + "'");
 			pStmt.execute();
 
 		} catch (SQLException e) {
@@ -4494,7 +4500,7 @@ public class DatabaseTesterNewSchemaDesign {
 			int judgeCode = rs.getInt(1);
 
 			pStmt = conn.prepareStatement("INSERT INTO juror_mod.trial (trial_number,loc_code,description,courtroom,judge,trial_type,trial_start_date,trial_end_date,anonymous,juror_requested,jurors_sent)"
-					+ "VALUES ('" + trialNumber + "','415','John Stark',"+ courtRoomNumber +","+ judgeCode +",'CRI','2024-08-28',NULL,true,NULL,NULL)");
+					+ "VALUES ('" + trialNumber + "','415','John Stark'," + courtRoomNumber + "," + judgeCode + ",'CRI','2024-08-28',NULL,true,NULL,NULL)");
 			pStmt.executeUpdate();
 
 		} catch (SQLException e) {
@@ -5173,7 +5179,7 @@ public class DatabaseTesterNewSchemaDesign {
 			pStmt.close();
 			conn.close();
 		}
-		}
+	}
 
 	public void updateJurorName(String firstName, String lastName, String jurorNumber) throws SQLException {
 
@@ -5192,12 +5198,52 @@ public class DatabaseTesterNewSchemaDesign {
 			System.out.println("Juror " + jurorNumber + " was updated.");
 
 
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.error("Message:" + e.getMessage());
+
+		} finally {
+			conn.commit();
+			pStmt.close();
+			conn.close();
+		}
+	}
+	public void checkExcusalCodePresent(String jurorNumber) throws SQLException {
+		db = new DBConnection();
+		ResultSet rs = null;
+
+		String env_property = System.getProperty("env.database");
+
+		if (env_property != null)
+			conn = db.getConnection(env_property);
+		else
+			conn = db.getConnection("demo");
+
+		try {
+			pStmt = conn.prepareStatement("SELECT excusal_code FROM juror_mod.juror WHERE juror_number = ?");
+			pStmt.setString(1, jurorNumber);
+			rs = pStmt.executeQuery();
+
+			if (rs.next()) {
+				String excusalCode = rs.getString("excusal_code");
+
+				if (excusalCode == null) {
+					log.info("Juror number " + jurorNumber + " has no excusal code. Updating to 'O'.");
+
+					pStmt = conn.prepareStatement("UPDATE juror_mod.juror SET excusal_code = 'O' WHERE juror_number = ?");
+					pStmt.setString(1, jurorNumber);
+					pStmt.executeUpdate();
+				} else {
+					log.info("Juror number " + jurorNumber + " already has an excusal code: " + excusalCode);
+				}
+			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 			log.error("Message:" + e.getMessage());
 
 		} finally {
+			if (rs != null) rs.close();
 			conn.commit();
 			pStmt.close();
 			conn.close();

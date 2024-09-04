@@ -3,7 +3,7 @@ Feature: JM-5413-5415 - Resend excusal granted letter for Bureau and Jury users
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline:As a bureau officer test a Excused juror can resend a granted letter by searching via juror number
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     When a bureau owned pool is created with jurors
       | court | juror_number  | pool_number     | att_date_weeks_in_future   | owner |
@@ -26,6 +26,8 @@ Feature: JM-5413-5415 - Resend excusal granted letter for Bureau and Jury users
 
     And the user searches for juror record "<juror_number>" from the global search bar
     And I see the juror status has updated to "Excused"
+
+    And I ensure juror "<juror_number>" has an excusal code set
 
     And I press the "Apps" button
     When I click on the "Documents" link
@@ -80,6 +82,8 @@ Feature: JM-5413-5415 - Resend excusal granted letter for Bureau and Jury users
     And the user searches for juror record "<juror_number>" from the global search bar
     And I see the juror status has updated to "Excused"
 
+    And I ensure juror "<juror_number>" has an excusal code set
+
      #delete a pending document
     And I press the "Apps" button
     And I click on the "Documents" link
@@ -123,6 +127,7 @@ Feature: JM-5413-5415 - Resend excusal granted letter for Bureau and Jury users
     And I press the "Continue" button
     And the user searches for juror record "<juror_number>" from the global search bar
     And I see the juror status has updated to "Excused"
+    And I ensure juror "<juror_number>" has an excusal code set
 
     #record response for second juror
     And the user searches for juror record "<juror_number_2>" from the global search bar
@@ -139,6 +144,7 @@ Feature: JM-5413-5415 - Resend excusal granted letter for Bureau and Jury users
     And I press the "Continue" button
     And the user searches for juror record "<juror_number_2>" from the global search bar
     And I see the juror status has updated to "Excused"
+    And I ensure juror "<juror_number_2>" has an excusal code set
 
      #record response for third juror
     And the user searches for juror record "<juror_number_3>" from the global search bar
@@ -155,6 +161,7 @@ Feature: JM-5413-5415 - Resend excusal granted letter for Bureau and Jury users
     And I press the "Continue" button
     And the user searches for juror record "<juror_number_3>" from the global search bar
     And I see the juror status has updated to "Excused"
+    And I ensure juror "<juror_number_3>" has an excusal code set
 
   #search via pool  number and resend letter for all jurors
     When I press the "Apps" button
@@ -218,6 +225,7 @@ Feature: JM-5413-5415 - Resend excusal granted letter for Bureau and Jury users
     And I press the "Continue" button
     And the user searches for juror record "<juror_number>" from the global search bar
     And I see the juror status has updated to "Excused"
+    And I ensure juror "<juror_number>" has an excusal code set
 
     #record response for second juror
     And the user searches for juror record "<juror_number_1>" from the global search bar
@@ -234,6 +242,7 @@ Feature: JM-5413-5415 - Resend excusal granted letter for Bureau and Jury users
     And I press the "Continue" button
     And the user searches for juror record "<juror_number_1>" from the global search bar
     And I see the juror status has updated to "Excused"
+    And I ensure juror "<juror_number_1>" has an excusal code set
 
 
   #search via pool  number and resend letter for first excused juror
@@ -307,6 +316,7 @@ Feature: JM-5413-5415 - Resend excusal granted letter for Bureau and Jury users
 
     And the user searches for juror record "<juror_number>" from the global search bar
     And I see the juror status has updated to "Excused"
+    And I ensure juror "<juror_number>" has an excusal code set
 
    #navigate to documents and verify the printing message
     And I press the "Apps" button

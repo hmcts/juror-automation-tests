@@ -635,8 +635,8 @@ public class StepDef_DatabaseNewSchema {
         DBTNSD.updateBureauTransferDate(jurorNumber);
     }
 
-    @Given("^I update daily expense amounts entered are more than court’s suggested daily limits$")
-    public void setDailyExpensePubicTrasportAndTaxi() throws SQLException {
+    @Given("^I update daily expense amounts entered are more than courts suggested daily limits$")
+    public void setDailyExpensePubicTransportAndTaxi() throws SQLException {
         DBTNSD.setExpenseDailyTransportLimit();
     }
 
@@ -680,5 +680,9 @@ public class StepDef_DatabaseNewSchema {
     @Given("^I update juror \"([^\"]*)\" to have a first name of \"([^\"]*)\" and a last name of \"([^\"]*)\"$")
     public void updateJurorName(String jurorNumber, String firstName, String lastName) throws SQLException {
         DBTNSD.updateJurorName(firstName,lastName,jurorNumber );
+    }
+    @Given("^I ensure juror \"([^\"]*)\" has an excusal code set$")
+    public void checkExcusalCodePresent(String jurorNumber) throws SQLException {
+        DBTNSD.checkExcusalCodePresent(jurorNumber);
     }
 }
