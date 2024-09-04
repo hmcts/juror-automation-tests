@@ -5,9 +5,15 @@ import cucumber.pageObjects.*;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.List;
 import java.util.Map;
 
@@ -492,6 +498,14 @@ public class StepDef_response {
 
 			NAV.set_valueTo("Main phone", "01234561234");
 			NAV.press_buttonByName("Continue");
+
+			WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(3));
+			try {
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("emailAddress")));
+				System.out.println("Email field located and ready for input");
+			} catch (TimeoutException e) {
+				System.out.println("Email field not located and ready for input");
+			}
 
 			NAV.set_valueTo("Enter your email address", email);
 			NAV.set_valueTo("Enter your email address again", email);
