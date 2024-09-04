@@ -121,7 +121,7 @@ Feature: JM-4358
 
   @JurorTransformation @NewSchemaConverted
   Scenario Outline: Reassign a juror Bureau User - warning cannot be reassigned when juror will be over 75
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     #And new pool requests are deleted new schema
     And the new pool for court "415" is deleted new schema
@@ -188,5 +188,5 @@ Feature: JM-4358
     Then I verify reassign error message with the text "You can only move jurors with a responded or summoned status. The following jurors have a different status and cannot be moved."
 
     Examples:
-      |pool_number   | user          |
-      |415222222     | MODTESTBUREAU |
+      | pool_number   | user          |
+      | 415222222     | MODTESTBUREAU |

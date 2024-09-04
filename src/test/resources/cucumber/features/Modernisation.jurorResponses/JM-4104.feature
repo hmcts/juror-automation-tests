@@ -151,7 +151,7 @@ Feature: JM-4104 - As a Bureau officer I need to be able to see the pool history
 
    @JurorTransformation @NewSchemaConverted
    Scenario: Test to check Bureau officer can see Pool history - times/dates are correct
-   Given I am on "Bureau" "test"
+   Given I am on "Bureau" "ithc"
    And I log in as "MODTESTBUREAU"
 
    #create pool request
@@ -178,7 +178,7 @@ Feature: JM-4104 - As a Bureau officer I need to be able to see the pool history
    And I make a note of the time
    And I click on the "History" link
    And I see the title "Change Pool Request Details" in position "1" of the history
-     And I see the description "Jurors Requested changed from 150 to 35" in position "1" of the history
+   And I see the description "Jurors Requested changed from 150 to 35" in position "1" of the history
    And I see the correct date and time in position "1" of the history
 
    And I see the title "Number of Summons Issued" in position "2" of the history

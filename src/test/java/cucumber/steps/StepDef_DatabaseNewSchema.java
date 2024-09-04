@@ -635,8 +635,8 @@ public class StepDef_DatabaseNewSchema {
         DBTNSD.updateBureauTransferDate(jurorNumber);
     }
 
-    @Given("^I update daily expense amounts entered are more than court’s suggested daily limits$")
-    public void setDailyExpensePubicTrasportAndTaxi() throws SQLException {
+    @Given("^I update daily expense amounts entered are more than courts suggested daily limits$")
+    public void setDailyExpensePubicTransportAndTaxi() throws SQLException {
         DBTNSD.setExpenseDailyTransportLimit();
     }
 
