@@ -28,21 +28,21 @@ Feature: JM-4254 Record proof of name change
     #special characters
     And I set "First name" to "FnameTester&#@!?%"
     And I set "Last name" to "FnameTester&#@!?%"
-    And I press the "Save" button
+    And I press the "Review Edit" button
     And I click on the "Cancel" link
     And I click on the "Add or change" link
     And I click on the "Enter a new name" link
     And I see "Enter a new name" on the page
     And I see "This new name will only become their legal name on their juror record after:" on the page
     And I see "When you enter a new name here, it will overwrite any previous pending name." on the page
-    And I press the "Save" button
+    And I press the "Review Edit" button
 
     And I see error "Please provide the first name"
     And I see error "Please provide the last name"
 
     And I set "First name" to "FnameTester"
     And I set "Last name" to "LnameTesting"
-    And I press the "Save" button
+    And I press the "Review Edit" button
 
     And I see "Pending approval" on the page
     And I enter a date of birth that will make the juror between 18 and 75
