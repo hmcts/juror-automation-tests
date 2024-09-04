@@ -504,7 +504,7 @@ public class StepDef_response {
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("emailAddress")));
 				System.out.println("Email field located and ready for input");
 			} catch (TimeoutException e) {
-				System.out.println("Email field not located and ready for input");
+				System.out.println("Email field not located and not ready for input");
 			}
 
 			NAV.set_valueTo("Enter your email address", email);
