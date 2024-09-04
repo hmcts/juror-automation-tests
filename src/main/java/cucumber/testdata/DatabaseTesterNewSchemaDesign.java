@@ -3354,14 +3354,14 @@ public class DatabaseTesterNewSchemaDesign {
 			pcq_return_value = ReadProperties.main("pcqreturnurl_demo");
 		}
 		try {
-			pStmt = conn.prepareStatement("update juror_digital.app_settings set value='TRUE' where setting = 'PCQ_SERVICE_ENABLED'");
+			pStmt = conn.prepareStatement("update juror_mod.app_setting set value='TRUE' where setting = 'PCQ_SERVICE_ENABLED'");
 //              pStmt = conn.prepareStatement("Insert into JUROR_DIGITAL.APP_SETTINGS (SETTING,VALUE) values ('PCQ_SERVICE_RETURN_URL','http://172.117.3.70:3000/steps/confirm-information')");
 			pStmt.executeQuery();
 
-			pStmt = conn.prepareStatement("update juror_digital.app_settings set value='https://pcq.aat.platform.hmcts.net' where setting = 'PCQ_SERVICE_URL'");
+			pStmt = conn.prepareStatement("update juror_mod.app_setting set value='https://pcq.aat.platform.hmcts.net' where setting = 'PCQ_SERVICE_URL'");
 			pStmt.executeQuery();
 
-			pStmt = conn.prepareStatement("update juror_digital.app_settings set value=? where setting = 'PCQ_SERVICE_RETURN_URL'");
+			pStmt = conn.prepareStatement("update juror_mod.app_setting set value=? where setting = 'PCQ_SERVICE_RETURN_URL'");
 			pStmt.setString(1, pcq_return_value);
 			pStmt.executeQuery();
 
@@ -3377,7 +3377,7 @@ public class DatabaseTesterNewSchemaDesign {
 		}
 	}
 
-	public void pcqDisabled() throws SQLException {
+	public void pcqDisabledNSD() throws SQLException {
 		db = new DBConnection();
 		String env_property = System.getProperty("env.database");
 		if (env_property != null)
@@ -3385,7 +3385,7 @@ public class DatabaseTesterNewSchemaDesign {
 		else
 			conn = db.getConnection("demo");
 		try {
-			pStmt = conn.prepareStatement("update juror_digital.app_settings set value='FALSE' where setting = 'PCQ_SERVICE_ENABLED'");
+			pStmt = conn.prepareStatement("update juror_mod.app_setting set value='FALSE' where setting = 'PCQ_SERVICE_ENABLED'");
 			pStmt.executeQuery();
 			log.info("Updated app_settings to disable PCQ");
 		} catch (SQLException e) {
