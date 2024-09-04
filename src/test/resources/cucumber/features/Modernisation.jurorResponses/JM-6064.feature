@@ -3,16 +3,17 @@ Feature:As a jury officer, I want to edit a juror's draft daily expenses
   @JurorTransformation @NewSchemaConverted
   Scenario Outline: Edit draft expenses for full day
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
+
     When a bureau owned pool is created with jurors
       | court |juror_number       | pool_number      | att_date_weeks_in_future | owner |
-      | 415   |<juror_number>         | <pool_number>     | 5                         | 400  |
+      | 415   |<juror_number>     | <pool_number>    | 3                        | 400   |
 
     And a new pool is inserted for where record has transferred to the court new schema
-      |part_no               | pool_no           | owner |
-      |<juror_number>       | <pool_number>      | 415   |
+      |part_no          | pool_no         | owner |
+      |<juror_number>   | <pool_number>   | 415   |
 
-    And I Confirm all the data in the record attendance table is cleared
+#    And I Confirm all the data in the record attendance table is cleared
     And I log in as "<user>"
 
     #set juror as responded
@@ -116,19 +117,19 @@ Feature:As a jury officer, I want to edit a juror's draft daily expenses
 
     Examples:
       |user         |juror_number  |  pool_number    |
-      |MODTESTCOURT |041520020     |  415300201        |
+      |MODTESTCOURT |041520020     |  415300201      |
 
   @JurorTransformation @NewSchemaConverted
   Scenario Outline: Edit draft expenses for half day and verify error message as Juror’s financial loss is over the daily limit
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     When a bureau owned pool is created with jurors
-      | court |juror_number       | pool_number      | att_date_weeks_in_future | owner |
-      | 415   |<juror_number>         | <pool_number>     | 5                         | 400  |
+      | court |juror_number      | pool_number      | att_date_weeks_in_future | owner  |
+      | 415   |<juror_number>    | <pool_number>    | 5                        | 400    |
 
     And a new pool is inserted for where record has transferred to the court new schema
-      |part_no               | pool_no           | owner |
-      |<juror_number>       | <pool_number>      | 415   |
+      |part_no         | pool_no           | owner |
+      |<juror_number>  | <pool_number>     | 415   |
 
     And I Confirm all the data in the record attendance table is cleared
     And I log in as "<user>"
@@ -136,7 +137,7 @@ Feature:As a jury officer, I want to edit a juror's draft daily expenses
     #set juror as responded
     And I update juror "<juror_number>" to have a status of responded in order to record attendance
 
-     #check in juror
+    #check in juror
     And I press the "Apps" button
     And I click on the "Juror management" link
     And I click on the "Record attendance" link
@@ -181,7 +182,7 @@ Feature:As a jury officer, I want to edit a juror's draft daily expenses
     And I click on "View expenses" in the same row as "<juror_number>"
     And I see the unpaid expenses table
 
-        #edit draft expenses
+    #edit draft expenses
     And I click on my draft expense link with todays date
     And I set the radio button to "Half day"
     And I see "Daily expenses" on the page
@@ -203,32 +204,33 @@ Feature:As a jury officer, I want to edit a juror's draft daily expenses
     And I see "The amounts you entered will be automatically recalculated to limit the juror’s loss to £37.45." on the page
     And I see the following Half day daily day limit details on the loss over limit form
       | Juror's loss                | £45                      |
-      | Daily limit (Half day)      | £37.45                      |
+      | Daily limit (Half day)      | £37.45                   |
 
     Examples:
       |user         |juror_number  |  pool_number    |
-      |MODTESTCOURT |041520020     |  415300201        |
+      |MODTESTCOURT |041520020     |  415300201      |
 
 
   @JurorTransformation @NewSchemaConverted
   Scenario Outline: Edit draft expenses for half day and verify error message as Amounts entered are more than court’s suggested daily limits
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     When a bureau owned pool is created with jurors
-      | court |juror_number       | pool_number      | att_date_weeks_in_future | owner |
-      | 415   |<juror_number>         | <pool_number>     | 5                         | 400  |
+      | court |juror_number      | pool_number      | att_date_weeks_in_future | owner |
+      | 415   |<juror_number>    | <pool_number>    | 5                        | 400   |
 
     And a new pool is inserted for where record has transferred to the court new schema
-      |part_no               | pool_no           | owner |
-      |<juror_number>       | <pool_number>      | 415   |
+      |part_no              | pool_no           | owner |
+      |<juror_number>       | <pool_number>     | 415   |
 
     And I Confirm all the data in the record attendance table is cleared
     And I log in as "<user>"
 
     #set juror as responded
     And I update juror "<juror_number>" to have a status of responded in order to record attendance
-    And I update daily expense amounts entered are more than court’s suggested daily limits
-     #check in juror
+    And I update daily expense amounts entered are more than courts suggested daily limits
+
+    #check in juror
     And I press the "Apps" button
     And I click on the "Juror management" link
     And I click on the "Record attendance" link
@@ -320,4 +322,4 @@ Feature:As a jury officer, I want to edit a juror's draft daily expenses
 
     Examples:
       |user         |juror_number  |  pool_number    |
-      |MODTESTCOURT |041520020     |  415300201        |
+      |MODTESTCOURT |041520020     |  415300201      |

@@ -3,9 +3,7 @@ Feature: JM-4365-As a jury officer I need to be able to check jurors out for the
   @JurorTransformation @NewSchemaConverted
   Scenario Outline: Happy path to Check jurors out for their attendance on the day
 
-    #return to single thread when fixed, not multi
-
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     When a bureau owned pool is created with jurors
       | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
       | 415   |<juror_number_1>     | <pool_number>     | 5				            | 400	|
@@ -16,14 +14,15 @@ Feature: JM-4365-As a jury officer I need to be able to check jurors out for the
     Then a new pool is inserted for where record has transferred to the court new schema
       |part_no              | pool_no           | owner |
       |<juror_number_1>     | <pool_number>     | 415   |
-      |<juror_number_2>     | <pool_number>      | 415   |
-      |<juror_number_3>     | <pool_number>      | 415   |
-      |<juror_number_4>     | <pool_number>      | 415   |
+      |<juror_number_2>     | <pool_number>     | 415   |
+      |<juror_number_3>     | <pool_number>     | 415   |
+      |<juror_number_4>     | <pool_number>     | 415   |
 
     And I Confirm all the data in the record attendance table is cleared
     And a new trial is inserted with the trial number "<trial_number>"
     And I log in as "<user>"
-     #set juror as responded
+
+    #set juror as responded
     And I update juror "<juror_number_1>" to have a status of responded in order to record attendance
     And I update juror "<juror_number_2>" to have a status of responded in order to record attendance
     And I update juror "<juror_number_3>" to have a status of responded in order to record attendance
@@ -113,8 +112,8 @@ Feature: JM-4365-As a jury officer I need to be able to check jurors out for the
     Then I do not see "<juror_number_1>" on the page
 
     Examples:
-      |user			|juror_number_1 | juror_number_2  |   juror_number_3 |juror_number_4 |    pool_number   | trial_number |
-      |MODTESTCOURT |041530007      | 041530008        |041530009       |  041530010    | 415300301        | T202495832   |
+      | user		  |juror_number_1 | juror_number_2  | juror_number_3 | juror_number_4 | pool_number   | trial_number |
+      | MODTESTCOURT  |041530007      | 041530008       | 041530009      | 041530010      | 415300301     | T202495832   |
 
 
   @JurorTransformation @NewSchemaConverted
