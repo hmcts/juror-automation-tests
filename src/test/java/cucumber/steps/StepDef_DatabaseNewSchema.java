@@ -681,4 +681,8 @@ public class StepDef_DatabaseNewSchema {
     public void updateJurorName(String jurorNumber, String firstName, String lastName) throws SQLException {
         DBTNSD.updateJurorName(firstName,lastName,jurorNumber );
     }
+    @Given("^I ensure juror \"([^\"]*)\" has an excusal code set$")
+    public void checkExcusalCodePresent(String jurorNumber) throws SQLException {
+        DBTNSD.checkExcusalCodePresent(jurorNumber);
+    }
 }
