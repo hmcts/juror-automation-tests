@@ -3,7 +3,7 @@ Feature: JM-3546 and JM-3466 Bureau User Marks Digital Response as Awaiting Info
   @JurorTransformation @NewSchemaConverted
   Scenario Outline: Bureau User Marks Digital Response as Awaiting Info - happy path
 
-    Given I am on "Public" "test"
+    Given I am on "Public" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
@@ -15,7 +15,7 @@ Feature: JM-3546 and JM-3466 Bureau User Marks Digital Response as Awaiting Info
       |<juror_number> |<pool_number>  |<last_name>	|<postcode>	|a@a.com|
 
     #log on
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     And I log in as "MODTESTBUREAU"
 
     #search for response

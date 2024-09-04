@@ -3,13 +3,13 @@ Feature: JM-6110 - As a jury officer, I want to view a consolidated list of expe
   @JurorTransformation @NewSchemaConverted
   Scenario Outline: View list of expenses pending approval as a jury officer
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     When a bureau owned pool is created with jurors
-      | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
-      | 415   |<juror_number>     | <pool_number>       | 5				            | 400	|
+      | court |juror_number  	  | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   |<juror_number>     | <pool_number>   | 5				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no              | pool_no           | owner |
+      |part_no            | pool_no           | owner |
       |<juror_number>     | <pool_number>     | 415   |
 
     And I Confirm all the data in the record attendance table is cleared
@@ -29,7 +29,7 @@ Feature: JM-6110 - As a jury officer, I want to view a consolidated list of expe
     And I set the radio button to "am"
     And I input juror "<juror_number>" to be checked in
     And I press the "Check in juror" button
-
+    Then I see "<juror_number>" on the page
 
     And the user searches for juror record "<juror_number>" from the global search bar
     And I click on the "Expenses" link
@@ -90,7 +90,6 @@ Feature: JM-6110 - As a jury officer, I want to view a consolidated list of expe
       | Food and drink             | £12.17                    |
       | Smartcard                  | (£0.00)                   |
       | Total due                  | £77.12                    |
-
 
     Examples:
       |user			|juror_number |   pool_number   |
