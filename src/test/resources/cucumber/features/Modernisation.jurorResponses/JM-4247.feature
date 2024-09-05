@@ -3,7 +3,7 @@ Feature: JM-4247 Edit Juror Record as Court User
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: The system shall allow the Jury officer to edit a juror record for a juror in their control
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
@@ -49,7 +49,7 @@ Feature: JM-4247 Edit Juror Record as Court User
     And I click on the "Change" link
     And I set "Address line 1" to "530 Test Name"
     And I set "Town or city" to "LONDON"
-    And I press the "Save" button
+    And I press the "Review Edit" button
 
     And I enter a date of birth that will make the juror between 18 and 75
     And I set "Email (optional)" to "test@mail.com"
