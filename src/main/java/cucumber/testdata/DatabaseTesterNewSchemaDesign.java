@@ -2759,7 +2759,7 @@ public class DatabaseTesterNewSchemaDesign {
 
 	}
 
-	public void cleanNewActivePools(String poolNumbersIN) throws SQLException {
+	public void cleanNewActivePoolsNSD(String poolNumbersIN) throws SQLException {
 		db = new DBConnection();
 		String env_property = System.getProperty("env.database");
 		if (env_property != null)
@@ -2767,15 +2767,15 @@ public class DatabaseTesterNewSchemaDesign {
 		else
 			conn = db.getConnection("demo");
 		try {
-			pStmt = conn.prepareStatement("DELETE FROM JUROR.POOL WHERE POOL_NO IN " + poolNumbersIN);
+			pStmt = conn.prepareStatement("DELETE FROM JUROR_MOD.JUROR_POOL WHERE POOL_NUMBER IN " + poolNumbersIN);
 			pStmt.executeQuery();
 			conn.commit();
-			log.info("DELETED FROM JUROR.POOL WHERE POOL_NO IN " + poolNumbersIN);
+			log.info("DELETED FROM JUROR_MOD.JUROR_POOL WHERE POOL_NUMBER IN " + poolNumbersIN);
 
-			pStmt = conn.prepareStatement("DELETE FROM JUROR.UNIQUE_POOL WHERE POOL_NO IN " + poolNumbersIN);
+			pStmt = conn.prepareStatement("DELETE FROM JUROR_MOD.POOL WHERE POOL_NO IN " + poolNumbersIN);
 			pStmt.executeQuery();
 			conn.commit();
-			log.info("DELETED FROM JUROR.UNIQUE_POOL WHERE POOL_NO IN " + poolNumbersIN);
+			log.info("DELETED FROM JUROR_MOD.POOL WHERE POOL_NO IN " + poolNumbersIN);
 
 		} catch (SQLException e) {
 			e.printStackTrace();
