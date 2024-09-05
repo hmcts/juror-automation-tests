@@ -2095,14 +2095,15 @@ public class StepDef_jurorpool {
         Integer newPoolsCreated = 0;
         do {
             createNewPoolRequestWeeksInFuture(courtType, court, newPoolsCreated+2);
-            //String poolNo = POOL_REQUESTS_PAGE.getNewPoolNumberOnSummary();
+//            String poolNo = POOL_REQUESTS_PAGE.getNewPoolNumberOnSummary();
 
             ArrayList<String> pools = poolNumbers.get();
-            //pools.add(poolNo);
+//            pools.add(poolNo);
 
             NAV.click_link_by_text("Search");
             JUROR_RECORD_SEARCH.searchForRecordFromPoolSearch(poolNumber.get());
 //            POOL_REQUESTS_PAGE.clickFirstRequestLink();
+            NAV.waitForPageLoad();
             NAV.press_buttonByName("Summon jurors");
             NAV.set_value_to("Citizens to summon", "1");
             NAV.press_buttonByName("Create pool and summon citizens");
@@ -2118,13 +2119,14 @@ public class StepDef_jurorpool {
         Integer newPoolsCreated = 0;
         do {
             createNewPoolRequestWeeksInFuture(courtType, court, newPoolsCreated + 3);
-            String poolNo = POOL_REQUESTS_PAGE.getNewPoolNumberOnSummary();
+//            String poolNo = POOL_REQUESTS_PAGE.getNewPoolNumberOnSummary();
 
             ArrayList<String> pools = poolNumbers.get();
-            pools.add(poolNo);
+//            pools.add(poolNo);
 
             NAV.click_link_by_text("Search");
             JUROR_RECORD_SEARCH.searchForRecordFromPoolSearch(poolNumber.get());
+            NAV.waitForPageLoad();
             NAV.press_buttonByName("Summon jurors");
             NAV.set_value_to("Citizens to summon", jurorsToSummon);
             NAV.press_buttonByName("Create pool and summon citizens");
@@ -2149,6 +2151,7 @@ public class StepDef_jurorpool {
 
     @Then("^I can see the newly created pool$")
     public void seeNewPoolRequest() throws Throwable {
+
         String mainText = JUROR_RECORD_SEARCH.getMainBodyText();
         By element = By.className("govuk-pagination__next");
         List<WebElement> nextNavButton = webDriver.findElements(element);
