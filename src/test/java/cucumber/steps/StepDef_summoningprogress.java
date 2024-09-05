@@ -1,13 +1,12 @@
 package cucumber.steps;
 
-import io.cucumber.java.en.*;
-import io.cucumber.java.PendingException;
-import io.cucumber.datatable.DataTable;
-import io.cucumber.java.Before;
-import io.cucumber.java.After;
-import io.cucumber.java.Scenario;
 import cucumber.pageObjects.*;
 import cucumber.testdata.DatabaseTester;
+import cucumber.testdata.DatabaseTesterNewSchemaDesign;
+import io.cucumber.datatable.DataTable;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
@@ -16,14 +15,16 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class StepDef_summoningprogress {
     private final WebDriver webDriver;
     private final PoolSummoningProgress POOL_SUMMONING_PROGRESS;
     private final DatabaseTester DBT;
+
+    private final DatabaseTesterNewSchemaDesign DBTNSD;
     private final aSamplePO SPO;
     private final Login LGN;
     private final NavigationShared NAV;
@@ -38,7 +39,7 @@ public class StepDef_summoningprogress {
     private final ViewSummonsReply VIEW_SUMMONS_REPLY;
     private final Header HEADER_PAGE;
 
-    public StepDef_summoningprogress(PoolSummoningProgress poolSummoningProgress, SharedDriver webDriver, DatabaseTester dbt){
+    public StepDef_summoningprogress(PoolSummoningProgress poolSummoningProgress, SharedDriver webDriver, DatabaseTester dbt, DatabaseTesterNewSchemaDesign dbtnsd){
         POOL_SUMMONING_PROGRESS = poolSummoningProgress;
         this.webDriver = webDriver;
         DBT = dbt;
@@ -55,6 +56,7 @@ public class StepDef_summoningprogress {
         POOL_SEARCH = PageFactory.initElements(webDriver, PoolSearch.class);
         VIEW_SUMMONS_REPLY = PageFactory.initElements(webDriver, ViewSummonsReply.class);
         HEADER_PAGE = PageFactory.initElements(webDriver, Header.class);
+        DBTNSD = dbtnsd;
     }
     @Then("^I navigate to the pool summoning progress screen$")
     public void iNavigateToSummoningProgress(){
@@ -97,11 +99,11 @@ public class StepDef_summoningprogress {
         POOL_SUMMONING_PROGRESS.clickSearch();
     }
 
-    @Then("^I clear down the data for all the pools I created for this test$")
+    @Then("^I clear down the data for all the pools I created for this test new schema$")
     public void iClearDownThePoolsICreated() throws SQLException {
         List<String> poolList = StepDef_jurorpool.poolNumbers.get().stream().map(e -> "'" + e + "'").toList();
         String poolsCreated = poolList.toString().replace("[","(").replace("]",")");
-        DBT.cleanNewActivePools(poolsCreated);
+        DBTNSD.cleanNewActivePoolsNSD(poolsCreated);
         ArrayList<String> pools = StepDef_jurorpool.poolNumbers.get();
         pools.clear();
     }
@@ -120,6 +122,8 @@ public class StepDef_summoningprogress {
     @Then("^I see the pool I created in a row on the search results with the values$")
     public void iSeeThePoolCreatedInTheSearchResultsTable(DataTable dataTable) throws Throwable {
         Map<String, String> expectedData = dataTable.asMap(String.class, String.class);
+
+        NAV.waitForPageLoad();
 
         ArrayList<String> pools = StepDef_jurorpool.poolNumbers.get();
 
