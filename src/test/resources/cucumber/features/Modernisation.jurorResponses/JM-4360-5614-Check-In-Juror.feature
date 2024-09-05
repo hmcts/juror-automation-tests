@@ -73,13 +73,11 @@ Feature: JM-4360 - As a jury officer I need to be able to check jurors in for th
     #change name for police check
     And I set "First name" to "Arun"
     And I set "Last name" to "Pattani"
-    And I press the "Save" button
-    And I see "Juror details" on the page
-    And I set "Date of birth" to "13/08/1971"
     And I press the "Review Edit" button
+    And I see "Juror details" on the page
+
 
     #change dob for police check
-    And I click on the "Add or change" link
     And I set "Date of birth" to "13/08/1971"
     And I press the "Save" button
     And I see "13 Aug 1971" in the same row as "Date of birth"
@@ -88,7 +86,7 @@ Feature: JM-4360 - As a jury officer I need to be able to check jurors in for th
     And I click on the "Add or change" link
     And I click on the "Change" link
     And I set "Postcode" to "B68ZX"
-    And I press the "Save" button
+    And I press the "Review Edit" button
     And I see "Additional requirements" on the page
     And I press the "Save" button
 

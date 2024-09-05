@@ -266,7 +266,7 @@ public class SummonsReply {
     @FindBy(id = "dateOfBirth")
     WebElement dateOfBirth;
 
-    @FindBy(id = "thirdParty")
+    @FindBy(id = "thirdPartyEnabled")
     WebElement thirdPartyRadioButton;
 
     @FindBy(id = "extraSupport")
