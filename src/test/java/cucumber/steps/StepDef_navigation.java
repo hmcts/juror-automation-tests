@@ -84,7 +84,7 @@ public class StepDef_navigation {
 	public void text_on_page_check_banner(String arg1, String arg2) throws Throwable {
 
 		LocalDate today = LocalDate.now();
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy");
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMMM yyyy");
 		String formattedDate = today.format(formatter);
 
 		String banner = "Summons reply processed on "+formattedDate+" by " + arg1 +": "+arg2;

@@ -112,6 +112,7 @@ public class StepDef_coronerPool {
     public void iShouldSeeTheCoronersCourtPool(DataTable table) throws SQLException {
         Map<String, String> expectedData = table.asMap(String.class, String.class);
 
+        NAV.waitForPageLoad();
         assertEquals(newCoronersPoolNumber.toString(), CORONERS_POOL_PAGE.coronersPoolNumber());
         assertEquals(expectedData.get("court"), CORONERS_POOL_PAGE.getCoronersCourtName());
         assertEquals(expectedData.get("courtCode"), CORONERS_POOL_PAGE.getCoronersCourtCode());
