@@ -2355,6 +2355,28 @@ public class StepDef_jurorpool {
         DEFERRAL_MAINTENANCE.selectJurorFromTable(jurorNumber);
     }
 
+    @When("^I click the \"([^\"]*)\" column header$")
+    public void iClickColumnHeader(String columnHeader) {
+
+        switch (columnHeader) {
+            case "juror number":
+                DEFERRAL_MAINTENANCE.clickJurorNumberTableHeading();
+                break;
+            case "first name":
+                DEFERRAL_MAINTENANCE.clickFirstNameTableHeading();
+                break;
+            case "last name":
+                DEFERRAL_MAINTENANCE.clickLastNameTableHeading();
+                break;
+            case "pool number":
+                DEFERRAL_MAINTENANCE.clickPoolNumberTableHeading();
+                break;
+            case "deferred to":
+                DEFERRAL_MAINTENANCE.clickDeferredToTableHeading();
+                break;
+        }
+    }
+
     @When("^I select pool \"([^\"]*)\" from the active pools table$")
     public void iSelectPoolFromTheActivePoolsTable(String poolNumber) {
         DEFERRAL_MAINTENANCE.selectActivePool(poolNumber);

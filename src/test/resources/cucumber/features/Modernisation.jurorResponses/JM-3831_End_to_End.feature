@@ -3,7 +3,7 @@ Feature: JM-3831
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Decline Excusal Request as Bureau user - happy path
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
@@ -69,6 +69,7 @@ Feature: JM-3831
     And I set the radio button to "Refuse excusal"
     And I press the "Continue" button
     And I see "Excusal refused" on the page
+    And I see the juror status has updated to "Responded"
     Examples:
       | user          | juror_number   | pool_number   |
       | MODTESTBUREAU | 641500248      | 415170501     |

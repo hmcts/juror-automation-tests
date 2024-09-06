@@ -3,7 +3,7 @@ Feature: JM-4949 & JM-5766
   @JurorTransformation @NewSchemaConverted
   Scenario Outline: Return all jurors on a panel
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
@@ -20,7 +20,7 @@ Feature: JM-4949 & JM-5766
     #set juror as responded
     And I update juror "<juror_number>" to have a status of responded in order to record attendance
 
-     #check in juror
+    #check in juror
     And I press the "Apps" button
     And I click on the "Juror management" link
     And I click on the "Record attendance" link
@@ -105,7 +105,8 @@ Feature: JM-4949 & JM-5766
     And I press the "Apps" button
     And I click on the "Juror management" link
     And I click on the "Record attendance" link
-    And I see "<juror_number>" in the same row as "Responded"
+    And I click on the "Jurors on a trial" link
+    And I see "<trial_number>" in the same row as "1 of 1"
 
     Examples:
       |user			|juror_number  |  pool_number    | trial_number |
