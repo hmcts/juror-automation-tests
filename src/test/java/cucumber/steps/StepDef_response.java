@@ -6,7 +6,6 @@ import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -109,6 +108,8 @@ public class StepDef_response {
 
 			NAV.set_valueTo("Main phone", "07551179225");
 			NAV.press_buttonByName("Continue");
+
+			NAV.waitForPageLoad();
 
 			NAV.set_valueTo("Enter your email address", email);
 			NAV.set_valueTo("Enter your email address again", email);
@@ -1391,6 +1392,8 @@ public class StepDef_response {
 
 			NAV.set_valueTo("Main phone", "07590309447");
 			NAV.press_buttonByName("Continue");
+
+			NAV.waitForPageLoad();
 
 			NAV.set_valueTo("Enter your email address", email);
 			NAV.set_valueTo("Enter your email address again", email);
