@@ -281,7 +281,7 @@ Feature: Create Juror Record scenarios
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Create Juror Record for juror outside of any court catchment area
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     And I log in as "<user>"
 
     And I click on the "Juror management" link

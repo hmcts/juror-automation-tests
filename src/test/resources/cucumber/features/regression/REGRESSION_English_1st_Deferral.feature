@@ -837,7 +837,7 @@ Feature: Regression English_1st_Deferral
     And I select the first deferral choice
 
     And I press the "Continue" button
-    And I see the juror record updated banner containing "Deferral granted"
+    And I see the juror record updated banner containing "Responded"
 
     Examples:
       | juror_number | last_name | postcode | email             | pool_number |
@@ -1990,7 +1990,7 @@ Feature: Regression English_1st_Deferral
     And I select the first deferral choice
 
     And I press the "Continue" button
-    Then I see the juror record updated banner containing "Deferral granted"
+    Then I see the juror record updated banner containing "Responded"
 
     Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "CLOSED" where "JUROR_NUMBER" is "<juror_number>"
     Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "Y" where "JUROR_NUMBER" is "<juror_number>"
@@ -2205,7 +2205,7 @@ Feature: Regression English_1st_Deferral
     And I select the first deferral choice
 
     And I press the "Continue" button
-    Then I see the juror record updated banner containing "Deferral granted"
+    Then I see the juror record updated banner containing "Responded"
 
     Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "CLOSED" where "JUROR_NUMBER" is "<juror_number>"
     Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "Y" where "JUROR_NUMBER" is "<juror_number>"
@@ -2700,7 +2700,7 @@ Feature: Regression English_1st_Deferral
   @RegressionSingle @NewSchemaConverted
   Scenario Outline: English 1st Party Deferral - selected date makes juror >76
 
-    Given I am on "Public" "test"
+    Given I am on "Public" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
@@ -2896,7 +2896,7 @@ Feature: Regression English_1st_Deferral
     And I validate the "Second" deferral date is "10" weeks in the future
     And I validate the "Third" deferral date is "11" weeks in the future
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     And I log in as "MODTESTBUREAU"
 
     When I click on the "Search" link
@@ -2913,7 +2913,7 @@ Feature: Regression English_1st_Deferral
     And I select the first deferral choice
 
     And I press the "Continue" button
-    Then I see the juror record updated banner containing "Deferral granted (other)"
+    Then I see the juror record updated banner containing "Responded"
 
     Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "CLOSED" where "JUROR_NUMBER" is "<juror_number>"
     Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "Y" where "JUROR_NUMBER" is "<juror_number>"
@@ -3361,7 +3361,7 @@ Feature: Regression English_1st_Deferral
     And I press the "Continue" button
     And I choose the "Add to pool" radio button
     And I press the "Continue" button
-    Then I see the juror record updated banner containing "Deferral granted"
+    Then I see the juror record updated banner containing "Responded"
 
     Examples:
       | juror_number | pool_number | last_name        | postcode | email      |

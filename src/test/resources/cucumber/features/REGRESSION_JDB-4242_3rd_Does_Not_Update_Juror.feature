@@ -116,11 +116,11 @@ Examples:
 @Regression @NewSchemaConverted
 Scenario Outline: English 3rd Party ST - contact details same as 3rd party
 
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
-		| 452   |<juror_number>| <pool_number1>	| 5				            | 400   |
+		| 452   |<juror_number>| <pool_number>	| 5				            | 400   |
 
 	
 	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
@@ -130,7 +130,7 @@ Scenario Outline: English 3rd Party ST - contact details same as 3rd party
 	| part_no		| pool_number	| last_name		| postcode	| email 	|
 	| <juror_number>| <pool_number>	| <last_name>	| <postcode>| <email>	|
 	
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "ithc"
 	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
@@ -202,7 +202,7 @@ Scenario Outline: English 3rd Party Super Urgent - contact details same as 3rd p
 
 	#return to @Regression when we have resolved getting jenkins to focus on new page
 
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -219,7 +219,7 @@ Scenario Outline: English 3rd Party Super Urgent - contact details same as 3rd p
 	| part_no		| pool_number	| last_name		| postcode	| email 	|
 	| <juror_number>| <pool_number>	| <last_name>	| <postcode>| <email>	|
 	
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "ithc"
 	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
