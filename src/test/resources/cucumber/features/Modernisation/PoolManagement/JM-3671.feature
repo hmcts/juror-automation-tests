@@ -52,7 +52,7 @@ Feature: JM-3671
 
   @JurorTransformationMulti
   Scenario Outline: Happy Path Test to add jurors to a coroner's pool from another catchment area
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     And I log in as "<user>"
     When I navigate to the pool request screen

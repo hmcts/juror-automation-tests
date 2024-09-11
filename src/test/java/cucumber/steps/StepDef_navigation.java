@@ -15,7 +15,6 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
 import java.time.Duration;

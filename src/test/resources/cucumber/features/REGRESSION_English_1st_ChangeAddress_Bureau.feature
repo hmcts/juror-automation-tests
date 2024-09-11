@@ -3,7 +3,7 @@ Feature: Regression English_1st_ChangeAddress_Bureau
 @Regression @NewSchemaConverted
 Scenario Outline: Change postcode - old postcode in >1 loc_code SHOWS CHANGE COURT
 
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -107,7 +107,7 @@ Scenario Outline: Change postcode - old postcode in >1 loc_code SHOWS CHANGE COU
 	Then I see "We have sent you an email to say you have replied to your jury summons." on the page
 	
 	#bureau
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "ithc"
 	When I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -128,7 +128,7 @@ Examples:
 @Regression @NewSchemaConverted
 Scenario Outline: Change Postcode but same loc_code CHANGE COURT FLAG NOT SHOWN
 
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -233,7 +233,7 @@ Scenario Outline: Change Postcode but same loc_code CHANGE COURT FLAG NOT SHOWN
 	Then I see "We have sent you an email to say you have replied to your jury summons." on the page
 	
 	#bureau
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "ithc"
 	When I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -252,7 +252,7 @@ Examples:
 @Regression @NewSchemaConverted
 Scenario Outline: Change postcode - different loc_code SHOWS CHANGE COURT
 
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -358,7 +358,7 @@ Scenario Outline: Change postcode - different loc_code SHOWS CHANGE COURT
 	Then I see "We have sent you an email to say you have replied to your jury summons." on the page
 	
 	#bureau
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "ithc"
 	When I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -379,7 +379,7 @@ Examples:
 @Regression @NewSchemaConverted
 Scenario Outline: Change postcode - new postcode in >1 loc_code SHOWS CHANGE COURT
 
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -485,7 +485,7 @@ Scenario Outline: Change postcode - new postcode in >1 loc_code SHOWS CHANGE COU
 	Then I see "We have sent you an email to say you have replied to your jury summons." on the page
 
 	#bureau
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "ithc"
 	When I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -503,7 +503,7 @@ Examples:
 @regression @NewSchemaConverted
 Scenario Outline: Change postcode - new postcode not in court_catchment_area
 
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -609,7 +609,7 @@ Scenario Outline: Change postcode - new postcode not in court_catchment_area
 	Then I see "We have sent you an email to say you have replied to your jury summons." on the page
 	
 	#bureau
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "ithc"
 	When I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -628,7 +628,7 @@ Examples:
 @regression @NewSchemaConverted
 Scenario Outline: Change postcode - old postcode not in court_catchment_area DOES NOT SHOW CHANGE COURT
 
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -734,7 +734,7 @@ Scenario Outline: Change postcode - old postcode not in court_catchment_area DOE
 	Then I see "We have sent you an email to say you have replied to your jury summons." on the page
 	
 	#bureau
-	Given I am on "Bureau" "bau-test"
+	Given I am on "Bureau" "ithc"
 	When I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -753,7 +753,7 @@ Examples:
 @Regression @NewSchemaConverted
 Scenario Outline: Change Postcode but same loc_code CHANGE COURT FLAG NOT SHOWN two
 
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -859,7 +859,7 @@ Scenario Outline: Change Postcode but same loc_code CHANGE COURT FLAG NOT SHOWN 
 	Then I see "We have sent you an email to say you have replied to your jury summons." on the page
 	
 	#bureau
-	Given I am on "Bureau" "bau-test"
+	Given I am on "Bureau" "ithc"
 	When I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
