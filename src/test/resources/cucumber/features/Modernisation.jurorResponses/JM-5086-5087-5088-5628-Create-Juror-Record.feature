@@ -281,7 +281,7 @@ Feature: Create Juror Record scenarios
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Create Juror Record for juror outside of any court catchment area
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     And I log in as "<user>"
 
     And I click on the "Juror management" link
@@ -406,4 +406,60 @@ Feature: Create Juror Record scenarios
 
     Examples:
       |user         |
+      |MODTESTCOURT |
+
+
+  @JurorTransformationMulti @NewSchemaConverted
+  Scenario Outline: Create Juror Record via existing pool - Happy Path - Satellite Court
+
+    Given I am on "Bureau" "ithc"
+    And I log in as "<user>"
+
+    And I click on the "Juror management" link
+    And I press the "Create juror record" button
+
+    And I select one of the active pools available from the create juror record screen
+    And I press the "Continue" button
+
+    #jurors name
+    And I see "What's the juror's name?" on the page
+    And I set "Title (optional)" to "Mr"
+    And I set "First name" to "Testing"
+    And I set "Last name" to "Edwards"
+    And I press the "Continue" button
+
+    #dob
+    And I see "What's their date of birth?" on the page
+    And I set "Date of birth" to "08/05/1982"
+    And I press the "Continue" button
+
+    #address
+    And I see "What's the juror's address?" on the page
+    And I set "Address line 1" to "5 Testing Street"
+    And I set "Town or city" to "London"
+    And I set "Postcode" to "CH1 2AN"
+    And I press the "Continue" button
+
+    #contact details
+    And I see "Enter their contact details" on the page
+    And I set "Main phone - UK only (optional)" to "07739967653"
+    And I press the "Continue" button
+
+    #notes
+    And I see "Notes (optional)" on the page
+    And I enter "Note testing" in the Notes text box
+    And I press the "Continue" button
+    And I see "Check your answers" on the page
+
+    #create juror record
+    And I press the "Create juror record" button
+    And I see "Draft juror record created for Testing Edwards - senior jury officer will need to approve this" on the page
+
+    Given I am on "Bureau" "ithc"
+    And I log in as "SJOUSER"
+    And I see senior jury officer notification banner
+
+
+    Examples:
+      |user			|
       |MODTESTCOURT |

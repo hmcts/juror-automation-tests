@@ -15,7 +15,6 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
 import java.time.Duration;
@@ -87,7 +86,7 @@ public class StepDef_navigation {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMMM yyyy");
 		String formattedDate = today.format(formatter);
 
-		String banner = "Summons reply processed on "+formattedDate+" by " + arg1 +": "+arg2;
+		String banner = "Summons reply processed on " + formattedDate + " by " + arg1 + ": " + arg2;
 
 		try {
 			NAV.textPresentOnPage(banner);
@@ -536,6 +535,7 @@ public class StepDef_navigation {
 			NAV.seeText_inSameRow_asText(searchText, nextToText);
 		}
 	}
+
 	@Then("^I see \"([^\"]*)\" in the same row as one of the juror numbers in my pool$")
 	public void seeText_inSameRow_JurorFromPool(String searchText) {
 		try {
@@ -620,6 +620,7 @@ public class StepDef_navigation {
 		NAV.waitForPageLoad();
 
 	}
+
 	@When("^I set the non-attendance date to yesterday$")
 	public void iSetTheAttendanceDateToYesterday() {
 		String datePattern = "dd/MM/yyyy";
@@ -894,6 +895,7 @@ public class StepDef_navigation {
 
 		SST.captureScreenShot();
 	}
+
 	@When("^I see error \"(.*)\"$")
 	public void eligibilityErrorCheck(String arg1) throws Throwable {
 		try {
@@ -903,10 +905,12 @@ public class StepDef_navigation {
 			NAV.eligibilityErrorOnPage(arg1);
 		}
 	}
+
 	@When("^I verify confirmation text of jurors next due to attend \"(.*)\" on the page$")
 	public void text_on_page_Verify(String arg1) throws Throwable {
 		assertEquals(arg1, NAV.getHeadingText());
 	}
+
 	@When("^I verify button \"(.*)\" on the page$")
 	public void buttonContinue_on_page_Verify(String arg1) throws Throwable {
 		NAV.continueBtnOnPage(arg1);
@@ -921,10 +925,12 @@ public class StepDef_navigation {
 	public void methodDropdownOnMessage(String methodType, String jurorNumber) {
 		NAV.selectFromMessageMethodDropdown(methodType, jurorNumber);
 	}
+
 	@And("^I see the message sent banner containing \"([^\"]*)\"$")
 	public void iSeeMessageSentBannerContaining(String bannerContains) {
 		assertEquals(bannerContains, NAV.messageSentBanner());
 	}
+
 	@And("^I see the template containing my attendance date with a monday \"([^\"]*)\" weeks in the future$")
 	public void iSeeDateInTemplate(String noOfWeeks) {
 		String datePattern = "dd/MM/yyyy";
@@ -964,6 +970,7 @@ public class StepDef_navigation {
 	public void selectFirstJurorInList() {
 		NAV.firstJurorInSearch();
 	}
+
 	@When("^I set the \"([^\"]*)\" date to (\\d+) days (in the future|in the past)$")
 	public void iSetTheAttendanceDateToDaysInTheFutureOrPast(String attDateSequence, Integer numberOfDays, String timeFrame) {
 		String datePattern = "dd/MM/yyyy";
@@ -1004,5 +1011,10 @@ public class StepDef_navigation {
 	@When("^I verify the public transport field contains \"([^\"]*)\"$")
 	public void checkPublicTransportField(String expectedText) {
 		NAV.checkPublicTransportField(expectedText);
+	}
+	@Then("^I see my court \"([^\"]*)\" under the sub heading \"([^\"]*)\"$")
+	public void verifySelectedCourtNameUnderLabelStep(String expectedCourtName, String label) {
+		NAV.waitForPageLoad(3);
+		NAV.verifySelectedCourtName(expectedCourtName, label);
 	}
 }

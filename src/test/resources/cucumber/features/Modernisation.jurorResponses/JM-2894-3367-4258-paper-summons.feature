@@ -122,7 +122,7 @@ Feature: JM-2894 JM 3367
       | 641500628    | 452300033   | MODTESTBUREAU |
 
   Scenario Outline: Test to manually enter summons reply as bureau - change address to address outside catchment
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
@@ -138,7 +138,7 @@ Feature: JM-2894 JM 3367
     Then the juror details form is displayed
     When I click the change address link on the juror details reply page
     When I set "Postcode" to "<new_postcode>"
-    And I press the "Save" button
+    And I press the "Review Edit" button
     When I fill in all of the juror details for the summons reply
     And I click continue on the juror summons reply page
     Then the juror summons reply eligibility page is displayed
@@ -170,9 +170,9 @@ Feature: JM-2894 JM 3367
     And I press the "Continue" button
     And I check the "Mark juror as 'responded'" checkbox
     And I press the "Confirm" button
-    And I see "Summons reply for <juror_number> fname lname successfully processed: Responded" on the page
+    And I see the juror record updated banner containing "Responded"
     And I search for juror "<juror_number>"
-    And the juror record court name has updated to "Swansea"
+    And the juror record court name has updated to "The Crown Court At Swansea"
 
     Examples:
       | juror_number | pool_number | user          | new_postcode |
