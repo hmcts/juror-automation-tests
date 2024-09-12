@@ -2449,4 +2449,25 @@ public class NavigationShared {
         }
         assertEquals(expectedText, actualText);
     }
+    public void verifySelectedCourtName(String expectedCourtName, String subHeading) {
+
+        log.info("Going to check if court name => '" + expectedCourtName + "' is present under label => '" + subHeading + "'.");
+        WebElement subHeadingElement;
+
+        if (subHeading.equals("Court name or location code")) {
+            subHeadingElement = driver.findElement(By.xpath("/html/body/div[4]/main/div/div/form/label[1]"));
+        } else {
+            subHeadingElement = driver.findElement(By.xpath("//label[text()='" + subHeading + "']"));
+        }
+        String forAttribute = subHeadingElement.getAttribute("for");
+        WebElement courtNameElement = driver.findElement(By.xpath("//dl[@id='" + forAttribute + "']//dd[@class='govuk-summary-list__value']"));
+
+        String actualCourtName = courtNameElement.getText();
+        if (actualCourtName.equals(expectedCourtName)) {
+            log.info("Found court name => '" + actualCourtName + "' under label => '" + subHeading + "'.");
+        } else {
+            log.error("Expected court name => '" + expectedCourtName + "', but found => '" + actualCourtName + "' under label => '" + subHeading + "'.");
+            throw new AssertionError("Court name does not match!");
+        }
+    }
 }
