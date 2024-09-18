@@ -17,6 +17,7 @@ import java.time.ZoneId;
 import java.time.temporal.TemporalAdjusters;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Objects;
 
 public class DatabaseTesterNewSchemaDesign {
 
@@ -5248,5 +5249,35 @@ public class DatabaseTesterNewSchemaDesign {
 			pStmt.close();
 			conn.close();
 		}
+	}
+
+	public void enableDisableCreateJurorPermissionForBureauUser(String enableDisable, String user) throws SQLException {
+		db = new DBConnection();
+		String env_property = System.getProperty("env.database");
+		if (env_property != null)
+			conn = db.getConnection(env_property);
+		else
+			conn = db.getConnection("demo");
+		try {
+			if (Objects.equals(enableDisable, "enable")) {
+				pStmt = conn.prepareStatement("insert into juror_mod.user_permissions (username, permission) VALUES ('" + user + "', 'CREATE_JUROR')");
+				pStmt.executeUpdate();
+				conn.commit();
+				log.info("Set CREATE_USER permission for =>" + user);
+			}
+			else
+				pStmt = conn.prepareStatement("delete from juror_mod.user_permissions where username='" + user + "'");
+				pStmt.executeUpdate();
+				conn.commit();
+				log.info("Deleted CREATE_USER permission for =>" + user);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.error("Message:" + e.getMessage());
+		} finally {
+			conn.commit();
+			conn.close();
+		}
+
 	}
 }
