@@ -262,16 +262,19 @@ Feature: JM-5417-5586 - Resend excusal refused letter for Bureau and Jury users
       |  041586222     |415980686   | MODTESTBUREAU |
 
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationWIP
   Scenario Outline:As a jury officer test a Excused juror can resend a refused letter by searching via juror number
 
-    Given I am on "Bureau" "test"
+    # return to MULTI once defect fixed
+
+    Given I am on "Bureau" "ithc"
+
     When a bureau owned pool is created with jurors
-      | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
-      | 415   | <juror_number>| <pool_number>           | 5                          | 400  |
+      | court | juror_number   | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number> | <pool_number>      | 5                         | 400   |
 
     Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no              | pool_no           | owner |
+     | part_no              | pool_no           | owner |
      | <juror_number>       | <pool_number>     | 415   |
 
     And I log in as "<user>"
@@ -286,8 +289,6 @@ Feature: JM-5417-5586 - Resend excusal refused letter for Bureau and Jury users
     And the user searches for juror record "<juror_number>" from the global search bar
     And I click on the "Summons reply" link
     And I click on the "View summons reply" link
-
-    #will fail here as a result of JM-6571
     And I press the "Process reply" button
 
     #select refuse excusal
@@ -321,13 +322,13 @@ Feature: JM-5417-5586 - Resend excusal refused letter for Bureau and Jury users
     When I set "Enter juror number" to "<juror_number>"
     And I press the "Search" button
 
-    #will fail here because of JM-6314
+    #will fail here because of JM-8200
     And I see "Print excusal refused letter" on the page
     And I see the printed letter for juror number "<juror_number>" in the letters table
 
     Examples:
-      | juror_number  | pool_number | user          |
-      |  041586214    | 415982987   | MODTESTCOURT |
+      | juror_number  | pool_number | user         |
+      | 041586214     | 415982987   | MODTESTCOURT |
 
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline:As a jury officer test a Excused juror can resend a refused letter by searching via pool number

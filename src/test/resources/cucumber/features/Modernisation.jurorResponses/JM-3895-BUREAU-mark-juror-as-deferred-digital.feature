@@ -93,7 +93,7 @@ Feature: JM-3895 mark juror as deferred digital
     And I see the reply "type" on the response is "DEFERRAL"
     And I see the reply "status" on the response is "COMPLETED"
 
-    Then I clear down the data for all the pools I created for this test
+    Then I clear down the data for all the pools I created for this test new schema
     Then the poolNumbers lists is empty
 
     Examples:

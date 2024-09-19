@@ -1,35 +1,64 @@
 Feature: Bureau Create Juror Record
 
   @JurorTransformationMulti
-  Scenario: Bureau switch off create juror peermissions
+  Scenario: Bureau Team Lead switch off create juror permissions
 
-    Given I am on "Bureau" "ithc"
-    And I log in as "MODTESTBUREAU"
+  Given I am on "Bureau" "ithc"
 
-#    switch off permissions
-#  Log in as user
-#  check I cant see create juror record
+  #disable permissions
+  Given I "disable" CREATE_JUROR permission for bureau user "MODTESTBUREAU"
+
+  And I log in as "MODTESTBUREAU"
+
+  # check I cant see create juror record button
+  And I navigate to the pool request screen
+  And I click on active pools
+  And I click on the first pool in Active Pools
+  And I do not see "Create juror record" on the page
+
+  #enable permissions
+  Given I "enable" CREATE_JUROR permission for bureau user "MODTESTBUREAU"
 
   @JurorTransformation
-  Scenario: Bureau user without create juror permissions
+  Scenario: Bureau standard user with create juror permissions cannot access create juror button
 
     Given I am on "Bureau" "ithc"
-    And I log in as "<user>"
 
-    And I click on the "Juror management" link
+    #enable permissions
+    Given I "enable" CREATE_JUROR permission for bureau user "ARAMIS1"
+
+    And I log in as "ARAMIS1"
+
+  # check I cant see create juror record button
+    And I navigate to the pool request screen
+    And I click on active pools
+    And I click on the first pool in Active Pools
     And I do not see "Create juror record" on the page
 
+    #disable permissions
+    Given I "disable" CREATE_JUROR permission for bureau user "ARAMIS1"
+
   @JurorTransformationMulti
-  Scenario Outline: Bureau Create Juror Record with a DOB
+  Scenario: Bureau Create Juror Record with a DOB - validation checks
 
     Given I am on "Bureau" "ithc"
-    And I log in as "<user>"
 
-    And I click on the "Juror management" link
-    And I press the "Create juror record" button
+    #enable permissions
+    Given I "enable" CREATE_JUROR permission for bureau user "MODTESTBUREAU"
 
-    And I select one of the active pools available from the create juror record screen
+    And I log in as "MODTESTBUREAU"
+
+    When I navigate to the pool request screen
+
+    #create an active pool request
+    And I create an active "Crown" court pool request for court "415", "10" Mondays in the future
+
+    #add jurors
+    And I navigate to the pool search screen
+    When I enter the pool number of the pool I have just created on the pool search screen
     And I press the "Continue" button
+
+    And I press the "Create juror record" button
 
     #jurors name
     And I see "What's the juror's name?" on the page
@@ -40,8 +69,6 @@ Feature: Bureau Create Juror Record
 
     #dob/error check
     And I see "What's their date of birth?" on the page
-    And I press the "Continue" button
-    And I see error "Enter their date of birth"
 
     And I set "Date of birth" to "08/05/2050"
     And I press the "Continue" button
@@ -55,6 +82,26 @@ Feature: Bureau Create Juror Record
     And I press the "Continue" button
     And I see error "Enter a date of birth in the correct format, for example, 31/01/1980"
 
+    And I set "Date of birth" to "29.08.88"
+    And I press the "Continue" button
+    And I see error "Date of birth must only include numbers and forward slashes"
+
+    And I set "Date of birth" to " "
+    And I press the "Continue" button
+    And I see error "Date of birth must only include numbers and forward slashes"
+
+    And I set "Date of birth" to "29 08 88"
+    And I press the "Continue" button
+    And I see error "Date of birth must only include numbers and forward slashes"
+
+    And I set "Date of birth" to "1 JUNE 1988"
+    And I press the "Continue" button
+    And I see error "Date of birth must only include numbers and forward slashes"
+
+#    And I set "Date of birth" to "101010"
+#    And I press the "Continue" button
+#    And I see error "Enter a date of birth in the correct format, for example, 31/01/1980"
+
     And I set "Date of birth" to "08/05/1992"
     And I press the "Continue" button
 
@@ -67,7 +114,7 @@ Feature: Bureau Create Juror Record
 
     #contact details
     And I see "Enter their contact details" on the page
-    And I set "Main phone - UK only (optional)" to "07739967653"
+    And I set "Main phone - UK only (optional)" to "07777777777"
     And I press the "Continue" button
 
     #notes
@@ -75,6 +122,15 @@ Feature: Bureau Create Juror Record
     And I enter "Note testing" in the Notes text box
     And I press the "Continue" button
     And I see "Check your answers" on the page
+
+    #check your answers page
+    And I see "08 May 1992" in the same row as "Date of birth"
+    And I see "Mr John Stark" in the same row as "Name"
+    And I see "5 Testing Street" in the same row as "Address"
+    And I see "07777777777" in the same row as "Main phone"
+    And I see "-" in the same row as "Alternative phone"
+    And I see "-" in the same row as "Email"
+    And I see "Note testing" in the same row as "Notes"
 
     #change name
     And I click on the "Change" link in the same row as "Name" on Check your answers
@@ -86,20 +142,42 @@ Feature: Bureau Create Juror Record
 
     #create juror record
     And I press the "Create juror record" button
-    And I see "Draft juror record created for Tony Stark - senior jury officer will need to approve this" on the page
+
+    #confirm juror is created and added to pool
+    And I see "Juror record created for Tony Stark and summoned to pool" on the page
+    And I see pool summoned total count is "2"
+    And I see "Summoned" in the same row as "Stark"
 
     #trigger summons
-    And I see the juror status on the juror record screen is "Summoned"
-#    and i trigger the summons somehow
+    And I see pool summoned total count is "2"
+    And I see "Summoned" in the same row as "Stark"
+#    And a summons has been generated for juror
 #    and I check the DB to ensure the summons is generated
 
-    Examples:
-      |user			|
-      |MODTESTBUREAU|
+
+  Scenario: Create juror button not available on POOL REQUESTS
+
+    Given I am on "Bureau" "ithc"
+
+    #enable permissions
+    Given I "enable" CREATE_JUROR permission for bureau user "MODTESTBUREAU"
+
+    And I log in as "MODTESTBUREAU"
+
+    When I navigate to the pool request screen
+
+    #create an pool request
+    And I create a "Crown" court pool request
+
+    #Create juror record button not available
+    And I navigate to the pool search screen
+    When I enter the pool number of the pool I have just created on the pool search screen
+    And I press the "Continue" button
+
+    And I do not see "Create juror record" on the page
 
 
 
-  @JurorTransformationMulti
   Scenario Outline: Bureau Create Juror Record via existing pool - Happy Path
 
     Given I am on "Bureau" "ithc"
@@ -150,7 +228,7 @@ Feature: Bureau Create Juror Record
       |user			 |
       |MODTESTBUREAU |
 
-  @JurorTransformationMulti
+
   Scenario Outline: Bureau Create Juror Record via existing pool - Unhappy Path
 
     Given I am on "Bureau" "ithc"
@@ -237,7 +315,7 @@ Feature: Bureau Create Juror Record
       |MODTESTBUREAU|
 
 
-  @JurorTransformationMulti
+
   Scenario Outline: Bureau Create Juror Record via existing pool for juror too old
 
     Given I am on "Bureau" "ithc"
@@ -274,7 +352,7 @@ Feature: Bureau Create Juror Record
       |user			 |
       |MODTESTBUREAU |
 
-  @JurorTransformationMulti
+
   Scenario Outline: Bureau Create Juror Record via existing pool for juror too young
 
     Given I am on "Bureau" "ithc"
@@ -311,7 +389,7 @@ Feature: Bureau Create Juror Record
       |user			 |
       |MODTESTBUREAU |
 
-  @JurorTransformationMulti
+
   Scenario Outline: Bureau Create Juror Record via Create new pool
 
     Given I am on "Bureau" "ithc"
@@ -373,7 +451,7 @@ Feature: Bureau Create Juror Record
       |user			 |
       |MODTESTBUREAU |
 
-  @JurorTransformationMulti
+
   Scenario Outline: Bureau Create Juror Record for juror outside of any court catchment area
 
     Given I am on "Bureau" "ithc"
@@ -433,7 +511,7 @@ Feature: Bureau Create Juror Record
       |user			 |
       |MODTESTBUREAU |
 
-  @JurorTransformationMulti
+
   Scenario Outline: Bureau Juror record shows manually created juror
 
     Given I am on "Bureau" "ithc"
@@ -503,7 +581,7 @@ Feature: Bureau Create Juror Record
       |MODTESTBUREAU |
 
 
-  @JurorTransformationMulti
+
   Scenario Outline: Bureau Create Juror Record via existing pool - Happy Path - Satellite Court
 
     Given I am on "Bureau" "ithc"

@@ -685,4 +685,9 @@ public class StepDef_DatabaseNewSchema {
     public void checkExcusalCodePresent(String jurorNumber) throws SQLException {
         DBTNSD.checkExcusalCodePresent(jurorNumber);
     }
+
+    @Given("^I \"([^\"]*)\" CREATE_JUROR permission for bureau user \"([^\"]*)\"$")
+    public void enableDisableCreateJurorPermissionForBureauUser(String enableDisable, String user) throws SQLException {
+        DBTNSD.enableDisableCreateJurorPermissionForBureauUser(enableDisable, user);
+    }
 }

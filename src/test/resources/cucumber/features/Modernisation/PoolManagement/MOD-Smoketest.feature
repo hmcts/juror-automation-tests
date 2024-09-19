@@ -2,7 +2,7 @@ Feature: MOD-Smoketest
 
   @Shakedown
   Scenario Outline: Smoketest
-    Given I am on "bureau" "test"
+    Given I am on "bureau" "ithc"
 
     Given I delete pools created in the last 3 days new schema for court "415"
     Given I delete pools created in the last 3 days new schema for court "767"
