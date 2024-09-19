@@ -744,7 +744,7 @@ public class DatabaseTesterNewSchemaDesign {
 			pStmt.execute();
 
 			pStmt = conn.prepareStatement("insert into juror_mod.juror_pool (juror_number, pool_number, owner, user_edtq, is_active, status, times_sel, def_date, location, no_attendances, no_attended, no_fta, no_awol, pool_seq, edit_tag, next_date, on_call, was_deferred, deferral_code, id_checked, postpone, paid_cash, scan_code, last_update, reminder_sent, transfer_date, date_created)"
-					+ " VALUES ('" + juror_number + "', '" + pool_number + "', '400', 'MODTESTBUREAU', true, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0001', NULL, '" + attDate + "', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NOW(), NULL, NULL, NOW())");
+					+ " VALUES ('" + juror_number + "', '" + pool_number + "', '400', 'MODTESTBUREAU', true, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0001', NULL, '" + attDate + "', false, NULL, NULL, NULL, NULL, NULL, NULL, NOW(), NULL, NULL, NOW())");
 			pStmt.execute();
 
 		} finally {
@@ -1088,7 +1088,7 @@ public class DatabaseTesterNewSchemaDesign {
 					+ " DEF_DATE = NULL,"
 					+ "	USER_EDTQ = NULL,"
 					+ "	OWNER = '400',"
-					+ " ON_CALL = NULL,"
+					+ " ON_CALL = false,"
 					+ "	POOL_NUMBER = '" + pool_no + "',"
 					+ "	TRANSFER_DATE = NULL,"
 					+ " IS_ACTIVE =true"
@@ -1946,7 +1946,7 @@ public class DatabaseTesterNewSchemaDesign {
 			pStmt.execute();
 
 			pStmt = conn.prepareStatement("insert into juror_mod.juror_pool (juror_number,pool_number,owner,user_edtq,is_active,status,times_sel,def_date,location,no_attendances,no_attended,no_fta,no_awol,pool_seq,edit_tag,next_date,on_call,was_deferred,deferral_code,id_checked,postpone,paid_cash,scan_code,last_update,reminder_sent,transfer_date,date_created)"
-					+ "values ('6" + court + "11111','" + court + "111111','" + court + "',null,'Y','7',null,'" + localDate + "','415','0',null,null,null,null,null,'" + localDate + "',null,'Y','O',null,null,null,null,CURRENT_DATE,null,null,CURRENT_DATE)");
+					+ "values ('6" + court + "11111','" + court + "111111','" + court + "',null,'Y','7',null,'" + localDate + "','415','0',null,null,null,null,null,'" + localDate + "',false,'Y','O',null,null,null,null,CURRENT_DATE,null,null,CURRENT_DATE)");
 			pStmt.execute();
 
 		} catch (SQLException e) {
@@ -1989,7 +1989,7 @@ public class DatabaseTesterNewSchemaDesign {
 
 		if (getCountFromJurorPoolNSD(part_no, pool_no) == 0)
 			pStmt = conn.prepareStatement("insert into juror_mod.juror_pool (juror_number,pool_number,owner,user_edtq,is_active,status,times_sel,def_date,mileage,location,no_attendances,no_attended,no_fta,no_awol,pool_seq,edit_tag,next_date,on_call,amt_spent,was_deferred,deferral_code,id_checked,postpone,paid_cash,travel_time,scan_code,financial_loss,last_update,reminder_sent,transfer_date,date_created)"
-					+ "values ('" + part_no + "','" + pool_no + "','" + court + "',null,true,'2',null,CURRENT_DATE-10,null,'" + court + "','0',null,null,null,null,null,CURRENT_DATE-10,'N',null,null,'Y',null,null,null,null,null,null,CURRENT_DATE,null,null,CURRENT_DATE)");
+					+ "values ('" + part_no + "','" + pool_no + "','" + court + "',null,true,'2',null,CURRENT_DATE-10,null,'" + court + "','0',null,null,null,null,null,CURRENT_DATE-10,false,null,null,'Y',null,null,null,null,null,null,CURRENT_DATE,null,null,CURRENT_DATE)");
 		pStmt.execute();
 
 		try {
@@ -2100,7 +2100,7 @@ public class DatabaseTesterNewSchemaDesign {
 			pStmt.execute();
 
 			pStmt = conn.prepareStatement("insert into juror_mod.juror_pool (juror_number,pool_number,owner,user_edtq,is_active,status,times_sel,def_date,location,no_attendances,no_attended,no_fta,no_awol,pool_seq,edit_tag,next_date,on_call,was_deferred,deferral_code,id_checked,postpone,paid_cash,scan_code,last_update,reminder_sent,transfer_date,date_created)"
-					+ "values ('6" + court + "11111','" + court + "111111','" + court + "',null,true,'13',null,CURRENT_DATE-10,'" + court + "','0',null,null,null,null,null,CURRENT_DATE-10,'N','Y','O',null,null,null,null,CURRENT_DATE,null,null,CURRENT_DATE)");
+					+ "values ('6" + court + "11111','" + court + "111111','" + court + "',null,true,'13',null,CURRENT_DATE-10,'" + court + "','0',null,null,null,null,null,CURRENT_DATE-10,false,'Y','O',null,null,null,null,CURRENT_DATE,null,null,CURRENT_DATE)");
 			pStmt.execute();
 
 		} catch (SQLException e) {
@@ -2143,7 +2143,7 @@ public class DatabaseTesterNewSchemaDesign {
 			pStmt.execute();
 
 			pStmt = conn.prepareStatement("insert into juror_mod.juror_pool (juror_number,pool_number,owner,user_edtq,is_active,status,times_sel,def_date,mileage,location,no_attendances,no_attended,no_fta,no_awol,pool_seq,edit_tag,next_date,on_call,amt_spent,was_deferred,deferral_code,id_checked,postpone,paid_cash,travel_time,scan_code,financial_loss,last_update,reminder_sent,transfer_date,date_created)"
-					+ "values ('" + jurorPartNo + "','" + poolNo + "','" + court + "',null,'Y','2',null,'" + expectedDate + "',null,'415','0',null,null,null,null,'N',null,null,null,null,'Y',null,null,null,null,null,null,CURRENT_DATE,null,null,CURRENT_DATE)");
+					+ "values ('" + jurorPartNo + "','" + poolNo + "','" + court + "',null,'Y','2',null,'" + expectedDate + "',null,'415','0',null,null,null,null,'N',null,false,null,null,'Y',null,null,null,null,null,null,CURRENT_DATE,null,null,CURRENT_DATE)");
 			pStmt.execute();
 
 		} catch (SQLException e) {
@@ -2174,12 +2174,12 @@ public class DatabaseTesterNewSchemaDesign {
 //			#insert the pool rows
 //			#bureau row
 			pStmt = conn.prepareStatement("INSERT INTO JUROR.POOL (part_no, fname, lname, h_email, title, dob, ADDRESS_LINE_1, ADDRESS_LINE_2, ADDRESS_LINE_3, ADDRESS_LINE_4, POSTCODE, h_phone, w_phone, is_active, owner, loc_code, m_phone, responded, poll_number, pool_no, on_call, read_only, contact_preference, reg_spc, ret_date, status, transfer_date)"
-					+ "VALUES ('6" + court + "33333', 'Edward', 'Palmer', 'email-one@email.com', 'Mr', TO_DATE('1976-07-18 00:00:01', 'YYYY-MM-DD HH24:MI:SS'), '1 Test Street', 'Scotland', 'Strathaven', 'United Kingdom', 'ML106AD', '44135101-1110', '44135201-1110', 'Y', '400', '" + court + "', '44776-301-1110', 'N', 1000,'" + court + "333333', 'N', 'Y', 0, 'N', (SELECT SYSDATE FROM DUAL), 1, (SELECT SYSDATE FROM DUAL))");
+					+ "VALUES ('6" + court + "33333', 'Edward', 'Palmer', 'email-one@email.com', 'Mr', TO_DATE('1976-07-18 00:00:01', 'YYYY-MM-DD HH24:MI:SS'), '1 Test Street', 'Scotland', 'Strathaven', 'United Kingdom', 'ML106AD', '44135101-1110', '44135201-1110', 'Y', '400', '" + court + "', '44776-301-1110', 'N', 1000,'" + court + "333333', false, 'Y', 0, 'N', (SELECT SYSDATE FROM DUAL), 1, (SELECT SYSDATE FROM DUAL))");
 			pStmt.executeQuery();
 
 //			#court row
 			pStmt = conn.prepareStatement("INSERT INTO JUROR.POOL (part_no, fname, lname, h_email, title, dob, ADDRESS_LINE_1, ADDRESS_LINE_2, ADDRESS_LINE_3, ADDRESS_LINE_4, POSTCODE, h_phone, w_phone, is_active, owner, loc_code, m_phone, responded, poll_number, pool_no, on_call, read_only, contact_preference, reg_spc, ret_date, status)"
-					+ "VALUES ('6" + court + "33333', 'Edward', 'Palmer', 'email-one@email.com', 'Mr', TO_DATE('1976-07-18 00:00:01', 'YYYY-MM-DD HH24:MI:SS'), '1 Test Street', 'Scotland', 'Strathaven', 'United Kingdom', 'ML106AD', '44135101-1110', '44135201-1110', 'Y', '" + court + "', '" + court + "', '44776-301-1110', 'N', 1000,'" + court + "333333', 'N', 'N', 0, 'N', (SELECT SYSDATE FROM DUAL), 1)");
+					+ "VALUES ('6" + court + "33333', 'Edward', 'Palmer', 'email-one@email.com', 'Mr', TO_DATE('1976-07-18 00:00:01', 'YYYY-MM-DD HH24:MI:SS'), '1 Test Street', 'Scotland', 'Strathaven', 'United Kingdom', 'ML106AD', '44135101-1110', '44135201-1110', 'Y', '" + court + "', '" + court + "', '44776-301-1110', 'N', 1000,'" + court + "333333', false, 'N', 0, 'N', (SELECT SYSDATE FROM DUAL), 1)");
 			pStmt.executeQuery();
 
 		} catch (SQLException e) {
@@ -2234,7 +2234,7 @@ public class DatabaseTesterNewSchemaDesign {
 
 //			#insert the pool rows
 			pStmt = conn.prepareStatement("INSERT INTO JUROR.POOL (part_no, fname, lname, h_email, title, dob, ADDRESS_LINE_1, ADDRESS_LINE_2, ADDRESS_LINE_3, ADDRESS_LINE_4, POSTCODE, h_phone, w_phone, is_active, owner, loc_code, m_phone, responded, poll_number, pool_no, on_call, read_only, contact_preference, reg_spc, ret_date, status)"
-					+ "VALUES ('" + newPartNo + "', 'Fname', 'Lname', 'email-one@email.com', 'Mr', TO_DATE('1976-07-18 00:00:01', 'YYYY-MM-DD HH24:MI:SS'), '1 Test Street', 'Scotland', 'Strathaven', 'United Kingdom', 'ML106AD', '44135101-1110', '44135201-1110', 'Y', '400', '" + court + "', '44776-301-1110', 'N', 1000,'" + court + "222222', 'N', 'N', 0, 'N', (SELECT SYSDATE FROM DUAL), 1)");
+					+ "VALUES ('" + newPartNo + "', 'Fname', 'Lname', 'email-one@email.com', 'Mr', TO_DATE('1976-07-18 00:00:01', 'YYYY-MM-DD HH24:MI:SS'), '1 Test Street', 'Scotland', 'Strathaven', 'United Kingdom', 'ML106AD', '44135101-1110', '44135201-1110', 'Y', '400', '" + court + "', '44776-301-1110', 'N', 1000,'" + court + "222222', false, 'N', 0, 'N', (SELECT SYSDATE FROM DUAL), 1)");
 			pStmt.executeQuery();
 
 
@@ -2269,7 +2269,7 @@ public class DatabaseTesterNewSchemaDesign {
 			pStmt.execute();
 
 			pStmt = conn.prepareStatement("insert into juror_mod.juror_pool (juror_number,pool_number,owner,user_edtq,is_active,status,times_sel,def_date,mileage,location,no_attendances,no_attended,no_fta,no_awol,pool_seq,edit_tag,next_date,on_call,amt_spent,was_deferred,deferral_code,id_checked,postpone,paid_cash,travel_time,scan_code,financial_loss,last_update,reminder_sent,transfer_date,date_created)"
-					+ "values ('6" + court + "22222','" + court + "222222','" + court + "',null,'Y','2',null,null,null,'" + court + "','0',null,null,null,null,null,CURRENT_DATE+10,null,'N',null,'N',null,null,null,null,null,null,CURRENT_DATE,null,null,CURRENT_DATE)");
+					+ "values ('6" + court + "22222','" + court + "222222','" + court + "',null,'Y','2',null,null,null,'" + court + "','0',null,null,null,null,null,CURRENT_DATE+10,false,'N',null,'N',null,null,null,null,null,null,CURRENT_DATE,null,null,CURRENT_DATE)");
 			pStmt.execute();
 
 		} catch (SQLException e) {
@@ -2296,7 +2296,7 @@ public class DatabaseTesterNewSchemaDesign {
 
 //			#insert the pool rows
 			pStmt = conn.prepareStatement("INSERT INTO JUROR.POOL (part_no, fname, lname, h_email, title, dob, ADDRESS_LINE_1, ADDRESS_LINE_2, ADDRESS_LINE_3, ADDRESS_LINE_4, POSTCODE, h_phone, w_phone, is_active, owner, loc_code, m_phone, responded, poll_number, pool_no, on_call, read_only, contact_preference, reg_spc, ret_date, status)"
-					+ "VALUES ('" + jurorNumber + "', 'Fname', 'Lname', 'email-one@email.com', 'Mr', TO_DATE('1976-07-18 00:00:01', 'YYYY-MM-DD HH24:MI:SS'), '1 Test Street', 'Scotland', 'Strathaven', 'United Kingdom', 'ML106AD', '44135101-1110', '44135201-1110', 'Y', '400', '" + court + "', '44776-301-1110', 'N', 1000,'" + poolNumber + "', 'N', 'N', 0, 'N', (SELECT SYSDATE FROM DUAL), 1)");
+					+ "VALUES ('" + jurorNumber + "', 'Fname', 'Lname', 'email-one@email.com', 'Mr', TO_DATE('1976-07-18 00:00:01', 'YYYY-MM-DD HH24:MI:SS'), '1 Test Street', 'Scotland', 'Strathaven', 'United Kingdom', 'ML106AD', '44135101-1110', '44135201-1110', 'Y', '400', '" + court + "', '44776-301-1110', 'N', 1000,'" + poolNumber + "', false, 'N', 0, 'N', (SELECT SYSDATE FROM DUAL), 1)");
 			pStmt.executeQuery();
 
 		} catch (SQLException e) {
@@ -2324,7 +2324,7 @@ public class DatabaseTesterNewSchemaDesign {
 
 //			#insert the pool rows
 			pStmt = conn.prepareStatement("INSERT INTO JUROR.POOL (part_no, fname, lname, h_email, title, dob, ADDRESS_LINE_1, ADDRESS_LINE_2, ADDRESS_LINE_3, ADDRESS_LINE_4, POSTCODE, h_phone, w_phone, is_active, owner, loc_code, m_phone, responded, poll_number, pool_no, on_call, read_only, contact_preference, reg_spc, ret_date, status, next_date)"
-					+ "VALUES ('" + jurorNumber + "', 'Fname', 'Lname', 'email-one@email.com', 'Mr', TO_DATE('1976-07-18 00:00:01', 'YYYY-MM-DD HH24:MI:SS'), '1 Test Street', 'Scotland', 'Strathaven', 'United Kingdom', 'ML106AD', '44135101-1110', '44135201-1110', 'Y', '400', '" + court + "', '44776-301-1110', 'N', 1000,'" + poolNumber + "', 'N', 'N', 0, 'N', SYSDATE+60, 1, TRUNC(SYSDATE + (8 - TO_NUMBER(TO_CHAR(SYSDATE, 'D'))) + 56))");
+					+ "VALUES ('" + jurorNumber + "', 'Fname', 'Lname', 'email-one@email.com', 'Mr', TO_DATE('1976-07-18 00:00:01', 'YYYY-MM-DD HH24:MI:SS'), '1 Test Street', 'Scotland', 'Strathaven', 'United Kingdom', 'ML106AD', '44135101-1110', '44135201-1110', 'Y', '400', '" + court + "', '44776-301-1110', 'N', 1000,'" + poolNumber + "', false, 'N', 0, 'N', SYSDATE+60, 1, TRUNC(SYSDATE + (8 - TO_NUMBER(TO_CHAR(SYSDATE, 'D'))) + 56))");
 			pStmt.executeQuery();
 
 		} catch (SQLException e) {
@@ -2352,7 +2352,7 @@ public class DatabaseTesterNewSchemaDesign {
 
 //			#insert the pool rows
 			pStmt = conn.prepareStatement("INSERT INTO JUROR.POOL (part_no, fname, lname, h_email, title, dob, ADDRESS_LINE_1, ADDRESS_LINE_2, ADDRESS_LINE_3, ADDRESS_LINE_4, POSTCODE, h_phone, w_phone, is_active, owner, loc_code, m_phone, responded, poll_number, pool_no, on_call, read_only, contact_preference, reg_spc, ret_date, status, next_date)"
-					+ "VALUES ('" + jurorNumber + "', 'Fname', 'Lname', 'email-one@email.com', 'Mr', TO_DATE('1976-07-18 00:00:01', 'YYYY-MM-DD HH24:MI:SS'), '1 Test Street', 'Scotland', 'Strathaven', 'United Kingdom', 'ML106AD', '44135101-1110', '44135201-1110', 'Y', '" + court + "', '" + court + "', '44776-301-1110', 'N', 1000,'" + poolNumber + "', 'N', 'N', 0, 'N', SYSDATE+60, 1, TRUNC(SYSDATE + (8 - TO_NUMBER(TO_CHAR(SYSDATE, 'D'))) + 56))");
+					+ "VALUES ('" + jurorNumber + "', 'Fname', 'Lname', 'email-one@email.com', 'Mr', TO_DATE('1976-07-18 00:00:01', 'YYYY-MM-DD HH24:MI:SS'), '1 Test Street', 'Scotland', 'Strathaven', 'United Kingdom', 'ML106AD', '44135101-1110', '44135201-1110', 'Y', '" + court + "', '" + court + "', '44776-301-1110', 'N', 1000,'" + poolNumber + "', false, 'N', 0, 'N', SYSDATE+60, 1, TRUNC(SYSDATE + (8 - TO_NUMBER(TO_CHAR(SYSDATE, 'D'))) + 56))");
 			pStmt.executeQuery();
 
 		} catch (SQLException e) {
@@ -2382,7 +2382,7 @@ public class DatabaseTesterNewSchemaDesign {
 
 //			#insert the pool rows
 			pStmt = conn.prepareStatement("INSERT INTO JUROR.POOL (part_no, fname, lname, h_email, title, dob, ADDRESS_LINE_1, ADDRESS_LINE_2, ADDRESS_LINE_3, ADDRESS_LINE_4, POSTCODE, h_phone, w_phone, is_active, owner, loc_code, m_phone, responded, poll_number, pool_no, on_call, read_only, contact_preference, reg_spc, ret_date, status)"
-					+ "VALUES ('6" + court + "99999', 'Edward', 'Palmer', 'email-one@email.com', 'Mr', TO_DATE('1976-07-18 00:00:01', 'YYYY-MM-DD HH24:MI:SS'), '1 Test Street', 'Scotland', 'Strathaven', 'United Kingdom', 'ML106AD', '44135101-1110', '44135201-1110', 'Y', '400', '" + court + "', '44776-301-1110', 'N', 1000,'" + court + "222222', 'N', 'N', 0, 'N', (SELECT SYSDATE FROM DUAL), 1)");
+					+ "VALUES ('6" + court + "99999', 'Edward', 'Palmer', 'email-one@email.com', 'Mr', TO_DATE('1976-07-18 00:00:01', 'YYYY-MM-DD HH24:MI:SS'), '1 Test Street', 'Scotland', 'Strathaven', 'United Kingdom', 'ML106AD', '44135101-1110', '44135201-1110', 'Y', '400', '" + court + "', '44776-301-1110', 'N', 1000,'" + court + "222222', false, 'N', 0, 'N', (SELECT SYSDATE FROM DUAL), 1)");
 			pStmt.executeQuery();
 
 		} catch (SQLException e) {
@@ -2419,7 +2419,7 @@ public class DatabaseTesterNewSchemaDesign {
 			pStmt.execute();
 
 			pStmt = conn.prepareStatement("insert into juror_mod.juror_pool (juror_number,pool_number,owner,user_edtq,is_active,status,times_sel,def_date,mileage,location,no_attendances,no_attended,no_fta,no_awol,pool_seq,edit_tag,next_date,on_call,amt_spent,was_deferred,deferral_code,id_checked,postpone,paid_cash,travel_time,scan_code,financial_loss,last_update,reminder_sent,transfer_date,date_created)"
-					+ "values ('" + newJurorRecordNumber + "','" + poolNo + "','400',null,'Y','7',null,CURRENT_DATE,null,'415','0',null,null,null,null,null,CURRENT_DATE,null,null,null,'Y',null,null,null,null,null,null,CURRENT_DATE,null,null,CURRENT_DATE)");
+					+ "values ('" + newJurorRecordNumber + "','" + poolNo + "','400',null,'Y','7',null,CURRENT_DATE,null,'415','0',null,null,null,null,null,CURRENT_DATE,false,null,null,'Y',null,null,null,null,null,null,CURRENT_DATE,null,null,CURRENT_DATE)");
 			pStmt.execute();
 
 			// Insert the Response into JUROR_MOD.JUROR_RESPONSE
@@ -2457,7 +2457,7 @@ public class DatabaseTesterNewSchemaDesign {
 			pStmt.execute();
 
 			pStmt = conn.prepareStatement("insert into juror_mod.juror_pool (juror_number,pool_number,owner,user_edtq,is_active,status,times_sel,def_date,mileage,location,no_attendances,no_attended,no_fta,no_awol,pool_seq,edit_tag,next_date,on_call,amt_spent,was_deferred,deferral_code,id_checked,postpone,paid_cash,travel_time,scan_code,financial_loss,last_update,reminder_sent,transfer_date,date_created)"
-					+ "values ('" + newJurorRecordNumber + "','415230501','400',null,'Y','7',null,CURRENT_DATE,null,'415','0',null,null,null,null,null,CURRENT_DATE,null,null,null,'Y',null,null,null,null,null,null,CURRENT_DATE,null,null,CURRENT_DATE)");
+					+ "values ('" + newJurorRecordNumber + "','415230501','400',null,'Y','7',null,CURRENT_DATE,null,'415','0',null,null,null,null,null,CURRENT_DATE,false,null,null,'Y',null,null,null,null,null,null,CURRENT_DATE,null,null,CURRENT_DATE)");
 			pStmt.execute();
 
 			// Insert the Response into JUROR_MOD.JUROR_RESPONSE
@@ -3640,7 +3640,7 @@ public class DatabaseTesterNewSchemaDesign {
 				pStmt.execute();
 
 				pStmt = conn.prepareStatement("insert into juror_mod.juror_pool (juror_number,pool_number,owner,user_edtq,is_active,status,times_sel,def_date,location,no_attendances,no_attended,no_fta,no_awol,pool_seq,edit_tag,next_date,on_call,was_deferred,deferral_code,id_checked,postpone,paid_cash,scan_code,last_update,reminder_sent,transfer_date,date_created)"
-						+ "values ('0" + court + "0000" + index + "','" + court + "00000" + index + "','" + owner + "', 'MODTESTBUREAU', true, 7, NULL, '" + localDateMonday + "', NULL, '" + court + "', NULL, NULL, NULL, '0001', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, CURRENT_DATE, NULL, NULL, CURRENT_DATE)");
+						+ "values ('0" + court + "0000" + index + "','" + court + "00000" + index + "','" + owner + "', 'MODTESTBUREAU', true, 7, NULL, '" + localDateMonday + "', NULL, '" + court + "', NULL, NULL, NULL, '0001', NULL, NULL, false, NULL, NULL, NULL, NULL, NULL, NULL, CURRENT_DATE, NULL, NULL, CURRENT_DATE)");
 				pStmt.execute();
 
 			}
@@ -3696,7 +3696,7 @@ public class DatabaseTesterNewSchemaDesign {
 				pStmt.execute();
 
 				pStmt = conn.prepareStatement("insert into juror_mod.juror_pool (juror_number,pool_number,owner,user_edtq,is_active,status,times_sel,def_date,location,no_attendances,no_attended,no_fta,no_awol,pool_seq,edit_tag,next_date,on_call,was_deferred,deferral_code,id_checked,postpone,paid_cash,scan_code,last_update,reminder_sent,transfer_date,date_created)"
-						+ "values ('0" + court + "0001" + index + "','" + court + "133333','" + owner + "', 'MODTESTBUREAU', true, 2, NULL, null, NULL, null, NULL, NULL, NULL, '0001', NULL, NULL, NULL, NULL, NULL, null, NULL, NULL, NULL, CURRENT_DATE, NULL, NULL, CURRENT_DATE)");
+						+ "values ('0" + court + "0001" + index + "','" + court + "133333','" + owner + "', 'MODTESTBUREAU', true, 2, NULL, null, NULL, null, NULL, NULL, NULL, '0001', NULL, NULL, false, NULL, NULL, null, NULL, NULL, NULL, CURRENT_DATE, NULL, NULL, CURRENT_DATE)");
 				pStmt.execute();
 
 			}
@@ -3790,7 +3790,7 @@ public class DatabaseTesterNewSchemaDesign {
 			pStmt.execute();
 
 			pStmt = conn.prepareStatement("insert into juror_mod.juror_pool (juror_number,pool_number,owner,user_edtq,is_active,status,times_sel,def_date,location,no_attendances,no_attended,no_fta,no_awol,pool_seq,edit_tag,next_date,on_call,was_deferred,deferral_code,id_checked,postpone,paid_cash,scan_code,last_update,reminder_sent,transfer_date,date_created)"
-					+ "values ('9" + court + "99999','" + court + "222222','400',null,true,'1',null,null,'400','0',null,null,null,null,null,CURRENT_DATE+112,null,'N',NULL,null,null,null,null,CURRENT_DATE,null,null,CURRENT_DATE)");
+					+ "values ('9" + court + "99999','" + court + "222222','400',null,true,'1',null,null,'400','0',null,null,null,null,null,CURRENT_DATE+112,false,'N',NULL,null,null,null,null,CURRENT_DATE,null,null,CURRENT_DATE)");
 			pStmt.execute();
 
 			pStmt = conn.prepareStatement("insert into juror_mod.juror (juror_number,poll_number,title,last_name,first_name,dob,ADDRESS_LINE_1,ADDRESS_LINE_2,ADDRESS_LINE_3,ADDRESS_LINE_4,ADDRESS_LINE_5,POSTCODE,h_phone,w_phone,w_ph_local,responded,date_excused,excusal_code,acc_exc,date_disq,disq_code,user_edtq,notes,no_def_pos,perm_disqual,reasonable_adj_code,reasonable_adj_msg,sort_code,bank_acct_name,bank_acct_no,bldg_soc_roll_no,welsh,police_check,last_update,summons_file,m_phone,h_email,contact_preference,notifications,date_created,optic_reference,pending_title,pending_first_name,pending_last_name)"
@@ -3798,7 +3798,7 @@ public class DatabaseTesterNewSchemaDesign {
 			pStmt.execute();
 
 			pStmt = conn.prepareStatement("insert into juror_mod.juror_pool (juror_number,pool_number,owner,user_edtq,is_active,status,times_sel,def_date,location,no_attendances,no_attended,no_fta,no_awol,pool_seq,edit_tag,next_date,on_call,was_deferred,deferral_code,id_checked,postpone,paid_cash,scan_code,last_update,reminder_sent,transfer_date,date_created)"
-					+ "values ('9" + court + "99998','" + court + "222222','400',null,'Y','2',null,null,'400','0',null,null,null,null,null,CURRENT_DATE+112,null,'N',NULL,null,null,null,null,CURRENT_DATE,null,null,CURRENT_DATE)");
+					+ "values ('9" + court + "99998','" + court + "222222','400',null,'Y','2',null,null,'400','0',null,null,null,null,null,CURRENT_DATE+112,false,'N',NULL,null,null,null,null,CURRENT_DATE,null,null,CURRENT_DATE)");
 			pStmt.execute();
 
 		} catch (SQLException e) {
@@ -3868,7 +3868,7 @@ public class DatabaseTesterNewSchemaDesign {
 			pStmt.execute();
 
 			pStmt = conn.prepareStatement("insert into juror_mod.juror_pool (juror_number,pool_number,owner,user_edtq,is_active,status,times_sel,def_date,location,no_attendances,no_attended,no_fta,no_awol,pool_seq,edit_tag,next_date,on_call,was_deferred,deferral_code,id_checked,postpone,paid_cash,scan_code,last_update,reminder_sent,transfer_date,date_created)"
-					+ "values ('6" + court + "91101','" + court + "911911', '400', 'MODTESTBUREAU', true, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0001', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-01-10 09:18:32.634', NULL, NULL, '2024-01-10 09:18:11.734')");
+					+ "values ('6" + court + "91101','" + court + "911911', '400', 'MODTESTBUREAU', true, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0001', NULL, NULL, false, NULL, NULL, NULL, NULL, NULL, NULL, '2024-01-10 09:18:32.634', NULL, NULL, '2024-01-10 09:18:11.734')");
 			pStmt.execute();
 
 			pStmt = conn.prepareStatement("insert into juror_mod.juror (juror_number,poll_number,title,last_name,first_name,dob,ADDRESS_LINE_1,ADDRESS_LINE_2,ADDRESS_LINE_3,ADDRESS_LINE_4,ADDRESS_LINE_5,POSTCODE,h_phone,w_phone,w_ph_local,responded,date_excused,excusal_code,acc_exc,date_disq,disq_code,user_edtq,notes,no_def_pos,perm_disqual,reasonable_adj_code,reasonable_adj_msg,sort_code,bank_acct_name,bank_acct_no,bldg_soc_roll_no,welsh,police_check,last_update,summons_file,m_phone,h_email,contact_preference,notifications,date_created,optic_reference,pending_title,pending_first_name,pending_last_name)"
@@ -3876,7 +3876,7 @@ public class DatabaseTesterNewSchemaDesign {
 			pStmt.execute();
 
 			pStmt = conn.prepareStatement("insert into juror_mod.juror_pool (juror_number,pool_number,owner,user_edtq,is_active,status,times_sel,def_date,location,no_attendances,no_attended,no_fta,no_awol,pool_seq,edit_tag,next_date,on_call,was_deferred,deferral_code,id_checked,postpone,paid_cash,scan_code,last_update,reminder_sent,transfer_date,date_created)"
-					+ "values ('6" + court + "91102','" + court + "911911', '400', 'MODTESTBUREAU', true, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0001', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-01-10 09:18:32.634', NULL, NULL, '2024-01-10 09:18:11.734')");
+					+ "values ('6" + court + "91102','" + court + "911911', '400', 'MODTESTBUREAU', true, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0001', NULL, NULL, false, NULL, NULL, NULL, NULL, NULL, NULL, '2024-01-10 09:18:32.634', NULL, NULL, '2024-01-10 09:18:11.734')");
 			pStmt.execute();
 
 			pStmt = conn.prepareStatement("insert into juror_mod.juror (juror_number,poll_number,title,last_name,first_name,dob,ADDRESS_LINE_1,ADDRESS_LINE_2,ADDRESS_LINE_3,ADDRESS_LINE_4,ADDRESS_LINE_5,POSTCODE,h_phone,w_phone,w_ph_local,responded,date_excused,excusal_code,acc_exc,date_disq,disq_code,user_edtq,notes,no_def_pos,perm_disqual,reasonable_adj_code,reasonable_adj_msg,sort_code,bank_acct_name,bank_acct_no,bldg_soc_roll_no,welsh,police_check,last_update,summons_file,m_phone,h_email,contact_preference,notifications,date_created,optic_reference,pending_title,pending_first_name,pending_last_name)"
@@ -3884,7 +3884,7 @@ public class DatabaseTesterNewSchemaDesign {
 			pStmt.execute();
 
 			pStmt = conn.prepareStatement("insert into juror_mod.juror_pool (juror_number,pool_number,owner,user_edtq,is_active,status,times_sel,def_date,location,no_attendances,no_attended,no_fta,no_awol,pool_seq,edit_tag,next_date,on_call,was_deferred,deferral_code,id_checked,postpone,paid_cash,scan_code,last_update,reminder_sent,transfer_date,date_created)"
-					+ "values ('6" + court + "91105','" + court + "911911', '400', 'MODTESTBUREAU', true, 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0001', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-01-10 09:18:32.634', NULL, NULL, '2024-01-10 09:18:11.734')");
+					+ "values ('6" + court + "91105','" + court + "911911', '400', 'MODTESTBUREAU', true, 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0001', NULL, NULL, false, NULL, NULL, NULL, NULL, NULL, NULL, '2024-01-10 09:18:32.634', NULL, NULL, '2024-01-10 09:18:11.734')");
 			pStmt.execute();
 
 			pStmt = conn.prepareStatement("insert into juror_mod.juror (juror_number,poll_number,title,last_name,first_name,dob,ADDRESS_LINE_1,ADDRESS_LINE_2,ADDRESS_LINE_3,ADDRESS_LINE_4,ADDRESS_LINE_5,POSTCODE,h_phone,w_phone,w_ph_local,responded,date_excused,excusal_code,acc_exc,date_disq,disq_code,user_edtq,notes,no_def_pos,perm_disqual,reasonable_adj_code,reasonable_adj_msg,sort_code,bank_acct_name,bank_acct_no,bldg_soc_roll_no,welsh,police_check,last_update,summons_file,m_phone,h_email,contact_preference,notifications,date_created,optic_reference,pending_title,pending_first_name,pending_last_name)"
@@ -3892,7 +3892,7 @@ public class DatabaseTesterNewSchemaDesign {
 			pStmt.execute();
 
 			pStmt = conn.prepareStatement("insert into juror_mod.juror_pool (juror_number,pool_number,owner,user_edtq,is_active,status,times_sel,def_date,location,no_attendances,no_attended,no_fta,no_awol,pool_seq,edit_tag,next_date,on_call,was_deferred,deferral_code,id_checked,postpone,paid_cash,scan_code,last_update,reminder_sent,transfer_date,date_created)"
-					+ "values ('6" + court + "91106','" + court + "911911', '400', 'MODTESTBUREAU', true, 6, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0001', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-01-10 09:18:32.634', NULL, NULL, '2024-01-10 09:18:11.734')");
+					+ "values ('6" + court + "91106','" + court + "911911', '400', 'MODTESTBUREAU', true, 6, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0001', NULL, NULL, false, NULL, NULL, NULL, NULL, NULL, NULL, '2024-01-10 09:18:32.634', NULL, NULL, '2024-01-10 09:18:11.734')");
 			pStmt.execute();
 
 			pStmt = conn.prepareStatement("insert into juror_mod.juror (juror_number,poll_number,title,last_name,first_name,dob,ADDRESS_LINE_1,ADDRESS_LINE_2,ADDRESS_LINE_3,ADDRESS_LINE_4,ADDRESS_LINE_5,POSTCODE,h_phone,w_phone,w_ph_local,responded,date_excused,excusal_code,acc_exc,date_disq,disq_code,user_edtq,notes,no_def_pos,perm_disqual,reasonable_adj_code,reasonable_adj_msg,sort_code,bank_acct_name,bank_acct_no,bldg_soc_roll_no,welsh,police_check,last_update,summons_file,m_phone,h_email,contact_preference,notifications,date_created,optic_reference,pending_title,pending_first_name,pending_last_name)"
@@ -3900,7 +3900,7 @@ public class DatabaseTesterNewSchemaDesign {
 			pStmt.execute();
 
 			pStmt = conn.prepareStatement("insert into juror_mod.juror_pool (juror_number,pool_number,owner,user_edtq,is_active,status,times_sel,def_date,location,no_attendances,no_attended,no_fta,no_awol,pool_seq,edit_tag,next_date,on_call,was_deferred,deferral_code,id_checked,postpone,paid_cash,scan_code,last_update,reminder_sent,transfer_date,date_created)"
-					+ "values ('6" + court + "91107','" + court + "911911', '400','MODTESTBUREAU', true, 7, NULL, CURRENT_DATE+60, NULL, NULL, NULL, NULL, NULL, '0001', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-01-10 09:18:32.634', NULL, NULL, '2024-01-10 09:18:11.734')");
+					+ "values ('6" + court + "91107','" + court + "911911', '400','MODTESTBUREAU', true, 7, NULL, CURRENT_DATE+60, NULL, NULL, NULL, NULL, NULL, '0001', NULL, NULL, false, NULL, NULL, NULL, NULL, NULL, NULL, '2024-01-10 09:18:32.634', NULL, NULL, '2024-01-10 09:18:11.734')");
 			pStmt.execute();
 
 			pStmt = conn.prepareStatement("insert into juror_mod.juror (juror_number,poll_number,title,last_name,first_name,dob,ADDRESS_LINE_1,ADDRESS_LINE_2,ADDRESS_LINE_3,ADDRESS_LINE_4,ADDRESS_LINE_5,POSTCODE,h_phone,w_phone,w_ph_local,responded,date_excused,excusal_code,acc_exc,date_disq,disq_code,user_edtq,notes,no_def_pos,perm_disqual,reasonable_adj_code,reasonable_adj_msg,sort_code,bank_acct_name,bank_acct_no,bldg_soc_roll_no,welsh,police_check,last_update,summons_file,m_phone,h_email,contact_preference,notifications,date_created,optic_reference,pending_title,pending_first_name,pending_last_name)"
@@ -3908,7 +3908,7 @@ public class DatabaseTesterNewSchemaDesign {
 			pStmt.execute();
 
 			pStmt = conn.prepareStatement("insert into juror_mod.juror_pool (juror_number,pool_number,owner,user_edtq,is_active,status,times_sel,def_date,location,no_attendances,no_attended,no_fta,no_awol,pool_seq,edit_tag,next_date,on_call,was_deferred,deferral_code,id_checked,postpone,paid_cash,scan_code,last_update,reminder_sent,transfer_date,date_created)"
-					+ "values ('6" + court + "91108','" + court + "911911', '400', 'MODTESTBUREAU', true, 8, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0001', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-01-10 09:18:32.634', NULL, NULL, '2024-01-10 09:18:11.734')");
+					+ "values ('6" + court + "91108','" + court + "911911', '400', 'MODTESTBUREAU', true, 8, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0001', NULL, NULL, false, NULL, NULL, NULL, NULL, NULL, NULL, '2024-01-10 09:18:32.634', NULL, NULL, '2024-01-10 09:18:11.734')");
 			pStmt.execute();
 
 			pStmt = conn.prepareStatement("insert into juror_mod.juror (juror_number,poll_number,title,last_name,first_name,dob,ADDRESS_LINE_1,ADDRESS_LINE_2,ADDRESS_LINE_3,ADDRESS_LINE_4,ADDRESS_LINE_5,POSTCODE,h_phone,w_phone,w_ph_local,responded,date_excused,excusal_code,acc_exc,date_disq,disq_code,user_edtq,notes,no_def_pos,perm_disqual,reasonable_adj_code,reasonable_adj_msg,sort_code,bank_acct_name,bank_acct_no,bldg_soc_roll_no,welsh,police_check,last_update,summons_file,m_phone,h_email,contact_preference,notifications,date_created,optic_reference,pending_title,pending_first_name,pending_last_name)"
@@ -3916,7 +3916,7 @@ public class DatabaseTesterNewSchemaDesign {
 			pStmt.execute();
 
 			pStmt = conn.prepareStatement("insert into juror_mod.juror_pool (juror_number,pool_number,owner,user_edtq,is_active,status,times_sel,def_date,location,no_attendances,no_attended,no_fta,no_awol,pool_seq,edit_tag,next_date,on_call,was_deferred,deferral_code,id_checked,postpone,paid_cash,scan_code,last_update,reminder_sent,transfer_date,date_created)"
-					+ "values ('6" + court + "91109','" + court + "911911', '400', 'MODTESTBUREAU', true, 9, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0001', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-01-10 09:18:32.634', NULL, NULL, '2024-01-10 09:18:11.734')");
+					+ "values ('6" + court + "91109','" + court + "911911', '400', 'MODTESTBUREAU', true, 9, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0001', NULL, NULL, false, NULL, NULL, NULL, NULL, NULL, NULL, '2024-01-10 09:18:32.634', NULL, NULL, '2024-01-10 09:18:11.734')");
 			pStmt.execute();
 
 			pStmt = conn.prepareStatement("insert into juror_mod.juror (juror_number,poll_number,title,last_name,first_name,dob,ADDRESS_LINE_1,ADDRESS_LINE_2,ADDRESS_LINE_3,ADDRESS_LINE_4,ADDRESS_LINE_5,POSTCODE,h_phone,w_phone,w_ph_local,responded,date_excused,excusal_code,acc_exc,date_disq,disq_code,user_edtq,notes,no_def_pos,perm_disqual,reasonable_adj_code,reasonable_adj_msg,sort_code,bank_acct_name,bank_acct_no,bldg_soc_roll_no,welsh,police_check,last_update,summons_file,m_phone,h_email,contact_preference,notifications,date_created,optic_reference,pending_title,pending_first_name,pending_last_name)"
@@ -3924,7 +3924,7 @@ public class DatabaseTesterNewSchemaDesign {
 			pStmt.execute();
 
 			pStmt = conn.prepareStatement("insert into juror_mod.juror_pool (juror_number,pool_number,owner,user_edtq,is_active,status,times_sel,def_date,location,no_attendances,no_attended,no_fta,no_awol,pool_seq,edit_tag,next_date,on_call,was_deferred,deferral_code,id_checked,postpone,paid_cash,scan_code,last_update,reminder_sent,transfer_date,date_created)"
-					+ "values ('6" + court + "91111','" + court + "911911', '400', 'MODTESTBUREAU', true, 11, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0001', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-01-10 09:18:32.634', NULL, NULL, '2024-01-10 09:18:11.734')");
+					+ "values ('6" + court + "91111','" + court + "911911', '400', 'MODTESTBUREAU', true, 11, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0001', NULL, NULL, false, NULL, NULL, NULL, NULL, NULL, NULL, '2024-01-10 09:18:32.634', NULL, NULL, '2024-01-10 09:18:11.734')");
 			pStmt.execute();
 
 			pStmt = conn.prepareStatement("insert into juror_mod.juror (juror_number,poll_number,title,last_name,first_name,dob,ADDRESS_LINE_1,ADDRESS_LINE_2,ADDRESS_LINE_3,ADDRESS_LINE_4,ADDRESS_LINE_5,POSTCODE,h_phone,w_phone,w_ph_local,responded,date_excused,excusal_code,acc_exc,date_disq,disq_code,user_edtq,notes,no_def_pos,perm_disqual,reasonable_adj_code,reasonable_adj_msg,sort_code,bank_acct_name,bank_acct_no,bldg_soc_roll_no,welsh,police_check,last_update,summons_file,m_phone,h_email,contact_preference,notifications,date_created,optic_reference,pending_title,pending_first_name,pending_last_name)"
@@ -3932,7 +3932,7 @@ public class DatabaseTesterNewSchemaDesign {
 			pStmt.execute();
 
 			pStmt = conn.prepareStatement("insert into juror_mod.juror_pool (juror_number,pool_number,owner,user_edtq,is_active,status,times_sel,def_date,location,no_attendances,no_attended,no_fta,no_awol,pool_seq,edit_tag,next_date,on_call,was_deferred,deferral_code,id_checked,postpone,paid_cash,scan_code,last_update,reminder_sent,transfer_date,date_created)"
-					+ "values ('6" + court + "91113','" + court + "911911', '400', 'MODTESTBUREAU', true, 13, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0001', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-01-10 09:18:32.634', NULL, NULL, '2024-01-10 09:18:11.734')");
+					+ "values ('6" + court + "91113','" + court + "911911', '400', 'MODTESTBUREAU', true, 13, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0001', NULL, NULL, false, NULL, NULL, NULL, NULL, NULL, NULL, '2024-01-10 09:18:32.634', NULL, NULL, '2024-01-10 09:18:11.734')");
 			pStmt.execute();
 
 
@@ -3967,19 +3967,19 @@ public class DatabaseTesterNewSchemaDesign {
 			pStmt.executeQuery();
 
 			pStmt = conn.prepareStatement("INSERT INTO JUROR.POOL (OWNER,PART_NO,POOL_NO,POLL_NUMBER,TITLE,LNAME,FNAME,DOB,ADDRESS_LINE_1,ADDRESS_LINE_2,ADDRESS_LINE_3,ADDRESS_LINE_4,ADDRESS_LINE_5,POSTCODE,H_PHONE,W_PHONE,W_PH_LOCAL,TIMES_SEL,TRIAL_NO,JUROR_NO,REG_SPC,RET_DATE,DEF_DATE,RESPONDED,DATE_EXCUS,EXC_CODE,ACC_EXC,DATE_DISQ,DISQ_CODE,MILEAGE,LOCATION,USER_EDTQ,STATUS,NOTES,NO_ATTENDANCES,IS_ACTIVE,NO_DEF_POS,NO_ATTENDED,NO_FTA,NO_AWOL,POOL_SEQ,EDIT_TAG,POOL_TYPE,LOC_CODE,NEXT_DATE,ON_CALL,PERM_DISQUAL,PAY_COUNTY_EMP,PAY_EXPENSES,SPEC_NEED,SPEC_NEED_MSG,AMT_SPENT,COMPLETION_DATE,SORT_CODE,BANK_ACCT_NAME,BANK_ACCT_NO,BLDG_SOC_ROLL_NO,WAS_DEFERRED,ID_CHECKED,POSTPONE,WELSH,PAID_CASH,TRAVEL_TIME,SCAN_CODE,FINANCIAL_LOSS,POLICE_CHECK,LAST_UPDATE,READ_ONLY,SUMMONS_FILE,REMINDER_SENT,PHOENIX_DATE,PHOENIX_CHECKED,M_PHONE,H_EMAIL,CONTACT_PREFERENCE,NOTIFICATIONS,TRANSFER_DATE,SERVICE_COMP_COMMS_STATUS)" +
-					"VALUES ('400','9" + court + "99999','" + court + "222222','99999',NULL,'LNAMEONE','FNAMEONE',NULL,'1 STREET NAME','ANYTOWN',NULL,NULL,NULL,'CH1 2AN',NULL,NULL,NULL,NULL,NULL,NULL,'R',(SELECT SYSDATE FROM DUAL),(SELECT SYSDATE FROM DUAL),'N',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,NULL,NULL,'Y',NULL,NULL,NULL,NULL,'0001',NULL,'CRO','" + court + "',(SELECT SYSDATE FROM DUAL),NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,(SELECT SYSDATE FROM DUAL),'Y',NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL)");
+					"VALUES ('400','9" + court + "99999','" + court + "222222','99999',NULL,'LNAMEONE','FNAMEONE',NULL,'1 STREET NAME','ANYTOWN',NULL,NULL,NULL,'CH1 2AN',NULL,NULL,NULL,NULL,NULL,NULL,'R',(SELECT SYSDATE FROM DUAL),(SELECT SYSDATE FROM DUAL),'N',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,NULL,NULL,'Y',NULL,NULL,NULL,NULL,'0001',NULL,'CRO','" + court + "',(SELECT SYSDATE FROM DUAL),false,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,(SELECT SYSDATE FROM DUAL),'Y',NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL)");
 			pStmt.executeQuery();
 
 			pStmt = conn.prepareStatement("INSERT INTO JUROR.POOL (OWNER,PART_NO,POOL_NO,POLL_NUMBER,TITLE,LNAME,FNAME,DOB,ADDRESS_LINE_1,ADDRESS_LINE_2,ADDRESS_LINE_3,ADDRESS_LINE_4,ADDRESS_LINE_5,POSTCODE,H_PHONE,W_PHONE,W_PH_LOCAL,TIMES_SEL,TRIAL_NO,JUROR_NO,REG_SPC,RET_DATE,DEF_DATE,RESPONDED,DATE_EXCUS,EXC_CODE,ACC_EXC,DATE_DISQ,DISQ_CODE,MILEAGE,LOCATION,USER_EDTQ,STATUS,NOTES,NO_ATTENDANCES,IS_ACTIVE,NO_DEF_POS,NO_ATTENDED,NO_FTA,NO_AWOL,POOL_SEQ,EDIT_TAG,POOL_TYPE,LOC_CODE,NEXT_DATE,ON_CALL,PERM_DISQUAL,PAY_COUNTY_EMP,PAY_EXPENSES,SPEC_NEED,SPEC_NEED_MSG,AMT_SPENT,COMPLETION_FLAG,COMPLETION_DATE,SORT_CODE,BANK_ACCT_NAME,BANK_ACCT_NO,BLDG_SOC_ROLL_NO,WAS_DEFERRED,ID_CHECKED,POSTPONE,WELSH,PAID_CASH,TRAVEL_TIME,SCAN_CODE,FINANCIAL_LOSS,POLICE_CHECK,LAST_UPDATE,READ_ONLY,SUMMONS_FILE,REMINDER_SENT,PHOENIX_DATE,PHOENIX_CHECKED,M_PHONE,H_EMAIL,CONTACT_PREFERENCE,NOTIFICATIONS,TRANSFER_DATE,SERVICE_COMP_COMMS_STATUS)" +
-					"VALUES ('400','9" + court + "99998','" + court + "222222','99998',NULL,'LNAMETWO','FNAMETWO',NULL,'2 STREET NAME','ANYTOWN',NULL,NULL,NULL,'CH1 2AN',NULL,NULL,NULL,NULL,NULL,NULL,'R',(SELECT SYSDATE FROM DUAL),(SELECT SYSDATE FROM DUAL),'N',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,NULL,NULL,'Y',NULL,NULL,NULL,NULL,'0001',NULL,'CRO','" + court + "',(SELECT SYSDATE FROM DUAL),NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,(SELECT SYSDATE FROM DUAL),'Y',NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL)");
+					"VALUES ('400','9" + court + "99998','" + court + "222222','99998',NULL,'LNAMETWO','FNAMETWO',NULL,'2 STREET NAME','ANYTOWN',NULL,NULL,NULL,'CH1 2AN',NULL,NULL,NULL,NULL,NULL,NULL,'R',(SELECT SYSDATE FROM DUAL),(SELECT SYSDATE FROM DUAL),'N',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,NULL,NULL,'Y',NULL,NULL,NULL,NULL,'0001',NULL,'CRO','" + court + "',(SELECT SYSDATE FROM DUAL),false,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,(SELECT SYSDATE FROM DUAL),'Y',NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL)");
 			pStmt.executeQuery();
 
 			pStmt = conn.prepareStatement("INSERT INTO JUROR.POOL (OWNER,PART_NO,POOL_NO,POLL_NUMBER,TITLE,LNAME,FNAME,DOB,ADDRESS_LINE_1,ADDRESS_LINE_2,ADDRESS_LINE_3,ADDRESS_LINE_4,ADDRESS_LINE_5,POSTCODE,H_PHONE,W_PHONE,W_PH_LOCAL,TIMES_SEL,TRIAL_NO,JUROR_NO,REG_SPC,RET_DATE,DEF_DATE,RESPONDED,DATE_EXCUS,EXC_CODE,ACC_EXC,DATE_DISQ,DISQ_CODE,MILEAGE,LOCATION,USER_EDTQ,STATUS,NOTES,NO_ATTENDANCES,IS_ACTIVE,NO_DEF_POS,NO_ATTENDED,NO_FTA,NO_AWOL,POOL_SEQ,EDIT_TAG,POOL_TYPE,LOC_CODE,NEXT_DATE,ON_CALL,PERM_DISQUAL,PAY_COUNTY_EMP,PAY_EXPENSES,SPEC_NEED,SPEC_NEED_MSG,AMT_SPENT,COMPLETION_FLAG,COMPLETION_DATE,SORT_CODE,BANK_ACCT_NAME,BANK_ACCT_NO,BLDG_SOC_ROLL_NO,WAS_DEFERRED,ID_CHECKED,POSTPONE,WELSH,PAID_CASH,TRAVEL_TIME,SCAN_CODE,FINANCIAL_LOSS,POLICE_CHECK,LAST_UPDATE,READ_ONLY,SUMMONS_FILE,REMINDER_SENT,PHOENIX_DATE,PHOENIX_CHECKED,M_PHONE,H_EMAIL,CONTACT_PREFERENCE,NOTIFICATIONS,TRANSFER_DATE,SERVICE_COMP_COMMS_STATUS)" +
-					"VALUES ('415','9" + court + "99999','" + court + "222222','99999',NULL,'LNAMEONE','FNAMEONE',NULL,'1 STREET NAME','ANYTOWN',NULL,NULL,NULL,'CH1 2AN',NULL,NULL,NULL,NULL,NULL,NULL,'R',(SELECT SYSDATE FROM DUAL),(SELECT SYSDATE FROM DUAL),'N',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,2,NULL,NULL,'Y',NULL,NULL,NULL,NULL,'0001',NULL,'CRO','" + court + "',(SELECT SYSDATE FROM DUAL),NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,(SELECT SYSDATE FROM DUAL),'N',NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL)");
+					"VALUES ('415','9" + court + "99999','" + court + "222222','99999',NULL,'LNAMEONE','FNAMEONE',NULL,'1 STREET NAME','ANYTOWN',NULL,NULL,NULL,'CH1 2AN',NULL,NULL,NULL,NULL,NULL,NULL,'R',(SELECT SYSDATE FROM DUAL),(SELECT SYSDATE FROM DUAL),'N',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,2,NULL,NULL,'Y',NULL,NULL,NULL,NULL,'0001',NULL,'CRO','" + court + "',(SELECT SYSDATE FROM DUAL),false,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,(SELECT SYSDATE FROM DUAL),'N',NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL)");
 			pStmt.executeQuery();
 
 			pStmt = conn.prepareStatement("INSERT INTO JUROR.POOL (OWNER,PART_NO,POOL_NO,POLL_NUMBER,TITLE,LNAME,FNAME,DOB,ADDRESS_LINE_1,ADDRESS_LINE_2,ADDRESS_LINE_3,ADDRESS_LINE_4,ADDRESS_LINE_5,POSTCODE,H_PHONE,W_PHONE,W_PH_LOCAL,TIMES_SEL,TRIAL_NO,JUROR_NO,REG_SPC,RET_DATE,DEF_DATE,RESPONDED,DATE_EXCUS,EXC_CODE,ACC_EXC,DATE_DISQ,DISQ_CODE,MILEAGE,LOCATION,USER_EDTQ,STATUS,NOTES,NO_ATTENDANCES,IS_ACTIVE,NO_DEF_POS,NO_ATTENDED,NO_FTA,NO_AWOL,POOL_SEQ,EDIT_TAG,POOL_TYPE,LOC_CODE,NEXT_DATE,ON_CALL,PERM_DISQUAL,PAY_COUNTY_EMP,PAY_EXPENSES,SPEC_NEED,SPEC_NEED_MSG,AMT_SPENT,COMPLETION_FLAG,COMPLETION_DATE,SORT_CODE,BANK_ACCT_NAME,BANK_ACCT_NO,BLDG_SOC_ROLL_NO,WAS_DEFERRED,ID_CHECKED,POSTPONE,WELSH,PAID_CASH,TRAVEL_TIME,SCAN_CODE,FINANCIAL_LOSS,POLICE_CHECK,LAST_UPDATE,READ_ONLY,SUMMONS_FILE,REMINDER_SENT,PHOENIX_DATE,PHOENIX_CHECKED,M_PHONE,H_EMAIL,CONTACT_PREFERENCE,NOTIFICATIONS,TRANSFER_DATE,SERVICE_COMP_COMMS_STATUS)" +
-					"VALUES ('415','9" + court + "99998','" + court + "222222','99998',NULL,'LNAMETWO','FNAMETWO',NULL,'2 STREET NAME','ANYTOWN',NULL,NULL,NULL,'CH1 2AN',NULL,NULL,NULL,NULL,NULL,NULL,'R',(SELECT SYSDATE FROM DUAL),(SELECT SYSDATE FROM DUAL),'N',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,2,NULL,NULL,'Y',NULL,NULL,NULL,NULL,'0001',NULL,'CRO','" + court + "',(SELECT SYSDATE FROM DUAL),NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,(SELECT SYSDATE FROM DUAL),'N',NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL)");
+					"VALUES ('415','9" + court + "99998','" + court + "222222','99998',NULL,'LNAMETWO','FNAMETWO',NULL,'2 STREET NAME','ANYTOWN',NULL,NULL,NULL,'CH1 2AN',NULL,NULL,NULL,NULL,NULL,NULL,'R',(SELECT SYSDATE FROM DUAL),(SELECT SYSDATE FROM DUAL),'N',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,2,NULL,NULL,'Y',NULL,NULL,NULL,NULL,'0001',NULL,'CRO','" + court + "',(SELECT SYSDATE FROM DUAL),false,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,(SELECT SYSDATE FROM DUAL),'N',NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL)");
 			pStmt.executeQuery();
 
 		} catch (SQLException e) {
