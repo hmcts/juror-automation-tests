@@ -98,9 +98,9 @@ Feature: Bureau Create Juror Record
     And I press the "Continue" button
     And I see error "Date of birth must only include numbers and forward slashes"
 
-#    And I set "Date of birth" to "101010"
-#    And I press the "Continue" button
-#    And I see error "Enter a date of birth in the correct format, for example, 31/01/1980"
+    And I set "Date of birth" to "101010"
+    And I press the "Continue" button
+    And I see error "Enter a date of birth in the correct format, for example, 31/01/1980"
 
     And I set "Date of birth" to "08/05/1992"
     And I press the "Continue" button
@@ -148,13 +148,188 @@ Feature: Bureau Create Juror Record
     And I see pool summoned total count is "2"
     And I see "Summoned" in the same row as "Stark"
 
-    #trigger summons
+    #check the new juror is added
     And I see pool summoned total count is "2"
     And I see "Summoned" in the same row as "Stark"
-#    And a summons has been generated for juror
-#    and I check the DB to ensure the summons is generated
+
+  @JurorTransformationMulti
+  Scenario Outline: Bureau Create Juror Record - validation checks
+
+    Given I am on "Bureau" "ithc"
+
+    #enable permissions
+    Given I "enable" CREATE_JUROR permission for bureau user "MODTESTBUREAU"
+
+    And I log in as "MODTESTBUREAU"
+
+    When I navigate to the pool request screen
+
+    #create an active pool request
+    And I create an active "Crown" court pool request for court "415", "10" Mondays in the future
+
+    #add jurors
+    And I navigate to the pool search screen
+    When I enter the pool number of the pool I have just created on the pool search screen
+    And I press the "Continue" button
+
+    And I press the "Create juror record" button
+
+    #jurors name
+    And I see "What's the juror's name?" on the page
+    
+    #title
+    And I set "Title (optional)" to "Professor-at-large"
+    And I set "First name" to "John"
+    And I set "Last name" to "Stark"
+    And I press the "Continue" button
+    And I see error "Title cannot contain more than 10 characters"
+
+    And I set "Title (optional)" to ""
+
+    #first name
+    And I set "First name" to ""
+    And I press the "Continue" button
+    And I see error "Enter a first name"
+
+    And I set "First name" to "aaaaaaaaaaaaaaaaaaaaa"
+    And I press the "Continue" button
+    And I see error "First name cannot contain more than 20 characters"
+
+    And I set "First name" to "<fname>"
+
+    #last name
+    And I set "Last name" to ""
+    And I press the "Continue" button
+    And I see error "Enter a last name"
+
+    And I set "Last name" to "<lname>"
+    And I press the "Continue" button
+
+    #dob - leave blank
+    And I press the "Continue" button
+
+    #address/error check
+    And I see "What's the juror's address?" on the page
+    And I press the "Continue" button
+
+    And I see error "Enter address line 1"
+    And I see error "Enter a town or city"
+    And I see error "Enter a postcode"
+
+    And I set "Address line 1" to " "
+    And I set "Town or city" to " "
+    And I set "Postcode" to " "
+    And I press the "Continue" button
+
+    And I see error "Enter address line 1"
+    And I see error "Enter a town or city"
+    And I see error "Enter a postcode"
+
+    And I set "Address line 1" to "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    And I set "Address line 2 (optional)" to "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    And I set "Address line 3 (optional)" to "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    And I set "Town or city" to "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    And I set "County (optional)" to "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    And I set "Postcode" to "CH1 2NN"
+    And I press the "Continue" button
+
+    And I see error "Address line 1 cannot contain more than 35 characters"
+    And I see error "Address line 2 cannot contain more than 35 characters"
+    And I see error "Address line 3 cannot contain more than 35 characters"
+    And I see error "Town or city cannot contain more than 35 characters"
+    And I see error "County cannot contain more than 35 characters"
+
+    And I set "Address line 1" to "<line1>"
+    And I set "Address line 2 (optional)" to "<line2>"
+    And I set "Address line 3 (optional)" to "<line3>"
+    And I set "Town or city" to "<town>"
+    And I set "County (optional)" to "<county>"
+    And I set "Postcode" to "<postcode>"
+    And I press the "Continue" button
+
+    #contact details
+    And I see "Enter their contact details" on the page
+
+    And I set "Main phone - UK only (optional)" to " "
+    And I set "Alternative phone (optional)" to " "
+    And I set "Email (optional)" to " "
+    And I press the "Continue" button
+
+    And I see error "Enter a valid main phone number"
+    And I see error "Enter a valid alternative phone number"
+    And I see error "Enter a valid email address"
+
+    And I set "Main phone - UK only (optional)" to "1111111111111111111111111111111111111111111111111111111111111"
+    And I set "Alternative phone (optional)" to "1111111111111111111111111111111111111111111111111111111111111"
+    And I set "Email (optional)" to "1111111111111111111111111111111111111111111111111111111111111"
+    And I press the "Continue" button
+
+    And I see error "Enter a valid main phone number"
+    And I see error "Enter a valid alternative phone number"
+    And I see error "Enter a valid email address"
+
+    And I set "Main phone - UK only (optional)" to "no phone"
+    And I set "Alternative phone (optional)" to "no phone"
+    And I set "Email (optional)" to "no email"
+    And I press the "Continue" button
+
+    And I see error "Enter a valid main phone number"
+    And I see error "Enter a valid alternative phone number"
+    And I see error "Enter a valid email address"
+
+    And I set "Main phone - UK only (optional)" to "<mobile>"
+    And I set "Alternative phone (optional)" to "<altphone>"
+    And I set "Email (optional)" to "<email>"
+    And I press the "Continue" button
+
+    #notes
+    And I see "Notes (optional)" on the page
+
+    And I enter "These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are tThese are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are tThese are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are tThese are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are t" in the Notes text box
+    And I press the "Continue" button
+
+#    And I see error "The notes provided are too long"
+
+    And I enter "Note testing" in the Notes text box
+    And I press the "Continue" button
+    And I see "Check your answers" on the page
+
+    #check your answers page
+    And I see "-" in the same row as "Date of birth"
+    And I see "<fname> <lname>" in the same row as "Name"
+    And I see "<line1>" in the same row as "Address"
+    And I see "<line2>" on the page
+    And I see "<line3>" on the page
+    And I see "<town>" on the page
+    And I see "<county>" on the page
+    And I see "<postcode>" on the page
+    And I see "<mobile>" in the same row as "Main phone"
+    And I see "<altphone>" in the same row as "Alternative phone"
+    And I see "<email>" in the same row as "Email"
+    And I see "<notes>" in the same row as "Notes"
+
+    #change name
+    And I click on the "Change" link in the same row as "Name" on Check your answers
+    And I see "What's the juror's name?" on the page
+    And I set "First name" to "<fname>on"
+    And I press the "Continue" button
+    And I click on the "Change" link in the same row as "Main phone" on Check your answers
+    And I click on the "Cancel" link
+
+    #create juror record
+    And I press the "Create juror record" button
+
+    #confirm juror is created and added to pool
+    And I see "Juror record created for <fname>on <lname> and summoned to pool" on the page
+    And I see pool summoned total count is "2"
+    And I see "Summoned" in the same row as "<lname>"
+
+    Examples:
+    | fname       | lname       | email       | mobile        | altphone      | postcode  | line1             | line2   | line3   | town    | county  | notes         |
+    | J'ohn-James | D'oe-Smith  | e@mail.com  | 07777777777   | 0121-111-1111 | CH1 2NN   | 5 Testing Street  | Line 2  | Line 3  | London  | County  | Note testing  |
 
 
+  @JurorTransformationMulti
   Scenario: Create juror button not available on POOL REQUESTS
 
     Given I am on "Bureau" "ithc"
@@ -167,7 +342,7 @@ Feature: Bureau Create Juror Record
     When I navigate to the pool request screen
 
     #create an pool request
-    And I create a "Crown" court pool request
+    And I create a "Crown" court pool request for court "415"
 
     #Create juror record button not available
     And I navigate to the pool search screen
@@ -176,312 +351,161 @@ Feature: Bureau Create Juror Record
 
     And I do not see "Create juror record" on the page
 
-
-
-  Scenario Outline: Bureau Create Juror Record via existing pool - Happy Path
+  @JurorTransformationMulti
+  Scenario Outline: Bureau Create Juror Record age validation - too old
 
     Given I am on "Bureau" "ithc"
+
+    #enable permissions
+    Given I "enable" CREATE_JUROR permission for bureau user "<user>"
+
     And I log in as "<user>"
 
-    And I click on the "Juror management" link
-    And I press the "Create juror record" button
+    When I navigate to the pool request screen
 
-    And I select one of the active pools available from the create juror record screen
+    #create an active pool request
+    And I create an active "Crown" court pool request for court "415", "10" Mondays in the future
+
+    #add jurors
+    And I navigate to the pool search screen
+    When I enter the pool number of the pool I have just created on the pool search screen
     And I press the "Continue" button
+
+    And I press the "Create juror record" button
 
     #jurors name
     And I see "What's the juror's name?" on the page
-    And I set "Title (optional)" to "Mr"
-    And I set "First name" to "John"
-    And I set "Last name" to "Doe"
-    And I press the "Continue" button
-
-    #no dob
-    And I see "What's their date of birth?" on the page
-#    And I set "Date of birth" to "08/05/1982"
-    And I press the "Continue" button
-
-    #address
-    And I see "What's the juror's address?" on the page
-    And I set "Address line 1" to "5 Testing Street"
-    And I set "Town or city" to "London"
-    And I set "Postcode" to "CH1 2AN"
-    And I press the "Continue" button
-
-    #contact details
-    And I see "Enter their contact details" on the page
-    And I set "Main phone - UK only (optional)" to "07739967653"
-    And I press the "Continue" button
-
-    #notes
-    And I see "Notes (optional)" on the page
-    And I enter "Note testing" in the Notes text box
-    And I press the "Continue" button
-    And I see "Check your answers" on the page
-
-    #create juror record
-    And I press the "Create juror record" button
-    And I see "Draft juror record created for John Doe - senior jury officer will need to approve this" on the page
-
-
-    Examples:
-      |user			 |
-      |MODTESTBUREAU |
-
-
-  Scenario Outline: Bureau Create Juror Record via existing pool - Unhappy Path
-
-    Given I am on "Bureau" "ithc"
-    And I log in as "<user>"
-
-    And I click on the "Juror management" link
-    And I press the "Create juror record" button
-
-    And I select one of the active pools available from the create juror record screen
-    And I press the "Continue" button
-
-    #jurors name/error check
-    And I see "What's the juror's name?" on the page
-    And I press the "Continue" button
-    And I see error "Enter a first name"
-    And I see error "Enter a last name"
-    And I set "First name" to "TonyTestingTesterTwentyCharacters"
-    And I set "Last name" to "JaneTestingTesterTwentyCharacters"
-    And I press the "Continue" button
-    And I see error "First name cannot contain more than 20 characters"
-    And I see error "Last name cannot contain more than 20 characters"
-    And I set "Title (optional)" to "Mr"
     And I set "First name" to "John"
     And I set "Last name" to "Stark"
     And I press the "Continue" button
 
-    #no dob/error check
+    #dob/error check
     And I see "What's their date of birth?" on the page
-#    And I press the "Continue" button
-#    And I see error "Enter their date of birth"
-#
-#    And I set "Date of birth" to "08/05/2050"
-#    And I press the "Continue" button
-#    And I see error "Date of birth must be in the past"
-#
-#    And I set "Date of birth" to "08/13/1985"
-#    And I press the "Continue" button
-#    And I see error "Enter a real date of birth"
-#
-#    And I set "Date of birth" to "1980/01/29"
-#    And I press the "Continue" button
-#    And I see error "Enter a date of birth in the correct format, for example, 31/01/1980"
-#
-#    And I set "Date of birth" to "08/05/1992"
+
+    When I set the "Date of birth (optional)" single date field to a Monday "-4050" weeks in the future
     And I press the "Continue" button
+    And I see "Check the date of birth" on the page
+    And I see "years old and ineligible for jury service" on the page
+    And I see "Is their date of birth correct?" on the page
 
-    #address/error check
-    And I see "What's the juror's address?" on the page
     And I press the "Continue" button
-    And I see error "Enter address line 1"
-    And I see error "Enter a town or city"
-    And I see error "Enter a postcode"
-    And I set "Address line 1" to "5 Testing Street"
-    And I set "Town or city" to "London"
-    And I set "Postcode" to "CH1 2AN"
+    And I see error "Select whether their date of birth is correct or not"
+
+    Then I choose the "No" radio button
     And I press the "Continue" button
-
-    #contact details
-    And I see "Enter their contact details" on the page
-    And I set "Main phone - UK only (optional)" to "07739967653"
-    And I press the "Continue" button
-
-    #notes
-    And I see "Notes (optional)" on the page
-    And I enter "Note testing" in the Notes text box
-    And I press the "Continue" button
-    And I see "Check your answers" on the page
-
-     #change name
-    And I click on the "Change" link in the same row as "Name" on Check your answers
-    And I see "What's the juror's name?" on the page
-    And I set "First name" to "Tony"
-    And I press the "Continue" button
-    And I click on the "Change" link in the same row as "Main phone" on Check your answers
-    And I click on the "Cancel" link
-
-
-    #create juror record
-    And I press the "Create juror record" button
-    And I see "Draft juror record created for Tony Stark - senior jury officer will need to approve this" on the page
-
-    Examples:
-      |user			|
-      |MODTESTBUREAU|
-
-
-
-  Scenario Outline: Bureau Create Juror Record via existing pool for juror too old
-
-    Given I am on "Bureau" "ithc"
-    And I log in as "<user>"
-
-    And I click on the "Juror management" link
-    And I press the "Create juror record" button
-
-    And I select one of the active pools available from the create juror record screen
-    And I press the "Continue" button
-
-    #jurors name/error check
-    And I see "What's the juror's name?" on the page
-    And I press the "Continue" button
-    And I see error "Enter a first name"
-    And I see error "Enter a last name"
-    And I set "Title (optional)" to "Mr"
-    And I set "First name" to "John"
-    And I set "Last name" to "Doe"
-    And I press the "Continue" button
-
-    #no dob/error check
 
     And I see "What's their date of birth?" on the page
-#    And I set "Date of birth" to "01/01/1912"
-#    And I press the "Continue" button
-#    And I see "Check the date of birth" on the page
-#    And I see "You entered the juror's date of birth as 01 January 1912." on the page
-#    And I set the radio button to "Yes - you will not be able to continue creating a record for this juror"
+
+    When I set the "Date of birth (optional)" single date field to a Monday "-4050" weeks in the future
     And I press the "Continue" button
-    And I see "Manage jurors" on the page
+
+    And I see "Is their date of birth correct?" on the page
+    Then I choose the "Yes" radio button
+    And I press the "Continue" button
+
+    #returned to pool and juror has not been created
+    And I see "Jurors in this pool" on the page
+    And I see pool summoned total count is "1"
 
     Examples:
       |user			 |
       |MODTESTBUREAU |
 
 
-  Scenario Outline: Bureau Create Juror Record via existing pool for juror too young
+  @JurorTransformationMulti
+  Scenario Outline: Bureau Create Juror Record age validation - too young
 
     Given I am on "Bureau" "ithc"
+
+    #enable permissions
+    Given I "enable" CREATE_JUROR permission for bureau user "<user>"
+
     And I log in as "<user>"
 
-    And I click on the "Juror management" link
+    When I navigate to the pool request screen
+
+    #create an active pool request
+    And I create an active "Crown" court pool request for court "415", "10" Mondays in the future
+
+    #add jurors
+    And I navigate to the pool search screen
+    When I enter the pool number of the pool I have just created on the pool search screen
+    And I press the "Continue" button
+
     And I press the "Create juror record" button
-
-    And I select one of the active pools available from the create juror record screen
-    And I press the "Continue" button
-
-    #jurors name/error check
-    And I see "What's the juror's name?" on the page
-    And I press the "Continue" button
-    And I see error "Enter a first name"
-    And I see error "Enter a last name"
-    And I set "Title (optional)" to "Mr"
-    And I set "First name" to "John"
-    And I set "Last name" to "Doe"
-    And I press the "Continue" button
-
-    #no dob/error check
-
-    And I see "What's their date of birth?" on the page
-#    And I set "Date of birth" to "01/01/2019"
-#    And I press the "Continue" button
-#    And I see "Check the date of birth" on the page
-#    And I see "You entered the juror's date of birth as 01 January 2019." on the page
-#    And I set the radio button to "Yes - you will not be able to continue creating a record for this juror"
-    And I press the "Continue" button
-    And I see "Manage jurors" on the page
-
-    Examples:
-      |user			 |
-      |MODTESTBUREAU |
-
-
-  Scenario Outline: Bureau Create Juror Record via Create new pool
-
-    Given I am on "Bureau" "ithc"
-    And I log in as "<user>"
-
-    And I click on the "Juror management" link
-    And I press the "Create juror record" button
-    And I press the "Continue" button
-    And I see error "Select an option - create a new pool or add juror to an existing pool"
-    And I set the radio button to "Create a pool to add the juror to"
-    And I press the "Continue" button
-
-    #create pool/error checks
-    And I see "Create a pool for court use only" on the page
-    And I press the "Continue" button
-    And I see error "Enter a service start date"
-    And I see error "Select the type of pool"
-    And I set the "Service start date for new pool" date to a Monday "10" weeks in the future
-    And I set the radio button to "Crown court"
-    And I press the "Continue" button
-    And I see "Check pool details" on the page
-    And I press the "Create active pool" button
 
     #jurors name
     And I see "What's the juror's name?" on the page
-    And I set "Title (optional)" to "Mr"
     And I set "First name" to "John"
-    And I set "Last name" to "Doe"
+    And I set "Last name" to "Stark"
     And I press the "Continue" button
 
-    #no dob
+    #dob/error check
     And I see "What's their date of birth?" on the page
-#    And I set "Date of birth" to "08/05/1982"
+
+    When I set the "Date of birth (optional)" single date field to a Monday "-500" weeks in the future
+    And I press the "Continue" button
+    And I see "Check the date of birth" on the page
+    And I see "years old and ineligible for jury service" on the page
+    And I see "Is their date of birth correct?" on the page
+
+    And I press the "Continue" button
+    And I see error "Select whether their date of birth is correct or not"
+
+    Then I choose the "No" radio button
     And I press the "Continue" button
 
-    #address
-    And I see "What's the juror's address?" on the page
-    And I set "Address line 1" to "5 Testing Street"
-    And I set "Town or city" to "London"
-    And I set "Postcode" to "CH1 2AN"
+    And I see "What's their date of birth?" on the page
+
+    When I set the "Date of birth (optional)" single date field to a Monday "-500" weeks in the future
     And I press the "Continue" button
 
-    #contact details
-    And I see "Enter their contact details" on the page
-    And I set "Main phone - UK only (optional)" to "07739967653"
+    And I see "Is their date of birth correct?" on the page
+    Then I choose the "Yes" radio button
     And I press the "Continue" button
 
-    #notes
-    And I see "Notes (optional)" on the page
-    And I enter "Note testing" in the Notes text box
-    And I press the "Continue" button
-    And I see "Check your answers" on the page
-
-    #create juror record
-    And I press the "Create juror record" button
-    And I see "Draft juror record created for John Doe - senior jury officer will need to approve this" on the page
+    #returned to pool and juror has not been created
+    And I see "Jurors in this pool" on the page
+    And I see pool summoned total count is "1"
 
     Examples:
       |user			 |
       |MODTESTBUREAU |
 
 
+  @JurorTransformationMulti
   Scenario Outline: Bureau Create Juror Record for juror outside of any court catchment area
 
     Given I am on "Bureau" "ithc"
+
+    #enable permissions
+    Given I "enable" CREATE_JUROR permission for bureau user "<user>"
+
     And I log in as "<user>"
 
-    And I click on the "Juror management" link
-    And I press the "Create juror record" button
-    And I set the radio button to "Create a pool to add the juror to"
+    When I navigate to the pool request screen
+
+    #create an active pool request
+    And I create an active "Crown" court pool request for court "415", "10" Mondays in the future
+
+    #add jurors
+    And I navigate to the pool search screen
+    When I enter the pool number of the pool I have just created on the pool search screen
     And I press the "Continue" button
 
-    #create pool
-    And I see "Create a pool for court use only" on the page
-    And I set the "Service start date for new pool" date to a Monday "10" weeks in the future
-    And I set the radio button to "Crown court"
-    And I press the "Continue" button
-    And I see "Check pool details" on the page
-    And I press the "Create active pool" button
+    And I press the "Create juror record" button
 
     #jurors name
     And I see "What's the juror's name?" on the page
-    And I set "First name" to "Edward"
-    And I set "Last name" to "Stevens"
+    And I set "First name" to "John"
+    And I set "Last name" to "Stark"
     And I press the "Continue" button
 
-    #no dob
+    #dob - leave blank
     And I see "What's their date of birth?" on the page
-#    And I set "Date of birth" to "08/05/1982"
     And I press the "Continue" button
 
-    #address
+    #address/error check
     And I see "What's the juror's address?" on the page
     And I set "Address line 1" to "5 Testing Street"
     And I set "Town or city" to "London"
@@ -490,11 +514,18 @@ Feature: Bureau Create Juror Record
 
     #catchment area check
     And I see "Juror's postcode is not in any court catchment area" on the page
+    
+    And I click on the "Check or change postcode" link
+    And I see "What's the juror's address?" on the page
+
+    And I press the "Continue" button
+
+    And I see "Juror's postcode is not in any court catchment area" on the page
     And I press the "Create juror record anyway" button
 
     #contact details
     And I see "Enter their contact details" on the page
-    And I set "Main phone - UK only (optional)" to "07739967653"
+    And I set "Main phone - UK only (optional)" to "07777777777"
     And I press the "Continue" button
 
     #notes
@@ -503,82 +534,29 @@ Feature: Bureau Create Juror Record
     And I press the "Continue" button
     And I see "Check your answers" on the page
 
+    #check your answers page
+    And I see "-" in the same row as "Date of birth"
+    And I see "John Stark" in the same row as "Name"
+    And I see "5 Testing Street" in the same row as "Address"
+    And I see "RG10 9AG" on the page
+    And I see "07777777777" in the same row as "Main phone"
+    And I see "-" in the same row as "Alternative phone"
+    And I see "-" in the same row as "Email"
+    And I see "Note testing" in the same row as "Notes"
+
     #create juror record
     And I press the "Create juror record" button
-    And I see "Draft juror record created for Edward Stevens - senior jury officer will need to approve this" on the page
+
+    #confirm juror is created and added to pool
+    And I see "Juror record created for John Stark and summoned to pool" on the page
+    And I see pool summoned total count is "2"
+    And I see "Summoned" in the same row as "Stark"
+    And I see "RG10 9AG" in the same row as "Stark"
 
     Examples:
       |user			 |
       |MODTESTBUREAU |
 
-
-  Scenario Outline: Bureau Juror record shows manually created juror
-
-    Given I am on "Bureau" "ithc"
-    And I log in as "<user>"
-
-    And I click on the "Juror management" link
-    And I press the "Create juror record" button
-    And I set the radio button to "Create a pool to add the juror to"
-    And I press the "Continue" button
-
-  #create pool
-    And I see "Create a pool for court use only" on the page
-    And I set the "Service start date for new pool" date to a Monday "10" weeks in the future
-    And I set the radio button to "Crown court"
-    And I press the "Continue" button
-    And I see "Check pool details" on the page
-    And I press the "Create active pool" button
-
-  #jurors name
-    And I see "What's the juror's name?" on the page
-    And I set "Title (optional)" to "Mr"
-    And I set "First name" to "John"
-    And I set "Last name" to "ManualSummon"
-    And I press the "Continue" button
-
-  #no dob
-    And I see "What's their date of birth?" on the page
-#    And I set "Date of birth" to "08/05/1982"
-    And I press the "Continue" button
-
-  #address
-    And I see "What's the juror's address?" on the page
-    And I set "Address line 1" to "5 Testing Street"
-    And I set "Town or city" to "London"
-    And I set "Postcode" to "CH1 2AN"
-    And I press the "Continue" button
-
-  #contact details
-    And I see "Enter their contact details" on the page
-    And I set "Main phone - UK only (optional)" to "07739967653"
-    And I press the "Continue" button
-
-  #notes
-    And I see "Notes (optional)" on the page
-    And I enter "Note testing" in the Notes text box
-    And I press the "Continue" button
-    And I see "Check your answers" on the page
-
-  #create juror record
-    And I press the "Create juror record" button
-    And I see "Draft juror record created for John ManualSummon - senior jury officer will need to approve this" on the page
-
-   #Approve Juror and check summons reply
-    Given I am on "Bureau" "test"
-    And I log in as "SJOUSER"
-    And I see senior jury officer notification banner
-    And I click on the jurors to approve link from the sjo notification
-    And I see "Approve jurors" on the page
-    And I click on "Pending approval" in the same row as "Manualsummon"
-    And I see "Approve or reject pending juror" on the page
-    When I approve juror and search record
-    And I click on the Summons Reply tab
-    Then I see "Juror was summoned in person" on the page
-
-    Examples:
-      |user          |
-      |MODTESTBUREAU |
 
 
 
@@ -635,215 +613,3 @@ Feature: Bureau Create Juror Record
     Examples:
       |user			 |
       |MODTESTBUREAU |
-
-
-
-  # i dont think any of these will be required as I dont think they will need to be approved
-
-#Feature: JM-5066 - As a SJO I need to approve a manually created juror
-#
-#  @JurorTransformationMulti @NewSchemaConverted
-#  Scenario Outline: Approve Manually created juror as a senior jury officer
-#
-#    Given I am on "Bureau" "test"
-#    And I log in as "<user>"
-#    And I click on the "Juror management" link
-#    And I press the "Create juror record" button
-#    And I set the radio button to "Create a pool to add the juror to"
-#    And I press the "Continue" button
-#
-#    #create pool
-#    And I see "Create a pool for court use only" on the page
-#    And I set the "Service start date for new pool" date to a Monday "10" weeks in the future
-#    And I set the radio button to "Crown court"
-#    And I press the "Continue" button
-#    And I see "Check pool details" on the page
-#    And I press the "Create active pool" button
-#
-#    #jurors name
-#    And I see "What's the juror's name?" on the page
-#    And I set "Title (optional)" to "Mr"
-#    And I set "First name" to "John"
-#    And I set "Last name" to "Doe"
-#    And I press the "Continue" button
-#
-#    #dob
-#    And I see "What's their date of birth?" on the page
-#    And I set "Date of birth" to "08/05/1982"
-#    And I press the "Continue" button
-#
-#    #address
-#    And I see "What's the juror's address?" on the page
-#    And I set "Address line 1" to "5 Testing Street"
-#    And I set "Town or city" to "London"
-#    And I set "Postcode" to "CH1 2AN"
-#    And I press the "Continue" button
-#
-#    #contact details
-#    And I see "Enter their contact details" on the page
-#    And I set "Main phone - UK only (optional)" to "07739967653"
-#    And I press the "Continue" button
-#
-#    #notes
-#    And I see "Notes (optional)" on the page
-#    And I enter "Note testing" in the Notes text box
-#    And I press the "Continue" button
-#    And I see "Check your answers" on the page
-#
-#    #create juror record
-#    And I press the "Create juror record" button
-#    And I see "Draft juror record created for John Doe - senior jury officer will need to approve this" on the page
-#    Given I am on "Bureau" "test"
-#    And I log in as "SJOUSER"
-#    And I see senior jury officer notification banner
-#    And I click on the jurors to approve link from the sjo notification
-#    And I see "Approve jurors" on the page
-#    And I click on "Pending approval" in the same row as "Doe"
-#    And I see "Approve or reject pending juror" on the page
-#    And I set the radio button to "Approve"
-#    And I press the "Confirm" button
-#    And I see "Pending juror approved" on the page
-#
-#    Examples:
-#      |user			|
-#      |MODTESTCOURT |
-#
-#  @JurorTransformationMulti @NewSchemaConverted
-#  Scenario Outline: Reject Manually created juror as a senior jury officer
-#    Given I am on "Bureau" "test"
-#    And I log in as "<user>"
-#
-#    And I click on the "Juror management" link
-#    And I press the "Create juror record" button
-#    And I set the radio button to "Create a pool to add the juror to"
-#    And I press the "Continue" button
-#
-#    #create pool
-#    And I see "Create a pool for court use only" on the page
-#    And I set the "Service start date for new pool" date to a Monday "10" weeks in the future
-#    And I set the radio button to "Crown court"
-#    And I press the "Continue" button
-#    And I see "Check pool details" on the page
-#    And I press the "Create active pool" button
-#
-#    #jurors name
-#    And I see "What's the juror's name?" on the page
-#    And I set "Title (optional)" to "Mrs"
-#    And I set "First name" to "Jane"
-#    And I set "Last name" to "Smith"
-#    And I press the "Continue" button
-#
-#    #dob
-#    And I see "What's their date of birth?" on the page
-#    And I set "Date of birth" to "08/05/1982"
-#    And I press the "Continue" button
-#
-#    #address
-#    And I see "What's the juror's address?" on the page
-#    And I set "Address line 1" to "5 Testing Street"
-#    And I set "Town or city" to "London"
-#    And I set "Postcode" to "CH1 2AN"
-#    And I press the "Continue" button
-#
-#    #contact details
-#    And I see "Enter their contact details" on the page
-#    And I set "Main phone - UK only (optional)" to "07739967653"
-#    And I press the "Continue" button
-#
-#    #notes
-#    And I see "Notes (optional)" on the page
-#    And I enter "Note testing" in the Notes text box
-#    And I press the "Continue" button
-#    And I see "Check your answers" on the page
-#    And I press the "Create juror record" button
-#    And I see "Draft juror record created for Jane Smith - senior jury officer will need to approve this" on the page
-#
-#    #login as SJOUSER
-#    Given I am on "Bureau" "test"
-#    And I log in as "SJOUSER"
-#    And I see senior jury officer notification banner
-#    And I click on the jurors to approve link from the sjo notification
-#    And I see "Approve jurors" on the page
-#    And I click on "Pending approval" in the same row as "Smith"
-#    And I see "Approve or reject pending juror" on the page
-#    And I press the "Confirm" button
-#    And I see error "Select whether you want to approve or reject this pending juror"
-#
-#    #reject juror
-#    And I set the radio button to "Reject"
-#    And I press the "Confirm" button
-#    And I see "You must enter a comment about why you rejected this pending juror" in the error banner
-#    And I comment "Juror wasn't ready" as reason for my rejection of juror
-#    And I press the "Confirm" button
-#    And I see "Pending juror rejected" on the page
-#
-#    Examples:
-#      |user			|
-#      |MODTESTCOURT |
-#
-#
-#  @JurorTransformationMulti @NewSchemaConverted
-#  Scenario Outline: Create juror at a different court to senior jury officer
-#
-#    Given I am on "Bureau" "test"
-#    And I log in as "<user>"
-#    And I click on the "Juror management" link
-#    And I press the "Create juror record" button
-#    And I set the radio button to "Create a pool to add the juror to"
-#    And I press the "Continue" button
-#
-#    #create pool for court 415
-#    And I see "Create a pool for court use only" on the page
-#    And I set the "Service start date for new pool" date to a Monday "10" weeks in the future
-#    And I set the radio button to "Crown court"
-#    And I press the "Continue" button
-#    And I see "Check pool details" on the page
-#    And I press the "Create active pool" button
-#
-#    #jurors name
-#    And I see "What's the juror's name?" on the page
-#    And I set "Title (optional)" to "Mr"
-#    And I set "First name" to "John"
-#    And I set "Last name" to "Doe"
-#    And I press the "Continue" button
-#
-#    #dob
-#    And I see "What's their date of birth?" on the page
-#    And I set "Date of birth" to "08/05/1982"
-#    And I press the "Continue" button
-#
-#    #address
-#    And I see "What's the juror's address?" on the page
-#    And I set "Address line 1" to "5 Testing Street"
-#    And I set "Town or city" to "London"
-#    And I set "Postcode" to "CH1 2AN"
-#    And I press the "Continue" button
-#
-#    #contact details
-#    And I see "Enter their contact details" on the page
-#    And I set "Main phone - UK only (optional)" to "07739967653"
-#    And I press the "Continue" button
-#
-#    #notes
-#    And I see "Notes (optional)" on the page
-#    And I enter "Note testing" in the Notes text box
-#    And I press the "Continue" button
-#    And I see "Check your answers" on the page
-#
-#    #create juror record for juror at court 415
-#    And I press the "Create juror record" button
-#    And I see "Draft juror record created for John Doe - senior jury officer will need to approve this" on the page
-#
-#    #login with SJO user who is assigned to 416 court
-#    Given I am on "Bureau" "test"
-#    And I log in as "SJOUSER1"
-#    And I do not see the senior jury officer notification banner
-#
-#    And I click on the "Apps" link
-#    And I click on the "Juror management" link
-#    And I see "Approve jurors" on the page
-#    And I see "There are no pending jurors to approve" on the page
-#
-#    Examples:
-#      |user			|
-#      |MODTESTCOURT |
