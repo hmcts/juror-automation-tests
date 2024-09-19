@@ -2025,6 +2025,9 @@ public class NavigationShared {
     @FindBy(id = "differentDate")
     WebElement differentDate;
 
+    @FindBy(id = "jurorDob")
+    WebElement dobOptional;
+
 
     public void enterNewDate(String attDateSequence, final String day, final String month, final String year) {
         log.info("Entering new date");
@@ -2177,6 +2180,11 @@ public class NavigationShared {
             case "Different date":
                 differentDate.clear();
                 differentDate.sendKeys(mondayDateValue);
+                break;
+
+            case "Date of birth (optional)":
+                dobOptional.clear();
+                dobOptional.sendKeys(mondayDateValue);
                 break;
         }
     }
