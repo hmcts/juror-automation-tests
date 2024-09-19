@@ -1,11 +1,6 @@
 package cucumber.pageObjects;
 
-import cucumber.utils.AngularJsHTTPCallWait;
-import cucumber.utils.DateManipulator;
-import cucumber.utils.GenUtils;
-import cucumber.utils.ReadProperties;
-import cucumber.utils.WaitUtil_v2;
-import cucumber.utils.WaitUtils;
+import cucumber.utils.*;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.*;
@@ -20,8 +15,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -84,6 +77,9 @@ public class NavigationShared {
 
     @FindBy(xpath = "(//td/a[@class='govuk-link'])[1]")
     WebElement firstJurorInSearch;
+
+    @FindBy(xpath = "(//td/a[@class='govuk-link'])[1]")
+    WebElement firstPoolInActivePools;
 
     public NavigationShared accessLoginPage(String environment) {
         String url;
@@ -2357,6 +2353,11 @@ public class NavigationShared {
     public void firstJurorInSearch() {
         log.info("Click on the first juror in the search results");
         firstJurorInSearch.click();
+    }
+
+    public void firstPoolInActivePools() {
+        log.info("Click on the first pool in the active pools");
+        firstPoolInActivePools.click();
     }
 
     public void selectNextTab() {

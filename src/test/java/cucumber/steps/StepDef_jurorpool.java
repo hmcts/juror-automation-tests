@@ -1542,6 +1542,11 @@ public class StepDef_jurorpool {
         assertEquals(bannerText, SUMMONS_REPLY.getResponseBannerText());
     }
 
+    @And("^I see pool summoned total count is \"([^\"]*)\"$")
+    public void iSeePoolSummonedTotal(String summonedTotal) {
+        assertEquals(summonedTotal, POOL_OVERVIEW_PAGE.getNumberOfJurorsSummoned());
+    }
+
     @And("^I see the process reply button$")
     public void iSeeTheProcessReplyButton() {
         assertTrue(SUMMONS_REPLY.processReplyButtonIsPresent());
@@ -1550,6 +1555,12 @@ public class StepDef_jurorpool {
     @And("^I do not see the process reply button$")
     public void iDoNotSeeTheProcessReplyButton() {
         assertFalse(SUMMONS_REPLY.processReplyButtonIsPresent());
+    }
+
+    @And("^I click on the first pool in Active Pools$")
+    public void firstPoolInActivePools() {
+        NAV.waitForPageLoad();
+        NAV.firstPoolInActivePools();
     }
 
     @And("^I record an unhappy path paper summons response with a reasonable adjustment of \"([^\"]*)\"$")
@@ -1962,7 +1973,7 @@ public class StepDef_jurorpool {
             POOL_REQUESTS_PAGE.selectPoolType(PoolRequests.PoolType.CROWN);
         if (poolRequestType.equals("High"))
             POOL_REQUESTS_PAGE.selectPoolType(PoolRequests.PoolType.HIGH);
-        NAV.set_value_to("Number of jurors", "150");
+        NAV.set_value_to("Number of jurors", "10");
 
 
         NAV.press_buttonByName("Continue");
