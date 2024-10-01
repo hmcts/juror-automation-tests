@@ -104,7 +104,7 @@ Scenario Outline: English_1st_ErrorChecks - Court date is in the past
 @Regression @NewSchemaConverted
 Scenario Outline: English_1st_ErrorChecks
 
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -523,7 +523,19 @@ Scenario Outline: English_1st_ErrorChecks
 	And I see "Enter the first Monday you'd prefer to start jury service" on the page
 	And I see "Enter the second Monday you'd prefer to start jury service" on the page
 	And I see "Enter the third Monday you'd prefer to start jury service" on the page
-	
+
+	#invalid input
+	When I set "First choice" to "12 July"
+	When I set "Second choice" to "13 July"
+	When I set "Third choice" to "14 July"
+
+	When I press the "Continue" button
+	Then I see "There is a problem" on the page
+	And I see "Enter the first Monday you'd prefer to start jury service using the dd/mm/yyyy format" on the page
+	And I see "Enter the second Monday you'd prefer to start jury service using the dd/mm/yyyy format" on the page
+	And I see "Enter the third Monday you'd prefer to start jury service using the dd/mm/yyyy format" on the page
+
+	#same choice
 	When I set the "First" single date field to a Monday "6" weeks in the future
 	When I set the "Second" single date field to a Monday "10" weeks in the future
 	When I set the "Third" single date field to a Monday "10" weeks in the future
@@ -681,7 +693,7 @@ Examples:
 	@Regression @NewSchemaConverted
 	Scenario Outline: English Already Replied info page
 
-		Given I am on "Public" "test"
+		Given I am on "Public" "ithc"
 
 		Given a bureau owned pool is created with jurors
 			| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -694,7 +706,7 @@ Examples:
 			| part_no			| pool_number	| last_name		| postcode	| email 	|
 			| <juror_number>	| <pool_number>	| <last_name>	| <postcode>| <email>	|
 
-		Given I am on "Public" "test"
+		Given I am on "Public" "ithc"
 
 		Then I see "Reply to a jury summons" on the page
 

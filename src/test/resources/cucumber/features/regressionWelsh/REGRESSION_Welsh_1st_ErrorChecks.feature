@@ -1,6 +1,6 @@
 Feature: Regression Welsh_1st_ErrorChecks
 
-@RegressionWelsh @NewSchemaConverted
+@RegressionWelsh
 Scenario Outline: Welsh_1st_ErrorChecks - status is Undeliverable
 
 	Given I am on "Bureau" "test"
@@ -67,7 +67,7 @@ Scenario Outline: Welsh_1st_ErrorChecks - status is Undeliverable
 	| juror_number	| last_name	| postcode	| pool_number	|
 	| 045700044		| DOE	 	| SW1H 9AJ	| 457300044		|
 
-@RegressionWelsh @NewSchemaConverted
+@RegressionWelsh
 Scenario Outline: Welsh_1st_ErrorChecks - Court date is in the past
 
 	Given I am on the welsh version of "Public" "test"
@@ -98,10 +98,10 @@ Scenario Outline: Welsh_1st_ErrorChecks - Court date is in the past
 	| juror_number	| last_name	| postcode	| pool_number	|
 	| 045700045		  | DOE		    | SW1H 9AJ	| 457300045		|
 	
-@RegressionWelsh @NewSchemaConverted
+@RegressionWelsh
 Scenario Outline: Welsh_1st_ErrorChecks
 		
-	Given I am on the welsh version of "Public" "test"
+	Given I am on the welsh version of "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -378,7 +378,18 @@ Scenario Outline: Welsh_1st_ErrorChecks
 	And I see "Rhowch y dydd Llun cyntaf y byddai'n well gennych ddechrau gwasanaeth rheithgor" on the page
 	And I see "Rhowch yr ail ddewis o ddydd Llun y byddai'n well gennych ddechrau gwasanaeth rheithgor" on the page
 	And I see "Rhowch y trydydd dewis o ddydd Llun y byddai'n well gennych ddechrau gwasanaeth rheithgor" on the page
-	
+
+	#invalid input
+	When I set "Dewis cyntaf" to "12 July"
+	When I set "Ail ddewis" to "13 July"
+	When I set "Trydydd dewis" to "14 July"
+
+	When I press the "Parhau" button
+	Then I see "Mae problem" on the page
+	And I see "Nodwch y dydd Llun cyntaf y byddai'n well gennych gychwyn y gwasanaeth rheithgor, gan ddefnyddio'r fformat dd/mm/bbbb" on the page
+	And I see "Nodwch yr ail ddydd Llun y byddai'n well gennych gychwyn y gwasanaeth rheithgor, gan ddefnyddio'r fformat dd/mm/bbbb" on the page
+	And I see "Nodwch y trydydd dydd Llun y byddai'n well gennych gychwyn y gwasanaeth rheithgor, gan ddefnyddio'r fformat dd/mm/bbbb" on the page
+
 	When I set the "First" single date field to a Monday "16" weeks in the future
 	When I set the "Second" single date field to a Monday "16" weeks in the future
 	When I set the "Third" single date field to a Monday "18" weeks in the future
@@ -433,7 +444,7 @@ Examples:
 	| juror_number	| last_name				| postcode  | pool_number	|
 	| 045700046		| LNAMENINENINEEIGHT	| CH1 2AN	| 457300046		|
 	
-@RegressionWelsh @NewSchemaConverted
+@RegressionWelsh
 Scenario Outline: Welsh response completed in Juror and login attempted on Digital
 
 Given I am on "Bureau" "test"
@@ -493,7 +504,7 @@ Examples:
 	| juror_number	| pool_number | last_name	| postcode |
 	| 045700047		| 457300047   |DOE			| SW1H 9AJ |
 
-@RegressionWelsh @NewSchemaConverted
+@RegressionWelsh
 Scenario Outline: Welsh Already Replied info page
 
 	Given I am on the welsh version of "Public" "test"
