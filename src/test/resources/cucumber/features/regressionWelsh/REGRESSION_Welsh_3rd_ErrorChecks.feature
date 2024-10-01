@@ -1,9 +1,9 @@
 Feature: Regression Welsh_3rd_ErrorChecks
 
-@RegressionWelsh @NewSchemaConverted
+@RegressionWelsh
 Scenario Outline: Welsh_3rd_ErrorChecks
 
-	Given I am on the welsh version of "Public" "test"
+	Given I am on the welsh version of "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  	| pool_number	| att_date_weeks_in_future	| owner |
@@ -350,6 +350,17 @@ Scenario Outline: Welsh_3rd_ErrorChecks
 	And I see "Rhowch y dydd Llun cyntaf y byddai'n well ganddynt ddechrau gwasanaeth rheithgor" on the page
 	And I see "Rhowch yr ail ddydd Llun y byddai'n well ganddynt ddechrau gwasanaeth rheithgor" on the page
 	And I see "Rhowch y trydydd dydd Llun y byddai'n well ganddynt ddechrau gwasanaeth rheithgor" on the page
+
+	#invalid input
+	When I set "Dewis cyntaf" to "12 July"
+	When I set "Ail ddewis" to "13 July"
+	When I set "Trydydd dewis" to "14 July"
+
+	When I press the "Parhau" button
+	Then I see "Mae problem" on the page
+	And I see "Nodwch y dydd Llun cyntaf y byddai'n well ganddynt gychwyn y gwasanaeth rheithgor, gan ddefnyddio'r fformat dd/mm/bbbb" on the page
+	And I see "Nodwch yr ail ddydd Llun y byddai'n well ganddynt gychwyn y gwasanaeth rheithgor, gan ddefnyddio'r fformat dd/mm/bbbb" on the page
+	And I see "Nodwch y trydydd dydd Llun y byddai'n well ganddynt gychwyn y gwasanaeth rheithgor, gan ddefnyddio'r fformat dd/mm/bbbb" on the page
 	
 	When I set the "First" single date field to a Monday "6" weeks in the future
 	When I set the "Second" single date field to a Monday "10" weeks in the future
