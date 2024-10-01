@@ -1,6 +1,6 @@
 Feature: Regression English_3rd_Deferral
 
-  @Features @NewSchemaConverted @JM-7065
+  @Features @JM-7065
   Scenario Outline: English 3rd Party Deferral
 
 	#return to @Regression when defect fixed
@@ -286,10 +286,10 @@ Feature: Regression English_3rd_Deferral
       | juror_number | last_name        | postcode | email             | pool_number |
       | 045200081    | LNAMESIXSEVENSIX | CH1 2AN  | email@outlook.com | 452300080   |
 
-  @Regression @NewSchemaConverted
+  @Regression
   Scenario Outline: English 3rd Party Deferral - validation and errors
 
-    Given I am on "Public" "test"
+    Given I am on "Public" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
@@ -486,6 +486,19 @@ Feature: Regression English_3rd_Deferral
       | Enter the second Monday they'd prefer to start jury service |
       | Enter the third Monday they'd prefer to start jury service  |
 
+    #invalid input
+    When I set "First choice" to "12 July"
+    When I set "Second choice" to "13 July"
+    When I set "Third choice" to "14 July"
+    And I press the "Continue" button
+
+    Then on the page I see
+      | text                                                                                    |
+      | There is a problem                                                                      |
+      | Enter the first Monday they'd prefer to start jury service using the dd/mm/yyyy format  |
+      | Enter the second Monday they'd prefer to start jury service using the dd/mm/yyyy format |
+      | Enter the third Monday they'd prefer to start jury service using the dd/mm/yyyy format  |
+
     When I set the "First" single date field to a Monday "9" weeks in the future
     When I set the "Second" single date field to a Monday "10" weeks in the future
     When I set the "Third" single date field to a Monday "11" weeks in the future
@@ -603,7 +616,7 @@ Feature: Regression English_3rd_Deferral
       | juror_number | last_name        | postcode | email             | pool_number |
       | 045200082    | LNAMESIXSEVENSIX | CH1 2AN  | email@outlook.com | 452300081   |
 
-  @RegressionSingle @NewSchemaConverted
+  @RegressionSingle
   Scenario Outline: English 3rd Party Deferral - Deferral Bank Holiday
 
     Given I am on "Public" "test"
@@ -1075,7 +1088,7 @@ Feature: Regression English_3rd_Deferral
       | juror_number | last_name        | postcode | email             | pool_number |
       | 045200084    | LNAMESIXSEVENSIX | SW1H 9AJ | email@outlook.com | 452300083   |
 
-  @RegressionSingle @NewSchemaConverted
+  @RegressionSingle
   Scenario Outline: English 3rd Party Deferral - Deferral date 2 is a Bank Holiday
 
     Given I am on "Public" "test"
@@ -1311,7 +1324,7 @@ Feature: Regression English_3rd_Deferral
       | juror_number | last_name        | postcode | email             | pool_number |
       | 045200085    | LNAMESIXSEVENSIX | SW1H 9AJ | email@outlook.com | 452300084   |
 
-  @RegressionSingle @NewSchemaConverted
+  @RegressionSingle
   Scenario Outline: English 3rd Party Deferral - Deferral date 3 is a Bank Holiday
 
     Given I am on "Public" "test"
@@ -1549,7 +1562,7 @@ Feature: Regression English_3rd_Deferral
       | juror_number | last_name        | postcode | email             | pool_number |
       | 045200086    | LNAMESIXSEVENSIX | SW1H 9AJ | email@outlook.com | 452300085   |
 
-  @Regression @NewSchemaConverted
+  @Regression
   Scenario Outline: English 3rd Party Deferral - selected date makes juror >76
 
     Given I am on "Public" "test"
