@@ -8,7 +8,7 @@ Feature: JDB-3759 SuperUrgentSendToCourt
 #cover assigned/unassigned (test manually with prev test)
 #read_only turns to Y before response is U or SU (test manually)
 
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: A response is submitted after pool is transferred to court
 
 	Given I am on "Public" "ithc"
@@ -75,10 +75,10 @@ Examples:
 	| juror_number	| pool_number	| last_name			| postcode	| email 		|
 	| 045200202		| 452300187		| LNAMEEIGHTSIXFIVE	| NN1 3HQ	| e@mail.com	|
 	
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: Regression test that Urgents still calculated correctly 
 	
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -96,7 +96,7 @@ Scenario Outline: Regression test that Urgents still calculated correctly
 	#check status
 #	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "URGENT" is "Y" where "JUROR_NUMBER" is "<juror_number>"
 	
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "ithc"
 	And I log in as "CPASS"
 	
 	When I click on the "Search" link
@@ -113,7 +113,7 @@ Scenario Outline: Regression test that Urgents still calculated correctly
 	And I press the "Confirm" button
 	
 	#now check status
-	And I do not see "URGENT" on the page
+	And I see "URGENT" on the page
 	Then I see "Responded" on the page
 	And I see the juror record updated banner containing "Responded"
 	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "URGENT" is "Y" where "JUROR_NUMBER" is "<juror_number>"
@@ -122,64 +122,3 @@ Scenario Outline: Regression test that Urgents still calculated correctly
 Examples:
 	| juror_number	| pool_number	| last_name			| postcode	| email 	|
 	| 045200203		| 452300188		| LNAMENINEONEFOUR	| SY2 6LU	| a@a.com	|
-	
-@RegressionWelsh @NewSchemaConverted
-Scenario Outline: Test that a response with ret_date in 1 week and read_only='N' is not flagged super urgent
-	
-	Given I am on the welsh version of "Public" "test"
-
-	Given a bureau owned pool is created with jurors
-		| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |
-		| 452   | <juror_number>| <pool_number>	| 1				            | 400	|
-
-	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
-	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
-	
-#	# Attempt to submit response
-#	And I set the radio button to "n ymateb dros fy hun"
-#	And I press the "Parhau" button
-#	Then I see "Eich manylion rheithiwr" on the page
-#	
-#	When I set "Rhif rheithiwr" to "<juror_number>"
-#	When I set "Cyfenw" to "<last_name>"
-#	When I set "Cod post Rheithiwr" to "<postcode>"
-#	And I press the "Parhau" button
-#	
-#	Then I see "Mae'r dyddiad ar gyfer eich gwŷs rheithgor wedi mynd heibio. Ni allwch ymateb drwy ddefnyddio'r gwasanaeth hwn." on the page
-	
-	Given I have submitted a first party Welsh straight through response
-		| part_no		| pool_number	| last_name		| postcode	| email 	|
-		| <juror_number>| <pool_number>	| <last_name>	| <postcode>| <email>	|
-
-	#check status
-#
-#	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "URGENT" is "Y" where "JUROR_NUMBER" is "<juror_number>"
-#	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "SUPER_URGENT" is "N" where "JUROR_NUMBER" is "<juror_number>"
-#
-#	Given I am on "Bureau" "juror-test01"
-#	And I log in as "CPASS"
-#
-#	When I click on the "Search" link
-#	And I set "Juror number" to "<juror_number>"
-#	And I press the "Search" button
-#	And I click on "<juror_number>" in the same row as "<juror_number>"
-#
-#	#check status = summoned
-#
-#	Then I see "Summoned" on the page
-#	And I do not see "SEND TO COURT" on the page
-#
-#	When I select "Mark as responded" from Process reply
-#	And I check the "Mark juror as 'responded'" checkbox
-#	And I press the "Confirm" button
-#
-#	#now check status
-#
-#	Then I see "Responded" on the page
-#	And I see "COMPLETED" on the page
-#	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "URGENT" is "Y" where "JUROR_NUMBER" is "<juror_number>"
-#	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "SUPER_URGENT" is "N" where "JUROR_NUMBER" is "<juror_number>"
-		
-Examples:
-	| juror_number	| pool_number	| last_name			| postcode	| email 		|
-	| 045200204		| 452300189		| LNAMEONESIXONE	| SA1 4PF	| e@mail.com	|

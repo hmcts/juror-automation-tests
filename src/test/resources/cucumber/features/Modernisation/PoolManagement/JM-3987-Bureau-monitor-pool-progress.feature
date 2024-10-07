@@ -83,6 +83,7 @@ Feature: JM-3987 Monitor Pools Progress
 
   @JurorTransformation
   Scenario: Test for correct values on table
+
     Given I am on "Bureau" "ithc"
     Given new pool requests are deleted new schema
 
@@ -94,6 +95,7 @@ Feature: JM-3987 Monitor Pools Progress
     And I enter "415" as the court
     And I select the "Crown" court type
     And I click search
+
     And I see the pool I created in a row on the search results with the values
       | requested   | 10  |
       | summoned    | 10  |
