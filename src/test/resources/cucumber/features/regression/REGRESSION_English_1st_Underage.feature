@@ -1,8 +1,8 @@
 Feature: Regression English_1st_Underage
 
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: English 1st Party Underage
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -119,7 +119,7 @@ Scenario Outline: English 1st Party Underage
 	Then I see "You have completed your reply" on the page
 	Then I see "<juror_number>" on the page
 	
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "ithc"
 	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
@@ -133,7 +133,7 @@ Examples:
 	| juror_number	| last_name			| postcode	| email 		| pool_number	|
 	| 045200076		| LNAMEFIVEFIVEZERO	| CH1 2AN	| a@eeee.com	| 452300075		|
 	
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: English 1st Party Underage with Error Check
 	Given I am on "Public" "test"
 
@@ -233,7 +233,7 @@ Examples:
 	| juror_number	| last_name	| postcode	| pool_number	| email |
 	| 045200077		| LNAME403	| CH1 2AN	| 452300076		| e@mail.com |
 	
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: English 1st Party Underage with Back Check
 	Given I am on "Public" "test"
 

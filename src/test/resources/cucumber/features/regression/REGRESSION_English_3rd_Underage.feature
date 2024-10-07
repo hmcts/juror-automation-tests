@@ -1,9 +1,9 @@
 Feature: Regression English_3rd_Underage
 
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: English 3rd Party Underage
 		
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -40,6 +40,7 @@ Scenario Outline: English 3rd Party Underage
 	Then I see "Why are you replying for the other person?" on the page
 	
 	When I set the radio button to "The person is unable to reply by themselves"
+
 	And I press the "Continue" button
 	Then I see "Is the name we have for them correct?" on the page
 	When I choose the "Yes" radio button
