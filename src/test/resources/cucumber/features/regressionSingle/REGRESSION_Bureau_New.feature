@@ -1,10 +1,10 @@
 Feature: Bureau Functionality - NEW
 
 
-@RegressionSingle @NewSchemaConverted
+@RegressionSingle
 Scenario Outline: Your Work
 
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  		| pool_number		| att_date_weeks_in_future	| owner |
@@ -42,21 +42,21 @@ Scenario Outline: Your Work
 	#update response to have been received 6 days ago
 	Given the "DATE_RECEIVED" for juror "<juror_number_one>" is set to "-2 mondays time" new schema
 
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	# Submit response in pool
 	Given I have submitted a first party English straight through response
 		| part_no				| pool_number		| last_name			| postcode	| email 	|
 		| <juror_number_two>	| <pool_number_two>	| <last_name_two>	| CH1 2AN	| a@a.com	|
 
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	# Submit response in pool
 	Given I have submitted a first party English straight through response
 		| part_no				| pool_number			| last_name			| postcode	| email 	|
 		| <juror_number_three>	| <pool_number_three>	| <last_name_three>	| CH1 2AN	| a@a.com	|
 
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given I have submitted a first party English straight through response
 		| part_no				| pool_number		| last_name			| postcode	| email 	|
@@ -64,14 +64,15 @@ Scenario Outline: Your Work
 
 	Given auto straight through processing has been enabled new schema
 
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "ithc"
 	And I log in as "CPASS"
 
 	When I click on the "Assign Replies" link
 	And I assign all the New Replies to "ARAMIS1"
 	And I do not see any links on the page that open to a new page without an alt text
+	And I click on the "Sign out" link
 
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "ithc"
 	And I log in as "ARAMIS1"
 	And I see "Summons replies" on the page
 	And I see "Your work" on the page
@@ -205,7 +206,9 @@ Scenario Outline: Your Work
 	When I click on the "Completed" link
 	Then I see "<juror_number_four>" on the page
 
-	Given I am on "Bureau" "test"
+	And I click on the "Sign out" link
+
+	Given I am on "Bureau" "ithc"
 	And I log in as "SHREWSBURY"
 
 	#this will only be seen by the court now
@@ -751,7 +754,7 @@ Scenario: Work Allocation Fields and Labels Checks
 @RegressionSingle @NewSchemaConverted
 Scenario Outline: Work Allocation
 
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  	| pool_number		| att_date_weeks_in_future	| owner |
@@ -774,7 +777,7 @@ Scenario Outline: Work Allocation
 	And juror "<juror_number_three>" has "LAST_NAME" as "<last_name>" new schema
 	And juror "<juror_number_three>" has "POSTCODE" as "<postcode>" new schema
 
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "ithc"
 	And I log in as "MODTESTBUREAU"
 	
 	And I click on the "Assign Replies" link
@@ -811,7 +814,7 @@ Scenario Outline: Work Allocation
 	
 	#submit responses with auto-processing disabled
 	
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 	And auto straight through processing has been disabled new schema
 	And I have submitted a first party English straight through response
 	| part_no				| pool_number			| last_name		| postcode		| email 	|
@@ -819,7 +822,7 @@ Scenario Outline: Work Allocation
 	| <juror_number_two>	| <pool_number_two>		| <last_name>	| <postcode>	| <email>	|
 	| <juror_number_three>	| <pool_number_three>	| <last_name>	| <postcode>	| <email>	|
 	
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "ithc"
 	When I log in as "MODTESTBUREAU"
 	And I click on the "Assign Replies" link
 	
@@ -884,7 +887,7 @@ Examples:
 @RegressionSingle @NewSchemaConverted
 Scenario Outline: Work Allocation - AUTO are not counted
 
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "ithc"
 
 	And I log in as "MODTESTBUREAU"
 	And I click on the "Assign Replies" link
@@ -897,7 +900,7 @@ Scenario Outline: Work Allocation - AUTO are not counted
 	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
 	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	And auto straight through processing has been enabled new schema
 
@@ -907,7 +910,7 @@ Scenario Outline: Work Allocation - AUTO are not counted
 
 	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "STAFF_LOGIN" is "AUTO" where "JUROR_NUMBER" is "<juror_number>" new schema
 
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "ithc"
 	When I log in as "MODTESTBUREAU"
 	And I click on the "Assign Replies" link
 	

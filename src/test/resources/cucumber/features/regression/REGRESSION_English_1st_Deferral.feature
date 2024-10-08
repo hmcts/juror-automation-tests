@@ -1,6 +1,6 @@
 Feature: Regression English_1st_Deferral
 
-  @Regression @NewSchemaConverted
+  @Regression
   Scenario Outline: English 1st Party Deferral
 
     Given I am on "Public" "ithc"
@@ -225,7 +225,7 @@ Feature: Regression English_1st_Deferral
     Then I see "Your work" on the page
 
     Then I click on the "Sign out" link
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     When I log in as "CPASS"
     Then I see "<juror_number>" on the page
     Then I see "<juror_number>" has reply type indicator "DEFERRAL"
@@ -257,7 +257,7 @@ Feature: Regression English_1st_Deferral
       | juror_number | pool_number | last_name        | postcode | email      |
       | 045200014    | 452300010   | LNAMEFIVETWOZERO | SY2 6LU  | e@eeee.com |
 
-  @Regression @NewSchemaConverted
+  @Regression
   Scenario Outline: English 1st Party Deferral - do not accept dates
 
     Given I am on "Public" "ithc"
@@ -524,10 +524,10 @@ Feature: Regression English_1st_Deferral
       | juror_number | pool_number | last_name          | postcode | email      |
       | 045200015    | 452300011   | LNAMESEVENONETHREE | SW1H 9AJ | e@eeee.com |
 
-  @RegressionSingle @NewSchemaConverted
+  @RegressionSingle
   Scenario Outline: 1st English Deferral (Duplicate?)
 
-    Given I am on "Public" "test"
+    Given I am on "Public" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
@@ -662,7 +662,7 @@ Feature: Regression English_1st_Deferral
     And I press the "Submit" button
     And I see "You have completed your reply" on the page
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     And I log in as "MODTESTBUREAU"
     And I click on the "Search" link
     And I set "Juror number" to "<juror_number>"
@@ -676,7 +676,7 @@ Feature: Regression English_1st_Deferral
       | juror_number | last_name           | postcode | email             | pool_number |
       | 045200016    | LNAMESEVENFIVETHREE | CH1 2AN  | email@outlook.com | 452300012   |
 
-  @Regression @NewSchemaConverted
+  @Regression
   Scenario Outline: 1st English Deferral with Bureau Check
 
     Given I am on "Public" "ithc"
@@ -837,16 +837,16 @@ Feature: Regression English_1st_Deferral
     And I select the first deferral choice
 
     And I press the "Continue" button
-    And I see the juror record updated banner containing "Responded"
+    And I see the juror record updated banner containing "Deferral granted"
 
     Examples:
       | juror_number | last_name | postcode | email             | pool_number |
       | 045200017    | LNAME21   | CH1 2AN  | email@outlook.com | 452300013   |
 
-  @Regression @NewSchemaConverted
+  @Regression
   Scenario Outline: 1st English Back Button Logic with Deferral Reason Screen
 
-    Given I am on "Public" "test"
+    Given I am on "Public" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
@@ -1058,10 +1058,10 @@ Feature: Regression English_1st_Deferral
       | juror_number | last_name    | postcode | email      | pool_number |
       | 045200018    | LNAMENINETWO | CH1 2AN  | a@eeee.com | 452300014   |
 
-  @Regression @NewSchemaConverted
+  @Regression
   Scenario Outline: 1st English Back Button Logic with Deferral Dates Screen
 
-    Given I am on "Public" "test"
+    Given I am on "Public" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
@@ -1293,10 +1293,10 @@ Feature: Regression English_1st_Deferral
       | juror_number | last_name | postcode | pool_number |
       | 045200019    | DOE       | SW1H 9AJ | 452300015   |
 
-  @Regression @NewSchemaConverted
+  @Regression
   Scenario Outline: English 1st Party Deferral - Validation and Errors
 
-    Given I am on "Public" "test"
+    Given I am on "Public" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
@@ -1575,7 +1575,7 @@ Feature: Regression English_1st_Deferral
       | juror_number | pool_number | last_name          | postcode | email      |
       | 045200020    | 452300016   | LNAMESEVENONETHREE | SW1H 9AJ | e@eeee.com |
 
-  @RegressionSingle @NewSchemaConverted
+  @RegressionSingle
   Scenario Outline: English 1st Party Deferral - date 1 selected is a BH
 
     Given I am on "Public" "ithc"
@@ -1793,7 +1793,7 @@ Feature: Regression English_1st_Deferral
       | juror_number | pool_number | last_name          | postcode | email      |
       | 041500054    | 415300144   | LNAMESEVENONETHREE | SW1H 9AJ | e@eeee.com |
 
-  @RegressionSingle @NewSchemaConverted
+  @RegressionSingle
   Scenario Outline: English 1st Party Deferral - date 2 selected is a BH
 
     Given I am on "Public" "ithc"
@@ -2007,7 +2007,7 @@ Feature: Regression English_1st_Deferral
       | juror_number | pool_number | last_name          | postcode | email      |
       | 045200035    | 452300034   | LNAMESEVENONETHREE | CH1 2AN  | e@eeee.com |
 
-  @RegressionSingle @NewSchemaConverted
+  @RegressionSingle
   Scenario Outline: English 1st Party Deferral - date 3 selected is a BH
 
     Given I am on "Public" "ithc"
@@ -2220,7 +2220,7 @@ Feature: Regression English_1st_Deferral
       | juror_number | pool_number | last_name          | postcode | email      |
       | 045200036    | 452300035   | LNAMESEVENONETHREE | SW1H 9AJ | e@eeee.com |
 
-  @RegressionSingle @NewSchemaConverted
+  @RegressionSingle
   Scenario Outline: English 1st Party Deferral - >1 date selected is a BH
 
     Given I am on "Public" "ithc"
@@ -2436,7 +2436,7 @@ Feature: Regression English_1st_Deferral
       | juror_number | pool_number | last_name          | postcode | email      |
       | 045200037    | 452300036   | LNAMESEVENONETHREE | SW1H 9AJ | e@eeee.com |
 
-  @RegressionSingle @NewSchemaConverted
+  @RegressionSingle
   Scenario Outline: English 1st Party Deferral - Navigate back from BH page
 
     Given I am on "Public" "ithc"
@@ -2697,7 +2697,7 @@ Feature: Regression English_1st_Deferral
       | juror_number | pool_number | last_name          | postcode | email      |
       | 045200038    | 452300037   | LNAMESEVENONETHREE | WV1 4EE  | e@eeee.com |
 
-  @RegressionSingle @NewSchemaConverted
+  @RegressionSingle
   Scenario Outline: English 1st Party Deferral - selected date makes juror >76
 
     Given I am on "Public" "ithc"
@@ -2929,10 +2929,10 @@ Feature: Regression English_1st_Deferral
       | juror_number | pool_number | last_name          | postcode | email      |
       | 045200039    | 452300038   | LNAMESEVENONETHREE | SW1H 9AJ | e@eeee.com |
 
-  @Regression @NewSchemaConverted
+  @Regression
   Scenario Outline: English 1st Party Deferral + Bail + Name change
 
-    Given I am on "Public" "test"
+    Given I am on "Public" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
@@ -3117,7 +3117,7 @@ Feature: Regression English_1st_Deferral
     And I validate the "Second" deferral date is "7" weeks in the future
     And I validate the "Third" deferral date is "8" weeks in the future
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     And I log in as "MODTESTBUREAU"
 
     When I click on the "Search" link
@@ -3133,7 +3133,7 @@ Feature: Regression English_1st_Deferral
     Then I see "Your work" on the page
 
     Then I click on the "Sign out" link
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     When I log in as "CPASS"
     Then I see "<juror_number>" on the page
     Then I see "<juror_number>" has reply type indicator "DEFERRAL"
@@ -3142,7 +3142,7 @@ Feature: Regression English_1st_Deferral
       | juror_number | pool_number | last_name          | postcode | email      |
       | 045200040    | 452300039   | LNAMESEVENONETHREE | SY2 6LU  | e@eeee.com |
 
-  @Regression @NewSchemaConverted
+  @Regression
   Scenario Outline: English 1st Party Deferral - NEW PAGE
 
     Given I am on "Bureau" "ithc"
@@ -3186,7 +3186,7 @@ Feature: Regression English_1st_Deferral
     And I press the "Create pool and summon citizens" button
     And I click on the "Sign out" link
 
-    Given I am on "Public" "test"
+    Given I am on "Public" "ithc"
 
     Then I see "Reply to a jury summons" on the page
 
@@ -3308,7 +3308,7 @@ Feature: Regression English_1st_Deferral
     Then I see "Your work" on the page
 
     Then I click on the "Sign out" link
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     When I log in as "CPASS"
     Then I see "<juror_number>" on the page
     Then I see "<juror_number>" has reply type indicator "DEFERRAL"
