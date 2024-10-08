@@ -1,6 +1,6 @@
 Feature: Regression HTML Response Summary
 
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: English_Max_Chars HTML Response Summary
 
 	Given I am on "Public" "test"
@@ -165,7 +165,7 @@ Examples:
 	| juror_number	| pool_number	| first_name| last_name	| postcode	| email 		|
 	| 045200110		| 452300109		| John		| Doe		| SW1H 9AJ	| a@eeee.com	|
 
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: English 1st Party Excusal HTML Response Summary
 
 	Given I am on "Public" "test"
@@ -291,7 +291,7 @@ Examples:
 	| juror_number	| pool_number	| first_name| last_name	| postcode	| email 		|
 	| 045200111		| 452300110		| John		| Doe		| SW1H 9AJ	| a@eeee.com	|
 
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: English 1st Party Deferral HTML Response Summary
 
 	Given I am on "Public" "test"
@@ -431,7 +431,7 @@ Examples:
 	| juror_number	| pool_number	| first_name| last_name	| postcode	| email 		|
 	| 045200112		| 452300111		| John		| Doe		| SW1H 9AJ	| a@eeee.com	|
 	
-@RegressionWelsh @NewSchemaConverted
+@RegressionWelsh
 Scenario Outline: Welsh 1st Party Straight Through (welsh court)
 
 	Given I am on the welsh version of "Public" "test"
@@ -567,7 +567,7 @@ Examples:
 	| juror_number	| pool_number	| first_name| last_name	| postcode	| email 		|
 	| 045200113		| 452300112		| John		| Doe		| SW1H 9AJ	| a@eeee.com	|
 
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: English 3rd Party Deferral HTML Response summary
 
 	Given I am on "Public" "test"
@@ -757,10 +757,10 @@ Examples:
 	| juror_number	| pool_number	| first_name| last_name	| postcode	| email 		|
 	| 045200114		| 452300113		| John		| Doe		| SW1H 9AJ	| a@eeee.com	|
 	
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: English 1st Party Overage HTML Response Summary
 
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -858,7 +858,7 @@ Examples:
 	| juror_number	| pool_number	| first_name| last_name	| postcode	| email 		|
 	| 045200115		| 452300114		| John		| Doe		| SW1H 9AJ	| a@eeee.com	|
 
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: English 3rd Deceased HTML Response Summary
 
 	Given I am on "Public" "test"
@@ -947,7 +947,7 @@ Examples:
 	| juror_number	| pool_number| last_name| postcode	| email 		|
 	| 045200116		| 452300115	 | DOE		| SW1H 9AJ	| e@eeee.com	|
 
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: English 1st ST HTML Check
 
 	Given I am on "Public" "test"
@@ -1106,7 +1106,7 @@ Examples:
 	| juror_number	| pool_number	| first_name| last_name	| postcode	| email 		|
 	| 045200117		| 452300116		| JOHN		| DOE		| SW1H 9AJ	| e@eeee.com	|
 
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: English 1st Ineligible HTML Check
 
 	Given I am on "Public" "test"
