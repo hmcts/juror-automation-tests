@@ -1,6 +1,6 @@
 Feature: Regression Survey_Link
 
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: Survey Link 1st Party Eng
 	
 	Given I am on "Public" "test"
@@ -30,13 +30,13 @@ Scenario Outline: Survey Link 1st Party Eng
 	And I see "https://www.smartsurvey.co.uk/s/DL1RCF/" in the URL
 
 Examples:
-	| juror_number	| last_name			| postcode	| email 	| pool_number	|
-	| 045200205		| LNAMEONEONENINE	| CH1 2AN	| a@eeee.com| 452300190		|
+	| juror_number	| last_name			| postcode	| pool_number	|
+	| 045200205		| LNAMEONEONENINE	| CH1 2AN	| 452300190		|
 	
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: Survey Link 3rd Party Eng
 	
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -65,7 +65,7 @@ Examples:
 	| juror_number	| last_name			| postcode	| pool_number	|
 	| 045200206		| LNAMEONEONENINE	| CH1 2AN	| 452300191		|
 	
-@RegressionWelsh @NewSchemaConverted
+@RegressionWelsh
 Scenario Outline: Survey Link 1st Party Welsh
 	
 	Given I am on the welsh version of "Public" "test"
@@ -97,10 +97,10 @@ Examples:
 	| juror_number	| last_name			| postcode	| pool_number	|
 	| 045700039		| LNAMEONEONENINE	| CH1 2AN	| 457300039		|
 
-@RegressionWelsh @NewSchemaConverted
+@RegressionWelsh
 Scenario Outline: Survey Link 3rd Party Welsh
 	
-	Given I am on the welsh version of "Public" "test"
+	Given I am on the welsh version of "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |

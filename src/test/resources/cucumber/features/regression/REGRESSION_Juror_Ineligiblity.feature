@@ -11,7 +11,7 @@ Feature: Regression Test Ineligbility
 #English 1st support in court
 #English 3rd support in court
 
-  @RegressionWelsh @NewSchemaConverted
+  @RegressionWelsh
   Scenario Outline: Welsh_3rd_Ineligible_Confirmation Page
 
     Given I am on the welsh version of "Public" "test"
@@ -373,7 +373,7 @@ Feature: Regression Test Ineligbility
       | 045700019    | LNAMESEVENNINESIX | CH1 2AN  | a@eeee.com | 457300019   |
 
 
-  @RegressionWelsh @NewSchemaConverted
+  @RegressionWelsh
   Scenario Outline: Welsh_3rd_SpecialRequirements
 
     Given I am on the welsh version of "Public" "test"
@@ -545,7 +545,7 @@ Feature: Regression Test Ineligbility
       | juror_number | last_name       | postcode | email      | pool_number |
       | 045700020    | LNAMESIXSIXZERO | CH1 2AN  | a@eeee.com | 457300020   |
 
-  @RegressionWelsh @NewSchemaConverted
+  @RegressionWelsh
   Scenario Outline: Welsh_3rd_Ineligible_SpecialRequirements
 
     Given I am on the welsh version of "Public" "test"
@@ -708,7 +708,7 @@ Feature: Regression Test Ineligbility
       | juror_number | last_name | postcode | email      | pool_number |
       | 045700021    | DOE       | CH1 2AN  | a@eeee.com | 457300021   |
 
-  @RegressionWelsh @NewSchemaConverted
+  @RegressionWelsh
   Scenario Outline: Welsh_1st_StraightThrough_MentalResidency
 
     Given I am on the welsh version of "Public" "test"
@@ -980,10 +980,10 @@ Feature: Regression Test Ineligbility
       | juror_number | last_name | postcode | email      | pool_number |
       | 045700022    | LNAME1327 | CH1 2AN  | a@eeee.com | 457300022   |
 
-  @RegressionWelsh @NewSchemaConverted
+  @RegressionWelsh
   Scenario Outline: Welsh_1st_Inel_Email_Check
 
-    Given I am on the welsh version of "Public" "test"
+    Given I am on the welsh version of "Public" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
@@ -1016,7 +1016,7 @@ Feature: Regression Test Ineligbility
     Then I do not see "Eich Canllaw i'r Gwasanaeth Rheithgor (PDF 85KB)" on the page
     Then I see "Beth yw eich barn am y gwasanaeth hwn? (30 eiliad o'ch amser)" on the page
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     And I log in as "MODTESTBUREAU"
 
     When I click on the "Search" link
@@ -1040,7 +1040,7 @@ Feature: Regression Test Ineligbility
       | juror_number | last_name | postcode | email      | pool_number |
       | 045700023    | LNAME436  | CH1 2AN  | e@mail.com | 457300023   |
 
-  @RegressionWelsh @NewSchemaConverted
+  @RegressionWelsh
   Scenario Outline: Welsh_3rd_Deferral_Inel
 
     Given I am on the welsh version of "Public" "test"
@@ -1217,7 +1217,7 @@ Feature: Regression Test Ineligbility
       | juror_number | last_name       | postcode | email      | pool_number |
       | 045700024    | LNAMESIXSIXZERO | CH1 2AN  | a@eeee.com | 457300024   |
 
-  @RegressionWelsh @NewSchemaConverted
+  @RegressionWelsh
   Scenario Outline: THIS IS A WELSH 3rd SUPPORT IN COURT RESPONSE
 
     Given I am on the welsh version of "Public" "test"
@@ -1353,7 +1353,7 @@ Feature: Regression Test Ineligbility
       | juror_number | pool_number | last_name       | postcode | email      |
       | 045700025    | 457300025   | LNAMETWOSIXZERO | CH1 2AN  | e@eeee.com |
 
-  @RegressionSingle @NewSchemaConverted
+  @RegressionSingle
   Scenario Outline: 1st Party Ineligible
 
     Given I am on "Public" "test"
@@ -1524,7 +1524,7 @@ Feature: Regression Test Ineligbility
       | juror_number | last_name         | postcode | email             | pool_number |
       | 045700026    | LNAMENINEFOURFIVE | CH1 2AN  | email@outlook.com | 457300026   |
 
-  @Regression @NewSchemaConverted
+  @Regression
   Scenario Outline: New CJS Options 3rd party
 
     Given I am on "Public" "test"
