@@ -1,6 +1,6 @@
 Feature: Regression JDB-4242 3rd Party Details Do Not Update Legacy Juror
 
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: English 3rd Party Deceased
 
 	Given I am on "Public" "test"
@@ -29,7 +29,7 @@ Examples:
 	| juror_number	| last_name			| postcode	| email          	| pool_number	|
 	| 045200193		| LNAMETWOSIXEIGHT	| CH1 2AN	| email@outlook.com	| 452300178		|
 	
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: English 3rd Party Excused - contact details same as 3rd party
 
 	Given I am on "Public" "ithc"
@@ -71,7 +71,7 @@ Examples:
 	| juror_number	| last_name				| postcode	| email         	| pool_number	|
 	| 045200194		| LNAMEFOURTHREETHREE	| NN1 3HQ	| email@outlook.com	| 452300179		|
 
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: English 3rd Party Deferred - contact details same as 3rd party
 
 	Given I am on "Public" "ithc"
@@ -113,7 +113,7 @@ Examples:
 	| juror_number	| last_name			| postcode	| email         	| pool_number	|
 	| 045200195		| LNAMESIXSEVENFOUR	| NN1 3HQ	| email@outlook.com	| 452300180		|
 
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: English 3rd Party ST - contact details same as 3rd party
 
 	Given I am on "Public" "ithc"
@@ -153,7 +153,7 @@ Examples:
 	| juror_number	| last_name			| postcode	| email         	| pool_number	|
 	| 045200196		| LNAMESIXSEVENFOUR	| NN1 3HQ	| email@outlook.com	| 452300181		|
 	
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: English 3rd Party Disqualified - contact details same as 3rd party
 
 	Given I am on "Public" "ithc"
@@ -197,7 +197,7 @@ Examples:
 	| juror_number	| last_name			| postcode	| email         	| pool_number	|
 	| 452300182		| LNAMEFOURFOURNINE	| NN1 3HQ	| email@outlook.com	| 045200197		|
 	
-@Features @NewSchemaConverted
+@Features
 Scenario Outline: English 3rd Party Super Urgent - contact details same as 3rd party
 
 	#return to @Regression when we have resolved getting jenkins to focus on new page
@@ -236,7 +236,7 @@ Examples:
 	| juror_number	| last_name			| postcode	| email         	| pool_number	|
 	| 045200198		| LNAMEFOURFIVEZERO	| NN1 3HQ	| email@outlook.com	| 452300183		|
 	
-@RegressionWelsh @NewSchemaConverted
+@RegressionWelsh
 Scenario Outline: English 3rd Party Welsh - contact details different for juror
 
 	Given I am on the welsh version of "Public" "test"
@@ -405,7 +405,7 @@ Examples:
 	| juror_number	| last_name			| postcode	| email         	| pool_number	|
 	| 045700199		| LNAMESIXSEVENFIVE	| NN1 3HQ	| email@outlook.com	| 457300184		|
 
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: English 3rd Party Straight Through - Juror already has contact details
 
 	Given I am on "Public" "test"
@@ -449,12 +449,12 @@ Examples:
 	| juror_number	| last_name			| postcode	| email         	| pool_number	|
 	| 045200200		| LNAMESEVENEIGHTSIX| SY2 6LU	| email@outlook.com	| 452300185		|
 
-@Features @NewSchemaConverted
+@Features
 Scenario Outline: English 1st Party Straight Through - regression - contact details populated to Juror
 
 	#moved to Features 02-01-24 return to Regression
 
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
