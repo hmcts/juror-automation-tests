@@ -1,6 +1,6 @@
 Feature: Regression English_1st_Excusal
 
-  @Regression @NewSchemaConverted
+  @Regression
   Scenario Outline: English 1st Party Excusal Accepted
 
     Given I am on "Public" "ithc"
@@ -147,7 +147,7 @@ Feature: Regression English_1st_Excusal
     Then I see "Your work" on the page
 
     Then I click on the "Sign out" link
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     When I log in as "CPASS"
     Then I see "<juror_number>" on the page
     Then I see "<juror_number>" has reply type indicator "EXCUSAL"
@@ -178,10 +178,10 @@ Feature: Regression English_1st_Excusal
       | juror_number | last_name      | postcode | email             | pool_number |
       | 045200051    | LNAMETWOTWOSIX | CH1 2AN  | email@outlook.com | 452300050   |
 
-  @Regression @NewSchemaConverted
+  @Regression
   Scenario Outline: English 1st Party Excusal Refused
 
-    Given I am on "Public" "test"
+    Given I am on "Public" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
@@ -293,7 +293,7 @@ Feature: Regression English_1st_Excusal
     And I press the "Submit" button
     And I see "You have completed your reply" on the page
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     And I log in as "MODTESTBUREAU"
     And I click on the "Search" link
     And I set "Juror number" to "<juror_number>"
@@ -318,12 +318,12 @@ Feature: Regression English_1st_Excusal
       | juror_number | last_name        | postcode | email             | pool_number |
       | 045200052    | LNAMEEIGHTONETWO | SY2 6LU  | email@outlook.com | 452300051   |
 
-  @Features @NewSchemaConverted
+  @Features
   Scenario Outline: English 1st Party Excusal Super Urgent
 
-	#move back to @Regression when we work out how to get Jankins to focus on new window
+	#move back to @Regression when we work out how to get Jenkins to focus on new window
 
-    Given I am on "Public" "test"
+    Given I am on "Public" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
@@ -439,7 +439,7 @@ Feature: Regression English_1st_Excusal
     And I press the "Submit" button
     And I see "You have completed your reply" on the page
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     When I log in as "CPASS"
 
     When I click on the "Search" link
@@ -458,10 +458,10 @@ Feature: Regression English_1st_Excusal
       | juror_number | last_name         | postcode | email             | pool_number |
       | 045200053    | LNAMEONEFOURSEVEN | SY2 6LU  | email@outlook.com | 452300052   |
 
-  @Regression @NewSchemaConverted
+  @Regression
   Scenario Outline: English 1st Party Excusal error messages
 
-    Given I am on "Public" "test"
+    Given I am on "Public" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
@@ -571,7 +571,7 @@ Feature: Regression English_1st_Excusal
     And I press the "Submit" button
     And I see "You have completed your reply" on the page
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     And I log in as "MODTESTBUREAU"
     And I click on the "Search" link
     And I set "Juror number" to "<juror_number>"
@@ -622,10 +622,10 @@ Feature: Regression English_1st_Excusal
       | juror_number | last_name         | postcode | email             | pool_number |
       | 045200054    | LNAMEEIGHTONEFOUR | SY2 6LU  | email@outlook.com | 452300053   |
 
-  @Regression @NewSchemaConverted
+  @Regression
   Scenario Outline: English 1st Party Excusal Reason Special Character (£) check
 
-    Given I am on "Public" "test"
+    Given I am on "Public" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
@@ -732,7 +732,7 @@ Feature: Regression English_1st_Excusal
     And I see "You have completed your reply" on the page
 	
 	#check Bureau
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     And I log in as "MODTESTBUREAU"
 
     When I click on the "Search" link
@@ -748,7 +748,7 @@ Feature: Regression English_1st_Excusal
     Then I see "Your work" on the page
 
     Then I click on the "Sign out" link
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     When I log in as "CPASS"
     Then I see "<juror_number>" on the page
     Then I see "<juror_number>" has reply type indicator "EXCUSAL"
@@ -761,10 +761,10 @@ Feature: Regression English_1st_Excusal
       | juror_number | last_name | postcode | email             | pool_number |
       | 045200055    | DOE       | CH1 2AN  | email@outlook.com | 452300054   |
 
-  @Regression @NewSchemaConverted
+  @Regression
   Scenario Outline: 1st English Back Button Logic with Excusal Reason Screen
 
-    Given I am on "Public" "test"
+    Given I am on "Public" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
@@ -956,13 +956,13 @@ Feature: Regression English_1st_Excusal
     Then I see "We have sent you an email to say you have replied to your jury summons." on the page
 
     Examples:
-      | juror_number | last_name | postcode | email      | pool_number |
-      | 045200056    | DOE       | SW1H 9AJ | a@eeee.com | 452300055   |
+      | juror_number | last_name | postcode | pool_number |
+      | 045200056    | DOE       | SW1H 9AJ | 452300055   |
 
-  @Regression @NewSchemaConverted
+  @Regression
   Scenario Outline: Checking excusal text on Check Your Answers Now page
 
-    Given I am on "Public" "test"
+    Given I am on "Public" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
@@ -1070,10 +1070,10 @@ Feature: Regression English_1st_Excusal
       | juror_number | last_name | postcode | email             | pool_number |
       | 045200057    | DOE       | SW1H 9AJ | email@outlook.com | 452300056   |
 
-  @Regression @NewSchemaConverted
+  @Regression
   Scenario Outline: English 1st Party Excusal Reason Special Character 1000 x (£) check
 
-    Given I am on "Public" "test"
+    Given I am on "Public" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
@@ -1176,7 +1176,7 @@ Feature: Regression English_1st_Excusal
     And I press the "Submit" button
     And I see "You have completed your reply" on the page
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     And I log in as "MODTESTBUREAU"
     And I click on the "Search" link
     And I set "Juror number" to "<juror_number>"
