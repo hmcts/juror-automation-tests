@@ -462,22 +462,43 @@ public class NavigationShared {
     }
 
     public NavigationShared check_Jurorcheckbox(String Juror_no) {
-        try {
-            String checkboxXPath = "//input[@name='selectedJurors' and @value='" + Juror_no + "']";
-            WebElement checkbox = driver.findElement(By.xpath(checkboxXPath));
+        String checkboxXPath = "//input[@name='selectedJurors' and @value='" + Juror_no + "']";
 
-            log.info("Checkbox " + Juror_no + " checked:" + checkbox.isSelected());
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+
+        try {
+            WebElement checkbox = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(checkboxXPath)));
+
+            log.info("Checkbox " + Juror_no + " current state (isSelected): " + checkbox.isSelected());
+
             checkbox.click();
-            log.info("Clicked on checkbox with for, checking if checked");
+            log.info("WebDriver clicked on checkbox with value: " + Juror_no);
+
             if (checkbox.isSelected()) {
-                log.info("Return");
-                return null;
+                log.info("Checkbox " + Juror_no + " is now selected.");
+                return PageFactory.initElements(driver, NavigationShared.class);
             }
 
         } catch (Exception e) {
-            log.error(e.getMessage());
+            log.error("WebDriver failed to click checkbox: " + e.getMessage());
         }
-        return PageFactory.initElements(driver, NavigationShared.class);
+
+        try {
+            WebElement checkbox = driver.findElement(By.xpath(checkboxXPath));
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", checkbox);
+            log.info("JavaScript clicked on checkbox with value: " + Juror_no);
+
+            if (checkbox.isSelected()) {
+                log.info("Checkbox " + Juror_no + " is now selected using JavaScript.");
+                return PageFactory.initElements(driver, NavigationShared.class);
+            }
+
+        } catch (Exception e) {
+            log.error("JavaScript failed to click checkbox: " + e.getMessage());
+        }
+
+        log.error("Failed to check the checkbox for Juror_no: " + Juror_no);
+        return null;
     }
 
     public NavigationShared press_buttonByName(String button_name) throws Throwable {
