@@ -14,6 +14,9 @@ Feature: JM-4001 and JM-4002 - Bureau User
     Then juror "041500000" has "FIRST_NAME" as "0FNAME0" new schema
     Then juror "041500001" has "FIRST_NAME" as "0FNAME1" new schema
     Then juror "041500002" has "FIRST_NAME" as "0FNAME2" new schema
+    Then juror "041500000" has "DOB" as "1971-08-13 00:00:00.000" new schema
+    Then juror "041500001" has "DOB" as "1971-08-13 00:00:00.000" new schema
+    Then juror "041500002" has "DOB" as "1971-08-13 00:00:00.000" new schema
 
     And I log in as "MODTESTBUREAU"
     When I navigate to the pool request screen

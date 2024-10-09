@@ -1,6 +1,6 @@
 Feature:As a jury officer, I want to edit a juror's draft daily expenses
 
-  @JurorTransformation @NewSchemaConverted
+  @JurorTransformation
   Scenario Outline: Edit draft expenses for full day
 
     Given I am on "Bureau" "ithc"
@@ -13,7 +13,8 @@ Feature:As a jury officer, I want to edit a juror's draft daily expenses
       |part_no          | pool_no         | owner |
       |<juror_number>   | <pool_number>   | 415   |
 
-#    And I Confirm all the data in the record attendance table is cleared
+    And I Confirm all the data in the record attendance table is cleared
+
     And I log in as "<user>"
 
     #set juror as responded
@@ -119,7 +120,7 @@ Feature:As a jury officer, I want to edit a juror's draft daily expenses
       |user         |juror_number  |  pool_number    |
       |MODTESTCOURT |041520020     |  415300201      |
 
-  @JurorTransformation @NewSchemaConverted
+  @JurorTransformation
   Scenario Outline: Edit draft expenses for half day and verify error message as Juror’s financial loss is over the daily limit
 
     Given I am on "Bureau" "ithc"
@@ -211,7 +212,7 @@ Feature:As a jury officer, I want to edit a juror's draft daily expenses
       |MODTESTCOURT |041520020     |  415300201      |
 
 
-  @JurorTransformation @NewSchemaConverted
+  @JurorTransformation
   Scenario Outline: Edit draft expenses for half day and verify error message as Amounts entered are more than court’s suggested daily limits
 
     Given I am on "Bureau" "ithc"

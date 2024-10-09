@@ -2,7 +2,7 @@ Feature: Regression English_ReplyTypesIndicator
 
 #this test contains scenarios that test the reply types indicator which do not already exist in other scripts
 
-  @Regression @NewSchemaConverted
+  @Regression
   Scenario Outline: English 1st Party + Juror Details Change
 
     Given I am on "Public" "ithc"
@@ -125,10 +125,10 @@ Feature: Regression English_ReplyTypesIndicator
       | 045200136    | DOE       | SW1H 9AJ | a@eeee.com | 452300135   |
 
 
-  @RegressionSingle @NewSchemaConverted
+  @RegressionSingle
   Scenario Outline: English 1st Party + RA
 
-    Given I am on "Public" "test"
+    Given I am on "Public" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
@@ -232,7 +232,7 @@ Feature: Regression English_ReplyTypesIndicator
     Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "TODO" where "JUROR_NUMBER" is "<juror_number>"
     Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "N" where "JUROR_NUMBER" is "<juror_number>"
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     And I log in as "MODTESTBUREAU"
 
     When I click on the "Search" link
@@ -248,7 +248,7 @@ Feature: Regression English_ReplyTypesIndicator
     Then I see "Your work" on the page
 
     Then I click on the "Sign out" link
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     When I log in as "CPASS"
     Then I see "<juror_number>" on the page
     Then I see "<juror_number>" has reply type indicator "DEFERRAL"
@@ -260,10 +260,10 @@ Feature: Regression English_ReplyTypesIndicator
       | juror_number | pool_number | last_name       | postcode | email      |
       | 045200137    | 452300136   | LNAMESIXONEZERO | SY2 6LU  | e@eeee.com |
 
-  @Regression @NewSchemaConverted
+  @Regression
   Scenario Outline: English 1st Party + Residency
 
-    Given I am on "Public" "test"
+    Given I am on "Public" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
@@ -354,7 +354,7 @@ Feature: Regression English_ReplyTypesIndicator
     Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "TODO" where "JUROR_NUMBER" is "<juror_number>"
     Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "N" where "JUROR_NUMBER" is "<juror_number>"
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     And I log in as "MODTESTBUREAU"
 
     When I click on the "Search" link
@@ -370,7 +370,7 @@ Feature: Regression English_ReplyTypesIndicator
     Then I see "Your work" on the page
 
     Then I click on the "Sign out" link
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     When I log in as "CPASS"
     Then I see "<juror_number>" on the page
     Then I see "<juror_number>" has reply type indicator "NEEDS REVIEW"
@@ -382,10 +382,10 @@ Feature: Regression English_ReplyTypesIndicator
       | juror_number | pool_number | last_name          | postcode | email      |
       | 045200138    | 452300137   | LNAMESIXTHREESEVEN | SY2 6LU  | e@eeee.com |
 
-  @Regression @NewSchemaConverted
+  @Regression
   Scenario Outline: English 1st Party + Bail
 
-    Given I am on "Public" "test"
+    Given I am on "Public" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
@@ -476,7 +476,7 @@ Feature: Regression English_ReplyTypesIndicator
     Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "TODO" where "JUROR_NUMBER" is "<juror_number>"
     Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "N" where "JUROR_NUMBER" is "<juror_number>"
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     And I log in as "MODTESTBUREAU"
 
     When I click on the "Search" link
@@ -492,7 +492,7 @@ Feature: Regression English_ReplyTypesIndicator
     Then I see "Your work" on the page
 
     Then I click on the "Sign out" link
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     When I log in as "CPASS"
     Then I see "<juror_number>" on the page
     Then I see "<juror_number>" has reply type indicator "NEEDS REVIEW"
@@ -504,10 +504,10 @@ Feature: Regression English_ReplyTypesIndicator
       | juror_number | pool_number | last_name          | postcode | email      |
       | 045200139    | 452300138   | LNAMESIXTHREESEVEN | SY2 6LU  | e@eeee.com |
 
-  @Regression @NewSchemaConverted
+  @Regression
   Scenario Outline: English 3rd Party + Convictions
 
-    Given I am on "Public" "test"
+    Given I am on "Public" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
@@ -606,7 +606,7 @@ Feature: Regression English_ReplyTypesIndicator
     And I press the "Submit" button
     And I see "You have completed your reply" on the page
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     And I log in as "MODTESTBUREAU"
 
     When I click on the "Search" link
@@ -622,7 +622,7 @@ Feature: Regression English_ReplyTypesIndicator
     Then I see "Your work" on the page
 
     Then I click on the "Sign out" link
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     When I log in as "CPASS"
     Then I see "<juror_number>" on the page
     Then I see "<juror_number>" has reply type indicator "NEEDS REVIEW"
@@ -634,10 +634,10 @@ Feature: Regression English_ReplyTypesIndicator
       | juror_number | last_name        | postcode | email             | pool_number |
       | 045200140    | LNAMESIXNINEFOUR | SY2 6LU  | email@outlook.com | 452300139   |
 
-  @Regression @NewSchemaConverted
+  @Regression
   Scenario Outline: English 3rd Party + Residency
 
-    Given I am on "Public" "test"
+    Given I am on "Public" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
@@ -736,7 +736,7 @@ Feature: Regression English_ReplyTypesIndicator
     And I press the "Submit" button
     And I see "You have completed your reply" on the page
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     And I log in as "MODTESTBUREAU"
 
     When I click on the "Search" link
@@ -752,7 +752,7 @@ Feature: Regression English_ReplyTypesIndicator
     Then I see "Your work" on the page
 
     Then I click on the "Sign out" link
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     When I log in as "CPASS"
     Then I see "<juror_number>" on the page
     Then I see "<juror_number>" has reply type indicator "NEEDS REVIEW"
@@ -764,9 +764,9 @@ Feature: Regression English_ReplyTypesIndicator
       | juror_number | last_name         | postcode | email             | pool_number |
       | 045200141    | LNAMESEVENTWOZERO | SY2 6LU  | email@outlook.com | 452300140   |
 
-  @Regression @NewSchemaConverted
+  @Regression
   Scenario Outline: English 3rd Party + Bail
-    Given I am on "Public" "test"
+    Given I am on "Public" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
@@ -865,7 +865,7 @@ Feature: Regression English_ReplyTypesIndicator
     And I press the "Submit" button
     And I see "You have completed your reply" on the page
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     And I log in as "MODTESTBUREAU"
 
     When I click on the "Search" link
@@ -881,7 +881,7 @@ Feature: Regression English_ReplyTypesIndicator
     Then I see "Your work" on the page
 
     Then I click on the "Sign out" link
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     When I log in as "CPASS"
     Then I see "<juror_number>" on the page
     Then I see "<juror_number>" has reply type indicator "NEEDS REVIEW"
@@ -893,10 +893,10 @@ Feature: Regression English_ReplyTypesIndicator
       | juror_number | last_name           | postcode | email             | pool_number |
       | 045200142    | LNAMESEVENFOURTHREE | SY2 6LU  | email@outlook.com | 452300141   |
 
-  @Regression @NewSchemaConverted
+  @Regression
   Scenario Outline: English 3rd Party + Mental Health
 
-    Given I am on "Public" "test"
+    Given I am on "Public" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
@@ -996,7 +996,7 @@ Feature: Regression English_ReplyTypesIndicator
     And I press the "Submit" button
     And I see "You have completed your reply" on the page
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     And I log in as "MODTESTBUREAU"
 
     When I click on the "Search" link
@@ -1012,7 +1012,7 @@ Feature: Regression English_ReplyTypesIndicator
     Then I see "Your work" on the page
 
     Then I click on the "Sign out" link
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     When I log in as "CPASS"
     Then I see "<juror_number>" on the page
     Then I see "<juror_number>" has reply type indicator "NEEDS REVIEW"
@@ -1024,10 +1024,10 @@ Feature: Regression English_ReplyTypesIndicator
       | juror_number | last_name           | postcode | email             | pool_number |
       | 045200143    | LNAMESEVENFOUREIGHT | SY2 6LU  | email@outlook.com | 452300142   |
 
-  @Regression @NewSchemaConverted
+  @Regression
   Scenario Outline: Multiple reply types
 
-    Given I am on "Public" "test"
+    Given I am on "Public" "ithc"
 
     Given auto straight through processing has been enabled new schema
 
@@ -1086,7 +1086,7 @@ Feature: Regression English_ReplyTypesIndicator
 
 	#RESPONSE 1
 	#3rd party MH
-    Given I am on "Public" "test"
+    Given I am on "Public" "ithc"
 
     And I set the radio button to "I am replying for someone else"
     And I press the "Continue" button
@@ -1181,7 +1181,7 @@ Feature: Regression English_ReplyTypesIndicator
 
 	#RESPONSE 2
 	#3rd party bail
-    Given I am on "Public" "test"
+    Given I am on "Public" "ithc"
 
     And I set the radio button to "I am replying for someone else"
     And I press the "Continue" button
@@ -1275,7 +1275,7 @@ Feature: Regression English_ReplyTypesIndicator
 
 	#RESPONSE 3
 	#3rd party residency
-    Given I am on "Public" "test"
+    Given I am on "Public" "ithc"
 
     And I set the radio button to "I am replying for someone else"
     And I press the "Continue" button
@@ -1369,7 +1369,7 @@ Feature: Regression English_ReplyTypesIndicator
 
 	#RESPONSE 4
 	#3rd party convictions
-    Given I am on "Public" "test"
+    Given I am on "Public" "ithc"
 
     And I set the radio button to "I am replying for someone else"
     And I press the "Continue" button
@@ -1463,7 +1463,7 @@ Feature: Regression English_ReplyTypesIndicator
 
 	#RESPONSE 5
 	#1st bail
-    Given I am on "Public" "test"
+    Given I am on "Public" "ithc"
 
     And I set the radio button to "I am replying for myself"
     And I press the "Continue" button
@@ -1540,7 +1540,7 @@ Feature: Regression English_ReplyTypesIndicator
 
 	#RESPONSE 6
 	#1st residency
-    Given I am on "Public" "test"
+    Given I am on "Public" "ithc"
 
     And I set the radio button to "I am replying for myself"
     And I press the "Continue" button
@@ -1617,7 +1617,7 @@ Feature: Regression English_ReplyTypesIndicator
 
 	#RESPONSE 7
 	#1st details change
-    Given I am on "Public" "test"
+    Given I am on "Public" "ithc"
 
     And I set the radio button to "I am replying for myself"
 
@@ -1702,7 +1702,7 @@ Feature: Regression English_ReplyTypesIndicator
 
 	#RESPONSE 8
 	#1st deferral
-    Given I am on "Public" "test"
+    Given I am on "Public" "ithc"
 
     Then I see "Reply to a jury summons" on the page
 
@@ -1795,7 +1795,7 @@ Feature: Regression English_ReplyTypesIndicator
 
 	#RESPONSE 9
 	#1st excusal
-    Given I am on "Public" "test"
+    Given I am on "Public" "ithc"
 
     Then I see "Reply to a jury summons" on the page
 
@@ -1877,7 +1877,7 @@ Feature: Regression English_ReplyTypesIndicator
 
 	#RESPONSE 10
 	#3rd Deceased
-    Given I am on "Public" "test"
+    Given I am on "Public" "ithc"
 
     And I have submitted a third party English deceased response
       | part_no            | pool_number   | last_name   | postcode   | email   |
@@ -1885,13 +1885,13 @@ Feature: Regression English_ReplyTypesIndicator
 
 	#RESPONSE 11
 	#auto processed
-    Given I am on "Public" "test"
+    Given I am on "Public" "ithc"
 
     And I have submitted a first party English straight through response
       | part_no               | pool_number   | last_name   | postcode   | email   |
       | <juror_number_eleven> | <pool_number> | <last_name> | <postcode> | <email> |
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     When I log in as "MODTESTBUREAU"
 
@@ -1934,9 +1934,9 @@ Feature: Regression English_ReplyTypesIndicator
     Then I see "Your work" on the page
 
     Then I click on the "Sign out" link
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     And I log in as "ARAMIS1"
 
@@ -1960,6 +1960,8 @@ Feature: Regression English_ReplyTypesIndicator
     And I press the "Confirm" button
     Then I see the juror record updated banner containing "Responded"
 
+    Then I click on the "Back" link
+
     Then I see "<juror_number_two>" on the page
     When I click on "<juror_number_two>" in the same row as "<juror_number_two>"
     And I see "INELIGIBLE" on the page
@@ -1970,6 +1972,8 @@ Feature: Regression English_ReplyTypesIndicator
     And I check the "Mark juror as 'responded'" checkbox
     And I press the "Confirm" button
     Then I see the juror record updated banner containing "Responded"
+
+    Then I click on the "Back" link
 
     Then I see "<juror_number_three>" on the page
     When I click on "<juror_number_three>" in the same row as "<juror_number_three>"
@@ -1982,6 +1986,8 @@ Feature: Regression English_ReplyTypesIndicator
     And I press the "Confirm" button
     Then I see the juror record updated banner containing "Responded"
 
+    Then I click on the "Back" link
+
     Then I see "<juror_number_four>" on the page
     When I click on "<juror_number_four>" in the same row as "<juror_number_four>"
     And I see "INELIGIBLE" on the page
@@ -1992,6 +1998,8 @@ Feature: Regression English_ReplyTypesIndicator
     And I check the "Mark juror as 'responded'" checkbox
     And I press the "Confirm" button
     Then I see the juror record updated banner containing "Responded"
+
+    Then I click on the "Back" link
 
     Then I see "<juror_number_five>" on the page
     When I click on "<juror_number_five>" in the same row as "<juror_number_five>"
@@ -2004,6 +2012,8 @@ Feature: Regression English_ReplyTypesIndicator
     And I press the "Confirm" button
     Then I see the juror record updated banner containing "Responded"
 
+    Then I click on the "Back" link
+
     Then I see "<juror_number_six>" on the page
     When I click on "<juror_number_six>" in the same row as "<juror_number_six>"
     And I see "INELIGIBLE" on the page
@@ -2014,6 +2024,8 @@ Feature: Regression English_ReplyTypesIndicator
     And I check the "Mark juror as 'responded'" checkbox
     And I press the "Confirm" button
     Then I see the juror record updated banner containing "Responded"
+
+    Then I click on the "Back" link
 
     Then I see "<juror_number_seven>" on the page
     When I click on "<juror_number_seven>" in the same row as "<juror_number_seven>"
@@ -2026,6 +2038,8 @@ Feature: Regression English_ReplyTypesIndicator
     And I press the "Confirm" button
     Then I see the juror record updated banner containing "Responded"
 
+    Then I click on the "Back" link
+
     Then I see "<juror_number_eight>" on the page
     When I click on "<juror_number_eight>" in the same row as "<juror_number_eight>"
     And I see "DEFERRAL" on the page
@@ -2037,6 +2051,8 @@ Feature: Regression English_ReplyTypesIndicator
     And I press the "Confirm" button
     Then I see the juror record updated banner containing "Responded"
 
+    Then I click on the "Back" link
+
     Then I see "<juror_number_nine>" on the page
     When I click on "<juror_number_nine>" in the same row as "<juror_number_nine>"
     And I see "EXCUSAL" on the page
@@ -2046,7 +2062,7 @@ Feature: Regression English_ReplyTypesIndicator
     And I press the "Continue" button
     And I check the "Mark juror as 'responded'" checkbox
     And I press the "Confirm" button
-    Then I see the juror record updated banner containing "Responded"
+    Then I see the juror record updated banner containing "Excusal refused"
 
     And I click on the "Search" link
     And I set "Juror number" to "<juror_number_ten>"
@@ -2122,10 +2138,10 @@ Feature: Regression English_ReplyTypesIndicator
       | 045200144    | 045200145        | 045200146          | 045200147         | 045200148         | 045200149        | 045200150          | 045200151          | 045200152         | 045200153        | 045200154           | LNAME     | SY2 6LU  | email@outlook.com | 452300143   | 452300144       | 452300145         |
 
 
-  @RegressionSingle @NewSchemaConverted
+  @RegressionSingle
   Scenario Outline: Multiple reply types in Awaiting Information
 
-    Given I am on "Public" "test"
+    Given I am on "Public" "ithc"
 
     Given auto straight through processing has been enabled new schema
 
@@ -2176,7 +2192,7 @@ Feature: Regression English_ReplyTypesIndicator
 
 	#RESPONSE 1
 	#3rd party MH
-    Given I am on "Public" "test"
+    Given I am on "Public" "ithc"
 
     And I set the radio button to "I am replying for someone else"
     And I press the "Continue" button
@@ -2271,7 +2287,7 @@ Feature: Regression English_ReplyTypesIndicator
 
 	#RESPONSE 2
 	#3rd party bail
-    Given I am on "Public" "test"
+    Given I am on "Public" "ithc"
 
     And I set the radio button to "I am replying for someone else"
     And I press the "Continue" button
@@ -2365,7 +2381,7 @@ Feature: Regression English_ReplyTypesIndicator
 
 	#RESPONSE 3
 	#3rd party residency
-    Given I am on "Public" "test"
+    Given I am on "Public" "ithc"
     And I set the radio button to "I am replying for someone else"
     And I press the "Continue" button
 
@@ -2458,7 +2474,7 @@ Feature: Regression English_ReplyTypesIndicator
 
 	#RESPONSE 4
 	#3rd party convictions
-    Given I am on "Public" "test"
+    Given I am on "Public" "ithc"
     And I set the radio button to "I am replying for someone else"
     And I press the "Continue" button
 
@@ -2549,7 +2565,7 @@ Feature: Regression English_ReplyTypesIndicator
 
 	#RESPONSE 5
 	#1st bail
-    Given I am on "Public" "test"
+    Given I am on "Public" "ithc"
 
     And I set the radio button to "I am replying for myself"
     And I press the "Continue" button
@@ -2626,7 +2642,7 @@ Feature: Regression English_ReplyTypesIndicator
 
 	#RESPONSE 6
 	#1st residency
-    Given I am on "Public" "test"
+    Given I am on "Public" "ithc"
 
     And I set the radio button to "I am replying for myself"
     And I press the "Continue" button
@@ -2703,7 +2719,7 @@ Feature: Regression English_ReplyTypesIndicator
 
 	#RESPONSE 7
 	#1st details change
-    Given I am on "Public" "test"
+    Given I am on "Public" "ithc"
 
     And I set the radio button to "I am replying for myself"
 
@@ -2789,7 +2805,7 @@ Feature: Regression English_ReplyTypesIndicator
 
 	#RESPONSE 8
 	#1st deferral
-    Given I am on "Public" "test"
+    Given I am on "Public" "ithc"
 
     Then I see "Reply to a jury summons" on the page
 
@@ -2882,7 +2898,7 @@ Feature: Regression English_ReplyTypesIndicator
 
 	#RESPONSE 9
 	#1st excusal
-    Given I am on "Public" "test"
+    Given I am on "Public" "ithc"
 
     Then I see "Reply to a jury summons" on the page
 
@@ -2963,7 +2979,7 @@ Feature: Regression English_ReplyTypesIndicator
     And I see "You have completed your reply" on the page
 
 	#BUREAU
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     And I log in as "MODTESTBUREAU"
 
     When I click on the "Search" link
@@ -3005,9 +3021,9 @@ Feature: Regression English_ReplyTypesIndicator
     Then I see "Your work" on the page
 
     Then I click on the "Sign out" link
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     When I log in as "CPASS"
 
 	#Then I take a screenshot

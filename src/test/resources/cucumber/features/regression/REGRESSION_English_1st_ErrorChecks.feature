@@ -1,6 +1,6 @@
 Feature: Regression English_1st_ErrorChecks
 
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: English 1st ErrorChecks - status is Undeliverable
 
 	Given I am on "Bureau" "test"
@@ -68,7 +68,7 @@ Scenario Outline: English 1st ErrorChecks - status is Undeliverable
 	|juror_number	|last_name	|postcode   |pool_number|
 	|045200045		|DOE		|SW1H 9AJ	|452300044	|
 
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: English_1st_ErrorChecks - Court date is in the past
 
 	Given I am on "Public" "test"
@@ -101,10 +101,10 @@ Scenario Outline: English_1st_ErrorChecks - Court date is in the past
 	|juror_number	|last_name	|postcode	|pool_number|
 	|045200046		|DOE		|SW1H 9AJ	|452300045	|
 	
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: English_1st_ErrorChecks
 
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -523,7 +523,19 @@ Scenario Outline: English_1st_ErrorChecks
 	And I see "Enter the first Monday you'd prefer to start jury service" on the page
 	And I see "Enter the second Monday you'd prefer to start jury service" on the page
 	And I see "Enter the third Monday you'd prefer to start jury service" on the page
-	
+
+	#invalid input
+	When I set "First choice" to "12 July"
+	When I set "Second choice" to "13 July"
+	When I set "Third choice" to "14 July"
+
+	When I press the "Continue" button
+	Then I see "There is a problem" on the page
+	And I see "Enter the first Monday you'd prefer to start jury service using the dd/mm/yyyy format" on the page
+	And I see "Enter the second Monday you'd prefer to start jury service using the dd/mm/yyyy format" on the page
+	And I see "Enter the third Monday you'd prefer to start jury service using the dd/mm/yyyy format" on the page
+
+	#same choice
 	When I set the "First" single date field to a Monday "6" weeks in the future
 	When I set the "Second" single date field to a Monday "10" weeks in the future
 	When I set the "Third" single date field to a Monday "10" weeks in the future
@@ -593,7 +605,7 @@ Examples:
 	|juror_number	|last_name			|postcode	|email           	|pool_number|
 	|045200047		|LNAMENINEFOURTWO	|CH1 2AN	|email@outlook.com	|452300046	|
 	
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: Checking that there is in-line error message for Responder Type screen
 
 	Given I am on "Public" "test"
@@ -619,12 +631,12 @@ Examples:
 	| juror_number	| last_name		 | postcode	| pool_number	|
 	| 045200048		| LNAMESIXEIGHTONE| CH1 2AN	| 452300047		|
 	
-@Features @NewSchemaConverted @JM-7151
+@Regression
 Scenario Outline: English response completed in Legacy and login attempted on Digital
 
 	#return to @Regression once defect fixed
 
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -635,14 +647,10 @@ Scenario Outline: English response completed in Legacy and login attempted on Di
 
 	And I log in as "MODTESTBUREAU"
 	And I search for juror "<juror_number>"
-	And I press the "Update juror record" button
-	And I choose the "Mark as responded" radio button
-	And I press the "Continue" button
-	And I check the "Mark juror as 'responded'" checkbox
-	And I press the "Confirm" button
-	Then I see "Responded" on the page
 
-	Given I am on "Public" "test"
+	And I record a happy path paper summons response and process now
+
+	Given I am on "Public" "ithc"
 
 	Then I see "Reply to a jury summons" on the page
 	
@@ -678,10 +686,10 @@ Examples:
 	| juror_number	| last_name			| postcode	| pool_number	|
 	| 045200049		| LNAMETWOSEVENSIX	| CH1 2AN	| 452300048 	|
 
-	@Regression @NewSchemaConverted
+	@Regression
 	Scenario Outline: English Already Replied info page
 
-		Given I am on "Public" "test"
+		Given I am on "Public" "ithc"
 
 		Given a bureau owned pool is created with jurors
 			| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -694,7 +702,7 @@ Examples:
 			| part_no			| pool_number	| last_name		| postcode	| email 	|
 			| <juror_number>	| <pool_number>	| <last_name>	| <postcode>| <email>	|
 
-		Given I am on "Public" "test"
+		Given I am on "Public" "ithc"
 
 		Then I see "Reply to a jury summons" on the page
 

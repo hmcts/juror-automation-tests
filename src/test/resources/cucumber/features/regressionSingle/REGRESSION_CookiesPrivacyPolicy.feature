@@ -1,6 +1,6 @@
 Feature: Regression Cookies and Privacy Policy
 
-@RegressionSingle @Cookies @NewSchemaConverted
+@RegressionSingle @Cookies
 Scenario: Analytics Cookies opt in
 	
 	Given I am looking at cookies on "Public" "test"
@@ -24,7 +24,7 @@ Scenario: Analytics Cookies opt in
 	Then I do not see "Hide cookie message" on the page
 	And I do not see "You’ve accepted analytics cookies. You can change your cookie settings at any time." on the page
 	
-@RegressionSingle @Cookies @NewSchemaConverted
+@RegressionSingle @Cookies
 Scenario: Analytics Cookies opt out
 
 	Given I am looking at cookies on "Public" "test"
@@ -49,7 +49,7 @@ Scenario: Analytics Cookies opt out
 	And I do not see "You’ve rejected analytics cookies. You can change your cookie settings at any time." on the page
 
 
-@RegressionSingle @Cookies @NewSchemaConverted
+@RegressionSingle @Cookies
 Scenario: English View Cookies
 	
 	Given I am looking at cookies on "Public" "test"
@@ -104,7 +104,7 @@ Scenario: English View Cookies
 
 	And I see "Do you want to accept analytics cookies?" on the page
 
-@RegressionSingle @Cookies @NewSchemaConverted
+@RegressionSingle @Cookies
 Scenario: English Cookie Settings
 	
 	Given I am looking at cookies on "Public" "test"
@@ -153,7 +153,7 @@ Scenario: English Cookie Settings
 
 	Then I see "You’ve set your cookie preferences. Go back to the page you were looking at." on the page
 
-@RegressionSingle @Cookies @NewSchemaConverted
+@RegressionSingle @Cookies
 Scenario: English Privacy Policy
 	
 	Given I am looking at cookies on "Public" "test"
@@ -237,7 +237,7 @@ Scenario: English Privacy Policy
 	And I see "We do not accept liability for loss or damage incurred by users of this service, whether direct, indirect or consequential, whether caused by tort, breach of contract or otherwise. This includes loss of income or revenue, business, profits or contracts, anticipated savings, data, goodwill, tangible property or wasted time in connection with this service or any websites linked to it and any materials posted on it. This condition shall not prevent claims for loss of or damage to your tangible property or any other claims for direct financial loss that are not excluded by any of the categories set out above." on the page
 	And I see "This does not affect our liability for death or personal injury arising from our negligence, nor our liability for fraudulent misrepresentation or misrepresentation as to a fundamental matter, nor any other liability which cannot be excluded or limited under applicable law." on the page
 
-	@RegressionSingle @Cookies @NewSchemaConverted
+	@RegressionSingle @Cookies
 	Scenario: Welsh Analytics Cookies opt in
 
 		Given I am looking at cookies on Welsh "Public" "test"
@@ -303,10 +303,10 @@ Scenario: English Privacy Policy
 
 		And I see "Ydych chi eisiau derbyn cwcis dadansoddol?" on the page
 
-	@RegressionSingle @Cookies @NewSchemaConverted
+	@RegressionSingle @Cookies
 	Scenario: Welsh Privacy Policy
 
-		Given I am looking at cookies on Welsh "Public" "test"
+		Given I am looking at cookies on Welsh "Public" "ithc"
 
 		And I see link with text "Polisi preifatrwydd"
 		Then I click on the "Polisi preifatrwydd" link
@@ -388,7 +388,7 @@ Scenario: English Privacy Policy
 		And I see "Nid ydym yn derbyn atebolrwydd am golled neu ddifrod sy’n dod i ran defnyddwyr y gwasanaeth hwn, naill ai’n uniongyrchol, yn anuniongyrchol neu’n ganlyniadol, pa un ai a yw’n cael ei achosi drwy gamwedd, tor-cytundeb neu fel arall. Mae hyn yn cynnwys colli incwm neu refeniw, busnes, elw neu gytundebau, arbedion a ragwelwyd, data, ewyllys da, eiddo diriaethol neu wastraff amser sy’n gysylltiedig â’r gwasanaeth hwn neu unrhyw wefannau sy’n gysylltiedig ag ef ac unrhyw ddeunydd sy’n cael ei bostio arno. Ni fydd yr amod hwn yn atal hawliadau am golled neu ddifrod i’ch eiddo diriaethol nac unrhyw hawliadau eraill am golled ariannol uniongyrchol nad ydynt wedi’i heithrio gan unrhyw rai o’r categorïau uchod." on the page
 		And I see "Nid yw hyn yn effeithio ar ein hatebolrwydd am farwolaeth neu anaf personol sy’n codi o’n hesgeuluster, nac ar ein hatebolrwydd am gamliwio twyllodrus neu gamliwio mewn perthynas â mater sylfaenol, nac unrhyw atebolrwydd arall na ellir ei eithrio neu ei gyfyngu dan y gyfraith berthnasol." on the page
 
-	@RegressionSingle @Cookies @NewSchemaConverted
+	@RegressionSingle @Cookies
 	Scenario: English Cookie Settings from Expense Calculator
 
 		Given I am looking at cookies on "Public" "test"
