@@ -690,4 +690,8 @@ public class StepDef_DatabaseNewSchema {
     public void enableDisableCreateJurorPermissionForBureauUser(String enableDisable, String user) throws SQLException {
         DBTNSD.enableDisableCreateJurorPermissionForBureauUser(enableDisable, user);
     }
+    @Given("^I insert dob for juror \"([^\"]*)\"$")
+    public void setJurorsDob(String jurorNumber) throws SQLException {
+        DBTNSD.setJurorsDob(jurorNumber);
+    }
 }
