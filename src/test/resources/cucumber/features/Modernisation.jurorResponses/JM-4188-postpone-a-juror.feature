@@ -2,7 +2,7 @@
 
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Test to mark juror as postponed and add to future pool
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "test"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
@@ -10,7 +10,7 @@
 
     And I log in as "<user>"
     And I navigate to the pool request screen
-    And I create an active "civil" court pool request for court "415", "30" Mondays in the future
+    And I create an active "Crown" court pool request for court "415", "30" Mondays in the future
 
     And I search for juror "<juror_number>"
     And I click the update juror record button

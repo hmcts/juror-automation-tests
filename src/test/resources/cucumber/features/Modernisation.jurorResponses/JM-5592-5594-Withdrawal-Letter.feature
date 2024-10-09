@@ -1,13 +1,13 @@
 Feature: JM-5592-5594 - Resend withdrawal letter for Bureau and Jury users
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Resend Withdrawal letter as a bureau officer
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     When a bureau owned pool is created with jurors
-      | court | juror_number  | pool_number     | att_date_weeks_in_future   | owner |
-      | 415     | <juror_number>| <pool_number> | 5                          | 400  |
+      | court | juror_number  | pool_number   | att_date_weeks_in_future   | owner |
+      | 415   | <juror_number>| <pool_number> | 5                          | 400   |
 
     And I log in as "<user>"
     And the user searches for juror record "<juror_number>" from the global search bar
@@ -51,15 +51,16 @@ Feature: JM-5592-5594 - Resend withdrawal letter for Bureau and Jury users
       | juror_number  | pool_number | user          |
       |  041549591    | 415999185   | MODTESTBUREAU |
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Delete a Withdrawal letter which is still pending as a bureau officer
 
-    Given I am on "Bureau" "test"
-    And I log in as "<user>"
-    When a bureau owned pool is created with jurors
-      | court | juror_number  | pool_number     | att_date_weeks_in_future   | owner |
-      | 415     | <juror_number>| <pool_number> | 5                       | 400  |
+    Given I am on "Bureau" "ithc"
 
+    And I log in as "<user>"
+
+    When a bureau owned pool is created with jurors
+      | court | juror_number  | pool_number   | att_date_weeks_in_future   | owner |
+      | 415   | <juror_number>| <pool_number> | 5                          | 400   |
 
     And the user searches for juror record "<juror_number>" from the global search bar
     Then I press the "Enter summons reply" button
@@ -73,7 +74,7 @@ Feature: JM-5592-5594 - Resend withdrawal letter for Bureau and Jury users
     And the user searches for juror record "<juror_number>" from the global search bar
     And I see the juror status has updated to "Disqualified"
 
-     #delete a pending document
+    #delete a pending document
     And I press the "Apps" button
     And I click on the "Documents" link
     And I click on the "Withdrawal letters" link
@@ -90,16 +91,16 @@ Feature: JM-5592-5594 - Resend withdrawal letter for Bureau and Jury users
       |  041549592    | 415999185   | MODTESTBUREAU |
 
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Withdrawal letter - via pool Number happy path bulk
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     And I log in as "<user>"
     When a bureau owned pool is created with jurors
-      | court   | juror_number  | pool_number     | att_date_weeks_in_future    | owner |
-      | 415     | <juror_number>| <pool_number>   | 5                           | 400  |
-      | 415     | <juror_number_2>| <pool_number>   | 5                         | 400  |
-      | 415     | <juror_number_3>| <pool_number>   | 5                         | 400  |
+      | court   | juror_number    | pool_number     | att_date_weeks_in_future  | owner |
+      | 415     | <juror_number>  | <pool_number>   | 5                         | 400   |
+      | 415     | <juror_number_2>| <pool_number>   | 5                         | 400   |
+      | 415     | <juror_number_3>| <pool_number>   | 5                         | 400   |
 
     #disqualify first juror
     And the user searches for juror record "<juror_number>" from the global search bar
@@ -176,14 +177,14 @@ Feature: JM-5592-5594 - Resend withdrawal letter for Bureau and Jury users
       | juror_number  |juror_number_2 |juror_number_3 |pool_number | user          |
       |  041549594    | 041549595     |041549596      |415999186   | MODTESTBUREAU |
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline:Verify as a bureau user can view letters queued for printing and can delete it
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     When a bureau owned pool is created with jurors
       | court   | juror_number  | pool_number     | att_date_weeks_in_future   | owner |
-      | 415     | <juror_number>| <pool_number>   | 5                       | 400  |
+      | 415     | <juror_number>| <pool_number>   | 5                          | 400   |
 
     And I log in as "<user>"
 
@@ -214,20 +215,20 @@ Feature: JM-5592-5594 - Resend withdrawal letter for Bureau and Jury users
 
     Examples:
       | juror_number  |  pool_number | user          |
-      |  041549597     |415980685   | MODTESTBUREAU |
+      |  041549597    |415980685     | MODTESTBUREAU |
 
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: As a jury officer I want to print a withdrawal letter for juror
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     When a bureau owned pool is created with jurors
-      | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
-      | 415   | <juror_number>| <pool_number>           | 5                          | 400  |
+      | court |juror_number   | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number>| <pool_number>   | 5                         | 400   |
 
     Then a new pool is inserted for where record has transferred to the court new schema
       |part_no              | pool_no           | owner |
-     | <juror_number>       | <pool_number>     | 415   |
+      | <juror_number>      | <pool_number>     | 415   |
 
     And I update the bureau transfer date of the juror "<juror_number>"
 
@@ -241,7 +242,7 @@ Feature: JM-5592-5594 - Resend withdrawal letter for Bureau and Jury users
     And I choose the "Yes" radio button
     And I press the "Continue" button
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     And I log in as "<user>"
     And I press the "Apps" button
     And I click on the "Documents" link
@@ -257,10 +258,10 @@ Feature: JM-5592-5594 - Resend withdrawal letter for Bureau and Jury users
       |  041549598    | 415980685   | MODCOURT      |
 
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: As a jury officer re-print a withdrawl letter from the letter screen
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     When a bureau owned pool is created with jurors
       | court |juror_number   | pool_number	    | att_date_weeks_in_future	| owner |
@@ -282,9 +283,6 @@ Feature: JM-5592-5594 - Resend withdrawal letter for Bureau and Jury users
     And I see "Is their date of birth correct?" on the page
     And I press the "Yes - disqualify juror" button
 
-
-
     Examples:
       | juror_number  | pool_number | user          |
       |  041549599    | 415980685   | MODTESTCOURT  |
-

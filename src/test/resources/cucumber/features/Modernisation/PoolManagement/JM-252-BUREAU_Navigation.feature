@@ -1,6 +1,6 @@
 Feature: JM-252_Navigation
 
-  @JurorTransformation @NewSchemaConverted
+  @JurorTransformation
   Scenario Outline: Navigating back and forth and changing inputs
 
     Given I am on "Bureau" "ithc"
@@ -88,7 +88,7 @@ Feature: JM-252_Navigation
       | poolType            | High court                   |
       | totalJurorsRequired | 150                          |
       | numberOfDeferrals   | 0                            |
-      | additionalJurors    | 149                          |
+      | additionalJurors    | 150                          |
 
     #change
     Then I click the change button for the check pool request page
@@ -106,7 +106,7 @@ Feature: JM-252_Navigation
       | poolType            | <courtTypeFull>              |
       | totalJurorsRequired | 50                           |
       | numberOfDeferrals   | 0                            |
-      | additionalJurors    | 49                           |
+      | additionalJurors    | 50                           |
 
     #Can submit the new pool request
     When I save the new pool request
@@ -116,7 +116,7 @@ Feature: JM-252_Navigation
     And I should see the newly created pool request
       | type           | Bureau         |
       | court          | <displayCourt> |
-      | jurorsRequired | 49             |
+      | jurorsRequired | 50             |
 
     Given the new pool for court "415" is deleted
     Given the new pool for court "457" is deleted

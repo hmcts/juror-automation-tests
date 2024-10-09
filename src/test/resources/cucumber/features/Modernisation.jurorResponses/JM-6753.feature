@@ -1,9 +1,9 @@
 Feature: JM-6753 - As a jury officer I want to be able to confirm the attendance for jurors on a trial
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformation
   Scenario Outline: Confirm Attendance for Jurors on a trial - Happy Path
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
@@ -96,16 +96,15 @@ Feature: JM-6753 - As a jury officer I want to be able to confirm the attendance
     And I press the "Confirm" button
     And I see "1 of 1" in the same row as "<trial_number>"
 
-
     Examples:
       |user			|juror_number    | pool_number    | trial_number  |
       |MODTESTCOURT |041583771       | 415362298      | TEST12TRIAL   |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @JM-7178
+  @JurorTransformationWIP @JM-8186
   Scenario Outline: Confirm Attendance for Jurors on a trial - Unhappy Path
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
@@ -129,6 +128,7 @@ Feature: JM-6753 - As a jury officer I want to be able to confirm the attendance
     And I set "Defendants" to "Defendant"
     And I set the "Start date for Trial" date to a Monday "0" weeks in the future
     And I set "Judge" to "PATRICIA H AITKEN"
+    And I choose the "Chester" radio button
     And I set "Courtroom" to "JURY ASSEMBLY ROOM"
     And I press the "Create trial" button
 
@@ -209,15 +209,13 @@ Feature: JM-6753 - As a jury officer I want to be able to confirm the attendance
     And I click on the pm radio button for juror check out on confirm attendance
     And I press the "Confirm" button
     And I see "1 of 1" in the same row as "<trial_number>"
-    #will fail here because of JM-7178
-
 
     Examples:
       |user			|juror_number    | pool_number    | trial_number  |
       |MODTESTCOURT |041583772       | 415362294      | TEST11TRIAL   |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @JM-7142
+  @JurorTransformation
   Scenario Outline: Confirm Attendance for Jurors on a trial - Previous working day
 
     Given I am on "Bureau" "test"
@@ -317,8 +315,6 @@ Feature: JM-6753 - As a jury officer I want to be able to confirm the attendance
     And I check the juror "<juror_number>" checkbox
     And I press the "Confirm" button
     And I see "1 of 1" in the same row as "<trial_number>"
-    #will fail here because of JM-7142
-
 
     Examples:
       |user			|juror_number    | pool_number    | trial_number  |

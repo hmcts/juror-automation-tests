@@ -1,9 +1,9 @@
 Feature: Regression JDB-4562 Defferal Dates Messages
 
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: English 1st Party Deferral Dates Messages
 
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -115,10 +115,10 @@ Examples:
 	| juror_number	| pool_number	| first_name| last_name	| postcode	| email 		|
 	| 045200126		| 452300125		| John		| Doe		| SW1H 9AJ	| a@eeee.com	|
 	
-@RegressionWelsh @NewSchemaConverted
+@RegressionWelsh
 Scenario Outline: Welsh 1st Party Deferral Dates Messaged
 
-	Given I am on the welsh version of "Public" "test"
+	Given I am on the welsh version of "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -238,10 +238,10 @@ Examples:
 	| juror_number	| last_name			| postcode	| email 	| pool_number	|
 	| 045700017		| LNAMENINENINESEVEN| SW1H 9AJ	| a@eeee.com| 457300017		|
 
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: English 3rd Party Deferral Dates Messages
 
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -375,10 +375,10 @@ Examples:
 	| juror_number	| pool_number	| first_name| last_name	| postcode	| email 		|
 	| 045200128		| 452300127		| John		| Doe		| SW1H 9AJ	| a@eeee.com	|
 
-@RegressionWelsh @NewSchemaConverted
+@RegressionWelsh
 Scenario Outline: Welsh 3rd Party Deferral Dates Messages
 
-	Given I am on the welsh version of "Public" "test"
+	Given I am on the welsh version of "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -536,5 +536,5 @@ Scenario Outline: Welsh 3rd Party Deferral Dates Messages
 	And I see "Yna, o leiaf bythefnos cyn i'w gwasanaeth rheithgor ddechrau, byddwn yn anfon y canlynol atynt:" on the page
 	
 Examples:
-	| juror_number	| last_name			| postcode	| email 		| pool_number	|
-	| 045700018		| LNAMESIXSIXZERO	| SW1H 9AJ	| a@eeee.com	| 457300018		|
+	| juror_number	| last_name			| postcode	| pool_number	|
+	| 045700018		| LNAMESIXSIXZERO	| SW1H 9AJ	| 457300018		|
