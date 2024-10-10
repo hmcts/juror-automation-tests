@@ -1,9 +1,9 @@
 Feature: JM-3725
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Automatically disqualify a juror if they are over 75
 
-   Given I am on "Bureau" "test"
+   Given I am on "Bureau" "ithc"
 
     And I log in as "<user>"
 
@@ -28,10 +28,10 @@ Feature: JM-3725
       | MODTESTBUREAU |
 
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Automatically disqualify a juror if they are under 18
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     And I log in as "<user>"
 

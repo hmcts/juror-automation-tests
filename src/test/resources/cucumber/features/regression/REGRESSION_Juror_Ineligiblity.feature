@@ -14,7 +14,7 @@ Feature: Regression Test Ineligbility
   @RegressionWelsh
   Scenario Outline: Welsh_3rd_Ineligible_Confirmation Page
 
-    Given I am on the welsh version of "Public" "test"
+    Given I am on the welsh version of "Public" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
@@ -376,7 +376,7 @@ Feature: Regression Test Ineligbility
   @RegressionWelsh
   Scenario Outline: Welsh_3rd_SpecialRequirements
 
-    Given I am on the welsh version of "Public" "test"
+    Given I am on the welsh version of "Public" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
@@ -548,7 +548,7 @@ Feature: Regression Test Ineligbility
   @RegressionWelsh
   Scenario Outline: Welsh_3rd_Ineligible_SpecialRequirements
 
-    Given I am on the welsh version of "Public" "test"
+    Given I am on the welsh version of "Public" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
@@ -711,7 +711,7 @@ Feature: Regression Test Ineligbility
   @RegressionWelsh
   Scenario Outline: Welsh_1st_StraightThrough_MentalResidency
 
-    Given I am on the welsh version of "Public" "test"
+    Given I am on the welsh version of "Public" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
@@ -1043,7 +1043,7 @@ Feature: Regression Test Ineligbility
   @RegressionWelsh
   Scenario Outline: Welsh_3rd_Deferral_Inel
 
-    Given I am on the welsh version of "Public" "test"
+    Given I am on the welsh version of "Public" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
@@ -1220,7 +1220,7 @@ Feature: Regression Test Ineligbility
   @RegressionWelsh
   Scenario Outline: THIS IS A WELSH 3rd SUPPORT IN COURT RESPONSE
 
-    Given I am on the welsh version of "Public" "test"
+    Given I am on the welsh version of "Public" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
@@ -1356,7 +1356,7 @@ Feature: Regression Test Ineligbility
   @RegressionSingle
   Scenario Outline: 1st Party Ineligible
 
-    Given I am on "Public" "test"
+    Given I am on "Public" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
@@ -1497,7 +1497,7 @@ Feature: Regression Test Ineligbility
     And I do not see "Your Guide to Jury Service (PDF 85KB)" on the page
     And I see "What did you think of this service? (Takes 30 seconds)" on the page
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     And I log in as "MODTESTBUREAU"
 
     When I click on the "Search" link
@@ -1513,9 +1513,9 @@ Feature: Regression Test Ineligbility
     Then I see "Your work" on the page
 
     Then I click on the "Sign out" link
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     When I log in as "CPASS"
     Then I see "<juror_number>" on the page
     Then I see "<juror_number>" has reply type indicator "NEEDS REVIEW"
@@ -1527,7 +1527,7 @@ Feature: Regression Test Ineligbility
   @Regression
   Scenario Outline: New CJS Options 3rd party
 
-    Given I am on "Public" "test"
+    Given I am on "Public" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
@@ -1659,7 +1659,7 @@ Feature: Regression Test Ineligbility
     And I do not see "Your Guide to Jury Service (PDF 85KB)" on the page
     And I see "What did you think of this service? (Takes 30 seconds)" on the page
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     And I log in as "MODTESTBUREAU"
 
     When I click on the "Search" link
@@ -1675,7 +1675,7 @@ Feature: Regression Test Ineligbility
     Then I see "Your work" on the page
 
     Then I click on the "Sign out" link
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     When I log in as "CPASS"
     Then I see "<juror_number>" on the page
     Then I see "<juror_number>" has reply type indicator "NEEDS REVIEW"

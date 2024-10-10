@@ -3,7 +3,7 @@ Feature: Regression English_1st_ErrorChecks
 @Regression
 Scenario Outline: English 1st ErrorChecks - status is Undeliverable
 
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -19,7 +19,7 @@ Scenario Outline: English 1st ErrorChecks - status is Undeliverable
 	And I press the "Continue" button
 	Then I see the juror record updated banner containing "Summons undeliverable"
 
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Then I see "Reply to a jury summons" on the page
 	Then I see "Are you replying for yourself or for someone else?" on the page
@@ -71,7 +71,7 @@ Scenario Outline: English 1st ErrorChecks - status is Undeliverable
 @Regression
 Scenario Outline: English_1st_ErrorChecks - Court date is in the past
 
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -608,7 +608,7 @@ Examples:
 @Regression
 Scenario Outline: Checking that there is in-line error message for Responder Type screen
 
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |

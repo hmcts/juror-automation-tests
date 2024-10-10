@@ -1,6 +1,6 @@
 Feature: JM-8203
 
-  @JurorTransformation @NewSchemaConverted
+  @JurorTransformation
   Scenario Outline: As a jury officer I want to be able to confirm attendance for jurors that have dropped off the record attendance list
 
     Given I am on "Bureau" "ithc"
