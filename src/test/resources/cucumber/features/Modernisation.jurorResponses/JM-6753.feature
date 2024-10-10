@@ -10,8 +10,8 @@ Feature: JM-6753 - As a jury officer I want to be able to confirm the attendance
       | 415   |<juror_number> 	    | <pool_number>     | 5				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no               | pool_no       | owner|
-      |<juror_number>        | <pool_number> | 415  |
+      |part_no           | pool_no       | owner|
+      |<juror_number>    | <pool_number> | 415  |
 
     And I Confirm all the data in the record attendance table is cleared
     And I delete trials data
@@ -97,22 +97,22 @@ Feature: JM-6753 - As a jury officer I want to be able to confirm the attendance
     And I see "1 of 1" in the same row as "<trial_number>"
 
     Examples:
-      |user			|juror_number    | pool_number    | trial_number  |
-      |MODTESTCOURT |041583771       | 415362298      | TEST12TRIAL   |
+      |user			| juror_number  | pool_number  | trial_number  |
+      |MODTESTCOURT | 041583771     | 415362298    | TEST12TRIAL   |
 
 
-  @JurorTransformationWIP @JM-8186
+  @JurorTransformation
   Scenario Outline: Confirm Attendance for Jurors on a trial - Unhappy Path
 
     Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
-      | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
-      | 415   |<juror_number> 	    | <pool_number>     | 5				            | 400	|
+      | court |juror_number  | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   |<juror_number>| <pool_number>    | 5				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no               | pool_no       | owner|
-      |<juror_number>        | <pool_number> | 415  |
+      |part_no            | pool_no       | owner|
+      |<juror_number>     | <pool_number> | 415  |
 
     And I Confirm all the data in the record attendance table is cleared
     And I delete trials data
@@ -218,7 +218,7 @@ Feature: JM-6753 - As a jury officer I want to be able to confirm the attendance
   @JurorTransformation
   Scenario Outline: Confirm Attendance for Jurors on a trial - Previous working day
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
@@ -242,6 +242,7 @@ Feature: JM-6753 - As a jury officer I want to be able to confirm the attendance
     And I set "Defendants" to "Defendant"
     And I set the "Start date for Trial" date to a Monday "0" weeks in the future
     And I set "Judge" to "PATRICIA H AITKEN"
+    And I choose the "Chester" radio button
     And I set "Courtroom" to "JURY ASSEMBLY ROOM"
     And I press the "Create trial" button
 
@@ -304,7 +305,7 @@ Feature: JM-6753 - As a jury officer I want to be able to confirm the attendance
     And I see error "Enter a check out time"
     And I see error "Select which jurors attended at these times"
 
-    And I set the radio button to "Previous working day"
+    And I set the radio button to "Today"
     And I set juror check in hour to "9" on confirm attendance
     And I set juror check in minute to "20" on confirm attendance
     And I click on the am radio button for juror check in on confirm attendance
@@ -317,5 +318,5 @@ Feature: JM-6753 - As a jury officer I want to be able to confirm the attendance
     And I see "1 of 1" in the same row as "<trial_number>"
 
     Examples:
-      |user			|juror_number    | pool_number    | trial_number  |
-      |MODTESTCOURT |041586776       | 415362254      | TEST13TRIAL   |
+      | user		 | juror_number    | pool_number    | trial_number  |
+      | MODTESTCOURT | 041586776       | 415362254      | TEST13TRIAL   |

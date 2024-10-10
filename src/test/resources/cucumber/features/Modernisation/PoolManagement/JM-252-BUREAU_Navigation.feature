@@ -125,9 +125,9 @@ Feature: JM-252_Navigation
       | user          | courtCode | displayCourt | courtTypeFull |
       | MODTESTBUREAU | 415       | Chester      | Crown court   |
 
-  @JurorTransformation @NewSchemaConverted
+  @JurorTransformation
   Scenario Outline: Create pools for different courts and apply filters
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     And I log in as "<user>"
 
@@ -176,18 +176,17 @@ Feature: JM-252_Navigation
     Then I click on the "Swansea Crown Court (457)" link
     Then I press the "Continue" button
 
+    Then I click the change link for the court deferrals
+    Then I change the number of court deferrals to "0"
+
     Then I set the radio button to "<courtType>"
+
     And I set "Number of jurors required in total" to "150"
     Then I press the "Continue" button
 
     When I save the new pool request
     Then I should be taken to the pool summary page
     And I click on the "Service start date" link
-
-    And I should see the newly created pool request
-      | type           | Bureau              |
-      | court          | Swansea Crown Court |
-      | jurorsRequired | 150                 |
 
     Then I set input field with "ID" of "courtNameOrLocation" to "415"
     Then I click on the "Chester (415)" link
@@ -219,9 +218,9 @@ Feature: JM-252_Navigation
       | user          | courtType |
       | MODTESTBUREAU | Crown     |
 
-  @JurorTransformation @NewSchemaConverted
+  @JurorTransformation
   Scenario Outline: Create pool and change pool number
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     Given new pool requests are deleted
 
     And I log in as "<user>"

@@ -1,8 +1,8 @@
 Feature: JM-4360 - As a jury officer I need to be able to check jurors in for their attendance on the day - JM-5614 - Unhappy Path
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformation
   Scenario Outline: Check in jurors for attendance on their day
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
@@ -47,18 +47,17 @@ Feature: JM-4360 - As a jury officer I need to be able to check jurors in for th
       |MODTESTCOURT | 041500148     | 041500149     | 415300248  |
 
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformation
   Scenario Outline: Check in jurors for attendance on their day - Unhappy Path
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
-      | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+      | court | juror_number  	| pool_number	    | att_date_weeks_in_future	| owner |
       | 415   | <juror_number> 	| <pool_number>     | 5				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no            | pool_no       | owner |
+      |part_no           | pool_no       | owner |
       |<juror_number>    | <pool_number> | 415   |
-
 
     And I Confirm all the data in the record attendance table is cleared
     And I update juror "<juror_number>" to have a status of "Responded"
@@ -75,7 +74,6 @@ Feature: JM-4360 - As a jury officer I need to be able to check jurors in for th
     And I set "Last name" to "Pattani"
     And I press the "Review Edit" button
     And I see "Juror details" on the page
-
 
     #change dob for police check
     And I set "Date of birth" to "13/08/1971"
@@ -112,7 +110,6 @@ Feature: JM-4360 - As a jury officer I need to be able to check jurors in for th
     And I click on the "Juror management" link
     And I click on the "Record attendance" link
     And I see "Failed" in the same row as "<juror_number>"
-
 
     Examples:
       |user			| juror_number | pool_number|

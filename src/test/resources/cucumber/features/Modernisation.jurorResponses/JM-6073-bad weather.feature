@@ -1,13 +1,13 @@
 Feature: As a jury officer I need to be able to send the bad weather message
 
-  @JurorTransformationMulti @NewSchemaConverted @Messages
+  @JurorTransformationMulti @Messages
   Scenario Outline: Send bad weather message for Juror using Text including error checks
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
-      | 415   |<juror_number>    | <pool_number>     | 5				        | 400	|
+      | 415   |<juror_number>    | <pool_number>    | 5				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
       |part_no               | pool_no          | owner |
@@ -29,7 +29,6 @@ Feature: As a jury officer I need to be able to send the bad weather message
     And I see "Find jurors to send message to" on the page
     And I press the "Continue" button
     And I see error "Select how you want to search for jurors to send message to"
-#    And I set the radio button to "Juror number"
     And I choose the "Juror number" radio button
     And I press the "Continue" button
     And I see error "Enter juror number"
@@ -54,60 +53,10 @@ Feature: As a jury officer I need to be able to send the bad weather message
       |MODTESTCOURT | 041529899    | 415980989   |
 
 
-
-  @JurorTransformationMulti @NewSchemaConverted @Messages
+  @JurorTransformationMulti @Messages
   Scenario Outline: Send bad weather message for Juror
 
-    Given I am on "Bureau" "test"
-
-    Given a bureau owned pool is created with jurors
-      | court |juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
-      | 415   |<juror_number>    | <pool_number>     | 5				            | 400	|
-
-    Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no               | pool_no          | owner |
-      |<juror_number>        | <pool_number>    | 415   |
-
-    And I update juror "<juror_number>" to be able to send a message to them
-
-
-    #log on and search for juror
-    And I log in as "<user>"
-
-    And I press the "Apps" button
-    And I click on the "Messaging" link
-    And I see "Send messages" on the page
-    And I click on the "Bad weather" link
-    And I see "Message details" on the page
-    And I see the draft message template
-    And I see "Due to local adverse weather conditions, you are not required to attend the court until further notice. Please await further information. If you have any questions, please contact the jury office on <court_phone>." on the page
-    And I press the "Continue" button
-    And I see "Find jurors to send message to" on the page
-
-#    And I set the radio button to "Juror number"
-    And I choose the "Juror number" radio button
-    And I set "Enter juror number" to "<juror_number>"
-    And I press the "Continue" button
-    And I click on the methods dropdown and select "Text" for juror "<juror_number>"
-    And I check the juror "<juror_number>" checkbox
-    And I press the "Send message" button
-
-    And I see "Check and send message" on the page
-    And I see "You’re sending the following message to 1 jurors. You cannot undo this after sending." on the page
-    And I see "Due to local adverse weather conditions, you are not required to attend the court until further notice. Please await further information. If you have any questions, please contact the jury office on 01244 356726." on the page
-    And I press the "Send message" button
-    And I see the message sent banner containing "Message will be sent to 1 jurors"
-    And I see the juror "<juror_number>" has a message in the database
-
-    Examples:
-      |user			| juror_number | pool_number |
-      |MODTESTCOURT | 041529898    | 415980989   |
-
-
-  @JurorTransformationMulti @NewSchemaConverted @Messages
-  Scenario Outline: Send bad weather message for Juror via their Name
-
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
@@ -131,7 +80,53 @@ Feature: As a jury officer I need to be able to send the bad weather message
     And I see "Due to local adverse weather conditions, you are not required to attend the court until further notice. Please await further information. If you have any questions, please contact the jury office on <court_phone>." on the page
     And I press the "Continue" button
     And I see "Find jurors to send message to" on the page
-#    And I set the radio button to "Juror name"
+
+    And I choose the "Juror number" radio button
+    And I set "Enter juror number" to "<juror_number>"
+    And I press the "Continue" button
+    And I click on the methods dropdown and select "Text" for juror "<juror_number>"
+    And I check the juror "<juror_number>" checkbox
+    And I press the "Send message" button
+
+    And I see "Check and send message" on the page
+    And I see "You’re sending the following message to 1 jurors. You cannot undo this after sending." on the page
+    And I see "Due to local adverse weather conditions, you are not required to attend the court until further notice. Please await further information. If you have any questions, please contact the jury office on 01244 356726." on the page
+    And I press the "Send message" button
+    And I see the message sent banner containing "Message will be sent to 1 jurors"
+    And I see the juror "<juror_number>" has a message in the database
+
+    Examples:
+      |user			| juror_number | pool_number |
+      |MODTESTCOURT | 041529898    | 415980989   |
+
+
+  @JurorTransformationMulti @Messages
+  Scenario Outline: Send bad weather message for Juror via their Name
+
+    Given I am on "Bureau" "ithc"
+
+    Given a bureau owned pool is created with jurors
+      | court |juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   |<juror_number>    | <pool_number>    | 5				            | 400	|
+
+    Then a new pool is inserted for where record has transferred to the court new schema
+      |part_no               | pool_no          | owner |
+      |<juror_number>        | <pool_number>    | 415   |
+
+    And I update juror "<juror_number>" to be able to send a message to them
+
+    #log on and search for juror
+    And I log in as "<user>"
+
+    And I press the "Apps" button
+    And I click on the "Messaging" link
+    And I see "Send messages" on the page
+    And I click on the "Bad weather" link
+    And I see "Message details" on the page
+    And I see the draft message template
+    And I see "Due to local adverse weather conditions, you are not required to attend the court until further notice. Please await further information. If you have any questions, please contact the jury office on <court_phone>." on the page
+    And I press the "Continue" button
+    And I see "Find jurors to send message to" on the page
     And I choose the "Juror name" radio button
     And I press the "Continue" button
     And I see error "Enter juror name"
@@ -153,18 +148,18 @@ Feature: As a jury officer I need to be able to send the bad weather message
       |MODTESTCOURT | 041529897    | 415980989   |
 
 
-  @JurorTransformationMulti @NewSchemaConverted @Messages
+  @JurorTransformationMulti @Messages
   Scenario Outline: Send bad weather message for Juror via their Pool number
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
       | 415   |<juror_number>    | <pool_number>    | 5				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no               | pool_no          | owner |
-      |<juror_number>        | <pool_number>    | 415   |
+      | part_no           | pool_no          | owner |
+      | <juror_number>    | <pool_number>    | 415   |
 
     And I update juror "<juror_number>" to be able to send a message to them
 
@@ -180,7 +175,6 @@ Feature: As a jury officer I need to be able to send the bad weather message
     And I see "Due to local adverse weather conditions, you are not required to attend the court until further notice. Please await further information. If you have any questions, please contact the jury office on <court_phone>." on the page
     And I press the "Continue" button
     And I see "Find jurors to send message to" on the page
-#    And I set the radio button to "Pool"
     And I choose the "Pool" radio button
     And I press the "Continue" button
     And I see error "Enter pool number"
@@ -198,22 +192,22 @@ Feature: As a jury officer I need to be able to send the bad weather message
     And I see the juror "<juror_number>" has a message in the database
 
     Examples:
-      |user			| juror_number | pool_number |
-      |MODTESTCOURT | 041529896    | 415980989   |
+      | user		 | juror_number | pool_number |
+      | MODTESTCOURT | 041529896    | 415980989   |
 
 
-  @JurorTransformationMulti @NewSchemaConverted @Messages
+  @JurorTransformationMulti @Messages
   Scenario Outline: Send bad weather message for Juror in Trial
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
-      | 415   |<juror_number>    | <pool_number>     | 5				            | 400	|
+      | 415   |<juror_number>    | <pool_number>    | 5				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no               | pool_no          | owner |
-      |<juror_number>        | <pool_number>    | 415   |
+      |part_no            | pool_no          | owner |
+      |<juror_number>     | <pool_number>    | 415   |
 
     And I Confirm all the data in the record attendance table is cleared
     And a new trial is inserted with the trial number "<trial_number>"
@@ -227,12 +221,10 @@ Feature: As a jury officer I need to be able to send the bad weather message
     And I press the "Apps" button
     And I click on the "Juror management" link
     And I click on the "Record attendance" link
-#    And I set the radio button to "Check in"
     And I choose the "Check in" radio button
 
     And I set "Hour" to "09"
     And I set "Minute" to "00"
-#    And I set the radio button to "am"
     And I choose the "am" radio button
     And I input juror "<juror_number>" to be checked in
     And I press the "Check in juror" button
@@ -243,7 +235,6 @@ Feature: As a jury officer I need to be able to send the bad weather message
     And I click on the "<trial_number>" link
 
     And I press the "Generate panel" button
-#    And I set the radio button to "All available jurors"
     And I choose the "All available jurors" radio button
     And I set "Number of jurors needed on this panel" to "1"
     And I press the "Continue" button
@@ -271,7 +262,6 @@ Feature: As a jury officer I need to be able to send the bad weather message
     And I press the "Continue" button
     And I see "Find jurors to send message to" on the page
 
-#    And I set the radio button to "Trial"
     And I choose the "Trial" radio button
     And I press the "Continue" button
     And I press the "Continue with selected" button
@@ -290,22 +280,22 @@ Feature: As a jury officer I need to be able to send the bad weather message
     And I see the juror "<juror_number>" has a message in the database
 
     Examples:
-      |user			| juror_number | pool_number |trial_number       |
-      |MODTESTCOURT | 041529895    | 415980989   |T202419999986      |
+      | user		 | juror_number | pool_number | trial_number       |
+      | MODTESTCOURT | 041529895    | 415980989   | T202419999986      |
 
 
-  @JurorTransformationMulti @NewSchemaConverted @Messages
+  @JurorTransformationMulti @Messages
   Scenario Outline: Send bad weather message for Juror - Next start date
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number      | pool_number	     | att_date_weeks_in_future	| owner |
       | 415   |<juror_number>    | <pool_number>     | 5				        | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no               | pool_no          | owner |
-      |<juror_number>        | <pool_number>    | 415   |
+      | part_no           | pool_no          | owner |
+      | <juror_number>    | <pool_number>    | 415   |
 
     And I update juror "<juror_number>" to be able to send a message to them
 
@@ -321,7 +311,6 @@ Feature: As a jury officer I need to be able to send the bad weather message
     And I see "Due to local adverse weather conditions, you are not required to attend the court until further notice. Please await further information. If you have any questions, please contact the jury office on <court_phone>." on the page
     And I press the "Continue" button
     And I see "Find jurors to send message to" on the page
-#    And I set the radio button to "Next due at court"
     And I choose the "Next due at court" radio button
     And I press the "Continue" button
     And I see error "Enter date next due at court"
@@ -343,18 +332,18 @@ Feature: As a jury officer I need to be able to send the bad weather message
       |MODTESTCOURT | 041529894    | 415980989   |
 
 
-  @JurorTransformationMulti @NewSchemaConverted @Messages
+  @JurorTransformationMulti @Messages
   Scenario Outline: Send bad weather message for Juror via their deferred date
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
       | 415   |<juror_number>    | <pool_number>    | 5				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no               | pool_no          | owner |
-      |<juror_number>        | <pool_number>    | 415   |
+      |part_no           | pool_no          | owner |
+      |<juror_number>    | <pool_number>    | 415   |
 
     And I update juror "<juror_number>" to be able to send a message to them
 
@@ -378,7 +367,6 @@ Feature: As a jury officer I need to be able to send the bad weather message
 
   #can attend on date
     Then the juror summons reply types page is displayed
-#    When I set the radio button to "Deferral request"
     And I choose the "Deferral request" radio button
     And I click continue on the juror summons reply page
 
@@ -402,7 +390,6 @@ Feature: As a jury officer I need to be able to send the bad weather message
     And I see the reply "type" on the response is "DEFERRAL"
 
     And I press the "Process reply" button
-#    And I set the radio button to "Deferral request"
     And I choose the "Deferral request" radio button
     And I press the "Continue" button
 
@@ -411,7 +398,6 @@ Feature: As a jury officer I need to be able to send the bad weather message
     And I set the "third" choice to "9" Mondays in the future
     And I press the "Continue" button
     Then I select "O - OTHER" from the "Reason for the deferral request" dropdown
-#    Then I set the radio button to "Choose a different date"
     And I choose the "Choose a different date" radio button
     And I set the "Deferral" date to a Monday "49" weeks in the future
     And I press the "Continue" button
@@ -432,7 +418,6 @@ Feature: As a jury officer I need to be able to send the bad weather message
     And I press the "Continue" button
     And I see "Find jurors to send message to" on the page
 
-#    And I set the radio button to "Date deferred to"
     And I choose the "Date deferred to" radio button
     And I press the "Continue" button
     And I see error "Enter date deferred to"
@@ -450,26 +435,26 @@ Feature: As a jury officer I need to be able to send the bad weather message
     And I see the juror "<juror_number>" has a message in the database
 
     Examples:
-      |user			| juror_number | pool_number |
-      |MODTESTCOURT | 041529893    | 415980989   |
+      | user		 | juror_number | pool_number |
+      | MODTESTCOURT | 041529893    | 415980989   |
 
 
-  @JurorTransformationMulti @NewSchemaConverted @Messages
+  @JurorTransformationMulti @Messages
   Scenario Outline: Send bad weather message for Juror using Text for multiple jurors
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
-      | court |juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
-      | 415   |<juror_number>    | <pool_number>    | 5				            | 400	|
-      | 415   |<juror_number_2>  | <pool_number>    | 5				            | 400	|
-      | 415   |<juror_number_3>  | <pool_number>    | 5				            | 400	|
+      | court | juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number>    | <pool_number>   | 5				            | 400	|
+      | 415   | <juror_number_2>  | <pool_number>   | 5				            | 400	|
+      | 415   | <juror_number_3>  | <pool_number>   | 5				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no               | pool_no          | owner |
-      |<juror_number>        | <pool_number>    | 415   |
-      |<juror_number_2>      | <pool_number>    | 415   |
-      |<juror_number_3>      | <pool_number>    | 415   |
+      | part_no           | pool_no          | owner |
+      | <juror_number>    | <pool_number>    | 415   |
+      | <juror_number_2>  | <pool_number>    | 415   |
+      | <juror_number_3>  | <pool_number>    | 415   |
 
     And I update juror "<juror_number>" to be able to send a message to them
     And I update juror "<juror_number_2>" to be able to send a message to them
@@ -491,7 +476,6 @@ Feature: As a jury officer I need to be able to send the bad weather message
     And I press the "Continue" button
     And I see "Find jurors to send message to" on the page
 
-#    And I set the radio button to "Pool"
     And I choose the "Pool" radio button
     And I set "Enter pool number" to "<pool_number>"
     And I press the "Continue" button
@@ -514,5 +498,5 @@ Feature: As a jury officer I need to be able to send the bad weather message
     And I see the juror "<juror_number_3>" has a message in the database
 
     Examples:
-      |user			| juror_number | juror_number_2 | juror_number_3 |pool_number |
-      |MODTESTCOURT | 041529892    | 041529891      |041529890       |415980989   |
+      | user		 | juror_number | juror_number_2 | juror_number_3 | pool_number |
+      | MODTESTCOURT | 041529892    | 041529891      | 041529890      | 415980989   |

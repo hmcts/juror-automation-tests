@@ -1,16 +1,16 @@
 Feature: JM-6114 - As a jury officer, I want to edit submitted expenses before approval
 
-  @JurorTransformation @NewSchemaConverted
+  @JurorTransformation
   Scenario Outline: Edit expenses while pending approval as a jury officer
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     When a bureau owned pool is created with jurors
-      | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
-      | 415   |<juror_number>     | <pool_number>       | 5				            | 400	|
+      | court |juror_number  	| pool_number	  | att_date_weeks_in_future	| owner |
+      | 415   |<juror_number>   | <pool_number>   | 5				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no              | pool_no           | owner |
-      |<juror_number>     | <pool_number>     | 415   |
+      |part_no           | pool_no           | owner |
+      |<juror_number>    | <pool_number>     | 415   |
 
     And I Confirm all the data in the record attendance table is cleared
     And I log in as "<user>"
@@ -80,14 +80,13 @@ Feature: JM-6114 - As a jury officer, I want to edit submitted expenses before a
     And I see "The amounts you entered will be automatically recalculated to limit the juror’s loss to £64.95." on the page
     And I see the following details on the loss over limit form
       | Juror's loss                | £100                       |
-      | Daily limit (Full day)      | £64.95                      |
+      | Daily limit (Full day)      | £64.95                     |
 
     #Resubmit expenses
     When I press the "Continue" button
     And I see "Totals" in the same row as "£64.95"
     And I press the "Submit for approval" button
     Then I verify the banner message "Expenses resubmitted for approval" on the page
-
 
     Examples:
       |user			|juror_number |   pool_number   |
