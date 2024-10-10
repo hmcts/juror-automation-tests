@@ -46,21 +46,21 @@ Feature: JM-3895 mark juror as deferred digital
       | juror_number   | pool_number   |
       | 041500131      | 415300231     |
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Mark juror as deferred - Add to pool Happy path digital
-    # This test may pass but only because of temporary soft deletion of data until JM-4750 is closed
-    Given I am on "Public" "test"
+
+    Given I am on "Public" "ithc"
 
     When a bureau owned pool is created with jurors
-      | court |juror_number       | pool_number      | att_date_weeks_in_future | owner |
-      | 415   |<juror_number>     | <pool_number>    | 5                        | 400  |
+      | court | juror_number      | pool_number     | att_date_weeks_in_future | owner |
+      | 415   | <juror_number>    | <pool_number>   | 5                        | 400  |
 
     And I record a digital response for a juror with a deferral
       | jurorNumber   | <juror_number>    |
       | jurorLname    | lname             |
       | jurorPostcode | CH2 2AA           |
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     Given I log in as "MODTESTBUREAU"
 
     Given I navigate to the pool request screen

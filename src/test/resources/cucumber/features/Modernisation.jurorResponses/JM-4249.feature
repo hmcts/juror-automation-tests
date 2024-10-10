@@ -3,7 +3,7 @@ Feature: JM-4249 Edit Juror Record as Bureau User
   @JurorTransformationMulti
   Scenario Outline: The system shall allow the Bureau officer to edit a juror record for a juror in their control
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
@@ -61,5 +61,5 @@ Feature: JM-4249 Edit Juror Record as Bureau User
     And I see "Testing Test" on the page
 
     Examples:
-      | juror_number  | pool_number |user          |
-      | 041500132     | 415300232   | MODTESTBUREAU|
+      | juror_number  | pool_number | user          |
+      | 041500132     | 415300232   | MODTESTBUREAU |

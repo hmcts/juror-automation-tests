@@ -1,6 +1,6 @@
 Feature: JM-252_Validation_and_Errors_COURT
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Errors and Warnings on Create New Pool for Court user
     Given I am on "Bureau" "ithc"
 
@@ -163,9 +163,10 @@ Feature: JM-252_Validation_and_Errors_COURT
       | MODTESTCOURT | Chester      | Civil     | Civil court   | 415       | 041540011    | 415300411   |
       | MODTESTCOURT | Chester      | High      | High court    | 415       | 041540012    | 415300412   |
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Test to assure that a warning appears if the attendance date is set to a weekend date for Court user
-    Given I am on "Bureau" "test"
+
+    Given I am on "Bureau" "ithc"
 
     And I log in as "<user>"
     When I navigate to the pool request screen
@@ -197,12 +198,12 @@ Feature: JM-252_Validation_and_Errors_COURT
       | user         | displayCourt | courtTypeFull | courtCode |
       | MODTESTCOURT | Chester      | Civil court   | 415       |
 
-  @JurorTransformation @NewSchemaConverted
+  @JurorTransformation
   Scenario Outline: Test to assure that a warning appears if the attendance date is set to a bank holiday date for court user
 
     #leaving in single thread as it deletes and sets up BHs which may break other tests
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     Given I have deleted all holidays new schema
 
@@ -267,9 +268,10 @@ Feature: JM-252_Validation_and_Errors_COURT
       | user         | courtCode | displayCourt | courtTypeFull |
       | MODTESTCOURT | 415       | Chester      | Crown court   |
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Test to assure court user cannot see courts they dont have access to
-    Given I am on "Bureau" "test"
+
+    Given I am on "Bureau" "ithc"
 
     And I log in as "<user>"
 

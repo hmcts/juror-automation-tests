@@ -1,9 +1,9 @@
 Feature: Grant excusal digital
 
-  @JurorTransformationWIP @NewSchemaConverted @JurorDigitalNotConverted
+  @JurorTransformationMulti
   Scenario Outline: Test to grant excusal on digital response
 
-    Given I am on "Public" "test"
+    Given I am on "Public" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
@@ -13,7 +13,7 @@ Feature: Grant excusal digital
       |part_no     	|pool_number    |last_name		|postcode	| email |
       |<juror_number>|<pool_number>	|<last_name>	|<postcode>	|<email>|
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     And I log in as "<user>"
 
@@ -28,18 +28,18 @@ Feature: Grant excusal digital
     And I select the Grant Excusal radio button
     And I click continue on the process reply page
     When the user searches for juror record "<juror_number>" from the global search bar
-    And I see the juror status has updated to "Excused"
+    And I see the juror status has updated to "<excusalReason>"
 
     Examples:
-      | dropDown       | excusalReason | user          | juror_number   | pool_number   | last_name            | postcode | email      |
-      | C - CHILD CARE | child care    | MODTESTBUREAU | 041517922 | 415170653 | lname                | CH2 2AA  | e@mail.com |
-      | D - DECEASED   | deceased      | MODTESTBUREAU | 041517923 | 415170654 | lname                | CH2 2AA  | e@mail.com |
+      | dropDown       | excusalReason  | user          | juror_number   | pool_number   | last_name | postcode | email      |
+      | C - CHILD CARE | Excused        | MODTESTBUREAU | 041517922      | 415170653     | lname     | CH2 2AA  | e@mail.com |
+      | D - DECEASED   | Deceased       | MODTESTBUREAU | 041517923      | 415170654     | lname     | CH2 2AA  | e@mail.com |
 
 
-  @JurorTransformation @NewSchemaConverted
+  @JurorTransformation
   Scenario Outline: Test to grant excusal on digital response from juror record - bureau
 
-    Given I am on "Public" "test"
+    Given I am on "Public" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
@@ -52,7 +52,7 @@ Feature: Grant excusal digital
       |part_no	      |pool_number    |last_name	|postcode	| email |
       |<juror_number> |<pool_number>  |<last_name>	|<postcode>	|<email>|
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     And I log in as "<user>"
     And the user searches for juror record "<juror_number>" from the global search bar
@@ -69,10 +69,10 @@ Feature: Grant excusal digital
       | C - CHILD CARE | MODTESTBUREAU | 041500155      | 415300254     | LNAMESIXZEROFOUR    | CH1 2AN  | e@mail.com | Juror record updated: Excusal granted (child care)|
       | D - DECEASED   | MODTESTBUREAU | 041500155      | 415300254     | LNAMESIXZEROSIX     | CH1 2AN  | e@mail.com | Juror record updated: Excusal granted (deceased)  |
 
-  @JurorTransformation @NewSchemaConverted
+  @JurorTransformation
   Scenario Outline: Test to grant excusal on digital response from juror record - court
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     Then a new pool is inserted for where record has transferred to the court new schema
       |part_no         | pool_no       | owner |
@@ -92,5 +92,4 @@ Feature: Grant excusal digital
 
     Examples:
       | dropDown       | user         | juror_number   | pool_number   | bannerText                                     |
-      | D - DECEASED   | MODTESTCOURT | 041500155      | 415300254      |Juror record updated: Excusal granted (deceased)|
-
+      | D - DECEASED   | MODTESTCOURT | 041500155      | 415300254     |Juror record updated: Excusal granted (deceased)|
