@@ -1,8 +1,8 @@
 Feature: JM-252_Validation_and_Errors
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Errors and Warnings on Create New Pool - Continue With No Input
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     And I log in as "<user>"
 
@@ -54,9 +54,9 @@ Feature: JM-252_Validation_and_Errors
       | MODTESTBUREAU | CHESTER       | Chester      | Civil     | Civil court   | 415       |
       | MODTESTBUREAU | CHESTER       | Chester      | High      | High court    | 415       |
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Errors and Warnings on Create New Pool - Continue With Invalid loc_code
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     And I log in as "<user>"
 
@@ -109,9 +109,9 @@ Feature: JM-252_Validation_and_Errors
       | MODTESTBUREAU | CHESTER       | Chester      | Civil     | Civil court   | 415       |
       | MODTESTBUREAU | CHESTER       | Chester      | High      | High court    | 415       |
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Errors and Warnings on Create New Pool - Continue With Invalid Court Name
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     And I log in as "<user>"
 
@@ -164,9 +164,9 @@ Feature: JM-252_Validation_and_Errors
       | MODTESTBUREAU | CHESTER       | Chester      | Civil     | Civil court   | 415       |
       | MODTESTBUREAU | CHESTER       | Chester      | High      | High court    | 415       |
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Errors and Warnings on Change Number Of Deferrals - Continue With No Input
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     And I log in as "<user>"
 
@@ -225,9 +225,9 @@ Feature: JM-252_Validation_and_Errors
       | MODTESTBUREAU | SWANSEA       | Swansea Crown Court | Civil     | 457       | 045700001    | 457300001   |
       | MODTESTBUREAU | SWANSEA       | Swansea Crown Court | High      | 457       | 045700001    | 457300001   |
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Errors and Warnings on Change Number Of Deferrals - Continue An Invalid Input
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     And I log in as "<user>"
 
@@ -284,9 +284,9 @@ Feature: JM-252_Validation_and_Errors
       | MODTESTBUREAU | SWANSEA       | Swansea Crown Court | Civil court | 457       | 045700002    | 457300002   |
       | MODTESTBUREAU | SWANSEA       | Swansea Crown Court | High court  | 457       | 045700002    | 457300002   |
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Errors and Warnings on Change Number Of Deferrals - Number > Number of Defs Available
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     And I log in as "<user>"
 
@@ -344,9 +344,9 @@ Feature: JM-252_Validation_and_Errors
       | MODTESTBUREAU | SWANSEA       | Swansea Crown Court | Civil court | 457       | 045700003    | 457300003   |
       | MODTESTBUREAU | SWANSEA       | Swansea Crown Court | High court  | 457       | 045700003    | 457300003   |
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Errors and Warnings on Change Number Of Deferrals - Zero Deferrals
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     And I log in as "<user>"
 
@@ -408,9 +408,9 @@ Feature: JM-252_Validation_and_Errors
       | MODTESTBUREAU | SWANSEA       | Swansea Crown Court | Civil     | 457       | 045700004    | 457300004   |
       | MODTESTBUREAU | SWANSEA       | Swansea Crown Court | High      | 457       | 045700004    | 457300004   |
 
-  @JurorTransformation @NewSchemaConverted
+  @JurorTransformation
   Scenario Outline: Errors and Warnings on Change Number Of Deferrals - One Deferral
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     And I log in as "<user>"
 
@@ -468,9 +468,9 @@ Feature: JM-252_Validation_and_Errors
       | MODTESTBUREAU | SWANSEA       | Swansea Crown Court | Civil     | 457       | 045700005    | 457300005   |
       | MODTESTBUREAU | SWANSEA       | Swansea Crown Court | High      | 457       | 045700005    | 457300005   |
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Errors and Warnings on Continue - No Selections
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     And I log in as "<user>"
 
@@ -498,9 +498,9 @@ Feature: JM-252_Validation_and_Errors
       | user          | selectedCourt | displayCourt | courtCode |
       | MODTESTBUREAU | CHESTER       | Chester      | 415       |
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Errors and Warnings on Continue - Only Number of Jurors
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     And I log in as "<user>"
 
@@ -528,9 +528,9 @@ Feature: JM-252_Validation_and_Errors
       | user          | selectedCourt | displayCourt | courtCode |
       | MODTESTBUREAU | CHESTER       | Chester      | 415       |
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Errors and Warnings on Continue - Only Pool Type Set
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     And I log in as "<user>"
 
@@ -562,9 +562,9 @@ Feature: JM-252_Validation_and_Errors
       | MODTESTBUREAU | CHESTER       | Chester      | Civil     | 415       |
       | MODTESTBUREAU | CHESTER       | Chester      | High      | 415       |
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Errors and Warnings on Continue - Complete New Pool Fields
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     And I log in as "<user>"
 
@@ -623,9 +623,9 @@ Feature: JM-252_Validation_and_Errors
       | MODTESTBUREAU | SWANSEA       | Swansea Crown Court | Civil     | Civil court   | 457       | 045700006    | 457300006   |
       | MODTESTBUREAU | SWANSEA       | Swansea Crown Court | High      | High court    | 457       | 045700006    | 457300006   |
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Errors and Warnings on Change Pool Number - No Pool Number
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     And I log in as "<user>"
 
@@ -686,9 +686,9 @@ Feature: JM-252_Validation_and_Errors
       | MODTESTBUREAU | SWANSEA       | Swansea Crown Court | Civil     | Civil court   | 457       | 045700007    | 457300007   |
       | MODTESTBUREAU | SWANSEA       | Swansea Crown Court | High      | High court    | 457       | 045700007    | 457300007   |
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Errors and Warnings on Change Pool Number - Pool Number Does Not Contain Court Location Code
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     And I log in as "<user>"
 
@@ -750,9 +750,9 @@ Feature: JM-252_Validation_and_Errors
       | MODTESTBUREAU | SWANSEA       | Swansea Crown Court | Civil     | Civil court   | 457       | 045700008    | 457300008   |
       | MODTESTBUREAU | SWANSEA       | Swansea Crown Court | High      | High court    | 457       | 045700008    | 457300008   |
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Errors and Warnings on Change Pool Number - Pool Number Does Not Contain Months Of Attendance Date
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     And I log in as "<user>"
 
@@ -820,9 +820,9 @@ Feature: JM-252_Validation_and_Errors
       | MODTESTBUREAU | SWANSEA       | Swansea Crown Court | Civil     | Civil court   | 457       | 045700009    | 457300009   |
       | MODTESTBUREAU | SWANSEA       | Swansea Crown Court | High      | High court    | 457       | 045700009    | 457300009   |
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Errors and Warnings on Change Pool Number - Pool Number Too Long
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     And I log in as "<user>"
 
@@ -884,9 +884,9 @@ Feature: JM-252_Validation_and_Errors
       | MODTESTBUREAU | SWANSEA       | Swansea Crown Court | Civil     | Civil court   | 457       | 045700010    | 457300010   |
       | MODTESTBUREAU | SWANSEA       | Swansea Crown Court | High      | High court    | 457       | 045700010    | 457300010   |
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Errors and Warnings on Change Pool Number - Pool Number Too Short
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     And I log in as "<user>"
 
@@ -948,9 +948,9 @@ Feature: JM-252_Validation_and_Errors
       | MODTESTBUREAU | SWANSEA       | Swansea Crown Court | Civil     | Civil court   | 457       | 045700011    | 457300011   |
       | MODTESTBUREAU | SWANSEA       | Swansea Crown Court | High      | High court    | 457       | 045700011    | 457300011   |
 
-  @JurorTransformation @NewSchemaConverted
+  @JurorTransformation
   Scenario Outline: Errors and Warnings on Change Pool Number - Pool Number Already in Use
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     And I log in as "<user>"
 
@@ -1016,9 +1016,9 @@ Feature: JM-252_Validation_and_Errors
       | MODTESTBUREAU | SWANSEA       | Swansea Crown Court | Civil     | Civil court   | 457       | 045700012    | 457300012   |
       | MODTESTBUREAU | SWANSEA       | Swansea Crown Court | High      | High court    | 457       | 045700012    | 457300012   |
 
-  @JurorTransformation @NewSchemaConverted
+  @JurorTransformation
   Scenario Outline: Errors and Warnings on Change Pool Number - Valid Pool Number
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     And I log in as "<user>"
 
@@ -1092,9 +1092,9 @@ Feature: JM-252_Validation_and_Errors
       | MODTESTBUREAU | SWANSEA       | Swansea Crown Court | Civil     | Civil court   | 457       | 041500047    | 415300130   |
       | MODTESTBUREAU | SWANSEA       | Swansea Crown Court | High      | High court    | 457       | 041500047    | 415300130   |
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Test to assure that a warning appears if the attendance date is set to a weekend date
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     And I log in as "<user>"
 
@@ -1136,9 +1136,9 @@ Feature: JM-252_Validation_and_Errors
       | user          | selectedCourt | displayCourt | courtTypeFull | courtCode |
       | MODTESTBUREAU | CHESTER       | Chester      | Civil court   | 415       |
 
-  @JurorTransformationMultiCF @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Test to assure that a warning appears if the attendance date is set to a bank holiday date
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     And I log in as "<user>"
 
@@ -1203,4 +1203,3 @@ Feature: JM-252_Validation_and_Errors
     Examples:
       | user          | selectedCourt | courtCode | displayCourt | courtTypeFull |
       | MODTESTBUREAU | COVENTRY      | 417       | Coventry     | Crown court   |
-

@@ -288,7 +288,7 @@ Feature: Bureau Create Juror Record
     And I enter "These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are tThese are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are tThese are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are tThese are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are t" in the Notes text box
     And I press the "Continue" button
 
-#    And I see error "The notes provided are too long"
+    And I see error "The notes provided are too long"
 
     And I enter "Note testing" in the Notes text box
     And I press the "Continue" button
@@ -322,7 +322,7 @@ Feature: Bureau Create Juror Record
     #confirm juror is created and added to pool
     And I see "Juror record created for <fname>on <lname> and summoned to pool" on the page
     And I see pool summoned total count is "2"
-    And I see "Summoned" in the same row as "<lname>"
+    And I see "Summoned" in the same row as "D'oe-smith"
 
     Examples:
     | fname       | lname       | email       | mobile        | altphone      | postcode  | line1             | line2   | line3   | town    | county  | notes         |
@@ -558,57 +558,77 @@ Feature: Bureau Create Juror Record
       |MODTESTBUREAU |
 
 
-
-
-  Scenario Outline: Bureau Create Juror Record via existing pool - Happy Path - Satellite Court
+  @JurorTransformationMulti
+  Scenario Outline: Bureau Create Juror Record - Satellite Court
 
     Given I am on "Bureau" "ithc"
+
+    #enable permissions
+    Given I "enable" CREATE_JUROR permission for bureau user "<user>"
+
     And I log in as "<user>"
 
-    And I click on the "Juror management" link
-    And I press the "Create juror record" button
+    When I navigate to the pool request screen
 
-    And I select one of the active pools available from the create juror record screen
+    #create an active pool request
+    And I create an active "Crown" court pool request for court "767", "10" Mondays in the future
+
+    #add jurors
+    And I navigate to the pool search screen
+    When I enter the pool number of the pool I have just created on the pool search screen
     And I press the "Continue" button
+
+    And I press the "Create juror record" button
 
     #jurors name
     And I see "What's the juror's name?" on the page
-    And I set "Title (optional)" to "Mr"
-    And I set "First name" to "Testing"
-    And I set "Last name" to "Edwards"
+    And I set "First name" to "John"
+    And I set "Last name" to "Stark"
     And I press the "Continue" button
 
-    #dob
+    #dob leave blank
     And I see "What's their date of birth?" on the page
-    And I set "Date of birth" to "08/05/1982"
     And I press the "Continue" button
 
-    #address
+    #address/error check
     And I see "What's the juror's address?" on the page
     And I set "Address line 1" to "5 Testing Street"
     And I set "Town or city" to "London"
-    And I set "Postcode" to "CH1 2AN"
+    And I set "Postcode" to "WA16 2AN"
     And I press the "Continue" button
 
     #contact details
     And I see "Enter their contact details" on the page
-    And I set "Main phone - UK only (optional)" to "07739967653"
+    And I set "Main phone - UK only (optional)" to "07777777777"
     And I press the "Continue" button
 
     #notes
     And I see "Notes (optional)" on the page
     And I enter "Note testing" in the Notes text box
+
     And I press the "Continue" button
     And I see "Check your answers" on the page
 
+    #check your answers page
+    And I see "-" in the same row as "Date of birth"
+    And I see "John Stark" in the same row as "Name"
+    And I see "5 Testing Street" in the same row as "Address"
+    And I see "07777777777" in the same row as "Main phone"
+    And I see "-" in the same row as "Alternative phone"
+    And I see "-" in the same row as "Email"
+    And I see "Note testing" in the same row as "Notes"
+
     #create juror record
     And I press the "Create juror record" button
-    And I see "Draft juror record created for Testing Edwards - senior jury officer will need to approve this" on the page
 
-    Given I am on "Bureau" "ithc"
-    And I log in as "SJOUSER"
-    And I see senior jury officer notification banner
+    #confirm juror is created and added to pool
+    And I see "Juror record created for John Stark and summoned to pool" on the page
+    And I see pool summoned total count is "2"
+    And I see "Summoned" in the same row as "Stark"
 
+    #check the new juror is added
+    And I see pool summoned total count is "2"
+    And I see "Summoned" in the same row as "Stark"
 
     Examples:
       |user			 |

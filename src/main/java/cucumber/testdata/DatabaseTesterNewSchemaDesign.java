@@ -551,6 +551,16 @@ public class DatabaseTesterNewSchemaDesign {
 			conn.commit();
 			log.info("Deleted from USER_JUROR_RESPONSE_AUDIT where juror_number=>" + juror_number);
 
+			pStmt = conn.prepareStatement("delete from juror_mod.juror_third_party where juror_number='" + juror_number + "'");
+			pStmt.execute();
+			conn.commit();
+			log.info("Deleted from juror_third_party where juror_number=>" + juror_number);
+
+			pStmt = conn.prepareStatement("delete from juror_mod.juror_third_party_audit where juror_number='" + juror_number + "'");
+			pStmt.execute();
+			conn.commit();
+			log.info("Deleted from juror_third_party_audit where juror_number=>" + juror_number);
+
 			pStmt = conn.prepareStatement("delete from juror_mod.juror_response where juror_number='" + juror_number + "'");
 			pStmt.execute();
 			conn.commit();

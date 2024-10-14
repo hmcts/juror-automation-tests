@@ -1,13 +1,13 @@
 Feature: JM-5413-5415 - Resend excusal granted letter for Bureau and Jury users
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline:As a bureau officer test a Excused juror can resend a granted letter by searching via juror number
 
     Given I am on "Bureau" "ithc"
 
     When a bureau owned pool is created with jurors
-      | court | juror_number  | pool_number     | att_date_weeks_in_future   | owner |
-      | 415     | <juror_number>| <pool_number> | 5                          | 400  |
+      | court | juror_number  | pool_number   | att_date_weeks_in_future   | owner  |
+      | 415   | <juror_number>| <pool_number> | 5                          | 400    |
 
     And I log in as "<user>"
     And the user searches for juror record "<juror_number>" from the global search bar
@@ -57,14 +57,14 @@ Feature: JM-5413-5415 - Resend excusal granted letter for Bureau and Jury users
       | juror_number  | pool_number | user          |
       |  041529011    | 415980685   | MODTESTBUREAU |
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline:As a bureau officer verify a excused juror letter in printing stage can delete
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     And I log in as "<user>"
     When a bureau owned pool is created with jurors
-      | court | juror_number  | pool_number     | att_date_weeks_in_future   | owner |
-      | 415     | <juror_number>| <pool_number> | 5                       | 400  |
+      | court | juror_number  | pool_number   | att_date_weeks_in_future    | owner |
+      | 415   | <juror_number>| <pool_number> | 5                           | 400   |
 
     And the user searches for juror record "<juror_number>" from the global search bar
     And I record an excusal request paper summons response
@@ -101,16 +101,17 @@ Feature: JM-5413-5415 - Resend excusal granted letter for Bureau and Jury users
       |  041529012    | 415980685   | MODTESTBUREAU |
 
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Excusal granted letter - via pool Number happy path bulk
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     And I log in as "<user>"
+
     When a bureau owned pool is created with jurors
-      | court   | juror_number  | pool_number     | att_date_weeks_in_future    | owner |
-      | 415     | <juror_number>| <pool_number>   | 5                           | 400  |
-      | 415     | <juror_number_2>| <pool_number>   | 5                         | 400  |
-      | 415     | <juror_number_3>| <pool_number>   | 5                         | 400  |
+      | court   | juror_number    | pool_number     | att_date_weeks_in_future  | owner |
+      | 415     | <juror_number>  | <pool_number>   | 5                         | 400   |
+      | 415     | <juror_number_2>| <pool_number>   | 5                         | 400   |
+      | 415     | <juror_number_3>| <pool_number>   | 5                         | 400   |
 
     #record response for first juror
     And the user searches for juror record "<juror_number>" from the global search bar
@@ -196,19 +197,19 @@ Feature: JM-5413-5415 - Resend excusal granted letter for Bureau and Jury users
     And I see "3 documents sent for printing" on the page
 
     Examples:
-      | juror_number  |juror_number_2 |juror_number_3 |pool_number | user          |
-      |  041529056    | 041529057     |041529058      |415980676   | MODTESTBUREAU |
+      | juror_number | juror_number_2 | juror_number_3 | pool_number | user          |
+      | 041529056    | 041529057      | 041529058      | 415980676   | MODTESTBUREAU |
 
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline:As a bureau officer test a excused juror can resend a granted letter by searching via Pool number - unhappy path
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     And I log in as "<user>"
     When a bureau owned pool is created with jurors
-      | court   | juror_number  | pool_number     | att_date_weeks_in_future    | owner |
-      | 415     | <juror_number>| <pool_number>   | 5                           | 400  |
-      | 415     | <juror_number_1>| <pool_number>   | 5                         | 400  |
+      | court   | juror_number    | pool_number     | att_date_weeks_in_future  | owner |
+      | 415     | <juror_number>  | <pool_number>   | 5                         | 400   |
+      | 415     | <juror_number_1>| <pool_number>   | 5                         | 400   |
 
     #record response for first juror
     And the user searches for juror record "<juror_number>" from the global search bar
@@ -287,18 +288,18 @@ Feature: JM-5413-5415 - Resend excusal granted letter for Bureau and Jury users
     And I see "<juror_number_1>" in the same row as "Deceased"
 
     Examples:
-      | juror_number  |juror_number_1|pool_number | user          |
-        |  041529013  | 041529034  |415980685   | MODTESTBUREAU |
+      | juror_number| juror_number_1  | pool_number | user          |
+      |  041529013  | 041529034       | 415980685   | MODTESTBUREAU |
 
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline:Verify as a bureau user can view letters queued for printing and can delete it
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     When a bureau owned pool is created with jurors
-      | court   | juror_number  | pool_number     | att_date_weeks_in_future   | owner |
-      | 415     | <juror_number>| <pool_number>   | 5                       | 400  |
+      | court   | juror_number  | pool_number     | att_date_weeks_in_future  | owner |
+      | 415     | <juror_number>| <pool_number>   | 5                         | 400   |
 
     And I log in as "<user>"
     And the user searches for juror record "<juror_number>" from the global search bar
@@ -331,14 +332,14 @@ Feature: JM-5413-5415 - Resend excusal granted letter for Bureau and Jury users
     Then I see "1 pending document deleted" on the page
 
     Examples:
-      | juror_number  |  pool_number | user          |
-      |  041529015     |415980685   | MODTESTBUREAU |
+      | juror_number  |  pool_number  | user          |
+      |  041529015    |415980685      | MODTESTBUREAU |
 
 
-  @JurorTransformationWIP @NewSchemaConverted
+  @JurorTransformation
   Scenario Outline: As a jury officer I want to print a excusal granted letter for juror
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     When a bureau owned pool is created with jurors
       | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
       | 415   | <juror_number>| <pool_number>           | 5                          | 400  |
@@ -367,7 +368,7 @@ Feature: JM-5413-5415 - Resend excusal granted letter for Bureau and Jury users
     And I choose the "Yes" radio button
     And I press the "Continue" button
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     And I log in as "<user>"
     And I press the "Apps" button
     And I click on the "Documents" link
@@ -380,14 +381,14 @@ Feature: JM-5413-5415 - Resend excusal granted letter for Bureau and Jury users
 
 
     Examples:
-      | juror_number  | pool_number | user          |
+      | juror_number  | pool_number | user      |
       |  041529016    | 415980685   | MODCOURT  |
 
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline:As a jury officer test a Excused juror can resend a granted letter by searching via pool number
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     When a bureau owned pool is created with jurors
       | court |juror_number   | pool_number	    | att_date_weeks_in_future	| owner |
