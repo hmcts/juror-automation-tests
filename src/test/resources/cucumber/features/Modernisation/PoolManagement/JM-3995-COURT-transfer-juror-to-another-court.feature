@@ -1,6 +1,6 @@
 Feature: JM-3995 JM-4302
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Transfer a juror to another court - Juror Record - Happy Path
 
     Given I am on "Bureau" "ithc"
@@ -40,13 +40,11 @@ Feature: JM-3995 JM-4302
     And I see "Chester" in the same row as "<juror_number>"
     And I see "Welshpool" in the same row as "<juror_number>"
 
-
-
     Examples:
       | user         | juror_number | pool_number |
       | MODTESTCOURT | 041500164    | 415300263   |
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Transfer a juror to another court - Juror Record - Validation and Errors
 
     Given I am on "Bureau" "ithc"
@@ -83,13 +81,12 @@ Feature: JM-3995 JM-4302
     When I click on the "Cancel" link
     And I see "<pool_number>" on the page
 
-
     Examples:
       | user         | juror_number | pool_number |
       | MODTESTCOURT | 041500163    | 415300262   |
 
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: JM-4302 - Transfer a juror to another court - Non-Satellite courts
 
     Given I am on "Bureau" "ithc"
@@ -112,8 +109,6 @@ Feature: JM-3995 JM-4302
     And I press the "Transfer" button
 
     #check satellite court selections
-   # When I set the court or location to "415"
-   # And I see "Chester (415)" in the dropdown box
     When I set the court or location to "774"
     And I see "Welshpool (774)" in the dropdown box
 
@@ -145,7 +140,7 @@ Feature: JM-3995 JM-4302
     When the user searches for juror record "<juror_number>" from the global search bar
     And I see the juror status on the juror record screen has updated to "Transferred"
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     And I log in as "MODTESTBUREAU"
 
     #see 2 records, one transferred and one original

@@ -1,22 +1,23 @@
 Feature: JM-6070 - As a jury officer, I want to record a juror's financial loss for a non-attendance day
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: To record a juror's financial loss for a non-attendance day
 
     Given I am on "Bureau" "ithc"
     When a bureau owned pool is created with jurors
-      | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
-      | 415   |<juror_number>     | <pool_number>     | -1				            | 400	|
+      | court | juror_number   | pool_number	| att_date_weeks_in_future	| owner |
+      | 415   | <juror_number> | <pool_number>  | -1				        | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no              | pool_no           | owner |
-      |<juror_number>     | <pool_number>     | 415   |
+      | part_no         | pool_no       | owner |
+      | <juror_number>  | <pool_number> | 415   |
 
     And I Confirm all the data in the record attendance table is cleared
     And I log in as "<user>"
 
     #set juror as responded
     And I update juror "<juror_number>" to have a status of responded in order to record attendance
+
     #check in jurors
     And I press the "Apps" button
     And I click on the "Juror management" link
@@ -28,7 +29,6 @@ Feature: JM-6070 - As a jury officer, I want to record a juror's financial loss 
     And I set the radio button to "am"
     And I input juror "<juror_number>" to be checked in
     And I press the "Check in juror" button
-
 
     And the user searches for juror record "<juror_number>" from the global search bar
     And I click on the "Expenses" link
@@ -85,13 +85,13 @@ Feature: JM-6070 - As a jury officer, I want to record a juror's financial loss 
     And I verify the banner message "You’ve made changes" on the page
     When I click the Recalculate totals link
     Then I see the following details on the enter expenses form
-      | Total due                           |£64.95               |
-      |Financial loss (capped)              |£64.95                |
+      | Total due                     |£64.95               |
+      |Financial loss (capped)        |£64.95               |
     And I press "Save and next" button
     And I see "Juror’s financial loss is over the daily limit" on the page
     And I press the "Continue" button
     And I press "Save and next" button
 
     Examples:
-      |user			|juror_number |   pool_number   |
-      |MODTESTCOURT |041530030    | 415360984       |
+      | user		 | juror_number | pool_number   |
+      | MODTESTCOURT | 041530030    | 415360984     |

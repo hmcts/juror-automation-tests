@@ -1,9 +1,9 @@
 Feature: JM-4358
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Reassign a juror Bureau User - warning cannot be reassigned when status not 1 or 2
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     And the new pool for court "415" with multiple statuses is deleted new schema
     And the voter record for "641591101" is deleted new schema
     And the voter record for "641591102" is deleted new schema
@@ -119,7 +119,7 @@ Feature: JM-4358
       |415911911  | MODTESTBUREAU |
 
 
-  @JurorTransformation @NewSchemaConverted
+  @JurorTransformation
   Scenario Outline: Reassign a juror Bureau User - warning cannot be reassigned when juror will be over 75
     Given I am on "Bureau" "ithc"
 

@@ -1,17 +1,17 @@
 Feature: JM-7840 - As a jury officer I want to be able to confirm the attendance for jurors on a trial
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Confirm Attendance for Jurors on a trial - Happy Path - Satellite Court
 
     Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
-      | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
-      | 415   |<juror_number> 	    | <pool_number>     | 5				            | 400	|
+      | court | juror_number   | pool_number	 | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number> | <pool_number>   | 5				        | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no               | pool_no       | owner|
-      |<juror_number>        | <pool_number> | 415  |
+      | part_no          | pool_no       | owner|
+      | <juror_number>   | <pool_number> | 415  |
 
     And I log in as "<user>"
 
@@ -30,7 +30,6 @@ Feature: JM-7840 - As a jury officer I want to be able to confirm the attendance
 
     And I delete trials data
     And I Confirm all the data in the record attendance table is cleared
-    And I have inserted court rooms for "462"
 
     And I log in as "<user>" selecting court "462"
 
@@ -47,7 +46,7 @@ Feature: JM-7840 - As a jury officer I want to be able to confirm the attendance
     And I set the "Start date for Trial" date to a Monday "0" weeks in the future
     And I set "Judge" to "PATRICIA H AITKEN"
     And I set the radio button to "Warrington"
-    And I set "Courtroom" to "JURY ASSEMBLY ROOM"
+    And I set "Courtroom" to "COURT ROOM"
     And I press the "Create trial" button
 
     #set juror as responded
@@ -115,7 +114,6 @@ Feature: JM-7840 - As a jury officer I want to be able to confirm the attendance
     And I press the "Confirm" button
     And I see "1 of 1" in the same row as "<trial_number>"
 
-
     Examples:
-      |user			|juror_number    | pool_number    | trial_number     |
-      |MODTESTCOURT | 041564379      | 415314612      | TESTINGGGGGGGG   |
+      | user		 | juror_number  | pool_number   | trial_number     |
+      | MODTESTCOURT | 041564379     | 415314612     | TESTINGGGGGGGG   |

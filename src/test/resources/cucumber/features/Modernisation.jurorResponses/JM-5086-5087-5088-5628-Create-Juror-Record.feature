@@ -329,7 +329,6 @@ Feature: Create Juror Record scenarios
     And I press the "Create juror record" button
     And I see "Draft juror record created for Edward Stevens - senior jury officer will need to approve this" on the page
 
-
     Examples:
       |user			|
       |MODTESTCOURT |
