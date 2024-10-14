@@ -3,7 +3,7 @@ Feature: Regression Survey_Link
 @Regression
 Scenario Outline: Survey Link 1st Party Eng
 	
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -68,7 +68,7 @@ Examples:
 @RegressionWelsh
 Scenario Outline: Survey Link 1st Party Welsh
 	
-	Given I am on the welsh version of "Public" "test"
+	Given I am on the welsh version of "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |

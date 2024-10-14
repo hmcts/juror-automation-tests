@@ -36,6 +36,10 @@ Feature: JM-4001 and JM-4002 - Court User
       Then I see "Choose an active pool to add selected jurors to" on the page
       And I select pool "415111111" from the active pools table
       And I press the "Continue" button
+      And I see "You cannot postpone a juror without a date of birth - please ensure all selected jurors have a date of birth" on the page
+      And I insert dob for juror "041500000"
+      And I select pool "415111111" from the active pools table
+      And I press the "Continue" button
       Then I see "Selected jurors added to pool 415111111" on the page
 
   @JurorTransformation
@@ -48,8 +52,11 @@ Feature: JM-4001 and JM-4002 - Court User
       When I select juror "041500001" from the deferrals table
       And I press the "Add to a pool" button
       Then I see "Choose an active pool to add selected jurors to" on the page
+      And I select pool "415111111" from the active pools table
       And I press the "Continue" button
-      And I see error "Choose an active pool to add selected jurors to"
+      And I see "You cannot postpone a juror without a date of birth - please ensure all selected jurors have a date of birth" on the page
+      And I insert dob for juror "041500000"
+      And I insert dob for juror "041500001"
       And I select pool "415111111" from the active pools table
       And I press the "Continue" button
       Then I see "Selected jurors added to pool 415111111" on the page

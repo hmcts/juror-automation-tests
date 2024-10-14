@@ -1,6 +1,6 @@
 Feature: JM-8203
 
-  @JurorTransformation @NewSchemaConverted
+  @JurorTransformation
   Scenario Outline: As a jury officer I want to be able to confirm attendance for jurors that have dropped off the record attendance list
 
     Given I am on "Bureau" "ithc"
@@ -34,7 +34,6 @@ Feature: JM-8203
     And I set the radio button to "am"
     And I input juror "<juror_number>" to be checked in
     And I press the "Check in juror" button
-
 
     And I press the "Apps" button
     And I click on the "Trial management" link
@@ -91,7 +90,6 @@ Feature: JM-8203
     And I click on the "Record attendance" link
     And I click on the "Jurors on a trial" link
     And I see "1 of 1" in the same row as "<trial_number>"
-
 
     Examples:
       |user			|juror_number  | juror_number_2   | pool_number    | trial_number |

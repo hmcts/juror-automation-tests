@@ -10,7 +10,7 @@
 
     And I log in as "<user>"
     And I navigate to the pool request screen
-    And I create an active "civil" court pool request for court "415", "30" Mondays in the future
+    And I create an active "Crown" court pool request for court "415", "30" Mondays in the future
 
     And I search for juror "<juror_number>"
     And I click the update juror record button
@@ -18,6 +18,10 @@
     And I click continue on the update juror record screen
     And I enter a date "30" mondays in the future for the new service start date
     When I click continue on the postponement page
+    And I select a postponement date
+    And I click continue on the postponement page
+    And I see "You cannot postpone a juror without a date of birth - please add date of birth to the juror record" on the page
+    And I insert dob for juror "<juror_number>"
     And I select a postponement date
     And I click continue on the postponement page
     Then I see "Juror record updated: Postponed" on the page

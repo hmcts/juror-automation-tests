@@ -551,6 +551,16 @@ public class DatabaseTesterNewSchemaDesign {
 			conn.commit();
 			log.info("Deleted from USER_JUROR_RESPONSE_AUDIT where juror_number=>" + juror_number);
 
+			pStmt = conn.prepareStatement("delete from juror_mod.juror_third_party where juror_number='" + juror_number + "'");
+			pStmt.execute();
+			conn.commit();
+			log.info("Deleted from juror_third_party where juror_number=>" + juror_number);
+
+			pStmt = conn.prepareStatement("delete from juror_mod.juror_third_party_audit where juror_number='" + juror_number + "'");
+			pStmt.execute();
+			conn.commit();
+			log.info("Deleted from juror_third_party_audit where juror_number=>" + juror_number);
+
 			pStmt = conn.prepareStatement("delete from juror_mod.juror_response where juror_number='" + juror_number + "'");
 			pStmt.execute();
 			conn.commit();
@@ -5279,5 +5289,29 @@ public class DatabaseTesterNewSchemaDesign {
 			conn.close();
 		}
 
+	}
+	public void setJurorsDob(String jurorNumber) throws SQLException {
+		db = new DBConnection();
+
+		String env_property = System.getProperty("env.database");
+
+		if (env_property != null)
+			conn = db.getConnection(env_property);
+		else
+			conn = db.getConnection("demo");
+
+		try {
+			pStmt = conn.prepareStatement("UPDATE juror_mod.juror set DOB='03-OCT-1992' where juror_number='" + jurorNumber + "'");
+			pStmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.error("Message:" + e.getMessage());
+
+		} finally {
+			conn.commit();
+			pStmt.close();
+			conn.close();
+		}
 	}
 }

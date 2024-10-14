@@ -3,7 +3,7 @@ Feature: Regression Cookies and Privacy Policy
 @RegressionSingle @Cookies
 Scenario: Analytics Cookies opt in
 	
-	Given I am looking at cookies on "Public" "test"
+	Given I am looking at cookies on "Public" "ithc"
 	
 	#new cookies banner
 	And I see "Cookies on Reply to a jury summons" on the page
@@ -27,7 +27,7 @@ Scenario: Analytics Cookies opt in
 @RegressionSingle @Cookies
 Scenario: Analytics Cookies opt out
 
-	Given I am looking at cookies on "Public" "test"
+	Given I am looking at cookies on "Public" "ithc"
 	
 	#new cookies banner
 	And I see "Cookies on Reply to a jury summons" on the page
@@ -52,7 +52,7 @@ Scenario: Analytics Cookies opt out
 @RegressionSingle @Cookies
 Scenario: English View Cookies
 	
-	Given I am looking at cookies on "Public" "test"
+	Given I am looking at cookies on "Public" "ithc"
 
 	#new cookies banner
 	And I see "Cookies on Reply to a jury summons" on the page
@@ -107,7 +107,7 @@ Scenario: English View Cookies
 @RegressionSingle @Cookies
 Scenario: English Cookie Settings
 	
-	Given I am looking at cookies on "Public" "test"
+	Given I am looking at cookies on "Public" "ithc"
 
 	#new cookies banner
 	
@@ -156,7 +156,7 @@ Scenario: English Cookie Settings
 @RegressionSingle @Cookies
 Scenario: English Privacy Policy
 	
-	Given I am looking at cookies on "Public" "test"
+	Given I am looking at cookies on "Public" "ithc"
 	
 	And I see link with text "Privacy policy"
    	Then I click on the "Privacy policy" link
@@ -240,7 +240,7 @@ Scenario: English Privacy Policy
 	@RegressionSingle @Cookies
 	Scenario: Welsh Analytics Cookies opt in
 
-		Given I am looking at cookies on Welsh "Public" "test"
+		Given I am looking at cookies on Welsh "Public" "ithc"
 
 		#new cookies banner
 		And I see "Cwcis ar ffurflen Ymateb i wŷs rheithgor" on the page
@@ -391,7 +391,7 @@ Scenario: English Privacy Policy
 	@RegressionSingle @Cookies
 	Scenario: English Cookie Settings from Expense Calculator
 
-		Given I am looking at cookies on "Public" "test"
+		Given I am looking at cookies on "Public" "ithc"
 		And I navigate to "/expense-calculator" URL
 
 		And I see "Cookies on Reply to a jury summons" on the page

@@ -3,7 +3,7 @@ Feature: Regression Welsh_1st_ErrorChecks
 @RegressionWelsh
 Scenario Outline: Welsh_1st_ErrorChecks - status is Undeliverable
 
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -70,7 +70,7 @@ Scenario Outline: Welsh_1st_ErrorChecks - status is Undeliverable
 @RegressionWelsh
 Scenario Outline: Welsh_1st_ErrorChecks - Court date is in the past
 
-	Given I am on the welsh version of "Public" "test"
+	Given I am on the welsh version of "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -447,7 +447,7 @@ Examples:
 @RegressionWelsh
 Scenario Outline: Welsh response completed in Juror and login attempted on Digital
 
-Given I am on "Bureau" "test"
+Given I am on "Bureau" "ithc"
 
 Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -507,7 +507,7 @@ Examples:
 @RegressionWelsh
 Scenario Outline: Welsh Already Replied info page
 
-	Given I am on the welsh version of "Public" "test"
+	Given I am on the welsh version of "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -520,7 +520,7 @@ Scenario Outline: Welsh Already Replied info page
 		| part_no		| pool_number	| last_name		| postcode	| email 	|
 		| <juror_number>| <pool_number>	| <last_name>	| <postcode>| <email>	|
 
-	Given I am on the welsh version of "Public" "test"
+	Given I am on the welsh version of "Public" "ithc"
 
 	Then I see "A ydych yn ymateb dros eich hun neu ar ran rhywun arall?" on the page
 
