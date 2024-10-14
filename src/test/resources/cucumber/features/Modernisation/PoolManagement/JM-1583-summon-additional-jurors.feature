@@ -1,8 +1,8 @@
 Feature: JM-1583 Summon Additional Jurors
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario: Happy path to summon an additional juror for an active pool
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     And I log in as "MODTESTBUREAU"
 
     #create pool request
@@ -28,10 +28,10 @@ Feature: JM-1583 Summon Additional Jurors
     Then I select the pool that I have just created to move to the pool summary page
 
     Then the system will display non-editable information on the pool summary screen
-      |jurorsRequested|150|
+      |jurorsRequested|10 |
       |jurorsConfirmed|0|
       |jurorsSummoned|10|
-      |currentPoolSize|0 /150|
+      |currentPoolSize|0 /10|
       |courtName|Chester|
       |courtLocationCode|415|
       |courtStartDate||
@@ -42,10 +42,10 @@ Feature: JM-1583 Summon Additional Jurors
     And I set "Extra citizens to summon" to "1"
     And I press the "Summon more citizens" button
     Then the system will display non-editable information on the pool summary screen
-      |jurorsRequested|150|
+      |jurorsRequested|10|
       |jurorsConfirmed|0|
       |jurorsSummoned|11|
-      |currentPoolSize|0 /150|
+      |currentPoolSize|0 /10|
       |courtName|Chester|
       |courtLocationCode|415|
       |courtStartDate||
@@ -53,9 +53,9 @@ Feature: JM-1583 Summon Additional Jurors
     Then I click on the "Juror number" link
     Then The "11" new jurors have been sent a summons letter new schema
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario: Negative testing for summoning more citizens errors
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     And I log in as "MODTESTBUREAU"
 
     #create pool request
@@ -81,10 +81,10 @@ Feature: JM-1583 Summon Additional Jurors
     Then I select the pool that I have just created to move to the pool summary page
 
     Then the system will display non-editable information on the pool summary screen
-      |jurorsRequested|150|
+      |jurorsRequested|10|
       |jurorsConfirmed|0|
       |jurorsSummoned|10|
-      |currentPoolSize|0 /150|
+      |currentPoolSize|0 /10|
       |courtName|Chester|
       |courtLocationCode|415|
       |courtStartDate||
@@ -94,9 +94,9 @@ Feature: JM-1583 Summon Additional Jurors
     And I press the "Summon jurors" button
     Then The system shall display the following non editable details on the additional summons screen
       |poolNumber      |         |
-      |jurorsRequested |150      |
+      |jurorsRequested |10       |
       |jurorsConfirmed |0        |
-      |jurorsRequired  |150      |
+      |jurorsRequired  |10       |
       |citizensSummoned|10       |
       |catchmentArea   |415      |
 
@@ -123,8 +123,8 @@ Feature: JM-1583 Summon Additional Jurors
     Then I press the "Continue" button
     Then The system shall display the following non editable details on the additional summons screen
       |poolNumber      |         |
-      |jurorsRequested |150      |
+      |jurorsRequested |10       |
       |jurorsConfirmed |0        |
-      |jurorsRequired  |150      |
+      |jurorsRequired  |10       |
       |citizensSummoned|10       |
       |catchmentArea   |417      |

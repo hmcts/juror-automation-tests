@@ -636,6 +636,11 @@ public class DatabaseTesterNewSchemaDesign {
 			conn.commit();
 			log.info("Deleted from juror_mod.bureau_snapshot where juror_number=>" + juror_number);
 
+			pStmt = conn.prepareStatement("delete from juror_mod.bulk_print_data where juror_no='" + juror_number + "'");
+			pStmt.execute();
+			conn.commit();
+			log.info("Deleted from juror_mod.bulk_print_data where juror_number=>" + juror_number);
+
 
 		} catch (SQLException e) {
 			e.printStackTrace();
