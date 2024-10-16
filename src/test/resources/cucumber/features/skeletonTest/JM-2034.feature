@@ -1,8 +1,8 @@
 Feature: JM-2034 delete pool requests
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Test to delete a pool request as a bureau user
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     And I log in as "<user>"
     When I navigate to the pool request screen
@@ -22,14 +22,15 @@ Feature: JM-2034 delete pool requests
     And the pool is no longer visible
 
     Examples:
-      |user			|poolType |court |
-      |MODTESTBUREAU|Crown    |415   |
-      |MODTESTBUREAU|High     |415   |
-      |MODTESTBUREAU|Civil    |415   |
+      | user			| poolType | court |
+      | MODTESTBUREAU   | Crown    | 415   |
+      | MODTESTBUREAU   | High     | 415   |
+      | MODTESTBUREAU   | Civil    | 415   |
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Test that I am unable to delete a pool request with Jurors allocated to it
-    Given I am on "Bureau" "test"
+
+    Given I am on "Bureau" "ithc"
 
     And I log in as "<user>"
     When I navigate to the pool request screen
@@ -61,7 +62,7 @@ Feature: JM-2034 delete pool requests
     Then I clear down the data for the pool
 
     Examples:
-      |user			|poolType |court |
-      |MODTESTBUREAU|Crown    |415   |
-      |MODTESTBUREAU|High     |415   |
-      |MODTESTBUREAU|Civil    |415   |
+      | user		  | poolType | court |
+      | MODTESTBUREAU | Crown    | 415   |
+      | MODTESTBUREAU | High     | 415   |
+      | MODTESTBUREAU | Civil    | 415   |
