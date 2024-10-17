@@ -7,6 +7,8 @@ import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
+import static org.testng.AssertJUnit.assertTrue;
+
 public class StepDef_groups {
 	
 	private aSamplePO SPO;
@@ -100,4 +102,8 @@ public class StepDef_groups {
 	public void confirm_Radiobutton_withNameChecked(String radioButtonLabel, String selectUnSelected){
 	    GRP.confirm_Radiobutton_withNameChecked(radioButtonLabel, selectUnSelected);
 	};
+	@Then("^I see the Gov licence description on the page$")
+	public void jurorRecordTagIsVisible() {
+		assertTrue(GRP.seeGovNote());
+	}
 }

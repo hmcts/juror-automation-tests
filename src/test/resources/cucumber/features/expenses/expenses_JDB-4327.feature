@@ -21,6 +21,6 @@ Scenario: expensesJDB-4327 Start Page
 
 #	When I click on the "Welsh (Cymraeg)" link
 #	Then I see "Welsh title" on the page
-	And I see "All content is available under the Open Government Licence v3.0, except where otherwise stated" on the page
+	And I see the Gov licence description on the page
 	Then I press the "Start now" button
 	Then I see "Will you lose any income while doing jury service?" on the page
