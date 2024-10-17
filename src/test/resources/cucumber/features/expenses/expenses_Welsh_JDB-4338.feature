@@ -16,7 +16,7 @@ Scenario: expensesJDB-4338 Travel to Court Welsh
 	
 	#footer
 	
-	And I see "All content is available under the Open Government Licence v3.0, except where otherwise stated" on the page
+	And I see the Gov licence description on the page
 	And I see "Cwcis" on the page
 	And I do not see "Polisi preifatrwydd" on the page
 	

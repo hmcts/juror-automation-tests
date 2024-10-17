@@ -62,7 +62,39 @@ public class Accessibility {
 		driver.findElement(By.xpath("//html[@lang='"+expectedLang+"']"));
 		log.info("Page Language is =>"+expectedLang+"<= as expected");
 	}
-	
-	
+
+	public boolean expandDropdownForLinks(String summaryText) {
+
+		List<WebElement> summaryElements = driver.findElements(By.className("govuk-details__summary-text"));
+
+		for (WebElement summaryElement : summaryElements) {
+			if (summaryElement.getText().equals(summaryText)) {
+				System.out.println("Found summary element with text: " + summaryText);
+
+				WebElement detailsElement = summaryElement.findElement(By.xpath("ancestor::details"));
+
+				if (detailsElement.getAttribute("open") != null) {
+					System.out.println("The dropdown is already expanded.");
+					return true;
+				} else {
+					System.out.println("The dropdown is collapsed. Expanding it now...");
+
+					WebElement summaryClickable = detailsElement.findElement(By.tagName("summary"));
+					JavascriptExecutor js = (JavascriptExecutor) driver;
+					js.executeScript("arguments[0].click();", summaryClickable);
+
+					if (detailsElement.getAttribute("open") != null) {
+						System.out.println("The dropdown has been successfully expanded.");
+						return true;
+					} else {
+						System.out.println("Failed to expand the dropdown.");
+						return false;
+					}
+				}
+			}
+		}
+		System.out.println("No dropdown found with summary text: " + summaryText);
+		return false;
+	}
 
 }
