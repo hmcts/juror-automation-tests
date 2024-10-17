@@ -17,13 +17,13 @@ import io.cucumber.java.After;
 import org.openqa.selenium.support.PageFactory;
 
 public class StepDef_accessibility {
-	
+
 	private aSamplePO SPO;
 	private Login LGN;
 	private NavigationShared NAV;
 	private Accessibility ACS;
 	private final WebDriver webDriver;
-	
+
 	public StepDef_accessibility(SharedDriver webDriver) {
 		this.webDriver = webDriver;
 		SPO = PageFactory.initElements(webDriver, aSamplePO.class);
@@ -31,24 +31,28 @@ public class StepDef_accessibility {
 		NAV = PageFactory.initElements(webDriver, NavigationShared.class);
 		ACS = PageFactory.initElements(webDriver, Accessibility.class);
 	}
-		
-	
+
+
 	@When("^I do not see any links on the page that open to a new page without an alt text$")
 	public void altTextCheck() throws Throwable {
-	    try{
-	    	ACS.altTextCheck();
-	    } catch (AssertionError e){
-	    	ACS.altTextCheck();
-	    }
+		try {
+			ACS.altTextCheck();
+		} catch (AssertionError e) {
+			ACS.altTextCheck();
+		}
 	}
-	
+
 	@When("^the page language is \"([^\"]*)\"$")
 	public void pageLanguageCheck(String expectedLang) throws Throwable {
-	    try{
-	    	ACS.pageLanguageCheck(expectedLang);
-	    } catch (Exception e){
-	    	ACS.pageLanguageCheck(expectedLang);
-	    }
+		try {
+			ACS.pageLanguageCheck(expectedLang);
+		} catch (Exception e) {
+			ACS.pageLanguageCheck(expectedLang);
+		}
 	}
-	
+
+	@When("^I select the dropdown for \"([^\"]*)\"$")
+	public void dropdownExpandedBySummaryText(String summaryText) {
+		ACS.expandDropdownForLinks(summaryText);
+	}
 }
