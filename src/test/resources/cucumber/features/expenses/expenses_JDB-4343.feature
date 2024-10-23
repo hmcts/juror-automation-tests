@@ -21,7 +21,7 @@ Scenario: expensesJDB-4343 How much pay for travel
 	
 	#footer
 	
-	And I see "All content is available under the Open Government Licence v3.0, except where otherwise stated" on the page
+	And I see the Gov licence description on the page
 	And I see "Cookies" on the page
 	And I do not see "Privacy policy" on the page
 	

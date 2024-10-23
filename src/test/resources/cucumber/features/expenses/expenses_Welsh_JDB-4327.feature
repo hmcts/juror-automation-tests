@@ -18,6 +18,6 @@ Scenario: expensesJDB-4327 Welsh Start Page
 	And I see "y swm rydych yn rhagweld y byddwch yn ei wario i deithio i'r llys" on the page
 	And I see "treuliau eraill fel costau gofal plant neu gostau gofalu am rywun arall" on the page
 
-	And I see "All content is available under the Open Government Licence v3.0, except where otherwise stated" on the page
+	And I see the Gov licence description on the page
 	Then I press the "Cychwyn arni" button
 	Then I see "A fyddwch yn colli unrhyw incwm wrth ichi wasanaethu ar reithgor?" on the page

@@ -79,7 +79,7 @@ Scenario Outline: expensesJDB-4345_RoundUp
 	
 	Then I see "You can claim £<canClaim> for each day you'll lose income or have extra costs from doing jury service" on the page
 	
-	Then I click on the "How have my loss of earnings and expenses been calculated?" link
+	And I select the dropdown for "How have my loss of earnings and expenses been calculated?"
 	
 	And on Expenses I see "<earnings> each day" under "Loss of earnings"
 	
@@ -92,8 +92,8 @@ Scenario Outline: expensesJDB-4345_RoundUp
 	And under the "How we calculated this" heading I see "Travel"
 	
 	Then I see "You can claim £<totalTravel> for each day you travel to court" on the page 
-	
-	Then I click on the "How have my travel expenses been calculated?" link
+
+	And I select the dropdown for "How have my travel expenses been calculated?"
 	
 	And on Expenses I see "<carMiles> miles at 31.4p per mile = <carExpenses>" under "Car mileage"
 	
@@ -116,7 +116,7 @@ Scenario Outline: expensesJDB-4345_RoundUp
 	
    #footer
 	
-	And I see "All content is available under the Open Government Licence v3.0, except where otherwise stated" on the page
+	And I see the Gov licence description on the page
 	And I see "Cookies" on the page
 	And I do not see "Privacy policy" on the page
 	
@@ -231,8 +231,8 @@ Scenario Outline: expensesJDB-4345_earnings>64.95andexpenses=0
 	And under the "How we calculated this" heading I see "Loss of earnings and other expenses"
 	
 	Then I see "You can claim £<canClaim> for each day you'll lose income or have extra costs from doing jury service" on the page 
-	
-	Then I click on the "How have my loss of earnings and expenses been calculated?" link
+
+	And I select the dropdown for "How have my loss of earnings and expenses been calculated?"
 	
 	And on Expenses I see "<earnings> each day" under "Loss of earnings"
 	
@@ -267,7 +267,7 @@ Scenario Outline: expensesJDB-4345_earnings>64.95andexpenses=0
 	
    	#footer
 	
-	And I see "All content is available under the Open Government Licence v3.0, except where otherwise stated" on the page
+	And I see the Gov licence description on the page
 	And I see "Cookies" on the page
 	And I do not see "Privacy policy" on the page
 	
@@ -366,7 +366,7 @@ Scenario Outline: expensesJDB-4345_0earningsandexpenses>or<64.95
 	
 	Then I see "You can claim £<canClaim> for each day you'll lose income or have extra costs from doing jury service" on the page 
 	
-	Then I click on the "How have my loss of earnings and expenses been calculated?" link
+	And I select the dropdown for "How have my loss of earnings and expenses been calculated?"
 	
 	And under the "How we calculated this" heading I do not see "<earnings> each day"
 	
@@ -378,7 +378,7 @@ Scenario Outline: expensesJDB-4345_0earningsandexpenses>or<64.95
 	
 	Then I see "You can claim £<totalTravel> for each day you travel to court" on the page 
 	
-	Then I click on the "How have my travel expenses been calculated?" link
+	And I select the dropdown for "How have my travel expenses been calculated?"
 	
 	And on Expenses I see "<carMiles> miles at 31.4p per mile = <carExpenses>" under "Car mileage"
 	
@@ -401,7 +401,7 @@ Scenario Outline: expensesJDB-4345_0earningsandexpenses>or<64.95
 	
    #footer
 	
-	And I see "All content is available under the Open Government Licence v3.0, except where otherwise stated" on the page
+	And I see the Gov licence description on the page
 	And I see "Cookies" on the page
 	And I do not see "Privacy policy" on the page
 	

@@ -79,8 +79,8 @@ Scenario Outline: expenses_Welsh_JDB-4345_RoundUp
 	And under the "Sut wnaethom ni gyfrifo hwn" heading I see "Colli enillion ac unrhyw gostau eraill"
 	
 	Then I see "Gallwch hawlio £<canClaim> ar gyfer pob dydd y byddwch yn colli incwm neu bob dydd lle mae gennych gostau ychwanegol oherwydd eich bod yn gwasanaethu ar reithgor" on the page
-	
-	Then I click on the "Sut mae fy nhreuliau a faint o fy enillion yr wyf wedi eu colli wedi cael eu cyfrifo?" link
+
+	And I select the dropdown for "Sut mae fy nhreuliau a faint o fy enillion yr wyf wedi eu colli wedi cael eu cyfrifo?"
 	
 	And on Expenses I see "<earnings> fesul dydd  " under "Colli enillion"
 	
@@ -92,9 +92,9 @@ Scenario Outline: expenses_Welsh_JDB-4345_RoundUp
 	
 	And under the "Sut wnaethom ni gyfrifo hwn" heading I see "Teithio"
 	
-	Then I see "Gallwch hawlio £<totalTravel> ar gyfer pob dydd rydych yn teithio i'r llys." on the page 
-	
-	Then I click on the "Sut mae fy nhreuliau teithio wedi cael eu cyfrifo?" link
+	Then I see "Gallwch hawlio £<totalTravel> ar gyfer pob dydd rydych yn teithio i'r llys." on the page
+
+	And I select the dropdown for "Sut mae fy nhreuliau teithio wedi cael eu cyfrifo?"
 	
 	And on Expenses I see "<carMiles> o filltiroedd ar raddfa o 31.4p y filltir  = <carExpenses>" under "Milltiroedd mewn car"
 	
@@ -116,8 +116,8 @@ Scenario Outline: expenses_Welsh_JDB-4345_RoundUp
 	And I see "I gael rhagor o wybodaeth am sut mae treuliau yn cael eu cyfrifo a sut gall newidiadau i'ch gwasanaeth rheithgor effeithio ar y swm y gallwch ei hawlio, darllenwch y ddogfen beth allwch chi ei hawlio " on the page
 	
    #footer
-	
-	And I see "All content is available under the Open Government Licence v3.0, except where otherwise stated" on the page
+
+	And I see the Gov licence description on the page
 	And I see "Cwcis" on the page
 	And I do not see "Polisi preifatrwydd" on the page
 	
@@ -247,7 +247,7 @@ Scenario Outline: expensesJDB-4345_earnings>64.95andexpenses=0
 	
 	Then I see "Gallwch hawlio £<canClaim> ar gyfer pob dydd y byddwch yn colli incwm neu bob dydd lle mae gennych gostau ychwanegol oherwydd eich bod yn gwasanaethu ar reithgor" on the page 
 	
-	Then I click on the "Sut mae fy nhreuliau a faint o fy enillion yr wyf wedi eu colli wedi cael eu cyfrifo?" link
+	Then I select the dropdown for "Sut mae fy nhreuliau a faint o fy enillion yr wyf wedi eu colli wedi cael eu cyfrifo?"
 	
 	And on Expenses I see "<earnings> fesul dydd" under "Colli enillion"
 	
@@ -281,7 +281,7 @@ Scenario Outline: expensesJDB-4345_earnings>64.95andexpenses=0
 	
    	#footer
 	
-	And I see "All content is available under the Open Government Licence v3.0, except where otherwise stated" on the page
+	And I see the Gov licence description on the page
 	And I see "Cwcis" on the page
 	And I do not see "Polisi preifatrwydd" on the page
 	
@@ -393,7 +393,7 @@ Scenario Outline: expensesJDB-4345_0earningsandexpenses>or<64.95
 	
 	Then I see "Gallwch hawlio £<canClaim> ar gyfer pob dydd y byddwch yn colli incwm neu bob dydd lle mae gennych gostau ychwanegol oherwydd eich bod yn gwasanaethu ar reithgor" on the page 
 	
-	Then I click on the "Sut mae fy nhreuliau a faint o fy enillion yr wyf wedi eu colli wedi cael eu cyfrifo?" link
+	Then I select the dropdown for "Sut mae fy nhreuliau a faint o fy enillion yr wyf wedi eu colli wedi cael eu cyfrifo?"
 	
 	And under the "Sut wnaethom ni gyfrifo hwn" heading I do not see "<earnings> fesul dydd"
 	
@@ -428,7 +428,7 @@ Scenario Outline: expensesJDB-4345_0earningsandexpenses>or<64.95
 	
    #footer
 	
-	And I see "All content is available under the Open Government Licence v3.0, except where otherwise stated" on the page
+	And I see the Gov licence description on the page
 	And I see "Cwcis" on the page
 	And I do not see "Privacy policy" on the page
 	
