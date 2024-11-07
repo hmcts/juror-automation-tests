@@ -271,5 +271,26 @@ public class StepDef_trialsAndAttendance {
     @And("^I select the jurors from the \"([^\"]*)\" pool$")
     public void iSelectTheJurorsFromThePool(String poolNumber) {
 		TRL.checkPoolNumberCheckboxFor(poolNumber);
-    }
+	}
+
+	@And("^I click on the previous attendance day link \"([^\"]*)\" amount of times$")
+	public void iClickOnTheLinkAmountOfTimes(String numberOfClicks) {
+		int clicks = Integer.parseInt(numberOfClicks);
+
+		for (int i = 0; i < clicks; i++) {
+			TRL.clickPreviousAttendanceLink();
+
+			try {
+				Thread.sleep(2000);
+			} catch (InterruptedException e) {
+				Thread.currentThread().interrupt();
+				System.out.println("Interrupted during sleep: " + e.getMessage());
+			}
+		}
+
+		int daysInPast = clicks;
+		boolean isDateCorrect = TRL.verifyAttendanceDateAfterClicks(daysInPast);
+
+		System.out.println("Is the displayed attendance date correct? " + isDateCorrect);
+	}
 }

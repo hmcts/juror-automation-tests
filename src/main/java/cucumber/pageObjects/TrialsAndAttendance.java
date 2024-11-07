@@ -10,10 +10,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.NoSuchElementException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class TrialsAndAttendance {
 
@@ -487,6 +485,25 @@ public class TrialsAndAttendance {
         }
     }
 
+    public void clickPreviousAttendanceLink() {
+        WebElement link = driver.findElement(By.xpath("/html/body/div[4]/a"));
+        link.click();
+    }
+
+
+    public boolean verifyAttendanceDateAfterClicks(int daysInPast) {
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DAY_OF_YEAR, -daysInPast);
+        SimpleDateFormat formatter = new SimpleDateFormat("EEEE d MMMM yyyy", Locale.ENGLISH);
+        String targetDate = formatter.format(calendar.getTime());
+
+        System.out.println("Target date (expected): " + targetDate);
+
+        WebElement attendanceDateElement = driver.findElement(By.id("attendanceDate"));
+        String displayedDate = attendanceDateElement.getText().trim();
+
+        System.out.println("Displayed date: " + displayedDate);
+        return displayedDate.equals(targetDate);
+    }
 }
-
-
