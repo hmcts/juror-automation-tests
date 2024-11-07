@@ -1,9 +1,9 @@
 Feature: Regression English_1st_RA
 
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: English 1st Party RA
 
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -116,10 +116,10 @@ Examples:
 	| juror_number	| pool_number	| last_name				| postcode	| email 	|
 	| 045200062		| 452300061		| LNAMENINENINEONE		| CH1 2AN	| e@eeee.com|
 	
-@RegressionSingle @NewSchemaConverted
+@RegressionSingle
 Scenario Outline: Reasonable adjustments (DIABETES) to automatically update Juror db
 	
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -227,7 +227,7 @@ Scenario Outline: Reasonable adjustments (DIABETES) to automatically update Juro
 	#Confirmation
 	Then I see "You have completed your reply" on the page
 	
-	Given I am on "Bureau" "juror-test02" 	
+	Given I am on "Bureau" "ithc"
 	And I log in as "CPASS"
 	
 	When I click on the "Search" link
@@ -251,10 +251,10 @@ Examples:
 	| juror_number	| pool_number	| last_name			| postcode	| email 		|
 	| 045200063		| 452300062		| LNAMENINENINEONE	| CH1 2AN	| e@eeee.com	|
 	
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: Reasonable adjustments (OTHER) to automatically update Juror db
 	
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -363,7 +363,7 @@ Scenario Outline: Reasonable adjustments (OTHER) to automatically update Juror d
 	#Confirmation
 	Then I see "You have completed your reply" on the page
 	
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "ithc"
 	And I log in as "CPASS"
 
 	When I click on the "Search" link
@@ -385,10 +385,10 @@ Examples:
 	| juror_number	| pool_number	| last_name			| postcode	| email 		|
 	| 045200064		| 452300063		| LNAMENINENINEONE	| CH1 2AN	| e@eeee.com	|
 
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: Reasonable adjustments (MULTIPLE) to automatically update Juror db
 	
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -497,7 +497,7 @@ Scenario Outline: Reasonable adjustments (MULTIPLE) to automatically update Juro
 	#Confirmation
 	Then I see "You have completed your reply" on the page
 	
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "ithc"
 	And I log in as "CPASS"
 
 	When I click on the "Search" link

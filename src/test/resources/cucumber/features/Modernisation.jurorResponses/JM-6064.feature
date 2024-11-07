@@ -36,6 +36,7 @@ Feature:As a jury officer, I want to edit a juror's draft daily expenses
     And the user searches for juror record "<juror_number>" from the global search bar
     And I click on the "Expenses" link
     And I see "Daily expenses" on the page
+
     And I press change default expenses button
 
     And I set "Loss of earnings or benefits per day" to "100"
@@ -105,8 +106,19 @@ Feature:As a jury officer, I want to edit a juror's draft daily expenses
     And I see error "Other costs can only include numbers and a decimal point"
     And I click on the "Cancel without saving" link
     And I click on my draft expense link with todays date
+
+    #new validation of value input
+    And I set "Loss of earnings or benefits" to "10,00"
+    And I set "Extra care costs" to "10:00"
+    And I set "Other costs" to "0.010.10"
+    And I press the "Save and next" button
+    And I see error "Loss of earnings or benefits per day can only include numbers and a decimal point"
+    And I see error "Extra care costs can only include numbers and a decimal point"
+    And I see error "Other costs can only include numbers and a decimal point"
+
     And I set "Loss of earnings or benefits" to "300"
     And I set "Extra care costs" to "10"
+    And I set "Other costs" to "0"
     And I verify the banner message "You’ve made changes" on the page
     And I click on the "Recalculate totals." link
     And I press the "Save and next" button

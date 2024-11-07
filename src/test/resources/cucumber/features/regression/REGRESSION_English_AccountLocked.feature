@@ -1,9 +1,9 @@
 Feature: Regression_English_AccountLocked
 
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: 1st Party Account Locked
 
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -51,17 +51,20 @@ Scenario Outline: 1st Party Account Locked
 	And I press the "Continue" button	
 	And I do not see any links on the page that open to a new page without an alt text
 	
-#@JDB-2678
-	Then I see "For security reasons, your account has been locked due to multiple failed login attempts and you can no longer reply online. Please contact the Jury Central Summoning Bureau for more information - our details are below in the 'I do not have a juror number' section." on the page
+#@JM-8228
+	Then I see "You've tried to sign in too many times" on the page
+	And I see "Your summons reply is now locked. Try again in 30 minutes." on the page
+	And I see "Enter your name and postcode exactly as shown on your summons letter, even if they're incorrect. You can correct them later." on the page
+	And I see "If you still have problems, contact us." on the page
 	
 Examples:
 	| juror_number	| last_name	| postcode	| pool_number	|
 	| 045200095		| LNAME1129	| CH1 2AN	| 452300094		|
 
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: 3rd Party Account Locked
 
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -110,10 +113,11 @@ Scenario Outline: 3rd Party Account Locked
 	And I press the "Continue" button	
 	And I do not see any links on the page that open to a new page without an alt text
 	
-#@JDB-2678
-#JDB-3667
-	Then I see "For security reasons, this account has been locked due to multiple failed login attempts and you can no longer reply online. Please contact the Jury Central Summoning Bureau for more information - our details are below in the 'I do not have a juror number' section." on the page
-	And I do not see any links on the page that open to a new page without an alt text
+#@JM-8228
+	Then I see "You've tried to sign in too many times" on the page
+	And I see "The summons reply is now locked. Try again in 30 minutes." on the page
+	And I see "Enter the person's name and postcode exactly as shown on their summons letter, even if they're incorrect. You can correct them later." on the page
+	And I see "If you still have problems, contact us." on the page
 
 Examples:
 	| juror_number	| last_name			| postcode	| pool_number	|

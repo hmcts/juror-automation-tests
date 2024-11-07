@@ -1,9 +1,9 @@
 Feature: Regression_Welsh_AccountLocked
 
-@RegressionWelsh @NewSchemaConverted
-Scenario Outline: 1st Party Account Locked
+@RegressionWelsh
+Scenario Outline: 1st Party Account Locked Welsh
 
-	Given I am on the welsh version of "Public" "test"
+	Given I am on the welsh version of "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  	| pool_number	| att_date_weeks_in_future	| owner |
@@ -45,16 +45,20 @@ Scenario Outline: 1st Party Account Locked
 	And I press the "Parhau" button
 	And I do not see any links on the page that open to a new page without an alt text
 
-	Then I see "Am resymau diogelwch, mae eich cyfrif wedi'i gloi oherwydd ymdrechion mewngofnodi lluosog ac ni allwch ateb ar-lein bellach. Cysylltwch â Chanolfan Atgyfeirio Canolog y Rheithgor am fwy o wybodaeth - mae ein manylion isod yn yr adran 'Nid oes gennyf rif rheithgor'." on the page
-	
+#@JM-8228
+	Then I see "Rydych wedi ceisio mewngofnodi gormod o weithiau" on the page
+	And I see "Mae eich ymateb i wŷs bellach wedi'i gloi. Rhowch gynnig arall arni mewn 30 munud." on the page
+	And I see "Rhowch eich enw a'ch cod post yn union fel y dangosir ar eich llythyr gwŷs, hyd yn oed os ydynt yn anghywir. Gallwch eu cywiro yn ddiweddarach." on the page
+	And I see "Os ydych chi'n dal i gael problemau, cysylltwch â ni." on the page
+
 Examples:
 	| juror_number	| last_name	| postcode	| pool_number	|
 	| 045700060		| LNAME1977	| CH1 2AN	| 457300060		|
 
-@RegressionWelsh @NewSchemaConverted
-Scenario Outline: 3rd Party Account Locked
+@RegressionWelsh
+Scenario Outline: 3rd Party Account Locked Welsh
 
-	Given I am on the welsh version of "Public" "test"
+	Given I am on the welsh version of "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  	| pool_number	| att_date_weeks_in_future	| owner |
@@ -98,8 +102,11 @@ Scenario Outline: 3rd Party Account Locked
 	And I press the "Parhau" button
 	And I do not see any links on the page that open to a new page without an alt text
 
-	Then I see "Mae’r cyfrif hwn wedi cael ei gloi am resymau diogelwch oherwydd sawl ymgais aflwyddiannus i fewngofnodi. Ni allwch mwyach ymateb ar-lein. Os gwelwch yn dda, cysylltwch ȃ Swyddfa Ganolog Gwysio Rheithgor i gael rhagor o wybodaeth – mae ein manylion isod yn yr adran ‘nid oes gen i rif rheithiwr’." on the page
-	And I do not see any links on the page that open to a new page without an alt text
+#@JM-8228
+	Then I see "Rydych wedi ceisio mewngofnodi gormod o weithiau" on the page
+	And I see "Mae'r ymateb i wŷs bellach wedi’i gloi. Rhowch gynnig arall arni mewn 30 munud." on the page
+	And I see "Rhowch enw a chod post yr unigolyn yn union fel y dangosir ar ei lythyr gwŷs, hyd yn oed os ydynt yn anghywir. Gallwch eu cywiro yn ddiweddarach." on the page
+	And I see "Os ydych chi'n dal i gael problemau, cysylltwch â ni." on the page
 
 Examples:
 	| juror_number	| last_name	| postcode	| pool_number	|

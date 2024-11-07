@@ -1,8 +1,9 @@
 Feature: JM-3457 and JM-3456 - Digital Response
 
-  @JurorTransformationWIP @NewSchemaConverted @JurorDigitalNotConverted
-  Scenario Outline: Happy path test to check juror reasonable adjustment
-    Given I am on "Public" "test"
+  @JurorTransformationWIP
+  Scenario Outline: Happy path test to check juror reasonable adjustment digital
+
+    Given I am on "Public" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
@@ -13,10 +14,10 @@ Feature: JM-3457 and JM-3456 - Digital Response
     And juror "<juror_number>" has "LNAME" as "LNAME" new schema
 
     And I submit a digital response with reasonable adjustment
-      |part_no	       | pool_number    |last_name	|postcode	|email 	|adjustmentNeededCap  |details             |
-      |<juror_number>  |<pool_number>	|LNAME  	|CH2 2AA	|<email>|<adjustmentNeededCap>|<adjustmentNeeded>  |
+      | part_no	       | pool_number    | last_name	| postcode	| email   | adjustmentNeededCap  | details             |
+      | <juror_number> | <pool_number>	| LNAME  	| CH2 2AA	| <email> | <adjustmentNeededCap>| <adjustmentNeeded>  |
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     And I log in as "MODTESTBUREAU"
 
@@ -75,20 +76,20 @@ Feature: JM-3457 and JM-3456 - Digital Response
       | 041500138     | 415300238     | e@mail.com| hearing loss       | H - HEARING LOSS      | H - Hearing loss        | Hearing loss           |
 
 
-  @JurorTransformationWIP @NewSchemaConverted @JurorDigitalNotConverted
-  Scenario Outline: Errors and warnings on check court can accommodate
+  @JurorTransformationWIP
+  Scenario Outline: Errors and warnings on check court can accommodate digital
 
-    Given I am on "Public" "test"
+    Given I am on "Public" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
       | 415   | <juror_number> 	    | <pool_number>     | 5				            | 400	|
 
     And I submit a digital response with reasonable adjustment
-      |part_no	       |pool_number     |last_name	|postcode	|email 	|adjustmentNeededCap     |details             |
-      |<juror_number>  |<pool_number>	|lname  	     |CH2 2AA	|<email>|<adjustmentNeededCap>   |<adjustmentNeeded>  |
+      | part_no	       | pool_number    | last_name	| postcode	| email   | adjustmentNeededCap     | details             |
+      | <juror_number> | <pool_number>	| lname  	| CH2 2AA	| <email> | <adjustmentNeededCap>   | <adjustmentNeeded>  |
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     And I log in as "<user>"
 
     When the user searches for juror record "<juror_number>" from the global search bar
@@ -128,4 +129,4 @@ Feature: JM-3457 and JM-3456 - Digital Response
 
     Examples:
       | user          | juror_number  | pool_number   | email      | adjustmentNeededCap | adjustmentFullCaps   | adjustmentNeeded             |
-      | MODTESTBUREAU | 041500139     | 415300239     | e@mail.com |  Limited mobility   | L - LIMITED MOBILITY | Reasonable adjustment detail |
+      | MODTESTBUREAU | 041500139     | 415300239     | e@mail.com | Limited mobility    | L - LIMITED MOBILITY | Reasonable adjustment detail |
