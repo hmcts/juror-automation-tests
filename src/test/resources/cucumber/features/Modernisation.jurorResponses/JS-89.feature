@@ -201,7 +201,7 @@ Feature: JS-89
       | MODTESTCOURT  | 041523749        | 415321234     | TRIALTEST88  |
 
 
-  @JurorTransformationWIP @NewSchemaConverted
+  @JurorTransformation @NewSchemaConverted
   Scenario Outline: Check jurors attendance can be confirmed while being in a completed status
 
     Given I am on "Bureau" "ithc"
