@@ -1,12 +1,12 @@
 Feature: JM-3368 Super Urgent Paper Response Court
 
-	@JurorTransformationMulti @NewSchemaConverted
+	@JurorTransformationMulti
 	Scenario Outline: JM-3368 As Court User, record urgent UNHAPPY PATH Paper Response
 
 		Given I am on "bureau" "ithc"
 		Given a bureau owned pool is created with jurors
-			| court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
-			| 415   |<juror_number> 	| <pool_number>     | 1				            | 400	|
+			| court | juror_number  	| pool_number	    | att_date_weeks_in_future	| owner |
+			| 415   | <juror_number> 	| <pool_number>     | 1				            | 400	|
 
 		Then a new pool is inserted for where record has transferred to the court new schema
 			|part_no              | pool_no           | owner |
