@@ -3047,7 +3047,7 @@ Feature: Regression English_ReplyTypesIndicator
     Then I click on the "Mark as awaiting information" link
     And I set the radio button to "Juror"
     And I press the "Confirm" button
-    Then I see "AWAITING JUROR INFO" on the page
+    Then I see "Awaiting juror info" on the page
 
     And I click on the "Your work" link
 
@@ -3061,7 +3061,7 @@ Feature: Regression English_ReplyTypesIndicator
     Then I click on the "Mark as awaiting information" link
     And I set the radio button to "Juror"
     And I press the "Confirm" button
-    Then I see "AWAITING JUROR INFO" on the page
+    Then I see "Awaiting juror info" on the page
 
     And I click on the "Your work" link
 
@@ -3075,7 +3075,7 @@ Feature: Regression English_ReplyTypesIndicator
     Then I click on the "Mark as awaiting information" link
     And I set the radio button to "Juror"
     And I press the "Confirm" button
-    Then I see "AWAITING JUROR INFO" on the page
+    Then I see "Awaiting juror info" on the page
 
     And I click on the "Your work" link
 
@@ -3089,7 +3089,7 @@ Feature: Regression English_ReplyTypesIndicator
     Then I click on the "Mark as awaiting information" link
     And I set the radio button to "Juror"
     And I press the "Confirm" button
-    Then I see "AWAITING JUROR INFO" on the page
+    Then I see "Awaiting juror info" on the page
 
     And I click on the "Your work" link
 
@@ -3103,7 +3103,7 @@ Feature: Regression English_ReplyTypesIndicator
     Then I click on the "Mark as awaiting information" link
     And I set the radio button to "Juror"
     And I press the "Confirm" button
-    Then I see "AWAITING JUROR INFO" on the page
+    Then I see "Awaiting juror info" on the page
 
     And I click on the "Your work" link
 
@@ -3117,7 +3117,7 @@ Feature: Regression English_ReplyTypesIndicator
     Then I click on the "Mark as awaiting information" link
     And I set the radio button to "Juror"
     And I press the "Confirm" button
-    Then I see "AWAITING JUROR INFO" on the page
+    Then I see "Awaiting juror info" on the page
 
     And I click on the "Your work" link
 
@@ -3131,7 +3131,7 @@ Feature: Regression English_ReplyTypesIndicator
     Then I click on the "Mark as awaiting information" link
     And I set the radio button to "Juror"
     And I press the "Confirm" button
-    Then I see "AWAITING JUROR INFO" on the page
+    Then I see "Awaiting juror info" on the page
 
     And I click on the "Your work" link
 
@@ -3145,7 +3145,7 @@ Feature: Regression English_ReplyTypesIndicator
     Then I click on the "Mark as awaiting information" link
     And I set the radio button to "Juror"
     And I press the "Confirm" button
-    Then I see "AWAITING JUROR INFO" on the page
+    Then I see "Awaiting juror info" on the page
 
     And I click on the "Your work" link
 
@@ -3159,7 +3159,7 @@ Feature: Regression English_ReplyTypesIndicator
     Then I click on the "Mark as awaiting information" link
     And I set the radio button to "Juror"
     And I press the "Confirm" button
-    Then I see "AWAITING JUROR INFO" on the page
+    Then I see "Awaiting juror info" on the page
 
     Then I click on the "Your work" link
     Then I click on the "Awaiting information" link

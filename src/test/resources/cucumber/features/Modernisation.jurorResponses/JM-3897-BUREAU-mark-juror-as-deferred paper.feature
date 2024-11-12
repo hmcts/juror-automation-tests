@@ -40,7 +40,7 @@ Feature: JM-3897 mark juror as deferred paper
 
     And I click on the "View summons reply" link
     And I see the reply "type" on the response is "Deferral"
-    And I see the reply "status" on the response is "COMPLETED"
+    And I see the reply "status" on the response is "Completed"
 
     Examples:
       | user		  | juror_number| pool_number  |
@@ -87,7 +87,7 @@ Feature: JM-3897 mark juror as deferred paper
     And I click the summons reply tab
     And I click on the "View summons reply" link
     And I see the reply "type" on the response is "Deferral"
-    And I see the reply "status" on the response is "COMPLETED"
+    And I see the reply "status" on the response is "Completed"
 
     Then I clear down the data for all the pools I created for this test new schema
     Then the poolNumbers lists is empty

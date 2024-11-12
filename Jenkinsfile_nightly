@@ -1,7 +1,7 @@
 #!groovy
 properties([
   // this will trigger at 1630 during bst
-  pipelineTriggers([cron('30 15 * * 1-5')]),
+  pipelineTriggers([cron('30 16 * * 1-5')]),
   parameters([
     choice(choices: ['chrome', 'firefox', 'msedge'], name: 'Browser'),
     // Default to 'BAU packs in ITHC' run in branch 'nightly-dev' - but see override onMaster below
@@ -102,7 +102,7 @@ withNightlyPipeline(type, product, component, 600) {
   onMaster {
     if (params.masterOverride == false) {
     // Switch to MOD tests on staging
-      env.envName = "stg"
+      env.envName = "demo"
       env.runExpenses = "false"
       env.runFeatures = "false"
       env.runJurorTransformation = "true"
