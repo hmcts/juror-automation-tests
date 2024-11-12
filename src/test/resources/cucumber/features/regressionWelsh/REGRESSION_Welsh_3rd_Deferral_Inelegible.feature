@@ -188,7 +188,7 @@ Feature: Regression Welsh_3rd_Deferral_Inelegible
     Then I see "<juror_number>" on the page
 
 	#JM-7065
-    Then I see "<juror_number>" has reply type indicator "NEEDS REVIEW"
+    Then I see "<juror_number>" has reply type indicator "Needs review"
 
     Examples:
       | juror_number | last_name | postcode | pool_number |

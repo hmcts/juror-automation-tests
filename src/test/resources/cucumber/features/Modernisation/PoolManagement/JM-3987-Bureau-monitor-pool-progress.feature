@@ -2,6 +2,7 @@ Feature: JM-3987 Monitor Pools Progress
 
   @JurorTransformation
   Scenario: Test to show nil pools on the summoning progress screen
+
     Given I am on "Bureau" "ithc"
 
 #    And I have cleared down deferrals for "4" weeks in the future for court "415"

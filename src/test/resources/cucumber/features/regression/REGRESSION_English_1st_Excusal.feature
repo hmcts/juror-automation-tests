@@ -150,7 +150,7 @@ Feature: Regression English_1st_Excusal
     Given I am on "Bureau" "ithc"
     When I log in as "CPASS"
     Then I see "<juror_number>" on the page
-    Then I see "<juror_number>" has reply type indicator "EXCUSAL"
+    Then I see "<juror_number>" has reply type indicator "Excusal"
     And I click on "<juror_number>" in the same row as "<juror_number>"
 
     And I press the "Process reply" button
@@ -751,7 +751,7 @@ Feature: Regression English_1st_Excusal
     Given I am on "Bureau" "ithc"
     When I log in as "CPASS"
     Then I see "<juror_number>" on the page
-    Then I see "<juror_number>" has reply type indicator "EXCUSAL"
+    Then I see "<juror_number>" has reply type indicator "Excusal"
     And I click on "<juror_number>" in the same row as "<juror_number>"
     And I click on the "Deferral or excusal" link
 
