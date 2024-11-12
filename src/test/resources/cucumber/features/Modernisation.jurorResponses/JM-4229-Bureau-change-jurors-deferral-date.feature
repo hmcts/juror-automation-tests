@@ -21,7 +21,7 @@ Feature: Bureau change jurors deferral date
     Then I search for juror "<juror_number>"
     And I click the summons reply tab
     And I click on the "View summons reply" link
-    And I see the reply "type" on the response is "DEFERRAL"
+    And I see the reply "type" on the response is "Deferral"
 
     Then I click the process reply button
     Then I set the radio button to "Deferral request"

@@ -115,10 +115,10 @@ Feature: Regression English_ReplyTypesIndicator
 
     When I log in as "CPASS"
     Then I see "<juror_number>" on the page
-    Then I see "<juror_number>" has reply type indicator "NEEDS REVIEW"
+    Then I see "<juror_number>" has reply type indicator "Needs review"
 
     When I click on "<juror_number>" in the same row as "<juror_number>"
-    And I see "NEEDS REVIEW" on the page
+    And I see "Needs review" on the page
 
     Examples:
       | juror_number | last_name | postcode | email      | pool_number |
@@ -251,10 +251,10 @@ Feature: Regression English_ReplyTypesIndicator
     Given I am on "Bureau" "ithc"
     When I log in as "CPASS"
     Then I see "<juror_number>" on the page
-    Then I see "<juror_number>" has reply type indicator "DEFERRAL"
+    Then I see "<juror_number>" has reply type indicator "Deferral"
 
     When I click on "<juror_number>" in the same row as "<juror_number>"
-    And I see "DEFERRAL" on the page
+    And I see "Deferral" on the page
 
     Examples:
       | juror_number | pool_number | last_name       | postcode | email      |
@@ -373,7 +373,7 @@ Feature: Regression English_ReplyTypesIndicator
     Given I am on "Bureau" "ithc"
     When I log in as "CPASS"
     Then I see "<juror_number>" on the page
-    Then I see "<juror_number>" has reply type indicator "NEEDS REVIEW"
+    Then I see "<juror_number>" has reply type indicator "Needs review"
 
     When I click on "<juror_number>" in the same row as "<juror_number>"
     And I see "INELIGIBLE" on the page
@@ -495,7 +495,7 @@ Feature: Regression English_ReplyTypesIndicator
     Given I am on "Bureau" "ithc"
     When I log in as "CPASS"
     Then I see "<juror_number>" on the page
-    Then I see "<juror_number>" has reply type indicator "NEEDS REVIEW"
+    Then I see "<juror_number>" has reply type indicator "Needs review"
 
     When I click on "<juror_number>" in the same row as "<juror_number>"
     And I see "INELIGIBLE" on the page
@@ -625,7 +625,7 @@ Feature: Regression English_ReplyTypesIndicator
     Given I am on "Bureau" "ithc"
     When I log in as "CPASS"
     Then I see "<juror_number>" on the page
-    Then I see "<juror_number>" has reply type indicator "NEEDS REVIEW"
+    Then I see "<juror_number>" has reply type indicator "Needs review"
 
     When I click on "<juror_number>" in the same row as "<juror_number>"
     And I see "INELIGIBLE" on the page
@@ -755,7 +755,7 @@ Feature: Regression English_ReplyTypesIndicator
     Given I am on "Bureau" "ithc"
     When I log in as "CPASS"
     Then I see "<juror_number>" on the page
-    Then I see "<juror_number>" has reply type indicator "NEEDS REVIEW"
+    Then I see "<juror_number>" has reply type indicator "Needs review"
 
     When I click on "<juror_number>" in the same row as "<juror_number>"
     And I see "INELIGIBLE" on the page
@@ -884,7 +884,7 @@ Feature: Regression English_ReplyTypesIndicator
     Given I am on "Bureau" "ithc"
     When I log in as "CPASS"
     Then I see "<juror_number>" on the page
-    Then I see "<juror_number>" has reply type indicator "NEEDS REVIEW"
+    Then I see "<juror_number>" has reply type indicator "Needs review"
 
     When I click on "<juror_number>" in the same row as "<juror_number>"
     And I see "INELIGIBLE" on the page
@@ -1015,7 +1015,7 @@ Feature: Regression English_ReplyTypesIndicator
     Given I am on "Bureau" "ithc"
     When I log in as "CPASS"
     Then I see "<juror_number>" on the page
-    Then I see "<juror_number>" has reply type indicator "NEEDS REVIEW"
+    Then I see "<juror_number>" has reply type indicator "Needs review"
 
     When I click on "<juror_number>" in the same row as "<juror_number>"
     And I see "INELIGIBLE" on the page
@@ -1940,15 +1940,15 @@ Feature: Regression English_ReplyTypesIndicator
 
     And I log in as "ARAMIS1"
 
-    Then I see "<juror_number>" has reply type indicator "NEEDS REVIEW"
-    Then I see "<juror_number_two>" has reply type indicator "NEEDS REVIEW"
-    Then I see "<juror_number_three>" has reply type indicator "NEEDS REVIEW"
-    Then I see "<juror_number_four>" has reply type indicator "NEEDS REVIEW"
-    Then I see "<juror_number_five>" has reply type indicator "NEEDS REVIEW"
-    Then I see "<juror_number_six>" has reply type indicator "NEEDS REVIEW"
-    Then I see "<juror_number_seven>" has reply type indicator "NEEDS REVIEW"
-    Then I see "<juror_number_eight>" has reply type indicator "DEFERRAL"
-    Then I see "<juror_number_nine>" has reply type indicator "EXCUSAL"
+    Then I see "<juror_number>" has reply type indicator "Needs review"
+    Then I see "<juror_number_two>" has reply type indicator "Needs review"
+    Then I see "<juror_number_three>" has reply type indicator "Needs review"
+    Then I see "<juror_number_four>" has reply type indicator "Needs review"
+    Then I see "<juror_number_five>" has reply type indicator "Needs review"
+    Then I see "<juror_number_six>" has reply type indicator "Needs review"
+    Then I see "<juror_number_seven>" has reply type indicator "Needs review"
+    Then I see "<juror_number_eight>" has reply type indicator "Deferral"
+    Then I see "<juror_number_nine>" has reply type indicator "Excusal"
 
     When I click on "<juror_number>" in the same row as "<juror_number>"
     And I see "INELIGIBLE" on the page
@@ -2029,7 +2029,7 @@ Feature: Regression English_ReplyTypesIndicator
 
     Then I see "<juror_number_seven>" on the page
     When I click on "<juror_number_seven>" in the same row as "<juror_number_seven>"
-    And I see "NEEDS REVIEW" on the page
+    And I see "Needs review" on the page
 
     Then I press the "Process reply" button
     Then I choose the "Mark as responded" radio button
@@ -2042,7 +2042,7 @@ Feature: Regression English_ReplyTypesIndicator
 
     Then I see "<juror_number_eight>" on the page
     When I click on "<juror_number_eight>" in the same row as "<juror_number_eight>"
-    And I see "DEFERRAL" on the page
+    And I see "Deferral" on the page
 
     Then I press the "Process reply" button
     Then I choose the "Mark as responded" radio button
@@ -2055,7 +2055,7 @@ Feature: Regression English_ReplyTypesIndicator
 
     Then I see "<juror_number_nine>" on the page
     When I click on "<juror_number_nine>" in the same row as "<juror_number_nine>"
-    And I see "EXCUSAL" on the page
+    And I see "Excusal" on the page
 
     Then I press the "Process reply" button
     Then I choose the "Mark as responded" radio button
@@ -2077,7 +2077,7 @@ Feature: Regression English_ReplyTypesIndicator
     And I see "<juror_number_eleven>" on the page
 
     When I click on "<juror_number_eleven>" in the same row as "<juror_number_eleven>"
-    And I see "AUTO PROCESSED" on the page
+    And I see "Auto processed" on the page
 
     Then I click on the "Your work" link
     Then I click on the "Completed" link
@@ -2119,19 +2119,19 @@ Feature: Regression English_ReplyTypesIndicator
     Then I click on the "Completed" link
 
     When I click on "<juror_number_seven>" in the same row as "<juror_number_seven>"
-    And I see "NEEDS REVIEW" on the page
+    And I see "Needs review" on the page
 
     Then I click on the "Your work" link
     Then I click on the "Completed" link
 
     When I click on "<juror_number_eight>" in the same row as "<juror_number_eight>"
-    And I see "DEFERRAL" on the page
+    And I see "Deferral" on the page
 
     Then I click on the "Your work" link
     Then I click on the "Completed" link
 
     When I click on "<juror_number_nine>" in the same row as "<juror_number_nine>"
-    And I see "EXCUSAL" on the page
+    And I see "Excusal" on the page
 
     Examples:
       | juror_number | juror_number_two | juror_number_three | juror_number_four | juror_number_five | juror_number_six | juror_number_seven | juror_number_eight | juror_number_nine | juror_number_ten | juror_number_eleven | last_name | postcode | email             | pool_number | pool_number_two | pool_number_three |
@@ -3028,15 +3028,15 @@ Feature: Regression English_ReplyTypesIndicator
 
 	#Then I take a screenshot
 
-    Then I see "<juror_number>" has reply type indicator "NEEDS REVIEW"
-    Then I see "<juror_number_two>" has reply type indicator "NEEDS REVIEW"
-    Then I see "<juror_number_three>" has reply type indicator "NEEDS REVIEW"
-    Then I see "<juror_number_four>" has reply type indicator "NEEDS REVIEW"
-    Then I see "<juror_number_five>" has reply type indicator "NEEDS REVIEW"
-    Then I see "<juror_number_six>" has reply type indicator "NEEDS REVIEW"
-    Then I see "<juror_number_seven>" has reply type indicator "NEEDS REVIEW"
-    Then I see "<juror_number_eight>" has reply type indicator "DEFERRAL"
-    Then I see "<juror_number_nine>" has reply type indicator "EXCUSAL"
+    Then I see "<juror_number>" has reply type indicator "Needs review"
+    Then I see "<juror_number_two>" has reply type indicator "Needs review"
+    Then I see "<juror_number_three>" has reply type indicator "Needs review"
+    Then I see "<juror_number_four>" has reply type indicator "Needs review"
+    Then I see "<juror_number_five>" has reply type indicator "Needs review"
+    Then I see "<juror_number_six>" has reply type indicator "Needs review"
+    Then I see "<juror_number_seven>" has reply type indicator "Needs review"
+    Then I see "<juror_number_eight>" has reply type indicator "Deferral"
+    Then I see "<juror_number_nine>" has reply type indicator "Excusal"
 
     When I click on "<juror_number>" in the same row as "<juror_number>"
 
@@ -3125,7 +3125,7 @@ Feature: Regression English_ReplyTypesIndicator
     When I click on "<juror_number_seven>" in the same row as "<juror_number_seven>"
 	
 	#Then I take a screenshot
-    And I see "NEEDS REVIEW" on the page
+    And I see "Needs review" on the page
 
     Then I press the "More actions" button
     Then I click on the "Mark as awaiting information" link
@@ -3139,7 +3139,7 @@ Feature: Regression English_ReplyTypesIndicator
     When I click on "<juror_number_eight>" in the same row as "<juror_number_eight>"
 	
 	#Then I take a screenshot
-    And I see "DEFERRAL" on the page
+    And I see "Deferral" on the page
 
     Then I press the "More actions" button
     Then I click on the "Mark as awaiting information" link
@@ -3153,7 +3153,7 @@ Feature: Regression English_ReplyTypesIndicator
     When I click on "<juror_number_nine>" in the same row as "<juror_number_nine>"
 	
 	#Then I take a screenshot
-    And I see "EXCUSAL" on the page
+    And I see "Excusal" on the page
 
     Then I press the "More actions" button
     Then I click on the "Mark as awaiting information" link
@@ -3167,7 +3167,7 @@ Feature: Regression English_ReplyTypesIndicator
     When I click on "<juror_number>" in the same row as "<juror_number>"
 	
 	#Then I take a screenshot
-    And I see "NEEDS REVIEW" on the page
+    And I see "Needs review" on the page
 
     Then I click on the "Your work" link
     Then I click on the "Awaiting information" link
@@ -3175,7 +3175,7 @@ Feature: Regression English_ReplyTypesIndicator
     When I click on "<juror_number_two>" in the same row as "<juror_number_two>"
 	
 	#Then I take a screenshot
-    And I see "NEEDS REVIEW" on the page
+    And I see "Needs review" on the page
 
     Then I click on the "Your work" link
     Then I click on the "Awaiting information" link
@@ -3183,7 +3183,7 @@ Feature: Regression English_ReplyTypesIndicator
     When I click on "<juror_number_three>" in the same row as "<juror_number_three>"
 	
 	#Then I take a screenshot
-    And I see "NEEDS REVIEW" on the page
+    And I see "Needs review" on the page
 
     Then I click on the "Your work" link
     Then I click on the "Awaiting information" link
@@ -3191,7 +3191,7 @@ Feature: Regression English_ReplyTypesIndicator
     When I click on "<juror_number_four>" in the same row as "<juror_number_four>"
 	
 	#Then I take a screenshot
-    And I see "NEEDS REVIEW" on the page
+    And I see "Needs review" on the page
 
     Then I click on the "Your work" link
     Then I click on the "Awaiting information" link
@@ -3199,7 +3199,7 @@ Feature: Regression English_ReplyTypesIndicator
     When I click on "<juror_number_five>" in the same row as "<juror_number_five>"
 	
 	#Then I take a screenshot
-    And I see "NEEDS REVIEW" on the page
+    And I see "Needs review" on the page
 
     Then I click on the "Your work" link
     Then I click on the "Awaiting information" link
@@ -3207,7 +3207,7 @@ Feature: Regression English_ReplyTypesIndicator
     When I click on "<juror_number_six>" in the same row as "<juror_number_six>"
 	
 	#Then I take a screenshot
-    And I see "NEEDS REVIEW" on the page
+    And I see "Needs review" on the page
 
     Then I click on the "Your work" link
     Then I click on the "Awaiting information" link
@@ -3215,7 +3215,7 @@ Feature: Regression English_ReplyTypesIndicator
     When I click on "<juror_number_seven>" in the same row as "<juror_number_seven>"
 	
 	#Then I take a screenshot
-    And I see "NEEDS REVIEW" on the page
+    And I see "Needs review" on the page
 
     Then I click on the "Your work" link
     Then I click on the "Awaiting information" link
@@ -3223,7 +3223,7 @@ Feature: Regression English_ReplyTypesIndicator
     When I click on "<juror_number_eight>" in the same row as "<juror_number_eight>"
 	
 	#Then I take a screenshot
-    And I see "NEEDS REVIEW" on the page
+    And I see "Needs review" on the page
 
     Then I click on the "Your work" link
     Then I click on the "Awaiting information" link
@@ -3231,7 +3231,7 @@ Feature: Regression English_ReplyTypesIndicator
     When I click on "<juror_number_nine>" in the same row as "<juror_number_nine>"
 	
 	#Then I take a screenshot
-    And I see "NEEDS REVIEW" on the page
+    And I see "Needs review" on the page
 
     Examples:
       | juror_number | juror_number_two | juror_number_three | juror_number_four | juror_number_five | juror_number_six | juror_number_seven | juror_number_eight | juror_number_nine | last_name | postcode | email             | pool_number | pool_number_two | pool_number_three |

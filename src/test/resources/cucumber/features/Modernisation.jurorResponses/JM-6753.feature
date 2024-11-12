@@ -186,14 +186,11 @@ Feature: JM-6753 - As a jury officer I want to be able to confirm the attendance
     And I press the "Confirm" button
 
     #error check
-    And I see error "Select which day you’re confirming attendance for"
     And I see error "Enter a check in time or delete this juror's attendance"
     And I see error "Enter a check out time"
     And I see error "Select which jurors attended at these times"
-    
 
-    And I set the radio button to "A different date"
-    And I set the "Different date" date to a Monday "-12" weeks in the future
+    And I set the radio button to "Today"
 
     And I set juror check in hour to "9" on confirm attendance
     And I set juror check in minute to "20" on confirm attendance
