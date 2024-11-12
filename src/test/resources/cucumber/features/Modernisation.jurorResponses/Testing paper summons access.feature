@@ -28,7 +28,7 @@ Feature: JM-4079 Testing paper summons access
     When I click on the "No, skip and process later" link
 
     #validate results
-    And I see the reply "status" on the response "To Do"
+    And I see the reply "status" on the response is "To Do"
     And I see the reply "type" on the response is "Needs review"
     And I see "Juror’s service start date has passed - process as a priority." in the response banner
     And I see Reply Method is "Paper"

@@ -18,7 +18,7 @@ Feature: JM-3899
 
     Then the view summons reply page is displayed
 
-    And I see the reply "status" on the response "To Do"
+    And I see the reply "status" on the response is "To Do"
     And I see the reply "type" on the response is "Deferral"
 
     Then I click on the "View juror's record" link
@@ -67,7 +67,7 @@ Feature: JM-3899
 
     Then the view summons reply page is displayed
 
-    And I see the reply "status" on the response "To Do"
+    And I see the reply "status" on the response is "To Do"
     And I see the reply "type" on the response is "Deferral"
 
     Then I click on the "View juror's record" link

@@ -47,7 +47,7 @@ Feature: JM-3831
     And I click done on the juror summons reply page
     Then the view summons reply page is displayed
 
-    And I see the reply "status" on the response "To Do"
+    And I see the reply "status" on the response is "To Do"
     And I see the reply "type" on the response is "Excusal"
 
     #process response : cancel and return
