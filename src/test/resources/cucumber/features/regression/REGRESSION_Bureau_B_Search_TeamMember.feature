@@ -85,7 +85,7 @@ Scenario Outline: Lift from QC Script for Bureau B Search
 	
 	When I click on "<juror_number2>" in the same row as "<juror_number2>"
 	Then I see "Reply status" on the page
-	And I see "COMPLETED" on the page
+	And I see "Completed" on the page
 
 	Given auto straight through processing has been enabled new schema
 	

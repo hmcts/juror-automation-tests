@@ -3,7 +3,7 @@ Feature: Bureau Process Options
 @RegressionSingle @NewSchemaConverted
 Scenario Outline: Cycle through process options
 
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 	Given auto straight through processing has been disabled new schema
 
 	Given a bureau owned pool is created with jurors
@@ -19,7 +19,7 @@ Scenario Outline: Cycle through process options
 		|part_no		|pool_number	|last_name		|postcode	|email 	|
 		|<juror_number>	|<pool_number>	|<last_name>	|<postcode>	|a@a.com|
 
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "ithc"
 	And I log in as "MODTESTBUREAU"
 
 	When I click on the "Assign Replies" link
@@ -271,7 +271,7 @@ Scenario Outline: Closed process options
 	Then the process reply button is not visible
 	Then I do not see "PDF sent to court" on the page
 
-	Then I see "COMPLETED" on the page
+	Then I see "Completed" on the page
 
 Examples:
 	| juror_number	| pool_number 	| last_name 		| postcode 	|

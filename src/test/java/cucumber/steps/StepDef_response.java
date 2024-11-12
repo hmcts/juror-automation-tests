@@ -67,7 +67,7 @@ public class StepDef_response {
 				NAV.select_fromDropdown("D - DECEASED", "Reason for the excusal request");
 				NAV.press_buttonByName("Confirm");
 			} catch (Exception | AssertionError e) {
-				NAV.textPresentOnPage("COMPLETED");
+				NAV.textPresentOnPage("Completed");
 				NAV.textPresentOnPage("Responded");
 			}
 

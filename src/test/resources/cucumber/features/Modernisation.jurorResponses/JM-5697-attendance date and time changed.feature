@@ -439,7 +439,7 @@ Feature: As a jury officer i need to send a attendance date and time changed mes
     When I select that the summons reply has been signed
     And I click done on the juror summons reply page
 
-    And I see the reply "status" on the response is "TO DO"
+    And I see the reply "status" on the response is "To Do"
     And I see the reply "type" on the response is "Deferral"
 
     And I press the "Process reply" button
