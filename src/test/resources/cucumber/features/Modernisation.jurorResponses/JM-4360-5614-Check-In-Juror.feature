@@ -101,7 +101,7 @@ Feature: JM-4360 - As a jury officer I need to be able to check jurors in for th
     And I input juror "<juror_number>" to be checked in
     And I press the "Check in juror" button
     And I see "9:00am" in the same row as "<juror_number>"
-    And I update juror "<juror_number>" to have a police check status of "INELIGIBLE"
+    And I update juror "<juror_number>" to have a police check status of "Ineligible"
 
     When the user searches for juror record "<juror_number>" from the global search bar
     And I see police check has updated to "Failed"
