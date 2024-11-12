@@ -4,10 +4,8 @@ import cucumber.utils.AngularJsHTTPCallWait;
 import cucumber.utils.WaitUtil_v2;
 import cucumber.utils.WaitUtils;
 import org.apache.log4j.Logger;
-import org.openqa.selenium.By;
+import org.openqa.selenium.*;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -21,7 +19,6 @@ public class PoolRequests {
     private final WaitUtils wait;
     private final WaitUtil_v2 wait1;
     private final AngularJsHTTPCallWait aJsWait;
-    private final NavigationShared NAV;
     private final Header HEADER_PAGE;
     @FindBy(xpath = "//div[@class=\"govuk-summary-list__row govuk-summary-list__row--no-actions\"]//dd[@class=\"govuk-summary-list__value\"]")
     public List<WebElement> courtAttendanceTime;
@@ -150,7 +147,6 @@ public class PoolRequests {
         wait = new WaitUtils(driver);
         wait1 = new WaitUtil_v2(driver);
         aJsWait = new AngularJsHTTPCallWait(driver);
-        NAV = new NavigationShared(driver);
         HEADER_PAGE = PageFactory.initElements(driver, Header.class);
     }
 
@@ -195,7 +191,6 @@ public class PoolRequests {
     public boolean tabPresentAndCorrect(final String tabName) {
         log.info("Checking tab is present and correct");
         clickTab(tabName);
-        NAV.waitForPageLoad();
 //        return tabFocussed(tabName) & tableHeadingsVisible();
         return tableHeadingsVisible();
     }
@@ -301,6 +296,7 @@ public class PoolRequests {
         log.info("Entering new date");
         attendanceDateField.clear();
         attendanceDateField.sendKeys(weekendDateValue);
+        attendanceDateField.sendKeys(Keys.TAB);
 
     }
 

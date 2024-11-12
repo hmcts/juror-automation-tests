@@ -176,14 +176,15 @@ public class StepDef_jurorpool {
     }
 
     @When("^I select the pool that I have just created to move to the pool summary page$")
-    public void aPoolNumberIsSelectedToMoveToTheCreateAPoolSummaryPage() {
+    public void aPoolNumberIsSelectedToMoveToTheCreateAPoolSummaryPage() throws Throwable {
         try {
             NAV.click_link_by_text(poolNumber.get());
         } catch (Exception e) {
             System.out.println("Pool not found, trying another method");
             POOL_REQUESTS_PAGE.clickTab("Search");
             POOL_SEARCH.enterPoolNo(poolNumber.get());
-            POOL_SEARCH.clickContinue();
+//            POOL_SEARCH.clickContinue();
+            NAV.press_buttonByName("Continue");
         }
     }
 
@@ -430,7 +431,7 @@ public class StepDef_jurorpool {
     }
 
     @And("^I select a new date \"([^\"]*)\" week in the future$")
-    public void iSelectANewDate(int weekInFuture) {
+    public void iSelectANewDate(int weekInFuture) throws Throwable {
         String datePattern = "dd/MM/yyyy";
         String fullDatePattern = "EEEEE dd MMMMM yyyy";
         Calendar date = Calendar.getInstance();
@@ -440,6 +441,7 @@ public class StepDef_jurorpool {
 
         POOL_REQUESTS_PAGE.enterNewDate(newDate);
         POOL_REQUESTS_PAGE.confirmNewDate();
+//        NAV.press_buttonByName("Change");
 
     }
 
@@ -528,9 +530,11 @@ public class StepDef_jurorpool {
     }
 
     @When("^I click the create nil pool confirmation button$")
-    public void iClickCreateNilConfirmation() {
-        POOL_REQUESTS_PAGE.submitCourtDeferrals();
+    public void iClickCreateNilConfirmation() throws Throwable {
+//        POOL_REQUESTS_PAGE.submitCourtDeferrals();
+        NAV.press_buttonByName("Create nil pool");
     }
+
 
     @Then("^I should see the check your answers page for a nil pool$")
     public void iShouldSeeCheckYourAnswersForNilPool() {
@@ -915,7 +919,7 @@ public class StepDef_jurorpool {
     }
 
     @And("^I search for pool number$")
-    public void globalSearchForPool() {
+    public void globalSearchForPool() throws Throwable {
         JUROR_RECORD_SEARCH.searchForRecordFromPoolSearch(poolNumber.get());
     }
 
@@ -2234,8 +2238,8 @@ public class StepDef_jurorpool {
     }
 
     @Then("^I click continue on the update juror record screen$")
-    public void iClickContinueToMarkTheJurorAsDeceased() {
-        JUROR_RECORD_SEARCH.clickContinue();
+    public void iClickContinueToMarkTheJurorAsDeceased() throws Throwable {
+            JUROR_RECORD_SEARCH.clickContinue();
     }
 
     @And("^I see the juror record updated banner containing \"([^\"]*)\"$")
