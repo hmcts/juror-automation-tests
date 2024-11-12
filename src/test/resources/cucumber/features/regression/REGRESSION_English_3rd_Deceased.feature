@@ -2,13 +2,13 @@ Feature: Regression English_3rd_Deceased
 
 #TO DO: WELSH 3rd DECEASED
 
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: English 3rd Deceased
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
-		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
-		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
+		| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   | <juror_number>| <pool_number>	| 5				            | 400	|
 
 	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
 	And juror "<juror_number>" has "FIRST_NAME" as "FNAMESEVENONETHREE" new schema
@@ -65,7 +65,7 @@ Scenario Outline: English 3rd Deceased
 	And I see "You do not need to do anything else" on the page
 	And I see "Jurors are selected at random from the electoral roll. This is not always completely up to date. That's why we sent a jury summons to this person. We do apologise for this and hope it has not caused too much distress." on the page
 
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "ithc"
 	And I log in as "MODTESTBUREAU"
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"

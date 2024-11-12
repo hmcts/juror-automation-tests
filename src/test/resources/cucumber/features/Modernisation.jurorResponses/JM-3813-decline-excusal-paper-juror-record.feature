@@ -22,7 +22,7 @@ Feature: JM-3813
     Then the view summons reply page is displayed
 
     And I see the reply "status" on the response is "TO DO"
-    And I see the reply "type" on the response is "EXCUSAL"
+    And I see the reply "type" on the response is "Excusal"
 
     #process response : cancel and return
     Then I see the name of the juror on the page header

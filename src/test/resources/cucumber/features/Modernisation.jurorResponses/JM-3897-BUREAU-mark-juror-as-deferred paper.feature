@@ -13,7 +13,7 @@ Feature: JM-3897 mark juror as deferred paper
     Given I create an active "civil" court pool request for court "415", "14" Mondays in the future
     When the user searches for juror record "<juror_number>" from the global search bar
     Then I record a happy path deferral paper summons response
-    And I see the reply "type" on the response is "DEFERRAL"
+    And I see the reply "type" on the response is "Deferral"
     
     Then I click the process reply button
     Then I set the radio button to "Deferral request"
@@ -39,7 +39,7 @@ Feature: JM-3897 mark juror as deferred paper
     And I click the summons reply tab
 
     And I click on the "View summons reply" link
-    And I see the reply "type" on the response is "DEFERRAL"
+    And I see the reply "type" on the response is "Deferral"
     And I see the reply "status" on the response is "COMPLETED"
 
     Examples:
@@ -60,7 +60,7 @@ Feature: JM-3897 mark juror as deferred paper
     Given I create an active "civil" court pool request for court "415", "14" Mondays in the future
     When the user searches for juror record "<juror_number>" from the global search bar
     Then I record a happy path deferral paper summons response
-    And I see the reply "type" on the response is "DEFERRAL"
+    And I see the reply "type" on the response is "Deferral"
 
     Then I click the process reply button
     Then I set the radio button to "Deferral request"
@@ -86,7 +86,7 @@ Feature: JM-3897 mark juror as deferred paper
     When the user searches for juror record "<juror_number>" from the global search bar
     And I click the summons reply tab
     And I click on the "View summons reply" link
-    And I see the reply "type" on the response is "DEFERRAL"
+    And I see the reply "type" on the response is "Deferral"
     And I see the reply "status" on the response is "COMPLETED"
 
     Then I clear down the data for all the pools I created for this test new schema
@@ -107,7 +107,7 @@ Feature: JM-3897 mark juror as deferred paper
     Given I log in as "<user>"
     When the user searches for juror record "<juror_number>" from the global search bar
     Then I record a happy path deferral paper summons response
-    And I see the reply "type" on the response is "DEFERRAL"
+    And I see the reply "type" on the response is "Deferral"
 
     Then I click the process reply button
     Then I set the radio button to "Deferral request"
@@ -132,7 +132,7 @@ Feature: JM-3897 mark juror as deferred paper
     Given I log in as "<user>"
     When the user searches for juror record "<juror_number>" from the global search bar
     Then I record a happy path deferral paper summons response
-    And I see the reply "type" on the response is "DEFERRAL"
+    And I see the reply "type" on the response is "Deferral"
 
     Then I click the process reply button
     Then I set the radio button to "Deferral request"

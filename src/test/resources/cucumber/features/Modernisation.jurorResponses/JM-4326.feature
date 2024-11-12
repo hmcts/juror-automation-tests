@@ -19,7 +19,7 @@ Feature: JM-4326 - Defer a juror and then complete their service at a later date
     #search for juror and record paper response
     When the user searches for juror record "<juror_number>" from the global search bar
     Then I record a happy path deferral paper summons response
-    And I see the reply "type" on the response is "DEFERRAL"
+    And I see the reply "type" on the response is "Deferral"
 
     #process response as deferral
     Then I click the process reply button
@@ -60,7 +60,7 @@ Feature: JM-4326 - Defer a juror and then complete their service at a later date
     And I see "Deferral granted (other)" in the same row as "Processing outcome"
     And I click on the "View summons reply" link
     And I see the reply status has updated to "COMPLETED"
-    And I see the reply type has been updated to "DEFERRAL"
+    And I see the reply type has been updated to "Deferral"
 
     Examples:
       |user			|juror_number  |pool_number  |
@@ -86,7 +86,7 @@ Feature: JM-4326 - Defer a juror and then complete their service at a later date
 
     #record paper summons type - deferral
     Then I record a happy path deferral paper summons response
-    And I see the reply "type" on the response is "DEFERRAL"
+    And I see the reply "type" on the response is "Deferral"
 
     #process as deferral
     Then I click the process reply button
@@ -126,7 +126,7 @@ Feature: JM-4326 - Defer a juror and then complete their service at a later date
     And I see "Deferral granted (other)" in the same row as "Processing outcome"
     And I click on the "View summons reply" link
     And I see the reply status has updated to "COMPLETED"
-    And I see the reply type has been updated to "DEFERRAL"
+    And I see the reply type has been updated to "Deferral"
 
 
     Examples:
@@ -162,7 +162,7 @@ Feature: JM-4326 - Defer a juror and then complete their service at a later date
     When the user searches for juror record "<juror_number>" from the global search bar
     And I click the summons reply tab
     And I click on the "View summons reply" link
-    And I see the reply "type" on the response is "DEFERRAL"
+    And I see the reply "type" on the response is "Deferral"
 
     Then I click the process reply button
     Then I set the radio button to "Deferral request"
@@ -220,7 +220,7 @@ Feature: JM-4326 - Defer a juror and then complete their service at a later date
 
     #failing due to JM-4750
     And I click on the "View summons reply" link
-    And I see the reply "type" on the response is "DEFERRAL"
+    And I see the reply "type" on the response is "Deferral"
 
     #process as deferral
     Then I click the process reply button
@@ -255,7 +255,7 @@ Feature: JM-4326 - Defer a juror and then complete their service at a later date
     And I see "Deferral granted (other)" in the same row as "Processing outcome"
     And I click on the "View summons reply" link
     And I see the reply status has updated to "COMPLETED"
-    And I see the reply type has been updated to "DEFERRAL"
+    And I see the reply type has been updated to "Deferral"
 
     Examples:
       |user			|juror_number  |pool_number  |

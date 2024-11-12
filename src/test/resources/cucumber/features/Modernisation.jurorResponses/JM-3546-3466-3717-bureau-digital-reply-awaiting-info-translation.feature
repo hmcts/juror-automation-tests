@@ -49,7 +49,7 @@ Feature: JM-3546 and JM-3466 Bureau User Marks Digital Response as Awaiting Info
     #check response is updated correctly
     And I am on the modernisation version of View Summons Reply
     Then I see the reply "status" on the response is "AWAITING JUROR INFO"
-	Then I see the reply "type" on the response is "NEEDS REVIEW"
+	Then I see the reply "type" on the response is "Needs review"
     Then I see Reply Method is "Digital"
 
     Examples:
@@ -103,7 +103,7 @@ Feature: JM-3546 and JM-3466 Bureau User Marks Digital Response as Awaiting Info
     #check response is updated correctly
     And I am on the modernisation version of View Summons Reply
     Then I see the reply "status" on the response is "AWAITING JUROR INFO"
-    Then I see the reply "type" on the response is "NEEDS REVIEW"
+    Then I see the reply "type" on the response is "Needs review"
     Then I see Reply Method is "Digital"
 
     Examples:
@@ -149,7 +149,7 @@ Feature: JM-3546 and JM-3466 Bureau User Marks Digital Response as Awaiting Info
     #check response is updated correctly
     And I am on the modernisation version of View Summons Reply
     Then I see the reply "status" on the response is "AWAITING JUROR INFO"
-    Then I see the reply "type" on the response is "NEEDS REVIEW"
+    Then I see the reply "type" on the response is "Needs review"
     Then I see Reply Method is "Digital"
 
     Examples:

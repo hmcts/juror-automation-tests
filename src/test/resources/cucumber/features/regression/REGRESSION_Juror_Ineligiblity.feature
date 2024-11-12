@@ -1518,7 +1518,7 @@ Feature: Regression Test Ineligbility
     Given I am on "Bureau" "ithc"
     When I log in as "CPASS"
     Then I see "<juror_number>" on the page
-    Then I see "<juror_number>" has reply type indicator "NEEDS REVIEW"
+    Then I see "<juror_number>" has reply type indicator "Needs review"
 
     Examples:
       | juror_number | last_name         | postcode | email             | pool_number |
@@ -1678,7 +1678,7 @@ Feature: Regression Test Ineligbility
     Given I am on "Bureau" "ithc"
     When I log in as "CPASS"
     Then I see "<juror_number>" on the page
-    Then I see "<juror_number>" has reply type indicator "NEEDS REVIEW"
+    Then I see "<juror_number>" has reply type indicator "Needs review"
 
     Examples:
       | juror_number | last_name | postcode | email             | pool_number |
