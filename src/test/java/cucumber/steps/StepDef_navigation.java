@@ -318,7 +318,7 @@ public class StepDef_navigation {
 		NAV.setProcessReplyTo_("Responded");
 		NAV.check_checkbox("Mark juror as 'responded'");
 		NAV.press_buttonByName("Confirm");
-		NAV.textPresentOnPage("COMPLETED");
+		NAV.textPresentOnPage("Completed");
 	}
 
 	@When("^I click on the \"(.*)\" link$")

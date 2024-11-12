@@ -17,7 +17,7 @@ Feature: JM-3997
     And I see the juror record updated banner containing "Summons undeliverable"
     And I see the juror status on the juror record screen has updated to "Undeliverable"
     And I click the summons reply tab
-    And I see the summons reply status is "SUMMONS NOT RECEIVED"
+    And I see the summons reply status is "Summons not received"
 
     Examples:
       | user          | juror_number  | pool_number   |

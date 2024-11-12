@@ -95,7 +95,7 @@ Scenario Outline: Lift from QC Script for Bureau A Functionality
 
 	And I click on the "Your work" link
 	When I click on the "Awaiting information" link
-	Then I see "AWAITING COURT REPLY" in the same row as "<juror_number_one>"
+	Then I see "Awaiting court reply" in the same row as "<juror_number_one>"
 
 	And I click on the "Search" link
 	And I set "Juror's pool number" to "<pool_number_two>"
@@ -109,10 +109,10 @@ Scenario Outline: Lift from QC Script for Bureau A Functionality
 	Then I see "Mark this reply as awaiting information" on the page
 	When I choose the "Court" radio button
 	And I press the "Confirm" button
-	Then I see "AWAITING COURT REPLY" on the page
+	Then I see "Awaiting court reply" on the page
 	And I click on the "Your work" link
 	When I click on the "Awaiting information" link
-	Then I see "AWAITING COURT REPLY" in the same row as "<juror_number_two>"
+	Then I see "Awaiting court reply" in the same row as "<juror_number_two>"
 
 	And I click on the "Search" link
 	And I set "Juror's pool number" to "<pool_number_three>"
@@ -127,7 +127,7 @@ Scenario Outline: Lift from QC Script for Bureau A Functionality
 	When I click on the "Download as a PDF" link
 
 	And I see "<juror_number_three>" on the page
-	Then I do not see "COMPLETED" on the page
+	Then I do not see "Completed" on the page
 
 	When I click on the "Back" link
 		
@@ -310,7 +310,7 @@ Scenario Outline: Bureau A script, steps 24 onwards
 	And I click on the "Mark as awaiting information" link
 	And I choose the "Court" radio button
 	And I press the "Confirm" button
-	Then I see "AWAITING COURT REPLY" on the page
+	Then I see "Awaiting court reply" on the page
 	
 	Given I am on "Bureau" "test"
 	And I log in as "MODTESTBUREAU"

@@ -113,7 +113,7 @@ Scenario Outline: 3rd Party English null values are not saved as spaces
 	When I select "Mark as responded" from Process reply
 	And I check the "Mark juror as 'responded'" checkbox
 	And I press the "Confirm" button
-	Then I see "COMPLETED" on the page
+	Then I see "Completed" on the page
 
 	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "CLOSED" where "JUROR_NUMBER" is "<juror_number>"
 	Then on "JUROR_MOD" . "JUROR" I see "TITLE" is null where "JUROR_NUMBER" is "<juror_number>"

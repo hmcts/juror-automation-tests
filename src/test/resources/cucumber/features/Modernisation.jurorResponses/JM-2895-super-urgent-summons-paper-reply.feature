@@ -25,7 +25,7 @@ Feature: JM-2895
 
     #validate results
     Then the view summons reply page is displayed
-    And I see the reply "status" on the response is "TO DO"
+    And I see the reply "status" on the response "To Do"
     And I see the reply "type" on the response is "Needs review"
     And I do not see "URGENT" on the page
     And I see Reply Method is "Paper"

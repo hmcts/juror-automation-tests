@@ -26,7 +26,7 @@ Feature: As a Bureau officer I want to re send a request further info letter
     And I press the "Continue" button
     And I see "A letter will be automatically sent to the juror requesting the missing information" on the page
     And I press the "Done" button
-    And I see the reply status has updated to "AWAITING JUROR INFO"
+    And I see the reply status has updated to "Awaiting juror info"
 
     And I press the "Apps" button
     When I click on the "Documents" link
@@ -87,7 +87,7 @@ Feature: As a Bureau officer I want to re send a request further info letter
     And I press the "Continue" button
     And I see "A letter will be automatically sent to the juror requesting the missing information" on the page
     And I press the "Done" button
-    And I see the reply status has updated to "AWAITING JUROR INFO"
+    And I see the reply status has updated to "Awaiting juror info"
 
     And I press the "Apps" button
     When I click on the "Documents" link
@@ -139,7 +139,7 @@ Feature: As a Bureau officer I want to re send a request further info letter
     And I press the "Continue" button
     And I see "A letter will be automatically sent to the juror requesting the missing information" on the page
     And I press the "Done" button
-    And I see the reply status has updated to "AWAITING JUROR INFO"
+    And I see the reply status has updated to "Awaiting juror info"
 
     And I press the "Apps" button
     When I click on the "Documents" link
@@ -209,7 +209,7 @@ Feature: As a Bureau officer I want to re send a request further info letter
     And I press the "Continue" button
     And I see "A letter will be automatically sent to the juror requesting the missing information" on the page
     And I press the "Done" button
-    And I see the reply status has updated to "AWAITING JUROR INFO"
+    And I see the reply status has updated to "Awaiting juror info"
 
     And I press the "Apps" button
     When I click on the "Documents" link

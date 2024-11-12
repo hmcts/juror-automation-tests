@@ -31,7 +31,7 @@ Feature: JM-4184 - The system shall allow the jury officer to process a summons 
     When the user searches for juror record "<juror_number>" from the global search bar
     Then I click the summons reply tab
     And I click on the view summons reply link
-    And I see the reply status has updated to "COMPLETED"
+    And I see the reply status has updated to "Completed"
 
     Examples:
       | user		  | juror_number  | pool_number  |
@@ -83,7 +83,7 @@ Feature: JM-4184 - The system shall allow the jury officer to process a summons 
     When the user searches for juror record "<juror_number>" from the global search bar
     And I click on the "Summons reply" link
     And I click on the "View summons reply" link
-    And I see the reply status has updated to "COMPLETED"
+    And I see the reply status has updated to "Completed"
 
     Examples:
       | user		  | juror_number| pool_number |
@@ -129,7 +129,7 @@ Feature: JM-4184 - The system shall allow the jury officer to process a summons 
     When the user searches for juror record "<juror_number>" from the global search bar
     And I click on the "Summons reply" link
     And I click on the "View summons reply" link
-    And I see the reply status has updated to "COMPLETED"
+    And I see the reply status has updated to "Completed"
 
     Examples:
       | user		  | juror_number  | pool_number  |
@@ -186,7 +186,7 @@ Feature: JM-4184 - The system shall allow the jury officer to process a summons 
 
   @JurorTransformationMulti @NewSchemaConverted @JM-6998
   Scenario Outline: Process summons reply that has been returned late (Reassign)
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court  |juror_number  	| pool_number	   | att_date_weeks_in_future	| owner |

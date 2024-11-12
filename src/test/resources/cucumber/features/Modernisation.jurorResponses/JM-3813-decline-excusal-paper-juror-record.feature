@@ -21,7 +21,7 @@ Feature: JM-3813
 
     Then the view summons reply page is displayed
 
-    And I see the reply "status" on the response is "TO DO"
+    And I see the reply "status" on the response "To Do"
     And I see the reply "type" on the response is "Excusal"
 
     #process response : cancel and return
@@ -53,7 +53,7 @@ Feature: JM-3813
 
     #check updated summons reply tab
     When I click on the Summons Reply tab
-    Then I see the reply status of the summons reply on juror record is "COMPLETED"
+    Then I see the reply status of the summons reply on juror record is "Completed"
     And I see the processing outcome of the summons reply on juror record is "Excusal refused (other)"
     And the warning icon is displayed next to the processing outcome
     And I see the reply date of the summons reply on juror record is "today"

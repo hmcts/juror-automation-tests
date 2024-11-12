@@ -67,7 +67,7 @@ Feature: JM-3457 and JM-3456 - Digital Response
     Then I see the adjustments status is "Attention\\n<adjustmentFullCaps>\\n<adjustmentNeeded>"
     And The newly created optic reference "12345678" is displayed
 
-    And I see the reply status has updated to "AWAITING COURT REPLY"
+    And I see the reply status has updated to "Awaiting court reply"
 
     Examples:
       | juror_number  | pool_number   | email     | adjustmentNeeded   | adjustmentFullCaps    | adjustmentFull          | adjustmentNeededCap    |

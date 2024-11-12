@@ -48,7 +48,7 @@ Feature: JM-3546 and JM-3466 Bureau User Marks Digital Response as Awaiting Info
 
     #check response is updated correctly
     And I am on the modernisation version of View Summons Reply
-    Then I see the reply "status" on the response is "AWAITING JUROR INFO"
+    Then I see the reply "status" on the response is "Awaiting juror info"
 	Then I see the reply "type" on the response is "Needs review"
     Then I see Reply Method is "Digital"
 
@@ -90,7 +90,7 @@ Feature: JM-3546 and JM-3466 Bureau User Marks Digital Response as Awaiting Info
     #cancel
     When I click on the "Cancel" link
     And I am on the modernisation version of View Summons Reply
-    Then I see the reply "status" on the response is "TO DO"
+    Then I see the reply "status" on the response "To Do"
 
     #go to awaiting inforamation
     Then I press the "More actions" button
@@ -102,7 +102,7 @@ Feature: JM-3546 and JM-3466 Bureau User Marks Digital Response as Awaiting Info
 
     #check response is updated correctly
     And I am on the modernisation version of View Summons Reply
-    Then I see the reply "status" on the response is "AWAITING JUROR INFO"
+    Then I see the reply "status" on the response is "Awaiting juror info"
     Then I see the reply "type" on the response is "Needs review"
     Then I see Reply Method is "Digital"
 
@@ -148,7 +148,7 @@ Feature: JM-3546 and JM-3466 Bureau User Marks Digital Response as Awaiting Info
 
     #check response is updated correctly
     And I am on the modernisation version of View Summons Reply
-    Then I see the reply "status" on the response is "AWAITING JUROR INFO"
+    Then I see the reply "status" on the response is "Awaiting juror info"
     Then I see the reply "type" on the response is "Needs review"
     Then I see Reply Method is "Digital"
 
