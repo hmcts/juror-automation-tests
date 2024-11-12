@@ -19,7 +19,7 @@ Feature: JM-3811 Mark as deceased digital
     And the user searches for juror record "<juror_number>" from the global search bar
     When I click the summons reply tab
     When I click on the view summons reply link
-    And I see the reply status has updated to "COMPLETED"
+    And I see the reply status has updated to "Completed"
     And I see the juror status has updated to "Deceased"
 
     Examples:

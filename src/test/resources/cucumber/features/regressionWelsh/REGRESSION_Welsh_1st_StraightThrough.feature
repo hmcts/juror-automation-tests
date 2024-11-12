@@ -247,7 +247,7 @@ Scenario Outline: Welsh 1st Party Straight Through (english court)
 	
 	When I click on "<juror_number>" in the same row as "<juror_number>"
 	
-	Then I see "COMPLETED" on the page
+	Then I see "Completed" on the page
 	
 	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "CLOSED" where "JUROR_NUMBER" is "<juror_number>"
 	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "Y" where "JUROR_NUMBER" is "<juror_number>"
@@ -462,7 +462,7 @@ Scenario Outline: Welsh 1st Party Straight Through (welsh court)
 	
 	When I click on "<juror_number>" in the same row as "<juror_number>"
 
-	And I see "COMPLETED" on the page
+	And I see "Completed" on the page
 	
 	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "CLOSED" where "JUROR_NUMBER" is "<juror_number>"
 	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "Y" where "JUROR_NUMBER" is "<juror_number>"

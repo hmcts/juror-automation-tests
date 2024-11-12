@@ -118,13 +118,13 @@ Scenario Outline: Your Work
 	Then I click on the "Mark as awaiting information" link
 	When I choose the "Court" radio button
 	And I press the "Confirm" button
-	Then I see "AWAITING COURT REPLY" on the page
+	Then I see "Awaiting court reply" on the page
 	When I click on the "Your work" link
 	Then I do not see "<juror_number_one>" on the page
 	When I click on the "Awaiting information" link
 	And I see "/pending" in the URL
 	Then I see "<juror_number_one>" on the page
-	Then I see "AWAITING COURT REPLY" in the same row as "<juror_number_one>"
+	Then I see "Awaiting court reply" in the same row as "<juror_number_one>"
 	And I do not see "OVERDUE" on the page
 
 	When I click on the "To do" link
@@ -135,13 +135,13 @@ Scenario Outline: Your Work
 	Then I click on the "Mark as awaiting information" link
 	When I choose the "Court" radio button
 	And I press the "Confirm" button
-	Then I see "AWAITING COURT REPLY" on the page
+	Then I see "Awaiting court reply" on the page
 	When I click on the "Your work" link
 	Then I do not see "<juror_number_two>" on the page
 	When I click on the "Awaiting information" link
 	And I see "/pending" in the URL
 	Then I see "<juror_number_two>" on the page
-	Then I see "AWAITING COURT REPLY" in the same row as "<juror_number_two>"
+	Then I see "Awaiting court reply" in the same row as "<juror_number_two>"
 	Then I see "URGENT" icon in the same row as "<juror_number_two>"
 
 	When I click on the "Your work" link
@@ -160,12 +160,12 @@ Scenario Outline: Your Work
 	Then I click on the "Mark as awaiting information" link
 	When I check the "Court" checkbox
 	And I press the "Confirm" button
-	Then I see "AWAITING COURT REPLY" on the page
+	Then I see "Awaiting court reply" on the page
 	When I click on the "Your work" link
 	Then I do not see "<juror_number_four>" on the page
 	When I click on the "Awaiting information" link
 	Then I see "<juror_number_four>" on the page
-	Then I see "AWAITING COURT REPLY" in the same row as "<juror_number_four>"
+	Then I see "Awaiting court reply" in the same row as "<juror_number_four>"
 
 	#complete
 	When I click on the "Awaiting information" link
@@ -224,7 +224,7 @@ Scenario Outline: Your Work
 	And I search for juror "<juror_number_three>"
 	Then I see the juror status has updated to "Responded"
 	And I click on the "Summons reply" link
-	Then I see "COMPLETED" on the page
+	Then I see "Completed" on the page
 
 Examples:
 	| juror_number_one	| juror_number_two	| juror_number_three	| juror_number_four	| pool_number_one 	| pool_number_two | pool_number_three | last_name_one 	| last_name_two	| last_name_three	| last_name_four| postcode 	|
@@ -1127,7 +1127,7 @@ Scenario Outline: Results grid updates when status changes are made
 	And I press the "Confirm" button
 	
 	When I click on the "Back" link
-	Then I see "AWAITING COURT REPLY" in the same row as "<juror_number>"
+	Then I see "Awaiting court reply" in the same row as "<juror_number>"
 	
 	#now mark as responded
 	When I click on "<juror_number>" in the same row as "<juror_number>"
@@ -1135,11 +1135,11 @@ Scenario Outline: Results grid updates when status changes are made
 	When I select "Mark as responded" from Process reply
 	And I check the "Mark juror as 'responded'" checkbox
 	And I press the "Confirm" button
-	Then I see "COMPLETED" on the page
+	Then I see "Completed" on the page
 	And I see "Responded" on the page
 	
 	When I click on the "Back" link
-	Then I see "COMPLETED" in the same row as "<juror_number>"
+	Then I see "Completed" in the same row as "<juror_number>"
 	
 Examples:
 	| juror_number	| pool_number 	| last_name 	| postcode 	|

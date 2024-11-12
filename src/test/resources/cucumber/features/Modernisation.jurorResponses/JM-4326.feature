@@ -59,7 +59,7 @@ Feature: JM-4326 - Defer a juror and then complete their service at a later date
     And I click on the "Summons reply" link
     And I see "Deferral granted (other)" in the same row as "Processing outcome"
     And I click on the "View summons reply" link
-    And I see the reply status has updated to "COMPLETED"
+    And I see the reply status has updated to "Completed"
     And I see the reply type has been updated to "Deferral"
 
     Examples:
@@ -125,7 +125,7 @@ Feature: JM-4326 - Defer a juror and then complete their service at a later date
     And I click on the "Summons reply" link
     And I see "Deferral granted (other)" in the same row as "Processing outcome"
     And I click on the "View summons reply" link
-    And I see the reply status has updated to "COMPLETED"
+    And I see the reply status has updated to "Completed"
     And I see the reply type has been updated to "Deferral"
 
 
@@ -183,7 +183,7 @@ Feature: JM-4326 - Defer a juror and then complete their service at a later date
     When the user searches for juror record "<juror_number>" from the global search bar
     And I click on the "Summons reply" link
     And I click on the "View summons reply" link
-    And I see the reply status has updated to "COMPLETED"
+    And I see the reply status has updated to "Completed"
 
 
     Examples:
@@ -254,7 +254,7 @@ Feature: JM-4326 - Defer a juror and then complete their service at a later date
     And I click on the "Summons reply" link
     And I see "Deferral granted (other)" in the same row as "Processing outcome"
     And I click on the "View summons reply" link
-    And I see the reply status has updated to "COMPLETED"
+    And I see the reply status has updated to "Completed"
     And I see the reply type has been updated to "Deferral"
 
     Examples:

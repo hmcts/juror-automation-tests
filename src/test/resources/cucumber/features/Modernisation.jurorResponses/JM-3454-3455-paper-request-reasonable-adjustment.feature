@@ -90,7 +90,7 @@ Feature: JM-3457 and JM-3456 - Paper Response
     Then I see the adjustments status is "Attention\\n<jurorAdjustmentFull>\\n<jurorAdjustmentNeeded>"
     And The newly created optic reference "12345678" is displayed
 
-    And I see the reply status has updated to "AWAITING COURT REPLY"
+    And I see the reply status has updated to "Awaiting court reply"
 
     Examples:
       | user          | juror_number  | pool_number | jurorAdjustmentNeeded | jurorAdjustmentFull               |
