@@ -2069,7 +2069,7 @@ Feature: Regression English_ReplyTypesIndicator
     And I press the "Search" button
 
     When I click on "<juror_number_ten>" in the same row as "<juror_number_ten>"
-    And I see "DECEASED" on the page
+    And I see "Deceased" on the page
 
     And I click on the "Search" link
     And I set "Juror number" to "<juror_number_eleven>"
