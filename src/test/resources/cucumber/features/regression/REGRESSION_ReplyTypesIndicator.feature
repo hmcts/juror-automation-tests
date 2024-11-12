@@ -376,7 +376,7 @@ Feature: Regression English_ReplyTypesIndicator
     Then I see "<juror_number>" has reply type indicator "Needs review"
 
     When I click on "<juror_number>" in the same row as "<juror_number>"
-    And I see "INELIGIBLE" on the page
+    And I see "Ineligible" on the page
 
     Examples:
       | juror_number | pool_number | last_name          | postcode | email      |
@@ -498,7 +498,7 @@ Feature: Regression English_ReplyTypesIndicator
     Then I see "<juror_number>" has reply type indicator "Needs review"
 
     When I click on "<juror_number>" in the same row as "<juror_number>"
-    And I see "INELIGIBLE" on the page
+    And I see "Ineligible" on the page
 
     Examples:
       | juror_number | pool_number | last_name          | postcode | email      |
@@ -628,7 +628,7 @@ Feature: Regression English_ReplyTypesIndicator
     Then I see "<juror_number>" has reply type indicator "Needs review"
 
     When I click on "<juror_number>" in the same row as "<juror_number>"
-    And I see "INELIGIBLE" on the page
+    And I see "Ineligible" on the page
 
     Examples:
       | juror_number | last_name        | postcode | email             | pool_number |
@@ -758,7 +758,7 @@ Feature: Regression English_ReplyTypesIndicator
     Then I see "<juror_number>" has reply type indicator "Needs review"
 
     When I click on "<juror_number>" in the same row as "<juror_number>"
-    And I see "INELIGIBLE" on the page
+    And I see "Ineligible" on the page
 
     Examples:
       | juror_number | last_name         | postcode | email             | pool_number |
@@ -887,7 +887,7 @@ Feature: Regression English_ReplyTypesIndicator
     Then I see "<juror_number>" has reply type indicator "Needs review"
 
     When I click on "<juror_number>" in the same row as "<juror_number>"
-    And I see "INELIGIBLE" on the page
+    And I see "Ineligible" on the page
 
     Examples:
       | juror_number | last_name           | postcode | email             | pool_number |
@@ -1018,7 +1018,7 @@ Feature: Regression English_ReplyTypesIndicator
     Then I see "<juror_number>" has reply type indicator "Needs review"
 
     When I click on "<juror_number>" in the same row as "<juror_number>"
-    And I see "INELIGIBLE" on the page
+    And I see "Ineligible" on the page
 
     Examples:
       | juror_number | last_name           | postcode | email             | pool_number |
@@ -1951,7 +1951,7 @@ Feature: Regression English_ReplyTypesIndicator
     Then I see "<juror_number_nine>" has reply type indicator "Excusal"
 
     When I click on "<juror_number>" in the same row as "<juror_number>"
-    And I see "INELIGIBLE" on the page
+    And I see "Ineligible" on the page
 
     Then I press the "Process reply" button
     Then I choose the "Mark as responded" radio button
@@ -1964,7 +1964,7 @@ Feature: Regression English_ReplyTypesIndicator
 
     Then I see "<juror_number_two>" on the page
     When I click on "<juror_number_two>" in the same row as "<juror_number_two>"
-    And I see "INELIGIBLE" on the page
+    And I see "Ineligible" on the page
 
     Then I press the "Process reply" button
     Then I choose the "Mark as responded" radio button
@@ -1977,7 +1977,7 @@ Feature: Regression English_ReplyTypesIndicator
 
     Then I see "<juror_number_three>" on the page
     When I click on "<juror_number_three>" in the same row as "<juror_number_three>"
-    And I see "INELIGIBLE" on the page
+    And I see "Ineligible" on the page
 
     Then I press the "Process reply" button
     Then I choose the "Mark as responded" radio button
@@ -1990,7 +1990,7 @@ Feature: Regression English_ReplyTypesIndicator
 
     Then I see "<juror_number_four>" on the page
     When I click on "<juror_number_four>" in the same row as "<juror_number_four>"
-    And I see "INELIGIBLE" on the page
+    And I see "Ineligible" on the page
 
     Then I press the "Process reply" button
     Then I choose the "Mark as responded" radio button
@@ -2003,7 +2003,7 @@ Feature: Regression English_ReplyTypesIndicator
 
     Then I see "<juror_number_five>" on the page
     When I click on "<juror_number_five>" in the same row as "<juror_number_five>"
-    And I see "INELIGIBLE" on the page
+    And I see "Ineligible" on the page
 
     Then I press the "Process reply" button
     Then I choose the "Mark as responded" radio button
@@ -2016,7 +2016,7 @@ Feature: Regression English_ReplyTypesIndicator
 
     Then I see "<juror_number_six>" on the page
     When I click on "<juror_number_six>" in the same row as "<juror_number_six>"
-    And I see "INELIGIBLE" on the page
+    And I see "Ineligible" on the page
 
     Then I press the "Process reply" button
     Then I choose the "Mark as responded" radio button
@@ -2083,37 +2083,37 @@ Feature: Regression English_ReplyTypesIndicator
     Then I click on the "Completed" link
 
     When I click on "<juror_number>" in the same row as "<juror_number>"
-    And I see "INELIGIBLE" on the page
+    And I see "Ineligible" on the page
 
     Then I click on the "Your work" link
     Then I click on the "Completed" link
 
     When I click on "<juror_number_two>" in the same row as "<juror_number_two>"
-    And I see "INELIGIBLE" on the page
+    And I see "Ineligible" on the page
 
     Then I click on the "Your work" link
     Then I click on the "Completed" link
 
     When I click on "<juror_number_three>" in the same row as "<juror_number_three>"
-    And I see "INELIGIBLE" on the page
+    And I see "Ineligible" on the page
 
     Then I click on the "Your work" link
     Then I click on the "Completed" link
 
     When I click on "<juror_number_four>" in the same row as "<juror_number_four>"
-    And I see "INELIGIBLE" on the page
+    And I see "Ineligible" on the page
 
     Then I click on the "Your work" link
     Then I click on the "Completed" link
 
     When I click on "<juror_number_five>" in the same row as "<juror_number_five>"
-    And I see "INELIGIBLE" on the page
+    And I see "Ineligible" on the page
 
     Then I click on the "Your work" link
     Then I click on the "Completed" link
 
     When I click on "<juror_number_six>" in the same row as "<juror_number_six>"
-    And I see "INELIGIBLE" on the page
+    And I see "Ineligible" on the page
 
     Then I click on the "Your work" link
     Then I click on the "Completed" link
@@ -3041,7 +3041,7 @@ Feature: Regression English_ReplyTypesIndicator
     When I click on "<juror_number>" in the same row as "<juror_number>"
 
 	#Then I take a screenshot
-    And I see "INELIGIBLE" on the page
+    And I see "Ineligible" on the page
 
     Then I press the "More actions" button
     Then I click on the "Mark as awaiting information" link
@@ -3055,7 +3055,7 @@ Feature: Regression English_ReplyTypesIndicator
     When I click on "<juror_number_two>" in the same row as "<juror_number_two>"
 	
 	#Then I take a screenshot
-    And I see "INELIGIBLE" on the page
+    And I see "Ineligible" on the page
 
     Then I press the "More actions" button
     Then I click on the "Mark as awaiting information" link
@@ -3069,7 +3069,7 @@ Feature: Regression English_ReplyTypesIndicator
     When I click on "<juror_number_three>" in the same row as "<juror_number_three>"
 	
 	#Then I take a screenshot
-    And I see "INELIGIBLE" on the page
+    And I see "Ineligible" on the page
 
     Then I press the "More actions" button
     Then I click on the "Mark as awaiting information" link
@@ -3083,7 +3083,7 @@ Feature: Regression English_ReplyTypesIndicator
     When I click on "<juror_number_four>" in the same row as "<juror_number_four>"
 	
 	#Then I take a screenshot
-    And I see "INELIGIBLE" on the page
+    And I see "Ineligible" on the page
 
     Then I press the "More actions" button
     Then I click on the "Mark as awaiting information" link
@@ -3097,7 +3097,7 @@ Feature: Regression English_ReplyTypesIndicator
     When I click on "<juror_number_five>" in the same row as "<juror_number_five>"
 	
 	#Then I take a screenshot
-    And I see "INELIGIBLE" on the page
+    And I see "Ineligible" on the page
 
     Then I press the "More actions" button
     Then I click on the "Mark as awaiting information" link
@@ -3111,7 +3111,7 @@ Feature: Regression English_ReplyTypesIndicator
     When I click on "<juror_number_six>" in the same row as "<juror_number_six>"
 	
 	#Then I take a screenshot
-    And I see "INELIGIBLE" on the page
+    And I see "Ineligible" on the page
 
     Then I press the "More actions" button
     Then I click on the "Mark as awaiting information" link

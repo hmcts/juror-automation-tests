@@ -277,7 +277,7 @@ Scenario Outline: Bureau A script, steps 24 onwards
 	And I see "BUILDINGCHANGED" on the page
 	And I see "01 Jan 1990" on the page
 	And I see "<email>" on the page
-	And I see "INELIGIBLE" on the page
+	And I see "Ineligible" on the page
 	
 	When I click on the "Eligibility" link
 	Then "Residency" is marked as requiring attention

@@ -50,7 +50,7 @@ Feature: JM-3368 Super Urgent Paper Response Court
 		And I click done on the juror summons reply page
 
 		And I see the reply "status" on the response is "TO DO"
-		And I see the reply "type" on the response is "INELIGIBLE"
+		And I see the reply "type" on the response is "Ineligible"
 		And I do not see "URGENT" on the page
 		And I see "Summons reply is missing essential information - reply cannot be processed until this information is entered." in the response banner
 
