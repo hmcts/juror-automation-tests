@@ -70,7 +70,7 @@ Feature: JM-6114 - As a jury officer, I want to edit submitted expenses before a
     And I click the edit expenses for approval button
     And I see "Edit expenses for approval" on the page
     And I click on my expense link with todays date
-    Then I see "FOR APPROVAL" on the page
+    Then I see "For approval" on the page
     When I set "Loss of earnings or benefits" to "90"
     And I set "Extra care costs" to "10"
     And I verify the banner message "You’ve made changes" on the page
@@ -89,5 +89,5 @@ Feature: JM-6114 - As a jury officer, I want to edit submitted expenses before a
     Then I verify the banner message "Expenses resubmitted for approval" on the page
 
     Examples:
-      |user			|juror_number |   pool_number   |
-      |MODTESTCOURT |041536649    | 415360943       |
+      | user		 | juror_number | pool_number   |
+      | MODTESTCOURT | 041536649    | 415360943     |

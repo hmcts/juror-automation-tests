@@ -1,31 +1,15 @@
 package cucumber.pageObjects;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
-
-import java.util.List;
-
+import cucumber.utils.AngularJsHTTPCallWait;
+import cucumber.utils.WaitUtil_v2;
+import cucumber.utils.WaitUtils;
 import org.apache.log4j.Logger;
-import org.hamcrest.CoreMatchers;
-import org.junit.Assert;
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-
-import cucumber.utils.AngularJsHTTPCallWait;
-import cucumber.utils.ReadProperties;
-import cucumber.utils.WaitUtil_v2;
-import cucumber.utils.WaitUtils;
 
 public class Bureau {
 	private static WebDriver driver;
@@ -116,12 +100,13 @@ public class Bureau {
 		log.info("Going to start changing the new replies to change all new to =>"+staffMember);
 		WebElement allocateUrgent = driver.findElement(By.xpath("//input[contains(@id,'allocateUrgent')]"));
 		WebElement allocateNonUrgent = driver.findElement(By.xpath("//input[contains(@id,'allocateNonUrgent')]"));
+		WebElement staffCheckbox = driver.findElement(By.xpath("//*[@id='select-" + staffMember + "']"));
 
 		allocateUrgent.clear();
 		allocateUrgent.sendKeys(driver.findElement(By.xpath("//div[contains(@class,'jd-assign-replies-send')]")).getText());
 		allocateNonUrgent.clear();
 		allocateNonUrgent.sendKeys(driver.findElement(By.xpath("//div[contains(@class,'jd-assign-replies-standard')]")).getText());
-		NAV.check_checkbox(staffMember);
+		staffCheckbox.sendKeys(Keys.SPACE);
 		NAV.press_buttonByName("Assign replies");
 	}
 
