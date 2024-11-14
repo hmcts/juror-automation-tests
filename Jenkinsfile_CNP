@@ -3,7 +3,7 @@ properties([
   parameters([
     choice(choices: ['chrome', 'firefox', 'msedge'], name: 'Browser'),
     // Default to using 'stg' and only run smoketest by default
-    choice(choices: ['stg', 'test', 'demo', 'ithc'], name: 'EnvironmentChoice'),
+    choice(choices: ['ithc', 'test', 'demo', 'stg'], name: 'EnvironmentChoice'),
     booleanParam(name: 'runExpenses', defaultValue: false, description: 'Include Expenses tests'),
     booleanParam(name: 'runFeatures', defaultValue: false, description: 'Include Features tests'),
     booleanParam(name: 'runJurorTransformation', defaultValue: false, description: 'Include JurorTransformation tests'),
