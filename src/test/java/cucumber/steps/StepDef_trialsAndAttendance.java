@@ -175,7 +175,6 @@ public class StepDef_trialsAndAttendance {
 		TRL.tabPresent("Panel list (summary)");
 		TRL.tabPresent("Panel list (detailed)");
 		TRL.tabPresent("Panel member status report");
-		TRL.tabPresent("Panel selection report");
 		TRL.tabPresent("Ballot cards");
 	}
 
