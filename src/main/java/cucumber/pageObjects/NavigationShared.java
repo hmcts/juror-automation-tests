@@ -571,8 +571,8 @@ public class NavigationShared {
         try {
             WebElement checkbox = find_inputBy_labelName(location_name);
             log.info("Checkbox " + location_name + " checked:" + checkbox.isSelected());
-            checkbox.click();
-            checkbox.sendKeys(Keys.chord("", Keys.TAB));
+//            checkbox.click();
+            checkbox.sendKeys(Keys.SPACE);
             log.info("Clicked on checkbox with for, checking if checked");
             log.info("Checkbox " + location_name + " checked:" + checkbox.isSelected());
             if (checkbox.isSelected()) {
@@ -584,14 +584,9 @@ public class NavigationShared {
             log.error(e.getMessage());
         }
         log.info("Continue... searching by xpath");
-        WebElement checkbox_location = driver.findElement(By.id(
-                //"//label[contains(normalize-space(text()), '"+location_name+"')]/input"
-                //"//label[text()[contains(., \""+location_name+"\")]]/input"
-                //DB test for new bureau filter checkboxes
-                location_name)
-        );
+//        WebElement checkbox_location = driver.findElement(By.id("//*[@id[text()[contains(.,'location_name')]]"));
 
-        click_onElement(checkbox_location); //.click();
+//        click_onElement(checkbox_location); //.click();
 
         //wait.toBeSelected(checkbox_location);
 
