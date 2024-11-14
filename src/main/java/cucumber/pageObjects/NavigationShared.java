@@ -471,7 +471,7 @@ public class NavigationShared {
 
             log.info("Checkbox " + Juror_no + " current state (isSelected): " + checkbox.isSelected());
 
-            checkbox.click();
+            checkbox.sendKeys(Keys.SPACE);
             log.info("WebDriver clicked on checkbox with value: " + Juror_no);
 
             if (checkbox.isSelected()) {

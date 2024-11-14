@@ -1,8 +1,9 @@
 Feature: JM-252 Bureau user create new pools
 
-  @JurorTransformationMulti @newSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Happy Path Test to create a new pool of jurors to be summoned for jury duty
-    Given I am on "Bureau" "test"
+
+    Given I am on "Bureau" "ithc"
     And I log in as "<user>"
     When I navigate to the pool request screen
 
@@ -12,13 +13,11 @@ Feature: JM-252 Bureau user create new pools
     Then I see "Select a court for this pool" on the page
 
     #select court
-
     Then I set input field with "ID" of "courtNameOrLocation" to "<selectedCourt>"
     And I select the "<displayCourt> (<courtCode>)" court selection link
     Then I press the "Continue" button
 
     #check page content
-
     And on the page I see
       | text                                              |
       | Request a new pool                                |
@@ -43,7 +42,6 @@ Feature: JM-252 Bureau user create new pools
     Then I press the "Continue" button
 
     #check pool request
-
     Then I see "Check your pool request" on the page
 
     And I should see the details of the pool
@@ -53,8 +51,7 @@ Feature: JM-252 Bureau user create new pools
       | numberOfDeferrals   | 0                            |
       | additionalJurors    | <noJurors>                   |
 
-    # Can submit the new pool request
-
+    #Can submit the new pool request
     When I save the new pool request
     Then I should be taken to the pool summary page
     And I click on the "Service start date" link
@@ -74,9 +71,10 @@ Feature: JM-252 Bureau user create new pools
       | MODTESTBUREAU | CHESTER       | Civil     | Civil court   | 415       | Chester      | 150      |
       | MODTESTBUREAU | CHESTER       | High      | High court    | 415       | Chester      | 150      |
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Happy Path Test to create a new pool with 0 jurors
-    Given I am on "Bureau" "test"
+
+    Given I am on "Bureau" "ithc"
     And I log in as "<user>"
 
     When I navigate to the pool request screen
@@ -87,13 +85,11 @@ Feature: JM-252 Bureau user create new pools
     Then I see "Select a court for this pool" on the page
 
     #select court
-
     Then I set input field with "ID" of "courtNameOrLocation" to "<selectedCourt>"
     And I select the "<displayCourt> (<courtCode>)" court selection link
     Then I press the "Continue" button
 
     #check page content
-
     And on the page I see
       | text                                              |
       | Request a new pool                                |
@@ -118,7 +114,6 @@ Feature: JM-252 Bureau user create new pools
     Then I press the "Continue" button
 
     #check pool request
-
     Then I see "Check your pool request" on the page
 
     And I should see the details of the pool
@@ -129,7 +124,6 @@ Feature: JM-252 Bureau user create new pools
       | additionalJurors    | <noJurors>                   |
 
     # Can submit the new pool request
-
     When I save the new pool request
     Then I should be taken to the pool summary page
     And I click on the "Service start date" link
@@ -145,9 +139,10 @@ Feature: JM-252 Bureau user create new pools
       | MODTESTBUREAU |  | CHESTER       | Civil court | Civil court   | 415       | Chester      | 0        |
       | MODTESTBUREAU |  | CHESTER       | High court  | High court    | 415       | Chester      | 0        |
 
-  @JurorTransformation @NewSchemaConverted
+  @JurorTransformation
   Scenario Outline: Happy Path Test to create a new pool and change pool_no
-    Given I am on "Bureau" "test"
+
+    Given I am on "Bureau" "ithc"
     Given new pool requests are deleted
     And I log in as "<user>"
 
@@ -159,13 +154,11 @@ Feature: JM-252 Bureau user create new pools
     Then I see "Select a court for this pool" on the page
 
     #select court
-
     Then I set input field with "ID" of "courtNameOrLocation" to "<selectedCourt>"
     And I select the "<displayCourt> (<courtCode>)" court selection link
     Then I press the "Continue" button
 
     #check page content
-
     And on the page I see
       | text                                              |
       | Request a new pool                                |
@@ -191,7 +184,6 @@ Feature: JM-252 Bureau user create new pools
     Then I press the "Continue" button
 
     #check pool request
-
     Then I see "Check your pool request" on the page
 
     And I should see the details of the pool
@@ -202,13 +194,11 @@ Feature: JM-252 Bureau user create new pools
       | additionalJurors    | <noJurors>                   |
 
     #Change pool no
-
     Then I click the change link for the pool number
     And I see "Change pool number" on the page
     And I enter a pool number that is the current pool number plus 1
 
-# Can submit the new pool request
-
+    #Can submit the new pool request
     When I save the new pool request
     Then I should be taken to the pool summary page
     And I click on the "Service start date" link
