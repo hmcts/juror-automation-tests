@@ -5,11 +5,7 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
@@ -266,7 +262,7 @@ public class Expenses {
             WebElement checkbox = driver.findElement(By.xpath(checkboxXPath));
 
             if (!checkbox.isSelected()) {
-                checkbox.click();
+                checkbox.sendKeys(Keys.SPACE);
                 log.info("Clicked on checkbox for today's date: " + formattedDate);
             } else {
                 log.info("Checkbox for today's date (" + formattedDate + ") already checked.");

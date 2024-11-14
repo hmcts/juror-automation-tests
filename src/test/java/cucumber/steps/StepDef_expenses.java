@@ -1,27 +1,20 @@
 package cucumber.steps;
 
-import cucumber.pageObjects.*;
+import cucumber.pageObjects.Expenses;
+import cucumber.pageObjects.NavigationShared;
+import cucumber.pageObjects.ScreenShotTaker;
+import cucumber.pageObjects.SharedDriver;
 import cucumber.testdata.DatabaseTester;
 import io.cucumber.datatable.DataTable;
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.DayOfWeek;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.TemporalAdjusters;
-import java.util.*;
-import static org.junit.Assert.*;
+import java.util.Map;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 public class StepDef_expenses {
     private NavigationShared NAV;
     private ScreenShotTaker SST;
@@ -230,8 +223,7 @@ public class StepDef_expenses {
 
     }
     @When("^I click the edit expenses for approval button$")
-    public void clickEditExpensesForApprovalButton(){
-        EXPENSES.clickEditExpensesForApprovalButton();
+    public void clickEditExpensesForApprovalButton(){EXPENSES.clickEditExpensesForApprovalButton();
     }
     @When("^I click on my expense link with todays date$")
     public void clickLinkWithExpenseDate(){
