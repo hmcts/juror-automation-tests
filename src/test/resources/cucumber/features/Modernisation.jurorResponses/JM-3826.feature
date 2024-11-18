@@ -70,7 +70,7 @@ Feature: JM-3826 Request Additional Information
     And I press the "Confirm" button
 
    #error message
-   And I see the reply status has updated to "AWAITING JUROR INFO"
+   And I see the reply status has updated to "Awaiting juror info"
    And I click the More Actions button
    And I press the "Request juror info by post" button
 

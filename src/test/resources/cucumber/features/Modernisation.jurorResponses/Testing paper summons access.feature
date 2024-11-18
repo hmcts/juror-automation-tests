@@ -1,9 +1,9 @@
 Feature: JM-4079 Testing paper summons access
 
-  @JurorTransformation @NewSchemaConverted
+  @JurorTransformation
   Scenario Outline: Test to manually enter paper summons as COURT user when record belongs to COURT
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
@@ -28,8 +28,8 @@ Feature: JM-4079 Testing paper summons access
     When I click on the "No, skip and process later" link
 
     #validate results
-    And I see the reply "status" on the response is "TO DO"
-    And I see the reply "type" on the response is "NEEDS REVIEW"
+    And I see the reply "status" on the response is "To Do"
+    And I see the reply "type" on the response is "Needs review"
     And I see "Juror’s service start date has passed - process as a priority." in the response banner
     And I see Reply Method is "Paper"
     And I see the process reply button
@@ -38,14 +38,14 @@ Feature: JM-4079 Testing paper summons access
       | juror_number | pool_number |
       | 041540014    | 415300414   |
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Test that you cant enter paper summons as BUREAU user when record belongs to COURT
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
+
     Given a bureau owned pool is created with jurors
       | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
       | 415   | <juror_number> 	    | <pool_number>     | 7				            | 400	|
-
 
     And "<juror_number>" has "NEXT_DATE" as "2 mondays time" new schema
 
@@ -62,5 +62,5 @@ Feature: JM-4079 Testing paper summons access
     Then the Enter summons reply button is not visible
 
     Examples:
-      |juror_number	|pool_number	|
-      |041540006|415300406	|
+      | juror_number  | pool_number	|
+      | 041540006     | 415300406	|

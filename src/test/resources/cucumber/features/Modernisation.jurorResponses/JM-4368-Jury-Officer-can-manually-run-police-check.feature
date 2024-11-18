@@ -56,7 +56,7 @@ Feature: JM-4368 Jury Officer Can Manually Run a Police Check
 
   @JurorTransformationMulti
   Scenario Outline: Manually run police check - presence of link - failed
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     Given I log in as "MODTESTCOURT"
 
     Given a bureau owned pool is created with jurors
@@ -67,7 +67,7 @@ Feature: JM-4368 Jury Officer Can Manually Run a Police Check
       |part_no   	  | pool_no   	  | owner |
       |<juror_number> | <pool_number> | 415   |
 
-    Given I set Police Check to "INELIGIBLE" for "<juror_number>" new schema
+    Given I set Police Check to "Ineligible" for "<juror_number>" new schema
     And I search for juror "<juror_number>"
     And I see the police check value is "Failed"
     And I do not see the link to run a police check
@@ -79,7 +79,7 @@ Feature: JM-4368 Jury Officer Can Manually Run a Police Check
   @JurorTransformationMulti
   Scenario Outline: Manually run police check - presence of link - passed
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     Given I log in as "MODTESTCOURT"
 

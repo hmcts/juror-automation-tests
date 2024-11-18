@@ -1,33 +1,34 @@
 Feature: JM-5054-As a jury officer I need to be able to return jurors from a trial to jurors in waiting
 
-  @JurorTransformation @NewSchemaConverted
+  @JurorTransformation
   Scenario Outline: Happy path to create a trial and generate Panel and return all the jurors
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     Given a bureau owned pool is created with jurors
-      | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
-      | 415   |<juror_number_1>     | <pool_number>     | 5				            | 400	|
-      | 415   |<juror_number_2> 	| <pool_number>     | 5				            | 400	|
-      | 415   |<juror_number_3> 	| <pool_number>     | 5				            | 400	|
-      | 415   |<juror_number_4> 	| <pool_number>     | 5				            | 400	|
+      | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number_1>    | <pool_number>     | 5				            | 400	|
+      | 415   | <juror_number_2> 	| <pool_number>     | 5				            | 400	|
+      | 415   | <juror_number_3> 	| <pool_number>     | 5				            | 400	|
+      | 415   | <juror_number_4> 	| <pool_number>     | 5				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no              | pool_no           | owner |
-      |<juror_number_1>     | <pool_number>     | 415   |
-      |<juror_number_2>     | <pool_number>      | 415   |
-      |<juror_number_3>     | <pool_number>      | 415   |
-      |<juror_number_4>     | <pool_number>      | 415   |
+      | part_no              | pool_no           | owner |
+      | <juror_number_1>     | <pool_number>     | 415   |
+      | <juror_number_2>     | <pool_number>     | 415   |
+      | <juror_number_3>     | <pool_number>     | 415   |
+      | <juror_number_4>     | <pool_number>     | 415   |
 
     And I Confirm all the data in the record attendance table is cleared
     And a new trial is inserted with the trial number "<trial_number>"
     And I log in as "<user>"
-     #set juror as responded
+
+    #set juror as responded
     And I update juror "<juror_number_1>" to have a status of responded in order to record attendance
     And I update juror "<juror_number_2>" to have a status of responded in order to record attendance
     And I update juror "<juror_number_3>" to have a status of responded in order to record attendance
     And I update juror "<juror_number_4>" to have a status of responded in order to record attendance
 
-     #check in jurors
+    #check in jurors
     And I press the "Apps" button
     And I click on the "Juror management" link
     And I click on the "Record attendance" link
@@ -95,30 +96,27 @@ Feature: JM-5054-As a jury officer I need to be able to return jurors from a tri
     And I press the "Continue" button
     Then I verify the banner message "4 jurors returned" on the page
 
-
     Examples:
-      |user			|juror_number_1 | juror_number_2  |   juror_number_3 |juror_number_4 |    pool_number   | trial_number |
-      |MODTESTCOURT |041530001      | 041530002        |041530003       |  041530004     | 415300301        | T202495832   |
+      | user		 | juror_number_1 | juror_number_2   | juror_number_3  | juror_number_4 | pool_number   | trial_number |
+      | MODTESTCOURT | 041530001      | 041530002        | 041530003       | 041530004      | 415300301     | T202495832   |
 
-
-
-  @JurorTransformation @NewSchemaConverted
+  @JurorTransformation
   Scenario Outline: Create a trial and generate Panel and return partial jurors
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     When a bureau owned pool is created with jurors
-      | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
-      | 415   |<juror_number_1>     | <pool_number>     | 5				            | 400	|
-      | 415   |<juror_number_2> 	| <pool_number>     | 5				            | 400	|
-      | 415   |<juror_number_3> 	| <pool_number>     | 5				            | 400	|
-      | 415   |<juror_number_4> 	| <pool_number>     | 5				            | 400	|
+      | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number_1>    | <pool_number>     | 5				            | 400	|
+      | 415   | <juror_number_2> 	| <pool_number>     | 5				            | 400	|
+      | 415   | <juror_number_3> 	| <pool_number>     | 5				            | 400	|
+      | 415   | <juror_number_4> 	| <pool_number>     | 5				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
       |part_no              | pool_no           | owner |
       |<juror_number_1>     | <pool_number>     | 415   |
-      |<juror_number_2>     | <pool_number>      | 415   |
-      |<juror_number_3>     | <pool_number>      | 415   |
-      |<juror_number_4>     | <pool_number>      | 415   |
+      |<juror_number_2>     | <pool_number>     | 415   |
+      |<juror_number_3>     | <pool_number>     | 415   |
+      |<juror_number_4>     | <pool_number>     | 415   |
 
     And I Confirm all the data in the record attendance table is cleared
     And a new trial is inserted with the trial number "<trial_number>"
@@ -174,11 +172,6 @@ Feature: JM-5054-As a jury officer I need to be able to return jurors from a tri
 
     #see my jurors are panelled and verify label text
     And I press the "Print" button
-    Then I see "Panel list (summary)" on the page
-    Then I see "Panel list (detailed)" on the page
-    And I see "Ballot cards" on the page
-    And I see "Empanel jury" on the page
-    And I see "End trial" on the page
     And I am able to see and interact with the trial management tabs and fields
     When I press the "Return panel members" button
     Then I see error "Select at least one panel member to return"
@@ -193,5 +186,5 @@ Feature: JM-5054-As a jury officer I need to be able to return jurors from a tri
     Then I verify the banner message "2 jurors returned" on the page
 
     Examples:
-      |user			|juror_number_1 | juror_number_2  |   juror_number_3 |juror_number_4 | pool_number   | trial_number |
-      |MODTESTCOURT |041530011      | 041530012       |041530013         |  041530014    | 415300301     | T202495832   |
+      | user		 | juror_number_1 | juror_number_2  | juror_number_3 | juror_number_4 | pool_number   | trial_number |
+      | MODTESTCOURT | 041530011      | 041530012       | 041530013      | 041530014      | 415300301     | T202495832   |

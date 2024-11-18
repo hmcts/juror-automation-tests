@@ -86,7 +86,7 @@ public class TrialsAndAttendance {
     @FindBy(xpath = "//*[@id=\"main-content\"]/div[4]/div/dl/div[3]/dd[1]")
     WebElement jurorAbsences;
 
-    @FindBy(xpath = "//th[@class=\"govuk-table__header\"]/button")
+    @FindBy(xpath = "//th[@class=\"govuk-table__header jd-middle-align\"]/button")
     public List<WebElement> headerTableName;
 
     @FindBy(xpath = "//div[@class=\"govuk-button-group mod-flex mod-justify-end\"]/a")

@@ -112,19 +112,19 @@ Scenario Outline: Your Work
 
 	Then I press the "Confirm" button
 
-	Then I see "AWAITING JUROR" on the page
+	Then I see "Awaiting juror" on the page
 
 	Then I press the "More actions" button
 	Then I click on the "Mark as awaiting information" link
 	When I choose the "Court" radio button
 	And I press the "Confirm" button
-	Then I see "AWAITING COURT REPLY" on the page
+	Then I see "Awaiting court reply" on the page
 	When I click on the "Your work" link
 	Then I do not see "<juror_number_one>" on the page
 	When I click on the "Awaiting information" link
 	And I see "/pending" in the URL
 	Then I see "<juror_number_one>" on the page
-	Then I see "AWAITING COURT REPLY" in the same row as "<juror_number_one>"
+	Then I see "Awaiting court reply" in the same row as "<juror_number_one>"
 	And I do not see "OVERDUE" on the page
 
 	When I click on the "To do" link
@@ -135,13 +135,13 @@ Scenario Outline: Your Work
 	Then I click on the "Mark as awaiting information" link
 	When I choose the "Court" radio button
 	And I press the "Confirm" button
-	Then I see "AWAITING COURT REPLY" on the page
+	Then I see "Awaiting court reply" on the page
 	When I click on the "Your work" link
 	Then I do not see "<juror_number_two>" on the page
 	When I click on the "Awaiting information" link
 	And I see "/pending" in the URL
 	Then I see "<juror_number_two>" on the page
-	Then I see "AWAITING COURT REPLY" in the same row as "<juror_number_two>"
+	Then I see "Awaiting court reply" in the same row as "<juror_number_two>"
 	Then I see "URGENT" icon in the same row as "<juror_number_two>"
 
 	When I click on the "Your work" link
@@ -160,12 +160,12 @@ Scenario Outline: Your Work
 	Then I click on the "Mark as awaiting information" link
 	When I check the "Court" checkbox
 	And I press the "Confirm" button
-	Then I see "AWAITING COURT REPLY" on the page
+	Then I see "Awaiting court reply" on the page
 	When I click on the "Your work" link
 	Then I do not see "<juror_number_four>" on the page
 	When I click on the "Awaiting information" link
 	Then I see "<juror_number_four>" on the page
-	Then I see "AWAITING COURT REPLY" in the same row as "<juror_number_four>"
+	Then I see "Awaiting court reply" in the same row as "<juror_number_four>"
 
 	#complete
 	When I click on the "Awaiting information" link
@@ -224,7 +224,7 @@ Scenario Outline: Your Work
 	And I search for juror "<juror_number_three>"
 	Then I see the juror status has updated to "Responded"
 	And I click on the "Summons reply" link
-	Then I see "COMPLETED" on the page
+	Then I see "Completed" on the page
 
 Examples:
 	| juror_number_one	| juror_number_two	| juror_number_three	| juror_number_four	| pool_number_one 	| pool_number_two | pool_number_three | last_name_one 	| last_name_two	| last_name_three	| last_name_four| postcode 	|
@@ -233,7 +233,7 @@ Examples:
 @RegressionSingle @NewSchemaConverted
 Scenario Outline: Edit Response
 
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given auto straight through processing has been disabled new schema
 
@@ -271,14 +271,14 @@ Scenario Outline: Edit Response
 		| part_no				| pool_number			| last_name			| postcode	| email 	|
 		| <juror_number_three>	| <pool_number_three>	| <last_name_three>	| CH1 2AN	| a@a.com	|
 	
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "ithc"
 	And I log in as "MODTESTBUREAU"
 
 	When I click on the "Assign Replies" link
 	And I assign all the New Replies to "ARAMIS1"
 	And I do not see any links on the page that open to a new page without an alt text
 
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "ithc"
 	And I log in as "ARAMIS1"
 	
 	And on the page I see
@@ -318,10 +318,10 @@ Examples:
 	| juror_number_one	| juror_number_two	| juror_number_three	| pool_number_one 	| pool_number_two | pool_number_three 	| last_name 	| last_name_two	| last_name_three	| postcode 	|
 	| 045200245			| 045200246			| 045200247				| 452300222 		| 452300223 	  | 452300224           | LNAMESTANDARD	| LNAMEURGENT 	| LNAMESUPERURGENT	| CH1 2AN	|
 
-@RegressionSingle @NewSchemaConverted
+@RegressionSingle
 Scenario Outline: Search as Team Member
 
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given "ARAMIS1" has court 9 set as "457"
 
@@ -348,29 +348,29 @@ Scenario Outline: Search as Team Member
 
 	# Submit response in pool
 	Given I have submitted a first party English straight through response
-		|part_no			|pool_number		|last_name	|postcode	|email 	|
-		|<juror_number_one>	|<pool_number_one>	|<last_name>|CH1 2AN	|a@a.com|
+		| part_no			 | pool_number		 | last_name	| postcode	| email 	|
+		| <juror_number_one> | <pool_number_one> | <last_name>	| CH1 2AN	| a@a.com	|
 
 	# Submit response in pool
 	Given I have submitted a first party English straight through response
-		|part_no			|pool_number		|last_name		|postcode	| email |
-		|<juror_number_two>	|<pool_number_two>	|<last_name_two>|CH1 2AN	|a@a.com|
+		| part_no			 | pool_number		 | last_name	   |postcode | email   |
+		| <juror_number_two> | <pool_number_two> | <last_name_two> |CH1 2AN	 | a@a.com |
 
 	# Submit response in pool
 	Given I have submitted a first party English straight through response
-		|part_no				|pool_number			|last_name			|postcode	|email 	|
-		|<juror_number_three>	|<pool_number_three>	|<last_name_three>	|CH1 2AN	|a@a.com|
+		| part_no				| pool_number			| last_name			| postcode	| email 	|
+		| <juror_number_three>	| <pool_number_three>	| <last_name_three>	| CH1 2AN	| a@a.com	|
 
 	Given auto straight through processing has been enabled new schema
 
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "ithc"
 	And I log in as "MODTESTBUREAU"
 
 	When I click on the "Assign Replies" link
 	And I assign all the New Replies to "ARAMIS1"
 	And I do not see any links on the page that open to a new page without an alt text
 
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "ithc"
 	And I log in as "ARAMIS1"
 	And I see "Summons replies" on the page
 	And I see "Your work" on the page
@@ -470,12 +470,12 @@ Examples:
 	| juror_number_one	| juror_number_two	| juror_number_three	| pool_number_one 	| pool_number_two| pool_number_three| last_name 	| last_name_two	| last_name_three	| postcode 	|
 	| 045700030			| 045700031			| 045700032				| 457300030 		| 457300031      | 457300032		| LNAMESTANDARD	| LNAMEURGENT 	| LNAMESUPERURGENT	| CH1 2AN	|
 
-@Features @NewSchemaConverted @JM-7282
+@Features @JM-7282
 Scenario Outline: Search as Team Leader
 
 	#return to @RegressionSingle when defect fixed
 
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given auto straight through processing has been disabled new schema
 
@@ -502,24 +502,24 @@ Scenario Outline: Search as Team Leader
 
 	# Submit response in pool
 	Given I have submitted a first party English straight through response
-		|part_no			|pool_number		|last_name	|postcode	|email 	|
-		|<juror_number_one>	|<pool_number_one>	|<last_name>|CH1 2AN	|a@a.com|
+		| part_no			 | pool_number		 | last_name	| postcode	| email 	|
+		| <juror_number_one> | <pool_number_one> | <last_name>	| CH1 2AN	| a@a.com	|
 
 	# Submit response in pool
 	Given I have submitted a first party English straight through response
-		|part_no			|pool_number		|last_name		|postcode	| email |
-		|<juror_number_two>	|<pool_number_two>	|<last_name_two>|CH1 2AN	|a@a.com|
+		| part_no			 | pool_number		 | last_name	   |postcode	| email 	|
+		| <juror_number_two> | <pool_number_two> | <last_name_two> |CH1 2AN		| a@a.com	|
 
 	# Submit response in pool
 	Given I have submitted a first party English straight through response
-		|part_no				|pool_number			|last_name			|postcode	|email 	|
-		|<juror_number_three>	|<pool_number_three>	|<last_name_three>	|CH1 2AN	|a@a.com|
+		| part_no				| pool_number			| last_name			| postcode	| email 	|
+		| <juror_number_three>	| <pool_number_three>	| <last_name_three>	| CH1 2AN	| a@a.com	|
 
 	Given auto straight through processing has been enabled new schema
 
 	#assign to CPASS
 
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "ithc"
 	And I log in as "MODTESTBUREAU"
 
 	When I click on the "Assign Replies" link
@@ -689,10 +689,10 @@ Examples:
 	| juror_number_one	| juror_number_two	| juror_number_three	| pool_number_one 	| pool_number_two| pool_number_three| last_name 	| last_name_two	| last_name_three	| postcode 	|
 	| 045700033			| 045700034			| 045700035				| 457300033 		| 457300034      | 457300035 		| LNAMESTANDARD	| LNAMEURGENT 	| LNAMESUPERURGENT	| CH1 2AN	|
 
-@RegressionSingle @NewSchemaConverted
+@RegressionSingle
 Scenario: Work Allocation Fields and Labels Checks
 
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "ithc"
 
 	When I log in as "MODTESTBUREAU"
 	And I click on the "Assign Replies" link
@@ -751,7 +751,7 @@ Scenario: Work Allocation Fields and Labels Checks
 	And "TeamPickListUser" is unchecked
 	And "AutomationStaffMemberTWO" is unchecked
 
-@RegressionSingle @NewSchemaConverted
+@RegressionSingle
 Scenario Outline: Work Allocation
 
 	Given I am on "Bureau" "ithc"
@@ -884,7 +884,7 @@ Examples:
 	| juror_number_one	| juror_number_two	| juror_number_three	| pool_number_one	| pool_number_two 	| pool_number_three| last_name | postcode 	| email				|
 	| 045200266			| 045200267			| 045200268				| 452300244	        | 452300245			| 452300246        | LNAME		| NN1 3HQ	| email@outlook.com	|
 
-@RegressionSingle @NewSchemaConverted
+@RegressionSingle
 Scenario Outline: Work Allocation - AUTO are not counted
 
 	Given I am on "Bureau" "ithc"
@@ -894,8 +894,8 @@ Scenario Outline: Work Allocation - AUTO are not counted
 	And I assign all the New Replies to "MODTESTBUREAU"
 
 	Given a bureau owned pool is created with jurors
-		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
-		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
+		| court | juror_number   | pool_number	 | att_date_weeks_in_future	| owner |
+		| 452   | <juror_number> | <pool_number> | 5				        | 400	|
 
 	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
 	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
@@ -905,8 +905,8 @@ Scenario Outline: Work Allocation - AUTO are not counted
 	And auto straight through processing has been enabled new schema
 
 	And I have submitted a first party English straight through response
-	| part_no		|pool_number	| last_name		|postcode	| email |
-	|<juror_number>	|<pool_number>	| <last_name>	|<postcode>	|<email>|
+	| part_no		 | pool_number	 | last_name	| postcode	 | email   |
+	| <juror_number> | <pool_number> | <last_name>	| <postcode> | <email> |
 
 	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "STAFF_LOGIN" is "AUTO" where "JUROR_NUMBER" is "<juror_number>" new schema
 
@@ -932,12 +932,12 @@ Examples:
 	| 045200251		| 452300228 	| LNAME		| NN1 3HQ	| email@outlook.com	|
 
 
-@Features @NewSchemaConverted @JM-7276
+@Features @JM-7276
 Scenario: Manage Team
 
 	#return to @RegressionSingle when defect fixed
 
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "ithc"
 	And I log in as "MODTESTBUREAU"
 	And staff with name "New Name" does not exist
 	And I see "Summons replies" on the page
@@ -1063,12 +1063,12 @@ Scenario: Manage Team
 	
 	#attempt to deactivate when user has assigned responses
 
-@Featues @NewSchemaConverted @JM-6728
+@Featues @JM-6728
 Scenario Outline: Results grid updates when status changes are made
 
 	#return to @RegressionSingle when defect fixed
 
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -1083,13 +1083,13 @@ Scenario Outline: Results grid updates when status changes are made
 
 	# Submit response in pool
 	Given I have submitted a first party English straight through response
-		|part_no		|pool_number	|last_name	|postcode	|email 	|
-		|<juror_number>	|<pool_number>	|<last_name>|<postcode>	|a@a.com|
+		| part_no		 | pool_number	 | last_name 	| postcode	 | email 	|
+		| <juror_number> | <pool_number> | <last_name> 	| <postcode> | a@a.com	|
 
 	#turn on auto processing
 	Given auto straight through processing has been enabled new schema
 
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "ithc"
 	When I log in as "MODTESTBUREAU"
 	
 	Then I click on the "Search" link
@@ -1127,7 +1127,7 @@ Scenario Outline: Results grid updates when status changes are made
 	And I press the "Confirm" button
 	
 	When I click on the "Back" link
-	Then I see "AWAITING COURT REPLY" in the same row as "<juror_number>"
+	Then I see "Awaiting court reply" in the same row as "<juror_number>"
 	
 	#now mark as responded
 	When I click on "<juror_number>" in the same row as "<juror_number>"
@@ -1135,11 +1135,11 @@ Scenario Outline: Results grid updates when status changes are made
 	When I select "Mark as responded" from Process reply
 	And I check the "Mark juror as 'responded'" checkbox
 	And I press the "Confirm" button
-	Then I see "COMPLETED" on the page
+	Then I see "Completed" on the page
 	And I see "Responded" on the page
 	
 	When I click on the "Back" link
-	Then I see "COMPLETED" in the same row as "<juror_number>"
+	Then I see "Completed" in the same row as "<juror_number>"
 	
 Examples:
 	| juror_number	| pool_number 	| last_name 	| postcode 	|

@@ -447,7 +447,7 @@ Feature: Regression English_1st_MH
     Given I am on "Bureau" "test"
     When I log in as "CPASS"
     Then I see "<juror_number>" on the page
-    Then I see "<juror_number>" has reply type indicator "NEEDS REVIEW"
+    Then I see "<juror_number>" has reply type indicator "Needs review"
 
     And I click on "<juror_number>" in the same row as "<juror_number>"
 

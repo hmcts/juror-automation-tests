@@ -187,7 +187,7 @@ Feature: Regression English_3rd_Excusal
     Given I am on "Bureau" "test"
     When I log in as "CPASS"
     Then I see "<juror_number>" on the page
-    Then I see "<juror_number>" has reply type indicator "EXCUSAL"
+    Then I see "<juror_number>" has reply type indicator "Excusal"
 
     Examples:
       | juror_number | last_name        | postcode | email             | pool_number |

@@ -22,9 +22,9 @@ Feature: JM-3725 JM-3726
     Then I see the juror status on the juror record screen is "Disqualified"
     And I click the summons reply tab
     And I click on the "View summons reply" link
-    And I see the reply "type" on the response is "AUTO PROCESSED"
+    And I see the reply "type" on the response is "Auto processed"
     And I see the juror status has updated to "Disqualified"
-    And I see the reply "status" on the response is "COMPLETED"
+    And I see the reply "status" on the response is "Completed"
 
     Examples:
       | juror_number  | l_name	                | postcode| pool_number	|
@@ -52,9 +52,9 @@ Feature: JM-3725 JM-3726
     Then I see the juror status on the juror record screen is "Disqualified"
     And I click the summons reply tab
     And I click on the "View summons reply" link
-    And I see the reply "type" on the response is "AUTO PROCESSED"
+    And I see the reply "type" on the response is "Auto processed"
     And I see the juror status has updated to "Disqualified"
-    And I see the reply "status" on the response is "COMPLETED"
+    And I see the reply "status" on the response is "Completed"
 
     Examples:
       | juror_number  | l_name	                | postcode| pool_number	|
@@ -82,9 +82,9 @@ Feature: JM-3725 JM-3726
     Then I see the juror status on the juror record screen is "Responded"
     And I click the summons reply tab
     And I click on the "View summons reply" link
-    And I see the reply "type" on the response is "AUTO PROCESSED"
+    And I see the reply "type" on the response is "Auto processed"
     And I see the juror status has updated to "Responded"
-    And I see the reply "status" on the response is "COMPLETED"
+    And I see the reply "status" on the response is "Completed"
 
     Examples:
       | juror_number  | l_name	                | postcode| pool_number	|

@@ -244,7 +244,7 @@ Scenario Outline: Reasonable adjustments (DIABETES) to automatically update Juro
 	And I search for juror "<juror_number>"
 	And I click on the "Summons reply" link
 	Then I see "Responded" on the page
-	And I see "COMPLETED" on the page
+	And I see "Completed" on the page
 	Then on "JUROR_MOD" . "JUROR_REASONABLE_ADJUSTMENT" I see "REASONABLE_ADJUSTMENT" is "I" where "JUROR_NUMBER" is "<juror_number>"
 
 Examples:

@@ -3,7 +3,7 @@ Feature: JDB-3198
 @RegressionSingle @NewSchemaConverted
 Scenario Outline: Can Set Juror Record to responded while response is TODO
 	
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -17,7 +17,7 @@ Scenario Outline: Can Set Juror Record to responded while response is TODO
 		|part_no			|pool_number	|last_name		|postcode	|email 	|
 		|<juror_number>		|<pool_number>	|<last_name>	|<postcode>	|<email>|
 
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "ithc"
 	And I log in as "CPASS"
 
 	And I search for juror "<juror_number>"
@@ -28,7 +28,7 @@ Scenario Outline: Can Set Juror Record to responded while response is TODO
 	And I press the "Confirm" button
 
 	And I click on the "Summons reply" link
-	Then I see "COMPLETED" on the page
+	Then I see "Completed" on the page
 	And I see "Responded" on the page
 
 	And I click on the "Juror details" link
@@ -80,7 +80,7 @@ Scenario Outline: Can Set Juror Record to Excused while response is TODO
 	
 	#check that the response has been completed
 	When I click on the "Summons reply" link
-	Then I see "COMPLETED" on the page
+	Then I see "Completed" on the page
 	And I see "Excusal granted (ill)" on the page
 
 	And I click on the "Juror details" link
@@ -103,7 +103,7 @@ Examples:
 @RegressionSingle @NewSchemaConverted
 Scenario Outline: Can Set Juror Record to Disqualified while response is TODO
 	
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -117,7 +117,7 @@ Scenario Outline: Can Set Juror Record to Disqualified while response is TODO
 		|part_no		|pool_number	|last_name		|postcode	|email 	|
 		|<juror_number>	|<pool_number>	|<last_name>	|<postcode>	|<email>|
 	
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "ithc"
 	And I log in as "CPASS"
 	
 	##disqualify juror
@@ -131,7 +131,7 @@ Scenario Outline: Can Set Juror Record to Disqualified while response is TODO
 
 	#check that the response has been completed
 	When I click on the "Summons reply" link
-	Then I see "COMPLETED" on the page
+	Then I see "Completed" on the page
 	And I see "Disqualified" on the page
 
 	And I click on the "Juror details" link
@@ -189,7 +189,7 @@ Scenario Outline: Can Set Juror Record to Deferred while response is TODO
 	When I click on the "Summons reply" link
 
 	#JM-6706
-	Then I see "COMPLETED" on the page
+	Then I see "Completed" on the page
 	And I see "Deferral granted (ill)" on the page
 
 	And I click on the "Juror details" link
@@ -245,7 +245,7 @@ Scenario Outline: Can Set Juror Record to Postponed while response is TODO
 	When I click on the "Summons reply" link
 
 	#JM-6706
-	Then I see "COMPLETED" on the page
+	Then I see "Completed" on the page
 	And I see "Responded" on the page
 
 	And I click on the "Juror details" link
@@ -344,7 +344,7 @@ Scenario Outline: Can Set Juror Record to Deceased while response is TODO
 
 	#check that the response has been completed
 	When I click on the "Summons reply" link
-	Then I see "COMPLETED" on the page
+	Then I see "Completed" on the page
 	And I see "Excusal granted (deceased)" on the page
 
 	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "CLOSED" where "JUROR_NUMBER" is "<juror_number>"
@@ -382,7 +382,7 @@ Scenario Outline: Can Set Juror Record to undelivered while response is TODO
 		And I see the juror record updated banner containing "Summons undeliverable"
 
 		And I click on the "Summons reply" link
-		Then I see "SUMMONS NOT RECEIVED" on the page
+		Then I see "Summons not received" on the page
 
 		Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "LAST_NAME" is "Changed" where "JUROR_NUMBER" is "<juror_number>"
 

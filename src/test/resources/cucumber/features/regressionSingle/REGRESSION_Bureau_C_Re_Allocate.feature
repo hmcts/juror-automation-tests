@@ -3,7 +3,7 @@ Feature: Bureau C Test
 @Regression @NewSchemaConverted
 Scenario Outline: Bureau C script
 
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  			| pool_number	| att_date_weeks_in_future	| owner |
@@ -28,7 +28,7 @@ Scenario Outline: Bureau C script
 		| <juror_number_two>	| <pool_number>	| <last_name>		|<postcode>		|<email>	|<details>	|
 		| <juror_number_three>	| <pool_number>	| <last_name>		|<postcode>		|<email>	|<details>	|
 
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "ithc"
 
 	When I log in as "CPASS"
 	And I click on the "Assign Replies" link
@@ -77,7 +77,7 @@ Scenario Outline: Bureau C script
 
 	And I click on the "Sign out" link
 
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "ithc"
 	And I log in as "ARAMIS1"
 	Then I see "<juror_number_one>" on the page
 
@@ -92,7 +92,7 @@ Scenario Outline: Bureau C script
 
 	And I click on the "Sign out" link
 
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "ithc"
 	And I log in as "MODTESTBUREAU"
 	Then I see "<juror_number_one>" on the page
 
@@ -108,7 +108,7 @@ Scenario Outline: Bureau C script
 
 	And I click on the "Sign out" link
 
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "ithc"
 	And I log in as "ARAMIS1"
 	Then I see "<juror_number_one>" on the page
 	Then I see "<juror_number_two>" on the page
@@ -116,12 +116,13 @@ Scenario Outline: Bureau C script
 
 	And I click on the "Sign out" link
 
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "ithc"
 	And I log in as "MODTESTBUREAU"
 	When I click on the "Search" link
+	And I see "Juror's pool number" on the page
 	And I set "Juror's pool number" to "<pool_number>"
-
 	And I click on the "Advanced search" link
+
 	And I check the "To do" checkbox
 	And I press the "Search" button
 	And I press the "Select all" button
@@ -133,7 +134,7 @@ Scenario Outline: Bureau C script
 
 	And I click on the "Sign out" link
 
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "ithc"
 	And I log in as "CPASS"
 	Then I do not see "<juror_number_one>" on the page
 	Then I do not see "<juror_number_two>" on the page

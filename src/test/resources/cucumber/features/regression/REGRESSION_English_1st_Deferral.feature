@@ -228,7 +228,7 @@ Feature: Regression English_1st_Deferral
     Given I am on "Bureau" "ithc"
     When I log in as "CPASS"
     Then I see "<juror_number>" on the page
-    Then I see "<juror_number>" has reply type indicator "DEFERRAL"
+    Then I see "<juror_number>" has reply type indicator "Deferral"
 
     When I click on "<juror_number>" in the same row as "<juror_number>"
 
@@ -3136,7 +3136,7 @@ Feature: Regression English_1st_Deferral
     Given I am on "Bureau" "ithc"
     When I log in as "CPASS"
     Then I see "<juror_number>" on the page
-    Then I see "<juror_number>" has reply type indicator "DEFERRAL"
+    Then I see "<juror_number>" has reply type indicator "Deferral"
 
     Examples:
       | juror_number | pool_number | last_name          | postcode | email      |
@@ -3311,7 +3311,7 @@ Feature: Regression English_1st_Deferral
     Given I am on "Bureau" "ithc"
     When I log in as "CPASS"
     Then I see "<juror_number>" on the page
-    Then I see "<juror_number>" has reply type indicator "DEFERRAL"
+    Then I see "<juror_number>" has reply type indicator "Deferral"
 
     When I click on "<juror_number>" in the same row as "<juror_number>"
 

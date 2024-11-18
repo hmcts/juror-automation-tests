@@ -200,8 +200,8 @@ Feature: JM-4222
     When I select that the summons reply has been signed
     And I click done on the juror summons reply page
 
-    And I see the reply "status" on the response is "TO DO"
-    And I see the reply "type" on the response is "DEFERRAL"
+    And I see the reply "status" on the response is "To Do"
+    And I see the reply "type" on the response is "Deferral"
     And I select the reasonable adjustments tab from the summons reply page
     When I press the "Check court can accommodate" button
     Then I am on the check can accommodate screen
@@ -535,8 +535,8 @@ Feature: JM-4222
     When I select that the summons reply has been signed
     And I click done on the juror summons reply page
 
-    And I see the reply "status" on the response is "TO DO"
-    And I see the reply "type" on the response is "DEFERRAL"
+    And I see the reply "status" on the response is "To Do"
+    And I see the reply "type" on the response is "Deferral"
     And I click on the "Reasonable adjustments" link
     When I press the "Check court can accommodate" button
     Then I am on the check can accommodate screen

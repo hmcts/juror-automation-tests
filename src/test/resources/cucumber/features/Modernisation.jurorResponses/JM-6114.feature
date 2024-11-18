@@ -4,6 +4,7 @@ Feature: JM-6114 - As a jury officer, I want to edit submitted expenses before a
   Scenario Outline: Edit expenses while pending approval as a jury officer
 
     Given I am on "Bureau" "ithc"
+
     When a bureau owned pool is created with jurors
       | court |juror_number  	| pool_number	  | att_date_weeks_in_future	| owner |
       | 415   |<juror_number>   | <pool_number>   | 5				            | 400	|
@@ -47,6 +48,7 @@ Feature: JM-6114 - As a jury officer, I want to edit submitted expenses before a
     And I click on the "Juror management" link
     And I click on the "Record attendance" link
     And I press the "Confirm attendance" button
+    And I see "Some jurors have not been checked out" on the page
     And I set "Hour" to "11"
     And I set "Minute" to "30"
     And I set the radio button to "pm"
@@ -70,7 +72,7 @@ Feature: JM-6114 - As a jury officer, I want to edit submitted expenses before a
     And I click the edit expenses for approval button
     And I see "Edit expenses for approval" on the page
     And I click on my expense link with todays date
-    Then I see "FOR APPROVAL" on the page
+    Then I see "For approval" on the page
     When I set "Loss of earnings or benefits" to "90"
     And I set "Extra care costs" to "10"
     And I verify the banner message "You’ve made changes" on the page
@@ -89,5 +91,5 @@ Feature: JM-6114 - As a jury officer, I want to edit submitted expenses before a
     Then I verify the banner message "Expenses resubmitted for approval" on the page
 
     Examples:
-      |user			|juror_number |   pool_number   |
-      |MODTESTCOURT |041536649    | 415360943       |
+      | user		 | juror_number | pool_number   |
+      | MODTESTCOURT | 041536649    | 415360943     |

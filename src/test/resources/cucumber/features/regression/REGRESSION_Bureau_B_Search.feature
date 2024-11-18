@@ -98,11 +98,11 @@ Scenario Outline: Lift from QC Script for Bureau B Search
 	
 	And I press the "Search" button
 	Then I see "1 results for" on the page
-	And I see "COMPLETED" in the same row as "<juror_number2>"
+	And I see "Completed" in the same row as "<juror_number2>"
 	
 	When I click on "<juror_number2>" in the same row as "<juror_number2>"
 	Then I see "Reply status" on the page
-	And I see "COMPLETED" on the page
+	And I see "Completed" on the page
 
 Examples:
 	|juror_number1	|juror_number2	| pool_number 	| last_name 		| postcode 	|email				|details	|

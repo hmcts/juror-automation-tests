@@ -35,7 +35,8 @@ Feature: JM-4104 - As a Bureau officer I need to be able to see the pool history
 
   @JurorTransformation
   Scenario: Test to check Bureau officer can see Pool history - new pool - summons issued
-  Given I am on "Bureau" "test"
+
+  Given I am on "Bureau" "ithc"
   And I log in as "MODTESTBUREAU"
 
   #create pool request
@@ -56,7 +57,7 @@ Feature: JM-4104 - As a Bureau officer I need to be able to see the pool history
   @JurorTransformation
   Scenario: Test to check Bureau officer can see Pool history - edit pool - summons issued
 
-  Given I am on "Bureau" "test"
+  Given I am on "Bureau" "ithc"
   And I log in as "MODTESTBUREAU"
 
   #create pool request
@@ -114,7 +115,9 @@ Feature: JM-4104 - As a Bureau officer I need to be able to see the pool history
 
   @JurorTransformation
   Scenario: Test to check Bureau officer can see Pool history - order of history is correct
-  Given I am on "Bureau" "test"
+
+  Given I am on "Bureau" "ithc"
+
   And I log in as "MODTESTBUREAU"
 
   #create pool request
@@ -149,7 +152,7 @@ Feature: JM-4104 - As a Bureau officer I need to be able to see the pool history
 
   Then I clear down the data for the pool new schema
 
-   @JurorTransformation @NewSchemaConverted
+   @JurorTransformation
    Scenario: Test to check Bureau officer can see Pool history - times/dates are correct
    Given I am on "Bureau" "ithc"
    And I log in as "MODTESTBUREAU"

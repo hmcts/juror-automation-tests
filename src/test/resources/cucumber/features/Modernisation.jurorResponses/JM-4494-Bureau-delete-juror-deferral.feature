@@ -18,7 +18,7 @@ Feature: JM-4494 Bureau Delete Juror Deferral
     When the user searches for juror record "<juror_number>" from the global search bar
     And I click the summons reply tab
     And I click on the "View summons reply" link
-    And I see the reply "type" on the response is "DEFERRAL"
+    And I see the reply "type" on the response is "Deferral"
 
     Then I click the process reply button
     Then I set the radio button to "Deferral request"
@@ -60,7 +60,7 @@ Feature: JM-4494 Bureau Delete Juror Deferral
 
     When the user searches for juror record "<juror_number>" from the global search bar
     Then I record a happy path deferral paper summons response
-    And I see the reply "type" on the response is "DEFERRAL"
+    And I see the reply "type" on the response is "Deferral"
 
     Then I click the process reply button
     Then I set the radio button to "Deferral request"
@@ -111,7 +111,7 @@ Feature: JM-4494 Bureau Delete Juror Deferral
     When the user searches for juror record "<juror_number>" from the global search bar
     Then I record a happy path deferral paper summons response
 
-    And I see the reply "type" on the response is "DEFERRAL"
+    And I see the reply "type" on the response is "Deferral"
     Then I click the process reply button
     Then I set the radio button to "Deferral request"
     And I click continue on the process reply page

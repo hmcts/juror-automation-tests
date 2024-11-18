@@ -64,7 +64,7 @@ Scenario Outline: A response is submitted after pool is transferred to court
 	And I click on "<juror_number>" in the same row as "<juror_number>"
 
 	#check status = summoned
-	And I see "AUTO PROCESSED" on the page
+	And I see "Auto processed" on the page
 
 	And I press the "More actions" button
 	And I click on the "Download as a PDF" link

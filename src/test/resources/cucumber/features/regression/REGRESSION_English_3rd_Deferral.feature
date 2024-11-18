@@ -280,7 +280,7 @@ Feature: Regression English_3rd_Deferral
     When I log in as "CPASS"
     Then I see "<juror_number>" on the page
 	#JM-7065
-    Then I see "<juror_number>" has reply type indicator "INELIGIBLE"
+    Then I see "<juror_number>" has reply type indicator "Ineligible"
 
     Examples:
       | juror_number | last_name        | postcode | email             | pool_number |

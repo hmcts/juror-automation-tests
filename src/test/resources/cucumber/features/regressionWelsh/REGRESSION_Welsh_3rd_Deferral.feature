@@ -208,7 +208,7 @@ Scenario Outline: Welsh 3rd Party Deferral
     Given I am on "Bureau" "test"
 	And I log in as "ARAMIS1"
 	Then I see "<juror_number>" on the page
-	Then I see "<juror_number>" has reply type indicator "DEFERRAL"
+	Then I see "<juror_number>" has reply type indicator "Deferral"
 
 Examples:
 	| juror_number	| last_name			| postcode	| pool_number	|

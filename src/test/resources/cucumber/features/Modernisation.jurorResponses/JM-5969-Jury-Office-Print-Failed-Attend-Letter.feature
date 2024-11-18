@@ -1,17 +1,20 @@
 Feature: As a jury officer I need to be able to print a failed to attend letter
 
-  @JurorTransformation @NewSchemaConverted
+  @JurorTransformation
   Scenario Outline:Verify jury officer able to print a failed to attend letter
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
+
     When a bureau owned pool is created with jurors
-      | court |juror_number       | pool_number      | att_date_weeks_in_future | owner |
-      | 415   |<juror_number>         | <pool_number>     | 5                         | 400  |
+      | court | juror_number   | pool_number      | att_date_weeks_in_future | owner |
+      | 415   | <juror_number> | <pool_number>    | 5                         | 400  |
 
     And a new pool is inserted for where record has transferred to the court new schema
-      |part_no               | pool_no           | owner |
-      |<juror_number>       | <pool_number>      | 415   |
+      | part_no          | pool_no         | owner |
+      | <juror_number>   | <pool_number>   | 415   |
+
     Then I Confirm all the data in the record attendance table is cleared
+
     #log on and search for juror
     And I update juror "<juror_number>" to have confirm attendance date as todays date
     And I log in as "<user>"
@@ -31,15 +34,16 @@ Feature: As a jury officer I need to be able to print a failed to attend letter
 
     Examples:
       | juror_number  | pool_number | user           |
-      |  041530039    |415300355 | MODTESTCOURT   |
+      | 041530039     | 415300355   | MODTESTCOURT   |
 
-  @JurorTransformation @NewSchemaConverted
+  @JurorTransformation
   Scenario Outline:Verify jury officer able to print the failed to attend letter from the juror record under the attendance tab.
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
+
     When a bureau owned pool is created with jurors
-      | court |juror_number       | pool_number      | att_date_weeks_in_future | owner |
-      | 415   |<juror_number>         | <pool_number>     | 5                         | 400  |
+      | court | juror_number    | pool_number      | att_date_weeks_in_future | owner |
+      | 415   | <juror_number>  | <pool_number>    | 5                        | 400  |
 
     And a new pool is inserted for where record has transferred to the court new schema
       |part_no               | pool_no           | owner |

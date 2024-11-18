@@ -153,7 +153,6 @@ Feature: JM-4001 and JM-4002 - Bureau User
 
     #needs to stay in single thread pack
 
-    And I press the "Hide filter" button
     #apply Juror number filter
     When I set the "juror number" deferral filter to "041500001"
     Then The first deferral in the table is "041500001, 0FNAME1, TESTNAME, 415000001" with a deferral date "1" Mondays in the future
@@ -168,6 +167,7 @@ Feature: JM-4001 and JM-4002 - Bureau User
     And Row "3" deferral in the table is "041500002, 0FNAME2, TESTNAME, 415000002" with a deferral date "1" Mondays in the future
 
     #apply NON_EXISTENT Juror number filter
+    And I press the "Show filter" button
     And I set "Juror number" to "000000000"
     And I press the "Apply filters" button
     Then I see "There are no results to display" on the page

@@ -4,10 +4,7 @@ import cucumber.utils.AngularJsHTTPCallWait;
 import cucumber.utils.WaitUtil_v2;
 import cucumber.utils.WaitUtils;
 import org.apache.log4j.Logger;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -282,7 +279,7 @@ public class DeferralMaintenance {
     public void selectJurorFromTable(String jurorNumber){
         WebElement selectCheckbox = driver.findElement(By.id("deferral-"+ jurorNumber));
         log.info("Clicking select checkbox for: " + jurorNumber);
-        selectCheckbox.click();
+        selectCheckbox.sendKeys(Keys.SPACE);
     }
 
     public void selectActivePool(String poolNumber){

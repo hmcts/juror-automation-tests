@@ -51,7 +51,7 @@ Feature: JM-5070 As a jury officer I need to be able to change a jurors attendan
   Scenario Outline: Happy Path Test to create a new pool of jurors and confirm jurors attendance date
 
     #needs to go into single threaded
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     When a bureau owned pool is created with jurors
       | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
       | 415   |<juror_number_1>     | <pool_number>     | 5				            | 400	|
@@ -201,7 +201,7 @@ Feature: JM-5070 As a jury officer I need to be able to change a jurors attendan
   @JurorTransformation @newSchemaConverted
   Scenario Outline: create a new pool of jurors and verify attendance date for panel members
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     When a bureau owned pool is created with jurors
       | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
       | 415   |<juror_number_1>     | <pool_number>     | 5				            | 400	|

@@ -1,6 +1,6 @@
 Feature: JM-4247 Edit Juror Record as Court User
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: The system shall allow the Jury officer to edit a juror record for a juror in their control
 
     Given I am on "Bureau" "ithc"
@@ -57,6 +57,12 @@ Feature: JM-4247 Edit Juror Record as Court User
     And I see "Name" on the page
     And I see "Relationship to juror" on the page
     And I set "Name" to "Steven"
+
+    #check relationship can only be 50 chars
+    And I set "Relationship to juror" to "abc abc abc abc abcd abcd abcd abcde abcde abcde AB"
+    And I press the "Save" button
+    And I see error "Please check the third party relationship"
+
     And I set "Relationship to juror" to "Friend"
 
     And I see "Additional requirements" on the page

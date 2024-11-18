@@ -4,10 +4,8 @@ import cucumber.utils.AngularJsHTTPCallWait;
 import cucumber.utils.WaitUtil_v2;
 import cucumber.utils.WaitUtils;
 import org.apache.log4j.Logger;
-import org.openqa.selenium.By;
+import org.openqa.selenium.*;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -62,7 +60,7 @@ public class PoolRequests {
     WebElement timeMinutes;
     @FindBy(xpath = "//input[@id=\"courtNameOrLocation\"]")
     WebElement courtTextBox;
-    @FindBy(xpath = "//button[@type=\"submit\"]")
+    @FindBy(id = "continueButton")
     WebElement submitButton;
     @FindBy(id = "courtNameOrLocation__option--0")
     WebElement courtDropdownFirstOption;

@@ -19,7 +19,7 @@ Feature: JM-3895 mark juror as deferred digital
     When the user searches for juror record "<juror_number>" from the global search bar
     And I click the summons reply tab
     And I click on the "View summons reply" link
-    And I see the reply "type" on the response is "DEFERRAL"
+    And I see the reply "type" on the response is "Deferral"
 
     Then I click the process reply button
     Then I set the radio button to "Deferral request"
@@ -39,8 +39,8 @@ Feature: JM-3895 mark juror as deferred digital
     Then the user searches for juror record "<juror_number>" from the global search bar
     And I click the summons reply tab
     And I click on the "View summons reply" link
-    And I see the reply "type" on the response is "DEFERRAL"
-    And I see the reply "status" on the response is "COMPLETED"
+    And I see the reply "type" on the response is "Deferral"
+    And I see the reply "status" on the response is "Completed"
 
     Examples:
       | juror_number   | pool_number   |
@@ -69,7 +69,7 @@ Feature: JM-3895 mark juror as deferred digital
     When the user searches for juror record "<juror_number>" from the global search bar
     And I click the summons reply tab
     And I click on the "View summons reply" link
-    And I see the reply "type" on the response is "DEFERRAL"
+    And I see the reply "type" on the response is "Deferral"
 
     Then I click the process reply button
     Then I set the radio button to "Deferral request"
@@ -90,8 +90,8 @@ Feature: JM-3895 mark juror as deferred digital
     Then the user searches for juror record "<juror_number>" from the global search bar
     And I click the summons reply tab
     And I click on the "View summons reply" link
-    And I see the reply "type" on the response is "DEFERRAL"
-    And I see the reply "status" on the response is "COMPLETED"
+    And I see the reply "type" on the response is "Deferral"
+    And I see the reply "status" on the response is "Completed"
 
     Then I clear down the data for all the pools I created for this test new schema
     Then the poolNumbers lists is empty
