@@ -13,7 +13,7 @@ Feature: JS-89
     And I click on the "Record attendance" link
 
     And I click on the previous attendance day link "7" amount of times
-    And I see "CONFIRMED" on the page
+    And I see "Confirmed" on the page
 
 
     Examples:
@@ -236,7 +236,7 @@ Feature: JS-89
     When the user searches for juror record "<juror_number>" from the global search bar
     And I click the update juror record button
     And I set the radio button to "Complete service"
-    And I click continue on the update juror record screen
+    And I press the "Continue" button
     And I set the "Completion date" single date field to a Monday "0" weeks in the future
     And I press the "Complete service" button
     Then I see "Juror's service completed" on the page
