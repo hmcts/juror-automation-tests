@@ -73,11 +73,17 @@ public class ActivePools {
     }
     public void bureauCheckSelectAllCheckboxOnPoolOverview() {
         log.info("Clicked select all checkbox on pool overview");
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", bureauPoolOverviewSelectAll);
         Actions actions = new Actions(driver);
-        actions.moveToElement(bureauPoolOverviewSelectAll);
-        actions.perform();
-        bureauPoolOverviewSelectAll.click();
+        actions.moveToElement(bureauPoolOverviewSelectAll).perform();
 
+        try {
+            bureauPoolOverviewSelectAll.click();
+            log.info("Successfully clicked the select all checkbox");
+        } catch (Exception e) {
+            log.warn("Standard click failed, using JavaScript click");
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", bureauPoolOverviewSelectAll);
+        }
     }
     public void selectAnyActivePool() {
         String activePoolsTable = "/html/body/div[3]/main/div/div/form/table";

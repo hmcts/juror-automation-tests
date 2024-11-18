@@ -2,6 +2,7 @@ package cucumber.pageObjects;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -144,7 +145,26 @@ public class JurorRecordSearch {
 
     public void enterCommentForHistory(String commentForHistory) { jurorDeceasedComment.sendKeys(commentForHistory);}
 
-    public void clickContinue() { continueButton.click();}
+    public void clickContinueButton() {
+        try {
+            log.info("Attempting to click the continue button using WebDriver.");
+            continueButton.click();
+            log.info("Continue button clicked successfully using WebDriver.");
+            return;
+        } catch (Exception e) {
+            log.error("WebDriver click failed: " + e.getMessage());
+        }
+
+        try {
+            log.info("Falling back to JavaScript executor to click the continue button.");
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", continueButton);
+            log.info("Continue button clicked successfully using JavaScript executor.");
+        } catch (Exception jsException) {
+            log.error("JavaScript executor click failed: " + jsException.getMessage());
+            throw new RuntimeException("Unable to click the continue button using JavaScript executor.");
+        }
+    }
+
 
     public String jurorRecordUpdatedContains() { return bannerMessageBoldText.getText();}
 

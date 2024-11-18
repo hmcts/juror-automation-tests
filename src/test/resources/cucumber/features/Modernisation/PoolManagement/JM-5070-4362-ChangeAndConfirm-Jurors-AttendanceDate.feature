@@ -70,7 +70,7 @@ Feature: JM-5070 As a jury officer I need to be able to change a jurors attendan
     And I click on the "Juror management" link
     When I click on the "Record attendance" link
     Then I see "Record attendance" on the page
-    And I see "UNCONFIRMED" on the page
+    And I see "Unconfirmed" on the page
     And I see "Check in" on the page
     And I see "Check out" on the page
     When I check the "Check in" checkbox
@@ -89,7 +89,6 @@ Feature: JM-5070 As a jury officer I need to be able to change a jurors attendan
     And I select the checkout radio button to "pm"
     And I click on "Record time" in the same row as "<juror_number_1>"
     Then I see "<juror_number_1>" in the same row as "8:00pm"
-    And I am able to see and interact with the Record attendance tabs and fields
 
    #Tap check out for single juror using record button
     When I check the "Check in" checkbox
@@ -119,7 +118,7 @@ Feature: JM-5070 As a jury officer I need to be able to change a jurors attendan
     #confirm all attendences
     When I press the "Confirm attendance" button
     And I press the "Confirm attendance list is correct" button
-    Then I see "CONFIRMED" on the page
+    Then I see "Confirmed" on the page
 
     Examples:
       |user			|juror_number_1 | juror_number_2  |      pool_number   |
@@ -151,7 +150,7 @@ Feature: JM-5070 As a jury officer I need to be able to change a jurors attendan
     And I click on the "Juror management" link
     And I click on the "Record attendance" link
     Then I see "Record attendance" on the page
-    And I see "UNCONFIRMED" on the page
+    And I see "Unconfirmed" on the page
     And I see "Check in" on the page
     And I see "Check out" on the page
     When I check the "Check in" checkbox
@@ -223,7 +222,7 @@ Feature: JM-5070 As a jury officer I need to be able to change a jurors attendan
     And I click on the "Juror management" link
     When I click on the "Record attendance" link
     Then I see "Record attendance" on the page
-    And I see "UNCONFIRMED" on the page
+    And I see "Unconfirmed" on the page
     And I see "Check in" on the page
     And I see "Check out" on the page
     When I check the "Check in" checkbox

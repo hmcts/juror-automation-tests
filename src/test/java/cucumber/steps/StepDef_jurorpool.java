@@ -2236,7 +2236,7 @@ public class StepDef_jurorpool {
 
     @Then("^I click continue on the update juror record screen$")
     public void iClickContinueToMarkTheJurorAsDeceased() {
-        JUROR_RECORD_SEARCH.clickContinue();
+        JUROR_RECORD_SEARCH.clickContinueButton();
     }
 
     @And("^I see the juror record updated banner containing \"([^\"]*)\"$")

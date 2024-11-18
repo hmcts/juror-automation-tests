@@ -17,7 +17,7 @@ Feature: JM-3989 JM-3993
 
     And I navigate to the pool search screen
     When I enter the pool number "<pool_number>" on the pool search screen
-    And I search for the pool
+    And I press the "Continue" button
     Then the pool is displayed
     And I click on the "<juror_number>" link
 
@@ -61,7 +61,7 @@ Feature: JM-3989 JM-3993
 
     And I navigate to the pool search screen
     When I enter the pool number "<pool_number>" on the pool search screen
-    And I search for the pool
+    And I press the "Continue" button
     Then the pool is displayed
     And I click on the "<juror_number>" link
 
@@ -96,7 +96,7 @@ Feature: JM-3989 JM-3993
 
     And I navigate to the pool search screen
     When I enter the pool number "<pool_number>" on the pool search screen
-    And I search for the pool
+    And I press the "Continue" button
     Then the pool is displayed
     And I click on the "<juror_number>" link
 
