@@ -16,7 +16,7 @@ Feature: JM-666
 
     And I navigate to the pool search screen
     When I enter the pool number "<pool_number>" on the pool search screen
-    And I search for the pool
+    And I press the "Continue" button
     Then the pool is displayed
 
     Examples:
@@ -40,7 +40,7 @@ Feature: JM-666
     And I navigate to the pool search screen
     When I enter the pool number "<pool_number>" on the pool search screen
     And I enter a location code of "415" for the pool search
-    And I search for the pool
+    And I press the "Continue" button
     Then the pool is displayed
 
     Examples:
@@ -57,7 +57,7 @@ Feature: JM-666
     When I enter the pool number "415111111" on the pool search screen
     And I expand the pool search advanced search criteria
     And I select the Completed option in the advanced pool search section
-    And I search for the pool
+    And I press the "Continue" button
     Then the pool is displayed
 
     Given the new pool for court "415" is deleted new schema
@@ -80,7 +80,7 @@ Feature: JM-666
     When I enter the pool number "<pool_number>" on the pool search screen
     And I expand the pool search advanced search criteria
     And I select the At Court option in the advanced pool search section
-    And I search for the pool
+    And I press the "Continue" button
     Then the pool is displayed
 
     Examples:
@@ -105,7 +105,7 @@ Feature: JM-666
     When I enter the pool number "<pool_number>" on the pool search screen
     And I expand the pool search advanced search criteria
     And I select the Crown Court option in the advanced pool search section
-    And I search for the pool
+    And I press the "Continue" button
     Then the pool is displayed
 
     Examples:
@@ -150,7 +150,7 @@ Feature: JM-666
     When I enter the pool number of the pool I have just created on the pool search screen
     And I expand the pool search advanced search criteria
     And I select the Civil Court option in the advanced pool search section
-    And I search for the pool
+    And I press the "Continue" button
     Then the pool is displayed
 
     Given the new pool for court "415" is deleted
@@ -172,7 +172,7 @@ Feature: JM-666
     And I navigate to the pool search screen
     When I enter the pool number "<pool_number>" on the pool search screen
     And I set input field with "id" of "serviceStartDate" to "25/10/2022"
-    And I search for the pool
+    And I press the "Continue" button
     Then I see "There are no matching results" on the page
 
     Examples:
@@ -196,7 +196,7 @@ Feature: JM-666
     And I navigate to the pool search screen
     When I enter the pool number "<pool_number>" on the pool search screen
     And I enter a location code of "767" for the pool search
-    And I search for the pool
+    And I press the "Continue" button
     Then I see "There are no matching results" on the page
 
     Examples:
@@ -221,7 +221,7 @@ Feature: JM-666
     When I enter the pool number "<pool_number>" on the pool search screen
     And I expand the pool search advanced search criteria
     And I select the Requested option in the advanced pool search section
-    And I search for the pool
+    And I press the "Continue" button
     Then I see "There are no matching results" on the page
 
     Examples:
@@ -246,7 +246,7 @@ Feature: JM-666
     When I enter the pool number "<pool_number>" on the pool search screen
     And I expand the pool search advanced search criteria
     And I select the With the Bureau option in the advanced pool search section
-    And I search for the pool
+    And I press the "Continue" button
     Then I see "There are no matching results" on the page
 
     Examples:
@@ -271,7 +271,7 @@ Feature: JM-666
     When I enter the pool number "<pool_number>" on the pool search screen
     And I expand the pool search advanced search criteria
     And I select the High Court option in the advanced pool search section
-    And I search for the pool
+    And I press the "Continue" button
     Then I see "There are no matching results" on the page
 
     Examples:
@@ -301,7 +301,7 @@ Feature: JM-666
     When I enter a location code of "415" for the pool search
     And I expand the pool search advanced search criteria
     And I select all the tick boxes in the advanced search section
-    And I search for the pool
+    And I press the "Continue" button
     Then the pool search results are found
     And I expand the pool search advanced search criteria
     And all the tick boxes in the advanced search section are still selected

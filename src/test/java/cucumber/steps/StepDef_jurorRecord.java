@@ -10,10 +10,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -469,16 +472,14 @@ public class StepDef_jurorRecord {
 
     @Then("^I see the date \"([^\"]*)\" weeks from now in the same row as \"([^\"]*)\"$")
     public void seeText_inSameRow_asText(String Weeks, String nextToText) {
-
         int weeks;
         try {
             weeks = Integer.parseInt(Weeks);
-            }
-        catch (NumberFormatException e) {
+        } catch (NumberFormatException e) {
             weeks = 0;
         }
 
-        DateFormat dateFormat = new SimpleDateFormat("EEE d MMM yyyy");
+        DateFormat dateFormat = new SimpleDateFormat("EEE d MMM yyyy", Locale.ENGLISH);
         Date today = Calendar.getInstance().getTime();
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(today);
