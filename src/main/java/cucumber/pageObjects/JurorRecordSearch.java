@@ -2,6 +2,7 @@ package cucumber.pageObjects;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -9,17 +10,18 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
-import static org.junit.Assert.assertTrue;
-
 
 public class JurorRecordSearch {
 
     private static WebDriver driver;
     private static final Logger log = Logger.getLogger(JurorRecordSearch.class);
 
+    private final NavigationShared NAV;
+
     public JurorRecordSearch(WebDriver webDriver) {
         JurorRecordSearch.driver = webDriver;
         PageFactory.initElements(webDriver, this);
+        NAV = PageFactory.initElements(webDriver, NavigationShared.class);
     }
 
     @FindBy(id = "search-button")
@@ -95,9 +97,10 @@ public class JurorRecordSearch {
         globalSearchExpand.click();
     }
 
-    public void searchForRecordFromPoolSearch(final String jurorNumber) {
+    public void searchForRecordFromPoolSearch(final String jurorNumber) throws Throwable {
+        NAV.waitForPageLoad();
         poolSearchField.sendKeys(jurorNumber);
-        clickContinue();
+        NAV.press_buttonByName("Continue");
     }
 
     public Boolean searchButtonInvisible() {
@@ -142,7 +145,26 @@ public class JurorRecordSearch {
 
     public void enterCommentForHistory(String commentForHistory) { jurorDeceasedComment.sendKeys(commentForHistory);}
 
-    public void clickContinue() { continueButton.click();}
+    public void clickContinueButton() {
+        try {
+            log.info("Attempting to click the continue button using WebDriver.");
+            continueButton.click();
+            log.info("Continue button clicked successfully using WebDriver.");
+            return;
+        } catch (Exception e) {
+            log.error("WebDriver click failed: " + e.getMessage());
+        }
+
+        try {
+            log.info("Falling back to JavaScript executor to click the continue button.");
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", continueButton);
+            log.info("Continue button clicked successfully using JavaScript executor.");
+        } catch (Exception jsException) {
+            log.error("JavaScript executor click failed: " + jsException.getMessage());
+            throw new RuntimeException("Unable to click the continue button using JavaScript executor.");
+        }
+    }
+
 
     public String jurorRecordUpdatedContains() { return bannerMessageBoldText.getText();}
 

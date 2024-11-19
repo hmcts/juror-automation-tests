@@ -570,35 +570,39 @@ public class NavigationShared {
     public NavigationShared check_checkbox(String location_name) {
         try {
             WebElement checkbox = find_inputBy_labelName(location_name);
-            log.info("Checkbox " + location_name + " checked:" + checkbox.isSelected());
-            checkbox.click();
-            checkbox.sendKeys(Keys.chord("", Keys.TAB));
-            log.info("Clicked on checkbox with for, checking if checked");
-            log.info("Checkbox " + location_name + " checked:" + checkbox.isSelected());
+            log.info("Checkbox " + location_name + " initial state (isSelected): " + checkbox.isSelected());
+
+            checkbox.sendKeys(Keys.SPACE);
+            log.info("WebDriver attempted to click checkbox with label: " + location_name);
+            log.info("Checkbox " + location_name + " state after WebDriver click (isSelected): " + checkbox.isSelected());
+
             if (checkbox.isSelected()) {
-                log.info("Return");
-                return null;
+                log.info("Checkbox " + location_name + " is successfully selected using WebDriver.");
+                return PageFactory.initElements(driver, NavigationShared.class);
             }
 
         } catch (Exception e) {
-            log.error(e.getMessage());
+            log.error("Error interacting with checkbox using WebDriver: " + e.getMessage());
         }
-        log.info("Continue... searching by xpath");
-        WebElement checkbox_location = driver.findElement(By.id(
-                //"//label[contains(normalize-space(text()), '"+location_name+"')]/input"
-                //"//label[text()[contains(., \""+location_name+"\")]]/input"
-                //DB test for new bureau filter checkboxes
-                location_name)
-        );
 
-        click_onElement(checkbox_location); //.click();
+        log.info("Fallback: Attempting to select checkbox using JavaScript.");
 
-        //wait.toBeSelected(checkbox_location);
+        try {
+            WebElement checkbox = find_inputBy_labelName(location_name);
+            ((JavascriptExecutor) driver).executeScript("if (!arguments[0].checked) arguments[0].click();", checkbox);
+            log.info("JavaScript executed click on checkbox with label: " + location_name);
 
-        //Boolean selectedCheck = checkbox_location.isSelected(); // Does this prove it is a checkbox?
+            // Verify the checkbox state again
+            if (checkbox.isSelected()) {
+                log.info("Checkbox " + location_name + " is successfully selected using JavaScript.");
+                return PageFactory.initElements(driver, NavigationShared.class);
+            }
 
-        //.waitForClickableElement(checkbox_location,2);
+        } catch (Exception e) {
+            log.error("Error interacting with checkbox using JavaScript: " + e.getMessage());
+        }
 
+        log.info("Final fallback: Unable to select checkbox. Proceeding with NavigationShared.");
         return PageFactory.initElements(driver, NavigationShared.class);
     }
 

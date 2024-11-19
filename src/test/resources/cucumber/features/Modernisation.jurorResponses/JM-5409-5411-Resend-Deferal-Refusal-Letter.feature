@@ -56,7 +56,7 @@ Feature: 1)JM-5409,JM-5411 - As a Bureau/jury officer I need to resend a deferra
     And I press the "Continue" button
     And I select "O - OTHER" from the "Reason for the deferral request" dropdown
     And I set the radio button to "Choose a different date"
-    And I set the "alternate" choice to "51" Mondays in the future
+    And I set the "alternate" choice to "47" Mondays in the future
     And I press the "Continue" button
     And I press the "Put in deferral maintenance" button
     And I verify the banner message "Deferral granted" on the page
@@ -64,14 +64,14 @@ Feature: 1)JM-5409,JM-5411 - As a Bureau/jury officer I need to resend a deferra
     Then I see the juror status has updated to "Deferred"
     And I click the update juror record button
     And I set the radio button to "Mark as responded"
-    And I click continue on the update juror record screen
+    And I press the "Continue" button
     And I check the "Mark juror as 'responded'" checkbox
     And I press the "Confirm" button
 
     When the user searches for juror record "<juror_number>" from the global search bar
     And I click the update juror record button
     And I set the radio button to "Deferral - grant or refuse"
-    And I click continue on the update juror record screen
+    And I press the "Continue" button
     And I select "O - OTHER" from the "Reason for the deferral request" dropdown
     When I set the radio button to "Refuse deferral"
     And I press the "Continue" button
@@ -172,14 +172,14 @@ Feature: 1)JM-5409,JM-5411 - As a Bureau/jury officer I need to resend a deferra
 
     And I click the update juror record button
     And I set the radio button to "Mark as responded"
-    And I click continue on the update juror record screen
+    And I press the "Continue" button
     And I check the "Mark juror as 'responded'" checkbox
     And I press the "Confirm" button
 
     When the user searches for juror record "<juror_number>" from the global search bar
     And I click the update juror record button
     And I set the radio button to "Deferral - grant or refuse"
-    And I click continue on the update juror record screen
+    And I press the "Continue" button
     And I select "O - OTHER" from the "Reason for the deferral request" dropdown
     When I set the radio button to "Refuse deferral"
     And I press the "Continue" button
@@ -265,14 +265,14 @@ Feature: 1)JM-5409,JM-5411 - As a Bureau/jury officer I need to resend a deferra
     Then I see the juror status has updated to "Deferred"
     And I click the update juror record button
     And I set the radio button to "Mark as responded"
-    And I click continue on the update juror record screen
+    And I press the "Continue" button
     And I check the "Mark juror as 'responded'" checkbox
     And I press the "Confirm" button
 
     When the user searches for juror record "<juror_number>" from the global search bar
     And I click the update juror record button
     And I set the radio button to "Deferral - grant or refuse"
-    And I click continue on the update juror record screen
+    And I press the "Continue" button
     And I select "O - OTHER" from the "Reason for the deferral request" dropdown
     When I set the radio button to "Refuse deferral"
     And I press the "Continue" button
@@ -361,7 +361,7 @@ Feature: 1)JM-5409,JM-5411 - As a Bureau/jury officer I need to resend a deferra
     Then I see the juror status has updated to "Deferred"
     And I click the update juror record button
     And I set the radio button to "Deferral - grant or refuse"
-    And I click continue on the update juror record screen
+    And I press the "Continue" button
     And I select "O - OTHER" from the "Reason for the deferral request" dropdown
     When I set the radio button to "Refuse deferral"
     And I press the "Continue" button
@@ -462,7 +462,7 @@ Feature: 1)JM-5409,JM-5411 - As a Bureau/jury officer I need to resend a deferra
     Then I see the juror status has updated to "Deferred"
     And I click the update juror record button
     And I set the radio button to "Deferral - grant or refuse"
-    And I click continue on the update juror record screen
+    And I press the "Continue" button
     And I select "O - OTHER" from the "Reason for the deferral request" dropdown
     When I set the radio button to "Refuse deferral"
     And I press the "Continue" button

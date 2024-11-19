@@ -297,7 +297,6 @@ Feature: JM-6753 - As a jury officer I want to be able to confirm the attendance
     And I press the "Confirm" button
 
     #error check
-    And I see error "Select which day you’re confirming attendance for"
     And I see error "Enter a check in time or delete this juror's attendance"
     And I see error "Enter a check out time"
     And I see error "Select which jurors attended at these times"

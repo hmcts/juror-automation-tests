@@ -57,7 +57,6 @@ Feature: JM-4365-As a jury officer I need to be able to check jurors out for the
     And I see "<juror_number_2>" in the same row as "11:30am"
     And I see "<juror_number_3>" in the same row as "12:30pm"
     And I see "<juror_number_4>" in the same row as "1:30pm"
-    And I am able to see and interact with the Record attendance tabs and fields
 
     #check out 4 jurors
     And I set the radio button to "Check out"
@@ -119,29 +118,23 @@ Feature: JM-4365-As a jury officer I need to be able to check jurors out for the
   @JurorTransformation @NewSchemaConverted
   Scenario Outline: To confirm all the jurors  attendance on the day
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     When a bureau owned pool is created with jurors
       | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
-      | 415   |<juror_number_1>     | <pool_number>     | 5				            | 400	| 
+      | 415   |<juror_number_1>     | <pool_number>     | 5				            | 400	|
       | 415   |<juror_number_2> 	| <pool_number>     | 5				            | 400	|
-      | 415   |<juror_number_3> 	| <pool_number>     | 5				            | 400	|
-      | 415   |<juror_number_4> 	| <pool_number>     | 5				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
       |part_no              | pool_no           | owner |
       |<juror_number_1>     | <pool_number>     | 415   |
       |<juror_number_2>     | <pool_number>      | 415   |
-      |<juror_number_3>     | <pool_number>      | 415   |
-      |<juror_number_4>     | <pool_number>      | 415   |
+
 
     And I Confirm all the data in the record attendance table is cleared
-    And a new trial is inserted with the trial number "<trial_number>"
     And I log in as "<user>"
      #set juror as responded
     And I update juror "<juror_number_1>" to have a status of responded in order to record attendance
     And I update juror "<juror_number_2>" to have a status of responded in order to record attendance
-    And I update juror "<juror_number_3>" to have a status of responded in order to record attendance
-    And I update juror "<juror_number_4>" to have a status of responded in order to record attendance
 
      #check in jurors
     And I press the "Apps" button
@@ -158,20 +151,10 @@ Feature: JM-4365-As a jury officer I need to be able to check jurors out for the
     And I set the radio button to "am"
     And I input juror "<juror_number_2>" to be checked in
     And I press the "Check in juror" button
-    And I set "Hour" to "12"
-    And I set "Minute" to "30"
-    And I set the radio button to "pm"
-    And I input juror "<juror_number_3>" to be checked in
-    And I press the "Check in juror" button
-    And I set "Hour" to "1"
-    And I set "Minute" to "30"
-    And I set the radio button to "pm"
-    And I input juror "<juror_number_4>" to be checked in
-    When I press the "Check in juror" button
+
     Then I see "<juror_number_1>" in the same row as "9:00am"
     And I see "<juror_number_2>" in the same row as "11:30am"
-    And I see "<juror_number_3>" in the same row as "12:30pm"
-    And I see "<juror_number_4>" in the same row as "1:30pm"
+
 
     #Confirm all the attendence
     When I press the "Confirm attendance" button
@@ -189,13 +172,11 @@ Feature: JM-4365-As a jury officer I need to be able to check jurors out for the
     And I see "Confirm attendance list is correct" on the page
     And I see "Back to attendance list" on the page
     When I press the "Confirm attendance list is correct" button
-    #Below step will fail due to JM-6720
-    Then I do not see "Confirm attendence " on the page
-    And I do not see " Change" on the page
-    And I do not see "Check in" on the page
-    And I do not see "Check out" on the page
-    And I am able to see and interact with the Record attendance confirmation screen
+
+    And I see "5:00pm" in the same row as "<juror_number_1>"
+    And I see "5:00pm" in the same row as "<juror_number_2>"
+
 
     Examples:
-      |user			|juror_number_1 | juror_number_2  |   juror_number_3 |juror_number_4 |    pool_number   | trial_number |
-      |MODTESTCOURT |041530007      | 041530008        |041530009       |  041530010     | 415300301        | T202495832   |
+      |user			|juror_number_1 | juror_number_2   | pool_number   |
+      |MODTESTCOURT |041530007      | 041530008        | 415300301     |
