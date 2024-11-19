@@ -620,12 +620,13 @@ public class PoolRequests {
         wait.activateImplicitWait();
         WebElement checkbox = driver.findElement(
                 By.xpath(
-                        "//input [@type='checkbox'] [@value=" + nextToText + "]"
+                        "//input[@type='checkbox'][@value=" + nextToText + "]"
                 ));
-        log.info("Saw checkbox in row which contained text =>" + nextToText);
-        checkbox.click();
-        log.info("Checked checkbox which was in the same row as =>" + nextToText);
+        log.info("Saw checkbox in row which contained text => " + nextToText);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].click();", checkbox);
 
+        log.info("Checked checkbox which was in the same row as => " + nextToText);
     }
 
     public enum PoolType {

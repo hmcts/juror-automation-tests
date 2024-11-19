@@ -176,6 +176,7 @@ Feature: JM-252_Validation_and_Errors_COURT
 
     When I click the change link for the attendance date
     And I set the attendance date to a weekend
+    And I press the "Change" button
     Then I see "You’ve selected an attendance date that’s a Saturday or a Sunday. You can continue or go back and change the date." on the page
     And I see "The attendance date is a weekend" on the page
     When I click the link to continue from the warning page

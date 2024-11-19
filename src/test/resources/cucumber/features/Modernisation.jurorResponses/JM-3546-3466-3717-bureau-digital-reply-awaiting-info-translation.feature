@@ -59,7 +59,7 @@ Feature: JM-3546 and JM-3466 Bureau User Marks Digital Response as Awaiting Info
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Bureau User Marks Digital Response as Awaiting Info - navigation
 
-    Given I am on "Public" "test"
+    Given I am on "Public" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
@@ -90,7 +90,7 @@ Feature: JM-3546 and JM-3466 Bureau User Marks Digital Response as Awaiting Info
     #cancel
     When I click on the "Cancel" link
     And I am on the modernisation version of View Summons Reply
-    Then I see the reply "status" on the response is "To Do"
+    Then I see the reply "status" on the response is "To do"
 
     #go to awaiting inforamation
     Then I press the "More actions" button

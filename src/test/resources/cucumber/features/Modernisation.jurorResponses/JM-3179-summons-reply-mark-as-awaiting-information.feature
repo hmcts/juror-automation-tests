@@ -27,9 +27,9 @@ Feature: JM-3179
 
     Examples:
     | waitingOnReplyFrom | updatedReplyStatus   | juror_number | pool_number |
-    | Juror              | AWAITING JUROR INFO  | 045200009    | 452300005   |
-    | Court              | AWAITING COURT REPLY | 045200009    | 452300005   |
-    | Translation unit   | AWAITING TRANSLATION | 045200009    | 452300005   |
+    | Juror              | Awaiting juror info  | 045200009    | 452300005   |
+    | Court              | Awaiting court reply | 045200009    | 452300005   |
+    | Translation unit   | Awaiting Translation | 045200009    | 452300005   |
 
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Test to mark paper summons reply as awaiting information - validation
