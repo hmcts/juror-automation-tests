@@ -24,12 +24,12 @@ import static org.junit.Assert.assertTrue;
 
 public class NavigationShared {
     private static WebDriver driver;
-    private static Logger log = Logger.getLogger(NavigationShared.class);
-    private WaitUtils wait;
-    private WaitUtil_v2 wait1;
-    private AngularJsHTTPCallWait aJsWait;
-    private String LOADING_ICON_LOCATION = "spinner";
-    private GenUtils GU;
+    private static final Logger log = Logger.getLogger(NavigationShared.class);
+    private final WaitUtils wait;
+    private final WaitUtil_v2 wait1;
+    private final AngularJsHTTPCallWait aJsWait;
+    private final String LOADING_ICON_LOCATION = "spinner";
+    private final GenUtils GU;
 
 
     public NavigationShared(WebDriver driver) {
@@ -116,7 +116,7 @@ public class NavigationShared {
 
 
     public void accessLoginPage(String publicBureau, String env) {
-        log.info("Going to access =>" + publicBureau + "<= for environment =>" + env + "");
+        log.info("Going to access =>" + publicBureau + "<= for environment =>" + env);
         String url;
         env = ReadProperties.systemPropertyEnvironmentOverrideCheck(env);
 
@@ -130,7 +130,7 @@ public class NavigationShared {
     }
 
     public void accessLoginPageWithCookies(String publicBureau, String env) {
-        log.info("Going to access =>" + publicBureau + "<= for environment =>" + env + "");
+        log.info("Going to access =>" + publicBureau + "<= for environment =>" + env);
         String url;
         env = ReadProperties.systemPropertyEnvironmentOverrideCheck(env);
 
@@ -145,7 +145,7 @@ public class NavigationShared {
     }
 
     public void accessLoginPageWelsh(String publicBureau, String env) {
-        log.info("Going to access =>" + publicBureau + "<= for environment =>" + env + "");
+        log.info("Going to access =>" + publicBureau + "<= for environment =>" + env);
         String url;
         env = ReadProperties.systemPropertyEnvironmentOverrideCheck(env);
 
@@ -159,7 +159,7 @@ public class NavigationShared {
     }
 
     public void accessLoginPageWelshWithCookies(String publicBureau, String env) {
-        log.info("Going to access =>" + publicBureau + "<= for environment =>" + env + "");
+        log.info("Going to access =>" + publicBureau + "<= for environment =>" + env);
         String url;
         env = ReadProperties.systemPropertyEnvironmentOverrideCheck(env);
 
@@ -179,7 +179,7 @@ public class NavigationShared {
     }
 
     public void accessLoginPageExpenses(String publicBureau, String env) {
-        log.info("Going to access =>" + publicBureau + "<= for environment =>" + env + "");
+        log.info("Going to access =>" + publicBureau + "<= for environment =>" + env);
         String url;
         env = ReadProperties.systemPropertyEnvironmentOverrideCheck(env);
 
@@ -193,7 +193,7 @@ public class NavigationShared {
     }
 
     public void accessLoginPageWelshExpenses(String publicBureau, String env) {
-        log.info("Going to access =>" + publicBureau + "<= for environment =>" + env + "");
+        log.info("Going to access =>" + publicBureau + "<= for environment =>" + env);
         String url;
         env = ReadProperties.systemPropertyEnvironmentOverrideCheck(env);
 
@@ -1372,9 +1372,8 @@ public class NavigationShared {
                                 + "//table//tr//td[contains(text(),\"" + nextToText + "\")]//ancestor::tr//td//a[text()[contains(., \"" + clickText + "\")]]"
                                 + "|"
                                 + "//table//tr//*[contains(text(),\"" + nextToText + "\")]//ancestor::tr//a[text()[contains(., \"" + clickText + "\")]]"
-//								+ "|"
-//								+ "//dt[contains(text(),\"" + nextToText + "\")]//ancestor:://div/dd//a[text()[contains(., \"" + clickText + "\")]]"
-                                + ""));
+								+ "|"
+								+ "//td/a[contains(text(),\"" + nextToText + "\")]/../..//td//a[text()[contains(., \"" + clickText + "\")]]"));
 
         wait.waitForClickableElement(click_text);
         click_onElement(click_text);
@@ -1572,12 +1571,12 @@ public class NavigationShared {
     //	db new to click cancel link in editing bureau
     public void clickLinkWithId(String linkId) {
         try {
-            log.info("Going to find field by =>" + linkId + "");
+            log.info("Going to find field by =>" + linkId);
             WebElement inputField = driver.findElement(By.xpath("//a[@id='" + linkId + "']"));
             inputField.click();
             log.info("Found =>" + linkId + " and clicked it");
         } catch (Exception e) {
-            log.info("Going to find field by =>" + linkId + "");
+            log.info("Going to find field by =>" + linkId);
             WebElement inputField = driver.findElement(By.xpath("//button[@id='" + linkId + "']"));
             inputField.click();
             log.info("Found =>" + linkId + " and clicked it");
@@ -1672,25 +1671,25 @@ public class NavigationShared {
     public void recordFlaggedOverdue(String nextToText) {
         try {
 
-            log.info("Going to find overdue flag for =>" + nextToText + "");
+            log.info("Going to find overdue flag for =>" + nextToText);
 //		driver.findElement(By.xpath("//*[@title='Overdue']//ancestor::tr/td/a[contains(normalize-space(text()),'"+nextToText+"')]"));
             driver.findElement(By.xpath("//*[@class='moj-badge moj-badge--red']//ancestor::tr/td/a[contains(normalize-space(text()),'" + nextToText + "')]"));
         } catch (Exception e) {
-            log.info("Going to find overdue flag for =>" + nextToText + "");
+            log.info("Going to find overdue flag for =>" + nextToText);
             driver.findElement(By.xpath("//*[@title='Overdue']//ancestor::tr/td//a[contains(normalize-space(text()),'" + nextToText + "')]"));
         }
     }
 
     public void replyTypeIndicator(String nextToText, String replyType) {
         try {
-            log.info("Going to find reply type indicator for =>" + nextToText + "");
+            log.info("Going to find reply type indicator for =>" + nextToText);
             driver.findElement(By.xpath(
                     "//tr//td//span[contains(text(),\"" + replyType + "\")]//ancestor::tr//td//a[text()[contains(.,\"" + nextToText + "\")]]"
                             + "|"
                             + "//tr//td//strong[contains(text(),\"" + replyType + "\")]//ancestor::tr//td//a[text()[contains(.,\"" + nextToText + "\")]]"
             ));
         } catch (Exception e) {
-            log.info("Going to find reply type indicator for =>" + nextToText + "");
+            log.info("Going to find reply type indicator for =>" + nextToText);
             driver.findElement(By.xpath("//*[@title='" + replyType + "']//ancestor::tr/td//a[contains(normalize-space(text()),'" + nextToText + "')]"));
         }
     }
@@ -1890,7 +1889,6 @@ public class NavigationShared {
             log.info("switched to window");
             return;
         }
-        return;
 
     }
 
