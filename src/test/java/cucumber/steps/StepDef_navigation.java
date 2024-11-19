@@ -204,6 +204,8 @@ public class StepDef_navigation {
 	@When("^I set \"([^\"]*)\" to \"([^\"]*)\"$")
 	public void set_value_to(String arg1, String arg2) throws Throwable {
 
+		NAV.waitForPageLoad();
+
 		if (arg2.contains(" time")) {
 			arg2 = formatDate(
 					DateManipulator.processString(arg2, false),
