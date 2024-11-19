@@ -5,6 +5,7 @@ import cucumber.utils.WaitUtils;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -173,8 +174,15 @@ public class TrialsAndAttendance {
         poolNumberCheckbox.click();
     }
     public void checkPoolNumberCheckboxFor(String poolNumber) {
-        log.info("Clicked pool number checkbox for: "+ poolNumber);
-        driver.findElement(By.id("select-"+poolNumber)).click();
+        try {
+            log.info("Attempting to click pool number checkbox for: " + poolNumber + " using JavaScript executor.");
+            WebElement checkbox = driver.findElement(By.id("select-" + poolNumber));
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", checkbox);
+            log.info("Clicked pool number checkbox for: " + poolNumber + " using JavaScript executor.");
+        } catch (Exception e) {
+            log.error("Failed to click pool number checkbox for: " + poolNumber + " using JavaScript executor: " + e.getMessage());
+            throw new RuntimeException("Unable to click pool number checkbox for: " + poolNumber);
+        }
     }
 
     public void jurorsForPanel(String noOfJurors) {
