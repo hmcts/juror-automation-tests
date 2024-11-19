@@ -30,7 +30,7 @@ Feature: JM-2251 JM-3038
 
     And I click on the "Summons reply" link
     And I click on the "View summons reply" link
-    And I see "SUMMONS REPLY" on the page
+    And I see "Summons reply" on the page
 
     Then I see the following summons reply details under the juror details tab
       | jurorName      | FNAMENINENINESIX <last_name>               |

@@ -139,7 +139,7 @@ Feature: As a Bureau Officer I need to search for a juror summon reply so that I
     Then I see "Who are you waiting for information from?" on the page
     And I mark this reply as awaiting information from "Translation unit"
     Then I press the "Confirm" button
-    And I see the reply status has updated to "AWAITING TRANSLATION"
+    And I see the reply status has updated to "Awaiting Translation"
 
     #Set juror status to Awaiting Court Reply
     When the user searches for juror record "<juror_number2>" from the global search bar

@@ -519,12 +519,12 @@ public class StepDef_jurorpool {
 
     @When("^I click continue on the pool request page$")
     public void iClickContinueOnPoolRequest() {
-        POOL_REQUESTS_PAGE.clickContinue();
+        NAV.clickContinueButton();
     }
 
     @When("^I click continue on the postponement page$")
     public void iClickContinueOnPostponement() {
-        POOL_REQUESTS_PAGE.clickContinue();
+        NAV.clickContinueButton();
     }
 
     @When("^I click the create nil pool confirmation button$")
@@ -788,7 +788,6 @@ public class StepDef_jurorpool {
         String weekendDateValue = new SimpleDateFormat(datePattern).format(weekendDate.getTime());
 
         POOL_REQUESTS_PAGE.enterNewDate(weekendDateValue);
-        POOL_REQUESTS_PAGE.confirmNewDate();
     }
 
     @Then("^I should see a warning stating I have selected a weekend$")
@@ -2236,7 +2235,7 @@ public class StepDef_jurorpool {
 
     @Then("^I click continue on the update juror record screen$")
     public void iClickContinueToMarkTheJurorAsDeceased() {
-        JUROR_RECORD_SEARCH.clickContinueButton();
+        NAV.clickContinueButton();
     }
 
     @And("^I see the juror record updated banner containing \"([^\"]*)\"$")
@@ -3076,7 +3075,7 @@ public class StepDef_jurorpool {
 
     @When("^I check the select all checkbox$")
     public void selectAllcheckbox() {
-        ACTIVE_POOLS_PAGE.checkSelectAllCheckbox();
+        ACTIVE_POOLS_PAGE.checkSelectAllCheckboxOnPoolOverview();
     }
 
     @When("^I check the select all checkbox on pool overview$")

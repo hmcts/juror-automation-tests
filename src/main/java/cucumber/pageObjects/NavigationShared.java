@@ -2502,4 +2502,16 @@ public class NavigationShared {
             throw new AssertionError("Court name does not match!");
         }
     }
+    public void clickContinueButton() {
+        try {
+            log.info("Attempting to click the continue button using JavaScript executor.");
+
+            WebElement continueButton = driver.findElement(By.xpath("//button[contains(text(),'Continue')]"));
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", continueButton);
+            log.info("Continue button clicked successfully using JavaScript executor.");
+        } catch (Exception e) {
+            log.error("JavaScript executor click failed: " + e.getMessage());
+            throw new RuntimeException("Unable to click the continue button using JavaScript executor.");
+        }
+    }
 }

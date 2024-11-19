@@ -52,7 +52,7 @@ Feature: JM-3826 Request Additional Information
    When I click on the "No, skip and process later" link
 
     Then the view summons reply page is displayed
-    And I see the reply status has updated to "TO DO"
+    And I see the reply status has updated to "To Do"
 
    #cancel and return
    And I see the reply status on the page
