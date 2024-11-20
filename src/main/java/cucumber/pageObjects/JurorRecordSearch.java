@@ -145,26 +145,6 @@ public class JurorRecordSearch {
 
     public void enterCommentForHistory(String commentForHistory) { jurorDeceasedComment.sendKeys(commentForHistory);}
 
-    public void clickContinueButton() {
-        try {
-            log.info("Attempting to click the continue button using WebDriver.");
-            continueButton.click();
-            log.info("Continue button clicked successfully using WebDriver.");
-            return;
-        } catch (Exception e) {
-            log.error("WebDriver click failed: " + e.getMessage());
-        }
-
-        try {
-            log.info("Falling back to JavaScript executor to click the continue button.");
-            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", continueButton);
-            log.info("Continue button clicked successfully using JavaScript executor.");
-        } catch (Exception jsException) {
-            log.error("JavaScript executor click failed: " + jsException.getMessage());
-            throw new RuntimeException("Unable to click the continue button using JavaScript executor.");
-        }
-    }
-
 
     public String jurorRecordUpdatedContains() { return bannerMessageBoldText.getText();}
 

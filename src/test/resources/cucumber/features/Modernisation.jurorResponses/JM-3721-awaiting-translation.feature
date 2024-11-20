@@ -132,7 +132,7 @@ Scenario Outline: JM-3721 As Court User, set Paper Response status as Awaiting T
 	And I click on the "No, skip and process later" link
 	Then the view summons reply page is displayed
 
-	And I see the reply status has updated to "TO DO"
+	And I see the reply status has updated to "To Do"
 
 	#check DB
 #	Then on "JUROR_MOD" . "PAPER_RESPONSE" I see "WELSH" is "Y" where "JUROR_NUMBER" is "<juror_number>"
@@ -212,7 +212,7 @@ Scenario Outline: JM-3721 As Court User, set Paper Response status as Awaiting T
 		And I click on the "No, skip and process later" link
 		Then the view summons reply page is displayed
 
-		And I see the reply status has updated to "TO DO"
+		And I see the reply status has updated to "To Do"
 
 	#check DB
 #	Then on "JUROR_MOD" . "PAPER_RESPONSE" I see "WELSH" is "Y" where "JUROR_NUMBER" is "<juror_number>"

@@ -28,7 +28,7 @@ Feature: JM-3686
 
     And I click on the "Summons reply" link
     And I click on the "View summons reply" link
-    And I see "SUMMONS REPLY" on the page
+    And I see "Summons reply" on the page
     And I click on the "Add or change" link
     And I see "Juror details" on the page
 
