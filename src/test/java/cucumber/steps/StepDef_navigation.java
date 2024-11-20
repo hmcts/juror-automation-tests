@@ -15,6 +15,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
 import java.time.Duration;
@@ -204,7 +205,15 @@ public class StepDef_navigation {
 	@When("^I set \"([^\"]*)\" to \"([^\"]*)\"$")
 	public void set_value_to(String arg1, String arg2) throws Throwable {
 
+		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		Date date = new Date();
+		String date1 = dateFormat.format(date);
+
 		NAV.waitForPageLoad();
+
+		if (arg2.contains("today")) {
+			arg2 = date1;
+        }
 
 		if (arg2.contains(" time")) {
 			arg2 = formatDate(
