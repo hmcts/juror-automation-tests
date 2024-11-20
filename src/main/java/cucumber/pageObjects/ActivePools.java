@@ -62,14 +62,15 @@ public class ActivePools {
 
     }
 
-    public void checkSelectAllCheckbox() {
-        log.info("Clicked select all checkbox");
-        poolOverviewSelectAll.click();
-    }
-
     public void checkSelectAllCheckboxOnPoolOverview() {
-        poolOverviewSelectAll.click();
-        log.info("Clicked select all checkbox on pool overview");
+        try {
+            log.info("Attempting to click the select all checkbox on pool overview");
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", poolOverviewSelectAll);
+            log.info("Clicked select all checkbox on pool overview");
+        } catch (Exception e) {
+            log.error("Failed to click the select all checkbox on pool overview: " + e.getMessage());
+            throw new RuntimeException("Unable to click the select all checkbox on pool overview");
+        }
     }
     public void bureauCheckSelectAllCheckboxOnPoolOverview() {
         log.info("Clicked select all checkbox on pool overview");

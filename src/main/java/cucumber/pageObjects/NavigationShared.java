@@ -568,41 +568,41 @@ public class NavigationShared {
     }
 
     public NavigationShared check_checkbox(String location_name) {
-        try {
-            WebElement checkbox = find_inputBy_labelName(location_name);
-            log.info("Checkbox " + location_name + " initial state (isSelected): " + checkbox.isSelected());
-
-            checkbox.sendKeys(Keys.SPACE);
-            log.info("WebDriver attempted to click checkbox with label: " + location_name);
-            log.info("Checkbox " + location_name + " state after WebDriver click (isSelected): " + checkbox.isSelected());
-
-            if (checkbox.isSelected()) {
-                log.info("Checkbox " + location_name + " is successfully selected using WebDriver.");
-                return PageFactory.initElements(driver, NavigationShared.class);
-            }
-
-        } catch (Exception e) {
-            log.error("Error interacting with checkbox using WebDriver: " + e.getMessage());
-        }
-
-        log.info("Fallback: Attempting to select checkbox using JavaScript.");
+        log.info("Attempting to select checkbox using JavaScript.");
 
         try {
             WebElement checkbox = find_inputBy_labelName(location_name);
             ((JavascriptExecutor) driver).executeScript("if (!arguments[0].checked) arguments[0].click();", checkbox);
             log.info("JavaScript executed click on checkbox with label: " + location_name);
 
-            // Verify the checkbox state again
             if (checkbox.isSelected()) {
                 log.info("Checkbox " + location_name + " is successfully selected using JavaScript.");
                 return PageFactory.initElements(driver, NavigationShared.class);
+            } else {
+                log.warn("Checkbox " + location_name + " was not selected after JavaScript execution.");
             }
-
         } catch (Exception e) {
             log.error("Error interacting with checkbox using JavaScript: " + e.getMessage());
         }
 
-        log.info("Final fallback: Unable to select checkbox. Proceeding with NavigationShared.");
+    /*
+    log.info("Fallback: Attempting to select checkbox using WebDriver.");
+    try {
+        WebElement checkbox = find_inputBy_labelName(location_name);
+        log.info("Checkbox " + location_name + " initial state (isSelected): " + checkbox.isSelected());
+
+        checkbox.sendKeys(Keys.SPACE);
+        log.info("WebDriver attempted to click checkbox with label: " + location_name);
+        log.info("Checkbox " + location_name + " state after WebDriver click (isSelected): " + checkbox.isSelected());
+
+        if (checkbox.isSelected()) {
+            log.info("Checkbox " + location_name + " is successfully selected using WebDriver.");
+            return PageFactory.initElements(driver, NavigationShared.class);
+        }
+    } catch (Exception e) {
+        log.error("Error interacting with checkbox using WebDriver: " + e.getMessage());
+    }
+    */
         return PageFactory.initElements(driver, NavigationShared.class);
     }
 
@@ -612,7 +612,7 @@ public class NavigationShared {
             log.info("Checkbox " + location_name + " checked:" + checkbox.isSelected());
 
             if (checkbox.isSelected()) {
-                checkbox.click();
+                ((JavascriptExecutor) driver).executeScript("if (arguments[0].checked) arguments[0].click();", checkbox);
             } else {
                 log.info("Return");
                 return null;
@@ -621,18 +621,23 @@ public class NavigationShared {
         } catch (Exception e) {
             log.error(e.getMessage());
         }
+
         log.info("Continue... searching by xpath");
-        WebElement checkbox_location = driver.findElement(By.xpath(
-                "//label[text()[contains(., \"" + location_name + "\")]]/input"
-        ));
 
-        if (checkbox_location.isSelected()) {
-            checkbox_location.click();
-        } else {
-            log.info("Return");
-            return null;
+        try {
+            WebElement checkbox_location = driver.findElement(By.xpath(
+                    "//label[text()[contains(., \"" + location_name + "\")]]/input"
+            ));
+
+            if (checkbox_location.isSelected()) {
+                ((JavascriptExecutor) driver).executeScript("if (arguments[0].checked) arguments[0].click();", checkbox_location);
+            } else {
+                log.info("Return");
+                return null;
+            }
+        } catch (Exception e) {
+            log.error(e.getMessage());
         }
-
 
         return PageFactory.initElements(driver, NavigationShared.class);
     }
