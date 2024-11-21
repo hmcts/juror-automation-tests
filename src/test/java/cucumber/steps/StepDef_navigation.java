@@ -209,7 +209,7 @@ public class StepDef_navigation {
 		Date date = new Date();
 		String date1 = dateFormat.format(date);
 
-		NAV.waitForPageLoad();
+//		NAV.waitForPageLoad();
 
 		if (arg2.contains("today")) {
 			arg2 = date1;
