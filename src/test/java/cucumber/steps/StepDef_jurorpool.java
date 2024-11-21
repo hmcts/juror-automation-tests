@@ -430,7 +430,7 @@ public class StepDef_jurorpool {
     }
 
     @And("^I select a new date \"([^\"]*)\" week in the future$")
-    public void iSelectANewDate(int weekInFuture) {
+    public void iSelectANewDate(int weekInFuture) throws Throwable {
         String datePattern = "dd/MM/yyyy";
         String fullDatePattern = "EEEEE dd MMMMM yyyy";
         Calendar date = Calendar.getInstance();
@@ -439,7 +439,7 @@ public class StepDef_jurorpool {
         String newDate = new SimpleDateFormat(datePattern).format(date.getTime());
 
         POOL_REQUESTS_PAGE.enterNewDate(newDate);
-        POOL_REQUESTS_PAGE.confirmNewDate();
+        NAV.press_buttonByName("Change");
 
     }
 
@@ -2106,10 +2106,10 @@ public class StepDef_jurorpool {
         Integer newPoolsCreated = 0;
         do {
             createNewPoolRequestWeeksInFuture(courtType, court, newPoolsCreated+2);
-//            String poolNo = POOL_REQUESTS_PAGE.getNewPoolNumberOnSummary();
+            String poolNo = POOL_REQUESTS_PAGE.getNewPoolNumberOnSummary();
 
             ArrayList<String> pools = poolNumbers.get();
-//            pools.add(poolNo);
+            pools.add(poolNo);
 
             NAV.click_link_by_text("Search");
             JUROR_RECORD_SEARCH.searchForRecordFromPoolSearch(poolNumber.get());

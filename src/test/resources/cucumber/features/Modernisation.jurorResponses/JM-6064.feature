@@ -6,12 +6,12 @@ Feature:As a jury officer, I want to edit a juror's draft daily expenses
     Given I am on "Bureau" "ithc"
 
     When a bureau owned pool is created with jurors
-      | court |juror_number       | pool_number      | att_date_weeks_in_future | owner |
-      | 415   |<juror_number>     | <pool_number>    | 3                        | 400   |
+      | court | juror_number       | pool_number      | att_date_weeks_in_future | owner |
+      | 415   | <juror_number>     | <pool_number>    | 3                        | 400   |
 
     And a new pool is inserted for where record has transferred to the court new schema
-      |part_no          | pool_no         | owner |
-      |<juror_number>   | <pool_number>   | 415   |
+      | part_no          | pool_no         | owner |
+      | <juror_number>   | <pool_number>   | 415   |
 
     And I Confirm all the data in the record attendance table is cleared
 
@@ -20,7 +20,7 @@ Feature:As a jury officer, I want to edit a juror's draft daily expenses
     #set juror as responded
     And I update juror "<juror_number>" to have a status of responded in order to record attendance
 
-     #check in juror
+    #check in juror
     And I press the "Apps" button
     And I click on the "Juror management" link
     And I click on the "Record attendance" link
@@ -64,7 +64,8 @@ Feature:As a jury officer, I want to edit a juror's draft daily expenses
     And I click on the "View all expenses" link
     And I click on "View expenses" in the same row as "<juror_number>"
     And I see the unpaid expenses table
-        #edit draft expenses
+
+    #edit draft expenses
     And I click on my draft expense link with todays date
     And I see "Daily expenses" on the page
     And I see "Time" on the page
@@ -74,15 +75,18 @@ Feature:As a jury officer, I want to edit a juror's draft daily expenses
     And I see "Food and drink" on the page
     And I see "Apply to all days" on the page
     And I see "Totals" on the page
-        #change time/error checks
+
+    #change time/error checks
     And I set "Hour" to "67"
     And I set "Minute" to "98"
-        #change financial loss/error checks
+
+    #change financial loss/error checks
     And I set "Loss of earnings or benefits" to "123456!!"
     And I set "Extra care costs" to "123456!!"
     And I set "Other costs" to "123456!!"
     And I set "Description of other costs" to "Testingothercosts12!)"
-        #change Travel/error checks
+
+    #change Travel/error checks
     And I check the "Car" checkbox
     And I see "Number of other jurors taken as passengers" on the page
     And I set "Number of other jurors taken as passengers" to "123456!!"
@@ -91,7 +95,8 @@ Feature:As a jury officer, I want to edit a juror's draft daily expenses
     And I set "Parking" to "123456!!"
     And I set "Public transport" to "123456!!"
     And I set "Taxi" to "123456!!"
-        #change food and drink/error checks
+
+    #change food and drink/error checks
     And I set "Amount spent on smartcard for this day" to "123456!!"
     And I press the "Save and next" button
     And I see error "Enter minutes between 0 and 59"
@@ -129,20 +134,21 @@ Feature:As a jury officer, I want to edit a juror's draft daily expenses
       | Daily limit (Full day)      | £64.95                      |
 
     Examples:
-      |user         |juror_number  |  pool_number    |
-      |MODTESTCOURT |041520020     |  415300201      |
+      | user         | juror_number  | pool_number    |
+      | MODTESTCOURT | 041520020     | 415300201      |
 
   @JurorTransformation
   Scenario Outline: Edit draft expenses for half day and verify error message as Juror’s financial loss is over the daily limit
 
     Given I am on "Bureau" "ithc"
+
     When a bureau owned pool is created with jurors
       | court |juror_number      | pool_number      | att_date_weeks_in_future | owner  |
       | 415   |<juror_number>    | <pool_number>    | 5                        | 400    |
 
     And a new pool is inserted for where record has transferred to the court new schema
-      |part_no         | pool_no           | owner |
-      |<juror_number>  | <pool_number>     | 415   |
+      | part_no         | pool_no           | owner |
+      | <juror_number>  | <pool_number>     | 415   |
 
     And I Confirm all the data in the record attendance table is cleared
     And I log in as "<user>"
@@ -220,21 +226,22 @@ Feature:As a jury officer, I want to edit a juror's draft daily expenses
       | Daily limit (Half day)      | £37.45                   |
 
     Examples:
-      |user         |juror_number  |  pool_number    |
-      |MODTESTCOURT |041520020     |  415300201      |
+      | user         | juror_number  | pool_number    |
+      | MODTESTCOURT | 041520020     | 415300201      |
 
 
   @JurorTransformation
   Scenario Outline: Edit draft expenses for half day and verify error message as Amounts entered are more than court’s suggested daily limits
 
     Given I am on "Bureau" "ithc"
+
     When a bureau owned pool is created with jurors
-      | court |juror_number      | pool_number      | att_date_weeks_in_future | owner |
-      | 415   |<juror_number>    | <pool_number>    | 5                        | 400   |
+      | court | juror_number      | pool_number      | att_date_weeks_in_future | owner |
+      | 415   | <juror_number>    | <pool_number>    | 5                        | 400   |
 
     And a new pool is inserted for where record has transferred to the court new schema
-      |part_no              | pool_no           | owner |
-      |<juror_number>       | <pool_number>     | 415   |
+      | part_no           | pool_no           | owner |
+      | <juror_number>    | <pool_number>     | 415   |
 
     And I Confirm all the data in the record attendance table is cleared
     And I log in as "<user>"
@@ -292,7 +299,7 @@ Feature:As a jury officer, I want to edit a juror's draft daily expenses
     And I click on "View expenses" in the same row as "<juror_number>"
     And I see the unpaid expenses table
 
-        #edit draft expenses
+    #edit draft expenses
     And I click on my draft expense link with todays date
     And I set the radio button to "Half day"
     And I see "Daily expenses" on the page
@@ -334,5 +341,5 @@ Feature:As a jury officer, I want to edit a juror's draft daily expenses
     And I see "fname lname" on the page
 
     Examples:
-      |user         |juror_number  |  pool_number    |
-      |MODTESTCOURT |041520020     |  415300201      |
+      | user         | juror_number  |  pool_number    |
+      | MODTESTCOURT | 041520020     |  415300201      |

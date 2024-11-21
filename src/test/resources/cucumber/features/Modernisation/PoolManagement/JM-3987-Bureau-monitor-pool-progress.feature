@@ -31,9 +31,9 @@ Feature: JM-3987 Monitor Pools Progress
 
   @JurorTransformation
   Scenario: Test to show the no pools requested message is displayed in weeks with no pools
+
     Given I am on "Bureau" "ithc"
     Given new pool requests are deleted new schema
-#    Given the poolNumbers lists is empty
 
     And I log in as "MODTESTBUREAU"
     And I navigate to the pool request screen
@@ -51,9 +51,9 @@ Feature: JM-3987 Monitor Pools Progress
 
   @JurorTransformation
   Scenario: Test for correct error message is returned when no pools are returned in the search
+
     Given I am on "Bureau" "ithc"
     Given new pool requests are deleted new schema
-    Given the poolNumbers lists is empty
 
     And I log in as "MODTESTBUREAU"
     And I navigate to the pool request screen
@@ -69,6 +69,7 @@ Feature: JM-3987 Monitor Pools Progress
 
   @JurorTransformation
   Scenario: Test for correct error message is returned when no search criteria are entered
+
     Given I am on "Bureau" "ithc"
     Given new pool requests are deleted new schema
 
@@ -106,6 +107,7 @@ Feature: JM-3987 Monitor Pools Progress
 
   @JurorTransformation
   Scenario: Test to show all 8 weeks are populated when an active pool exist for that week
+
     Given I am on "Bureau" "ithc"
     Given new pool requests are deleted new schema
 
@@ -113,6 +115,7 @@ Feature: JM-3987 Monitor Pools Progress
     And I navigate to the pool request screen
     And I delete bank holiday new schema
     And I create "8" new "Crown" pool requests each a week apart in court "415"
+
     And I navigate to the pool summoning progress screen
     And I see the summoning progress page banner
     And I enter "415" as the court
