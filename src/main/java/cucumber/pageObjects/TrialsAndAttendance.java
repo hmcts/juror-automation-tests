@@ -4,15 +4,13 @@ import cucumber.utils.WaitUtil_v2;
 import cucumber.utils.WaitUtils;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.NoSuchElementException;
 
 public class TrialsAndAttendance {
 
@@ -51,7 +49,7 @@ public class TrialsAndAttendance {
     @FindBy(xpath = "//*[@id=\"main-content\"]/div[2]/div/dl/div[6]/dd")
     WebElement trialProtection;
 
-    @FindBy(name = "selectedPools")
+    @FindBy(xpath = "//input[@name='selectedPools']")
     WebElement poolNumberCheckbox;
 
     @FindBy(id = "numberOfJurors")
@@ -171,7 +169,7 @@ public class TrialsAndAttendance {
 
     public void checkPoolNumberCheckbox() {
         log.info("Clicked pool number checkbox");
-        poolNumberCheckbox.click();
+        poolNumberCheckbox.sendKeys(Keys.SPACE);
     }
     public void checkPoolNumberCheckboxFor(String poolNumber) {
         try {

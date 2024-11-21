@@ -1,9 +1,9 @@
 Feature: JM-4956 - 4679
 
-  @JurorTransformation @NewSchemaConverted
+  @JurorTransformation
   Scenario Outline: Create a Trial and Generate Panel
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "demo"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
@@ -68,6 +68,8 @@ Feature: JM-4956 - 4679
     And I press the "Apps" button
     And I click on the "Juror management" link
     And I click on the "Record attendance" link
+    And I click on the "Jurors on a trial" link
+    And I click on the "<trial_number>" link
     And I see "<juror_number>" in the same row as "Panel"
     And I see "<juror_number_2>" in the same row as "Panel"
 
@@ -127,20 +129,20 @@ Feature: JM-4956 - 4679
       |MODTESTCOURT |041520003      | 415300209     | T202495831   |
 
 
-  @JurorTransformation @NewSchemaConverted
+  @JurorTransformation
   Scenario Outline: Create a Trial and Generate Panel from a specific pool
 
     Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
-      | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
-      | 415   |<juror_number> 	    | <pool_number>     | 5				            | 400	|
-      | 415   |<juror_number_2> 	| <pool_number>     | 5				            | 400	|
+      | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number> 	    | <pool_number>     | 5				            | 400	|
+      | 415   | <juror_number_2> 	| <pool_number>     | 5				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no             | pool_no                | owner |
-      |<juror_number>      | <pool_number>          | 415   |
-      |<juror_number_2>    | <pool_number>          | 415   |
+      | part_no             | pool_no                | owner |
+      | <juror_number>      | <pool_number>          | 415   |
+      | <juror_number_2>    | <pool_number>          | 415   |
 
     And I Confirm all the data in the record attendance table is cleared
     And a new trial is inserted with the trial number "<trial_number>"
@@ -427,10 +429,10 @@ Feature: JM-4956 - 4679
       | MODTESTCOURT | 041520009     | 041520010       | 041520011        | 041520022        | 041520023        | 415300214      | T202425891   |
 
 
-  @JurorTransformation @NewSchemaConverted
+  @JurorTransformation
   Scenario Outline: Create a Trial and Generate Panel - Unhappy path using more jurors than those available
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "demo"
 
     And I Confirm all the data in the record attendance table is cleared
     And a new trial is inserted with the trial number "<trial_number>"
