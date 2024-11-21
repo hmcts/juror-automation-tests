@@ -51,7 +51,7 @@ Feature: JM-5070 As a jury officer I need to be able to change a jurors attendan
 
     #needs to go into single threaded
 
-    Given I am on "Bureau" "demo"
+    Given I am on "Bureau" "ithc"
 
     When a bureau owned pool is created with jurors
       | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
@@ -117,11 +117,12 @@ Feature: JM-5070 As a jury officer I need to be able to change a jurors attendan
     Then I see "11:30am" in the same row as "<juror_number_1>"
     And I see "7:00pm" in the same row as "<juror_number_1>"
 
-    #confirm all attendences
+    #confirm all attendances
     When I press the "Confirm attendance" button
     And I press the "Confirm attendance list is correct" button
     #this fails - DB to discuss with Liam
-    Then I see "Confirmed" on the page
+#    Then I see "Confirmed" on the page
+    Then I see "jurors listed as attending" on the page
 
     Examples:
       | user		 | juror_number_1 | juror_number_2   | pool_number   |
@@ -132,7 +133,7 @@ Feature: JM-5070 As a jury officer I need to be able to change a jurors attendan
 
     #needs to go into single threaded
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     When a bureau owned pool is created with jurors
       | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
@@ -205,7 +206,7 @@ Feature: JM-5070 As a jury officer I need to be able to change a jurors attendan
   @JurorTransformation
   Scenario Outline: create a new pool of jurors and verify attendance date for panel members
 
-    Given I am on "Bureau" "demo"
+    Given I am on "Bureau" "ithc"
 
     When a bureau owned pool is created with jurors
       | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |

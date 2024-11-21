@@ -1,6 +1,6 @@
 Feature: JS-89
 
-  @JurorTransformation @NewSchemaConverted
+  @JurorTransformation
   Scenario Outline: Check days for attendance are locked after 7 days
 
     Given I am on "Bureau" "ithc"
@@ -12,29 +12,30 @@ Feature: JS-89
     And I click on the "Juror management" link
     And I click on the "Record attendance" link
 
+    And I see link with text "Confirm attendance"
     And I click on the previous attendance day link "7" amount of times
     And I see "Confirmed" on the page
-
-
+    And I do not see link with text "Confirm attendance"
+    
     Examples:
       |user			|
       |MODTESTCOURT |
 
 
-  @JurorTransformation @NewSchemaConverted
+  @JurorTransformation
   Scenario Outline: Confirm attendance as many times as wanted within a week
 
     Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
-      | court |juror_number  	    | pool_number	        | att_date_weeks_in_future	| owner |
-      | 415   |<juror_number> 	    | <pool_number>         | 5				            | 400	|
-      | 415   |<juror_number_1>     | <pool_number>         | 5				            | 400	|
+      | court | juror_number  	    | pool_number	        | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number> 	    | <pool_number>         | 5				            | 400	|
+      | 415   | <juror_number_1>    | <pool_number>         | 5				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no                | pool_no           | owner |
-      |<juror_number>         | <pool_number>     | 415   |
-      |<juror_number_1>       | <pool_number>     | 415   |
+      |part_no             | pool_no           | owner |
+      |<juror_number>      | <pool_number>     | 415   |
+      |<juror_number_1>    | <pool_number>     | 415   |
 
     And I Confirm all the data in the record attendance table is cleared
     And I log in as "<user>"
@@ -42,7 +43,6 @@ Feature: JS-89
     #set juror as responded
     And I update juror "<juror_number>" to have a status of responded in order to record attendance
     And I update juror "<juror_number_1>" to have a status of responded in order to record attendance
-
 
     #check in jurors
     And I press the "Apps" button
@@ -109,20 +109,19 @@ Feature: JS-89
     And I press the "Continue" button
     And I press the "Confirm attendance list is correct" button
 
-
     Examples:
       |user			|juror_number  |juror_number_1 | pool_number   |
       |MODTESTCOURT |041521779     |041521778      | 415321235     |
 
 
-  @JurorTransformation @NewSchemaConverted
+  @JurorTransformation
   Scenario Outline: Check juror is removed from jurors in waiting list after empanelling them
 
     Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
-      | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
-      | 415   |<juror_number> 	    | <pool_number>     | 5				            | 400	|
+      | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number> 	    | <pool_number>     | 5				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
       |part_no              | pool_no           | owner |
@@ -193,32 +192,31 @@ Feature: JS-89
     And I do not see "<juror_number>" on the page
 
     And I click on the previous attendance day link "1" amount of times
-    And I do not see "<juror_number>" on the page
-
+    And I see "<juror_number>" on the page
 
     Examples:
       | user		  | juror_number     | pool_number   | trial_number |
       | MODTESTCOURT  | 041523749        | 415321234     | TRIALTEST88  |
 
 
-  @JurorTransformation @NewSchemaConverted
+  @JurorTransformation
   Scenario Outline: Check jurors attendance can be confirmed while being in a completed status
 
     Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
-      | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
-      | 415   |<juror_number> 	    | <pool_number>     | 5				            | 400	|
-
+      | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number> 	    | <pool_number>     | 5				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no               | pool_no       | owner|
-      |<juror_number>        | <pool_number> | 415  |
+      | part_no            | pool_no       | owner|
+      | <juror_number>     | <pool_number> | 415  |
 
     And I Confirm all the data in the record attendance table is cleared
     And I log in as "<user>"
 
     #set juror as responded
+    And juror "<juror_number>" has "DOB" as "1971-08-13 00:00:00.000" new schema
     And I update juror "<juror_number>" to have a status of responded in order to record attendance
 
     #check in jurors
@@ -254,7 +252,6 @@ Feature: JS-89
     And I press the "Confirm attendance list is correct" button
     And I see "11:30pm" in the same row as "<juror_number>"
     And I see "Completed" in the same row as "<juror_number>"
-
 
     Examples:
       |user			|juror_number   | pool_number    |
