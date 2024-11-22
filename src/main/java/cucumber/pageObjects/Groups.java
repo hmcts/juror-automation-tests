@@ -9,8 +9,6 @@ import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.Arrays;
 import java.util.List;
@@ -226,8 +224,8 @@ public class Groups {
 			radioButton = driver.findElement(By.xpath("//label[text()[contains(.,'" + arg1 + "')]]/../input[@type='radio']"));
 			NAV.waitForPageLoad();
 			NAV.click_onElement(radioButton);
-			radioButton.sendKeys(Keys.chord("", Keys.TAB));
-			;
+//			radioButton.sendKeys(Keys.chord("", Keys.TAB));
+
 		}
 
 		log.info("Clicked on radio button which contained text =>" + arg1);

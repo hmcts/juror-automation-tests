@@ -230,10 +230,10 @@ Examples:
 	| juror_number_one	| juror_number_two	| juror_number_three	| juror_number_four	| pool_number_one 	| pool_number_two | pool_number_three | last_name_one 	| last_name_two	| last_name_three	| last_name_four| postcode 	|
 	| 045200234			| 045200235			| 045200236				| 045200237			| 452300214 		| 452300215	      | 452300216         | LNAMEONE		| LNAMETWO 		| LNAMETHREE		| LNAMEFOUR		| CH1 2AN	|
 
-@RegressionSingle @NewSchemaConverted
+@RegressionSingle
 Scenario Outline: Edit Response
 
-	Given I am on "Public" "ithc"
+	Given I am on "Public" "demo"
 
 	Given auto straight through processing has been disabled new schema
 
@@ -271,14 +271,14 @@ Scenario Outline: Edit Response
 		| part_no				| pool_number			| last_name			| postcode	| email 	|
 		| <juror_number_three>	| <pool_number_three>	| <last_name_three>	| CH1 2AN	| a@a.com	|
 	
-	Given I am on "Bureau" "ithc"
+	Given I am on "Bureau" "demo"
 	And I log in as "MODTESTBUREAU"
 
 	When I click on the "Assign Replies" link
 	And I assign all the New Replies to "ARAMIS1"
 	And I do not see any links on the page that open to a new page without an alt text
 
-	Given I am on "Bureau" "ithc"
+	Given I am on "Bureau" "demo"
 	And I log in as "ARAMIS1"
 	
 	And on the page I see
@@ -321,7 +321,7 @@ Examples:
 @RegressionSingle
 Scenario Outline: Search as Team Member
 
-	Given I am on "Public" "ithc"
+	Given I am on "Public" "demo"
 
 	Given "ARAMIS1" has court 9 set as "457"
 
@@ -363,14 +363,14 @@ Scenario Outline: Search as Team Member
 
 	Given auto straight through processing has been enabled new schema
 
-	Given I am on "Bureau" "ithc"
+	Given I am on "Bureau" "demo"
 	And I log in as "MODTESTBUREAU"
 
 	When I click on the "Assign Replies" link
 	And I assign all the New Replies to "ARAMIS1"
 	And I do not see any links on the page that open to a new page without an alt text
 
-	Given I am on "Bureau" "ithc"
+	Given I am on "Bureau" "demo"
 	And I log in as "ARAMIS1"
 	And I see "Summons replies" on the page
 	And I see "Your work" on the page
@@ -464,18 +464,16 @@ Scenario Outline: Search as Team Member
 	And I see "<juror_number_one>" on the page
 	And I see "<pool_number_one>" in the same row as "<juror_number_one>"
 	And I see "ARAMIS1" in the same row as "<juror_number_one>"
-	And I see "TO DO" on the page
+	And I see "To do" on the page
 	
 Examples:
 	| juror_number_one	| juror_number_two	| juror_number_three	| pool_number_one 	| pool_number_two| pool_number_three| last_name 	| last_name_two	| last_name_three	| postcode 	|
 	| 045700030			| 045700031			| 045700032				| 457300030 		| 457300031      | 457300032		| LNAMESTANDARD	| LNAMEURGENT 	| LNAMESUPERURGENT	| CH1 2AN	|
 
-@Features @JM-7282
+@RegressionSingle
 Scenario Outline: Search as Team Leader
 
-	#return to @RegressionSingle when defect fixed
-
-	Given I am on "Public" "ithc"
+	Given I am on "Public" "demo"
 
 	Given auto straight through processing has been disabled new schema
 
@@ -518,8 +516,7 @@ Scenario Outline: Search as Team Leader
 	Given auto straight through processing has been enabled new schema
 
 	#assign to CPASS
-
-	Given I am on "Bureau" "ithc"
+	Given I am on "Bureau" "demo"
 	And I log in as "MODTESTBUREAU"
 
 	When I click on the "Assign Replies" link
@@ -626,25 +623,26 @@ Scenario Outline: Search as Team Leader
 	And I click on the "Advanced search" link
 	And I check the "Completed" checkbox
 	Then I press the "Search" button
-	And I see "100 results for " on the page
 	And I see "The specified search resulted in more than 100 results. This list only shows the oldest 100." on the page
 	
 	#search on a specific user
 	Then I click on the "Clear search" link
 	And I click on the "Advanced search" link
-	And I select "ARAMIS1" from the "Officer assigned" dropdown
+	And I set "Select an officer assigned" to "ARAMIS1"
+	And I click on the "ARAMIS1" link
 	Then I press the "Search" button
-	And I see "results for " on the page
+	And I see "results for" on the page
 	
 	#search on urgent
 	Then I click on the "Clear search" link
 	And I click on the "Advanced search" link
-	And I check the "urgentsOnly" checkbox
-	And I select "ARAMIS1" from the "Officer assigned" dropdown
+	And I check the "Urgent" checkbox
+	And I set "Select an officer assigned" to "ARAMIS1"
+	And I click on the "ARAMIS1" link
 	Then I press the "Search" button
 	And I do not see "LNAMESTANDARD" on the page
-	And I see "LNAMEURGENT" in the same row as "<juror_number_two>"
-	And I see "LNAMESUPERURGENT" in the same row as "<juror_number_three>"
+	And I see "Lnameurgent" in the same row as "<juror_number_two>"
+	And I see "Lnamesuperurgent" in the same row as "<juror_number_three>"
 	
 	#allocate from search results
 	And I press the "Select all" button
@@ -671,19 +669,24 @@ Scenario Outline: Search as Team Leader
 	And I click on the "Advanced search" link
 	Then I click on the "Clear search" link
 	And I click on the "Advanced search" link
-	And I select "ARAMIS1" from the "Officer assigned" dropdown
+	And I set "Select an officer assigned" to "ARAMIS1"
+	And I click on the "ARAMIS1" link
 	Then I press the "Search" button
-	And I see "results for " on the page
+	And I see "results for" on the page
 	Then I press the "Select all" button
 	Then I press the "Unselect all" button
-	
+
 	And I click on the "Advanced search" link
-	Then I see "results for “ARAMIS1”" on the page
-	And I select "MODTESTBUREAU" from the "Officer assigned" dropdown
+	Then I click on the "Clear search" link
+	And I click on the "Advanced search" link
+
+	And I set "Select an officer assigned" to "MODTESTBUREAU"
+	And I click on the "MODTESTBUREAU" link
+	And I check the "To do" checkbox
 	Then I press the "Search" button
-	And I do not see "LNAMESTANDARD" on the page
-	And I see "LNAMEURGENT" in the same row as "<juror_number_two>"
-	And I see "LNAMESUPERURGENT" in the same row as "<juror_number_three>"
+	And I do not see "Lnamestandard" on the page
+	And I see "Lnameurgent" in the same row as "<juror_number_two>"
+	And I see "Lnamesuperurgent" in the same row as "<juror_number_three>"
 	
 Examples:
 	| juror_number_one	| juror_number_two	| juror_number_three	| pool_number_one 	| pool_number_two| pool_number_three| last_name 	| last_name_two	| last_name_three	| postcode 	|
@@ -932,14 +935,15 @@ Examples:
 	| 045200251		| 452300228 	| LNAME		| NN1 3HQ	| email@outlook.com	|
 
 
-@Features @JM-7276
+@RegressionSingle
 Scenario: Manage Team
 
-	#return to @RegressionSingle when defect fixed
-
 	Given I am on "Bureau" "ithc"
+
 	And I log in as "MODTESTBUREAU"
-	And staff with name "New Name" does not exist
+
+	And staff with name "newname" does not exist new schema
+
 	And I see "Summons replies" on the page
 	And I see "Your work" on the page
 	And I see link with text "Sign out"
@@ -977,10 +981,11 @@ Scenario: Manage Team
 	And the radio button "Active users" is "Selected"
 
 	And I click on the "Sign out" link
+	Given I am on "Bureau" "ithc"
 	And I log in as "SYSTEMADMIN"
 	
 	#add team member
-	Then I press the "Create a new user" button
+	Then I press the "Create new user" button
 	And I see "Select user type" on the page
 	And I see "/create-user/type" in the URL
 	
@@ -1034,7 +1039,7 @@ Scenario: Manage Team
 	
 	#set team leader as inactive
 	Then I press the "Edit user" button
-	And "Full name" is "New Name"
+	And "Full name" is "Updated New Name"
 
 	And I see "/edit-user/newname" in the URL
 	And I choose the "Inactive" radio button
@@ -1045,11 +1050,11 @@ Scenario: Manage Team
 	And I see "Updated New Name" in the same row as "Full name"
 	And I see "newname@email" in the same row as "Email"
 	And I see "Manager" in the same row as "Extra permissions"
-	And I see "INACTIVE" on the page
+	And I see "Inactive" on the page
 	
 	#attempt to add duplicate
 	When I click on the "Back to users" link
-	Then I press the "Create a new user" button
+	Then I press the "Create new user" button
 
 	And I choose the "Bureau" radio button
 	Then I press the "Continue" button
@@ -1058,15 +1063,14 @@ Scenario: Manage Team
 	And I set "Email" to "newname@email.com"
 
 	Then I press the "Continue" button
+	Then I press the "Create user" button
 
 	And I see "Email address already in use" on the page
 	
 	#attempt to deactivate when user has assigned responses
 
-@Featues @JM-6728
+@RegressionSingle
 Scenario Outline: Results grid updates when status changes are made
-
-	#return to @RegressionSingle when defect fixed
 
 	Given I am on "Bureau" "ithc"
 
@@ -1111,27 +1115,35 @@ Scenario Outline: Results grid updates when status changes are made
 	#now reassign
 	And I press the "Select all" button
 	And I press the "Send to..." button
-	And I set input field with "id" of "sendToOfficer" to "ARAMIS1"
+	And I set "Select an officer to send to" to "ARAMIS1"
+	And I click on the "ARAMIS1" link
 	And I press the "Send" button
 	And I press the "Send" button
+
+	Then I click on the "Search" link
+	And I set "Juror's pool number" to "<pool_number>"
+	And I press the "Search" button
 	
 	Then I see "ARAMIS1" in the same row as "<last_name>"
 
 	#now mark as awaiting info
 	When I click on "<juror_number>" in the same row as "<juror_number>"
-	Then I see "Record status" on the page
+	Then I see "Reply status" on the page
 	Then I press the "More actions" button
-	And I click on the "Mark as 'Awaiting information" link
+	And I click on the "Mark as awaiting information" link
 	Then I see "Mark this reply as awaiting information" on the page
-	When I set the radio button to "Awaiting court reply"
+	When I set the radio button to "Court"
 	And I press the "Confirm" button
 	
 	When I click on the "Back" link
-	Then I see "Awaiting court reply" in the same row as "<juror_number>"
+	Then I click on the "Search" link
+	And I set "Juror's pool number" to "<pool_number>"
+	And I press the "Search" button
+	Then I see "Awaiting court reply" in the same row as "<last_name>"
 	
 	#now mark as responded
-	When I click on "<juror_number>" in the same row as "<juror_number>"
-	Then I see "Record status" on the page
+	When I click on "<juror_number>" in the same row as "<last_name>"
+	Then I see "Reply status" on the page
 	When I select "Mark as responded" from Process reply
 	And I check the "Mark juror as 'responded'" checkbox
 	And I press the "Confirm" button
@@ -1139,8 +1151,11 @@ Scenario Outline: Results grid updates when status changes are made
 	And I see "Responded" on the page
 	
 	When I click on the "Back" link
-	Then I see "Completed" in the same row as "<juror_number>"
+	Then I click on the "Search" link
+	And I set "Juror's pool number" to "<pool_number>"
+	And I press the "Search" button
+	Then I see "Completed" in the same row as "<last_name>"
 	
 Examples:
-	| juror_number	| pool_number 	| last_name 	| postcode 	|
-	| 045200250		| 452300227 	| LNAMEUPDATE	| NN1 3HQ	|
+	| juror_number	| pool_number 	| last_name 	| postcode |
+	| 045200250		| 452300227 	| Lnameupdate	| CH2 2AA  |

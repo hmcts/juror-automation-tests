@@ -1,19 +1,19 @@
 Feature: Decline excusal digital
 
-  @JurorTransformation @NewSchemaConverted
+  @JurorTransformation
   Scenario Outline: Test to decline excusal on digital response
     
-    Given I am on "Public" "test"
+    Given I am on "Public" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
       | 415   | <juror_number> 	    | <pool_number>     | 5				            | 400	|
 
     And I have submitted a first party English excusal response
-    |part_no	|pool_number        |last_name		|postcode	| email |
-	|<juror_number>	|<pool_number>	|<last_name>	|<postcode>	|<email>|
+    | part_no	        | pool_number   | last_name		| postcode	  | email |
+	| <juror_number>	| <pool_number>	| <last_name>	| <postcode>  |<email>|
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     And I log in as "<user>"
 
@@ -30,6 +30,6 @@ Feature: Decline excusal digital
     And I see "Excusal refused" on the page
 
     Examples:
-      | dropDown       | excusalReason | user          | juror_number   | pool_number   | last_name           | postcode | email      |
-      | C - CHILD CARE | child care    | MODTESTBUREAU | 041518981      | 415131102 | lname   | CH2 2AA  | e@mail.com |
-      | D - DECEASED   | deceased      | MODTESTBUREAU | 041518982      | 415131103 | lname | CH2 2AA  | e@mail.com |
+      | dropDown       | user          | juror_number   | pool_number   | last_name   | postcode | email      |
+      | C - CHILD CARE | MODTESTBUREAU | 041518981      | 415131102     | lname       | CH2 2AA  | e@mail.com |
+      | D - DECEASED   | MODTESTBUREAU | 041518982      | 415131103     | lname       | CH2 2AA  | e@mail.com |
