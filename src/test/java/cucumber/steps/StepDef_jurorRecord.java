@@ -10,13 +10,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
-import java.time.Duration;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -163,6 +160,7 @@ public class StepDef_jurorRecord {
 
     @Then("^I see the reassign active pools table$")
     public void seeReassignActivePoolsTable() {
+        NAV.waitForPageLoad();
         assertTrue(JUROR_RECORD.seeReassignActivePoolsTable());
         List<String> tableHeadings = JUROR_RECORD.getReassignActivePoolsHeadings();
         assertEquals("Pool number", tableHeadings.get(0));

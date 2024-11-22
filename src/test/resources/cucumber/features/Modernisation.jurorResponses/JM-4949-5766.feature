@@ -552,14 +552,15 @@ Feature: JM-4949 & JM-5766
       |MODTESTCOURT |041520018     | 041520019      |    415300201      | TEST2022226  |
 
 
-  @JurorTransformation @NewSchemaConverted
+  @JurorTransformation
   Scenario Outline: Happy path to create a trial then return all the jurors and end trial
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
+
     Given a bureau owned pool is created with jurors
-      | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
-      | 415   |<juror_number_1>     | <pool_number>     | 5				            | 400	|
-      | 415   |<juror_number_2> 	| <pool_number>     | 5				            | 400	|
+      | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number_1>    | <pool_number>     | 5				            | 400	|
+      | 415   | <juror_number_2> 	| <pool_number>     | 5				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
       |part_no              | pool_no           | owner |
@@ -664,5 +665,5 @@ Feature: JM-4949 & JM-5766
     And I see "No" in the same row as "Protected?"
 
     Examples:
-      |user			|juror_number_1  | juror_number_2 |   pool_number    | trial_number |
-      |MODTESTCOURT |041520020       | 041520021      |    415300201     | TEST2022226  |
+      | user		 | juror_number_1  | juror_number_2 | pool_number   | trial_number |
+      | MODTESTCOURT | 041520020       | 041520021      | 415300201     | TEST2022226  |
