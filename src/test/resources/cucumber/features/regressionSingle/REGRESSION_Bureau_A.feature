@@ -1,6 +1,6 @@
 Feature: Bureau A Test
 	
-@RegressionSingle @NewSchemaConverted
+@RegressionSingle
 Scenario Outline: Lift from QC Script for Bureau A Functionality
 
 	Given I am on "Public" "test"
@@ -149,10 +149,10 @@ Examples:
 	| 045200238			| 045200239			| 045200240				| 452300217 		| 452300218			| 452300219	        | LNAMEONEFIVEFOUR 	| CH1 2AN	|
 	
 
-@RegressionSingle @NewSchemaConverted
+@RegressionSingle
 Scenario Outline: Bureau A script, steps 24 onwards
 
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  	| pool_number	| att_date_weeks_in_future	| owner |
@@ -262,7 +262,7 @@ Scenario Outline: Bureau A script, steps 24 onwards
 	And I press the "Submit" button
 	Then I see "You have completed your reply" on the page
 
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "ithc"
 	And I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -304,7 +304,7 @@ Scenario Outline: Bureau A script, steps 24 onwards
 	Then I see "READING" on the page
 	And I see "arrangementsTestData" on the page
 	
-	And I see "TO DO" on the page
+	And I see "To do" on the page
 	
 	Then I press the "More actions" button
 	And I click on the "Mark as awaiting information" link
@@ -312,7 +312,7 @@ Scenario Outline: Bureau A script, steps 24 onwards
 	And I press the "Confirm" button
 	Then I see "Awaiting court reply" on the page
 	
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "ithc"
 	And I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -329,6 +329,5 @@ Scenario Outline: Bureau A script, steps 24 onwards
 	And I see the juror record updated banner containing "Responded"
 	
 Examples:
-	| juror_number 	| pool_number	| last_name		| postcode	| email				|
-	| 045200241		| 452300220		|LNAMEEIGHTFOUR	| CH1 2AN	| email@bureauA.com	|
-	
+	| juror_number 	| pool_number	| last_name			| postcode	| email				|
+	| 045200241		| 452300220		| LNAMEEIGHTFOUR	| CH1 2AN	| email@bureauA.com	|

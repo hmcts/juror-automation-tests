@@ -1,6 +1,6 @@
 Feature: JDB-3198
 
-@RegressionSingle @NewSchemaConverted
+@RegressionSingle
 Scenario Outline: Can Set Juror Record to responded while response is TODO
 	
 	Given I am on "Public" "ithc"
@@ -11,6 +11,7 @@ Scenario Outline: Can Set Juror Record to responded while response is TODO
 
 	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
 	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
+	And juror "<juror_number>" has "DOB" as "1971-08-13 00:00:00.000" new schema
 
 	# Submit response in pool
 	Given I have submitted a first party English ineligibilty response
@@ -48,10 +49,10 @@ Examples:
 	| juror_number	| pool_number	| last_name	| postcode	| email 	|
 	| 045200252		| 452300229		| DOE		| SW1H 9AJ	| a@a.com	|
 	
-@RegressionSingle @NewSchemaConverted
+@RegressionSingle
 Scenario Outline: Can Set Juror Record to Excused while response is TODO
 	
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -59,13 +60,14 @@ Scenario Outline: Can Set Juror Record to Excused while response is TODO
 
 	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
 	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
+	And juror "<juror_number>" has "DOB" as "1971-08-13 00:00:00.000" new schema
 	
 	# Submit response in pool
 	Given I have submitted a first party English ineligibilty response
-		|part_no		|pool_number	|last_name		|postcode	|email 	|
-		|<juror_number>	|<pool_number>	|<last_name>	|<postcode>	|<email>|
+		| part_no			| pool_number	| last_name		| postcode		| email 	|
+		| <juror_number>	| <pool_number>	| <last_name>	| <postcode>	| <email>	|
 	
-	Given I am on "Bureau" "test" 	
+	Given I am on "Bureau" "ithc"
 	And I log in as "CPASS"
 
 	##excuse juror
@@ -100,7 +102,7 @@ Examples:
 	| juror_number	| pool_number	| last_name			| postcode	| email		|
 	| 045200255		| 452300232		| LNAMETWOSIXZERO	| CH1 2AN	| a@a.com	|
 	
-@RegressionSingle @NewSchemaConverted
+@RegressionSingle
 Scenario Outline: Can Set Juror Record to Disqualified while response is TODO
 	
 	Given I am on "Public" "ithc"
@@ -111,11 +113,12 @@ Scenario Outline: Can Set Juror Record to Disqualified while response is TODO
 
 	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
 	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
+	And juror "<juror_number>" has "DOB" as "1971-08-13 00:00:00.000" new schema
 
 	# Submit response in pool
 	Given I have submitted a first party English ineligibilty response
-		|part_no		|pool_number	|last_name		|postcode	|email 	|
-		|<juror_number>	|<pool_number>	|<last_name>	|<postcode>	|<email>|
+		| part_no			| pool_number	| last_name		| postcode		| email 	|
+		| <juror_number>	| <pool_number>	| <last_name>	| <postcode>	| <email>	|
 	
 	Given I am on "Bureau" "ithc"
 	And I log in as "CPASS"
@@ -151,12 +154,10 @@ Examples:
 	| juror_number	| pool_number	| last_name			| postcode	| email		|
 	| 045200256		| 452300233		| LNAMETWOSIXZERO	| CH1 2AN	| a@a.com	|
 
-@Features @JM-6706 @NewSchemaConverted
+@RegressionSingle
 Scenario Outline: Can Set Juror Record to Deferred while response is TODO
 
-	#return to @RegressionSingle when defect resolved
-
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -164,13 +165,14 @@ Scenario Outline: Can Set Juror Record to Deferred while response is TODO
 
 	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
 	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
+	And juror "<juror_number>" has "DOB" as "1971-08-13 00:00:00.000" new schema
 
 	# Submit response in pool
 	Given I have submitted a first party English ineligibilty response
-		|part_no		|pool_number	|last_name		|postcode	|email 	|
-		|<juror_number>	|<pool_number>	|<last_name>	|<postcode>	|<email>|
+		| part_no			| pool_number	| last_name		| postcode		| email 	|
+		| <juror_number>	| <pool_number>	| <last_name>	| <postcode>	| <email>	|
 
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "ithc"
 	And I log in as "CPASS"
 
 	##defer juror
@@ -209,12 +211,12 @@ Examples:
 	| juror_number	| pool_number	| last_name			| postcode	| email		|
 	| 045200257		| 452300234		| LNAMETWOSIXZERO	| CH1 2AN	| a@a.com	|
 
-@Features @JM-6706 @NewSchemaConverted
+@RegressionSingle
 Scenario Outline: Can Set Juror Record to Postponed while response is TODO
 
 	#return to @RegressionSingle when defect resolved
 
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -222,13 +224,14 @@ Scenario Outline: Can Set Juror Record to Postponed while response is TODO
 
 	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
 	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
+	And juror "<juror_number>" has "DOB" as "1971-08-13 00:00:00.000" new schema
 
 	# Submit response in pool
 	Given I have submitted a first party English ineligibilty response
-		|part_no		|pool_number	|last_name		|postcode	|email 	|
-		|<juror_number>	|<pool_number>	|<last_name>	|<postcode>	|<email>|
+		| part_no			| pool_number	| last_name		| postcode		| email 	|
+		| <juror_number>	| <pool_number>	| <last_name>	| <postcode>	| <email>	|
 
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "ithc"
 	And I log in as "CPASS"
 
 	##postpose juror
@@ -265,10 +268,10 @@ Scenario Outline: Can Set Juror Record to Postponed while response is TODO
 		| juror_number	| pool_number	| last_name			| postcode	| email		|
 		| 045200258		| 452300235		| LNAMETWOSIXZERO	| CH1 2AN	| a@a.com	|
 
-@RegressionSingle @NewSchemaConverted
+@RegressionSingle
 Scenario Outline: Can Set Juror Record to Reassigned while response is TODO
 
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -276,13 +279,14 @@ Scenario Outline: Can Set Juror Record to Reassigned while response is TODO
 
 	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
 	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
+	And juror "<juror_number>" has "DOB" as "1971-08-13 00:00:00.000" new schema
 
 	# Submit response in pool
 	Given I have submitted a first party English ineligibilty response
-		|part_no		|pool_number	|last_name		|postcode	|email 	|
-		|<juror_number>	|<pool_number>	|<last_name>	|<postcode>	|<email>|
+		| part_no			| pool_number	|last_name		|postcode	|email 	|
+		| <juror_number>	| <pool_number>	|<last_name>	|<postcode>	|<email>|
 
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "ithc"
 	And I log in as "CPASS"
 
 	##reassign juror
@@ -298,7 +302,7 @@ Scenario Outline: Can Set Juror Record to Reassigned while response is TODO
 	When I click on the "Summons reply" link
 
 	#JM-6706
-	Then I see "TO DO" on the page
+	Then I see "To Do" on the page
 
 	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "TODO" where "JUROR_NUMBER" is "<juror_number>"
 	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "N" where "JUROR_NUMBER" is "<juror_number>"
@@ -314,10 +318,10 @@ Scenario Outline: Can Set Juror Record to Reassigned while response is TODO
 		| juror_number	| pool_number	| last_name			| postcode	| email		|
 		| 045200259		| 452300236		| LNAMETWOSIXZERO	| CH1 2AN	| a@a.com	|
 
-@RegressionSingle @NewSchemaConverted
+@RegressionSingle
 Scenario Outline: Can Set Juror Record to Deceased while response is TODO
 
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -331,7 +335,7 @@ Scenario Outline: Can Set Juror Record to Deceased while response is TODO
 		|part_no		|pool_number	|last_name		|postcode	|email 	|
 		|<juror_number>	|<pool_number>	|<last_name>	|<postcode>	|<email>|
 
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "ithc"
 	And I log in as "CPASS"
 
 	##mark juror as deceased
@@ -355,37 +359,37 @@ Scenario Outline: Can Set Juror Record to Deceased while response is TODO
 		| juror_number	| pool_number	| last_name			| postcode	| email		|
 		| 045200260		| 452300237		| LNAMETWOSIXZERO	| CH1 2AN	| a@a.com	|
 
-@RegressionSingle @NewSchemaConverted
+@RegressionSingle
 Scenario Outline: Can Set Juror Record to undelivered while response is TODO
 
-		Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
-		Given a bureau owned pool is created with jurors
-			| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
-			| 452   |<juror_number>| <pool_number>	| 3				            | 400	|
+	Given a bureau owned pool is created with jurors
+		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+		| 452   |<juror_number>| <pool_number>	| 3				            | 400	|
 
-		And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
-		And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
+	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 
 	# Submit response in pool
-		Given I have submitted a first party English ineligibilty response
-			|part_no			|pool_number	|last_name		|postcode	|email 	|
-			|<juror_number>		|<pool_number>	|<last_name>	|<postcode>	|<email>|
+	Given I have submitted a first party English ineligibilty response
+		| part_no			| pool_number	| last_name		| postcode		| email 	|
+		| <juror_number>	| <pool_number>	| <last_name>	| <postcode>	| <email>	|
 
-		Given I am on "Bureau" "test"
-		And I log in as "CPASS"
+	Given I am on "Bureau" "ithc"
+	And I log in as "CPASS"
 
-		And I search for juror "<juror_number>"
-		And I click the update juror record button
-		And I choose the "Mark summons as undeliverable" radio button
-		And I press the "Continue" button
-		And I see the juror record updated banner containing "Summons undeliverable"
+	And I search for juror "<juror_number>"
+	And I click the update juror record button
+	And I choose the "Mark summons as undeliverable" radio button
+	And I press the "Continue" button
+	And I see the juror record updated banner containing "Summons undeliverable"
 
-		And I click on the "Summons reply" link
-		Then I see "Summons not received" on the page
+	And I click on the "Summons reply" link
+	Then I see "Summons not received" on the page
 
-		Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "LAST_NAME" is "Changed" where "JUROR_NUMBER" is "<juror_number>"
+	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "LAST_NAME" is "Changed" where "JUROR_NUMBER" is "<juror_number>"
 
-		Examples:
-			| juror_number	| pool_number	| last_name	| postcode	| email 	|
-			| 045200260		| 452300237		| DOE		| SW1H 9AJ	| a@a.com	|
+	Examples:
+		| juror_number	| pool_number	| last_name	| postcode	| email 	|
+		| 045200260		| 452300237		| DOE		| SW1H 9AJ	| a@a.com	|
