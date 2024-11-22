@@ -1,13 +1,13 @@
 Feature: JM-3989 JM-3993
 
-  @JurorTransformation @NewSchemaConverted @JM-7664
+  @JurorTransformation @JM-7664
   Scenario Outline: Reassign a juror to a pool for a different court - Bureau User
-    Given I am on "Bureau" "test"
-#    And new pool requests are deleted new schema
+
+    Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
-      | court  |juror_number  	| pool_number	   | att_date_weeks_in_future	| owner |
-      | 415    |<juror_number>  | <pool_number>    | 5				            | 400	|
+      | court  | juror_number  	| pool_number	   | att_date_weeks_in_future	| owner |
+      | 415    | <juror_number> | <pool_number>    | 5				            | 400	|
 
     And a digital summons reply has been entered for the summoned juror "<juror_number>" new schema
     And a new active pool is inserted for court "774" new schema
@@ -46,13 +46,14 @@ Feature: JM-3989 JM-3993
       | user          | juror_number   | pool_number   |
       | MODTESTBUREAU | 041531086      | 415304677     |
 
-  @JurorTransformation @NewSchemaConverted
+  @JurorTransformation
   Scenario Outline: Reassign a juror to a pool at the same court - Bureau User
 
     Given I am on "Bureau" "ithc"
+
     Given a bureau owned pool is created with jurors
-      | court  |juror_number  	| pool_number	   | att_date_weeks_in_future	| owner |
-      | 415    |<juror_number>  | <pool_number>    | 5				            | 400	|
+      | court  | juror_number  	| pool_number	  | att_date_weeks_in_future	| owner |
+      | 415    | <juror_number> | <pool_number>   | 5				            | 400	|
 
     And a digital summons reply has been entered for the summoned juror "<juror_number>" new schema
     And I log in as "<user>"
@@ -81,13 +82,14 @@ Feature: JM-3989 JM-3993
       | user          | juror_number   | pool_number   |
       | MODTESTBUREAU | 041531088      | 415304177     |
 
-  @JurorTransformation @NewSchemaConverted
+  @JurorTransformation
   Scenario Outline: Reassign a juror to a pool - Bureau User - Errors
 
     Given I am on "Bureau" "ithc"
+
     Given a bureau owned pool is created with jurors
-      | court  |juror_number  	| pool_number	   | att_date_weeks_in_future	| owner |
-      | 415    |<juror_number>  | <pool_number>    | 5				            | 400	|
+      | court  | juror_number  	| pool_number	   | att_date_weeks_in_future	| owner |
+      | 415    | <juror_number> | <pool_number>    | 5				            | 400	|
 
     And a digital summons reply has been entered for the summoned juror "<juror_number>" new schema
     And I log in as "<user>"
@@ -117,12 +119,12 @@ Feature: JM-3989 JM-3993
     When I press the "Continue" button
     Then I see "Enter a court name or location code" on the page
 
-    When I set input field with "ID" of "courtNameOrLocation" to "774"
-    And I click on the "Welshpool (774)" link
+    When I set input field with "ID" of "courtNameOrLocation" to "452"
+    And I click on the "Shrewsbury (452)" link
     And I press the "Continue" button
 
     Then I see "Choose a pool to reassign to" on the page
-    And I see "Active pools at Welshpool (774)" on the page
+    And I see "Active pools at Shrewsbury (452)" on the page
     And I see the reassign active pools table
 
     #Do not select an active pool

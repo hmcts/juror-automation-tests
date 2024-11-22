@@ -6,14 +6,14 @@ Feature: JM-8203
     Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
-      | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
-      | 415   |<juror_number> 	    | <pool_number>     | 5				            | 400	|
-      | 415   |<juror_number_2> 	| <pool_number>     | 5				            | 400	|
+      | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number> 	    | <pool_number>     | 5				            | 400	|
+      | 415   | <juror_number_2> 	| <pool_number>     | 5				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no               | pool_no       | owner|
-      |<juror_number>        | <pool_number> | 415  |
-      |<juror_number_2>      | <pool_number> | 415  |
+      | part_no            | pool_no       | owner|
+      | <juror_number>     | <pool_number> | 415  |
+      | <juror_number_2>   | <pool_number> | 415  |
 
     And I Confirm all the data in the record attendance table is cleared
     And a new trial is inserted with the trial number "<trial_number>"
@@ -73,23 +73,28 @@ Feature: JM-8203
     And I press the "Continue" button
     And I press the "Confirm attendance list is correct" button
 
-    #verify jurors in limbo link
-    And I see "Jurors with a check in/check out time that have not had attendance confirmed" on the page
-    And I click on the "Jurors with a check in/check out time that have not had attendance confirmed" link
-    And I see "Unconfirmed attendances" on the page
-    And I see "<juror_number>" on the page
-    And I click on the "Change" link
-    And I set juror check out hour to "5" on confirm attendance
-    And I set juror check out minute to "30" on confirm attendance
-    And I click on the pm radio button for juror check out on confirm attendance
-    And I press the "Confirm attendance" button
-    And I see "Attendance confirmed for juror <juror_number>" on the page
+    #removing the following as the juror in limbo link has now gone
+#    #verify jurors in limbo link
+#    And I see "Jurors with a check in/check out time that have not had attendance confirmed" on the page
+#    And I click on the "Jurors with a check in/check out time that have not had attendance confirmed" link
+#    And I see "Unconfirmed attendances" on the page
+#    And I see "<juror_number>" on the page
+#    And I click on the "Change" link
+#    And I set juror check out hour to "5" on confirm attendance
+#    And I set juror check out minute to "30" on confirm attendance
+#    And I click on the pm radio button for juror check out on confirm attendance
+#    And I press the "Confirm attendance" button
+
+#    And I see "Attendance confirmed for juror <juror_number>" on the page
+
+    And I do not see "<juror_number>" on the page
+    And I see "<juror_number_2>" on the page
 
     And I press the "Apps" button
     And I click on the "Juror management" link
     And I click on the "Record attendance" link
     And I click on the "Jurors on a trial" link
-    And I see "1 of 1" in the same row as "<trial_number>"
+    And I see "Confirm attendance" in the same row as "<trial_number>"
 
     Examples:
       |user			|juror_number  | juror_number_2   | pool_number    | trial_number |
