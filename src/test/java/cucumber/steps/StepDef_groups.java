@@ -81,7 +81,6 @@ public class StepDef_groups {
 	@When("^I set the radio button to \"([^\"]*)\"$")
 	public void setRadioButton(String arg1) throws Throwable {
 	    try{
-			NAV.waitForPageLoad();
 	    	GRP.click_radioButtonWithLabel(arg1);
 	    } catch (Throwable e) {
 	    	NAV.waitForPageLoad();
