@@ -18,6 +18,7 @@ Feature: JM-8224 - Cannot defer a juror who has an attendance
 
     #set juror as responded
     And I update juror "<juror_number>" to have a status of responded in order to record attendance
+    Then juror "<juror_number>" has "DOB" as "1971-08-13 00:00:00.000" new schema
 
     #check in jurors
     And I press the "Apps" button
