@@ -1558,6 +1558,7 @@ public class NavigationShared {
             inputField.click();
             inputField.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
             inputField.sendKeys(inputText);
+            inputField.sendKeys(Keys.TAB);
             log.info("Found field and input text =>" + inputText);
         } catch (Exception e) {
             log.info("Going to find field by =>" + attributeType + "<= with value =>" + attributeValue + "<= and set it to =>" + inputText);

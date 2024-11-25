@@ -4,7 +4,7 @@ Feature: JM-4001 and JM-4002 - Court User
 
     #needs to stay in single thread pack
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "demo"
     Given "3" new pool's are inserted for court "415" with owner "415" and a deferral date "1" Mondays in the future new schema
 
     #reset data
@@ -125,7 +125,6 @@ Feature: JM-4001 and JM-4002 - Court User
       #needs to stay in single thread pack
 
       #apply Juror number filter
-      And I press the "Hide filter" button
       When I set the "juror number" deferral filter to "041500001"
       Then The first deferral in the table is "041500001, 0FNAME1, TESTNAME, 415000001" with a deferral date "1" Mondays in the future
       #apply First name filter
@@ -142,7 +141,6 @@ Feature: JM-4001 and JM-4002 - Court User
       And Row "3" deferral in the table is "041500002, 0FNAME2, TESTNAME, 415000002" with a deferral date "1" Mondays in the future
 
       #apply NON_EXISTENT Juror number filter
-      Then I press the "Hide filter" button
       When I set the "juror number" deferral filter to "000000000"
       Then I see "There are no results to display" on the page
 
