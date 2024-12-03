@@ -1,9 +1,9 @@
   Feature: JM-2249
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario: Happy Path to delete a nil pool of jurors
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "demo"
 
     And I log in as "MODTESTBUREAU"
 
@@ -70,10 +70,10 @@
     Then a message is displayed on the pool requests page informing me that the pool has been deleted
     And the pool is no longer visible
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario: Cancel deletion of nil pool
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "demo"
 
     And I log in as "MODTESTBUREAU"
 
@@ -117,7 +117,6 @@
       | courtName              | Chester (415)                 |
       | poolType               | Crown court                   |
 
-
     # Can submit the new pool request
 
     When I save the new pool request
@@ -140,4 +139,3 @@
     Then the system will display non-editable information on the nil pool summary screen
       | court          | Chester        |
       | courtCode      | 415            |
-

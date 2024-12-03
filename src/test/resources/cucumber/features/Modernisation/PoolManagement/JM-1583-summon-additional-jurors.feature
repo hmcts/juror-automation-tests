@@ -2,7 +2,9 @@ Feature: JM-1583 Summon Additional Jurors
 
   @JurorTransformationMulti
   Scenario: Happy path to summon an additional juror for an active pool
+
     Given I am on "Bureau" "ithc"
+
     And I log in as "MODTESTBUREAU"
 
     #create pool request
@@ -55,7 +57,9 @@ Feature: JM-1583 Summon Additional Jurors
 
   @JurorTransformationMulti
   Scenario: Negative testing for summoning more citizens errors
-    Given I am on "Bureau" "ithc"
+
+    Given I am on "Bureau" "demo"
+
     And I log in as "MODTESTBUREAU"
 
     #create pool request
@@ -110,7 +114,7 @@ Feature: JM-1583 Summon Additional Jurors
     #Number too high
     When I set extra citizens to summon to "10000"
     And I press the "Summon more citizens" button
-    Then there is an error message with the text "Number of citizens to summon is too high" on the additional summons page
+    Then there is an error message with the text "The number of citizens summoned is too high and exceeds the yield" on the additional summons page
     #No postcodes selected
     When I set extra citizens to summon to "1"
     And I click all postcode checkboxes

@@ -101,7 +101,7 @@ public class StepDef_summoncitizens {
 
     @Then("^I should see an error stating the amount of citizens summoned is more than allowed$")
     public void iShouldSeeAnErrorStatingTheAmountOfCitizensSummonedIsMoreThanAllowed() {
-        assertEquals("Number of citizens to summon is too high", SUMMON_CITIZENS.getNumberOfCitizensSummonedError());
+        assertEquals("The number of citizens summoned is too high and exceeds the yield", SUMMON_CITIZENS.getNumberOfCitizensSummonedError());
     }
 
     @When("^the Summon citizens button is not visible$")
