@@ -1,12 +1,7 @@
 package cucumber.pageObjects;
 
-import cucumber.utils.WaitUtil_v2;
-import cucumber.utils.WaitUtils;
 import org.apache.log4j.Logger;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -114,5 +109,5 @@ public class ActivePools {
 
     public void checkSelectAllCheckboxOnPoolOverviewForCourt() {
         log.info("Clicked select all checkbox on pool overview");
-        poolOverviewSelectAll.click();    }
+        poolOverviewSelectAll.sendKeys(Keys.SPACE);    }
 }
