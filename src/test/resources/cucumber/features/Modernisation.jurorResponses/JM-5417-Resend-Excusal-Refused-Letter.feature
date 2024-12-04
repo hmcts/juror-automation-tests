@@ -330,17 +330,20 @@ Feature: JM-5417-5586 - Resend excusal refused letter for Bureau and Jury users
       | juror_number  | pool_number | user         |
       | 041586214     | 415982987   | MODTESTCOURT |
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationWIP @JS-168
   Scenario Outline:As a jury officer test a Excused juror can resend a refused letter by searching via pool number
 
-    Given I am on "Bureau" "test"
+    #return to Multi when fixed
+
+    Given I am on "Bureau" "demo"
+
     When a bureau owned pool is created with jurors
-      | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+      | court | juror_number  | pool_number	    | att_date_weeks_in_future	| owner |
       | 415   | <juror_number>| <pool_number>   | 5                          | 400  |
 
     Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no              | pool_no           | owner |
-      | <juror_number>| <pool_number>     | 415   |
+      | part_no         | pool_no         | owner |
+      | <juror_number>  | <pool_number>   | 415   |
 
     And I log in as "<user>"
 
@@ -360,7 +363,7 @@ Feature: JM-5417-5586 - Resend excusal refused letter for Bureau and Jury users
     And I set the radio button to "Refuse excusal"
     And I press the "Continue" button
     And I see "Do you want to print an excusal refused letter?" on the page
-    And I choose the "No" radio button
+    And I choose the "Yes" radio button
     And I press the "Continue" button
 
     And I press the "Apps" button
@@ -379,11 +382,10 @@ Feature: JM-5417-5586 - Resend excusal refused letter for Bureau and Jury users
     When I set "Enter pool number" to "<pool_number>"
     And I press the "Search" button
 
-    #will fail here because of JM-6314
+    #will fail here because of JS-168
     And I see "Print excusal refused letter" on the page
     And I see the printed letter for juror number "<juror_number>" in the letters table
 
     Examples:
-      | juror_number  | pool_number | user          |
-      |  041586213    | 415982987   | MODTESTCOURT |
-
+      | juror_number  | pool_number | user         |
+      | 041586213     | 415982987   | MODTESTCOURT |

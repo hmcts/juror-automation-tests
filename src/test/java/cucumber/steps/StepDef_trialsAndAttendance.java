@@ -10,7 +10,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.util.Map;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 public class StepDef_trialsAndAttendance {
 
@@ -291,5 +291,10 @@ public class StepDef_trialsAndAttendance {
 		boolean isDateCorrect = TRL.verifyAttendanceDateAfterClicks(daysInPast);
 
 		System.out.println("Is the displayed attendance date correct? " + isDateCorrect);
+	}
+	@When("^I select the \"([^\"]*)\" trial number radio button on reassign panel screen$")
+	public void selectTrialRadioButtonForReassign(String trialNumber) {
+		NAV.waitForPageLoad(1);
+		TRL.selectTrialNumberRadioButton(trialNumber);
 	}
 }
