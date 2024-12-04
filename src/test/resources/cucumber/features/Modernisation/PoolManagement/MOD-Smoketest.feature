@@ -2,6 +2,7 @@ Feature: MOD-Smoketest
 
   @Shakedown
   Scenario Outline: Smoketest
+
     Given I am on "bureau" "ithc"
 
     Given I delete pools created in the last 3 days new schema for court "415"
@@ -34,9 +35,10 @@ Feature: MOD-Smoketest
     And I see link with text "Deferral maintenance"
     And I see link with text "Search"
 
-    Then I set input field with "ID" of "courtNameOrLocation" to "457"
+    When I set "Filter by court name or location code" to "415"
+    And I click on the "Chester (415)" link
     And I press the "Filter" button
-    And I see "Swansea Crown Court" on the page
+    And I see "Chester" on the page
 
     Examples:
       | user	        |
