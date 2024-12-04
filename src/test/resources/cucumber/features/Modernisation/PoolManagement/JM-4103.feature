@@ -111,10 +111,10 @@ Feature: JM-4103
       | MODTESTCOURT | 415171002     | 641500454    |
 
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Transfer a juror to another court as a jury officer - Pool Record - Select All
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "demo"
 
     When a bureau owned pool is created with jurors
       | court |juror_number     | pool_number	  | att_date_weeks_in_future  | owner |
@@ -123,10 +123,10 @@ Feature: JM-4103
       | 415   | <juror_number_3>| <pool_number>   | 5                         | 400   |
 
     Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no          | pool_no       | owner |
-      |<juror_number_1> | <pool_number> | 415   |
-      |<juror_number_2> | <pool_number> | 415   |
-      |<juror_number_3> | <pool_number> | 415   |
+      | part_no          | pool_no       | owner |
+      | <juror_number_1> | <pool_number> | 415   |
+      | <juror_number_2> | <pool_number> | 415   |
+      | <juror_number_3> | <pool_number> | 415   |
 
     And I log in as "<user>"
 
@@ -150,7 +150,7 @@ Feature: JM-4103
     And I press the "Continue" button
     And I see "3 jurors transferred" on the page
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "demo"
     And I log in as "MODTESTBUREAU"
     When the user searches for juror record "<juror_number_1>" from the global search bar
     And I click on "<juror_number_1>" in the same row as "Lewes Sitting At Chichester"
@@ -165,5 +165,5 @@ Feature: JM-4103
     And I see the juror status has updated to "Responded"
 
     Examples:
-      | user         | pool_number   | juror_number_1  | juror_number_2 |juror_number_3  |
-      | MODTESTCOURT | 415180901     | 641500279       |  641500939     | 641500851 |
+      | user         | pool_number   | juror_number_1  | juror_number_2 | juror_number_3  |
+      | MODTESTCOURT | 415180901     | 641500279       |  641500939     | 641500851       |

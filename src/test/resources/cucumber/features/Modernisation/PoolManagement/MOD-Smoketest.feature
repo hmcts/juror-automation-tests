@@ -35,8 +35,8 @@ Feature: MOD-Smoketest
     And I see link with text "Search"
 
     Then I set input field with "ID" of "courtNameOrLocation" to "457"
-    And I see "Swansea Crown Court (457)" on the page
-    Then I click on the "Swansea" link
+    And I press the "Filter" button
+    And I see "Swansea Crown Court" on the page
 
     Examples:
       | user	        |

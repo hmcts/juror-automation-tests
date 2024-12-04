@@ -1,9 +1,9 @@
 Feature: JM-3721 Awaiting Translation
 
-@JurorTransformationMulti @NewSchemaConverted
+@JurorTransformationMulti
 Scenario Outline: JM-3721 As Court User, set Paper Response status as Awaiting Translation
 
-	Given I am on "Bureau" "ithc"
+	Given I am on "Bureau" "demo"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
@@ -68,7 +68,7 @@ Scenario Outline: JM-3721 As Court User, set Paper Response status as Awaiting T
 	Then I see "Who are you waiting for information from?" on the page
 	And I mark this reply as awaiting information from "Translation unit"
 	Then I press the "Confirm" button
-	And I see the reply status has updated to "AWAITING TRANSLATION"
+	And I see the reply status has updated to "Awaiting Translation"
 
 	And I click on the "Sign out" link
 
@@ -76,7 +76,7 @@ Scenario Outline: JM-3721 As Court User, set Paper Response status as Awaiting T
 		| user    | juror_number| pool_number   |
 		| SWANSEA | 045700121 	| 457300221 	|
 
-	@JurorTransformationMulti @NewSchemaConverted
+	@JurorTransformationMulti
 	Scenario Outline: JM-3721 As Court User, set Paper Response status as Awaiting Translation - errors and warnings
 
 		Given I am on "Bureau" "ithc"
@@ -86,8 +86,8 @@ Scenario Outline: JM-3721 As Court User, set Paper Response status as Awaiting T
 			| 457   | <juror_number> 	    | <pool_number>     | 7				            | 400	|
 
 		Then a new pool is inserted for where record has transferred to the court new schema
-			|part_no   		| pool_no   	| owner |
-			|<juror_number> | <pool_number> | 457   |
+			| part_no   		| pool_no   	| owner |
+			| <juror_number> 	| <pool_number> | 457   |
 
 		And I log in as "<user>" selecting court "457"
 
@@ -148,7 +148,7 @@ Scenario Outline: JM-3721 As Court User, set Paper Response status as Awaiting T
 
 	And I mark this reply as awaiting information from "Translation unit"
 	Then I press the "Confirm" button
-	And I see the reply status has updated to "AWAITING TRANSLATION"
+	And I see the reply status has updated to "Awaiting Translation"
 
 	And I click on the "Sign out" link
 
@@ -156,18 +156,18 @@ Scenario Outline: JM-3721 As Court User, set Paper Response status as Awaiting T
 			| user      | juror_number  | pool_number   |
 			| SWANSEA 	| 045700120 	| 457300220  	|
 
-	@JurorTransformationMulti @NewSchemaConverted
+	@JurorTransformationMulti
 	Scenario Outline: JM-3721 As Court User, set Paper Response status as Awaiting Translation - navigation
 
-		Given I am on "Bureau" "test"
+		Given I am on "Bureau" "demo"
 
 		Given a bureau owned pool is created with jurors
 			| court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
 			| 457   | <juror_number> 	    | <pool_number>     | 7				            | 400	|
 
 		Then a new pool is inserted for where record has transferred to the court new schema
-			|part_no   		| pool_no   	| owner |
-			|<juror_number> | <pool_number> | 457   |
+			| part_no   	 | pool_no   	 | owner |
+			| <juror_number> | <pool_number> | 457   |
 
 		And I log in as "<user>" selecting court "457"
 
@@ -249,7 +249,7 @@ Scenario Outline: JM-3721 As Court User, set Paper Response status as Awaiting T
 
 		And I mark this reply as awaiting information from "Translation unit"
 		Then I press the "Confirm" button
-		And I see the reply status has updated to "AWAITING TRANSLATION"
+		And I see the reply status has updated to "Awaiting Translation"
 
 		And I click on the "Sign out" link
 

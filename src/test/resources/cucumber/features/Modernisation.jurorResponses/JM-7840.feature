@@ -3,7 +3,7 @@ Feature: JM-7840 - As a jury officer I want to be able to confirm the attendance
   @JurorTransformationMulti
   Scenario Outline: Confirm Attendance for Jurors on a trial - Happy Path - Satellite Court
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "demo"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number   | pool_number	 | att_date_weeks_in_future	| owner |
@@ -26,7 +26,7 @@ Feature: JM-7840 - As a jury officer I want to be able to confirm the attendance
     And I press the "Continue" button
     And I see "Juror record updated: Reassigned to pool" on the page
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "demo"
 
     And I delete trials data
     And I Confirm all the data in the record attendance table is cleared
@@ -45,6 +45,7 @@ Feature: JM-7840 - As a jury officer I want to be able to confirm the attendance
     And I set "Defendants" to "Defendant"
     And I set the "Start date for Trial" date to a Monday "0" weeks in the future
     And I set "Judge" to "PATRICIA H AITKEN"
+    And I click on the "PATRICIA H AITKEN" link
     And I set the radio button to "Warrington"
     And I set "Courtroom" to "COURT ROOM"
     And I press the "Create trial" button
