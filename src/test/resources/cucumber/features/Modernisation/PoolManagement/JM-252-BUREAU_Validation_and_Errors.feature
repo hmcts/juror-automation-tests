@@ -752,6 +752,7 @@ Feature: JM-252_Validation_and_Errors
 
   @JurorTransformationMulti
   Scenario Outline: Errors and Warnings on Change Pool Number - Pool Number Does Not Contain Months Of Attendance Date
+
     Given I am on "Bureau" "ithc"
 
     And I log in as "<user>"
@@ -802,7 +803,7 @@ Feature: JM-252_Validation_and_Errors
     #Change pool no
     Then I click the change link for the pool number
     And I see "Change pool number" on the page
-    Then I set "Pool number" to "457240000"
+    Then I set "Pool number" to "457250000"
     Then I press the "Change" button
 
     Then I see "Pool number is wrong" on the page
@@ -1094,6 +1095,7 @@ Feature: JM-252_Validation_and_Errors
 
   @JurorTransformationMulti
   Scenario Outline: Test to assure that a warning appears if the attendance date is set to a weekend date
+
     Given I am on "Bureau" "ithc"
 
     And I log in as "<user>"
@@ -1110,6 +1112,7 @@ Feature: JM-252_Validation_and_Errors
 
     When I click the change link for the attendance date
     And I set the attendance date to a weekend
+    And I press the "Change" button
     Then I see "You’ve selected an attendance date that’s a Saturday or a Sunday. You can continue or go back and change the date." on the page
     And I see "The attendance date is a weekend" on the page
     When I click the link to continue from the warning page
