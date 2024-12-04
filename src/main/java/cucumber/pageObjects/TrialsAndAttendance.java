@@ -512,4 +512,16 @@ public class TrialsAndAttendance {
         System.out.println("Displayed date: " + displayedDate);
         return displayedDate.equals(targetDate);
     }
+
+    public void selectTrialNumberRadioButton(String trialNumber) {
+        String radioButtonXPath = "//input[@type='radio' and @id='" + trialNumber + "']";
+        try {
+            WebElement radioButton = driver.findElement(By.xpath(radioButtonXPath));
+            radioButton.click();
+
+            System.out.println("Selected radio button with: " + trialNumber);
+        } catch (NoSuchElementException e) {
+            log.error("Radio button with name '" + trialNumber + "'  not found");
+        }
+    }
 }
