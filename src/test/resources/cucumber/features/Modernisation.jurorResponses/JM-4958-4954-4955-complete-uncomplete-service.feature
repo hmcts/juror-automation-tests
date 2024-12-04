@@ -132,15 +132,18 @@ Feature: JM-4958, JM-4954, JM-4955 As a jury officer i need to be able to comple
 
   @JurorTransformationMulti
   Scenario Outline: Complete Service as a jury officer - Individual flow - Unhappy Path (juror not marked responded)
-    Given I am on "Bureau" "test"
+
+    Given I am on "Bureau" "demo"
 
     Given a bureau owned pool is created with jurors
-      | court |juror_number  	| pool_number	| att_date_weeks_in_future	| owner |
-      | 415   |<juror_number> 	| <pool_number> | 5				            | 400	|
+      | court | juror_number  	| pool_number	| att_date_weeks_in_future	| owner |
+      | 415   | <juror_number> 	| <pool_number> | 5				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
       | part_no         | pool_no       | owner |
       | <juror_number>  | <pool_number> | 415   |
+
+    And juror "<juror_number>" has "DOB" as "1971-08-13 00:00:00.000" new schema
 
     #log on and search for juror
     And I log in as "<user>"
@@ -169,15 +172,18 @@ Feature: JM-4958, JM-4954, JM-4955 As a jury officer i need to be able to comple
 
   @JurorTransformationMulti
   Scenario Outline: Uncomplete Service as an SJO
+
     Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
-      | court |juror_number  	| pool_number	| att_date_weeks_in_future	| owner |
-      | 415   |<juror_number> 	| <pool_number> | 5				            | 400	|
+      | court | juror_number  	| pool_number	| att_date_weeks_in_future	| owner |
+      | 415   | <juror_number> 	| <pool_number> | 5				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
       |part_no         | pool_no       | owner |
       |<juror_number>  | <pool_number> | 415   |
+
+    And juror "<juror_number>" has "DOB" as "1971-08-13 00:00:00.000" new schema
 
     #log on and search for juror
     And I log in as "<user>"
@@ -220,7 +226,6 @@ Feature: JM-4958, JM-4954, JM-4955 As a jury officer i need to be able to comple
     When the user searches for juror record "<juror_number>" from the global search bar
     Then I see the juror status on the juror record screen is "Responded"
 
-
     Examples:
-      |user			|juror_number  |pool_number  |
-      |MODTESTCOURT |041540003     |415300403    |
+      | user		  | juror_number  | pool_number  |
+      | MODTESTCOURT  | 041540003     | 415300403    |

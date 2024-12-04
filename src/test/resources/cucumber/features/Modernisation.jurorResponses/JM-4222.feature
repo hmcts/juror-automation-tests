@@ -125,7 +125,14 @@ Feature: JM-4222
     When I enter the optic reference number "12345678"
     And I press the "Save" button
 
-    When the user searches for juror record "<juror_number>" from the global search bar
+    Then I press the "Process reply" button
+    Then I choose the "Mark as responded" radio button
+    And I press the "Continue" button
+    And I check the "Mark juror as 'responded'" checkbox
+    And I press the "Confirm" button
+    Then I see "Completed" on the page
+
+    Then I click on the "View juror's record" link
     And I click the update juror record button
     And I set the radio button to "Postpone service start date"
     And I click continue on the update juror record screen
@@ -211,7 +218,14 @@ Feature: JM-4222
     When I enter the optic reference number "12345678"
     And I press the "Save" button
 
-    When the user searches for juror record "<juror_number>" from the global search bar
+    Then I press the "Process reply" button
+    Then I choose the "Mark as responded" radio button
+    And I press the "Continue" button
+    And I check the "Mark juror as 'responded'" checkbox
+    And I press the "Confirm" button
+    Then I see "Completed" on the page
+
+    Then I click on the "View juror's record" link
     And I click the update juror record button
     And I set the radio button to "Deferral - grant or refuse"
     Then I click continue on the update juror record screen

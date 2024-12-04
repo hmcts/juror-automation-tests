@@ -1,13 +1,13 @@
 Feature: JM-3179
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Test to mark paper summons reply as awaiting information
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "demo"
 
     Given a bureau owned pool is created with jurors
-      | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
-      | 452   |<juror_number> 	    | <pool_number>     | 5				            | 400	|
+      | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+      | 452   | <juror_number> 	    | <pool_number>     | 5				            | 400	|
 
     And I log in as "MODTESTBUREAU"
 
@@ -31,13 +31,14 @@ Feature: JM-3179
     | Court              | Awaiting court reply | 045200009    | 452300005   |
     | Translation unit   | Awaiting Translation | 045200009    | 452300005   |
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Test to mark paper summons reply as awaiting information - validation
-    Given I am on "Bureau" "test"
+
+    Given I am on "Bureau" "demo"
 
     Given a bureau owned pool is created with jurors
-      | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
-      | 452   |<juror_number> 	    | <pool_number>     | 5				            | 400	|
+      | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+      | 452   | <juror_number> 	    | <pool_number>     | 5				            | 400	|
 
     And I log in as "<user>"
     When the user searches for juror record "<juror_number>" from the global search bar
@@ -55,13 +56,14 @@ Feature: JM-3179
       | user          | juror_number   | pool_number |
       | MODTESTBUREAU | 045200010      | 452300006   |
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Test to mark summons reply as awaiting information
-    Given I am on "Bureau" "test"
+
+    Given I am on "Bureau" "demo"
 
     Given a bureau owned pool is created with jurors
-      | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
-      | 452   |<juror_number> 	    | <pool_number>     | 5				            | 400	|
+      | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+      | 452   | <juror_number> 	    | <pool_number>     | 5				            | 400	|
 
     And I log in as "MODTESTBUREAU"
 
@@ -81,13 +83,14 @@ Feature: JM-3179
 
     Examples:
       | waitingOnReplyFrom | updatedReplyStatus   | juror_number | pool_number |
-      | Juror              | AWAITING JUROR INFO  | 045200011    | 452300007   |
-      | Court              | AWAITING COURT REPLY | 045200011    | 452300007   |
-      | Translation unit   | AWAITING TRANSLATION | 045200011    | 452300007   |
+      | Juror              | Awaiting juror info  | 045200011    | 452300007   |
+      | Court              | Awaiting court reply | 045200011    | 452300007   |
+      | Translation unit   | Awaiting Translation | 045200011    | 452300007   |
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Test to mark summons reply as awaiting information - validation
-    Given I am on "Bureau" "test"
+
+    Given I am on "Bureau" "demo"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
