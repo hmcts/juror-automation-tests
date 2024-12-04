@@ -297,4 +297,15 @@ public class StepDef_trialsAndAttendance {
 		NAV.waitForPageLoad(1);
 		TRL.selectTrialNumberRadioButton(trialNumber);
 	}
+	@When("^I check the pool number \"([^\"]*)\" in the dismiss table$")
+	public void checkPoolNumberInDismissTable(String poolNumber) throws Throwable {
+		try {
+			NAV.waitForPageLoad(1);
+			TRL.selectCheckboxInDismissTable(poolNumber);
+			return;
+		} catch (Exception e) {}
+		TRL.selectCheckboxInDismissTable(poolNumber);
+
+	}
+
 }
