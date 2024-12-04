@@ -272,7 +272,7 @@ Feature: JM-252_Validation_and_Errors_COURT
   @JurorTransformationMulti
   Scenario Outline: Test to assure court user cannot see courts they dont have access to
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "demo"
 
     And I log in as "<user>"
 
@@ -285,13 +285,13 @@ Feature: JM-252_Validation_and_Errors_COURT
     #TRY COURT YOU DONT HAVE ACCESS TO
     Then  I click the change link for the chosen court
     And I see "Select a court for this pool" on the page
-    Then I set input field with "ID" of "courtNameOrLocation" to "452"
+    Then I set "Enter a court name or location code" to "452"
     And I do not see link with text "Shrewsbury (452)"
     Then I see "No results found" on the page
 
     #CHANGE COURT TO ONE YOU DO HAVE ACCESS TO
     Then I clear field with id "courtNameOrLocation"
-    Then I set input field with "ID" of "courtNameOrLocation" to "462"
+    Then I set "Enter a court name or location code" to "462"
     And I click on the "Warrington (462)" link
     And I press the "Continue" button
 

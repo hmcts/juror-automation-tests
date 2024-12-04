@@ -89,7 +89,9 @@ Feature: As a jury officer I need to send a on call message
     And I choose the "Juror number" radio button
     And I set "Enter juror number" to "<juror_number>"
     And I press the "Continue" button
-    And I click on the methods dropdown and select "Text" for juror "<juror_number>"
+    Then I see "Select jurors to send message to" on the page
+
+    When I click on the methods dropdown and select "Text" for juror "<juror_number>"
     And I check the juror "<juror_number>" checkbox
     And I press the "Send message" button
 
