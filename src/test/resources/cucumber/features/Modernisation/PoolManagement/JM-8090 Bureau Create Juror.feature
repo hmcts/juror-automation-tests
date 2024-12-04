@@ -58,6 +58,7 @@ Feature: Bureau Create Juror Record
     When I enter the pool number of the pool I have just created on the pool search screen
     And I press the "Continue" button
 
+    And I see "Create juror record" on the page
     And I press the "Create juror record" button
 
     #jurors name

@@ -19,16 +19,16 @@ Feature: JM-252_Navigation
     Then I see "Select a court for this pool" on the page
 
     #select court and change
-    Then I set input field with "ID" of "courtNameOrLocation" to "BURY"
-    And I see "Bury St Edmunds (754)" on the page
-    Then I click on the "Bury St Edmunds" link
-    Then I clear field with id "courtNameOrLocation"
-    Then I set input field with "ID" of "courtNameOrLocation" to "457"
-    And I see "Swansea Crown Court (457)" on the page
-    Then I click on the "Swansea" link
+    When I set "Enter a court name or location code" to "BURY"
+    Then I see "Bury St Edmunds (754)" on the page
+    When I click on the "Bury St Edmunds" link
+    And I clear field with id "courtNameOrLocation"
+    And I set "Enter a court name or location code" to "457"
+    Then I see "Swansea Crown Court (457)" on the page
+    When I click on the "Swansea" link
 
     # cancel
-    Then I click on the "Cancel" link
+    And I click on the "Cancel" link
     Then I see "Pool requests" on the page
     And I see "Filter by court name or location code" on the page
 
@@ -36,7 +36,7 @@ Feature: JM-252_Navigation
     Then I press the "Create pool" button
     And I set the radio button to "Request new pool"
     And I press the "Continue" button
-    Then I set input field with "ID" of "courtNameOrLocation" to "457"
+    And I set "Enter a court name or location code" to "457"
     Then I click on the "Swansea" link
     Then I press the "Continue" button
 
@@ -57,7 +57,7 @@ Feature: JM-252_Navigation
     #CHANGE COURT
     Then  I click the change link for the chosen court
     And I see "Select a court for this pool" on the page
-    Then I set input field with "ID" of "courtNameOrLocation" to "<displayCourt>"
+    Then I set "Enter a court name or location code" to "<displayCourt>"
     And I click on the "<displayCourt> (<courtCode>)" link
     And I press the "Continue" button
 
@@ -127,6 +127,7 @@ Feature: JM-252_Navigation
 
   @JurorTransformation
   Scenario Outline: Create pools for different courts and apply filters
+
     Given I am on "Bureau" "ithc"
 
     And I log in as "<user>"
@@ -139,7 +140,7 @@ Feature: JM-252_Navigation
     Then I see "Select a court for this pool" on the page
 
     #select court
-    Then I set input field with "ID" of "courtNameOrLocation" to "415"
+    Then I set "Enter a court name or location code" to "415"
     Then I click on the "Chester (415)" link
     Then I press the "Continue" button
 
@@ -172,7 +173,7 @@ Feature: JM-252_Navigation
 
     #select court
 
-    Then I set input field with "ID" of "courtNameOrLocation" to "457"
+    Then I set "Enter a court name or location code" to "457"
     Then I click on the "Swansea Crown Court (457)" link
     Then I press the "Continue" button
 
@@ -188,28 +189,28 @@ Feature: JM-252_Navigation
     Then I should be taken to the pool summary page
     And I click on the "Service start date" link
 
-    Then I set input field with "ID" of "courtNameOrLocation" to "415"
+    Then I set "Filter by court name or location code" to "415"
     Then I click on the "Chester (415)" link
     Then I press the "Filter" button
     Then only records from "Chester" are displayed
 
     Then I click on the "Clear filter" link
 
-    Then I set input field with "ID" of "courtNameOrLocation" to "457"
+    Then I set "Filter by court name or location code" to "457"
     Then I click on the "Swansea Crown Court (457)" link
     Then I press the "Filter" button
     Then only records from "Swansea Crown Court" are displayed
 
     Then I click on the "Clear filter" link
 
-    Then I set input field with "ID" of "courtNameOrLocation" to "Chester"
+    Then I set "Filter by court name or location code" to "Chester"
     Then I click on the "Chester (415)" link
     Then I press the "Filter" button
     Then only records from "Chester" are displayed
 
     Then I click on the "Clear filter" link
 
-    Then I set input field with "ID" of "courtNameOrLocation" to "Swansea"
+    Then I set "Filter by court name or location code" to "Swansea"
     Then I click on the "Swansea Crown Court (457)" link
     Then I press the "Filter" button
     Then only records from "Swansea Crown Court" are displayed
@@ -233,7 +234,7 @@ Feature: JM-252_Navigation
     Then I see "Select a court for this pool" on the page
 
     #select court
-    Then I set input field with "ID" of "courtNameOrLocation" to "415"
+    Then I set "Enter a court name or location code" to "415"
     Then I click on the "Chester (415)" link
     Then I press the "Continue" button
 

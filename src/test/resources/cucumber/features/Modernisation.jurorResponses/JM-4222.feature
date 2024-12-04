@@ -1,15 +1,15 @@
 Feature: JM-4222
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: As a Bureau when I reassign a juror the optic reference should be copied over to the new record
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     And I log in as "<user>"
 
     Given a bureau owned pool is created with jurors
-      | court |juror_number  | pool_number  | att_date_weeks_in_future | owner |
-      | 452   |<juror_number>| <pool_number>| 5                         | 400  |
+      | court | juror_number  | pool_number  | att_date_weeks_in_future | owner |
+      | 452   | <juror_number>| <pool_number>| 5                        | 400   |
 
     When the user searches for juror record "<juror_number>" from the global search bar
 
@@ -66,16 +66,16 @@ Feature: JM-4222
       | user          | juror_number | pool_number |
       | MODTESTBUREAU | 045200023    | 452300019   |
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: As a Bureau I should be able to see the optic reference on a juror record and summons reply as a standard juror
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     And I log in as "<user>"
 
     Given a bureau owned pool is created with jurors
-      | court |juror_number  | pool_number  | att_date_weeks_in_future | owner |
-      | 452   |<juror_number>| <pool_number>| 5                         | 400  |
+      | court | juror_number  | pool_number  | att_date_weeks_in_future | owner |
+      | 452   | <juror_number>| <pool_number>| 5                        | 400   |
 
     When the user searches for juror record "<juror_number>" from the global search bar
     And I record a paper summons response with reasonable adjustment of "C - Caring Responsibilities"
@@ -102,16 +102,16 @@ Feature: JM-4222
       | juror_number  | pool_number | user          |
       | 045200021     | 452300020   | MODTESTBUREAU |
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: As a Bureau when I postpone a juror the optic reference should be copied over to the new record
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     And I log in as "<user>"
 
     Given a bureau owned pool is created with jurors
-      | court |juror_number  | pool_number  | att_date_weeks_in_future | owner |
-      | 452   |<juror_number>| <pool_number>| 5                         | 400  |
+      | court | juror_number  | pool_number  | att_date_weeks_in_future | owner |
+      | 452   | <juror_number>| <pool_number>| 5                        | 400   |
 
     When the user searches for juror record "<juror_number>" from the global search bar
 
@@ -152,16 +152,16 @@ Feature: JM-4222
       | 045200022     | 452300021   | MODTESTBUREAU |
 
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: As a Bureau when I defer a juror the optic reference should be copied over to the new record
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     And I log in as "<user>"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number  | pool_number   | att_date_weeks_in_future   | owner |
-      | 452   | <juror_number>| <pool_number> | 5                       | 400  |
+      | 452   | <juror_number>| <pool_number> | 5                          | 400   |
 
     When the user searches for juror record "<juror_number>" from the global search bar
 
@@ -237,22 +237,22 @@ Feature: JM-4222
       | juror_number  | pool_number | user          |
       | 045200023     | 452300022   | MODTESTBUREAU |
 
-  @JurorTransformation @NewSchemaConverted
+  @JurorTransformation
   Scenario Outline: As a Jury officer when I reassign a juror the optic reference should be copied over to the new record
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     And I log in as "<user>"
 
     Given a bureau owned pool is created with jurors
-      | court | juror_number  | pool_number   | att_date_weeks_in_future   | owner |
-      | 415   | <juror_number>| <pool_number> | 5                       | 400  |
-      | 415   | <juror_number_1>| <pool_number_1> | 5                       | 400  |
+      | court | juror_number    | pool_number     | att_date_weeks_in_future  | owner |
+      | 415   | <juror_number>  | <pool_number>   | 5                         | 400   |
+      | 415   | <juror_number_1>| <pool_number_1> | 5                         | 400   |
 
     Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no        | pool_no       | owner |
-      |<juror_number> | <pool_number> | 415   |
-      |<juror_number_1> | <pool_number_1> | 415   |
+      | part_no           | pool_no         | owner |
+      | <juror_number>    | <pool_number>   | 415   |
+      | <juror_number_1>  | <pool_number_1> | 415   |
 
     And I update juror "<juror_number_1>" to have a status of responded in order to record attendance
     When the user searches for juror record "<juror_number>" from the global search bar
@@ -292,7 +292,6 @@ Feature: JM-4222
     And I see "1 jurors reassigned to pool" on the page
     And I check optic reference in the database for juror "<juror_number>" is "12345678" new schema
 
-
     When the user searches for juror record "<juror_number>" from the global search bar
     And I click on the "Summons reply" link
     And I click on the "View summons reply" link
@@ -306,17 +305,17 @@ Feature: JM-4222
     And I see "Reasonable adjustments reasons" on the page
 
     Examples:
-      | user         | juror_number  | pool_number |juror_number_1|pool_number_1|
-      | MODTESTCOURT | 041500049     | 415300139   |041500050     |415300140  |
+      | user         | juror_number  | pool_number | juror_number_1| pool_number_1|
+      | MODTESTCOURT | 041500049     | 415300139   | 041500050     | 415300140    |
 
-
-  @JurorTransformation @NewSchemaConverted
+  @JurorTransformation
   Scenario Outline: As a jury officer officer when I transfer a juror the optic reference should be copied over to the new record
-    Given I am on "Bureau" "test"
+
+    Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
-      | court | juror_number  | pool_number  | att_date_weeks_in_future    | owner |
-      | 415   | <juror_number>| <pool_number>| 5                    | 400  |
+      | court | juror_number  | pool_number  | att_date_weeks_in_future    | owner  |
+      | 415   | <juror_number>| <pool_number>| 5                           | 400    |
 
     #respond juror as bureau user
     And I log in as "MODTESTBUREAU"
@@ -333,13 +332,13 @@ Feature: JM-4222
     And I click the juror details adjustments tab
     And I see "12345678" in the same row as "Optic reference"
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     And I log in as "<user>"
 
     #transfer to court
     Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no        | pool_no       | owner |
-      |<juror_number> | <pool_number> | 415   |
+      | part_no        | pool_no       | owner |
+      | <juror_number> | <pool_number> | 415   |
 
     When the user searches for juror record "<juror_number>" from the global search bar
     And I click on the Summons Reply tab
@@ -352,7 +351,6 @@ Feature: JM-4222
     And I press the "Continue" button
     Then I click the checkbox to mark the reply as responded
     And I press the "Confirm" button
-
 
     When the user searches for juror record "<juror_number>" from the global search bar
     And I click on the pool number link on Juror Record
@@ -373,7 +371,7 @@ Feature: JM-4222
     And I click on the "Reasonable adjustments" link
     And I see "12345678" in the same row as "Optic reference"
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     And I log in as "MODTESTBUREAU"
 
     #check juror record for optic reference
@@ -387,20 +385,19 @@ Feature: JM-4222
       | user         | juror_number | pool_number  |
       | MODTESTCOURT | 041503352    | 415300140    |
 
-
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: As a Jury Officer I should be able to see the optic reference on a juror record and summons reply as a standard juror
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     And I log in as "<user>"
 
     Given a bureau owned pool is created with jurors
-      | court | juror_number  | pool_number   | att_date_weeks_in_future   | owner |
-      | 415   | <juror_number>| <pool_number> | 5                       | 400  |
+      | court | juror_number  | pool_number   | att_date_weeks_in_future   | owner  |
+      | 415   | <juror_number>| <pool_number> | 5                          | 400    |
 
     Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no        | pool_no       | owner |
-      |<juror_number> | <pool_number> | 415   |
+      | part_no        | pool_no       | owner |
+      | <juror_number> | <pool_number> | 415   |
 
     When the user searches for juror record "<juror_number>" from the global search bar
 
@@ -427,10 +424,10 @@ Feature: JM-4222
       | juror_number | pool_number| user         |
       | 041500051    | 415300141  | MODTESTCOURT |
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: As a Jury officer when I postpone a juror the optic reference should be copied over to the new record
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "demo"
 
     And I log in as "<user>"
 
@@ -454,6 +451,18 @@ Feature: JM-4222
     And I press the "Save" button
 
     When the user searches for juror record "<juror_number>" from the global search bar
+
+    #process response
+    And I click on the "Summons reply" link
+    And I click on the "View summons reply" link
+    And I select Process reply
+    And I choose the "Mark as responded" radio button
+    And I press the "Continue" button
+    And I check the "Mark juror as 'responded'" checkbox
+    And I press the "Confirm" button
+    And I see the juror record updated banner containing "Responded"
+
+    Then I click on the "View juror's record" link
     And I click the update juror record button
     And I set the radio button to "Postpone service start date"
     And I click continue on the update juror record screen
@@ -482,21 +491,20 @@ Feature: JM-4222
       | juror_number  | pool_number   | user         |
       | 041500048     | 415300138     | MODTESTCOURT |
 
-
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: As a Jury officer when I defer a juror the optic reference should be copied over to the new record
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     And I log in as "<user>"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number  | pool_number   | att_date_weeks_in_future   | owner |
-      | 415   | <juror_number>| <pool_number> | 5                       | 400  |
+      | 415   | <juror_number>| <pool_number> | 5                          | 400   |
 
     Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no        | pool_no       | owner |
-      |<juror_number> | <pool_number> | 415   |
+      | part_no        | pool_no       | owner |
+      | <juror_number> | <pool_number> | 415   |
 
     When the user searches for juror record "<juror_number>" from the global search bar
 
@@ -547,6 +555,19 @@ Feature: JM-4222
     And I press the "Save" button
 
     When the user searches for juror record "<juror_number>" from the global search bar
+
+    #process response
+    And I click on the "Summons reply" link
+    And I click on the "View summons reply" link
+    And I select Process reply
+    And I choose the "Mark as responded" radio button
+    And I press the "Continue" button
+    And I check the "Mark juror as 'responded'" checkbox
+    And I press the "Confirm" button
+    And I see the juror record updated banner containing "Responded"
+
+    Then I click on the "View juror's record" link
+
     And I click the update juror record button
     And I set the radio button to "Deferral - grant or refuse"
     Then I click continue on the update juror record screen
@@ -574,4 +595,3 @@ Feature: JM-4222
     Examples:
       | juror_number  | pool_number | user         |
       | 041500052     | 415300142   | MODTESTCOURT |
-

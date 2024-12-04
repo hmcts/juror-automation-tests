@@ -612,7 +612,8 @@ public class NavigationShared {
             log.info("Checkbox " + location_name + " checked:" + checkbox.isSelected());
 
             if (checkbox.isSelected()) {
-                ((JavascriptExecutor) driver).executeScript("if (arguments[0].checked) arguments[0].click();", checkbox);
+                checkbox.sendKeys(Keys.SPACE);
+//                ((JavascriptExecutor) driver).executeScript("if (arguments[0].checked) arguments[0].click();", checkbox);
             } else {
                 log.info("Return");
                 return null;
@@ -1558,6 +1559,7 @@ public class NavigationShared {
             inputField.click();
             inputField.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
             inputField.sendKeys(inputText);
+            inputField.sendKeys(Keys.TAB);
             log.info("Found field and input text =>" + inputText);
         } catch (Exception e) {
             log.info("Going to find field by =>" + attributeType + "<= with value =>" + attributeValue + "<= and set it to =>" + inputText);
@@ -1709,7 +1711,7 @@ public class NavigationShared {
                 ));
         log.info("Saw checkbox in row which contained text =>" + nextToText);
         //wait.toBeClickAble(checkbox);
-        checkbox.click();
+        checkbox.sendKeys(Keys.SPACE);
         log.info("Checked checkbox which was in the same row as =>" + nextToText);
 
     }
