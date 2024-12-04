@@ -232,7 +232,7 @@ public class JurorRecord {
     }
 
     public void checkUncompleteJuror() {
-        uncompleteJurorCheckbox.click();
+        uncompleteJurorCheckbox.sendKeys(Keys.SPACE);
     }
 
     public boolean seeJurorRecordTag() {
