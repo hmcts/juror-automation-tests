@@ -1,6 +1,6 @@
 Feature: Bureau C Test
 	
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: Bureau C script
 
 	Given I am on "Bureau" "ithc"
@@ -43,7 +43,6 @@ Scenario Outline: Bureau C script
 	And I press the "Send to..." button
 	And I set input field with "id" of "sendToOfficer" to "CPASS"
 	And I press the "Send" button
-	And I press the "Send" button
 	Then I click on the "Your work" link
 	Then I see "<juror_number_one>" in the same row as "<juror_number_one>"
 	When I click on the "To do" link
@@ -60,7 +59,6 @@ Scenario Outline: Bureau C script
 
 	And I set input field with "id" of "sendToOfficer" to "ARAMIS1"
 	And I press the "Send" button
-	And I press the "Send" button
 	Then I see "Your work" on the page
 	Then I see "To do" on the page
 	Then I do not see "<juror_number>" on the page
@@ -71,7 +69,6 @@ Scenario Outline: Bureau C script
 	And I press the "Select all" button
 	And I press the "Send to" button
 	And I set input field with "id" of "sendToOfficer" to "ARAMIS1"
-	And I press the "Send" button
 	And I press the "Send" button
 	Then I see "Your work" on the page
 
@@ -85,7 +82,6 @@ Scenario Outline: Bureau C script
 	Then I press the "More actions" button
 	And I click on the "Send to a colleague" link
 	And I set input field with "id" of "sendToOfficer" to "MODTESTBUREAU"
-	And I press the "Send" button
 	And I press the "Send" button
 	Then I see "Your work" on the page
 	Then I do not see "<juror_number_one>" on the page
@@ -102,7 +98,6 @@ Scenario Outline: Bureau C script
 	And I click on the "Select all" link
 	And I press the "Send to..." button
 	And I set input field with "id" of "sendToOfficer" to "ARAMIS1"
-	And I press the "Send" button
 	And I press the "Send" button
 	Then I see "Your work" on the page
 
@@ -128,7 +123,6 @@ Scenario Outline: Bureau C script
 	And I press the "Select all" button
 	And I press the "Send to" button
 	And I set input field with "id" of "sendToOfficer" to "Return to unass"
-	And I press the "Send" button
 	And I press the "Send" button
 	Then I see "Your work" on the page
 
