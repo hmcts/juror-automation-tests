@@ -1,18 +1,19 @@
 Feature: JM-5072 - Dismiss random jurors
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: As a jury officer I want to dismiss random jurors - Happy Path
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
+
     Given a bureau owned pool is created with jurors
-      | court |juror_number  	        | pool_number	    | att_date_weeks_in_future	    | owner |
-      | 415   |<juror_number> 	        | <pool_number>     | 5			                    | 400	|
-      | 415   |<juror_number_2> 	    | <pool_number>     | 5				                | 400	|
+      | court | juror_number  	  | pool_number	    | att_date_weeks_in_future	    | owner |
+      | 415   | <juror_number> 	  | <pool_number>   | 5			                    | 400	|
+      | 415   | <juror_number_2>  | <pool_number>   | 5				                | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no               | pool_no          | owner |
-      |<juror_number>        | <pool_number>    | 415   |
-      |<juror_number_2>      | <pool_number>    | 415   |
+      | part_no               | pool_no          | owner |
+      | <juror_number>        | <pool_number>    | 415   |
+      | <juror_number_2>      | <pool_number>    | 415   |
 
     And I Confirm all the data in the record attendance table is cleared
     And I log in as "<user>"
@@ -45,13 +46,13 @@ Feature: JM-5072 - Dismiss random jurors
     
     #dismiss jurors
     And I press the "Apps" button
-    And I click on the "Juror management" link
+    And I click on the "Pool management" link
 
-    And I press the "Dismiss jurors" button
+    And I click on the "Dismiss jurors" link
     And I see "Dismiss jurors" on the page
     And I see "Select which pools to include" on the page
-    And I see "2" in the same row as "<pool_number>"
-    And I check the "<pool_number>" checkbox
+
+    And I check the pool number "<pool_number>" in the dismiss table
     And I press the calculate available jurors button
 
     #this will fail here because of JM-6374
@@ -83,37 +84,38 @@ Feature: JM-5072 - Dismiss random jurors
     And I see the juror status has updated to "Completed"
 
     Examples:
-      |user			|juror_number    | juror_number_2  |   pool_number    |
-      |MODTESTCOURT |041588770       | 041588773       |    415388671     |
+      | user		  | juror_number    | juror_number_2  | pool_number   |
+      | MODTESTCOURT  | 041588770       | 041588773       | 415388671     |
 
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline:   As a jury officer I want to dismiss random jurors - Unhappy Path
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "demo"
+
     Given a bureau owned pool is created with jurors
-      | court |juror_number  	        | pool_number	    | att_date_weeks_in_future	    | owner |
-      | 415   |<juror_number> 	        | <pool_number>     | 5			                | 400	|
-      | 415   |<juror_number_2> 	    | <pool_number>     | 5				            | 400	|
-      | 415   |<juror_number_3> 	    | <pool_number>     | 5				            | 400	|
+      | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number> 	    | <pool_number>     | 5			                | 400	|
+      | 415   | <juror_number_2>    | <pool_number>     | 5				            | 400	|
+      | 415   | <juror_number_3> 	| <pool_number>     | 5				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no               | pool_no          | owner |
-      |<juror_number>        | <pool_number>    | 415   |
-      |<juror_number_2>      | <pool_number>    | 415   |
-      |<juror_number_3>      | <pool_number>    | 415   |
+      | part_no               | pool_no          | owner |
+      | <juror_number>        | <pool_number>    | 415   |
+      | <juror_number_2>      | <pool_number>    | 415   |
+      | <juror_number_3>      | <pool_number>    | 415   |
 
     And I Confirm all the data in the record attendance table is cleared
     And I log in as "<user>"
 
     And I update service start date to 3 Mondays ago for pool number "<pool_number>"
 
-   #set juror as responded
+    #set juror as responded
     And I update juror "<juror_number>" to have a status of responded in order to record attendance
     And I update juror "<juror_number_2>" to have a status of responded in order to record attendance
     And I update juror "<juror_number_3>" to have a status of responded in order to record attendance
 
-     #check in juror
+    #check in juror
     And I press the "Apps" button
     And I click on the "Juror management" link
     And I click on the "Record attendance" link
@@ -141,16 +143,15 @@ Feature: JM-5072 - Dismiss random jurors
     Then I see "On call" in the same row as "Next due at court"
 
     And I press the "Apps" button
-    And I click on the "Juror management" link
-
-    And I press the "Dismiss jurors" button
+    And I click on the "Pool management" link
+    And I click on the "Dismiss jurors" link
     And I see "Dismiss jurors" on the page
     And I see "Select which pools to include" on the page
+
     And I press the "Generate list of jurors to dismiss" button
     And I see error "Select at least one pool"
-    And I see error "Enter how many jurors you want to dismiss"
 
-    And I check the "<pool_number>" checkbox
+    And I check the pool number "<pool_number>" in the dismiss table
     And I set "How many of these jurors do you want to dismiss?" to "3"
     And I press the "Generate list of jurors to dismiss" button
     And I see error "Amount of jurors to dismiss must be 2 or fewer"
@@ -185,7 +186,6 @@ Feature: JM-5072 - Dismiss random jurors
     And the user searches for juror record "<juror_number_3>" from the global search bar
     And I see the juror status has updated to "Completed"
 
-
     Examples:
-      |user			|juror_number    | juror_number_2  | juror_number_3  |   pool_number    |
-      |MODTESTCOURT |041588774       | 041588775       | 041588776       |    415388775     |
+      | user		  | juror_number    | juror_number_2  | juror_number_3  | pool_number   |
+      | MODTESTCOURT  | 041588774       | 041588775       | 041588776       | 415388775     |

@@ -1,17 +1,17 @@
 Feature: As a jury officer I need to send the selected for a panel message
 
-  @JurorTransformationMulti @NewSchemaConverted @Messages
+  @JurorTransformationMulti @Messages
   Scenario Outline: Send selected for a panel message for Juror using Text including error checks
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "demo"
 
     Given a bureau owned pool is created with jurors
-      | court |juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
-      | 415   |<juror_number>    | <pool_number>    | 5				            | 400	|
+      | court | juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number>    | <pool_number>    | 5				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no               | pool_no          | owner |
-      |<juror_number>        | <pool_number>    | 415   |
+      | part_no           | pool_no          | owner |
+      | <juror_number>    | <pool_number>    | 415   |
 
     And I update juror "<juror_number>" to be able to send a message to them
 
@@ -30,7 +30,7 @@ Feature: As a jury officer I need to send the selected for a panel message
     And I set the "Attendance date for message" date to a Monday "5" weeks in the future
     And I set "Hour" to "09"
     And I set "Minute" to "00"
-    And I set the radio button to "am"
+    And I choose the "am" radio button
 
     And I press the "Continue" button
     And I see "Find jurors to send message to" on the page
@@ -58,22 +58,22 @@ Feature: As a jury officer I need to send the selected for a panel message
     And I see the juror "<juror_number>" has a message in the database
 
     Examples:
-      |user			| juror_number | pool_number |
-      |MODTESTCOURT | 041529909    | 415980990   |
+      | user		  | juror_number | pool_number |
+      | MODTESTCOURT  | 041529909    | 415980990   |
 
 
-  @JurorTransformationMulti @NewSchemaConverted @Messages
+  @JurorTransformationMulti @Messages
   Scenario Outline: Send selected for a panel message for Juror
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "demo"
 
     Given a bureau owned pool is created with jurors
-      | court |juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
-      | 415   |<juror_number>    | <pool_number>    | 5				            | 400	|
+      | court | juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number>    | <pool_number>   | 5				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no               | pool_no          | owner |
-      |<juror_number>        | <pool_number>    | 415   |
+      | part_no             | pool_no          | owner |
+      | <juror_number>      | <pool_number>    | 415   |
 
     And I update juror "<juror_number>" to be able to send a message to them
 
@@ -90,12 +90,10 @@ Feature: As a jury officer I need to send the selected for a panel message
     And I set the "Attendance date for message" date to a Monday "5" weeks in the future
     And I set "Hour" to "09"
     And I set "Minute" to "00"
-#    And I set the radio button to "am"
     And I choose the "am" radio button
     And I press the "Continue" button
 
     And I see "Find jurors to send message to" on the page
-#    And I set the radio button to "Juror number"
     And I choose the "Juror number" radio button
     And I set "Enter juror number" to "<juror_number>"
     And I press the "Continue" button
@@ -113,22 +111,22 @@ Feature: As a jury officer I need to send the selected for a panel message
     And I see the juror "<juror_number>" has a message in the database
 
     Examples:
-      |user			| juror_number | pool_number |
-      |MODTESTCOURT | 041529908    | 415980990   |
+      | user	      | juror_number | pool_number |
+      | MODTESTCOURT  | 041529908    | 415980990   |
 
 
-  @JurorTransformationMulti @NewSchemaConverted @Messages
+  @JurorTransformationMulti @Messages
   Scenario Outline: Send selected for a panel message for Juror via their Name
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "demo"
 
     Given a bureau owned pool is created with jurors
-      | court |juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
-      | 415   |<juror_number>    | <pool_number>    | 5				            | 400	|
+      | court | juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number>    | <pool_number>   | 5				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no               | pool_no          | owner |
-      |<juror_number>        | <pool_number>    | 415   |
+      | part_no           | pool_no          | owner |
+      | <juror_number>    | <pool_number>    | 415   |
 
     And I update juror "<juror_number>" to be able to send a message to them
 
@@ -145,12 +143,10 @@ Feature: As a jury officer I need to send the selected for a panel message
     And I set the "Attendance date for message" date to a Monday "5" weeks in the future
     And I set "Hour" to "09"
     And I set "Minute" to "00"
-#    And I set the radio button to "am"
     And I choose the "am" radio button
     And I press the "Continue" button
 
     And I see "Find jurors to send message to" on the page
-#    And I set the radio button to "Juror name"
     And I choose the "Juror name" radio button
     And I press the "Continue" button
     And I see error "Enter juror name"
@@ -170,22 +166,22 @@ Feature: As a jury officer I need to send the selected for a panel message
     And I see the juror "<juror_number>" has a message in the database
 
     Examples:
-      |user			| juror_number | pool_number |
-      |MODTESTCOURT | 041529907    | 415980990   |
+      | user		  | juror_number | pool_number |
+      | MODTESTCOURT  | 041529907    | 415980990   |
 
 
-  @JurorTransformationMulti @NewSchemaConverted @Messages
+  @JurorTransformationMulti @Messages
   Scenario Outline: Send selected for a panel message for Juror via their Pool number
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "demo"
 
     Given a bureau owned pool is created with jurors
-      | court |juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
-      | 415   |<juror_number>    | <pool_number>    | 5				            | 400	|
+      | court | juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number>    | <pool_number>   | 5				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no               | pool_no          | owner |
-      |<juror_number>        | <pool_number>    | 415   |
+      | part_no         | pool_no          | owner |
+      | <juror_number>  | <pool_number>    | 415   |
 
     And I update juror "<juror_number>" to be able to send a message to them
 
@@ -202,12 +198,10 @@ Feature: As a jury officer I need to send the selected for a panel message
     And I set the "Attendance date for message" date to a Monday "5" weeks in the future
     And I set "Hour" to "09"
     And I set "Minute" to "00"
-#    And I set the radio button to "am"
     And I choose the "am" radio button
     And I press the "Continue" button
 
     And I see "Find jurors to send message to" on the page
-#    And I set the radio button to "Pool"
     And I choose the "Pool" radio button
     And I press the "Continue" button
     And I see error "Enter pool number"
@@ -227,22 +221,22 @@ Feature: As a jury officer I need to send the selected for a panel message
     And I see the juror "<juror_number>" has a message in the database
 
     Examples:
-      |user			| juror_number | pool_number |
-      |MODTESTCOURT | 041529906    | 415980990   |
+      | user		  | juror_number | pool_number |
+      | MODTESTCOURT  | 041529906    | 415980990   |
 
 
-  @JurorTransformationMulti @NewSchemaConverted @Messages
+  @JurorTransformationMulti @Messages
   Scenario Outline: Send selected for a panel message for Juror in Trial
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "demo"
 
     Given a bureau owned pool is created with jurors
-      | court |juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
-      | 415   |<juror_number>    | <pool_number>    | 5				            | 400	|
+      | court | juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number>    | <pool_number>   | 5				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no               | pool_no          | owner |
-      |<juror_number>        | <pool_number>    | 415   |
+      | part_no         | pool_no          | owner |
+      | <juror_number>  | <pool_number>    | 415   |
 
     And I Confirm all the data in the record attendance table is cleared
     And a new trial is inserted with the trial number "<trial_number>"
@@ -256,12 +250,10 @@ Feature: As a jury officer I need to send the selected for a panel message
     And I press the "Apps" button
     And I click on the "Juror management" link
     And I click on the "Record attendance" link
-#    And I set the radio button to "Check in"
     And I choose the "Check in" radio button
 
     And I set "Hour" to "09"
     And I set "Minute" to "00"
-#    And I set the radio button to "am"
     And I choose the "am" radio button
     And I input juror "<juror_number>" to be checked in
     And I press the "Check in juror" button
@@ -272,7 +264,6 @@ Feature: As a jury officer I need to send the selected for a panel message
     And I click on the "<trial_number>" link
 
     And I press the "Generate panel" button
-#    And I set the radio button to "All available jurors"
     And I choose the "All available jurors" radio button
     And I set "Number of jurors needed on this panel" to "1"
     And I press the "Continue" button
@@ -300,12 +291,10 @@ Feature: As a jury officer I need to send the selected for a panel message
     And I set the "Attendance date for message" date to a Monday "5" weeks in the future
     And I set "Hour" to "09"
     And I set "Minute" to "00"
-#    And I set the radio button to "am"
     And I choose the "am" radio button
     And I press the "Continue" button
 
     And I see "Find jurors to send message to" on the page
-#    And I set the radio button to "Trial"
     And I choose the "Trial" radio button
     And I press the "Continue" button
     And I press the "Continue with selected" button
@@ -326,22 +315,22 @@ Feature: As a jury officer I need to send the selected for a panel message
     And I see the juror "<juror_number>" has a message in the database
 
     Examples:
-      |user			| juror_number | pool_number |trial_number       |
-      |MODTESTCOURT | 041529905    | 415980990   |T202419999987      |
+      | user		  | juror_number | pool_number |trial_number       |
+      | MODTESTCOURT  | 041529905    | 415980990   |T202419999987      |
 
 
-  @JurorTransformationMulti @NewSchemaConverted @Messages
+  @JurorTransformationMulti @Messages
   Scenario Outline: Send selected for a panel message for Juror - Next start date
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "demo"
 
     Given a bureau owned pool is created with jurors
-      | court |juror_number      | pool_number	     | att_date_weeks_in_future	| owner |
-      | 415   |<juror_number>    | <pool_number>     | 5				        | 400	|
+      | court | juror_number      | pool_number	     | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number>    | <pool_number>    | 5				        | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no               | pool_no          | owner |
-      |<juror_number>        | <pool_number>    | 415   |
+      | part_no         | pool_no          | owner |
+      | <juror_number>  | <pool_number>    | 415   |
 
     And I update juror "<juror_number>" to be able to send a message to them
 
@@ -358,12 +347,10 @@ Feature: As a jury officer I need to send the selected for a panel message
     And I set the "Attendance date for message" date to a Monday "5" weeks in the future
     And I set "Hour" to "09"
     And I set "Minute" to "00"
-#    And I set the radio button to "am"
     And I choose the "am" radio button
     And I press the "Continue" button
 
     And I see "Find jurors to send message to" on the page
-#    And I set the radio button to "Next due at court"
     And I choose the "Next due at court" radio button
     And I press the "Continue" button
     And I see error "Enter date next due at court"
@@ -383,22 +370,22 @@ Feature: As a jury officer I need to send the selected for a panel message
     And I see the juror "<juror_number>" has a message in the database
 
     Examples:
-      |user			| juror_number | pool_number |
-      |MODTESTCOURT | 041529904    | 415980990   |
+      | user			| juror_number | pool_number |
+      | MODTESTCOURT    | 041529904    | 415980990   |
 
 
-  @JurorTransformationMulti @NewSchemaConverted @Messages
+  @JurorTransformationMulti @Messages
   Scenario Outline: Send selected for a panel message for Juror via their deferred date
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "demo"
 
     Given a bureau owned pool is created with jurors
-      | court |juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
-      | 415   |<juror_number>    | <pool_number>    | 5				            | 400	|
+      | court | juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number>    | <pool_number>   | 5				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no               | pool_no          | owner |
-      |<juror_number>        | <pool_number>    | 415   |
+      | part_no         | pool_no          | owner |
+      | <juror_number>  | <pool_number>    | 415   |
 
     And I update juror "<juror_number>" to be able to send a message to them
 
@@ -422,7 +409,6 @@ Feature: As a jury officer I need to send the selected for a panel message
 
   #can attend on date
     Then the juror summons reply types page is displayed
-#    When I set the radio button to "Deferral request"
     And I choose the "Deferral request" radio button
     And I click continue on the juror summons reply page
 
@@ -446,7 +432,6 @@ Feature: As a jury officer I need to send the selected for a panel message
     And I see the reply "type" on the response is "Deferral"
 
     And I press the "Process reply" button
-#    And I set the radio button to "Deferral request"
     And I choose the "Deferral request" radio button
     And I press the "Continue" button
 
@@ -455,7 +440,6 @@ Feature: As a jury officer I need to send the selected for a panel message
     And I set the "third" choice to "9" Mondays in the future
     And I press the "Continue" button
     Then I select "O - OTHER" from the "Reason for the deferral request" dropdown
-#    Then I set the radio button to "Choose a different date"
     And I choose the "Choose a different date" radio button
     And I set the "Deferral" date to a Monday "49" weeks in the future
     And I press the "Continue" button
@@ -476,12 +460,10 @@ Feature: As a jury officer I need to send the selected for a panel message
     And I set the "Attendance date for message" date to a Monday "5" weeks in the future
     And I set "Hour" to "09"
     And I set "Minute" to "00"
-#    And I set the radio button to "am"
     And I choose the "am" radio button
     And I press the "Continue" button
 
     And I see "Find jurors to send message to" on the page
-#    And I set the radio button to "Date deferred to"
     And I choose the "Date deferred to" radio button
     And I press the "Continue" button
     And I see error "Enter date deferred to"
@@ -501,26 +483,26 @@ Feature: As a jury officer I need to send the selected for a panel message
     And I see the juror "<juror_number>" has a message in the database
 
     Examples:
-      |user			| juror_number | pool_number |
-      |MODTESTCOURT | 041529903    | 415980990   |
+      | user		  | juror_number | pool_number |
+      | MODTESTCOURT  | 041529903    | 415980990   |
 
 
-  @@JurorTransformationMulti @NewSchemaConverted @Messages
+  @@JurorTransformationMulti @Messages
   Scenario Outline: Send selected for a panel message for Juror using Text for multiple jurors
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "demo"
 
     Given a bureau owned pool is created with jurors
-      | court |juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
-      | 415   |<juror_number>    | <pool_number>    | 5				            | 400	|
-      | 415   |<juror_number_2>    | <pool_number>  | 5				            | 400	|
-      | 415   |<juror_number_3>    | <pool_number>  | 5				            | 400	|
+      | court | juror_number      | pool_number	   | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number>    | <pool_number>  | 5				            | 400	|
+      | 415   | <juror_number_2>  | <pool_number>  | 5				            | 400	|
+      | 415   | <juror_number_3>  | <pool_number>  | 5				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no               | pool_no          | owner |
-      |<juror_number>        | <pool_number>    | 415   |
-      |<juror_number_2>      | <pool_number>    | 415   |
-      |<juror_number_3>      | <pool_number>    | 415   |
+      | part_no           | pool_no          | owner |
+      | <juror_number>    | <pool_number>    | 415   |
+      | <juror_number_2>  | <pool_number>    | 415   |
+      | <juror_number_3>  | <pool_number>    | 415   |
 
     And I update juror "<juror_number>" to be able to send a message to them
     And I update juror "<juror_number_2>" to be able to send a message to them
@@ -542,12 +524,10 @@ Feature: As a jury officer I need to send the selected for a panel message
     And I set the "Attendance date for message" date to a Monday "5" weeks in the future
     And I set "Hour" to "09"
     And I set "Minute" to "00"
-#    And I set the radio button to "am"
     And I choose the "am" radio button
     And I press the "Continue" button
 
     And I see "Find jurors to send message to" on the page
-#    And I set the radio button to "Pool"
     And I choose the "Pool" radio button
     And I set "Enter pool number" to "<pool_number>"
     And I press the "Continue" button
@@ -573,5 +553,5 @@ Feature: As a jury officer I need to send the selected for a panel message
     And I see the juror "<juror_number_3>" has a message in the database
 
     Examples:
-      |user			| juror_number | juror_number_2 | juror_number_3 |pool_number |
-      |MODTESTCOURT | 041529902    | 041529901      |041529900       |415980990   |
+      | user		  | juror_number | juror_number_2 | juror_number_3  | pool_number |
+      | MODTESTCOURT  | 041529902    | 041529901      | 041529900       | 415980990   |
