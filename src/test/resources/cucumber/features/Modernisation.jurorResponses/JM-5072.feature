@@ -3,7 +3,7 @@ Feature: JM-5072 - Dismiss random jurors
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: As a jury officer I want to dismiss random jurors - Happy Path
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     Given a bureau owned pool is created with jurors
       | court |juror_number  	        | pool_number	    | att_date_weeks_in_future	    | owner |
       | 415   |<juror_number> 	        | <pool_number>     | 5			                    | 400	|
@@ -45,13 +45,13 @@ Feature: JM-5072 - Dismiss random jurors
     
     #dismiss jurors
     And I press the "Apps" button
-    And I click on the "Juror management" link
+    And I click on the "Pool management" link
 
-    And I press the "Dismiss jurors" button
+    And I click on the "Dismiss jurors" link
     And I see "Dismiss jurors" on the page
     And I see "Select which pools to include" on the page
-    And I see "2" in the same row as "<pool_number>"
-    And I check the "<pool_number>" checkbox
+
+    And I check the pool number "<pool_number>" in the dismiss table
     And I press the calculate available jurors button
 
     #this will fail here because of JM-6374
@@ -90,7 +90,7 @@ Feature: JM-5072 - Dismiss random jurors
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline:   As a jury officer I want to dismiss random jurors - Unhappy Path
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "demo"
     Given a bureau owned pool is created with jurors
       | court |juror_number  	        | pool_number	    | att_date_weeks_in_future	    | owner |
       | 415   |<juror_number> 	        | <pool_number>     | 5			                | 400	|
@@ -141,16 +141,16 @@ Feature: JM-5072 - Dismiss random jurors
     Then I see "On call" in the same row as "Next due at court"
 
     And I press the "Apps" button
-    And I click on the "Juror management" link
-
-    And I press the "Dismiss jurors" button
+    And I click on the "Pool management" link
+    And I click on the "Dismiss jurors" link
     And I see "Dismiss jurors" on the page
     And I see "Select which pools to include" on the page
+
     And I press the "Generate list of jurors to dismiss" button
     And I see error "Select at least one pool"
     And I see error "Enter how many jurors you want to dismiss"
 
-    And I check the "<pool_number>" checkbox
+    And I check the pool number "<pool_number>" in the dismiss table
     And I set "How many of these jurors do you want to dismiss?" to "3"
     And I press the "Generate list of jurors to dismiss" button
     And I see error "Amount of jurors to dismiss must be 2 or fewer"

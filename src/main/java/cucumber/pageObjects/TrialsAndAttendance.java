@@ -153,7 +153,7 @@ public class TrialsAndAttendance {
     WebElement nextPaginationLink;
 
     @FindBy(className = "govuk-summary-list__value")
-    List <WebElement> absenceCountValue;
+    List<WebElement> absenceCountValue;
 
     public Map<String, String> getTrialDetails() {
         Map<String, String> details = new HashMap<>();
@@ -171,6 +171,7 @@ public class TrialsAndAttendance {
         log.info("Clicked pool number checkbox");
         poolNumberCheckbox.sendKeys(Keys.SPACE);
     }
+
     public void checkPoolNumberCheckboxFor(String poolNumber) {
         try {
             log.info("Attempting to click pool number checkbox for: " + poolNumber + " using JavaScript executor.");
@@ -465,15 +466,18 @@ public class TrialsAndAttendance {
             }
         }
     }
+
     public void clickTrialRadioButton(String trialNumber) {
         WebElement trialRadioButton = driver.findElement(By.xpath("//input[@type='radio' and @value='" + trialNumber + "']"));
         trialRadioButton.click();
     }
+
     public String dismissedBanner() {
         String bannerText = NAV.messageBanner.getText();
         System.out.println("Message Sent Banner Text: " + bannerText);
         return bannerText;
     }
+
     public void clickAvailableJurorsButton() {
         WebElement availableJurorsButton = driver.findElement(By.xpath("//button[normalize-space()='Calculate available jurors']"));
         availableJurorsButton.click();
@@ -481,10 +485,10 @@ public class TrialsAndAttendance {
 
     public void verifyAbsenceCount(String absenceNumber) {
         boolean absenceCount = false;
-       String Count=absenceCountValue.get(2).getText();
+        String Count = absenceCountValue.get(2).getText();
         if (Count.equals(absenceNumber)) {
             log.info("verified absence count is expected value on attendance screen");
-            absenceCount=true;
+            absenceCount = true;
         } else {
             throw new AssertionError("Absence count is wrong as expected");
 
@@ -522,6 +526,30 @@ public class TrialsAndAttendance {
             System.out.println("Selected radio button with: " + trialNumber);
         } catch (NoSuchElementException e) {
             log.error("Radio button with name '" + trialNumber + "'  not found");
+        }
+    }
+
+    public void selectCheckboxInDismissTable(String poolNumber) {
+        log.info("Finding and selecting checkbox in table for pool number: " + poolNumber);
+        boolean lastPage = false;
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+
+        while (!lastPage) {
+            List<WebElement> checkboxLabel = driver.findElements(By.xpath("//label[@for='pool-" + poolNumber + "']"));
+            if (checkboxLabel.size() >= 1) {
+                WebElement checkbox = checkboxLabel.get(0);
+                js.executeScript("arguments[0].click();", checkbox);
+                log.info("Checkbox for pool " + poolNumber + " selected using JavascriptExecutor.");
+                break;
+            } else {
+                if (driver.findElements(By.className("govuk-pagination__next")).size() < 1) {
+                    lastPage = true;
+                    log.warn("Checkbox for pool " + poolNumber + " not found in any page.");
+                } else {
+                    log.info("Clicking next pagination");
+                    clickNextPagination();
+                }
+            }
         }
     }
 }
