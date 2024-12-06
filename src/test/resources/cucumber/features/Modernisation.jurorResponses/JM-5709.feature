@@ -1,17 +1,17 @@
 Feature: As a jury officer I need to send the next delayed start message
 
-  @JurorTransformationMulti @NewSchemaConverted @Messages
+  @JurorTransformationMulti @Messages
   Scenario Outline: Send delayed start message for Juror using Text including error checks
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "demo"
 
     Given a bureau owned pool is created with jurors
-      | court |juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
-      | 415   |<juror_number>    | <pool_number>    | 5				            | 400	|
+      | court | juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number>    | <pool_number>   | 5				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no               | pool_no          | owner |
-      |<juror_number>        | <pool_number>    | 415   |
+      | part_no         | pool_no          | owner |
+      | <juror_number>  | <pool_number>    | 415   |
 
     And I update juror "<juror_number>" to be able to send a message to them
 
@@ -55,22 +55,22 @@ Feature: As a jury officer I need to send the next delayed start message
     And I see the juror "<juror_number>" has a message in the database
 
     Examples:
-      |user			| juror_number | pool_number |
-      |MODTESTCOURT | 041529919    | 415980990   |
+      | user		  | juror_number | pool_number |
+      | MODTESTCOURT  | 041529919    | 415980990   |
 
 
-  @JurorTransformationMulti @NewSchemaConverted @Messages
+  @JurorTransformationMulti @Messages
   Scenario Outline: Send delayed start message for Juror using Email
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "demo"
 
     Given a bureau owned pool is created with jurors
-      | court |juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
-      | 415   |<juror_number>    | <pool_number>    | 5				            | 400	|
+      | court | juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number>    | <pool_number>   | 5				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no               | pool_no          | owner |
-      |<juror_number>        | <pool_number>    | 415   |
+      | part_no         | pool_no          | owner |
+      | <juror_number>  | <pool_number>    | 415   |
 
     And I update juror "<juror_number>" to be able to send a message to them
 
@@ -105,22 +105,22 @@ Feature: As a jury officer I need to send the next delayed start message
     And I see the juror "<juror_number>" has a message in the database
 
     Examples:
-      |user			| juror_number | pool_number |
-      |MODTESTCOURT | 041529918    | 415980990   |
+      | user		  | juror_number | pool_number |
+      | MODTESTCOURT  | 041529918    | 415980990   |
 
 
-  @JurorTransformationMulti @NewSchemaConverted @Messages
+  @JurorTransformationMulti @Messages
   Scenario Outline: Send delayed start message for Juror via their Name
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "demo"
 
     Given a bureau owned pool is created with jurors
-      | court |juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
-      | 415   |<juror_number>    | <pool_number>    | 5				            | 400	|
+      | court | juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number>    | <pool_number>   | 5				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no               | pool_no          | owner |
-      |<juror_number>        | <pool_number>    | 415   |
+      | part_no               | pool_no          | owner |
+      | <juror_number>        | <pool_number>    | 415   |
 
     And I update juror "<juror_number>" to be able to send a message to them
 
@@ -157,22 +157,22 @@ Feature: As a jury officer I need to send the next delayed start message
     And I see the juror "<juror_number>" has a message in the database
 
     Examples:
-      |user			| juror_number | pool_number |
-      |MODTESTCOURT | 041529917    | 415980990   |
+      | user		  | juror_number | pool_number |
+      | MODTESTCOURT  | 041529917    | 415980990   |
 
 
-  @JurorTransformationMulti @NewSchemaConverted @Messages
+  @JurorTransformationMulti @Messages
   Scenario Outline: Send delayed start message for Juror via their Pool number
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "demo"
 
     Given a bureau owned pool is created with jurors
-      | court |juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
-      | 415   |<juror_number>    | <pool_number>    | 5				            | 400	|
+      | court | juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number>    | <pool_number>   | 5				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no               | pool_no          | owner |
-      |<juror_number>        | <pool_number>    | 415   |
+      | part_no         | pool_no          | owner |
+      | <juror_number>  | <pool_number>    | 415   |
 
     And I update juror "<juror_number>" to be able to send a message to them
 
@@ -209,22 +209,22 @@ Feature: As a jury officer I need to send the next delayed start message
     And I see the juror "<juror_number>" has a message in the database
 
     Examples:
-      |user			| juror_number | pool_number |
-      |MODTESTCOURT | 041529916    | 415980990   |
+      | user		  | juror_number | pool_number |
+      | MODTESTCOURT  | 041529916    | 415980990   |
 
 
-  @JurorTransformationMulti @NewSchemaConverted @Messages
+  @JurorTransformationMulti @Messages
   Scenario Outline: Send delayed start message for anyone at Trial
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "demo"
 
     Given a bureau owned pool is created with jurors
-      | court |juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
-      | 415   |<juror_number>    | <pool_number>    | 5				            | 400	|
+      | court | juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number>    | <pool_number>   | 5				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no               | pool_no          | owner |
-      |<juror_number>        | <pool_number>    | 415   |
+      | part_no         | pool_no          | owner |
+      | <juror_number>  | <pool_number>    | 415   |
 
     And I Confirm all the data in the record attendance table is cleared
     And a new trial is inserted with the trial number "<trial_number>"
@@ -299,21 +299,21 @@ Feature: As a jury officer I need to send the next delayed start message
     And I see the juror "<juror_number>" has a message in the database
 
     Examples:
-      |user			| juror_number | pool_number | trial_number  |
-      |MODTESTCOURT | 041529915    | 415980990   | T202419999988 |
+      | user		  | juror_number | pool_number | trial_number  |
+      | MODTESTCOURT  | 041529915    | 415980990   | T202419999988 |
 
-  @JurorTransformationMulti @NewSchemaConverted @Messages
+  @JurorTransformationMulti @Messages
   Scenario Outline: Send delayed start message for any juror - Next start date
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "demo"
 
     Given a bureau owned pool is created with jurors
-      | court |juror_number      | pool_number	     | att_date_weeks_in_future	| owner |
-      | 415   |<juror_number>    | <pool_number>     | 5			            | 400	|
+      | court | juror_number      | pool_number	     | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number>    | <pool_number>    | 5			            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no               | pool_no          | owner |
-      |<juror_number>        | <pool_number>    | 415   |
+      | part_no         | pool_no          | owner |
+      | <juror_number>  | <pool_number>    | 415   |
 
     And I update juror "<juror_number>" to be able to send a message to them
 
@@ -336,6 +336,7 @@ Feature: As a jury officer I need to send the next delayed start message
     And I see error "Enter date next due at court"
     And I set the "Next due at court" date to a Monday "5" weeks in the future
     And I press the "Continue" button
+    Then I see "Select jurors to send message to" on the page
     And I click on the methods dropdown and select "Text" for juror "<juror_number>"
     And I check the juror "<juror_number>" checkbox
     And I press the "Send message" button
@@ -350,22 +351,22 @@ Feature: As a jury officer I need to send the next delayed start message
     And I see the juror "<juror_number>" has a message in the database
 
     Examples:
-      |user			| juror_number | pool_number |
-      |MODTESTCOURT | 041529914    | 415980990   |
+      | user		  | juror_number | pool_number |
+      | MODTESTCOURT  | 041529914    | 415980990   |
 
 
-  @JurorTransformationMulti @NewSchemaConverted @Messages
+  @JurorTransformationMulti @Messages
   Scenario Outline: Send delayed start message for Juror via their deferred date
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "demo"
 
     Given a bureau owned pool is created with jurors
-      | court |juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
-      | 415   |<juror_number>    | <pool_number>    | 5				            | 400	|
+      | court | juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number>    | <pool_number>   | 5				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no               | pool_no          | owner |
-      |<juror_number>        | <pool_number>    | 415   |
+      | part_no          | pool_no          | owner |
+      | <juror_number>   | <pool_number>    | 415   |
 
     And I update juror "<juror_number>" to be able to send a message to them
 
@@ -460,26 +461,26 @@ Feature: As a jury officer I need to send the next delayed start message
     And I see the juror "<juror_number>" has a message in the database
 
     Examples:
-      |user			| juror_number | pool_number |
-      |MODTESTCOURT | 041529913    | 415980990   |
+      | user		 | juror_number | pool_number |
+      | MODTESTCOURT | 041529913    | 415980990   |
 
 
-  @JurorTransformationMulti @NewSchemaConverted @Messages
+  @JurorTransformationMulti @Messages
   Scenario Outline: Send delayed start message for Juror using Text and Email for multiple jurors
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "demo"
 
     Given a bureau owned pool is created with jurors
-      | court |juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
-      | 415   |<juror_number>    | <pool_number>    | 5				            | 400	|
-      | 415   |<juror_number_2>  | <pool_number>    | 5				            | 400	|
-      | 415   |<juror_number_3>  | <pool_number>    | 5				            | 400	|
+      | court | juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number>    | <pool_number>   | 5				            | 400	|
+      | 415   | <juror_number_2>  | <pool_number>   | 5				            | 400	|
+      | 415    |<juror_number_3>  | <pool_number>   | 5				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no               | pool_no          | owner |
-      |<juror_number>        | <pool_number>    | 415   |
-      |<juror_number_2>      | <pool_number>    | 415   |
-      |<juror_number_3>      | <pool_number>    | 415   |
+      | part_no           | pool_no          | owner |
+      | <juror_number>    | <pool_number>    | 415   |
+      | <juror_number_2>  | <pool_number>    | 415   |
+      | <juror_number_3>  | <pool_number>    | 415   |
 
     And I update juror "<juror_number>" to be able to send a message to them
     And I update juror "<juror_number_2>" to be able to send a message to them
@@ -528,5 +529,5 @@ Feature: As a jury officer I need to send the next delayed start message
     And I see the juror "<juror_number_3>" has a message in the database
 
     Examples:
-      |user			| juror_number | juror_number_2 | juror_number_3 |pool_number |
-      |MODTESTCOURT | 041529912    | 041529911      |041529910       |415980990   |
+      | user		  | juror_number | juror_number_2 | juror_number_3  | pool_number |
+      | MODTESTCOURT  | 041529912    | 041529911      | 041529910       | 415980990   |

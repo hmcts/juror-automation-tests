@@ -1,6 +1,6 @@
 Feature: JM-3899
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Decline Deferral Request for Paper Response as Bureau user - Juror Record View
 
     Given I am on "Bureau" "ithc"
@@ -21,6 +21,13 @@ Feature: JM-3899
     And I see the reply "status" on the response is "To Do"
     And I see the reply "type" on the response is "Deferral"
 
+    When I press the "Process reply" button
+    And I choose the "Mark as responded" radio button
+    And I press the "Continue" button
+    And I check the "Mark juror as 'responded'" checkbox
+    And I press the "Confirm" button
+    Then I see the juror record updated banner containing "Responded"
+
     Then I click on the "View juror's record" link
     And I click the update juror record button
     And I set the radio button to "Deferral - grant or refuse"
@@ -32,6 +39,8 @@ Feature: JM-3899
     Then I set the "new" choice to "51" Mondays in the future
     And I press the "Continue" button
     And I see "Deferral granted" on the page
+
+    #now refuse deferral
     When the user searches for juror record "<juror_number>" from the global search bar
     And I click the update juror record button
     And I set the radio button to "Deferral - grant or refuse"
@@ -46,7 +55,7 @@ Feature: JM-3899
       | juror_number | pool_number  | user          |
       | 041540009    | 415300409 	| MODTESTBUREAU |
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Decline Deferral Request for Paper Response as Bureau user - New Pool
 
     Given I am on "Bureau" "ithc"
@@ -69,6 +78,13 @@ Feature: JM-3899
 
     And I see the reply "status" on the response is "To Do"
     And I see the reply "type" on the response is "Deferral"
+
+    When I press the "Process reply" button
+    And I choose the "Mark as responded" radio button
+    And I press the "Continue" button
+    And I check the "Mark juror as 'responded'" checkbox
+    And I press the "Confirm" button
+    Then I see the juror record updated banner containing "Responded"
 
     Then I click on the "View juror's record" link
     And I click the update juror record button
@@ -112,4 +128,3 @@ Feature: JM-3899
     Examples:
       | juror_number | pool_number  | user          |
       | 045200268    | 452300247 	| MODTESTBUREAU |
-
