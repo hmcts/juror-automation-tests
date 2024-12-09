@@ -1,12 +1,9 @@
 Feature: JM-6261 - As a bureau officer I need to be able to resend an initial summons
 
-  @JurorTransformationWIP
-
-  #return to MULTI once defect fixed
-
+  @JurorTransformationMulti
   Scenario Outline: As a Bureau office resent an Initial summons letter for a juror who has just been summoned
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "demo"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
@@ -30,10 +27,9 @@ Feature: JM-6261 - As a bureau officer I need to be able to resend an initial su
     And I see "<pool_number>" on the page
     Then I check all the checkboxes in the letters table
 
-    #fails due to 8170
     And I press the "Resend initial summons" button
     And I see "sent for printing" on the page
 
     Examples:
       | user		  | juror_number | pool_number |
-      | MODTESTBUREAU | 041529024    | 415980686   |
+      | MODTESTBUREAU | 041521635    | 415380722   |

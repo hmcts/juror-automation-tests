@@ -655,14 +655,16 @@ public class JurorRecord {
     public void selectAllCheckboxesInLettersTable() {
         try {
             List<WebElement> checkboxes = driver.findElements(By.xpath("//*[@id=\"main-content\"]/div[4]/div/table//input[@name='checked-jurors']"));
+            JavascriptExecutor js = (JavascriptExecutor) driver;
             for (WebElement checkbox : checkboxes) {
                 if (!checkbox.isSelected()) {
-                    checkbox.click();
+                    js.executeScript("arguments[0].click();", checkbox);
                 }
             }
-            log.info("All checkboxes in the table selected successfully.");
+
+            log.info("All checkboxes in the table selected successfully");
         } catch (Exception e) {
-            log.error("Error occurred while selecting checkboxes: " + e.getMessage());
+            log.error("Error occurred while selecting checkboxes" + e.getMessage());
         }
     }
     public void selectCheckboxesInLettersTableForJuror(String juror) {
