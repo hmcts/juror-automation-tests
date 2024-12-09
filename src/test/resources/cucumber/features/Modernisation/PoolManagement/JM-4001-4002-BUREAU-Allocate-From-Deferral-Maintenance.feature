@@ -4,7 +4,7 @@ Feature: JM-4001 and JM-4002 - Bureau User
 
     #needs to stay in single thread pack
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "demo"
     Given "3" new pool's are inserted for court "415" with owner "400" and a deferral date "1" Mondays in the future new schema
 
     #reset data
@@ -152,6 +152,8 @@ Feature: JM-4001 and JM-4002 - Bureau User
     Scenario: Test to check filter functionality on deferral maintenance page
 
     #needs to stay in single thread pack
+
+    And I see "Deferral maintenance" on the page
 
     #apply Juror number filter
     When I set the "juror number" deferral filter to "041500001"

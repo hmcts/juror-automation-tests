@@ -71,7 +71,7 @@ Feature: JM-5070 As a jury officer I need to be able to change a jurors attendan
     And I click on the "Juror management" link
     When I click on the "Record attendance" link
     Then I see "Record attendance" on the page
-    And I see "Unconfirmed" on the page
+    And I do not see "Unconfirmed" on the page
     And I see "Check in" on the page
     And I see "Check out" on the page
     When I check the "Check in" checkbox
@@ -156,7 +156,7 @@ Feature: JM-5070 As a jury officer I need to be able to change a jurors attendan
     And I click on the "Juror management" link
     And I click on the "Record attendance" link
     Then I see "Record attendance" on the page
-    And I see "Unconfirmed" on the page
+    And I do not see "Unconfirmed" on the page
     And I see "Check in" on the page
     And I see "Check out" on the page
     When I check the "Check in" checkbox
@@ -231,7 +231,7 @@ Feature: JM-5070 As a jury officer I need to be able to change a jurors attendan
     And I click on the "Juror management" link
     When I click on the "Record attendance" link
     Then I see "Record attendance" on the page
-    And I see "Unconfirmed" on the page
+    And I do not see "Unconfirmed" on the page
     And I see "Check in" on the page
     And I see "Check out" on the page
 
