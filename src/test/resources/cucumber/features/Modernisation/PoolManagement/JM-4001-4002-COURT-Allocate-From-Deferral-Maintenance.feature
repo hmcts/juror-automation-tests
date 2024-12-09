@@ -124,6 +124,8 @@ Feature: JM-4001 and JM-4002 - Court User
 
       #needs to stay in single thread pack
 
+      And I see "Deferral maintenance" on the page
+
       #apply Juror number filter
       When I set the "juror number" deferral filter to "041500001"
       Then The first deferral in the table is "041500001, 0FNAME1, TESTNAME, 415000001" with a deferral date "1" Mondays in the future
