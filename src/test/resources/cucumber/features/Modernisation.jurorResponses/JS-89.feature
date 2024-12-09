@@ -14,7 +14,7 @@ Feature: JS-89
 
     And I see link with text "Confirm attendance"
     And I click on the previous attendance day link "7" amount of times
-    And I see "Confirmed" on the page
+    And I see "Locked" on the page
     And I do not see link with text "Confirm attendance"
     
     Examples:
