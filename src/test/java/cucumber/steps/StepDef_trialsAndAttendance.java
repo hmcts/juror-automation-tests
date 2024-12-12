@@ -10,7 +10,8 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.util.Map;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class StepDef_trialsAndAttendance {
 
@@ -306,6 +307,47 @@ public class StepDef_trialsAndAttendance {
 		} catch (Exception e) {}
 		TRL.selectCheckboxInDismissTable(poolNumber);
 
+	}
+
+	@Then("^I see the confirmed status for juror \"([^\"]*)\" is \"([^\"]*)\"$")
+	public void seeConfirmedStatusForJuror(String juror, String confirmedStatus) {
+		try {
+			TrialsAndAttendance.seeConfirmedAttendanceStatusForJuror(juror, confirmedStatus);
+		} catch (Exception e) {
+			NAV.waitForPageLoad();
+			TrialsAndAttendance.seeConfirmedAttendanceStatusForJuror(juror, confirmedStatus);
+		}
+	}
+
+	@Then("^I see the Locked flag on the page$")
+	public void checkLockedFlag() {
+		final String lockedFlag = TrialsAndAttendance.checkLockedFlag();
+		assertEquals(lockedFlag, "Locked");
+	}
+
+	@And("^I do not see the Confirm attendance button$")
+	public void iDoNotSeeTheConfirmAtendanceButton() {
+		assertTrue("search button was invisible", TrialsAndAttendance.confirmAttendanceButtonIsNotPresent());
+	}
+
+	@And("^check in hour is \"([^\"]*)\"$")
+	public void checkInHour(String checkInHour) {
+		assertEquals(checkInHour, TrialsAndAttendance.getCheckinHour());
+	}
+
+	@And("^check in minute is \"([^\"]*)\"$")
+	public void checkInMinute(String checkInMinute) {
+		assertEquals(checkInMinute, TrialsAndAttendance.getCheckinMinute());
+	}
+
+	@And("^check out hour is \"([^\"]*)\"$")
+	public void checkOutHour(String checkOutHour) {
+		assertEquals(checkOutHour, TrialsAndAttendance.getCheckOutHour());
+	}
+
+	@And("^check out minute is \"([^\"]*)\"$")
+	public void checkOutMinute(String checkOutMinute) {
+		assertEquals(checkOutMinute, TrialsAndAttendance.getCheckOutMinute());
 	}
 
 }

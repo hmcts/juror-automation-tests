@@ -56,10 +56,10 @@ public class TrialsAndAttendance {
     WebElement enterNoOfJurorsForPanel;
 
     @FindBy(id = "checkInTimeHour")
-    WebElement confirmAttendanceCheckInHour;
+    static WebElement confirmAttendanceCheckInHour;
 
     @FindBy(id = "checkInTimeMinute")
-    WebElement confirmAttendanceCheckInMinute;
+    static WebElement confirmAttendanceCheckInMinute;
 
     @FindBy(id = "checkInTime-am")
     WebElement confirmAttendanceCheckInRadioButtonAm;
@@ -68,16 +68,19 @@ public class TrialsAndAttendance {
     WebElement confirmAttendanceCheckInRadioButtonPm;
 
     @FindBy(id = "checkOutTimeHour")
-    WebElement confirmAttendanceCheckOutHour;
+    static WebElement confirmAttendanceCheckOutHour;
 
     @FindBy(id = "checkOutTimeMinute")
-    WebElement confirmAttendanceCheckOutMinute;
+    static WebElement confirmAttendanceCheckOutMinute;
 
     @FindBy(id = "checkOutTime-am")
     WebElement confirmAttendanceCheckOutRadioButtonAm;
 
     @FindBy(id = "checkOutTime-pm")
     WebElement confirmAttendanceCheckOutRadioButtonPm;
+
+    @FindBy(xpath = "//a[text()[contains(.,'Confirm attendance')]]")
+    static WebElement confirmAttendanceButton;
 
     @FindBy(xpath = "//*[@id=\"main-content\"]/div[4]/div/dl/div[2]/dd")
     WebElement jurorAttendances;
@@ -146,6 +149,7 @@ public class TrialsAndAttendance {
 
     @FindBy(id = "checkOutTimeHour")
     WebElement selectchangeTimeCheckoutHour;
+
     @FindBy(id = "checkOutTimeMinute")
     WebElement selectchangeTimeCheckoutMinute;
 
@@ -154,6 +158,9 @@ public class TrialsAndAttendance {
 
     @FindBy(className = "govuk-summary-list__value")
     List<WebElement> absenceCountValue;
+
+    @FindBy(xpath = "//div/strong[@class='govuk-tag mod-tag--dark-blue']")
+    static WebElement lockedFlag;
 
     public Map<String, String> getTrialDetails() {
         Map<String, String> details = new HashMap<>();
@@ -551,5 +558,41 @@ public class TrialsAndAttendance {
                 }
             }
         }
+    }
+
+    public static void seeConfirmedAttendanceStatusForJuror(String juror, String confirmedStatus) {
+        driver.findElement(
+                By.xpath(
+                        "//td[@id='" + juror + "-confirmed' and normalize-space(text()) ='" + confirmedStatus + "']"));
+        log.info("Found =>" + confirmedStatus + "<= confirmed attendance status for juror  =>" + juror + "<= as expected");
+
+    }
+    public static String checkLockedFlag() {
+        return lockedFlag.getText();
+    }
+
+    public static boolean confirmAttendanceButtonIsNotPresent() {
+        List<WebElement> elements = driver.findElements(By.xpath("//a[text()[contains(.,'Confirm attendance')]]"));
+        return elements.isEmpty();
+    }
+
+    public static String getCheckinHour() {
+        log.info("Getting checkin time");
+        return confirmAttendanceCheckInHour.getAttribute("value");
+    }
+
+    public static String getCheckinMinute() {
+        log.info("Getting checkin time");
+        return confirmAttendanceCheckInMinute.getAttribute("value");
+    }
+
+    public static String getCheckOutHour() {
+        log.info("Getting checkout time");
+        return confirmAttendanceCheckOutHour.getAttribute("value");
+    }
+
+    public static String getCheckOutMinute() {
+        log.info("Getting checkout time");
+        return confirmAttendanceCheckOutMinute.getAttribute("value");
     }
 }

@@ -298,6 +298,31 @@ public class DatabaseTesterNewSchemaDesign {
 		}
 	}
 
+	public void backdateJurorsAttendanceInDays(String juror, String noDays) throws SQLException {
+
+		db = new DBConnection();
+		String env_property = System.getProperty("env.database");
+		if (env_property != null)
+			conn = db.getConnection(env_property);
+		else
+			conn = db.getConnection("demo");
+
+		try {
+			pStmt = conn.prepareStatement("update JUROR_MOD.appearance set attendance_date = CURRENT_DATE-" + noDays + " where juror_number='" + juror + "'");
+
+			pStmt.executeUpdate();
+			log.info("Update Successful - backdated juror " + juror + " attendance by " + noDays);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.error("Message:" + e.getMessage());
+		} finally {
+			conn.commit();
+			pStmt.close();
+			conn.close();
+		}
+	}
+
 	//Danielle update Juror Digital data for dashboard
 	public void updateJurorDigitalNSD(String column, String part_no, String value) throws SQLException {
 		if (value.contains(" time")) {
@@ -3008,6 +3033,37 @@ public class DatabaseTesterNewSchemaDesign {
 		}
 	}
 
+	public void cleanTrialNumberNSD(String trial_number) throws SQLException {
+		db = new DBConnection();
+		String env_property = System.getProperty("env.database");
+		if (env_property != null)
+			conn = db.getConnection(env_property);
+		else
+			conn = db.getConnection("demo");
+		try {
+			pStmt = conn.prepareStatement("delete from juror_mod.juror_trial where trial_number='" + trial_number + "'");
+			pStmt.execute();
+			conn.commit();
+
+			pStmt = conn.prepareStatement("delete from juror_mod.appearance_audit where trial_number='" + trial_number + "'");
+			pStmt.execute();
+			conn.commit();
+
+			pStmt = conn.prepareStatement("delete from juror_mod.trial where trial_number='" + trial_number + "'");
+			pStmt.execute();
+			conn.commit();
+
+			log.info("deleted trials records for trial '" + trial_number);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.error("Message:" + e.getMessage());
+			log.info(11);
+		} finally {
+			conn.commit();
+			pStmt.close();
+			conn.close();
+		}
+	}
 	public void populateCourtCatchmentAreaTable() throws SQLException {
 		db = new DBConnection();
 		String env_property = System.getProperty("env.database");
