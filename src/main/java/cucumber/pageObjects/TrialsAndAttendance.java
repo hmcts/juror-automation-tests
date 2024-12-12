@@ -147,7 +147,7 @@ public class TrialsAndAttendance {
     @FindBy(id = "checkOutTime-pm")
     List<WebElement> checkboxCheckPM;
 
-    @FindBy(id = "checkInTimeHour")
+    @FindBy(id = "checkOutTimeHour")
     WebElement selectchangeTimeCheckoutHour;
 
     @FindBy(id = "checkOutTimeMinute")
