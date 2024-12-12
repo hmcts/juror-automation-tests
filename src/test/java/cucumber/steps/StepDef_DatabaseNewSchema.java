@@ -53,6 +53,11 @@ public class StepDef_DatabaseNewSchema {
         DBTNSD.updateJuror_table_toSetColumn_asValueNSD(part_no, table, columnName, columnValue, columnNameA, columnValueA);
     }
 
+    @Given("^I backdate juror \"([^\"]*)\"'s attendance by \"([^\"]*)\" days$")
+    public void backdateJurorsAttendanceInDays(String juror, String noDays) throws SQLException {
+        DBTNSD.backdateJurorsAttendanceInDays(juror, noDays);
+    }
+
     //Danielle update Juror Digital data for Dashboard
     @Given("^the \"([^\"]*)\" for juror \"([^\"]*)\" is set to \"([^\"]*)\" new schema$")
     public void updateJurorDigitalNSD(String column, String part_no, String value) throws SQLException {
@@ -431,6 +436,11 @@ public class StepDef_DatabaseNewSchema {
     @Given("^I delete trials data$")
     public void cleanTrialsNSD() throws SQLException {
         DBTNSD.cleanTrialsNSD();
+    }
+
+    @Given("^I delete trial \"([^\"]*)\" and associated records$")
+    public void cleanTrialsNSD(String trial_number) throws SQLException {
+        DBTNSD.cleanTrialNumberNSD(trial_number);
     }
 
     @Given("^I delete appearances data$")
