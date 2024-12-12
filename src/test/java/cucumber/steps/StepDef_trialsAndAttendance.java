@@ -327,7 +327,7 @@ public class StepDef_trialsAndAttendance {
 
 	@And("^I do not see the Confirm attendance button$")
 	public void iDoNotSeeTheConfirmAtendanceButton() {
-		assertTrue("search button was invisible", TrialsAndAttendance.confirmAttendanceButtonIsPresent());
+		assertTrue("search button was invisible", TrialsAndAttendance.confirmAttendanceButtonIsNotPresent());
 	}
 
 	@And("^check in hour is \"([^\"]*)\"$")

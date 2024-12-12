@@ -571,7 +571,7 @@ public class TrialsAndAttendance {
         return lockedFlag.getText();
     }
 
-    public static boolean confirmAttendanceButtonIsPresent() {
+    public static boolean confirmAttendanceButtonIsNotPresent() {
         List<WebElement> elements = driver.findElements(By.xpath("//a[text()[contains(.,'Confirm attendance')]]"));
         return elements.isEmpty();
     }
