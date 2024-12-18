@@ -236,6 +236,7 @@ public class DatabaseTesterNewSchemaDesign {
 			conn = db.getConnection("demo");
 
 		log.info("Going to update the database by setting attendance date on juror_mod.pool to =>" + columnValue + "<= for =>" + pool_no);
+		boolean success = false;
 		try {
 			pStmt = conn.prepareStatement("update JUROR_MOD.POOL set RETURN_DATE =? where pool_no=?");
 			if (columnValue.contains("-") && columnValue.contains(":")) {
@@ -244,17 +245,25 @@ public class DatabaseTesterNewSchemaDesign {
 			pStmt.setString(1, columnValue);
 			pStmt.setString(2, pool_no);
 
-			pStmt.execute();
+			int rowsUpdated = pStmt.executeUpdate();
 			conn.commit();
-			log.info("Update Successful ");
+			if (rowsUpdated > 0) {
+				log.info("Update Successful");
+				success = true;
+			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 			log.error("Message:" + e.getMessage());
+			throw new SQLException("Failed to update the database: " + e.getMessage(), e);
 		} finally {
-			pStmt.close();
-			conn.close();
+			if (pStmt != null) pStmt.close();
+			if (conn != null) conn.close();
 		}
+		if (!success) {
+			throw new RuntimeException("Update failed: No rows were affected. Possible invalid pool_no or columnValue.");
+		}
+		log.error("Could not find error within the two types of pools to update");
 	}
 
 	//Danielle update Juror data for dashboard
@@ -1383,7 +1392,7 @@ public class DatabaseTesterNewSchemaDesign {
 
 		try {
 			pStmt = conn.prepareStatement("Delete from juror_mod.pool where new_request='T' and pool_no not in (select pool_number from juror_mod.juror_pool)");
-			pStmt.execute();
+			pStmt.executeUpdate();
 
 
 		} catch (SQLException e) {
@@ -2734,7 +2743,7 @@ public class DatabaseTesterNewSchemaDesign {
 		try {
 
 			pStmt = conn.prepareStatement("DELETE FROM JUROR_MOD.HOLIDAY WHERE LOC_CODE='" + holidayOwner + "' AND HOLIDAY='" + holidayDate + "'");
-			pStmt.execute();
+			pStmt.executeUpdate();
 
 
 		} catch (SQLException e) {
@@ -2815,12 +2824,12 @@ public class DatabaseTesterNewSchemaDesign {
 			conn = db.getConnection("demo");
 		try {
 			pStmt = conn.prepareStatement("DELETE FROM JUROR_MOD.JUROR_POOL WHERE POOL_NUMBER IN " + poolNumbersIN);
-			pStmt.executeQuery();
+			pStmt.executeUpdate();
 			conn.commit();
 			log.info("DELETED FROM JUROR_MOD.JUROR_POOL WHERE POOL_NUMBER IN " + poolNumbersIN);
 
 			pStmt = conn.prepareStatement("DELETE FROM JUROR_MOD.POOL WHERE POOL_NO IN " + poolNumbersIN);
-			pStmt.executeQuery();
+			pStmt.executeUpdate();
 			conn.commit();
 			log.info("DELETED FROM JUROR_MOD.POOL WHERE POOL_NO IN " + poolNumbersIN);
 
