@@ -573,14 +573,14 @@ public class StepDef_jurorRecord {
   
     @Then("^I am able to see and interact with the jurors Deferral Refused letter tabs and fields$")
     public void iAmAbleToSeeAndInteractWithTheDeferralRefusedLetterTabsAndFields() {
-        JUROR_RECORD.deferralRefusedjurorsTabPresent("Juror number");
-        JUROR_RECORD.deferralRefusedjurorsTabPresent("First name");
-        JUROR_RECORD.deferralRefusedjurorsTabPresent("Last name");
-        JUROR_RECORD.deferralRefusedjurorsTabPresent("Postcode");
-        JUROR_RECORD.deferralRefusedjurorsTabPresent("Status");
-        JUROR_RECORD.deferralRefusedjurorsTabPresent("Date refused");
-        JUROR_RECORD.deferralRefusedjurorsTabPresent("Reason");
-        JUROR_RECORD.deferralGrantedjurorsTabPresent("Date printed");
+        JUROR_RECORD.checkTabsOnLettersTabPresent("Juror number");
+        JUROR_RECORD.checkTabsOnLettersTabPresent("First name");
+        JUROR_RECORD.checkTabsOnLettersTabPresent("Last name");
+        JUROR_RECORD.checkTabsOnLettersTabPresent("Postcode");
+        JUROR_RECORD.checkTabsOnLettersTabPresent("Status");
+        JUROR_RECORD.checkTabsOnLettersTabPresent("Date refused");
+        JUROR_RECORD.checkTabsOnLettersTabPresent("Reason");
+        JUROR_RECORD.checkTabsOnLettersTabPresent("Date printed");
     }
 
     @When("^I check all the checkboxes in the letters table$")
@@ -602,14 +602,14 @@ public class StepDef_jurorRecord {
 
     @Then("^I am able to see and interact with the jurors Postponement letter tabs and fields$")
     public void iAmAbleToSeeAndInteractWithThePostponementLetterTabsAndFields() {
-        JUROR_RECORD.postponementjurorsTabPresent("Juror number");
-        JUROR_RECORD.postponementjurorsTabPresent("First name");
-        JUROR_RECORD.postponementjurorsTabPresent("Last name");
-        JUROR_RECORD.postponementjurorsTabPresent("Postcode");
-        JUROR_RECORD.postponementjurorsTabPresent("Status");
-        JUROR_RECORD.postponementjurorsTabPresent("Postponed to");
-        JUROR_RECORD.postponementjurorsTabPresent("Reason");
-        JUROR_RECORD.postponementjurorsTabPresent("Date printed");
+        JUROR_RECORD.checkTabsOnLettersTabPresent("Juror number");
+        JUROR_RECORD.checkTabsOnLettersTabPresent("First name");
+        JUROR_RECORD.checkTabsOnLettersTabPresent("Last name");
+        JUROR_RECORD.checkTabsOnLettersTabPresent("Postcode");
+        JUROR_RECORD.checkTabsOnLettersTabPresent("Status");
+        JUROR_RECORD.checkTabsOnLettersTabPresent("Postponed to");
+        JUROR_RECORD.checkTabsOnLettersTabPresent("Reason");
+        JUROR_RECORD.checkTabsOnLettersTabPresent("Date printed");
     }
     @Then("I see the absence date for juror \"([^\"]*)\" in the letters table$")
     public void seeAbsenceDateInTable(String jurorNumber) {
