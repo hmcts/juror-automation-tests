@@ -2128,26 +2128,25 @@ public class StepDef_jurorpool {
     @Then("^I create \"([^\"]*)\" new \"([^\"]*)\" pool requests each a week apart in court \"([^\"]*)\" with \"([^\"]*)\" jurors to summon$")
     public void createMultiplePoolRequestsWeeksApartSpecifiedJurorsToSummon(Integer noOfPools, String courtType, String court, String jurorsToSummon) throws Throwable {
         Integer newPoolsCreated = 0;
-        do {
+        while (newPoolsCreated < noOfPools) {
             createNewPoolRequestWeeksInFuture(courtType, court, newPoolsCreated + 3);
-//            String poolNo = POOL_REQUESTS_PAGE.getNewPoolNumberOnSummary();
-
             ArrayList<String> pools = poolNumbers.get();
-//            pools.add(poolNo);
-
             NAV.click_link_by_text("Search");
             JUROR_RECORD_SEARCH.searchForRecordFromPoolSearch(poolNumber.get());
             NAV.waitForPageLoad();
+
             NAV.press_buttonByName("Summon jurors");
             NAV.set_value_to("Citizens to summon", jurorsToSummon);
             NAV.press_buttonByName("Create pool and summon citizens");
+
             POOL_REQUESTS_PAGE.clickTab("Pool requests");
-            newPoolsCreated = newPoolsCreated + 1;
-        } while (newPoolsCreated < noOfPools);
-        ArrayList<String> pools = poolNumbers.get();
-        log.info(pools);
-        String poolsCreated = poolNumbers.toString().replace("[", "(").replace("]", ")");
-        System.out.println("Pools Created: " + poolsCreated);
+
+            newPoolsCreated++;
+
+            log.info(pools.toString());
+            String poolsCreated = pools.toString().replace("[", "(").replace("]", ")");
+            System.out.println("Pools Created: " + poolsCreated);
+        }
     }
 
     @Then("^I see the pool status is REQUESTED")
