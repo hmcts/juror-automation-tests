@@ -200,8 +200,9 @@ public class PoolRequests {
 
     public void clickTab(final String tabName) {
         log.info("Clicking tab");
-        driver.findElement(By.linkText(tabName)).click();
-    }
+        var tabElement = driver.findElement(By.linkText(tabName));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", tabElement);
+}
 
     public void clickActivePools() {
         log.info("Click active pools");
