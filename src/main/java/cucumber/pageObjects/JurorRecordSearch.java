@@ -1,10 +1,7 @@
 package cucumber.pageObjects;
 
 import org.apache.log4j.Logger;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -98,9 +95,10 @@ public class JurorRecordSearch {
     }
 
     public void searchForRecordFromPoolSearch(final String jurorNumber) throws Throwable {
-        NAV.waitForPageLoad();
-        poolSearchField.sendKeys(jurorNumber);
-        poolSearchField.sendKeys(Keys.TAB);
+        NAV.waitForPageLoad(2);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].value = arguments[1];", poolSearchField, jurorNumber);
+        js.executeScript("arguments[0].dispatchEvent(new KeyboardEvent('keydown', { key: 'Tab' }));", poolSearchField);
         NAV.press_buttonByName("Continue");
     }
 
