@@ -28,7 +28,7 @@ Feature: As a jury officer I need to be able to print a failed to attend letter
     And I press the "Apps" button
     And I click on the "Documents" link
     When I click on the "Failed to attend letters" link
-    And I check the "<juror_number>" checkbox
+    And I check the juror "<juror_number>" checkbox
     And I press the "Print failed to attend letter" button
     Then I see "documents/failed-to-attend/letters-list" in the URL
 

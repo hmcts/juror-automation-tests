@@ -30,24 +30,39 @@ Feature: JM-3987 Monitor Pools Progress
     And I clear down the data for all the pools I created for this test new schema
 
   @JurorTransformation
-  Scenario: Test to show the no pools requested message is displayed in weeks with no pools
+  Scenario Outline: Test to show the no pools requested message is displayed in weeks with no pools
 
     Given I am on "Bureau" "ithc"
     Given new pool requests are deleted new schema
 
-    And I log in as "MODTESTBUREAU"
-    And I navigate to the pool request screen
-    And I create "1" new "High" pool requests each a week apart in court "415" with "10" jurors to summon
+    Given a bureau owned pool is created with jurors
+      | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   |<juror_number> 	    | <pool_number>     | 5				            | 400	|
+
+    And I update pool type to "HGH" for pool number "<pool_number>"
+    And I log in as "<user>"
+    And I press the "Apps" button
+    And I click on the "Pool management" link
+    And I click on the "Search" link
+    And I set "Pool number" to "<pool_number>"
+    And I press the "Continue" button
+
+    And I press the "Summon jurors" button
+    And I set "Extra citizens to summon" to "9"
+    And I press the "Summon more citizens" button
+
     And I navigate to the pool summoning progress screen
     And I see the summoning progress page banner
     And I enter "415" as the court
     And I select the "High" court type
     And I click search
     And I do not see "There are no matching results" on the page
-    And I see all the pool numbers that were created are present on the screen
-
+    And I see "<pool_number>" on the page
     And I see "No pools requested" on the page
-    Then I clear down the data for all the pools I created for this test new schema
+
+    Examples:
+      |user			  | pool_number    | juror_number |
+      |MODTESTBUREAU  | 415377221      | 041582661    |
 
   @JurorTransformation
   Scenario: Test for correct error message is returned when no pools are returned in the search
@@ -106,21 +121,41 @@ Feature: JM-3987 Monitor Pools Progress
   And I clear down the data for all the pools I created for this test new schema
 
   @JurorTransformation
-  Scenario: Test to show all 8 weeks are populated when an active pool exist for that week
+  Scenario Outline: Test to show all 8 weeks are populated when an active pool exist for that week
 
     Given I am on "Bureau" "ithc"
     Given new pool requests are deleted new schema
 
-    And I log in as "MODTESTBUREAU"
+    Given a bureau owned pool is created with jurors
+      | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	    | owner     |
+      | 415   |<juror_number1> 	    | <pool_number1>     | 2				            | 400	    |
+      | 415   |<juror_number2> 	    | <pool_number2>     | 3				            | 400	    |
+      | 415   |<juror_number3> 	    | <pool_number3>     | 4				            | 400	    |
+      | 415   |<juror_number4> 	    | <pool_number4>     | 5				            | 400	    |
+      | 415   |<juror_number5> 	    | <pool_number5>     | 6				            | 400	    |
+      | 415   |<juror_number6> 	    | <pool_number6>     | 7				            | 400	    |
+      | 415   |<juror_number7> 	    | <pool_number7>     | 8				            | 400	    |
+      | 415   |<juror_number8> 	    | <pool_number8>     | 9				            | 400	    |
+
+    And I log in as "<user>"
     And I navigate to the pool request screen
     And I delete bank holiday new schema
-    And I create "8" new "Crown" pool requests each a week apart in court "415"
 
     And I navigate to the pool summoning progress screen
     And I see the summoning progress page banner
-    And I enter "415" as the court
-    And I select the "Crown" court type
-    And I click search
+    And I set "Court name or location code" to "415"
+    And I set the radio button to "Crown court"
+    And I press the "Search" button
     And I do not see "There are no matching results" on the page
-    And I see all the pool numbers that were created are present on the screen
-    Then I clear down the data for all the pools I created for this test new schema
+    And I see "<pool_number1>" on the page
+    And I see "<pool_number2>" on the page
+    And I see "<pool_number3>" on the page
+    And I see "<pool_number4>" on the page
+    And I see "<pool_number5>" on the page
+    And I see "<pool_number6>" on the page
+    And I see "<pool_number7>" on the page
+    And I see "<pool_number8>" on the page
+
+    Examples:
+      | user          | pool_number1 | pool_number2 | pool_number3 | pool_number4 | pool_number5 | pool_number6 | pool_number7 | pool_number8 | juror_number1 | juror_number2 | juror_number3 | juror_number4 | juror_number5 | juror_number6 | juror_number7 | juror_number8 |
+      | MODTESTBUREAU | 415377224    | 415377225    | 415377226    | 415377227    | 415377228    | 415377229    | 415377231    | 415377232    | 041582861     | 041582862     | 041582863     | 041582864     | 041582865     | 041582866     | 041582867     | 041582868     |
