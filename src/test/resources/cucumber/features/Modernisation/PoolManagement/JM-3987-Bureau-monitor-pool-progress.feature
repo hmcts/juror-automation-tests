@@ -99,26 +99,41 @@ Feature: JM-3987 Monitor Pools Progress
     And I see "Enter the name or location code for a court" on the page
 
   @JurorTransformation
-  Scenario: Test for correct values on table
+  Scenario Outline: Test for correct values on table
 
     Given I am on "Bureau" "ithc"
     Given new pool requests are deleted new schema
+    And I clear summoned jurors from pool "<pool_number>"
 
-    And I log in as "MODTESTBUREAU"
-    And I navigate to the pool request screen
-    And I create "1" new "Crown" pool requests each a week apart in court "415" with "10" jurors to summon
+    Given a bureau owned pool is created with jurors
+      | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   |<juror_number> 	    | <pool_number>     | 5				            | 400	|
+
+    And I log in as "<user>"
+    And I press the "Apps" button
+    And I click on the "Pool management" link
+    And I click on the "Search" link
+    And I set "Pool number" to "<pool_number>"
+    And I press the "Continue" button
+
+    And I press the "Summon jurors" button
+    And I set "Extra citizens to summon" to "9"
+    And I press the "Summon more citizens" button
+
     And I navigate to the pool summoning progress screen
     And I see the summoning progress page banner
-    And I enter "415" as the court
-    And I select the "Crown" court type
-    And I click search
-
-    And I see the pool I created in a row on the search results with the values
-      | requested   | 10  |
+    And I set "Court name or location code" to "415"
+    And I set the radio button to "Crown court"
+    And I press the "Search" button
+    And I see the pool I created "<pool_number>" in a row on the search results with the values
+      | requested   | 20  |
       | summoned    | 10  |
-      | confirmed   | 0   |
-      | balance     | -10 |
-  And I clear down the data for all the pools I created for this test new schema
+      | confirmed   |  0  |
+      | balance     |-20  |
+
+    Examples:
+      |user			  | pool_number    | juror_number |
+      |MODTESTBUREAU  | 415367341      | 041582941    |
 
   @JurorTransformation
   Scenario Outline: Test to show all 8 weeks are populated when an active pool exist for that week
