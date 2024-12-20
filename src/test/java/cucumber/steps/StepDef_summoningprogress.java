@@ -119,23 +119,18 @@ public class StepDef_summoningprogress {
             index++;
         } while (index < poolsCreatedSize);
     }
-    @Then("^I see the pool I created in a row on the search results with the values$")
-    public void iSeeThePoolCreatedInTheSearchResultsTable(DataTable dataTable) throws Throwable {
+    @Then("^I see the pool I created \"([^\"]*)\" in a row on the search results with the values$")
+    public void iSeeThePoolCreatedInTheSearchResultsTable(String poolNumber, DataTable dataTable) throws Throwable {
         Map<String, String> expectedData = dataTable.asMap(String.class, String.class);
-
         NAV.waitForPageLoad();
-
-        ArrayList<String> pools = StepDef_jurorpool.poolNumbers.get();
-
-        String poolCreated = pools.get(0);
-        NAV.textPresentOnPage(poolCreated);
-        String[] actualData = POOL_SUMMONING_PROGRESS.getRowOfTableContainingPoolNumber(poolCreated);
-        System.out.println(Arrays.toString(actualData));
-        assertEquals(expectedData.get("requested"),actualData[2]);
-        assertEquals(expectedData.get("summoned"),actualData[3]);
-        assertEquals(expectedData.get("confirmed"),actualData[4]);
-        assertEquals(expectedData.get("balance"),actualData[5]);
-
+        System.out.println("Pool Created: " + poolNumber);
+        NAV.textPresentOnPage(poolNumber);
+        String[] actualData = POOL_SUMMONING_PROGRESS.getRowOfTableContainingPoolNumber(poolNumber);
+        System.out.println("Actual Data: " + Arrays.toString(actualData));
+        assertEquals(expectedData.get("requested"), actualData[2]);
+        assertEquals(expectedData.get("summoned"), actualData[3]);
+        assertEquals(expectedData.get("confirmed"), actualData[4]);
+        assertEquals(expectedData.get("balance"), actualData[5]);
     }
 
     @Given("^the poolNumbers lists is empty$")
