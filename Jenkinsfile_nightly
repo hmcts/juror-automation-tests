@@ -102,7 +102,7 @@ withNightlyPipeline(type, product, component, 600) {
   onMaster {
     if (params.masterOverride == false) {
     // Switch to MOD tests on staging
-      env.envName = "demo"
+      env.envName = "ithc"
       env.runExpenses = "false"
       env.runFeatures = "false"
       env.runJurorTransformation = "true"
