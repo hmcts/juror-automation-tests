@@ -5390,4 +5390,50 @@ public class DatabaseTesterNewSchemaDesign {
 			conn.close();
 		}
 	}
+	public void updatePoolType(String poolType, String poolNumber) throws SQLException {
+		db = new DBConnection();
+
+		String env_property = System.getProperty("env.database");
+
+		if (env_property != null)
+			conn = db.getConnection(env_property);
+		else
+			conn = db.getConnection("demo");
+
+		try {
+			pStmt = conn.prepareStatement("UPDATE juror_mod.pool set pool_type='" + poolType + "' where pool_no='" + poolNumber + "'");
+			pStmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.error("Message:" + e.getMessage());
+
+		} finally {
+			conn.commit();
+			pStmt.close();
+			conn.close();
+		}
+	}
+	public void cleanSummonedJurorsInPool(String pool_no) throws SQLException {
+		db = new DBConnection();
+		String env_property = System.getProperty("env.database");
+		if (env_property != null)
+			conn = db.getConnection(env_property);
+		else
+			conn = db.getConnection("demo");
+		try {
+			pStmt = conn.prepareStatement("delete from juror_mod.juror_pool where pool_number=?");
+			pStmt.setString(1, pool_no);
+			pStmt.executeUpdate();
+			log.info("Deleted from juror_mod.juror_pool where pool_number=>" + pool_no);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.error("Message:" + e.getMessage());
+		} finally {
+			conn.commit();
+			pStmt.close();
+			conn.close();
+		}
+	}
 }

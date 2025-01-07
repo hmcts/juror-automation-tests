@@ -704,4 +704,13 @@ public class StepDef_DatabaseNewSchema {
     public void setJurorsDob(String jurorNumber) throws SQLException {
         DBTNSD.setJurorsDob(jurorNumber);
     }
+
+    @Given("^I update pool type to \"([^\"]*)\" for pool number \"([^\"]*)\"$")
+    public void updatePoolType(String poolType, String poolNumber) throws SQLException {
+        DBTNSD.updatePoolType(poolType,poolNumber);
+    }
+    @Given("^I clear summoned jurors from pool \"([^\"]*)\"$")
+    public void cleanSummonedJurorsInPool(String pool_no) throws SQLException {
+        DBTNSD.cleanSummonedJurorsInPool(pool_no);
+    }
 }
