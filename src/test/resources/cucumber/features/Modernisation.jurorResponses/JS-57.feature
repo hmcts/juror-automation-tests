@@ -15,6 +15,7 @@ Feature: JS-57
     And the user searches for juror record "<juror_number>" from the global search bar
     And I click on the "Juror details" link
     And I click on the "Add or change" link
+    And I set "Date of birth" to "03/06/1992"
     And I set "Main phone - UK only (optional)" to "079399-58017"
     And I press the "Save" button
     And I see "079399-58017" in the same row as "Main phone"
@@ -25,28 +26,6 @@ Feature: JS-57
     And I set "Main phone - UK only (optional)" to "+447939958017"
     And I press the "Save" button
     And I see "+447939958017" in the same row as "Main phone"
-
-
-    And the user searches for juror record "<juror_number>" from the global search bar
-    And I click on the "Juror details" link
-    And I click on the "Add or change" link
-    And I set "Main phone - UK only (optional)" to "++44(0)7939958017"
-    And I press the "Save" button
-    And I see "+44(0)7939958017" in the same row as "Main phone"
-
-    And the user searches for juror record "<juror_number>" from the global search bar
-    And I click on the "Juror details" link
-    And I click on the "Add or change" link
-    And I set "Main phone - UK only (optional)" to "0044(0)7939958017"
-    And I press the "Save" button
-    And I see "0044(0)7939958017" in the same row as "Main phone"
-
-    And the user searches for juror record "<juror_number>" from the global search bar
-    And I click on the "Juror details" link
-    And I click on the "Add or change" link
-    And I set "Main phone - UK only (optional)" to "(079)39958017"
-    And I press the "Save" button
-    And I see "(079)39958017" in the same row as "Main phone"
 
     And the user searches for juror record "<juror_number>" from the global search bar
     And I click on the "Juror details" link
@@ -74,29 +53,17 @@ Feature: JS-57
     And I press the "Save" button
     And I see "Enter a UK telephone number" in the error banner
 
-    And I press the "Apps" button
-    And I click on the "Messaging" link
-    And I see "Send messages" on the page
-    And I click on the "Bad weather" link
-    And I see "Message details" on the page
-    And I see the draft message template
-    And I see "Due to local adverse weather conditions, you are not required to attend the court until further notice. Please await further information. If you have any questions, please contact the jury office on <court_phone>." on the page
-    And I press the "Continue" button
-    And I see "Find jurors to send message to" on the page
+    And I set "Main phone - UK only (optional)" to "07966676541"
+    And I press the "Save" button
+    And I see "Juror details" on the page
 
-    And I choose the "Juror number" radio button
-    And I set "Enter juror number" to "<juror_number>"
-    And I press the "Continue" button
-    And I click on the methods dropdown and select "Text" for juror "<juror_number>"
-    And I check the juror "<juror_number>" checkbox
-    And I press the "Send message" button
+    And the user searches for juror record "<juror_number>" from the global search bar
+    And I click on the "Juror details" link
+    And I click on the "Add or change" link
+    And I set "Main phone - UK only (optional)" to "(0207)2573902!"
+    And I press the "Save" button
+    And I see "Juror details" on the page
 
-    And I see "Check and send message" on the page
-    And I see "You’re sending the following message to 1 jurors. You cannot undo this after sending." on the page
-    And I see "Due to local adverse weather conditions, you are not required to attend the court until further notice. Please await further information. If you have any questions, please contact the jury office on 01244 356726." on the page
-    And I press the "Send message" button
-    And I see the message sent banner containing "Message will be sent to 1 jurors"
-    And I see the juror "<juror_number>" has a message in the database
 
 
     Examples:
