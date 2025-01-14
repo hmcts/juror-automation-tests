@@ -56,7 +56,17 @@ Feature: JM-6111 - As a jury officer, I want to view a consolidated list of expe
     And I press change juror bank details button
     And I set "Account number" to "12345678"
     And I set "Sort code" to "123456"
-    And I set "Account holder's name" to "Account Holder"
+    
+    #error checks on holders name
+    And I set "Account holder's name" to "Account Holder!"
+    Then I press the "Save" button
+    And I see "Invalid character used in the account holder's name" in the error banner
+
+    And I set "Account holder's name" to "The-Holder & Son'sss"
+    Then I press the "Save" button
+    And I see "Account holder's name must be 18 characters or fewer" in the error banner
+
+    And I set "Account holder's name" to "The-Holder & Son's"
     Then I press the "Save" button
 
     And I press the "Apps" button

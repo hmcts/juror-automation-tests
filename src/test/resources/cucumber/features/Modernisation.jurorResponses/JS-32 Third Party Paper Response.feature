@@ -21,13 +21,14 @@ Feature: JS-32 Third Party paper response
 
 	#juror details
     When I fill in all of the juror details for the summons reply
+    And I set the radio button to "Yes"
 
     #check relationship can only be 50 chars
     And I set "Relationship to juror" to "abc abc abc abc abcd abcd abcd abcde abcde abcde AB"
     And I press the "Continue" button
-    And I see error "The character limit for the 'Relationship' field has been exceeded. Please reduce your input to complete the juror service response."
+    And I see "Please check the third party relationship" in the error banner
 
-    And I set "Relationship to juror" to "abc abc abc abc abcd abcd abcd abcde abcde abcde A"
+    And I set "Relationship to juror" to "Relationship"
     And I choose the "Juror is not there" radio button
 
     And I click continue on the juror summons reply page
@@ -59,6 +60,10 @@ Feature: JS-32 Third Party paper response
     Then the view summons reply page is displayed
 
     And I see the reply status has updated to "To Do"
+
+    And I see "Contact Third Party" in the same row as "Main phone"
+    And I see "Contact Third Party" in the same row as "Email"
+    And I see "Contact Third Party" in the same row as "Alternative phone"
 
 
     Examples:
