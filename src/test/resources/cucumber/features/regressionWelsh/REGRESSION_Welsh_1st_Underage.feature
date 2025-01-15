@@ -1,9 +1,9 @@
 Feature: Regression Welsh_1st_Underage
 
-@RegressionWelsh @NewSchemaConverted
+@RegressionWelsh
 Scenario Outline: Welsh 1st Party Underage
 
-	Given I am on the welsh version of "Public" "test"
+	Given I am on the welsh version of "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  	| pool_number	| att_date_weeks_in_future	| owner |
@@ -49,7 +49,7 @@ Scenario Outline: Welsh 1st Party Underage
 	
 	Then I see "Beth yw eich dyddiad geni?" on the page
 	
-	When I set the date of birth to a Monday "-900" weeks in the future
+	When I set the date of birth to a Monday "-300" weeks in the future
 	And I press the "Parhau" button
 	Then I see "Cadarnhewch y dyddiad geni" on the page
 	
@@ -85,10 +85,10 @@ Examples:
 	| juror_number	| last_name				| postcode	| pool_number	|
 	| 045700072		| LNAMEEIGHTSEVENFOUR	| CH1 2AN	| 457300072		|
 	
-@RegressionWelsh @NewSchemaConverted
+@RegressionWelsh
 Scenario Outline: Welsh 1st Underage with Error Check
 
-	Given I am on the welsh version of "Public" "test"
+	Given I am on the welsh version of "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -159,7 +159,7 @@ Scenario Outline: Welsh 1st Underage with Error Check
 	And I press the "Parhau" button
 	And I see "Rhowch y flwyddyn y cawsoch eich geni fel rhif 4 digid. Er enghraifft, 1982" on the page
 
-	And I set the date of birth to a Monday "-800" weeks in the future
+	And I set the date of birth to a Monday "-300" weeks in the future
 	And I press the "Parhau" button
 	
 	And I choose the "Ie" radio button
@@ -167,7 +167,7 @@ Scenario Outline: Welsh 1st Underage with Error Check
 	
 	Then I see "Gwiriwch eich ymatebion nawr" on the page
 	#And I see text "2 Chwefror 2006" in the same row as "Dyddiad geni"
-	And I see the welsh date "-800" weeks from now in the same row as "Dyddiad geni"
+	And I see the welsh date "-300" weeks from now in the same row as "Dyddiad geni"
 
 	Examples:
 	| juror_number	| last_name	| postcode	| pool_number	|
