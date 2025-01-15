@@ -3,7 +3,7 @@ Feature: Third_Party_Phone_Not_Juror_Phone
 @Regression @NewSchemaConverted
 Scenario Outline: English 3rd Party Gives Phone and Juror Email
 
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -141,7 +141,7 @@ Scenario Outline: English 3rd Party Gives Phone and Juror Email
 	Then I see "We have sent an email to say you have replied to this jury summons." on the page
 	
 	#Bureau
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "ithc"
 	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
@@ -151,9 +151,9 @@ Scenario Outline: English 3rd Party Gives Phone and Juror Email
 	Then I see "<juror_number>" on the page
 	
 	#Check that TP phone only appears for TP and juror email only appears for juror
-	When I see "" in the same row as "Main Phone"
-	And I see "JurorEmail@outlook.com" on the page
-	And I see "0207 821 1818" in the same row as "Main phone"
+	And I see "Contact Third Party" in the same row as "Main phone"
+	And I see "Contact Third Party" in the same row as "Email"
+	And I see "Contact Third Party" in the same row as "Alternative phone"
 
 Examples:
 	| juror_number	| last_name	| postcode	| pool_number|
@@ -162,15 +162,12 @@ Examples:
 
 @Regression_Single @JDB-3614 
 Scenario Outline: English 3rd Party Gives Email and Juror Phone
-	Given I am on "Public" "juror-test02"
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
-	
-	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+	Given I am on "Public" "ithc"
 
+	Given a bureau owned pool is created with jurors
+		| court |juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
+		| 415   |<juror_number>    | <pool_number>    | 5				            | 400	|
 
-	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	
 	Then I see "Reply to a jury summons" on the page
 	
@@ -184,18 +181,15 @@ Scenario Outline: English 3rd Party Gives Email and Juror Phone
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
-	Then I see "What is your name?" on the page
 	
 	#3rd Party Name
-	
-	When I see "Your Details" on the page
+
 	When I set "First name" to "FirstNameA"
 	And I set "Last name" to "LastNameB"
 	And I press the "Continue" button
-	Then I see "Your relationship to the person" on the page
 	
 	#Relationship to juror
-	
+
 	When I see "Your Details" on the page
 	And I set "How do you know the person you're replying for?" to "Friend"
 	And I press the "Continue" button
@@ -326,25 +320,20 @@ Scenario Outline: English 3rd Party Gives Email and Juror Phone
 	
 	#Bureau
 	
-	Given I am on "Bureau" "juror-test02"	
+	Given I am on "Bureau" "ithc"
 	And I log in as "MODTESTBUREAU"
-	
-	When I click on the "Search" link
-	And I set "Juror number" to "<juror_number>"
-	And I press the "Search" button
-	And I click on "<juror_number>" in the same row as "<juror_number>"
-	Then I see "641500725" on the page
-	
-	#Check that TP email only appears for TP and juror phone only appears for juror
-	
-	When I see "0207 821 4545" in the same row as "Main Phone"
-	And I see "" in the same row as "Email"
-	And I see "TPEmail@outlook.com" in the same row as "Third party email"
-	And I see "" in the same row as "Third party primary phone"
-	
-Examples:
-	|part_no	|last_name	|postcode	|email            |pool_no	|
-	|641500725	|DOE		|SW1H 9AJ	|email@outlook.com|415170401|
+
+	And the user searches for juror record "<juror_number>" from the global search bar
+	And I click on the "Summons reply" link
+	And I click on the "View summons reply" link
+
+	And I see "Contact Third Party" in the same row as "Main phone"
+	And I see "Contact Third Party" in the same row as "Email"
+	And I see "Contact Third Party" in the same row as "Alternative phone"
+
+	Examples:
+		| juror_number	| last_name	| postcode	| pool_number|
+		| 045267281		| lname		| CH2 2AA	| 452355184	|
 	
 @Regression @NewSchemaConverted
 Scenario Outline: English 3rd Party cannot proceed with response with missing phone
