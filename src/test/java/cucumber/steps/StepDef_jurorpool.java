@@ -2524,6 +2524,7 @@ public class StepDef_jurorpool {
         return null;
     }
 
+    @And("^I do not see the title \"([^\"]*)\" in position \"([^\"]*)\" of the history$")
     public void iDoNotSeeTheTitleInPositionOfTheHistory(String historyMessage, int positionInList) throws Throwable {
         String[] elementsInPosition = POOL_OVERVIEW_PAGE.historyHeaderAndDescInPos(positionInList);
         assertNotEquals(historyMessage, elementsInPosition[0]);
