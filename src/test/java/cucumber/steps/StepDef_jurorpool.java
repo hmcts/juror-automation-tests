@@ -1366,6 +1366,15 @@ public class StepDef_jurorpool {
         }
     }
 
+    @When("^I search for the pool I have just created to issue summons reminders$")
+    public void enterCreatedPoolNumberInSummonsReminderPoolSearch() {
+        if(poolNumber.get() == null){
+            POOL_SEARCH.enterPoolNoOnSummonsReminder(poolRequestNumber.get());
+        } else {
+            POOL_SEARCH.enterPoolNoOnSummonsReminder(poolNumber.get());
+        }
+    }
+
     @When("^I select the newly created pool from the reassign page$")
     public void selectPoolFromReassignnSearchList() {
         POOL_SEARCH.clickPoolNumberInSearchList(poolNumber.get());
@@ -2509,7 +2518,12 @@ public class StepDef_jurorpool {
         assertEquals(historyMessage, elementsInPosition[0]);
     }
 
-    @And("^I do not see the title \"([^\"]*)\" in position \"([^\"]*)\" of the history$")
+    @And("^I see history item \"([^\"]*)\" created by \"([^\"]*)\"$")
+    public Object iSeeHistoryItemCreatedBy(String historyMessage, String user) {
+        assertTrue(JUROR_RECORD.seeHistoryItemCreatedBy(historyMessage, user));
+        return null;
+    }
+
     public void iDoNotSeeTheTitleInPositionOfTheHistory(String historyMessage, int positionInList) throws Throwable {
         String[] elementsInPosition = POOL_OVERVIEW_PAGE.historyHeaderAndDescInPos(positionInList);
         assertNotEquals(historyMessage, elementsInPosition[0]);
