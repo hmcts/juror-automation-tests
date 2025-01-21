@@ -429,6 +429,15 @@ public class JurorRecord {
         runPoliceCheckButton.click();
     }
 
+    public boolean seeHistoryItemCreatedBy(String historyMessage, String user) {
+        WebElement historyItemElement = driver.findElement(By.xpath("//div[@class='moj-timeline__header']/h2[text()[contains(.,'" + historyMessage + "')]]/following-sibling::div[text()[contains(.,'" + user + "')]]"));
+
+        if (historyItemElement.isDisplayed()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     public boolean getTextCourtNameLocation(String expectedText) {
         String courtsLocations = courtNameLocationValue.getAttribute("data-content");
