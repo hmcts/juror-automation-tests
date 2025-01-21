@@ -52,6 +52,9 @@ public class PoolSearch {
     @FindBy(id = "poolType-3")
     WebElement highCourt;
 
+    @FindBy(id = "poolDetails")
+    WebElement summonsReminderPoolSearch;
+
     @FindBy(css = "#advancedSearch span")
     WebElement expandAdvanced;
 
@@ -77,6 +80,10 @@ public class PoolSearch {
 
     public void enterPoolNo(String text) {
         poolNo.sendKeys(text);
+    }
+
+    public void enterPoolNoOnSummonsReminder(String text) {
+        summonsReminderPoolSearch.sendKeys(text);
     }
 
     public void enterLocationCode(String text) {
