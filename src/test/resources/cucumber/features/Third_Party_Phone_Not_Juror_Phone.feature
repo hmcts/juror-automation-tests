@@ -1,6 +1,6 @@
 Feature: Third_Party_Phone_Not_Juror_Phone
 
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: English 3rd Party Gives Phone and Juror Email
 
 	Given I am on "Public" "ithc"

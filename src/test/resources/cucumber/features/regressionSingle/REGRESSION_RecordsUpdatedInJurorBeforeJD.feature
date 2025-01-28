@@ -211,16 +211,20 @@ Examples:
 	| juror_number	| pool_number	| last_name			| postcode	| email		|
 	| 045200257		| 452300234		| LNAMETWOSIXZERO	| CH1 2AN	| a@a.com	|
 
-@RegressionSingle
+@RegressionWIP
 Scenario Outline: Can Set Juror Record to Postponed while response is TODO
 
-	#return to @RegressionSingle when defect resolved
+	#return to @RegressionSingle when defect resolved JS-263
 
 	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |
 		| 452   | <juror_number>| <pool_number>	| 2				            | 400	|
+
+	Given a bureau owned pool is created with jurors
+		| court | juror_number  	| pool_number		| att_date_weeks_in_future	| owner |
+		| 452   | <juror_number_2>	| <pool_number_2>	| 3				            | 400	|
 
 	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
 	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
@@ -239,6 +243,7 @@ Scenario Outline: Can Set Juror Record to Postponed while response is TODO
 	And I press the "Update juror record" button
 	And I choose the "Postpone service start date" radio button
 	And I press the "Continue" button
+	And I set the "Enter a new service start date" date to a Monday "3" weeks in the future
 	And I press the "Continue" button
 	And I choose the "Add to pool" radio button
 	And I press the "Continue" button
@@ -265,8 +270,8 @@ Scenario Outline: Can Set Juror Record to Postponed while response is TODO
 	Then I see "<juror_number>" on the page
 
 	Examples:
-		| juror_number	| pool_number	| last_name			| postcode	| email		|
-		| 045200258		| 452300235		| LNAMETWOSIXZERO	| CH1 2AN	| a@a.com	|
+		| juror_number	| pool_number	| juror_number_2	| pool_number_2	| last_name			| postcode	| email		|
+		| 045200258		| 452300235		| 045200264			| 452300226		| LNAMETWOSIXZERO	| CH1 2AN	| a@a.com	|
 
 @RegressionSingle
 Scenario Outline: Can Set Juror Record to Reassigned while response is TODO
