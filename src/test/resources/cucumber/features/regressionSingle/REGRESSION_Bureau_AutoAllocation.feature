@@ -616,10 +616,10 @@ Examples:
 	|part_no_five	|pool_no 	|last_name 			|postcode 	|email		|
 	|645700224		|457170401 	|LNAMEONEFIVEFOUR 	|CH1 2AN	|e@mail.com	|
 
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: 7. Edit Notes and Logs on PENDING ALLOCATION response
 
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -633,7 +633,7 @@ Scenario Outline: 7. Edit Notes and Logs on PENDING ALLOCATION response
 		| part_no		|pool_number	| last_name		|postcode	| email |
 		| <juror_number>| <pool_number>	| <last_name>	| CH1 2AN	| a@a.com|
 
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "ithc"
 	And I log in as "CPASS"
 	
 	#check response is pending allocation

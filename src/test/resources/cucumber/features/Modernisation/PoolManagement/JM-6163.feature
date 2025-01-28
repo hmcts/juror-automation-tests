@@ -31,10 +31,11 @@ Feature: JM-6163 - As a Jury Officer, I need to add a non-attendance day for a j
       |user			|juror_number_1 |    pool_number   |
       |MODTESTCOURT |041510001      | 415100301        |
 
-  @JurorTransformation @NewSchemaConverted
+  @JurorTransformation
   Scenario Outline: unhappy path add non-attendance day with error checks
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
+
     When a bureau owned pool is created with jurors
       | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
       | 415   |<juror_number_1>     | <pool_number>     | 4				            | 400	|
@@ -58,7 +59,7 @@ Feature: JM-6163 - As a Jury Officer, I need to add a non-attendance day for a j
 
     And I set non-attendance date to "-6" weeks from now
     And I press confirm non-attendance day button
-    Then I see "Non-attendance date cannot be before the juror’s service start date." in the error banner
+    Then I see "Non-attendance date cannot be before the juror's service start date." in the error banner
 
     When I set non-attendance date to "notadate"
     And I press confirm non-attendance day button
@@ -86,5 +87,5 @@ Feature: JM-6163 - As a Jury Officer, I need to add a non-attendance day for a j
     Then I see "You cannot mark this date as a non-attendance day because it's already been recorded as an attendance day." in the error banner
 
     Examples:
-      |user			|juror_number_1 |    pool_number   |
-      |MODTESTCOURT |041510002      | 415100302        |
+      | user		  | juror_number_1 | pool_number   |
+      | MODTESTCOURT  | 041510002      | 415100302     |
