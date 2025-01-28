@@ -41,7 +41,7 @@ Feature: JM-6388 - As a jury officer I need to be able to manually add an attend
 
 
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: As a jury officer I want to manually add an attendance day - Unhappy Path
 
     Given I am on "Bureau" "ithc"
@@ -90,7 +90,6 @@ Feature: JM-6388 - As a jury officer I need to be able to manually add an attend
     And I press the "Add attendance day" button
     And I see error "Enter an attendance date in the correct format, for example, 31/01/2023"
     Then I click on the "Cancel" link
-
 
     And I press the "Add attendance day" button
     And I set the "Attendance Day" date to a Monday "-8" weeks in the future
