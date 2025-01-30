@@ -473,7 +473,7 @@ Examples:
 @RegressionSingle
 Scenario Outline: Search as Team Leader
 
-	Given I am on "Public" "demo"
+	Given I am on "Public" "ithc"
 
 	Given auto straight through processing has been disabled new schema
 
@@ -516,7 +516,7 @@ Scenario Outline: Search as Team Leader
 	Given auto straight through processing has been enabled new schema
 
 	#assign to CPASS
-	Given I am on "Bureau" "demo"
+	Given I am on "Bureau" "ithc"
 	And I log in as "MODTESTBUREAU"
 
 	When I click on the "Assign Replies" link
@@ -631,7 +631,7 @@ Scenario Outline: Search as Team Leader
 	And I set "Select an officer assigned" to "ARAMIS1"
 	And I click on the "ARAMIS1" link
 	Then I press the "Search" button
-	And I see "results for" on the page
+	And I see "The specified search resulted in more than " on the page
 	
 	#search on urgent
 	Then I click on the "Clear search" link
@@ -672,7 +672,7 @@ Scenario Outline: Search as Team Leader
 	And I set "Select an officer assigned" to "ARAMIS1"
 	And I click on the "ARAMIS1" link
 	Then I press the "Search" button
-	And I see "results for" on the page
+	And I see "The specified search resulted in more than " on the page
 	Then I press the "Select all" button
 	Then I press the "Unselect all" button
 

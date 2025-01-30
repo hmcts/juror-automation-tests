@@ -964,7 +964,7 @@ Examples:
 	| juror_number	| last_name		| postcode	| email            | pool_number| court |
 	| 041500033		| LNAMETWOTWOSIX| CH1 2AN	| email@outlook.com| 415300124	| 415   |
 	
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: English 3rd Party Excusal JDB-4539
 
 	Given I am on "Public" "test"
@@ -1165,5 +1165,5 @@ Scenario Outline: English 3rd Party Excusal JDB-4539
 	
 Examples:
 	|juror_number	|last_name			|postcode	|email       	    |pool_number| court |
-	|644200230		|LNAMETWOSIXEIGHT	|CH1 2AN	|email@outlook.com	|442170501	| 415	|
+	|041500166		|LNAMETWOSIXEIGHT	|CH1 2AN	|email@outlook.com	|415300182	| 415	|
 	

@@ -2,7 +2,7 @@ Feature: Regression Test JDB-3845
 
 #CJS Question
 
-@RegressionWelsh @NewSchemaConverted
+@RegressionWelsh
 Scenario Outline: Welsh_3rd_CJS
 
 	Given I am on the welsh version of "Public" "test"
@@ -127,14 +127,14 @@ Examples:
 	| juror_number	| last_name	| postcode	| email 		| pool_number	|
 	| 045700014		| DOE		| SW1H 9AJ	| a@eeee.com	| 457300014		|
 
-@RegressionWelsh @NewSchemaConverted
+@RegressionWelsh
 Scenario Outline: Welsh_1st_CJS
 
 	Given I am on the welsh version of "Public" "test"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
-		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
+		| 457   |<juror_number>| <pool_number>	| 5				            | 400	|
 	
 	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
 	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
@@ -253,7 +253,7 @@ Examples:
 	| juror_number	| last_name	| postcode	| email 		| pool_number	|
 	| 045700015		| DOE		| SW1H 9AJ	| a@eeee.com	| 457300015		|
 
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: English_3rd party_CJS
 
 	Given I am on "Public" "test"
@@ -399,7 +399,7 @@ Examples:
 	| juror_number 	| last_name	| postcode	| email           	| pool_number	|
 	| 045200120		| DOE		| SW1H 9AJ	| email@outlook.com	| 452300119		|
 
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: English_1st Party_CJS_A
 	
 	Given I am on "Public" "test"
@@ -580,7 +580,7 @@ Examples:
 	| juror_number	| last_name	| postcode	| email 	| pool_number	|
 	| 045200121		| DOE		| SW1H 9AJ	| a@eeee.com| 452300120		|
 
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: English_1st Party_CJS
 	
 	Given I am on "Public" "test"
@@ -689,7 +689,7 @@ Examples:
 	| juror_number	| last_name	| postcode	| email 		| pool_number	|
 	| 045200122		| DOE		| SW1H 9AJ	| a@eeee.com	| 452300121		|
 
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: English_1st Party_CJS_Change Selection
 	
 	Given I am on "Public" "test"
@@ -843,7 +843,7 @@ Examples:
 	| juror_number	| last_name	| postcode	| email 	| pool_number	|
 	| 045200123		| DOE		| SW1H 9AJ	| a@eeee.com| 452300122		|
 
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: English_1st Party_CJS_Errors
 	
 	Given I am on "Public" "test"
@@ -984,7 +984,7 @@ Examples:
 	| juror_number	| last_name	| postcode	| email 		| pool_number	|
 	| 045200124		| DOE		| SW1H 9AJ	| a@eeee.com	| 452300123		|
 
-@RegressionWelsh @NewSchemaConverted
+@RegressionWelsh
 Scenario Outline: Welsh_1st_CJS_Errors
 
 	Given I am on the welsh version of "Public" "test"
