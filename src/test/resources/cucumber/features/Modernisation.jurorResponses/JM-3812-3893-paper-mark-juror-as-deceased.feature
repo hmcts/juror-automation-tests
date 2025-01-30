@@ -1,12 +1,12 @@
 Feature: JM-3812 JM-3893
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Test to mark juror as deceased for a paper record
     Given I am on "Bureau" "test"
 
     Given a bureau owned pool is created with jurors
-      | court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
-      | 452   |<juror_number>| <pool_number>	| 5				            | 400	|
+      | court |juror_number  | pool_number	  | att_date_weeks_in_future	| owner |
+      | 415   |<juror_number>| <pool_number>  | 5				            | 400	|
 
     And I log in as "<user>"
     And I search for juror "<juror_number>"
@@ -19,10 +19,10 @@ Feature: JM-3812 JM-3893
     And I see the juror status on the juror record screen has updated to "Deceased"
 
     Examples:
-      |user			|juror_number    |pool_number  |
-      |MODTESTBUREAU|041540005  |415300405|
+      |user			  |juror_number    |pool_number   |
+      |MODTESTBUREAU  |041540005       |415300405     |
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Test to mark juror as deceased for a paper record - Validation
     Given I am on "Bureau" "test"
 
@@ -42,7 +42,7 @@ Feature: JM-3812 JM-3893
       |user			|juror_number    |pool_number  |
       |MODTESTBUREAU|041540008  |415300408|
 
-  @JurorTransformationWIP @JM-5469 @NewSchemaConverted
+  @JurorTransformationWIP @JM-5469
   Scenario Outline: Test to mark juror as deceased for a paper record - Summons reply updated
     Given I am on "Bureau" "test"
 

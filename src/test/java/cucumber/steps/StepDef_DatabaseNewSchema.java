@@ -448,12 +448,12 @@ public class StepDef_DatabaseNewSchema {
         DBTNSD.cleanAppearancesNSD();
     }
 
-    //
-//    @Given("^PCQs has been enabled new schema$")
-//    public void pcqEnabledNSD() throws SQLException {
-//        DBTNSD.pcqEnabledNSD();
-//    }
-//
+
+    @Given("^PCQs has been enabled new schema$")
+    public void pcqEnabledNSD() throws SQLException {
+        DBTNSD.pcqEnabledNSD();
+    }
+
     @Given("^PCQs has been disabled new schema$")
     public void pcqDisabledNSD() throws SQLException {
         DBTNSD.pcqDisabledNSD();

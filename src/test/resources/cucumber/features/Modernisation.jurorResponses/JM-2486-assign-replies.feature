@@ -1,6 +1,6 @@
 Feature: JM-2486
 
-  @JurorTransformationWIP @NewSchemaConverted  @JurorDigitalNotConverted
+  @JurorTransformationWIP
   Scenario Outline: Work Allocation - modernisation - happy path
 
     #this test needs to stay in single threaded as it checks assignment counts which will be more dynamic in the multi threaded execution
@@ -10,9 +10,9 @@ Feature: JM-2486
 
     Given a bureau owned pool is created with jurors
       | court |juror_number   | pool_number	 | att_date_weeks_in_future| owner |
-      | 457	  |<juror_number4>| <pool_number>| 5				       | 400   |
-      | 457	  |<juror_number5>| <pool_number>| 5				       | 400   |
-      | 457	  |<juror_number6>| <pool_number>| 5				       | 400   |
+      | 452	  |<juror_number4>| <pool_number>| 5				       | 400   |
+      | 452	  |<juror_number5>| <pool_number>| 5				       | 400   |
+      | 452	  |<juror_number6>| <pool_number>| 5				       | 400   |
 
 #	set up some responses
 #	non-urgent
@@ -88,7 +88,7 @@ Feature: JM-2486
       |juror_number4|juror_number5|juror_number6|pool_number|last_name 	|postcode 	|email				|user          |
       |045200001	|045200002	  |045200003	|452300001 	|LNAME		|NN1 3HQ	|email@outlook.com	|MODTESTBUREAU |
 
-  @JurorTransformationWIP @NewSchemaConverted @JurorDigitalNotConverted
+  @JurorTransformationWIP
   Scenario Outline: Work Allocation - modernisation - errors and warnings
 
     #this test needs to stay in single threaded as it checks assignment counts which will be more dynamic in the multi threaded execution
@@ -98,9 +98,9 @@ Feature: JM-2486
 
     Given a bureau owned pool is created with jurors
       | court |juror_number   | pool_number	 | att_date_weeks_in_future| owner |
-      | 457	  |<juror_number4>| <pool_number>| 5				       | 400   |
-      | 457	  |<juror_number5>| <pool_number>| 5				       | 400   |
-      | 457	  |<juror_number6>| <pool_number>| 5				       | 400   |
+      | 452	  |<juror_number4>| <pool_number>| 5				       | 400   |
+      | 452	  |<juror_number5>| <pool_number>| 5				       | 400   |
+      | 452	  |<juror_number6>| <pool_number>| 5				       | 400   |
 
 #	set up some responses
 #	non-urgent
