@@ -7,7 +7,7 @@ Feature: JM-4186
 
     Given a bureau owned pool is created with jurors
       | court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
-      | 452   |<juror_no>| <pool_number>	| 5				            | 400	|
+      | 415   |<juror_no>| <pool_number>	| 5				            | 400	|
 
     And I log in as "<user>"
 
@@ -46,7 +46,7 @@ Feature: JM-4186
 
     Examples:
       |juror_no	|pool_number   |user         |
-      |041540004|415300404 |MODTESTBUREAU|
+      |041540004|415300404     |MODTESTBUREAU|
 
   @JurorTransformationMulti
   Scenario Outline: Straight through paper summons reply - null criteria
