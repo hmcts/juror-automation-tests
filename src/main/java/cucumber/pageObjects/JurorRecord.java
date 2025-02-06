@@ -198,7 +198,7 @@ public class JurorRecord {
     @FindBy(xpath = "//*[@id=\"failed-to-attend\"]")
     WebElement failedToAttendCheckbox;
 
-    @FindBy(xpath = "//thead[@class=\"govuk-table__head\"]/tr/th/button")
+    @FindBy(xpath = "//thead[@class='govuk-table__head']/tr/th/a[@role='button']")
     public List<WebElement> DeferralGrantedResultsheaderTableName;
 
     @FindBy(xpath = "//input[@name='selectedJurors']")
