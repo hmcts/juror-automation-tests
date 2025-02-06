@@ -1089,9 +1089,9 @@ Feature: JM-252_Validation_and_Errors
 
     Examples:
       | user          | selectedCourt | displayCourt        | courtType | courtTypeFull | courtCode | juror_number | pool_number |
-      | MODTESTBUREAU | SWANSEA       | Swansea Crown Court | Crown     | Crown court   | 457       | 041500047    | 415300130   |
-      | MODTESTBUREAU | SWANSEA       | Swansea Crown Court | Civil     | Civil court   | 457       | 041500047    | 415300130   |
-      | MODTESTBUREAU | SWANSEA       | Swansea Crown Court | High      | High court    | 457       | 041500047    | 415300130   |
+      | MODTESTBUREAU | SWANSEA       | Swansea Crown Court | Crown     | Crown court   | 457       | 045700077    | 457300077   |
+      | MODTESTBUREAU | SWANSEA       | Swansea Crown Court | Civil     | Civil court   | 457       | 045700077    | 457300077   |
+      | MODTESTBUREAU | SWANSEA       | Swansea Crown Court | High      | High court    | 457       | 045700077    | 457300077   |
 
   @JurorTransformationMulti
   Scenario Outline: Test to assure that a warning appears if the attendance date is set to a weekend date

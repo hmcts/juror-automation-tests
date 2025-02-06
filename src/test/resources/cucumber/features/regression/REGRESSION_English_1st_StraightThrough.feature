@@ -1,6 +1,6 @@
 Feature: Regression English_1st_StraightThrough
 
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: English 1st Party Straight Through
 	
 	Given I am on "Public" "test"
@@ -273,7 +273,7 @@ Examples:
 	|045200069		|LNAMETHREEFOURNINE	|SY2 6LU	|a@eeee.com	|452300068	|
 	
 
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: English 1st Party Straight Through Change Links
 	
 	Given I am on "Public" "test"
@@ -461,7 +461,7 @@ Examples:
 	| juror_number	| last_name			| postcode	| email 	| pool_number	|
 	| 045200070		| LNAMEONEONENINE	| CH1 2AN	| a@eeee.com| 452300069		|
 
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: English 1st Party Straight Through Navigate Back
 	
 	Given I am on "Public" "test"
@@ -657,7 +657,7 @@ Examples:
 	| 045200071		| LNAMEONEONENINE	| CH1 2AN	| a@eeee.com| 452300070		|
 
 
-	@Features @PCQ @NewSchemaConverted
+	@Features @PCQ
 	Scenario Outline: English 1st Party PCQ - decline to answer
 
 		Given I am on "Public" "test"
@@ -734,9 +734,9 @@ Examples:
 
 		#RA no
 		When I choose the "No" radio button
-		Given PCQs has been enabled
+		Given PCQs has been enabled new schema
 		And I press the "Continue" button
-		Given PCQs has been disabled
+		Given PCQs has been disabled new schema
 
 		#PCQ
 		Then on the page I see
@@ -838,9 +838,9 @@ Examples:
 
 		#RA no
 		When I choose the "No" radio button
-		Given PCQs has been enabled
+		Given PCQs has been enabled new schema
 		And I press the "Continue" button
-		Given PCQs has been disabled
+		Given PCQs has been disabled new schema
 
 		#PCQ
 		Then on the page I see
@@ -980,9 +980,9 @@ Examples:
 
 		#RA no
 		When I choose the "No" radio button
-		Given PCQs has been enabled
+		Given PCQs has been enabled new schema
 		And I press the "Continue" button
-		Given PCQs has been disabled
+		Given PCQs has been disabled new schema
 		
 		#PCQ
 		Then on the page I see
@@ -1110,9 +1110,9 @@ Examples:
 
 	#RA no
 		When I choose the "No" radio button
-		Given PCQs has been enabled
+		Given PCQs has been enabled new schema
 		And I press the "Continue" button
-		Given PCQs has been disabled
+		Given PCQs has been disabled new schema
 
 	#Check your answers
 		Then I see "Check your answers now" on the page
@@ -1132,10 +1132,10 @@ Examples:
 			|juror_number	|last_name			|postcode	|email 		|pool_number|
 			|645200349		|LNAMETHREEFOURNINE	|SY2 6LU	|a@eeee.com	|452170401	|
 
-	@Features @PCQ @NewSchemaConverted
+	@Features @PCQ
 	Scenario Outline: Welsh 1st Party PCQ - answer questions
 
-		Given I am on the welsh version of "Public" "test"
+		Given I am on the welsh version of "Public" "ithc"
 
 		Given auto straight through processing has been enabled new schema
 
@@ -1212,9 +1212,9 @@ Examples:
 
 	#RA
 		When I set the radio button to "Nac oes"
-		Given PCQs has been enabled
+		Given PCQs has been enabled new schema
 		And I press the "Parhau" button
-		Given PCQs has been disabled
+		Given PCQs has been disabled new schema
 
 		#PCQ
 		Then on the page I see

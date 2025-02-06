@@ -3,7 +3,7 @@ Feature: JM-2731
   @JurorTransformationMulti
   Scenario Outline: Test to search pool records as bureau
 
-    Given I am on "Bureau" "demo"
+    Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number  	| pool_number	| att_date_weeks_in_future	| owner |
@@ -25,13 +25,13 @@ Feature: JM-2731
 
     Examples:
       | user          | juror_number | pool_number |
-      | MODTESTBUREAU | 011000002    | 010000002   |
+      | MODTESTBUREAU | 041500159    | 415300179   |
 
 
   @JurorTransformationMulti
   Scenario Outline: Test to search pool records as court
 
-    Given I am on "Bureau" "demo"
+    Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number  	| pool_number	| att_date_weeks_in_future	| owner |
@@ -53,7 +53,7 @@ Feature: JM-2731
 
     Examples:
       | user          | juror_number  | pool_number  |
-      | MODTESTBUREAU | 011000003     | 010000003    |
+      | MODTESTBUREAU | 041500160     | 415300180    |
 
 
   @JurorTransformation

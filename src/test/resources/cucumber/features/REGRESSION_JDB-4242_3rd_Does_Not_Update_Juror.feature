@@ -195,7 +195,7 @@ Scenario Outline: English 3rd Party Disqualified - contact details same as 3rd p
 
 Examples:
 	| juror_number	| last_name			| postcode	| email         	| pool_number	|
-	| 452300182		| LNAMEFOURFOURNINE	| NN1 3HQ	| email@outlook.com	| 045200197		|
+	| 452300182		| LNAMEFOURFOURNINE	| NN1 3HQ	| email@outlook.com	| 452300248		|
 	
 @Features
 Scenario Outline: English 3rd Party Super Urgent - contact details same as 3rd party
@@ -412,7 +412,7 @@ Scenario Outline: English 3rd Party Straight Through - Juror already has contact
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
-		| 457   |<juror_number>| <pool_number>	| 5				            | 400	|
+		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
 	
 	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
 	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
@@ -458,7 +458,7 @@ Scenario Outline: English 1st Party Straight Through - regression - contact deta
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
-		| 457   |<juror_number>| <pool_number>	| 5				            | 400	|
+		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
 		
 	And auto straight through processing has been enabled new schema
 	

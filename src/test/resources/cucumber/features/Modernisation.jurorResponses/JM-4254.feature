@@ -115,10 +115,10 @@ Feature: JM-4254 Record proof of name change
       | 041500008    | 415300106   | MODTESTBUREAU|
 
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: The system shall allow a bureau officer to record a proof of change of name. Change name while recording paper summons
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number  	| pool_number	| att_date_weeks_in_future	| owner |
@@ -173,4 +173,4 @@ Feature: JM-4254 Record proof of name change
 
     Examples:
       |juror_number |pool_number  |user           |
-      |011000001    |010000001    | MODTESTBUREAU |
+      |041500165    |415300181    | MODTESTBUREAU |

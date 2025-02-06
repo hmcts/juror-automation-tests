@@ -1,9 +1,9 @@
 Feature: Bureau change jurors deferral date
 
-  @JurorTransformationWIP @JurorDigitalNotConverted
+  @JurorTransformation
   Scenario Outline: Change jurors deferral date
 
-    Given I am on "Public" "test"
+    Given I am on "Public" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
@@ -14,7 +14,7 @@ Feature: Bureau change jurors deferral date
       |jurorLname    | <last_name>|
       |jurorPostcode | <postcode> |
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     Given I log in as "MODTESTBUREAU"
 

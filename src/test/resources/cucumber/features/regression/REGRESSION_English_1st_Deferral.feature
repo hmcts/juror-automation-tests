@@ -1582,7 +1582,7 @@ Feature: Regression English_1st_Deferral
 
     Given a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
-      | 452   | <juror_number> | <pool_number> | 5                        | 400   |
+      | 415   | <juror_number> | <pool_number> | 5                        | 400   |
 
     And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
     And juror "<juror_number>" has "FIRST_NAME" as "FNAMESEVENONETHREE" new schema
@@ -1776,7 +1776,7 @@ Feature: Regression English_1st_Deferral
     And I select the first deferral choice
 
     And I press the "Continue" button
-    Then I see the juror record updated banner containing "Deferral granted"
+    Then I see the juror record updated banner containing "Responded"
 
     Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "CLOSED" where "JUROR_NUMBER" is "<juror_number>"
     Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "Y" where "JUROR_NUMBER" is "<juror_number>"
