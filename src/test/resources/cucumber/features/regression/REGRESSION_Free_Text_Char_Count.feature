@@ -1,9 +1,9 @@
 Feature: Free Text Char Count
 
-@RegressionWelsh @NewSchemaConverted
+@RegressionWelsh
 Scenario Outline: Welsh_3rd_Char_Counts
 
-	Given I am on the welsh version of "Public" "test"
+	Given I am on the welsh version of "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -69,11 +69,11 @@ Scenario Outline: Welsh_3rd_Char_Counts
 	
 	#Residency
 	And I set the radio button to "Naddo"
-	And I see "You have 1000 characters remaining" on the page
+	And I see "Mae gennych 1000 o nodau yn weddill" on the page
 	And I set "Rhowch fanylion" to "These are the details."
-	And I see "You have 978 characters remaining" on the page
+	And I see "Mae gennych 978 o nodau yn weddill" on the page
 	And I set "Rhowch fanylion" to "These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are t"
-	And I see "You have 0 characters remaining" on the page
+	And I see "Nid oes gennych unrhyw nodau yn weddill" on the page
 	And I press the "Parhau" button
 	
 	#CJS
@@ -82,72 +82,72 @@ Scenario Outline: Welsh_3rd_Char_Counts
 	
 	And I check the "Arall" checkbox
 	
-	And I see "You have 1000 characters remaining" on the page
+	And I see "Mae gennych 1000 o nodau yn weddill" on the page
 	And I set "Pa ran arall o’r System Cyfiawnder Troseddol?" to "These are the details."
-	And I see "You have 978 characters remaining" on the page
+	And I see "Mae gennych 978 o nodau yn weddill" on the page
 	And I set "Pa ran arall o’r System Cyfiawnder Troseddol?" to "These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are t"
-	And I see "You have 0 characters remaining" on the page
+	And I see "Nid oes gennych unrhyw nodau yn weddill" on the page
 	
 	And I press the "Parhau" button
 	
 	#Bail
 	And I set the radio button to "Ydy"
-	And I see "You have 1000 characters remaining" on the page
+	And I see "Mae gennych 1000 o nodau yn weddill" on the page
 	And I set "Rhowch fanylion" to "These are the details."
-	And I see "You have 978 characters remaining" on the page
+	And I see "Mae gennych 978 o nodau yn weddill" on the page
 	And I set "Rhowch fanylion" to "These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are t"
-	And I see "You have 0 characters remaining" on the page
+	And I see "Nid oes gennych unrhyw nodau yn weddill" on the page
 	And I press the "Parhau" button
 	
 	#Criminal Convictions
 	And I see "A yw'r unigolyn wedi'i gael yn euog o drosedd?" on the page
 	And I set the radio button to "Ydy"
-	And I see "You have 1000 characters remaining" on the page
+	And I see "Mae gennych 1000 o nodau yn weddill" on the page
 	And I set text area with "id" of "convictedDetails" to "These are the details."
-	And I see "You have 978 characters remaining" on the page
+	And I see "Mae gennych 978 o nodau yn weddill" on the page
 	And I set text area with "id" of "convictedDetails" to "These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are t"
-	And I see "You have 0 characters remaining" on the page
+	And I see "Nid oes gennych unrhyw nodau yn weddill" on the page
 	And I press the "Parhau" button
 	
 	#Mental Health
 	Then I see "A ydi'r person yr ydych yn ymateb ar ei ran yn cael ei gadw, ei warchod neu ei drin o dan y Ddeddf Iechyd Meddwl?" on the page
 	And I set the radio button to "Ie"
-	And I see "You have 1000 characters remaining" on the page
+	And I see "Mae gennych 1000 o nodau yn weddill" on the page
 	And I set "Eglurwch sut y maent yn cael eu cadw dan glo, sut ofal maent yn ei gael neu sut maent yn cael eu trin o dan y Ddeddf Iechyd Meddwl" to "These are the details."
-	And I see "You have 978 characters remaining" on the page
+	And I see "Mae gennych 978 o nodau yn weddill" on the page
 	And I set "Eglurwch sut y maent yn cael eu cadw dan glo, sut ofal maent yn ei gael neu sut maent yn cael eu trin o dan y Ddeddf Iechyd Meddwl" to "These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are t"
-	And I see "You have 0 characters remaining" on the page
+	And I see "Nid oes gennych unrhyw nodau yn weddill" on the page
 	And I press the "Parhau" button
 	
 	Then I see "A wnaed penderfyniad nad oes gan y person yr ydych yn ymateb ar ei ran y 'gallu meddyliol'?" on the page
 	When I set the radio button to "Ie"
-	And I see "You have 1000 characters remaining" on the page
+	And I see "Mae gennych 1000 o nodau yn weddill" on the page
 	And I set "Eglurwch yn gryno pam y penderfynwyd nad oes ganddynt alluedd meddyliol" to "These are the details."
-	And I see "You have 978 characters remaining" on the page
+	And I see "Mae gennych 978 o nodau yn weddill" on the page
 	And I set "Eglurwch yn gryno pam y penderfynwyd nad oes ganddynt alluedd meddyliol" to "These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are t"
-	And I see "You have 0 characters remaining" on the page
+	And I see "Nid oes gennych unrhyw nodau yn weddill" on the page
 	And I press the "Parhau" button
 	
 	#Can you attend
 	And I set the radio button to "Nac ydi, rhaid newid y dyddiad"
 	And I press the "Parhau" button
 	
-	And I see "You have 1000 characters remaining" on the page
+	And I see "Mae gennych 1000 o nodau yn weddill" on the page
 	When I set text area with "id" of "deferralReason" to "These are the details."
-	And I see "You have 978 characters remaining" on the page
+	And I see "Mae gennych 978 o nodau yn weddill" on the page
 	When I set text area with "id" of "deferralReason" to "These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are t"
-	And I see "You have 0 characters remaining" on the page
+	And I see "Nid oes gennych unrhyw nodau yn weddill" on the page
 	
 	And I click on the "Cliciwch i fynd yn ôl" link
 	
 	And I set the radio button to "Nac ydi, ni all yr unigolyn wasanaethu ar reithgor a rhaid esgusodi"
 	And I press the "Parhau" button
 	
-	And I see "You have 1000 characters remaining" on the page
+	And I see "Mae gennych 1000 o nodau yn weddill" on the page
 	When I set text area with "id" of "excusalReason" to "These are the details."
-	And I see "You have 978 characters remaining" on the page
+	And I see "Mae gennych 978 o nodau yn weddill" on the page
 	When I set text area with "id" of "excusalReason" to "These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are t"
-	And I see "You have 0 characters remaining" on the page
+	And I see "Nid oes gennych unrhyw nodau yn weddill" on the page
 	
 	And I click on the "Cliciwch i fynd yn ôl" link
 	
@@ -161,17 +161,17 @@ Scenario Outline: Welsh_3rd_Char_Counts
 	
 	And I check the "Arall" checkbox
 	
-	And I see "You have 1000 characters remaining" on the page
+	And I see "Mae gennych 1000 o nodau yn weddill" on the page
 	And I set "Rhowch fanylion os gwelwch yn dda" to "These are the details."
-	And I see "You have 978 characters remaining" on the page
+	And I see "Mae gennych 978 o nodau yn weddill" on the page
 	And I set "Rhowch fanylion os gwelwch yn dda" to "These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are t"
-	And I see "You have 0 characters remaining" on the page
+	And I see "Nid oes gennych unrhyw nodau yn weddill" on the page
 	
-	And I see "You have 1000 characters remaining" on the page
+	And I see "Mae gennych 1000 o nodau yn weddill" on the page
 	And I set "Rhowch wybod inni am unrhyw drefniadau arbennig neu gymorth bydd yr unigolyn rydych yn ymateb ar ei ran ei angen wrth iddo wasanaethu ar reithgor" to "These are the details."
-	And I see "You have 978 characters remaining" on the page
+	And I see "Mae gennych 978 o nodau yn weddill" on the page
 	And I set "Rhowch wybod inni am unrhyw drefniadau arbennig neu gymorth bydd yr unigolyn rydych yn ymateb ar ei ran ei angen wrth iddo wasanaethu ar reithgor" to "These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are t"
-	And I see "You have 0 characters remaining" on the page
+	And I see "Nid oes gennych unrhyw nodau yn weddill" on the page
 	
 	When I press the "Parhau" button
 	
@@ -190,10 +190,10 @@ Examples:
 	| 045200105		| LNAMENINEZEROZERO	| SY2 6LU	| a@eeee.com	| 452300104		|
 
 
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: English_3rd_Char_Counts_and_warnings
 
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -491,7 +491,7 @@ Examples:
 	| juror_number	| last_name				| postcode	| email         	| pool_number	|
 	| 045200106		| LNAMEEIGHTEIGHTTHREE	| SY2 6LU	| email@outlook.com	| 452300105		|
 	
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: English_Special_Chars
 
 	Given I am on "Public" "test"
@@ -681,7 +681,7 @@ Examples:
 	| juror_number	| last_name			| postcode	| email          	| pool_number	|
 	| 045200107		| LNAMEEIGHTZEROFIVE| SA1 4PF	| email@outlook.com	| 452300106		|
 	
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: English_1st_Char_Counts_and_warnings
 
 	Given I am on "Public" "test"
@@ -953,7 +953,7 @@ Examples:
 	| juror_number	| last_name			| postcode	| email           	| pool_number	|
 	| 045200108		| LNAMENINETWOTWO	| SY2 6LU	| email@outlook.com	| 452300107		|
 	
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: English_1st_Char_Counts_YesToNo
 
 	Given I am on "Public" "test"
