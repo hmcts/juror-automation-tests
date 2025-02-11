@@ -230,7 +230,13 @@ public class StepDef_expenses {
         EXPENSES.clickLinkWithExpenseDate();
     }
 
-
-
+    @When("^I see \"([^\"]*)\" in the same row as the date (\\d+) days (in the future|in the past)$")
+    public void iSeeTextInTheSameRowAsTheDateDays(String expectedText, Integer numberOfDays, String timeFrame) {
+        String rowText = EXPENSES.getTextInRowWithDate(numberOfDays, timeFrame);
+        if (!rowText.contains(expectedText)) {
+            throw new RuntimeException("Expected text '" + expectedText + "' not found in the row with the date.");
+        }
+        System.out.println("Verified: Text '" + expectedText + "' is in the same row as the date.");
+    }
 }
 
