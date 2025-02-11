@@ -1,9 +1,9 @@
 Feature: Welsh_3rd_1000_CharGuidance
 
-@RegressionWelsh @NewSchemaUpdated
+@RegressionWelsh
 Scenario Outline: Welsh 3rd Party - Character count warning should be on all applicable pages
 
-	Given I am on the welsh version of "Public" "test"
+	Given I am on the welsh version of "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  	| pool_number	| att_date_weeks_in_future	| owner |
@@ -49,7 +49,7 @@ Scenario Outline: Welsh 3rd Party - Character count warning should be on all app
 	#Why are you replying for the person? JDB-3634
 	When I set the radio button to "Arall"
 	
-	And I see "You have 100 characters remaining" on the page
+	And I see "Mae gennych 100 o nodau yn weddill" on the page
 	And I set the radio button to "Nid yw'r unigolyn yma"
 	And I press the "Parhau" button
 	Then I see "A yw'r enw sydd gennym ar ei gyfer yn gywir?" on the page
@@ -94,7 +94,7 @@ Scenario Outline: Welsh 3rd Party - Character count warning should be on all app
 	When I see "Cymhwysedd" on the page
 	And I set the radio button to "Naddo"
 	
-	And I see "You have 1000 characters remaining" on the page
+	And I see "Mae gennych 1000 o nodau yn weddill" on the page
 	And I set "Rhowch fanylion" to "Not a resident"
 	And I press the "Parhau" button
 	
@@ -103,7 +103,7 @@ Scenario Outline: Welsh 3rd Party - Character count warning should be on all app
 	When I set the radio button to "Ydy"
 	And I check the "Arall" checkbox
 
-	And I see "You have 1000 characters remaining" on the page
+	And I see "Mae gennych 1000 o nodau yn weddill" on the page
 	And I set "Pa ran arall o’r System Cyfiawnder Troseddol?" to "Other CJS part"
 	And I press the "Parhau" button
 	
@@ -112,7 +112,7 @@ Scenario Outline: Welsh 3rd Party - Character count warning should be on all app
 	When I see "Cymhwysedd" on the page
 	And I set the radio button to "Ydy"
 	
-	And I see "You have 1000 characters remaining" on the page
+	And I see "Mae gennych 1000 o nodau yn weddill" on the page
 	And I set "Rhowch fanylion" to "Person on bail"
 	And I press the "Parhau" button
 	
@@ -121,7 +121,7 @@ Scenario Outline: Welsh 3rd Party - Character count warning should be on all app
 	When I see "Cymhwysedd" on the page
 	And I set the radio button to "Ydy"
 
-	And I see "You have 1000 characters remaining" on the page
+	And I see "Mae gennych 1000 o nodau yn weddill" on the page
 	And I set text area with "id" of "convictedDetails" to "Person is convicted"
 	And I press the "Parhau" button
 	
@@ -130,7 +130,7 @@ Scenario Outline: Welsh 3rd Party - Character count warning should be on all app
 	When I see "Cymhwysedd" on the page
 	And I set the radio button to "Ie"
 	
-	And I see "You have 1000 characters remaining" on the page
+	And I see "Mae gennych 1000 o nodau yn weddill" on the page
 	And I set "Eglurwch sut y maent yn cael eu cadw dan glo, sut ofal maent yn ei gael neu sut maent yn cael eu trin o dan y Ddeddf Iechyd" to "Person is sectioned"
 	And I press the "Parhau" button
 
@@ -140,7 +140,7 @@ Scenario Outline: Welsh 3rd Party - Character count warning should be on all app
 	When I see "Cymhwysedd" on the page
 	And I set the radio button to "Ie"
 	
-	And I see "You have 1000 characters remaining" on the page
+	And I see "Mae gennych 1000 o nodau yn weddill" on the page
 	And I set "Eglurwch yn gryno pam y penderfynwyd nad oes ganddynt alluedd meddyliol" to "Person lacks capacity"
 	And I press the "Parhau" button
 
@@ -153,7 +153,7 @@ Scenario Outline: Welsh 3rd Party - Character count warning should be on all app
 	Then I see "A fydd yr unigolyn rydych yn ymateb ar ei ran angen cymorth pan fydd yn y llys?" on the page
 	When I set the radio button to "Oes"
 	
-	And I see "You have 1000 characters remaining" on the page
+	And I see "Mae gennych 1000 o nodau yn weddill" on the page
 	And I set "Rhowch wybod inni am unrhyw drefniadau arbennig neu gymorth bydd yr unigolyn rydych yn ymateb ar ei ran ei angen wrth iddo wasanaethu ar reithgor." to "Wheelchair user"
 	When I check the "Arall" checkbox
 	And I set "Rhowch fanylion os gwelwch yn dda" to "Other RA stuff"
@@ -169,7 +169,7 @@ Scenario Outline: Welsh 3rd Party - Character count warning should be on all app
 	Then I see "Dywedwch wrthym pam fod angen dyddiad arall arnynt ar gyfer y gwasanaeth rheithgor" on the page
 	
 	#Deferral Reason
-	When I see "You have 1000 characters remaining" on the page
+	When I see "Mae gennych 1000 o nodau yn weddill" on the page
 	And I set text area with "id" of "deferralReason" to "Defer them please"
 	And I press the "Parhau" button
 	Then I see "Dewiswch 3 dydd Llun pan allant ddechrau gwasanaeth rheithgor" on the page
@@ -195,7 +195,7 @@ Scenario Outline: Welsh 3rd Party - Character count warning should be on all app
 	Then I see "Pam fod angen iddo gael ei esgusodi rhag gwasanaethu ar reithgor?" on the page
 	
 	#Excusal Reason
-	When I see "You have 1000 characters remaining" on the page
+	When I see "Mae gennych 1000 o nodau yn weddill" on the page
 	And I set text area with "id" of "excusalReason" to "Excuse them please"
 	And I press the "Parhau" button
 	Then I see "Gwiriwch eich ymatebion nawr" on the page
