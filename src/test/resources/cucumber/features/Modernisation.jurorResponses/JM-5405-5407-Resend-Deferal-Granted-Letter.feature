@@ -1,9 +1,9 @@
 Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline:As a bureau officer test a Deferred juror can resend a granted letter by searching via juror number
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     And I clear down the bulk print data table for Juror "<juror_number>"
     And I log in as "<user>"
     When a bureau owned pool is created with jurors
@@ -92,10 +92,10 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
       | juror_number | pool_number | user          |
       | 041520126    | 415300739   | MODTESTBUREAU |
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline:As a bureau officer verify a deferral granted letter in printing stage can delete
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     And I log in as "<user>"
 
     When a bureau owned pool is created with jurors
@@ -171,10 +171,10 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
       | 041520127    | 415300740   | MODTESTBUREAU |
 
 
-  @JurorTransformation @NewSchemaConverted
+  @JurorTransformation
   Scenario Outline:As a bureau officer test a Deferred juror with status changed can resend a granted letter
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     And I log in as "<user>"
     When a bureau owned pool is created with jurors
       | court | juror_number     | pool_number   | att_date_weeks_in_future | owner |
@@ -327,10 +327,10 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
       | 041520035    | 041520036      | 415300704   | MODTESTBUREAU |
 
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline:Verify as a bureau user can view letters queued for printing and can delete it
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     And I clear down the bulk print data table for Juror "<juror_number>"
     And I log in as "<user>"
     When a bureau owned pool is created with jurors
@@ -407,10 +407,10 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
       | 041520129    | 415300741   | MODTESTBUREAU |
 
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline:As a jury officer test a Deferred juror can print a granted letter by searching via juror number
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     When a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
       | 415   | <juror_number> | <pool_number> | 5                        | 400   |
@@ -513,10 +513,10 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
       | juror_number | pool_number | user         |
       | 041530027    | 415300305   | MODTESTCOURT |
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline:As a jury officer test a Deferred juror can print a granted letter by searching via pool number
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     When a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
       | 415   | <juror_number> | <pool_number> | 5                        | 400   |
@@ -619,4 +619,3 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
     Examples:
       | juror_number | pool_number | user         |
       | 041530028    | 415300306   | MODTESTCOURT |
-
