@@ -233,7 +233,7 @@ Examples:
 @RegressionSingle
 Scenario Outline: Edit Response
 
-	Given I am on "Public" "demo"
+	Given I am on "Public" "ithc"
 
 	Given auto straight through processing has been disabled new schema
 
@@ -271,14 +271,14 @@ Scenario Outline: Edit Response
 		| part_no				| pool_number			| last_name			| postcode	| email 	|
 		| <juror_number_three>	| <pool_number_three>	| <last_name_three>	| CH1 2AN	| a@a.com	|
 	
-	Given I am on "Bureau" "demo"
+	Given I am on "Bureau" "ithc"
 	And I log in as "MODTESTBUREAU"
 
 	When I click on the "Assign Replies" link
 	And I assign all the New Replies to "ARAMIS1"
 	And I do not see any links on the page that open to a new page without an alt text
 
-	Given I am on "Bureau" "demo"
+	Given I am on "Bureau" "ithc"
 	And I log in as "ARAMIS1"
 	
 	And on the page I see

@@ -1,9 +1,9 @@
 Feature: Regression Accessibility Statement
 
-@Regression @NewSchemaConverted
+@Regression
 Scenario: English Accessibility Statement
 	
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
   	#Accessibility Statement
    	And I click on the "Accessibility statement" link
@@ -72,10 +72,10 @@ Scenario: English Accessibility Statement
    	
    	And I see "If you require a copy of the full accessibility test report please contact Andrew Singleton Bisby." on the page
 
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: English 1st Party - Accessibility Statement on each page
 
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  		| pool_number	| att_date_weeks_in_future	| owner |
@@ -234,10 +234,10 @@ Examples:
 	|041500034		|415300125	|LNAMESEVENONETHREE	|SY2 6LU	|e@eeee.com	|
 	
 
-@Regression @NeewSchemaConverted
+@Regression
 Scenario Outline: English 3rd Party - Accessibility statement on each page
 	
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  	| pool_number	| att_date_weeks_in_future	| owner |
@@ -419,4 +419,3 @@ Scenario Outline: English 3rd Party - Accessibility statement on each page
 Examples:
 	|juror_number	|last_name			|postcode	|email           	|pool_number|
 	|041500035		|LNAMESIXSEVENSIX	|CH1 2AN	|email@outlook.com	|415300126	|
-	
