@@ -1,6 +1,6 @@
 Feature: Create Juror Record scenarios
 
-  @JurorTransformationMulti
+  @JurorTransformation
   Scenario Outline: Create Juror Record via existing pool - Happy Path
 
     Given I am on "Bureau" "ithc"
@@ -50,7 +50,7 @@ Feature: Create Juror Record scenarios
       |user			|
       |MODTESTCOURT |
 
-  @JurorTransformationMulti
+  @JurorTransformation
   Scenario Outline: Create Juror Record via existing pool - Unhappy Path
 
     Given I am on "Bureau" "ithc"
@@ -137,7 +137,7 @@ Feature: Create Juror Record scenarios
       |MODTESTCOURT |
 
 
-  @JurorTransformationMulti
+  @JurorTransformation
   Scenario Outline: Create Juror Record via existing pool for juror too old
 
     Given I am on "Bureau" "ithc"
@@ -174,7 +174,7 @@ Feature: Create Juror Record scenarios
       |user			|
       |MODTESTCOURT |
 
-  @JurorTransformationMulti
+  @JurorTransformation
   Scenario Outline: Create Juror Record via existing pool for juror too young
 
     Given I am on "Bureau" "ithc"
@@ -211,7 +211,7 @@ Feature: Create Juror Record scenarios
       |user			|
       |MODTESTCOURT |
 
-  @JurorTransformationMulti
+  @JurorTransformation
   Scenario Outline: Create Juror Record via Create new pool
 
     Given I am on "Bureau" "ithc"
@@ -273,7 +273,7 @@ Feature: Create Juror Record scenarios
       |user			|
       |MODTESTCOURT |
 
-  @JurorTransformationMulti
+  @JurorTransformation
   Scenario Outline: Create Juror Record for juror outside of any court catchment area
 
     Given I am on "Bureau" "ithc"
@@ -333,7 +333,7 @@ Feature: Create Juror Record scenarios
       |user			|
       |MODTESTCOURT |
 
-  @JurorTransformationMulti
+  @JurorTransformation
   Scenario Outline: Juror record shows manually created juror
 
     Given I am on "Bureau" "ithc"
@@ -403,7 +403,7 @@ Feature: Create Juror Record scenarios
       |MODTESTCOURT |
 
 
-  @JurorTransformationMulti
+  @JurorTransformation
   Scenario Outline: Create Juror Record via existing pool - Happy Path - Satellite Court
 
     Given I am on "Bureau" "ithc"
