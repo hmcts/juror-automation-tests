@@ -1,9 +1,9 @@
 Feature: Regression Welsh_3rd_Deferral
 
-@RegressionWelsh @NewSchemaConverted
+@RegressionWelsh
 Scenario Outline: Welsh 3rd Party Deferral
 
-	Given I am on the welsh version of "Public" "test"
+	Given I am on the welsh version of "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  	| pool_number	| att_date_weeks_in_future	| owner |
@@ -24,7 +24,6 @@ Scenario Outline: Welsh 3rd Party Deferral
 	And I press the "Parhau" button
 	
 	#3rd Party Name
-
     When I see "Eich Manylion" on the page
     When I set "Enw cyntaf" to "FirstNameA"
     And I set "Cyfenw" to "LastNameB"
@@ -141,7 +140,7 @@ Scenario Outline: Welsh 3rd Party Deferral
 	Then I see "Nodwch eu rheswm dros fod angen dyddiad arall ar gyfer eu gwasanaeth rheithgor" on the page
 	
 	When I set text area with "id" of "deferralReason" to "Large amount of text here Large amount of text here Large amount of text here Large amount of text here Large amount of text here Large amount of text here Large amount of text here Large amount of text here Large amount of text here Large amount of text here Large amount of text here Large amount of text here Large amount of text here Large amount of text here Large amount of text here Large amount of text here Large amount of text here Large amount of text here Large amount of text here Large amount of text here Large amount of text here Large amount of text here Large amount of text here Large amount of text here Large amount of text here Large amount of text here Large amount of text here Large amount of text here Large amount of text here Large amount of text here Large amount of text here Large amount of text here Large amount of text here Large amount of text here Large amount of text here Large amount of text here Large amount of text here Large amount of text here Large amount of text here "
-	And I see "You have 14 characters too many" on the page
+	And I see "Mae gennych 14 nod yn ormod" on the page
 	
 	And I press the "Parhau" button
 	And I see "Os gwelwch yn dda, sicrhewch fod hyd y rheswm yn llai na 1000 o nodau" on the page
@@ -189,7 +188,7 @@ Scenario Outline: Welsh 3rd Party Deferral
 	And I see "Byddwn yn ysgrifennu at yr unigolyn rydych wedi ymateb ar ei ran yn y 7 diwrnod nesaf i roi gwybod iddynt os gallant newid dyddiad eu gwasanaeth rheithgor." on the page
 	And I see "Yna, o leiaf bythefnos cyn i'w gwasanaeth rheithgor ddechrau, byddwn yn anfon y canlynol atynt:" on the page
 
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "ithc"
 	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
@@ -214,10 +213,10 @@ Examples:
 	| juror_number	| last_name			| postcode	| pool_number	|
 	| 045700073		| LNAMESIXSIXZERO	| CH1 2AN	| 457300073		|
 
-  @RegressionSingle @NewSchemaConverted
+  @RegressionSingle
   Scenario Outline: Welsh 3rd Party Deferral - Bank Holiday
 
-    Given I am on the welsh version of "Public" "test"
+    Given I am on the welsh version of "Public" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
@@ -354,7 +353,7 @@ Examples:
     Then I see "Nodwch eu rheswm dros fod angen dyddiad arall ar gyfer eu gwasanaeth rheithgor" on the page
 
     When I set text area with "id" of "deferralReason" to "Large amount of text here Large amount of text here Large amount of text here Large amount of text here Large amount of text here Large amount of text here Large amount of text here Large amount of text here Large amount of text here Large amount of text here Large amount of text here Large amount of text here Large amount of text here Large amount of text here Large amount of text here Large amount of text here Large amount of text here Large amount of text here Large amount of text here Large amount of text here Large amount of text here Large amount of text here Large amount of text here Large amount of text here Large amount of text here Large amount of text here Large amount of text here Large amount of text here Large amount of text here Large amount of text here Large amount of text here Large amount of text here Large amount of text here Large amount of text here Large amount of text here Large amount of text here Large amount of text here Large amount of text here Large amount of text here "
-    And I see "You have 14 characters too many" on the page
+    And I see "Mae gennych 14 nod yn ormod" on the page
 
     And I press the "Parhau" button
     And I see "Os gwelwch yn dda, sicrhewch fod hyd y rheswm yn llai na 1000 o nodau" on the page

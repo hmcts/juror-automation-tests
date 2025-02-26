@@ -307,11 +307,9 @@ Feature: JM-3671 Validation and Errors
       | user	      | selectedCourt | courtCode | displayCourt | noJurors | name   | email      | phone       |
       | MODTESTBUREAU | CHESTER       | 415       | Chester      | 150      | A Name | e@mail.com | 07889999999 |
 
-  @JurorTransformationWIP
+  @JurorTransformation
   Scenario Outline: Coroners court warning - no voters available
 
-    #return to JurorTransformation when fixed
-    #failed due to JS-129
     Given I am on "Bureau" "ithc"
     Given coroners pools older than today have been cleared down new schema
 
@@ -323,7 +321,6 @@ Feature: JM-3671 Validation and Errors
     Then I see "Create a coroner court pool" on the page
 
     #select court
-
     Then I set input field with "ID" of "courtNameOrLocation" to "<courtCode>"
     And I select the "<displayCourt> (<courtCode>)" court selection link
     And I set input field with "ID" of "jurorsRequested" to "<noJurors>"
@@ -372,7 +369,6 @@ Feature: JM-3671 Validation and Errors
 
     And I see "Enter the number of citizens to include from each postcode area" on the page
 
-    #JS-129
     And I see "No jurors on this catchment area." on the page
 
     Then I click on the "Cancel" link

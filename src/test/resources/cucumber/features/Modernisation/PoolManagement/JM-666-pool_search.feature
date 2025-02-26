@@ -1,8 +1,9 @@
 Feature: JM-666
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Test to search for crown court pool by pool number
-    Given I am on "Bureau" "test"
+
+    Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
@@ -23,9 +24,10 @@ Feature: JM-666
       | juror_number  | pool_number	| no_weeks|
       | 041500067     | 415300157	| 5      |
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Test to search for pool by pool number with matching location code
-    Given I am on "Bureau" "test"
+
+    Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
@@ -47,9 +49,11 @@ Feature: JM-666
       | juror_number| pool_number | no_weeks|
       | 041500068   | 415300158	  |10       |
 
-  @JurorTransformation @NewSchemaConverted
+  @JurorTransformation
   Scenario: Test to search for pool by pool number with matching pool status
-    Given I am on "Bureau" "test"
+
+    Given I am on "Bureau" "ithc"
+
     Given the new pool for court "415" is deleted new schema
     And I log in as "MODTESTBUREAU"
     And a new completed pool is inserted for court "415" new schema
@@ -62,9 +66,10 @@ Feature: JM-666
 
     Given the new pool for court "415" is deleted new schema
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Test to search for pool by pool number with matching pool stage
-    Given I am on "Bureau" "test"
+
+    Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
@@ -87,9 +92,10 @@ Feature: JM-666
       | juror_number  | pool_number	| no_weeks|
       | 041500069     | 415300159	| 10      |
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Test to search for a pool by pool number with matching pool type - Crown Court
-    Given I am on "Bureau" "test"
+
+    Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
@@ -112,9 +118,10 @@ Feature: JM-666
       | juror_number  | pool_number	| no_weeks|
       | 041500070     | 415300160	| 10      |
 
-  @JurorTransformation @NewSchemaConverted
+  @JurorTransformation
   Scenario: Creating a pool and searching for it using pool number and advanced search - Civil Court
-    Given I am on "Bureau" "test"
+
+    Given I am on "Bureau" "ithc"
 
     And I log in as "MODTESTBUREAU"
 
@@ -155,9 +162,10 @@ Feature: JM-666
 
     Given the new pool for court "415" is deleted
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Test to search for pool by pool number with non matching date
-    Given I am on "Bureau" "test"
+
+    Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
@@ -179,9 +187,10 @@ Feature: JM-666
       | juror_number  | pool_number | no_weeks|
       | 041500071     | 415300161	| 10      |
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Test to search for pool by pool number with non matching location code
-    Given I am on "Bureau" "test"
+
+    Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
@@ -203,9 +212,10 @@ Feature: JM-666
       | juror_number  | pool_number	| no_weeks|
       | 041500072     | 415300162	| 10      |
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Test to search for pool by pool number with non matching pool status
-    Given I am on "Bureau" "test"
+
+    Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
@@ -228,9 +238,10 @@ Feature: JM-666
       | juror_number	| pool_number	| no_weeks|
       | 041500073       | 415300163	    | 10      |
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Test to search for pool by pool number with non matching pool stage
-    Given I am on "Bureau" "test"
+
+    Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
@@ -253,9 +264,10 @@ Feature: JM-666
       | juror_number  | pool_number	|no_weeks|
       | 041500074     | 415300164	|10      |
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Test to search for pool by pool number with non matching pool type
-    Given I am on "Bureau" "test"
+
+    Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
@@ -278,9 +290,10 @@ Feature: JM-666
       | juror_number| pool_number | no_weeks|
       | 041500075   | 415300165	  | 10      |
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Test to check previous advanced search criteria is retained
-    Given I am on "Bureau" "test"
+
+    Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number       | pool_number	 | att_date_weeks_in_future	| owner |

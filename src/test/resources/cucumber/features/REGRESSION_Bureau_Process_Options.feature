@@ -153,10 +153,10 @@ Examples:
 	|juror_number	|pool_number|last_name 			|postcode 	|
 	|045200230		|452300210 	|LNAMETWOEIGHTNINE	|SY2 6LU	|
 
-@RegressionSingle @NewSchemaConverted
+@RegressionSingle
 Scenario Outline: Urgent process options
 
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -174,7 +174,7 @@ Scenario Outline: Urgent process options
 
 	Given auto straight through processing has been enabled new schema
 
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "ithc"
 	And I log in as "ARAMIS1"
 	And I click on the "Search" link
 	And I set "Juror's pool number" to "<pool_number>"
@@ -194,14 +194,14 @@ Scenario Outline: Urgent process options
 
 	# allocate to me
 	
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "ithc"
 	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Assign Replies" link
 	And I assign all the New Replies to "ARAMIS1"
 	
 	# now I can allocate to someone else
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "ithc"
 	And I log in as "ARAMIS1"
 	And I click on the "Search" link
 	And I set "Juror's pool number" to "<pool_number>"

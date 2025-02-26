@@ -3,14 +3,17 @@ package cucumber.pageObjects;
 import cucumber.testdata.DatabaseTester;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.*;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Expenses {
     private static WebDriver driver;
@@ -397,6 +400,43 @@ public class Expenses {
         }
     }
 
+    public String getTextInRowWithDate(int numberOfDays, String timeFrame) {
+        String DATE_PATTERN = "EEE dd MMM yyyy";
+        Calendar calendar = Calendar.getInstance();
+
+        if ("in the future".equalsIgnoreCase(timeFrame)) {
+            calendar.add(Calendar.DAY_OF_MONTH, numberOfDays);
+        } else if ("in the past".equalsIgnoreCase(timeFrame)) {
+            calendar.add(Calendar.DAY_OF_MONTH, -numberOfDays);
+        }
+
+        Date adjustedDate = calendar.getTime();
+        SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_PATTERN, Locale.ENGLISH);
+        String formattedDate = dateFormat.format(adjustedDate).trim();
+
+        By tableLocator = By.className("govuk-table");
+
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+            WebElement table = wait.until(ExpectedConditions.visibilityOfElementLocated(tableLocator));
+
+            By dateRowLocator = By.xpath(".//tr[td/a[contains(text(), '" + formattedDate + "')]]");
+            WebElement row = table.findElement(dateRowLocator);
+            String rowText = row.getText().replace(formattedDate, "").trim();
+
+            if (rowText.isEmpty()) {
+                throw new RuntimeException("No text found in the row with the date '" + formattedDate + "'.");
+            }
+
+            return rowText;
+
+        } catch (TimeoutException e) {
+            throw new RuntimeException("No row with the date '" + formattedDate + "' was found or visible in time.", e);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Failed to retrieve text in the row with the date '" + formattedDate + "'.", e);
+        }
+    }
 }
 
 
