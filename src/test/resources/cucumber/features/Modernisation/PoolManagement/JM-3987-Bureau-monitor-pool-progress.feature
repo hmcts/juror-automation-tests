@@ -86,6 +86,7 @@ Feature: JM-3987 Monitor Pools Progress
   Scenario: Test for correct error message is returned when no search criteria are entered
 
     Given I am on "Bureau" "ithc"
+
     Given new pool requests are deleted new schema
 
     And I log in as "MODTESTBUREAU"
@@ -154,7 +155,7 @@ Feature: JM-3987 Monitor Pools Progress
 
     And I log in as "<user>"
     And I navigate to the pool request screen
-    And I delete bank holiday new schema
+    And I have deleted all holidays new schema
 
     And I navigate to the pool summoning progress screen
     And I see the summoning progress page banner
