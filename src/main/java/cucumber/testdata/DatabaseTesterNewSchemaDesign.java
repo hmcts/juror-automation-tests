@@ -2985,17 +2985,16 @@ public class DatabaseTesterNewSchemaDesign {
 			pStmt = conn.prepareStatement("Delete from juror_mod.juror_response where juror_number in (select juror_number from juror_mod.juror_pool where pool_number like '" + poolNo + ")");
 			pStmt.execute();
 
-
-			pStmt = conn.prepareStatement("delete from juror_mod.juror_pool where pool_number <> '415260101' and pool_number like '" + poolNo + "'");
+			pStmt = conn.prepareStatement("delete from juror_mod.juror_pool where pool_number like '" + poolNo );
 			pStmt.execute();
 
-			pStmt = conn.prepareStatement("delete from juror_mod.pool_history where pool_no <> '415260101' and pool_no like '" + poolNo + "'");
+			pStmt = conn.prepareStatement("delete from juror_mod.pool_history where pool_no like '" + poolNo );
 			pStmt.execute();
 
-			pStmt = conn.prepareStatement("delete from juror_mod.pool_comments where pool_no like '" + poolNo + "'");
+			pStmt = conn.prepareStatement("delete from juror_mod.pool_comments where pool_no like '" + poolNo );
 			pStmt.execute();
 
-			pStmt = conn.prepareStatement("delete from juror_mod.pool where pool_no <> '415260101' and pool_no like '" + poolNo + "'");
+			pStmt = conn.prepareStatement("delete from juror_mod.pool where pool_no like '" + poolNo );
 			pStmt.execute();
 
 			log.info("deleted pools with pool no like " + poolNo);
@@ -3010,7 +3009,7 @@ public class DatabaseTesterNewSchemaDesign {
 			conn.close();
 		}
 	}
-	//refactor after testing is complete
+
 	public void cleanTrialsNSD() throws SQLException {
 		db = new DBConnection();
 		String env_property = System.getProperty("env.database");
@@ -3019,30 +3018,19 @@ public class DatabaseTesterNewSchemaDesign {
 		else
 			conn = db.getConnection("demo");
 		try {
-			pStmt = conn.prepareStatement(
-					"DELETE FROM juror_mod.juror_trial " +
-							"WHERE juror_number NOT IN ('141500289', '141500515') " +
-							"AND trial_number <> 'CHRSWJS280'"
-			);
+			pStmt = conn.prepareStatement("delete from juror_mod.juror_trial");
 			pStmt.execute();
 			conn.commit();
 
-			pStmt = conn.prepareStatement(
-					"DELETE FROM juror_mod.appearance_audit " +
-							"WHERE juror_number NOT IN ('141500289', '141500515') " +
-							"AND pool_number <> '415260101' " +
-							"AND trial_number <> 'CHRSWJS280'"
-			);
+			pStmt = conn.prepareStatement("delete from juror_mod.appearance_audit");
 			pStmt.execute();
 			conn.commit();
 
-			pStmt = conn.prepareStatement(
-					"DELETE FROM juror_mod.trial " +
-							"WHERE trial_number <> 'CHRSWJS280'"
-			);
+			pStmt = conn.prepareStatement("delete from juror_mod.trial");
 			pStmt.execute();
 			conn.commit();
 
+			log.info("deleted trials records");
 		} catch (SQLException e) {
 			e.printStackTrace();
 			log.error("Message:" + e.getMessage());
@@ -3398,23 +3386,15 @@ public class DatabaseTesterNewSchemaDesign {
 		else
 			conn = db.getConnection("demo");
 		try {
-			pStmt = conn.prepareStatement(
-					"DELETE FROM juror_mod.appearance_audit " +
-							"WHERE juror_number NOT IN ('141500289', '141500515') " +
-							"AND pool_number <> '415260101'"
-			);
+			pStmt = conn.prepareStatement("delete from juror_mod.appearance_audit");
 			pStmt.execute();
 			conn.commit();
 
-			pStmt = conn.prepareStatement(
-					"DELETE FROM juror_mod.appearance " +
-							"WHERE juror_number NOT IN ('141500289', '141500515') " +
-							"AND pool_number <> '415260101'"
-			);
+			pStmt = conn.prepareStatement("delete from juror_mod.appearance");
 			pStmt.execute();
 			conn.commit();
 
-			log.info("Deleted all appearance records except for juror_numbers (141500289, 141500515) and pool_number (415260101)");
+			log.info("deleted appearances records");
 		} catch (SQLException e) {
 			e.printStackTrace();
 			log.error("Message:" + e.getMessage());
