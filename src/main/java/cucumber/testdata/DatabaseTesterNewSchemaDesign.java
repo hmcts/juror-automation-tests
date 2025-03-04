@@ -3050,7 +3050,6 @@ public class DatabaseTesterNewSchemaDesign {
 			conn.close();
 		}
 	}
-
 	public void cleanTrialNumberNSD(String trial_number) throws SQLException {
 		db = new DBConnection();
 		String env_property = System.getProperty("env.database");
