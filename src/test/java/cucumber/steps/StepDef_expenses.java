@@ -8,7 +8,9 @@ import cucumber.testdata.DatabaseTester;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
 import java.util.Map;
@@ -237,6 +239,23 @@ public class StepDef_expenses {
             throw new RuntimeException("Expected text '" + expectedText + "' not found in the row with the date.");
         }
         System.out.println("Verified: Text '" + expectedText + "' is in the same row as the date.");
+    }
+    @When("^I select the Full day radio button$")
+    public void iSelectFullDayRadioButton() {
+        WebElement fullDayRadio = webDriver.findElement(By.cssSelector("input[value='FULL_DAY']"));
+        fullDayRadio.click();
+    }
+    @When("^I select the Half day radio button$")
+    public void iSelectHalfDayRadioButton() {
+        WebElement halfDayRadio = webDriver.findElement(By.cssSelector("input[value='HALF_DAY']"));
+        halfDayRadio.click();
+    }
+    @When("^I click the link for date \"([^\"]*)\"$")
+    public void iClickLinkForDate(String dateText) {
+        WebElement dateLink = webDriver.findElement(By.xpath(
+                "//a[@class='govuk-body govuk-link'][contains(text(), '" + dateText + "')]"
+        ));
+        dateLink.click();
     }
 }
 
