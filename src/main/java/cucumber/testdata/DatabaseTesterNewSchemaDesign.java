@@ -545,12 +545,6 @@ public class DatabaseTesterNewSchemaDesign {
 			pStmt.execute();
 			log.info("Deleted from juror_mod.appearance where juror_number=>" + part_no);
 //
-//			//for locked out scenarios
-//			pStmt = conn.prepareStatement("delete from juror_digital.bureau_auth where username=?");
-//			pStmt.setString(1, part_no);
-//			pStmt.executeQuery();
-//			log.info("Deleted from bureau_auth where username=>" + part_no);
-//
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -1884,6 +1878,7 @@ public class DatabaseTesterNewSchemaDesign {
 			conn.close();
 		}
 	}
+
 	public void deleteRequestLettNSD(String court) throws SQLException {
 		db = new DBConnection();
 
@@ -2950,6 +2945,7 @@ public class DatabaseTesterNewSchemaDesign {
 			conn.close();
 		}
 	}
+
 	//refactor after testing is complete
 	public void clean_pools_created_yesterdayNSD(String courtCode) throws SQLException {
 		//this block of code works out the current pool number prefix based on the date 11 weeks from today
@@ -3041,7 +3037,7 @@ public class DatabaseTesterNewSchemaDesign {
 			conn.close();
 		}
 	}
-		public void cleanTrialNumberNSD(String trial_number) throws SQLException {
+	public void cleanTrialNumberNSD(String trial_number) throws SQLException {
 		db = new DBConnection();
 		String env_property = System.getProperty("env.database");
 		if (env_property != null)
@@ -3072,6 +3068,7 @@ public class DatabaseTesterNewSchemaDesign {
 			conn.close();
 		}
 	}
+
 	public void populateCourtCatchmentAreaTable() throws SQLException {
 		db = new DBConnection();
 		String env_property = System.getProperty("env.database");
@@ -3376,8 +3373,6 @@ public class DatabaseTesterNewSchemaDesign {
 		}
 	}
 
-
-	//refactor after testing is complete
 	public void cleanAppearancesNSD() throws SQLException {
 		db = new DBConnection();
 		String env_property = System.getProperty("env.database");
@@ -4936,6 +4931,7 @@ public class DatabaseTesterNewSchemaDesign {
 		}
 
 	}
+
 	public void insertInitialSummonsLetter(String jurorNumber, String poolNumber) throws SQLException {
 		db = new DBConnection();
 
@@ -5244,6 +5240,7 @@ public class DatabaseTesterNewSchemaDesign {
 			conn.close();
 		}
 	}
+
 	public void updateServiceStartDate(String returnDate, String poolNumber) throws SQLException {
 
 		db = new DBConnection();
@@ -5296,6 +5293,7 @@ public class DatabaseTesterNewSchemaDesign {
 			conn.close();
 		}
 	}
+
 	public void checkExcusalCodePresent(String jurorNumber) throws SQLException {
 		db = new DBConnection();
 		ResultSet rs = null;
@@ -5351,12 +5349,11 @@ public class DatabaseTesterNewSchemaDesign {
 				pStmt.executeUpdate();
 				conn.commit();
 				log.info("Set CREATE_USER permission for =>" + user);
-			}
-			else
+			} else
 				pStmt = conn.prepareStatement("delete from juror_mod.user_permissions where username='" + user + "'");
-				pStmt.executeUpdate();
-				conn.commit();
-				log.info("Deleted CREATE_USER permission for =>" + user);
+			pStmt.executeUpdate();
+			conn.commit();
+			log.info("Deleted CREATE_USER permission for =>" + user);
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -5367,6 +5364,7 @@ public class DatabaseTesterNewSchemaDesign {
 		}
 
 	}
+
 	public void setJurorsDob(String jurorNumber) throws SQLException {
 		db = new DBConnection();
 
@@ -5391,6 +5389,7 @@ public class DatabaseTesterNewSchemaDesign {
 			conn.close();
 		}
 	}
+
 	public void updatePoolType(String poolType, String poolNumber) throws SQLException {
 		db = new DBConnection();
 
@@ -5427,6 +5426,46 @@ public class DatabaseTesterNewSchemaDesign {
 			pStmt.setString(1, pool_no);
 			pStmt.executeUpdate();
 			log.info("Deleted from juror_mod.juror_pool where pool_number=>" + pool_no);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.error("Message:" + e.getMessage());
+		} finally {
+			conn.commit();
+			pStmt.close();
+			conn.close();
+		}
+	}
+
+	public void insertAppearanceRecordsNSD(String jurorNumber, String locCode, String poolNumber) throws SQLException {
+		db = new DBConnection();
+		String env_property = System.getProperty("env.database");
+		if (env_property != null)
+			conn = db.getConnection(env_property);
+		else
+			conn = db.getConnection("demo");
+
+		try {
+			StringBuilder sql = new StringBuilder("INSERT INTO juror_mod.appearance (attendance_date, juror_number, loc_code, time_in, time_out, trial_number, non_attendance, no_show, misc_description, pay_cash, last_updated_by, created_by, public_transport_total_due, public_transport_total_paid, hired_vehicle_total_due, hired_vehicle_total_paid, motorcycle_total_due, motorcycle_total_paid, car_total_due, car_total_paid, pedal_cycle_total_due, pedal_cycle_total_paid, childcare_total_due, childcare_total_paid, parking_total_due, parking_total_paid, misc_total_due, misc_total_paid, smart_card_due, is_draft_expense, f_audit, sat_on_jury, pool_number, appearance_stage, loss_of_earnings_due, loss_of_earnings_paid, subsistence_due, subsistence_paid, attendance_type, smart_card_paid, travel_time, travel_jurors_taken_by_car, travel_by_car, travel_jurors_taken_by_motorcycle, travel_by_motorcycle, travel_by_bicycle, miles_traveled, food_and_drink_claim_type, \"version\", expense_rates_id, attendance_audit_number, appearance_confirmed, hide_on_unpaid_expense_and_reports) VALUES ");
+
+			for (int i = 0; i < 200; i++) {
+				if (i > 0) sql.append(","); // Add comma between multiple rows
+				sql.append("(?, ?, ?, '10:00:00', '16:30:00', NULL, false, NULL, NULL, false, NULL, 'MODTESTCOURT', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, true, NULL, true, ?, 'EXPENSE_ENTERED', NULL, NULL, 0.00, NULL, 'FULL_DAY', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'NONE', 4, NULL, NULL, true, false)");
+			}
+
+			pStmt = conn.prepareStatement(sql.toString());
+			LocalDate date = LocalDate.of(2024, 1, 8);
+			int paramIndex = 1;
+			for (int i = 0; i < 200; i++) {
+				pStmt.setDate(paramIndex++, java.sql.Date.valueOf(date));
+				pStmt.setString(paramIndex++, jurorNumber);
+				pStmt.setString(paramIndex++, locCode);
+				pStmt.setString(paramIndex++, poolNumber);
+				date = date.plusDays(1);
+			}
+
+			pStmt.execute();
+			log.info("Inserted 200 appearance records for juror " + jurorNumber);
 
 		} catch (SQLException e) {
 			e.printStackTrace();
