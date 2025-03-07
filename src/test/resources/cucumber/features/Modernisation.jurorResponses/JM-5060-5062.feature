@@ -54,7 +54,7 @@ Feature: JM-5060 - 5062
 
   @JurorTransformationMulti
   Scenario Outline: JM-5060 - Mark Juror as Failed to Attend for a juror with an Attendance - Unhappy Path
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
@@ -63,7 +63,6 @@ Feature: JM-5060 - 5062
     Then a new pool is inserted for where record has transferred to the court new schema
       |part_no              | pool_no           | owner |
       |<juror_number>       | <pool_number>     | 415   |
-
 
     #log on and search for juror
     And I log in as "<user>"
@@ -105,8 +104,6 @@ Feature: JM-5060 - 5062
     And I check the failed to attend checkbox
     And I press the "Change status to ‘Failed to attend’" button
     And I see "Unable to change this juror’s status to ‘Failed to attend’" in the error banner
-
-
 
     Examples:
       |user			|juror_number  | pool_number   |
