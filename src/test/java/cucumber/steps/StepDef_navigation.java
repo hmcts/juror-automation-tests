@@ -9,6 +9,7 @@ import io.cucumber.java.en.When;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -27,7 +28,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-
 import static cucumber.utils.DateManipulator.formatDate;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -213,7 +213,7 @@ public class StepDef_navigation {
 
 		if (arg2.contains("today")) {
 			arg2 = date1;
-        }
+		}
 
 		if (arg2.contains(" time")) {
 			arg2 = formatDate(
@@ -1027,5 +1027,19 @@ public class StepDef_navigation {
 	public void verifySelectedCourtNameUnderLabelStep(String expectedCourtName, String label) {
 		NAV.waitForPageLoad(3);
 		NAV.verifySelectedCourtName(expectedCourtName, label);
+	}
+
+	@And("^I set the attendance date to (\\d+) days in the past$")
+	public void iSetTheAttendanceDateToDaysInPast(Integer noOfDays) {
+		WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(2));
+		WebElement dateField = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("attendanceDay")));
+
+		LocalDate date = LocalDate.now().minusDays(noOfDays);
+		String formattedDate = date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+
+		dateField.click();
+		dateField.clear();
+		dateField.sendKeys(formattedDate);
+		dateField.sendKeys(Keys.TAB);
 	}
 }

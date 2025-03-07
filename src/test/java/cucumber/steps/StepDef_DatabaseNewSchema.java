@@ -713,4 +713,8 @@ public class StepDef_DatabaseNewSchema {
     public void cleanSummonedJurorsInPool(String pool_no) throws SQLException {
         DBTNSD.cleanSummonedJurorsInPool(pool_no);
     }
+    @Given("^I insert 200 appearance records for juror \"([^\"]*)\" at a \"([^\"]*)\" court and pool number \"([^\"]*)\"$")
+    public void insertAppearanceRecordsNSD(String jurorNumber, String locCode, String poolNumber) throws SQLException {
+        DBTNSD.insertAppearanceRecordsNSD(jurorNumber, locCode, poolNumber);
+    }
 }
