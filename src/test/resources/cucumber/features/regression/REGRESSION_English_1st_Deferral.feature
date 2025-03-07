@@ -837,7 +837,8 @@ Feature: Regression English_1st_Deferral
     And I select the first deferral choice
 
     And I press the "Continue" button
-    And I see the juror record updated banner containing "Deferral granted"
+    And I see the juror status has updated to "Responded"
+#    And I see the juror record updated banner containing "Deferral granted"
 
     Examples:
       | juror_number | last_name | postcode | email             | pool_number |

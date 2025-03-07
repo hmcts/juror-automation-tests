@@ -364,10 +364,10 @@ Examples:
 	|juror_number1	|juror_number2	|juror_number3	|juror_number4	|pool_number|last_name 	|postcode	|email		|
 	|641500607		|641500327		|641500339		|641500376 		|415170401	|LNAME 		|CH1 2AN	|e@mail.com	|
 
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: Check that when name is changed, the response is NOT auto processed
 
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -487,7 +487,7 @@ Scenario Outline: Check that when name is changed, the response is NOT auto proc
 	Then I see "We have sent you an email to say you have replied to your jury summons." on the page
 	
 	#Bureau
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "ithc"
 	When I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"

@@ -1,8 +1,9 @@
 Feature: JM-3897 mark juror as deferred paper
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Mark juror as deferred - Send to deferral maintenance Happy path paper
-    Given I am on "Bureau" "test"
+
+    Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |

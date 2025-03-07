@@ -3,11 +3,15 @@ Feature: JM-3989 JM-3993
   @JurorTransformation @JM-7664
   Scenario Outline: Reassign a juror to a pool for a different court - Bureau User
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "demo"
 
     Given a bureau owned pool is created with jurors
       | court  | juror_number  	| pool_number	   | att_date_weeks_in_future	| owner |
       | 415    | <juror_number> | <pool_number>    | 5				            | 400	|
+
+    Given a bureau owned pool is created with jurors
+      | court  | juror_number  	  | pool_number	      | att_date_weeks_in_future	| owner |
+      | 774    | <juror_number2>  | <pool_number2>    | 5				            | 400	|
 
     And a digital summons reply has been entered for the summoned juror "<juror_number>" new schema
     And a new active pool is inserted for court "774" new schema
@@ -43,8 +47,8 @@ Feature: JM-3989 JM-3993
     And the juror record court name has updated to "The Crown Court At Welshpool"
 
     Examples:
-      | user          | juror_number   | pool_number   |
-      | MODTESTBUREAU | 041531086      | 415304677     |
+      | user          | juror_number   | pool_number   | juror_number2  | pool_number2  |
+      | MODTESTBUREAU | 041531086      | 415304677     | 041531087      | 774222222     |
 
   @JurorTransformation
   Scenario Outline: Reassign a juror to a pool at the same court - Bureau User
