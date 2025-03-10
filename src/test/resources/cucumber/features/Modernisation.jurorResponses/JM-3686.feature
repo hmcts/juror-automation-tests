@@ -163,4 +163,4 @@ Feature: JM-3686
 
   Examples:
     | juror_number| pool_number | user          |
-    | 041500131   | 415300231	| MODTESTBUREAU |
+    | 041500145   | 415300245	| MODTESTBUREAU |

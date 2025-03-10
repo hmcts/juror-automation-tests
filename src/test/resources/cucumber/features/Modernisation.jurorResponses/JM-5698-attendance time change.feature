@@ -219,10 +219,10 @@ Feature: As a jury officer I need to send a attendance time change message
       |user			| juror_number | pool_number |
       |MODTESTCOURT | 041529966    | 415980996   |
 
-  @JurorTransformationMulti @NewSchemaConverted @Messages
+  @JurorTransformationMulti @Messages
   Scenario Outline: Send attendance time change message for Juror in Trial
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
@@ -244,12 +244,10 @@ Feature: As a jury officer I need to send a attendance time change message
     And I press the "Apps" button
     And I click on the "Juror management" link
     And I click on the "Record attendance" link
-#    And I set the radio button to "Check in"
     And I choose the "Check in" radio button
 
     And I set "Hour" to "09"
     And I set "Minute" to "00"
-#    And I set the radio button to "am"
     And I choose the "am" radio button
     And I input juror "<juror_number>" to be checked in
     And I press the "Check in juror" button
@@ -259,7 +257,6 @@ Feature: As a jury officer I need to send a attendance time change message
     And I click on the "<trial_number>" link
 
     And I press the "Generate panel" button
-#    And I set the radio button to "All available jurors"
     And I choose the "All available jurors" radio button
     And I set "Number of jurors needed on this panel" to "1"
     And I press the "Continue" button
@@ -286,12 +283,10 @@ Feature: As a jury officer I need to send a attendance time change message
     And I see "The time of your attendance for Jury Service has changed to <attend_time>. The date remains the same. If you have any questions, please contact the jury office on <court_phone>." on the page
     And I set "Hour" to "09"
     And I set "Minute" to "00"
-#    And I set the radio button to "am"
     And I choose the "am" radio button
     And I press the "Continue" button
 
     And I see "Find jurors to send message to" on the page
-#    And I set the radio button to "Trial"
     And I choose the "Trial" radio button
     And I press the "Continue" button
     And I press the "Continue with selected" button

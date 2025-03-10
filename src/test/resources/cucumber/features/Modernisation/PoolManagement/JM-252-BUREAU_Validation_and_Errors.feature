@@ -1141,6 +1141,7 @@ Feature: JM-252_Validation_and_Errors
 
   @JurorTransformationMulti
   Scenario Outline: Test to assure that a warning appears if the attendance date is set to a bank holiday date
+
     Given I am on "Bureau" "ithc"
 
     And I log in as "<user>"
@@ -1162,8 +1163,6 @@ Feature: JM-252_Validation_and_Errors
     And I press the "Change" button
     Then I see "You’ve selected an attendance date that’s a UK bank holiday. You can continue or go back and change the date." on the page
     And I see "The attendance date is a bank holiday" on the page
-
-
 
     When I click the link to continue from the warning page
     Then I see "Request a new pool" on the page
