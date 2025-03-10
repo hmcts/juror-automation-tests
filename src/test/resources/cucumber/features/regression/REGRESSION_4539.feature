@@ -1,9 +1,9 @@
 Feature: Regression JDB-4539
 
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: English 1st Party ST JDB-4539
 	
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court 	|juror_number  		| pool_number	| att_date_weeks_in_future	| owner |
@@ -188,10 +188,10 @@ Examples:
 	|juror_number	|last_name	|postcode	|email 		|pool_number| court |
 	|041500029		|DOE		|SW1H 9AJ	|a@eeee.com	|415300120	| 415	|
 	
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: English 3rd Party St JDB-4539
 
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court 	|juror_number  		| pool_number	| att_date_weeks_in_future	| owner |
@@ -388,7 +388,7 @@ Examples:
 @Regression @JDB-4539 
 Scenario Outline: English 1st Party Deferral JDB-4539
 	
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court 	|juror_number  		| pool_number	| att_date_weeks_in_future	| owner |
@@ -568,10 +568,10 @@ Examples:
 	|041500031		|415300122	|LNAMESEVENONETHREE	|SY2 6LU	|e@eeee.com	| 415	|
 	
 		
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: English 3rd Party Deferral JDB-4539
 
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court 	|juror_number  		| pool_number	| att_date_weeks_in_future	| owner |
@@ -781,10 +781,10 @@ Examples:
 	|juror_number	|last_name			|postcode	|email           	|pool_number| court |
 	|041500032		|LNAMESIXSEVENSIX	|CH1 2AN	|email@outlook.com	|415300123	| 415	|
 	
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: English 1st Party Excusal JDB-4539
 	
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court 	|juror_number  		| pool_number	| att_date_weeks_in_future	| owner |
@@ -967,7 +967,7 @@ Examples:
 @Regression
 Scenario Outline: English 3rd Party Excusal JDB-4539
 
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court 	|juror_number  		| pool_number	| att_date_weeks_in_future	| owner |

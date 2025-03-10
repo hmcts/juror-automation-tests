@@ -3,8 +3,8 @@ Feature: Expenses_JDB-4345_JDB-4348
 @expenses @JDB-4345 @JDB-4348 
 Scenario Outline: expensesJDB-4345_RoundUp
 	
-	Given I am on expenses on "expenses" "test"
-	
+	Given I am on expenses on "expenses" "ithc"
+
 	And I press the "Start now" button
 	
 	#loseincome
@@ -153,7 +153,7 @@ Examples:
 	|20			|10			|30.00		|30					|21				|1			|0.31		|1				|0.31				|2	      |0.19			|21.81		|57.52		|
 #displaystravel21.80
 	|20			|14.50		|34.50		|34.50				|20.99			|1			|0.31		|1				|0.31				|2	      |0.19			|21.80		|62.01		|
-	
+
 @expenses @JDB-4345 @JDB-4348
 Scenario Outline: expensesJDB-4345_earnings>64.95andexpenses=0
 	

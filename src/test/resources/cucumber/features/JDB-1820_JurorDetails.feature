@@ -1,9 +1,9 @@
 Feature: JDB-1820 Juror Details
 
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: Back and forward navigation all screens for 1st Party
 
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |

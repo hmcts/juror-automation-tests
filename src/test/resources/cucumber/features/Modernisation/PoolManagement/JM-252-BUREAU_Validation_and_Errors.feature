@@ -1139,10 +1139,10 @@ Feature: JM-252_Validation_and_Errors
       | user          | selectedCourt | displayCourt | courtTypeFull | courtCode |
       | MODTESTBUREAU | CHESTER       | Chester      | Civil court   | 415       |
 
-  @JurorTransformationMulti
+  @JurorTransformation
   Scenario Outline: Test to assure that a warning appears if the attendance date is set to a bank holiday date
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "demo"
 
     And I log in as "<user>"
 
