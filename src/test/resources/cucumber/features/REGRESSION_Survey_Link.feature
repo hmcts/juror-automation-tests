@@ -25,7 +25,7 @@ Scenario Outline: Survey Link 1st Party Eng
 	
 	And I see "Give feedback (opens in a new window or tab)" on the page
 	And I click on the "Give feedback (opens in a new window or tab)" link
-	And I switch to the new window
+	And I focus page to the new tab
 #	Then I see "Were you able to do what you needed to do today?" on the page
 	And I see "https://www.smartsurvey.co.uk/s/DL1RCF/" in the URL
 
@@ -35,7 +35,7 @@ Examples:
 	
 @Regression
 Scenario Outline: Survey Link 3rd Party Eng
-	
+
 	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
@@ -57,7 +57,7 @@ Scenario Outline: Survey Link 3rd Party Eng
 	
 	And I see "Give feedback (opens in a new window or tab)" on the page
 	And I click on the "Give feedback (opens in a new window or tab)" link
-	And I switch to the new window
+	And I focus page to the new tab
 	Then I see "Were you able to do what you needed to do today?" on the page
 	And I see "https://www.smartsurvey.co.uk/s/DL1RCF/" in the URL
 	
@@ -119,7 +119,7 @@ Scenario Outline: Survey Link 3rd Party Welsh
 	
 	And I see "Give feedback (opens in a new window or tab)" on the page
 	And I click on the "Give feedback (opens in a new window or tab)" link
-	And I switch to the new window
+	And I focus page to the new tab
 	Then I see "Were you able to do what you needed to do today?" on the page
 	And I see "https://www.smartsurvey.co.uk/s/DL1RCF/" in the URL
 	

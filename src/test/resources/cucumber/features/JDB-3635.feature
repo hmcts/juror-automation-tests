@@ -1,9 +1,9 @@
 Feature: JDB-3635
 
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: Checking that TP is visible in all 3rd Party browser URLs after 3rd party specific screens
 
-	Given I am on "Public" "bau-test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
