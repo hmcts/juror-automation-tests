@@ -160,7 +160,7 @@ Scenario: English Privacy Policy
 	
 	And I see link with text "Privacy policy"
    	Then I click on the "Privacy policy" link
-   	And I switch to the new window
+	And I focus page to the new tab
    	And I see "Terms and conditions and privacy policy" on the page
 	
 	And I see "Using the Reply to Jury Summons service means you agree to our privacy policy and to these terms and conditions. Please read them carefully." on the page
@@ -311,7 +311,7 @@ Scenario: English Privacy Policy
 		And I see link with text "Polisi preifatrwydd"
 		Then I click on the "Polisi preifatrwydd" link
 
-		And I switch to the new window
+		And I focus page to the new tab
 		And I see "Telerau ac amodau a pholisi preifatrwydd" on the page
 
 		And I see "Drwy ddefnyddio’r gwasanaeth ar-lein Ymateb i’r Wŷs Rheithgor, rydych yn cytuno i’n polisi preifatrwydd a’r telerau ac amodau hyn. Darllenwch nhw’n ofalus, os gwelwch yn dda." on the page

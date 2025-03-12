@@ -3,7 +3,7 @@ Feature: Expenses_Welsh_JDB-4372
 @expenses @JDB-4372 
 Scenario Outline: expenses_Welsh_JDB-4372
 	
-	Given I am on the welsh version of "expenses" "juror-test01"
+	Given I am on the welsh version of "expenses" "ithc"
 	
 	And I press the "Cychwyn arni" button
 	

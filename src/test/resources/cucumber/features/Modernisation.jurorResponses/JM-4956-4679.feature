@@ -78,10 +78,10 @@ Feature: JM-4956 - 4679
       |MODTESTCOURT |041520001     | 041520002        |415300207     | T202495831   |
 
 
-  @JurorTransformation @NewSchemaConverted
+  @JurorTransformation
   Scenario Outline: Generate a Panel for a Protected Trial
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "demo"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |

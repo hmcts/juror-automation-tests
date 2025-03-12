@@ -1,9 +1,9 @@
 Feature: RA_CharCounters_AllPaths
 
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: English 1st RA Char Counter
 
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -116,10 +116,10 @@ Examples:
 	| juror_number	| last_name	| postcode	| email           	| pool_number	|
 	| 045200183		| DOE		| SW1H 9AJ	| email@outlook.com	| 452300168		|
 	
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: English 3rd RA Char Counter
 
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -272,10 +272,10 @@ Examples:
 	| juror_number	| last_name	| postcode	| email            | pool_number|
 	| 045200184		| DOE		| SW1H 9AJ	| email@outlook.com| 452300169 	|
 	
-@RegressionWelsh @NewSchemaConverted
+@RegressionWelsh
 Scenario Outline: Welsh 1st RA Char Counter
 
-	Given I am on the welsh version of "Public" "test"
+	Given I am on the welsh version of "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -431,10 +431,10 @@ Examples:
 	| juror_number	| last_name	| postcode	| email           	| pool_number	|
 	| 045700027		| DOE		| SW1H 9AJ	| email@outlook.com	| 457300027		|
 
-@RegressionWelsh @NewSchemaConverted
+@RegressionWelsh
 	Scenario Outline: Welsh 3rd RA Char Counter
 
-	Given I am on the welsh version of "Public" "test"
+	Given I am on the welsh version of "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
