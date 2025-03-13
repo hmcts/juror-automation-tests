@@ -5508,7 +5508,7 @@ public class DatabaseTesterNewSchemaDesign {
 				log.info("Address found in print record!");
 				log.info("Creation date: " + rs.getTimestamp("creation_date"));
 			} else {
-				log.warn("Address not found in print record for juror: " + jurorNumber);
+				log.error("Address not found in print record for juror: " + jurorNumber);
 			}
 
 		} catch (SQLException e) {
