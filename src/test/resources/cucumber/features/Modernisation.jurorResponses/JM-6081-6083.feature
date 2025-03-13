@@ -1,9 +1,9 @@
 Feature: JM-6081 - 6083
 
-  @JurorTransformationMulti @NewSchemaConverted @Messages
+  @JurorTransformationMulti @Messages
   Scenario Outline: Send jury sentencing date message - JM-6803
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
@@ -98,10 +98,10 @@ Feature: JM-6081 - 6083
       |MODTESTCOURT | 041529859    | 415980985   | T202419999999  |
 
 
-  @JurorTransformationMulti @NewSchemaConverted @Messages
+  @JurorTransformationMulti @Messages
   Scenario Outline: Send jury sentencing invite message - JM-6081
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
@@ -115,7 +115,6 @@ Feature: JM-6081 - 6083
     And a new trial is inserted with the trial number "<trial_number>"
     And I update juror "<juror_number>" to be able to send a message to them
     And I update juror "<juror_number>" to have a status of responded in order to record attendance
-
 
     #log on and search for juror
     And I log in as "<user>"
@@ -194,5 +193,3 @@ Feature: JM-6081 - 6083
     Examples:
       |user			| juror_number | pool_number | trial_number   |
       |MODTESTCOURT | 041529858    | 415980984   | T202419999998  |
-
-

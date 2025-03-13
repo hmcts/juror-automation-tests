@@ -1,9 +1,9 @@
 Feature: As a jury officer i need to send a attendance date and time changed message
 
-  @JurorTransformationMulti @NewSchemaConverted @Messages
+  @JurorTransformationMulti @Messages
   Scenario Outline: Send next due at court message for Juror using Text including error checks
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "demo"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
@@ -31,14 +31,12 @@ Feature: As a jury officer i need to send a attendance date and time changed mes
     And I set the "Attendance date for message" date to a Monday "5" weeks in the future
     And I set "Hour" to "09"
     And I set "Minute" to "00"
-#    And I set the radio button to "am"
     And I choose the "am" radio button
     And I press the "Continue" button
 
     And I see "Find jurors to send message to" on the page
     And I press the "Continue" button
     And I see error "Select how you want to search for jurors to send message to"
-#    And I set the radio button to "Juror number"
     And I choose the "Juror number" radio button
     And I press the "Continue" button
     And I see error "Enter juror number"
