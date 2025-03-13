@@ -5414,6 +5414,7 @@ public class DatabaseTesterNewSchemaDesign {
 			conn.close();
 		}
 	}
+
 	public void cleanSummonedJurorsInPool(String pool_no) throws SQLException {
 		db = new DBConnection();
 		String env_property = System.getProperty("env.database");
@@ -5466,6 +5467,49 @@ public class DatabaseTesterNewSchemaDesign {
 
 			pStmt.execute();
 			log.info("Inserted 200 appearance records for juror " + jurorNumber);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.error("Message:" + e.getMessage());
+		} finally {
+			conn.commit();
+			pStmt.close();
+			conn.close();
+		}
+	}
+	public void checkAddressMatchesForLetter(String jurorNumber, String jurorAddress) throws SQLException {
+		db = new DBConnection();
+
+		String env_property = System.getProperty("env.database");
+
+		if (env_property != null)
+			conn = db.getConnection(env_property);
+		else
+			conn = db.getConnection("demo");
+		try {
+			log.info("Verifying address '" + jurorAddress + "' exists in print record for juror: " + jurorNumber);
+			pStmt = conn.prepareStatement("""
+					    SELECT detail_rec, creation_date
+					    FROM juror_mod.bulk_print_data
+					    WHERE juror_no = ?
+					    AND detail_rec LIKE ?
+					    AND creation_date = (
+					        SELECT MAX(creation_date)
+					        FROM juror_mod.bulk_print_data
+					        WHERE juror_no = ?
+					    )
+					""");
+			pStmt.setString(1, jurorNumber);
+			pStmt.setString(2, "%" + jurorAddress + "%");
+			pStmt.setString(3, jurorNumber);
+			ResultSet rs = pStmt.executeQuery();
+
+			if (rs.next()) {
+				log.info("✓ Address found in print record!");
+				log.info("Creation date: " + rs.getTimestamp("creation_date"));
+			} else {
+				log.warn("⚠ Address not found in print record for juror: " + jurorNumber);
+			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
