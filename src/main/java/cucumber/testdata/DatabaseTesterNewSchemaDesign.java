@@ -5505,10 +5505,10 @@ public class DatabaseTesterNewSchemaDesign {
 			ResultSet rs = pStmt.executeQuery();
 
 			if (rs.next()) {
-				log.info("✓ Address found in print record!");
+				log.info("Address found in print record!");
 				log.info("Creation date: " + rs.getTimestamp("creation_date"));
 			} else {
-				log.warn("⚠ Address not found in print record for juror: " + jurorNumber);
+				log.warn("Address not found in print record for juror: " + jurorNumber);
 			}
 
 		} catch (SQLException e) {
