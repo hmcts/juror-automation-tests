@@ -1,6 +1,6 @@
 Feature: JS-123
 
-  @JurorTransformation @NewSchemaConverted
+  @JurorTransformation
   Scenario Outline: Reassign a panel member - Happy Path
 
     Given I am on "Bureau" "ithc"
@@ -59,13 +59,11 @@ Feature: JS-123
     And I press the "Continue and move remaining jurors" button
     And I see "1 panel members reassigned to trial <trial_number2>" on the page
 
-
-
     Examples:
       |user			|juror_number  |  pool_number    | trial_number | trial_number2     |
       |MODTESTCOURT |041526712     |  415323254      | TESTTRIAL165  | TESTINGREASSIGN3 |
 
-  @JurorTransformation @NewSchemaConverted
+  @JurorTransformation
   Scenario Outline: Reassign a panel member - Unhappy Path
 
     Given I am on "Bureau" "ithc"

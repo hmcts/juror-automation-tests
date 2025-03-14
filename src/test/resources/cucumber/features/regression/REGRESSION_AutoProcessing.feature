@@ -1,11 +1,11 @@
 Feature: Regression Test AUTOPROCESSING
 
-@Features @NewSchemaConverted @JDB-6701
+@Features @JDB-6701
 Scenario Outline: submit responses which are auto processed
 
 #	return to @Regression when bug fixed
 
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  	| pool_number	| att_date_weeks_in_future	| owner |
@@ -503,10 +503,10 @@ Examples:
 	| juror_number	| last_name	| postcode	| email 			| pool_number	|
 	| 045200212		| DOE		| SW1H 9AJ	| email@outlook.com	| 452300197		|
 	
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: Check that when address is changed, the response is NOT auto processed
 
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -641,10 +641,10 @@ Examples:
 	| juror_number	| last_name	| postcode	| email 			| pool_number	|
 	| 045200213		| DOE		| SW1H 9AJ	| email@outlook.com	| 452300198		|
 
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: Check that when Address2 is changed from (null), the response is not auto processed
 
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -784,7 +784,7 @@ Examples:
 @Regression
 Scenario Outline: Check that when Address3 is changed from (null), the response is not auto processed
 
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -922,10 +922,10 @@ Examples:
 	| juror_number	| last_name			| postcode	| email 			| pool_number	|
 	| 045200215		| LNAMEFOURTHREEZERO| NN1 3HQ	| email@outlook.com	| 452300200		|
 	
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: Check that when Address4 is changed from (null), the response is not auto processed
 
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -1064,10 +1064,10 @@ Examples:
 	| juror_number	| last_name			| postcode	| email 			| pool_number	|
 	| 045200216		| LNAMEONEONEEIGHT	| SA1 4PF	| email@outlook.com	| 452300201		|
 	
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: Check that when Address5 is changed from (null), the response is not auto processed
 
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -1205,10 +1205,10 @@ Examples:
 	| juror_number	| last_name			| postcode	| email 			| pool_number	|
 	| 045200217		| LNAMENINEZEROTWO	| NN1 3HQ	| email@outlook.com	| 452300202		|
 	
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: Check that when Address2 is changed from string value, the response is not auto processed
 
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -1346,10 +1346,10 @@ Examples:
 	| juror_number	| last_name	| postcode	| email 			| pool_number	|
 	| 045200218		| DOE		| SW1H 9AJ	| email@outlook.com	| 452300203		|
 	
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: Check that when Address3 is changed from string value, the response is not auto processed
 
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -1487,10 +1487,10 @@ Examples:
 	| juror_number	| last_name				| postcode	| email 			| pool_number	|
 	| 045200219		| LNAMENINEFIVETHREE	| CH1 2AN	| email@outlook.com	| 452300204		|
 	
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: Check that when Address4 is changed from string value, the response is not auto processed
 
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -1628,10 +1628,10 @@ Examples:
 	| juror_number	| last_name	| postcode	| email 			| pool_number	|
 	| 045200220		| DOE		| SY2 6LU	| email@outlook.com	| 452300205		|
 	
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: Check that when Address5 is changed from string value, the response is not auto processed
 
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |
