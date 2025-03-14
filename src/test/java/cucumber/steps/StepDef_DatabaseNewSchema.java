@@ -242,7 +242,6 @@ public class StepDef_DatabaseNewSchema {
     }
 
 
-
     @Then("^I check that a \"([^\"]*)\" letter has been generated new schema$")
     public void requestInfoLetterGeneratedNSD(String jurorPartNo) throws SQLException {
         StepDef_jurorpool.jurorPartNumber.set(jurorPartNo);
@@ -716,5 +715,9 @@ public class StepDef_DatabaseNewSchema {
     @Given("^I insert 200 appearance records for juror \"([^\"]*)\" at a \"([^\"]*)\" court and pool number \"([^\"]*)\"$")
     public void insertAppearanceRecordsNSD(String jurorNumber, String locCode, String poolNumber) throws SQLException {
         DBTNSD.insertAppearanceRecordsNSD(jurorNumber, locCode, poolNumber);
+    }
+    @Given("^I verify address \"([^\"]*)\" exists in print record for juror \"([^\"]*)\"$")
+    public void verifyAddressExistsInPrintRecord(String jurorAddress, String jurorNumber) throws SQLException {
+        DBTNSD.checkAddressMatchesForLetter(jurorNumber, jurorAddress);
     }
 }

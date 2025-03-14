@@ -249,7 +249,7 @@ Feature: JM-4222
 
     Examples:
       | juror_number  | pool_number | user          |
-      | 045200023     | 452300022   | MODTESTBUREAU |
+      | 045200024     | 452300022   | MODTESTBUREAU |
 
   @JurorTransformation
   Scenario Outline: As a Jury officer when I reassign a juror the optic reference should be copied over to the new record

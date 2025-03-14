@@ -1,21 +1,22 @@
 Feature: JM-3895 mark juror as deferred digital
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Mark juror as deferred - Send to deferral maintenance Happy path digital
-    Given I am on "Public" "test"
+
+    Given I am on "Public" "ithc"
 
     When a bureau owned pool is created with jurors
-      | court |juror_number       | pool_number      | att_date_weeks_in_future | owner |
-      | 415   |<juror_number>     | <pool_number>    | 5                        | 400  |
+      | court | juror_number    | pool_number      | att_date_weeks_in_future | owner |
+      | 415   | <juror_number>  | <pool_number>    | 5                        | 400   |
 
     And I record a digital response for a juror with a deferral
       | jurorNumber   | <juror_number>    |
       | jurorLname    | lname             |
       | jurorPostcode | CH2 2AA           |
 
-
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     Given I log in as "MODTESTBUREAU"
+
     When the user searches for juror record "<juror_number>" from the global search bar
     And I click the summons reply tab
     And I click on the "View summons reply" link
