@@ -1,6 +1,6 @@
 Feature: JM-3725
 
-  @JurorTransformationMulti
+  @JurorTransformation
   Scenario Outline: Automatically disqualify a juror if they are over 75
 
    Given I am on "Bureau" "ithc"

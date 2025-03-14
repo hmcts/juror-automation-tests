@@ -1,12 +1,9 @@
 Feature: JM-4677 - As a jury officer I need to create a trial
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Create a Trial
 
-    Given I am on "Bureau" "test"
-
-    Given I have deleted court rooms for "767"
-    Given I have inserted court rooms for "767"
+    Given I am on "Bureau" "ithc"
 
     #log on and search for juror
     And I log in as "<user>" selecting court "415"
@@ -57,7 +54,7 @@ Feature: JM-4677 - As a jury officer I need to create a trial
   @JurorTransformationWIP
   Scenario Outline: Create a Trial and Edit Trial
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     #log on and search for juror
     And I log in as "<user>"
@@ -114,10 +111,10 @@ Feature: JM-4677 - As a jury officer I need to create a trial
       |user			|
       |MODCOURT |
 
-  @JurorTransformationWIP @NewSchemaConverted @JM-5793
+  @JurorTransformationWIP @JM-5793
   Scenario Outline: Create a trial for user with access to multiple courts
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     #log on and search for juror
     And I log in as "<user>"
@@ -167,7 +164,6 @@ Feature: JM-4677 - As a jury officer I need to create a trial
       | Judge                | EDWARD MATTHEWS                   |
       | Courtroom            | Court Room                        |
       | Protected?           | No                                |
-
 
     Examples:
       |user			|

@@ -549,7 +549,7 @@ Feature: JM-4949 & JM-5766
 
     Examples:
       |user			|juror_number  | juror_number_2 |   pool_number    | trial_number |
-      |MODTESTCOURT |041520018     | 041520019      |    415300201      | TEST2022226  |
+      |MODTESTCOURT |041520018     | 041520024      |    415300201      | TEST2022226  |
 
 
   @JurorTransformation
