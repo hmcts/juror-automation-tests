@@ -1,9 +1,9 @@
 Feature: JM-5066 - As a SJO I need to approve a manually created juror
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Approve Manually created juror as a senior jury officer
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     And I log in as "<user>"
     And I click on the "Juror management" link
     And I press the "Create juror record" button
@@ -66,9 +66,9 @@ Feature: JM-5066 - As a SJO I need to approve a manually created juror
       |user			|
       |MODTESTCOURT |
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Reject Manually created juror as a senior jury officer
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     And I log in as "<user>"
 
     And I click on the "Juror management" link
@@ -140,10 +140,10 @@ Feature: JM-5066 - As a SJO I need to approve a manually created juror
       |MODTESTCOURT |
 
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Create juror at a different court to senior jury officer
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     And I log in as "<user>"
     And I click on the "Juror management" link
     And I press the "Create juror record" button

@@ -1,9 +1,9 @@
 Feature: JM-6259 - As a bureau officer I need to be able to send/resend a summons reminder letter
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: As a Bureau officer send/resend a summons reminder letter
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
@@ -60,16 +60,15 @@ Feature: JM-6259 - As a bureau officer I need to be able to send/resend a summon
     And I press the "Send summons reminder" button
     And I see "1 document sent for printing" on the page
 
-
     Examples:
       |user			| juror_number | pool_number |
       |MODTESTBUREAU | 041596235    | 415395409  |
 
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformation
   Scenario Outline: As a Bureau officer delete a summons reminder letter which is queued for printing
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
@@ -114,5 +113,5 @@ Feature: JM-6259 - As a bureau officer I need to be able to send/resend a summon
     And I do not see "<juror_number>" on the page
 
     Examples:
-      |user			| juror_number | pool_number |
-      |MODTESTBUREAU | 041594235    | 415981289  |
+      |user			  | juror_number | pool_number  |
+      |MODTESTBUREAU  | 041594235    | 415981290    |

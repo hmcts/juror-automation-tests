@@ -1,9 +1,9 @@
 Feature: As a jury officer i need to send a attendance date and time changed message
 
-  @JurorTransformationMulti @NewSchemaConverted @Messages
+  @JurorTransformationMulti @Messages
   Scenario Outline: Send attendance date and time changed message for Juror using Text including error checks
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
@@ -31,14 +31,13 @@ Feature: As a jury officer i need to send a attendance date and time changed mes
     And I set the "Attendance date for message" date to a Monday "5" weeks in the future
     And I set "Hour" to "09"
     And I set "Minute" to "00"
-#    And I set the radio button to "am"
     And I choose the "am" radio button
     And I press the "Continue" button
 
     And I see "Find jurors to send message to" on the page
     And I press the "Continue" button
     And I see error "Select how you want to search for jurors to send message to"
-#    And I set the radio button to "Juror number"
+
     And I choose the "Juror number" radio button
     And I press the "Continue" button
     And I see error "Enter juror number"
@@ -64,14 +63,14 @@ Feature: As a jury officer i need to send a attendance date and time changed mes
       |user			| juror_number | pool_number |
       |MODTESTCOURT | 041529979    | 415980997   |
 
-  @JurorTransformationMulti @NewSchemaConverted @Messages
+  @JurorTransformationMulti @Messages
   Scenario Outline: Send attendance date and time changed message for Juror
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
-      | 415   |<juror_number>    | <pool_number>     | 5				        | 400	|
+      | 415   |<juror_number>    | <pool_number>    | 5				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
       |part_no               | pool_no          | owner |
@@ -92,12 +91,10 @@ Feature: As a jury officer i need to send a attendance date and time changed mes
     And I set the "Attendance date for message" date to a Monday "5" weeks in the future
     And I set "Hour" to "09"
     And I set "Minute" to "00"
-#    And I set the radio button to "am"
     And I choose the "am" radio button
     And I press the "Continue" button
 
     And I see "Find jurors to send message to" on the page
-#    And I set the radio button to "Juror number"
     And I choose the "Juror number" radio button
     And I set "Enter juror number" to "<juror_number>"
     And I press the "Continue" button
@@ -118,14 +115,14 @@ Feature: As a jury officer i need to send a attendance date and time changed mes
       |user			| juror_number | pool_number |
       |MODTESTCOURT | 041529978    | 415980997   |
 
-  @JurorTransformationMulti @NewSchemaConverted @Messages
+  @JurorTransformationMulti @Messages
   Scenario Outline: Send attendance date and time changed message for Juror via their Name
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
-      | 415   |<juror_number>    | <pool_number>     | 5				            | 400	|
+      | 415   |<juror_number>    | <pool_number>    | 5				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
       |part_no               | pool_no          | owner |
@@ -146,12 +143,10 @@ Feature: As a jury officer i need to send a attendance date and time changed mes
     And I set the "Attendance date for message" date to a Monday "5" weeks in the future
     And I set "Hour" to "09"
     And I set "Minute" to "00"
-#    And I set the radio button to "am"
     And I choose the "am" radio button
     And I press the "Continue" button
 
     And I see "Find jurors to send message to" on the page
-#    And I set the radio button to "Juror name"
     And I choose the "Juror name" radio button
     And I press the "Continue" button
     And I see error "Enter juror name"
@@ -174,10 +169,10 @@ Feature: As a jury officer i need to send a attendance date and time changed mes
       |user			| juror_number | pool_number |
       |MODTESTCOURT | 041529977    | 415980997   |
 
-  @JurorTransformationMulti @NewSchemaConverted @Messages
+  @JurorTransformationMulti @Messages
   Scenario Outline: Send attendance date and time changed message for Juror via their Pool number
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
@@ -202,12 +197,10 @@ Feature: As a jury officer i need to send a attendance date and time changed mes
     And I set the "Attendance date for message" date to a Monday "5" weeks in the future
     And I set "Hour" to "09"
     And I set "Minute" to "00"
-#    And I set the radio button to "am"
     And I choose the "am" radio button
     And I press the "Continue" button
 
     And I see "Find jurors to send message to" on the page
-#    And I set the radio button to "Pool"
     And I choose the "Pool" radio button
     And I press the "Continue" button
     And I see error "Enter pool number"
@@ -230,14 +223,14 @@ Feature: As a jury officer i need to send a attendance date and time changed mes
       |user			| juror_number | pool_number |
       |MODTESTCOURT | 041529976    | 415980997   |
 
-  @JurorTransformationMulti @NewSchemaConverted @Messages
+  @JurorTransformationMulti @Messages
   Scenario Outline: Send attendance date and time changed message for Juror in Trial
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
-      | 415   |<juror_number>    | <pool_number>     | 5				            | 400	|
+      | 415   |<juror_number>    | <pool_number>    | 5				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
       |part_no               | pool_no          | owner |
@@ -255,12 +248,10 @@ Feature: As a jury officer i need to send a attendance date and time changed mes
     And I press the "Apps" button
     And I click on the "Juror management" link
     And I click on the "Record attendance" link
-#    And I set the radio button to "Check in"
     And I choose the "Check in" radio button
 
     And I set "Hour" to "09"
     And I set "Minute" to "00"
-#    And I set the radio button to "am"
     And I choose the "am" radio button
     And I input juror "<juror_number>" to be checked in
     And I press the "Check in juror" button
@@ -271,7 +262,6 @@ Feature: As a jury officer i need to send a attendance date and time changed mes
     And I click on the "<trial_number>" link
 
     And I press the "Generate panel" button
-#    And I set the radio button to "All available jurors"
     And I choose the "All available jurors" radio button
     And I set "Number of jurors needed on this panel" to "1"
     And I press the "Continue" button
@@ -299,12 +289,10 @@ Feature: As a jury officer i need to send a attendance date and time changed mes
     And I set the "Attendance date for message" date to a Monday "5" weeks in the future
     And I set "Hour" to "09"
     And I set "Minute" to "00"
-#    And I set the radio button to "am"
     And I choose the "am" radio button
     And I press the "Continue" button
 
     And I see "Find jurors to send message to" on the page
-#    And I set the radio button to "Trial"
     And I choose the "Trial" radio button
     And I press the "Continue" button
     And I press the "Continue with selected" button
@@ -328,10 +316,10 @@ Feature: As a jury officer i need to send a attendance date and time changed mes
       |user			| juror_number | pool_number |trial_number       |
       |MODTESTCOURT | 041529975    | 415980997   |T202419999995      |
 
-  @JurorTransformationMulti @NewSchemaConverted @Messages
+  @JurorTransformationMulti @Messages
   Scenario Outline: Send attendance date and time changed message for Juror - Next start date
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number      | pool_number	     | att_date_weeks_in_future	| owner |
@@ -387,7 +375,7 @@ Feature: As a jury officer i need to send a attendance date and time changed mes
   @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send attendance date and time changed message for Juror via their deferred date
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
@@ -504,7 +492,7 @@ Feature: As a jury officer i need to send a attendance date and time changed mes
   @JurorTransformationMulti @NewSchemaConverted @Messages
   Scenario Outline: Send attendance date and time changed message for Juror using Text for multiple jurors
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
