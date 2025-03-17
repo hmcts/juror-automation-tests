@@ -2437,11 +2437,12 @@ public class StepDef_jurorpool {
 
     @When("^I filter on name \"([^\"]*)\"$")
     public void iFilterOnName(String lastName) {
+        NAV.waitForPageLoad();
         DEFERRAL_MAINTENANCE.clickShowFilterButton();
-
         DEFERRAL_MAINTENANCE.filterByLastName(lastName);
         DEFERRAL_MAINTENANCE.clickApplyFiltersButton();
         DEFERRAL_MAINTENANCE.clickShowFilterButton();
+        NAV.waitForPageLoad();
     }
 
     @When("^I navigate to the last page of deferral maintenance$")
@@ -2682,6 +2683,7 @@ public class StepDef_jurorpool {
         NAV.set_valueTo("Main phone", "0123456789");
         NAV.press_buttonByName("Continue");
 
+        NAV.textPresentOnPage("email address");
         NAV.set_valueTo("Enter your email address", "test@test.com");
         NAV.set_valueTo("Enter your email address again", "test@test.com");
         NAV.press_buttonByName("Continue");
@@ -2691,6 +2693,7 @@ public class StepDef_jurorpool {
         NAV.set_valueTo("Year", "1970");
         NAV.press_buttonByName("Continue");
 
+        NAV.waitForPageLoad();
         NAV.textPresentOnPage("Confirm you're eligible for jury service");
         NAV.press_buttonByName("Continue");
 
@@ -2732,6 +2735,7 @@ public class StepDef_jurorpool {
         NAV.check_checkbox("The information I have given is true to the best of my knowledge.");
         NAV.press_buttonByName("Submit");
 
+        NAV.waitForPageLoad();
         NAV.textPresentOnPage("You have completed your reply");
     }
 
