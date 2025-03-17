@@ -2,15 +2,16 @@ Feature: JM-5060 - 5062
 
   @JurorTransformationMulti
   Scenario Outline: JM-5060 - Mark Juror as Failed to Attend
-    Given I am on "Bureau" "test"
+
+    Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
-      | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
-      | 415   |<juror_number> 	    | <pool_number>     | 5				            | 400	|
+      | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number> 	    | <pool_number>     | 5				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no              | pool_no           | owner |
-      |<juror_number>       | <pool_number>     | 415   |
+      | part_no              | pool_no           | owner |
+      | <juror_number>       | <pool_number>     | 415   |
 
     #log on and search for juror
     And I log in as "<user>"
@@ -46,23 +47,23 @@ Feature: JM-5060 - 5062
     And I see the juror record updated banner containing "Failed to attend"
     And I see the juror status has updated to "Failed to attend"
 
-
     Examples:
-      |user			|juror_number  | pool_number   |
-      |MODTESTCOURT |041536188      | 415212883    |
+      | user		  | juror_number  | pool_number   |
+      | MODTESTCOURT  | 041536188     | 415212883     |
 
 
   @JurorTransformationMulti
   Scenario Outline: JM-5060 - Mark Juror as Failed to Attend for a juror with an Attendance - Unhappy Path
+
     Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
-      | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
-      | 415   |<juror_number> 	    | <pool_number>     | 5				            | 400	|
+      | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number> 	    | <pool_number>     | 5				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no              | pool_no           | owner |
-      |<juror_number>       | <pool_number>     | 415   |
+      | part_no              | pool_no           | owner |
+      | <juror_number>       | <pool_number>     | 415   |
 
     #log on and search for juror
     And I log in as "<user>"
@@ -106,21 +107,22 @@ Feature: JM-5060 - 5062
     And I see "Unable to change this juror’s status to ‘Failed to attend’" in the error banner
 
     Examples:
-      |user			|juror_number  | pool_number   |
-      |MODTESTCOURT |041536189     | 415212883 |
+      | user		  | juror_number  | pool_number   |
+      | MODTESTCOURT  | 041536189     | 415212883     |
 
 
   @JurorTransformationMulti
   Scenario Outline: JM-5060 - Mark Juror as Failed to Attend for a juror who has given a reasonable reason - Unhappy Path
-    Given I am on "Bureau" "test"
+
+    Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
-      | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
-      | 415   |<juror_number> 	    | <pool_number>     | 5				            | 400	|
+      | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number> 	    | <pool_number>     | 5				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no              | pool_no           | owner |
-      |<juror_number>       | <pool_number>     | 415   |
+      | part_no              | pool_no           | owner |
+      | <juror_number>       | <pool_number>     | 415   |
 
     #log on and search for juror
     And I log in as "<user>"
@@ -156,21 +158,22 @@ Feature: JM-5060 - 5062
     And I do not see failed to attend radio button in the update juror record section
 
     Examples:
-      |user			|juror_number  | pool_number   |
-      |MODTESTCOURT |041536190      | 415212883 |
+      | user		  | juror_number  | pool_number |
+      | MODTESTCOURT  | 041536190     | 415212883   |
 
 
   @JurorTransformationMulti
   Scenario Outline: JM-5062 - Undo Failed to Attend
+
     Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
-      | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
-      | 415   |<juror_number> 	    | <pool_number>     | 5				            | 400	|
+      | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number> 	    | <pool_number>     | 5				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no              | pool_no           | owner |
-      |<juror_number>       | <pool_number>     | 415   |
+      | part_no              | pool_no           | owner |
+      | <juror_number>       | <pool_number>     | 415   |
 
     #log on and search for juror
     And I log in as "<user>"
@@ -215,5 +218,5 @@ Feature: JM-5060 - 5062
     And I see the juror status has updated to "Responded"
 
     Examples:
-      |user			|juror_number  | pool_number   |
-      |MODTESTCOURT |741500319      | 415240833 |
+      | user		  | juror_number | pool_number |
+      | MODTESTCOURT  | 741500319    | 415240833   |
