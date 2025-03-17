@@ -307,7 +307,7 @@ Feature: Create Juror Record scenarios
     And I see "What's the juror's address?" on the page
     And I set "Address line 1" to "5 Testing Street"
     And I set "Town or city" to "London"
-    And I set "Postcode" to "RG10 9AG"
+    And I set "Postcode" to "RX10 9AG"
     And I press the "Continue" button
     
     #catchment area check
