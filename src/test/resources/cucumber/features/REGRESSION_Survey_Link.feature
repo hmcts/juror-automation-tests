@@ -33,8 +33,10 @@ Examples:
 	| juror_number	| last_name			| postcode	| pool_number	|
 	| 045200205		| LNAMEONEONENINE	| CH1 2AN	| 452300190		|
 	
-@Regression
+@RegressionWIP
 Scenario Outline: Survey Link 3rd Party Eng
+
+	#moved into WIP until we can resolve focus to new page issue
 
 	Given I am on "Public" "ithc"
 
@@ -97,9 +99,11 @@ Examples:
 	| juror_number	| last_name			| postcode	| pool_number	|
 	| 045700039		| LNAMEONEONENINE	| CH1 2AN	| 457300039		|
 
-@RegressionWelsh
+@RegressionWIP
 Scenario Outline: Survey Link 3rd Party Welsh
-	
+
+	#moving to WIP until we can resolve focus to new page issue
+
 	Given I am on the welsh version of "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors

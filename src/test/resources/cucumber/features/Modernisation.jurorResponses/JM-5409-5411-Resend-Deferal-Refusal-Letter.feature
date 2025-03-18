@@ -1,9 +1,9 @@
 Feature: 1)JM-5409,JM-5411 - As a Bureau/jury officer I need to resend a deferral refusal letters
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline:Verify as a bureau officer can able to resend a deferral refusal letter
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "demo"
     And I log in as "<user>"
 
     When a bureau owned pool is created with jurors
@@ -107,7 +107,7 @@ Feature: 1)JM-5409,JM-5411 - As a Bureau/jury officer I need to resend a deferra
       | juror_number | pool_number | user          |
       | 041520030    | 415300707   | MODTESTBUREAU |
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline:As a bureau officer verify a deferred juror letter in printing stage can delete
 
     Given I am on "Bureau" "ithc"
@@ -201,7 +201,7 @@ Feature: 1)JM-5409,JM-5411 - As a Bureau/jury officer I need to resend a deferra
       | 041520123    | 415300706   | MODTESTBUREAU |
 
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline:Verify as a bureau user can view letters queued for printing and can delete it
 
     Given I am on "Bureau" "ithc"
@@ -294,7 +294,7 @@ Feature: 1)JM-5409,JM-5411 - As a Bureau/jury officer I need to resend a deferra
       | 041520124    | 415300708   | MODTESTBUREAU |
 
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline:As a jury officer test a Deferred juror can resend a refused letter by searching via juror number
 
     Given I am on "Bureau" "ithc"
@@ -395,7 +395,7 @@ Feature: 1)JM-5409,JM-5411 - As a Bureau/jury officer I need to resend a deferra
       | juror_number | pool_number | user         |
       | 041530033    | 415300345   | MODTESTCOURT |
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline:As a jury officer test a Deferred juror can resend a granted refused letter by searching via pool number
 
     Given I am on "Bureau" "test"
