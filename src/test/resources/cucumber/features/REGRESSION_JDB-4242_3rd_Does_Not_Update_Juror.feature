@@ -408,7 +408,7 @@ Examples:
 @Regression
 Scenario Outline: English 3rd Party Straight Through - Juror already has contact details
 
-	Given I am on "Public" "test"
+	Given I am on "Public" "demo"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -426,7 +426,7 @@ Scenario Outline: English 3rd Party Straight Through - Juror already has contact
 	| <juror_number>	| <pool_number>	| <last_name>	| <postcode>| <email>	|
 	
 	#Bureau process reply
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "demo"
 	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
