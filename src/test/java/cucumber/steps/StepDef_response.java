@@ -213,6 +213,7 @@ public class StepDef_response {
 			GRP.click_radioButtonWithLabel("The person is not here");
 			NAV.press_buttonByName("Continue");
 
+			NAV.waitForPageLoad();
 			NAV.textPresentOnPage("Is the name we have for them correct?");
 			GRP.click_radioButtonWithLabel("Yes");
 			NAV.press_buttonByName("Continue");
@@ -789,6 +790,7 @@ public class StepDef_response {
 			NAV.set_valueTo("Prif rif ff", "02078211818");
 			NAV.press_buttonByName("Parhau");
 
+			NAV.waitForPageLoad();
 			NAV.set_valueTo("Nodwch eich cyfeiriad e-bost", email);
 			NAV.set_valueTo("Nodwch eich cyfeiriad e-bost eto", email);
 			NAV.press_buttonByName("Parhau");

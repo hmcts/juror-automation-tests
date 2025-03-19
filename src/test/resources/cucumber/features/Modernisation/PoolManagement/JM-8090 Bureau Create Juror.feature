@@ -477,7 +477,7 @@ Feature: Bureau Create Juror Record
   @JurorTransformationMulti
   Scenario Outline: Bureau Create Juror Record for juror outside of any court catchment area
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "demo"
 
     #enable permissions
     Given I "enable" CREATE_JUROR permission for bureau user "<user>"
@@ -510,7 +510,7 @@ Feature: Bureau Create Juror Record
     And I see "What's the juror's address?" on the page
     And I set "Address line 1" to "5 Testing Street"
     And I set "Town or city" to "London"
-    And I set "Postcode" to "RG10 9AG"
+    And I set "Postcode" to "RX10 9AG"
     And I press the "Continue" button
 
     #catchment area check
@@ -539,7 +539,7 @@ Feature: Bureau Create Juror Record
     And I see "-" in the same row as "Date of birth"
     And I see "John Stark" in the same row as "Name"
     And I see "5 Testing Street" in the same row as "Address"
-    And I see "RG10 9AG" on the page
+    And I see "RX10 9AG" on the page
     And I see "07777777777" in the same row as "Main phone"
     And I see "-" in the same row as "Alternative phone"
     And I see "-" in the same row as "Email"
@@ -552,7 +552,7 @@ Feature: Bureau Create Juror Record
     And I see "Juror record created for John Stark and summoned to pool" on the page
     And I see pool summoned total count is "2"
     And I see "Summoned" in the same row as "Stark"
-    And I see "RG10 9AG" in the same row as "Stark"
+    And I see "RX10 9AG" in the same row as "Stark"
 
     Examples:
       |user			 |
