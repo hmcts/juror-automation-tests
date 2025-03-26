@@ -117,25 +117,43 @@ withNightlyPipeline(type, product, component, 600) {
 
   setBuildName()
 
+  before('fullFunctionalTest') {
+    sh '''
+    echo "Creating screenshots directory before tests run..."
+    mkdir -p target/screenshots
+    chmod 777 target/screenshots
+    echo "Screenshots directory created:"
+    ls -la target/screenshots
+    '''
+  }
+
   afterAlways('fullFunctionalTest') {
     sh '''
-        mkdir -p target/screenshots && chmod 777 target/screenshots
-        
-        if ! command -v tesseract &> /dev/null; then
-            echo "Installing Tesseract OCR..."
-            if command -v apt-get &> /dev/null; then
-                apt-get update && apt-get install -y tesseract-ocr
-            elif command -v yum &> /dev/null; then
-                yum install -y tesseract
-            else
-                echo "Could not install Tesseract OCR - package manager not found"
-                exit 1  # Fail the pipeline if Tesseract cannot be installed
-            fi
+    echo "Checking screenshots folder..."
+    if [ ! -d "target/screenshots" ]; then
+      echo "Screenshots directory missing, recreating..."
+      mkdir -p target/screenshots
+    fi
+    chmod 777 target/screenshots
+    echo "Folder ready:"
+    ls -l target/screenshots || echo "(No files yet)"
+  
+    
+    if ! command -v tesseract &> /dev/null; then
+        echo "Installing Tesseract OCR..."
+        if command -v apt-get &> /dev/null; then
+            apt-get update && apt-get install -y tesseract-ocr
+        elif command -v yum &> /dev/null; then
+            yum install -y tesseract
         else
-            echo "Tesseract OCR is already installed"
+            echo "Could not install Tesseract OCR - package manager not found"
+            exit 1  # Fail the pipeline if Tesseract cannot be installed
         fi
-        
-        tesseract --version || { echo "Tesseract installation failed"; exit 1; }
+    else
+        echo "Tesseract OCR is already installed"
+    fi
+    
+    tesseract --version || { echo "Tesseract installation failed"; exit 1; }
     '''
 
     def screenshotDir = "target/screenshots"
@@ -162,7 +180,8 @@ withNightlyPipeline(type, product, component, 600) {
             if (ocrContent.toLowerCase().contains("timeout") ||
                     ocrContent.toLowerCase().contains("504 Gateway Time-out") ||
                     ocrContent.toLowerCase().contains("gateway") ||
-                    ocrContent.toLowerCase().contains("server") ||
+                    ocrContent.toLowerCase().contains("Bad Gateway") ||
+                    ocrContent.toLowerCase().contains("Internal Server Error") ||
                     ocrContent.toLowerCase().contains("Microsoft-Azure") ||
                     ocrContent.toLowerCase().contains("server error")) {
               echo "Timeout detected in screenshot: ${screenshot.path}"

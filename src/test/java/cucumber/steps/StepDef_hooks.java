@@ -43,23 +43,25 @@ public class StepDef_hooks {
 		this.webDriver = webDriver;
 		SST = PageFactory.initElements(webDriver, ScreenShotTaker.class);
 	}
-	
+
 	@After
 	public void afterScenario(Scenario scenario) {
-		if (scenario.isFailed()) {		
+		if (scenario.isFailed()) {
 			try {
-				JavascriptExecutor jse = (JavascriptExecutor)webDriver;
-			    jse.executeScript("document.body.style.zoom = '100%';");
+				JavascriptExecutor jse = (JavascriptExecutor) webDriver;
+				jse.executeScript("document.body.style.zoom = '100%';");
 			} catch (Exception e) {
-				//Untested
+				log.warn("Could not reset zoom: " + e.getMessage());
 			}
 			try {
-				byte[] screenshot = ((TakesScreenshot)webDriver).getScreenshotAs(OutputType.BYTES);
-				log.info("Took a screenshot");
-				scenario.attach(screenshot, "image/png",scenario.getName());
-				log.info("Embeded screenshot into the cucumber scenario as image/png");
+				byte[] screenshot = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.BYTES);
+				scenario.attach(screenshot, "image/png", scenario.getName());
+				log.info("Embedded screenshot into the Cucumber scenario");
+
+				takeScreenshot(scenario.getName(), "FAILED");
+
 			} catch (Exception e) {
-				log.error("Failed to embedd with error =>" + e);
+				log.error("Failed to take or embed screenshot: " + e.getMessage());
 			}
 		}
 	}
