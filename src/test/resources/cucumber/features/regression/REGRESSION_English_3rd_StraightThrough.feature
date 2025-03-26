@@ -1,9 +1,9 @@
 Feature: Regression English_3rd_StraightThrough
 
-  @Regression @NewSchemaConverted
+  @Regression
   Scenario Outline: English 3rd Party Straight Through
 
-    Given I am on "Public" "test"
+    Given I am on "Public" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
@@ -323,10 +323,10 @@ Feature: Regression English_3rd_StraightThrough
       | juror_number | last_name       | postcode | email             | pool_number |
       | 045200091    | LNAMETWOSIXZERO | CH1 2AN  | email@outlook.com | 452300090   |
 
-  @Regression @NewSchemaConverted
+  @Regression
   Scenario Outline: English 3rd Party Straight Through Change Links
 
-    Given I am on "Public" "test"
+    Given I am on "Public" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
@@ -491,10 +491,10 @@ Feature: Regression English_3rd_StraightThrough
       | juror_number | last_name       | postcode | email      | pool_number |
       | 045200092    | LNAMEONEONENINE | CH1 2AN  | a@eeee.com | 452300091   |
 
-  @Regression @NewSchemaConverted
+  @Regression
   Scenario Outline: English 1st Party Straight Through Navigate Back
 
-    Given I am on "Public" "test"
+    Given I am on "Public" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
