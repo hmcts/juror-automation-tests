@@ -137,7 +137,7 @@ withNightlyPipeline(type, product, component, 600) {
     chmod 777 target/screenshots
     echo "Folder ready:"
     ls -l target/screenshots || echo "(No files yet)"
-    //random
+  
     
     if ! command -v tesseract &> /dev/null; then
         echo "Installing Tesseract OCR..."
