@@ -1,6 +1,6 @@
 Feature: 1st_Straight Spaces in Phone number
 
-@RegressionSingle @NewSchemaConverted
+@RegressionSingle
 Scenario Outline: 1st_Straight Spaces in Phone number
 
 	Given I am on "Public" "ithc"
@@ -145,7 +145,7 @@ Scenario Outline: 1st_Straight Spaces in Phone number
 	And I see "Completed" on the page
 	
 	Then on "JUROR_MOD" . "JUROR" I see "H_PHONE" is "0207 8211 818" where "JUROR_NUMBER" is "<juror_number>"
-	Then on "JUROR_MOD" . "JUROR" I see "W_PHONE" is "0207 1111 112" where "JUROR_NUMBER" is "<juror_number>"
+	Then on "JUROR_MOD" . "JUROR" I see "M_PHONE" is "0207 1111 112" where "JUROR_NUMBER" is "<juror_number>"
 	
 Examples:
 	| juror_number	| last_name			| postcode	| email 	| pool_number	|

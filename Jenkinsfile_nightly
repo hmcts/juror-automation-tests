@@ -117,7 +117,211 @@ withNightlyPipeline(type, product, component, 600) {
 
   setBuildName()
 
+  before('fullFunctionalTest') {
+    sh '''
+    echo "Creating screenshots directory before tests run..."
+    mkdir -p target/screenshots
+    chmod 777 target/screenshots
+    echo "Screenshots directory created:"
+    ls -la target/screenshots
+    '''
+  }
+
   afterAlways('fullFunctionalTest') {
+    sh '''
+    echo "Checking screenshots folder..."
+    if [ ! -d "target/screenshots" ]; then
+      echo "Screenshots directory missing, recreating..."
+      mkdir -p target/screenshots
+    fi
+    chmod 777 target/screenshots
+    echo "Folder ready:"
+    ls -l target/screenshots || echo "(No files yet)"
+  
+    
+    if ! command -v tesseract &> /dev/null; then
+        echo "Installing Tesseract OCR..."
+        if command -v apt-get &> /dev/null; then
+            apt-get update && apt-get install -y tesseract-ocr
+        elif command -v yum &> /dev/null; then
+            yum install -y tesseract
+        else
+            echo "Could not install Tesseract OCR - package manager not found"
+            exit 1  # Fail the pipeline if Tesseract cannot be installed
+        fi
+    else
+        echo "Tesseract OCR is already installed"
+    fi
+    
+    tesseract --version || { echo "Tesseract installation failed"; exit 1; }
+    '''
+
+    def screenshotDir = "target/screenshots"
+    def timeoutScreenshots = []
+
+    if (fileExists(screenshotDir)) {
+      echo "Checking for timeout screenshots in ${screenshotDir}"
+
+      def foundScreenshots = findFiles(glob: "${screenshotDir}/*.png")
+
+      if (foundScreenshots.length > 0) {
+        echo "Found ${foundScreenshots.length} screenshots to analyze"
+
+        foundScreenshots.each { screenshot ->
+          echo "Analyzing screenshot: ${screenshot.path}"
+
+          def ocrFile = screenshot.path.replace('.png', '_ocr.txt')
+          sh "tesseract ${screenshot.path} ${screenshot.path.replace('.png', '')} -l eng"
+
+          if (fileExists(ocrFile)) {
+            def ocrContent = readFile(ocrFile)
+            echo "OCR content for ${screenshot.path}: ${ocrContent.take(200)}..."
+
+            if (ocrContent.toLowerCase().contains("timeout") ||
+                    ocrContent.toLowerCase().contains("504 Gateway Time-out") ||
+                    ocrContent.toLowerCase().contains("gateway") ||
+                    ocrContent.toLowerCase().contains("Bad Gateway") ||
+                    ocrContent.toLowerCase().contains("Internal Server Error") ||
+                    ocrContent.toLowerCase().contains("Microsoft-Azure") ||
+                    ocrContent.toLowerCase().contains("server error")) {
+              echo "Timeout detected in screenshot: ${screenshot.path}"
+              timeoutScreenshots.add(screenshot.path)
+            }
+          } else {
+            echo "OCR file not generated for ${screenshot.path}"
+          }
+        }
+      }
+    } else {
+      echo "Screenshot directory ${screenshotDir} not found"
+    }
+
+    if (timeoutScreenshots.size() > 0) {
+      echo "Found ${timeoutScreenshots.size()} screenshots with timeouts"
+
+      def screenshotTimestamps = []
+      timeoutScreenshots.each { path ->
+        def timestampMatch = path =~ /(\d{8}_\d{6})/
+        if (timestampMatch.find()) {
+          def timestamp = timestampMatch.group(1)
+          try {
+            def timestampDate = Date.parse("yyyyMMdd_HHmmss", timestamp)
+            screenshotTimestamps.add([path: path, timestamp: timestampDate])
+            echo "Extracted timestamp ${timestamp} from ${path}"
+          } catch (Exception e) {
+            echo "Failed to parse timestamp ${timestamp} from ${path}: ${e.message}"
+          }
+        } else {
+          echo "No timestamp found in ${path}"
+        }
+      }
+
+      def cucumberReports = findFiles(glob: "target/TestRunner_*/cucumber.json")
+      def failedFeatures = []
+
+      cucumberReports.each { report ->
+        echo "Analyzing Cucumber report: ${report.path}"
+
+        try {
+          def jsonReport = readJSON file: report.path
+
+          jsonReport.each { feature ->
+            boolean featureHasTimeout = false
+
+            feature.elements.each { element ->
+              if (element.type == "scenario" || element.type == "scenario_outline") {
+                def scenarioName = element.name ?: element.keyword + " at line " + element.line
+                if (element.start_timestamp) {
+                  try {
+                    def scenarioStartTime = Date.parse("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", element.start_timestamp)
+                    def scenarioEndTime = scenarioStartTime
+
+                    element.steps.each { step ->
+                      if (step.result && step.result.duration) {
+                        scenarioEndTime = new Date(scenarioEndTime.time + (step.result.duration / 1000000))
+                      }
+                    }
+
+                    def bufferTime = 30 * 1000
+                    def scenarioStartWithBuffer = new Date(scenarioStartTime.time - bufferTime)
+                    def scenarioEndWithBuffer = new Date(scenarioEndTime.time + bufferTime)
+
+                    def matchingScreenshots = screenshotTimestamps.findAll { screenshot ->
+                      screenshot.timestamp >= scenarioStartWithBuffer && screenshot.timestamp <= scenarioEndWithBuffer
+                    }
+
+                    if (matchingScreenshots.size() > 0) {
+                      featureHasTimeout = true
+                      echo "Found matching scenario for timeout: ${feature.uri}:${element.line}"
+                      echo "  Scenario ran from ${scenarioStartTime} to ${scenarioEndTime}"
+                      matchingScreenshots.each { screenshot ->
+                        echo "  Matched with screenshot: ${screenshot.path} (timestamp: ${screenshot.timestamp})"
+                      }
+                    }
+                  } catch (Exception e) {
+                    echo "Error processing scenario timestamps: ${e.message}"
+                  }
+                }
+              }
+            }
+
+            if (featureHasTimeout) {
+              failedFeatures.add(feature.uri)
+            }
+          }
+        } catch (Exception e) {
+          echo "Error processing Cucumber report ${report.path}: ${e.message}"
+        }
+      }
+
+      if (failedFeatures.size() > 0) {
+        echo "Found ${failedFeatures.size()} features to rerun based on timeout analysis"
+
+        def uniqueFeatures = failedFeatures.unique()
+        def reportContent = "Timeout Report\n=============\n\n"
+        uniqueFeatures.eachWithIndex { feature, index ->
+          reportContent += "${index + 1}. ${feature}\n"
+        }
+
+        writeFile file: 'timeout_report.txt', text: reportContent
+        archiveArtifacts artifacts: 'timeout_report.txt', allowEmptyArchive: true
+
+        try {
+          def envName = env.envName ?: error("Environment variable 'envName' not set")
+          def envDriver = env.envDriver ?: error("Environment variable 'envDriver' not set")
+          def retryCount = env.retryCount ? env.retryCount.toInteger() : 1
+          def maxRetries = 3
+
+          if (retryCount > maxRetries) {
+            error "Maximum retry limit (${maxRetries}) exceeded for timeout features"
+          }
+
+          echo "Retrying features with timeouts (Attempt ${retryCount}/${maxRetries})..."
+
+          def featurePaths = uniqueFeatures.join(" ")
+
+          withEnv(["JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF8", "retryCount=${retryCount + 1}"]) {
+            sh """
+                        ./gradlew cucumber \\
+                            -Denv=${envName} \\
+                            -Dbrowser=${envDriver} \\
+                            -DretryAttempt=true \\
+                            -Dcucumber.options="${featurePaths}"
+                    """
+          }
+          echo "Retry of features completed successfully"
+        } catch (Exception e) {
+          echo "Some retried features still failed: ${e.message}"
+          currentBuild.result = 'UNSTABLE'
+
+          echo "Retry attempt ${retryCount} failed. Recording failure but continuing pipeline."
+        }
+      } else {
+        echo "No matching features found for timeout screenshots, skipping retry"
+      }
+    } else {
+      echo "No timeouts detected in screenshots, skipping retry step"
+    }
 
     publishHTML target: [
       allowMissing         : true,
@@ -221,5 +425,8 @@ withNightlyPipeline(type, product, component, 600) {
     steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'selenium.log'
     steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'target/**/*.json'
     steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'target/**/*.html'
+
+    echo "Cleaning up screenshots folder..."
+    sh 'rm -rf target/screenshots'
   }
 }
