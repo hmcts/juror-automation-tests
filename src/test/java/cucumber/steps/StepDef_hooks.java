@@ -1,5 +1,6 @@
 package cucumber.steps;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
@@ -22,6 +23,11 @@ import io.cucumber.java.Scenario;
 
 import org.openqa.selenium.support.PageFactory;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class StepDef_hooks {
 	
 	private aSamplePO SPO;
@@ -30,7 +36,9 @@ public class StepDef_hooks {
 	private final WebDriver webDriver;
 	private ScreenShotTaker SST;
 	private static Logger log = Logger.getLogger(StepDef_hooks.class);
-	
+
+	private static final String SCREENSHOT_DIR = "target/screenshots/";
+
 	public StepDef_hooks(SharedDriver webDriver) {
 		this.webDriver = webDriver;
 		SST = PageFactory.initElements(webDriver, ScreenShotTaker.class);
@@ -55,6 +63,39 @@ public class StepDef_hooks {
 			}
 		}
 	}
-	
-}
 
+	public void takeScreenshot(String testName, String errorType) {
+		try {
+			File directory = new File(SCREENSHOT_DIR);
+			if (!directory.exists()) {
+				directory.mkdirs();
+			}
+
+			File scrFile = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.FILE);
+
+			String cleanFileName = testName.replaceAll("[^a-zA-Z0-9-_\\.]", "_");
+			String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+			String fileName = String.format("%s/%s_%s_%s.png",
+					SCREENSHOT_DIR,
+					cleanFileName,
+					errorType,
+					timestamp
+			);
+
+			FileUtils.copyFile(scrFile, new File(fileName));
+
+			String mappingFileName = fileName.replace(".png", "_mapping.txt");
+			FileUtils.writeStringToFile(new File(mappingFileName),
+					String.format("Test: %s\nError: %s\nTimestamp: %s\n",
+							testName,
+							errorType,
+							timestamp
+					),
+					"UTF-8"
+			);
+
+		} catch (Exception e) {
+			log.error("Failed to take screenshot: " + e.getMessage());
+		}
+	}
+}
