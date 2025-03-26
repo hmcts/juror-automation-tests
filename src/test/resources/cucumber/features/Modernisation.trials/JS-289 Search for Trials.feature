@@ -3,7 +3,7 @@ Feature: JS-289 Search for Trials
   @JurorTransformation
   Scenario Outline: Test to search pool records as bureau
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "demo"
 
     And I delete trial "TRIAL1" and associated records
     And I delete trial "TRIAL2" and associated records
@@ -62,7 +62,7 @@ Feature: JS-289 Search for Trials
     And I see "TRIAL1" on the page
 
     #log in as 457 user
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "demo"
     And I log in as "SWANSEA" selecting court "457"
 
     #create a trial 4
@@ -151,6 +151,13 @@ Feature: JS-289 Search for Trials
     And I see "TRIAL1" on the page
     And I see "TRIAL2" on the page
     And I do not see "ALTERNATE3" on the page
+    And I do not see "WELSH4" on the page
+    
+    #clear search
+    When I click on the "Clear search" link
+    And I see "TRIAL1" on the page
+    And I see "TRIAL2" on the page
+    And I see "ALTERNATE3" on the page
     And I do not see "WELSH4" on the page
 
     Examples:
