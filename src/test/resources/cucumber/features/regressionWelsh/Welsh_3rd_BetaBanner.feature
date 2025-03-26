@@ -2,10 +2,10 @@ Feature: Welsh_3rd_BetaBanner
 
 # Beta banner has been removed 27-07-20
 
-@RegressionWelsh @NewSchemaConverted
+@RegressionWelsh
 Scenario Outline: Welsh 3rd Party Beta Banner Check
 
-	Given I am on the welsh version of "Public" "test"
+	Given I am on the welsh version of "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  	| pool_number	| att_date_weeks_in_future	| owner |

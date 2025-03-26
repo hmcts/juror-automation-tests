@@ -122,7 +122,6 @@ Scenario Outline: English 3rd Party ST - contact details same as 3rd party
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
 		| 452   |<juror_number>| <pool_number>	| 5				            | 400   |
 
-	
 	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
 	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	

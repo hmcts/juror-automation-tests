@@ -162,6 +162,12 @@ public class TrialsAndAttendance {
     @FindBy(xpath = "//div/strong[@class='govuk-tag mod-tag--dark-blue']")
     static WebElement lockedFlag;
 
+    @FindBy(id = "searchTrialNumber")
+    WebElement searchTrialNumberInput;
+
+    @FindBy(id = "search-trials-button")
+    WebElement searchTrialButton;
+
     public Map<String, String> getTrialDetails() {
         Map<String, String> details = new HashMap<>();
 
@@ -503,7 +509,7 @@ public class TrialsAndAttendance {
     }
 
     public void clickPreviousAttendanceLink() {
-        WebElement link = driver.findElement(By.xpath("/html/body/div[4]/a"));
+        WebElement link = driver.findElement(By.xpath("//html/body/div[4]/div/a"));
         link.click();
     }
 
@@ -594,5 +600,11 @@ public class TrialsAndAttendance {
     public static String getCheckOutMinute() {
         log.info("Getting checkout time");
         return confirmAttendanceCheckOutMinute.getAttribute("value");
+    }
+
+    public void searchForTrial(String trialNo) {
+        searchTrialNumberInput.clear();
+        searchTrialNumberInput.sendKeys(trialNo);
+        searchTrialButton.click();
     }
 }
