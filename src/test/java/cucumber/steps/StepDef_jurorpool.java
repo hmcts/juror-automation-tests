@@ -659,6 +659,7 @@ public class StepDef_jurorpool {
 
     @Then("^I should be taken to the pool summary page$")
     public void iShouldBeTakenToThePoolSummaryPage() {
+        NAV.waitForPageLoad();
         assertEquals("Pool requests", POOL_REQUESTS_PAGE.getPageHeading());
     }
 

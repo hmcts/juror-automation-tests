@@ -279,6 +279,7 @@ public class StepDef_trialsAndAttendance {
 
 		for (int i = 0; i < clicks; i++) {
 			TRL.clickPreviousAttendanceLink();
+			NAV.waitForPageLoad();
 
 			try {
 				Thread.sleep(2000);
@@ -348,6 +349,11 @@ public class StepDef_trialsAndAttendance {
 	@And("^check out minute is \"([^\"]*)\"$")
 	public void checkOutMinute(String checkOutMinute) {
 		assertEquals(checkOutMinute, TrialsAndAttendance.getCheckOutMinute());
+	}
+
+	@And("^I search for trial number \"([^\"]*)\"$")
+	public void searchForTrial(String trialNo) {
+		TRL.searchForTrial(trialNo);
 	}
 
 }

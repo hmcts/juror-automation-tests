@@ -154,8 +154,10 @@ Examples:
 	| juror_number	| pool_number	| last_name			| postcode	| email		|
 	| 045200256		| 452300233		| LNAMETWOSIXZERO	| CH1 2AN	| a@a.com	|
 
-@RegressionSingle
+@RegressionWIP @JS-263
 Scenario Outline: Can Set Juror Record to Deferred while response is TODO
+
+	#return to @RegressionSingle when defect resolved JS-263
 
 	Given I am on "Public" "ithc"
 
@@ -185,7 +187,9 @@ Scenario Outline: Can Set Juror Record to Deferred while response is TODO
 	And I choose the "Other" radio button
 	And I set the "Deferral" date to a Monday "10" weeks in the future
 	And I press the "Continue" button
-	Then I see the juror record updated banner containing "Deferral granted (ill)"
+	And I choose the "Add to pool" radio button
+	And I press the "Continue" button
+	Then I see the juror status has updated to "Responded"
 
 	#check that the response has been completed
 	When I click on the "Summons reply" link

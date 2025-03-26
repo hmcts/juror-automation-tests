@@ -1,9 +1,10 @@
 Feature: JS-190
 
-  @JurorTransformation @NewSchemaConverted
+  @JurorTransformation
   Scenario Outline: Ensure default expenses are being entered when returning and confirming attendance from jury
 
     Given I am on "Bureau" "ithc"
+
     When a bureau owned pool is created with jurors
       | court |juror_number  	  | pool_number	    | att_date_weeks_in_future	| owner |
       | 415   |<juror_number>     | <pool_number>   | 5				            | 400	|
@@ -126,10 +127,11 @@ Feature: JS-190
       |MODTESTCOURT |041587531     |  415381432      | TESTING13    |
 
 
-  @JurorTransformation @NewSchemaConverted
+  @JurorTransformation
   Scenario Outline: Ensure default expenses are being entered when returning and confirming attendance via jurors on a trial
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "demo"
+
     When a bureau owned pool is created with jurors
       | court |juror_number  	  | pool_number	    | att_date_weeks_in_future	| owner |
       | 415   |<juror_number>     | <pool_number>   | 5				            | 400	|
@@ -231,7 +233,6 @@ Feature: JS-190
     And I click on the "Expenses" link
     And I click on view draft expenses link
     And I see "£64.95" in the same row as the date 0 days in the future
-
 
     Examples:
       |user			|juror_number  |  pool_number    | trial_number |
