@@ -12,9 +12,15 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import java.net.URL;
+import java.net.HttpURLConnection;
+import java.util.stream.Collectors;
+import static org.junit.Assert.assertTrue;
+import com.google.common.collect.ImmutableMap;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -1041,5 +1047,11 @@ public class StepDef_navigation {
 		dateField.clear();
 		dateField.sendKeys(formattedDate);
 		dateField.sendKeys(Keys.TAB);
+	}
+
+	@When("^I check the screenshot taken to see if \"([^\"]*)\" is on the page$")
+	public void checkScreenshotForText(String text) {
+		log.info("Checking screenshot for text: " + text);
+		NAV.checkScreenshotForText(text);
 	}
 }
