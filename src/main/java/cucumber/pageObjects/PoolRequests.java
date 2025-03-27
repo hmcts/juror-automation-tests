@@ -20,6 +20,7 @@ public class PoolRequests {
     private final WaitUtil_v2 wait1;
     private final AngularJsHTTPCallWait aJsWait;
     private final NavigationShared NAV;
+    private final Groups GRP;
     private final Header HEADER_PAGE;
     @FindBy(xpath = "//div[@class=\"govuk-summary-list__row govuk-summary-list__row--no-actions\"]//dd[@class=\"govuk-summary-list__value\"]")
     public List<WebElement> courtAttendanceTime;
@@ -133,14 +134,13 @@ public class PoolRequests {
     @FindBy(xpath = "//strong[contains(text(),'Active')]")
     WebElement poolStatusActiveTag;
     @FindBy(className = "govuk-pagination__next")
-    WebElement nextPaginationLink;
+    static WebElement nextPaginationLink;
     @FindBy(id = "poolRequestsTable")
     WebElement activePoolsTable;
     @FindBy(xpath = "//td[2]/a")
     WebElement firstJurorInList;
     @FindBy(xpath = "//div[@class='moj-banner moj-banner--success']//a")
     WebElement courtOnlyPoolRequestSuccessLink;
-    private Groups GRP;
 
     public PoolRequests(WebDriver driver) {
         PoolRequests.driver = driver;
@@ -149,6 +149,7 @@ public class PoolRequests {
         wait1 = new WaitUtil_v2(driver);
         aJsWait = new AngularJsHTTPCallWait(driver);
         NAV = new NavigationShared(driver);
+        GRP = new Groups(driver);
         HEADER_PAGE = PageFactory.initElements(driver, Header.class);
     }
 
@@ -550,7 +551,7 @@ public class PoolRequests {
         return timelineDateAndTime.getText();
     }
 
-    public void clickNextPagination() {
+    public static void clickNextPagination() {
         nextPaginationLink.click();
     }
 
@@ -573,16 +574,36 @@ public class PoolRequests {
         }
     }
 
-    public void clickInactivePoolNumber(String poolNo) {
+    public static void clickInactivePoolNumber(String poolNo) {
         log.info("Finding and clicking active pool number");
         boolean lastPage = false;
         while (!lastPage) {
             List<WebElement> activePoolOverviewLink = driver.findElements(By.xpath("//a[contains(text(),'" + poolNo + "')]"));
-            if (activePoolOverviewLink.size() >= 1) {
+            if (!activePoolOverviewLink.isEmpty()) {
                 activePoolOverviewLink.get(0).click();
                 break;
             } else {
                 if (driver.findElements(By.className("govuk-pagination__next")).size() < 1) {
+                    lastPage = true;
+                } else {
+                    log.info("Clicking next pagination");
+                    clickNextPagination();
+                }
+            }
+        }
+    }
+
+    public void clickPoolNumberInSearchResults(String poolNo) throws Exception {
+        log.info("Finding and clicking active pool number");
+        boolean lastPage = false;
+        while (!lastPage) {
+            List<WebElement> activePoolOverviewLink = driver.findElements(By.xpath("//a[contains(text(),'" + poolNo + "')]"));
+            if (!activePoolOverviewLink.isEmpty()) {
+                WebElement radioButton = driver.findElement(By.xpath("//input[@id=('" + poolNo + "')]"));
+                NAV.click_onElement((WebElement) radioButton);
+                break;
+            } else {
+                if (driver.findElements(By.className("govuk-pagination__next")).isEmpty()) {
                     lastPage = true;
                 } else {
                     log.info("Clicking next pagination");
