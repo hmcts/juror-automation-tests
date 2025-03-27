@@ -12,15 +12,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import java.net.URL;
-import java.net.HttpURLConnection;
-import java.util.stream.Collectors;
-import static org.junit.Assert.assertTrue;
-import com.google.common.collect.ImmutableMap;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -34,6 +28,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+
 import static cucumber.utils.DateManipulator.formatDate;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -51,6 +46,7 @@ public class StepDef_navigation {
 	private final WebDriver webDriver;
 
 	private final CheckPoolRequest CHECK_POOL_REQUEST_PAGE;
+	private final PoolRequests POOL_REQUESTS;
 	private String poolRequestNumber;
 	public static String holidayAttendanceDate;
 	private static Logger log = Logger.getLogger(StepDef_navigation.class);
@@ -65,6 +61,7 @@ public class StepDef_navigation {
 		CO = PageFactory.initElements(webDriver, ClickOverrider.class);
 		SST = PageFactory.initElements(webDriver, ScreenShotTaker.class);
 		CHECK_POOL_REQUEST_PAGE = PageFactory.initElements(webDriver, CheckPoolRequest.class);
+		POOL_REQUESTS = PageFactory.initElements(webDriver, PoolRequests.class);
 	}
 
 
@@ -1047,6 +1044,11 @@ public class StepDef_navigation {
 		dateField.clear();
 		dateField.sendKeys(formattedDate);
 		dateField.sendKeys(Keys.TAB);
+	}
+
+	@When("^I search for active pool \"([^\"]*)\"$")
+	public void searchForActivePool(String poolNo) throws Exception {
+		POOL_REQUESTS.clickPoolNumberInSearchResults(poolNo);
 	}
 
 }

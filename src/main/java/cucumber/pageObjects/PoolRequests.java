@@ -635,5 +635,25 @@ public class PoolRequests {
         CROWN,
         HIGH
     }
+
+    public void clickPoolNumberInSearchResults(String poolNo) throws Exception {
+        log.info("Finding and clicking active pool number");
+        boolean lastPage = false;
+        while (!lastPage) {
+            List<WebElement> activePoolOverviewLink = driver.findElements(By.xpath("//a[contains(text(),'" + poolNo + "')]"));
+            if (!activePoolOverviewLink.isEmpty()) {
+                WebElement radioButton = driver.findElement(By.xpath("//input[@id=('" + poolNo + "')]"));
+                NAV.click_onElement((WebElement) radioButton);
+                break;
+            } else {
+                if (driver.findElements(By.className("govuk-pagination__next")).isEmpty()) {
+                    lastPage = true;
+                } else {
+                    log.info("Clicking next pagination");
+                    clickNextPagination();
+                }
+            }
+        }
+    }
 }
 
