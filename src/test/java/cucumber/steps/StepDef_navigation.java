@@ -1049,9 +1049,4 @@ public class StepDef_navigation {
 		dateField.sendKeys(Keys.TAB);
 	}
 
-	@When("^I check the screenshot taken to see if \"([^\"]*)\" is on the page$")
-	public void checkScreenshotForText(String text) {
-		log.info("Checking screenshot for text: " + text);
-		NAV.checkScreenshotForText(text);
-	}
 }
