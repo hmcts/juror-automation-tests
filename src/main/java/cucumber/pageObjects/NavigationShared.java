@@ -1,7 +1,6 @@
 package cucumber.pageObjects;
 
 import cucumber.utils.*;
-import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.*;
@@ -16,6 +15,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.InputStreamReader;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
@@ -1382,8 +1382,8 @@ public class NavigationShared {
                                 + "//table//tr//td[contains(text(),\"" + nextToText + "\")]//ancestor::tr//td//a[text()[contains(., \"" + clickText + "\")]]"
                                 + "|"
                                 + "//table//tr//*[contains(text(),\"" + nextToText + "\")]//ancestor::tr//a[text()[contains(., \"" + clickText + "\")]]"
-								+ "|"
-								+ "//td/a[contains(text(),\"" + nextToText + "\")]/../..//td//a[text()[contains(., \"" + clickText + "\")]]"));
+                                + "|"
+                                + "//td/a[contains(text(),\"" + nextToText + "\")]/../..//td//a[text()[contains(., \"" + clickText + "\")]]"));
 
         wait.waitForClickableElement(click_text);
         click_onElement(click_text);
@@ -1675,7 +1675,7 @@ public class NavigationShared {
             log.info("confirm responded icon is =>" + respondedAlert);
         } catch (Exception e) {
             driver.findElement(
-                    By.xpath("//*[@class='info with-icon']/span[@title='" + respondedAlert +"']"));
+                    By.xpath("//*[@class='info with-icon']/span[@title='" + respondedAlert + "']"));
         }
     }
 
@@ -2356,7 +2356,7 @@ public class NavigationShared {
 
     public void insertHolidayInTheFrontScreen(Integer noOfWeeks) {
         //String datePattern = "EEEE-DD-MM";
-       // Calendar calendar = Calendar.getInstance();
+        // Calendar calendar = Calendar.getInstance();
         //calendar.add(Calendar.WEEK_OF_MONTH, noOfWeeks);
 
         DateFormat dateFormat = new SimpleDateFormat("EEEE d MMMMMMMMMM");
@@ -2368,11 +2368,11 @@ public class NavigationShared {
         System.out.println(dateFormat.format(newDate));
         System.out.println(bankHoliday.get(2).getText());
 
-        String noOfWeeksConverted=Integer.toString(noOfWeeks);
+        String noOfWeeksConverted = Integer.toString(noOfWeeks);
 
         switch (noOfWeeksConverted) {
             case "6":
-                   Assert.assertEquals(dateFormat.format(newDate), bankHoliday.get(0).getText());
+                Assert.assertEquals(dateFormat.format(newDate), bankHoliday.get(0).getText());
                 break;
             case "24":
                 Assert.assertEquals(dateFormat.format(newDate), bankHoliday.get(2).getText());
@@ -2523,87 +2523,6 @@ public class NavigationShared {
         } catch (Exception e) {
             log.error("JavaScript executor click failed: " + e.getMessage());
             throw new RuntimeException("Unable to click the continue button using JavaScript executor.");
-        }
-    }
-    public void checkScreenshotForText(String text) {
-        try {
-            File directory = new File("target/screenshots/");
-            if (!directory.exists()) {
-                directory.mkdirs();
-            }
-
-            File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-
-            String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-            String cleanText = text.replaceAll("[^a-zA-Z0-9-_\\.]", "_");
-            String tempFileName = String.format("target/screenshots/check_%s_%s_PROCESSING.png", cleanText, timestamp);
-
-            FileUtils.copyFile(scrFile, new File(tempFileName));
-            log.info("Screenshot saved initially as: " + tempFileName);
-
-            Process process = Runtime.getRuntime().exec("which tesseract");
-            int exitCode = process.waitFor();
-
-            boolean textFound = false;
-            if (exitCode == 0) {
-
-                ProcessBuilder pb = new ProcessBuilder("tesseract", tempFileName, "stdout");
-                Process p = pb.start();
-
-                BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
-                StringBuilder extractedText = new StringBuilder();
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    extractedText.append(line).append("\n");
-                }
-
-                p.waitFor();
-
-                textFound = extractedText.toString().contains(text);
-                log.info("Text '" + text + "' found in screenshot: " + textFound);
-                String resultStatus = textFound ? "FOUND" : "NOT_FOUND";
-                String finalFileName = String.format("target/screenshots/check_%s_%s_%s.png",
-                        cleanText, timestamp, resultStatus);
-
-                File tempFile = new File(tempFileName);
-                File finalFile = new File(finalFileName);
-                tempFile.renameTo(finalFile);
-                log.info("Screenshot renamed to: " + finalFileName);
-
-                String mappingFileName = finalFileName.replace(".png", "_mapping.txt");
-                FileUtils.writeStringToFile(new File(mappingFileName),
-                        String.format("Text: %s\nTimestamp: %s\nResult: %s\n",
-                                text, timestamp, resultStatus),
-                        "UTF-8"
-                );
-
-                String ocrResultFile = finalFileName.replace(".png", "_ocr.txt");
-                FileUtils.writeStringToFile(new File(ocrResultFile),
-                        extractedText.toString(), "UTF-8");
-
-                if (!textFound) {
-                    throw new RuntimeException("Text '" + text + "' not found in screenshot using OCR");
-                }
-            } else {
-                log.warn("Tesseract OCR not available, skipping text verification in screenshot");
-
-                String finalFileName = String.format("target/screenshots/check_%s_%s_OCR_NOT_AVAILABLE.png",
-                        cleanText, timestamp);
-                File tempFile = new File(tempFileName);
-                File finalFile = new File(finalFileName);
-                tempFile.renameTo(finalFile);
-                log.info("Screenshot renamed to: " + finalFileName);
-
-                String mappingFileName = finalFileName.replace(".png", "_mapping.txt");
-                FileUtils.writeStringToFile(new File(mappingFileName),
-                        String.format("Text: %s\nTimestamp: %s\nResult: OCR_NOT_AVAILABLE\n",
-                                text, timestamp),
-                        "UTF-8"
-                );
-            }
-        } catch (Exception e) {
-            log.error("Failed to check screenshot for text: " + e.getMessage());
-            throw new RuntimeException("Screenshot text verification failed", e);
         }
     }
 }
