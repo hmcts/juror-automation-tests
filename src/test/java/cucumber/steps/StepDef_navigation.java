@@ -1057,5 +1057,4 @@ public class StepDef_navigation {
 		POOL_REQUESTS.clickPoolNumberInSearchResults(poolNo);
 	}
 
-
 }

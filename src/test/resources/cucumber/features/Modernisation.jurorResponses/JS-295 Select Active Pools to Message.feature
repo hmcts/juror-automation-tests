@@ -37,7 +37,6 @@ Feature: As a court officer I want to see a list of active pools when selecting 
     Then I see "Select an active pool" on the page
     And I search for active pool "<pool_number>"
     And I press the "Continue with selected" button
-
     Then I see "Select jurors to send message to" on the page
     And I see "<pool_number>" on the page
 
