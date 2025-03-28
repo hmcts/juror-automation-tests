@@ -1,6 +1,6 @@
 Feature: JM-3180
 
-  @JurorTransformation @NewSchemaConverted
+  @JurorTransformation
   Scenario Outline: Mark Digital Summons Reply As Responded
 
     Given I am on "Public" "ithc"
@@ -17,7 +17,7 @@ Feature: JM-3180
       | part_no	         | pool_number  | last_name	| postcode	| email  | adjustmentNeededCap     | details                       |
       | <juror_number>   | <pool_number>| LNAME  	| CH2 2AA	| <email>| <adjustmentNeededCap>   | Reasonable adjustment detail  |
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     And I log in as "<user>"
 
     When the user searches for juror record "<juror_number>" from the global search bar
@@ -37,9 +37,10 @@ Feature: JM-3180
       | user          | juror_number| pool_number | email     | adjustmentNeededCap|
       | MODTESTBUREAU | 041500134   | 415300234   | e@mail.com| Limited mobility   |
 
-  @JurorTransformation @NewSchemaConverted
+  @JurorTransformation
   Scenario Outline: Cancel Marking Digital Summons Reply As Responded
-    Given I am on "Public" "test"
+
+    Given I am on "Public" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
@@ -53,7 +54,7 @@ Feature: JM-3180
       |part_no	      |pool_number  |last_name	|postcode	|email 	|adjustmentNeededCap  |details                       |
       |<juror_number> |<pool_number>|LNAME  	|CH2 2AA	|<email>|<adjustmentNeededCap>|Reasonable adjustment detail  |
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     And I log in as "<user>"
 
     When the user searches for juror record "<juror_number>" from the global search bar
@@ -70,8 +71,9 @@ Feature: JM-3180
       | user          | juror_number| pool_number | email     | adjustmentNeededCap|
       | MODTESTBUREAU | 041500135   | 415300235   | e@mail.com| Limited mobility   |
 
-  @JurorTransformation @NewSchemaConverted
+  @JurorTransformation
   Scenario Outline: Mark Digital Summons Reply As Responded - Mark As Responded Validation
+
     Given I am on "Public" "ithc"
 
     Given a bureau owned pool is created with jurors
@@ -103,10 +105,10 @@ Feature: JM-3180
       | user          | juror_number  | pool_number   | email     | adjustmentNeededCap|
       | MODTESTBUREAU | 041500136     | 415300236     | e@mail.com| Limited mobility   |
 
-  @JurorTransformation @NewSchemaConverted
+  @JurorTransformation
   Scenario Outline: Mark Digital Summons Reply As Responded - Confirm Mark As Responded validation
 
-    Given I am on "Public" "test"
+    Given I am on "Public" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
@@ -120,7 +122,7 @@ Feature: JM-3180
       |part_no	      |pool_number  |last_name	|postcode	|email 	|adjustmentNeededCap  |details                       |
       |<juror_number> |<pool_number>|LNAME  	|CH2 2AA	|<email>|<adjustmentNeededCap>|Reasonable adjustment detail  |
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     And I log in as "<user>"
 
     When the user searches for juror record "<juror_number>" from the global search bar

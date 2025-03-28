@@ -2,6 +2,7 @@ Feature: JM-2034 delete pool requests
 
   @JurorTransformationMulti
   Scenario Outline: Test to delete a pool request as a bureau user
+
     Given I am on "Bureau" "ithc"
 
     And I log in as "<user>"

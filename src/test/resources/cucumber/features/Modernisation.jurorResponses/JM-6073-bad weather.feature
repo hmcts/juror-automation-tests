@@ -196,7 +196,7 @@ Feature: As a jury officer I need to be able to send the bad weather message
       | MODTESTCOURT | 041529896    | 415980989   |
 
 
-  @JurorTransformationMulti @Messages
+  @JurorTransformation @Messages
   Scenario Outline: Send bad weather message for Juror in Trial
 
     Given I am on "Bureau" "ithc"

@@ -132,6 +132,7 @@ public class StepDef_jurorpool {
 
     @When("^I navigate to the pool request screen$")
     public void iNavigateToThePoolRequestScreen() {
+        NAV.waitForPageLoad();
         POOL_REQUESTS_PAGE.openPoolManagement();
     }
 

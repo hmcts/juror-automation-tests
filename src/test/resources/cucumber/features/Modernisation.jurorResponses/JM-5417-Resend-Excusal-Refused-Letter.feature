@@ -1,9 +1,9 @@
 Feature: JM-5417-5586 - Resend excusal refused letter for Bureau and Jury users
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Excusal refused letter - via juror number
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     When a bureau owned pool is created with jurors
       | court | juror_number  | pool_number     | att_date_weeks_in_future   | owner |
@@ -59,10 +59,11 @@ Feature: JM-5417-5586 - Resend excusal refused letter for Bureau and Jury users
       | juror_number  | pool_number | user          |
       |  041529018    | 415980686   | MODTESTBUREAU |
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Delete pending excusal refused letter as a bureau officer
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
+
     And I log in as "<user>"
     When a bureau owned pool is created with jurors
       | court | juror_number  | pool_number     | att_date_weeks_in_future   | owner |
@@ -75,7 +76,7 @@ Feature: JM-5417-5586 - Resend excusal refused letter for Bureau and Jury users
     And I click on the "View summons reply" link
     And I press the "Process reply" button
 
-   #select refuse excusal
+    #select refuse excusal
     And I set the radio button to "Excusal - grant or refuse"
     Then I press the "Continue" button
     And I select "O - OTHER" from the "Reason for excusal request" dropdown
@@ -87,7 +88,7 @@ Feature: JM-5417-5586 - Resend excusal refused letter for Bureau and Jury users
     Then I see the juror's status on the juror record screen is "Responded"
     And the warning icon is displayed next to the juror status
 
-     #delete a pending document
+    #delete a pending document
     And I press the "Apps" button
     And I click on the "Documents" link
     And I click on the "Excusal refused letters" link
@@ -106,11 +107,13 @@ Feature: JM-5417-5586 - Resend excusal refused letter for Bureau and Jury users
       |  041529019    | 415980686   | MODTESTBUREAU |
 
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Excusal refused letter - via pool Number happy path bulk
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
+
     And I log in as "<user>"
+
     When a bureau owned pool is created with jurors
       | court   | juror_number  | pool_number     | att_date_weeks_in_future    | owner |
       | 415     | <juror_number>| <pool_number>   | 5                           | 400  |
@@ -125,7 +128,7 @@ Feature: JM-5417-5586 - Resend excusal refused letter for Bureau and Jury users
     And I click on the "View summons reply" link
     And I press the "Process reply" button
 
-   #select refuse excusal
+    #select refuse excusal
     And I set the radio button to "Excusal - grant or refuse"
     Then I press the "Continue" button
     And I select "O - OTHER" from the "Reason for excusal request" dropdown
@@ -145,7 +148,7 @@ Feature: JM-5417-5586 - Resend excusal refused letter for Bureau and Jury users
     And I click on the "View summons reply" link
     And I press the "Process reply" button
 
-  #select refuse excusal
+    #select refuse excusal
     And I set the radio button to "Excusal - grant or refuse"
     Then I press the "Continue" button
     And I select "O - OTHER" from the "Reason for excusal request" dropdown
@@ -165,7 +168,7 @@ Feature: JM-5417-5586 - Resend excusal refused letter for Bureau and Jury users
     And I click on the "View summons reply" link
     And I press the "Process reply" button
 
-   #select refuse excusal
+    #select refuse excusal
     And I set the radio button to "Excusal - grant or refuse"
     Then I press the "Continue" button
     And I select "O - OTHER" from the "Reason for excusal request" dropdown
@@ -177,8 +180,7 @@ Feature: JM-5417-5586 - Resend excusal refused letter for Bureau and Jury users
     Then I see the juror's status on the juror record screen is "Responded"
     And the warning icon is displayed next to the juror status
 
-
-  #search via pool  number and resend letter for all jurors
+    #search via pool  number and resend letter for all jurors
     When I press the "Apps" button
     And I click on the "Documents" link
     And I click on the "Excusal refused letters" link
@@ -216,16 +218,17 @@ Feature: JM-5417-5586 - Resend excusal refused letter for Bureau and Jury users
       |  041529024    | 041529040     |041529041      |415980686   | MODTESTBUREAU |
 
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: As a Bureau officer view all the letters queued for printing and delete
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     When a bureau owned pool is created with jurors
       | court   | juror_number  | pool_number     | att_date_weeks_in_future   | owner |
       | 415     | <juror_number>| <pool_number>   | 5                       | 400  |
 
     And I log in as "<user>"
+
     And the user searches for juror record "<juror_number>" from the global search bar
     And I record an excusal request paper summons response
     And the user searches for juror record "<juror_number>" from the global search bar
@@ -245,7 +248,7 @@ Feature: JM-5417-5586 - Resend excusal refused letter for Bureau and Jury users
     Then I see the juror's status on the juror record screen is "Responded"
     And the warning icon is displayed next to the juror status
 
-   #navigate to documents and verify the printing message
+    #navigate to documents and verify the printing message
     And I press the "Apps" button
     And I click on the "Documents" link
     And I click on the "Excusal refused letters" link
