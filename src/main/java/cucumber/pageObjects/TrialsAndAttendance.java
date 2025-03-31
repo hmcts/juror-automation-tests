@@ -9,6 +9,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.YearMonth;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.NoSuchElementException;
 
@@ -606,5 +609,124 @@ public class TrialsAndAttendance {
         searchTrialNumberInput.clear();
         searchTrialNumberInput.sendKeys(trialNo);
         searchTrialButton.click();
+    }
+    public String selectDateFromPast(int daysInPast) {
+        try {
+            LocalDate targetDate = LocalDate.now().minusDays(daysInPast);
+            DateTimeFormatter readableFormatter = DateTimeFormatter.ofPattern("EEEE d MMMM yyyy", Locale.ENGLISH);
+            String expectedDateText = targetDate.format(readableFormatter);
+
+            log.info("Target date (" + daysInPast + " days ago): " + expectedDateText);
+
+            WebElement calendarButton = driver.findElement(By.cssSelector(".js-calendar-button[data-button='datepicker-attendanceDateSelection-toggle']"));
+            calendarButton.click();
+            log.info("Opened calendar");
+
+            Thread.sleep(300);
+
+            DateTimeFormatter monthYearFormatter = DateTimeFormatter.ofPattern("MMMM yyyy", Locale.ENGLISH);
+            YearMonth targetYM = YearMonth.from(targetDate);
+
+            while (true) {
+                WebElement monthYearElement = driver.findElement(By.cssSelector(".js-datepicker-month-year"));
+                String visibleMonthYearText = monthYearElement.getText().toLowerCase();
+
+                visibleMonthYearText = visibleMonthYearText.substring(0, 1).toUpperCase() + visibleMonthYearText.substring(1);
+                YearMonth visibleYM = YearMonth.parse(visibleMonthYearText, monthYearFormatter);
+
+                if (visibleYM.equals(targetYM)) break;
+
+                if (visibleYM.isAfter(targetYM)) {
+                    driver.findElement(By.cssSelector(".js-datepicker-prev-month")).click();
+                } else {
+                    driver.findElement(By.cssSelector(".js-datepicker-next-month")).click();
+                }
+
+                Thread.sleep(300);
+            }
+
+            String dayStr = String.valueOf(targetDate.getDayOfMonth());
+            String xpath = "//button[@data-form='date-select' and not(@disabled) and contains(@style,'display: block') and text()='" + dayStr + "']";
+
+            WebElement dayButton = driver.findElement(By.xpath(xpath));
+            dayButton.click();
+            log.info("Selected day: " + dayStr);
+
+            List<WebElement> okButtons = driver.findElements(By.cssSelector(".js-datepicker-ok"));
+            if (!okButtons.isEmpty()) {
+                WebElement okButton = okButtons.get(0);
+                if (okButton.isDisplayed() && okButton.isEnabled()) {
+                    okButton.click();
+                    log.info("Clicked 'Select' to confirm date");
+                } else {
+                    log.info("'Select' button found but not clickable, skipping.");
+                }
+            } else {
+                log.info("No 'Select' button present — assuming date is auto-applied.");
+            }
+
+            return expectedDateText;
+
+        } catch (Exception e) {
+            log.error("Error selecting date: " + e.getMessage(), e);
+            return "ERROR SELECTING DATE";
+        }
+    }
+
+    public boolean verifyAttendanceDate(String expectedDateText) {
+        try {
+            if (expectedDateText.startsWith("ERROR")) {
+                log.error("Skipping verification due to previous error: " + expectedDateText);
+                return false;
+            }
+
+            WebElement attendanceDateElement = driver.findElement(By.id("attendanceDate"));
+            String actualDateText = attendanceDateElement.getText();
+            java.time.LocalDate expectedDate = null;
+            java.time.LocalDate actualDate = null;
+
+            try {
+                java.time.format.DateTimeFormatter formatter = java.time.format.DateTimeFormatter.ofPattern("EEEE d MMMM yyyy", java.util.Locale.ENGLISH);
+                expectedDate = java.time.LocalDate.parse(expectedDateText, formatter);
+
+                String[] possibleFormats = {
+                        "EEEE d MMMM yyyy",
+                        "EEEE dd MMMM yyyy",
+                        "EEEE d MMMM, yyyy",
+                        "EEEE dd MMMM, yyyy"
+                };
+
+                for (String format : possibleFormats) {
+                    try {
+                        formatter = java.time.format.DateTimeFormatter.ofPattern(format, java.util.Locale.ENGLISH);
+                        actualDate = java.time.LocalDate.parse(actualDateText, formatter);
+                        break;
+                    } catch (Exception e) {
+                    }
+                }
+            } catch (Exception e) {
+                log.error("Error parsing dates for comparison: " + e.getMessage());
+            }
+            if (expectedDate != null && actualDate != null) {
+                boolean matches = expectedDate.equals(actualDate);
+                if (matches) {
+                    log.info("Attendance date verification successful (date objects match)");
+                    return true;
+                } else {
+                    log.error("Attendance date verification failed. Expected: " + expectedDate + ", Actual: " + actualDate);
+                }
+            }
+            boolean matches = actualDateText.equals(expectedDateText);
+            if (matches) {
+                log.info("Attendance date verification successful: " + actualDateText);
+            } else {
+                log.error("Attendance date verification failed. Expected: " + expectedDateText + ", Actual: " + actualDateText);
+            }
+
+            return matches;
+        } catch (Exception e) {
+            log.error("Error verifying attendance date: " + e.getMessage(), e);
+            return false;
+        }
     }
 }
