@@ -451,7 +451,7 @@ Given I am on "Bureau" "ithc"
 
 Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
-		| 457   |<juror_number>| <pool_number>| 5				                  | 400	|
+		| 457   |<juror_number>| <pool_number>	| 5				            | 400	|
 
 	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
 	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
@@ -502,7 +502,7 @@ Given a bureau owned pool is created with jurors
 	
 Examples:
 	| juror_number	| pool_number | last_name	| postcode |
-	| 045700047		| 457300047   |DOE			| SW1H 9AJ |
+	| 045700047		| 457300047   |DOE			| SA2 9AJ  |
 
 @RegressionWelsh
 Scenario Outline: Welsh Already Replied info page
