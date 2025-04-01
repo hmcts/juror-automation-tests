@@ -1,9 +1,9 @@
 Feature: Regression Eligibility Hint Text
 
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: English_1st_Eligibility_Hint_Text
 
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -187,10 +187,10 @@ Examples:
 	| juror_number	| last_name			| postcode	| email           	| pool_number	|
 	| 045200222		| LNAMENINEFOURTWO	| SW1H 9AJ	| email@outlook.com	| 452300207		|
 
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: English_3rd_Eligibility_Hint_Text
 
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |

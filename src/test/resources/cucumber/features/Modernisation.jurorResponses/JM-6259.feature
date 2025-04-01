@@ -1,6 +1,6 @@
 Feature: JM-6259 - As a bureau officer I need to be able to send/resend a summons reminder letter
 
-  @JurorTransformationMulti
+  @JurorTransformation
   Scenario Outline: As a Bureau officer send/resend a summons reminder letter
 
     Given I am on "Bureau" "ithc"
