@@ -355,5 +355,11 @@ public class StepDef_trialsAndAttendance {
 	public void searchForTrial(String trialNo) {
 		TRL.searchForTrial(trialNo);
 	}
+	@And("^I select \"([^\"]*)\" days in the past from the date picker$")
+	public void iSelectDaysInPastFromDatepicker(int daysInPast) {
+		String expectedDateText = TRL.selectDateFromPast(daysInPast);
 
+		boolean dateVerified = TRL.verifyAttendanceDate(expectedDateText);
+		assertTrue("The displayed attendance date does not match the selected date", dateVerified);
+	}
 }
