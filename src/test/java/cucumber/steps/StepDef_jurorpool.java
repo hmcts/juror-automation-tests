@@ -2428,6 +2428,7 @@ public class StepDef_jurorpool {
 
     @When("^I set the deferral deferred to filter to \"([^\"]*)\" Mondays in the future$")
     public void iSetTheDeferralDeferredToFilterTo(String noWeeks) {
+        NAV.waitForPageLoad();
         DEFERRAL_MAINTENANCE.clickShowFilterButton();
         DEFERRAL_MAINTENANCE.clickClearFiltersLink();
 
