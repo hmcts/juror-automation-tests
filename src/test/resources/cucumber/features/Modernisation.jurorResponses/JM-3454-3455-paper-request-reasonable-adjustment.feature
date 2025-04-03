@@ -1,8 +1,8 @@
 Feature: JM-3457 and JM-3456 - Paper Response
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Happy path test to check juror reasonable adjustment - paper
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "demo"
 
     Given a bureau owned pool is created with jurors
       | court  |juror_number  	| pool_number	   | att_date_weeks_in_future	| owner |
@@ -95,4 +95,3 @@ Feature: JM-3457 and JM-3456 - Paper Response
     Examples:
       | user          | juror_number  | pool_number | jurorAdjustmentNeeded | jurorAdjustmentFull               |
       | MODTESTBUREAU | 045200008     | 452300004   | Childcare             | C - Caring Responsibilities       |
-
