@@ -1,6 +1,6 @@
 Feature: JM-6111 - As a jury officer, I want to view a consolidated list of expenses in draft
 
-  @JurorTransformation @NewSchemaConverted
+  @JurorTransformation
   Scenario Outline: View list of draft expenses as a jury officer
 
     Given I am on "Bureau" "ithc"
