@@ -690,4 +690,9 @@ public class StepDef_jurorRecord {
         System.out.println("Pool number reassigned from " + previousPoolNo + " to " + newPoolNo);
     }
 
+    @Then("^I choose Does The juror live overseas radio button \"([^\"]*)\"$")
+    public void checkLivingOverseasFlag(String livingOverseasFlagYN) {
+        JUROR_RECORD.setLivingOverseasFlag(livingOverseasFlagYN);
+    }
+
 }

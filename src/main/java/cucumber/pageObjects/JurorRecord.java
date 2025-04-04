@@ -119,7 +119,7 @@ public class JurorRecord {
     @FindBy(xpath = "//*[contains(text(),'They will be transferred to a new pool')]")
     WebElement transferConfirmationBody;
 
-//    @FindBy(xpath = "/html/body/div[2]/main/div[4]/div/dl/div/dd")
+    //    @FindBy(xpath = "/html/body/div[2]/main/div[4]/div/dl/div/dd")
     @FindBy(xpath = "/html/body/div[3]/main/div[4]/div/dl/div[1]/dd")
     WebElement policeCheckStatus;
 
@@ -226,6 +226,12 @@ public class JurorRecord {
 
     @FindBy(xpath = "//*[@class='govuk-table']/tbody/tr/td")
     public List<WebElement> listDisqualificationCode;
+
+    @FindBy(xpath = "//input[@id='livingOverseas']")
+    public WebElement livingOverseasFlagYes;
+
+    @FindBy(xpath = "//input[@id='livingOverseas-2']")
+    public WebElement livingOverseasFlagNo;
 
     public String getHeading() {
         return heading.getText();
@@ -534,7 +540,7 @@ public class JurorRecord {
 
     }
 
-    public void  seePrintedLetterInLettersTable(String jurorNumber) {
+    public void seePrintedLetterInLettersTable(String jurorNumber) {
         Calendar today = Calendar.getInstance();
         SimpleDateFormat formatter = new SimpleDateFormat("EEE d MMM yyyy", Locale.ENGLISH);
         String printedDate = formatter.format(today.getTime());
@@ -570,6 +576,7 @@ public class JurorRecord {
         }
         throw new RuntimeException("Matching juror and date not found: " + jurorNumber + ", " + printedDate);
     }
+
     private String enforceThreeLetterMonth(String date) {
         String[] months3Letters = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
         for (String month : months3Letters) {
@@ -633,6 +640,7 @@ public class JurorRecord {
             log.error("Error occurred while selecting checkboxes" + e.getMessage());
         }
     }
+
     public void selectCheckboxesInLettersTableForJuror(String juror) {
         try {
             List<WebElement> checkboxes = driver.findElements(
@@ -663,9 +671,9 @@ public class JurorRecord {
         JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
 
         String columnSearch = """
-        return Array.from(document.querySelectorAll('a'))
-            .find(a => a.textContent.trim() === arguments[0]);
-    """;
+                    return Array.from(document.querySelectorAll('a'))
+                        .find(a => a.textContent.trim() === arguments[0]);
+                """;
 
         WebElement linkElement = (WebElement) jsExecutor.executeScript(columnSearch, tabName);
 
@@ -847,19 +855,34 @@ public class JurorRecord {
     public Map<String, String> getQualificationCode() {
         Map<String, String> details = new HashMap<>();
 
-                details.put("A", listDisqualificationCode.get(1).getText());
-                details.put("B", listDisqualificationCode.get(4).getText());
-                details.put("C", listDisqualificationCode.get(7).getText());
-                details.put("D", listDisqualificationCode.get(10).getText());
-                details.put("E", listDisqualificationCode.get(13).getText());
-                details.put("M", listDisqualificationCode.get(16).getText());
-                details.put("R", listDisqualificationCode.get(19).getText());
-                return details;
-            }
+        details.put("A", listDisqualificationCode.get(1).getText());
+        details.put("B", listDisqualificationCode.get(4).getText());
+        details.put("C", listDisqualificationCode.get(7).getText());
+        details.put("D", listDisqualificationCode.get(10).getText());
+        details.put("E", listDisqualificationCode.get(13).getText());
+        details.put("M", listDisqualificationCode.get(16).getText());
+        details.put("R", listDisqualificationCode.get(19).getText());
+        return details;
+    }
 
 
     public String getMyPoolNumber() {
         return poolNumber.getText();
     }
+
+    public boolean setLivingOverseasFlag(String livingOverseasFlagValue) {
+
+        if (Objects.equals(livingOverseasFlagValue, "no")) {
+            livingOverseasFlagNo.click();
+            log.info("Selected NO for living overseas flag");
+        }
+
+        if (Objects.equals(livingOverseasFlagValue, "yes")) {
+            livingOverseasFlagYes.click();
+            log.info("Selected YES for living overseas flag");
+        }
+
+        return false;
     }
+}
 
