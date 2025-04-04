@@ -870,7 +870,7 @@ public class JurorRecord {
         return poolNumber.getText();
     }
 
-    public boolean setLivingOverseasFlag(String livingOverseasFlagValue) {
+    public void setLivingOverseasFlag(String livingOverseasFlagValue) {
 
         if (Objects.equals(livingOverseasFlagValue, "no")) {
             livingOverseasFlagNo.click();
@@ -882,7 +882,6 @@ public class JurorRecord {
             log.info("Selected YES for living overseas flag");
         }
 
-        return false;
     }
 }
 
