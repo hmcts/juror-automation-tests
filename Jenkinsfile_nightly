@@ -1,7 +1,7 @@
 #!groovy
 properties([
   // this will trigger at 1630 during bst
-  pipelineTriggers([cron('00 15 * * 1-5')]),
+  pipelineTriggers([cron('15 14 * * 1-5')]),
   parameters([
     choice(choices: ['chrome', 'firefox', 'msedge'], name: 'Browser'),
     // Default to 'BAU packs in ITHC' run in branch 'nightly-dev' - but see override onMaster below
