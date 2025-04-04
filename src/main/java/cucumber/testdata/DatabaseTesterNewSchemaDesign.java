@@ -2934,7 +2934,7 @@ public class DatabaseTesterNewSchemaDesign {
 							"AND EXISTS ( " +
 							"    SELECT 1 FROM JUROR_MOD.COURT_CATCHMENT_AREA cc " +
 							"    WHERE cc.loc_code = '" + court + "' " +
-							"    AND cc.postcode = JUROR_MOD.VOTERS.zip " +
+							"    AND JUROR_MOD.VOTERS.zip LIKE cc.postcode || '%' " +
 							")"
 			);
 			pStmt.executeUpdate();
