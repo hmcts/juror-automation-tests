@@ -34,6 +34,15 @@ public class WaitUtils {
 				.visibilityOfAllElements(name));
 		
 	}
+	public <T> T until(java.util.function.Function<WebDriver, T> condition, int timeoutInSeconds) {
+		log.info("Waiting until condition is met with timeout of " + timeoutInSeconds + " seconds");
+		return new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds))
+				.ignoring(StaleElementReferenceException.class)
+				.until(condition);
+	}
+	public <T> T until(java.util.function.Function<WebDriver, T> condition) {
+		return until(condition, TIME_IN_SECONDS);
+	}
 	
 	public void waitForClickableElement(WebElement name, int wait_time) {
 		log.info("Waiting for element to be clickable");
