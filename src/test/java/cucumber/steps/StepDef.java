@@ -4,6 +4,7 @@ import cucumber.testdata.DatabaseTester;
 import io.cucumber.java.en.*;
 import cucumber.pageObjects.*;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
@@ -247,11 +248,15 @@ public class StepDef {
 	}
 
 	@When("^I see \"([^\"]*)\" in the URL$")
-	public void see_inURL(String urlPart) {
-		NAV.see_inURL(urlPart);
-	}
+	public void see_inURL(String urlPart) throws InterruptedException {
 
-	;
+		try {
+			NAV.see_inURL(urlPart);
+		} catch (StaleElementReferenceException e) {
+			Thread.sleep(2000);
+			NAV.see_inURL(urlPart);
+		}
+	}
 
 //	@Then("^the URL equals \"([^\"]*)\"$")
 //	public void urlEquals(String expectedURL) {
@@ -263,14 +268,10 @@ public class StepDef {
 		NAV.press_a_key(key, inputFieldLabel);
 	}
 
-	;
-
 	@When("^I press backspace in text area with id \"([^\"]*)\"$")
 	public void press_backspace(String textAreaId) {
 		NAV.press_backspace(textAreaId);
 	}
-
-	;
 
 	@When("^I clear field with id \"([^\"]*)\"$")
 	public void clear_field(String fieldId) {

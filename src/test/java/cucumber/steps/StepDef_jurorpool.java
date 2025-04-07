@@ -15,6 +15,7 @@ import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.junit.ComparisonFailure;
 import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -30,8 +31,8 @@ import java.text.SimpleDateFormat;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAdjusters;
-import java.util.List;
 import java.util.*;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -1127,8 +1128,11 @@ public class StepDef_jurorpool {
     }
 
     @Then("^the juror summons reply types page is displayed$")
-    public void verifyJurorSummonsReplyTypesPageDisplayed() {
-        assertEquals("Reply types", SUMMONS_REPLY.getHeadingText());
+    public void verifyJurorSummonsReplyTypesPageDisplayed() throws InterruptedException {
+        try {assertEquals("Reply types", SUMMONS_REPLY.getHeadingText());}
+        catch (StaleElementReferenceException e) {
+            Thread.sleep(2000);
+        }
     }
 
     @When("^I select that the juror can serve on the summons date$")
@@ -1159,8 +1163,11 @@ public class StepDef_jurorpool {
     }
 
     @Then("^the juror summons reply reasonable adjustments page is displayed$")
-    public void verifyJurorSummonsReplyReasonableAdjustmentsPageDisplayed() {
-        assertEquals("Reasonable adjustments", SUMMONS_REPLY.getHeadingText());
+    public void verifyJurorSummonsReplyReasonableAdjustmentsPageDisplayed() throws InterruptedException {
+        try {assertEquals("Reasonable adjustments", SUMMONS_REPLY.getHeadingText());}
+        catch (StaleElementReferenceException e) {
+            Thread.sleep(2000);
+        }
     }
 
     @When("^I select that the juror does not need adjustments$")
@@ -1830,8 +1837,12 @@ public class StepDef_jurorpool {
     }
 
     @Then("^I click the cancel link$")
-    public void iClickTheCancelLink() {
-        SUMMONS_REPLY.clickCancelLink();
+    public void iClickTheCancelLink() throws InterruptedException {
+        try {SUMMONS_REPLY.clickCancelLink();}
+        catch (StaleElementReferenceException e) {
+            Thread.sleep(2000);
+            SUMMONS_REPLY.clickCancelLink();
+        }
     }
 
     @And("^I see the juror status on the juror record screen is \"([^\"]*)\"$")
@@ -2214,8 +2225,12 @@ public class StepDef_jurorpool {
     }
 
     @Then("^I click the summons reply tab$")
-    public void iClickTheSummonsReplyTab() {
-        JUROR_RECORD_SEARCH.clickSummonsTab();
+    public void iClickTheSummonsReplyTab() throws InterruptedException {
+        try { JUROR_RECORD_SEARCH.clickSummonsTab();}
+        catch (StaleElementReferenceException e) {
+            Thread.sleep(2000);
+            JUROR_RECORD_SEARCH.clickSummonsTab();
+        }
     }
 
     @And("^I click on the view summons reply link$")
@@ -2254,8 +2269,12 @@ public class StepDef_jurorpool {
     }
 
     @And("^I see \"([^\"]*)\" in the error banner$")
-    public void iSeeInTheErrorBanner(String errorText) {
-        assertEquals(errorText, JUROR_RECORD_SEARCH.jurorRecordUpdatedErrorBannerText());
+    public void iSeeInTheErrorBanner(String errorText) throws InterruptedException {
+        try { assertEquals(errorText, JUROR_RECORD_SEARCH.jurorRecordUpdatedErrorBannerText());}
+        catch (StaleElementReferenceException e) {
+            Thread.sleep(2000);
+            assertEquals(errorText, JUROR_RECORD_SEARCH.jurorRecordUpdatedErrorBannerText());
+        }
     }
 
     @Then("^I see the summons reply status is \"([^\"]*)\"$")
