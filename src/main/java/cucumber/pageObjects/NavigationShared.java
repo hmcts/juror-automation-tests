@@ -216,18 +216,36 @@ public class NavigationShared {
      */
     public NavigationShared textPresentOnPage(String expected_text) throws Throwable {
         log.info("Going to check if text present on the page =>" + expected_text);
-        String bodyText = driver.findElement(By.tagName("body")).getText();
         try {
-            Assert.assertTrue("Text found!", bodyText.contains(expected_text));
-        } catch (AssertionError e) { // Refactor this
-            log.info("Did not find text in initial run, waiting for up to 10 seconds for text to appear");
+            String bodyText = driver.findElement(By.tagName("body")).getText();
             try {
-                wait.waitForTextOnPage(expected_text);
-            } catch (Exception eb) {
-                log.info("Exception on wait for page... Trying to continue to get caught by assert");
+                Assert.assertTrue("Text found!", bodyText.contains(expected_text));
+            } catch (AssertionError e) { // Refactor this
+                log.info("Did not find text in initial run, waiting for up to 10 seconds for text to appear");
+                try {
+                    wait.waitForTextOnPage(expected_text);
+                } catch (Exception eb) {
+                    log.info("Exception on wait for page... Trying to continue to get caught by assert");
+                }
+                bodyText = driver.findElement(By.tagName("body")).getText();
+                Assert.assertTrue("Did not see Expected Text =>" + expected_text, bodyText.contains(expected_text));
             }
-            bodyText = driver.findElement(By.tagName("body")).getText();
-            Assert.assertTrue("Did not see Expected Text =>" + expected_text, bodyText.contains(expected_text));
+        }
+        catch (StaleElementReferenceException e) {
+                Thread.sleep(2000);
+                String bodyText = driver.findElement(By.tagName("body")).getText();
+                try {
+                    Assert.assertTrue("Text found!", bodyText.contains(expected_text));
+                } catch (AssertionError f) { // Refactor this
+                    log.info("Did not find text in initial run, waiting for up to 10 seconds for text to appear");
+                    try {
+                        wait.waitForTextOnPage(expected_text);
+                    } catch (Exception eb) {
+                        log.info("Exception on wait for page... Trying to continue to get caught by assert");
+                    }
+                    bodyText = driver.findElement(By.tagName("body")).getText();
+                    Assert.assertTrue("Did not see Expected Text =>" + expected_text, bodyText.contains(expected_text));
+                }
         }
 
         log.info("Saw Expected Text =>" + expected_text);
