@@ -1,7 +1,7 @@
 Feature: JS-289 Search for Trials
 
   @JurorTransformation
-  Scenario Outline: Test to search pool records as bureau
+  Scenario Outline: Test to search pool records as bureau officer
 
     Given I am on "Bureau" "demo"
 
