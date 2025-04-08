@@ -4,12 +4,14 @@ import cucumber.utils.WaitUtil_v2;
 import cucumber.utils.WaitUtils;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -297,8 +299,37 @@ public class ViewSummonsReply {
 
     public void clickChangeDateLink() { changeDateLink.click();}
 
-    public String getJurorStatus() { return jurorStatus.getText();}
+    public String getJurorStatus() {
+        WaitUtils waitUtils = new WaitUtils(driver);
+        int maxRetries = 2;
+        int retryCount = 0;
+        StaleElementReferenceException lastException = null;
 
+        while (retryCount < maxRetries) {
+            try {
+                waitUtils.until(ExpectedConditions.visibilityOf(jurorStatus), 2);
+                return jurorStatus.getText();
+            } catch (StaleElementReferenceException e) {
+                lastException = e;
+                retryCount++;
+
+                if (retryCount == maxRetries) {
+                    break;
+                }
+
+                PageFactory.initElements(driver, this);
+
+                try {
+                    Thread.sleep(200);
+                } catch (InterruptedException ie) {
+                    Thread.currentThread().interrupt();
+                }
+            }
+        }
+        log.error("StaleElementReferenceException occurred while getting juror status: " +
+                (lastException != null ? lastException.getMessage() : "unknown error"));
+        throw new RuntimeException("Unable to get juror status text after retries.");
+    }
     public Map<String,String> getCheckAccommodateJurorDetails() {
         Map<String, String > details = new HashMap<>();
 
