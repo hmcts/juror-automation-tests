@@ -55,23 +55,23 @@ Feature: JM-6163 - As a Jury Officer, I need to add a non-attendance day for a j
     And I click on the "Attendance" link
     And I press non-attendance day button
     And I press confirm non-attendance day button
-    Then I see "Enter a date for the non-attendance day" in the error banner
+    And I see error "Enter a date for the non-attendance day"
 
     And I set non-attendance date to "-6" weeks from now
     And I press confirm non-attendance day button
-    Then I see "Non-attendance date cannot be before the juror's service start date." in the error banner
+    And I see error "Non-attendance date cannot be before the juror's service start date."
 
     When I set non-attendance date to "notadate"
     And I press confirm non-attendance day button
-    Then I see "Non-attendance date must only include numbers" in the error banner
+    And I see error "Non-attendance date must only include numbers"
 
     When I set non-attendance date to "24/5/26"
     And I press confirm non-attendance day button
-    Then I see "Enter a non-attendance date in the correct format, for example, 31/01/2023" in the error banner
+    And I see error "Enter a non-attendance date in the correct format, for example, 31/01/2023"
 
     When I set non-attendance date to "32/01/2023"
     And I press confirm non-attendance day button
-    Then I see "Please enter a valid date for the non-attendance day" in the error banner
+    And I see error "Please enter a valid date for the non-attendance day"
 
     And I update service start date to 4 Mondays ago for pool number "<pool_number>"
 
@@ -84,7 +84,7 @@ Feature: JM-6163 - As a Jury Officer, I need to add a non-attendance day for a j
     And I press non-attendance day button
     And I set non-attendance date to "-4" weeks from now
     And I press confirm non-attendance day button
-    Then I see "You cannot mark this date as a non-attendance day because it's already been recorded as an attendance day." in the error banner
+    And I see error "You cannot mark this date as a non-attendance day because it's already been recorded as an attendance day."
 
     Examples:
       | user		  | juror_number_1 | pool_number   |

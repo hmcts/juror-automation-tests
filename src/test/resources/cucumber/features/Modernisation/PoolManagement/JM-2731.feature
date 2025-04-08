@@ -72,4 +72,4 @@ Feature: JM-2731
 
     And I log in as "MODTESTCOURT"
     When the user enters an incorrect juror record number
-    Then an error message is displayed explaining that there are no matching results
+    And I see "There are no matching results" on the page
