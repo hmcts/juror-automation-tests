@@ -2,11 +2,13 @@ package cucumber.pageObjects;
 
 
 import cucumber.testdata.DatabaseTester;
+import cucumber.utils.WaitUtils;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.text.SimpleDateFormat;
@@ -472,7 +474,37 @@ public class JurorRecord {
     }
 
     public void clickPoolNumberLink() {
-        poolNumberLink.click();
+        WaitUtils waitUtils = new WaitUtils(driver);
+        int maxRetries = 2;
+        int retryCount = 0;
+        StaleElementReferenceException lastException = null;
+
+        while (retryCount < maxRetries) {
+            try {
+                waitUtils.until(ExpectedConditions.elementToBeClickable(poolNumberLink), 2);
+                poolNumberLink.click();
+                return;
+            } catch (StaleElementReferenceException e) {
+                lastException = e;
+                retryCount++;
+
+                if (retryCount == maxRetries) {
+                    break;
+                }
+
+                PageFactory.initElements(driver, this);
+
+                try {
+                    Thread.sleep(200);
+                } catch (InterruptedException ie) {
+                    Thread.currentThread().interrupt();
+                }
+            }
+        }
+
+        log.error("StaleElementReferenceException occurred while clicking pool number link: " +
+                (lastException != null ? lastException.getMessage() : "unknown error"));
+        throw new RuntimeException("Unable to click pool number link after retries.");
     }
 
     public void clickChangeLinkInSameRowAs_inCreateJurorRecord(String link, String nextTo) throws Throwable {

@@ -680,7 +680,37 @@ public class SummonsReply {
     }
 
     public void clickCancelLink() {
-        cancelLink.click();
+        WaitUtils waitUtils = new WaitUtils(driver);
+        int maxRetries = 2;
+        int retryCount = 0;
+        StaleElementReferenceException lastException = null;
+
+        while (retryCount < maxRetries) {
+            try {
+                waitUtils.until(ExpectedConditions.elementToBeClickable(cancelLink), 2);
+                cancelLink.click();
+                return;
+            } catch (StaleElementReferenceException e) {
+                lastException = e;
+                retryCount++;
+
+                if (retryCount == maxRetries) {
+                    break;
+                }
+
+                PageFactory.initElements(driver, this);
+
+                try {
+                    Thread.sleep(200);
+                } catch (InterruptedException ie) {
+                    Thread.currentThread().interrupt();
+                }
+            }
+        }
+
+        log.error("StaleElementReferenceException occurred while clicking cancel link: " +
+                (lastException != null ? lastException.getMessage() : "unknown error"));
+        throw new RuntimeException("Unable to click cancel link after retries.");
     }
 
     public String getJurorStatus() {

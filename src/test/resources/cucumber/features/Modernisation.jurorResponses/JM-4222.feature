@@ -355,7 +355,7 @@ Feature: JM-4222
       | <juror_number> | <pool_number> | 415   |
 
     When the user searches for juror record "<juror_number>" from the global search bar
-    And I click on the Summons Reply tab
+    And I click on the "Summons reply" link
     And I click on the "View summons reply" link
     And I click on the "Reasonable adjustments" link
     And I see "12345678" in the same row as "Optic reference"
