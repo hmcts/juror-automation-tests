@@ -1,8 +1,8 @@
-Feature: JM-3460 JM-3183
+Feature: JM-8127
 
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Process reply for juror with different catchment area to original summons
-    Given I am on "Bureau" "demo"
+    Given I am on "Bureau" "ithc"
     And I log in as "<user>"
 
     Given a bureau owned pool is created with jurors
@@ -54,7 +54,7 @@ Feature: JM-3460 JM-3183
     And I confirm I want to mark the reply as responded
     And I see the juror record updated banner containing "Responded"
     When the user searches for juror record "<juror_number>" from the global search bar
-    And I see the juror status on the juror record screen has updated to "Responded"
+    And I see the juror status has updated to "Responded"
     And I see the court name on the juror record screen is "The Crown Court At Shrewsbury"
 
     Examples:

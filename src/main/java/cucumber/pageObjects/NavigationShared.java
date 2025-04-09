@@ -1796,21 +1796,41 @@ public class NavigationShared {
 
     }
 
+    //create new method for tab issue - osman
     public void see_inURL(String urlPart) {
         waitForPageLoadJenkins();
-        String current_url = "";
-        try {
-            current_url = driver.getCurrentUrl();
-            log.info("Current URL is => " + current_url);
-            Assert.assertTrue(current_url.contains(urlPart));
-            log.info("URL => " + current_url + " <= contains text => " + urlPart);
-        } catch (AssertionError e) {
-            log.error("Assertion error: URL assertion failed. Current URL: " + current_url);
-            throw e;
-        } catch (Exception e) {
-            log.error("Exception occurred while verifying URL: " + e.getMessage());
-            throw new RuntimeException("Exception occurred while verifying URL", e);
+
+        final long timeoutMillis = 3000;
+        final long retryIntervalMillis = 200;
+        long startTime = System.currentTimeMillis();
+
+        String currentUrl = "";
+
+        while (System.currentTimeMillis() - startTime < timeoutMillis) {
+            try {
+                currentUrl = driver.getCurrentUrl();
+                log.info("Current URL is => " + currentUrl);
+
+                if (currentUrl.contains(urlPart)) {
+                    log.info("URL check passed: '" + urlPart + "' found in '" + currentUrl + "'");
+                    return;
+                }
+
+                log.debug("URL does not yet contain expected text. Retrying in " + retryIntervalMillis + "ms...");
+                Thread.sleep(retryIntervalMillis);
+            } catch (Exception e) {
+                log.warn("Exception while retrieving URL. Retrying... Message: " + e.getMessage());
+                try {
+                    Thread.sleep(retryIntervalMillis);
+                } catch (InterruptedException ie) {
+                    Thread.currentThread().interrupt();
+                    throw new RuntimeException("Thread interrupted during URL verification retry", ie);
+                }
+            }
         }
+        currentUrl = driver.getCurrentUrl();
+        log.error("Timed out after 3s: URL does not contain expected text '" + urlPart + "'. Actual URL: " + currentUrl);
+        Assert.fail("Expected URL to contain '" + urlPart + "', but was: '" + currentUrl + "'");
     }
     private void waitForPageLoadJenkins() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));

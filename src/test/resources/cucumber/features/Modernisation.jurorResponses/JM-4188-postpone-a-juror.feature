@@ -20,7 +20,7 @@
     And I insert dob for juror "<juror_number>"
 
     And I search for juror "<juror_number>"
-    And I click the update juror record button
+    And I press the "Update juror record" button
     And I set the radio button to "Postpone service start date"
     And I press the "Continue" button
     And I enter a date "30" mondays in the future for the new service start date

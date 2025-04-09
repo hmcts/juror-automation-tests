@@ -104,7 +104,7 @@ Feature: JM-5060 - 5062
     And I press the "Continue" button
     And I check the failed to attend checkbox
     And I press the "Change status to ‘Failed to attend’" button
-    And I see "Unable to change this juror’s status to ‘Failed to attend’" in the error banner
+    And I see error "This juror cannot be given a Failed To Attend status because they have had attendances recorded. The Failed To Attend status is only for jurors who have not attended at all"
 
     Examples:
       | user		  | juror_number  | pool_number   |

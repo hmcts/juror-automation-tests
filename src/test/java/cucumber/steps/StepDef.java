@@ -248,14 +248,8 @@ public class StepDef {
 	}
 
 	@When("^I see \"([^\"]*)\" in the URL$")
-	public void see_inURL(String urlPart) throws InterruptedException {
-
-		try {
-			NAV.see_inURL(urlPart);
-		} catch (StaleElementReferenceException e) {
-			Thread.sleep(2000);
-			NAV.see_inURL(urlPart);
-		}
+	public void see_inURL(String urlPart) {
+		NAV.see_inURL(urlPart);
 	}
 
 //	@Then("^the URL equals \"([^\"]*)\"$")
