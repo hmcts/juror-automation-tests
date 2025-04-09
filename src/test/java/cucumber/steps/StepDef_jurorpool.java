@@ -4,6 +4,7 @@ import cucumber.pageObjects.*;
 import cucumber.testdata.DatabaseTester;
 import cucumber.testdata.DatabaseTesterNewSchemaDesign;
 import cucumber.utils.DateManipulator;
+import cucumber.utils.WaitUtils;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.PendingException;
 import io.cucumber.java.en.And;
@@ -15,9 +16,11 @@ import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.junit.ComparisonFailure;
 import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.awt.*;
 import java.awt.datatransfer.DataFlavor;
@@ -30,8 +33,8 @@ import java.text.SimpleDateFormat;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAdjusters;
-import java.util.List;
 import java.util.*;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -132,7 +135,6 @@ public class StepDef_jurorpool {
 
     @When("^I navigate to the pool request screen$")
     public void iNavigateToThePoolRequestScreen() {
-        NAV.waitForPageLoad();
         POOL_REQUESTS_PAGE.openPoolManagement();
     }
 
@@ -1127,8 +1129,11 @@ public class StepDef_jurorpool {
     }
 
     @Then("^the juror summons reply types page is displayed$")
-    public void verifyJurorSummonsReplyTypesPageDisplayed() {
-        assertEquals("Reply types", SUMMONS_REPLY.getHeadingText());
+    public void verifyJurorSummonsReplyTypesPageDisplayed() throws InterruptedException {
+        try {assertEquals("Reply types", SUMMONS_REPLY.getHeadingText());}
+        catch (StaleElementReferenceException e) {
+            Thread.sleep(2000);
+        }
     }
 
     @When("^I select that the juror can serve on the summons date$")
@@ -1159,8 +1164,11 @@ public class StepDef_jurorpool {
     }
 
     @Then("^the juror summons reply reasonable adjustments page is displayed$")
-    public void verifyJurorSummonsReplyReasonableAdjustmentsPageDisplayed() {
-        assertEquals("Reasonable adjustments", SUMMONS_REPLY.getHeadingText());
+    public void verifyJurorSummonsReplyReasonableAdjustmentsPageDisplayed() throws InterruptedException {
+        try {assertEquals("Reasonable adjustments", SUMMONS_REPLY.getHeadingText());}
+        catch (StaleElementReferenceException e) {
+            Thread.sleep(2000);
+        }
     }
 
     @When("^I select that the juror does not need adjustments$")
@@ -1487,6 +1495,7 @@ public class StepDef_jurorpool {
         assertEquals("There are no matching results", POOL_SEARCH.getPoolSearchErrorText());
     }
 
+    //change this workflow - JM-666
     @Then("^the pool search results are found$")
     public void poolSearchFound() {
         int actualNumberOfResults = POOL_SEARCH.getPoolSearchNumberOfResults();
@@ -2214,8 +2223,12 @@ public class StepDef_jurorpool {
     }
 
     @Then("^I click the summons reply tab$")
-    public void iClickTheSummonsReplyTab() {
-        JUROR_RECORD_SEARCH.clickSummonsTab();
+    public void iClickTheSummonsReplyTab() throws InterruptedException {
+        try { JUROR_RECORD_SEARCH.clickSummonsTab();}
+        catch (StaleElementReferenceException e) {
+            Thread.sleep(2000);
+            JUROR_RECORD_SEARCH.clickSummonsTab();
+        }
     }
 
     @And("^I click on the view summons reply link$")
@@ -2405,25 +2418,43 @@ public class StepDef_jurorpool {
 
     @When("^I set the \"([^\"]*)\" deferral filter to \"([^\"]*)\"$")
     public void iSetTheDeferralFilterTo(String filter, String input) {
-        DEFERRAL_MAINTENANCE.clickShowFilterButton();
+        retryStale(() -> DEFERRAL_MAINTENANCE.clickShowFilterButton());
 
-        DEFERRAL_MAINTENANCE.clickClearFiltersLink();
+        retryStale(() -> DEFERRAL_MAINTENANCE.clickClearFiltersLink());
+
         switch (filter) {
             case "juror number":
-                DEFERRAL_MAINTENANCE.filterByJurorNumber(input);
+                retryStale(() -> DEFERRAL_MAINTENANCE.filterByJurorNumber(input));
                 break;
             case "first name":
-                DEFERRAL_MAINTENANCE.filterByFirstName(input);
+                retryStale(() -> DEFERRAL_MAINTENANCE.filterByFirstName(input));
                 break;
             case "last name":
-                DEFERRAL_MAINTENANCE.filterByLastName(input);
+                retryStale(() -> DEFERRAL_MAINTENANCE.filterByLastName(input));
                 break;
             case "deferred to":
-                DEFERRAL_MAINTENANCE.filterByDeferredTo(input);
+                retryStale(() -> DEFERRAL_MAINTENANCE.filterByDeferredTo(input));
                 break;
         }
-        DEFERRAL_MAINTENANCE.clickApplyFiltersButton();
-        DEFERRAL_MAINTENANCE.clickShowFilterButton();
+
+        retryStale(() -> DEFERRAL_MAINTENANCE.clickApplyFiltersButton());
+        retryStale(() -> DEFERRAL_MAINTENANCE.clickShowFilterButton());
+    }
+
+    private void retryStale(Runnable action) {
+        long endTime = System.currentTimeMillis() + 2000;
+        while (System.currentTimeMillis() < endTime) {
+            try {
+                action.run();
+                return;
+            } catch (StaleElementReferenceException e) {
+                try {
+                    Thread.sleep(200);
+                } catch (InterruptedException ignored) {
+                }
+            }
+        }
+        throw new RuntimeException("Element remained stale after 2 seconds");
     }
 
     @When("^I set the deferral deferred to filter to \"([^\"]*)\" Mondays in the future$")
