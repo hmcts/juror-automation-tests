@@ -29,7 +29,7 @@ Feature: JM-4222
     #process response
     When the user searches for juror record "<juror_number>" from the global search bar
 
-    Then I click on the Summons Reply tab
+    And I click on the "Summons reply" link
     Then I click on the view summons reply link
     Then I click the process reply button
     Then I mark the reply as responded
@@ -83,7 +83,7 @@ Feature: JM-4222
     And I select the reasonable adjustments tab from the summons reply page
     And I do not see "Optic reference" on the page
     When I press the "Check court can accommodate" button
-    Then I am on the check can accommodate screen
+    Then I am on the check can accommodate screeAndI click the update juror record button
 
     #for this to work in Jenkins, we need a later version of Selenium which includes the setPermissions method and would allow this to work. Commenting out for now
     #When I press the "Copy juror information" button
@@ -237,7 +237,7 @@ Feature: JM-4222
     And I see "Deferral granted" on the page
 
     When the user searches for juror record "<juror_number>" from the global search bar
-    And I click on the Summons Reply tab
+    And I click on the "Summons reply" link
     And I click on the "View summons reply" link
     And I select the reasonable adjustments tab from the summons reply page
     And I see "12345678" in the same row as "Optic reference"
@@ -273,7 +273,7 @@ Feature: JM-4222
 
     And I record a paper summons response with reasonable adjustment of "C - Caring Responsibilities"
     When the user searches for juror record "<juror_number>" from the global search bar
-    Then I click on the Summons Reply tab
+    And I click on the "Summons reply" link
     Then I click on the view summons reply link
     And I click the juror details adjustments tab
     When I press the "Check court can accommodate" button
@@ -288,7 +288,7 @@ Feature: JM-4222
 
     #process response
     When the user searches for juror record "<juror_number>" from the global search bar
-    Then I click on the Summons Reply tab
+    And I click on the "Summons reply" link
     Then I click on the view summons reply link
     Then I click the process reply button
     Then I mark the reply as responded
@@ -377,10 +377,10 @@ Feature: JM-4222
     Then I see "Transfer to Welshpool (774)" on the page
     When I press the "Continue" button
     When the user searches for juror record "<juror_number>" from the global search bar
-    And I see the juror status on the juror record screen has updated to "Transferred"
+    And I see the juror status has updated to "Transferred"
 
     When the user searches for juror record "<juror_number>" from the global search bar
-    And I click the summons reply tab
+    And I click on the "Summons reply" link
     And I click on the "View summons reply" link
     And I click on the "Reasonable adjustments" link
     And I see "12345678" in the same row as "Optic reference"
