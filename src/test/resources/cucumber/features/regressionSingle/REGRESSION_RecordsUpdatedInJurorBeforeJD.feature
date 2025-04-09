@@ -154,12 +154,10 @@ Examples:
 	| juror_number	| pool_number	| last_name			| postcode	| email		|
 	| 045200256		| 452300233		| LNAMETWOSIXZERO	| CH1 2AN	| a@a.com	|
 
-@RegressionWIP @JS-263
-Scenario Outline: Can Set Juror Record to Deferred while response is TODO
+@RegressionSingle
+Scenario Outline: Cannot Set Juror Record to Deferred while response is TODO
 
-	#return to @RegressionSingle when defect resolved JS-263
-
-	Given I am on "Public" "ithc"
+	Given I am on "Public" "demo"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -167,115 +165,52 @@ Scenario Outline: Can Set Juror Record to Deferred while response is TODO
 
 	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
 	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
-	And juror "<juror_number>" has "DOB" as "1971-08-13 00:00:00.000" new schema
 
 	# Submit response in pool
 	Given I have submitted a first party English ineligibilty response
 		| part_no			| pool_number	| last_name		| postcode		| email 	|
 		| <juror_number>	| <pool_number>	| <last_name>	| <postcode>	| <email>	|
 
-	Given I am on "Bureau" "ithc"
+	Given I am on "Bureau" "demo"
 	And I log in as "CPASS"
 
 	##defer juror
 	When the user searches for juror record "<juror_number>" from the global search bar
 	And I press the "Update juror record" button
-	And I choose the "Deferral - grant or refuse" radio button
-	And I press the "Continue" button
-	And I select "I - ILL" from the "Reason for the deferral request" dropdown
-	And I choose the "Grant deferral" radio button
-	And I choose the "Other" radio button
-	And I set the "Deferral" date to a Monday "10" weeks in the future
-	And I press the "Continue" button
-	And I choose the "Add to pool" radio button
-	And I press the "Continue" button
-	Then I see the juror status has updated to "Responded"
+	And I do not see "Deferral - grant or refuse" on the page
 
-	#check that the response has been completed
-	When I click on the "Summons reply" link
-
-	#JM-6706
-	Then I see "Completed" on the page
-	And I see "Deferral granted (ill)" on the page
-
-	And I click on the "Juror details" link
-	And I see "Fname Changed" on the page
-
-	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "CLOSED" where "JUROR_NUMBER" is "<juror_number>"
-	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "Y" where "JUROR_NUMBER" is "<juror_number>"
-	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "LAST_NAME" is "Changed" where "JUROR_NUMBER" is "<juror_number>"
-
-	#check record is now in "completed today"
-	When I click on the "Apps" link
-	And I click on the "Summons management" link
-	Then I click on the "Completed" link
-	Then I see "<juror_number>" on the page
-	
 Examples:
 	| juror_number	| pool_number	| last_name			| postcode	| email		|
 	| 045200257		| 452300234		| LNAMETWOSIXZERO	| CH1 2AN	| a@a.com	|
 
-@RegressionWIP
-Scenario Outline: Can Set Juror Record to Postponed while response is TODO
+@RegressionSingle
+Scenario Outline: Cannot Set Juror Record to Postponed while response is TODO
 
-	#return to @RegressionSingle when defect resolved JS-263
-
-	Given I am on "Public" "ithc"
+	Given I am on "Public" "demo"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |
 		| 452   | <juror_number>| <pool_number>	| 2				            | 400	|
 
-	Given a bureau owned pool is created with jurors
-		| court | juror_number  	| pool_number		| att_date_weeks_in_future	| owner |
-		| 452   | <juror_number_2>	| <pool_number_2>	| 3				            | 400	|
-
 	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
 	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
-	And juror "<juror_number>" has "DOB" as "1971-08-13 00:00:00.000" new schema
 
 	# Submit response in pool
 	Given I have submitted a first party English ineligibilty response
 		| part_no			| pool_number	| last_name		| postcode		| email 	|
 		| <juror_number>	| <pool_number>	| <last_name>	| <postcode>	| <email>	|
 
-	Given I am on "Bureau" "ithc"
+	Given I am on "Bureau" "demo"
 	And I log in as "CPASS"
 
-	##postpose juror
+	#cannot postpose juror
 	When the user searches for juror record "<juror_number>" from the global search bar
 	And I press the "Update juror record" button
-	And I choose the "Postpone service start date" radio button
-	And I press the "Continue" button
-	And I set the "Enter a new service start date" date to a Monday "3" weeks in the future
-	And I press the "Continue" button
-	And I choose the "Add to pool" radio button
-	And I press the "Continue" button
-	Then I see the juror record updated banner containing "Postponed"
-
-	#check that the response has been completed
-	When I click on the "Summons reply" link
-
-	#JM-6706
-	Then I see "Completed" on the page
-	And I see "Responded" on the page
-
-	And I click on the "Juror details" link
-	And I see "Fname Changed" on the page
-
-	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "CLOSED" where "JUROR_NUMBER" is "<juror_number>"
-	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "Y" where "JUROR_NUMBER" is "<juror_number>"
-	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "LAST_NAME" is "Changed" where "JUROR_NUMBER" is "<juror_number>"
-
-	#check record is now in "completed today"
-	When I click on the "Apps" link
-	And I click on the "Summons management" link
-	Then I click on the "Completed" link
-	Then I see "<juror_number>" on the page
+	And I do not see "Postpone service start date" on the page
 
 	Examples:
-		| juror_number	| pool_number	| juror_number_2	| pool_number_2	| last_name			| postcode	| email		|
-		| 045200258		| 452300235		| 045200264			| 452300226		| LNAMETWOSIXZERO	| CH1 2AN	| a@a.com	|
+		| juror_number	| pool_number	| last_name			| postcode	| email		|
+		| 045200258		| 452300235		| LNAMETWOSIXZERO	| CH1 2AN	| a@a.com	|
 
 @RegressionSingle
 Scenario Outline: Can Set Juror Record to Reassigned while response is TODO
