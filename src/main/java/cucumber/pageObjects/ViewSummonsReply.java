@@ -203,7 +203,37 @@ public class ViewSummonsReply {
     }
 
     public void clickAdjustmentsTab() {
-        adjustmentsTab.click();
+        log.info("Clicking Adjustments tab");
+
+        int maxRetries = 2;
+        int retryCount = 0;
+        StaleElementReferenceException lastException = null;
+
+        while (retryCount < maxRetries) {
+            try {
+                adjustmentsTab.click();
+                return;
+            } catch (StaleElementReferenceException e) {
+                lastException = e;
+                retryCount++;
+
+                log.warn("StaleElementReferenceException on clickAdjustmentsTab - attempt " + retryCount);
+
+                if (retryCount == maxRetries) break;
+
+                PageFactory.initElements(driver, this);
+
+                try {
+                    Thread.sleep(200);
+                } catch (InterruptedException ie) {
+                    Thread.currentThread().interrupt();
+                }
+            }
+        }
+
+        log.error("Failed to click Adjustments tab due to stale element: " +
+                (lastException != null ? lastException.getMessage() : "unknown error"));
+        throw new RuntimeException("Unable to click Adjustments tab after retries.");
     }
 
     public void clickSignatureTab() {
