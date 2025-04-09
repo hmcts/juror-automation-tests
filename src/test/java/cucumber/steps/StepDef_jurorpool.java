@@ -4,6 +4,7 @@ import cucumber.pageObjects.*;
 import cucumber.testdata.DatabaseTester;
 import cucumber.testdata.DatabaseTesterNewSchemaDesign;
 import cucumber.utils.DateManipulator;
+import cucumber.utils.WaitUtils;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.PendingException;
 import io.cucumber.java.en.And;
@@ -19,6 +20,7 @@ import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.awt.*;
 import java.awt.datatransfer.DataFlavor;
@@ -133,7 +135,6 @@ public class StepDef_jurorpool {
 
     @When("^I navigate to the pool request screen$")
     public void iNavigateToThePoolRequestScreen() {
-        NAV.waitForPageLoad();
         POOL_REQUESTS_PAGE.openPoolManagement();
     }
 
@@ -1494,6 +1495,7 @@ public class StepDef_jurorpool {
         assertEquals("There are no matching results", POOL_SEARCH.getPoolSearchErrorText());
     }
 
+    //change this workflow - JM-666
     @Then("^the pool search results are found$")
     public void poolSearchFound() {
         int actualNumberOfResults = POOL_SEARCH.getPoolSearchNumberOfResults();
@@ -1837,12 +1839,8 @@ public class StepDef_jurorpool {
     }
 
     @Then("^I click the cancel link$")
-    public void iClickTheCancelLink() throws InterruptedException {
-        try {SUMMONS_REPLY.clickCancelLink();}
-        catch (StaleElementReferenceException e) {
-            Thread.sleep(2000);
-            SUMMONS_REPLY.clickCancelLink();
-        }
+    public void iClickTheCancelLink() {
+        SUMMONS_REPLY.clickCancelLink();
     }
 
     @And("^I see the juror status on the juror record screen is \"([^\"]*)\"$")
@@ -2269,12 +2267,8 @@ public class StepDef_jurorpool {
     }
 
     @And("^I see \"([^\"]*)\" in the error banner$")
-    public void iSeeInTheErrorBanner(String errorText) throws InterruptedException {
-        try { assertEquals(errorText, JUROR_RECORD_SEARCH.jurorRecordUpdatedErrorBannerText());}
-        catch (StaleElementReferenceException e) {
-            Thread.sleep(2000);
-            assertEquals(errorText, JUROR_RECORD_SEARCH.jurorRecordUpdatedErrorBannerText());
-        }
+    public void iSeeInTheErrorBanner(String errorText) {
+        assertEquals(errorText, JUROR_RECORD_SEARCH.jurorRecordUpdatedErrorBannerText());
     }
 
     @Then("^I see the summons reply status is \"([^\"]*)\"$")
@@ -2424,25 +2418,43 @@ public class StepDef_jurorpool {
 
     @When("^I set the \"([^\"]*)\" deferral filter to \"([^\"]*)\"$")
     public void iSetTheDeferralFilterTo(String filter, String input) {
-        DEFERRAL_MAINTENANCE.clickShowFilterButton();
+        retryStale(() -> DEFERRAL_MAINTENANCE.clickShowFilterButton());
 
-        DEFERRAL_MAINTENANCE.clickClearFiltersLink();
+        retryStale(() -> DEFERRAL_MAINTENANCE.clickClearFiltersLink());
+
         switch (filter) {
             case "juror number":
-                DEFERRAL_MAINTENANCE.filterByJurorNumber(input);
+                retryStale(() -> DEFERRAL_MAINTENANCE.filterByJurorNumber(input));
                 break;
             case "first name":
-                DEFERRAL_MAINTENANCE.filterByFirstName(input);
+                retryStale(() -> DEFERRAL_MAINTENANCE.filterByFirstName(input));
                 break;
             case "last name":
-                DEFERRAL_MAINTENANCE.filterByLastName(input);
+                retryStale(() -> DEFERRAL_MAINTENANCE.filterByLastName(input));
                 break;
             case "deferred to":
-                DEFERRAL_MAINTENANCE.filterByDeferredTo(input);
+                retryStale(() -> DEFERRAL_MAINTENANCE.filterByDeferredTo(input));
                 break;
         }
-        DEFERRAL_MAINTENANCE.clickApplyFiltersButton();
-        DEFERRAL_MAINTENANCE.clickShowFilterButton();
+
+        retryStale(() -> DEFERRAL_MAINTENANCE.clickApplyFiltersButton());
+        retryStale(() -> DEFERRAL_MAINTENANCE.clickShowFilterButton());
+    }
+
+    private void retryStale(Runnable action) {
+        long endTime = System.currentTimeMillis() + 2000;
+        while (System.currentTimeMillis() < endTime) {
+            try {
+                action.run();
+                return;
+            } catch (StaleElementReferenceException e) {
+                try {
+                    Thread.sleep(200);
+                } catch (InterruptedException ignored) {
+                }
+            }
+        }
+        throw new RuntimeException("Element remained stale after 2 seconds");
     }
 
     @When("^I set the deferral deferred to filter to \"([^\"]*)\" Mondays in the future$")

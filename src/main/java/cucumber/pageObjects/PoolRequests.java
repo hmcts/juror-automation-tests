@@ -8,7 +8,10 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -170,8 +173,30 @@ public class PoolRequests {
 
     public void openPoolManagement() {
         log.info("Opening Pool Management");
+
         HEADER_PAGE.openAppsMenu();
-        HEADER_PAGE.clickPoolManagement();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+
+        try {
+            WebElement poolManagementLinkCss = wait.until(
+                    ExpectedConditions.visibilityOfElementLocated(By.cssSelector("a.govuk-link.govuk-!-font-weight-bold[href='/pool-management']"))
+            );
+            poolManagementLinkCss.click();
+            log.info("Clicked on Pool Management using CSS Selector");
+        } catch (Exception e) {
+            log.error("Failed to find Pool Management using CSS Selector", e);
+        }
+
+        try {
+            WebElement poolManagementLinkXpath = wait.until(
+                    ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@href='/pool-management' and contains(text(),'Pool management')]"))
+            );
+            poolManagementLinkXpath.click();
+            log.info("Clicked on Pool Management using XPath");
+        } catch (Exception e) {
+            log.error("Failed to find Pool Management using XPath", e);
+        }
     }
 
     public void openSummonsManagement() {
