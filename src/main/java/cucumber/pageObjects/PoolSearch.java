@@ -2,6 +2,7 @@ package cucumber.pageObjects;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -148,24 +149,54 @@ public class PoolSearch {
         return poolSearchResultsTableHeader.getText();
     }
 
-    public Integer getPoolSearchNumberOfResults(){
-        By element = By.className("govuk-pagination__next");
-        List<WebElement> nextNavButton = driver.findElements(element);
+    public Integer getPoolSearchNumberOfResults() {
+        log.info("Calculating total number of pool search results");
+
+        final int maxRetries = 2;
+        final By paginationButtonSelector = By.className("govuk-pagination__next");
+
         int numberOfRows = 0;
 
-        // Iterate through all pages of search results
-        while (!nextNavButton.isEmpty()) {
-            numberOfRows += poolSearchResultsTable.findElements(By.tagName("tr")).size();
-            log.info("Number of rows: " + numberOfRows);
-            nextButton.click();
-            nextNavButton = driver.findElements(element);
+        while (true) {
+            int retryCount = 0;
+            StaleElementReferenceException lastException = null;
+
+            while (retryCount < maxRetries) {
+                try {
+                    List<WebElement> rows = poolSearchResultsTable.findElements(By.tagName("tr"));
+                    numberOfRows += rows.size();
+                    log.info("Number of rows so far: " + numberOfRows);
+
+                    List<WebElement> nextNavButton = driver.findElements(paginationButtonSelector);
+                    if (nextNavButton.isEmpty()) {
+                        return numberOfRows;
+                    }
+
+                    nextButton.click();
+                    break;
+
+                } catch (StaleElementReferenceException e) {
+                    lastException = e;
+                    retryCount++;
+                    log.warn("StaleElementReferenceException during pagination - attempt " + retryCount);
+
+                    if (retryCount == maxRetries) break;
+
+                    PageFactory.initElements(driver, this);
+                    try {
+                        Thread.sleep(200);
+                    } catch (InterruptedException ie) {
+                        Thread.currentThread().interrupt();
+                    }
+                }
+            }
+
+            if (retryCount == maxRetries) {
+                log.error("Failed to paginate due to stale elements: " +
+                        (lastException != null ? lastException.getMessage() : "unknown"));
+                throw new RuntimeException("Failed to paginate and count pool search results after retries.");
+            }
         }
-
-        // No more next buttons, count the remaining rows on the last page
-        numberOfRows += poolSearchResultsTable.findElements(By.tagName("tr")).size();
-        log.info("Number of rows: " + numberOfRows);
-
-        return numberOfRows;
     }
 
     public void clickPoolNumberInSearchList(String poolnumber) {

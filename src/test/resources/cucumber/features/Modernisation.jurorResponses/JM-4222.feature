@@ -83,7 +83,7 @@ Feature: JM-4222
     And I select the reasonable adjustments tab from the summons reply page
     And I do not see "Optic reference" on the page
     When I press the "Check court can accommodate" button
-    Then I am on the check can accommodate screeAndI click the update juror record button
+    Then I am on the check can accommodate screen
 
     #for this to work in Jenkins, we need a later version of Selenium which includes the setPermissions method and would allow this to work. Commenting out for now
     #When I press the "Copy juror information" button

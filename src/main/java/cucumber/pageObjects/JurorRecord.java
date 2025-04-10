@@ -315,7 +315,36 @@ public class JurorRecord {
     }
 
     public void clickSummonsTab() {
-        summonsTab.click();
+        log.info("Clicking Summons tab");
+
+        int maxRetries = 2;
+        int retryCount = 0;
+        StaleElementReferenceException lastException = null;
+
+        while (retryCount < maxRetries) {
+            try {
+                summonsTab.click();
+                return;
+            } catch (StaleElementReferenceException e) {
+                lastException = e;
+                retryCount++;
+                log.warn("StaleElementReferenceException when clicking Summons tab - attempt " + retryCount);
+
+                if (retryCount == maxRetries) break;
+
+                PageFactory.initElements(driver, this);
+
+                try {
+                    Thread.sleep(200);
+                } catch (InterruptedException ie) {
+                    Thread.currentThread().interrupt();
+                }
+            }
+        }
+
+        log.error("Unable to click Summons tab due to stale element: " +
+                (lastException != null ? lastException.getMessage() : "unknown"));
+        throw new RuntimeException("Failed to click Summons tab after retries.");
     }
 
     public String getReplyStatus() {

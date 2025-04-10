@@ -536,7 +536,34 @@ public class PoolRequests {
 
     public String getBannerMessage() {
         log.info("Getting banner message");
-        return bannerMessage.getText();
+
+        int maxRetries = 2;
+        int retryCount = 0;
+        StaleElementReferenceException lastException = null;
+
+        while (retryCount < maxRetries) {
+            try {
+                return bannerMessage.getText();
+            } catch (StaleElementReferenceException e) {
+                lastException = e;
+                retryCount++;
+                log.warn("StaleElementReferenceException when getting banner message - attempt " + retryCount);
+
+                if (retryCount == maxRetries) break;
+
+                PageFactory.initElements(driver, this);
+
+                try {
+                    Thread.sleep(200);
+                } catch (InterruptedException ie) {
+                    Thread.currentThread().interrupt();
+                }
+            }
+        }
+
+        log.error("Unable to get banner message due to stale element: " +
+                (lastException != null ? lastException.getMessage() : "unknown"));
+        throw new RuntimeException("Unable to retrieve banner message after retries.");
     }
 
     public boolean requestIsVisibleByNumber(String poolNumber) {
@@ -562,7 +589,35 @@ public class PoolRequests {
     }
 
     public String getPoolNumberOnDetails() {
-        return poolNumberOnDetails.getText();
+        log.info("Getting pool number on details");
+
+        int maxRetries = 2;
+        int retryCount = 0;
+        StaleElementReferenceException lastException = null;
+
+        while (retryCount < maxRetries) {
+            try {
+                return poolNumberOnDetails.getText();
+            } catch (StaleElementReferenceException e) {
+                lastException = e;
+                retryCount++;
+                log.warn("StaleElementReferenceException when getting pool number on details - attempt " + retryCount);
+
+                if (retryCount == maxRetries) break;
+
+                PageFactory.initElements(driver, this);
+
+                try {
+                    Thread.sleep(200);
+                } catch (InterruptedException ie) {
+                    Thread.currentThread().interrupt();
+                }
+            }
+        }
+
+        log.error("Unable to get pool number on details due to stale element: " +
+                (lastException != null ? lastException.getMessage() : "unknown"));
+        throw new RuntimeException("Unable to retrieve pool number on details after retries.");
     }
 
     public void clickDeferralMaintenance() {

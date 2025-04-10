@@ -5,6 +5,7 @@ import cucumber.utils.WaitUtil_v2;
 import cucumber.utils.WaitUtils;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -79,8 +80,35 @@ public class SummonCitizens {
     }
 
     public String getNumberOfCitizensSummonedError() {
-        log.info("Getting pool attendance date");
-        return numberOfCitizensSummonedError.getText();
+        log.info("Getting number of citizens summoned error");
+
+        int maxRetries = 2;
+        int retryCount = 0;
+        StaleElementReferenceException lastException = null;
+
+        while (retryCount < maxRetries) {
+            try {
+                return numberOfCitizensSummonedError.getText();
+            } catch (StaleElementReferenceException e) {
+                lastException = e;
+                retryCount++;
+                log.warn("StaleElementReferenceException when getting 'number of citizens summoned' error - attempt " + retryCount);
+
+                if (retryCount == maxRetries) break;
+
+                PageFactory.initElements(driver, this);
+
+                try {
+                    Thread.sleep(200);
+                } catch (InterruptedException ie) {
+                    Thread.currentThread().interrupt();
+                }
+            }
+        }
+
+        log.error("Unable to get 'number of citizens summoned' error due to stale element: " +
+                (lastException != null ? lastException.getMessage() : "unknown"));
+        throw new RuntimeException("Unable to retrieve 'number of citizens summoned' error after retries.");
     }
 
     public boolean summonedCitizensChangeDeferralsIsPresent() {

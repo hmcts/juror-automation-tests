@@ -136,7 +136,38 @@ public class JurorRecordSearch {
 
     public void clickViewSummonsReplyLink(){ viewSummonsReplyLink.click();}
 
-    public void clickUpdateJurorRecord() { updateJurorRecordButton.click();}
+    public void clickUpdateJurorRecord() {
+        log.info("Clicking 'Update Juror Record' button");
+
+        int maxRetries = 2;
+        int retryCount = 0;
+        StaleElementReferenceException lastException = null;
+
+        while (retryCount < maxRetries) {
+            try {
+                updateJurorRecordButton.click();
+                return;
+            } catch (StaleElementReferenceException e) {
+                lastException = e;
+                retryCount++;
+                log.warn("StaleElementReferenceException when clicking 'Update Juror Record' - attempt " + retryCount);
+
+                if (retryCount == maxRetries) break;
+
+                PageFactory.initElements(driver, this);
+
+                try {
+                    Thread.sleep(200);
+                } catch (InterruptedException ie) {
+                    Thread.currentThread().interrupt();
+                }
+            }
+        }
+
+        log.error("Unable to click 'Update Juror Record' button due to stale element: " +
+                (lastException != null ? lastException.getMessage() : "unknown"));
+        throw new RuntimeException("Failed to click 'Update Juror Record' after retries.");
+    }
 
     public void clickMarkAsDeceasedRadioButton() { markAsDeceasedRadioButton.click();}
 

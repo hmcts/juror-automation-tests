@@ -137,7 +137,7 @@ Feature: JM-5417-5586 - Resend excusal refused letter for Bureau and Jury users
 
     #return to juror record - status will be responded due to refusal
     When the user searches for juror record "<juror_number>" from the global search bar
-    Then I see the juror's status on the juror record screen is "Responded"
+    And I see the juror status has updated to "Responded"
     And the warning icon is displayed next to the juror status
 
     #record response for second juror

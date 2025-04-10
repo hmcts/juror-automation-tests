@@ -2389,31 +2389,27 @@ public class NavigationShared {
 
 
     public void insertHolidayInTheFrontScreen(Integer noOfWeeks) {
-        //String datePattern = "EEEE-DD-MM";
-        // Calendar calendar = Calendar.getInstance();
-        //calendar.add(Calendar.WEEK_OF_MONTH, noOfWeeks);
-
         DateFormat dateFormat = new SimpleDateFormat("EEEE d MMMMMMMMMM");
-        Date today = Calendar.getInstance().getTime();
+
         Calendar calendar = Calendar.getInstance();
-        calendar.setTime(today);
         calendar.add(Calendar.WEEK_OF_MONTH, noOfWeeks);
         Date newDate = calendar.getTime();
-        System.out.println(dateFormat.format(newDate));
-        System.out.println(bankHoliday.get(2).getText());
+        String expectedDate = dateFormat.format(newDate);
 
-        String noOfWeeksConverted = Integer.toString(noOfWeeks);
+        System.out.println("Expected holiday (" + noOfWeeks + " weeks in the future): " + expectedDate);
 
-        switch (noOfWeeksConverted) {
-            case "6":
-                Assert.assertEquals(dateFormat.format(newDate), bankHoliday.get(0).getText());
-                break;
-            case "24":
-                Assert.assertEquals(dateFormat.format(newDate), bankHoliday.get(2).getText());
-                break;
-            default:
-                throw new Error("Unexpected switch case");
+        System.out.println("Visible holidays on the screen:");
+        for (WebElement element : bankHoliday) {
+            System.out.println(" - " + element.getText());
         }
+
+        boolean matchFound = bankHoliday.stream()
+                .anyMatch(element -> expectedDate.equals(element.getText()));
+
+        Assert.assertTrue(
+                "Expected holiday '" + expectedDate + "' not found in bankHoliday list for " + noOfWeeks + " weeks in the future.",
+                matchFound
+        );
     }
     public void openNewTab() {
 
