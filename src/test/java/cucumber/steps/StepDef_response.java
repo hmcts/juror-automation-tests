@@ -165,9 +165,7 @@ public class StepDef_response {
 		}
 	}
 
-	;
-
-	//| part_no		|pool_number	| last_name			|postcode	| email |
+    //| part_no		|pool_number	| last_name			|postcode	| email |
 	@Given("^I have submitted a third party English straight through response$")
 	public void submitThirdEnglishStraightThroughResponse(DataTable arg1) throws Throwable {
 		List<Map<String, String>> list = arg1.asMaps(String.class, String.class);

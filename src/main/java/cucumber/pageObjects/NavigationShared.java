@@ -392,33 +392,46 @@ public class NavigationShared {
     }
 
     public NavigationShared set_valueTo(String location_name, String value) throws Throwable {
-        //WebElement parentLocation = find_locationParent(location_name);
-        //WebElement childField = parentLocation.findElement(By.cssSelector("input"));
-        WebElement childField;
+        WebElement childField = null;
+
         try {
             childField = find_inputBy_labelName(location_name);
-
-            //added to address the fact chris's push includes his test data hard coded into log on fields
             childField.clear();
-
         } catch (Exception e) {
             wait.activateImplicitWait(2);
-            childField = return_oneVisibleFromList(
-                    driver.findElements(By.xpath(
-                            "//label[text()[contains(., \"" + location_name + "\")]]//input"
-                                    + " | "
-                                    + "//textarea[@name=\"" + location_name + "\"]"
-                                    + " | "
-                                    + "//label[text()[contains(., \"" + location_name + "\")]]/../textarea"
-                    ))
-            );
+            List<WebElement> inputs;
+            int attempts = 0;
+
+            do {
+                inputs = driver.findElements(By.xpath(
+                        "//label[text()[contains(., \"" + location_name + "\")]]//input"
+                                + " | "
+                                + "//textarea[@name=\"" + location_name + "\"]"
+                                + " | "
+                                + "//label[text()[contains(., \"" + location_name + "\")]]/../textarea"
+                ));
+
+                try {
+                    childField = return_oneVisibleFromList(inputs);
+                    break;
+                } catch (Exception ex) {
+                }
+
+                Thread.sleep(500);
+                attempts++;
+            } while ((childField == null || !childField.isDisplayed()) && attempts < 3);
+
+            if (childField == null || !childField.isDisplayed()) {
+                throw new Exception("Could not locate visible input field with label: " + location_name);
+            }
         }
 
         childField.clear();
         childField.sendKeys(value);
 
-        if (DateManipulator.isValidDate(value))
+        if (DateManipulator.isValidDate(value)) {
             childField.sendKeys(Keys.TAB);
+        }
 
         log.info("Set input field with label =>" + location_name + "<= to =>" + value);
 
