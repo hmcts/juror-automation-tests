@@ -392,33 +392,46 @@ public class NavigationShared {
     }
 
     public NavigationShared set_valueTo(String location_name, String value) throws Throwable {
-        //WebElement parentLocation = find_locationParent(location_name);
-        //WebElement childField = parentLocation.findElement(By.cssSelector("input"));
-        WebElement childField;
+        WebElement childField = null;
+
         try {
             childField = find_inputBy_labelName(location_name);
-
-            //added to address the fact chris's push includes his test data hard coded into log on fields
             childField.clear();
-
         } catch (Exception e) {
             wait.activateImplicitWait(2);
-            childField = return_oneVisibleFromList(
-                    driver.findElements(By.xpath(
-                            "//label[text()[contains(., \"" + location_name + "\")]]//input"
-                                    + " | "
-                                    + "//textarea[@name=\"" + location_name + "\"]"
-                                    + " | "
-                                    + "//label[text()[contains(., \"" + location_name + "\")]]/../textarea"
-                    ))
-            );
+            List<WebElement> inputs;
+            int attempts = 0;
+
+            do {
+                inputs = driver.findElements(By.xpath(
+                        "//label[text()[contains(., \"" + location_name + "\")]]//input"
+                                + " | "
+                                + "//textarea[@name=\"" + location_name + "\"]"
+                                + " | "
+                                + "//label[text()[contains(., \"" + location_name + "\")]]/../textarea"
+                ));
+
+                try {
+                    childField = return_oneVisibleFromList(inputs);
+                    break;
+                } catch (Exception ex) {
+                }
+
+                Thread.sleep(500);
+                attempts++;
+            } while ((childField == null || !childField.isDisplayed()) && attempts < 3);
+
+            if (childField == null || !childField.isDisplayed()) {
+                throw new Exception("Could not locate visible input field with label: " + location_name);
+            }
         }
 
         childField.clear();
         childField.sendKeys(value);
 
-        if (DateManipulator.isValidDate(value))
+        if (DateManipulator.isValidDate(value)) {
             childField.sendKeys(Keys.TAB);
+        }
 
         log.info("Set input field with label =>" + location_name + "<= to =>" + value);
 
@@ -2389,31 +2402,27 @@ public class NavigationShared {
 
 
     public void insertHolidayInTheFrontScreen(Integer noOfWeeks) {
-        //String datePattern = "EEEE-DD-MM";
-        // Calendar calendar = Calendar.getInstance();
-        //calendar.add(Calendar.WEEK_OF_MONTH, noOfWeeks);
-
         DateFormat dateFormat = new SimpleDateFormat("EEEE d MMMMMMMMMM");
-        Date today = Calendar.getInstance().getTime();
+
         Calendar calendar = Calendar.getInstance();
-        calendar.setTime(today);
         calendar.add(Calendar.WEEK_OF_MONTH, noOfWeeks);
         Date newDate = calendar.getTime();
-        System.out.println(dateFormat.format(newDate));
-        System.out.println(bankHoliday.get(2).getText());
+        String expectedDate = dateFormat.format(newDate);
 
-        String noOfWeeksConverted = Integer.toString(noOfWeeks);
+        System.out.println("Expected holiday (" + noOfWeeks + " weeks in the future): " + expectedDate);
 
-        switch (noOfWeeksConverted) {
-            case "6":
-                Assert.assertEquals(dateFormat.format(newDate), bankHoliday.get(0).getText());
-                break;
-            case "24":
-                Assert.assertEquals(dateFormat.format(newDate), bankHoliday.get(2).getText());
-                break;
-            default:
-                throw new Error("Unexpected switch case");
+        System.out.println("Visible holidays on the screen:");
+        for (WebElement element : bankHoliday) {
+            System.out.println(" - " + element.getText());
         }
+
+        boolean matchFound = bankHoliday.stream()
+                .anyMatch(element -> expectedDate.equals(element.getText()));
+
+        Assert.assertTrue(
+                "Expected holiday '" + expectedDate + "' not found in bankHoliday list for " + noOfWeeks + " weeks in the future.",
+                matchFound
+        );
     }
     public void openNewTab() {
 

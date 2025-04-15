@@ -105,4 +105,13 @@ public class StepDef_groups {
 	public void jurorRecordTagIsVisible() {
 		assertTrue(GRP.seeGovNote());
 	}
+	@When("^I click any radio button while prioritising pool numbers for deferral$")
+	public void clickAnyRadioButtonExcludingSpecificText() throws Throwable {
+		try {
+			GRP.clickDeferralRadioButtonExcludingMaintenance();
+		} catch (Throwable e) {
+			NAV.waitForPageLoad();
+			GRP.clickDeferralRadioButtonExcludingMaintenance();
+		}
+	}
 }
