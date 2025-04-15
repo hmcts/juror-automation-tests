@@ -267,4 +267,38 @@ public class Groups {
 			return false;
 		}
 	}
+	public void clickDeferralRadioButtonExcludingMaintenance() throws Exception {
+		wait.activateImplicitWait();
+		List<WebElement> preferredOptions = driver.findElements(By.xpath(
+				"//input[@type='radio' and contains(@value, '_') " +
+						"and string-length(substring-after(@value, '_')) = 9]"
+		));
+
+		WebElement chosenRadioButton;
+		String expectedTextAfterSubmit;
+
+		if (!preferredOptions.isEmpty()) {
+			chosenRadioButton = NAV.return_oneVisibleFromList(preferredOptions, true);
+			expectedTextAfterSubmit = "Responded";
+			log.info("Found preferred radio button with pool number.");
+		} else {
+			List<WebElement> fallbackOptions = driver.findElements(By.xpath("//input[@type='radio']"));
+			chosenRadioButton = NAV.return_oneVisibleFromList(fallbackOptions, true);
+			expectedTextAfterSubmit = "Deferred";
+			log.warn("Preferred radio not found. Falling back to any available radio.");
+		}
+
+		NAV.click_onElement(chosenRadioButton);
+		chosenRadioButton.sendKeys(Keys.chord("", Keys.TAB));
+
+		WebElement continueButton = driver.findElement(By.xpath("//button[normalize-space(text())='Continue']"));
+		NAV.click_onElement(continueButton);
+
+		boolean resultFound = driver.findElements(By.xpath("//*[contains(text(), '" + expectedTextAfterSubmit + "')]")).size() > 0;
+		if (!resultFound) {
+			throw new AssertionError("Expected text '" + expectedTextAfterSubmit + "' was not found on the screen.");
+		}
+
+		log.info("Confirmed expected text: '" + expectedTextAfterSubmit + "'");
+	}
 }

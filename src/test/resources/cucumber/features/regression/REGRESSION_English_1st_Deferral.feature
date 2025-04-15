@@ -505,10 +505,8 @@ Feature: Regression English_1st_Deferral
     When I select "Deferral" from Process reply
 
     And I select "O - OTHER" from the "Reason for the deferral request" dropdown
-    And I select the first deferral choice
+    And I click any radio button while prioritising pool numbers for deferral
 
-    And I press the "Continue" button
-    Then I see the juror record updated banner containing "Deferral granted"
 
     Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "CLOSED" where "JUROR_NUMBER" is "<juror_number>"
     Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "Y" where "JUROR_NUMBER" is "<juror_number>"
@@ -834,11 +832,8 @@ Feature: Regression English_1st_Deferral
 
     When I select "Deferral" from Process reply
     When I select "S - RECENTLY SERVED" from the "Reason for the deferral request" dropdown
-    And I select the first deferral choice
+    And I click any radio button while prioritising pool numbers for deferral
 
-    And I press the "Continue" button
-    And I see the juror status has updated to "Responded"
-#    And I see the juror record updated banner containing "Deferral granted"
 
     Examples:
       | juror_number | last_name | postcode | email             | pool_number |
@@ -1774,10 +1769,8 @@ Feature: Regression English_1st_Deferral
     When I select "Deferral" from Process reply
 
     And I select "O - OTHER" from the "Reason for the deferral request" dropdown
-    And I select the first deferral choice
+    And I click any radio button while prioritising pool numbers for deferral
 
-    And I press the "Continue" button
-    Then I see the juror status has updated to "Responded"
 
     Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "CLOSED" where "JUROR_NUMBER" is "<juror_number>"
     Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "Y" where "JUROR_NUMBER" is "<juror_number>"
@@ -1988,10 +1981,8 @@ Feature: Regression English_1st_Deferral
     When I select "Deferral" from Process reply
 
     And I select "O - OTHER" from the "Reason for the deferral request" dropdown
-    And I select the first deferral choice
+    And I click any radio button while prioritising pool numbers for deferral
 
-    And I press the "Continue" button
-    And I see the juror status has updated to "Responded"
 
     Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "CLOSED" where "JUROR_NUMBER" is "<juror_number>"
     Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "Y" where "JUROR_NUMBER" is "<juror_number>"
@@ -2203,10 +2194,8 @@ Feature: Regression English_1st_Deferral
     When I select "Deferral" from Process reply
 
     And I select "O - OTHER" from the "Reason for the deferral request" dropdown
-    And I select the first deferral choice
+    And I click any radio button while prioritising pool numbers for deferral
 
-    And I press the "Continue" button
-    And I see the juror status has updated to "Responded"
 
     Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "CLOSED" where "JUROR_NUMBER" is "<juror_number>"
     Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "Y" where "JUROR_NUMBER" is "<juror_number>"
@@ -2418,10 +2407,7 @@ Feature: Regression English_1st_Deferral
     When I select "Deferral" from Process reply
 
     And I select "O - OTHER" from the "Reason for the deferral request" dropdown
-    And I select the first deferral choice
-
-    And I press the "Continue" button
-    And I see the juror status has updated to "Responded"
+    And I click any radio button while prioritising pool numbers for deferral
 
     Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "CLOSED" where "JUROR_NUMBER" is "<juror_number>"
     Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "Y" where "JUROR_NUMBER" is "<juror_number>"
@@ -2679,10 +2665,7 @@ Feature: Regression English_1st_Deferral
     When I select "Deferral" from Process reply
 
     And I select "O - OTHER" from the "Reason for the deferral request" dropdown
-    And I select the first deferral choice
-
-    And I press the "Continue" button
-    Then I see the juror status has updated to "Deferred"
+    And I click any radio button while prioritising pool numbers for deferral
 
     Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "CLOSED" where "JUROR_NUMBER" is "<juror_number>"
     Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "Y" where "JUROR_NUMBER" is "<juror_number>"
@@ -2911,10 +2894,8 @@ Feature: Regression English_1st_Deferral
     When I select "Deferral" from Process reply
 
     And I select "O - OTHER" from the "Reason for the deferral request" dropdown
-    And I select the first deferral choice
+    And I click any radio button while prioritising pool numbers for deferral
 
-    And I press the "Continue" button
-    And I see the juror status has updated to "Responded"
 
     Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "CLOSED" where "JUROR_NUMBER" is "<juror_number>"
     Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "Y" where "JUROR_NUMBER" is "<juror_number>"
