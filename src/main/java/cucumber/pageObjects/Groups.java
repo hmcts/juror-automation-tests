@@ -217,11 +217,16 @@ public class Groups {
 		WebElement radioButton;
 		wait.activateImplicitWait();
 		try {
-			radioButton = driver.findElement(By.xpath("//label[text()[contains(.,'" + arg1 + "')]]/../input[@type='radio']"));
+			radioButton = driver.findElement(By.xpath(
+					"//label[text()[contains(.,'" + arg1 + "')]]/../input[@type='radio']"
+									+ "|"
+									+ "//span[text()[contains(.,'" + arg1 + "')]]/../../input[@type='radio']"));
 			NAV.click_onElement(radioButton);
 			radioButton.sendKeys(Keys.chord("", Keys.TAB));
 		} catch (Exception e) {
-			radioButton = driver.findElement(By.xpath("//label[text()[contains(.,'" + arg1 + "')]]/../input[@type='radio']"));
+			radioButton = driver.findElement(By.xpath("//label[text()[contains(.,'" + arg1 + "')]]/../input[@type='radio']"
+					+ "|"
+					+ "//span[text()[contains(.,'" + arg1 + "')]]/../../input[@type='radio']"));
 			NAV.waitForPageLoad();
 			NAV.click_onElement(radioButton);
 //			radioButton.sendKeys(Keys.chord("", Keys.TAB));
