@@ -101,10 +101,10 @@ Feature: JM-5967 - As a jury officer I need to be able to print a show cause let
       | juror_number  |juror_number_2  |pool_number | user          |
       |  041549526    | 041549527      |415991188   | MODTESTCOURT  |
 
-  @JurorTransformation @NewSchemaConverted
+  @JurorTransformation
   Scenario Outline: Create and Print a show cause letter from the juror record under the attendance tab
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     When a bureau owned pool is created with jurors
       | court |juror_number       | pool_number      | att_date_weeks_in_future | owner |
       | 415   |<juror_number>     | <pool_number>    | 5                        | 400  |
