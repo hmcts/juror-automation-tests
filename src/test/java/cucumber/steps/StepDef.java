@@ -1,8 +1,11 @@
 package cucumber.steps;
 
-import cucumber.testdata.DatabaseTester;
-import io.cucumber.java.en.*;
 import cucumber.pageObjects.*;
+import cucumber.testdata.DatabaseTester;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
