@@ -120,6 +120,7 @@ Feature: JS-291
     And I see "<juror_number3>" in the same row as "<pool_number2>"
 
     When I click on the "<juror_number1>" link
+    And I see the juror status has updated to "Deferred"
     And I click on the "History" link
 
     Then I see "Reassigned to pool - <pool_number2>" on the page
