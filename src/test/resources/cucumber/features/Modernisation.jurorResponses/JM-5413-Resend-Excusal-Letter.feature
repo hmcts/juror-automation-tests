@@ -204,8 +204,10 @@ Feature: JM-5413-5415 - Resend excusal granted letter for Bureau and Jury users
   @JurorTransformationMulti
   Scenario Outline:As a bureau officer test a excused juror can resend a granted letter by searching via Pool number - unhappy path
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "demo"
+
     And I log in as "<user>"
+
     When a bureau owned pool is created with jurors
       | court   | juror_number    | pool_number     | att_date_weeks_in_future  | owner |
       | 415     | <juror_number>  | <pool_number>   | 5                         | 400   |
@@ -245,8 +247,7 @@ Feature: JM-5413-5415 - Resend excusal granted letter for Bureau and Jury users
     And I see the juror status has updated to "Excused"
     And I ensure juror "<juror_number_1>" has an excusal code set
 
-
-  #search via pool  number and resend letter for first excused juror
+    #search via pool  number and resend letter for first excused juror
     When I press the "Apps" button
     And I click on the "Documents" link
     And I click on the "Excusal granted letters" link
