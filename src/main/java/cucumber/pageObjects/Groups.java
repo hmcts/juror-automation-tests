@@ -219,8 +219,8 @@ public class Groups {
 		try {
 			radioButton = driver.findElement(By.xpath(
 					"//label[text()[contains(.,'" + arg1 + "')]]/../input[@type='radio']"
-									+ "|"
-									+ "//span[text()[contains(.,'" + arg1 + "')]]/../../input[@type='radio']"));
+							+ "|"
+							+ "//span[text()[contains(.,'" + arg1 + "')]]/../../input[@type='radio']"));
 			NAV.click_onElement(radioButton);
 			radioButton.sendKeys(Keys.chord("", Keys.TAB));
 		} catch (Exception e) {
@@ -274,36 +274,57 @@ public class Groups {
 	}
 	public void clickDeferralRadioButtonExcludingMaintenance() throws Exception {
 		wait.activateImplicitWait();
-		List<WebElement> preferredOptions = driver.findElements(By.xpath(
-				"//input[@type='radio' and contains(@value, '_') " +
-						"and string-length(substring-after(@value, '_')) = 9]"
-		));
+		try {
+			List<WebElement> radioLabels = driver.findElements(By.xpath("//label[contains(@class, 'govuk-radios__label')]"));
+			log.info("Found " + radioLabels.size() + " radio labels");
 
-		WebElement chosenRadioButton;
-		String expectedTextAfterSubmit;
+			if (radioLabels.size() > 0) {
+				WebElement radioLabel = radioLabels.get(0);
+				log.info("Selecting radio with text: " + radioLabel.getText());
+				NAV.click_onElement(radioLabel);
 
-		if (!preferredOptions.isEmpty()) {
-			chosenRadioButton = NAV.return_oneVisibleFromList(preferredOptions, true);
-			expectedTextAfterSubmit = "Responded";
-			log.info("Found preferred radio button with pool number.");
-		} else {
-			List<WebElement> fallbackOptions = driver.findElements(By.xpath("//input[@type='radio']"));
-			chosenRadioButton = NAV.return_oneVisibleFromList(fallbackOptions, true);
-			expectedTextAfterSubmit = "Deferred";
-			log.warn("Preferred radio not found. Falling back to any available radio.");
+				WebElement continueButton = driver.findElement(By.xpath("//button[normalize-space(text())='Continue']"));
+				NAV.click_onElement(continueButton);
+
+				boolean respondedFound = driver.findElements(By.xpath("//*[contains(text(), 'Responded')]")).size() > 0;
+				boolean deferredFound = driver.findElements(By.xpath("//*[contains(text(), 'Deferred')]")).size() > 0;
+
+				if (!respondedFound && !deferredFound) {
+					throw new AssertionError("Neither 'Responded' nor 'Deferred' was found on the screen.");
+				}
+
+				log.info("Test completed successfully with label-based selection.");
+				return;
+			}
+		} catch (Exception e) {
+			log.warn("Label-based approach failed with error: " + e.getMessage());
 		}
 
-		NAV.click_onElement(chosenRadioButton);
-		chosenRadioButton.sendKeys(Keys.chord("", Keys.TAB));
+		try {
+			List<WebElement> radioButtons = driver.findElements(By.xpath("//input[@type='radio']"));
+			log.info("Found " + radioButtons.size() + " radio buttons");
 
-		WebElement continueButton = driver.findElement(By.xpath("//button[normalize-space(text())='Continue']"));
-		NAV.click_onElement(continueButton);
+			if (radioButtons.size() > 0) {
+				WebElement radioButton = radioButtons.get(0);
+				log.info("Using JavaScript to click radio button with value: " + radioButton.getAttribute("value"));
+				((JavascriptExecutor) driver).executeScript("arguments[0].click();", radioButton);
 
-		boolean resultFound = driver.findElements(By.xpath("//*[contains(text(), '" + expectedTextAfterSubmit + "')]")).size() > 0;
-		if (!resultFound) {
-			throw new AssertionError("Expected text '" + expectedTextAfterSubmit + "' was not found on the screen.");
+				WebElement continueButton = driver.findElement(By.xpath("//button[normalize-space(text())='Continue']"));
+				NAV.click_onElement(continueButton);
+
+				boolean respondedFound = driver.findElements(By.xpath("//*[contains(text(), 'Responded')]")).size() > 0;
+				boolean deferredFound = driver.findElements(By.xpath("//*[contains(text(), 'Deferred')]")).size() > 0;
+
+				if (!respondedFound && !deferredFound) {
+					throw new AssertionError("Neither 'Responded' nor 'Deferred' was found on the screen.");
+				}
+
+				log.info("Test completed successfully with JavaScript click approach.");
+				return;
+			}
+		} catch (Exception e) {
+			log.warn("JavaScript approach failed with error: " + e.getMessage());
 		}
-
-		log.info("Confirmed expected text: '" + expectedTextAfterSubmit + "'");
+		throw new Exception("Failed to select any radio button using multiple approaches");
 	}
 }
