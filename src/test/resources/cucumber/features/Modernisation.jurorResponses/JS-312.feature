@@ -152,7 +152,7 @@ Feature: JS-312 - As a court officer I want to be able to add non attendance day
     And I press the "Add non-attendance day" button
     And I set non-attendance date to "12" weeks from now
     And I press confirm non-attendance day button
-    And I see error "cannot have a non-attendance status while in the SUMMONED status for one or more of the selected jurors."
+    And I see error "You cannot mark this date as a non-attendance day because one or more jurors are in summoned status."
 
 
     Examples:
