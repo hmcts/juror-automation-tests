@@ -1,9 +1,13 @@
 package cucumber.steps;
 
-import cucumber.testdata.DatabaseTester;
-import io.cucumber.java.en.*;
 import cucumber.pageObjects.*;
+import cucumber.testdata.DatabaseTester;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
@@ -251,8 +255,6 @@ public class StepDef {
 		NAV.see_inURL(urlPart);
 	}
 
-	;
-
 //	@Then("^the URL equals \"([^\"]*)\"$")
 //	public void urlEquals(String expectedURL) {
 //	    NAV.urlEquals(expectedURL);
@@ -263,14 +265,10 @@ public class StepDef {
 		NAV.press_a_key(key, inputFieldLabel);
 	}
 
-	;
-
 	@When("^I press backspace in text area with id \"([^\"]*)\"$")
 	public void press_backspace(String textAreaId) {
 		NAV.press_backspace(textAreaId);
 	}
-
-	;
 
 	@When("^I clear field with id \"([^\"]*)\"$")
 	public void clear_field(String fieldId) {

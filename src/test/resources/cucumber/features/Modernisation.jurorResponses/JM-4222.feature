@@ -29,7 +29,7 @@ Feature: JM-4222
     #process response
     When the user searches for juror record "<juror_number>" from the global search bar
 
-    Then I click on the Summons Reply tab
+    And I click on the "Summons reply" link
     Then I click on the view summons reply link
     Then I click the process reply button
     Then I mark the reply as responded
@@ -237,7 +237,7 @@ Feature: JM-4222
     And I see "Deferral granted" on the page
 
     When the user searches for juror record "<juror_number>" from the global search bar
-    And I click on the Summons Reply tab
+    And I click on the "Summons reply" link
     And I click on the "View summons reply" link
     And I select the reasonable adjustments tab from the summons reply page
     And I see "12345678" in the same row as "Optic reference"
@@ -273,7 +273,7 @@ Feature: JM-4222
 
     And I record a paper summons response with reasonable adjustment of "C - Caring Responsibilities"
     When the user searches for juror record "<juror_number>" from the global search bar
-    Then I click on the Summons Reply tab
+    And I click on the "Summons reply" link
     Then I click on the view summons reply link
     And I click the juror details adjustments tab
     When I press the "Check court can accommodate" button
@@ -288,7 +288,7 @@ Feature: JM-4222
 
     #process response
     When the user searches for juror record "<juror_number>" from the global search bar
-    Then I click on the Summons Reply tab
+    And I click on the "Summons reply" link
     Then I click on the view summons reply link
     Then I click the process reply button
     Then I mark the reply as responded
@@ -355,7 +355,7 @@ Feature: JM-4222
       | <juror_number> | <pool_number> | 415   |
 
     When the user searches for juror record "<juror_number>" from the global search bar
-    And I click on the Summons Reply tab
+    And I click on the "Summons reply" link
     And I click on the "View summons reply" link
     And I click on the "Reasonable adjustments" link
     And I see "12345678" in the same row as "Optic reference"
@@ -377,10 +377,10 @@ Feature: JM-4222
     Then I see "Transfer to Welshpool (774)" on the page
     When I press the "Continue" button
     When the user searches for juror record "<juror_number>" from the global search bar
-    And I see the juror status on the juror record screen has updated to "Transferred"
+    And I see the juror status has updated to "Transferred"
 
     When the user searches for juror record "<juror_number>" from the global search bar
-    And I click the summons reply tab
+    And I click on the "Summons reply" link
     And I click on the "View summons reply" link
     And I click on the "Reasonable adjustments" link
     And I see "12345678" in the same row as "Optic reference"

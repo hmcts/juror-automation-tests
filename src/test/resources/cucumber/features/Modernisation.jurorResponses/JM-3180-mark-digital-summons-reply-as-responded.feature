@@ -126,7 +126,7 @@ Feature: JM-3180
     And I log in as "<user>"
 
     When the user searches for juror record "<juror_number>" from the global search bar
-    Then I click the summons reply tab
+    Then I click on the "Summons reply" link
     And I click on the view summons reply link
     Then the view summons reply page is displayed
     And I click the process reply button

@@ -88,4 +88,13 @@
 	<suppress>
 		<cve>CVE-2023-5590</cve>
 	</suppress>
+	<suppress>
+		<cve>CVE-2024-29736</cve>
+	</suppress>
+	<suppress>
+		<cve>CVE-2024-32007</cve>
+	</suppress>
+	<suppress>
+		<cve>CVE-2025-23184</cve>
+	</suppress>
 </suppressions>

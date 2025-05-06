@@ -134,7 +134,33 @@ public class DeferralMaintenance {
 
     public void clickShowFilterButton(){
         log.info("Clicking show filter button");
-        showFilterButton.click();
+        int maxRetries = 2;
+        int retryCount = 0;
+        StaleElementReferenceException lastException = null;
+
+        while (retryCount < maxRetries) {
+            try {
+                showFilterButton.click();
+                return;
+            } catch (StaleElementReferenceException e) {
+                lastException = e;
+                retryCount++;
+
+                if (retryCount == maxRetries) break;
+
+                PageFactory.initElements(driver, this);
+
+                try {
+                    Thread.sleep(200);
+                } catch (InterruptedException ie) {
+                    Thread.currentThread().interrupt();
+                }
+            }
+        }
+
+        log.error("Failed to click show filter button due to stale element: " +
+                (lastException != null ? lastException.getMessage() : "unknown error"));
+        throw new RuntimeException("Unable to click show filter button after retries.");
     }
 
     public void clickAddToAPoolButton(){

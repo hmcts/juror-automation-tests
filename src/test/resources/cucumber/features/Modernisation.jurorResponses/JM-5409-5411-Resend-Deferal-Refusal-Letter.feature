@@ -62,7 +62,7 @@ Feature: 1)JM-5409,JM-5411 - As a Bureau/jury officer I need to resend a deferra
     And I verify the banner message "Deferral granted" on the page
     When the user searches for juror record "<juror_number>" from the global search bar
     Then I see the juror status has updated to "Deferred"
-    And I click the update juror record button
+    And I press the "Update juror record" button
     And I set the radio button to "Mark as responded"
     And I press the "Continue" button
     And I check the "Mark juror as 'responded'" checkbox

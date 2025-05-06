@@ -6,6 +6,7 @@ import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -109,15 +110,14 @@ public class StepDef_response {
 			NAV.set_valueTo("Main phone", "07551179225");
 			NAV.press_buttonByName("Continue");
 
-			NAV.waitForPageLoad();
-
 			NAV.set_valueTo("Enter your email address", email);
 			NAV.set_valueTo("Enter your email address again", email);
 			NAV.press_buttonByName("Continue");
 
-			NAV.set_valueTo("Day", "01");
-			NAV.set_valueTo("Month", "01");
-			NAV.set_valueTo("Year", "1990");
+			Thread.sleep(500);
+			((JavascriptExecutor) webDriver).executeScript("document.getElementById('dobDay').value = '01';");
+			((JavascriptExecutor) webDriver).executeScript("document.getElementById('dobMonth').value = '01';");
+			((JavascriptExecutor) webDriver).executeScript("document.getElementById('dobYear').value = '1990';");
 			NAV.press_buttonByName("Continue");
 
 			NAV.textPresentOnPage("Confirm you're eligible for jury service");
@@ -165,9 +165,7 @@ public class StepDef_response {
 		}
 	}
 
-	;
-
-	//| part_no		|pool_number	| last_name			|postcode	| email |
+    //| part_no		|pool_number	| last_name			|postcode	| email |
 	@Given("^I have submitted a third party English straight through response$")
 	public void submitThirdEnglishStraightThroughResponse(DataTable arg1) throws Throwable {
 		List<Map<String, String>> list = arg1.asMaps(String.class, String.class);

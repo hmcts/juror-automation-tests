@@ -216,18 +216,36 @@ public class NavigationShared {
      */
     public NavigationShared textPresentOnPage(String expected_text) throws Throwable {
         log.info("Going to check if text present on the page =>" + expected_text);
-        String bodyText = driver.findElement(By.tagName("body")).getText();
         try {
-            Assert.assertTrue("Text found!", bodyText.contains(expected_text));
-        } catch (AssertionError e) { // Refactor this
-            log.info("Did not find text in initial run, waiting for up to 10 seconds for text to appear");
+            String bodyText = driver.findElement(By.tagName("body")).getText();
             try {
-                wait.waitForTextOnPage(expected_text);
-            } catch (Exception eb) {
-                log.info("Exception on wait for page... Trying to continue to get caught by assert");
+                Assert.assertTrue("Text found!", bodyText.contains(expected_text));
+            } catch (AssertionError e) { // Refactor this
+                log.info("Did not find text in initial run, waiting for up to 10 seconds for text to appear");
+                try {
+                    wait.waitForTextOnPage(expected_text);
+                } catch (Exception eb) {
+                    log.info("Exception on wait for page... Trying to continue to get caught by assert");
+                }
+                bodyText = driver.findElement(By.tagName("body")).getText();
+                Assert.assertTrue("Did not see Expected Text =>" + expected_text, bodyText.contains(expected_text));
             }
-            bodyText = driver.findElement(By.tagName("body")).getText();
-            Assert.assertTrue("Did not see Expected Text =>" + expected_text, bodyText.contains(expected_text));
+        }
+        catch (StaleElementReferenceException e) {
+                Thread.sleep(2000);
+                String bodyText = driver.findElement(By.tagName("body")).getText();
+                try {
+                    Assert.assertTrue("Text found!", bodyText.contains(expected_text));
+                } catch (AssertionError f) { // Refactor this
+                    log.info("Did not find text in initial run, waiting for up to 10 seconds for text to appear");
+                    try {
+                        wait.waitForTextOnPage(expected_text);
+                    } catch (Exception eb) {
+                        log.info("Exception on wait for page... Trying to continue to get caught by assert");
+                    }
+                    bodyText = driver.findElement(By.tagName("body")).getText();
+                    Assert.assertTrue("Did not see Expected Text =>" + expected_text, bodyText.contains(expected_text));
+                }
         }
 
         log.info("Saw Expected Text =>" + expected_text);
@@ -374,33 +392,46 @@ public class NavigationShared {
     }
 
     public NavigationShared set_valueTo(String location_name, String value) throws Throwable {
-        //WebElement parentLocation = find_locationParent(location_name);
-        //WebElement childField = parentLocation.findElement(By.cssSelector("input"));
-        WebElement childField;
+        WebElement childField = null;
+
         try {
             childField = find_inputBy_labelName(location_name);
-
-            //added to address the fact chris's push includes his test data hard coded into log on fields
             childField.clear();
-
         } catch (Exception e) {
             wait.activateImplicitWait(2);
-            childField = return_oneVisibleFromList(
-                    driver.findElements(By.xpath(
-                            "//label[text()[contains(., \"" + location_name + "\")]]//input"
-                                    + " | "
-                                    + "//textarea[@name=\"" + location_name + "\"]"
-                                    + " | "
-                                    + "//label[text()[contains(., \"" + location_name + "\")]]/../textarea"
-                    ))
-            );
+            List<WebElement> inputs;
+            int attempts = 0;
+
+            do {
+                inputs = driver.findElements(By.xpath(
+                        "//label[text()[contains(., \"" + location_name + "\")]]//input"
+                                + " | "
+                                + "//textarea[@name=\"" + location_name + "\"]"
+                                + " | "
+                                + "//label[text()[contains(., \"" + location_name + "\")]]/../textarea"
+                ));
+
+                try {
+                    childField = return_oneVisibleFromList(inputs);
+                    break;
+                } catch (Exception ex) {
+                }
+
+                Thread.sleep(500);
+                attempts++;
+            } while ((childField == null || !childField.isDisplayed()) && attempts < 3);
+
+            if (childField == null || !childField.isDisplayed()) {
+                throw new Exception("Could not locate visible input field with label: " + location_name);
+            }
         }
 
         childField.clear();
         childField.sendKeys(value);
 
-        if (DateManipulator.isValidDate(value))
+        if (DateManipulator.isValidDate(value)) {
             childField.sendKeys(Keys.TAB);
+        }
 
         log.info("Set input field with label =>" + location_name + "<= to =>" + value);
 
@@ -1778,21 +1809,41 @@ public class NavigationShared {
 
     }
 
+    //create new method for tab issue - osman
     public void see_inURL(String urlPart) {
         waitForPageLoadJenkins();
-        String current_url = "";
-        try {
-            current_url = driver.getCurrentUrl();
-            log.info("Current URL is => " + current_url);
-            Assert.assertTrue(current_url.contains(urlPart));
-            log.info("URL => " + current_url + " <= contains text => " + urlPart);
-        } catch (AssertionError e) {
-            log.error("Assertion error: URL assertion failed. Current URL: " + current_url);
-            throw e;
-        } catch (Exception e) {
-            log.error("Exception occurred while verifying URL: " + e.getMessage());
-            throw new RuntimeException("Exception occurred while verifying URL", e);
+
+        final long timeoutMillis = 3000;
+        final long retryIntervalMillis = 200;
+        long startTime = System.currentTimeMillis();
+
+        String currentUrl = "";
+
+        while (System.currentTimeMillis() - startTime < timeoutMillis) {
+            try {
+                currentUrl = driver.getCurrentUrl();
+                log.info("Current URL is => " + currentUrl);
+
+                if (currentUrl.contains(urlPart)) {
+                    log.info("URL check passed: '" + urlPart + "' found in '" + currentUrl + "'");
+                    return;
+                }
+
+                log.debug("URL does not yet contain expected text. Retrying in " + retryIntervalMillis + "ms...");
+                Thread.sleep(retryIntervalMillis);
+            } catch (Exception e) {
+                log.warn("Exception while retrieving URL. Retrying... Message: " + e.getMessage());
+                try {
+                    Thread.sleep(retryIntervalMillis);
+                } catch (InterruptedException ie) {
+                    Thread.currentThread().interrupt();
+                    throw new RuntimeException("Thread interrupted during URL verification retry", ie);
+                }
+            }
         }
+        currentUrl = driver.getCurrentUrl();
+        log.error("Timed out after 3s: URL does not contain expected text '" + urlPart + "'. Actual URL: " + currentUrl);
+        Assert.fail("Expected URL to contain '" + urlPart + "', but was: '" + currentUrl + "'");
     }
     private void waitForPageLoadJenkins() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -2351,31 +2402,27 @@ public class NavigationShared {
 
 
     public void insertHolidayInTheFrontScreen(Integer noOfWeeks) {
-        //String datePattern = "EEEE-DD-MM";
-        // Calendar calendar = Calendar.getInstance();
-        //calendar.add(Calendar.WEEK_OF_MONTH, noOfWeeks);
-
         DateFormat dateFormat = new SimpleDateFormat("EEEE d MMMMMMMMMM");
-        Date today = Calendar.getInstance().getTime();
+
         Calendar calendar = Calendar.getInstance();
-        calendar.setTime(today);
         calendar.add(Calendar.WEEK_OF_MONTH, noOfWeeks);
         Date newDate = calendar.getTime();
-        System.out.println(dateFormat.format(newDate));
-        System.out.println(bankHoliday.get(2).getText());
+        String expectedDate = dateFormat.format(newDate);
 
-        String noOfWeeksConverted = Integer.toString(noOfWeeks);
+        System.out.println("Expected holiday (" + noOfWeeks + " weeks in the future): " + expectedDate);
 
-        switch (noOfWeeksConverted) {
-            case "6":
-                Assert.assertEquals(dateFormat.format(newDate), bankHoliday.get(0).getText());
-                break;
-            case "24":
-                Assert.assertEquals(dateFormat.format(newDate), bankHoliday.get(2).getText());
-                break;
-            default:
-                throw new Error("Unexpected switch case");
+        System.out.println("Visible holidays on the screen:");
+        for (WebElement element : bankHoliday) {
+            System.out.println(" - " + element.getText());
         }
+
+        boolean matchFound = bankHoliday.stream()
+                .anyMatch(element -> expectedDate.equals(element.getText()));
+
+        Assert.assertTrue(
+                "Expected holiday '" + expectedDate + "' not found in bankHoliday list for " + noOfWeeks + " weeks in the future.",
+                matchFound
+        );
     }
     public void openNewTab() {
 

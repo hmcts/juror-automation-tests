@@ -89,8 +89,7 @@ Feature: JM-4494 Bureau Delete Juror Deferral
     And I click the change link for the juror deferral
     Then I press the "Delete deferral" button
     And I see "Juror record updated: Responded" on the page
-    And I see the juror status on the juror record screen is "Responded"
-
+    And I see the juror status has updated to "Responded"
     Examples:
       | juror_number| pool_number |
       | 041500063   | 415300153	  |

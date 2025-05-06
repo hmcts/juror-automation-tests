@@ -14,19 +14,19 @@
     And I create an active "Crown" court pool request for court "415", "30" Mondays in the future
 
     And I search for juror "<juror_number>"
-    And I click the update juror record button
+    And I press the "Update juror record" button
     Then I do not see "Postpone" on the page
 
     And I insert dob for juror "<juror_number>"
 
     And I search for juror "<juror_number>"
-    And I click the update juror record button
+    And I press the "Update juror record" button
     And I set the radio button to "Postpone service start date"
-    And I click continue on the update juror record screen
+    And I press the "Continue" button
     And I enter a date "30" mondays in the future for the new service start date
-    When I click continue on the postponement page
+    And I press the "Continue" button
     And I select a postponement date
-    And I click continue on the postponement page
+    And I press the "Continue" button
 
     Then I see "Juror record updated: Postponed" on the page
 

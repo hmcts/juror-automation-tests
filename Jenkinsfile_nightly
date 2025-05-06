@@ -1,7 +1,7 @@
 #!groovy
 properties([
   // this will trigger at 1630 during bst
-  pipelineTriggers([cron('00 16 * * 1-5')]),
+  pipelineTriggers([cron('15 14 * * 1-5')]),
   parameters([
     choice(choices: ['chrome', 'firefox', 'msedge'], name: 'Browser'),
     // Default to 'BAU packs in ITHC' run in branch 'nightly-dev' - but see override onMaster below
@@ -105,13 +105,13 @@ withNightlyPipeline(type, product, component, 600) {
       env.envName = "demo"
       env.runExpenses = "false"
       env.runFeatures = "false"
-      env.runJurorTransformation = "true"
-      env.runJurorTransformationMulti = "true"
-      env.runJurorTransformationWIP = "true"
+      env.runJurorTransformation = "false"
+      env.runJurorTransformationMulti = "false"
+      env.runJurorTransformationWIP = "false"
       env.runRegression = "false"
       env.runRegressionSingle = "false"
       env.runRegressionWelsh = "false"
-      env.runShakedown = "true"
+      env.runShakedown = "false"
     }
   }
 

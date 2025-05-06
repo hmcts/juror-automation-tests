@@ -39,7 +39,7 @@ Feature: Bureau change jurors deferral date
     And I see "Deferral granted" on the page
 
     Then I search for juror "<juror_number>"
-    And I see the juror status on the juror record screen is "Deferred"
+    And I see the juror status has updated to "Deferred"
     And I see the number of deferrals is "1"
     And I see under pool details the pool number is "In deferral maintenance"
     And I click the change link for the juror deferral

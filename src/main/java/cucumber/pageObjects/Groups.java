@@ -217,11 +217,16 @@ public class Groups {
 		WebElement radioButton;
 		wait.activateImplicitWait();
 		try {
-			radioButton = driver.findElement(By.xpath("//label[text()[contains(.,'" + arg1 + "')]]/../input[@type='radio']"));
+			radioButton = driver.findElement(By.xpath(
+					"//label[text()[contains(.,'" + arg1 + "')]]/../input[@type='radio']"
+							+ "|"
+							+ "//span[text()[contains(.,'" + arg1 + "')]]/../../input[@type='radio']"));
 			NAV.click_onElement(radioButton);
 			radioButton.sendKeys(Keys.chord("", Keys.TAB));
 		} catch (Exception e) {
-			radioButton = driver.findElement(By.xpath("//label[text()[contains(.,'" + arg1 + "')]]/../input[@type='radio']"));
+			radioButton = driver.findElement(By.xpath("//label[text()[contains(.,'" + arg1 + "')]]/../input[@type='radio']"
+					+ "|"
+					+ "//span[text()[contains(.,'" + arg1 + "')]]/../../input[@type='radio']"));
 			NAV.waitForPageLoad();
 			NAV.click_onElement(radioButton);
 //			radioButton.sendKeys(Keys.chord("", Keys.TAB));
@@ -266,5 +271,60 @@ public class Groups {
 			System.out.println("Expected text not found in License. Combined text: " + mainText);
 			return false;
 		}
+	}
+	public void clickDeferralRadioButtonExcludingMaintenance() throws Exception {
+		wait.activateImplicitWait();
+		try {
+			List<WebElement> radioLabels = driver.findElements(By.xpath("//label[contains(@class, 'govuk-radios__label')]"));
+			log.info("Found " + radioLabels.size() + " radio labels");
+
+			if (radioLabels.size() > 0) {
+				WebElement radioLabel = radioLabels.get(0);
+				log.info("Selecting radio with text: " + radioLabel.getText());
+				NAV.click_onElement(radioLabel);
+
+				WebElement continueButton = driver.findElement(By.xpath("//button[normalize-space(text())='Continue']"));
+				NAV.click_onElement(continueButton);
+
+				boolean respondedFound = driver.findElements(By.xpath("//*[contains(text(), 'Responded')]")).size() > 0;
+				boolean deferredFound = driver.findElements(By.xpath("//*[contains(text(), 'Deferred')]")).size() > 0;
+
+				if (!respondedFound && !deferredFound) {
+					throw new AssertionError("Neither 'Responded' nor 'Deferred' was found on the screen.");
+				}
+
+				log.info("Test completed successfully with label-based selection.");
+				return;
+			}
+		} catch (Exception e) {
+			log.warn("Label-based approach failed with error: " + e.getMessage());
+		}
+
+		try {
+			List<WebElement> radioButtons = driver.findElements(By.xpath("//input[@type='radio']"));
+			log.info("Found " + radioButtons.size() + " radio buttons");
+
+			if (radioButtons.size() > 0) {
+				WebElement radioButton = radioButtons.get(0);
+				log.info("Using JavaScript to click radio button with value: " + radioButton.getAttribute("value"));
+				((JavascriptExecutor) driver).executeScript("arguments[0].click();", radioButton);
+
+				WebElement continueButton = driver.findElement(By.xpath("//button[normalize-space(text())='Continue']"));
+				NAV.click_onElement(continueButton);
+
+				boolean respondedFound = driver.findElements(By.xpath("//*[contains(text(), 'Responded')]")).size() > 0;
+				boolean deferredFound = driver.findElements(By.xpath("//*[contains(text(), 'Deferred')]")).size() > 0;
+
+				if (!respondedFound && !deferredFound) {
+					throw new AssertionError("Neither 'Responded' nor 'Deferred' was found on the screen.");
+				}
+
+				log.info("Test completed successfully with JavaScript click approach.");
+				return;
+			}
+		} catch (Exception e) {
+			log.warn("JavaScript approach failed with error: " + e.getMessage());
+		}
+		throw new Exception("Failed to select any radio button using multiple approaches");
 	}
 }
