@@ -105,13 +105,13 @@ withNightlyPipeline(type, product, component, 600) {
       env.envName = "demo"
       env.runExpenses = "false"
       env.runFeatures = "false"
-      env.runJurorTransformation = "true"
-      env.runJurorTransformationMulti = "true"
-      env.runJurorTransformationWIP = "true"
+      env.runJurorTransformation = "false"
+      env.runJurorTransformationMulti = "false"
+      env.runJurorTransformationWIP = "false"
       env.runRegression = "false"
       env.runRegressionSingle = "false"
       env.runRegressionWelsh = "false"
-      env.runShakedown = "true"
+      env.runShakedown = "false"
     }
   }
 
