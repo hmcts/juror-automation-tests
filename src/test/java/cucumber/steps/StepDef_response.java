@@ -107,17 +107,30 @@ public class StepDef_response {
 			GRP.click_radioButtonWithLabel("Yes");
 			NAV.press_buttonByName("Continue");
 
-			NAV.set_valueTo("Main phone", "07551179225");
+			Thread.sleep(500);
+			((JavascriptExecutor) webDriver).executeScript("document.getElementById('primaryPhone').value = '07551179225';");
+
+			Thread.sleep(500);
 			NAV.press_buttonByName("Continue");
 
-			NAV.set_valueTo("Enter your email address", email);
-			NAV.set_valueTo("Enter your email address again", email);
+			Thread.sleep(500);
+			((JavascriptExecutor) webDriver).executeScript("document.getElementById('emailAddress').value = '" + email + "';");
+			((JavascriptExecutor) webDriver).executeScript("document.getElementById('emailAddressConfirmation').value = '" + email + "';");
+
+			Thread.sleep(500);
 			NAV.press_buttonByName("Continue");
 
 			Thread.sleep(500);
 			((JavascriptExecutor) webDriver).executeScript("document.getElementById('dobDay').value = '01';");
+
+			Thread.sleep(500);
 			((JavascriptExecutor) webDriver).executeScript("document.getElementById('dobMonth').value = '01';");
+
+
+			Thread.sleep(500);
 			((JavascriptExecutor) webDriver).executeScript("document.getElementById('dobYear').value = '1990';");
+
+			Thread.sleep(500);
 			NAV.press_buttonByName("Continue");
 
 			NAV.textPresentOnPage("Confirm you're eligible for jury service");

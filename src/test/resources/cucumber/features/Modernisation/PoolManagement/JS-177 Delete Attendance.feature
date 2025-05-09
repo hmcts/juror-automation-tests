@@ -28,6 +28,7 @@ Feature: JS-177 Delete Attendance
     And I set the radio button to "am"
     And I input juror "<juror_number_1>" to be checked in
     And I press the "Check in juror" button
+    And I see "Run police check" in the same row as "<juror_number_1>"
 
     #check out juror
     And I set the radio button to "Check out"
