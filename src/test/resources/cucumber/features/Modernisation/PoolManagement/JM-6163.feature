@@ -84,7 +84,7 @@ Feature: JM-6163 - As a Jury Officer, I need to add a non-attendance day for a j
     And I press non-attendance day button
     And I set non-attendance date to "-4" weeks from now
     And I press confirm non-attendance day button
-    And I see error "You cannot mark this date as a non-attendance day because it's already been recorded as an attendance day."
+    And I see error "You cannot mark this date as a non-attendance day because it's already been recorded as an attendance day"
 
     Examples:
       | user		  | juror_number_1 | pool_number   |
