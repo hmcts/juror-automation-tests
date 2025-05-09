@@ -84,9 +84,7 @@ Scenario Outline: Postpone a juror to another court as a Jury officer - Bulk flo
     @JurorTransformationMulti
     Scenario Outline: Postpone a juror to another court as a Jury officer - Bulk flow UNHAPPY PATH
 
-        #return to @JurorTransformnation when defect fixed
-
-        Given I am on "Bureau" "test"
+        Given I am on "Bureau" "ithc"
 
         Given a bureau owned pool is created with jurors
             | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
@@ -95,8 +93,8 @@ Scenario Outline: Postpone a juror to another court as a Jury officer - Bulk flo
             | 415   |<juror_number_3> 	| <pool_number>     | 5				            | 400	|
 
         Then a new pool is inserted for where record has transferred to the court new schema
-            |part_no               | pool_no           | owner |
-            |<juror_number_1>       | <pool_number>      | 415   |
+            |part_no              | pool_no           |  owner |
+            |<juror_number_1>     | <pool_number>      | 415   |
             |<juror_number_2>     | <pool_number>      | 415   |
             |<juror_number_3>     | <pool_number>      | 415   |
 
@@ -120,7 +118,6 @@ Scenario Outline: Postpone a juror to another court as a Jury officer - Bulk flo
         And I press the "Apps" button
         And I click on the "Trial management" link
         And I click on the trial number "<trial_number>"
-
 
         And I press the "Generate panel" button
         And I set the radio button to "All available jurors"
