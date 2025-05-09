@@ -111,7 +111,6 @@ Feature: JM-3671
     And I see "The number of citizens available in each postcode area is shown in brackets." on the page
     And I see "CH1 (" on the page
     And I see "CH2 (" on the page
-#    Then I set "CH1 (" to "10"
     And I set "CH2 (" to "15"
 
     And I press the "Add citizens" button
