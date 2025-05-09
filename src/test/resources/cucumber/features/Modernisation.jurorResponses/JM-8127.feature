@@ -1,14 +1,15 @@
 Feature: JM-8127
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Process reply for juror with different catchment area to original summons
+
     Given I am on "Bureau" "ithc"
+
     And I log in as "<user>"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
       | 415   | <juror_number> 	    | <pool_number>     | 7				            | 400	|
-
 
     When the user searches for juror record "<juror_number>" from the global search bar
     And I click the Enter summons reply button

@@ -339,7 +339,6 @@ Feature: Regression English_1st_Deferral
 	#New deferrals
 
 	#select deferral
-
     Then I see "Check your start date" on the page
     And I see "You are summoned to start jury service on" on the page
     And I see "Can you start jury service on this date?" on the page
@@ -352,7 +351,6 @@ Feature: Regression English_1st_Deferral
     And I press the "Continue" button
 
 	#enter reason
-
     And I see "steps/confirm-date/deferral-reason" in the URL
     And I see "Tell us why you need another date for your jury service" on the page
     And I see "You must have a good reason for changing, for example:" on the page
@@ -364,7 +362,6 @@ Feature: Regression English_1st_Deferral
     And I press the "Continue" button
 
 	#input def dates
-
     And I see "steps/confirm-date/deferral-dates" in the URL
     Then I see "Choose 3 Mondays when you can start jury service" on the page
     And I see "These must be between" on the page
@@ -377,13 +374,11 @@ Feature: Regression English_1st_Deferral
     And I press the "Continue" button
 
 	#check def dates
-
     And I see "Check your dates" on the page
     And I see "Dates you can start jury service" on the page
     And I validate the "First" deferral date is "17" weeks in the future
     And I validate the "Second" deferral date is "18" weeks in the future
     And I validate the "Third" deferral date is "19" weeks in the future
-
 
     And I see "You do not need to tell us all other dates you're available." on the page
     And I see "We'll choose one of your 3 dates." on the page
@@ -391,7 +386,6 @@ Feature: Regression English_1st_Deferral
     And I see "Do you want to proceed with these dates?" on the page
 
 	#check hint text
-
     And I click on the "Will I need to serve longer than 2 weeks?" link
     And I see "Most jurors only need to serve 2 weeks." on the page
     And I see "You may be asked to serve for longer when you arrive at court." on the page
@@ -409,19 +403,16 @@ Feature: Regression English_1st_Deferral
     And I do not see "You must contact us at that time to let us know." on the page
 
 	#do not accept dates
-
     And I choose the "No" radio button
     And I press the "Continue" button
 
 	#change dates
-
     And I see "steps/confirm-date/deferral-dates" in the URL
     When I set the "First" single date field to a Monday "20" weeks in the future
 
     And I press the "Continue" button
 
 	#accept dates
-
     And I see "Check your dates" on the page
     And I see "Dates you can start jury service" on the page
     And I validate the "First" deferral date is "20" weeks in the future
@@ -432,7 +423,6 @@ Feature: Regression English_1st_Deferral
     And I press the "Continue" button
 
 	#help in court
-
     Then I see "Will you need help when you're at the court?" on the page
     Then I see "Do you have a disability or impairment that means you’ll need extra support or facilities in the court building where you are doing your Jury Service?" on the page
     When I choose the "No" radio button
@@ -505,8 +495,8 @@ Feature: Regression English_1st_Deferral
     When I select "Deferral" from Process reply
 
     And I select "O - OTHER" from the "Reason for the deferral request" dropdown
-    And I click any radio button while prioritising pool numbers for deferral
-
+    And I select the first deferral choice
+    And I press the "Continue" button
 
     Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "CLOSED" where "JUROR_NUMBER" is "<juror_number>"
     Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "Y" where "JUROR_NUMBER" is "<juror_number>"
@@ -515,7 +505,6 @@ Feature: Regression English_1st_Deferral
     Then on "JUROR_MOD" . "JUROR" I see "H_EMAIL" is "<email>" where "JUROR_NUMBER" is "<juror_number>"
 
 	#JDB-3453
-
     Then on "JUROR_MOD" . "JUROR" I see "WELSH" is null where "JUROR_NUMBER" is "<juror_number>"
 
     Examples:
@@ -1769,8 +1758,8 @@ Feature: Regression English_1st_Deferral
     When I select "Deferral" from Process reply
 
     And I select "O - OTHER" from the "Reason for the deferral request" dropdown
-    And I click any radio button while prioritising pool numbers for deferral
-
+    And I select the first deferral choice
+    And I press the "Continue" button
 
     Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "CLOSED" where "JUROR_NUMBER" is "<juror_number>"
     Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "Y" where "JUROR_NUMBER" is "<juror_number>"
@@ -2665,7 +2654,8 @@ Feature: Regression English_1st_Deferral
     When I select "Deferral" from Process reply
 
     And I select "O - OTHER" from the "Reason for the deferral request" dropdown
-    And I click any radio button while prioritising pool numbers for deferral
+    And I select the first deferral choice
+    And I press the "Continue" button
 
     Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "CLOSED" where "JUROR_NUMBER" is "<juror_number>"
     Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "Y" where "JUROR_NUMBER" is "<juror_number>"
@@ -3341,9 +3331,9 @@ Feature: Regression English_1st_Deferral
 
     And I select "O - OTHER" from the "Reason for the deferral request" dropdown
     And I press the "Continue" button
-    And I choose the "Add to pool" radio button
+    And I select the first deferral choice
     And I press the "Continue" button
-    And I see the juror status has updated to "Responded"
+    And I see the juror status has updated to "Deferred"
 
     Examples:
       | juror_number | pool_number | last_name        | postcode | email      |

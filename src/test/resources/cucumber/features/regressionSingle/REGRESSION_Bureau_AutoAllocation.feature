@@ -719,10 +719,10 @@ Examples:
 	| juror_number	| pool_number 	| last_name 		| postcode 	|
 	| 045200261		| 452300238 	| LNAMEONEFIVEFOUR 	| CH1 2AN	|
 	
-@RegressionSingle @NewSchemaConverted
+@RegressionSingle
 Scenario Outline: 8. Set to Awaiting Response on PENDING ALLOCATION response
 
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -736,7 +736,7 @@ Scenario Outline: 8. Set to Awaiting Response on PENDING ALLOCATION response
 		|part_no		|pool_number	|last_name		|postcode	|email 	|
 		|<juror_number>	|<pool_number>	|<last_name>	|<postcode>	|<email>|
 
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "ithc"
 	And I log in as "CPASS"
 	
 	#check response is pending allocation
@@ -763,10 +763,10 @@ Examples:
 	| juror_number	| pool_number 	| last_name 		| postcode 	| email 		|
 	| 045200262		| 452300239 	| LNAMEONEFIVEFOUR 	| CH1 2AN	| e@mail.com	|
 
-@RegressionSingle @NewSchemaConverted
+@RegressionSingle
 Scenario Outline: 9. Complete a PENDING ALLOCATION response
 
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -780,7 +780,7 @@ Scenario Outline: 9. Complete a PENDING ALLOCATION response
 		|part_no		|pool_number	|last_name		|postcode	|email 	|
 		|<juror_number>	|<pool_number>	|<last_name>	|<postcode>	|<email>|
 
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "ithc"
 	And I log in as "CPASS"
 	
 	#check response is pending allocation
