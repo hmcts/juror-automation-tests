@@ -3,7 +3,7 @@ Feature: Expenses_Welsh_JDB-4345_JDB-4348
 @expenses @JDB-4345 @JDB-4348 
 Scenario Outline: expenses_Welsh_JDB-4345_RoundUp
 	
-	Given I am on the welsh version of "expenses" "test"
+	Given I am on the welsh version of "expenses" "ithc"
 	
 	And I press the "Cychwyn arni" button
 	
@@ -307,8 +307,8 @@ Examples:
 @expenses @JDB-4345 @JDB-4348
 Scenario Outline: expensesJDB-4345_0earningsandexpenses>or<64.95
 	
-	Given I am on the welsh version of "expenses" "juror-test01"
-	
+	Given I am on the welsh version of "expenses" "ithc"
+
 	And I press the "Cychwyn arni" button
 	
 	#loseincome
