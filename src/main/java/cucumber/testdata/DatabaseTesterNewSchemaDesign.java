@@ -2930,7 +2930,7 @@ public class DatabaseTesterNewSchemaDesign {
 
 			pStmt = conn.prepareStatement(
 					"UPDATE JUROR_MOD.VOTERS SET date_selected1 = NULL " +
-							"WHERE (part_no LIKE '1%' OR part_no LIKE '2%') " +
+							"WHERE (part_no LIKE '1%' OR part_no LIKE '2%' OR part_no LIKE '5%') " +
 							"AND EXISTS ( " +
 							"    SELECT 1 FROM JUROR_MOD.COURT_CATCHMENT_AREA cc " +
 							"    WHERE cc.loc_code = '" + court + "' " +
