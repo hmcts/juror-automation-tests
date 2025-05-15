@@ -804,7 +804,7 @@ Scenario Outline: English 1st Party Overage HTML Response Summary
 	
 	When I set "Day" to "27"
 	And I set "Month" to "04"
-	And I set "Year" to "1900"
+	And I set "Year" to "1940"
 	
 	#Moving past DoB Section
 	And I press the "Continue" button
@@ -814,7 +814,7 @@ Scenario Outline: English 1st Party Overage HTML Response Summary
 
 	And I press the "Continue" button
 	Then I see "Check your answers now" on the page
-	And I see text "27 April 1900" in the same row as "Date of birth"
+	And I see text "27 April 1940" in the same row as "Date of birth"
 
 	Then I check the "The information I have given is true to the best of my knowledge" checkbox
 	When I press the "Submit" button
@@ -841,7 +841,7 @@ Scenario Outline: English 1st Party Overage HTML Response Summary
 	And I see "How you replied" on the page
 	And I see "You gave us these juror details" on the page
 	And I see "<first_name> <last_name>" on the page
-	And I see "27 April 1900" in the same row as "Date of Birth:"
+	And I see "27 April 1940" in the same row as "Date of Birth:"
 	And I see "02078211818" in the same row as "Main phone:"
 	And I see "<email>" in the same row as "Email:"
 	

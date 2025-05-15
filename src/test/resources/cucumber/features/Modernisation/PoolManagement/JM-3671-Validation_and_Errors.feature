@@ -209,7 +209,7 @@ Feature: JM-3671 Validation and Errors
 
     Given I am on "Bureau" "ithc"
     Given coroners pools older than today have been cleared down new schema
-    Given voters for court "415" have been updated to postcode "CH2 2AN" new schema
+    Given voters for court "415" have been updated to postcode "CH1 1AN" new schema
     And I log in as "<user>"
 
     When I navigate to the pool request screen

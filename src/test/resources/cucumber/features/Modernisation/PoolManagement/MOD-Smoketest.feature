@@ -18,7 +18,7 @@ Feature: MOD-Smoketest
     Given I refresh the voters table for court "415" new schema
     Given I refresh the voters table for court "767" new schema
     And voters for court "471" have been updated to postcode "CH2 2AN" new schema
-    And voters for court "415" have been updated to postcode "CH2 2AN" new schema
+    And voters for court "415" have been updated to postcode "CH1 1AN" new schema
     And voters for court "767" have been updated to postcode "CH2 2AN" new schema
     And voters for court "457" have been updated to postcode "SA1 4PF" new schema
     And voters for court "452" have been updated to postcode "SA1 4PF" new schema
