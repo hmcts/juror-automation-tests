@@ -2,7 +2,7 @@ Feature: JM-252_Navigation_COURT
 
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Navigating back and forth and changing inputs
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     And I log in as "<user>"
 
     Given a bureau owned pool is created with jurors
@@ -122,8 +122,6 @@ Feature: JM-252_Navigation_COURT
       | type           | Court          |
       | court          | <displayCourt> |
       | jurorsRequired | 49             |
-
-    Given the new pool for court "415" is deleted
 
     Examples:
       | user         | courtCode | displayCourt | courtTypeFull | juror_number | pool_number |

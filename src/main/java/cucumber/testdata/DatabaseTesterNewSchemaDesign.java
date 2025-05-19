@@ -2012,7 +2012,7 @@ public class DatabaseTesterNewSchemaDesign {
 	public void insertCourtPoolWithDeferralNSD(String court, String pool_no, String part_no, String no_weeks) throws SQLException {
 		db = new DBConnection();
 
-		String datePattern = "YYYY-MM-DD";
+		String datePattern = "yyyy-MM-dd";
 		Calendar calendar = Calendar.getInstance();
 		calendar.add(Calendar.WEEK_OF_MONTH, Integer.parseInt(no_weeks));
 
@@ -2027,39 +2027,65 @@ public class DatabaseTesterNewSchemaDesign {
 		else
 			conn = db.getConnection("demo");
 
-		if (getCountFromUniquePoolNSD(pool_no) == 0)
-			pStmt = conn.prepareStatement("Insert into juror_mod.pool (pool_no, owner, return_date, no_requested, pool_type, loc_code, new_request, last_update, additional_summons, attend_time, total_no_required, date_created)"
-					+ "values ('" + pool_no + "','" + court + "','" + mondayDate + "','5','CRO','" + court + "','T',NOW(),null,TIMESTAMP'2022-04-01 09:30:00.0','5',NOW())");
-		pStmt.execute();
-
-		if (getCountFromPoolNSD(part_no, pool_no) == 0)
-			pStmt = conn.prepareStatement("insert into juror_mod.juror (juror_number,poll_number,title,last_name,first_name,dob,ADDRESS_LINE_1,ADDRESS_LINE_2,ADDRESS_LINE_3,ADDRESS_LINE_4,ADDRESS_LINE_5,POSTCODE,h_phone,w_phone,w_ph_local,responded,date_excused,excusal_code,acc_exc,date_disq,disq_code,user_edtq,notes,no_def_pos,perm_disqual,reasonable_adj_code,reasonable_adj_msg,COMPLETION_DATE,sort_code,bank_acct_name,bank_acct_no,bldg_soc_roll_no,welsh,police_check,last_update,summons_file,m_phone,h_email,contact_preference,notifications,date_created,optic_reference,pending_title,pending_first_name,pending_last_name)"
-					+ "values ('" + part_no + "','857',null,'lname','fname',null,'address',null,null,null,null,'CH1 2NN',null,null,null,'Y',null,null,null,null,null,null,null,'1',null,null,null,null,null,null,null,null,'N',null,null,null,null,null,null,'0',null,null,null,null,null)");
-		pStmt.execute();
-
-		if (getCountFromJurorPoolNSD(part_no, pool_no) == 0)
-			pStmt = conn.prepareStatement("insert into juror_mod.juror_pool (juror_number,pool_number,owner,user_edtq,is_active,status,times_sel,def_date,mileage,location,no_attendances,no_attended,no_fta,no_awol,pool_seq,edit_tag,next_date,on_call,amt_spent,was_deferred,deferral_code,id_checked,postpone,paid_cash,travel_time,scan_code,financial_loss,last_update,reminder_sent,transfer_date,date_created)"
-					+ "values ('" + part_no + "','" + pool_no + "','" + court + "',null,true,'2',null,CURRENT_DATE-10,null,'" + court + "','0',null,null,null,null,null,CURRENT_DATE-10,false,null,null,'Y',null,null,null,null,null,null,CURRENT_DATE,null,null,CURRENT_DATE)");
-		pStmt.execute();
-
 		try {
+			if (getCountFromUniquePoolNSD(pool_no) == 0) {
+				pStmt = conn.prepareStatement(
+						"INSERT INTO juror_mod.pool (pool_no, owner, return_date, no_requested, pool_type, loc_code, new_request, last_update, additional_summons, attend_time, total_no_required, date_created) " +
+								"VALUES (?, ?, ?, '5', 'CRO', ?, 'T', NOW(), NULL, TIMESTAMP '2022-04-01 09:30:00.0', '5', NOW())"
+				);
+				pStmt.setString(1, pool_no);
+				pStmt.setString(2, court);
+				pStmt.setDate(3, new java.sql.Date(mondayDate.getTime()));
+				pStmt.setString(4, court);
+				pStmt.execute();
+			}
 
-			pStmt = conn.prepareStatement("update juror_mod.pool set OWNER='" + court + "' where pool_no ='" + pool_no + "'");
+			if (getCountFromPoolNSD(part_no, pool_no) == 0) {
+				pStmt = conn.prepareStatement(
+						"INSERT INTO juror_mod.juror (juror_number, poll_number, title, last_name, first_name, dob, address_line_1, address_line_2, address_line_3, address_line_4, address_line_5, postcode, h_phone, w_phone, w_ph_local, responded, date_excused, excusal_code, acc_exc, date_disq, disq_code, user_edtq, notes, no_def_pos, perm_disqual, reasonable_adj_code, reasonable_adj_msg, completion_date, sort_code, bank_acct_name, bank_acct_no, bldg_soc_roll_no, welsh, police_check, last_update, summons_file, m_phone, h_email, contact_preference, notifications, date_created, optic_reference, pending_title, pending_first_name, pending_last_name) " +
+								"VALUES (?, '857', NULL, 'lname', 'fname', NULL, 'address', NULL, NULL, NULL, NULL, 'CH1 2NN', NULL, NULL, NULL, 'Y', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'N', NULL, NULL, NULL, NULL, NULL, NULL, '0', NULL, NULL, NULL, NULL, NULL)"
+				);
+				pStmt.setString(1, part_no);
+				pStmt.execute();
+			}
+
+			if (getCountFromJurorPoolNSD(part_no, pool_no) == 0) {
+				pStmt = conn.prepareStatement(
+						"INSERT INTO juror_mod.juror_pool (juror_number, pool_number, owner, user_edtq, is_active, status, times_sel, def_date, mileage, location, no_attendances, no_attended, no_fta, no_awol, pool_seq, edit_tag, next_date, on_call, amt_spent, was_deferred, deferral_code, id_checked, postpone, paid_cash, travel_time, scan_code, financial_loss, last_update, reminder_sent, transfer_date, date_created) " +
+								"VALUES (?, ?, ?, NULL, TRUE, '2', NULL, CURRENT_DATE - 10, NULL, ?, '0', NULL, NULL, NULL, NULL, NULL, CURRENT_DATE - 10, FALSE, NULL, NULL, 'Y', NULL, NULL, NULL, NULL, NULL, CURRENT_DATE, NULL, NULL, CURRENT_DATE)"
+				);
+				pStmt.setString(1, part_no);
+				pStmt.setString(2, pool_no);
+				pStmt.setString(3, court);
+				pStmt.setString(4, court);
+				pStmt.execute();
+			}
+
+			pStmt = conn.prepareStatement("UPDATE juror_mod.pool SET owner = ? WHERE pool_no = ?");
+			pStmt.setString(1, court);
+			pStmt.setString(2, pool_no);
 			pStmt.execute();
 
-			pStmt = conn.prepareStatement("update juror_mod.juror_pool set TRANSFER_DATE=current_date, IS_ACTIVE='Y', OWNER='" + court + "', NEXT_DATE='" + mondayDate + "',STATUS='7',WAS_DEFERRED='Y', DEFERRAL_CODE='O', DEF_DATE='" + mondayDate + "', pool_number='" + pool_no + "' where juror_number='" + part_no + "'");
+			pStmt = conn.prepareStatement(
+					"UPDATE juror_mod.juror_pool SET transfer_date = CURRENT_DATE, is_active = 'Y', owner = ?, next_date = ?, status = '7', was_deferred = 'Y', deferral_code = 'O', def_date = ?, pool_number = ? WHERE juror_number = ?"
+			);
+			pStmt.setString(1, court);
+			pStmt.setDate(2, new java.sql.Date(mondayDate.getTime()));
+			pStmt.setDate(3, new java.sql.Date(mondayDate.getTime()));
+			pStmt.setString(4, pool_no);
+			pStmt.setString(5, part_no);
 			pStmt.execute();
 
-			pStmt = conn.prepareStatement("update juror_mod.juror set RESPONDED='Y', NO_DEF_POS='1' where juror_number='" + part_no + "'");
+			pStmt = conn.prepareStatement("UPDATE juror_mod.juror SET responded = 'Y', no_def_pos = '1' WHERE juror_number = ?");
+			pStmt.setString(1, part_no);
 			pStmt.execute();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 			log.error("Message:inserted new pool" + e.getMessage());
-
 		} finally {
 			conn.commit();
-			pStmt.close();
+			if (pStmt != null) pStmt.close();
 			conn.close();
 		}
 	}

@@ -143,7 +143,7 @@ public class JurorRecord {
         newServiceStartDate.sendKeys(date);
     }
 
-    @FindBy(id = "changeJurorDetailsAnchor")
+    @FindBy(id = "changeJurorDeferralAnchor")
     WebElement deferralChangeLink;
 
     @FindBy(xpath = "//dt[contains(text(),'Pool number')]/../dd")
@@ -434,7 +434,37 @@ public class JurorRecord {
     }
 
     public void clickDeferralChange() {
-        deferralChangeLink.click();
+        WaitUtils waitUtils = new WaitUtils(driver);
+        int maxRetries = 2;
+        int retryCount = 0;
+        StaleElementReferenceException lastException = null;
+
+        while (retryCount < maxRetries) {
+            try {
+                waitUtils.until(ExpectedConditions.elementToBeClickable(deferralChangeLink), 2);
+                deferralChangeLink.click();
+                return;
+            } catch (StaleElementReferenceException e) {
+                lastException = e;
+                retryCount++;
+
+                if (retryCount == maxRetries) {
+                    break;
+                }
+
+                PageFactory.initElements(driver, this);
+
+                try {
+                    Thread.sleep(200);
+                } catch (InterruptedException ie) {
+                    Thread.currentThread().interrupt();
+                }
+            }
+        }
+
+        log.error("StaleElementReferenceException occurred while clicking deferral change link: " +
+                (lastException != null ? lastException.getMessage() : "unknown error"));
+        throw new RuntimeException("Unable to click deferral change link after retries.");
     }
 
     public String getPoolNumberValue() {
