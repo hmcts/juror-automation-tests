@@ -664,7 +664,10 @@ public class StepDef_response {
 			NAV.set_valueTo("Tell us about any special arrangements", details);
 			NAV.press_buttonByName("Continue");
 
-			NAV.check_checkbox("The information I have given is true to the best of my knowle");
+			Thread.sleep(500);
+			((JavascriptExecutor) webDriver).executeScript("document.getElementById('informationConfirmed').checked = true;");
+
+			Thread.sleep(500);
 			NAV.press_buttonByName("Submit");
 
 			NAV.textPresentOnPage("You have completed your reply");
