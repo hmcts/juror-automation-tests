@@ -1,20 +1,24 @@
 Feature: JM-2485
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Test to add notes over character limit
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
       | 452	  |<juror_number>| <pool_number>| 5				            | 400	|
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     Given I log in as "MODTESTBUREAU"
 
     When the user searches for juror record "<juror_number>" from the global search bar
     And I click on the "Notes" link
     And I click to add or edit notes
+    And I see the juror status has updated to "Summoned"
+    And I see "<juror_number>" on the page
+    And I see "<pool_number>" on the page
+    And I see "The Crown Court At Shrewsbury" on the page
     And I enter over 2000 characters in the Notes text box
     And I click the save notes button
     Then I see "The notes provided are too long" in the error banner
@@ -23,15 +27,15 @@ Feature: JM-2485
       |juror_number	|pool_number|
       |045200021    |452300017	|
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Test to add and edit notes
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
       | 452	  |<juror_number>| <pool_number>| 5				            | 400	|
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     Given I log in as "MODTESTBUREAU"
 
     When the user searches for juror record "<juror_number>" from the global search bar

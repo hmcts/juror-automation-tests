@@ -3133,6 +3133,10 @@ Feature: Regression English_1st_Deferral
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
       | 452   | <juror_number> | <pool_number> | 5                        | 400   |
 
+    Given a bureau owned pool is created with jurors
+      | court | juror_number    | pool_number     | att_date_weeks_in_future  | owner |
+      | 452   | <juror_number2> | <pool_number2>  | 10                        | 400   |
+
     And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
     And juror "<juror_number>" has "FIRST_NAME" as "FNAMESEVENONETHREE" new schema
     And juror "<juror_number>" has "ADDRESS_LINE_1" as "855 STREET NAME" new schema
@@ -3289,7 +3293,6 @@ Feature: Regression English_1st_Deferral
     And I press the "Send" button
     Then I see "Your work" on the page
 
-    Then I click on the "Sign out" link
     Given I am on "Bureau" "ithc"
     When I log in as "CPASS"
     Then I see "<juror_number>" on the page
@@ -3346,5 +3349,5 @@ Feature: Regression English_1st_Deferral
     And I see the juror status has updated to "Responded"
 
     Examples:
-      | juror_number | pool_number | last_name        | postcode | email      |
-      | 045200041    | 452300040   | LNAMEFIVETWOZERO | SW1H 9AJ | e@eeee.com |
+      | juror_number | juror_number2 | pool_number | pool_number2 | last_name        | postcode | email      |
+      | 045200041    | 045200042     | 452300040   | 452300041    | LNAMEFIVETWOZERO | SW1H 9AJ | e@eeee.com |

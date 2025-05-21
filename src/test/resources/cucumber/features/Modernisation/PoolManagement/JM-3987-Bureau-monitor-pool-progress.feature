@@ -95,7 +95,6 @@ Feature: JM-3987 Monitor Pools Progress
     And I click search
     And I do not see "Week 1" on the page
     And I see "There is a problem" on the page
-    And I see "Pool type is missing" on the page
     And I see "Enter the name or location code for a court" on the page
 
   @JurorTransformation

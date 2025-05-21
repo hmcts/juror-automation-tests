@@ -1779,9 +1779,8 @@ public class NavigationShared {
     }
 
     public void clear_field(String fieldId) {
-        WebElement inputField;
-        inputField = driver.findElement(By.xpath("//input[@id='" + fieldId + "']"));
-        inputField.sendKeys(Keys.CONTROL, "a", Keys.DELETE);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("document.getElementById(arguments[0]).value = '';", fieldId);
     }
 
     public void press_a_key(String key, String inputFieldLabel) {
