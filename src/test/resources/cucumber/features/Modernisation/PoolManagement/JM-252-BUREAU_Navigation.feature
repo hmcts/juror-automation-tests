@@ -64,7 +64,7 @@ Feature: JM-252_Navigation
     #CHANGE ATTENDANCE DATE
     Then I click the change link for the attendance date
     And I see "Change the service start date for this pool" on the page
-    And I set the "Change the service start date for this pool" date to a Monday "15" weeks in the future
+    And I set the "Change the service start date for this pool" date to a Monday "20" weeks in the future
     And I press the "Change" button
 
     #complete new pool fields
@@ -118,8 +118,6 @@ Feature: JM-252_Navigation
       | court          | <displayCourt> |
       | jurorsRequired | 50             |
 
-    Given the new pool for court "415" is deleted
-    Given the new pool for court "457" is deleted
 
     Examples:
       | user          | courtCode | displayCourt | courtTypeFull |
