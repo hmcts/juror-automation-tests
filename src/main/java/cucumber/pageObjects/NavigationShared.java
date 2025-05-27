@@ -1915,7 +1915,7 @@ public class NavigationShared {
     public void totalAssignedCount(String countName, String countValue) {
         log.info("Going to check that total assigned =>" + countName + "<= count is =>" + countValue + "<=");
         String assignedCount = driver.findElement(By.xpath("//td[contains(normalize-space(text()), '" + countName + "')]")).getText();
-        assertEquals(countValue, assignedCount);
+        Assert.assertEquals(countValue, assignedCount);
         log.info("=>" + countName + "<= Assigned Count is as expected");
     }
 
