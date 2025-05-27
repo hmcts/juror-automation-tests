@@ -3626,6 +3626,24 @@ public class DatabaseTesterNewSchemaDesign {
 		return 0;
 	}
 
+	public int getAwaitingInfoCountForUser(String user) throws SQLException {
+		db = new DBConnection();
+		String env_property = System.getProperty("env.database");
+		conn = db.getConnection(env_property);
+		try {
+			pStmt = conn.prepareStatement("select count(*) from juror_mod.juror_response where staff_login='" + user + "' and processing_status like 'AWAITING%'");
+			ResultSet rs = pStmt.executeQuery();
+			rs.next();
+			log.info("Got count of rows in juror_response where user is '" + user + "' and status is awaiting info");
+			return rs.getInt(1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.error("Message:" + e.getMessage());
+			log.info(11);
+		}
+		return 0;
+	}
+
 	public int checkForTransferredPoolRecordsNSD(String part_no) throws SQLException {
 		db = new DBConnection();
 		String env_property = System.getProperty("env.database");
