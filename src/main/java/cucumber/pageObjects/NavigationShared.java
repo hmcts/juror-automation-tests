@@ -1,5 +1,6 @@
 package cucumber.pageObjects;
 
+import cucumber.testdata.DatabaseTesterNewSchemaDesign;
 import cucumber.utils.*;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
@@ -12,6 +13,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
@@ -30,6 +32,7 @@ public class NavigationShared {
     private final AngularJsHTTPCallWait aJsWait;
     private final String LOADING_ICON_LOCATION = "spinner";
     private final GenUtils GU;
+    private DatabaseTesterNewSchemaDesign DBTNSD;
 
 
     public NavigationShared(WebDriver driver) {
@@ -39,6 +42,7 @@ public class NavigationShared {
         wait1 = new WaitUtil_v2(driver);
         aJsWait = new AngularJsHTTPCallWait(driver);
         GU = new GenUtils(driver);
+        DBTNSD = new DatabaseTesterNewSchemaDesign();
 
     }
 
@@ -1913,7 +1917,14 @@ public class NavigationShared {
         String assignedCount = driver.findElement(By.xpath("//td[contains(normalize-space(text()), '" + countName + "')]")).getText();
         Assert.assertEquals(countValue, assignedCount);
         log.info("=>" + countName + "<= Assigned Count is as expected");
+    }
 
+    public void awaitingInfoCount(String user) throws SQLException {
+        log.info("Going to check that total awaiting info for  =>" + user);
+        String awaitingInfoCountForUser = driver.findElement(By.xpath("//td[@id='" + user + "-awaitingInfo']")).getText();
+        String dbAwaitingInfoCountForUser = String.valueOf(DBTNSD.getAwaitingInfoCountForUser(user));
+        assertEquals(dbAwaitingInfoCountForUser, awaitingInfoCountForUser);
+        log.info("=>" + user + "<= Awaiting Info Count is as expected");
     }
 
     public void switchToNewWindow() {
