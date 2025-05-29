@@ -2578,4 +2578,61 @@ public class NavigationShared {
             throw new RuntimeException("Unable to click the continue button using JavaScript executor.");
         }
     }
+    public void set_valueToUsingJS(String location_name, String value) throws Throwable {
+        WebElement childField = null;
+
+        try {
+            childField = find_inputBy_labelName(location_name);
+        } catch (Exception e) {
+            wait.activateImplicitWait(2);
+            List<WebElement> inputs;
+            int attempts = 0;
+
+            do {
+                inputs = driver.findElements(By.xpath(
+                        "//label[text()[contains(., \"" + location_name + "\")]]//input"
+                                + " | "
+                                + "//textarea[@name=\"" + location_name + "\"]"
+                                + " | "
+                                + "//label[text()[contains(., \"" + location_name + "\")]]/../textarea"
+                ));
+
+                try {
+                    childField = return_oneVisibleFromList(inputs);
+                    break;
+                } catch (Exception ignored) {}
+
+                Thread.sleep(500);
+                attempts++;
+            } while ((childField == null || !childField.isDisplayed()) && attempts < 3);
+
+            if (childField == null || !childField.isDisplayed()) {
+                throw new Exception("Could not locate visible input field with label: " + location_name);
+            }
+        }
+
+        setValueUsingJS(childField, value);
+
+        if (DateManipulator.isValidDate(value)) {
+            childField.sendKeys(Keys.TAB);
+        }
+
+        String actualValue = childField.getAttribute("value");
+
+        if (value.equals(actualValue)) {
+            log.info("Verified: Input field with label =>" + location_name + "<= successfully set to =>" + value + "<=");
+        } else {
+            log.error("Verification failed: Expected value =>" + value + "<= but found =>" + actualValue + "<= in input field with label =>" + location_name + "<=");
+        }
+
+        log.info("Set input field with label =>" + location_name + "<= to =>" + value);
+    }
+
+    private void setValueUsingJS(WebElement element, String value) {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript(
+                "arguments[0].value = arguments[1]; arguments[0].dispatchEvent(new Event('input'));",
+                element, value
+        );
+    }
 }
