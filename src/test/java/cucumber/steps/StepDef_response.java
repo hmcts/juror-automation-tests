@@ -525,9 +525,17 @@ public class StepDef_response {
 			NAV.set_valueTo("Enter your email address again", email);
 			NAV.press_buttonByName("Continue");
 
-			NAV.set_valueTo("Day", "01");
-			NAV.set_valueTo("Month", "01");
-			NAV.set_valueTo("Year", "1990");
+			Thread.sleep(500);
+			((JavascriptExecutor) webDriver).executeScript("document.getElementById('dobDay').value = '01';");
+
+			Thread.sleep(500);
+			((JavascriptExecutor) webDriver).executeScript("document.getElementById('dobMonth').value = '01';");
+
+
+			Thread.sleep(500);
+			((JavascriptExecutor) webDriver).executeScript("document.getElementById('dobYear').value = '1990';");
+
+			Thread.sleep(500);
 			NAV.press_buttonByName("Continue");
 
 			NAV.textPresentOnPage("Confirm you're eligible");
