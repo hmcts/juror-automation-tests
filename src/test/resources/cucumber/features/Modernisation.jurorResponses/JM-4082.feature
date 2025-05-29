@@ -1,9 +1,9 @@
 Feature: JM-4082
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: End to End test to check juror reasonable adjustment - Paper Response
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     And I log in as "<user>"
 
@@ -103,6 +103,7 @@ Feature: JM-4082
     And I press the "Save" button
     And I click the juror details adjustments tab
     And I see "12345678" in the same row as "Optic reference"
+
     Examples:
       | user          | juror_number   | pool_number   | jurorAdjustmentNeeded   | jurorAdjustmentFull          |
       | MODTESTBUREAU | 045200012      | 452300008     | Childcare               |C - Caring Responsibilities   |
