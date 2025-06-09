@@ -1,6 +1,6 @@
 Feature: JS-290
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Excusal refused letter - check jurors address matches that in bulk print table
 
     Given I am on "Bureau" "ithc"

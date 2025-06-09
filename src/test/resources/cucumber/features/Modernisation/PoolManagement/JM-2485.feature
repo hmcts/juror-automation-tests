@@ -17,15 +17,17 @@ Feature: JM-2485
       | Service start date |
 
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario: Test to browse active pools as court
-    Given I am on "Bureau" "test"
+
+    Given I am on "Bureau" "ithc"
 
     And I log in as "MODTESTCOURT"
 
     When I navigate to the pool request screen
     And I click on active pools
     And I click on the "With the Bureau" link
+
     Then I see the following active pools headers
       | Pool number        |
       | Jurors requested   |
@@ -33,6 +35,7 @@ Feature: JM-2485
       | Court name         |
       | Pool type          |
       | Service start date |
+
     And the court name displayed is one of the following
       | Knutsford |
       | Chester    |
