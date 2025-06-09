@@ -1,6 +1,6 @@
 Feature: Regression English_1st_MH
 
-  @Regression @NewSchemaConverted
+  @Regression
   Scenario Outline: Checking the word Act in Mental Health Act is capitalised
 
     Given I am on "Public" "test"
@@ -237,10 +237,10 @@ Feature: Regression English_1st_MH
       | juror_number | last_name          | postcode | email             | pool_number |
       | 045200060    | LNAMESEVENFOURFIVE | CH1 2AN  | email@outlook.com | 452300059   |
 
-  @Regression @NewSchemaConverted
+  @Regression
   Scenario Outline: Checking MH questions have been split in Bureau and no text MENTAL HEALTH Q2 is visible
 
-    Given I am on "Public" "test"
+    Given I am on "Public" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |

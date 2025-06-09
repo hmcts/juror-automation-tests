@@ -1,6 +1,6 @@
 Feature: JS-312 - As a court officer I want to be able to add non attendance days in bulk for certain jurors
 
-  @JurorTransformation @NewSchemaConverted
+  @JurorTransformation
   Scenario Outline: Add non attendance day for juror via panel
 
     Given I am on "Bureau" "ithc"
@@ -68,15 +68,13 @@ Feature: JS-312 - As a court officer I want to be able to add non attendance day
     And I click on the "Attendance" link
     Then I see the date "12" weeks from now in the same row as "Non-attendance day"
 
-
-
     Examples:
       |user			|juror_number  |  pool_number    | trial_number |
       |MODTESTCOURT |041584531     |  415387215      | TRIALLLL112  |
 
 
 
-  @JurorTransformation @NewSchemaConverted
+  @JurorTransformation
   Scenario Outline: Add non attendance day for juror via pool
 
     Given I am on "Bureau" "ithc"
@@ -111,14 +109,12 @@ Feature: JS-312 - As a court officer I want to be able to add non attendance day
     And I click on the "Attendance" link
     Then I see the date "12" weeks from now in the same row as "Non-attendance day"
 
-
-
     Examples:
       |user			|juror_number  |  pool_number    |
       |MODTESTCOURT |041584533     |  415387216      |
 
 
-  @JurorTransformation @NewSchemaConverted
+  @JurorTransformation
   Scenario Outline: Add non attendance day for juror via pool - Unhappy Path
 
     Given I am on "Bureau" "ithc"
@@ -153,7 +149,6 @@ Feature: JS-312 - As a court officer I want to be able to add non attendance day
     And I set non-attendance date to "12" weeks from now
     And I press confirm non-attendance day button
     And I see error "You cannot mark this date as a non-attendance day because one or more jurors are in summoned status."
-
 
     Examples:
       |user			|juror_number |juror_number1 |  pool_number    |
