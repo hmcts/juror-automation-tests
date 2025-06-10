@@ -126,10 +126,11 @@ Feature: JS-280
 
 
 
-  @JurorTransformation @NewSchemaConverted
+  @JurorTransformation
   Scenario Outline: Check higher rates can be edited and pick up correct rate for time spent that day
 
     Given I am on "Bureau" "ithc"
+
     When a bureau owned pool is created with jurors
       | court |juror_number  	  | pool_number	    | att_date_weeks_in_future	| owner |
       | 415   |<juror_number>     | <pool_number>   | 5				            | 400	|
@@ -172,7 +173,6 @@ Feature: JS-280
     And I set juror check out minute to "30" on confirm attendance
     And I click on the pm radio button for juror check out on confirm attendance
     And I press the "Add attendance day" button
-
 
     When the user searches for juror record "<juror_number>" from the global search bar
     And I click on the "Attendance" link

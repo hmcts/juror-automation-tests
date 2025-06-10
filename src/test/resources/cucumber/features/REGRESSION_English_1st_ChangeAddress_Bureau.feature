@@ -1,6 +1,6 @@
 Feature: Regression English_1st_ChangeAddress_Bureau
 
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: Change postcode - old postcode in >1 loc_code SHOWS CHANGE COURT
 
 	Given I am on "Public" "ithc"
@@ -125,7 +125,7 @@ Examples:
 	| juror_number	| last_name	| postcode	| email 		| pool_number	|
 	| 045200185		| DOE		| SY2 6LU	| a@eeee.com	| 452300170		|
 	
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: Change Postcode but same loc_code CHANGE COURT FLAG NOT SHOWN
 
 	Given I am on "Public" "ithc"
@@ -249,7 +249,7 @@ Examples:
 	| juror_number	| last_name	| postcode	| email 		| pool_number	|
 	| 045200186		| DOE		| SA1 4EE	| a@eeee.com	| 452300171		|
 
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: Change postcode - different loc_code SHOWS CHANGE COURT
 
 	Given I am on "Public" "ithc"
@@ -376,7 +376,7 @@ Examples:
 	| juror_number	| last_name	| postcode	| email 		| pool_number	|
 	| 045200187		| DOE		| CH1 6LU	| a@eeee.com	| 452300172		|
 
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: Change postcode - new postcode in >1 loc_code SHOWS CHANGE COURT
 
 	Given I am on "Public" "ithc"
@@ -500,7 +500,7 @@ Examples:
 	| juror_number	| last_name	| postcode	| email 		| pool_number	|
 	| 045200188		| DOE		| CH1 6LU	| a@eeee.com	| 452300173		|
 
-@regression @NewSchemaConverted
+@regression
 Scenario Outline: Change postcode - new postcode not in court_catchment_area
 
 	Given I am on "Public" "ithc"
@@ -625,7 +625,7 @@ Examples:
 	| juror_number	| last_name	| postcode	| email 		| pool_number	|
 	| 045200189		| DOE		| CH1 6LU	| a@eeee.com	| 452300174		|
 
-@regression @NewSchemaConverted
+@regression
 Scenario Outline: Change postcode - old postcode not in court_catchment_area DOES NOT SHOW CHANGE COURT
 
 	Given I am on "Public" "ithc"
@@ -750,7 +750,7 @@ Examples:
 	| juror_number	| last_name	| postcode	| email 		| pool_number	|
 	| 045200190		| DOE		| SW1H 6LU	| a@eeee.com	| 452300175		|
 
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: Change Postcode but same loc_code CHANGE COURT FLAG NOT SHOWN two
 
 	Given I am on "Public" "ithc"

@@ -68,10 +68,10 @@ Feature: Create Juror Record scenarios
     And I see error "Enter a first name"
     And I see error "Enter a last name"
     And I set "First name" to "TonyTestingTesterTwentyCharacters"
-    And I set "Last name" to "JaneTestingTesterTwentyCharacters"
+    And I set "Last name" to "JaneTestingTesterTwentyfiveeCharacters"
     And I press the "Continue" button
     And I see error "First name cannot contain more than 20 characters"
-    And I see error "Last name cannot contain more than 20 characters"
+    And I see error "Last name cannot contain more than 25 characters"
     And I set "Title (optional)" to "Mr"
     And I set "First name" to "John"
     And I set "Last name" to "Stark"
