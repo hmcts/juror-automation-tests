@@ -51,9 +51,10 @@ Feature: JM-5962 - As a jury officer I need to be able to bulk change jurors att
       | MODTESTCOURT | 041537788    | 041537789      | 041537786      | 041537785      | 041537784      | 415366828   |
 
 
-  @JurorTransformation @NewSchemaConverted
+  @JurorTransformation
   Scenario Outline: As a jury officer I want to bulk change multiple jurors attendance date - Unhappy Path
-    Given I am on "Bureau" "test"
+
+    Given I am on "Bureau" "ithc"
     When a bureau owned pool is created with jurors
       | court |juror_number  	    | pool_number	      | att_date_weeks_in_future	| owner |
       | 415   |<juror_number>       | <pool_number>       | 5				            | 400	|

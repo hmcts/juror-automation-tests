@@ -178,8 +178,9 @@ Scenario Outline: Bureau A script, steps 24 onwards
 	And I choose the "No" radio button
 	And I press the "Continue" button
 
-	And I set "First name" to "FIRSTNAMECHANGED"
-	And I set "Last name" to "LASTNAMECHANGED"
+	And I set "First name" to "FIRSTNAMECHANGED" using JS
+	And I set "Last name" to "LASTNAMECHANGED" using JS
+
 	And I set "Title" to "TITLEA"
 	And I press the "Continue" button
 	Then I see "Is this your address?" on the page
@@ -308,7 +309,7 @@ Scenario Outline: Bureau A script, steps 24 onwards
 	And I see "arrangementsTestData" on the page
 	
 	And I see "To do" on the page
-	
+
 	Then I press the "More actions" button
 	And I click on the "Mark as awaiting information" link
 	And I choose the "Court" radio button

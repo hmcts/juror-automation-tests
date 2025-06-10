@@ -1061,4 +1061,8 @@ public class StepDef_navigation {
 		POOL_REQUESTS.clickPoolNumberInSearchResults(poolNo);
 	}
 
+	@When("^I set \"([^\"]*)\" to \"([^\"]*)\" using JS$")
+	public void force_set_value_using_js(String fieldLabel, String value) throws Throwable {
+		NAV.set_valueToUsingJS(fieldLabel, value);
+	}
 }
