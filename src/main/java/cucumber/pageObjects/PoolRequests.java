@@ -253,7 +253,34 @@ public class PoolRequests {
 
     public String getPageHeading() {
         log.info("Getting page heading");
-        return pageHeading.getText();
+
+        int maxRetries = 2;
+        int retryCount = 0;
+        StaleElementReferenceException lastException = null;
+
+        while (retryCount < maxRetries) {
+            try {
+                String text = pageHeading.getText();
+                log.info("Successfully retrieved page heading");
+                return text;
+            } catch (StaleElementReferenceException e) {
+                lastException = e;
+                retryCount++;
+                log.warn("StaleElementReferenceException when getting page heading - attempt " + retryCount);
+
+                if (retryCount == maxRetries) break;
+
+                PageFactory.initElements(driver, this);
+
+                try {
+                    Thread.sleep(200);
+                } catch (InterruptedException ie) {
+                    Thread.currentThread().interrupt();
+                }
+            }
+        }
+
+        throw lastException;
     }
 
     public String getTableHeading() {
@@ -263,7 +290,34 @@ public class PoolRequests {
 
     public String getAttendanceDateWarning() {
         log.info("Getting attendance date warning");
-        return attendanceDateWarning.getText();
+
+        int maxRetries = 2;
+        int retryCount = 0;
+        StaleElementReferenceException lastException = null;
+
+        while (retryCount < maxRetries) {
+            try {
+                String text = attendanceDateWarning.getText();
+                log.info("Successfully retrieved attendance date warning");
+                return text;
+            } catch (StaleElementReferenceException e) {
+                lastException = e;
+                retryCount++;
+                log.warn("StaleElementReferenceException when getting attendance date warning - attempt " + retryCount);
+
+                if (retryCount == maxRetries) break;
+
+                PageFactory.initElements(driver, this);
+
+                try {
+                    Thread.sleep(200);
+                } catch (InterruptedException ie) {
+                    Thread.currentThread().interrupt();
+                }
+            }
+        }
+
+        throw lastException;
     }
 
     public void clickContinue() {
