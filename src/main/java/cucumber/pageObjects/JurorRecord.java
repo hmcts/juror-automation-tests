@@ -732,21 +732,31 @@ public class JurorRecord {
         }
     }
 
-    public void selectCheckboxesInLettersTableForJuror(String juror) {
+    public void selectCheckboxesInLettersTableForJuror(String jurorId) {
+        String xpathExpression = String.format("//*[@id='main-content']//table//input[@id='juror-%s']", jurorId);
+
         try {
-            List<WebElement> checkboxes = driver.findElements(
-                    By.xpath("//*[@id='main-content']/div[4]/div/table//input[@id='juror-" + juror + "']")
-            );
+            List<WebElement> checkboxes = driver.findElements(By.xpath(xpathExpression));
+            if (checkboxes.isEmpty()) {
+                log.warn("No checkboxes found for juror ID: " + jurorId);
+                return;
+            }
 
             JavascriptExecutor js = (JavascriptExecutor) driver;
+
             for (WebElement checkbox : checkboxes) {
-                if (!checkbox.isSelected()) {
-                    js.executeScript("arguments[0].click();", checkbox);
+                try {
+                    if (!checkbox.isSelected()) {
+                        js.executeScript("arguments[0].click();", checkbox);
+                    }
+                } catch (Exception innerEx) {
+                    log.warn("Could not click checkbox for juror ID " + jurorId + ": " + innerEx.getMessage());
                 }
             }
-            log.info("Selected checkboxes for juror: " + juror);
+
+            log.info("Selected checkboxes for juror: " + jurorId);
         } catch (Exception e) {
-            log.error("Error occurred while selecting checkboxes: " + e.getMessage());
+            log.error("Error occurred while selecting checkboxes for juror ID " + jurorId + ": " + e.getMessage(), e);
         }
     }
 

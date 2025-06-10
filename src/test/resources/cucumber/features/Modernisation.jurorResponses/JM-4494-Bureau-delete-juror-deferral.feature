@@ -50,7 +50,7 @@ Feature: JM-4494 Bureau Delete Juror Deferral
 
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: Delete Juror deferral - paper
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
@@ -83,7 +83,7 @@ Feature: JM-4494 Bureau Delete Juror Deferral
     And I see "Deferral granted" on the page
 
     Then the user searches for juror record "<juror_number>" from the global search bar
-    And I see the juror status on the juror record screen is "Deferred"
+    And I see the juror status has updated to "Deferred"
     And I see the number of deferrals is "1"
     And I see under pool details the pool number is "In deferral maintenance"
     And I click the change link for the juror deferral

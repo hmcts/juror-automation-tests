@@ -129,7 +129,34 @@ public class JurorRecordSearch {
     }
 
     public String getMainBodyText() {
-        return mainBody.getText();
+        log.info("Getting text from main body element");
+
+        int maxRetries = 2;
+        int retryCount = 0;
+        StaleElementReferenceException lastException = null;
+
+        while (retryCount < maxRetries) {
+            try {
+                String text = mainBody.getText();
+                log.info("Successfully retrieved main body text");
+                return text;
+            } catch (StaleElementReferenceException e) {
+                lastException = e;
+                retryCount++;
+                log.warn("StaleElementReferenceException when getting main body text - attempt " + retryCount);
+
+                if (retryCount == maxRetries) break;
+
+                PageFactory.initElements(driver, this);
+
+                try {
+                    Thread.sleep(200);
+                } catch (InterruptedException ie) {
+                    Thread.currentThread().interrupt();
+                }
+            }
+        }
+        throw lastException;
     }
 
     public void clickSummonsTab(){ summonsTab.click();}

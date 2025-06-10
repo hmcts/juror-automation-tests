@@ -18,7 +18,7 @@ Feature: JM-3895 mark juror as deferred digital
     Given I log in as "MODTESTBUREAU"
 
     When the user searches for juror record "<juror_number>" from the global search bar
-    And I click the summons reply tab
+    And I click on the "Summons reply" link
     And I click on the "View summons reply" link
     And I see the reply "type" on the response is "Deferral"
 
