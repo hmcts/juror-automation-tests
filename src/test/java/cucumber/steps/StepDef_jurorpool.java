@@ -944,7 +944,6 @@ public class StepDef_jurorpool {
         assertTrue(mainText.contains("There are no matching results"));
         assertTrue(mainText.contains("Improve your search by:"));
         assertTrue(mainText.contains("double-checking your spelling"));
-        //assertTrue(mainText.contains("searching by the complete juror number only"));
     }
 
     @Then("^the juror record is displayed with the following fields$")
