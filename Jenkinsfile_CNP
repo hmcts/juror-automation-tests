@@ -3,7 +3,7 @@ properties([
   parameters([
     choice(choices: ['chrome', 'firefox', 'msedge'], name: 'Browser'),
     // Default to using 'stg' and only run smoketest by default
-    choice(choices: ['ithc', 'test', 'demo', 'stg'], name: 'EnvironmentChoice'),
+    choice(choices: ['demo', 'test', 'ithc', 'stg'], name: 'EnvironmentChoice'),
     booleanParam(name: 'runExpenses', defaultValue: false, description: 'Include Expenses tests'),
     booleanParam(name: 'runFeatures', defaultValue: false, description: 'Include Features tests'),
     booleanParam(name: 'runJurorTransformation', defaultValue: false, description: 'Include JurorTransformation tests'),
@@ -12,8 +12,7 @@ properties([
     booleanParam(name: 'runRegression', defaultValue: false, description: 'Include Regression tests'),
     booleanParam(name: 'runRegressionSingle', defaultValue: false, description: 'Include RegressionSingle tests'),
     booleanParam(name: 'runRegressionWelsh', defaultValue: false, description: 'Include RegressionWelsh tests'),
-    booleanParam(name: 'runShakedown', defaultValue: false, description: 'Include Shakedown tests'),
-    booleanParam(name: 'nightlyOverride', defaultValue: false, description: 'Override defaults for nightly-dev branch')
+    booleanParam(name: 'runShakedown', defaultValue: false, description: 'Include Shakedown tests')
   ])
 ])
 
@@ -100,19 +99,6 @@ withNightlyPipeline(type, product, component, 600) {
   env.runRegressionSingle = params.runRegressionSingle
   env.runRegressionWelsh = params.runRegressionWelsh
   env.runShakedown = params.runShakedown
-
-  if (env.BRANCH_NAME == "nightly-dev" && params.nightlyOverride == false) {
-    env.envName = "demo"
-    env.runExpenses = "true"
-    env.runFeatures = "true"
-    env.runJurorTransformation = "false"
-    env.runJurorTransformationMulti = "false"
-    env.runJurorTransformationWIP = "false"
-    env.runRegression = "true"
-    env.runRegressionSingle = "true"
-    env.runRegressionWelsh = "true"
-    env.runShakedown = "true"
-  }
 
   setBuildName()
 
