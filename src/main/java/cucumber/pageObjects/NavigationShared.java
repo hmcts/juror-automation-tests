@@ -2098,7 +2098,7 @@ public class NavigationShared {
     @FindBy(name = "selectMethod")
     WebElement methodDropdown;
 
-    @FindBy(className = "moj-banner__message")
+    @FindBy(className = "moj-alert__content")
     WebElement messageBanner;
 
     @FindBy(id = "nextDueAtCourtDate")

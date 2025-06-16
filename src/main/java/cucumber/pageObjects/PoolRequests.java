@@ -93,7 +93,7 @@ public class PoolRequests {
     WebElement warningContinue;
     @FindBy(css = "#poolRequestsTable td:nth-child(1) .govuk-link ")
     WebElement firstPoolRequestLink;
-    @FindBy(className = "moj-banner__message")
+    @FindBy(className = "moj-alert__content")
     WebElement bannerMessage;
     @FindBy(id = "courtNameOrLocation")
     WebElement courtNameTextBox;
