@@ -358,7 +358,7 @@ Feature: As a jury officer I need to send the next delayed start message
   @JurorTransformationMulti @Messages
   Scenario Outline: Send delayed start message for Juror via their deferred date
 
-    Given I am on "Bureau" "demo"
+    Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number      | pool_number	    | att_date_weeks_in_future	| owner |

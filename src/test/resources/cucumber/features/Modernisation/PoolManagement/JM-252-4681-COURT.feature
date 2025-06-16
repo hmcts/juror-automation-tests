@@ -113,6 +113,7 @@ Feature: JM-252 JM-4302 Court user create new pools
 
   @JurorTransformationMulti
   Scenario Outline: Happy Path Test to create a new pool of jurors as court user with >1 court
+
     Given I am on "Bureau" "ithc"
 
     And I log in as "<user>"
