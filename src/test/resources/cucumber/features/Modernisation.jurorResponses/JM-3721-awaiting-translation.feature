@@ -64,7 +64,7 @@ Scenario Outline: JM-3721 As Court User, set Paper Response status as Awaiting T
 
 	#now mark as awaiting translation
 	And I click the More Actions button
-	And I click Awaiting Information
+	And I click on the "Mark as awaiting information" link
 	Then I see "Who are you waiting for information from?" on the page
 	And I mark this reply as awaiting information from "Translation unit"
 	Then I press the "Confirm" button
@@ -139,7 +139,7 @@ Scenario Outline: JM-3721 As Court User, set Paper Response status as Awaiting T
 
 	#now mark as awaiting translation
 	And I click the More Actions button
-	And I click Awaiting Information
+	And I click on the "Mark as awaiting information" link
 	Then I see "Who are you waiting for information from?" on the page
 
 	#errors and warnings
@@ -224,7 +224,7 @@ Scenario Outline: JM-3721 As Court User, set Paper Response status as Awaiting T
 
 	#now mark as awaiting translation
 		And I click the More Actions button
-		And I click Awaiting Information
+		And I click on the "Mark as awaiting information" link
 		Then I see "Who are you waiting for information from?" on the page
 
 	#navigation - cancel
@@ -233,7 +233,7 @@ Scenario Outline: JM-3721 As Court User, set Paper Response status as Awaiting T
 
 	#now mark as awaiting translation
 		And I click the More Actions button
-		And I click Awaiting Information
+		And I click on the "Mark as awaiting information" link
 		Then I see "Who are you waiting for information from?" on the page
 
 	#navigation - select different buttons

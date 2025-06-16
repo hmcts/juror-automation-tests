@@ -1,9 +1,9 @@
 Feature: Bureau E Test
 
-@Regression @NewSchemaConverted
+@Regression
 Scenario: Bureau E Test
 
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "ithc"
 
 	And staff with name "AutomationStaff1" does not exist new schema
 	And staff with name "AutomationStaff2" does not exist new schema
