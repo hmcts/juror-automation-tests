@@ -70,7 +70,7 @@ public class JurorRecordSearch {
     @FindBy(xpath = "//button[@type='submit']")
     WebElement continueButton;
 
-    @FindBy(xpath = "//*[@class='moj-banner__message']/b")
+    @FindBy(xpath = "//div[contains(@class, 'moj-alert--success')]//div[contains(@class, 'moj-alert__content')]/b")
     WebElement bannerMessageBoldText;
 
     @FindBy(xpath = "//*[@class='govuk-list govuk-error-summary__list']/li/a")
