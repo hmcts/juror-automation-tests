@@ -183,7 +183,7 @@ public class SummonsReply {
     @FindBy(id = "excusalDecision-2")
     WebElement refuseExcusalRadioButton;
 
-    @FindBy(xpath = "//div[@class='moj-banner__message']")
+    @FindBy(xpath = "//div[@class='moj-alert__content']")
     WebElement responseBanner;
 
     @FindBy(id = "processActionType")
