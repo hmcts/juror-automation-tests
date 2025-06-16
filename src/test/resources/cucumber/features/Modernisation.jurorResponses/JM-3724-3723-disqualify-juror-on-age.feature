@@ -1,7 +1,8 @@
 Feature: JM-3724 JM-3723
 
-  @JurorTransformation @NewSchemaConverted
+  @JurorTransformation
   Scenario Outline: test to disqualify juror - too old
+
     Given I am on "Bureau" "test"
 
     And I log in as "<user>"
@@ -25,9 +26,10 @@ Feature: JM-3724 JM-3723
       | MODTESTBUREAU | 041500158      | 415300257     |
 
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: test to disqualify juror - too young
-    Given I am on "Bureau" "test"
+
+    Given I am on "Bureau" "ithc"
 
     And I log in as "<user>"
 
@@ -50,8 +52,9 @@ Feature: JM-3724 JM-3723
       | MODTESTBUREAU | 041500156     | 415300255   |
 
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: test to disqualify juror - incorrect date provided - change date
+
     Given I am on "Bureau" "test"
 
     And I log in as "<user>"

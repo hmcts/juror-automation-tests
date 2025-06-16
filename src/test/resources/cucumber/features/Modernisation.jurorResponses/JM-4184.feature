@@ -3,7 +3,7 @@ Feature: JM-4184 - The system shall allow the jury officer to process a summons 
   @JurorTransformationMulti
   Scenario Outline: Process summons reply that has been returned late (Disqualify)
 
-    Given I am on "Bureau" "demo"
+    Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court  |juror_number  	| pool_number	   | att_date_weeks_in_future	| owner |

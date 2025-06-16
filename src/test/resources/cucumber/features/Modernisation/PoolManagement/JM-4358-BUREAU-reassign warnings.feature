@@ -121,6 +121,7 @@ Feature: JM-4358
 
   @JurorTransformation
   Scenario Outline: Reassign a juror Bureau User - warning cannot be reassigned when juror will be over 75
+
     Given I am on "Bureau" "ithc"
 
     #And new pool requests are deleted new schema
