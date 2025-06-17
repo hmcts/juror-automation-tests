@@ -3,7 +3,7 @@ Feature: Expenses_Welsh_JDB-4337
 @expenses @JDB-4337
 Scenario: expensesJDB-4337 Value of Additional Expenses Welsh
 	
-	Given I am on the Welsh version of expenses on "expenses" "juror-test01"
+	Given I am on the Welsh version of expenses on "expenses" "ithc"
 	
 	Then I press the "Cychwyn arni" button
 
@@ -168,4 +168,3 @@ Scenario: expensesJDB-4337 Value of Additional Expenses Welsh
 	
 	When I press the "Parhau" button
 	Then I see "Sut byddwch yn teithio i'r llys?" on the page
-

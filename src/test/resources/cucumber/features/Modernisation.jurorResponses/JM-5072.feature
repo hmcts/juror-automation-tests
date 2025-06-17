@@ -91,7 +91,7 @@ Feature: JM-5072 - Dismiss random jurors
   @JurorTransformationMulti
   Scenario Outline:   As a jury officer I want to dismiss random jurors - Unhappy Path
 
-    Given I am on "Bureau" "demo"
+    Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |

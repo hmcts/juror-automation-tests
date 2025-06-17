@@ -135,7 +135,7 @@ Feature: As a Bureau Officer I need to search for a juror summon reply so that I
     And I record a happy path paper summons response
     And I click on the "No, skip and process later" link
     And I click the More Actions button
-    And I click Awaiting Information
+    And I click on the "Mark as awaiting information" link
     Then I see "Who are you waiting for information from?" on the page
     And I mark this reply as awaiting information from "Translation unit"
     Then I press the "Confirm" button
@@ -146,7 +146,7 @@ Feature: As a Bureau Officer I need to search for a juror summon reply so that I
     And I record a happy path paper summons response
     And I click on the "No, skip and process later" link
     And I click the More Actions button
-    And I click Awaiting Information
+    And I click on the "Mark as awaiting information" link
     Then I see "Who are you waiting for information from?" on the page
     And I mark this reply as awaiting information from "Court"
     Then I press the "Confirm" button
@@ -157,7 +157,7 @@ Feature: As a Bureau Officer I need to search for a juror summon reply so that I
     And I record a happy path paper summons response
     And I click on the "No, skip and process later" link
     And I click the More Actions button
-    And I click Awaiting Information
+    And I click on the "Mark as awaiting information" link
     Then I see "Who are you waiting for information from?" on the page
     And I mark this reply as awaiting information from "Juror"
     Then I press the "Confirm" button

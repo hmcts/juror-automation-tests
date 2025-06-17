@@ -398,7 +398,8 @@ Feature: 1)JM-5409,JM-5411 - As a Bureau/jury officer I need to resend a deferra
   @JurorTransformationMulti
   Scenario Outline:As a jury officer test a Deferred juror can resend a granted refused letter by searching via pool number
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
+
     When a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
       | 415   | <juror_number> | <pool_number> | 5                        | 400   |

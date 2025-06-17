@@ -747,12 +747,12 @@ Scenario: Work Allocation Fields and Labels Checks
 	And I press the "Select all" button
 	Then "ARAMIS1" is checked
 	And "TeamPickListUser" is checked
-	And "AutomationStaffMemberTWO" is checked
+	And "CPASS" is checked
 
 	And I press the "Unselect all" button
 	Then "ARAMIS1" is unchecked
 	And "TeamPickListUser" is unchecked
-	And "AutomationStaffMemberTWO" is unchecked
+	And "CPASS" is unchecked
 
 @RegressionSingle
 Scenario Outline: Work Allocation

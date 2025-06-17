@@ -1,6 +1,6 @@
 Feature: JM-4949 & JM-5766
 
-  @JurorTransformation @NewSchemaConverted
+  @JurorTransformation
   Scenario Outline: Return all jurors on a panel
 
     Given I am on "Bureau" "ithc"
@@ -113,7 +113,7 @@ Feature: JM-4949 & JM-5766
       |MODTESTCOURT |041520012     |  415300201      | TEST2022222  |
 
 
-  @JurorTransformation @NewSchemaConverted
+  @JurorTransformation
   Scenario Outline: Return select jurors on a panel to keep panel active
 
     Given I am on "Bureau" "test"
@@ -243,7 +243,7 @@ Feature: JM-4949 & JM-5766
       |MODTESTCOURT |041520013     |  041520014     |  041520015    |  415300201   | TEST2022223  |
 
 
-  @JurorTransformation @NewSchemaConverted
+  @JurorTransformation
   Scenario Outline: Return juror but do not confirm attendance
 
     Given I am on "Bureau" "test"
@@ -333,7 +333,7 @@ Feature: JM-4949 & JM-5766
       |MODTESTCOURT |041520016     |  415300201      | TEST2022224  |
 
 
-  @JurorTransformation @NewSchemaConverted
+  @JurorTransformation
   Scenario Outline: Return juror and complete their service
 
     Given I am on "Bureau" "test"
@@ -433,7 +433,7 @@ Feature: JM-4949 & JM-5766
       |MODTESTCOURT |041520017     |  415300201      | TEST2022225  |
 
 
-  @JurorTransformation @NewSchemaConverted
+  @JurorTransformation
   Scenario Outline: Attempt to end trial for panel which is still active
 
     Given I am on "Bureau" "test"
