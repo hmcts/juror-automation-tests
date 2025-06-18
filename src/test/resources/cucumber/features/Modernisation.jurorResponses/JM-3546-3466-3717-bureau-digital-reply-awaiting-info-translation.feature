@@ -1,9 +1,9 @@
 Feature: JM-3546 and JM-3466 Bureau User Marks Digital Response as Awaiting Info
 
-  @JurorTransformation @NewSchemaConverted
+  @JurorTransformation
   Scenario Outline: Bureau User Marks Digital Response as Awaiting Info - happy path
 
-    Given I am on "Public" "ithc"
+    Given I am on "Public" "demo"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
@@ -15,7 +15,7 @@ Feature: JM-3546 and JM-3466 Bureau User Marks Digital Response as Awaiting Info
       |<juror_number> |<pool_number>  |<last_name>	|<postcode>	|a@a.com|
 
     #log on
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "demo"
     And I log in as "MODTESTBUREAU"
 
     #search for response
@@ -56,7 +56,7 @@ Feature: JM-3546 and JM-3466 Bureau User Marks Digital Response as Awaiting Info
       | juror_number| pool_number 	| last_name 		| postcode 	|
       | 041500152	| 415300251 	|lname	            | CH2 2AA	|
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Bureau User Marks Digital Response as Awaiting Info - navigation
 
     Given I am on "Public" "ithc"
@@ -110,7 +110,7 @@ Feature: JM-3546 and JM-3466 Bureau User Marks Digital Response as Awaiting Info
       | juror_number| pool_number 	| last_name 		| postcode 	|
       | 041500153	| 415300252 	| lname	            | CH2 2AA	|
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Bureau User Marks Digital Response as Awaiting Info - errors and warnings
 
     Given I am on "Public" "test"
