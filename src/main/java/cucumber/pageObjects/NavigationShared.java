@@ -2381,10 +2381,39 @@ public class NavigationShared {
     }
 
     public String messageSentBanner() {
-        String bannerText = messageBanner.getText();
-        System.out.println("Message Sent Banner Text: " + bannerText);
-        return bannerText;
+        log.info("Getting message sent banner text");
+
+        int maxRetries = 2;
+        int retryCount = 0;
+        StaleElementReferenceException lastException = null;
+
+        while (retryCount < maxRetries) {
+            try {
+                String bannerText = messageBanner.getText();
+                log.info("Message Sent Banner Text: " + bannerText);
+                return bannerText;
+            } catch (StaleElementReferenceException e) {
+                lastException = e;
+                retryCount++;
+                log.warn("StaleElementReferenceException when getting message banner - attempt " + retryCount);
+
+                if (retryCount == maxRetries) break;
+
+                PageFactory.initElements(driver, this);
+
+                try {
+                    Thread.sleep(200);
+                } catch (InterruptedException ie) {
+                    Thread.currentThread().interrupt();
+                }
+            }
+        }
+
+        log.error("Unable to get message banner text due to stale element: " +
+                (lastException != null ? lastException.getMessage() : "unknown"));
+        throw new RuntimeException("Unable to retrieve message banner after retries.");
     }
+
 
     public String seeMessageTemplateDate(String specificDate) {
         String messageText = messageTemplate.getText();

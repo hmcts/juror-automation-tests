@@ -223,8 +223,11 @@ public class StepDef_jurorpool {
     @Then("^a message is displayed on the pool requests page informing me that the pool has been deleted$")
     public void messageConfirmsDeletion() {
         String expectedMessage = String.format("Pool %s successfully deleted", poolRequestNumber.get());
+        String actualMessage = POOL_REQUESTS_PAGE.getBannerMessage();
 
-        assertEquals(expectedMessage, POOL_REQUESTS_PAGE.getBannerMessage());
+        System.out.println(actualMessage);
+
+        assertEquals("Banner message mismatch", expectedMessage, actualMessage);
     }
 
     @Then("^the pool is no longer visible$")
