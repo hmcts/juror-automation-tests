@@ -61,10 +61,10 @@ Feature: JM-3770
       | juror_number| pool_number   | user         |
       | 041500144   | 415300244     | MODTESTBUREAU|
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Disqualify Juror because of Residency reasons - Digital
 
-    Given I am on "Public" "test"
+    Given I am on "Public" "demo"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
@@ -76,7 +76,7 @@ Feature: JM-3770
       |<juror_number>	|<pool_number>	|<last_name>	|<postcode>	|e@mail.com |
 
     #log on
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "demo"
     And I log in as "<user>"
 
     #search for response
