@@ -141,7 +141,7 @@ public class PoolRequests {
     WebElement activePoolsTable;
     @FindBy(xpath = "//td[2]/a")
     WebElement firstJurorInList;
-    @FindBy(xpath = "//div[@class='moj-banner moj-banner--success']//a")
+    @FindBy(xpath = "//div[@class='moj-alert moj-alert--success']//a")
     WebElement courtOnlyPoolRequestSuccessLink;
     private Groups GRP;
 
