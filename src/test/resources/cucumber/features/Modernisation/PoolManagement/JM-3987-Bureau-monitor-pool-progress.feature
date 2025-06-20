@@ -31,7 +31,7 @@ Feature: JM-3987 Monitor Pools Progress
   @JurorTransformation
   Scenario Outline: Test to show the no pools requested message is displayed in weeks with no pools
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "demo"
     Given new pool requests are deleted new schema
 
     Given a bureau owned pool is created with jurors
@@ -47,8 +47,10 @@ Feature: JM-3987 Monitor Pools Progress
     And I press the "Continue" button
 
     And I press the "Summon jurors" button
+    Then I see "Extra citizens to summon" on the page
     And I set "Extra citizens to summon" to "9"
     And I press the "Summon more citizens" button
+    Then I see "Jurors in this pool" on the page
 
     And I navigate to the pool summoning progress screen
     And I see the summoning progress page banner

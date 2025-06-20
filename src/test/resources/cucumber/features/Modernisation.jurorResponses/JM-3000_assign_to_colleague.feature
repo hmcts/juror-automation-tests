@@ -67,7 +67,7 @@ Examples:
 
 		#this test needs to stay in single threaded as it checks backlog counts which will be more dynamic in the multi threaded execution
 
-		Given I am on "Bureau" "ithc"
+		Given I am on "Bureau" "demo"
 
 		Given a bureau owned pool is created with jurors
 			| court | juror_number       | pool_number   | att_date_weeks_in_future | owner |
@@ -84,7 +84,7 @@ Examples:
 			| part_no            | pool_number   | last_name       | postcode   | email   | details   |
 			| <juror_number_two> | <pool_number> | <last_name_two> | <postcode> | <email> | <details> |
 
-		Given I am on "Bureau" "ithc"
+		Given I am on "Bureau" "demo"
 		And I log in as "<user>"
 		And I click on the "Assign Replies" link
 
@@ -148,8 +148,7 @@ Examples:
 	#Check it's assigned to CPASS
 		When I click on "<juror_number_two>" in the same row as "<juror_number_two>"
 		And I am on the modernisation version of View Summons Reply
-		Then I press the "More actions" button
-		And I do not see link with text "Send to a colleague"
+		And I do not see "Send to a colleague" on the page
 		And I see assigned to is "AUTO"
 
 		And I click on the "Sign out" link
