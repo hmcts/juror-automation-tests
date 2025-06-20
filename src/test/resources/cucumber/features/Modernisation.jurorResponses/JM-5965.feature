@@ -74,13 +74,14 @@ Feature: JM-5965 - Certificate of Exemption
   @JurorTransformation
   Scenario Outline:As a jury officer I want to print a certification of exemption letter for a juror in a trial - indefinitely
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "demo"
+
     When a bureau owned pool is created with jurors
-      | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
-      | 415   | <juror_number>| <pool_number>           | 5                          | 400  |
+      | court | juror_number   | pool_number	 | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number> | <pool_number>   | 5                        | 400   |
 
     Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no              | pool_no           | owner |
+      | part_no              | pool_no           | owner |
       | <juror_number>       | <pool_number>     | 415   |
 
     And I Confirm all the data in the record attendance table is cleared
