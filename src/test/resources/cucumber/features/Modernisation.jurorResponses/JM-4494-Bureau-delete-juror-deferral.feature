@@ -2,7 +2,8 @@ Feature: JM-4494 Bureau Delete Juror Deferral
 
   @JurorTransformationMulti
   Scenario Outline: Delete Juror deferral - digital
-    Given I am on "Public" "test"
+
+    Given I am on "Public" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
@@ -13,7 +14,7 @@ Feature: JM-4494 Bureau Delete Juror Deferral
       |jurorLname    | <last_name>    |
       |jurorPostcode | <postcode>     |
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     Given I log in as "MODTESTBUREAU"
     When the user searches for juror record "<juror_number>" from the global search bar
     And I click the summons reply tab
@@ -48,7 +49,7 @@ Feature: JM-4494 Bureau Delete Juror Deferral
       | juror_number| last_name	  | postcode| pool_number |
       | 041500062   | lname       | CH2 2AA	| 415300152	  |
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Delete Juror deferral - paper
     Given I am on "Bureau" "ithc"
 
@@ -94,7 +95,7 @@ Feature: JM-4494 Bureau Delete Juror Deferral
       | juror_number| pool_number |
       | 041500063   | 415300153	  |
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Deferral sent to pool not valid for Delete Juror deferral
     Given I am on "Bureau" "test"
 

@@ -101,11 +101,13 @@ Feature: JM-5687 - Resend Confirmation letter
       |  041540014    | 415300414   | MODTESTBUREAU |
 
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Confirmation letter - via pool Number happy path bulk
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
+
     And I log in as "<user>"
+
     When a bureau owned pool is created with jurors
       | court   | juror_number  | pool_number     | att_date_weeks_in_future    | owner |
       | 415     | <juror_number>| <pool_number>   | 5                           | 400  |

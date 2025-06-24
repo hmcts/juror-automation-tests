@@ -13,7 +13,7 @@ import org.junit.runner.RunWith;
         reportTargetDir = "target/TestRunner_Regression",
         threads = 6,
         runLevel = CourgetteRunLevel.FEATURE,
-        rerunFailedScenarios = false,
+        rerunFailedScenarios = true,
 		testOutput = CourgetteTestOutput.CONSOLE,
         cucumberOptions = @CucumberOptions(
                 features = "src/test/resources/cucumber/features",
