@@ -62,10 +62,10 @@ Feature: As a Bureau Officer I need to search for a juror summon reply so that I
       |juror_number |pool_number  |user          |
       |123456789    |123456789 	  |MODTESTBUREAU |
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Summons replies advanced search - Assigned officer, ToDo and Completed
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number    | pool_number  | att_date_weeks_in_future| owner |

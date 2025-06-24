@@ -1,9 +1,9 @@
 Feature: JM-3991 Reassign Juror as Court User
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Reassign a juror to a pool court - Jury User
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number  	| pool_number	| att_date_weeks_in_future	| owner |
@@ -40,7 +40,7 @@ Feature: JM-3991 Reassign Juror as Court User
       |<juror_number2> | <pool_number2> | 415   |
 
     #log on as court
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     And I log in as "<user>"
 
     When I navigate to the pool request screen
