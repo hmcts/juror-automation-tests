@@ -5585,6 +5585,7 @@ public class DatabaseTesterNewSchemaDesign {
 			conn.close();
 		}
 	}
+
 	public void checkAddressMatchesForLetter(String jurorNumber, String jurorAddress) throws SQLException {
 		db = new DBConnection();
 
@@ -5625,6 +5626,41 @@ public class DatabaseTesterNewSchemaDesign {
 		} finally {
 			conn.commit();
 			pStmt.close();
+			conn.close();
+		}
+	}
+
+	public void updateJurorNameLeadingSpace(String title, String firstName, String lastName, String jurorNumber) throws SQLException {
+		db = new DBConnection();
+		String env_property = System.getProperty("env.database");
+
+		if (env_property != null)
+			conn = db.getConnection(env_property);
+		else
+			conn = db.getConnection("demo");
+
+		try {
+			pStmt = conn.prepareStatement("UPDATE juror_mod.juror SET title = ? WHERE juror_number = ?");
+			pStmt.setString(1, title);
+			pStmt.setString(2, jurorNumber);
+			pStmt.executeUpdate();
+
+			pStmt = conn.prepareStatement("UPDATE juror_mod.juror SET first_name = ? WHERE juror_number = ?");
+			pStmt.setString(1, firstName);
+			pStmt.setString(2, jurorNumber);
+			pStmt.executeUpdate();
+
+			pStmt = conn.prepareStatement("UPDATE juror_mod.juror SET last_name = ? WHERE juror_number = ?");
+			pStmt.setString(1, lastName);
+			pStmt.setString(2, jurorNumber);
+			pStmt.executeUpdate();
+
+			System.out.println("Juror " + jurorNumber + " was updated to enter a leading space");
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.error("Message:" + e.getMessage());
+		} finally {
+			conn.commit();
 			conn.close();
 		}
 	}

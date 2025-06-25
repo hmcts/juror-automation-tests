@@ -1,6 +1,6 @@
 Feature: Bureau Process Options
 
-@RegressionSingle @NewSchemaConverted
+@RegressionSingle
 Scenario Outline: Cycle through process options
 
 	Given I am on "Public" "ithc"
@@ -95,7 +95,7 @@ Examples:
 	| juror_number	| pool_number 	| last_name 		| postcode 	|
 	| 045200231		| 452300211 	| LNAMETWOEIGHTNINE	| SY2 6LU	|
 	
-@Features @NewSchemaConverted
+@Features
 Scenario Outline: Send to court process options
 
 	#put back in @RegressionSingle when we work out how to focus on new page
@@ -235,7 +235,7 @@ Examples:
 	| juror_number	| pool_number 	| last_name 		| postcode 	|
 	| 045200232		| 452300212 	| LNAMETWOEIGHTNINE	| SY2 6LU	|
 
-@RegressionSingle @NewSchemaConverted
+@RegressionSingle
 Scenario Outline: Closed process options
 
 	Given I am on "Public" "test"
