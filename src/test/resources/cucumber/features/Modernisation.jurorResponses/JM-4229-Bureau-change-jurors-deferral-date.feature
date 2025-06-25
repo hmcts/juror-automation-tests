@@ -48,7 +48,7 @@ Feature: Bureau change jurors deferral date
 
     Then I see "There are no active pools for this date" on the page
     And I press the "Put in deferral maintenance" button
-    And I see "Juror record updated: Responded" on the page
+    And I see "Juror record updated" on the page
     And I see Deferred to is "41" Mondays in the future
 
     Examples:

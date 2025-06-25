@@ -96,7 +96,7 @@ Feature: JM-6259 - As a bureau officer I need to be able to send/resend a summon
     And I set "Enter pool number" to "<pool_number>"
     And I press the "Search" button
     And I see "<pool_number>" on the page
-    Then I check the checkbox for one of the jurors in the pool
+    And I check the "<juror_number>" checkbox
     And I press the "Send summons reminder" button
     And I see "1 document sent for printing" on the page
 
@@ -107,8 +107,8 @@ Feature: JM-6259 - As a bureau officer I need to be able to send/resend a summon
     And I set "Enter pool number" to "<pool_number>"
     And I press the "Search" button
     And I see "<pool_number>" on the page
-    And I see "Pending" in the same row as one of the juror numbers in my pool
-    And I click on "Delete" in the same row as one of the juror numbers in my pool
+    And I see "Pending" in the same row as "<juror_number>"
+    And I click on "Delete" in the same row as "<juror_number>"
     And I see "1 pending document deleted" on the page
     And I do not see "<juror_number>" on the page
 

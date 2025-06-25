@@ -1,8 +1,9 @@
 Feature: JM-252_Navigation_COURT
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Navigating back and forth and changing inputs
-    Given I am on "Bureau" "test"
+
+    Given I am on "Bureau" "ithc"
     And I log in as "<user>"
 
     Given a bureau owned pool is created with jurors
@@ -80,7 +81,6 @@ Feature: JM-252_Navigation_COURT
     And I see "Number of court deferrals to include in this pool" on the page
     Then I change the number of court deferrals to "1"
 
-
     #complete new pool fields
     Then I set the radio button to "High court"
     And I set "Number of jurors required in total" to "150"
@@ -123,14 +123,13 @@ Feature: JM-252_Navigation_COURT
       | court          | <displayCourt> |
       | jurorsRequired | 49             |
 
-    Given the new pool for court "415" is deleted
-
     Examples:
       | user         | courtCode | displayCourt | courtTypeFull | juror_number | pool_number |
       | MODTESTCOURT | 415       | Chester      | Crown court   | 041500053    | 415300143   |
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Create pools for different courts and apply filters for court user
+
     Given I am on "Bureau" "ithc"
 
     And I log in as "<user>"
@@ -245,8 +244,9 @@ Feature: JM-252_Navigation_COURT
       | user         | courtType |
       | MODTESTCOURT | Crown     |
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Create pool and check cannot change pool number
+
     Given I am on "Bureau" "test"
 
     And I log in as "<user>"
@@ -268,8 +268,9 @@ Feature: JM-252_Navigation_COURT
       | MODTESTCOURT | Crown     |
 
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario: Nil pool contains no deferral options
+
     Given I am on "Bureau" "test"
     And I log in as "MODTESTCOURT"
     And I navigate to the pool request screen

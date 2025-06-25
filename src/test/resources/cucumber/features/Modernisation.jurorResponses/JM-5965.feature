@@ -71,16 +71,17 @@ Feature: JM-5965 - Certificate of Exemption
       | juror_number  | pool_number | user          | trial_number           |
       |  041556217    | 415912387   | MODTESTCOURT  | EXEMPTIONCERT2         |
 
-  @JurorTransformation @NewSchemaConverted
+  @JurorTransformation
   Scenario Outline:As a jury officer I want to print a certification of exemption letter for a juror in a trial - indefinitely
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "demo"
+
     When a bureau owned pool is created with jurors
-      | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
-      | 415   | <juror_number>| <pool_number>           | 5                          | 400  |
+      | court | juror_number   | pool_number	 | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number> | <pool_number>   | 5                        | 400   |
 
     Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no              | pool_no           | owner |
+      | part_no              | pool_no           | owner |
       | <juror_number>       | <pool_number>     | 415   |
 
     And I Confirm all the data in the record attendance table is cleared
@@ -88,7 +89,6 @@ Feature: JM-5965 - Certificate of Exemption
     And I log in as "<user>"
 
     And I update juror "<juror_number>" to have a status of responded in order to record attendance
-
 
    #check in juror
     And I press the "Apps" button

@@ -62,10 +62,10 @@ Feature: As a Bureau Officer I need to search for a juror summon reply so that I
       |juror_number |pool_number  |user          |
       |123456789    |123456789 	  |MODTESTBUREAU |
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Summons replies advanced search - Assigned officer, ToDo and Completed
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number    | pool_number  | att_date_weeks_in_future| owner |
@@ -116,10 +116,10 @@ Feature: As a Bureau Officer I need to search for a juror summon reply so that I
       |045200049    |045200050      |452300048 	  |MODTESTBUREAU |
 
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Summons replies advanced search - Awaiting replies and Translation
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number    | pool_number  | att_date_weeks_in_future| owner |
@@ -135,7 +135,7 @@ Feature: As a Bureau Officer I need to search for a juror summon reply so that I
     And I record a happy path paper summons response
     And I click on the "No, skip and process later" link
     And I click the More Actions button
-    And I click Awaiting Information
+    And I click on the "Mark as awaiting information" link
     Then I see "Who are you waiting for information from?" on the page
     And I mark this reply as awaiting information from "Translation unit"
     Then I press the "Confirm" button
@@ -146,7 +146,7 @@ Feature: As a Bureau Officer I need to search for a juror summon reply so that I
     And I record a happy path paper summons response
     And I click on the "No, skip and process later" link
     And I click the More Actions button
-    And I click Awaiting Information
+    And I click on the "Mark as awaiting information" link
     Then I see "Who are you waiting for information from?" on the page
     And I mark this reply as awaiting information from "Court"
     Then I press the "Confirm" button
@@ -157,7 +157,7 @@ Feature: As a Bureau Officer I need to search for a juror summon reply so that I
     And I record a happy path paper summons response
     And I click on the "No, skip and process later" link
     And I click the More Actions button
-    And I click Awaiting Information
+    And I click on the "Mark as awaiting information" link
     Then I see "Who are you waiting for information from?" on the page
     And I mark this reply as awaiting information from "Juror"
     Then I press the "Confirm" button
@@ -188,7 +188,6 @@ Feature: As a Bureau Officer I need to search for a juror summon reply so that I
     And I enter juror number "<juror_number3>"
     And I click the search button
     Then I see "Awaiting juror reply" in the same row as "<juror_number3>"
-
 
     Examples:
       |juror_number |juror_number2 |juror_number3 |pool_number    |user          |

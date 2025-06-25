@@ -1,6 +1,7 @@
 package cucumber.steps;
 
 import cucumber.pageObjects.*;
+import cucumber.testdata.DatabaseTesterNewSchemaDesign;
 import cucumber.utils.DateManipulator;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
@@ -16,6 +17,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
@@ -51,6 +53,8 @@ public class StepDef_navigation {
 	public static String holidayAttendanceDate;
 	private static Logger log = Logger.getLogger(StepDef_navigation.class);
 
+	private DatabaseTesterNewSchemaDesign DBTNSD;
+
 	public StepDef_navigation(SharedDriver webDriver) {
 		this.webDriver = webDriver;
 		SPO = PageFactory.initElements(webDriver, aSamplePO.class);
@@ -62,6 +66,7 @@ public class StepDef_navigation {
 		SST = PageFactory.initElements(webDriver, ScreenShotTaker.class);
 		CHECK_POOL_REQUEST_PAGE = PageFactory.initElements(webDriver, CheckPoolRequest.class);
 		POOL_REQUESTS = PageFactory.initElements(webDriver, PoolRequests.class);
+		DBTNSD = new DatabaseTesterNewSchemaDesign();
 	}
 
 
@@ -898,6 +903,11 @@ public class StepDef_navigation {
 		}
 	}
 
+	@Then("^\"([^\"]*)\" awaiting info replies count is correct$")
+	public void awaitingInfoCount(String user) throws SQLException {
+			NAV.awaitingInfoCount(user);
+	}
+
 //	@When("^I cannot navigate from Bureau to \"([^\"]*)\"$")
 //	public void appendURL(String uRL) {
 	//	NAV.appendURL(uRL);
@@ -1051,4 +1061,8 @@ public class StepDef_navigation {
 		POOL_REQUESTS.clickPoolNumberInSearchResults(poolNo);
 	}
 
+	@When("^I set \"([^\"]*)\" to \"([^\"]*)\" using JS$")
+	public void force_set_value_using_js(String fieldLabel, String value) throws Throwable {
+		NAV.set_valueToUsingJS(fieldLabel, value);
+	}
 }

@@ -3,7 +3,7 @@ Feature: Bureau A Test
 @RegressionSingle
 Scenario Outline: Lift from QC Script for Bureau A Functionality
 
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  		| pool_number		| att_date_weeks_in_future	| owner |
@@ -44,16 +44,19 @@ Scenario Outline: Lift from QC Script for Bureau A Functionality
 	#re-enable auto processing
 	Given auto straight through processing has been enabled new schema
 
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "ithc"
 	And I log in as "MODTESTBUREAU"
 	And I do not see any links on the page that open to a new page without an alt text
 
 	When I click on the "Assign Replies" link
+
+	And "CPASS" awaiting info replies count is correct
+
 	And I assign all the New Replies to "ARAMIS1"
 	And I do not see any links on the page that open to a new page without an alt text
 	And I click on the "Sign out" link
 
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "ithc"
 	And I log in as "ARAMIS1"
 	And I click on the "Search" link
 	And I set "Juror's pool number" to "<pool_number_three>"
@@ -136,7 +139,7 @@ Scenario Outline: Lift from QC Script for Bureau A Functionality
 	
 	And I click on the "Sign out" link
 	
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "ithc"
 
 	And I log in as "ARAMIS1"
 	And I see "Awaiting information" on the page
@@ -175,8 +178,9 @@ Scenario Outline: Bureau A script, steps 24 onwards
 	And I choose the "No" radio button
 	And I press the "Continue" button
 
-	And I set "First name" to "FIRSTNAMECHANGED"
-	And I set "Last name" to "LASTNAMECHANGED"
+	And I set "First name" to "FIRSTNAMECHANGED" using JS
+	And I set "Last name" to "LASTNAMECHANGED" using JS
+
 	And I set "Title" to "TITLEA"
 	And I press the "Continue" button
 	Then I see "Is this your address?" on the page
@@ -305,7 +309,7 @@ Scenario Outline: Bureau A script, steps 24 onwards
 	And I see "arrangementsTestData" on the page
 	
 	And I see "To do" on the page
-	
+
 	Then I press the "More actions" button
 	And I click on the "Mark as awaiting information" link
 	And I choose the "Court" radio button

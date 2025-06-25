@@ -64,7 +64,7 @@ Scenario Outline: JM-3721 As Court User, set Paper Response status as Awaiting T
 
 	#now mark as awaiting translation
 	And I click the More Actions button
-	And I click Awaiting Information
+	And I click on the "Mark as awaiting information" link
 	Then I see "Who are you waiting for information from?" on the page
 	And I mark this reply as awaiting information from "Translation unit"
 	Then I press the "Confirm" button
@@ -79,22 +79,22 @@ Scenario Outline: JM-3721 As Court User, set Paper Response status as Awaiting T
 	@JurorTransformationMulti
 	Scenario Outline: JM-3721 As Court User, set Paper Response status as Awaiting Translation - errors and warnings
 
-		Given I am on "Bureau" "ithc"
+	Given I am on "Bureau" "demo"
 
-		Given a bureau owned pool is created with jurors
+	Given a bureau owned pool is created with jurors
 			| court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
 			| 457   | <juror_number> 	    | <pool_number>     | 7				            | 400	|
 
-		Then a new pool is inserted for where record has transferred to the court new schema
+	Then a new pool is inserted for where record has transferred to the court new schema
 			| part_no   		| pool_no   	| owner |
 			| <juror_number> 	| <pool_number> | 457   |
 
-		And I log in as "<user>" selecting court "457"
+	And I log in as "<user>" selecting court "457"
 
 	#view the record
-		Then I set "Search for a juror record" to "<juror_number>"
-		When I press the "Search" button
-		And I am on the court Juror Record for juror "<juror_number>"
+	Then I set "Search for a juror record" to "<juror_number>"
+	When I press the "Search" button
+	And I am on the court Juror Record for juror "<juror_number>"
 
 	#record paper summons response
 	And I click the Enter summons reply button
@@ -139,7 +139,7 @@ Scenario Outline: JM-3721 As Court User, set Paper Response status as Awaiting T
 
 	#now mark as awaiting translation
 	And I click the More Actions button
-	And I click Awaiting Information
+	And I click on the "Mark as awaiting information" link
 	Then I see "Who are you waiting for information from?" on the page
 
 	#errors and warnings
@@ -149,12 +149,17 @@ Scenario Outline: JM-3721 As Court User, set Paper Response status as Awaiting T
 	And I mark this reply as awaiting information from "Translation unit"
 	Then I press the "Confirm" button
 	And I see the reply status has updated to "Awaiting Translation"
+	
+	When I click on the "View juror's record" link
+	When I click on the "Juror details" link
+	Then I see "Yes" in the same row as "Welsh language"
+	When I click on the "Add or change" link
+	Then I see "Tick box if juror should get communications in Welsh (optional)" on the page
+	And "Yes, send Welsh language communications" is checked
 
-	And I click on the "Sign out" link
-
-		Examples:
-			| user      | juror_number  | pool_number   |
-			| SWANSEA 	| 045700120 	| 457300220  	|
+	Examples:
+		| user      | juror_number  | pool_number   |
+		| SWANSEA 	| 045700120 	| 457300220  	|
 
 	@JurorTransformationMulti
 	Scenario Outline: JM-3721 As Court User, set Paper Response status as Awaiting Translation - navigation
@@ -219,7 +224,7 @@ Scenario Outline: JM-3721 As Court User, set Paper Response status as Awaiting T
 
 	#now mark as awaiting translation
 		And I click the More Actions button
-		And I click Awaiting Information
+		And I click on the "Mark as awaiting information" link
 		Then I see "Who are you waiting for information from?" on the page
 
 	#navigation - cancel
@@ -228,7 +233,7 @@ Scenario Outline: JM-3721 As Court User, set Paper Response status as Awaiting T
 
 	#now mark as awaiting translation
 		And I click the More Actions button
-		And I click Awaiting Information
+		And I click on the "Mark as awaiting information" link
 		Then I see "Who are you waiting for information from?" on the page
 
 	#navigation - select different buttons
@@ -250,8 +255,6 @@ Scenario Outline: JM-3721 As Court User, set Paper Response status as Awaiting T
 		And I mark this reply as awaiting information from "Translation unit"
 		Then I press the "Confirm" button
 		And I see the reply status has updated to "Awaiting Translation"
-
-		And I click on the "Sign out" link
 
 		Examples:
 			| user    | juror_number   	| pool_number   |

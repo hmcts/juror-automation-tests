@@ -695,7 +695,6 @@ public class DatabaseTesterNewSchemaDesign {
 		else
 			conn = db.getConnection("demo");
 
-
 		try {
 			if (getCountFromJurorPoolByPoolNoNSD(pool_number) == 0)
 				pStmt = conn.prepareStatement("delete from juror_mod.pool where pool_no='" + pool_number + "'");
@@ -789,7 +788,7 @@ public class DatabaseTesterNewSchemaDesign {
 
 		try {
 			pStmt = conn.prepareStatement("insert into juror_mod.juror (juror_number,poll_number,title,last_name,first_name,dob,ADDRESS_LINE_1,ADDRESS_LINE_2,ADDRESS_LINE_3,ADDRESS_LINE_4,ADDRESS_LINE_5,POSTCODE,h_phone,w_phone,w_ph_local,responded,date_excused,excusal_code,acc_exc,date_disq,disq_code,user_edtq,notes,no_def_pos,perm_disqual,reasonable_adj_code,reasonable_adj_msg,sort_code,bank_acct_name,bank_acct_no,bldg_soc_roll_no,welsh,police_check,last_update,summons_file,m_phone,h_email,contact_preference,notifications,date_created,optic_reference,pending_title,pending_first_name,pending_last_name)"
-					+ "values ('" + juror_number + "','857',null,'lname','fname',null,'address',null,null,'Address Line Four',null,'CH2 2AA',null,null,null,'Y',null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,'N','NOT_CHECKED',null,null,null,null,null,'0',null,null,null,null,null)");
+					+ "values ('" + juror_number + "','857',null,'lname','fname',null,'address',null,null,'Address Line Four',null,'CH2 2AA',null,null,null,false,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,'N','NOT_CHECKED',null,null,null,null,null,'0',null,null,null,null,null)");
 			pStmt.execute();
 
 			pStmt = conn.prepareStatement("insert into juror_mod.juror_pool (juror_number, pool_number, owner, user_edtq, is_active, status, times_sel, def_date, location, no_attendances, no_attended, no_fta, no_awol, pool_seq, edit_tag, next_date, on_call, was_deferred, deferral_code, id_checked, postpone, paid_cash, scan_code, last_update, reminder_sent, transfer_date, date_created)"
@@ -1978,26 +1977,53 @@ public class DatabaseTesterNewSchemaDesign {
 			conn = db.getConnection("demo");
 
 		try {
-			String datePattern = "YYYY-MM-DD";
 			Calendar calendar = Calendar.getInstance();
 			calendar.add(Calendar.WEEK_OF_MONTH, Integer.parseInt(noWeeks));
-
 			LocalDate localDate = calendar.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-			Date mondayDate = Date.from(localDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
 
-			String expectedDate = new SimpleDateFormat(datePattern).format((mondayDate).getTime());
+			String poolNumber = court + "111111";
+			String jurorNumber = "6" + court + "11111";
 
-			pStmt = conn.prepareStatement("Insert into juror_mod.pool (pool_no, owner, return_date, no_requested, pool_type, loc_code, new_request, last_update, additional_summons, attend_time, total_no_required, date_created)"
-					+ "values ('" + court + "111111','" + court + "','" + localDate + "','5','CRO','" + court + "','T',NOW(),null,TIMESTAMP'2022-04-01 09:30:00.0','5',NOW())");
-			pStmt.execute();
+			pStmt = conn.prepareStatement("DELETE FROM juror_mod.juror_pool WHERE pool_number = ?");
+			pStmt.setString(1, poolNumber);
+			pStmt.executeUpdate();
 
-			pStmt = conn.prepareStatement("insert into juror_mod.juror (juror_number,poll_number,title,last_name,first_name,dob,ADDRESS_LINE_1,ADDRESS_LINE_2,ADDRESS_LINE_3,ADDRESS_LINE_4,ADDRESS_LINE_5,POSTCODE,h_phone,w_phone,w_ph_local,responded,date_excused,excusal_code,acc_exc,date_disq,disq_code,user_edtq,notes,no_def_pos,perm_disqual,reasonable_adj_code,reasonable_adj_msg,sort_code,bank_acct_name,bank_acct_no,bldg_soc_roll_no,welsh,police_check,last_update,summons_file,m_phone,h_email,contact_preference,notifications,date_created,optic_reference,pending_title,pending_first_name,pending_last_name)"
-					+ "values ('6" + court + "11111','857',null,'lname','fname',null,'address',null,null,null,null,'CH2 2AA',null,null,null,'Y',null,null,null,null,null,null,null,'1',null,null,null,null,null,null,null,'N','NOT_CHECKED',null,null,null,null,null,'0',null,null,null,null,null)");
-			pStmt.execute();
+			pStmt = conn.prepareStatement("DELETE FROM juror_mod.juror_pool WHERE juror_number = ?");
+			pStmt.setString(1, jurorNumber);
+			pStmt.executeUpdate();
 
-			pStmt = conn.prepareStatement("insert into juror_mod.juror_pool (juror_number,pool_number,owner,user_edtq,is_active,status,times_sel,def_date,location,no_attendances,no_attended,no_fta,no_awol,pool_seq,edit_tag,next_date,on_call,was_deferred,deferral_code,id_checked,postpone,paid_cash,scan_code,last_update,reminder_sent,transfer_date,date_created)"
-					+ "values ('6" + court + "11111','" + court + "111111','" + court + "',null,'Y','7',null,'" + localDate + "','415','0',null,null,null,null,null,'" + localDate + "',false,'Y','O',null,null,null,null,CURRENT_DATE,null,null,CURRENT_DATE)");
-			pStmt.execute();
+			pStmt = conn.prepareStatement("DELETE FROM juror_mod.pool WHERE pool_no = ?");
+			pStmt.setString(1, poolNumber);
+			pStmt.executeUpdate();
+
+			pStmt = conn.prepareStatement("DELETE FROM juror_mod.juror WHERE juror_number = ?");
+			pStmt.setString(1, jurorNumber);
+			pStmt.executeUpdate();
+
+			pStmt = conn.prepareStatement(
+					"INSERT INTO juror_mod.pool (pool_no, owner, return_date, no_requested, pool_type, loc_code, new_request, last_update, additional_summons, attend_time, total_no_required, date_created) " +
+							"VALUES (?, ?, ?, 5, 'CRO', ?, 'T', NOW(), null, TIMESTAMP '2022-04-01 09:30:00.0', 5, NOW())");
+			pStmt.setString(1, poolNumber);
+			pStmt.setString(2, court);
+			pStmt.setObject(3, localDate);
+			pStmt.setString(4, court);
+			pStmt.executeUpdate();
+
+			pStmt = conn.prepareStatement(
+					"INSERT INTO juror_mod.juror (juror_number, poll_number, title, last_name, first_name, dob, address_line_1, address_line_2, address_line_3, address_line_4, address_line_5, postcode, h_phone, w_phone, w_ph_local, responded, date_excused, excusal_code, acc_exc, date_disq, disq_code, user_edtq, notes, no_def_pos, perm_disqual, reasonable_adj_code, reasonable_adj_msg, sort_code, bank_acct_name, bank_acct_no, bldg_soc_roll_no, welsh, police_check, last_update, summons_file, m_phone, h_email, contact_preference, notifications, date_created, optic_reference, pending_title, pending_first_name, pending_last_name) " +
+							"VALUES (?, '857', null, 'lname', 'fname', null, 'address', null, null, null, null, 'CH2 2AA', null, null, null, 'Y', null, null, null, null, null, null, null, '1', null, null, null, null, null, null, null, 'N', 'NOT_CHECKED', null, null, null, null, null, '0', null, null, null, null, null)");
+			pStmt.setString(1, jurorNumber);
+			pStmt.executeUpdate();
+
+			pStmt = conn.prepareStatement(
+					"INSERT INTO juror_mod.juror_pool (juror_number, pool_number, owner, user_edtq, is_active, status, times_sel, def_date, location, no_attendances, no_attended, no_fta, no_awol, pool_seq, edit_tag, next_date, on_call, was_deferred, deferral_code, id_checked, postpone, paid_cash, scan_code, last_update, reminder_sent, transfer_date, date_created) " +
+							"VALUES (?, ?, ?, null, 'Y', '7', null, ?, '415', '0', null, null, null, null, null, ?, false, 'Y', 'O', null, null, null, null, CURRENT_DATE, null, null, CURRENT_DATE)");
+			pStmt.setString(1, jurorNumber);
+			pStmt.setString(2, poolNumber);
+			pStmt.setString(3, court);
+			pStmt.setObject(4, localDate);
+			pStmt.setObject(5, localDate);
+			pStmt.executeUpdate();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -2012,7 +2038,7 @@ public class DatabaseTesterNewSchemaDesign {
 	public void insertCourtPoolWithDeferralNSD(String court, String pool_no, String part_no, String no_weeks) throws SQLException {
 		db = new DBConnection();
 
-		String datePattern = "YYYY-MM-DD";
+		String datePattern = "yyyy-MM-dd";
 		Calendar calendar = Calendar.getInstance();
 		calendar.add(Calendar.WEEK_OF_MONTH, Integer.parseInt(no_weeks));
 
@@ -2027,39 +2053,65 @@ public class DatabaseTesterNewSchemaDesign {
 		else
 			conn = db.getConnection("demo");
 
-		if (getCountFromUniquePoolNSD(pool_no) == 0)
-			pStmt = conn.prepareStatement("Insert into juror_mod.pool (pool_no, owner, return_date, no_requested, pool_type, loc_code, new_request, last_update, additional_summons, attend_time, total_no_required, date_created)"
-					+ "values ('" + pool_no + "','" + court + "','" + mondayDate + "','5','CRO','" + court + "','T',NOW(),null,TIMESTAMP'2022-04-01 09:30:00.0','5',NOW())");
-		pStmt.execute();
-
-		if (getCountFromPoolNSD(part_no, pool_no) == 0)
-			pStmt = conn.prepareStatement("insert into juror_mod.juror (juror_number,poll_number,title,last_name,first_name,dob,ADDRESS_LINE_1,ADDRESS_LINE_2,ADDRESS_LINE_3,ADDRESS_LINE_4,ADDRESS_LINE_5,POSTCODE,h_phone,w_phone,w_ph_local,responded,date_excused,excusal_code,acc_exc,date_disq,disq_code,user_edtq,notes,no_def_pos,perm_disqual,reasonable_adj_code,reasonable_adj_msg,COMPLETION_DATE,sort_code,bank_acct_name,bank_acct_no,bldg_soc_roll_no,welsh,police_check,last_update,summons_file,m_phone,h_email,contact_preference,notifications,date_created,optic_reference,pending_title,pending_first_name,pending_last_name)"
-					+ "values ('" + part_no + "','857',null,'lname','fname',null,'address',null,null,null,null,'CH1 2NN',null,null,null,'Y',null,null,null,null,null,null,null,'1',null,null,null,null,null,null,null,null,'N',null,null,null,null,null,null,'0',null,null,null,null,null)");
-		pStmt.execute();
-
-		if (getCountFromJurorPoolNSD(part_no, pool_no) == 0)
-			pStmt = conn.prepareStatement("insert into juror_mod.juror_pool (juror_number,pool_number,owner,user_edtq,is_active,status,times_sel,def_date,mileage,location,no_attendances,no_attended,no_fta,no_awol,pool_seq,edit_tag,next_date,on_call,amt_spent,was_deferred,deferral_code,id_checked,postpone,paid_cash,travel_time,scan_code,financial_loss,last_update,reminder_sent,transfer_date,date_created)"
-					+ "values ('" + part_no + "','" + pool_no + "','" + court + "',null,true,'2',null,CURRENT_DATE-10,null,'" + court + "','0',null,null,null,null,null,CURRENT_DATE-10,false,null,null,'Y',null,null,null,null,null,null,CURRENT_DATE,null,null,CURRENT_DATE)");
-		pStmt.execute();
-
 		try {
+			if (getCountFromUniquePoolNSD(pool_no) == 0) {
+				pStmt = conn.prepareStatement(
+						"INSERT INTO juror_mod.pool (pool_no, owner, return_date, no_requested, pool_type, loc_code, new_request, last_update, additional_summons, attend_time, total_no_required, date_created) " +
+								"VALUES (?, ?, ?, '5', 'CRO', ?, 'T', NOW(), NULL, TIMESTAMP '2022-04-01 09:30:00.0', '5', NOW())"
+				);
+				pStmt.setString(1, pool_no);
+				pStmt.setString(2, court);
+				pStmt.setDate(3, new java.sql.Date(mondayDate.getTime()));
+				pStmt.setString(4, court);
+				pStmt.execute();
+			}
 
-			pStmt = conn.prepareStatement("update juror_mod.pool set OWNER='" + court + "' where pool_no ='" + pool_no + "'");
+			if (getCountFromPoolNSD(part_no, pool_no) == 0) {
+				pStmt = conn.prepareStatement(
+						"INSERT INTO juror_mod.juror (juror_number, poll_number, title, last_name, first_name, dob, address_line_1, address_line_2, address_line_3, address_line_4, address_line_5, postcode, h_phone, w_phone, w_ph_local, responded, date_excused, excusal_code, acc_exc, date_disq, disq_code, user_edtq, notes, no_def_pos, perm_disqual, reasonable_adj_code, reasonable_adj_msg, completion_date, sort_code, bank_acct_name, bank_acct_no, bldg_soc_roll_no, welsh, police_check, last_update, summons_file, m_phone, h_email, contact_preference, notifications, date_created, optic_reference, pending_title, pending_first_name, pending_last_name) " +
+								"VALUES (?, '857', NULL, 'lname', 'fname', NULL, 'address', NULL, NULL, NULL, NULL, 'CH1 2NN', NULL, NULL, NULL, 'Y', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'N', NULL, NULL, NULL, NULL, NULL, NULL, '0', NULL, NULL, NULL, NULL, NULL)"
+				);
+				pStmt.setString(1, part_no);
+				pStmt.execute();
+			}
+
+			if (getCountFromJurorPoolNSD(part_no, pool_no) == 0) {
+				pStmt = conn.prepareStatement(
+						"INSERT INTO juror_mod.juror_pool (juror_number, pool_number, owner, user_edtq, is_active, status, times_sel, def_date, mileage, location, no_attendances, no_attended, no_fta, no_awol, pool_seq, edit_tag, next_date, on_call, amt_spent, was_deferred, deferral_code, id_checked, postpone, paid_cash, travel_time, scan_code, financial_loss, last_update, reminder_sent, transfer_date, date_created) " +
+								"VALUES (?, ?, ?, NULL, TRUE, '2', NULL, CURRENT_DATE - 10, NULL, ?, '0', NULL, NULL, NULL, NULL, NULL, CURRENT_DATE - 10, FALSE, NULL, NULL, 'Y', NULL, NULL, NULL, NULL, NULL, CURRENT_DATE, NULL, NULL, CURRENT_DATE)"
+				);
+				pStmt.setString(1, part_no);
+				pStmt.setString(2, pool_no);
+				pStmt.setString(3, court);
+				pStmt.setString(4, court);
+				pStmt.execute();
+			}
+
+			pStmt = conn.prepareStatement("UPDATE juror_mod.pool SET owner = ? WHERE pool_no = ?");
+			pStmt.setString(1, court);
+			pStmt.setString(2, pool_no);
 			pStmt.execute();
 
-			pStmt = conn.prepareStatement("update juror_mod.juror_pool set TRANSFER_DATE=current_date, IS_ACTIVE='Y', OWNER='" + court + "', NEXT_DATE='" + mondayDate + "',STATUS='7',WAS_DEFERRED='Y', DEFERRAL_CODE='O', DEF_DATE='" + mondayDate + "', pool_number='" + pool_no + "' where juror_number='" + part_no + "'");
+			pStmt = conn.prepareStatement(
+					"UPDATE juror_mod.juror_pool SET transfer_date = CURRENT_DATE, is_active = 'Y', owner = ?, next_date = ?, status = '7', was_deferred = 'Y', deferral_code = 'O', def_date = ?, pool_number = ? WHERE juror_number = ?"
+			);
+			pStmt.setString(1, court);
+			pStmt.setDate(2, new java.sql.Date(mondayDate.getTime()));
+			pStmt.setDate(3, new java.sql.Date(mondayDate.getTime()));
+			pStmt.setString(4, pool_no);
+			pStmt.setString(5, part_no);
 			pStmt.execute();
 
-			pStmt = conn.prepareStatement("update juror_mod.juror set RESPONDED='Y', NO_DEF_POS='1' where juror_number='" + part_no + "'");
+			pStmt = conn.prepareStatement("UPDATE juror_mod.juror SET responded = 'Y', no_def_pos = '1' WHERE juror_number = ?");
+			pStmt.setString(1, part_no);
 			pStmt.execute();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 			log.error("Message:inserted new pool" + e.getMessage());
-
 		} finally {
 			conn.commit();
-			pStmt.close();
+			if (pStmt != null) pStmt.close();
 			conn.close();
 		}
 	}
@@ -2930,7 +2982,7 @@ public class DatabaseTesterNewSchemaDesign {
 
 			pStmt = conn.prepareStatement(
 					"UPDATE JUROR_MOD.VOTERS SET date_selected1 = NULL " +
-							"WHERE (part_no LIKE '1%' OR part_no LIKE '2%') " +
+							"WHERE (part_no LIKE '1%' OR part_no LIKE '2%' OR part_no LIKE '5%') " +
 							"AND EXISTS ( " +
 							"    SELECT 1 FROM JUROR_MOD.COURT_CATCHMENT_AREA cc " +
 							"    WHERE cc.loc_code = '" + court + "' " +
@@ -3573,6 +3625,24 @@ public class DatabaseTesterNewSchemaDesign {
 		return 0;
 	}
 
+	public int getAwaitingInfoCountForUser(String user) throws SQLException {
+		db = new DBConnection();
+		String env_property = System.getProperty("env.database");
+		conn = db.getConnection(env_property);
+		try {
+			pStmt = conn.prepareStatement("select count(*) from juror_mod.juror_response where staff_login='" + user + "' and processing_status like 'AWAITING%'");
+			ResultSet rs = pStmt.executeQuery();
+			rs.next();
+			log.info("Got count of rows in juror_response where user is '" + user + "' and status is awaiting info");
+			return rs.getInt(1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.error("Message:" + e.getMessage());
+			log.info(11);
+		}
+		return 0;
+	}
+
 	public int checkForTransferredPoolRecordsNSD(String part_no) throws SQLException {
 		db = new DBConnection();
 		String env_property = System.getProperty("env.database");
@@ -3690,58 +3760,82 @@ public class DatabaseTesterNewSchemaDesign {
 
 		try {
 
-			String datePattern = "YYYY-MM-DD";
 			Calendar calendar = Calendar.getInstance();
 			calendar.add(Calendar.WEEK_OF_MONTH, Integer.parseInt(noWeeks));
+			LocalDate localDateMonday = calendar.toInstant().atZone(ZoneId.systemDefault()).toLocalDate().with(TemporalAdjusters.next(DayOfWeek.MONDAY));
 
-			LocalDate localDate = calendar.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-			LocalDate localDateMonday = localDate.with(TemporalAdjusters.next(DayOfWeek.MONDAY));
-//			Date mondayDate = Date.from(localDateMonday.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+			String poolNumber = court + "111111";
 
-//			String expectedDate = new SimpleDateFormat(datePattern).format((mondayDate).getTime());
+			pStmt = conn.prepareStatement("DELETE FROM juror_mod.juror_pool WHERE pool_number = ?");
+			pStmt.setString(1, poolNumber);
+			pStmt.executeUpdate();
 
-			pStmt = conn.prepareStatement("DELETE FROM JUROR_MOD.JUROR_POOL WHERE POOL_NUMBER = '" + court + "111111'");
-			pStmt.execute();
+			pStmt = conn.prepareStatement("DELETE FROM juror_mod.pool WHERE pool_no = ?");
+			pStmt.setString(1, poolNumber);
+			pStmt.executeUpdate();
 
-			pStmt = conn.prepareStatement("DELETE FROM JUROR_mod.POOL WHERE POOL_NO=  '" + court + "111111'");
-			pStmt.execute();
-
-			pStmt = conn.prepareStatement("Insert into juror_mod.pool (pool_no, owner, return_date, no_requested, pool_type, loc_code, new_request, last_update, additional_summons, attend_time, total_no_required, date_created)"
-					+ "values ('" + court + "111111','" + owner + "','" + localDateMonday + "','5','CRO','" + court + "','N',NOW(),null,TIMESTAMP'2022-04-01 09:30:00.0','5',NOW())");
-			pStmt.execute();
-
+			pStmt = conn.prepareStatement(
+					"INSERT INTO juror_mod.pool (pool_no, owner, return_date, no_requested, pool_type, loc_code, new_request, last_update, additional_summons, attend_time, total_no_required, date_created) " +
+							"VALUES (?, ?, ?, 5, 'CRO', ?, 'N', NOW(), null, TIMESTAMP '2022-04-01 09:30:00.0', 5, NOW())");
+			pStmt.setString(1, poolNumber);
+			pStmt.setString(2, owner);
+			pStmt.setObject(3, localDateMonday);
+			pStmt.setString(4, court);
+			pStmt.executeUpdate();
 
 			for (int index = 0; index < noOfPools; index++) {
+				String jurorNumber = "0" + court + "0000" + index;
+				String poolNo = court + "00000" + index;
 
-				pStmt = conn.prepareStatement("DELETE FROM JUROR_MOD.bulk_print_data WHERE JUROR_NO = '0" + court + "0000" + index + "'");
-				pStmt.execute();
+				pStmt = conn.prepareStatement("DELETE FROM juror_mod.bulk_print_data WHERE juror_no = ?");
+				pStmt.setString(1, jurorNumber);
+				pStmt.executeUpdate();
 
-				pStmt = conn.prepareStatement("DELETE FROM JUROR_MOD.JUROR_POOL WHERE JUROR_NUMBER = '0" + court + "0000" + index + "'");
-				pStmt.execute();
+				pStmt = conn.prepareStatement("DELETE FROM juror_mod.juror_pool WHERE juror_number = ?");
+				pStmt.setString(1, jurorNumber);
+				pStmt.executeUpdate();
 
-				pStmt = conn.prepareStatement("DELETE FROM JUROR_MOD.POOL WHERE POOL_NO = '" + court + "00000" + index + "'");
-				pStmt.execute();
+				pStmt = conn.prepareStatement("DELETE FROM juror_mod.juror_pool WHERE pool_number = ?");
+				pStmt.setString(1, poolNo);
+				pStmt.executeUpdate();
 
-				pStmt = conn.prepareStatement("DELETE FROM JUROR_MOD.JUROR_HISTORY WHERE JUROR_NUMBER = '0" + court + "0000" + index + "'");
-				pStmt.execute();
+				pStmt = conn.prepareStatement("DELETE FROM juror_mod.pool WHERE pool_no = ?");
+				pStmt.setString(1, poolNo);
+				pStmt.executeUpdate();
 
-				pStmt = conn.prepareStatement("DELETE FROM JUROR_MOD.JUROR WHERE JUROR_NUMBER = '0" + court + "0000" + index + "'");
-				pStmt.execute();
+				pStmt = conn.prepareStatement("DELETE FROM juror_mod.juror_history WHERE juror_number = ?");
+				pStmt.setString(1, jurorNumber);
+				pStmt.executeUpdate();
 
-				pStmt = conn.prepareStatement("Insert into juror_mod.pool (pool_no, owner, return_date, no_requested, pool_type, loc_code, new_request, last_update, additional_summons, attend_time, total_no_required, date_created)"
-						+ "values ('" + court + "00000" + index + "','" + owner + "','" + localDateMonday + "','5','CRO','" + court + "','T',NOW(),null,TIMESTAMP'2022-04-01 09:30:00.0','5',NOW())");
-				pStmt.execute();
+				pStmt = conn.prepareStatement("DELETE FROM juror_mod.juror WHERE juror_number = ?");
+				pStmt.setString(1, jurorNumber);
+				pStmt.executeUpdate();
 
-				pStmt = conn.prepareStatement("insert into juror_mod.juror (juror_number,poll_number,title,last_name,first_name,dob,ADDRESS_LINE_1,ADDRESS_LINE_2,ADDRESS_LINE_3,ADDRESS_LINE_4,ADDRESS_LINE_5,POSTCODE,h_phone,w_phone,w_ph_local,responded,date_excused,excusal_code,acc_exc,date_disq,disq_code,user_edtq,notes,no_def_pos,perm_disqual,reasonable_adj_code,reasonable_adj_msg,sort_code,bank_acct_name,bank_acct_no,bldg_soc_roll_no,welsh,police_check,last_update,summons_file,m_phone,h_email,contact_preference,notifications,date_created,optic_reference,pending_title,pending_first_name,pending_last_name)"
-						+ "values ('0" + court + "0000" + index + "','857',null,'lname','fname',null,'address',null,null,null,null,'CH1 2NN',null,null,null,'Y',null,null,null,null,null,null,null,'1',null,null,null,null,null,null,null,'N','NOT_CHECKED',null,null,null,null,null,'0',null,null,null,null,null)");
-				pStmt.execute();
+				pStmt = conn.prepareStatement(
+						"INSERT INTO juror_mod.pool (pool_no, owner, return_date, no_requested, pool_type, loc_code, new_request, last_update, additional_summons, attend_time, total_no_required, date_created) " +
+								"VALUES (?, ?, ?, 5, 'CRO', ?, 'T', NOW(), null, TIMESTAMP '2022-04-01 09:30:00.0', 5, NOW())");
+				pStmt.setString(1, poolNo);
+				pStmt.setString(2, owner);
+				pStmt.setObject(3, localDateMonday);
+				pStmt.setString(4, court);
+				pStmt.executeUpdate();
 
-				pStmt = conn.prepareStatement("insert into juror_mod.juror_pool (juror_number,pool_number,owner,user_edtq,is_active,status,times_sel,def_date,location,no_attendances,no_attended,no_fta,no_awol,pool_seq,edit_tag,next_date,on_call,was_deferred,deferral_code,id_checked,postpone,paid_cash,scan_code,last_update,reminder_sent,transfer_date,date_created)"
-						+ "values ('0" + court + "0000" + index + "','" + court + "00000" + index + "','" + owner + "', 'MODTESTBUREAU', true, 7, NULL, '" + localDateMonday + "', NULL, '" + court + "', NULL, NULL, NULL, '0001', NULL, NULL, false, NULL, NULL, NULL, NULL, NULL, NULL, CURRENT_DATE, NULL, NULL, CURRENT_DATE)");
-				pStmt.execute();
+				pStmt = conn.prepareStatement(
+						"INSERT INTO juror_mod.juror (juror_number, poll_number, title, last_name, first_name, dob, address_line_1, postcode, responded, no_def_pos, police_check, date_created) " +
+								"VALUES (?, '857', null, 'lname', 'fname', null, 'address', 'CH1 2NN', 'Y', '1', 'NOT_CHECKED', CURRENT_DATE)");
+				pStmt.setString(1, jurorNumber);
+				pStmt.executeUpdate();
 
+				pStmt = conn.prepareStatement(
+						"INSERT INTO juror_mod.juror_pool (juror_number, pool_number, owner, user_edtq, is_active, status, def_date, location, pool_seq, last_update, date_created) " +
+								"VALUES (?, ?, ?, 'MODTESTBUREAU', true, 7, ?, ?, '0001', CURRENT_DATE, CURRENT_DATE)");
+				pStmt.setString(1, jurorNumber);
+				pStmt.setString(2, poolNo);
+				pStmt.setString(3, owner);
+				pStmt.setObject(4, localDateMonday);
+				pStmt.setString(5, court);
+				pStmt.executeUpdate();
 			}
-
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -3751,7 +3845,6 @@ public class DatabaseTesterNewSchemaDesign {
 			pStmt.close();
 			conn.close();
 		}
-
 	}
 
 	public void inserPoolWithRespondedJurorsNSD(int noOfJurors, String court, String owner) throws SQLException {

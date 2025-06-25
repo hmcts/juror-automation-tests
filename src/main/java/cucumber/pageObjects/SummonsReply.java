@@ -183,7 +183,7 @@ public class SummonsReply {
     @FindBy(id = "excusalDecision-2")
     WebElement refuseExcusalRadioButton;
 
-    @FindBy(xpath = "//div[@class='moj-banner__message']")
+    @FindBy(xpath = "//div[@class='moj-alert__content']")
     WebElement responseBanner;
 
     @FindBy(id = "processActionType")
@@ -648,8 +648,39 @@ public class SummonsReply {
     }
 
     public String getResponseBannerText() {
-        return responseBanner.getText();
+        log.info("Getting response banner text");
+
+        int maxRetries = 2;
+        int retryCount = 0;
+        StaleElementReferenceException lastException = null;
+
+        while (retryCount < maxRetries) {
+            try {
+                String text = responseBanner.getText();
+                log.info("Response banner text retrieved: " + text);
+                return text;
+            } catch (StaleElementReferenceException e) {
+                lastException = e;
+                retryCount++;
+                log.warn("StaleElementReferenceException when getting response banner - attempt " + retryCount);
+
+                if (retryCount == maxRetries) break;
+
+                PageFactory.initElements(driver, this);
+
+                try {
+                    Thread.sleep(200);
+                } catch (InterruptedException ie) {
+                    Thread.currentThread().interrupt();
+                }
+            }
+        }
+
+        log.error("Unable to get response banner text due to stale element: " +
+                (lastException != null ? lastException.getMessage() : "unknown"));
+        throw new RuntimeException("Unable to retrieve response banner after retries.");
     }
+
 
     public void clickMarkAsResponded() {
         markAsResponded.click();

@@ -59,7 +59,7 @@ Feature: JM-2731
   @JurorTransformation
   Scenario: Test to search non-existent pool record as bureau
 
-    Given I am on "Bureau" "demo"
+    Given I am on "Bureau" "ithc"
 
     And I log in as "MODTESTBUREAU"
     When the user enters an incorrect juror record number

@@ -17,7 +17,7 @@ Feature: JM-3179
     And I click on the "Summons reply" link
     And I click on the "View summons reply" link
     And I click the More Actions button
-    And I click Awaiting Information
+    And I click on the "Mark as awaiting information" link
     Then I see "Who are you waiting for information from?" on the page
     And I mark this reply as awaiting information from "<waitingOnReplyFrom>"
     Then I press the "Confirm" button
@@ -47,7 +47,7 @@ Feature: JM-3179
     And I click on the "Summons reply" link
     And I click on the "View summons reply" link
     And I click the More Actions button
-    And I click Awaiting Information
+    And I click on the "Mark as awaiting information" link
     Then I see "Who are you waiting for information from?" on the page
     Then I press the "Confirm" button
     And I see "Select whether you’re waiting for information from either the juror, court or translation unit" on the page
@@ -73,7 +73,7 @@ Feature: JM-3179
     And I click on the "Summons reply" link
     And I click on the "View summons reply" link
     And I click the More Actions button
-    And I click Awaiting Information
+    And I click on the "Mark as awaiting information" link
     Then I see "Who are you waiting for information from?" on the page
     And I mark this reply as awaiting information from "<waitingOnReplyFrom>"
     Then I press the "Confirm" button
@@ -103,7 +103,7 @@ Feature: JM-3179
     And I click on the "Summons reply" link
     And I click on the "View summons reply" link
     And I click the More Actions button
-    And I click Awaiting Information
+    And I click on the "Mark as awaiting information" link
     Then I see "Who are you waiting for information from?" on the page
     Then I press the "Confirm" button
     And I see "Select whether you’re waiting for information from either the juror, court or translation unit" on the page

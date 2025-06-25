@@ -107,17 +107,30 @@ public class StepDef_response {
 			GRP.click_radioButtonWithLabel("Yes");
 			NAV.press_buttonByName("Continue");
 
-			NAV.set_valueTo("Main phone", "07551179225");
+			Thread.sleep(500);
+			((JavascriptExecutor) webDriver).executeScript("document.getElementById('primaryPhone').value = '07551179225';");
+
+			Thread.sleep(500);
 			NAV.press_buttonByName("Continue");
 
-			NAV.set_valueTo("Enter your email address", email);
-			NAV.set_valueTo("Enter your email address again", email);
+			Thread.sleep(500);
+			((JavascriptExecutor) webDriver).executeScript("document.getElementById('emailAddress').value = '" + email + "';");
+			((JavascriptExecutor) webDriver).executeScript("document.getElementById('emailAddressConfirmation').value = '" + email + "';");
+
+			Thread.sleep(500);
 			NAV.press_buttonByName("Continue");
 
 			Thread.sleep(500);
 			((JavascriptExecutor) webDriver).executeScript("document.getElementById('dobDay').value = '01';");
+
+			Thread.sleep(500);
 			((JavascriptExecutor) webDriver).executeScript("document.getElementById('dobMonth').value = '01';");
+
+
+			Thread.sleep(500);
 			((JavascriptExecutor) webDriver).executeScript("document.getElementById('dobYear').value = '1990';");
+
+			Thread.sleep(500);
 			NAV.press_buttonByName("Continue");
 
 			NAV.textPresentOnPage("Confirm you're eligible for jury service");
@@ -512,9 +525,17 @@ public class StepDef_response {
 			NAV.set_valueTo("Enter your email address again", email);
 			NAV.press_buttonByName("Continue");
 
-			NAV.set_valueTo("Day", "01");
-			NAV.set_valueTo("Month", "01");
-			NAV.set_valueTo("Year", "1990");
+			Thread.sleep(500);
+			((JavascriptExecutor) webDriver).executeScript("document.getElementById('dobDay').value = '01';");
+
+			Thread.sleep(500);
+			((JavascriptExecutor) webDriver).executeScript("document.getElementById('dobMonth').value = '01';");
+
+
+			Thread.sleep(500);
+			((JavascriptExecutor) webDriver).executeScript("document.getElementById('dobYear').value = '1990';");
+
+			Thread.sleep(500);
 			NAV.press_buttonByName("Continue");
 
 			NAV.textPresentOnPage("Confirm you're eligible");
@@ -556,7 +577,10 @@ public class StepDef_response {
 			GRP.click_radioButtonWithLabel("No");
 			NAV.press_buttonByName("Continue");
 
-			NAV.check_checkbox("The information I have given is true to the best of my knowle");
+			Thread.sleep(500);
+			((JavascriptExecutor) webDriver).executeScript("document.getElementById('informationConfirmed').checked = true;");
+
+			Thread.sleep(500);
 			NAV.press_buttonByName("Submit");
 
 			NAV.textPresentOnPage("You have completed your reply");
@@ -595,19 +619,33 @@ public class StepDef_response {
 			GRP.click_radioButtonWithLabel("Yes");
 			NAV.press_buttonByName("Continue");
 
-			NAV.set_valueTo("Main phone", "01234561234");
+			Thread.sleep(500);
+			((JavascriptExecutor) webDriver).executeScript("document.getElementById('primaryPhone').value = '07551179225';");
+
+			Thread.sleep(500);
 			NAV.press_buttonByName("Continue");
 
-			NAV.textPresentOnPage("email address?");
-			NAV.set_valueTo("Enter your email address", email);
-			NAV.set_valueTo("Enter your email address again", email);
+			Thread.sleep(500);
+			((JavascriptExecutor) webDriver).executeScript("document.getElementById('emailAddress').value = '" + email + "';");
+			((JavascriptExecutor) webDriver).executeScript("document.getElementById('emailAddressConfirmation').value = '" + email + "';");
+
+			Thread.sleep(500);
 			NAV.press_buttonByName("Continue");
 
-			NAV.set_valueTo("Day", "01");
-			NAV.set_valueTo("Month", "01");
-			NAV.set_valueTo("Year", "1990");
+			Thread.sleep(500);
+			((JavascriptExecutor) webDriver).executeScript("document.getElementById('dobDay').value = '01';");
+
+			Thread.sleep(500);
+			((JavascriptExecutor) webDriver).executeScript("document.getElementById('dobMonth').value = '01';");
+
+
+			Thread.sleep(500);
+			((JavascriptExecutor) webDriver).executeScript("document.getElementById('dobYear').value = '1990';");
+
+			Thread.sleep(500);
 			NAV.press_buttonByName("Continue");
 
+			Thread.sleep(500);
 			NAV.press_buttonByName("Continue");
 
 			GRP.click_radioButtonWithLabel("Yes");
@@ -637,7 +675,10 @@ public class StepDef_response {
 			NAV.set_valueTo("Tell us about any special arrangements", details);
 			NAV.press_buttonByName("Continue");
 
-			NAV.check_checkbox("The information I have given is true to the best of my knowle");
+			Thread.sleep(500);
+			((JavascriptExecutor) webDriver).executeScript("document.getElementById('informationConfirmed').checked = true;");
+
+			Thread.sleep(500);
 			NAV.press_buttonByName("Submit");
 
 			NAV.textPresentOnPage("You have completed your reply");

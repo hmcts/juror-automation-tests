@@ -165,10 +165,11 @@ Feature:As a Bureau/jury officer I want to re send a postponement letter
       | 041520056    | 415300723   | MODTESTBUREAU |
 
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline:As a bureau officer test a postponement juror can resend a letter by searching via Pool number
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
+
     And I log in as "<user>"
 
     When a bureau owned pool is created with jurors
@@ -253,10 +254,11 @@ Feature:As a Bureau/jury officer I want to re send a postponement letter
       | 041520044    | 415300726   | MODTESTBUREAU |
 
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline:Verify show all letters queued for printing for postponement jurors and can delete it
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
+
     And I log in as "<user>"
 
     When a bureau owned pool is created with jurors
@@ -327,10 +329,11 @@ Feature:As a Bureau/jury officer I want to re send a postponement letter
       | 041520057    | 415300724   | MODTESTBUREAU |
 
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline:As a jury officer test a postponement juror can re send a  letter by searching via juror number
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
+
     When a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
       | 415   | <juror_number> | <pool_number> | 5                        | 400   |
@@ -413,10 +416,11 @@ Feature:As a Bureau/jury officer I want to re send a postponement letter
       | juror_number | pool_number | user         |
       | 041530090    | 415300306   | MODTESTCOURT |
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline:Verify postponement juror with print letter searching via pool number
 
     Given I am on "Bureau" "ithc"
+
     When a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
       | 415   | <juror_number> | <pool_number> | 5                        | 400   |
@@ -501,7 +505,3 @@ Feature:As a Bureau/jury officer I want to re send a postponement letter
     Examples:
       | juror_number | pool_number | user         |
       | 041530031    | 415300313   | MODTESTCOURT |
-
-
-
-

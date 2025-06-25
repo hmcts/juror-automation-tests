@@ -70,7 +70,7 @@ public class JurorRecordSearch {
     @FindBy(xpath = "//button[@type='submit']")
     WebElement continueButton;
 
-    @FindBy(xpath = "//*[@class='moj-banner__message']/b")
+    @FindBy(xpath = "//div[contains(@class, 'moj-alert--success')]//div[contains(@class, 'moj-alert__content')]/b")
     WebElement bannerMessageBoldText;
 
     @FindBy(xpath = "//*[@class='govuk-list govuk-error-summary__list']/li/a")
@@ -129,7 +129,34 @@ public class JurorRecordSearch {
     }
 
     public String getMainBodyText() {
-        return mainBody.getText();
+        log.info("Getting text from main body element");
+
+        int maxRetries = 2;
+        int retryCount = 0;
+        StaleElementReferenceException lastException = null;
+
+        while (retryCount < maxRetries) {
+            try {
+                String text = mainBody.getText();
+                log.info("Successfully retrieved main body text");
+                return text;
+            } catch (StaleElementReferenceException e) {
+                lastException = e;
+                retryCount++;
+                log.warn("StaleElementReferenceException when getting main body text - attempt " + retryCount);
+
+                if (retryCount == maxRetries) break;
+
+                PageFactory.initElements(driver, this);
+
+                try {
+                    Thread.sleep(200);
+                } catch (InterruptedException ie) {
+                    Thread.currentThread().interrupt();
+                }
+            }
+        }
+        throw lastException;
     }
 
     public void clickSummonsTab(){ summonsTab.click();}
@@ -176,7 +203,39 @@ public class JurorRecordSearch {
     public void enterCommentForHistory(String commentForHistory) { jurorDeceasedComment.sendKeys(commentForHistory);}
 
 
-    public String jurorRecordUpdatedContains() { return bannerMessageBoldText.getText();}
+    public String jurorRecordUpdatedContains() {
+        log.info("Getting juror record updated banner text");
+
+        int maxRetries = 2;
+        int retryCount = 0;
+        StaleElementReferenceException lastException = null;
+
+        while (retryCount < maxRetries) {
+            try {
+                String text = bannerMessageBoldText.getText();
+                log.info("Juror record updated banner text: " + text);
+                return text;
+            } catch (StaleElementReferenceException e) {
+                lastException = e;
+                retryCount++;
+                log.warn("StaleElementReferenceException when getting juror record banner - attempt " + retryCount);
+
+                if (retryCount == maxRetries) break;
+
+                PageFactory.initElements(driver, this);
+
+                try {
+                    Thread.sleep(200);
+                } catch (InterruptedException ie) {
+                    Thread.currentThread().interrupt();
+                }
+            }
+        }
+
+        log.error("Unable to get juror record updated banner text due to stale element: " +
+                (lastException != null ? lastException.getMessage() : "unknown"));
+        throw new RuntimeException("Unable to retrieve juror record banner after retries.");
+    }
 
     public String jurorRecordUpdatedErrorBannerText() { return errorBannerText.getText();}
 

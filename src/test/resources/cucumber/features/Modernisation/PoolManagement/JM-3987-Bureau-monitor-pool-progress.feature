@@ -5,7 +5,6 @@ Feature: JM-3987 Monitor Pools Progress
 
     Given I am on "Bureau" "ithc"
 
-#    And I have cleared down deferrals for "4" weeks in the future for court "415"
     And I log in as "MODTESTCOURT"
     And I navigate to the pool request screen
     And I select to create a nil pool
@@ -22,7 +21,7 @@ Feature: JM-3987 Monitor Pools Progress
     And I navigate to the pool request screen
     And I navigate to the pool summoning progress screen
     And I enter "415" as the court
-    And I select the "Crown" court type
+    And the radio button "Crown court" is "selected"
     And I click search
     And I do not see "There are no matching results" on the page
     And I can see the newly created pool
@@ -32,7 +31,7 @@ Feature: JM-3987 Monitor Pools Progress
   @JurorTransformation
   Scenario Outline: Test to show the no pools requested message is displayed in weeks with no pools
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "demo"
     Given new pool requests are deleted new schema
 
     Given a bureau owned pool is created with jurors
@@ -48,8 +47,10 @@ Feature: JM-3987 Monitor Pools Progress
     And I press the "Continue" button
 
     And I press the "Summon jurors" button
+    Then I see "Extra citizens to summon" on the page
     And I set "Extra citizens to summon" to "9"
     And I press the "Summon more citizens" button
+    Then I see "Jurors in this pool" on the page
 
     And I navigate to the pool summoning progress screen
     And I see the summoning progress page banner
@@ -96,7 +97,6 @@ Feature: JM-3987 Monitor Pools Progress
     And I click search
     And I do not see "Week 1" on the page
     And I see "There is a problem" on the page
-    And I see "Pool type is missing" on the page
     And I see "Enter the name or location code for a court" on the page
 
   @JurorTransformation

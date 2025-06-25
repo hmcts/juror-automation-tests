@@ -143,7 +143,7 @@ public class JurorRecord {
         newServiceStartDate.sendKeys(date);
     }
 
-    @FindBy(id = "changeJurorDetailsAnchor")
+    @FindBy(id = "changeJurorDeferralAnchor")
     WebElement deferralChangeLink;
 
     @FindBy(xpath = "//dt[contains(text(),'Pool number')]/../dd")
@@ -434,7 +434,37 @@ public class JurorRecord {
     }
 
     public void clickDeferralChange() {
-        deferralChangeLink.click();
+        WaitUtils waitUtils = new WaitUtils(driver);
+        int maxRetries = 2;
+        int retryCount = 0;
+        StaleElementReferenceException lastException = null;
+
+        while (retryCount < maxRetries) {
+            try {
+                waitUtils.until(ExpectedConditions.elementToBeClickable(deferralChangeLink), 2);
+                deferralChangeLink.click();
+                return;
+            } catch (StaleElementReferenceException e) {
+                lastException = e;
+                retryCount++;
+
+                if (retryCount == maxRetries) {
+                    break;
+                }
+
+                PageFactory.initElements(driver, this);
+
+                try {
+                    Thread.sleep(200);
+                } catch (InterruptedException ie) {
+                    Thread.currentThread().interrupt();
+                }
+            }
+        }
+
+        log.error("StaleElementReferenceException occurred while clicking deferral change link: " +
+                (lastException != null ? lastException.getMessage() : "unknown error"));
+        throw new RuntimeException("Unable to click deferral change link after retries.");
     }
 
     public String getPoolNumberValue() {
@@ -702,21 +732,31 @@ public class JurorRecord {
         }
     }
 
-    public void selectCheckboxesInLettersTableForJuror(String juror) {
+    public void selectCheckboxesInLettersTableForJuror(String jurorId) {
+        String xpathExpression = String.format("//*[@id='main-content']//table//input[@id='juror-%s']", jurorId);
+
         try {
-            List<WebElement> checkboxes = driver.findElements(
-                    By.xpath("//*[@id='main-content']/div[4]/div/table//input[@id='juror-" + juror + "']")
-            );
+            List<WebElement> checkboxes = driver.findElements(By.xpath(xpathExpression));
+            if (checkboxes.isEmpty()) {
+                log.warn("No checkboxes found for juror ID: " + jurorId);
+                return;
+            }
 
             JavascriptExecutor js = (JavascriptExecutor) driver;
+
             for (WebElement checkbox : checkboxes) {
-                if (!checkbox.isSelected()) {
-                    js.executeScript("arguments[0].click();", checkbox);
+                try {
+                    if (!checkbox.isSelected()) {
+                        js.executeScript("arguments[0].click();", checkbox);
+                    }
+                } catch (Exception innerEx) {
+                    log.warn("Could not click checkbox for juror ID " + jurorId + ": " + innerEx.getMessage());
                 }
             }
-            log.info("Selected checkboxes for juror: " + juror);
+
+            log.info("Selected checkboxes for juror: " + jurorId);
         } catch (Exception e) {
-            log.error("Error occurred while selecting checkboxes: " + e.getMessage());
+            log.error("Error occurred while selecting checkboxes for juror ID " + jurorId + ": " + e.getMessage(), e);
         }
     }
 

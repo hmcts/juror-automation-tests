@@ -1,5 +1,6 @@
 package cucumber.pageObjects;
 
+import cucumber.testdata.DatabaseTesterNewSchemaDesign;
 import cucumber.utils.*;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
@@ -12,6 +13,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
@@ -30,6 +32,7 @@ public class NavigationShared {
     private final AngularJsHTTPCallWait aJsWait;
     private final String LOADING_ICON_LOCATION = "spinner";
     private final GenUtils GU;
+    private DatabaseTesterNewSchemaDesign DBTNSD;
 
 
     public NavigationShared(WebDriver driver) {
@@ -39,6 +42,7 @@ public class NavigationShared {
         wait1 = new WaitUtil_v2(driver);
         aJsWait = new AngularJsHTTPCallWait(driver);
         GU = new GenUtils(driver);
+        DBTNSD = new DatabaseTesterNewSchemaDesign();
 
     }
 
@@ -1779,9 +1783,8 @@ public class NavigationShared {
     }
 
     public void clear_field(String fieldId) {
-        WebElement inputField;
-        inputField = driver.findElement(By.xpath("//input[@id='" + fieldId + "']"));
-        inputField.sendKeys(Keys.CONTROL, "a", Keys.DELETE);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("document.getElementById(arguments[0]).value = '';", fieldId);
     }
 
     public void press_a_key(String key, String inputFieldLabel) {
@@ -1914,7 +1917,14 @@ public class NavigationShared {
         String assignedCount = driver.findElement(By.xpath("//td[contains(normalize-space(text()), '" + countName + "')]")).getText();
         Assert.assertEquals(countValue, assignedCount);
         log.info("=>" + countName + "<= Assigned Count is as expected");
+    }
 
+    public void awaitingInfoCount(String user) throws SQLException {
+        log.info("Going to check that total awaiting info for  =>" + user);
+        String awaitingInfoCountForUser = driver.findElement(By.xpath("//td[@id='" + user + "-awaitingInfo']")).getText();
+        String dbAwaitingInfoCountForUser = String.valueOf(DBTNSD.getAwaitingInfoCountForUser(user));
+        assertEquals(dbAwaitingInfoCountForUser, awaitingInfoCountForUser);
+        log.info("=>" + user + "<= Awaiting Info Count is as expected");
     }
 
     public void switchToNewWindow() {
@@ -2088,7 +2098,7 @@ public class NavigationShared {
     @FindBy(name = "selectMethod")
     WebElement methodDropdown;
 
-    @FindBy(className = "moj-banner__message")
+    @FindBy(className = "moj-alert__content")
     WebElement messageBanner;
 
     @FindBy(id = "nextDueAtCourtDate")
@@ -2371,10 +2381,39 @@ public class NavigationShared {
     }
 
     public String messageSentBanner() {
-        String bannerText = messageBanner.getText();
-        System.out.println("Message Sent Banner Text: " + bannerText);
-        return bannerText;
+        log.info("Getting message sent banner text");
+
+        int maxRetries = 2;
+        int retryCount = 0;
+        StaleElementReferenceException lastException = null;
+
+        while (retryCount < maxRetries) {
+            try {
+                String bannerText = messageBanner.getText();
+                log.info("Message Sent Banner Text: " + bannerText);
+                return bannerText;
+            } catch (StaleElementReferenceException e) {
+                lastException = e;
+                retryCount++;
+                log.warn("StaleElementReferenceException when getting message banner - attempt " + retryCount);
+
+                if (retryCount == maxRetries) break;
+
+                PageFactory.initElements(driver, this);
+
+                try {
+                    Thread.sleep(200);
+                } catch (InterruptedException ie) {
+                    Thread.currentThread().interrupt();
+                }
+            }
+        }
+
+        log.error("Unable to get message banner text due to stale element: " +
+                (lastException != null ? lastException.getMessage() : "unknown"));
+        throw new RuntimeException("Unable to retrieve message banner after retries.");
     }
+
 
     public String seeMessageTemplateDate(String specificDate) {
         String messageText = messageTemplate.getText();
@@ -2567,5 +2606,62 @@ public class NavigationShared {
             log.error("JavaScript executor click failed: " + e.getMessage());
             throw new RuntimeException("Unable to click the continue button using JavaScript executor.");
         }
+    }
+    public void set_valueToUsingJS(String location_name, String value) throws Throwable {
+        WebElement childField = null;
+
+        try {
+            childField = find_inputBy_labelName(location_name);
+        } catch (Exception e) {
+            wait.activateImplicitWait(2);
+            List<WebElement> inputs;
+            int attempts = 0;
+
+            do {
+                inputs = driver.findElements(By.xpath(
+                        "//label[text()[contains(., \"" + location_name + "\")]]//input"
+                                + " | "
+                                + "//textarea[@name=\"" + location_name + "\"]"
+                                + " | "
+                                + "//label[text()[contains(., \"" + location_name + "\")]]/../textarea"
+                ));
+
+                try {
+                    childField = return_oneVisibleFromList(inputs);
+                    break;
+                } catch (Exception ignored) {}
+
+                Thread.sleep(500);
+                attempts++;
+            } while ((childField == null || !childField.isDisplayed()) && attempts < 3);
+
+            if (childField == null || !childField.isDisplayed()) {
+                throw new Exception("Could not locate visible input field with label: " + location_name);
+            }
+        }
+
+        setValueUsingJS(childField, value);
+
+        if (DateManipulator.isValidDate(value)) {
+            childField.sendKeys(Keys.TAB);
+        }
+
+        String actualValue = childField.getAttribute("value");
+
+        if (value.equals(actualValue)) {
+            log.info("Verified: Input field with label =>" + location_name + "<= successfully set to =>" + value + "<=");
+        } else {
+            log.error("Verification failed: Expected value =>" + value + "<= but found =>" + actualValue + "<= in input field with label =>" + location_name + "<=");
+        }
+
+        log.info("Set input field with label =>" + location_name + "<= to =>" + value);
+    }
+
+    private void setValueUsingJS(WebElement element, String value) {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript(
+                "arguments[0].value = arguments[1]; arguments[0].dispatchEvent(new Event('input'));",
+                element, value
+        );
     }
 }
