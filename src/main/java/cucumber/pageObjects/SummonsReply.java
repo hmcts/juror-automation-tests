@@ -292,7 +292,7 @@ public class SummonsReply {
     @FindBy(xpath = "/html/body/div[4]/main/nav/div[1]/div/div[1]/nav/ul/li[6]/a")
     WebElement signatureTab;
 
-    @FindBy(xpath = "/html/body/div[3]/main/div/div/form/div[1]/fieldset/div/div[2]/input")
+    @FindBy(xpath = "//*/div[1]/fieldset/div/div[2]/input")
     WebElement residencyNoButton;
 
     @FindBy(id = "processReply")

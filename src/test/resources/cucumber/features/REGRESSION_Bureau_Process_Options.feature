@@ -238,7 +238,7 @@ Examples:
 @RegressionSingle
 Scenario Outline: Closed process options
 
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given auto straight through processing has been enabled new schema
 
@@ -254,7 +254,7 @@ Scenario Outline: Closed process options
 		| part_no			| pool_number	| last_name		| postcode		| email 	|
 		| <juror_number>	| <pool_number>	| <last_name>	| <postcode>	| a@a.com	|
 	
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "ithc"
 	And I log in as "MODTESTBUREAU"
 
 	And I click on the "Search" link
@@ -263,8 +263,7 @@ Scenario Outline: Closed process options
 	
 	When I click on "<juror_number>" in the same row as "<juror_number>"
 
-	Then I press the "More actions" button
-	And I see link with text "Download as a PDF"
+	Then I press the "Download as a PDF" button
 	And I do not see "Mark as 'Awaiting information" on the page
 	And I do not see "Send to a colleague..." on the page
 
