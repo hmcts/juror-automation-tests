@@ -79,7 +79,7 @@ Scenario Outline: JM-3721 As Court User, set Paper Response status as Awaiting T
 	@JurorTransformationMulti
 	Scenario Outline: JM-3721 As Court User, set Paper Response status as Awaiting Translation - errors and warnings
 
-	Given I am on "Bureau" "demo"
+	Given I am on "Bureau" "ithc"
 
 	Given a bureau owned pool is created with jurors
 			| court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
@@ -139,7 +139,7 @@ Scenario Outline: JM-3721 As Court User, set Paper Response status as Awaiting T
 
 	#now mark as awaiting translation
 	And I click the More Actions button
-	And I click on the "Mark as awaiting information" link
+#	And I click on the "Mark as awaiting information" link
 	Then I see "Who are you waiting for information from?" on the page
 
 	#errors and warnings
