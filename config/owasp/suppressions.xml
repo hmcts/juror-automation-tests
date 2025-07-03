@@ -97,4 +97,7 @@
 	<suppress>
 		<cve>CVE-2025-23184</cve>
 	</suppress>
+	<suppress>
+		<cve>CVE-2024-28752</cve>
+	</suppress>
 </suppressions>
