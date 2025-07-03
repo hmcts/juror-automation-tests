@@ -1,6 +1,6 @@
 Feature: JM-3813
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Decline Excusal Request for Paper Response as Bureau user - Juror Record View
 
     Given I am on "Bureau" "ithc"

@@ -3,7 +3,7 @@ Feature: JM-3721 Awaiting Translation
 @JurorTransformationMulti
 Scenario Outline: JM-3721 As Court User, set Paper Response status as Awaiting Translation
 
-	Given I am on "Bureau" "demo"
+	Given I am on "Bureau" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
@@ -63,8 +63,7 @@ Scenario Outline: JM-3721 As Court User, set Paper Response status as Awaiting T
 #	Then on "JUROR_MOD" . "PAPER_RESPONSE" I see "WELSH" is "Y" where "JUROR_NUMBER" is "<juror_number>"
 
 	#now mark as awaiting translation
-	And I click the More Actions button
-	And I click on the "Mark as awaiting information" link
+	And I press the "Mark as awaiting information" button
 	Then I see "Who are you waiting for information from?" on the page
 	And I mark this reply as awaiting information from "Translation unit"
 	Then I press the "Confirm" button
@@ -164,7 +163,7 @@ Scenario Outline: JM-3721 As Court User, set Paper Response status as Awaiting T
 	@JurorTransformationMulti
 	Scenario Outline: JM-3721 As Court User, set Paper Response status as Awaiting Translation - navigation
 
-		Given I am on "Bureau" "demo"
+		Given I am on "Bureau" "ithc"
 
 		Given a bureau owned pool is created with jurors
 			| court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
@@ -224,7 +223,6 @@ Scenario Outline: JM-3721 As Court User, set Paper Response status as Awaiting T
 
 	#now mark as awaiting translation
 		And I click the More Actions button
-		And I click on the "Mark as awaiting information" link
 		Then I see "Who are you waiting for information from?" on the page
 
 	#navigation - cancel
@@ -233,7 +231,6 @@ Scenario Outline: JM-3721 As Court User, set Paper Response status as Awaiting T
 
 	#now mark as awaiting translation
 		And I click the More Actions button
-		And I click on the "Mark as awaiting information" link
 		Then I see "Who are you waiting for information from?" on the page
 
 	#navigation - select different buttons
