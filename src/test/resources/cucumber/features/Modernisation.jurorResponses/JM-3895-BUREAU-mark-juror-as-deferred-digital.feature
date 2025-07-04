@@ -68,6 +68,7 @@ Feature: JM-3895 mark juror as deferred digital
     Given I create an active "civil" court pool request for court "415", "14" Mondays in the future
 
     When the user searches for juror record "<juror_number>" from the global search bar
+    And I see "<juror_number>" on the page
     And I click the summons reply tab
     And I click on the "View summons reply" link
     And I see the reply "type" on the response is "Deferral"
