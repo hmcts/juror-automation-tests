@@ -362,4 +362,10 @@ public class StepDef_trialsAndAttendance {
 		boolean dateVerified = TRL.verifyAttendanceDate(expectedDateText);
 		assertTrue("The displayed attendance date does not match the selected date", dateVerified);
 	}
+
+	@And("^I select the Select all checkbox on the trial$")
+	public void selectAllOnTrial() {
+		NAV.waitForPageLoad(1);
+		TRL.selectAllOnTrial();
+	}
 }

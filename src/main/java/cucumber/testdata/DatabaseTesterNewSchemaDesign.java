@@ -565,6 +565,12 @@ public class DatabaseTesterNewSchemaDesign {
 		else
 			conn = db.getConnection("demo");
 		try {
+
+			pStmt = conn.prepareStatement("delete from juror_mod.juror_trial where juror_number='" + juror_number + "'");
+			pStmt.execute();
+			conn.commit();
+			log.info("Deleted from juror_mod.juror_trial where juror_number=>" + juror_number);
+
 			pStmt = conn.prepareStatement("delete from juror_mod.juror_response_aud where juror_number='" + juror_number + "'");
 			pStmt.execute();
 			conn.commit();
@@ -2306,7 +2312,10 @@ public class DatabaseTesterNewSchemaDesign {
 
 		try {
 
-			pStmt = conn.prepareStatement("UPDATE JUROR_MOD.JUROR_POOL SET TRANSFER_DATE = CURRENT_DATE-1, OWNER='" + court + "' WHERE POOL_NUMBER = '" + poolNumber + "' AND JUROR_NUMBER='" + partNumber + "' AND OWNER = '400'");
+			pStmt = conn.prepareStatement("UPDATE JUROR_MOD.JUROR_POOL SET OWNER='" + court + "' WHERE POOL_NUMBER = '" + poolNumber + "' AND JUROR_NUMBER='" + partNumber + "' AND OWNER = '400'");
+			pStmt.execute();
+
+			pStmt = conn.prepareStatement("UPDATE JUROR_MOD.JUROR SET BUREAU_TRANSFER_DATE = CURRENT_DATE-1 WHERE JUROR_NUMBER='" + partNumber + "'");
 			pStmt.execute();
 
 			pStmt = conn.prepareStatement("UPDATE JUROR_MOD.POOL SET OWNER='" + court + "' WHERE POOL_NO = '" + poolNumber + "' AND OWNER = '400'");

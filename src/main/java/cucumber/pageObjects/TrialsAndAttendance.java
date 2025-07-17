@@ -171,6 +171,9 @@ public class TrialsAndAttendance {
     @FindBy(id = "search-trials-button")
     WebElement searchTrialButton;
 
+    @FindBy(id = "selectAllCheckbox")
+    WebElement selectAllCheckbox;
+
     public Map<String, String> getTrialDetails() {
         Map<String, String> details = new HashMap<>();
 
@@ -729,4 +732,9 @@ public class TrialsAndAttendance {
             return false;
         }
     }
+
+    public void selectAllOnTrial() {
+        selectAllCheckbox.sendKeys(Keys.SPACE);
+    }
+
 }
