@@ -1,6 +1,5 @@
 Feature: As a court officer I want to have a dashboard on the juror application so I can manage my court more effectively
 
-  @JurorTransformationMulti
   Scenario Outline: As a court officer I want to have a dashboard on the juror application so I can manage my court more effectively
 
     Given I am on "Bureau" "demo"
