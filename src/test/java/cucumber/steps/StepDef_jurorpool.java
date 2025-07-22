@@ -4,7 +4,6 @@ import cucumber.pageObjects.*;
 import cucumber.testdata.DatabaseTester;
 import cucumber.testdata.DatabaseTesterNewSchemaDesign;
 import cucumber.utils.DateManipulator;
-import cucumber.utils.WaitUtils;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.PendingException;
 import io.cucumber.java.en.And;
@@ -20,7 +19,6 @@ import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.awt.*;
 import java.awt.datatransfer.DataFlavor;
@@ -1638,6 +1636,7 @@ public class StepDef_jurorpool {
 
     @And("^I record a happy path paper summons response$")
     public void iRecordHappyPathPaperResponse() throws Throwable {
+        NAV.waitForPageLoad();
         SUMMONS_REPLY.clickEnterSummonsReplyButton();
 
         SUMMONS_REPLY.enterDateOfBirth("18/07/1976");
@@ -1648,7 +1647,8 @@ public class StepDef_jurorpool {
 
         SUMMONS_REPLY.clickContinue();
 
-        SUMMONS_REPLY.clickLivedConsecutivelyYes();
+//        SUMMONS_REPLY.clickLivedConsecutivelyYes();
+        GRP.chooseRadioButtonWithLabel("Yes");
         SUMMONS_REPLY.clickMentalHealthActNo();
         SUMMONS_REPLY.clickLackCapacityNo();
         SUMMONS_REPLY.clickOnBailNo();
@@ -1661,7 +1661,8 @@ public class StepDef_jurorpool {
         SUMMONS_REPLY.clickCjsEmploymentNo();
         SUMMONS_REPLY.clickContinue();
 
-        SUMMONS_REPLY.clickAdjustmentsNo();
+//        SUMMONS_REPLY.clickAdjustmentsNo();
+        GRP.chooseRadioButtonWithLabel("No");
         SUMMONS_REPLY.clickContinue();
 
         SUMMONS_REPLY.clickSignedYes();
@@ -1670,6 +1671,8 @@ public class StepDef_jurorpool {
 
     @And("^I record a happy path paper summons response and process now$")
     public void iRecordHappyPathPaperResponseProcessed() throws Throwable {
+
+        NAV.waitForPageLoad();
         SUMMONS_REPLY.clickEnterSummonsReplyButton();
 
         SUMMONS_REPLY.enterDateOfBirth("18/07/1976");
@@ -1680,14 +1683,16 @@ public class StepDef_jurorpool {
 
         SUMMONS_REPLY.clickContinue();
 
-        SUMMONS_REPLY.clickLivedConsecutivelyYes();
+//        SUMMONS_REPLY.clickLivedConsecutivelyYes();
+        GRP.chooseRadioButtonWithLabel("Yes");
         SUMMONS_REPLY.clickMentalHealthActNo();
         SUMMONS_REPLY.clickLackCapacityNo();
         SUMMONS_REPLY.clickOnBailNo();
         SUMMONS_REPLY.clickCriminalOffenceNo();
         SUMMONS_REPLY.clickContinue();
 
-        SUMMONS_REPLY.clickCanServeDate();
+//        SUMMONS_REPLY.clickCanServeDate();
+        GRP.chooseRadioButtonWithLabel("Can serve");
         SUMMONS_REPLY.clickContinue();
 
         SUMMONS_REPLY.clickCjsEmploymentNo();
