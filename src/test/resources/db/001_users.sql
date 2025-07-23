@@ -37,9 +37,10 @@ VALUES ('MODTESTBUREAU', 'MANAGER'),
        ('CMANAGER2', 'MANAGER');
 commit;
 
---INSERT INTO juror_mod.user_permissions (username, permission)
+INSERT INTO juror_mod.user_permissions (username, permission)
 --VALUES ('MODTESTBUREAU', 'CREATE_JUROR'),
---commit;
+VALUES ('SYSTEMADMIN', 'SUPER_USER'),
+commit;
 
 INSERT INTO juror_mod.user_courts (username, loc_code)
 VALUES ('MODTESTBUREAU', '400'),
