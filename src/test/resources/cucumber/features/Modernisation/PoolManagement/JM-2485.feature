@@ -37,6 +37,7 @@ Feature: JM-2485
       | Service start date |
 
     And the court name displayed is one of the following
-      | Knutsford |
-      | Chester    |
-      | Welshpool  |
+      | Knutsford   |
+      | Chester     |
+      | Welshpool   |
+      | Warrington  |

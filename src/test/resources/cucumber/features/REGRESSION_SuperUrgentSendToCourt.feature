@@ -11,7 +11,7 @@ Feature: JDB-3759 SuperUrgentSendToCourt
 @Regression
 Scenario Outline: A response is submitted after pool is transferred to court
 
-	Given I am on "Public" "demo"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -55,13 +55,16 @@ Scenario Outline: A response is submitted after pool is transferred to court
 	#check status
 #	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "URGENT" is "N" where "JUROR_NUMBER" is "<juror_number>"
 
-	Given I am on "Bureau" "demo"
-	And I log in as "CPASS"
+	Given I am on "Bureau" "ithc"
+	And I log in as "SHREWSBURY"
 
-	When I click on the "Search" link
-	And I set "Juror number" to "<juror_number>"
-	And I press the "Search" button
+	When I click on the "Apps" link
+	And I click on the "Summons management" link
+	And I click on the "Completed" link
+	And I see "<juror_number>" on the page
 	And I click on "<juror_number>" in the same row as "<juror_number>"
+	And I see "Completed" on the page
+	And I click on the "View summons reply" link
 
 	#check status = summoned
 	And I see "Auto processed" on the page
