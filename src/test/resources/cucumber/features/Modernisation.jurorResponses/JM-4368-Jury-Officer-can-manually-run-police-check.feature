@@ -30,7 +30,7 @@ Feature: JM-4368 Jury Officer Can Manually Run a Police Check
   @JurorTransformationMulti
   Scenario Outline: Manually run police check - presence of link - there was a problem
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     Given I log in as "MODTESTBUREAU"
 

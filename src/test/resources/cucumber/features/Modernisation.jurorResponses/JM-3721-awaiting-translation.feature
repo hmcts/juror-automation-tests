@@ -14,12 +14,8 @@ Scenario Outline: JM-3721 As Court User, set Paper Response status as Awaiting T
 		| <juror_number>| <pool_number> | 457   |
 
 	And I log in as "<user>" selecting court "457"
-	And I click on the "HMCTS Juror" link
 
-	#view the record
-	Then I set "Search for a juror record" to "<juror_number>"
-	When I press the "Search" button
-	And I am on the court Juror Record for juror "<juror_number>"
+	And the user searches for juror record "<juror_number>" from the global search bar
 
 	#record paper summons response
 	And I click the Enter summons reply button
@@ -91,9 +87,7 @@ Scenario Outline: JM-3721 As Court User, set Paper Response status as Awaiting T
 	And I log in as "<user>" selecting court "457"
 
 	#view the record
-	Then I set "Search for a juror record" to "<juror_number>"
-	When I press the "Search" button
-	And I am on the court Juror Record for juror "<juror_number>"
+	And the user searches for juror record "<juror_number>" from the global search bar
 
 	#record paper summons response
 	And I click the Enter summons reply button
@@ -176,9 +170,7 @@ Scenario Outline: JM-3721 As Court User, set Paper Response status as Awaiting T
 		And I log in as "<user>" selecting court "457"
 
 	#view the record
-		Then I set "Search for a juror record" to "<juror_number>"
-		When I press the "Search" button
-		And I am on the court Juror Record for juror "<juror_number>"
+		And the user searches for juror record "<juror_number>" from the global search bar
 
 	#record paper summons response
 		And I click the Enter summons reply button
