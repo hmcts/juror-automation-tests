@@ -111,6 +111,7 @@ Feature: JM-252_Validation_and_Errors
 
   @JurorTransformationMulti
   Scenario Outline: Errors and Warnings on Create New Pool - Continue With Invalid Court Name
+
     Given I am on "Bureau" "ithc"
 
     And I log in as "<user>"

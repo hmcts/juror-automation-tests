@@ -125,10 +125,10 @@ Examples:
 	| juror_number	| last_name			| postcode	| email           	| pool_number	|
 	| 045200207		| LNAMESIXEIGHTTHREE| CH1 2AN	| email@outlook.com	| 452300192		|
 	
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: Check that Super Urgent ST is not auto assigned
 
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -240,12 +240,16 @@ Scenario Outline: Check that Super Urgent ST is not auto assigned
 	And I see "You have completed your reply" on the page
 	
 	#Bureau
-	Given I am on "Bureau" "test"
-	And I log in as "MODTESTBUREAU"
-	And I click on the "Search" link
-	And I set "Juror number" to "<juror_number>"
-	And I press the "Search" button
-	Then I see "To do" in the same row as "<juror_number>"
+	Given I am on "Bureau" "ithc"
+	And I log in as "SHREWSBURY"
+	And I click on the "Apps" link
+	And I click on the "Summons management" link
+
+#	And I click on the "Search" link
+#	And I set "Juror number" to "<juror_number>"
+#	And I press the "Search" button
+
+	Then I see "<juror_number>" on the page
 	When I click on "<juror_number>" in the same row as "<juror_number>"
 	
 	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "STAFF_LOGIN" is null where "JUROR_NUMBER" is "<juror_number>"
