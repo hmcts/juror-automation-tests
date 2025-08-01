@@ -121,8 +121,7 @@ public class JurorRecord {
     @FindBy(xpath = "//*[contains(text(),'They will be transferred to a new pool')]")
     WebElement transferConfirmationBody;
 
-    //    @FindBy(xpath = "/html/body/div[2]/main/div[4]/div/dl/div/dd")
-    @FindBy(xpath = "/html/body/div[3]/main/div[4]/div/dl/div[1]/dd")
+    @FindBy(xpath = "//dt[contains(text(),'Police check')]//../dd")
     WebElement policeCheckStatus;
 
     @FindBy(xpath = "//dt[contains(text(),'Number of deferrals')]/../dd")
