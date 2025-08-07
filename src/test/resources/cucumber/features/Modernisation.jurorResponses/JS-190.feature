@@ -33,7 +33,6 @@ Feature: JS-190
     And I set "Miles travelled by car, motorcycle or bicycle per day" to "123"
     And I choose the "No" radio button
     And I set "Smartcard Number" to "123456789"
-    And I check the "Tick to overwrite any existing draft expenses with these amounts for this juror." checkbox
     And I press the "Save default expenses" button
 
     #enter bank details
@@ -160,7 +159,6 @@ Feature: JS-190
     And I set "Miles travelled by car, motorcycle or bicycle per day" to "123"
     And I choose the "No" radio button
     And I set "Smartcard Number" to "123456789"
-    And I check the "Tick to overwrite any existing draft expenses with these amounts for this juror." checkbox
     And I press the "Save default expenses" button
 
     #enter bank details

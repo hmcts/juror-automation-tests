@@ -108,7 +108,6 @@ Feature: JS-280
     And I set "Minute" to "30"
     And I set "Miles travelled by car, motorcycle or bicycle per day" to "123"
     And I choose the "No" radio button
-    And I check the "Tick to overwrite any existing draft expenses with these amounts for this juror." checkbox
     And I press the "Save default expenses" button
 
     When the user searches for juror record "<juror_number>" from the global search bar
@@ -234,7 +233,6 @@ Feature: JS-280
     And I set "Minute" to "30"
     And I set "Miles travelled by car, motorcycle or bicycle per day" to "123"
     And I choose the "No" radio button
-    And I check the "Tick to overwrite any existing draft expenses with these amounts for this juror." checkbox
     And I press the "Save default expenses" button
 
     When the user searches for juror record "<juror_number>" from the global search bar
