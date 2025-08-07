@@ -45,7 +45,6 @@ Feature: JM-6111 - As a jury officer, I want to view a consolidated list of expe
     And I set "Miles travelled by car, motorcycle or bicycle per day" to "3"
     And I choose the "Yes" radio button
     And I set "Smartcard Number" to "123456789"
-    And I check the "Tick to overwrite any existing draft expenses with these amounts for this juror." checkbox
     And I press the "Save default expenses" button
     Then I see "Daily expenses" on the page
     And I see "3 hours 15 minutes" in the same row as "Travel time"
