@@ -38,6 +38,7 @@ Feature: JM-3987 Monitor Pools Progress
       | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
       | 415   |<juror_number> 	    | <pool_number>     | 5				            | 400	|
 
+    And I clear summoned jurors from pool "<pool_number>"
     And I update pool type to "HGH" for pool number "<pool_number>"
     And I log in as "<user>"
     And I press the "Apps" button
