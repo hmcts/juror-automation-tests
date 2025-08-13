@@ -1,4 +1,4 @@
-Feature: JS-280
+Feature: JS-280 combined tests
 
   Scenario Outline: Higher rate expenses for over 201 days attendance
 
