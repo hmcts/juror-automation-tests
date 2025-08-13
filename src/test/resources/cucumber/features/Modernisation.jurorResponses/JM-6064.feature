@@ -139,7 +139,7 @@ Feature:As a jury officer, I want to edit a juror's draft daily expenses
   @JurorTransformation
   Scenario Outline: Edit draft expenses for half day and verify error message as Juror’s financial loss is over the daily limit
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "demo"
 
     When a bureau owned pool is created with jurors
       | court |juror_number      | pool_number      | att_date_weeks_in_future | owner  |
@@ -188,7 +188,7 @@ Feature:As a jury officer, I want to edit a juror's draft daily expenses
     And I click on the "Juror management" link
     And I click on the "Record attendance" link
     And I press the "Confirm attendance" button
-    And I set "Hour" to "5"
+    And I set "Hour" to "12"
     And I set "Minute" to "30"
     And I set the radio button to "pm"
     And I press the "Continue" button
@@ -201,7 +201,12 @@ Feature:As a jury officer, I want to edit a juror's draft daily expenses
 
     #edit draft expenses
     And I click on my draft expense link with todays date
+    And the radio button "Full day" is "selected"
+    And I set "Hour" to "00"
+    And I set "Minute" to "10"
     And I set the radio button to "Half day"
+    And the radio button "Half day" is "selected"
+    And the radio button "Full day" is "unselected"
     And I see "Daily expenses" on the page
     And I see "Time" on the page
     And I see "Financial loss" on the page
@@ -210,17 +215,13 @@ Feature:As a jury officer, I want to edit a juror's draft daily expenses
     And I see "Food and drink" on the page
     And I see "Apply to all days" on the page
     And I see "Totals" on the page
-    And I click on the "Cancel without saving" link
-    And I click on my draft expense link with todays date
-    And I set the radio button to "Half day"
-    And I set "Loss of earnings or benefits" to "45"
     And I verify the banner message "You’ve made changes" on the page
     And I click on the "Recalculate totals." link
     And I press the "Save and next" button
     Then I see "Juror’s financial loss is over the daily limit" on the page
     And I see "The amounts you entered will be automatically recalculated to limit the juror’s loss to £37.45." on the page
     And I see the following Half day daily day limit details on the loss over limit form
-      | Juror's loss                | £45                      |
+      | Juror's loss                | £64.95                      |
       | Daily limit (Half day)      | £37.45                   |
 
     Examples:
