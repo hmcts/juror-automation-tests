@@ -103,4 +103,7 @@
   <suppress>
     <cve>CVE-2025-48924</cve>
   </suppress>
+  <suppress>
+    <cve>CVE-2025-48913</cve>
+  </suppress>
 </suppressions>
