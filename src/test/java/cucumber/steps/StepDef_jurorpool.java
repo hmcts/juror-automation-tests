@@ -2520,6 +2520,26 @@ public class StepDef_jurorpool {
         SUMMONS_REPLY.clickAdjustmentsYes();
 
     }
+    @When("^I select the haven't lived consecutively radio button$")
+    public void selectLivedConsecutivelyNo() {
+        SUMMONS_REPLY.clickLivedConsecutivelyNo();
+    }
+    @When("^I select that the yes radio button on mental health$")
+    public void selectMentalHealthActYes() {
+        SUMMONS_REPLY.clickMentalHealthActYes();
+    }
+    @When("^I select that the yes radio button on mental health capacity$")
+    public void selectLackCapacityYes() {
+        SUMMONS_REPLY.clickLackCapacityYes();
+    }
+    @When("^I select that the yes radio button for on bail$")
+    public void selectOnBailYes() {
+        SUMMONS_REPLY.clickOnBailYes();
+    }
+    @When("^I select that the yes radio button on criminal offence$")
+    public void selectCriminalOffenceYes() {
+        SUMMONS_REPLY.clickCriminalOffenceYes();
+    }
 
     @When("^I enter a pool number that is the current pool number plus 1$")
     public void poolNumberPlusOne() throws Throwable {
@@ -3200,5 +3220,26 @@ public class StepDef_jurorpool {
     @Given("I ensure that there is no data injection in my pool")
     public void ensurePoolRowCount() throws SQLException {
         POOL_OVERVIEW_PAGE.checkForInjection();
+    }
+
+    @When("^I enter \"([^\"]*)\" in the consecutively lived text box$")
+    public void livedConsecutivelyDetails(String text) {
+        SUMMONS_REPLY.livedConsecutivelyDetails(text);
+    }
+    @When("^I enter \"([^\"]*)\" in the mental health act text box$")
+    public void mentalHealthActDetails(String text) {
+        SUMMONS_REPLY.mentalHealthActDetails(text);
+    }
+    @When("^I enter \"([^\"]*)\" in the mental health capacity text box$")
+    public void mentalHealthActCapacityDetails(String text) {
+        SUMMONS_REPLY.mentalHealthActCapacityDetails(text);
+    }
+    @When("^I enter \"([^\"]*)\" in the on bail text box$")
+    public void onBailDetails(String text) {
+        SUMMONS_REPLY.onBailDetails(text);
+    }
+    @When("^I enter \"([^\"]*)\" in the convicted text box$")
+    public void convictedDetails(String text) {
+        SUMMONS_REPLY.convictedDetails(text);
     }
 }

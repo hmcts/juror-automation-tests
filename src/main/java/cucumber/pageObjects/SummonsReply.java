@@ -109,6 +109,21 @@ public class SummonsReply {
     @FindBy(id = "convicted-2")
     WebElement criminalOffenceNo;
 
+    @FindBy(id = "lived-consecutive-details")
+    WebElement livedConsecutivelyDetails;
+
+    @FindBy(id = "mental-health-act-details")
+    WebElement mentalHealthActDetails;
+
+    @FindBy(id = "mental-health-capacity-details")
+    WebElement mentalHealthActCapacityDetails;
+
+    @FindBy(id = "on-bail-details")
+    WebElement onBailDetails;
+
+    @FindBy(id = "convicted-details")
+    WebElement convictedDetails;
+
     @FindBy(id = "deferralValue")
     WebElement canServeDate;
 
@@ -878,4 +893,29 @@ public class SummonsReply {
   public String getStatusOfItemInEligiability(String item) {
         return driver.findElement(By.xpath("//*[@Id='eligibility']/descendant::dt[contains(text(),'" + item + "')]/../dd")).getText();
     }
+
+    public void livedConsecutivelyDetails(String text) {
+        livedConsecutivelyDetails.clear();
+        livedConsecutivelyDetails.sendKeys(text);
+    }
+
+    public void mentalHealthActDetails(String text) {
+        mentalHealthActDetails.clear();
+        mentalHealthActDetails.sendKeys(text);
+    }
+
+    public void mentalHealthActCapacityDetails(String text) {
+        mentalHealthActCapacityDetails.clear();
+        mentalHealthActCapacityDetails.sendKeys(text);
+    }
+
+    public void onBailDetails(String text) {
+        onBailDetails.clear();
+        onBailDetails.sendKeys(text);
+    }
+    public void convictedDetails(String text) {
+        convictedDetails.clear();
+        convictedDetails.sendKeys(text);
+    }
+
 }
