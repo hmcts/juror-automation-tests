@@ -167,6 +167,11 @@ public class Expenses {
 
     @FindBy(xpath = "//*[@id=\"editExpensesForApprovalButton\"]")
     public WebElement clickEditExpensesForApprovalButton;
+    @FindBy(id = "totalApprovedTag-link")
+    public WebElement totalApprovedLink;
+
+    @FindBy(id = "saveAndNextButton")
+    public WebElement saveAndNextButton;
 
     public void pressViewAllExpensesButton() {
         viewAllExpensesButton.click();
@@ -437,8 +442,83 @@ public class Expenses {
             throw new RuntimeException("Failed to retrieve text in the row with the date '" + formattedDate + "'.", e);
         }
     }
+
+    public void totalApprovedLink() {
+        totalApprovedLink.click();
+    }
+
+    public void checkCheckboxWithTodaysExpense() {
+
+        LocalDate today = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd", Locale.ENGLISH);
+        String formattedDate = today.format(formatter);
+
+        String checkboxId = "expense-" + formattedDate;
+
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+            WebElement checkbox = wait.until(ExpectedConditions.presenceOfElementLocated(By.id(checkboxId)));
+
+            if (!checkbox.isSelected()) {
+                JavascriptExecutor js = (JavascriptExecutor) driver;
+
+                js.executeScript("arguments[0].scrollIntoView({block:'center'});", checkbox);
+
+                js.executeScript("arguments[0].click();", checkbox);
+
+                if (!checkbox.isSelected()) {
+                    js.executeScript(
+                            "arguments[0].checked = true;" +
+                                    "arguments[0].dispatchEvent(new Event('input', {bubbles:true}));" +
+                                    "arguments[0].dispatchEvent(new Event('change', {bubbles:true}));",
+                            checkbox
+                    );
+                }
+
+                log.info("Clicked on checkbox with id: " + checkboxId);
+            } else {
+                log.info("Checkbox with id (" + checkboxId + ") already checked.");
+            }
+        } catch (NoSuchElementException e) {
+            log.error("Checkbox with id (" + checkboxId + ") not found.");
+        } catch (Exception e) {
+            log.error("Error occurred while processing checkbox with id (" + checkboxId + "): " + e.getMessage());
+        }
+    }
+
+    public void pressSaveAndNextButton() {
+        log.info("Clicking Save and Back button via JS");
+
+        int maxRetries = 2;
+        int retryCount = 0;
+        StaleElementReferenceException lastException = null;
+
+        while (retryCount < maxRetries) {
+            try {
+                JavascriptExecutor js = (JavascriptExecutor) driver;
+                js.executeScript("arguments[0].scrollIntoView({block:'center'});", saveAndNextButton);
+                js.executeScript("arguments[0].click();", saveAndNextButton);
+                return;
+            } catch (StaleElementReferenceException e) {
+                lastException = e;
+                retryCount++;
+
+                log.warn("StaleElementReferenceException on pressSaveAndBackButton - attempt " + retryCount);
+
+                if (retryCount == maxRetries) break;
+
+                PageFactory.initElements(driver, this);
+
+                try {
+                    Thread.sleep(200);
+                } catch (InterruptedException ie) {
+                    Thread.currentThread().interrupt();
+                }
+            }
+        }
+
+        log.error("Failed to click Save and Back button due to stale element: " +
+                (lastException != null ? lastException.getMessage() : "unknown error"));
+        throw new RuntimeException("Unable to click Save and Back button after retries.");
+    }
 }
-
-
-
-

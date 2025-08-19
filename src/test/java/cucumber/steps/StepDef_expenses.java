@@ -257,5 +257,18 @@ public class StepDef_expenses {
         ));
         dateLink.click();
     }
+    @When("^I click on the total approved link for my expense$")
+    public void clickTotalApprovedLink(){
+        EXPENSES.totalApprovedLink();
+    }
+
+    @When("^I check the checkbox containing my todays expense")
+    public void checkTodaysExpenseDateCheckbox() {
+        EXPENSES.checkCheckboxWithTodaysExpense();
+    }
+    @When("^I press the save and next button$")
+    public void pressSaveAndNextButton(){
+        EXPENSES.pressSaveAndNextButton();
+    }
 }
 
