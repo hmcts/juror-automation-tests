@@ -1,9 +1,9 @@
 Feature: JM-3770
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Disqualify Juror because of Residency reasons - Paper
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     And I log in as "<user>"
 

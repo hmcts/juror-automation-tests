@@ -891,7 +891,7 @@ public class SummonsReply {
     }
   
   public String getStatusOfItemInEligiability(String item) {
-        return driver.findElement(By.xpath("//*[@Id='eligibility']/descendant::dt[contains(text(),'" + item + "')]/../dd")).getText();
+        return driver.findElement(By.xpath("//*[@id='" + item + "']/div")).getText();
     }
 
     public void livedConsecutivelyDetails(String text) {

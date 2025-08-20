@@ -1740,6 +1740,7 @@ public class StepDef_jurorpool {
 
     @And("^I record an excusal request paper summons response$")
     public void iRecordExcusalRequestPaperResponse() throws Throwable {
+        NAV.waitForPageLoad();
         SUMMONS_REPLY.clickEnterSummonsReplyButton();
 
         SUMMONS_REPLY.enterDateOfBirth("18/07/1976");
@@ -2507,8 +2508,9 @@ public class StepDef_jurorpool {
     }
 
     @When("^I answer the juror summons reply eligibility questions with juror Residency set to No$")
-    public void answerJurorResidency() {
+    public void answerJurorResidency() throws Throwable {
         SUMMONS_REPLY.clickLivedConsecutivelyNo();
+        NAV.set_valueTo("Provide details about where they have lived since their 13th birthday", "details");
         SUMMONS_REPLY.clickMentalHealthActNo();
         SUMMONS_REPLY.clickLackCapacityNo();
         SUMMONS_REPLY.clickOnBailNo();
