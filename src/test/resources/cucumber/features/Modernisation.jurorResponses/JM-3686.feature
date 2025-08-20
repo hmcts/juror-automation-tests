@@ -3,7 +3,7 @@ Feature: JM-3686
   @JurorTransformationMulti
   Scenario Outline: JM-3686 - End to End test for updating paper response information from juror
 
-  Given I am on "Bureau" "demo"
+  Given I am on "Bureau" "ithc"
 
   And I log in as "<user>"
 
@@ -43,9 +43,10 @@ Feature: JM-3686
   Then I click on the "Eligibility" link
   And I click on the "Add or change" link
   Then I set residency in the UK radio button to No
+  And I set "Provide details about where they have lived since their 13th birthday" to "Reasons"
   And I press the "Continue" button
   Then I click on the "Eligibility" link
-  And I see the eligibility of "Residency" is "Attention"
+  And I see the eligibility of "residency" is "Attention"
 
   #Deferral or excusal
   Then I click on the "Deferral or excusal" link
