@@ -3,7 +3,7 @@ Feature: JM-6259 - As a bureau officer I need to be able to send/resend a summon
   @JurorTransformation
   Scenario Outline: As a Bureau officer send/resend a summons reminder letter
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "demo"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
@@ -103,10 +103,9 @@ Feature: JM-6259 - As a bureau officer I need to be able to send/resend a summon
     And I press the "Apps" button
     And I click on the "Documents" link
     And I click on the "Summons reminder" link
-    And I set the radio button to "Pool"
-    And I set "Enter pool number" to "<pool_number>"
+    And I set the radio button to "Show all letters queued for printing"
     And I press the "Search" button
-    And I see "<pool_number>" on the page
+    And I see "all letters" on the page
     And I see "Pending" in the same row as "<juror_number>"
     And I click on "Delete" in the same row as "<juror_number>"
     And I see "1 pending document deleted" on the page
