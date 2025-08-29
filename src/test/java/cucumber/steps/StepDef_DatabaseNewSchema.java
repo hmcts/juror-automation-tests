@@ -721,6 +721,11 @@ public class StepDef_DatabaseNewSchema {
         DBTNSD.checkAddressMatchesForLetter(jurorNumber, jurorAddress);
     }
 
+    @Given("^I verify address \"([^\"]*)\" does not exist in print record for juror \"([^\"]*)\"$")
+    public void verifyAddressDoesNotExistInPrintRecord(String jurorAddress, String jurorNumber) throws SQLException {
+        DBTNSD.checkAddressDoesNotMatchForLetter(jurorNumber, jurorAddress);
+    }
+
     @Given("^I update juror \"([^\"]*)\" to have a title of \"([^\"]*)\" and a first name of \"([^\"]*)\" and a last name of \"([^\"]*)\"$")
     public void updateJurorName(String jurorNumber, String title, String firstName, String lastName) throws SQLException {
         DBTNSD.updateJurorNameLeadingSpace(title, firstName, lastName, jurorNumber);

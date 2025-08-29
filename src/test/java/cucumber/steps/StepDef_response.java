@@ -1042,11 +1042,23 @@ public class StepDef_response {
 			NAV.set_valueTo("Year", "1981");
 			NAV.press_buttonByName("Continue");
 
-
-			NAV.textPresentOnPage("Eligibility");
+			NAV.textPresentOnPage("Confirm you're eligible for jury service");
 			NAV.press_buttonByName("Continue");
 
+			NAV.textPresentOnPage("Since you turned 13");
 			GRP.click_radioButtonWithLabel("Yes");
+			NAV.press_buttonByName("Continue");
+
+			NAV.textPresentOnPage("Have you worked");
+			GRP.click_radioButtonWithLabel("No");
+			NAV.press_buttonByName("Continue");
+
+			NAV.textPresentOnPage("Are you currently");
+			GRP.click_radioButtonWithLabel("No");
+			NAV.press_buttonByName("Continue");
+
+			NAV.textPresentOnPage("Have you been");
+			GRP.click_radioButtonWithLabel("No");
 			NAV.press_buttonByName("Continue");
 
 			NAV.textPresentOnPage("Are you being detained");
@@ -1057,27 +1069,20 @@ public class StepDef_response {
 			GRP.click_radioButtonWithLabel("No");
 			NAV.press_buttonByName("Continue");
 
-
-			NAV.textPresentOnPage("Are you currently");
-			GRP.click_radioButtonWithLabel("No");
-			NAV.press_buttonByName("Continue");
-
-			NAV.textPresentOnPage("Have you been");
-			GRP.click_radioButtonWithLabel("No");
-			NAV.press_buttonByName("Continue");
-
 			GRP.click_radioButtonWithLabel("I need to change the date");
 			NAV.press_buttonByName("Continue");
 
-			NAV.set_valueTo("You can only change the date of your jury service once", "Defer me please");
+			NAV.textPresentOnPage("Tell us why");
+			NAV.setTextAreaWith_toText("id", "deferralReason", "Defer me please");
 			NAV.press_buttonByName("Continue");
 
-			NAV.set_value_to("First date", "{12 mondays time}");
-			NAV.set_value_to("Second date", "{15 mondays time}");
-			NAV.set_value_to("Third date", "{18 mondays time}");
+			NAV.set_value_to("First choice", "{12 mondays time}");
+			NAV.set_value_to("Second choice", "{15 mondays time}");
+			NAV.set_value_to("Third choice", "{18 mondays time}");
 			NAV.press_buttonByName("Continue");
 
-			GRP.click_radioButtonWithLabel("No");
+			NAV.textPresentOnPage("Check your dates");
+			GRP.click_radioButtonWithLabel("Yes");
 			NAV.press_buttonByName("Continue");
 
 			NAV.textPresentOnPage("Do you have a disability");
