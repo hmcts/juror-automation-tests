@@ -143,7 +143,7 @@ Feature: JM-252 Bureau user create new pools
   Scenario Outline: Happy Path Test to create a new pool and change pool_no
 
     Given I am on "Bureau" "ithc"
-    Given new pool requests are deleted
+    Given new pool requests are deleted new schema
     And I log in as "<user>"
 
     When I navigate to the pool request screen
