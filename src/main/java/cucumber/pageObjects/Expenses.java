@@ -394,7 +394,7 @@ public class Expenses {
     public void clickLinkWithExpenseDate() {
 
         LocalDate today = LocalDate.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("E dd MMM yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEE dd MMM yyyy", Locale.ENGLISH);
         String formattedDate = today.format(formatter);
 
         try {
