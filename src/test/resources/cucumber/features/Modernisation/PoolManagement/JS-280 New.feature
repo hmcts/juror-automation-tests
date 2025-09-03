@@ -1,4 +1,4 @@
-Feature: JS-280 combined tests
+Feature: JS-280 Combined Tests
 
   Scenario Outline: Higher rate expenses for over 201 days attendance
 
@@ -19,8 +19,6 @@ Feature: JS-280 combined tests
     Examples:
       | user         | pool_number   | juror_number_1  |
       | MODTESTCOURT | 415300183     | 041500167       |
-
-Feature: JS-280
 
   @JurorTransformation
   Scenario Outline: Check highest rate is applied for over 201 days
