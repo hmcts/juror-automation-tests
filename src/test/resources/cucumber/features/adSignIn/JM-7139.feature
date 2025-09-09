@@ -2,7 +2,7 @@
 Feature: JM-7139 - As a tester I want to be able to provide an email to sign into the application
 
   Scenario: Sign in as a Bureau user
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "demo"
     And I log in as "MODTESTBUREAU"
 
     Then I see "Jury Central Summoning Bureau" on the page
@@ -11,12 +11,12 @@ Feature: JM-7139 - As a tester I want to be able to provide an email to sign int
     And I see "Your work" on the page
 
   Scenario: Sign in as a court user
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "demo"
     And I log in as "MODCOURT" selecting court "415"
 
     Then I see "Chester" on the page
     And I see "(415)" on the page
-    And I see "Search for a juror record" on the page
+    And I see "Notifications" on the page
 
   Scenario: Sign in as a court user to a specific court and be able to change to one of the satellite courts
     Given I am on "Bureau" "test"

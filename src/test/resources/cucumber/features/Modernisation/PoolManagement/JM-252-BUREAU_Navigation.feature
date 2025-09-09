@@ -220,7 +220,7 @@ Feature: JM-252_Navigation
   @JurorTransformation
   Scenario Outline: Create pool and change pool number
     Given I am on "Bureau" "ithc"
-    Given new pool requests are deleted
+    Given new pool requests are deleted new schema
 
     And I log in as "<user>"
 
