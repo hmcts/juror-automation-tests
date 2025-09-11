@@ -103,15 +103,15 @@ withNightlyPipeline(type, product, component, 600) {
     if (params.masterOverride == false) {
     // Switch to MOD tests on staging
       env.envName = "demo"
-      env.runExpenses = "false"
-      env.runFeatures = "false"
-      env.runJurorTransformation = "true"
-      env.runJurorTransformationMulti = "true"
-      env.runJurorTransformationWIP = "true"
-      env.runRegression = "false"
-      env.runRegressionSingle = "false"
-      env.runRegressionWelsh = "false"
-      env.runShakedown = "true"
+      env.runExpenses = "true"
+      env.runFeatures = "true"
+      env.runJurorTransformation = "false"
+      env.runJurorTransformationMulti = "false"
+      env.runJurorTransformationWIP = "false"
+      env.runRegression = "true"
+      env.runRegressionSingle = "true"
+      env.runRegressionWelsh = "true"
+      env.runShakedown = "false"
     }
   }
 
