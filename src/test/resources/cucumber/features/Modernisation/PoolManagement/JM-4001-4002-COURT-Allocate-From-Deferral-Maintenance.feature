@@ -128,12 +128,15 @@ Feature: JM-4001 and JM-4002 - Court User
 
       #apply Juror number filter
       When I set the "juror number" deferral filter to "041500001"
+      And I see "041500001" on the page
       Then The first deferral in the table is "041500001, 0FNAME1, TESTNAME, 415000001" with a deferral date "1" Mondays in the future
       #apply First name filter
       When I set the "first name" deferral filter to "0FNAME1"
+      And I see "0FNAME1" on the page
       Then The first deferral in the table is "041500001, 0FNAME1, TESTNAME, 415000001" with a deferral date "1" Mondays in the future
       #apply Last name filter
       When I set the "last name" deferral filter to "TESTNAME"
+      And I see "TESTNAME" on the page
       Then The first deferral in the table is "041500000, 0FNAME0, TESTNAME, 415000000" with a deferral date "1" Mondays in the future
 
       #apply Deferred to filter

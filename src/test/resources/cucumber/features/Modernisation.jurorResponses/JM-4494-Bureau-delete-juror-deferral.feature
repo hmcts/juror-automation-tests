@@ -97,7 +97,8 @@ Feature: JM-4494 Bureau Delete Juror Deferral
 
   @JurorTransformationMulti
   Scenario Outline: Deferral sent to pool not valid for Delete Juror deferral
-    Given I am on "Bureau" "test"
+
+    Given I am on "Bureau" "demo"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
