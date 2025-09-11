@@ -2365,6 +2365,7 @@ public class StepDef_jurorpool {
     @Then("^The first deferral in the table is \"([^\"]*)\" with a deferral date \"([^\"]*)\" Mondays in the future$")
     public void theFirstDeferralInTheTableIs(String deferral, String noWeeks) {
         String expectedDate = DateManipulator.getDateAsString(Long.valueOf(noWeeks),DayOfWeek.MONDAY,"EEE dd MMM yyyy");
+        NAV.waitForPageLoad();
         assertEquals(deferral + ", " + expectedDate, DEFERRAL_MAINTENANCE.getFirstDeferralTableRow());
     }
 

@@ -1,6 +1,6 @@
 Feature: JM-3671
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Happy Path Test to create a coroner's pool
     Given I am on "Bureau" "test"
     Given coroners pools older than today have been cleared down new schema
