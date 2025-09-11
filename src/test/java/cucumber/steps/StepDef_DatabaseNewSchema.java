@@ -248,6 +248,23 @@ public class StepDef_DatabaseNewSchema {
 
         DBTNSD.requestInfoLetterGeneratedNSD(jurorPartNo);
     }
+
+    @Then("^I check that a confirmation letter has been generated for juror \"([^\"]*)\" new schema$")
+    public void checkConfirmationLetterIsGeneratedNSD(String jurorNo) throws SQLException {
+        DBTNSD.checkConfirmationLetterIsGeneratedNSD(jurorNo);
+    }
+
+    @Then("^I check that a bilingual confirmation letter has been generated for juror \"([^\"]*)\" new schema$")
+    public void checkBilingualConfirmationLetterIsGeneratedNSD(String jurorNo) throws SQLException {
+        DBTNSD.checkBilingualConfirmationLetterIsGeneratedNSD(jurorNo);
+    }
+
+    @Then("^I check that a confirmation letter has not been generated for juror \"([^\"]*)\" new schema$")
+    public void checkConfirmationLetterIsNotGeneratedNSD(String jurorNo) throws SQLException {
+        DBTNSD.checkConfirmationLetterIsNotGeneratedNSD(jurorNo);
+    }
+
+
 //
 //    @Given("^a confirmation letter is generated for juror \"([^\"]*)\"$")
 //    public void insertConfLettRowNSD(String part_no) throws SQLException {
