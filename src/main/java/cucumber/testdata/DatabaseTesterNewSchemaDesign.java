@@ -14,6 +14,7 @@ import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAdjusters;
 import java.util.Calendar;
 import java.util.Date;
@@ -3111,64 +3112,45 @@ public class DatabaseTesterNewSchemaDesign {
 			conn.close();
 		}
 	}
-
 	//refactor after testing is complete
 	public void clean_pools_created_yesterdayNSD(String courtCode) throws SQLException {
-		//this block of code works out the current pool number prefix based on the date 11 weeks from today
-		Calendar calendar = Calendar.getInstance();
-		calendar.add(Calendar.WEEK_OF_YEAR, 9);
-		String month = String.format("%02d", calendar.get(Calendar.MONTH) + 1);
-		String year = String.valueOf(calendar.get(Calendar.YEAR)).substring(2);
-		String poolNo = courtCode + year + month + "%'";
+		ZoneId zone = ZoneId.of("Europe/London");
+		LocalDate target = LocalDate.now(zone).plusWeeks(9);
+		DateTimeFormatter yyMM = DateTimeFormatter.ofPattern("yyMM");
+		String likePattern = courtCode + target.format(yyMM) + "%";
 
-		db = new DBConnection();
-		String env_property = System.getProperty("env.database");
-		if (env_property != null)
-			conn = db.getConnection(env_property);
-		else
-			conn = db.getConnection("demo");
-		try {
+		DBConnection db = new DBConnection();
+		String env = System.getProperty("env.database");
+		if (env == null) env = "demo";
 
-			pStmt = conn.prepareStatement("Delete from juror_mod.juror_audit where juror_number in (select juror_number from juror_mod.juror_pool where pool_number like '" + poolNo + ")");
-			pStmt.execute();
+		final String[] deletesInOrder = new String[]{
+				"DELETE FROM juror_mod.juror_audit WHERE juror_number IN (" + "SELECT juror_number FROM juror_mod.juror_pool WHERE pool_number LIKE ?)",
+				"DELETE FROM juror_mod.user_juror_response_audit WHERE juror_number IN (" + "SELECT juror_number FROM juror_mod.juror_pool WHERE pool_number LIKE ?)",
+				"DELETE FROM juror_mod.juror_response_aud WHERE juror_number IN (" + "SELECT juror_number FROM juror_mod.juror_pool WHERE pool_number LIKE ?)",
+				"DELETE FROM juror_mod.juror_response_cjs_employment WHERE juror_number IN (" + "SELECT juror_number FROM juror_mod.juror_pool WHERE pool_number LIKE ?)",
+				"DELETE FROM juror_mod.juror_reasonable_adjustment WHERE juror_number IN (" + "SELECT juror_number FROM juror_mod.juror_pool WHERE pool_number LIKE ?)",
+				"DELETE FROM juror_mod.juror_response WHERE juror_number IN (" + "SELECT juror_number FROM juror_mod.juror_pool WHERE pool_number LIKE ?)",
+				"DELETE FROM juror_mod.pool_history  WHERE pool_no     LIKE ?",
+				"DELETE FROM juror_mod.pool_comments WHERE pool_no     LIKE ?",
+				"DELETE FROM juror_mod.juror_pool    WHERE pool_number LIKE ?",
+				"DELETE FROM juror_mod.pool          WHERE pool_no     LIKE ?"
+		};
 
-			pStmt = conn.prepareStatement("Delete from juror_mod.user_juror_response_audit where juror_number in (select juror_number from juror_mod.juror_pool where pool_number like '" + poolNo + ")");
-			pStmt.execute();
+		try (Connection conn = db.getConnection(env)) {
+			conn.setAutoCommit(false);
 
-			pStmt = conn.prepareStatement("Delete from juror_mod.juror_response_aud where juror_number in (select juror_number from juror_mod.juror_pool where pool_number like '" + poolNo + ")");
-			pStmt.execute();
+			for (String sql : deletesInOrder) {
+				try (PreparedStatement pStmt = conn.prepareStatement(sql)) {
+					pStmt.setString(1, likePattern);
+					pStmt.executeUpdate();
+				}
+			}
 
-			pStmt = conn.prepareStatement("Delete from juror_mod.juror_response_cjs_employment where juror_number in (select juror_number from juror_mod.juror_pool where pool_number like '" + poolNo + ")");
-			pStmt.execute();
-
-			pStmt = conn.prepareStatement("Delete from juror_mod.juror_reasonable_adjustment where juror_number in (select juror_number from juror_mod.juror_pool where pool_number like '" + poolNo + ")");
-			pStmt.execute();
-
-			pStmt = conn.prepareStatement("Delete from juror_mod.juror_response where juror_number in (select juror_number from juror_mod.juror_pool where pool_number like '" + poolNo + ")");
-			pStmt.execute();
-
-			pStmt = conn.prepareStatement("delete from juror_mod.juror_pool where pool_number like '" + poolNo );
-			pStmt.execute();
-
-			pStmt = conn.prepareStatement("delete from juror_mod.pool_history where pool_no like '" + poolNo );
-			pStmt.execute();
-
-			pStmt = conn.prepareStatement("delete from juror_mod.pool_comments where pool_no like '" + poolNo );
-			pStmt.execute();
-
-			pStmt = conn.prepareStatement("delete from juror_mod.pool where pool_no like '" + poolNo );
-			pStmt.execute();
-
-			log.info("deleted pools with pool no like " + poolNo);
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-			log.error("Message:" + e.getMessage());
-			log.info(11);
-		} finally {
 			conn.commit();
-			pStmt.close();
-			conn.close();
+			log.info("Deleted all pools with prefix [" + likePattern + "]");
+		} catch (SQLException e) {
+			log.error("Cleanup failed", e);
+			throw e;
 		}
 	}
 
@@ -5815,6 +5797,75 @@ public class DatabaseTesterNewSchemaDesign {
 		} finally {
 			conn.commit();
 			conn.close();
+		}
+	}
+	public void fallbackMethodFor99PoolsErrors() throws SQLException {
+		DBConnection db = new DBConnection();
+		String env = System.getProperty("env.database");
+		if (env == null) env = "demo";
+
+		try (Connection conn = db.getConnection(env)) {
+			conn.setAutoCommit(false);
+
+			int maxSuffix = -1;
+			String checkMax = "SELECT MAX(RIGHT(pool_no, 2)::int) FROM juror_mod.pool";
+			try (PreparedStatement ps = conn.prepareStatement(checkMax);
+				 ResultSet rs = ps.executeQuery()) {
+				if (rs.next()) {
+					maxSuffix = rs.getInt(1);
+				}
+			}
+
+			if (maxSuffix <= 89) {
+				conn.commit();
+				log.info("Fallback: max suffix is " + maxSuffix + " (<=89), no action needed.");
+				return;
+			}
+
+			final String selectTargets =
+					"SELECT p.pool_no " +
+							"FROM juror_mod.pool p " +
+							"LEFT JOIN juror_mod.juror_pool jp ON jp.pool_number = p.pool_no " +
+							"WHERE jp.pool_number IS NULL " +
+							"  AND RIGHT(p.pool_no, 2)::int > 89";
+
+			java.util.List<String> targets = new java.util.ArrayList<>();
+			try (PreparedStatement ps = conn.prepareStatement(selectTargets);
+				 ResultSet rs = ps.executeQuery()) {
+				while (rs.next()) {
+					targets.add(rs.getString(1));
+				}
+			}
+
+			if (targets.isEmpty()) {
+				conn.commit();
+				log.info("Fallback: no orphan pools with suffix >89 found.");
+				return;
+			}
+
+			final String delHist = "DELETE FROM juror_mod.pool_history  WHERE pool_no = ?";
+			final String delComm = "DELETE FROM juror_mod.pool_comments WHERE pool_no = ?";
+			final String delPool = "DELETE FROM juror_mod.pool         WHERE pool_no = ?";
+
+			try (PreparedStatement dHist = conn.prepareStatement(delHist);
+				 PreparedStatement dComm = conn.prepareStatement(delComm);
+				 PreparedStatement dPool = conn.prepareStatement(delPool)) {
+
+				for (String poolNo : targets) {
+					dHist.setString(1, poolNo);
+					dHist.executeUpdate();
+					dComm.setString(1, poolNo);
+					dComm.executeUpdate();
+					dPool.setString(1, poolNo);
+					dPool.executeUpdate();
+				}
+			}
+
+			conn.commit();
+			log.info("Fallback: deleted " + targets.size() + " orphan pools with suffix >89 (max suffix was " + maxSuffix + ")");
+		} catch (SQLException e) {
+			log.error("Fallback cleanup failed", e);
+			throw e;
 		}
 	}
 }

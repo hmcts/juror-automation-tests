@@ -444,7 +444,7 @@ public class StepDef_DatabaseNewSchema {
         DBTNSD.populateJudgeTable();
     }
 
-    @Given("^I delete pools created in the last 3 days new schema for court \"([^\"]*)\"$")
+    @Given("^I delete pools created yesterday for court \"([^\"]*)\"$")
     public void cleanPoolsCreatedTesterdayNSD(String courtCode) throws SQLException {
         DBTNSD.clean_pools_created_yesterdayNSD(courtCode);
     }
@@ -746,5 +746,9 @@ public class StepDef_DatabaseNewSchema {
     @Given("^I update juror \"([^\"]*)\" to have a title of \"([^\"]*)\" and a first name of \"([^\"]*)\" and a last name of \"([^\"]*)\"$")
     public void updateJurorName(String jurorNumber, String title, String firstName, String lastName) throws SQLException {
         DBTNSD.updateJurorNameLeadingSpace(title, firstName, lastName, jurorNumber);
+    }
+    @Given("^I run the fallback process for 99 pools errors$")
+    public void runFallbackProcessFor99PoolsErrors() throws SQLException {
+        DBTNSD.fallbackMethodFor99PoolsErrors();
     }
 }
