@@ -5839,7 +5839,7 @@ public class DatabaseTesterNewSchemaDesign {
 
 			if (targets.isEmpty()) {
 				conn.commit();
-				log.info("Fallback: no orphan pools with suffix >89 found.");
+				log.info("Fallback: no pools with suffix >89 found.");
 				return;
 			}
 
@@ -5862,7 +5862,7 @@ public class DatabaseTesterNewSchemaDesign {
 			}
 
 			conn.commit();
-			log.info("Fallback: deleted " + targets.size() + " orphan pools with suffix >89 (max suffix was " + maxSuffix + ")");
+			log.info("Fallback: deleted " + targets.size() + " pools with suffix >89 (max suffix was " + maxSuffix + ")");
 		} catch (SQLException e) {
 			log.error("Fallback cleanup failed", e);
 			throw e;
