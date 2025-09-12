@@ -6,16 +6,16 @@ properties([
     choice(choices: ['chrome', 'firefox', 'msedge'], name: 'Browser'),
     // Default to 'BAU packs in ITHC' run in branch 'nightly-dev' - but see override onMaster below
     choice(choices: ['ithc', 'test', 'stg', 'demo'], name: 'EnvironmentChoice'),
-    booleanParam(name: 'runExpenses', defaultValue: false, description: 'Include Expenses tests'),
-    booleanParam(name: 'runFeatures', defaultValue: false, description: 'Include Features tests'),
-    booleanParam(name: 'runJurorTransformation', defaultValue: true, description: 'Include JurorTransformation tests'),
-    booleanParam(name: 'runJurorTransformationMulti', defaultValue: true, description: 'Include JurorTransformationMulti tests'),
-    booleanParam(name: 'runJurorTransformationWIP', defaultValue: true, description: 'Include JurorTransformationWIP tests'),
-    booleanParam(name: 'runRegression', defaultValue: false, description: 'Include Regression tests'),
-    booleanParam(name: 'runRegressionSingle', defaultValue: false, description: 'Include RegressionSingle tests'),
-    booleanParam(name: 'runRegressionWelsh', defaultValue: false, description: 'Include RegressionWelsh tests'),
-    booleanParam(name: 'runShakedown', defaultValue: true, description: 'Include Shakedown tests'),
-    booleanParam(name: 'masterOverride', defaultValue: true, description: 'Select this if you need master to run other than MOD tests')
+    booleanParam(name: 'runExpenses', defaultValue: true, description: 'Include Expenses tests'),
+    booleanParam(name: 'runFeatures', defaultValue: true, description: 'Include Features tests'),
+    booleanParam(name: 'runJurorTransformation', defaultValue: false, description: 'Include JurorTransformation tests'),
+    booleanParam(name: 'runJurorTransformationMulti', defaultValue: false, description: 'Include JurorTransformationMulti tests'),
+    booleanParam(name: 'runJurorTransformationWIP', defaultValue: false, description: 'Include JurorTransformationWIP tests'),
+    booleanParam(name: 'runRegression', defaultValue: true, description: 'Include Regression tests'),
+    booleanParam(name: 'runRegressionSingle', defaultValue: true, description: 'Include RegressionSingle tests'),
+    booleanParam(name: 'runRegressionWelsh', defaultValue: true, description: 'Include RegressionWelsh tests'),
+    booleanParam(name: 'runShakedown', defaultValue: false, description: 'Include Shakedown tests'),
+    booleanParam(name: 'masterOverride', defaultValue: false, description: 'Select this if you need master to run other than MOD tests')
   ])
 ])
 
