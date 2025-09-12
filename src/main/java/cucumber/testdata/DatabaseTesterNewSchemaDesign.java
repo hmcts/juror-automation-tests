@@ -425,7 +425,105 @@ public class DatabaseTesterNewSchemaDesign {
 			pStmt.close();
 			conn.close();
 		}
+	}
 
+	public void checkConfirmationLetterIsGeneratedNSD(String jurorNo) throws SQLException {
+		log.info("Checking if juror " + jurorNo + " has been sent a confirmation Letter");
+		String partNo = "";
+		db = new DBConnection();
+
+		String env_property = System.getProperty("env.database");
+
+		if (env_property != null)
+			conn = db.getConnection(env_property);
+		else
+			conn = db.getConnection("demo");
+
+		try {
+			pStmt = conn.prepareStatement("select * from juror_mod.bulk_print_data where form_type = '5224A' and juror_no = '" + jurorNo + "'");
+
+			ResultSet rs = pStmt.executeQuery();
+
+			if (rs.next()) {
+				log.info("Confirmation letter found for juror!");
+			} else {
+				log.error("Confirmation letter not found for juror: " + jurorNo);
+				throw new AssertionError("Confirmation letter not found for juror " + jurorNo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.error("Message:" + e.getMessage());
+		} finally {
+			conn.commit();
+			pStmt.close();
+			conn.close();
+		}
+	}
+
+	public void checkBilingualConfirmationLetterIsGeneratedNSD(String jurorNo) throws SQLException {
+		log.info("Checking if juror " + jurorNo + " has been sent a bilingual confirmation Letter");
+		String partNo = "";
+		db = new DBConnection();
+
+		String env_property = System.getProperty("env.database");
+
+		if (env_property != null)
+			conn = db.getConnection(env_property);
+		else
+			conn = db.getConnection("demo");
+
+		try {
+			pStmt = conn.prepareStatement("select * from juror_mod.bulk_print_data where form_type = '5224AC' and juror_no = '" + jurorNo + "'");
+
+			ResultSet rs = pStmt.executeQuery();
+
+			if (rs.next()) {
+				log.info("Bilingual confirmation letter found for juror!");
+			} else {
+				log.error("Bilingual confirmation letter not found for juror: " + jurorNo);
+				throw new AssertionError("Bilingual confirmation letter not found for juror " + jurorNo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.error("Message:" + e.getMessage());
+		} finally {
+			conn.commit();
+			pStmt.close();
+			conn.close();
+		}
+	}
+
+	public void checkConfirmationLetterIsNotGeneratedNSD(String jurorNo) throws SQLException {
+		log.info("Checking that juror " + jurorNo + " has not been sent a confirmation Letter");
+		String partNo = "";
+		db = new DBConnection();
+
+		String env_property = System.getProperty("env.database");
+
+		if (env_property != null)
+			conn = db.getConnection(env_property);
+		else
+			conn = db.getConnection("demo");
+
+		try {
+			pStmt = conn.prepareStatement("select * from juror_mod.bulk_print_data where form_type like '5224A%' and juror_no = '" + jurorNo + "'");
+
+			ResultSet rs = pStmt.executeQuery();
+
+			if (rs.next()) {
+				log.info("Confirmation letter found for juror!");
+				throw new AssertionError("Confirmation letter was incorrectly found for juror " + jurorNo);
+			} else {
+				log.error("Confirmation letter correctly not found for juror: " + jurorNo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.error("Message:" + e.getMessage());
+		} finally {
+			conn.commit();
+			pStmt.close();
+			conn.close();
+		}
 	}
 
 	public void onDatabaseTable_seeColIsNull_whereColColvalueNSD(String environment, String database, String databaseTable,

@@ -2118,6 +2118,7 @@ public class StepDef_jurorpoolNewSchema {
 
     @Then("^The \"([^\"]*)\" new jurors have been sent a summons letter new schema$")
     public void checkNewJurorSummonsLetterNSD(String noJurors) throws SQLException {
+        NAV.waitForPageLoad();
         int jurorRows = Integer.parseInt(noJurors);
 
         for (int index = 1; index <= jurorRows; index++) {
