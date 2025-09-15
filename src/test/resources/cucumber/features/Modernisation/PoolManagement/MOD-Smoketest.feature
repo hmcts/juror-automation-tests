@@ -5,13 +5,14 @@ Feature: MOD-Smoketest
 
     Given I am on "bureau" "ithc"
 
-    Given I delete pools created in the last 3 days new schema for court "415"
-    Given I delete pools created in the last 3 days new schema for court "767"
-    Given I delete pools created in the last 3 days new schema for court "471"
-    Given I delete pools created in the last 3 days new schema for court "457"
-    Given I delete pools created in the last 3 days new schema for court "452"
+    Given I delete pools created yesterday for court "415"
+    Given I delete pools created yesterday for court "767"
+    Given I delete pools created yesterday for court "471"
+    Given I delete pools created yesterday for court "457"
+    Given I delete pools created yesterday for court "452"
     Given I delete appearances data
     Given I delete trials data
+    Given I run the fallback process for 99 pools errors
 #    Given I refresh the voters table for court "452" new schema
 #    Given I refresh the voters table for court "457" new schema
 #    Given I refresh the voters table for court "471" new schema
