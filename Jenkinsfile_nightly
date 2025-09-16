@@ -116,7 +116,6 @@ withNightlyPipeline(type, product, component, 600) {
   }
 
   setBuildName()
-
   afterAlways('fullFunctionalTest') {
 
     publishHTML target: [
