@@ -201,6 +201,11 @@ public class StepDef_DatabaseNewSchema {
         }
     }
 
+    @Given("^I set pool \"([^\"]*)\" loc_code to be \"([^\"]*)\"$")
+    public void setPoolLocCode(String pool_number, String loc_code) throws SQLException {
+        DBTNSD.setPoolLocCode(pool_number, loc_code);
+        }
+
     @Given("^I have inserted court rooms for \"([^\"]*)\"$")
     public void insertCourtroomsNSD(String court) throws SQLException {
         DBTNSD.insertCourtroomsNSD(court);
