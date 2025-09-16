@@ -117,6 +117,11 @@ withNightlyPipeline(type, product, component, 600) {
 
   setBuildName()
 
+  beforeAlways('fullFunctionalTest') {
+    echo 'Running smoke test (@Shakedown) first'
+    builder.gradle('clean test -Dcucumber.filter.tags=@Shakedown')
+  }
+
   afterAlways('fullFunctionalTest') {
 
     publishHTML target: [
