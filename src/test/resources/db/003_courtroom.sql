@@ -59,5 +59,6 @@ VALUES ('421', 'Navail', 'Not Available'),
        ('415', 'Navail', 'Not Available'),
        ('435', 'COURT8', 'Court 8'),
        ('415', 'Asmbly', 'JURY ASSEMBLY ROOM'),
+       ('767', 'Asmbly', 'JURY ASSEMBLY ROOM'),
        ('435', 'COURT2', 'Court 2');
 commit;

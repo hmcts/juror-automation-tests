@@ -875,6 +875,30 @@ public class DatabaseTesterNewSchemaDesign {
 		}
 	}
 
+	public void setPoolLocCode(String pool_number, String loc_code) throws SQLException {
+
+		db = new DBConnection();
+
+		String env_property = System.getProperty("env.database");
+		if (env_property != null)
+			conn = db.getConnection(env_property);
+		else
+			conn = db.getConnection("demo");
+
+		try {
+
+			pStmt = conn.prepareStatement("UPDATE juror_mod.pool set LOC_CODE = '" + loc_code + "' where POOL_NO = '" + pool_number + "'");
+			pStmt.executeUpdate();
+			conn.commit();
+			pStmt.close();
+			conn.close();
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+
+	}
+
 	public void createJurorsNSD(String pool_number, String juror_number, String noWeeks) throws SQLException {
 
 		db = new DBConnection();
