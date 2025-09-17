@@ -12,5 +12,6 @@ VALUES ('435', 'DRED', 'DREDD', NULL, false, NULL),
        ('457', 'DEED', 'JOHN', NULL, false, NULL),
        ('451', 'DRED', 'DREDD', NULL, false, NULL),
        ('417', 'AITK', 'PATRICIA H AITKEN', NULL, false, NULL),
+       ('767', 'AITK', 'PATRICIA H AITKEN', NULL, false, NULL),
        ('415', 'AITK', 'PATRICIA H AITKEN', NULL, false, '2024-03-01 10:06:42.04449');
 commit;
