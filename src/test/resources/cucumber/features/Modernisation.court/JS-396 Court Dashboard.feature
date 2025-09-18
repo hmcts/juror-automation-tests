@@ -61,7 +61,7 @@ Feature: As a court officer I want to have a dashboard on the juror application 
 
     And I see "homepage/dashboard" in the URL
 
-  @JurorTransformationMulti
+  @JurorTransformation
   Scenario Outline: As a court officer I want to have a dashboard on the juror application so I can manage my court more effectively
 
     Given I am on "Bureau" "ithc"
