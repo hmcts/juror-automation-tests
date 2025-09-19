@@ -1065,4 +1065,16 @@ public class StepDef_navigation {
 	public void force_set_value_using_js(String fieldLabel, String value) throws Throwable {
 		NAV.set_valueToUsingJS(fieldLabel, value);
 	}
+	@When("^I click the court home link for court \"([^\"]*)\"$")
+	public void clickCourtHomeLink(String courtNumber) {
+		NAV.clickCourtHomeLink(courtNumber);
+	}
+	@Then("^I select the checkbox in reports for court \"([^\"]*)\"$")
+	public void selectCourtCheckbox(String courtNameAndNumber) {
+		NAV.selectCourtCheckbox(courtNameAndNumber);
+	}
+	@Then("^I see the last run date for court \"([^\"]*)\" is today$")
+	public void iSeeTheLastRunDateForCourtIsToday(String courtNameAndNumber) {
+		NAV.checkLastRunDateIsToday(courtNameAndNumber);
+	}
 }
