@@ -17,6 +17,9 @@ import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -2663,5 +2666,62 @@ public class NavigationShared {
                 "arguments[0].value = arguments[1]; arguments[0].dispatchEvent(new Event('input'));",
                 element, value
         );
+    }
+    public void clickCourtHomeLink(String courtNumber) {
+        WebElement table = driver.findElement(By.xpath("/html/body/div[4]/main/div/div/div/table"));
+        WebElement courtHomeLink = table.findElement(
+                By.xpath(".//a[contains(@href, '/auth/court/" + courtNumber + "')]")
+        );
+        courtHomeLink.click();
+        log.info("Clicked Court home link for court: " + courtNumber);
+    }
+
+    public void selectCourtCheckbox(String courtNameAndNumber) {
+        try {
+            String xpath = "//input[@type='checkbox' and @name='selectedCourts' and @value='" + courtNameAndNumber + "']";
+            WebElement checkbox = driver.findElement(By.xpath(xpath));
+            Thread.sleep(1000);
+            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block:'center'});", checkbox);
+            if (!checkbox.isSelected()) {
+                ((JavascriptExecutor) driver).executeScript("arguments[0].click();", checkbox);
+            }
+
+            log.info("Selected checkbox for court (via JS): " + courtNameAndNumber);
+
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+    }
+
+
+    public void checkLastRunDateIsToday(String courtNameAndNumber) {
+        WebElement row = driver.findElement(
+                By.xpath("//table[contains(@class,'govuk-table')]//tr[td[normalize-space()='" + courtNameAndNumber + "']]")
+        );
+        WebElement lastRunCell = row.findElement(By.xpath("./td[4]"));
+
+        String sortVal = lastRunCell.getAttribute("data-sort-value");
+        if (sortVal == null || sortVal.isBlank()) {
+            throw new AssertionError("data-sort-value missing for 'Date Last Run' cell.");
+        }
+
+        String[] parts = sortVal.split(",");
+        if (parts.length < 3) {
+            throw new AssertionError("data-sort-value malformed: '" + sortVal + "'");
+        }
+
+        int y = Integer.parseInt(parts[0]);
+        int m = Integer.parseInt(parts[1]);
+        int d = Integer.parseInt(parts[2]);
+
+        ZoneId zone = ZoneId.of("Europe/London");
+        LocalDate cellDate = LocalDate.of(y, m, d);
+        LocalDate today = LocalDate.now(zone);
+
+        if (!cellDate.equals(today)) {
+            throw new AssertionError("Last run date is not today. Found " + cellDate + " (from data-sort-value='" +
+                    sortVal + "'), expected " + today + ".");
+        }
+        log.info("Verified last run date is today (cell text: '" + lastRunCell.getText().trim() + "', sortVal: '" + sortVal + "')");
     }
 }
