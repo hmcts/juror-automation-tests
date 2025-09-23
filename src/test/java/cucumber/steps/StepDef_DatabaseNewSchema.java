@@ -464,6 +464,11 @@ public class StepDef_DatabaseNewSchema {
         DBTNSD.cleanTrialNumberNSD(trial_number);
     }
 
+    @Given("^I delete utilisation reports for court \"([^\"]*)\"$")
+    public void cleanUtilReportsForCourtNSD(String court) throws SQLException {
+        DBTNSD.cleanUtilReportsForCourtNSD(court);
+    }
+
     @Given("^I delete appearances data$")
     public void cleanAppearancesNSD() throws SQLException {
         DBTNSD.cleanAppearancesNSD();
