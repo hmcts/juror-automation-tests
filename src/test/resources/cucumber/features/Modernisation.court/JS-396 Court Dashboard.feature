@@ -146,6 +146,7 @@ Feature: As a court officer I want to have a dashboard on the juror application 
 
     Given I delete trial "T202544321" and associated records
     Given I delete trial "T202544457" and associated records
+    Given I delete utilisation reports for court "767"
 
     #log on and search for juror
     And I log in as "MODTESTCOURT" selecting court "767"
