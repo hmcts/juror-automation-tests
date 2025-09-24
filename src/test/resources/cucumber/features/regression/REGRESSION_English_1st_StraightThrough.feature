@@ -3,7 +3,7 @@ Feature: Regression English_1st_StraightThrough
 @Regression
 Scenario Outline: English 1st Party Straight Through
 	
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -258,7 +258,7 @@ Scenario Outline: English 1st Party Straight Through
 	Then I click on the "Download a copy of your summons reply HTML (15KB)" link
 	And I see "You answered the eligibility questions" on the page
 	
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "ithc"
 	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
