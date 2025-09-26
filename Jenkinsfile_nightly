@@ -86,8 +86,13 @@ static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
 GradleBuilder builder = new GradleBuilder(this, product)
 
 def isTimerBuild() {
-  def causes = currentBuild.rawBuild?.getCauses() ?: []
-  causes.any { it.class.simpleName == 'TimerTriggerCause' }
+  try {
+    return (currentBuild
+            .getBuildCauses('hudson.triggers.TimerTrigger$TimerTriggerCause')
+            ?.size() ?: 0) > 0
+  } catch (ignored) {
+    return false
+  }
 }
 
 def setBuildName() {
