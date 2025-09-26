@@ -1,10 +1,8 @@
 #!groovy
 properties([
-  // this will trigger at 1630 during bst
   pipelineTriggers([cron('15 14 * * 1-5')]),
   parameters([
     choice(choices: ['chrome', 'firefox', 'msedge'], name: 'Browser'),
-    // Default to 'BAU packs in ITHC' run in branch 'nightly-dev' - but see override onMaster below
     choice(choices: ['ithc', 'test', 'stg', 'demo'], name: 'EnvironmentChoice'),
     booleanParam(name: 'runExpenses', defaultValue: false, description: 'Include Expenses tests'),
     booleanParam(name: 'runFeatures', defaultValue: false, description: 'Include Features tests'),
@@ -26,6 +24,36 @@ import uk.gov.hmcts.contino.GradleBuilder
 def type = "java"
 def product = "juror"
 def component = "automation-tests"
+
+def SUITES_BY_BRANCH = [
+        'master'     : ['JurorTransformation','JurorTransformationMulti','JurorTransformationWIP','Shakedown'],
+        'nightly-dev': ['Expenses','Features','Regression','RegressionSingle','RegressionWelsh','Shakedown']
+        // 'demo': [] // example: turn off tests in environment, also uncomment line 144
+]
+
+def ENV_BY_BRANCH = [
+        'master'     : 'ithc',
+        'nightly-dev': 'demo'
+]
+
+def applyBranchDefaults = { String branch ->
+  [
+          'Expenses','Features',
+          'JurorTransformation','JurorTransformationMulti','JurorTransformationWIP',
+          'Regression','RegressionSingle','RegressionWelsh',
+          'Shakedown'
+  ].each { suite ->
+    env."run${suite}" = "false"
+  }
+
+  (SUITES_BY_BRANCH[branch] ?: []).each { suite ->
+    env."run${suite}" = "true"
+  }
+
+  if (ENV_BY_BRANCH.containsKey(branch)) {
+    env.envName = ENV_BY_BRANCH[branch]
+  }
+}
 
 def secrets = [
   'juror-stg': [
@@ -57,6 +85,11 @@ static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
 
 GradleBuilder builder = new GradleBuilder(this, product)
 
+def isTimerBuild() {
+  def causes = currentBuild.rawBuild?.getCauses() ?: []
+  causes.any { it.class.simpleName == 'TimerTriggerCause' }
+}
+
 def setBuildName() {
   def suffixes = [
     "RunExpenses"                 : ",ex",
@@ -71,13 +104,11 @@ def setBuildName() {
   ]
 
   def nameBuilder = "#${BUILD_NUMBER} - ${env.envName}"
-  
   suffixes.each { key, value ->
     if (env."${key}" == "true") {
       nameBuilder += value
     }
   }
-
   nameBuilder += ",sm"
   currentBuild.displayName = nameBuilder
 }
@@ -98,22 +129,18 @@ withNightlyPipeline(type, product, component, 600) {
   env.runRegressionSingle = params.runRegressionSingle
   env.runRegressionWelsh = params.runRegressionWelsh
   env.runShakedown = params.runShakedown
-  
-  onMaster {
-    if (params.masterOverride == false) {
-    // Switch to MOD tests on staging
-      env.envName = "ithc"
-      env.runExpenses = "false"
-      env.runFeatures = "false"
-      env.runJurorTransformation = "true"
-      env.runJurorTransformationMulti = "true"
-      env.runJurorTransformationWIP = "true"
-      env.runRegression = "false"
-      env.runRegressionSingle = "false"
-      env.runRegressionWelsh = "false"
-      env.runShakedown = "false"
+
+  if (env.BRANCH_NAME == 'master') {
+    if (isTimerBuild() && !params.masterOverride) {
+      applyBranchDefaults('master')
+    }
+  } else if (env.BRANCH_NAME == 'nightly-dev') {
+    if (isTimerBuild()) {
+      applyBranchDefaults('nightly-dev')
     }
   }
+
+ //  if (env.envName == 'demo') { applyBranchDefaults('demo') } // turn off tests in environment
 
   setBuildName()
   afterAlways('fullFunctionalTest') {
