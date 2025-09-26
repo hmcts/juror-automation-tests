@@ -40,7 +40,7 @@ def SUITES_BY_BRANCH = [
                 'RegressionWelsh',
                 'Shakedown'
         ]  // add comma after square bracket when doing below
- //        'demo': []   // turn off tests in environment, also uncomment lines 151-153
+ //        'demo': []   // turn off tests in environment, also uncomment lines 150-152
 ]
 
 def ENV_BY_BRANCH = [
