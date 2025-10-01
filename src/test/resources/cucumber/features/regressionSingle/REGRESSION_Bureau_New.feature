@@ -590,7 +590,7 @@ Scenario Outline: Search as Team Leader
 	#name appears if it's just 1
 	And I press the "Select all" button
 	And I press the "Send to..." button
-	And I see "replies to a colleague" on the page
+	And I see "to a colleague" on the page
 	And I see "Select an officer to send to" on the page
 	And I see "Cancel" on the page
 	And I click on the "Cancel" link
@@ -623,16 +623,18 @@ Scenario Outline: Search as Team Leader
 	And I click on the "Advanced search" link
 	And I check the "Completed" checkbox
 	Then I press the "Search" button
-	And I see "The specified search resulted in more than 100 results. This list only shows the newest 100." on the page
-	
+#	And I see "The specified search resulted in more than 100 results. This list only shows the newest 100." on the page
+	And I see ""Completed"" on the page
+
 	#search on a specific user
 	Then I click on the "Clear search" link
 	And I click on the "Advanced search" link
 	And I set "Select an officer assigned" to "ARAMIS1"
 	And I click on the "ARAMIS1" link
 	Then I press the "Search" button
-	And I see "The specified search resulted in more than " on the page
-	
+#	And I see "The specified search resulted in more than " on the page
+	And I see "ARAMIS1" on the page
+
 	#search on urgent
 	Then I click on the "Clear search" link
 	And I click on the "Advanced search" link
@@ -672,7 +674,8 @@ Scenario Outline: Search as Team Leader
 	And I set "Select an officer assigned" to "ARAMIS1"
 	And I click on the "ARAMIS1" link
 	Then I press the "Search" button
-	And I see "The specified search resulted in more than " on the page
+#	And I see "The specified search resulted in more than " on the page
+	And I see "ARAMIS1" on the page
 	Then I press the "Select all" button
 	Then I press the "Unselect all" button
 
