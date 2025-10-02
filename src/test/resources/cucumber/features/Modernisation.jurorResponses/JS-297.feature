@@ -47,10 +47,8 @@ Feature: JS-290
       | juror_number  | pool_number | user          | juror_address     |
       |  041573613    | 415984413   | MODTESTBUREAU | ADDRESS LINE FOUR |
 
-  @JurorTransformationWIP
+  @JurorTransformationMulti
   Scenario Outline: Deferral letter - jurors address is updated while letter is pending (digital response)
-
-    #this will fail due to JS-538 - put back in multi when fixed
 
     Given I am on "Public" "ithc"
 
