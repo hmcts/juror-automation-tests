@@ -20,6 +20,7 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -2699,29 +2700,18 @@ public class NavigationShared {
                 By.xpath("//table[contains(@class,'govuk-table')]//tr[td[normalize-space()='" + courtNameAndNumber + "']]")
         );
         WebElement lastRunCell = row.findElement(By.xpath("./td[4]"));
-
-        String sortVal = lastRunCell.getAttribute("data-sort-value");
-        if (sortVal == null || sortVal.isBlank()) {
-            throw new AssertionError("data-sort-value missing for 'Date Last Run' cell.");
+        String text = lastRunCell.getText().trim();
+        if (text.isBlank()) {
+            throw new AssertionError("No date text found in 'Date Last Run' cell.");
         }
-
-        String[] parts = sortVal.split(",");
-        if (parts.length < 3) {
-            throw new AssertionError("data-sort-value malformed: '" + sortVal + "'");
-        }
-
-        int y = Integer.parseInt(parts[0]);
-        int m = Integer.parseInt(parts[1]);
-        int d = Integer.parseInt(parts[2]);
-
-        ZoneId zone = ZoneId.of("Europe/London");
-        LocalDate cellDate = LocalDate.of(y, m, d);
-        LocalDate today = LocalDate.now(zone);
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("EEE d MMM uuuu", Locale.UK);
+        LocalDate cellDate = LocalDate.parse(text, fmt);
+        LocalDate today = LocalDate.now(ZoneId.of("Europe/London"));
 
         if (!cellDate.equals(today)) {
-            throw new AssertionError("Last run date is not today. Found " + cellDate + " (from data-sort-value='" +
-                    sortVal + "'), expected " + today + ".");
+            throw new AssertionError("Last run date is not today. Found " + cellDate +
+                    " (cell text: '" + text + "'), expected " + today + ".");
         }
-        log.info("Verified last run date is today (cell text: '" + lastRunCell.getText().trim() + "', sortVal: '" + sortVal + "')");
+        log.info("Verified last run date is today. Cell text = " + text);
     }
 }
