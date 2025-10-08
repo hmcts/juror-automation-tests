@@ -27,7 +27,7 @@ def component = "automation-tests"
 
 def SUITES_BY_BRANCH = [
         'master'     : ['Shakedown','JurorTransformation','JurorTransformationMulti','JurorTransformationWIP'],
-      //  'nightly-dev': ['Shakedown','Expenses','Features','Regression','RegressionSingle','RegressionWelsh']
+        'nightly-dev': ['Shakedown','Expenses','Features','Regression','RegressionSingle','RegressionWelsh'],
          'demo': [] // example: turn off tests in environment, also uncomment line 148
 ]
 
