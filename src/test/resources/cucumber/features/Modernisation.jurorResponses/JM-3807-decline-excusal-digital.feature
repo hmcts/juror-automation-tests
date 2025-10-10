@@ -27,7 +27,7 @@ Feature: Decline excusal digital
     And I select "<dropDown>" from the dropdown
     And I select the Refuse Excusal radio button
     And I click continue on the process reply page
-    And I see "Excusal refused" on the page
+    And I see "Summoned" on the page
 
     Examples:
       | dropDown       | user          | juror_number   | pool_number   | last_name   | postcode | email      |

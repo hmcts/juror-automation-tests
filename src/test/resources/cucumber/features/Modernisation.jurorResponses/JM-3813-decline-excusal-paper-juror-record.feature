@@ -42,20 +42,15 @@ Feature: JM-3813
     And I select "O - OTHER" from the "Reason for excusal request" dropdown
     And I set the radio button to "Refuse excusal"
     And I press the "Continue" button
-    And I see "Excusal refused" in the response banner
-    And I see juror status is Responded with alert "Excusal refused"
 
     #return to juror record
     When the user searches for juror record "<juror_number>" from the global search bar
     Then I am on the Juror Record for juror "<juror_number>"
-    Then I see the juror's status on the juror record screen is "Responded"
-    And the warning icon is displayed next to the juror status
+    Then I see the juror's status on the juror record screen is "Summoned"
 
     #check updated summons reply tab
     When I click on the Summons Reply tab
-    Then I see the reply status of the summons reply on juror record is "Completed"
-    And I see the processing outcome of the summons reply on juror record is "Excusal refused (other)"
-    And the warning icon is displayed next to the processing outcome
+    Then I see the reply status of the summons reply on juror record is "To Do"
     And I see the reply date of the summons reply on juror record is "today"
     And I see the reply method of the summons reply on juror record is "Paper"
 

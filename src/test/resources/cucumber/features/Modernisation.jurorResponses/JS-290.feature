@@ -1,7 +1,9 @@
 Feature: JS-290
 
-  @JurorTransformationMulti
+  @JurorTransformationWIP
   Scenario Outline: Excusal refused letter - check jurors address matches that in bulk print table
+
+    #put back in multi when JS-618 is done
 
     Given I am on "Bureau" "ithc"
 
@@ -24,10 +26,9 @@ Feature: JS-290
     And I set the radio button to "Refuse excusal"
     And I press the "Continue" button
 
-    #return to juror record - status will be responded due to refusal
+    #return to juror record - status will be summoned as per JS-376
     When the user searches for juror record "<juror_number>" from the global search bar
-    Then I see the juror's status on the juror record screen is "Responded"
-    And the warning icon is displayed next to the juror status
+    Then I see the juror's status on the juror record screen is "Summoned"
 
     And I press the "Apps" button
     When I click on the "Documents" link
@@ -59,8 +60,10 @@ Feature: JS-290
       | juror_number  | pool_number | user          | juror_address     |
       |  041573611    | 415984412   | MODTESTBUREAU | ADDRESS LINE FOUR |
 
-  @JurorTransformationMulti
+  @JurorTransformationWIP
   Scenario Outline: Resend Withdrawal letter as a bureau officer - check jurors address matches that in bulk print table
+
+    #put back in multi when JS-618 is done
 
     Given I am on "Bureau" "ithc"
 
