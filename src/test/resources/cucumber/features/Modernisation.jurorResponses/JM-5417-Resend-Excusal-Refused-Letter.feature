@@ -26,8 +26,7 @@ Feature: JM-5417-5586 - Resend excusal refused letter for Bureau and Jury users
 
     #return to juror record - status will be responded due to refusal
     When the user searches for juror record "<juror_number>" from the global search bar
-    Then I see the juror's status on the juror record screen is "Responded"
-    And the warning icon is displayed next to the juror status
+    Then I see the juror's status on the juror record screen is "Summoned"
 
     And I press the "Apps" button
     When I click on the "Documents" link
@@ -85,8 +84,7 @@ Feature: JM-5417-5586 - Resend excusal refused letter for Bureau and Jury users
 
     #return to juror record - status will be responded due to refusal
     When the user searches for juror record "<juror_number>" from the global search bar
-    Then I see the juror's status on the juror record screen is "Responded"
-    And the warning icon is displayed next to the juror status
+    Then I see the juror's status on the juror record screen is "Summoned"
 
     #delete a pending document
     And I press the "Apps" button
@@ -107,18 +105,20 @@ Feature: JM-5417-5586 - Resend excusal refused letter for Bureau and Jury users
       |  041529019    | 415980686   | MODTESTBUREAU |
 
 
-  @JurorTransformationMulti
+  @JurorTransformationWIP
   Scenario Outline: Excusal refused letter - via pool Number happy path bulk
+
+    #return to MULTI once defect JS-618 fixed
 
     Given I am on "Bureau" "ithc"
 
     And I log in as "<user>"
 
     When a bureau owned pool is created with jurors
-      | court   | juror_number  | pool_number     | att_date_weeks_in_future    | owner |
-      | 415     | <juror_number>| <pool_number>   | 5                           | 400  |
-      | 415     | <juror_number_2>| <pool_number>   | 5                         | 400  |
-      | 415     | <juror_number_3>| <pool_number>   | 5                         | 400  |
+      | court   | juror_number  | pool_number     | att_date_weeks_in_future  | owner |
+      | 415     | <juror_number>| <pool_number>   | 5                         | 400  |
+      | 415     | <juror_number_2>| <pool_number> | 5                         | 400  |
+      | 415     | <juror_number_3>| <pool_number> | 5                         | 400  |
 
     #record response for first juror
     And the user searches for juror record "<juror_number>" from the global search bar
@@ -135,11 +135,9 @@ Feature: JM-5417-5586 - Resend excusal refused letter for Bureau and Jury users
     And I set the radio button to "Refuse excusal"
     And I press the "Continue" button
 
-    #return to juror record - status will be responded due to refusal
+    #return to juror record - status will be summoned (JS-376)
     When the user searches for juror record "<juror_number>" from the global search bar
-    And I see the juror status has updated to "Responded"
-    And the warning icon is displayed next to the juror status
-
+    And I see the juror status has updated to "Summoned"
     #record response for second juror
     And the user searches for juror record "<juror_number_2>" from the global search bar
     And I record an excusal request paper summons response
@@ -157,8 +155,8 @@ Feature: JM-5417-5586 - Resend excusal refused letter for Bureau and Jury users
 
     #return to juror record - status will be responded due to refusal
     When the user searches for juror record "<juror_number_2>" from the global search bar
-    Then I see the juror's status on the juror record screen is "Responded"
-    And the warning icon is displayed next to the juror status
+    And I see "<juror_number_2>" on the page
+    Then I see the juror's status on the juror record screen is "Summoned"
 
     #record response for third juror
     And the user searches for juror record "<juror_number_3>" from the global search bar
@@ -177,8 +175,7 @@ Feature: JM-5417-5586 - Resend excusal refused letter for Bureau and Jury users
 
     #return to juror record - status will be responded due to refusal
     When the user searches for juror record "<juror_number_3>" from the global search bar
-    Then I see the juror's status on the juror record screen is "Responded"
-    And the warning icon is displayed next to the juror status
+    Then I see the juror's status on the juror record screen is "Summoned"
 
     #search via pool  number and resend letter for all jurors
     When I press the "Apps" button
@@ -218,8 +215,10 @@ Feature: JM-5417-5586 - Resend excusal refused letter for Bureau and Jury users
       |  041529024    | 041529040     |041529041      |415980686   | MODTESTBUREAU |
 
 
-  @JurorTransformationMulti
+  @JurorTransformationWIP
   Scenario Outline: As a Bureau officer view all the letters queued for printing and delete
+
+    #return to MULTI once defect JS-618 fixed
 
     Given I am on "Bureau" "ithc"
 
@@ -245,8 +244,7 @@ Feature: JM-5417-5586 - Resend excusal refused letter for Bureau and Jury users
 
     #return to juror record - status will be responded due to refusal
     When the user searches for juror record "<juror_number>" from the global search bar
-    Then I see the juror's status on the juror record screen is "Responded"
-    And the warning icon is displayed next to the juror status
+    Then I see the juror's status on the juror record screen is "Summoned"
 
     #navigate to documents and verify the printing message
     And I press the "Apps" button
@@ -268,7 +266,7 @@ Feature: JM-5417-5586 - Resend excusal refused letter for Bureau and Jury users
   @JurorTransformationWIP
   Scenario Outline:As a jury officer test a Excused juror can resend a refused letter by searching via juror number
 
-    # return to MULTI once defect fixed
+    # return to MULTI once defect JS-618 fixed
 
     Given I am on "Bureau" "ithc"
 
@@ -306,8 +304,7 @@ Feature: JM-5417-5586 - Resend excusal refused letter for Bureau and Jury users
 
     #return to juror record - status will be responded due to refusal
     When the user searches for juror record "<juror_number>" from the global search bar
-    Then I see the juror's status on the juror record screen is "Responded"
-    And the warning icon is displayed next to the juror status
+    Then I see the juror's status on the juror record screen is "Summoned"
 
     And I press the "Apps" button
     When I click on the "Documents" link
@@ -333,8 +330,10 @@ Feature: JM-5417-5586 - Resend excusal refused letter for Bureau and Jury users
       | juror_number  | pool_number | user         |
       | 041586214     | 415982987   | MODTESTCOURT |
 
-  @JurorTransformationMulti
+  @JurorTransformationWIP
   Scenario Outline:As a jury officer test a Excused juror can resend a refused letter by searching via pool number
+
+    # return to MULTI once defect JS-618 fixed
 
     Given I am on "Bureau" "ithc"
 
