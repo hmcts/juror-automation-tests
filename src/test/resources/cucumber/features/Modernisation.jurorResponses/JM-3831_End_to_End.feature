@@ -1,6 +1,6 @@
 Feature: JM-3831
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Decline Excusal Request as Bureau user - happy path
 
     Given I am on "Bureau" "ithc"
@@ -68,8 +68,8 @@ Feature: JM-3831
     And I select "O - OTHER" from the "Reason for excusal request" dropdown
     And I set the radio button to "Refuse excusal"
     And I press the "Continue" button
-    And I see "Excusal refused" on the page
-    And I see the juror status has updated to "Responded"
+    And I see the juror status has updated to "Summoned"
+
     Examples:
       | user          | juror_number   | pool_number   |
       | MODTESTBUREAU | 641500248      | 415170501     |

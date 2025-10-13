@@ -624,7 +624,7 @@ Scenario Outline: Search as Team Leader
 	And I check the "Completed" checkbox
 	Then I press the "Search" button
 #	And I see "The specified search resulted in more than 100 results. This list only shows the newest 100." on the page
-	And I see ""Completed"" on the page
+	And I see "Completed" on the page
 
 	#search on a specific user
 	Then I click on the "Clear search" link
