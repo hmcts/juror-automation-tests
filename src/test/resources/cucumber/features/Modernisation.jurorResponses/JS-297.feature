@@ -101,10 +101,8 @@ Feature: JS-290
       | juror_number  | pool_number | user          | juror_address     | last_name | postcode  | email       |
       |  041573615    | 415984415   | MODTESTBUREAU | ADDRESS LINE FOUR | JONES     | CH2 2AA   | e@mail.com  |
 
-  @JurorTransformationWIP
+  @JurorTransformationMulti
   Scenario Outline: Withdrawal letter - jurors address is updated while letter is pending
-
-    #this will fail due to JS-541 - put back in multi when fixed
 
     Given I am on "Bureau" "ithc"
 

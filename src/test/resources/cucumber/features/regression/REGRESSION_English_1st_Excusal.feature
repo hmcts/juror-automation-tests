@@ -312,7 +312,7 @@ Feature: Regression English_1st_Excusal
     And the radio button "Grant excusal" is "unselected"
 
     And I press the "Continue" button
-    And I see the juror record updated banner containing "Excusal refused"
+    And I see the juror status on the juror record screen is "Summoned"
 
     Examples:
       | juror_number | last_name        | postcode | email             | pool_number |
