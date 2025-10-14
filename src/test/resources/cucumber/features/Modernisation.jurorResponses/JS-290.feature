@@ -60,10 +60,8 @@ Feature: JS-290
       | juror_number  | pool_number | user          | juror_address     |
       |  041573611    | 415984412   | MODTESTBUREAU | ADDRESS LINE FOUR |
 
-  @JurorTransformationWIP
+  @JurorTransformationMulti
   Scenario Outline: Resend Withdrawal letter as a bureau officer - check jurors address matches that in bulk print table
-
-    #put back in multi when JS-618 is done
 
     Given I am on "Bureau" "ithc"
 

@@ -172,7 +172,7 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
 
 
   @JurorTransformation
-  Scenario Outline:As a bureau officer test a Deferred juror with status changed can resend a granted letter
+  Scenario Outline: As a bureau officer test a Deferred juror with status changed can resend a granted letter
 
     Given I am on "Bureau" "ithc"
     And I log in as "<user>"
