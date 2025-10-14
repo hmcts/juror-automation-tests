@@ -1,6 +1,6 @@
 Feature:As a Bureau/jury officer I want to re send a postponement letter
 
-  @JurorTransformationMulti
+  @JurorTransformation
   Scenario Outline:As a bureau officer test a postponement juror can resend a letter by searching via juror number
 
     Given I am on "Bureau" "ithc"
