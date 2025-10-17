@@ -1,7 +1,9 @@
 Feature: JM-5417-5586 - Resend excusal refused letter for Bureau and Jury users
 
-  @JurorTransformationMulti
+  @JurorTransformationWIP
   Scenario Outline: Excusal refused letter - via juror number
+
+    #return to MULTI once defect JS-618 fixed
 
     Given I am on "Bureau" "ithc"
 
@@ -58,8 +60,10 @@ Feature: JM-5417-5586 - Resend excusal refused letter for Bureau and Jury users
       | juror_number  | pool_number | user          |
       |  041529018    | 415980686   | MODTESTBUREAU |
 
-  @JurorTransformationMulti
+  @JurorTransformationWIP
   Scenario Outline: Delete pending excusal refused letter as a bureau officer
+
+    #return to MULTI once defect JS-618 fixed
 
     Given I am on "Bureau" "ithc"
 
@@ -330,10 +334,8 @@ Feature: JM-5417-5586 - Resend excusal refused letter for Bureau and Jury users
       | juror_number  | pool_number | user         |
       | 041586214     | 415982987   | MODTESTCOURT |
 
-  @JurorTransformationWIP
+  @JurorTransformationMulti
   Scenario Outline:As a jury officer test a Excused juror can resend a refused letter by searching via pool number
-
-    # return to MULTI once defect JS-618 fixed
 
     Given I am on "Bureau" "ithc"
 

@@ -145,7 +145,7 @@ Feature: JS-280 Combined Tests
   @JurorTransformation
   Scenario Outline: Check higher rates can be edited and pick up correct rate for time spent that day
 
-    Given I am on "Bureau" "demo"
+    Given I am on "Bureau" "ithc"
 
     When a bureau owned pool is created with jurors
       | court |juror_number  	  | pool_number	    | att_date_weeks_in_future	| owner |

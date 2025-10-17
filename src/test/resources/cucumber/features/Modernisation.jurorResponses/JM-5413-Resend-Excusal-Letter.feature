@@ -104,7 +104,7 @@ Feature: JM-5413-5415 - Resend excusal granted letter for Bureau and Jury users
   @JurorTransformationMulti
   Scenario Outline: Excusal granted letter - via pool Number happy path bulk
 
-    Given I am on "Bureau" "demo"
+    Given I am on "Bureau" "ithc"
     And I log in as "<user>"
 
     When a bureau owned pool is created with jurors
