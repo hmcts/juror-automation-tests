@@ -1,7 +1,7 @@
 Feature:As a Bureau/jury officer I want to re send a postponement letter
 
   @JurorTransformation
-  Scenario Outline:As a bureau officer test a postponement juror can resend a letter by searching via juror number
+  Scenario Outline: As a bureau officer test a postponement juror can resend a letter by searching via juror number
 
     Given I am on "Bureau" "ithc"
     And I log in as "<user>"
@@ -329,7 +329,7 @@ Feature:As a Bureau/jury officer I want to re send a postponement letter
 
 
   @JurorTransformationMulti
-  Scenario Outline:As a jury officer test a postponement juror can re send a  letter by searching via juror number
+  Scenario Outline: As a jury officer test a postponement juror can re send a letter by searching via juror number
 
     Given I am on "Bureau" "ithc"
 
@@ -387,7 +387,7 @@ Feature:As a Bureau/jury officer I want to re send a postponement letter
     Then I see "There are no active pools for this date" on the page
     And I press the "Put in deferral maintenance" button
     And I see "Do you want to print a postponement letter?" on the page
-    When I set the radio button to "No"
+    When I set the radio button to "Yes"
     And I press the "Continue" button
     Then I see "Juror record updated: Postponed" on the page
     And I press the "Apps" button
@@ -403,6 +403,7 @@ Feature:As a Bureau/jury officer I want to re send a postponement letter
     And I press the "Search" button
     And I see error "Enter juror number"
     And I set "Enter juror number" to "<juror_number>"
+    And I check the "Include printed" checkbox
     And I press the "Search" button
     And I see "Change" on the page
     And I see "Print postponement letter" on the page
