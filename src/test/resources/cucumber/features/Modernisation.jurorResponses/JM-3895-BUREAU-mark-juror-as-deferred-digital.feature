@@ -65,7 +65,7 @@ Feature: JM-3895 mark juror as deferred digital
     Given I log in as "MODTESTBUREAU"
 
     Given I navigate to the pool request screen
-    Given I create an active "civil" court pool request for court "415", "14" Mondays in the future
+    Given I create an active "civil" court pool request for court "415", "9" Mondays in the future
 
     When the user searches for juror record "<juror_number>" from the global search bar
     And I see "<juror_number>" on the page
@@ -79,7 +79,7 @@ Feature: JM-3895 mark juror as deferred digital
 
     Then I select "O - OTHER" from the "Reason for the deferral request" dropdown
     Then I select to Choose a different date
-    Then I set the "alternate" choice to "14" Mondays in the future
+    Then I set the "alternate" choice to "9" Mondays in the future
     And I press the "Continue" button
 
     Then I see "Select a pool for this date" on the page
