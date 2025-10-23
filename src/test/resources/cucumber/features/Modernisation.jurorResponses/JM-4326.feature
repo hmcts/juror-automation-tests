@@ -3,7 +3,7 @@ Feature: JM-4326 - Defer a juror and then complete their service at a later date
   @JurorTransformationMulti
   Scenario Outline: Mark juror as deferred - Add to pool Happy path paper - Bureau Officer
 
-    Given I am on "Bureau" "demo"
+    Given I am on "Bureau" "ithc"
 
     Given I log in as "<user>"
 

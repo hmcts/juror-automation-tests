@@ -1,5 +1,6 @@
 Feature: Court responded jurors to receive confirmation pack
 
+  @JurorTransformation
   Scenario Outline: Court responded juror receives conf pack - bilingual
 
     Given I am on "Bureau" "ithc"
@@ -47,7 +48,7 @@ Feature: Court responded jurors to receive confirmation pack
       | juror_number01  | pool_number01 |
       | 045798031       | 457980930     |
 
-
+  @JurorTransformation
   Scenario Outline: Court responded juror receives conf pack - english at welsh court
 
     Given I am on "Bureau" "ithc"
@@ -85,6 +86,7 @@ Feature: Court responded jurors to receive confirmation pack
       | juror_number01  | pool_number01 |
       | 045798032       | 457980932     |
 
+  @JurorTransformation
   Scenario Outline: Court responded juror receives conf pack
 
     Given I am on "Bureau" "ithc"
@@ -121,6 +123,7 @@ Feature: Court responded jurors to receive confirmation pack
       | juror_number01  | pool_number01 |
       | 041598031       | 415980930     |
 
+  @JurorTransformation
   Scenario Outline: Court responded juror does not receive conf pack when return date equals police check passed date
 
     Given I am on "Bureau" "ithc"
@@ -157,6 +160,7 @@ Feature: Court responded jurors to receive confirmation pack
       | juror_number01  | pool_number01 |
       | 041598032       | 415980932     |
 
+  @JurorTransformation
   Scenario Outline: Court responded juror does not receive conf pack when return date before police check passed date
 
     Given I am on "Bureau" "ithc"
@@ -193,6 +197,7 @@ Feature: Court responded jurors to receive confirmation pack
       | juror_number01  | pool_number01 |
       | 041598033       | 415980933     |
 
+  @JurorTransformation
   Scenario Outline: Court responded juror does not receive conf pack when responded date before police check passed date
 
     Given I am on "Bureau" "ithc"
@@ -232,6 +237,7 @@ Feature: Court responded jurors to receive confirmation pack
       | juror_number01  | pool_number01 |
       | 041598033       | 415980933     |
 
+  @JurorTransformation
   Scenario Outline: Court responded juror does not receive conf pack when police check fails
 
     Given I am on "Bureau" "ithc"
