@@ -1,8 +1,9 @@
 Feature: JM-4494 Jury officer Delete Juror Deferral
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Jury Officer Delete Juror deferral - paper
-    Given I am on "Bureau" "test"
+
+    Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number  	        | pool_number	    | att_date_weeks_in_future	| owner |
