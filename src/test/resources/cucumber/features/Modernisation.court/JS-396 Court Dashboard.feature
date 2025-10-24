@@ -3,7 +3,7 @@ Feature: As a court officer I want to have a dashboard on the juror application 
   @JurorTransformationMulti
   Scenario: Court Dashboard - labels and links check
     
-    Given I am on "Bureau" "demo"
+    Given I am on "Bureau" "ithc"
 
     And I log in as "MODTESTCOURT" selecting court "415"
     
@@ -29,8 +29,8 @@ Feature: As a court officer I want to have a dashboard on the juror application 
 
     And I see link with text "Reasonable adjustments report"
     And I click on the "Reasonable adjustments report" link
-    Then I see "reasonable-adjustments" in the URL
-    And I see "Reasonable adjustments report" on the page
+    Then I see "reasonable-adjustment-and-cje" in the URL
+    And I see "Reasonable adjustment and CJE report" on the page
     And I press the "back" button on my browser
 
     And I see link with text "Unconfirmed attendance report"
@@ -386,8 +386,8 @@ Feature: As a court officer I want to have a dashboard on the juror application 
     And on the dashboard the total "On trials" today matches "4"
     And on the dashboard the total "Not checked-in" today matches "4"
 
-    Then total expected in the last 7 days donut displays "5"
-    And on the dashboard the total "Expected" in the last 7 days matches "5"
+    Then total expected in the last 7 days donut displays "6"
+    And on the dashboard the total "Expected" in the last 7 days matches "6"
     And on the dashboard the total "Attended" in the last 7 days matches "1"
     And on the dashboard the total "On trials" in the last 7 days matches "0"
     And on the dashboard the total "Absent" in the last 7 days matches "0"
