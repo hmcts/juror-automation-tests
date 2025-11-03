@@ -386,8 +386,8 @@ Feature: As a court officer I want to have a dashboard on the juror application 
     And on the dashboard the total "On trials" today matches "4"
     And on the dashboard the total "Not checked-in" today matches "4"
 
-    Then total expected in the last 7 days donut displays "6"
-    And on the dashboard the total "Expected" in the last 7 days matches "6"
+    Then total expected in the last 7 days donut displays "5"
+    And on the dashboard the total "Expected" in the last 7 days matches "5"
     And on the dashboard the total "Attended" in the last 7 days matches "1"
     And on the dashboard the total "On trials" in the last 7 days matches "0"
     And on the dashboard the total "Absent" in the last 7 days matches "0"

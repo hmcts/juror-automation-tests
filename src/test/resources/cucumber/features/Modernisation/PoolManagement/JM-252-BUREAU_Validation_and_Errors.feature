@@ -804,7 +804,7 @@ Feature: JM-252_Validation_and_Errors
     #Change pool no
     Then I click the change link for the pool number
     And I see "Change pool number" on the page
-    Then I set "Pool number" to "457250000"
+    Then I set "Pool number" to "457260000"
     Then I press the "Change" button
 
     Then I see "Pool number is wrong" on the page
