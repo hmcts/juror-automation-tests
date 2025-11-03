@@ -3,7 +3,7 @@ Feature: JM-6259 - As a bureau officer I need to be able to send/resend a summon
   @JurorTransformation
   Scenario Outline: As a Bureau officer send/resend a summons reminder letter
 
-    Given I am on "Bureau" "demo"
+    Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |

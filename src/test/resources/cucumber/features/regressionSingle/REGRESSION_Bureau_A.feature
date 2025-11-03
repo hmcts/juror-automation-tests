@@ -178,8 +178,8 @@ Scenario Outline: Bureau A script, steps 24 onwards
 	And I choose the "No" radio button
 	And I press the "Continue" button
 
-	And I set "First name" to "FIRSTNAMECHANGED" using JS
-	And I set "Last name" to "LASTNAMECHANGED" using JS
+	And I set "First name" to "FIRSTNAMECHANGED"
+	And I set "Last name" to "LASTNAMECHANGED"
 
 	And I set "Title" to "TITLEA"
 	And I press the "Continue" button
