@@ -3288,13 +3288,13 @@ Feature: Regression English_1st_Deferral
 
     And I click link with ID "selectAllLink"
     And I press the "Send to..." button
-    And I set input field with "id" of "sendToOfficer" to "CPASS"
+    And I set input field with "id" of "sendToOfficer" to "ARAMIS1"
     And I press the "Send" button
     And I press the "Send" button
     Then I see "Your work" on the page
 
     Given I am on "Bureau" "ithc"
-    When I log in as "CPASS"
+    When I log in as "ARAMIS1"
     Then I see "<juror_number>" on the page
     Then I see "<juror_number>" has reply type indicator "Deferral"
 

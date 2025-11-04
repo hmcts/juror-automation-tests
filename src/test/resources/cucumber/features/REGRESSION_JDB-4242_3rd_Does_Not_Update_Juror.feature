@@ -238,7 +238,7 @@ Examples:
 @RegressionWelsh
 Scenario Outline: English 3rd Party Welsh - contact details different for juror
 
-	Given I am on the welsh version of "Public" "test"
+	Given I am on the welsh version of "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -381,7 +381,7 @@ Scenario Outline: English 3rd Party Welsh - contact details different for juror
 	Then I see "Os byddwn yn cysylltu â nhw, efallai bydd angen iddynt ddarparu eu rhif rheithiwr. Mae'r rhif hefyd ar y llythyr bu inni anfon atynt." on the page
 	
 	#Bureau process reply
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "ithc"
 	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
@@ -395,9 +395,8 @@ Scenario Outline: English 3rd Party Welsh - contact details different for juror
 	Then I see the juror record updated banner containing "Responded"
 	
 	Then on "JUROR_MOD" . "JUROR" I see "RESPONDED" is "Y" where "JUROR_NUMBER" is "<juror_number>"
-	Then on "JUROR_MOD" . "JUROR" I see "H_EMAIL" is null where "JUROR_NUMBER" is "<juror_number>"
-	Then on "JUROR_MOD" . "JUROR" I see "M_PHONE" is null where "JUROR_NUMBER" is "<juror_number>"
-	Then on "JUROR_MOD" . "JUROR" I see "H_PHONE" is null where "JUROR_NUMBER" is "<juror_number>"
+	Then on "JUROR_MOD" . "JUROR" I see "H_EMAIL" is "different@email.com" where "JUROR_NUMBER" is "<juror_number>"
+	Then on "JUROR_MOD" . "JUROR" I see "PHONE_NUMBER_COMBINED" is "07999999999" where "JUROR_NUMBER" is "<juror_number>"
 	Then on "JUROR_MOD" . "JUROR" I see "W_PHONE" is null where "JUROR_NUMBER" is "<juror_number>"
 
 Examples:
@@ -407,7 +406,7 @@ Examples:
 @Regression
 Scenario Outline: English 3rd Party Straight Through - Juror already has contact details
 
-	Given I am on "Public" "demo"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -425,7 +424,7 @@ Scenario Outline: English 3rd Party Straight Through - Juror already has contact
 	| <juror_number>	| <pool_number>	| <last_name>	| <postcode>| <email>	|
 	
 	#Bureau process reply
-	Given I am on "Bureau" "demo"
+	Given I am on "Bureau" "ithc"
 	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
