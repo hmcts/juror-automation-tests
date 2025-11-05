@@ -1,6 +1,6 @@
 #!groovy
 properties([
-  pipelineTriggers([cron('15 15 * * 1-5')]),
+  pipelineTriggers([cron('15 14 * * 1-5')]),
   parameters([
     choice(choices: ['chrome', 'firefox', 'msedge'], name: 'Browser'),
     choice(choices: ['ithc', 'test', 'stg', 'demo'], name: 'EnvironmentChoice'),
