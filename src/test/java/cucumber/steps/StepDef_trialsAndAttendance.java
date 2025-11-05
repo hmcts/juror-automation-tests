@@ -214,6 +214,7 @@ public class StepDef_trialsAndAttendance {
 
 	@When("^I input juror \"([^\"]*)\" to be checked in$")
 	public void checkInJuror(String checkIn) {
+		NAV.waitForPageLoad(1);
 		TRL.jurorCheckIn(checkIn);
 	}
 

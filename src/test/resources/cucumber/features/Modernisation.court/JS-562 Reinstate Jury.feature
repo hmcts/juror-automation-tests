@@ -21,6 +21,8 @@ Feature: As a court officer I want to reinstate a jury for active trial
       | 415   | <juror_number12> | <pool_number01> | 0                        | 400   |
       | 415   | <juror_number13> | <pool_number01> | 0                        | 400   |
       | 415   | <juror_number14> | <pool_number01> | 0                        | 400   |
+      | 415   | <juror_number15> | <pool_number01> | 0                        | 400   |
+      | 415   | <juror_number16> | <pool_number01> | 0                        | 400   |
 
     Then a new pool is inserted for where record has transferred to the court new schema
       | part_no          | pool_no         | owner |
@@ -38,7 +40,8 @@ Feature: As a court officer I want to reinstate a jury for active trial
       | <juror_number12> | <pool_number01> | 415   |
       | <juror_number13> | <pool_number01> | 415   |
       | <juror_number14> | <pool_number01> | 415   |
-
+      | <juror_number15> | <pool_number01> | 415   |
+      | <juror_number16> | <pool_number01> | 415   |
 
     Given I set pool "<pool_number01>" loc_code to be "767"
 
@@ -47,48 +50,23 @@ Feature: As a court officer I want to reinstate a jury for active trial
     #log on and search for juror
     And I log in as "MODTESTCOURT" selecting court "767"
 
-    #respond jurors and process
-    Then the user searches for juror record "<juror_number01>" from the global search bar
-    And I record a happy path paper summons response and process now
-
-    Then the user searches for juror record "<juror_number02>" from the global search bar
-    And I record a happy path paper summons response and process now
-
-    Then the user searches for juror record "<juror_number03>" from the global search bar
-    And I record a happy path paper summons response and process now
-
-    Then the user searches for juror record "<juror_number04>" from the global search bar
-    And I record a happy path paper summons response and process now
-
-    Then the user searches for juror record "<juror_number05>" from the global search bar
-    And I record a happy path paper summons response and process now
-
-    Then the user searches for juror record "<juror_number06>" from the global search bar
-    And I record a happy path paper summons response and process now
-
-    Then the user searches for juror record "<juror_number07>" from the global search bar
-    And I record a happy path paper summons response and process now
-
-    Then the user searches for juror record "<juror_number08>" from the global search bar
-    And I record a happy path paper summons response and process now
-
-    Then the user searches for juror record "<juror_number09>" from the global search bar
-    And I record a happy path paper summons response and process now
-
-    Then the user searches for juror record "<juror_number10>" from the global search bar
-    And I record a happy path paper summons response and process now
-
-    Then the user searches for juror record "<juror_number11>" from the global search bar
-    And I record a happy path paper summons response and process now
-
-    Then the user searches for juror record "<juror_number12>" from the global search bar
-    And I record a happy path paper summons response and process now
-
-    Then the user searches for juror record "<juror_number13>" from the global search bar
-    And I record a happy path paper summons response and process now
-
-    Then the user searches for juror record "<juror_number14>" from the global search bar
-    And I record a happy path paper summons response and process now
+    #respond jurors
+    And I update juror "<juror_number01>" to have a status of responded in order to record attendance
+    And I update juror "<juror_number02>" to have a status of responded in order to record attendance
+    And I update juror "<juror_number03>" to have a status of responded in order to record attendance
+    And I update juror "<juror_number04>" to have a status of responded in order to record attendance
+    And I update juror "<juror_number05>" to have a status of responded in order to record attendance
+    And I update juror "<juror_number06>" to have a status of responded in order to record attendance
+    And I update juror "<juror_number07>" to have a status of responded in order to record attendance
+    And I update juror "<juror_number08>" to have a status of responded in order to record attendance
+    And I update juror "<juror_number09>" to have a status of responded in order to record attendance
+    And I update juror "<juror_number10>" to have a status of responded in order to record attendance
+    And I update juror "<juror_number11>" to have a status of responded in order to record attendance
+    And I update juror "<juror_number12>" to have a status of responded in order to record attendance
+    And I update juror "<juror_number13>" to have a status of responded in order to record attendance
+    And I update juror "<juror_number14>" to have a status of responded in order to record attendance
+    And I update juror "<juror_number15>" to have a status of responded in order to record attendance
+    And I update juror "<juror_number16>" to have a status of responded in order to record attendance
 
     #check in jurors to put on a trial
     And I press the "Apps" button
@@ -155,11 +133,17 @@ Feature: As a court officer I want to reinstate a jury for active trial
     And I press the "Check in juror" button
     And I see "<juror_number14>" on the page
 
+    And I input juror "<juror_number15>" to be checked in
+    And I press the "Check in juror" button
+    And I see "<juror_number14>" on the page
+
+    And I input juror "<juror_number16>" to be checked in
+    And I press the "Check in juror" button
+    And I see "<juror_number14>" on the page
+
     #Create trial
     And I press the "Apps" button
     And I click on the "Trial management" link
-    
-    And I click on the "T202511111" link
 
     And I press the "Create a trial" button
     And I see "Create a trial" on the page
@@ -182,19 +166,19 @@ Feature: As a court officer I want to reinstate a jury for active trial
     And I see "Generate a panel" on the page
     And I see "Which jurors do you want to generate a panel from?" on the page
     And I set the radio button to "All available jurors"
-    And I set "Number of jurors needed on this panel" to "14"
+    And I set "Number of jurors needed on this panel" to "16"
     And I press the "Continue" button
 
     And I select the Select all checkbox on the trial
     And I press the "Empanel jury" button
-    And I set input field with "id" of "numberOfJurors" to "12"
+    And I set input field with "id" of "numberOfJurors" to "14"
     And I press the "Continue" button
-    And I select the radio button with name "<juror_number13>" and value "unused"
-    And I select the radio button with name "<juror_number14>" and value "challenged"
+    And I select the radio button with name "<juror_number15>" and value "unused"
+    And I select the radio button with name "<juror_number16>" and value "challenged"
     And I press the "Confirm and empanel jury" button
 
     #return jury
-    And I check the select all checkbox
+    And I select the Select all checkbox on the trial
     And I press the "Return jury" button
     And I see "How do you want to return the jurors you selected?" on the page
     And I set the radio button to "Return and confirm attendance"
@@ -216,20 +200,19 @@ Feature: As a court officer I want to reinstate a jury for active trial
 
     #return juror
     And I press the "Return" button
-    And I see "12 jurors returned" on the page
 
     #do not end trial
     And I choose the "No" radio button
     And I press the "Continue" button
-    And I see "12 jurors returned" on the page
-    
+    And I see "14 jurors returned" on the page
+
     #reinstate jury
     When I press the "Reinstate jury" button
     Then I see "You can reinstate jurors who were previously on this trial." on the page
-    And I see "0 of 12 selected" on the page
+    And I see "0 of 14 selected" on the page
     And I check the select all checkbox
     And I press the "Reinstate" button
-    Then I see "12 jurors reinstated" on the page
+    Then I see "14 jurors reinstated" on the page
     And I see "Juror" in the same row as "<juror_number01>"
     And I see "Juror" in the same row as "<juror_number02>"
     And I see "Juror" in the same row as "<juror_number03>"
@@ -242,9 +225,26 @@ Feature: As a court officer I want to reinstate a jury for active trial
     And I see "Juror" in the same row as "<juror_number10>"
     And I see "Juror" in the same row as "<juror_number11>"
     And I see "Juror" in the same row as "<juror_number12>"
-    And I do not see "<juror_number13>" on the page
-    And I do not see "<juror_number14>" on the page
+    And I see "Juror" in the same row as "<juror_number13>"
+    And I see "Juror" in the same row as "<juror_number14>"
+    And I do not see "<juror_number15>" on the page
+    And I do not see "<juror_number16>" on the page
+
+    Then on "JUROR_MOD" . "JUROR_POOL" I see "STATUS" is "4" where "JUROR_NUMBER" is "<juror_number01>"
+    Then on "JUROR_MOD" . "JUROR_POOL" I see "STATUS" is "4" where "JUROR_NUMBER" is "<juror_number02>"
+    Then on "JUROR_MOD" . "JUROR_POOL" I see "STATUS" is "4" where "JUROR_NUMBER" is "<juror_number03>"
+    Then on "JUROR_MOD" . "JUROR_POOL" I see "STATUS" is "4" where "JUROR_NUMBER" is "<juror_number04>"
+    Then on "JUROR_MOD" . "JUROR_POOL" I see "STATUS" is "4" where "JUROR_NUMBER" is "<juror_number05>"
+    Then on "JUROR_MOD" . "JUROR_POOL" I see "STATUS" is "4" where "JUROR_NUMBER" is "<juror_number06>"
+    Then on "JUROR_MOD" . "JUROR_POOL" I see "STATUS" is "4" where "JUROR_NUMBER" is "<juror_number07>"
+    Then on "JUROR_MOD" . "JUROR_POOL" I see "STATUS" is "4" where "JUROR_NUMBER" is "<juror_number08>"
+    Then on "JUROR_MOD" . "JUROR_POOL" I see "STATUS" is "4" where "JUROR_NUMBER" is "<juror_number09>"
+    Then on "JUROR_MOD" . "JUROR_POOL" I see "STATUS" is "4" where "JUROR_NUMBER" is "<juror_number10>"
+    Then on "JUROR_MOD" . "JUROR_POOL" I see "STATUS" is "4" where "JUROR_NUMBER" is "<juror_number11>"
+    Then on "JUROR_MOD" . "JUROR_POOL" I see "STATUS" is "4" where "JUROR_NUMBER" is "<juror_number12>"
+    Then on "JUROR_MOD" . "JUROR_POOL" I see "STATUS" is "4" where "JUROR_NUMBER" is "<juror_number13>"
+    Then on "JUROR_MOD" . "JUROR_POOL" I see "STATUS" is "4" where "JUROR_NUMBER" is "<juror_number14>"
 
     Examples:
-      | juror_number01 | juror_number02 | juror_number03 | juror_number04 | juror_number05 | juror_number06 | juror_number07 | juror_number08 | juror_number09 | juror_number10 | juror_number11 | juror_number12 | juror_number13| juror_number14 |  pool_number01 |
-      | 076798031      | 076798032      | 076798033      | 076798034      | 076798035      | 076798036      | 076798037      | 076798038      | 076798039      | 076798040      | 076798041      | 076798042      | 076798043     | 076798044      | 767980915      |
+      | juror_number01 | juror_number02 | juror_number03 | juror_number04 | juror_number05 | juror_number06 | juror_number07 | juror_number08 | juror_number09 | juror_number10 | juror_number11 | juror_number12 | juror_number13| juror_number14 | juror_number15 | juror_number16 | pool_number01 |
+      | 076798031      | 076798032      | 076798033      | 076798034      | 076798035      | 076798036      | 076798037      | 076798038      | 076798039      | 076798040      | 076798041      | 076798042      | 076798043     | 076798044      | 076798045      | 076798046      | 767980915      |
