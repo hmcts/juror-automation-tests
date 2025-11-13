@@ -2792,25 +2792,29 @@ public class DatabaseTesterNewSchemaDesign {
 		else
 			conn = db.getConnection("demo");
 
-		String datePattern = "YYYY-MM-DD";
-		Calendar calendar = Calendar.getInstance();
-		calendar.add(Calendar.WEEK_OF_MONTH, noOfWeeks);
+		LocalDate localDate = LocalDate.now().plusWeeks(noOfWeeks);
 
-		LocalDate localDate = calendar.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-		Date mondayDate = Date.from(localDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
-
-		holidayDate = new SimpleDateFormat(datePattern).format((mondayDate).getTime());
+		holidayDate = localDate.toString();
 		holidayOwner = owner;
 
 		try {
+			pStmt = conn.prepareStatement(
+					"INSERT INTO JUROR_MOD.HOLIDAY(LOC_CODE, HOLIDAY, DESCRIPTION, PUBLIC) VALUES (?, ?, ?, ?)"
+			);
+			pStmt.setString(1, owner);
+			pStmt.setDate(2, java.sql.Date.valueOf(localDate));
+			pStmt.setString(3, "Test holiday");
+			pStmt.setBoolean(4, false);
 
-			pStmt = conn.prepareStatement("INSERT INTO JUROR_MOD.HOLIDAY(LOC_CODE,HOLIDAY,DESCRIPTION,PUBLIC)"
-					+ "VALUES ('" + owner + "','" + mondayDate + "','Test holiday', 'N')");
-			pStmt.execute();
+			pStmt.executeUpdate();
+			conn.commit();
+
+			log.info("Successfully inserted holiday for owner: " + owner + " on date: " + localDate);
 
 		} catch (SQLException e) {
-			e.printStackTrace();
-			log.error("Message:inserted bank holiday for '" + owner + "' on '" + mondayDate + "' " + e.getMessage());
+			log.error("Message: failed to insert bank holiday for date: " + localDate, e);
+			throw e;
+
 		} finally {
 			conn.commit();
 			pStmt.close();
