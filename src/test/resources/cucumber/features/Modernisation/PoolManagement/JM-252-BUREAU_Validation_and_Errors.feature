@@ -1146,7 +1146,7 @@ Feature: JM-252_Validation_and_Errors
     Given I am on "Bureau" "demo"
 
     And I log in as "<user>"
-
+    And I have deleted all holidays new schema
     When I navigate to the pool request screen
 
     When I press the "Create pool" button
