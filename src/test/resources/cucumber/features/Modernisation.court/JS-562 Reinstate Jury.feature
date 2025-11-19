@@ -231,22 +231,22 @@ Feature: As a court officer I want to reinstate a jury for active trial
     And I do not see "<juror_number15>" on the page
     And I do not see "<juror_number16>" on the page
 
-    Then on "JUROR_MOD" . "JUROR_POOL" I see "STATUS" is "4" where "JUROR_NUMBER" is "<juror_number01>"
-    Then on "JUROR_MOD" . "JUROR_POOL" I see "STATUS" is "4" where "JUROR_NUMBER" is "<juror_number02>"
-    Then on "JUROR_MOD" . "JUROR_POOL" I see "STATUS" is "4" where "JUROR_NUMBER" is "<juror_number03>"
-    Then on "JUROR_MOD" . "JUROR_POOL" I see "STATUS" is "4" where "JUROR_NUMBER" is "<juror_number04>"
-    Then on "JUROR_MOD" . "JUROR_POOL" I see "STATUS" is "4" where "JUROR_NUMBER" is "<juror_number05>"
-    Then on "JUROR_MOD" . "JUROR_POOL" I see "STATUS" is "4" where "JUROR_NUMBER" is "<juror_number06>"
-    Then on "JUROR_MOD" . "JUROR_POOL" I see "STATUS" is "4" where "JUROR_NUMBER" is "<juror_number07>"
-    Then on "JUROR_MOD" . "JUROR_POOL" I see "STATUS" is "4" where "JUROR_NUMBER" is "<juror_number08>"
-    Then on "JUROR_MOD" . "JUROR_POOL" I see "STATUS" is "4" where "JUROR_NUMBER" is "<juror_number09>"
-    Then on "JUROR_MOD" . "JUROR_POOL" I see "STATUS" is "4" where "JUROR_NUMBER" is "<juror_number10>"
-    Then on "JUROR_MOD" . "JUROR_POOL" I see "STATUS" is "4" where "JUROR_NUMBER" is "<juror_number11>"
-    Then on "JUROR_MOD" . "JUROR_POOL" I see "STATUS" is "4" where "JUROR_NUMBER" is "<juror_number12>"
-    Then on "JUROR_MOD" . "JUROR_POOL" I see "STATUS" is "4" where "JUROR_NUMBER" is "<juror_number13>"
-    Then on "JUROR_MOD" . "JUROR_POOL" I see "STATUS" is "4" where "JUROR_NUMBER" is "<juror_number14>"
-    Then on "JUROR_MOD" . "JUROR_POOL" I see "STATUS" is "2" where "JUROR_NUMBER" is "<juror_number15>"
-    Then on "JUROR_MOD" . "JUROR_POOL" I see "STATUS" is "2" where "JUROR_NUMBER" is "<juror_number16>"
+    Then on "JUROR_MOD" . "JUROR_POOL" I see "STATUS" is "4" where "JUROR_NUMBER" is "<juror_number01>" new schema
+    Then on "JUROR_MOD" . "JUROR_POOL" I see "STATUS" is "4" where "JUROR_NUMBER" is "<juror_number02>" new schema
+    Then on "JUROR_MOD" . "JUROR_POOL" I see "STATUS" is "4" where "JUROR_NUMBER" is "<juror_number03>" new schema
+    Then on "JUROR_MOD" . "JUROR_POOL" I see "STATUS" is "4" where "JUROR_NUMBER" is "<juror_number04>" new schema
+    Then on "JUROR_MOD" . "JUROR_POOL" I see "STATUS" is "4" where "JUROR_NUMBER" is "<juror_number05>" new schema
+    Then on "JUROR_MOD" . "JUROR_POOL" I see "STATUS" is "4" where "JUROR_NUMBER" is "<juror_number06>" new schema
+    Then on "JUROR_MOD" . "JUROR_POOL" I see "STATUS" is "4" where "JUROR_NUMBER" is "<juror_number07>" new schema
+    Then on "JUROR_MOD" . "JUROR_POOL" I see "STATUS" is "4" where "JUROR_NUMBER" is "<juror_number08>" new schema
+    Then on "JUROR_MOD" . "JUROR_POOL" I see "STATUS" is "4" where "JUROR_NUMBER" is "<juror_number09>" new schema
+    Then on "JUROR_MOD" . "JUROR_POOL" I see "STATUS" is "4" where "JUROR_NUMBER" is "<juror_number10>" new schema
+    Then on "JUROR_MOD" . "JUROR_POOL" I see "STATUS" is "4" where "JUROR_NUMBER" is "<juror_number11>" new schema
+    Then on "JUROR_MOD" . "JUROR_POOL" I see "STATUS" is "4" where "JUROR_NUMBER" is "<juror_number12>" new schema
+    Then on "JUROR_MOD" . "JUROR_POOL" I see "STATUS" is "4" where "JUROR_NUMBER" is "<juror_number13>" new schema
+    Then on "JUROR_MOD" . "JUROR_POOL" I see "STATUS" is "4" where "JUROR_NUMBER" is "<juror_number14>" new schema
+    Then on "JUROR_MOD" . "JUROR_POOL" I see "STATUS" is "2" where "JUROR_NUMBER" is "<juror_number15>" new schema
+    Then on "JUROR_MOD" . "JUROR_POOL" I see "STATUS" is "2" where "JUROR_NUMBER" is "<juror_number16>" new schema
 
     Examples:
       | juror_number01 | juror_number02 | juror_number03 | juror_number04 | juror_number05 | juror_number06 | juror_number07 | juror_number08 | juror_number09 | juror_number10 | juror_number11 | juror_number12 | juror_number13| juror_number14 | juror_number15 | juror_number16 | pool_number01 |
