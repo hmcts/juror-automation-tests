@@ -4,7 +4,7 @@ Feature: As a court officer I want to reinstate a jury for active trial
   Scenario Outline: Reinstate Jury
 
     Given I am on "Bureau" "ithc"
-
+#
     Given a bureau owned pool is created with jurors
       | court | juror_number     | pool_number     | att_date_weeks_in_future | owner |
       | 415   | <juror_number01> | <pool_number01> | 0                        | 400   |
@@ -162,6 +162,7 @@ Feature: As a court officer I want to reinstate a jury for active trial
     And I set "Courtroom" to "JURY ASSEMBLY ROOM"
     And I press the "Create trial" button
 
+    And I see "T202511111" on the page
     And I press the "Generate panel" button
     And I see "Generate a panel" on the page
     And I see "Which jurors do you want to generate a panel from?" on the page
@@ -178,7 +179,7 @@ Feature: As a court officer I want to reinstate a jury for active trial
     And I press the "Confirm and empanel jury" button
 
     #return jury
-    And I check the select all checkbox
+    And I select the Select all checkbox on the trial
     And I press the "Return jury" button
     And I see "How do you want to return the jurors you selected?" on the page
     And I set the radio button to "Return and confirm attendance"
@@ -200,20 +201,19 @@ Feature: As a court officer I want to reinstate a jury for active trial
 
     #return juror
     And I press the "Return" button
-    And I see "12 jurors returned" on the page
 
     #do not end trial
     And I choose the "No" radio button
     And I press the "Continue" button
-    And I see "12 jurors returned" on the page
-    
+    And I see "14 jurors returned" on the page
+
     #reinstate jury
     When I press the "Reinstate jury" button
     Then I see "You can reinstate jurors who were previously on this trial." on the page
-    And I see "0 of 12 selected" on the page
+    And I see "0 of 14 selected" on the page
     And I check the select all checkbox
     And I press the "Reinstate" button
-    Then I see "12 jurors reinstated" on the page
+    Then I see "14 jurors reinstated" on the page
     And I see "Juror" in the same row as "<juror_number01>"
     And I see "Juror" in the same row as "<juror_number02>"
     And I see "Juror" in the same row as "<juror_number03>"
@@ -226,8 +226,27 @@ Feature: As a court officer I want to reinstate a jury for active trial
     And I see "Juror" in the same row as "<juror_number10>"
     And I see "Juror" in the same row as "<juror_number11>"
     And I see "Juror" in the same row as "<juror_number12>"
-    And I do not see "<juror_number13>" on the page
-    And I do not see "<juror_number14>" on the page
+    And I see "Juror" in the same row as "<juror_number13>"
+    And I see "Juror" in the same row as "<juror_number14>"
+    And I do not see "<juror_number15>" on the page
+    And I do not see "<juror_number16>" on the page
+
+    Then on "JUROR_MOD" . "JUROR_POOL" I see "STATUS" is "4" where "JUROR_NUMBER" is "<juror_number01>"
+    Then on "JUROR_MOD" . "JUROR_POOL" I see "STATUS" is "4" where "JUROR_NUMBER" is "<juror_number02>"
+    Then on "JUROR_MOD" . "JUROR_POOL" I see "STATUS" is "4" where "JUROR_NUMBER" is "<juror_number03>"
+    Then on "JUROR_MOD" . "JUROR_POOL" I see "STATUS" is "4" where "JUROR_NUMBER" is "<juror_number04>"
+    Then on "JUROR_MOD" . "JUROR_POOL" I see "STATUS" is "4" where "JUROR_NUMBER" is "<juror_number05>"
+    Then on "JUROR_MOD" . "JUROR_POOL" I see "STATUS" is "4" where "JUROR_NUMBER" is "<juror_number06>"
+    Then on "JUROR_MOD" . "JUROR_POOL" I see "STATUS" is "4" where "JUROR_NUMBER" is "<juror_number07>"
+    Then on "JUROR_MOD" . "JUROR_POOL" I see "STATUS" is "4" where "JUROR_NUMBER" is "<juror_number08>"
+    Then on "JUROR_MOD" . "JUROR_POOL" I see "STATUS" is "4" where "JUROR_NUMBER" is "<juror_number09>"
+    Then on "JUROR_MOD" . "JUROR_POOL" I see "STATUS" is "4" where "JUROR_NUMBER" is "<juror_number10>"
+    Then on "JUROR_MOD" . "JUROR_POOL" I see "STATUS" is "4" where "JUROR_NUMBER" is "<juror_number11>"
+    Then on "JUROR_MOD" . "JUROR_POOL" I see "STATUS" is "4" where "JUROR_NUMBER" is "<juror_number12>"
+    Then on "JUROR_MOD" . "JUROR_POOL" I see "STATUS" is "4" where "JUROR_NUMBER" is "<juror_number13>"
+    Then on "JUROR_MOD" . "JUROR_POOL" I see "STATUS" is "4" where "JUROR_NUMBER" is "<juror_number14>"
+    Then on "JUROR_MOD" . "JUROR_POOL" I see "STATUS" is "2" where "JUROR_NUMBER" is "<juror_number15>"
+    Then on "JUROR_MOD" . "JUROR_POOL" I see "STATUS" is "2" where "JUROR_NUMBER" is "<juror_number16>"
 
     Examples:
       | juror_number01 | juror_number02 | juror_number03 | juror_number04 | juror_number05 | juror_number06 | juror_number07 | juror_number08 | juror_number09 | juror_number10 | juror_number11 | juror_number12 | juror_number13| juror_number14 | juror_number15 | juror_number16 | pool_number01 |
