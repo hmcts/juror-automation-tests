@@ -147,6 +147,7 @@ Feature: As a court officer I want to have a dashboard on the juror application 
     Given I delete trial "T202544321" and associated records
     Given I delete trial "T202544457" and associated records
     Given I delete utilisation reports for court "767"
+    Given I have updated the juror next date for court dashboard
 
     #log on and search for juror
     And I log in as "MODTESTCOURT" selecting court "767"
@@ -163,41 +164,18 @@ Feature: As a court officer I want to have a dashboard on the juror application 
     And I set "What help does this juror need at court" to "Nutritional Guidance"
     And I press the "Save" button
 
-    Then the user searches for juror record "<juror_number02>" from the global search bar
-    And I record a happy path paper summons response and process now
-
-    Then the user searches for juror record "<juror_number03>" from the global search bar
-    And I record a happy path paper summons response and process now
-
-    Then the user searches for juror record "<juror_number06>" from the global search bar
-    And I record a happy path paper summons response and process now
-
-    Then the user searches for juror record "<juror_number07>" from the global search bar
-    And I record a happy path paper summons response and process now
-
-    Then the user searches for juror record "<juror_number08>" from the global search bar
-    And I record a happy path paper summons response and process now
-
-    Then the user searches for juror record "<juror_number11>" from the global search bar
-    And I record a happy path paper summons response and process now
-
-    Then the user searches for juror record "<juror_number12>" from the global search bar
-    And I record a happy path paper summons response and process now
-
-    Then the user searches for juror record "<juror_number13>" from the global search bar
-    And I record a happy path paper summons response and process now
-
-    Then the user searches for juror record "<juror_number16>" from the global search bar
-    And I record a happy path paper summons response and process now
-
-    Then the user searches for juror record "<juror_number17>" from the global search bar
-    And I record a happy path paper summons response and process now
-
-    Then the user searches for juror record "<juror_number18>" from the global search bar
-    And I record a happy path paper summons response and process now
-
-    Then the user searches for juror record "<juror_number21>" from the global search bar
-    And I record a happy path paper summons response and process now
+    And I update juror "<juror_number02>" to have a status of responded in order to record attendance
+    And I update juror "<juror_number03>" to have a status of responded in order to record attendance
+    And I update juror "<juror_number06>" to have a status of responded in order to record attendance
+    And I update juror "<juror_number07>" to have a status of responded in order to record attendance
+    And I update juror "<juror_number08>" to have a status of responded in order to record attendance
+    And I update juror "<juror_number11>" to have a status of responded in order to record attendance
+    And I update juror "<juror_number12>" to have a status of responded in order to record attendance
+    And I update juror "<juror_number13>" to have a status of responded in order to record attendance
+    And I update juror "<juror_number16>" to have a status of responded in order to record attendance
+    And I update juror "<juror_number17>" to have a status of responded in order to record attendance
+    And I update juror "<juror_number18>" to have a status of responded in order to record attendance
+    And I update juror "<juror_number21>" to have a status of responded in order to record attendance
 
     #respond 4th of each pool and do not process
     Then the user searches for juror record "<juror_number04>" from the global search bar
