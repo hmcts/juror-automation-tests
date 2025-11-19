@@ -1143,7 +1143,7 @@ Feature: JM-252_Validation_and_Errors
   @JurorTransformation
   Scenario Outline: Test to assure that a warning appears if the attendance date is set to a bank holiday date
 
-    Given I am on "Bureau" "demo"
+    Given I am on "Bureau" "ithc"
 
     And I log in as "<user>"
     And I have deleted all holidays new schema

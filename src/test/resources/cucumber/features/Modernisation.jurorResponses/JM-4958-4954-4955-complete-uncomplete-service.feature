@@ -1,9 +1,9 @@
 Feature: JM-4958, JM-4954, JM-4955 As a jury officer i need to be able to complete a jurors service
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Complete Service as a jury officer - Bulk flow
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number  	| pool_number	| att_date_weeks_in_future	| owner |
@@ -42,7 +42,7 @@ Feature: JM-4958, JM-4954, JM-4955 As a jury officer i need to be able to comple
       |MODTESTCOURT |041500036    |041500037    |415300127  |
 
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Complete Service as a jury officer - Bulk flow - Unhappy Path
     Given I am on "Bureau" "test"
 
@@ -89,7 +89,7 @@ Feature: JM-4958, JM-4954, JM-4955 As a jury officer i need to be able to comple
       |user			|juror_number1|juror_number2|pool_number |
       |MODTESTCOURT |041500038    |041500039    |415300128   |
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Complete Service as a jury officer - Individual flow
 
     Given I am on "Bureau" "test"

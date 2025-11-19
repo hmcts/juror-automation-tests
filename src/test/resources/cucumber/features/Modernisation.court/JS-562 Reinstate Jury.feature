@@ -4,7 +4,7 @@ Feature: As a court officer I want to reinstate a jury for active trial
   Scenario Outline: Reinstate Jury
 
     Given I am on "Bureau" "ithc"
-
+#
     Given a bureau owned pool is created with jurors
       | court | juror_number     | pool_number     | att_date_weeks_in_future | owner |
       | 415   | <juror_number01> | <pool_number01> | 0                        | 400   |
@@ -162,6 +162,7 @@ Feature: As a court officer I want to reinstate a jury for active trial
     And I set "Courtroom" to "JURY ASSEMBLY ROOM"
     And I press the "Create trial" button
 
+    And I see "T202511111" on the page
     And I press the "Generate panel" button
     And I see "Generate a panel" on the page
     And I see "Which jurors do you want to generate a panel from?" on the page
@@ -244,6 +245,8 @@ Feature: As a court officer I want to reinstate a jury for active trial
     Then on "JUROR_MOD" . "JUROR_POOL" I see "STATUS" is "4" where "JUROR_NUMBER" is "<juror_number12>"
     Then on "JUROR_MOD" . "JUROR_POOL" I see "STATUS" is "4" where "JUROR_NUMBER" is "<juror_number13>"
     Then on "JUROR_MOD" . "JUROR_POOL" I see "STATUS" is "4" where "JUROR_NUMBER" is "<juror_number14>"
+    Then on "JUROR_MOD" . "JUROR_POOL" I see "STATUS" is "2" where "JUROR_NUMBER" is "<juror_number15>"
+    Then on "JUROR_MOD" . "JUROR_POOL" I see "STATUS" is "2" where "JUROR_NUMBER" is "<juror_number16>"
 
     Examples:
       | juror_number01 | juror_number02 | juror_number03 | juror_number04 | juror_number05 | juror_number06 | juror_number07 | juror_number08 | juror_number09 | juror_number10 | juror_number11 | juror_number12 | juror_number13| juror_number14 | juror_number15 | juror_number16 | pool_number01 |
