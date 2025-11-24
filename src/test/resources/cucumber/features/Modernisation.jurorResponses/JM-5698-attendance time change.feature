@@ -1,9 +1,9 @@
 Feature: As a jury officer I need to send a attendance time change message
 
-  @JurorTransformationMulti @NewSchemaConverted @Messages
+  @JurorTransformationMulti
   Scenario Outline: Send attendance time change message for Juror using Text including error checks
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number      | pool_number	    | att_date_weeks_in_future	| owner |

@@ -369,21 +369,33 @@ public class DatabaseTesterNewSchemaDesign {
 
 	}
 
-	public void onDatabaseTable_seeColWithColValue_whereColColvalueNSD(String environment, String database, String databaseTable,
-																	   String expectedColumn, String expectedColumnValue, String whereColumn, String whereColumnValue) throws SQLException {
+	public void onDatabaseTable_seeColWithColValue_whereColColvalueNSD(
+			String environment, String database, String databaseTable,
+			String expectedColumn, String expectedColumnValue,
+			String whereColumn, String whereColumnValue) throws SQLException {
 
-		rowsExistIn_Where(
-				1,
-				environment,
-				database,
-				databaseTable,
-				expectedColumn,
-				expectedColumnValue,
-				whereColumn,
-				whereColumnValue,
-				whereColumn,
-				Integer.valueOf(whereColumnValue)
-		);
+		try {
+			rowsExistIn_Where(
+					1,
+					environment,
+					database,
+					databaseTable,
+					expectedColumn,
+					expectedColumnValue,
+					whereColumn,
+					whereColumnValue,
+					whereColumn,
+					Integer.valueOf(whereColumnValue)
+			);
+
+			System.out.println("[check passed: " + expectedColumn + " = " + expectedColumnValue +
+					" where " + whereColumn + " = " + whereColumnValue);
+
+		} catch (Exception e) {
+			System.err.println("check failed for " + database + "." + databaseTable +
+					" where " + whereColumn + " = " + whereColumnValue + ". Reason: " + e.getMessage());
+			throw e;
+		}
 	}
 
 	public void onDatabaseTable_seeColWithColValue_whereColColvalueNSD(String environment, String database,
@@ -5918,6 +5930,86 @@ public class DatabaseTesterNewSchemaDesign {
 		} catch (SQLException e) {
 			log.error("Fallback cleanup failed", e);
 			throw e;
+		}
+	}
+	public void updateJurorNextDateIfDue() throws SQLException {
+
+		db = new DBConnection();
+		String env_property = System.getProperty("env.database");
+		if (env_property != null)
+			conn = db.getConnection(env_property);
+		else
+			conn = db.getConnection("demo");
+
+		PreparedStatement pStmt = null;
+		ResultSet rs = null;
+
+		try {
+
+			LocalDate today = LocalDate.now();
+			LocalDate nextWeek = today.plusWeeks(1);
+
+			log.info("Checking for jurors with next_date = " + today + " to update");
+
+			String countSQL =
+					"SELECT COUNT(*) FROM juror_mod.juror_pool " +
+							"WHERE owner = ? " +
+							"AND next_date = ? " +
+							"AND status = ? " +
+							"AND juror_number LIKE ? " +
+							"AND pool_number LIKE ?";
+
+			pStmt = conn.prepareStatement(countSQL);
+			pStmt.setString(1, "415");
+			pStmt.setDate(2, java.sql.Date.valueOf(today));
+			pStmt.setInt(3, 2);
+			pStmt.setString(4, "0767%");
+			pStmt.setString(5, "767%");
+
+			rs = pStmt.executeQuery();
+
+			int rowCount = 0;
+			if (rs.next()) {
+				rowCount = rs.getInt(1);
+			}
+
+			log.info("Rows found matching criteria => " + rowCount);
+
+			if (rowCount > 0) {
+
+				log.info("Updating next_date to => " + nextWeek + " for " + rowCount + " row(s)");
+
+				String updateSQL =
+						"UPDATE juror_mod.juror_pool SET next_date = ? " +
+								"WHERE owner = ? " +
+								"AND next_date = ? " +
+								"AND status = ? " +
+								"AND juror_number LIKE ? " +
+								"AND pool_number LIKE ?";
+
+				pStmt = conn.prepareStatement(updateSQL);
+				pStmt.setDate(1, java.sql.Date.valueOf(nextWeek));
+				pStmt.setString(2, "415");
+				pStmt.setDate(3, java.sql.Date.valueOf(today));
+				pStmt.setInt(4, 2);
+				pStmt.setString(5, "0767%");
+				pStmt.setString(6, "767%");
+
+				int updatedCount = pStmt.executeUpdate();
+
+				conn.commit();
+				log.info("Update complete rows updated => " + updatedCount);
+
+			} else {
+				log.info("No rows found, no update carried out");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.error("Message:" + e.getMessage());
+
+		} finally {
+			conn.commit();
+			conn.close();
 		}
 	}
 }

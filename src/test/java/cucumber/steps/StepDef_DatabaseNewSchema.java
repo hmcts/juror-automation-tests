@@ -761,4 +761,8 @@ public class StepDef_DatabaseNewSchema {
     public void runFallbackProcessFor99PoolsErrors() throws SQLException {
         DBTNSD.fallbackMethodFor99PoolsErrors();
     }
+    @Given("^I have updated the juror next date for court dashboard$")
+    public void updateJurorNextDateIfDue() throws SQLException {
+        DBTNSD.updateJurorNextDateIfDue();
+    }
 }
