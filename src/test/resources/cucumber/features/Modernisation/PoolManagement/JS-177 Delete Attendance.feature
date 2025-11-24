@@ -55,7 +55,7 @@ Feature: JS-177 Delete Attendance
     And I click on the "Delete attendance" link
     Then I see "Absences" on the page
     And I click on the "Back" link
-    Then I see "/overview" in the URL
+    Then I see "pool-overview" in the URL
     And I do not see "There is a problem" on the page
 
     Examples:
