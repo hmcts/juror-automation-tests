@@ -114,7 +114,7 @@ Feature: JM-4103
   @JurorTransformationMulti
   Scenario Outline: Transfer a juror to another court as a jury officer - Pool Record - Select All
 
-    Given I am on "Bureau" "demo"
+    Given I am on "Bureau" "ithc"
 
     When a bureau owned pool is created with jurors
       | court |juror_number     | pool_number	  | att_date_weeks_in_future  | owner |
@@ -144,13 +144,14 @@ Feature: JM-4103
     And I press the "Transfer" button
     Then I see "Select a court to transfer to" on the page
     And I set "Enter a court name or location code" to "416"
+    Then I click on the "Lewes Sitting At Chichester (416)" link
     And I set the "Change the service start date for this pool" single date field to a Monday "5" weeks in the future
     And I press the "Continue" button
     And I see "Transfer to Lewes Sitting At Chichester" on the page
     And I press the "Continue" button
     And I see "3 jurors transferred" on the page
 
-    Given I am on "Bureau" "demo"
+    Given I am on "Bureau" "ithc"
     And I log in as "MODTESTBUREAU"
     When the user searches for juror record "<juror_number_1>" from the global search bar
     And I click on "<juror_number_1>" in the same row as "Lewes Sitting At Chichester"

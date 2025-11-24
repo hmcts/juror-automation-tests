@@ -315,7 +315,9 @@ Feature: JM-666
     And I expand the pool search advanced search criteria
     And I select all the tick boxes in the advanced search section
     And I press the "Continue" button
-    Then the pool search results are found
+    Then I see "results" on the page
+
+    When I enter the pool number "<pool_number2>" on the pool search screen
     And I expand the pool search advanced search criteria
     And all the tick boxes in the advanced search section are still selected
 
