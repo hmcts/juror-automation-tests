@@ -26,12 +26,15 @@ Feature: JM-3987 Monitor Pools Progress
     And I do not see "There are no matching results" on the page
     And I can see the newly created pool
     And I see "Nil pool" on the page
+    And I press the "Refresh" button
+    And I see "Nil pool" on the page
+    And I can see the newly created pool
     And I clear down the data for all the pools I created for this test new schema
 
   @JurorTransformation
   Scenario Outline: Test to show the no pools requested message is displayed in weeks with no pools
 
-    Given I am on "Bureau" "demo"
+    Given I am on "Bureau" "ithc"
     Given new pool requests are deleted new schema
 
     Given a bureau owned pool is created with jurors
@@ -60,6 +63,9 @@ Feature: JM-3987 Monitor Pools Progress
     And I click search
     And I do not see "There are no matching results" on the page
     And I see "<pool_number>" on the page
+    And I do not see "There are no matching results" on the page
+    And I see "<pool_number>" on the page
+    And I press the "Refresh" button
     And I see "No pools requested" on the page
 
     Examples:
@@ -133,6 +139,13 @@ Feature: JM-3987 Monitor Pools Progress
       | confirmed   |  0  |
       | balance     |-20  |
 
+    And I press the "Refresh" button
+    And I see the pool I created "<pool_number>" in a row on the search results with the values
+      | requested   | 20  |
+      | summoned    | 10  |
+      | confirmed   |  0  |
+      | balance     |-20  |
+
     Examples:
       |user			  | pool_number    | juror_number |
       |MODTESTBUREAU  | 415367341      | 041582941    |
@@ -172,6 +185,10 @@ Feature: JM-3987 Monitor Pools Progress
     And I see "<pool_number6>" on the page
     And I see "<pool_number7>" on the page
     And I see "<pool_number8>" on the page
+
+    And I press the "Refresh" button
+    And I do not see "There are no matching results" on the page
+    And I see "<pool_number1>" on the page
 
     Examples:
       | user          | pool_number1 | pool_number2 | pool_number3 | pool_number4 | pool_number5 | pool_number6 | pool_number7 | pool_number8 | juror_number1 | juror_number2 | juror_number3 | juror_number4 | juror_number5 | juror_number6 | juror_number7 | juror_number8 |
