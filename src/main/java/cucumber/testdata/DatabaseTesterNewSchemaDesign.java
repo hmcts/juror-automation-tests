@@ -1115,48 +1115,7 @@ public class DatabaseTesterNewSchemaDesign {
 		}
 	}
 
-	public void clean_dashboardNSD() throws SQLException {
-		db = new DBConnection();
-		String env_property = System.getProperty("env.database");
-		if (env_property != null)
-			conn = db.getConnection(env_property);
-		else
-			conn = db.getConnection("demo");
-		try {
-			pStmt = conn.prepareStatement("delete from juror_digital.stats_auto_processed");
-			pStmt.executeQuery();
-			log.info("Deleted from juror_stats_auto_processed");
 
-			pStmt = conn.prepareStatement("delete from juror_digital.stats_not_responded");
-			pStmt.executeQuery();
-			log.info("Deleted from juror_stats_not_responded");
-
-			pStmt = conn.prepareStatement("delete from juror_digital.stats_response_times");
-			pStmt.executeQuery();
-			log.info("Deleted from juror_stats_response_times");
-
-			pStmt = conn.prepareStatement("delete from juror_digital.stats_thirdparty_online");
-			pStmt.executeQuery();
-			log.info("Deleted from juror_stats_thirdparty_online");
-
-			pStmt = conn.prepareStatement("delete from juror_digital.stats_unprocessed_responses");
-			pStmt.executeQuery();
-			log.info("Deleted from juror_stats_unprocessed_responses");
-
-			pStmt = conn.prepareStatement("delete from juror_digital.stats_welsh_online_responses");
-			pStmt.executeQuery();
-			log.info("Deleted from juror_stats_welsh_online_responses");
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-			log.error("Message:" + e.getMessage());
-		} finally {
-			conn.commit();
-			pStmt.close();
-			conn.close();
-		}
-
-	}
 
 	public void clean_jurorTablesPreSetListNSD(String part_no, String pool_no, String owner) throws SQLException {
 		db = new DBConnection();
@@ -1421,100 +1380,6 @@ public class DatabaseTesterNewSchemaDesign {
 
 	}
 
-
-	public void resetJurorDigitalDatabase() throws SQLException {
-		db = new DBConnection();
-
-		String env_property = System.getProperty("env.database");
-		if (env_property != null)
-			conn = db.getConnection(env_property);
-		else
-			conn = db.getConnection("demo");
-
-		try {
-			pStmt = conn.prepareStatement("Delete from juror_digital.change_log_item Where change_log in (select c.id from juror_digital.change_log c, juror_digital.juror_response r where c.juror_number = r.juror_number and processing_status = 'TODO')");
-			pStmt.executeQuery();
-
-			pStmt = conn.prepareStatement("Delete from juror_digital.change_log Where juror_number in (select juror_number from juror_digital.juror_response where processing_status = 'TODO')");
-			pStmt.executeQuery();
-
-			pStmt = conn.prepareStatement("Delete from juror_digital.USER_JUROR_response_audit Where juror_number in (select juror_number from juror_digital.juror_response where processing_status = 'TODO')");
-			pStmt.executeQuery();
-
-			pStmt = conn.prepareStatement("Delete from juror_digital.juror_response_aud Where juror_number in (select juror_number from juror_digital.juror_response where processing_status = 'TODO')");
-			pStmt.executeQuery();
-
-			pStmt = conn.prepareStatement("Delete from juror_digital.juror_response_cjs_employment Where juror_number in (select juror_number from juror_digital.juror_response where processing_status = 'TODO')");
-			pStmt.executeQuery();
-
-			pStmt = conn.prepareStatement("Delete from juror_digital.juror_response_special_needs Where juror_number in (select juror_number from juror_digital.juror_response where processing_status = 'TODO')");
-			pStmt.executeQuery();
-
-			pStmt = conn.prepareStatement("Delete from juror_digital.juror_response Where processing_status = 'TODO'");
-			pStmt.executeQuery();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-			log.error("Message:" + e.getMessage());
-		} finally {
-			conn.commit();
-			pStmt.close();
-			conn.close();
-		}
-	}
-
-	public void usernameHasCourt_setAsNSD(String username, int courtPosition, String courtRoom) throws SQLException {
-		db = new DBConnection();
-
-		String env_property = System.getProperty("env.database");
-		if (env_property != null)
-			conn = db.getConnection(env_property);
-		else
-			conn = db.getConnection("demo");
-
-		String courtColumnName = "COURT_" + courtPosition;
-		try {
-			pStmt = conn.prepareStatement("update juror_digital.staff set " + courtColumnName + "=? where login=?");
-			pStmt.setString(1, courtRoom);
-			pStmt.setString(2, username);
-			pStmt.executeQuery();
-			log.info("Set " + courtColumnName + " to =>" + courtRoom + "<= for user =>" + username);
-
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-			log.error("Message:" + e.getMessage());
-		} finally {
-			conn.commit();
-			pStmt.close();
-			conn.close();
-		}
-	}
-
-	public void deleteTeam() throws SQLException {
-		db = new DBConnection();
-
-		String env_property = System.getProperty("env.database");
-		if (env_property != null)
-			conn = db.getConnection(env_property);
-		else
-			conn = db.getConnection("demo");
-
-		try {
-			pStmt = conn.prepareStatement("Delete from juror_digital.staff where login='TeamPickListUser'");
-			pStmt.executeQuery();
-
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-			log.error("Message:" + e.getMessage());
-		} finally {
-			conn.commit();
-			pStmt.close();
-			conn.close();
-		}
-	}
-
 	public void deleteNewPoolRequestsNSD() throws SQLException {
 		db = new DBConnection();
 
@@ -1532,346 +1397,6 @@ public class DatabaseTesterNewSchemaDesign {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			log.error("Message:" + e.getMessage());
-		} finally {
-			conn.commit();
-			pStmt.close();
-			conn.close();
-		}
-	}
-
-	public void insertConfLettRow(String part_no) throws SQLException {
-		db = new DBConnection();
-
-		String env_property = System.getProperty("env.database");
-		if (env_property != null)
-			conn = db.getConnection(env_property);
-		else
-			conn = db.getConnection("demo");
-
-		try {
-			pStmt = conn.prepareStatement("INSERT INTO juror.confirm_lett (owner, part_no, printed, date_printed)"
-					+ "VALUES ('400', '" + part_no + "', null, null)");
-			pStmt.executeQuery();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-			log.error("Message:inserted conf letter" + e.getMessage());
-		} finally {
-			conn.commit();
-			pStmt.close();
-			conn.close();
-		}
-	}
-
-	public void deleteConfLettRow(String part_no) throws SQLException {
-		db = new DBConnection();
-
-		String env_property = System.getProperty("env.database");
-		if (env_property != null)
-			conn = db.getConnection(env_property);
-		else
-			conn = db.getConnection("demo");
-
-		try {
-			pStmt = conn.prepareStatement("DELETE FROM juror.confirm_lett WHERE PART_NO = '" + part_no + "'");
-			pStmt.executeQuery();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-			log.error("Message:deleted conf letter" + e.getMessage());
-		} finally {
-			conn.commit();
-			pStmt.close();
-			conn.close();
-		}
-	}
-
-	public void insertDeferralLettRow(String part_no) throws SQLException {
-		db = new DBConnection();
-
-		String env_property = System.getProperty("env.database");
-		if (env_property != null)
-			conn = db.getConnection(env_property);
-		else
-			conn = db.getConnection("demo");
-
-		try {
-			String def_date = System.getProperty("POOL.DEF_DATE");
-			String exc_code = System.getProperty("POOL.EXC_CODE");
-			pStmt = conn.prepareStatement("INSERT INTO juror.def_lett (owner, part_no, date_def, exc_code, printed, date_printed)"
-					+ "VALUES ('400', '" + part_no + "', '" + def_date + "', '" + exc_code + "', null, null)");
-			pStmt.executeQuery();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-			log.error("Message:inserted def letter" + e.getMessage());
-		} finally {
-			conn.commit();
-			pStmt.close();
-			conn.close();
-		}
-	}
-
-	public void deleteDeferralLettRow(String part_no) throws SQLException {
-		db = new DBConnection();
-
-		String env_property = System.getProperty("env.database");
-		if (env_property != null)
-			conn = db.getConnection(env_property);
-		else
-			conn = db.getConnection("demo");
-
-		try {
-			pStmt = conn.prepareStatement("DELETE FROM juror.def_lett WHERE PART_NO = '" + part_no + "'");
-			pStmt.executeQuery();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-			log.error("Message:deleted def letter" + e.getMessage());
-		} finally {
-			conn.commit();
-			pStmt.close();
-			conn.close();
-		}
-	}
-
-	public void insertExcusalLettRow(String part_no) throws SQLException {
-		db = new DBConnection();
-
-		String env_property = System.getProperty("env.database");
-		if (env_property != null)
-			conn = db.getConnection(env_property);
-		else
-			conn = db.getConnection("demo");
-
-		try {
-			String exc_date = System.getProperty("POOL.DATE_EXCUS");
-			String exc_code = System.getProperty("POOL.EXC_CODE");
-			pStmt = conn.prepareStatement("INSERT INTO juror.exc_lett (owner, part_no, date_exc, exc_code, printed, date_printed)"
-					+ "VALUES ('400', '" + part_no + "', '" + exc_date + "', '" + exc_code + "', null, null)");
-			pStmt.executeQuery();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-			log.error("Message:inserted exc letter" + e.getMessage());
-		} finally {
-			conn.commit();
-			pStmt.close();
-			conn.close();
-		}
-	}
-
-	public void deleteExcusalLettRow(String part_no) throws SQLException {
-		db = new DBConnection();
-
-		String env_property = System.getProperty("env.database");
-		if (env_property != null)
-			conn = db.getConnection(env_property);
-		else
-			conn = db.getConnection("demo");
-
-		try {
-			pStmt = conn.prepareStatement("DELETE FROM juror.exc_lett WHERE PART_NO = '" + part_no + "'");
-			pStmt.executeQuery();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-			log.error("Message:deleted exc letter" + e.getMessage());
-		} finally {
-			conn.commit();
-			pStmt.close();
-			conn.close();
-		}
-	}
-
-	public void insertPostponementLettRow(String part_no) throws SQLException {
-		db = new DBConnection();
-
-		String env_property = System.getProperty("env.database");
-		if (env_property != null)
-			conn = db.getConnection(env_property);
-		else
-			conn = db.getConnection("demo");
-
-		try {
-			String date = System.getProperty("POOL.LAST_UPDATE");
-			pStmt = conn.prepareStatement("INSERT INTO juror.postpone_lett (owner, part_no, date_postpone, printed, date_printed)"
-					+ "VALUES ('400', '" + part_no + "', '" + date + "', null, null)");
-			pStmt.executeQuery();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-			log.error("Message:inserted postpone letter" + e.getMessage());
-		} finally {
-			conn.commit();
-			pStmt.close();
-			conn.close();
-		}
-	}
-
-	public void deletePostponementLettRow(String part_no) throws SQLException {
-		db = new DBConnection();
-
-		String env_property = System.getProperty("env.database");
-		if (env_property != null)
-			conn = db.getConnection(env_property);
-		else
-			conn = db.getConnection("demo");
-
-		try {
-			pStmt = conn.prepareStatement("DELETE FROM juror.postpone_lett WHERE PART_NO = '" + part_no + "'");
-			pStmt.executeQuery();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-			log.error("Message:deleted postpone letter" + e.getMessage());
-		} finally {
-			conn.commit();
-			pStmt.close();
-			conn.close();
-		}
-	}
-
-	public void insertDefDeniedLettRow(String part_no) throws SQLException {
-		db = new DBConnection();
-
-		String env_property = System.getProperty("env.database");
-		if (env_property != null)
-			conn = db.getConnection(env_property);
-		else
-			conn = db.getConnection("demo");
-
-		try {
-			String def_date = System.getProperty("POOL.DATE_DEF");
-			String exc_code = System.getProperty("POOL.EXC_CODE");
-			pStmt = conn.prepareStatement("INSERT INTO juror.def_denied (owner, part_no, date_def, exc_code, printed, date_printed)"
-					+ "VALUES ('400', '" + part_no + "', '" + def_date + "', '" + exc_code + "' null, null)");
-			pStmt.executeQuery();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-			log.error("Message:inserted def denied letter" + e.getMessage());
-		} finally {
-			conn.commit();
-			pStmt.close();
-			conn.close();
-		}
-	}
-
-	public void deleteDefDeniedLettRow(String part_no) throws SQLException {
-		db = new DBConnection();
-
-		String env_property = System.getProperty("env.database");
-		if (env_property != null)
-			conn = db.getConnection(env_property);
-		else
-			conn = db.getConnection("demo");
-
-		try {
-			pStmt = conn.prepareStatement("DELETE FROM juror.def_denied WHERE PART_NO = '" + part_no + "'");
-			pStmt.executeQuery();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-			log.error("Message:deleted def_denied letter" + e.getMessage());
-		} finally {
-			conn.commit();
-			pStmt.close();
-			conn.close();
-		}
-	}
-
-	public void insertExcDeniedLettRow(String part_no) throws SQLException {
-		db = new DBConnection();
-
-		String env_property = System.getProperty("env.database");
-		if (env_property != null)
-			conn = db.getConnection(env_property);
-		else
-			conn = db.getConnection("demo");
-
-		try {
-			String exc_date = System.getProperty("POOL.DATE_EXCUS");
-			String exc_code = System.getProperty("POOL.EXC_CODE");
-			pStmt = conn.prepareStatement("INSERT INTO juror.exc_denied_lett (owner, part_no, date_excused, exc_code, printed, date_printed)"
-					+ "VALUES ('400', '" + part_no + "', '" + exc_date + "', '" + exc_code + "' null, null)");
-			pStmt.executeQuery();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-			log.error("Message:inserted exc denied letter" + e.getMessage());
-		} finally {
-			conn.commit();
-			pStmt.close();
-			conn.close();
-		}
-	}
-
-	public void deleteExcDeniedLettRow(String part_no) throws SQLException {
-		db = new DBConnection();
-
-		String env_property = System.getProperty("env.database");
-		if (env_property != null)
-			conn = db.getConnection(env_property);
-		else
-			conn = db.getConnection("demo");
-
-		try {
-			pStmt = conn.prepareStatement("DELETE FROM juror.exc_denied_lett WHERE PART_NO = '" + part_no + "'");
-			pStmt.executeQuery();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-			log.error("Message:deleted exc_denied letter" + e.getMessage());
-		} finally {
-			conn.commit();
-			pStmt.close();
-			conn.close();
-		}
-	}
-
-	public void insertDisqualifiedLettRow(String part_no) throws SQLException {
-		db = new DBConnection();
-
-		String env_property = System.getProperty("env.database");
-		if (env_property != null)
-			conn = db.getConnection(env_property);
-		else
-			conn = db.getConnection("demo");
-
-		try {
-			String disq_date = System.getProperty("POOL.DATE_DISQ");
-			String disq_code = System.getProperty("POOL.DISQ_CODE");
-			pStmt = conn.prepareStatement("INSERT INTO juror.disq_lett (owner, part_no, disq_code, disq_date, date_printed, printed)"
-					+ "VALUES ('400', '" + part_no + "', '" + disq_code + "', '" + disq_date + "' null, null)");
-			pStmt.executeQuery();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-			log.error("Message:inserted disqualifed letter" + e.getMessage());
-		} finally {
-			conn.commit();
-			pStmt.close();
-			conn.close();
-		}
-	}
-
-	public void deleteDisqualifiedLettRow(String part_no) throws SQLException {
-		db = new DBConnection();
-
-		String env_property = System.getProperty("env.database");
-		if (env_property != null)
-			conn = db.getConnection(env_property);
-		else
-			conn = db.getConnection("demo");
-
-		try {
-			pStmt = conn.prepareStatement("DELETE FROM juror.disq_lett WHERE PART_NO = '" + part_no + "'");
-			pStmt.executeQuery();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-			log.error("Message:deleted disqualified letter" + e.getMessage());
 		} finally {
 			conn.commit();
 			pStmt.close();
@@ -2399,42 +1924,6 @@ public class DatabaseTesterNewSchemaDesign {
 		}
 	}
 
-	public void insertNewPoolTransferredToCourt(String court) throws SQLException {
-		db = new DBConnection();
-
-		String env_property = System.getProperty("env.database");
-
-		if (env_property != null)
-			conn = db.getConnection(env_property);
-		else
-			conn = db.getConnection("demo");
-
-		try {
-			pStmt = conn.prepareStatement("INSERT INTO JUROR.UNIQUE_POOL (OWNER,POOL_NO,JURISDICTION_CODE,RETURN_DATE,NEXT_DATE,NO_REQUESTED,POOL_TOTAL,REG_SPC,POOL_TYPE,LOC_CODE,NEW_REQUEST,LAST_UPDATE,READ_ONLY,DEFERRALS_USED,ADDITIONAL_SUMMONS,ATTEND_TIME)"
-					+ "VALUES ('" + court + "','" + court + "333333',null,(SELECT SYSDATE FROM DUAL),(SELECT SYSDATE FROM DUAL),10,10,'R','CRO','" + court + "','N',(SELECT SYSDATE FROM DUAL),'N',null,null,(SELECT SYSDATE FROM DUAL))");
-			pStmt.executeQuery();
-
-//			#insert the pool rows
-//			#bureau row
-			pStmt = conn.prepareStatement("INSERT INTO JUROR.POOL (part_no, fname, lname, h_email, title, dob, ADDRESS_LINE_1, ADDRESS_LINE_2, ADDRESS_LINE_3, ADDRESS_LINE_4, POSTCODE, h_phone, w_phone, is_active, owner, loc_code, m_phone, responded, poll_number, pool_no, on_call, read_only, contact_preference, reg_spc, ret_date, status, transfer_date)"
-					+ "VALUES ('6" + court + "33333', 'Edward', 'Palmer', 'email-one@email.com', 'Mr', TO_DATE('1976-07-18 00:00:01', 'YYYY-MM-DD HH24:MI:SS'), '1 Test Street', 'Scotland', 'Strathaven', 'United Kingdom', 'ML106AD', '44135101-1110', '44135201-1110', 'Y', '400', '" + court + "', '44776-301-1110', 'N', 1000,'" + court + "333333', false, 'Y', 0, 'N', (SELECT SYSDATE FROM DUAL), 1, (SELECT SYSDATE FROM DUAL))");
-			pStmt.executeQuery();
-
-//			#court row
-			pStmt = conn.prepareStatement("INSERT INTO JUROR.POOL (part_no, fname, lname, h_email, title, dob, ADDRESS_LINE_1, ADDRESS_LINE_2, ADDRESS_LINE_3, ADDRESS_LINE_4, POSTCODE, h_phone, w_phone, is_active, owner, loc_code, m_phone, responded, poll_number, pool_no, on_call, read_only, contact_preference, reg_spc, ret_date, status)"
-					+ "VALUES ('6" + court + "33333', 'Edward', 'Palmer', 'email-one@email.com', 'Mr', TO_DATE('1976-07-18 00:00:01', 'YYYY-MM-DD HH24:MI:SS'), '1 Test Street', 'Scotland', 'Strathaven', 'United Kingdom', 'ML106AD', '44135101-1110', '44135201-1110', 'Y', '" + court + "', '" + court + "', '44776-301-1110', 'N', 1000,'" + court + "333333', false, 'N', 0, 'N', (SELECT SYSDATE FROM DUAL), 1)");
-			pStmt.executeQuery();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-			log.error("Message:inserted new pool" + e.getMessage());
-		} finally {
-			conn.commit();
-			pStmt.close();
-			conn.close();
-		}
-	}
-
 	public void insertNewPoolTransferredToCourtNewNSD(String court, String partNumber, String poolNumber) throws SQLException {
 		db = new DBConnection();
 
@@ -2455,34 +1944,6 @@ public class DatabaseTesterNewSchemaDesign {
 
 			pStmt = conn.prepareStatement("UPDATE JUROR_MOD.POOL SET OWNER='" + court + "' WHERE POOL_NO = '" + poolNumber + "' AND OWNER = '400'");
 			pStmt.execute();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-			log.error("Message:inserted new pool" + e.getMessage());
-		} finally {
-			conn.commit();
-			pStmt.close();
-			conn.close();
-		}
-	}
-
-	public void insertNewPoolRecord(String court, String newPartNo) throws SQLException {
-		db = new DBConnection();
-
-		String env_property = System.getProperty("env.database");
-
-		if (env_property != null)
-			conn = db.getConnection(env_property);
-		else
-			conn = db.getConnection("demo");
-
-		try {
-
-//			#insert the pool rows
-			pStmt = conn.prepareStatement("INSERT INTO JUROR.POOL (part_no, fname, lname, h_email, title, dob, ADDRESS_LINE_1, ADDRESS_LINE_2, ADDRESS_LINE_3, ADDRESS_LINE_4, POSTCODE, h_phone, w_phone, is_active, owner, loc_code, m_phone, responded, poll_number, pool_no, on_call, read_only, contact_preference, reg_spc, ret_date, status)"
-					+ "VALUES ('" + newPartNo + "', 'Fname', 'Lname', 'email-one@email.com', 'Mr', TO_DATE('1976-07-18 00:00:01', 'YYYY-MM-DD HH24:MI:SS'), '1 Test Street', 'Scotland', 'Strathaven', 'United Kingdom', 'ML106AD', '44135101-1110', '44135201-1110', 'Y', '400', '" + court + "', '44776-301-1110', 'N', 1000,'" + court + "222222', false, 'N', 0, 'N', (SELECT SYSDATE FROM DUAL), 1)");
-			pStmt.executeQuery();
-
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -2528,118 +1989,6 @@ public class DatabaseTesterNewSchemaDesign {
 		}
 	}
 
-	public void insertNewJurorIntoPoolNSD(String court, String jurorNumber, String poolNumber) throws SQLException {
-		db = new DBConnection();
-
-		String env_property = System.getProperty("env.database");
-
-		if (env_property != null)
-			conn = db.getConnection(env_property);
-		else
-			conn = db.getConnection("demo");
-
-		try {
-
-//			#insert the pool rows
-			pStmt = conn.prepareStatement("INSERT INTO JUROR.POOL (part_no, fname, lname, h_email, title, dob, ADDRESS_LINE_1, ADDRESS_LINE_2, ADDRESS_LINE_3, ADDRESS_LINE_4, POSTCODE, h_phone, w_phone, is_active, owner, loc_code, m_phone, responded, poll_number, pool_no, on_call, read_only, contact_preference, reg_spc, ret_date, status)"
-					+ "VALUES ('" + jurorNumber + "', 'Fname', 'Lname', 'email-one@email.com', 'Mr', TO_DATE('1976-07-18 00:00:01', 'YYYY-MM-DD HH24:MI:SS'), '1 Test Street', 'Scotland', 'Strathaven', 'United Kingdom', 'ML106AD', '44135101-1110', '44135201-1110', 'Y', '400', '" + court + "', '44776-301-1110', 'N', 1000,'" + poolNumber + "', false, 'N', 0, 'N', (SELECT SYSDATE FROM DUAL), 1)");
-			pStmt.executeQuery();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-			log.error("Message:inserted new juror into pool " + poolNumber + " " + e.getMessage());
-		} finally {
-			conn.commit();
-			pStmt.close();
-			conn.close();
-		}
-	}
-
-	public void insertNewJurorIntoPoolValidForDigitalReply(String court, String jurorNumber, String poolNumber) throws SQLException {
-		db = new DBConnection();
-
-		String env_property = System.getProperty("env.database");
-
-		if (env_property != null)
-			conn = db.getConnection(env_property);
-		else
-			conn = db.getConnection("demo");
-
-		try {
-
-
-//			#insert the pool rows
-			pStmt = conn.prepareStatement("INSERT INTO JUROR.POOL (part_no, fname, lname, h_email, title, dob, ADDRESS_LINE_1, ADDRESS_LINE_2, ADDRESS_LINE_3, ADDRESS_LINE_4, POSTCODE, h_phone, w_phone, is_active, owner, loc_code, m_phone, responded, poll_number, pool_no, on_call, read_only, contact_preference, reg_spc, ret_date, status, next_date)"
-					+ "VALUES ('" + jurorNumber + "', 'Fname', 'Lname', 'email-one@email.com', 'Mr', TO_DATE('1976-07-18 00:00:01', 'YYYY-MM-DD HH24:MI:SS'), '1 Test Street', 'Scotland', 'Strathaven', 'United Kingdom', 'ML106AD', '44135101-1110', '44135201-1110', 'Y', '400', '" + court + "', '44776-301-1110', 'N', 1000,'" + poolNumber + "', false, 'N', 0, 'N', SYSDATE+60, 1, TRUNC(SYSDATE + (8 - TO_NUMBER(TO_CHAR(SYSDATE, 'D'))) + 56))");
-			pStmt.executeQuery();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-			log.error("Message:inserted new juror into pool " + poolNumber + " " + e.getMessage());
-		} finally {
-			conn.commit();
-			pStmt.close();
-			conn.close();
-		}
-	}
-
-	public void insertNewJurorIntoPoolWithOwnerSameAsCourt(String court, String jurorNumber, String poolNumber) throws SQLException {
-		db = new DBConnection();
-
-		String env_property = System.getProperty("env.database");
-
-		if (env_property != null)
-			conn = db.getConnection(env_property);
-		else
-			conn = db.getConnection("demo");
-
-		try {
-
-
-//			#insert the pool rows
-			pStmt = conn.prepareStatement("INSERT INTO JUROR.POOL (part_no, fname, lname, h_email, title, dob, ADDRESS_LINE_1, ADDRESS_LINE_2, ADDRESS_LINE_3, ADDRESS_LINE_4, POSTCODE, h_phone, w_phone, is_active, owner, loc_code, m_phone, responded, poll_number, pool_no, on_call, read_only, contact_preference, reg_spc, ret_date, status, next_date)"
-					+ "VALUES ('" + jurorNumber + "', 'Fname', 'Lname', 'email-one@email.com', 'Mr', TO_DATE('1976-07-18 00:00:01', 'YYYY-MM-DD HH24:MI:SS'), '1 Test Street', 'Scotland', 'Strathaven', 'United Kingdom', 'ML106AD', '44135101-1110', '44135201-1110', 'Y', '" + court + "', '" + court + "', '44776-301-1110', 'N', 1000,'" + poolNumber + "', false, 'N', 0, 'N', SYSDATE+60, 1, TRUNC(SYSDATE + (8 - TO_NUMBER(TO_CHAR(SYSDATE, 'D'))) + 56))");
-			pStmt.executeQuery();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-			log.error("Message:inserted new juror into pool " + poolNumber + " " + e.getMessage());
-		} finally {
-			conn.commit();
-			pStmt.close();
-			conn.close();
-		}
-	}
-
-	public void insertNewPoolRequestLetter(String court) throws SQLException {
-		db = new DBConnection();
-
-		String env_property = System.getProperty("env.database");
-
-		if (env_property != null)
-			conn = db.getConnection(env_property);
-		else
-			conn = db.getConnection("demo");
-
-		try {
-			pStmt = conn.prepareStatement("INSERT INTO JUROR.UNIQUE_POOL (OWNER,POOL_NO,JURISDICTION_CODE,RETURN_DATE,NEXT_DATE,NO_REQUESTED,POOL_TOTAL,REG_SPC,POOL_TYPE,LOC_CODE,NEW_REQUEST,LAST_UPDATE,READ_ONLY,DEFERRALS_USED,ADDITIONAL_SUMMONS,ATTEND_TIME)"
-					+ "VALUES ('" + court + "','" + court + "999999',null,(SELECT SYSDATE FROM DUAL),(SELECT SYSDATE FROM DUAL),10,10,'R','CRO','" + court + "','N',(SELECT SYSDATE FROM DUAL),'N',null,null,(SELECT SYSDATE FROM DUAL))");
-			pStmt.executeQuery();
-
-//			#insert the pool rows
-			pStmt = conn.prepareStatement("INSERT INTO JUROR.POOL (part_no, fname, lname, h_email, title, dob, ADDRESS_LINE_1, ADDRESS_LINE_2, ADDRESS_LINE_3, ADDRESS_LINE_4, POSTCODE, h_phone, w_phone, is_active, owner, loc_code, m_phone, responded, poll_number, pool_no, on_call, read_only, contact_preference, reg_spc, ret_date, status)"
-					+ "VALUES ('6" + court + "99999', 'Edward', 'Palmer', 'email-one@email.com', 'Mr', TO_DATE('1976-07-18 00:00:01', 'YYYY-MM-DD HH24:MI:SS'), '1 Test Street', 'Scotland', 'Strathaven', 'United Kingdom', 'ML106AD', '44135101-1110', '44135201-1110', 'Y', '400', '" + court + "', '44776-301-1110', 'N', 1000,'" + court + "222222', false, 'N', 0, 'N', (SELECT SYSDATE FROM DUAL), 1)");
-			pStmt.executeQuery();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-			log.error("Message:inserted new pool" + e.getMessage());
-		} finally {
-			conn.commit();
-			pStmt.close();
-			conn.close();
-		}
-	}
 
 	public void insertNewPaperSummonsReplyNSD(String newJurorRecordNumber, String poolNo) throws SQLException {
 		insertNewPaperSummonsReplyWithResponseNameNSD(newJurorRecordNumber, "Andy", "Marshall", poolNo);
@@ -2756,42 +2105,7 @@ public class DatabaseTesterNewSchemaDesign {
 		}
 	}
 
-	public void deleteTestPoolAndJurorsNSD(String poolRequestNumber) throws SQLException {
-		db = new DBConnection();
 
-		String env_property = System.getProperty("env.database");
-
-		if (env_property != null)
-			conn = db.getConnection(env_property);
-		else
-			conn = db.getConnection("demo");
-
-		try {
-
-			pStmt = conn.prepareStatement("DELETE FROM JUROR_MOD.JUROR WHERE JUROR_NUMBER IN (SELECT JUROR_NUMBER FROM JUROR_MOD.POOL WHERE POOL_NO = '" + poolRequestNumber + "')");
-			pStmt.execute();
-
-			pStmt = conn.prepareStatement("DELETE FROM JUROR_MOD.JUROR_POOL WHERE POOL_NUMBER = '" + poolRequestNumber + "'");
-			pStmt.execute();
-
-			pStmt = conn.prepareStatement("DELETE FROM JUROR_MOD.POOL WHERE POOL_NO = '" + poolRequestNumber + "'");
-			pStmt.execute();
-
-			pStmt = conn.prepareStatement("DELETE FROM JUROR_MOD.JUROR_HISTORY WHERE POOL_NUMBER = '" + poolRequestNumber + "'");
-			pStmt.execute();
-
-			pStmt = conn.prepareStatement("DELETE FROM JUROR_MOD.POOL_HISTORY WHERE POOL_NO = '" + poolRequestNumber + "'");
-			pStmt.execute();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-			log.error("Message:deleted new juror.unique_pool, juror.pool and juror.pool_hist records with the pool_no " + poolRequestNumber + " respectively - " + e.getMessage());
-		} finally {
-			conn.commit();
-			pStmt.close();
-			conn.close();
-		}
-	}
 
 
 	public void insertHolidayInTheFutureNSD(Integer noOfWeeks, String owner) throws SQLException {
@@ -3037,66 +2351,6 @@ public class DatabaseTesterNewSchemaDesign {
 			conn.close();
 		}
 	}
-
-	public void insert_modernisation_data() throws SQLException {
-		db = new DBConnection();
-		String env_property = System.getProperty("env.database");
-		if (env_property != null)
-			conn = db.getConnection(env_property);
-		else
-			conn = db.getConnection("demo");
-		try {
-			pStmt = conn.prepareStatement("INSERT INTO JUROR.PASSWORD (OWNER,LOGIN,PASSWORD,LAST_USED,USER_LEVEL,ARAMIS_AUTH_CODE,ARAMIS_MAX_AUTH,PASSWORD_CHANGED_DATE,LOGIN_ENABLED_YN) VALUES ('400','MODTESTBUREAU','32CA9FC1A0F5B633',to_date(SYSDATE,'DD-MON-RR'),'1','123456789',12345678.12,to_date(SYSDATE,'DD-MON-RR'),'Y')");
-			pStmt.executeQuery();
-			conn.commit();
-			log.info("INSERTED INTO JUROR.PASSWORD LOGIN 'MODTESTBUREAU'");
-
-			pStmt = conn.prepareStatement("INSERT INTO JUROR.PASSWORD (OWNER,LOGIN,PASSWORD,LAST_USED,USER_LEVEL,ARAMIS_AUTH_CODE,ARAMIS_MAX_AUTH,PASSWORD_CHANGED_DATE,LOGIN_ENABLED_YN) VALUES ('415','MODTESTCOURT','32CA9FC1A0F5B633',to_date(SYSDATE,'DD-MON-RR'),'1','123456789',12345678.12,to_date(SYSDATE,'DD-MON-RR'),'Y')");
-			pStmt.executeQuery();
-			conn.commit();
-			log.info("INSERTED INTO JUROR.PASSWORD LOGIN 'MODTESTCOURT'");
-
-			pStmt = conn.prepareStatement("INSERT INTO JUROR.PASSWORD (OWNER,LOGIN,PASSWORD,LAST_USED,USER_LEVEL,ARAMIS_AUTH_CODE,ARAMIS_MAX_AUTH,PASSWORD_CHANGED_DATE,LOGIN_ENABLED_YN) VALUES ('415','MODCOURT','32CA9FC1A0F5B633',to_date(SYSDATE,'DD-MON-RR'),'1','123456789',12345678.12,to_date(SYSDATE,'DD-MON-RR'),'Y')");
-			pStmt.executeQuery();
-			conn.commit();
-			log.info("INSERTED INTO JUROR.PASSWORD LOGIN 'MODCOURT'");
-
-			pStmt = conn.prepareStatement("INSERT INTO JUROR.PASSWORD (OWNER,LOGIN,PASSWORD,LAST_USED,USER_LEVEL,ARAMIS_AUTH_CODE,ARAMIS_MAX_AUTH,PASSWORD_CHANGED_DATE,LOGIN_ENABLED_YN) VALUES ('415','MODBUREAUOFFICER','32CA9FC1A0F5B633',to_date(SYSDATE,'DD-MON-RR'),'0','123456789',12345678.12,to_date(SYSDATE,'DD-MON-RR'),'Y')");
-			pStmt.executeQuery();
-			conn.commit();
-			log.info("INSERTED INTO JUROR.PASSWORD LOGIN 'MODBUREAUOFFICER'");
-
-			pStmt = conn.prepareStatement("INSERT INTO JUROR_DIGITAL.STAFF (LOGIN, NAME, RANK, ACTIVE, TEAM_ID, VERSION) VALUES ('MODTESTBUREAU','MODTESTBUREAU', 1, 1, 1, 0)");
-			pStmt.executeQuery();
-			conn.commit();
-			log.info("INSERTED INTO JUROR_DIGITAL_USER.STAFF LOGIN 'MODTESTBUREAU'");
-
-			pStmt = conn.prepareStatement("INSERT INTO JUROR_DIGITAL.STAFF (LOGIN, NAME, RANK, ACTIVE, COURT_1, COURT_2, COURT_3, COURT_4, TEAM_ID, VERSION) VALUES ('MODTESTCOURT','MODTESTCOURT', 1, 1, '415', '457', '774', '416', 2, 0)");
-			pStmt.executeQuery();
-			conn.commit();
-			log.info("INSERTED INTO JUROR_DIGITAL_USER.STAFF LOGIN 'MODTESTCOURT'");
-
-			pStmt = conn.prepareStatement("INSERT INTO JUROR_DIGITAL.STAFF (LOGIN, NAME, RANK, ACTIVE, COURT_1, COURT_2, COURT_3, TEAM_ID, VERSION) VALUES ('MODCOURT','MODCOURT', 1, 1, '415', '416', '457', 2, 0)");
-			pStmt.executeQuery();
-			conn.commit();
-			log.info("INSERTED INTO JUROR_DIGITAL_USER.STAFF LOGIN 'MODCOURT'");
-
-			pStmt = conn.prepareStatement("INSERT INTO JUROR_DIGITAL.STAFF (LOGIN, NAME, RANK, ACTIVE, COURT_1, COURT_2, COURT_3, TEAM_ID, VERSION) VALUES ('MODBUREAUOFFICER','MODBUREAUOFFICER', 0, 1, '415', '416', '457', 2, 0)");
-			pStmt.executeQuery();
-			conn.commit();
-			log.info("INSERTED INTO JUROR_DIGITAL_USER.STAFF LOGIN 'MODBUREAUOFFICER'");
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-			log.error("Message:" + e.getMessage());
-		} finally {
-			conn.commit();
-			pStmt.close();
-			conn.close();
-		}
-
-	}
-
 	public void refreshVotersTableNSD(String court) throws SQLException {
 		db = new DBConnection();
 		String env_property = System.getProperty("env.database");
@@ -3815,92 +3069,6 @@ public class DatabaseTesterNewSchemaDesign {
 		return 0;
 	}
 
-	public int getCoronerPoolNo() throws SQLException {
-		db = new DBConnection();
-		String env_property = System.getProperty("env.database");
-		conn = db.getConnection(env_property);
-		try {
-			pStmt = conn.prepareStatement("select MAX(cor_pool_no) from JUROR.coroner_pool");
-			ResultSet rs = pStmt.executeQuery();
-			rs.next();
-			log.info("Got last coroner court pool number");
-			return rs.getInt(1) + 1;
-		} catch (SQLException e) {
-			e.printStackTrace();
-			log.error("Message:" + e.getMessage());
-			log.info(11);
-		} finally {
-			pStmt.close();
-			conn.close();
-
-		}
-		return 0;
-	}
-
-	public int getNewSpecNeedId() throws SQLException {
-		db = new DBConnection();
-		String env_property = System.getProperty("env.database");
-		conn = db.getConnection(env_property);
-		try {
-			pStmt = conn.prepareStatement("select MAX(ID) from juror_digital.juror_response_special_needs");
-			ResultSet rs = pStmt.executeQuery();
-			rs.next();
-			log.info("Got last special needs ID");
-			return rs.getInt(1) + 1;
-		} catch (SQLException e) {
-			e.printStackTrace();
-			log.error("Message:" + e.getMessage());
-			log.info(11);
-		} finally {
-			pStmt.close();
-		}
-		return 0;
-	}
-
-	public int getMaxVotersPlus1() throws SQLException {
-		db = new DBConnection();
-		String env_property = System.getProperty("env.database");
-		conn = db.getConnection(env_property);
-		try {
-			pStmt = conn.prepareStatement("select MAX(cor_pool_no) from JUROR.coroner_pool");
-			ResultSet rs = pStmt.executeQuery();
-			rs.next();
-			log.info("Got last coroner court pool number");
-			return rs.getInt(1) + 1;
-		} catch (SQLException e) {
-			e.printStackTrace();
-			log.error("Message:" + e.getMessage());
-			log.info(11);
-		} finally {
-			pStmt.close();
-			conn.close();
-
-		}
-		return 0;
-	}
-
-	public void resetVotersNSD(String courtCode) throws SQLException {
-		db = new DBConnection();
-		String env_property = System.getProperty("env.database");
-		if (env_property != null)
-			conn = db.getConnection(env_property);
-		else
-			conn = db.getConnection("demo");
-		try {
-			pStmt = conn.prepareStatement("update JUROR_MOD.VOTERS set date_selected1 = null where pool_number like '" + courtCode + "%' and part_no not in (select juror_number from juror_mod.juror_pool)");
-			pStmt.execute();
-			log.info("Updated juror_mod.voters to set '" + courtCode + "' rows to unselected");
-		} catch (SQLException e) {
-			e.printStackTrace();
-			log.error("Message:" + e.getMessage());
-			log.info(11);
-		} finally {
-			conn.commit();
-			pStmt.close();
-			conn.close();
-		}
-	}
-
 	public void insertMultipleNewPoolsWithDeferralNSD(String court, int noOfPools, String owner, String noWeeks) throws SQLException {
 		db = new DBConnection();
 
@@ -4288,53 +3456,6 @@ public class DatabaseTesterNewSchemaDesign {
 			conn.close();
 		}
 	}
-
-	public void insertCourtOwnedJurorsIntoActivePool(String court) throws SQLException {
-		db = new DBConnection();
-
-		String env_property = System.getProperty("env.database");
-
-		if (env_property != null)
-			conn = db.getConnection(env_property);
-		else
-			conn = db.getConnection("demo");
-
-		try {
-
-			pStmt = conn.prepareStatement("INSERT INTO JUROR_DIGITAL.VOTERS (PART_NO,REGISTER_LETT,POLL_NUMBER,NEW_MARKER,TITLE,LNAME,FNAME,DOB,FLAGS,ADDRESS_LINE_1,ADDRESS_LINE_2,ADDRESS_LINE_3,ADDRESS_LINE_4,ADDRESS_LINE_5,POSTCODE,DATE_SELECTED1,DATE_SELECTED2,DATE_SELECTED3,REC_NUM,PERM_DISQUAL,SOURCE_ID)" +
-					"VALUES ('9" + court + "99999','999','999',NULL,NULL,'LNAMEONE','FNAMEONE',NULL,NULL,'1 STREET NAME','ANYTOWN',NULL,NULL,NULL,'CH1 2AN',(SELECT SYSDATE FROM DUAL),NULL,NULL,1,NULL,NULL)");
-			pStmt.executeQuery();
-
-			pStmt = conn.prepareStatement("INSERT INTO JUROR_DIGITAL.VOTERS (PART_NO,REGISTER_LETT,POLL_NUMBER,NEW_MARKER,TITLE,LNAME,FNAME,DOB,FLAGS,ADDRESS_LINE_1,ADDRESS_LINE_2,ADDRESS_LINE_3,ADDRESS_LINE_4,ADDRESS_LINE_5,POSTCODE,DATE_SELECTED1,DATE_SELECTED2,DATE_SELECTED3,REC_NUM,PERM_DISQUAL,SOURCE_ID)" +
-					"VALUES ('9" + court + "99998','998','998',NULL,NULL,'LNAMETWO','FNAMETWO',NULL,NULL,'2 STREET NAME','ANYTOWN',NULL,NULL,NULL,'CH1 2AN',(SELECT SYSDATE FROM DUAL),NULL,NULL,1,NULL,NULL)");
-			pStmt.executeQuery();
-
-			pStmt = conn.prepareStatement("INSERT INTO JUROR.POOL (OWNER,PART_NO,POOL_NO,POLL_NUMBER,TITLE,LNAME,FNAME,DOB,ADDRESS_LINE_1,ADDRESS_LINE_2,ADDRESS_LINE_3,ADDRESS_LINE_4,ADDRESS_LINE_5,POSTCODE,H_PHONE,W_PHONE,W_PH_LOCAL,TIMES_SEL,TRIAL_NO,JUROR_NO,REG_SPC,RET_DATE,DEF_DATE,RESPONDED,DATE_EXCUS,EXC_CODE,ACC_EXC,DATE_DISQ,DISQ_CODE,MILEAGE,LOCATION,USER_EDTQ,STATUS,NOTES,NO_ATTENDANCES,IS_ACTIVE,NO_DEF_POS,NO_ATTENDED,NO_FTA,NO_AWOL,POOL_SEQ,EDIT_TAG,POOL_TYPE,LOC_CODE,NEXT_DATE,ON_CALL,PERM_DISQUAL,PAY_COUNTY_EMP,PAY_EXPENSES,SPEC_NEED,SPEC_NEED_MSG,AMT_SPENT,COMPLETION_DATE,SORT_CODE,BANK_ACCT_NAME,BANK_ACCT_NO,BLDG_SOC_ROLL_NO,WAS_DEFERRED,ID_CHECKED,POSTPONE,WELSH,PAID_CASH,TRAVEL_TIME,SCAN_CODE,FINANCIAL_LOSS,POLICE_CHECK,LAST_UPDATE,READ_ONLY,SUMMONS_FILE,REMINDER_SENT,PHOENIX_DATE,PHOENIX_CHECKED,M_PHONE,H_EMAIL,CONTACT_PREFERENCE,NOTIFICATIONS,TRANSFER_DATE,SERVICE_COMP_COMMS_STATUS)" +
-					"VALUES ('400','9" + court + "99999','" + court + "222222','99999',NULL,'LNAMEONE','FNAMEONE',NULL,'1 STREET NAME','ANYTOWN',NULL,NULL,NULL,'CH1 2AN',NULL,NULL,NULL,NULL,NULL,NULL,'R',(SELECT SYSDATE FROM DUAL),(SELECT SYSDATE FROM DUAL),'N',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,NULL,NULL,'Y',NULL,NULL,NULL,NULL,'0001',NULL,'CRO','" + court + "',(SELECT SYSDATE FROM DUAL),false,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,(SELECT SYSDATE FROM DUAL),'Y',NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL)");
-			pStmt.executeQuery();
-
-			pStmt = conn.prepareStatement("INSERT INTO JUROR.POOL (OWNER,PART_NO,POOL_NO,POLL_NUMBER,TITLE,LNAME,FNAME,DOB,ADDRESS_LINE_1,ADDRESS_LINE_2,ADDRESS_LINE_3,ADDRESS_LINE_4,ADDRESS_LINE_5,POSTCODE,H_PHONE,W_PHONE,W_PH_LOCAL,TIMES_SEL,TRIAL_NO,JUROR_NO,REG_SPC,RET_DATE,DEF_DATE,RESPONDED,DATE_EXCUS,EXC_CODE,ACC_EXC,DATE_DISQ,DISQ_CODE,MILEAGE,LOCATION,USER_EDTQ,STATUS,NOTES,NO_ATTENDANCES,IS_ACTIVE,NO_DEF_POS,NO_ATTENDED,NO_FTA,NO_AWOL,POOL_SEQ,EDIT_TAG,POOL_TYPE,LOC_CODE,NEXT_DATE,ON_CALL,PERM_DISQUAL,PAY_COUNTY_EMP,PAY_EXPENSES,SPEC_NEED,SPEC_NEED_MSG,AMT_SPENT,COMPLETION_FLAG,COMPLETION_DATE,SORT_CODE,BANK_ACCT_NAME,BANK_ACCT_NO,BLDG_SOC_ROLL_NO,WAS_DEFERRED,ID_CHECKED,POSTPONE,WELSH,PAID_CASH,TRAVEL_TIME,SCAN_CODE,FINANCIAL_LOSS,POLICE_CHECK,LAST_UPDATE,READ_ONLY,SUMMONS_FILE,REMINDER_SENT,PHOENIX_DATE,PHOENIX_CHECKED,M_PHONE,H_EMAIL,CONTACT_PREFERENCE,NOTIFICATIONS,TRANSFER_DATE,SERVICE_COMP_COMMS_STATUS)" +
-					"VALUES ('400','9" + court + "99998','" + court + "222222','99998',NULL,'LNAMETWO','FNAMETWO',NULL,'2 STREET NAME','ANYTOWN',NULL,NULL,NULL,'CH1 2AN',NULL,NULL,NULL,NULL,NULL,NULL,'R',(SELECT SYSDATE FROM DUAL),(SELECT SYSDATE FROM DUAL),'N',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,NULL,NULL,'Y',NULL,NULL,NULL,NULL,'0001',NULL,'CRO','" + court + "',(SELECT SYSDATE FROM DUAL),false,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,(SELECT SYSDATE FROM DUAL),'Y',NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL)");
-			pStmt.executeQuery();
-
-			pStmt = conn.prepareStatement("INSERT INTO JUROR.POOL (OWNER,PART_NO,POOL_NO,POLL_NUMBER,TITLE,LNAME,FNAME,DOB,ADDRESS_LINE_1,ADDRESS_LINE_2,ADDRESS_LINE_3,ADDRESS_LINE_4,ADDRESS_LINE_5,POSTCODE,H_PHONE,W_PHONE,W_PH_LOCAL,TIMES_SEL,TRIAL_NO,JUROR_NO,REG_SPC,RET_DATE,DEF_DATE,RESPONDED,DATE_EXCUS,EXC_CODE,ACC_EXC,DATE_DISQ,DISQ_CODE,MILEAGE,LOCATION,USER_EDTQ,STATUS,NOTES,NO_ATTENDANCES,IS_ACTIVE,NO_DEF_POS,NO_ATTENDED,NO_FTA,NO_AWOL,POOL_SEQ,EDIT_TAG,POOL_TYPE,LOC_CODE,NEXT_DATE,ON_CALL,PERM_DISQUAL,PAY_COUNTY_EMP,PAY_EXPENSES,SPEC_NEED,SPEC_NEED_MSG,AMT_SPENT,COMPLETION_FLAG,COMPLETION_DATE,SORT_CODE,BANK_ACCT_NAME,BANK_ACCT_NO,BLDG_SOC_ROLL_NO,WAS_DEFERRED,ID_CHECKED,POSTPONE,WELSH,PAID_CASH,TRAVEL_TIME,SCAN_CODE,FINANCIAL_LOSS,POLICE_CHECK,LAST_UPDATE,READ_ONLY,SUMMONS_FILE,REMINDER_SENT,PHOENIX_DATE,PHOENIX_CHECKED,M_PHONE,H_EMAIL,CONTACT_PREFERENCE,NOTIFICATIONS,TRANSFER_DATE,SERVICE_COMP_COMMS_STATUS)" +
-					"VALUES ('415','9" + court + "99999','" + court + "222222','99999',NULL,'LNAMEONE','FNAMEONE',NULL,'1 STREET NAME','ANYTOWN',NULL,NULL,NULL,'CH1 2AN',NULL,NULL,NULL,NULL,NULL,NULL,'R',(SELECT SYSDATE FROM DUAL),(SELECT SYSDATE FROM DUAL),'N',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,2,NULL,NULL,'Y',NULL,NULL,NULL,NULL,'0001',NULL,'CRO','" + court + "',(SELECT SYSDATE FROM DUAL),false,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,(SELECT SYSDATE FROM DUAL),'N',NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL)");
-			pStmt.executeQuery();
-
-			pStmt = conn.prepareStatement("INSERT INTO JUROR.POOL (OWNER,PART_NO,POOL_NO,POLL_NUMBER,TITLE,LNAME,FNAME,DOB,ADDRESS_LINE_1,ADDRESS_LINE_2,ADDRESS_LINE_3,ADDRESS_LINE_4,ADDRESS_LINE_5,POSTCODE,H_PHONE,W_PHONE,W_PH_LOCAL,TIMES_SEL,TRIAL_NO,JUROR_NO,REG_SPC,RET_DATE,DEF_DATE,RESPONDED,DATE_EXCUS,EXC_CODE,ACC_EXC,DATE_DISQ,DISQ_CODE,MILEAGE,LOCATION,USER_EDTQ,STATUS,NOTES,NO_ATTENDANCES,IS_ACTIVE,NO_DEF_POS,NO_ATTENDED,NO_FTA,NO_AWOL,POOL_SEQ,EDIT_TAG,POOL_TYPE,LOC_CODE,NEXT_DATE,ON_CALL,PERM_DISQUAL,PAY_COUNTY_EMP,PAY_EXPENSES,SPEC_NEED,SPEC_NEED_MSG,AMT_SPENT,COMPLETION_FLAG,COMPLETION_DATE,SORT_CODE,BANK_ACCT_NAME,BANK_ACCT_NO,BLDG_SOC_ROLL_NO,WAS_DEFERRED,ID_CHECKED,POSTPONE,WELSH,PAID_CASH,TRAVEL_TIME,SCAN_CODE,FINANCIAL_LOSS,POLICE_CHECK,LAST_UPDATE,READ_ONLY,SUMMONS_FILE,REMINDER_SENT,PHOENIX_DATE,PHOENIX_CHECKED,M_PHONE,H_EMAIL,CONTACT_PREFERENCE,NOTIFICATIONS,TRANSFER_DATE,SERVICE_COMP_COMMS_STATUS)" +
-					"VALUES ('415','9" + court + "99998','" + court + "222222','99998',NULL,'LNAMETWO','FNAMETWO',NULL,'2 STREET NAME','ANYTOWN',NULL,NULL,NULL,'CH1 2AN',NULL,NULL,NULL,NULL,NULL,NULL,'R',(SELECT SYSDATE FROM DUAL),(SELECT SYSDATE FROM DUAL),'N',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,2,NULL,NULL,'Y',NULL,NULL,NULL,NULL,'0001',NULL,'CRO','" + court + "',(SELECT SYSDATE FROM DUAL),false,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,(SELECT SYSDATE FROM DUAL),'N',NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL)");
-			pStmt.executeQuery();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-			log.error("Message:inserted new pool" + e.getMessage());
-		} finally {
-			conn.commit();
-			pStmt.close();
-			conn.close();
-		}
-	}
-
 	public void deleteVoterRecordNSD(String partNo) throws SQLException {
 		db = new DBConnection();
 
@@ -4417,35 +3538,6 @@ public class DatabaseTesterNewSchemaDesign {
 		return "No summons letter for " + jurorNo;
 	}
 
-	public void deletePoolWithDeferral(String poolNo) throws SQLException {
-		db = new DBConnection();
-
-		String env_property = System.getProperty("env.database");
-		if (env_property != null)
-			conn = db.getConnection(env_property);
-		else
-			conn = db.getConnection("demo");
-
-		try {
-			pStmt = conn.prepareStatement("DELETE FROM juror.defer_dbf WHERE part_no in (select part_no from juror.pool where pool_no = '" + poolNo + "')");
-			pStmt.executeQuery();
-
-			pStmt = conn.prepareStatement("DELETE FROM juror.pool WHERE part_no = '641555555'");
-			pStmt.executeQuery();
-
-			pStmt = conn.prepareStatement("DELETE FROM juror.unique_pool WHERE pool_no = '" + poolNo + "'");
-			pStmt.executeQuery();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-			log.error("Message:deleted new pool '" + poolNo + "' + e.getMessage()");
-		} finally {
-			conn.commit();
-			pStmt.close();
-			conn.close();
-		}
-	}
-
 	public void insertSingleDigitalSummonsReplyNSD(String newJurorRecordNumber) throws SQLException {
 		db = new DBConnection();
 
@@ -4508,53 +3600,6 @@ public class DatabaseTesterNewSchemaDesign {
 		}
 	}
 
-	public void insertTwoNewCourtOwnedActivePools(String court) throws SQLException {
-		db = new DBConnection();
-
-		String env_property = System.getProperty("env.database");
-
-		if (env_property != null)
-			conn = db.getConnection(env_property);
-		else
-			conn = db.getConnection("demo");
-
-		try {
-
-			pStmt = conn.prepareStatement("INSERT INTO JUROR.UNIQUE_POOL (OWNER,POOL_NO,JURISDICTION_CODE,RETURN_DATE,NEXT_DATE,NO_REQUESTED,POOL_TOTAL,REG_SPC,POOL_TYPE,LOC_CODE,NEW_REQUEST,LAST_UPDATE,READ_ONLY,DEFERRALS_USED,ADDITIONAL_SUMMONS,ATTEND_TIME) " +
-					"VALUES ('" + court + "','" + court + "222222',NULL,(SELECT SYSDATE FROM DUAL)+112,(SELECT SYSDATE FROM DUAL)+112,5,0,'R','CRO','" + court + "','N',(SELECT SYSDATE FROM DUAL)+112,'N',NULL,NULL,(SELECT SYSDATE FROM DUAL)+112)");
-			pStmt.executeQuery();
-
-			pStmt = conn.prepareStatement("INSERT INTO JUROR.UNIQUE_POOL (OWNER,POOL_NO,JURISDICTION_CODE,RETURN_DATE,NEXT_DATE,NO_REQUESTED,POOL_TOTAL,REG_SPC,POOL_TYPE,LOC_CODE,NEW_REQUEST,LAST_UPDATE,READ_ONLY,DEFERRALS_USED,ADDITIONAL_SUMMONS,ATTEND_TIME) " +
-					"VALUES ('400','" + court + "222222',NULL,(SELECT SYSDATE FROM DUAL)+112,(SELECT SYSDATE FROM DUAL)+112,5,0,'R','CRO','" + court + "','N',(SELECT SYSDATE FROM DUAL)+112,'Y',NULL,NULL,(SELECT SYSDATE FROM DUAL)+112)");
-			pStmt.executeQuery();
-
-
-			pStmt = conn.prepareStatement("INSERT INTO JUROR_DIGITAL.POOL_REQUEST_EXT (POOL_NO,TOTAL_NO_REQUIRED,LAST_UPDATE) " +
-					"VALUES ('" + court + "222222',5,(SELECT SYSDATE FROM DUAL))");
-			pStmt.executeQuery();
-
-			pStmt = conn.prepareStatement("INSERT INTO JUROR.UNIQUE_POOL (OWNER,POOL_NO,JURISDICTION_CODE,RETURN_DATE,NEXT_DATE,NO_REQUESTED,POOL_TOTAL,REG_SPC,POOL_TYPE,LOC_CODE,NEW_REQUEST,LAST_UPDATE,READ_ONLY,DEFERRALS_USED,ADDITIONAL_SUMMONS,ATTEND_TIME) " +
-					"VALUES ('" + court + "','" + court + "333333',NULL,(SELECT SYSDATE FROM DUAL)+120,(SELECT SYSDATE FROM DUAL)+120,5,0,'R','CRO','" + court + "','N',(SELECT SYSDATE FROM DUAL)+120,'N',NULL,NULL,(SELECT SYSDATE FROM DUAL)+120)");
-			pStmt.executeQuery();
-
-			pStmt = conn.prepareStatement("INSERT INTO JUROR.UNIQUE_POOL (OWNER,POOL_NO,JURISDICTION_CODE,RETURN_DATE,NEXT_DATE,NO_REQUESTED,POOL_TOTAL,REG_SPC,POOL_TYPE,LOC_CODE,NEW_REQUEST,LAST_UPDATE,READ_ONLY,DEFERRALS_USED,ADDITIONAL_SUMMONS,ATTEND_TIME) " +
-					"VALUES ('400','" + court + "333333',NULL,(SELECT SYSDATE FROM DUAL)+120,(SELECT SYSDATE FROM DUAL)+120,5,0,'R','CRO','" + court + "','N',(SELECT SYSDATE FROM DUAL)+120,'Y',NULL,NULL,(SELECT SYSDATE FROM DUAL)+120)");
-			pStmt.executeQuery();
-
-
-			pStmt = conn.prepareStatement("INSERT INTO JUROR_DIGITAL.POOL_REQUEST_EXT (POOL_NO,TOTAL_NO_REQUIRED,LAST_UPDATE) " +
-					"VALUES ('" + court + "333333',5,(SELECT SYSDATE FROM DUAL))");
-			pStmt.executeQuery();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-			log.error("Message:inserted new pool" + e.getMessage());
-		} finally {
-			conn.commit();
-			pStmt.close();
-			conn.close();
-		}
-	}
 
 	public void removeVotersAtCourt(String court) throws SQLException {
 		db = new DBConnection();
@@ -4581,66 +3626,6 @@ public class DatabaseTesterNewSchemaDesign {
 		}
 	}
 
-	public void insertStraightThroughVoterForCourt(String court) throws SQLException {
-		db = new DBConnection();
-
-		String env_property = System.getProperty("env.database");
-
-		if (env_property != null)
-			conn = db.getConnection(env_property);
-		else
-			conn = db.getConnection("demo");
-
-		try {
-
-			pStmt = conn.prepareStatement("INSERT INTO JUROR_DIGITAL.VOTERS (LOC_CODE,PART_NO,REGISTER_LETT,POLL_NUMBER,NEW_MARKER,TITLE,LNAME,FNAME,DOB,FLAGS,ADDRESS_LINE_1,ADDRESS_LINE_2,ADDRESS_LINE_3,ADDRESS_LINE_4,ADDRESS_LINE_5,POSTCODE,DATE_SELECTED1,DATE_SELECTED2,DATE_SELECTED3,REC_NUM,PERM_DISQUAL,SOURCE_ID)"
-					+ "VALUES ('" + court + "','6" + court + "88888','88888','88888',NULL,NULL,'LNAMEEIGHTEIGHT','FNAMEEIGHTEIGHT',TIMESTAMP '2000-04-17 00:00:00.000000',NULL,'88 STREET NAME','ANYTOWN',NULL,'SOMETHING',NULL,'SY2 5BL',NULL,NULL,NULL,88888,NULL,NULL)");
-			pStmt.executeQuery();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-			log.error("Message:inserted new pool" + e.getMessage());
-		} finally {
-			conn.commit();
-			pStmt.close();
-			conn.close();
-		}
-	}
-
-	public void deleteAllPoolsAtCourt(String court) throws SQLException {
-		db = new DBConnection();
-
-		String env_property = System.getProperty("env.database");
-
-		if (env_property != null)
-			conn = db.getConnection(env_property);
-		else
-			conn = db.getConnection("demo");
-
-		try {
-
-			pStmt = conn.prepareStatement("DELETE FROM juror.defer_dbf WHERE loc_code = " + court);
-			pStmt.executeQuery();
-
-			pStmt = conn.prepareStatement("DELETE FROM juror.pool WHERE loc_code = " + court);
-			pStmt.executeQuery();
-
-			pStmt = conn.prepareStatement("DELETE FROM juror.unique_pool WHERE loc_code = " + court);
-			pStmt.executeQuery();
-
-			pStmt = conn.prepareStatement("DELETE FROM juror_digital.pool_request_ext WHERE pool_no LIKE '%" + court + "%'");
-			pStmt.executeQuery();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-			log.error("Message:deleted all pools at court " + court + e.getMessage());
-		} finally {
-			conn.commit();
-			pStmt.close();
-			conn.close();
-		}
-	}
-
 	public void updateJurorRecordPolicePhoenixCheckNSD(String policeCheck, String jurorRecord) throws SQLException {
 		db = new DBConnection();
 
@@ -4660,57 +3645,6 @@ public class DatabaseTesterNewSchemaDesign {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			log.error("Message:attempting to update " + jurorRecord + " in Juror_mod.juror setting police_check to " + policeCheck + " and " + e.getMessage());
-		} finally {
-			conn.commit();
-			pStmt.close();
-			conn.close();
-		}
-	}
-
-	public void deleteJurorHistory(String createdJurorRecordNumber) throws SQLException {
-		db = new DBConnection();
-
-		String env_property = System.getProperty("env.database");
-
-		if (env_property != null)
-			conn = db.getConnection(env_property);
-		else
-			conn = db.getConnection("demo");
-
-		try {
-			//Delete the specified Juror from Juror.Pool
-			pStmt = conn.prepareStatement("DELETE FROM JUROR.PART_HIST WHERE PART_NO = '" + createdJurorRecordNumber + "'");
-			pStmt.executeQuery();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-			log.error("Message:deleted juror.part_hist records with the part_no of " + createdJurorRecordNumber + " - " + e.getMessage());
-		} finally {
-			conn.commit();
-			pStmt.close();
-			conn.close();
-		}
-	}
-
-
-	public void updateJurorSettingDateWeekInFuture(String column, int weeksInFuture, String jurorNumber) throws SQLException {
-		db = new DBConnection();
-
-		String env_property = System.getProperty("env.database");
-
-		if (env_property != null)
-			conn = db.getConnection(env_property);
-		else
-			conn = db.getConnection("demo");
-
-		try {
-			//Delete the specified Juror from Juror.Pool
-			pStmt = conn.prepareStatement("UPDATE juror.pool SET " + column + " = '" + oracleWeeksInFuture(weeksInFuture) + "' WHERE part_no = " + jurorNumber);
-			pStmt.executeQuery();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-			log.error("Message:updated juror.pool setting " + column + " to '" + oracleWeeksInFuture(weeksInFuture) + "' WHERE part_no = " + jurorNumber + " - " + e.getMessage());
 		} finally {
 			conn.commit();
 			pStmt.close();
@@ -6009,6 +4943,64 @@ public class DatabaseTesterNewSchemaDesign {
 
 		} finally {
 			conn.commit();
+			conn.close();
+		}
+	}
+	public void deleteJurorBulkData(String createdJurorRecordNumber) throws SQLException {
+		db = new DBConnection();
+
+		String env_property = System.getProperty("env.database");
+
+		if (env_property != null)
+			conn = db.getConnection(env_property);
+		else
+			conn = db.getConnection("demo");
+
+		try {
+			pStmt = conn.prepareStatement("DELETE FROM juror_mod.bulk_print_data WHERE JUROR_NO ='" + createdJurorRecordNumber + "'");
+			pStmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			conn.commit();
+			pStmt.close();
+			conn.close();
+		}
+	}
+	public void deleteTestPoolAndJurorsNSD(String poolRequestNumber) throws SQLException {
+		db = new DBConnection();
+
+		String env_property = System.getProperty("env.database");
+
+		if (env_property != null)
+			conn = db.getConnection(env_property);
+		else
+			conn = db.getConnection("demo");
+
+		try {
+
+			pStmt = conn.prepareStatement("DELETE FROM JUROR_MOD.JUROR WHERE JUROR_NUMBER IN (SELECT JUROR_NUMBER FROM JUROR_MOD.POOL WHERE POOL_NO = '" + poolRequestNumber + "')");
+			pStmt.execute();
+
+			pStmt = conn.prepareStatement("DELETE FROM JUROR_MOD.JUROR_POOL WHERE POOL_NUMBER = '" + poolRequestNumber + "'");
+			pStmt.execute();
+
+			pStmt = conn.prepareStatement("DELETE FROM JUROR_MOD.POOL WHERE POOL_NO = '" + poolRequestNumber + "'");
+			pStmt.execute();
+
+			pStmt = conn.prepareStatement("DELETE FROM JUROR_MOD.JUROR_HISTORY WHERE POOL_NUMBER = '" + poolRequestNumber + "'");
+			pStmt.execute();
+
+			pStmt = conn.prepareStatement("DELETE FROM JUROR_MOD.POOL_HISTORY WHERE POOL_NO = '" + poolRequestNumber + "'");
+			pStmt.execute();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.error("Message:deleted new juror.unique_pool, juror.pool and juror.pool_hist records with the pool_no " + poolRequestNumber + " respectively - " + e.getMessage());
+		} finally {
+			conn.commit();
+			pStmt.close();
 			conn.close();
 		}
 	}
