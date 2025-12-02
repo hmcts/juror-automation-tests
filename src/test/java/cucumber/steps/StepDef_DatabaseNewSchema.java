@@ -429,11 +429,6 @@ public class StepDef_DatabaseNewSchema {
         DBTNSD.clean_modernisation_dataNSD();
     }
 
-    @Given("^I have created the modernisation staff data new schema$")
-    public void insertModernisationDataNSD() throws SQLException {
-        DBT.insert_modernisation_data();
-    }
-
     @Given("^I populate the court catchment area table$")
     public void populateCourtCatchmentAreaNSD() throws SQLException {
         DBTNSD.populateCourtCatchmentAreaTable();
@@ -483,11 +478,6 @@ public class StepDef_DatabaseNewSchema {
     @Given("^PCQs has been disabled new schema$")
     public void pcqDisabledNSD() throws SQLException {
         DBTNSD.pcqDisabledNSD();
-    }
-
-    @Given("^all \"([^\"]*)\" voters have been reset to unselected state new schema$")
-    public void resetVotersNSD(String courtCode) throws SQLException {
-        DBTNSD.resetVotersNSD(courtCode);
     }
 
     @Given("^I refresh the voters table for court \"([^\"]*)\" new schema$")
@@ -660,12 +650,6 @@ public class StepDef_DatabaseNewSchema {
 
     }
 
-    @Given("^I clear down the bulk print data table for Juror \"([^\"]*)\"$")
-    public void deleteBulkdatajuror(String createdJurorRecordNumber) throws SQLException {
-        DBT.deleteBulkDataJuror(createdJurorRecordNumber);
-
-    }
-
     @Then("^I update the bureau transfer date of the juror \"([^\"]*)\"$")
     public void updatebureautransferDateofCourtUser(String jurorNumber) throws SQLException {
         DBTNSD.updateBureauTransferDate(jurorNumber);
@@ -764,5 +748,9 @@ public class StepDef_DatabaseNewSchema {
     @Given("^I have updated the juror next date for court dashboard$")
     public void updateJurorNextDateIfDue() throws SQLException {
         DBTNSD.updateJurorNextDateIfDue();
+    }
+    @Given("^I clear down the bulk print data table for Juror \"([^\"]*)\"$")
+    public void deleteJurorBulkData(String createdJurorRecordNumber) throws SQLException {
+        DBTNSD.deleteJurorBulkData(createdJurorRecordNumber);
     }
 }
