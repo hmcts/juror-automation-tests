@@ -104,7 +104,7 @@ Scenario Outline: English_1st_ErrorChecks - Court date is in the past
 @Regression
 Scenario Outline: English_1st_ErrorChecks
 
-	Given I am on "Public" "ithc"
+	Given I am on "Public" "demo"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -190,13 +190,13 @@ Scenario Outline: English_1st_ErrorChecks
 	When I set "Main phone" to "1207 821 1818"
 	When I press the "Continue" button
 	Then I see "There is a problem" on the page
-	And I see "Check your main phone number" on the page
+	And I see "Enter your main phone number using digits only, no letters or special characters" on the page
 	
 	#main includes a letter
 	When I set "Main phone" to "H207 821 1818"
 	When I press the "Continue" button
 	Then I see "There is a problem" on the page
-	And I see "Check your main phone number" on the page
+	And I see "Enter your main phone number using digits only, no letters or special characters" on the page
 	
 	#main has all spaces
 	When I set "Main phone" to "           "
@@ -208,27 +208,27 @@ Scenario Outline: English_1st_ErrorChecks
 	When I set "Main phone" to "01         "
 	When I press the "Continue" button
 	Then I see "There is a problem" on the page
-	And I see "Check your main phone number" on the page
+	And I see "Enter your main phone number using digits only, no letters or special characters" on the page
 	
 	#main has hyphens
 	When I set "Main phone" to "0121-333-4444"
 	Then I see "There is a problem" on the page
-	And I see "Check your main phone number" on the page
+	And I see "Enter your main phone number using digits only, no letters or special characters" on the page
 	
 	#main has commas
 	When I set "Main phone" to "0121,333,4444"
 	Then I see "There is a problem" on the page
-	And I see "Check your main phone number" on the page
+	And I see "Enter your main phone number using digits only, no letters or special characters" on the page
 	
 	#main begins 07 but only has 10 digits
 	When I set "Main phone" to "0711111111"
 	Then I see "There is a problem" on the page
-	And I see "Check your main phone number" on the page
+	And I see "Enter your main phone number using digits only, no letters or special characters" on the page
 	
 	#main begins 01 but only has 9 digits
 	When I set "Main phone" to "011111111"
 	Then I see "There is a problem" on the page
-	And I see "Check your main phone number" on the page
+	And I see "Enter your main phone number using digits only, no letters or special characters" on the page
 	
 	#main has too many spaces
 	When I set "Main phone" to "01  21  123 444"
@@ -246,39 +246,39 @@ Scenario Outline: English_1st_ErrorChecks
 	When I set "Another phone (optional)" to "1207 821 1818"
 	When I press the "Continue" button
 	Then I see "There is a problem" on the page
-	And I see "Check your other phone number" on the page
+	And I see "Enter your other phone number using digits only, no letters or special characters" on the page
 	
 	#other includes a letter
 	When I set "Another phone (optional)" to "H207 821 1818"
 	When I press the "Continue" button
 	Then I see "There is a problem" on the page
-	And I see "Check your other phone number" on the page
+	And I see "Enter your other phone number using digits only, no letters or special characters" on the page
 		
 	#other starts 01 and is followed by spaces
 	When I set "Another phone (optional)" to "01         "
 	When I press the "Continue" button
 	Then I see "There is a problem" on the page
-	And I see "Check your other phone number" on the page
+	And I see "Enter your other phone number using digits only, no letters or special characters" on the page
 	
 	#other has hyphens
 	When I set "Another phone (optional)" to "0121-333-4444"
 	Then I see "There is a problem" on the page
-	And I see "Check your other phone number" on the page
+	And I see "Enter your other phone number using digits only, no letters or special characters" on the page
 	
 	#other has commas
 	When I set "Another phone (optional)" to "0121,333,4444"
 	Then I see "There is a problem" on the page
-	And I see "Check your other phone number" on the page
+	And I see "Enter your other phone number using digits only, no letters or special characters" on the page
 	
 	#other begins 07 but only has 10 digits
 	When I set "Another phone (optional)" to "0711111111"
 	Then I see "There is a problem" on the page
-	And I see "Check your other phone number" on the page
+	And I see "Enter your other phone number using digits only, no letters or special characters" on the page
 	
 	#other begins 01 but only has 9 digits
 	When I set "Another phone (optional)" to "011111111"
 	Then I see "There is a problem" on the page
-	And I see "Check your other phone number" on the page
+	And I see "Enter your other phone number using digits only, no letters or special characters" on the page
 	
 	#other has too many spaces
 	When I set "Another phone (optional)" to "01  21  123 444"
@@ -297,8 +297,8 @@ Scenario Outline: English_1st_ErrorChecks
 	When I set "Another phone (optional)" to "011111111"
 	When I press the "Continue" button
 	Then I see "There is a problem" on the page
-	And I see "Check your main phone number" on the page
-	And I see "Check your other phone number" on the page
+	And I see "Enter your other phone number using digits only, no letters or special characters" on the page
+	And I see "Enter your other phone number using digits only, no letters or special characters" on the page
 
 	When I set "Main phone" to "0207 821 1818"
 	When I set "Another phone (optional)" to ""
