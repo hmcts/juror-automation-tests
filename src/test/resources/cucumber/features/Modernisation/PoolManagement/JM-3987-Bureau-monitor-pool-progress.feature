@@ -153,7 +153,7 @@ Feature: JM-3987 Monitor Pools Progress
   @JurorTransformation
   Scenario Outline: Test to show all 8 weeks are populated when an active pool exist for that week
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "demo"
     Given new pool requests are deleted new schema
 
     Given a bureau owned pool is created with jurors
@@ -184,7 +184,9 @@ Feature: JM-3987 Monitor Pools Progress
     And I see "<pool_number5>" on the page
     And I see "<pool_number6>" on the page
     And I see "<pool_number7>" on the page
-    And I see "<pool_number8>" on the page
+
+    #dont see this pool as it's 9 weeks in future and report only shows 8 weeks in advance
+    And I do not see "<pool_number8>" on the page
 
     And I press the "Refresh" button
     And I do not see "There are no matching results" on the page
