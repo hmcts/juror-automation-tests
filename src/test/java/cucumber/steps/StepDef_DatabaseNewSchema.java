@@ -613,6 +613,16 @@ public class StepDef_DatabaseNewSchema {
         DBTNSD.clearMessagesForJuror(jurorNumber);
     }
 
+    @Given("^I clear messages for court \"([^\"]*)\"$")
+    public void clearMessagesForCourt(String court) throws SQLException {
+        DBTNSD.clearMessagesForCourt(court);
+    }
+
+    @Given("^I create a message of each type for court \"([^\"]*)\"$")
+    public void insertMessagesForCourt(String court) throws SQLException {
+        DBTNSD.insertMessagesForCourt(court);
+    }
+
     @Given("^I update juror \"([^\"]*)\" to have a status of \"([^\"]*)\"$")
     public void setJurorStatus(String jurorNumber, String statusName) throws SQLException {
         int statusNumber = DBTNSD.getStatusNumber(statusName);
