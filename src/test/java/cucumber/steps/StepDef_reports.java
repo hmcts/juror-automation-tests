@@ -58,4 +58,65 @@ public class StepDef_reports {
         assertEquals(expected, REP.totalDigitalResponsesReceived());
     }
 
+    @Then("^the total SMS sent for selected court is \"([^\"]*)\"$")
+    public void totalSMSMatchesExpected(String expected) {
+        assertEquals(expected, REP.totalSMSSentMatchesExpected());
+    }
+
+    @Then("^the number of \"([^\"]*)\" SMS sent by selected court is \"([^\"]*)\"$")
+    public void numberReminderSMSSentMatchesExpected(String expected, String messageType) {
+
+        switch (messageType) {
+            case "Reminder":
+                assertEquals(expected, REP.numberReminderSMSSentMatchesExpected());
+                break;
+            case "Failed to Attend":
+                assertEquals(expected, REP.numberFailedSMSSentMatchesExpected());
+                break;
+            case "Date and Time changed":
+                assertEquals(expected, REP.numberDateAndTimeSMSSentMatchesExpected());
+                break;
+            case "Time changed":
+                assertEquals(expected, REP.numberTimeChangedSMSSentMatchesExpected());
+                break;
+            case "Complete (attended)":
+                assertEquals(expected, REP.numberCompleteAttendedSMSSentMatchesExpected());
+                break;
+            case "Complete (not needed)":
+                assertEquals(expected, REP.numberCompleteNotNeededSMSSentMatchesExpected());
+                break;
+            case "Next Date":
+                assertEquals(expected, REP.numberNextDateSMSSentMatchesExpected());
+                break;
+            case "On Call":
+                assertEquals(expected, REP.numberOnCallSMSSentMatchesExpected());
+                break;
+            case "Please Contact":
+                assertEquals(expected, REP.numberPleaseContactSMSSentMatchesExpected());
+                break;
+            case "Delayed Start":
+                assertEquals(expected, REP.numberDelayedSMSSentMatchesExpected());
+                break;
+            case "Selection":
+                assertEquals(expected, REP.numberSelectionSMSSentMatchesExpected());
+                break;
+            case "Bad Weather":
+                assertEquals(expected, REP.numberBadWeatherSMSSentMatchesExpected());
+                break;
+            case "Check Junk":
+                assertEquals(expected, REP.numberCheckJunkSMSSentMatchesExpected());
+                break;
+            case "Bring Lunch":
+                assertEquals(expected, REP.numberBringLunchSMSSentMatchesExpected());
+                break;
+            case "Excused":
+                assertEquals(expected, REP.numberExcusedSMSSentMatchesExpected());
+                break;
+            case "Total":
+                assertEquals(expected, REP.numberTotalSMSSentMatchesExpected());
+                break;
+        }
+
+    }
+
 }

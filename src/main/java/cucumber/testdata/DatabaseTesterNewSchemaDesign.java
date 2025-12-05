@@ -4038,6 +4038,115 @@ public class DatabaseTesterNewSchemaDesign {
 		}
 	}
 
+	public void clearMessagesForCourt(String court) throws SQLException {
+		db = new DBConnection();
+
+		String env_property = System.getProperty("env.database");
+
+		if (env_property != null)
+			conn = db.getConnection(env_property);
+		else
+			conn = db.getConnection("demo");
+
+		try {
+			pStmt = conn.prepareStatement("delete from juror_mod.message where loc_code='" + court + "'");
+			pStmt.executeUpdate();
+
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.error("Message:" + e.getMessage());
+
+		} finally {
+			conn.commit();
+			pStmt.close();
+			conn.close();
+		}
+	}
+
+	public void insertMessagesForCourt(String court) throws SQLException {
+		db = new DBConnection();
+
+		String env_property = System.getProperty("env.database");
+
+		if (env_property != null)
+			conn = db.getConnection(env_property);
+		else
+			conn = db.getConnection("demo");
+
+		try {
+			pStmt = conn.prepareStatement("INSERT INTO juror_mod.message (juror_number,file_datetime,username,loc_code,phone,email,pool_no,subject,message_text,message_id,message_read)"
+					+ "VALUES ('041500001',CURRENT_DATE,'MODTESTCOURT','" + court + "','07111111111',NULL,'415000001','Your Jury Service','Reminder','1','NR')");
+			pStmt.execute();
+
+			pStmt = conn.prepareStatement("INSERT INTO juror_mod.message (juror_number,file_datetime,username,loc_code,phone,email,pool_no,subject,message_text,message_id,message_read)"
+					+ "VALUES ('041500002',CURRENT_DATE,'MODTESTCOURT','" + court + "','07111111112',NULL,'415000002','Your Jury Service','Failed to attend','2','NR')");
+			pStmt.execute();
+
+			pStmt = conn.prepareStatement("INSERT INTO juror_mod.message (juror_number,file_datetime,username,loc_code,phone,email,pool_no,subject,message_text,message_id,message_read)"
+					+ "VALUES ('041500003',CURRENT_DATE,'MODTESTCOURT','" + court + "','07111111113',NULL,'415000003','Your Jury Service','Date and Time Changed','3','NR')");
+			pStmt.execute();
+
+			pStmt = conn.prepareStatement("INSERT INTO juror_mod.message (juror_number,file_datetime,username,loc_code,phone,email,pool_no,subject,message_text,message_id,message_read)"
+					+ "VALUES ('041500004',CURRENT_DATE,'MODTESTCOURT','" + court + "','07111111114',NULL,'415000004','Your Jury Service','Time Changed','4','NR')");
+			pStmt.execute();
+
+			pStmt = conn.prepareStatement("INSERT INTO juror_mod.message (juror_number,file_datetime,username,loc_code,phone,email,pool_no,subject,message_text,message_id,message_read)"
+					+ "VALUES ('041500005',CURRENT_DATE,'MODTESTCOURT','" + court + "','07111111115',NULL,'415000005','Your Jury Service','Complete (attended)','5','NR')");
+			pStmt.execute();
+
+			pStmt = conn.prepareStatement("INSERT INTO juror_mod.message (juror_number,file_datetime,username,loc_code,phone,email,pool_no,subject,message_text,message_id,message_read)"
+					+ "VALUES ('041500006',CURRENT_DATE,'MODTESTCOURT','" + court + "','07111111116',NULL,'415000006','Your Jury Service','Complete (not needed)','6','NR')");
+			pStmt.execute();
+
+			pStmt = conn.prepareStatement("INSERT INTO juror_mod.message (juror_number,file_datetime,username,loc_code,phone,email,pool_no,subject,message_text,message_id,message_read)"
+					+ "VALUES ('041500007',CURRENT_DATE,'MODTESTCOURT','" + court + "','07111111117',NULL,'415000007','Your Jury Service','Next Date','7','NR')");
+			pStmt.execute();
+
+			pStmt = conn.prepareStatement("INSERT INTO juror_mod.message (juror_number,file_datetime,username,loc_code,phone,email,pool_no,subject,message_text,message_id,message_read)"
+					+ "VALUES ('041500008',CURRENT_DATE,'MODTESTCOURT','" + court + "','07111111118',NULL,'415000008','Your Jury Service','On Call','8','NR')");
+			pStmt.execute();
+
+			pStmt = conn.prepareStatement("INSERT INTO juror_mod.message (juror_number,file_datetime,username,loc_code,phone,email,pool_no,subject,message_text,message_id,message_read)"
+					+ "VALUES ('041500009',CURRENT_DATE,'MODTESTCOURT','" + court + "','07111111119',NULL,'415000009','Your Jury Service','Please Contact','9','NR')");
+			pStmt.execute();
+
+			pStmt = conn.prepareStatement("INSERT INTO juror_mod.message (juror_number,file_datetime,username,loc_code,phone,email,pool_no,subject,message_text,message_id,message_read)"
+					+ "VALUES ('041500010',CURRENT_DATE,'MODTESTCOURT','" + court + "','07111111110',NULL,'415000010','Your Jury Service','Delayed start','10','NR')");
+			pStmt.execute();
+
+			pStmt = conn.prepareStatement("INSERT INTO juror_mod.message (juror_number,file_datetime,username,loc_code,phone,email,pool_no,subject,message_text,message_id,message_read)"
+					+ "VALUES ('041500011',CURRENT_DATE,'MODTESTCOURT','" + court + "','07111111111',NULL,'415000011','Your Jury Service','Selection','11','NR')");
+			pStmt.execute();
+
+			pStmt = conn.prepareStatement("INSERT INTO juror_mod.message (juror_number,file_datetime,username,loc_code,phone,email,pool_no,subject,message_text,message_id,message_read)"
+					+ "VALUES ('041500012',CURRENT_DATE,'MODTESTCOURT','" + court + "','07111111112',NULL,'415000012','Your Jury Service','Bad Weather','12','NR')");
+			pStmt.execute();
+
+			pStmt = conn.prepareStatement("INSERT INTO juror_mod.message (juror_number,file_datetime,username,loc_code,phone,email,pool_no,subject,message_text,message_id,message_read)"
+					+ "VALUES ('041500013',CURRENT_DATE,'MODTESTCOURT','" + court + "','07111111113',NULL,'415000013','Your Jury Service','Check Junk','13','NR')");
+			pStmt.execute();
+
+			pStmt = conn.prepareStatement("INSERT INTO juror_mod.message (juror_number,file_datetime,username,loc_code,phone,email,pool_no,subject,message_text,message_id,message_read)"
+					+ "VALUES ('041500014',CURRENT_DATE,'MODTESTCOURT','" + court + "','07111111114',NULL,'415000014','Your Jury Service','Bring Lunch','14','NR')");
+			pStmt.execute();
+
+			pStmt = conn.prepareStatement("INSERT INTO juror_mod.message (juror_number,file_datetime,username,loc_code,phone,email,pool_no,subject,message_text,message_id,message_read)"
+					+ "VALUES ('041500015',CURRENT_DATE,'MODTESTCOURT','" + court + "','07111111115',NULL,'415000015','Your Jury Service','Excused','15','NR')");
+			pStmt.execute();
+
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.error("Message:" + e.getMessage());
+
+		} finally {
+			conn.commit();
+			pStmt.close();
+			conn.close();
+		}
+	}
+
 	public void setJurorStatus(String jurorNumber, String jurorStatus) throws SQLException {
 		db = new DBConnection();
 
