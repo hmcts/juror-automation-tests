@@ -469,6 +469,11 @@ public class StepDef_DatabaseNewSchema {
         DBTNSD.cleanAppearancesNSD();
     }
 
+    @Given("^I delete appearances data for court \"([^\"]*)\"$")
+    public void cleanAppearancesNSD(String court) throws SQLException {
+        DBTNSD.cleanAppearancesForCourtNSD(court);
+    }
+
 
     @Given("^PCQs has been enabled new schema$")
     public void pcqEnabledNSD() throws SQLException {
@@ -736,6 +741,10 @@ public class StepDef_DatabaseNewSchema {
     @Given("^I insert 200 appearance records for juror \"([^\"]*)\" at a \"([^\"]*)\" court and pool number \"([^\"]*)\"$")
     public void insertAppearanceRecordsNSD(String jurorNumber, String locCode, String poolNumber) throws SQLException {
         DBTNSD.insertAppearanceRecordsNSD(jurorNumber, locCode, poolNumber);
+    }
+    @Given("^I insert appearance records with expenses for court \"([^\"]*)\"$")
+    public void insertAppearanceRecordsWithExpensesNSD(String locCode) throws SQLException {
+        DBTNSD.insertAppearanceRecordsWithExpensesNSD(locCode);
     }
     @Given("^I verify address \"([^\"]*)\" exists in print record for juror \"([^\"]*)\"$")
     public void verifyAddressExistsInPrintRecord(String jurorAddress, String jurorNumber) throws SQLException {

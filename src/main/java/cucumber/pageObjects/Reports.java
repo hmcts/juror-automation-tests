@@ -60,6 +60,36 @@ public class Reports {
     @FindBy(xpath = "//td[17]")
     WebElement numberTotalSMSSent;
 
+    @FindBy(xpath = "//td[2]")
+    WebElement expensePaymentsLossEarnings;
+
+    @FindBy(xpath = "//td[3]")
+    WebElement expensePaymentsExtraCare;
+
+    @FindBy(xpath = "//td[4]")
+    WebElement expensePaymentsOther;
+
+    @FindBy(xpath = "//td[5]")
+    WebElement expensePaymentsPublicTransport;
+
+    @FindBy(xpath = "//td[6]")
+    WebElement expensePaymentsTaxi;
+
+    @FindBy(xpath = "//td[7]")
+    WebElement expensePaymentsMotorcycle;
+
+    @FindBy(xpath = "//td[8]")
+    WebElement expensePaymentsCar;
+
+    @FindBy(xpath = "//td[9]")
+    WebElement expensePaymentsBicycle;
+
+    @FindBy(xpath = "//td[10]")
+    WebElement expensePaymentsParking;
+
+    @FindBy(xpath = "//td[11]")
+    WebElement expensePaymentsFoodDrink;
+
     @FindBy(xpath = "//div[contains(text(),'Total SMS sent')]/../div[2]")
     WebElement totalSMSSent;
 
@@ -133,6 +163,44 @@ public class Reports {
 
     public String totalSMSSentMatchesExpected() {
         return totalSMSSent.getText();
+    }
+
+    public String expensePaymentsLossEarningsMatchesExpected() {
+        return expensePaymentsLossEarnings.getText();
+    }
+
+    public String expensePaymentsExtraCareMatchesExpected() {
+        return expensePaymentsExtraCare.getText();
+    }
+
+    public String expensePaymentsOtherMatchesExpected() { return expensePaymentsOther.getText(); }
+
+    public String expensePaymentsPublicTransportMatchesExpected() {
+        return expensePaymentsPublicTransport.getText();
+    }
+
+    public String expensePaymentsTaxiMatchesExpected() {
+        return expensePaymentsTaxi.getText();
+    }
+
+    public String expensePaymentsMotorcycleMatchesExpected() {
+        return expensePaymentsMotorcycle.getText();
+    }
+
+    public String expensePaymentsCarfMatchesExpected() {
+        return expensePaymentsCar.getText();
+    }
+
+    public String expensePaymentsBicycleatchesExpected() {
+        return expensePaymentsBicycle.getText();
+    }
+
+    public String expensePaymentsParkingMatchesExpected() {
+        return expensePaymentsParking.getText();
+    }
+
+    public String expensePaymentsFoodDrinkMatchesExpected() {
+        return expensePaymentsFoodDrink.getText();
     }
 
 }

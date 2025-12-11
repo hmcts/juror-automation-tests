@@ -20,7 +20,6 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -2123,6 +2122,12 @@ public class NavigationShared {
     @FindBy(id = "jurorDob")
     WebElement dobOptional;
 
+    @FindBy(name = "dateFrom")
+    WebElement expensePaymentsDateFrom;
+
+    @FindBy(name = "dateTo")
+    WebElement expensePaymentsDateTo;
+
 
     public void enterNewDate(String attDateSequence, final String day, final String month, final String year) {
         log.info("Entering new date");
@@ -2280,6 +2285,16 @@ public class NavigationShared {
             case "Date of birth (optional)":
                 dobOptional.clear();
                 dobOptional.sendKeys(mondayDateValue);
+                break;
+
+            case "Date from":
+                expensePaymentsDateFrom.clear();
+                expensePaymentsDateFrom.sendKeys(mondayDateValue);
+                break;
+
+            case "Date to":
+                expensePaymentsDateTo.clear();
+                expensePaymentsDateTo.sendKeys(mondayDateValue);
                 break;
         }
     }
