@@ -18,26 +18,26 @@ Feature: As a service owner I want to be able to see what SMS messages courts ar
     When I set "Date from" to "000000"
     When I set "Date to" to "000000"
     And I press the "Continue" button
-    Then I see "Enter ‘date from’ in the correct format, for example, 31/01/2023" in the error banner
-    Then I see "Enter ‘date to’ in the correct format, for example, 31/01/2023" in the error banner
+    Then I see "Enter ‘date from’ in the correct format, for example, 31/01/2023" on the page
+    Then I see "Enter ‘date to’ in the correct format, for example, 31/01/2023" on the page
 
-    When I set "Date from" to "today"
-    When I set "Date to" to "today"
+    When I set "Date from" to "text"
+    When I set "Date to" to "text"
     And I press the "Continue" button
-    Then I see "‘Date from’ can only include numbers and forward slashes" in the error banner
-    Then I see "‘Date to’ can only include numbers and forward slashes" in the error banner
+    Then I see "‘Date from’ can only include numbers and forward slashes" on the page
+    Then I see "‘Date to’ can only include numbers and forward slashes" on the page
 
     When I set "Date from" to "11111"
     When I set "Date to" to "11111"
     And I press the "Continue" button
-    Then I see "Enter a real date" in the error banner
-    Then I see "‘Enter a real date" in the error banner
+    Then I see "Enter a real date" on the page
+    Then I see "Enter a real date" on the page
 
     When I set "Date from" to "01-01-2025"
     When I set "Date to" to "01-01-2025"
     And I press the "Continue" button
-    Then I see "‘Date from’ can only include numbers and forward slashes" in the error banner
-    Then I see "‘Date to’ can only include numbers and forward slashes" in the error banner
+    Then I see "‘Date from’ can only include numbers and forward slashes" on the page
+    Then I see "‘Date to’ can only include numbers and forward slashes" on the page
 
     When I set "Date from" to "today"
     When I set "Date to" to "today"

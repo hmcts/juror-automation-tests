@@ -2867,6 +2867,34 @@ public class DatabaseTesterNewSchemaDesign {
 		}
 	}
 
+	public void cleanAppearancesForCourtNSD(String court) throws SQLException {
+		db = new DBConnection();
+		String env_property = System.getProperty("env.database");
+		if (env_property != null)
+			conn = db.getConnection(env_property);
+		else
+			conn = db.getConnection("demo");
+		try {
+			pStmt = conn.prepareStatement("delete from juror_mod.appearance_audit where loc_code = '" + court + "'");
+			pStmt.execute();
+			conn.commit();
+
+			pStmt = conn.prepareStatement("delete from juror_mod.appearance where loc_code = '" + court + "'");
+			pStmt.execute();
+			conn.commit();
+
+			log.info("deleted appearances records");
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.error("Message:" + e.getMessage());
+			log.info(11);
+		} finally {
+			conn.commit();
+			pStmt.close();
+			conn.close();
+		}
+	}
+
 	public void updateVotersPostcodeNSD(String court, String postcode) throws SQLException {
 		db = new DBConnection();
 		String env_property = System.getProperty("env.database");
@@ -4781,6 +4809,116 @@ public class DatabaseTesterNewSchemaDesign {
 			conn.close();
 		}
 	}
+
+	public void insertAppearanceRecordsWithExpensesNSD(String locCode) throws SQLException {
+		db = new DBConnection();
+		String env_property = System.getProperty("env.database");
+
+		if (env_property != null)
+			conn = db.getConnection(env_property);
+		else
+			conn = db.getConnection("demo");
+
+		try {
+
+			//loss of earnings expense
+			pStmt = conn.prepareStatement ("INSERT INTO juror_mod.appearance (attendance_date, juror_number, loc_code, time_in, time_out, trial_number, non_attendance, no_show, misc_description, pay_cash, last_updated_by, created_by, public_transport_total_due, public_transport_total_paid, hired_vehicle_total_due, hired_vehicle_total_paid, motorcycle_total_due, motorcycle_total_paid, car_total_due, car_total_paid, pedal_cycle_total_due, pedal_cycle_total_paid, childcare_total_due, childcare_total_paid, parking_total_due, parking_total_paid, misc_total_due, misc_total_paid, smart_card_due, is_draft_expense, f_audit, sat_on_jury, pool_number, appearance_stage, loss_of_earnings_due, loss_of_earnings_paid, subsistence_due, subsistence_paid, attendance_type, smart_card_paid, travel_time, travel_jurors_taken_by_car, travel_by_car, travel_jurors_taken_by_motorcycle, travel_by_motorcycle, travel_by_bicycle, miles_traveled, food_and_drink_claim_type, version, expense_rates_id, attendance_audit_number, total_due, total_paid, appearance_confirmed, hide_on_unpaid_expense_and_reports)"
+					+ "VALUES (CURRENT_DATE-50, '040127001', ?, '10:00:00', '16:30:00', NULL, false, NULL, '', false, NULL, 'MODTESTCOURT', NULL, NULL, 0.00, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, NULL, NULL, FALSE, NULL, NULL, '401270001', 'EXPENSE_ENTERED', NULL, '100000.00', 0.00, NULL, 'FULL_DAY', NULL, '00:00:00', NULL, FALSE, NULL, FALSE, FALSE, NULL, 'NONE', 4, '1', 'P12700001', DEFAULT , DEFAULT, true, false)");
+			pStmt.setString(1, locCode);
+			pStmt.executeUpdate();
+
+			log.info("Inserted appearance record with LOSS OF EARNINGS expense for juror");
+
+			//extra care expense
+			pStmt = conn.prepareStatement ("INSERT INTO juror_mod.appearance (attendance_date, juror_number, loc_code, time_in, time_out, trial_number, non_attendance, no_show, misc_description, pay_cash, last_updated_by, created_by, public_transport_total_due, public_transport_total_paid, hired_vehicle_total_due, hired_vehicle_total_paid, motorcycle_total_due, motorcycle_total_paid, car_total_due, car_total_paid, pedal_cycle_total_due, pedal_cycle_total_paid, childcare_total_due, childcare_total_paid, parking_total_due, parking_total_paid, misc_total_due, misc_total_paid, smart_card_due, is_draft_expense, f_audit, sat_on_jury, pool_number, appearance_stage, loss_of_earnings_due, loss_of_earnings_paid, subsistence_due, subsistence_paid, attendance_type, smart_card_paid, travel_time, travel_jurors_taken_by_car, travel_by_car, travel_jurors_taken_by_motorcycle, travel_by_motorcycle, travel_by_bicycle, miles_traveled, food_and_drink_claim_type, version, expense_rates_id, attendance_audit_number, total_due, total_paid, appearance_confirmed, hide_on_unpaid_expense_and_reports)"
+					+ "VALUES (CURRENT_DATE-49, '040127001', ?, '10:00:00', '16:30:00', NULL, false, NULL, '', false, NULL, 'MODTESTCOURT', NULL, NULL, 0.00, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '110000.00', 0.00, NULL, NULL, NULL, NULL, FALSE, NULL, NULL, '401270001', 'EXPENSE_ENTERED', NULL, NULL, 0.00, NULL, 'FULL_DAY', NULL, '00:00:00', NULL, FALSE, NULL, FALSE, FALSE, NULL, 'NONE', 4, '1', 'P12700002', DEFAULT, DEFAULT, true, false)");
+			pStmt.setString(1, locCode);
+			pStmt.executeUpdate();
+
+			log.info("Inserted appearance record with EXTRA CARE expense for juror");
+
+			//OTHER expense
+			pStmt = conn.prepareStatement ("INSERT INTO juror_mod.appearance (attendance_date, juror_number, loc_code, time_in, time_out, trial_number, non_attendance, no_show, misc_description, pay_cash, last_updated_by, created_by, public_transport_total_due, public_transport_total_paid, hired_vehicle_total_due, hired_vehicle_total_paid, motorcycle_total_due, motorcycle_total_paid, car_total_due, car_total_paid, pedal_cycle_total_due, pedal_cycle_total_paid, childcare_total_due, childcare_total_paid, parking_total_due, parking_total_paid, misc_total_due, misc_total_paid, smart_card_due, is_draft_expense, f_audit, sat_on_jury, pool_number, appearance_stage, loss_of_earnings_due, loss_of_earnings_paid, subsistence_due, subsistence_paid, attendance_type, smart_card_paid, travel_time, travel_jurors_taken_by_car, travel_by_car, travel_jurors_taken_by_motorcycle, travel_by_motorcycle, travel_by_bicycle, miles_traveled, food_and_drink_claim_type, version, expense_rates_id, attendance_audit_number, total_due, total_paid, appearance_confirmed, hide_on_unpaid_expense_and_reports)"
+					+ "VALUES (CURRENT_DATE-48, '040127001', ?, '10:00:00', '16:30:00', NULL, false, NULL, '', false, NULL, 'MODTESTCOURT', NULL, NULL, 0.00, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, '120000.00', NULL, FALSE, NULL, NULL, '401270001', 'EXPENSE_ENTERED', NULL, NULL, 0.00, NULL, 'FULL_DAY', NULL, '00:00:00', NULL, FALSE, NULL, FALSE, FALSE, NULL, 'NONE', 4, '1', 'P12700003', DEFAULT, DEFAULT, true, false)");
+			pStmt.setString(1, locCode);
+			pStmt.executeUpdate();
+
+			log.info("Inserted appearance record with OTHER expense for juror");
+
+			//public transport expense
+			pStmt = conn.prepareStatement ("INSERT INTO juror_mod.appearance (attendance_date, juror_number, loc_code, time_in, time_out, trial_number, non_attendance, no_show, misc_description, pay_cash, last_updated_by, created_by, public_transport_total_due, public_transport_total_paid, hired_vehicle_total_due, hired_vehicle_total_paid, motorcycle_total_due, motorcycle_total_paid, car_total_due, car_total_paid, pedal_cycle_total_due, pedal_cycle_total_paid, childcare_total_due, childcare_total_paid, parking_total_due, parking_total_paid, misc_total_due, misc_total_paid, smart_card_due, is_draft_expense, f_audit, sat_on_jury, pool_number, appearance_stage, loss_of_earnings_due, loss_of_earnings_paid, subsistence_due, subsistence_paid, attendance_type, smart_card_paid, travel_time, travel_jurors_taken_by_car, travel_by_car, travel_jurors_taken_by_motorcycle, travel_by_motorcycle, travel_by_bicycle, miles_traveled, food_and_drink_claim_type, version, expense_rates_id, attendance_audit_number, total_due, total_paid, appearance_confirmed, hide_on_unpaid_expense_and_reports)"
+					+ "VALUES (CURRENT_DATE-47, '040127001', ?, '10:00:00', '16:30:00', NULL, false, NULL, '', false, NULL, 'MODTESTCOURT', null, '130000.00', 0.00, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, NULL, NULL, FALSE, NULL, NULL, '401270001', 'EXPENSE_ENTERED', NULL, NULL, 0.00, NULL, 'FULL_DAY', NULL, '00:00:00', NULL, FALSE, NULL, FALSE, FALSE, NULL, 'NONE', 4, '1', 'P12700000', DEFAULT , DEFAULT, true, false)");
+			pStmt.setString(1, locCode);
+			pStmt.executeUpdate();
+
+			log.info("Inserted appearance record with PUBLIC TRANSPORT expense for juror");
+
+			//TAXI expense
+			pStmt = conn.prepareStatement ("INSERT INTO juror_mod.appearance (attendance_date, juror_number, loc_code, time_in, time_out, trial_number, non_attendance, no_show, misc_description, pay_cash, last_updated_by, created_by, public_transport_total_due, public_transport_total_paid, hired_vehicle_total_due, hired_vehicle_total_paid, motorcycle_total_due, motorcycle_total_paid, car_total_due, car_total_paid, pedal_cycle_total_due, pedal_cycle_total_paid, childcare_total_due, childcare_total_paid, parking_total_due, parking_total_paid, misc_total_due, misc_total_paid, smart_card_due, is_draft_expense, f_audit, sat_on_jury, pool_number, appearance_stage, loss_of_earnings_due, loss_of_earnings_paid, subsistence_due, subsistence_paid, attendance_type, smart_card_paid, travel_time, travel_jurors_taken_by_car, travel_by_car, travel_jurors_taken_by_motorcycle, travel_by_motorcycle, travel_by_bicycle, miles_traveled, food_and_drink_claim_type, version, expense_rates_id, attendance_audit_number, total_due, total_paid, appearance_confirmed, hide_on_unpaid_expense_and_reports)"
+					+ "VALUES (CURRENT_DATE-46, '040127001', ?, '10:00:00', '16:30:00', NULL, false, NULL, '', false, NULL, 'MODTESTCOURT', NULL, NULL, NULL, '140000.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, NULL, NULL, FALSE, NULL, NULL, '401270001', 'EXPENSE_ENTERED', NULL, NULL, 0.00, NULL, 'FULL_DAY', NULL, '00:00:00', NULL, FALSE, NULL, FALSE, FALSE, NULL, 'NONE', 4, '1', 'P12700004', DEFAULT, DEFAULT, true, false)");
+			pStmt.setString(1, locCode);
+			pStmt.executeUpdate();
+
+			log.info("Inserted appearance record with TAXI expense for juror");
+
+			//MOTORCYCLE expense
+			pStmt = conn.prepareStatement ("INSERT INTO juror_mod.appearance (attendance_date, juror_number, loc_code, time_in, time_out, trial_number, non_attendance, no_show, misc_description, pay_cash, last_updated_by, created_by, public_transport_total_due, public_transport_total_paid, hired_vehicle_total_due, hired_vehicle_total_paid, motorcycle_total_due, motorcycle_total_paid, car_total_due, car_total_paid, pedal_cycle_total_due, pedal_cycle_total_paid, childcare_total_due, childcare_total_paid, parking_total_due, parking_total_paid, misc_total_due, misc_total_paid, smart_card_due, is_draft_expense, f_audit, sat_on_jury, pool_number, appearance_stage, loss_of_earnings_due, loss_of_earnings_paid, subsistence_due, subsistence_paid, attendance_type, smart_card_paid, travel_time, travel_jurors_taken_by_car, travel_by_car, travel_jurors_taken_by_motorcycle, travel_by_motorcycle, travel_by_bicycle, miles_traveled, food_and_drink_claim_type, version, expense_rates_id, attendance_audit_number, total_due, total_paid, appearance_confirmed, hide_on_unpaid_expense_and_reports)"
+					+ "VALUES (CURRENT_DATE-45, '040127001', ?, '10:00:00', '16:30:00', NULL, false, NULL, '', false, NULL, 'MODTESTCOURT', NULL, NULL, NULL, NULL, NULL, '150000.00', NULL, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, NULL, NULL, FALSE, NULL, NULL, '401270001', 'EXPENSE_ENTERED', NULL, NULL, 0.00, NULL, 'FULL_DAY', NULL, '00:00:00', NULL, FALSE, NULL, FALSE, FALSE, NULL, 'NONE', 4, '1', 'P12700005', DEFAULT , DEFAULT, true, false)");
+			pStmt.setString(1, locCode);
+			pStmt.executeUpdate();
+
+			log.info("Inserted appearance record with TAXI expense for juror");
+
+			//CAR expense
+			pStmt = conn.prepareStatement ("INSERT INTO juror_mod.appearance (attendance_date, juror_number, loc_code, time_in, time_out, trial_number, non_attendance, no_show, misc_description, pay_cash, last_updated_by, created_by, public_transport_total_due, public_transport_total_paid, hired_vehicle_total_due, hired_vehicle_total_paid, motorcycle_total_due, motorcycle_total_paid, car_total_due, car_total_paid, pedal_cycle_total_due, pedal_cycle_total_paid, childcare_total_due, childcare_total_paid, parking_total_due, parking_total_paid, misc_total_due, misc_total_paid, smart_card_due, is_draft_expense, f_audit, sat_on_jury, pool_number, appearance_stage, loss_of_earnings_due, loss_of_earnings_paid, subsistence_due, subsistence_paid, attendance_type, smart_card_paid, travel_time, travel_jurors_taken_by_car, travel_by_car, travel_jurors_taken_by_motorcycle, travel_by_motorcycle, travel_by_bicycle, miles_traveled, food_and_drink_claim_type, version, expense_rates_id, attendance_audit_number, total_due, total_paid, appearance_confirmed, hide_on_unpaid_expense_and_reports)"
+					+ "VALUES (CURRENT_DATE-44, '040127001', ?, '10:00:00', '16:30:00', NULL, false, NULL, '', false, NULL, 'MODTESTCOURT', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '160000.00', NULL, NULL, NULL, NULL, 0.00, NULL, NULL, NULL, NULL, FALSE, NULL, NULL, '401270001', 'EXPENSE_ENTERED', NULL, NULL, 0.00, NULL, 'FULL_DAY', NULL, '00:00:00', NULL, FALSE, NULL, FALSE, FALSE, NULL, 'NONE', 4, '1', 'P12700006', DEFAULT , DEFAULT, true, false)");
+			pStmt.setString(1, locCode);
+			pStmt.executeUpdate();
+
+			log.info("Inserted appearance record with CAR expense for juror");
+
+			//BICYCLE expense
+			pStmt = conn.prepareStatement ("INSERT INTO juror_mod.appearance (attendance_date, juror_number, loc_code, time_in, time_out, trial_number, non_attendance, no_show, misc_description, pay_cash, last_updated_by, created_by, public_transport_total_due, public_transport_total_paid, hired_vehicle_total_due, hired_vehicle_total_paid, motorcycle_total_due, motorcycle_total_paid, car_total_due, car_total_paid, pedal_cycle_total_due, pedal_cycle_total_paid, childcare_total_due, childcare_total_paid, parking_total_due, parking_total_paid, misc_total_due, misc_total_paid, smart_card_due, is_draft_expense, f_audit, sat_on_jury, pool_number, appearance_stage, loss_of_earnings_due, loss_of_earnings_paid, subsistence_due, subsistence_paid, attendance_type, smart_card_paid, travel_time, travel_jurors_taken_by_car, travel_by_car, travel_jurors_taken_by_motorcycle, travel_by_motorcycle, travel_by_bicycle, miles_traveled, food_and_drink_claim_type, version, expense_rates_id, attendance_audit_number, total_due, total_paid, appearance_confirmed, hide_on_unpaid_expense_and_reports)"
+					+ "VALUES (CURRENT_DATE-43, '040127001', ?, '10:00:00', '16:30:00', NULL, false, NULL, '', false, NULL, 'MODTESTCOURT', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '170000.00', NULL, NULL, 0.00, NULL, NULL, NULL, NULL, FALSE, NULL, NULL, '401270001', 'EXPENSE_ENTERED', NULL, NULL, 0.00, NULL, 'FULL_DAY', NULL, '00:00:00', NULL, FALSE, NULL, FALSE, FALSE, NULL, 'NONE', 4, '1', 'P12700007', DEFAULT , DEFAULT, true, false)");
+			pStmt.setString(1, locCode);
+			pStmt.executeUpdate();
+
+			log.info("Inserted appearance record with BICYCLE expense for juror");
+
+			//PARKING expense
+			pStmt = conn.prepareStatement ("INSERT INTO juror_mod.appearance (attendance_date, juror_number, loc_code, time_in, time_out, trial_number, non_attendance, no_show, misc_description, pay_cash, last_updated_by, created_by, public_transport_total_due, public_transport_total_paid, hired_vehicle_total_due, hired_vehicle_total_paid, motorcycle_total_due, motorcycle_total_paid, car_total_due, car_total_paid, pedal_cycle_total_due, pedal_cycle_total_paid, childcare_total_due, childcare_total_paid, parking_total_due, parking_total_paid, misc_total_due, misc_total_paid, smart_card_due, is_draft_expense, f_audit, sat_on_jury, pool_number, appearance_stage, loss_of_earnings_due, loss_of_earnings_paid, subsistence_due, subsistence_paid, attendance_type, smart_card_paid, travel_time, travel_jurors_taken_by_car, travel_by_car, travel_jurors_taken_by_motorcycle, travel_by_motorcycle, travel_by_bicycle, miles_traveled, food_and_drink_claim_type, version, expense_rates_id, attendance_audit_number, total_due, total_paid, appearance_confirmed, hide_on_unpaid_expense_and_reports)"
+					+ "VALUES (CURRENT_DATE-42, '040127001', ?, '10:00:00', '16:30:00', NULL, false, NULL, '', false, NULL, 'MODTESTCOURT', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, '180000.00', NULL, NULL, NULL, FALSE, NULL, NULL, '401270001', 'EXPENSE_ENTERED', NULL, NULL, 0.00, NULL, 'FULL_DAY', NULL, '00:00:00', NULL, FALSE, NULL, FALSE, FALSE, NULL, 'NONE', 4, '1', 'P12700008', DEFAULT , DEFAULT, true, false)");
+			pStmt.setString(1, locCode);
+			pStmt.executeUpdate();
+
+			log.info("Inserted appearance record with PARKING expense for juror");
+
+			//FOOD AND DRINK expense
+			pStmt = conn.prepareStatement ("INSERT INTO juror_mod.appearance (attendance_date, juror_number, loc_code, time_in, time_out, trial_number, non_attendance, no_show, misc_description, pay_cash, last_updated_by, created_by, public_transport_total_due, public_transport_total_paid, hired_vehicle_total_due, hired_vehicle_total_paid, motorcycle_total_due, motorcycle_total_paid, car_total_due, car_total_paid, pedal_cycle_total_due, pedal_cycle_total_paid, childcare_total_due, childcare_total_paid, parking_total_due, parking_total_paid, misc_total_due, misc_total_paid, smart_card_due, is_draft_expense, f_audit, sat_on_jury, pool_number, appearance_stage, loss_of_earnings_due, loss_of_earnings_paid, subsistence_due, subsistence_paid, attendance_type, smart_card_paid, travel_time, travel_jurors_taken_by_car, travel_by_car, travel_jurors_taken_by_motorcycle, travel_by_motorcycle, travel_by_bicycle, miles_traveled, food_and_drink_claim_type, version, expense_rates_id, attendance_audit_number, total_due, total_paid, appearance_confirmed, hide_on_unpaid_expense_and_reports)"
+					+ "VALUES (CURRENT_DATE-41, '040127001', ?, '10:00:00', '16:30:00', NULL, false, NULL, '', false, NULL, 'MODTESTCOURT', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, NULL, NULL, FALSE, NULL, NULL, '401270001', 'EXPENSE_ENTERED', NULL, NULL, NULL, '190000.00', 'FULL_DAY', NULL, '00:00:00', NULL, FALSE, NULL, FALSE, FALSE, NULL, 'NONE', 4, '1', 'P12700009', DEFAULT , DEFAULT, true, false)");
+			pStmt.setString(1, locCode);
+			pStmt.executeUpdate();
+
+			log.info("Inserted appearance record with FOOD AND DRINK expense for juror");
+
+			//ALL TYPEs expenses
+			pStmt = conn.prepareStatement ("INSERT INTO juror_mod.appearance (attendance_date, juror_number, loc_code, time_in, time_out, trial_number, non_attendance, no_show, misc_description, pay_cash, last_updated_by, created_by, public_transport_total_due, public_transport_total_paid, hired_vehicle_total_due, hired_vehicle_total_paid, motorcycle_total_due, motorcycle_total_paid, car_total_due, car_total_paid, pedal_cycle_total_due, pedal_cycle_total_paid, childcare_total_due, childcare_total_paid, parking_total_due, parking_total_paid, misc_total_due, misc_total_paid, smart_card_due, is_draft_expense, f_audit, sat_on_jury, pool_number, appearance_stage, loss_of_earnings_due, loss_of_earnings_paid, subsistence_due, subsistence_paid, attendance_type, smart_card_paid, travel_time, travel_jurors_taken_by_car, travel_by_car, travel_jurors_taken_by_motorcycle, travel_by_motorcycle, travel_by_bicycle, miles_traveled, food_and_drink_claim_type, version, expense_rates_id, attendance_audit_number, total_due, total_paid, appearance_confirmed, hide_on_unpaid_expense_and_reports)"
+					+ "VALUES (CURRENT_DATE-40, '040127001', ?, '10:00:00', '16:30:00', NULL, false, NULL, '', false, NULL, 'MODTESTCOURT', NULL, '0.13', NULL, '0.14', NULL, '0.15', NULL, '0.16', NULL, '0.17', NULL, '0.11', 0.00, '0.18', NULL, '0.12', NULL, FALSE, NULL, NULL, '401270001', 'EXPENSE_ENTERED', NULL, '0.10', NULL, '0.19', 'FULL_DAY', '0.20', '00:00:00', NULL, FALSE, NULL, FALSE, FALSE, NULL, 'NONE', 4, '1', 'P12700009', DEFAULT , DEFAULT, true, false)");
+			pStmt.setString(1, locCode);
+			pStmt.executeUpdate();
+
+			log.info("Inserted appearance record with ALL EXPENSES expense for juror");
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.error("Message:" + e.getMessage());
+		} finally {
+			conn.commit();
+			pStmt.close();
+			conn.close();
+		}
+	}
+
 
 	public void checkAddressMatchesForLetter(String jurorNumber, String jurorAddress) throws SQLException {
 		db = new DBConnection();
