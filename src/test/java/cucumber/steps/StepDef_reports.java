@@ -119,4 +119,42 @@ public class StepDef_reports {
 
     }
 
+    @Then("^the value of \"([^\"]*)\" expense payments selected court is \"([^\"]*)\"$")
+    public void numberExpensePaymentsMatchesExpected(String expected, String messageType) {
+
+        switch (messageType) {
+            case "Loss of earnings":
+                assertEquals(expected, REP.expensePaymentsLossEarningsMatchesExpected());
+                break;
+            case "Extra care":
+                assertEquals(expected, REP.expensePaymentsExtraCareMatchesExpected());
+                break;
+            case "Other":
+                assertEquals(expected, REP.expensePaymentsOtherMatchesExpected());
+                break;
+            case "Public transport":
+                assertEquals(expected, REP.expensePaymentsPublicTransportMatchesExpected());
+                break;
+            case "Taxi":
+                assertEquals(expected, REP.expensePaymentsTaxiMatchesExpected());
+                break;
+            case "Motorcycle":
+                assertEquals(expected, REP.expensePaymentsMotorcycleMatchesExpected());
+                break;
+            case "Car":
+                assertEquals(expected, REP.expensePaymentsCarfMatchesExpected());
+                break;
+            case "Bicycle":
+                assertEquals(expected, REP.expensePaymentsBicycleatchesExpected());
+                break;
+            case "Parking":
+                assertEquals(expected, REP.expensePaymentsParkingMatchesExpected());
+                break;
+            case "Food and drink":
+                assertEquals(expected, REP.expensePaymentsFoodDrinkMatchesExpected());
+                break;
+        }
+
+    }
+
 }
