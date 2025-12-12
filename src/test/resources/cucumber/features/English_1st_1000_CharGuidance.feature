@@ -112,7 +112,7 @@ Scenario Outline: English 1st Party - Character count warning should be on all a
 	Then I see "Will you need help when you're at the court?" on the page
 	When I choose the "Yes" radio button
 	And I see "You have 1,000 characters remaining" on the page
-	And I set "Tell us about any special arrangements or help you need while you're doing jury service." to "Wheelchair user"
+	And I set "Tell us about any special arrangements or help you need while you're doing jury service (optional)" to "Wheelchair user"
 	When I check the "Other" checkbox
 	And I set "Provide details" to "Other RA stuff"
 	And I press the "Continue" button
