@@ -63,11 +63,11 @@ Feature: As a service owner I want to be able to run expense payments report for
 
     Given a bureau owned pool is created with jurors
       | court | juror_number | pool_number| att_date_weeks_in_future	| owner |
-      | 415   | 040127001    | 401270001  | -1				            | 400	|
+      | 401   | 040127001    | 401270001  | -1				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
       | part_no     | pool_no    | owner |
-      | 040127001   | 401270001  | 415   |
+      | 040127001   | 401270001  | 401   |
 
     Given I insert appearance records with expenses for court "401"
 

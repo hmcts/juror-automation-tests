@@ -3,7 +3,7 @@ Feature: JDB-1820 Change links
 @Regression @NewSchemaConverted
 Scenario Outline: Testing all change links on Check your answers screen
 
-	Given I am on "Public" "test"
+	Given I am on "Public" "demo"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -191,7 +191,7 @@ Scenario Outline: Testing all change links on Check your answers screen
 	Then I see "Will you need help when you're at the court?" on the page
 	When I choose the "Yes" radio button
 	And I check the "Limited mobility" checkbox
-	And I set "Tell us about any special arrangements or help you need while you're doing jury service." to "Wheelchair user"
+	And I set "Tell us about any special arrangements or help you need while you're doing jury service (optional)" to "Wheelchair user"
 	And I press the "Continue" button
 	Then I see text "Limited mobility" in the same row as "Do you have a disability or impairment that means you'll need extra support or facilities in the court building where you are doing your Jury Service?"
 	Then I see text "Wheelchair user" in the same row as "Tell us about any special arrangements or help you need while you're doing jury service"
