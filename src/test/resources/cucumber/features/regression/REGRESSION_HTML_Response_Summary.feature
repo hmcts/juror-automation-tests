@@ -97,7 +97,7 @@ Scenario Outline: English_Max_Chars HTML Response Summary
 	#RA no
 	When I choose the "Yes" radio button
 	And I check the "Diabetes" checkbox
-	And I set "Tell us about any special arrangements or help you need while you're doing jury service." to "These are the details.These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are th"
+	And I set "Tell us about any special arrangements or help you need while you're doing jury service (optional)" to "These are the details.These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are th"
 	And I press the "Continue" button
 	Then I see "Check your answers now" on the page
 	
@@ -1208,7 +1208,7 @@ Scenario Outline: English 1st Ineligible HTML Check
 	#Help in court
 	And I choose the "Yes" radio button
 	And I check the "Diabetes" checkbox
-	Then I set "Tell us about any special arrangements or help you need while you're doing jury service." to "Special Need is DIABETES"
+	Then I set "Tell us about any special arrangements or help you need while you're doing jury service (optional)" to "Special Need is DIABETES"
 	And I press the "Continue" button
 		
 	#Check Answers

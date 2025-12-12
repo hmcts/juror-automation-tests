@@ -119,7 +119,7 @@ Examples:
 @RegressionSingle
 Scenario Outline: Reasonable adjustments (DIABETES) to automatically update Juror db
 	
-	Given I am on "Public" "ithc"
+	Given I am on "Public" "demo"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -213,8 +213,8 @@ Scenario Outline: Reasonable adjustments (DIABETES) to automatically update Juro
 	Then I see "Will you need help when you're at the court?" on the page
 	When I choose the "Yes" radio button
 	Then I check the "Diabetes" checkbox
-	And I see "Tell us about any special arrangements or help you need while you're doing jury service." on the page
-	Then I set "Tell us about any special arrangements or help you need while you're doing jury service." to "Special Need is DIABETES"
+	And I see "Tell us about any special arrangements or help you need while you're doing jury service (optional)" on the page
+	Then I set "Tell us about any special arrangements or help you need while you're doing jury service (optional)" to "Special Need is DIABETES"
 	And I press the "Continue" button
 		
 	#Check Answers
@@ -227,7 +227,7 @@ Scenario Outline: Reasonable adjustments (DIABETES) to automatically update Juro
 	#Confirmation
 	Then I see "You have completed your reply" on the page
 	
-	Given I am on "Bureau" "ithc"
+	Given I am on "Bureau" "demo"
 	And I log in as "CPASS"
 	
 	When I click on the "Search" link
@@ -349,8 +349,8 @@ Scenario Outline: Reasonable adjustments (OTHER) to automatically update Juror d
 	When I choose the "Yes" radio button
 	Then I check the "Other" checkbox
 	Then I set "Provide details" to "Some further details"
-	Then I see "Tell us about any special arrangements or help you need while you're doing jury service." on the page
-	Then I set "Tell us about any special arrangements or help you need while you're doing jury service." to "Special Need is OTHER"
+	Then I see "Tell us about any special arrangements or help you need while you're doing jury service (optional)" on the page
+	Then I set "Tell us about any special arrangements or help you need while you're doing jury service (optional)" to "Special Need is OTHER"
 	And I press the "Continue" button
 		
 	#Check Answers

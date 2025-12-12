@@ -81,7 +81,7 @@ Feature: JS-319 Alternative phone number is correctly saved to the juror record
 	#RA yes
     When I choose the "Yes" radio button
     Then I check the "Diabetes" checkbox
-    Then I set "Tell us about any special arrangements or help you need while you're doing jury service." to "Special Need is DIABETES"
+    Then I set "Tell us about any special arrangements or help you need while you're doing jury service (optional)" to "Special Need is DIABETES"
     And I press the "Continue" button
 
     Then I check the "The information I have given is true to the best of my knowledge" checkbox
