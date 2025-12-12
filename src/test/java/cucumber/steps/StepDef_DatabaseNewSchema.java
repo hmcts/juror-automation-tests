@@ -772,4 +772,25 @@ public class StepDef_DatabaseNewSchema {
     public void deleteJurorBulkData(String createdJurorRecordNumber) throws SQLException {
         DBTNSD.deleteJurorBulkData(createdJurorRecordNumber);
     }
+    @Given("^new voter records are inserted into the voters table for address shuffle$")
+    public void insertNewVotersData() throws SQLException {
+        DBTNSD.insertNewVotersDataForShuffle();
+    }
+    @Given("^I check the catchment area table to ensure my loc code is present$")
+    public void ensureTF14CatchmentExists() throws SQLException {
+        DBTNSD.insertCatchmentAreaIfNotExists();
+    }
+    @Given("^I clear down my jurors for shuffle address test$")
+    public void jurorsClearedDown(DataTable arg1) throws SQLException {
+        List<Map<String, String>> list = arg1.asMaps(String.class, String.class);
+        for (int i = 0; i < list.size(); i++) {
+            String juror_number = list.get(i).get("juror_number");
+            String pool_number = list.get(i).get("pool_number");
+            DBTNSD.cleanTestDataForShuffleAddress(pool_number, juror_number);
+        }
+    }
+    @Then("^I verify the juror address shuffles are correct$")
+    public void verifyJurorAddressUpdates() throws SQLException {
+        DBTNSD.verifyJurorAddress4Updates();
+    }
 }
