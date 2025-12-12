@@ -5305,7 +5305,7 @@ public class DatabaseTesterNewSchemaDesign {
 				log.info("TF14 postcode already exists for loc_code 452. Ignoring insert.");
 			} else {
 
-				// Insert new row since it does NOT exist
+			
 				pStmt = conn.prepareStatement(
 						"INSERT INTO juror_mod.court_catchment_area (loc_code, postcode) " +
 								"VALUES ('452', 'TF14')");
