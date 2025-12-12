@@ -283,7 +283,7 @@ Feature: Regression Test Ineligbility
     And I check the "Anabledd dysgu" checkbox
     And I check the "Arall" checkbox
     And I set "Rhowch fanylion os gwelwch yn dda" to "Other special requirements"
-    And I set "Rhowch wybod inni am unrhyw drefniadau arbennig neu gymorth bydd yr unigolyn rydych yn ymateb ar ei ran ei angen wrth iddo wasanaethu ar reithgor" to "More detail about special requirements"
+    And I set "Rhowch wybod inni am unrhyw drefniadau arbennig neu gymorth bydd yr unigolyn rydych yn ymateb ar ei ran ei angen wrth iddo wasanaethu ar reithgor (dewisol)" to "More detail about special requirements"
     And I click on the "Pam ein bod yn gofyn am hyn?" link
 
     Then I see "Os byddwch yn dweud wrthym fod gan yr unigolyn rydych yn ymateb ar ei ran nam neu anabledd, byddwn yn gwneud popeth y gallwn i ddiwallu ei anghenion yn yr adeilad llys pan fydd yn cyflawni ei wasanaeth rheithgor. Weithiau byddwn yn gwneud trefniadau i unigolyn ymweld â’r llys ymlaen llaw i gynllunio pa gymorth a chyfleusterau bydd ei angen. Byddwn yn gwneud ein gorau i'w helpu gyda symud o amgylch y llys, gweld neu glywed popeth, neu unrhyw gymorth arbennig arall bydd yr unigolyn rydych yn ymateb ar ei ran angen." on the page
@@ -502,7 +502,7 @@ Feature: Regression Test Ineligbility
     And I check the "Anabledd dysgu" checkbox
     And I check the "Arall" checkbox
     And I set "Rhowch fanylion os gwelwch yn dda" to "Other special requirements"
-    And I set "Rhowch wybod inni am unrhyw drefniadau arbennig neu gymorth bydd yr unigolyn rydych yn ymateb ar ei ran ei angen wrth iddo wasanaethu ar reithgor" to "More detail about special requirements"
+    And I set "Rhowch wybod inni am unrhyw drefniadau arbennig neu gymorth bydd yr unigolyn rydych yn ymateb ar ei ran ei angen wrth iddo wasanaethu ar reithgor (dewisol)" to "More detail about special requirements"
     And I click on the "Pam ein bod yn gofyn am hyn?" link
 
     Then I see "Os byddwch yn dweud wrthym fod gan yr unigolyn rydych yn ymateb ar ei ran nam neu anabledd, byddwn yn gwneud popeth y gallwn i ddiwallu ei anghenion yn yr adeilad llys pan fydd yn cyflawni ei wasanaeth rheithgor. Weithiau byddwn yn gwneud trefniadau i unigolyn ymweld â’r llys ymlaen llaw i gynllunio pa gymorth a chyfleusterau bydd ei angen. Byddwn yn gwneud ein gorau i'w helpu gyda symud o amgylch y llys, gweld neu glywed popeth, neu unrhyw gymorth arbennig arall bydd yr unigolyn rydych yn ymateb ar ei ran angen." on the page
@@ -676,7 +676,7 @@ Feature: Regression Test Ineligbility
     And I check the "Anabledd dysgu" checkbox
     And I check the "Arall" checkbox
     And I set "Rhowch fanylion os gwelwch yn dda" to "Other special requirements"
-    And I set "Rhowch wybod inni am unrhyw drefniadau arbennig neu gymorth bydd yr unigolyn rydych yn ymateb ar ei ran ei angen wrth iddo wasanaethu ar reithgor" to "More detail about special requirements"
+    And I set "Rhowch wybod inni am unrhyw drefniadau arbennig neu gymorth bydd yr unigolyn rydych yn ymateb ar ei ran ei angen wrth iddo wasanaethu ar reithgor (dewisol)" to "More detail about special requirements"
     And I click on the "Pam ein bod yn gofyn am hyn?" link
 
     Then I see "Os byddwch yn dweud wrthym fod gan yr unigolyn rydych yn ymateb ar ei ran nam neu anabledd, byddwn yn gwneud popeth y gallwn i ddiwallu ei anghenion yn yr adeilad llys pan fydd yn cyflawni ei wasanaeth rheithgor. Weithiau byddwn yn gwneud trefniadau i unigolyn ymweld â’r llys ymlaen llaw i gynllunio pa gymorth a chyfleusterau bydd ei angen. Byddwn yn gwneud ein gorau i'w helpu gyda symud o amgylch y llys, gweld neu glywed popeth, neu unrhyw gymorth arbennig arall bydd yr unigolyn rydych yn ymateb ar ei ran angen." on the page
