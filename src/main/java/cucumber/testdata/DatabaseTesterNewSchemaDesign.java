@@ -16,9 +16,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAdjusters;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Objects;
+import java.util.*;
 
 public class DatabaseTesterNewSchemaDesign {
 
@@ -5249,6 +5247,229 @@ public class DatabaseTesterNewSchemaDesign {
 			conn.commit();
 			pStmt.close();
 			conn.close();
+		}
+	}
+	public void insertNewVotersDataForShuffle() throws SQLException {
+		db = new DBConnection();
+
+		String env_property = System.getProperty("env.database");
+
+		if (env_property != null)
+			conn = db.getConnection(env_property);
+		else
+			conn = db.getConnection("demo");
+
+		try {
+
+			pStmt = conn.prepareStatement(
+					"INSERT INTO juror_mod.voters (part_no,register_lett,poll_number,new_marker,title,lname,fname,dob,flags,address,address2,address3,address4,address5,address6,zip,date_selected1,date_selected2,date_selected3,rec_num,perm_disqual,source_id) VALUES" +
+							" ('820211676','650','650',NULL,NULL,'LNAMESIXFIVEZERO','FNAMESIXFIVEZERO',NULL,NULL,'650 STREET NAME',NULL,'MOVETOADD4',NULL,NULL,NULL,'TF14 5AJ',NULL,NULL,NULL,650,NULL,NULL)," +
+							" ('820211826','175','175',NULL,NULL,'LNAMEONESEVENFIVE','FNAMEONESEVENFIVE',NULL,NULL,'175 STREET NAME',NULL,'123 DONT MOVE',NULL,NULL,NULL,'TF14 5AJ',NULL,NULL,NULL,175,NULL,NULL)," +
+							" ('820211896','968','968',NULL,NULL,'LNAMENINESIXEIGHT','FNAMENINESIXEIGHT',NULL,NULL,'968 STREET NAME',NULL,'MOVETOADD4',NULL,NULL,NULL,'TF14 5AJ',NULL,NULL,NULL,968,NULL,NULL)," +
+							" ('820211816','480','480',NULL,NULL,'LNAMEFOUREIGHTZERO','FNAMEFOUREIGHTZERO',NULL,NULL,'480 STREET NAME','123 DONT MOVE',NULL,NULL,NULL,NULL,'TF14 5AJ',NULL,NULL,NULL,480,NULL,NULL)," +
+							" ('820211886','545','545',NULL,NULL,'LNAMEFIVEFOURFIVE','FNAMEFIVEFOURFIVE',NULL,NULL,'545 STREET NAME','MOVETOADD4',NULL,NULL,NULL,NULL,'TF14 5AJ',NULL,NULL,NULL,545,NULL,NULL)"
+			);
+
+			pStmt.execute();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.error("Message: inserted voters data " + e.getMessage());
+		} finally {
+			conn.commit();
+			pStmt.close();
+			conn.close();
+		}
+	}
+
+	public void insertCatchmentAreaIfNotExists() throws SQLException {
+		db = new DBConnection();
+
+		String env_property = System.getProperty("env.database");
+
+		if (env_property != null)
+			conn = db.getConnection(env_property);
+		else
+			conn = db.getConnection("demo");
+
+		ResultSet rs = null;
+
+		try {
+			pStmt = conn.prepareStatement(
+					"SELECT 1 FROM juror_mod.court_catchment_area " +
+							"WHERE loc_code = '452' AND postcode LIKE 'TF14%'");
+
+			rs = pStmt.executeQuery();
+
+			if (rs.next()) {
+				log.info("TF14 postcode already exists for loc_code 452. Ignoring insert.");
+			} else {
+
+				// Insert new row since it does NOT exist
+				pStmt = conn.prepareStatement(
+						"INSERT INTO juror_mod.court_catchment_area (loc_code, postcode) " +
+								"VALUES ('452', 'TF14')");
+
+				pStmt.execute();
+				log.info("Inserted new TF14 catchment area for loc_code 452.");
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.error("Message: error checking/inserting catchment area " + e.getMessage());
+		} finally {
+			conn.commit();
+			if (rs != null) rs.close();
+			pStmt.close();
+			conn.close();
+		}
+	}
+
+	public void cleanTestDataForShuffleAddress(String pool_number, String juror_number) throws SQLException {
+		db = new DBConnection();
+		String env_property = System.getProperty("env.database");
+		if (env_property != null)
+			conn = db.getConnection(env_property);
+		else
+			conn = db.getConnection("demo");
+
+		PreparedStatement pStmt = null;
+		try {
+			conn.setAutoCommit(false);
+
+			String[] sqls = new String[]{
+					"DELETE FROM juror_mod.voters WHERE part_no = ?",
+					"DELETE FROM juror_mod.bulk_print_data WHERE juror_no = ?",
+					"DELETE FROM juror_mod.juror_trial WHERE juror_number = ?",
+					"DELETE FROM juror_mod.juror_response_aud WHERE juror_number = ?",
+					"DELETE FROM juror_mod.juror_response_cjs_employment WHERE juror_number = ?",
+					"DELETE FROM juror_mod.juror_reasonable_adjustment WHERE juror_number = ?",
+					"DELETE FROM juror_mod.USER_JUROR_RESPONSE_AUDIT WHERE juror_number = ?",
+					"DELETE FROM juror_mod.juror_third_party WHERE juror_number = ?",
+					"DELETE FROM juror_mod.juror_third_party_audit WHERE juror_number = ?",
+					"DELETE FROM juror_mod.juror_response WHERE juror_number = ?",
+					"DELETE FROM juror_mod.juror_history WHERE juror_number = ?",
+					"DELETE FROM juror_mod.juror_audit WHERE juror_number = ?",
+					"DELETE FROM juror_mod.rev_info WHERE revision_number IN (SELECT revision FROM juror_mod.juror_audit WHERE juror_number = ?)",
+					"DELETE FROM juror_mod.contact_log WHERE juror_number = ?",
+					"DELETE FROM juror_mod.appearance WHERE juror_number = ?",
+					"DELETE FROM juror_mod.appearance_audit WHERE juror_number = ?",
+					"DELETE FROM juror_mod.juror_pool WHERE juror_number = ?",
+					"DELETE FROM juror_mod.financial_audit_details_appearances WHERE FINANCIAL_AUDIT_ID IN (SELECT ID FROM juror_mod.financial_audit_details WHERE JUROR_NUMBER = ?)",
+					"DELETE FROM juror_mod.financial_audit_details WHERE JUROR_NUMBER = ?",
+					"DELETE FROM juror_mod.juror WHERE juror_number = ?",
+					"DELETE FROM juror_mod.pending_juror WHERE juror_number = ?",
+					"DELETE FROM juror_mod.message WHERE juror_number = ?",
+					"DELETE FROM juror_mod.bureau_snapshot WHERE juror_number = ?"
+			};
+
+			for (String sql : sqls) {
+				pStmt = conn.prepareStatement(sql);
+				pStmt.setString(1, juror_number);
+				pStmt.executeUpdate();
+				pStmt.close();
+				pStmt = null;
+				log.info("Executed: " + sql + " for juror_number=>" + juror_number);
+			}
+
+			conn.commit();
+			log.info("Completed clean up for juror_number => " + juror_number);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.error("Message:" + e.getMessage());
+			try {
+				if (conn != null) conn.rollback();
+			} catch (SQLException ex) {
+				log.error("Rollback failed: " + ex.getMessage());
+			}
+			throw e;
+		} finally {
+			try {
+				if (pStmt != null) pStmt.close();
+			} catch (SQLException ignored) {
+			}
+			try {
+				if (conn != null) {
+					conn.setAutoCommit(true);
+					conn.close();
+				}
+			} catch (SQLException ignored) {
+			}
+		}
+	}
+
+	public void verifyJurorAddress4Updates() throws SQLException {
+		db = new DBConnection();
+
+		String env_property = System.getProperty("env.database");
+		if (env_property != null)
+			conn = db.getConnection(env_property);
+		else
+			conn = db.getConnection("demo");
+
+		PreparedStatement pStmt = null;
+		ResultSet rs = null;
+
+
+		Map<String, String> expected = new HashMap<>();
+		expected.put("820211676", "MOVETOADD4");
+		expected.put("820211826", null);
+		expected.put("820211896", "MOVETOADD4");
+		expected.put("820211816", null);
+		expected.put("820211886", "MOVETOADD4");
+
+		try {
+			String sql =
+					"SELECT juror_number, address_line_4 " +
+							"FROM juror_mod.juror " +
+							"WHERE juror_number IN ('820211676','820211826','820211896','820211816','820211886')";
+
+			pStmt = conn.prepareStatement(sql);
+			rs = pStmt.executeQuery();
+
+			while (rs.next()) {
+				String juror = rs.getString("juror_number");
+				String actual = rs.getString("address_line_4");
+				String expectedValue = expected.get(juror);
+
+				boolean matches =
+						(expectedValue == null && actual == null) ||
+								(expectedValue != null && expectedValue.equals(actual));
+
+				if (!matches) {
+					log.error("Address mismatch for juror_number=" + juror +
+							" | expected=" + expectedValue +
+							" | actual=" + actual);
+
+					throw new AssertionError(
+							"Address mismatch for juror " + juror +
+									" expected=" + expectedValue + " but found=" + actual
+					);
+				}
+
+				log.info("✔ Address correct for juror_number=" + juror +
+						" | value=" + actual);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.error("Error verifying juror address updates: " + e.getMessage());
+			throw e;
+
+		} finally {
+			if (rs != null) try {
+				rs.close();
+			} catch (SQLException ignored) {
+			}
+			if (pStmt != null) try {
+				pStmt.close();
+			} catch (SQLException ignored) {
+			}
+			if (conn != null) try {
+				conn.close();
+			} catch (SQLException ignored) {
+			}
 		}
 	}
 }
