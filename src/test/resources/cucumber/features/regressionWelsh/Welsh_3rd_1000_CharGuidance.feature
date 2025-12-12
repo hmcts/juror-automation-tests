@@ -154,7 +154,7 @@ Scenario Outline: Welsh 3rd Party - Character count warning should be on all app
 	When I set the radio button to "Oes"
 	
 	And I see "Mae gennych 1000 o nodau yn weddill" on the page
-	And I set "Rhowch wybod inni am unrhyw drefniadau arbennig neu gymorth bydd yr unigolyn rydych yn ymateb ar ei ran ei angen wrth iddo wasanaethu ar reithgor" to "Wheelchair user"
+	And I set "Rhowch wybod inni am unrhyw drefniadau arbennig neu gymorth bydd yr unigolyn rydych yn ymateb ar ei ran ei angen wrth iddo wasanaethu ar reithgor (dewisol)" to "Wheelchair user"
 	When I check the "Arall" checkbox
 	And I set "Rhowch fanylion os gwelwch yn dda" to "Other RA stuff"
 	And I press the "Parhau" button
