@@ -44,7 +44,7 @@ Feature: JM-7139 - As a tester I want to be able to provide an email to sign int
     And I see "KNUTSFORD (767)" on the page
     And I see "WARRINGTON (462)" on the page
 
-    And I do not see "LEWES SITTING AT CHICHESTER (416)" on the page
+    And I do not see "Guildford SITTING AT CHICHESTER (416)" on the page
 
     And I do not see "MOLD (769)" on the page
     And I do not see "WELSHPOOL (774)" on the page
@@ -53,6 +53,6 @@ Feature: JM-7139 - As a tester I want to be able to provide an email to sign int
     Given I am on "Bureau" "test"
     And I log in as "MODCOURT" selecting court "416"
 
-    Then I see "Lewes Sitting At Chichester" on the page
+    Then I see "Guildford Sitting At Chichester" on the page
     And I see "(416)" on the page
     And I do not see the link to change the court
