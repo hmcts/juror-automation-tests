@@ -75,7 +75,7 @@ Feature: JM-4001 and JM-4002 - Bureau User
     When I set input field with "ID" of "courtNameOrLocationCode" to "CHICHESTER"
     And I click on the "Chichester (416)" link
     And I press the "Find" button
-    Then I am taken to the deferral maintenance screen for the selected court "Lewes Sitting At Chichester (416)"
+    Then I am taken to the deferral maintenance screen for the selected court "Guildford Sitting At Chichester (416)"
     And The deferrals table is displayed
     When I click on the "Juror number" link
     And The first deferral in the table is "041600000, fname, lname, 416000000" with a deferral date "1" Mondays in the future
