@@ -54,6 +54,8 @@ Feature: JM-3671
   Scenario Outline: Happy Path Test to add jurors to a coroner's pool from another catchment area
 
     Given I am on "Bureau" "ithc"
+    Given I refresh the voters table for court "457" new schema
+    And voters for court "457" have been updated to postcode "SA1 4PF" new schema
 
     And I log in as "<user>"
     When I navigate to the pool request screen

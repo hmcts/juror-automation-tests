@@ -56,14 +56,14 @@ Scenario: English Accessibility Statement
    	Then I see "HMCTS is committed to making its website accessible, in accordance with the Public Sector Bodies (Websites and Mobile Applications) (No. 2) Accessibility Regulations 2018." on the page
    
    	Then I see "Compliance status" on the page
-   	Then I see "This website is fully compliant with the Web Content Accessibility Guidelines version 2.1 AA standard." on the page	
-   	And I click on the "Web Content Accessibility Guidelines version 2.1" link
-   	And I see "WCAG21" in the URL
+   	Then I see "This website is fully compliant with the Web Content Accessibility Guidelines version 2.2 AA standard." on the page
+   	And I click on the "Web Content Accessibility Guidelines version 2.2" link
+   	And I see "wcag" in the URL
    	Then I press the "back" button on my browser
    
    	And I see "Preparation of this accessibility statement" on the page
-   	And I see "This statement was prepared on 27 August 2020. It was last reviewed on 14 June 2023." on the page
-   	And I see "This website was last tested on 8 June 2023. The test was carried out by Digital Accessibility Centre Ltd." on the page
+   	And I see "This statement was prepared on 27 August 2020. It was last reviewed on 17 December 2025." on the page
+   	And I see "This website was last tested on 15 December 2025. The test was carried out by Digital Accessibility Centre Ltd." on the page
    
    	#Then I see "You can read the full accessibility test report." on the page
    	#And I click on the "read the full accessibility test report" link
