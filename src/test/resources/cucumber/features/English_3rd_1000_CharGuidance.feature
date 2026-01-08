@@ -1,17 +1,17 @@
 Feature: English_3rd_1000_CharGuidance
 
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: English 3rd Party - Character count warning should be on all applicable pages
 
-	Given I am on "Public" "test"
+	Given I am on "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
 		| 452   |<juror_number>| <pool_number>	| 5				            | 400	|
-	
+
 	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
 	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
-	
+
 	Then I see "Reply to a jury summons" on the page
 	
 	Then I see "Are you replying for yourself or for someone else?" on the page
@@ -138,7 +138,7 @@ Scenario Outline: English 3rd Party - Character count warning should be on all a
 	Then I see "Will the person you're replying for need help when they're at the court?" on the page
 	When I choose the "Yes" radio button
 	And I see "You have 1,000 characters remaining" on the page
-	And I set "Tell us about any special arrangements or help the person you're answering for needs while they're doing jury service." to "Wheelchair user"
+	And I set "Tell us about any special arrangements or help the person you're answering for needs while they're doing jury service (optional)" to "Wheelchair user"
 	When I check the "Other" checkbox
 	And I set "Provide details" to "Other RA stuff"
 	And I press the "Continue" button

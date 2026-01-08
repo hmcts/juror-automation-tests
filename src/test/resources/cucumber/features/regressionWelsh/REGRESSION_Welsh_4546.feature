@@ -3,7 +3,7 @@ Feature: Regression Welsh Accessibility Statement
 @RegressionWelsh @JDB-4546 
 Scenario: Welsh Accessibility Statement
 	
-	Given I am on the welsh version of "Public" "bau-test"
+	Given I am on the welsh version of "Public" "ithc"
 
   	#Accessibility Statement
 
@@ -57,24 +57,24 @@ Scenario: Welsh Accessibility Statement
    	Then I see "Mae GLlTEM wedi ymrwymo i sicrhau bod y wefan yn hygyrch, yn unol â Rheoliadau Hygyrchedd Cyrff y Sector Cyhoeddus (Gwefannau ac Apiau Ffonau Symudol) (Rhif 2) 2018." on the page
    
    	Then I see "Statws Cydymffurfio" on the page
-   	Then I see "Mae'r wefan hon yn cydymffurfio'n llwyr â Chanllawiau Hygyrchedd Cynnwys y We fersiwn 2.1 safon AA." on the page	
-   	And I click on the "Chanllawiau Hygyrchedd Cynnwys y We fersiwn 2.1" link
-   	And I see "WCAG21" in the URL
+   	Then I see "Mae'r wefan hon yn cydymffurfio'n llwyr â Chanllawiau Hygyrchedd Cynnwys y We fersiwn 2.2 safon AA." on the page
+   	And I click on the "Chanllawiau Hygyrchedd Cynnwys y We fersiwn 2.2" link
+   	And I see "wcag" in the URL
    	Then I press the "back" button on my browser
    
    	And I see "Paratoi'r datganiad hygyrchedd hwn" on the page
-   	And I see "Paratowyd y datganiad hwn ar y 27 Awst 2020. Fe'i adolygwyd ddiwethaf ar y 14 Mehefin 2023." on the page
-   	And I see "Cafodd y wefan hon ei phrofi diwethaf ar yr 8 Mehefin 2023. Cynhaliwyd y prawf gan Digital Accessibility Centre Ltd." on the page
+   	And I see "Paratowyd y datganiad hwn ar y 27 Awst 2020. Fe'i adolygwyd ddiwethaf ar y 17 Rhagfyr 2025." on the page
+   	And I see "Cafodd y wefan hon ei phrofi diwethaf ar yr 15 Rhagfyr 2025. Cynhaliwyd y prawf gan Digital Accessibility Centre Ltd." on the page
     And I see "Os oes angen copi o'r adroddiad prawf hygyrchedd llawn arnoch cysylltwch â Andrew Singleton Bisby." on the page
 #   	Then I see "Gallwch ddarllen adroddiad llawn y prawf hygyrchedd yma." on the page
 #   	And I click on the "ddarllen adroddiad llawn y prawf hygyrchedd yma" link
 #   	And I see "accessibility-statement/report" in the URL
 #   	Then I press the "back" button on my browser
 	
-@RegressionWelsh @NewSchemaConverted
+@RegressionWelsh
 Scenario Outline: Welsh 1st Party - Accessibility Statement on each page
 
-	Given I am on the welsh version of "Public" "test"
+	Given I am on the welsh version of "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  	| pool_number	| att_date_weeks_in_future	| owner |
@@ -294,9 +294,10 @@ Examples:
 	| 045700071		| 457300071		| LNAMESEVENONETHREE	| SY2 6LU	| e@eeee.com	|
 	
 
-@RegressionWelsh @NewSchemaConverted
+@RegressionWelsh
 Scenario Outline: Welsh 3rd Party - Accessibility statement on each page
-	Given I am on the welsh version of "Public" "test"
+
+	Given I am on the welsh version of "Public" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  	| pool_number	| att_date_weeks_in_future	| owner |

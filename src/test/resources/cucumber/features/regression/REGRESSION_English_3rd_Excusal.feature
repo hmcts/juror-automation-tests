@@ -1,9 +1,9 @@
 Feature: Regression English_3rd_Excusal
 
-  @Regression @NewSchemaConverted
+  @Regression
   Scenario Outline: English 3rd Party Excusal
 
-    Given I am on "Public" "test"
+    Given I am on "Public" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
@@ -153,7 +153,7 @@ Feature: Regression English_3rd_Excusal
 	#RA
     Then I see "Will the person you're replying for need help when they're at the court?" on the page
     When I choose the "Yes" radio button
-    And I set "Tell us about any special arrangements or help the person you're answering for needs while they're doing jury service." to "Wheelchair user"
+    And I set "Tell us about any special arrangements or help the person you're answering for needs while they're doing jury service (optional)" to "Wheelchair user"
     When I check the "Other" checkbox
     And I set "Provide details" to "Other RA stuff"
     And I press the "Continue" button
@@ -168,7 +168,7 @@ Feature: Regression English_3rd_Excusal
     And I press the "Submit" button
     And I see "You have completed your reply" on the page
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     And I log in as "MODTESTBUREAU"
 
     When I click on the "Search" link

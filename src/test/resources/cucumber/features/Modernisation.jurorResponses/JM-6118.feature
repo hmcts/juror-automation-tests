@@ -82,6 +82,7 @@ Feature: JM-6118
     And I check the checkbox containing my todays expense
     And I press the "Edit approved expenses" button
     And I click on my expense link with todays date
+    And I see "Parking" on the page
     And I set "Parking" to "5.00"
     And I press the "Save and back to all days" button
     And I see "<juror_number>" on the page
