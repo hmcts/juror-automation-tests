@@ -173,6 +173,12 @@ public class Expenses {
     @FindBy(id = "saveAndNextButton")
     public WebElement saveAndNextButton;
 
+    @FindBy(xpath = "//tr[2]/td[3]/b")
+    public WebElement editExpenseSummaryLossOfEarnings;
+
+    @FindBy(xpath = "//tr[2]/td[4]/b")
+    public WebElement editExpenseSummaryExtraCare;
+
     public void pressViewAllExpensesButton() {
         viewAllExpensesButton.click();
     }
@@ -521,4 +527,8 @@ public class Expenses {
                 (lastException != null ? lastException.getMessage() : "unknown error"));
         throw new RuntimeException("Unable to click Save and Back button after retries.");
     }
+
+    public String getEditedExpensesLossOfExpensesValue() { return editExpenseSummaryLossOfEarnings.getText();}
+
+    public String getEditedExpensesExtraCareValue() { return editExpenseSummaryExtraCare.getText();}
 }
