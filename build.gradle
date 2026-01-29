@@ -55,7 +55,7 @@ dependencies {
 
   testImplementation 'io.cucumber:cucumber-picocontainer:7.20.1'
 
-  implementation 'io.cucumber:cucumber-junit:7.20.1'
+  implementation 'io.cucumber:cucumber-junit:7.34.2'
 
   testImplementation 'io.cucumber:cucumber-jvm-deps:1.0.6'
 
