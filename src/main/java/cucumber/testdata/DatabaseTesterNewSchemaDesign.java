@@ -355,6 +355,8 @@ public class DatabaseTesterNewSchemaDesign {
 			} else if (column.contains("COMPLETED_AT")) {
 				pStmt = conn.prepareStatement("update juror_mod.juror_response set " + column + "=TO_TIMESTAMP(?, 'YYYY-MM-DD HH24:MI:SS') where juror_number='" + part_no + "'");
 				pStmt.setString(1, value);
+            } else if (value.contains("today")) {
+                pStmt = conn.prepareStatement("update juror_mod.juror_response set " + column + "=CURRENT_TIMESTAMP where juror_number='" + part_no + "'");
 			}
 			pStmt.execute();
 			log.info("Updated juror_response " + column + "");
