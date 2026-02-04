@@ -157,4 +157,9 @@ public class StepDef_reports {
 
     }
 
+    @Then("^the total number of Digital responses completed in the selected month is \"([^\"]*)\"$")
+    public void totalCompletedDigitalSummonsMatchesExpected(String expected) {
+        assertEquals(expected, REP.expectedTotalDigitalResponsesCompletedInSelectedMonth());
+    }
+
 }

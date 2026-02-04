@@ -93,6 +93,9 @@ public class Reports {
     @FindBy(xpath = "//div[contains(text(),'Total SMS sent')]/../div[2]")
     WebElement totalSMSSent;
 
+    @FindBy(xpath = "//td[contains(text(),'Total Responses')]/following-sibling::td[position()=last()]")
+    WebElement totalDigitalResponsesCompletedInSelectedMonth;
+
     public String totalDigitalResponsesReceived() {
         return digitalSummonsReceivedTotalReceived.getText();
     }
@@ -202,5 +205,7 @@ public class Reports {
     public String expensePaymentsFoodDrinkMatchesExpected() {
         return expensePaymentsFoodDrink.getText();
     }
+
+    public String expectedTotalDigitalResponsesCompletedInSelectedMonth() { return totalDigitalResponsesCompletedInSelectedMonth.getText(); }
 
 }

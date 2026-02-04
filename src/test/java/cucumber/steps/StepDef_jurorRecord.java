@@ -632,6 +632,12 @@ public class StepDef_jurorRecord {
         NAV.selectNextTab();
     }
 
+    @Then("I focus page to the original tab$")
+    public void goToOriginalTab() {
+        NAV.waitForPageLoad();
+        NAV.selectOriginalTab();
+    }
+
 
     @Then("^I verify the system codes inside administration page$")
     public void iSeeTheFollowingSystemCodesInsideAdministration() {
