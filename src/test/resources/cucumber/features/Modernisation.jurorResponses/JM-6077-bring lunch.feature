@@ -3,7 +3,7 @@ Feature: As a jury officer I want to send the bring lunch message
   @JurorTransformationMulti @Messages
   Scenario Outline: Send bring lunch message for Juror using Text including error checks
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "test"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
@@ -24,8 +24,24 @@ Feature: As a jury officer I want to send the bring lunch message
     And I click on the "Bring lunch" link
     And I see "Message details" on the page
     And I see the draft message template
-    And I see "Your jury panel is likely to go into deliberation tomorrow. Please bring a packed lunch to court as you will not be able to leave the deliberation room to get refreshments. Please do not bring metal cutlery or glass. If you have any questions, please contact the jury office on <court_phone>." on the page
+    And I see "Your jury panel is likely to go into deliberation on" on the page
+    And I see ". Please bring a packed lunch to court as you will not be able to leave the deliberation room to get refreshments. Please do not bring metal cutlery or glass. If you have any questions, please contact the jury office on <court_phone>." on the page
+
+    #new attendance date field
+    And I see "Attendance date" on the page
+
+    #no date entered
     And I press the "Continue" button
+    Then I see error "Enter an attendance date"
+
+    #at the moment the app doesnt prevent a past date
+#    When I set "Attendance date" to "-1 mondays time"
+#    And I press the "Continue" button
+#    Then I see error "Enter an attendance date"
+
+    When I set "Attendance date" to "1 mondays time"
+    And I press the "Continue" button
+
     And I see "Find jurors to send message to" on the page
     And I press the "Continue" button
     And I see error "Select how you want to search for jurors to send message to"
@@ -44,7 +60,8 @@ Feature: As a jury officer I want to send the bring lunch message
 
     And I see "Check and send message" on the page
     And I see "You’re sending the following message to 1 jurors. You cannot undo this after sending." on the page
-    And I see "Your jury panel is likely to go into deliberation tomorrow. Please bring a packed lunch to court as you will not be able to leave the deliberation room to get refreshments. Please do not bring metal cutlery or glass. If you have any questions, please contact the jury office on 01244 356726." on the page
+    And I see "Your jury panel is likely to go into deliberation on" on the page
+    And I see ". Please bring a packed lunch to court as you will not be able to leave the deliberation room to get refreshments. Please do not bring metal cutlery or glass. If you have any questions, please contact the jury office on 01244 356726." on the page
     And I press the "Send message" button
     And I see the message sent banner containing "Message will be sent to 1 jurors"
     And I see the juror "<juror_number>" has a message in the database
@@ -78,7 +95,12 @@ Feature: As a jury officer I want to send the bring lunch message
     And I click on the "Bring lunch" link
     And I see "Message details" on the page
     And I see the draft message template
-    And I see "Your jury panel is likely to go into deliberation tomorrow. Please bring a packed lunch to court as you will not be able to leave the deliberation room to get refreshments. Please do not bring metal cutlery or glass. If you have any questions, please contact the jury office on <court_phone>." on the page
+    And I see "Your jury panel is likely to go into deliberation on" on the page
+    And I see ". Please bring a packed lunch to court as you will not be able to leave the deliberation room to get refreshments. Please do not bring metal cutlery or glass. If you have any questions, please contact the jury office on <court_phone>." on the page
+
+    #new attendance date field
+    And I see "Attendance date" on the page
+    When I set "Attendance date" to "1 mondays time"
     And I press the "Continue" button
     And I see "Find jurors to send message to" on the page
 
@@ -91,7 +113,7 @@ Feature: As a jury officer I want to send the bring lunch message
 
     And I see "Check and send message" on the page
     And I see "You’re sending the following message to 1 jurors. You cannot undo this after sending." on the page
-    And I see "Your jury panel is likely to go into deliberation tomorrow. Please bring a packed lunch to court as you will not be able to leave the deliberation room to get refreshments. Please do not bring metal cutlery or glass. If you have any questions, please contact the jury office on 01244 356726." on the page
+    And I see ". Please bring a packed lunch to court as you will not be able to leave the deliberation room to get refreshments. Please do not bring metal cutlery or glass. If you have any questions, please contact the jury office on 01244 356726." on the page
     And I press the "Send message" button
     And I see the message sent banner containing "Message will be sent to 1 jurors"
     And I see the juror "<juror_number>" has a message in the database
@@ -125,7 +147,12 @@ Feature: As a jury officer I want to send the bring lunch message
     And I click on the "Bring lunch" link
     And I see "Message details" on the page
     And I see the draft message template
-    And I see "Your jury panel is likely to go into deliberation tomorrow. Please bring a packed lunch to court as you will not be able to leave the deliberation room to get refreshments. Please do not bring metal cutlery or glass. If you have any questions, please contact the jury office on <court_phone>." on the page
+    And I see "Your jury panel is likely to go into deliberation on" on the page
+    And I see ". Please bring a packed lunch to court as you will not be able to leave the deliberation room to get refreshments. Please do not bring metal cutlery or glass. If you have any questions, please contact the jury office on <court_phone>." on the page
+
+    #new attendance date field
+    And I see "Attendance date" on the page
+    When I set "Attendance date" to "1 mondays time"
     And I press the "Continue" button
     And I see "Find jurors to send message to" on the page
     And I choose the "Juror name" radio button
@@ -139,7 +166,7 @@ Feature: As a jury officer I want to send the bring lunch message
 
     And I see "Check and send message" on the page
     And I see "You’re sending the following message to 1 jurors. You cannot undo this after sending." on the page
-    And I see "Your jury panel is likely to go into deliberation tomorrow. Please bring a packed lunch to court as you will not be able to leave the deliberation room to get refreshments. Please do not bring metal cutlery or glass. If you have any questions, please contact the jury office on 01244 356726." on the page
+    And I see ". Please bring a packed lunch to court as you will not be able to leave the deliberation room to get refreshments. Please do not bring metal cutlery or glass. If you have any questions, please contact the jury office on 01244 356726." on the page
     And I press the "Send message" button
     And I see the message sent banner containing "Message will be sent to 1 jurors"
     And I see the juror "<juror_number>" has a message in the database
@@ -173,7 +200,12 @@ Feature: As a jury officer I want to send the bring lunch message
     And I click on the "Bring lunch" link
     And I see "Message details" on the page
     And I see the draft message template
-    And I see "Your jury panel is likely to go into deliberation tomorrow. Please bring a packed lunch to court as you will not be able to leave the deliberation room to get refreshments. Please do not bring metal cutlery or glass. If you have any questions, please contact the jury office on <court_phone>." on the page
+    And I see "Your jury panel is likely to go into deliberation on" on the page
+    And I see ". Please bring a packed lunch to court as you will not be able to leave the deliberation room to get refreshments. Please do not bring metal cutlery or glass. If you have any questions, please contact the jury office on <court_phone>." on the page
+
+    #new attendance date field
+    And I see "Attendance date" on the page
+    When I set "Attendance date" to "1 mondays time"
     And I press the "Continue" button
     And I see "Find jurors to send message to" on the page
     And I choose the "Pool" radio button
@@ -187,7 +219,7 @@ Feature: As a jury officer I want to send the bring lunch message
 
     And I see "Check and send message" on the page
     And I see "You’re sending the following message to 1 jurors. You cannot undo this after sending." on the page
-    And I see "Your jury panel is likely to go into deliberation tomorrow. Please bring a packed lunch to court as you will not be able to leave the deliberation room to get refreshments. Please do not bring metal cutlery or glass. If you have any questions, please contact the jury office on 01244 356726." on the page
+    And I see ". Please bring a packed lunch to court as you will not be able to leave the deliberation room to get refreshments. Please do not bring metal cutlery or glass. If you have any questions, please contact the jury office on 01244 356726." on the page
     And I press the "Send message" button
     And I see the message sent banner containing "Message will be sent to 1 jurors"
     And I see the juror "<juror_number>" has a message in the database
@@ -259,7 +291,12 @@ Feature: As a jury officer I want to send the bring lunch message
     And I click on the "Bring lunch" link
     And I see "Message details" on the page
     And I see the draft message template
-    And I see "Your jury panel is likely to go into deliberation tomorrow. Please bring a packed lunch to court as you will not be able to leave the deliberation room to get refreshments. Please do not bring metal cutlery or glass. If you have any questions, please contact the jury office on <court_phone>." on the page
+    And I see "Your jury panel is likely to go into deliberation on" on the page
+    And I see ". Please bring a packed lunch to court as you will not be able to leave the deliberation room to get refreshments. Please do not bring metal cutlery or glass. If you have any questions, please contact the jury office on <court_phone>." on the page
+
+    #new attendance date field
+    And I see "Attendance date" on the page
+    When I set "Attendance date" to "1 mondays time"
     And I press the "Continue" button
     And I see "Find jurors to send message to" on the page
 
@@ -275,7 +312,7 @@ Feature: As a jury officer I want to send the bring lunch message
 
     And I see "Check and send message" on the page
     And I see "You’re sending the following message to 1 jurors. You cannot undo this after sending." on the page
-    And I see "Your jury panel is likely to go into deliberation tomorrow. Please bring a packed lunch to court as you will not be able to leave the deliberation room to get refreshments. Please do not bring metal cutlery or glass. If you have any questions, please contact the jury office on 01244 356726." on the page
+    And I see ". Please bring a packed lunch to court as you will not be able to leave the deliberation room to get refreshments. Please do not bring metal cutlery or glass. If you have any questions, please contact the jury office on 01244 356726." on the page
     And I press the "Send message" button
     And I see the message sent banner containing "Message will be sent to 1 jurors"
     And I see the juror "<juror_number>" has a message in the database
@@ -309,7 +346,12 @@ Feature: As a jury officer I want to send the bring lunch message
     And I click on the "Bring lunch" link
     And I see "Message details" on the page
     And I see the draft message template
-    And I see "Your jury panel is likely to go into deliberation tomorrow. Please bring a packed lunch to court as you will not be able to leave the deliberation room to get refreshments. Please do not bring metal cutlery or glass. If you have any questions, please contact the jury office on <court_phone>." on the page
+    And I see "Your jury panel is likely to go into deliberation on" on the page
+    And I see ". Please bring a packed lunch to court as you will not be able to leave the deliberation room to get refreshments. Please do not bring metal cutlery or glass. If you have any questions, please contact the jury office on <court_phone>." on the page
+
+    #new attendance date field
+    And I see "Attendance date" on the page
+    When I set "Attendance date" to "1 mondays time"
     And I press the "Continue" button
     And I see "Find jurors to send message to" on the page
     And I choose the "Next due at court" radio button
@@ -323,7 +365,7 @@ Feature: As a jury officer I want to send the bring lunch message
 
     And I see "Check and send message" on the page
     And I see "You’re sending the following message to 1 jurors. You cannot undo this after sending." on the page
-    And I see "Your jury panel is likely to go into deliberation tomorrow. Please bring a packed lunch to court as you will not be able to leave the deliberation room to get refreshments. Please do not bring metal cutlery or glass. If you have any questions, please contact the jury office on 01244 356726." on the page
+    And I see ". Please bring a packed lunch to court as you will not be able to leave the deliberation room to get refreshments. Please do not bring metal cutlery or glass. If you have any questions, please contact the jury office on 01244 356726." on the page
     And I press the "Send message" button
     And I see the message sent banner containing "Message will be sent to 1 jurors"
     And I see the juror "<juror_number>" has a message in the database
@@ -415,7 +457,12 @@ Feature: As a jury officer I want to send the bring lunch message
     And I click on the "Bring lunch" link
     And I see "Message details" on the page
     And I see the draft message template
-    And I see "Your jury panel is likely to go into deliberation tomorrow. Please bring a packed lunch to court as you will not be able to leave the deliberation room to get refreshments. Please do not bring metal cutlery or glass. If you have any questions, please contact the jury office on <court_phone>." on the page
+    And I see "Your jury panel is likely to go into deliberation on" on the page
+    And I see ". Please bring a packed lunch to court as you will not be able to leave the deliberation room to get refreshments. Please do not bring metal cutlery or glass. If you have any questions, please contact the jury office on <court_phone>." on the page
+
+    #new attendance date field
+    And I see "Attendance date" on the page
+    When I set "Attendance date" to "1 mondays time"
     And I press the "Continue" button
     And I see "Find jurors to send message to" on the page
 
@@ -430,7 +477,7 @@ Feature: As a jury officer I want to send the bring lunch message
 
     And I see "Check and send message" on the page
     And I see "You’re sending the following message to 1 jurors. You cannot undo this after sending." on the page
-    And I see "Your jury panel is likely to go into deliberation tomorrow. Please bring a packed lunch to court as you will not be able to leave the deliberation room to get refreshments. Please do not bring metal cutlery or glass. If you have any questions, please contact the jury office on 01244 356726." on the page
+    And I see ". Please bring a packed lunch to court as you will not be able to leave the deliberation room to get refreshments. Please do not bring metal cutlery or glass. If you have any questions, please contact the jury office on 01244 356726." on the page
     And I press the "Send message" button
     And I see the message sent banner containing "Message will be sent to 1 jurors"
     And I see the juror "<juror_number>" has a message in the database
@@ -473,7 +520,12 @@ Feature: As a jury officer I want to send the bring lunch message
     And I click on the "Bring lunch" link
     And I see "Message details" on the page
     And I see the draft message template
-    And I see "Your jury panel is likely to go into deliberation tomorrow. Please bring a packed lunch to court as you will not be able to leave the deliberation room to get refreshments. Please do not bring metal cutlery or glass. If you have any questions, please contact the jury office on <court_phone>." on the page
+    And I see "Your jury panel is likely to go into deliberation on" on the page
+    And I see ". Please bring a packed lunch to court as you will not be able to leave the deliberation room to get refreshments. Please do not bring metal cutlery or glass. If you have any questions, please contact the jury office on <court_phone>." on the page
+
+    #new attendance date field
+    And I see "Attendance date" on the page
+    When I set "Attendance date" to "1 mondays time"
     And I press the "Continue" button
     And I see "Find jurors to send message to" on the page
 
@@ -491,7 +543,7 @@ Feature: As a jury officer I want to send the bring lunch message
 
     And I see "Check and send message" on the page
     And I see "You’re sending the following message to 3 jurors. You cannot undo this after sending." on the page
-    And I see "Your jury panel is likely to go into deliberation tomorrow. Please bring a packed lunch to court as you will not be able to leave the deliberation room to get refreshments. Please do not bring metal cutlery or glass. If you have any questions, please contact the jury office on 01244 356726." on the page
+    And I see ". Please bring a packed lunch to court as you will not be able to leave the deliberation room to get refreshments. Please do not bring metal cutlery or glass. If you have any questions, please contact the jury office on 01244 356726." on the page
     And I press the "Send message" button
     And I see the message sent banner containing "Message will be sent to 3 jurors"
     And I see the juror "<juror_number>" has a message in the database
