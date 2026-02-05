@@ -4016,6 +4016,36 @@ public class DatabaseTesterNewSchemaDesign {
 		}
 	}
 
+    public void updateJurorToBeWelsh(String jurorNumber) throws SQLException {
+        db = new DBConnection();
+
+        String env_property = System.getProperty("env.database");
+
+        if (env_property != null)
+            conn = db.getConnection(env_property);
+        else
+            conn = db.getConnection("demo");
+
+        try {
+            pStmt = conn.prepareStatement("UPDATE juror_mod.juror set WELSH=TRUE where juror_number='" + jurorNumber + "'");
+            int rowsUpdated = pStmt.executeUpdate();
+            if (rowsUpdated > 0) {
+                log.info("WELSH is set to TRUE for juror_number: " + jurorNumber);
+            } else {
+                throw new SQLException("Failed to update WELSH flag for juror_number: " + jurorNumber);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            log.error("Message:" + e.getMessage());
+
+        } finally {
+            conn.commit();
+            pStmt.close();
+            conn.close();
+        }
+    }
+
 	public int getMessageNSD(String jurorNumber) throws SQLException {
 		db = new DBConnection();
 		String env_property = System.getProperty("env.database");
