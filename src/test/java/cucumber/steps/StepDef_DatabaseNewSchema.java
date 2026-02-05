@@ -603,6 +603,11 @@ public class StepDef_DatabaseNewSchema {
         DBTNSD.updateJurorToBeAbleToSendMessage(jurorNumber);
     }
 
+    @Given("^I update juror \"([^\"]*)\" to indicate that they want Welsh communications$")
+    public void updateJurorToBeWelsh(String jurorNumber) throws SQLException {
+        DBTNSD.updateJurorToBeWelsh(jurorNumber);
+    }
+
     @And("^I see the juror \"([^\"]*)\" has a message in the database$")
     public void jurorMessageNSD(String jurorNumber) throws SQLException {
         DBTNSD.getMessageNSD(jurorNumber);
