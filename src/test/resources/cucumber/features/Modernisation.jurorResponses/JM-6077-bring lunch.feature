@@ -34,11 +34,6 @@ Feature: As a jury officer I want to send the bring lunch message
     And I press the "Continue" button
     Then I see error "Enter an attendance date"
 
-    #at the moment the app doesnt prevent a past date
-#    When I set "Attendance date" to "-1 mondays time"
-#    And I press the "Continue" button
-#    Then I see error "Enter an attendance date"
-
     When I set "Attendance date" to "1 mondays time"
     And I press the "Continue" button
 
@@ -494,15 +489,15 @@ Feature: As a jury officer I want to send the bring lunch message
 
     Given a bureau owned pool is created with jurors
       | court |juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
-      | 415   |<juror_number>    | <pool_number>     | 5				         | 400	|
-      | 415   |<juror_number_2>    | <pool_number>     | 5				         | 400	|
-      | 415   |<juror_number_3>    | <pool_number>     | 5				         | 400	|
+      | 415   |<juror_number>    | <pool_number>    | 5				            | 400	|
+      | 415   |<juror_number_2>  | <pool_number>    | 5				            | 400	|
+      | 415   |<juror_number_3>  | <pool_number>    | 5				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
       |part_no               | pool_no          | owner |
       |<juror_number>        | <pool_number>    | 415   |
-      |<juror_number_2>        | <pool_number>    | 415   |
-      |<juror_number_3>        | <pool_number>    | 415   |
+      |<juror_number_2>      | <pool_number>    | 415   |
+      |<juror_number_3>      | <pool_number>    | 415   |
 
     And I update juror "<juror_number>" to be able to send a message to them
     And I update juror "<juror_number_2>" to be able to send a message to them
@@ -579,7 +574,7 @@ Feature: As a jury officer I want to send the bring lunch message
     And I click on the "Bring lunch" link
     And I see "Message details" on the page
     And I see the draft message template
-    And I see "Mae eich panel rheithgor yn debygol o gychwyn y broses trafod ar <attend_date>.Dewch â phecyn bwyd gyda chi i'r llys oherwydd ni chaniateir i chi adael yr ystafell ymneilltuo i nôl bwyd. Peidiwch â dod â chyllell a fforc metel nac unrhyw eitemau gwydr gyda chi. Os oes gennych unrhyw gwestiynau, cysylltwch â'r swyddfa rheithgor drwy ffonio <court_phone>." on the page
+    And I see "Mae eich panel rheithgor yn debygol o gychwyn y broses trafod ar <attend_date>. Dewch â phecyn bwyd gyda chi i'r llys oherwydd ni chaniateir i chi adael yr ystafell ymneilltuo i nôl bwyd. Peidiwch â dod â chyllell a fforc metel nac unrhyw eitemau gwydr gyda chi. Os oes gennych unrhyw gwestiynau, cysylltwch â'r swyddfa rheithgor drwy ffonio <court_phone>." on the page
 
     #new attendance date field
     And I see "Attendance date" on the page
@@ -631,7 +626,7 @@ Feature: As a jury officer I want to send the bring lunch message
     And I click on the "Bring lunch" link
     And I see "Message details" on the page
     And I see the draft message template
-    And I see "Mae eich panel rheithgor yn debygol o gychwyn y broses trafod ar <attend_date>.Dewch â phecyn bwyd gyda chi i'r llys oherwydd ni chaniateir i chi adael yr ystafell ymneilltuo i nôl bwyd. Peidiwch â dod â chyllell a fforc metel nac unrhyw eitemau gwydr gyda chi. Os oes gennych unrhyw gwestiynau, cysylltwch â'r swyddfa rheithgor drwy ffonio <court_phone>." on the page
+    And I see "Mae eich panel rheithgor yn debygol o gychwyn y broses trafod ar <attend_date>. Dewch â phecyn bwyd gyda chi i'r llys oherwydd ni chaniateir i chi adael yr ystafell ymneilltuo i nôl bwyd. Peidiwch â dod â chyllell a fforc metel nac unrhyw eitemau gwydr gyda chi. Os oes gennych unrhyw gwestiynau, cysylltwch â'r swyddfa rheithgor drwy ffonio <court_phone>." on the page
 
     #new attendance date field
     And I see "Attendance date" on the page
@@ -656,4 +651,4 @@ Feature: As a jury officer I want to send the bring lunch message
 
     Examples:
       |user	    | juror_number | pool_number |
-      |SWANSEA  | 045729878    | 457980987   |
+      |SWANSEA  | 045729879    | 457980987   |
