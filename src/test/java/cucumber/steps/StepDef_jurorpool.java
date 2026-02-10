@@ -1725,6 +1725,7 @@ public class StepDef_jurorpool {
         SUMMONS_REPLY.clickCriminalOffenceNo();
         SUMMONS_REPLY.clickContinue();
 
+        NAV.waitForPageLoad();
         SUMMONS_REPLY.clickDeferralRequest();
         SUMMONS_REPLY.clickContinue();
 
@@ -1773,6 +1774,7 @@ public class StepDef_jurorpool {
 
     @And("^I record a paper summons response with reasonable adjustment of \"([^\"]*)\"$")
     public void iRecordAPaperResponseWithReasonableAdjustments(String adjustmentReason) throws Throwable {
+        NAV.textPresentOnPage("Juror record");
         SUMMONS_REPLY.clickEnterSummonsReplyButton();
 
         SUMMONS_REPLY.enterDateOfBirth("18/07/1976");
@@ -1790,6 +1792,7 @@ public class StepDef_jurorpool {
         SUMMONS_REPLY.clickCriminalOffenceNo();
         SUMMONS_REPLY.clickContinue();
 
+        NAV.textPresentOnPage("serve");
         SUMMONS_REPLY.clickCanServeDate();
         SUMMONS_REPLY.clickContinue();
 
@@ -2114,6 +2117,7 @@ public class StepDef_jurorpool {
         }
         NAV.set_value_to("Number of jurors", "10");
         NAV.press_buttonByName("Continue");
+        NAV.waitForPageLoad();
         poolNumber.set(CHECK_POOL_REQUEST_PAGE.getCourtNewPoolRequestNumber());
 
         ArrayList<String> pools = poolNumbers.get();
@@ -2121,8 +2125,9 @@ public class StepDef_jurorpool {
 
         poolDate.set(CHECK_POOL_REQUEST_PAGE.getNewPoolAttendanceDate());
         NAV.press_buttonByName("Request pool");
-
+        NAV.waitForPageLoad();
         POOL_REQUESTS_PAGE.clickInactivePoolNumber(poolNumber.get());
+
         NAV.press_buttonByName("Summon jurors");
         NAV.set_value_to("Citizens to summon", "1");
         NAV.press_buttonByName("Create pool and summon citizens");
