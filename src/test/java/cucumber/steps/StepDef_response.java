@@ -1045,7 +1045,7 @@ public class StepDef_response {
 			NAV.textPresentOnPage("Confirm you're eligible for jury service");
 			NAV.press_buttonByName("Continue");
 
-			NAV.textPresentOnPage("Since you turned 13");
+			NAV.textPresentOnPage("Have you lived in the UK");
 			GRP.click_radioButtonWithLabel("Yes");
 			NAV.press_buttonByName("Continue");
 

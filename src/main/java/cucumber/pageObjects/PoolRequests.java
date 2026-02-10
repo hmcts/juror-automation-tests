@@ -456,6 +456,7 @@ public class PoolRequests {
 
     public void clickToChangeDeferrals() {
         log.info("Clicking change deferrals link");
+        NAV.waitForPageLoad();
         changeDeferralsLink.click();
     }
 

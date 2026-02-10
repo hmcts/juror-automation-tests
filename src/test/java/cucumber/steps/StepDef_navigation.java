@@ -952,7 +952,8 @@ public class StepDef_navigation {
 
 	@And("^I see the message sent banner containing \"([^\"]*)\"$")
 	public void iSeeMessageSentBannerContaining(String bannerContains) {
-		assertEquals(bannerContains, NAV.messageSentBanner());
+		NAV.waitForPageLoad();
+        assertEquals(bannerContains, NAV.messageSentBanner());
 	}
 
 	@And("^I see the template containing my attendance date with a monday \"([^\"]*)\" weeks in the future$")
