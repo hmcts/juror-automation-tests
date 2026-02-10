@@ -355,6 +355,8 @@ public class DatabaseTesterNewSchemaDesign {
 			} else if (column.contains("COMPLETED_AT")) {
 				pStmt = conn.prepareStatement("update juror_mod.juror_response set " + column + "=TO_TIMESTAMP(?, 'YYYY-MM-DD HH24:MI:SS') where juror_number='" + part_no + "'");
 				pStmt.setString(1, value);
+            } else if (value.contains("today")) {
+                pStmt = conn.prepareStatement("update juror_mod.juror_response set " + column + "=CURRENT_TIMESTAMP where juror_number='" + part_no + "'");
 			}
 			pStmt.execute();
 			log.info("Updated juror_response " + column + "");
@@ -4013,6 +4015,36 @@ public class DatabaseTesterNewSchemaDesign {
 			conn.close();
 		}
 	}
+
+    public void updateJurorToBeWelsh(String jurorNumber) throws SQLException {
+        db = new DBConnection();
+
+        String env_property = System.getProperty("env.database");
+
+        if (env_property != null)
+            conn = db.getConnection(env_property);
+        else
+            conn = db.getConnection("demo");
+
+        try {
+            pStmt = conn.prepareStatement("UPDATE juror_mod.juror set WELSH=TRUE where juror_number='" + jurorNumber + "'");
+            int rowsUpdated = pStmt.executeUpdate();
+            if (rowsUpdated > 0) {
+                log.info("WELSH is set to TRUE for juror_number: " + jurorNumber);
+            } else {
+                throw new SQLException("Failed to update WELSH flag for juror_number: " + jurorNumber);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            log.error("Message:" + e.getMessage());
+
+        } finally {
+            conn.commit();
+            pStmt.close();
+            conn.close();
+        }
+    }
 
 	public int getMessageNSD(String jurorNumber) throws SQLException {
 		db = new DBConnection();

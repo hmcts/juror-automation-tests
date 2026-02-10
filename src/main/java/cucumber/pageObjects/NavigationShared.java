@@ -2509,6 +2509,12 @@ public class NavigationShared {
         driver.switchTo().window(tabs.get(1));
     }
 
+    public void selectOriginalTab() {
+
+        ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(0));
+    }
+
     public void clickLinkWithDate(int numberOfDays, String timeFrame) {
         String DATE_PATTERN = "EEE dd MMM yyyy";
         Calendar calendar = Calendar.getInstance();
