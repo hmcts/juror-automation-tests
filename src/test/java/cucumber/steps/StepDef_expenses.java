@@ -266,9 +266,20 @@ public class StepDef_expenses {
     public void checkTodaysExpenseDateCheckbox() {
         EXPENSES.checkCheckboxWithTodaysExpense();
     }
+
     @When("^I press the save and next button$")
     public void pressSaveAndNextButton(){
         EXPENSES.pressSaveAndNextButton();
+    }
+
+    @When("^I check the Extra Care costs amount is \"([^\"]*)\"$")
+    public void iCheckExtraCareCostAmount(String extraCareValue) {
+        assertEquals(extraCareValue, EXPENSES.getEditedExpensesExtraCareValue());
+    }
+
+    @When("^I check the Loss of Expenses amount is \"([^\"]*)\"$")
+    public void iCheckLossOfExpensesAmount(String lossOfExpenseValue) {
+        assertEquals(lossOfExpenseValue, EXPENSES.getEditedExpensesLossOfExpensesValue());
     }
 }
 
