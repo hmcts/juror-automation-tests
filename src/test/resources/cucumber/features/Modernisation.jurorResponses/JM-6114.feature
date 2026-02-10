@@ -72,8 +72,8 @@ Feature: JM-6114 - As a jury officer, I want to edit submitted expenses before a
     And I see "Edit expenses for approval" on the page
     And I click on my expense link with todays date
     Then I see "For approval" on the page
-    When I set "Loss of earnings or benefits" to "90"
-    And I set "Extra care costs" to "10"
+    When I set "Loss of earnings or benefits" to "0"
+    And I set "Extra care costs" to "100"
     And I verify the banner message "You’ve made changes" on the page
     And I click on the "Recalculate totals." link
     And I press the "Save and next" button
@@ -86,6 +86,8 @@ Feature: JM-6114 - As a jury officer, I want to edit submitted expenses before a
     #Resubmit expenses
     When I press the "Continue" button
     And I see "Totals" in the same row as "£64.95"
+    And I check the Extra Care costs amount is "£64.95"
+    And I check the Loss of Expenses amount is "£0.00"
     And I press the "Submit for approval" button
     Then I verify the banner message "Expenses resubmitted for approval" on the page
 
