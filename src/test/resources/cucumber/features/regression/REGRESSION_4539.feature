@@ -113,7 +113,7 @@ Scenario Outline: English 1st Party ST JDB-4539
 	
 	#Residency
 	
-	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
+	Then I see "Have you lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since your 13th birthday?" on the page
 	When I see "Eligibility" on the page
 
 	And I choose the "Yes" radio button
@@ -317,7 +317,7 @@ Scenario Outline: English 3rd Party St JDB-4539
 	And I press the "Continue" button
 	
 	#Residency
-	Then I see "Since they turned 13, has their main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
+	Then I see "Have they lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since their 13th birthday?" on the page
 	When I see "Eligibility" on the page
 	And I choose the "Yes" radio button
 	And I press the "Continue" button
@@ -494,7 +494,7 @@ Scenario Outline: English 1st Party Deferral JDB-4539
 	When I press the "Continue" button
 	
 	#Residency
-	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
+	Then I see "Have you lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since your 13th birthday?" on the page
 	When I see "Eligibility" on the page
 	And I choose the "Yes" radio button
 	And I press the "Continue" button
@@ -701,7 +701,7 @@ Scenario Outline: English 3rd Party Deferral JDB-4539
 	And I press the "Continue" button
 	
 	#Residency
-	Then I see "Since they turned 13, has their main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
+	Then I see "Have they lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since their 13th birthday?" on the page
 	When I see "Eligibility" on the page
 	And I choose the "Yes" radio button
 	And I press the "Continue" button
@@ -889,7 +889,7 @@ Scenario Outline: English 1st Party Excusal JDB-4539
 	When I press the "Continue" button
 	
 	#Residency
-	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
+	Then I see "Have you lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since your 13th birthday?" on the page
 	When I see "Eligibility" on the page
 
 	And I choose the "Yes" radio button
@@ -1093,7 +1093,7 @@ Scenario Outline: English 3rd Party Excusal JDB-4539
 	And I press the "Continue" button
 	
 	#Residency
-	Then I see "Since they turned 13, has their main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
+	Then I see "Have they lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since their 13th birthday?" on the page
 	When I see "Eligibility" on the page
 	And I choose the "Yes" radio button
 	And I press the "Continue" button

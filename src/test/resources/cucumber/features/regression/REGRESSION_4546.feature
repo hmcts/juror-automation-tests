@@ -156,7 +156,7 @@ Scenario Outline: English 1st Party - Accessibility Statement on each page
 	
 	And I press the "Continue" button
 	
-	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
+	Then I see "Have you lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since your 13th birthday?" on the page
 	And I see link with text "Accessibility statement"
 	And I choose the "No" radio button
 	And I set "Provide details" to "Residency"
@@ -332,7 +332,7 @@ Scenario Outline: English 3rd Party - Accessibility statement on each page
 	And I press the "Continue" button
 	
 	#Residency
-	Then I see "Since they turned 13, has their main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
+	Then I see "Have they lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since their 13th birthday?" on the page
 	And I see link with text "Accessibility statement"
 	When I see "Eligibility" on the page
 	And I choose the "Yes" radio button

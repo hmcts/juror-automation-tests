@@ -129,7 +129,7 @@ Scenario Outline: Welsh 3rd Party Straight Through with Skip to Main Content Che
 	Then I hit the tab key
 	Then I see "Ymlaen i'r prif gynnwys" on the page
 	Then I click on the "Ymlaen i'r prif gynnwys" link
-	Then I see "Ers iddynt droi'n 13 oed, a yw eu prif gyfeiriad wedi bod yn y DU, Ynysoedd y Sianel neu Ynys Manaw am unrhyw gyfnod o 5 mlynedd o leiaf?" on the page
+	Then I see "A ydynt wedi byw yn y Deyrnas Unedig, Ynysoedd y Sianel neu Ynys Manaw am gyfnod parhaus o bum mlynedd neu fwy ers eu pen-blwydd yn 13 oed?" on the page
 	
 	When I set the radio button to "Do"
 	And I press the "Parhau" button

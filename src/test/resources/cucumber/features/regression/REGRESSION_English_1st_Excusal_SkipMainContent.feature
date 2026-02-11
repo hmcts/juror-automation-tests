@@ -103,7 +103,7 @@ Scenario Outline: English 1st Excusal Skip to Main Content Check
 	Then I hit the tab key
 	Then I see "Skip to main content" on the page
 	Then I click on the "Skip to main content" link
-	Then I see "Since you turned 13, has your main address" on the page
+	Then I see "Have you lived in the UK," on the page
 	
 	When I choose the "Yes" radio button
 	And I press the "Continue" button

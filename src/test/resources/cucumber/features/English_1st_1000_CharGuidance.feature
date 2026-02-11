@@ -61,7 +61,7 @@ Scenario Outline: English 1st Party - Character count warning should be on all a
 	When I press the "Continue" button
 	
 	#Residency JDB-3620
-	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
+	Then I see "Have you lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since your 13th birthday?" on the page
 	When I choose the "No" radio button
 	And I see "You have 1,000 characters remaining" on the page
 	And I set "Provide details" to "Not a resident"

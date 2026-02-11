@@ -85,7 +85,7 @@ Feature: Regression Test Ineligbility
     And I press the "Parhau" button
 	
 	#Residency
-    And I see "Ers iddynt droi'n 13 oed, a yw eu prif gyfeiriad wedi bod yn y DU, Ynysoedd y Sianel neu Ynys Manaw am unrhyw gyfnod o 5 mlynedd o leiaf?" on the page
+    And I see "A ydynt wedi byw yn y Deyrnas Unedig, Ynysoedd y Sianel neu Ynys Manaw am gyfnod parhaus o bum mlynedd neu fwy ers eu pen-blwydd yn 13 oed?" on the page
 	
 	#check hint text content
     Then I click on the "A ydych angen cymorth i ateb hyn?" link
@@ -766,7 +766,7 @@ Feature: Regression Test Ineligbility
     When I press the "Parhau" button
 	
 	#Residency
-    Then I see "Ers i chi droi'n 13 oed, a yw eich prif gyfeiriad wedi bod yn y DU, Ynysoedd y Sianel neu Ynys Manaw am unrhyw gyfnod o 5 mlynedd o leiaf?" on the page
+    Then I see "A ydych chi wedi byw yn y Deyrnas Unedig, Ynysoedd y Sianel neu Ynys Manaw am gyfnod parhaus o bum mlynedd neu fwy ers eich pen-blwydd yn 13 oed" on the page
 
 	#hint text
     And I click on the "A ydych angen cymorth i ateb hyn?" link
@@ -933,7 +933,7 @@ Feature: Regression Test Ineligbility
     Then I see "Gwiriwch eich ymatebion nawr" on the page
 	
 	#residency
-    And I see text "Do" in the same row as "Ers i chi droi'n 13 oed, a yw eich prif gyfeiriad wedi bod yn y DU, Ynysoedd y Sianel neu Ynys Manaw am unrhyw gyfnod o 5 mlynedd o leiaf?"
+    And I see text "Do" in the same row as "A ydych chi wedi byw yn y Deyrnas Unedig, Ynysoedd y Sianel neu Ynys Manaw am gyfnod parhaus o bum mlynedd neu fwy ers eich pen-blwydd yn 13 oed"
 	
 	#detained under MH act
     And I see text "Ie" in the same row as "Ydych chi'n cael eich cadw, yn cael eich gwarchod neu eich trin o dan y Ddeddf Galluedd Meddyliol?"
@@ -969,7 +969,7 @@ Feature: Regression Test Ineligbility
     And I see "Lawrlwythwch gopi o'ch ymateb i'r wŷs HTML" on the page
     And I click on the "Lawrlwythwch gopi o'ch ymateb i'r wŷs HTML" link
 
-    And I see "Do" in the same row as "Ers i chi droi'n 13 oed, a yw eich prif gyfeiriad wedi bod yn y DU, Ynysoedd y Sianel neu Ynys Manaw am unrhyw gyfnod o 5 mlynedd o leiaf?"
+    And I see "Do" in the same row as "A ydych chi wedi byw yn y Deyrnas Unedig, Ynysoedd y Sianel neu Ynys Manaw am gyfnod parhaus o bum mlynedd neu fwy ers eich pen-blwydd yn 13 oed"
     And I see "Nac ydw" in the same row as "A ydych chi wedi gweithio yn y system cyfiawnder troseddol yn y 5 mlynedd diwethaf?"
     And I see "Nac ydw" in the same row as "Ydych chi ar fechnïaeth ar hyn o bryd am gyflawni trosedd?"
     And I see "Naddo" in the same row as "Ydych chi wedi'ch cael yn euog o drosedd?"
@@ -1124,7 +1124,7 @@ Feature: Regression Test Ineligbility
     And I press the "Parhau" button
 	
 	#Residency
-    Then I see "Ers iddynt droi'n 13 oed, a yw eu prif gyfeiriad wedi bod yn y DU, Ynysoedd y Sianel neu Ynys Manaw am unrhyw gyfnod o 5 mlynedd o leiaf?" on the page
+    Then I see "A ydynt wedi byw yn y Deyrnas Unedig, Ynysoedd y Sianel neu Ynys Manaw am gyfnod parhaus o bum mlynedd neu fwy ers eu pen-blwydd yn 13 oed?" on the page
     When I see "Cymhwysedd" on the page
     And I set the radio button to "Do"
     And I press the "Parhau" button
@@ -1296,7 +1296,7 @@ Feature: Regression Test Ineligbility
     And I press the "Parhau" button
 	
 	#residency
-    Then I see "Ers iddynt droi'n 13 oed, a yw eu prif gyfeiriad wedi bod yn y DU, Ynysoedd y Sianel neu Ynys Manaw am unrhyw gyfnod o 5 mlynedd o leiaf?" on the page
+    Then I see "A ydynt wedi byw yn y Deyrnas Unedig, Ynysoedd y Sianel neu Ynys Manaw am gyfnod parhaus o bum mlynedd neu fwy ers eu pen-blwydd yn 13 oed?" on the page
     When I set the radio button to "Do"
     And I press the "Parhau" button
 	

@@ -49,7 +49,7 @@ Scenario Outline: 1st_Straight Spaces in Phone number
 
 	When I press the "Continue" button
 
-	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
+	Then I see "Have you lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since your 13th birthday?" on the page
 
 	#Residency
 	When I see "Eligibility" on the page

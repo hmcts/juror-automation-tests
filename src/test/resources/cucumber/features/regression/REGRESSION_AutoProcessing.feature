@@ -95,7 +95,7 @@ Scenario Outline: submit responses which are auto processed
 	When I press the "Continue" button
 
 	#JDB-3373
-	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
+	Then I see "Have you lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since your 13th birthday?" on the page
 	And I do not see any links on the page that open to a new page without an alt text
 
 	#Residency JDB-3378
@@ -435,7 +435,7 @@ Scenario Outline: Check that when name is changed, the response is NOT auto proc
 	When I press the "Continue" button
 	
 	#Residency
-	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
+	Then I see "Have you lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since your 13th birthday?" on the page
 	When I see "Eligibility" on the page
 	And I choose the "Yes" radio button
 	And I press the "Continue" button
@@ -574,7 +574,7 @@ Scenario Outline: Check that when address is changed, the response is NOT auto p
 	When I press the "Continue" button
 	
 	#Residency
-	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
+	Then I see "Have you lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since your 13th birthday?" on the page
 	When I see "Eligibility" on the page
 	And I choose the "Yes" radio button
 	And I press the "Continue" button
@@ -710,7 +710,7 @@ Scenario Outline: Check that when Address2 is changed from (null), the response 
 	When I press the "Continue" button
 	
 	#Residency
-	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
+	Then I see "Have you lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since your 13th birthday?" on the page
 	When I see "Eligibility" on the page
 	And I choose the "Yes" radio button
 	And I press the "Continue" button
@@ -851,7 +851,7 @@ Scenario Outline: Check that when Address3 is changed from (null), the response 
 	When I press the "Continue" button
 	
 	#Residency
-	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
+	Then I see "Have you lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since your 13th birthday?" on the page
 	When I see "Eligibility" on the page
 	And I choose the "Yes" radio button
 	And I press the "Continue" button
@@ -992,7 +992,7 @@ Scenario Outline: Check that when Address4 is changed from (null), the response 
 	When I press the "Continue" button
 	
 	#Residency
-	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
+	Then I see "Have you lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since your 13th birthday?" on the page
 	When I see "Eligibility" on the page
 	And I choose the "Yes" radio button
 	And I press the "Continue" button
@@ -1134,7 +1134,7 @@ Scenario Outline: Check that when Address5 is changed from (null), the response 
 	When I press the "Continue" button
 	
 	#Residency
-	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
+	Then I see "Have you lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since your 13th birthday?" on the page
 	When I see "Eligibility" on the page
 	And I choose the "Yes" radio button
 	And I press the "Continue" button
@@ -1275,7 +1275,7 @@ Scenario Outline: Check that when Address2 is changed from string value, the res
 	When I press the "Continue" button
 	
 	#Residency
-	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
+	Then I see "Have you lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since your 13th birthday?" on the page
 	When I see "Eligibility" on the page
 	And I choose the "Yes" radio button
 	And I press the "Continue" button
@@ -1416,7 +1416,7 @@ Scenario Outline: Check that when Address3 is changed from string value, the res
 	When I press the "Continue" button
 	
 	#Residency
-	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
+	Then I see "Have you lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since your 13th birthday?" on the page
 	When I see "Eligibility" on the page
 	And I choose the "Yes" radio button
 	And I press the "Continue" button
@@ -1557,7 +1557,7 @@ Scenario Outline: Check that when Address4 is changed from string value, the res
 	When I press the "Continue" button
 	
 	#Residency
-	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
+	Then I see "Have you lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since your 13th birthday?" on the page
 	When I see "Eligibility" on the page
 	And I choose the "Yes" radio button
 	And I press the "Continue" button
@@ -1698,7 +1698,7 @@ Scenario Outline: Check that when Address5 is changed from string value, the res
 	When I press the "Continue" button
 	
 	#Residency
-	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
+	Then I see "Have you lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since your 13th birthday?" on the page
 	When I see "Eligibility" on the page
 	And I choose the "Yes" radio button
 	And I press the "Continue" button

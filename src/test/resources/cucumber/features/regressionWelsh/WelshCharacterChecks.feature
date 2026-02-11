@@ -99,7 +99,7 @@ Scenario Outline: WelshCharChecksTest
 	And I see "Gwiriwch eich ymatebion nawr" on the page
 	And I see "Mae’n bwysig eich bod yn gwirio bod yr holl wybodaeth yn gywir cyn i chi anfon eich ymateb." on the page
 	And I see "Bu i chi roi’r manylion rheithiwr a ganlyn" on the page
-	And I see "Ers i chi droi'n 13 oed, a yw eich prif gyfeiriad wedi bod yn y DU, Ynysoedd y Sianel neu Ynys Manaw am unrhyw gyfnod o 5 mlynedd o leiaf?" on the page
+	And I see "A ydych chi wedi byw yn y Deyrnas Unedig, Ynysoedd y Sianel neu Ynys Manaw am gyfnod parhaus o bum mlynedd neu fwy ers eich pen-blwydd yn 13 oed" on the page
 	And I see "Ydych chi'n cael eich cadw, yn cael eich gwarchod neu eich trin o dan y Ddeddf Galluedd Meddyliol?" on the page
 	And I see "A benderfynwyd nad oes gennych y gallu meddyliol?" on the page
 	And I see "Ydych chi ar fechnïaeth ar hyn o bryd am gyflawni trosedd?" on the page

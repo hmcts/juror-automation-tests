@@ -1256,7 +1256,7 @@ public class NavigationShared {
                 ddId = "dateOfBirth";
                 break;
             case "Have you lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since your 13th birthday?":
-            case "Since they turned 13, has their main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?":
+            case "Have they lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since their 13th birthday?":
             case "A ydych chi wedi byw yn y Deyrnas Unedig, Ynysoedd y Sianel neu Ynys Manaw am gyfnod parhaus o bum mlynedd neu fwy ers eich pen-blwydd yn 13 oed?":
             case "A yw'r unigolyn rydych yn ymateb ar ei ran wedi byw yn y Deyrnas Unedig, Ynysoedd y Sianel neu Ynys Manaw am gyfnod parhaus o bum mlynedd neu fwy ers ei ben-blwydd yn 13 oed?":
                 ddId = "answerLivedConsecutive";
@@ -1463,7 +1463,7 @@ public class NavigationShared {
                 clickTextId = "changeDob";
                 break;
             case "Have you lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since your 13th birthday?":
-            case "Since they turned 13, has their main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?":
+            case "Have they lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since their 13th birthday?":
             case "A ydych chi wedi byw yn y Deyrnas Unedig, Ynysoedd y Sianel neu Ynys Manaw am gyfnod parhaus o bum mlynedd neu fwy ers eich pen-blwydd yn 13 oed?":
                 clickTextId = "changeLivedConsecutive";
                 break;

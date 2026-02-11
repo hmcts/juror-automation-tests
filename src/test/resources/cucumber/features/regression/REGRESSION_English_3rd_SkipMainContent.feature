@@ -151,7 +151,7 @@ Scenario Outline: English 3rd Party Straight Through with Skip to Main Content C
 	Then I see "Skip to main content" on the page
 	Then the page language is "en"
 	Then I click on the "Skip to main content" link
-	Then I see "Since they turned 13," on the page
+	Then I see "Have they lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since their 13th birthday?" on the page
 	
 	When I choose the "Yes" radio button
 	And I press the "Continue" button

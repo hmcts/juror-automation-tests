@@ -55,7 +55,7 @@ Scenario Outline: Change postcode - old postcode in >1 loc_code SHOWS CHANGE COU
 	When I press the "Continue" button
 	
 	#Residency
-	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
+	Then I see "Have you lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since your 13th birthday?" on the page
 	When I see "Eligibility" on the page
 	And I choose the "Yes" radio button
 	And I press the "Continue" button
@@ -181,7 +181,7 @@ Scenario Outline: Change Postcode but same loc_code CHANGE COURT FLAG NOT SHOWN
 	When I press the "Continue" button
 	
 	#Residency
-	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
+	Then I see "Have you lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since your 13th birthday?" on the page
 	When I see "Eligibility" on the page
 	And I choose the "Yes" radio button
 	And I press the "Continue" button
@@ -306,7 +306,7 @@ Scenario Outline: Change postcode - different loc_code SHOWS CHANGE COURT
 	When I press the "Continue" button
 	
 	#Residency
-	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
+	Then I see "Have you lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since your 13th birthday?" on the page
 	When I see "Eligibility" on the page
 	And I choose the "Yes" radio button
 	And I press the "Continue" button
@@ -433,7 +433,7 @@ Scenario Outline: Change postcode - new postcode in >1 loc_code SHOWS CHANGE COU
 	When I press the "Continue" button
 
 	#Residency
-	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
+	Then I see "Have you lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since your 13th birthday?" on the page
 	When I see "Eligibility" on the page
 	And I choose the "Yes" radio button
 	And I press the "Continue" button
@@ -557,7 +557,7 @@ Scenario Outline: Change postcode - new postcode not in court_catchment_area
 	When I press the "Continue" button
 	
 	#Residency
-	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
+	Then I see "Have you lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since your 13th birthday?" on the page
 	When I see "Eligibility" on the page
 	And I choose the "Yes" radio button
 	And I press the "Continue" button
@@ -682,7 +682,7 @@ Scenario Outline: Change postcode - old postcode not in court_catchment_area DOE
 	When I press the "Continue" button
 	
 	#Residency
-	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
+	Then I see "Have you lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since your 13th birthday?" on the page
 	When I see "Eligibility" on the page
 	And I choose the "Yes" radio button
 	And I press the "Continue" button
@@ -807,7 +807,7 @@ Scenario Outline: Change Postcode but same loc_code CHANGE COURT FLAG NOT SHOWN 
 	When I press the "Continue" button
 	
 	#Residency
-	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
+	Then I see "Have you lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since your 13th birthday?" on the page
 	When I see "Eligibility" on the page
 	And I choose the "Yes" radio button
 	And I press the "Continue" button

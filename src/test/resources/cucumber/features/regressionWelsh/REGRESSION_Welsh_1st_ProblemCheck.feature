@@ -79,7 +79,7 @@ Scenario Outline: Welsh_1st_ProblemCheck
 	Then I see "Cadarnhau a ydych yn gymwys i wasanaethu ar reithgor" on the page
 	
 	When I press the "Parhau" button
-	Then I see "Ers i chi droi'n 13 oed, a yw eich prif gyfeiriad wedi bod yn y DU, Ynysoedd y Sianel neu Ynys Manaw am unrhyw gyfnod o 5 mlynedd o leiaf?" on the page
+	Then I see "A ydych chi wedi byw yn y Deyrnas Unedig, Ynysoedd y Sianel neu Ynys Manaw am gyfnod parhaus o bum mlynedd neu fwy ers eich pen-blwydd yn 13 oed" on the page
 	
 	When I press the "Parhau" button
 	Then I see "Mae problem" on the page

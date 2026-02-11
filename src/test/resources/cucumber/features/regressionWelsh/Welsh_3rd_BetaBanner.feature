@@ -102,7 +102,7 @@ Scenario Outline: Welsh 3rd Party Beta Banner Check
 	And I press the "Parhau" button
 	
 	#Residency
-	Then I see "Ers iddynt droi'n 13 oed, a yw eu prif gyfeiriad wedi bod yn y DU, Ynysoedd y Sianel neu Ynys Manaw am unrhyw gyfnod o 5 mlynedd o leiaf?" on the page
+	Then I see "A ydynt wedi byw yn y Deyrnas Unedig, Ynysoedd y Sianel neu Ynys Manaw am gyfnod parhaus o bum mlynedd neu fwy ers eu pen-blwydd yn 13 oed?" on the page
 	When I see "Cymhwysedd" on the page
 	And I do not see "Gwasanaeth newydd yw hwn – bydd eich adborth yn ein helpu i’w wella" on the page
 	And I set the radio button to "Do"

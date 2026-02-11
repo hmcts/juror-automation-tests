@@ -138,7 +138,7 @@ Feature: Regression English_3rd_StraightThrough
     When I press the "Continue" button
 	
 	#Residency
-    Then I see "Since they turned 13, has their main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
+    Then I see "Have they lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since their 13th birthday?" on the page
     And I see "steps/qualify/residency/tp" in the URL
     And I do not see "Qualifying for jury service" on the page
     When I see "Eligibility" on the page
@@ -160,7 +160,7 @@ Feature: Regression English_3rd_StraightThrough
     And I click on the "Why do we ask this?" link
     And I click on the "Back" link
     And I see "Eligibility" on the page
-    And I see "Since they turned 13, has their main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
+    And I see "Have they lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since their 13th birthday?" on the page
     And the radio button "Yes" is "Selected"
     And I press the "Continue" button
     Then I see "Has the person you're replying for worked in the criminal justice system in the last 5 years?" on the page
@@ -426,13 +426,13 @@ Feature: Regression English_3rd_StraightThrough
     Then I see "Check your answers now" on the page
 	
 	#change links
-    When I click on the "Change" link in the same row as "Since they turned 13, has their main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?"
-    Then I see "Since they turned 13, has their main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
+    When I click on the "Change" link in the same row as "Have they lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since their 13th birthday?"
+    Then I see "Have they lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since their 13th birthday?" on the page
     When I see "Eligibility" on the page
     When I choose the "No" radio button
     And I set "Provide details" to "Residency information"
     And I press the "Continue" button
-    Then I see text "Residency information" in the same row as "Since they turned 13, has their main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?"
+    Then I see text "Residency information" in the same row as "Have they lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since their 13th birthday?"
 
     When I click on the "Change" link in the same row as "Has the person you're replying for worked in the criminal justice system in the last 5 years?"
     Then I see "Has the person you're replying for worked in the criminal justice system in the last 5 years?" on the page
@@ -629,7 +629,7 @@ Feature: Regression English_3rd_StraightThrough
     And the radio button "No" is "Selected"
 
     And I click on the "Back" link
-    Then I see "Since they turned 13, has their main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
+    Then I see "Have they lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since their 13th birthday?" on the page
     And the radio button "Yes" is "Selected"
 	
 	#navigate forward

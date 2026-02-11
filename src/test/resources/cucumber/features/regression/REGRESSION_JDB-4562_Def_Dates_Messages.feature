@@ -40,7 +40,7 @@ Scenario Outline: English 1st Party Deferral Dates Messages
 	And I set "Year" to "1981"
 	And I press the "Continue" button
 	And I press the "Continue" button
-	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
+	Then I see "Have you lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since your 13th birthday?" on the page
 	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	When I choose the "No" radio button
@@ -454,7 +454,7 @@ Scenario Outline: Welsh 3rd Party Deferral Dates Messages
 	And I press the "Parhau" button
 	
 	#Residency
-	Then I see "Ers iddynt droi'n 13 oed, a yw eu prif gyfeiriad wedi bod yn y DU, Ynysoedd y Sianel neu Ynys Manaw am unrhyw gyfnod o 5 mlynedd o leiaf?" on the page
+	Then I see "A ydynt wedi byw yn y Deyrnas Unedig, Ynysoedd y Sianel neu Ynys Manaw am gyfnod parhaus o bum mlynedd neu fwy ers eu pen-blwydd yn 13 oed?" on the page
 	When I see "Cymhwysedd" on the page
 	And I set the radio button to "Do"
 	And I press the "Parhau" button

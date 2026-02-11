@@ -51,7 +51,7 @@ Scenario Outline: 1st party MHQ1=Y MHQ2=Y
 	Then I see "eligible for jury service" on the page
 	
 	When I press the "Continue" button
-	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
+	Then I see "Have you lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since your 13th birthday?" on the page
 	
 	#Residency
 	When I choose the "Yes" radio button
@@ -176,7 +176,7 @@ Scenario Outline: 1st party MHQ1=Y MHQ2=N
 	Then I see "eligible for jury service" on the page
 	
 	When I press the "Continue" button
-	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
+	Then I see "Have you lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since your 13th birthday?" on the page
 	
 	#Residency
 	When I choose the "Yes" radio button
@@ -301,7 +301,7 @@ Scenario Outline: 1st party MHQ1=N MHQ2=Y
 	Then I see "eligible for jury service" on the page
 	
 	When I press the "Continue" button
-	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
+	Then I see "Have you lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since your 13th birthday?" on the page
 	
 	#Residency
 	When I choose the "Yes" radio button
@@ -425,7 +425,7 @@ Scenario Outline: 1st party MHQ1=N MHQ2=N
 	Then I see "eligible for jury service" on the page
 	
 	When I press the "Continue" button
-	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
+	Then I see "Have you lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since your 13th birthday?" on the page
 	
 	#Residency
 	When I choose the "Yes" radio button
@@ -574,7 +574,7 @@ Scenario Outline: English_3rd_YY
 	Then I see "Confirm if the person is eligible for jury service" on the page
 	
 	When I press the "Continue" button
-	Then I see "Since they turned 13, has their main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
+	Then I see "Have they lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since their 13th birthday?" on the page
 	
 	#Residency Yes
 	When I choose the "Yes" radio button
@@ -772,7 +772,7 @@ Scenario Outline: English_3rd_YN
 	Then I see "Confirm if the person is eligible for jury service" on the page
 	
 	When I press the "Continue" button
-	Then I see "Since they turned 13, has their main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
+	Then I see "Have they lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since their 13th birthday?" on the page
 	
 	#Residency Yes
 	When I choose the "Yes" radio button
@@ -933,7 +933,7 @@ Scenario Outline: English_3rd_NY
 	
 	When I press the "Continue" button
 	
-	Then I see "Since they turned 13, has their main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
+	Then I see "Have they lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since their 13th birthday?" on the page
 	
 	#Residency Yes
 	When I choose the "Yes" radio button
@@ -1089,7 +1089,7 @@ Scenario Outline: English_3rd_NN
 	Then I see "Confirm if the person is eligible for jury service" on the page
 	
 	When I press the "Continue" button
-	Then I see "Since they turned 13, has their main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
+	Then I see "Have they lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since their 13th birthday?" on the page
 	
 	#Residency Yes
 	When I choose the "Yes" radio button

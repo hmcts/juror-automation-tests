@@ -2,6 +2,7 @@ Feature: Welsh_JDB-3635
 
 @RegressionWelsh @JDB-3635 @JDB-3827 
 Scenario Outline: Checking that TP is visible in all 3rd Party browser URLs after 3rd party specific screens
+
 	Given I am on the welsh version of "Public" "test"
 
 	Given a bureau owned pool is created with jurors
@@ -103,7 +104,7 @@ Scenario Outline: Checking that TP is visible in all 3rd Party browser URLs afte
 	
 	#Residency
 	
-	Then I see "Ers iddynt droi'n 13 oed, a yw eu prif gyfeiriad wedi bod yn y DU, Ynysoedd y Sianel neu Ynys Manaw am unrhyw gyfnod o 5 mlynedd o leiaf?" on the page
+	Then I see "A ydynt wedi byw yn y Deyrnas Unedig, Ynysoedd y Sianel neu Ynys Manaw am gyfnod parhaus o bum mlynedd neu fwy ers eu pen-blwydd yn 13 oed?" on the page
 	When I see "Cymhwysedd" on the page
 	And I see "/tp" in the URL
 	And I set the radio button to "Do"

@@ -117,7 +117,7 @@ Scenario Outline: Back and forward navigation all screens for 1st Party
 	When I press the "Continue" button
 	
 	#Residency
-	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
+	Then I see "Have you lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since your 13th birthday?" on the page
 	When I press the "Continue" button
 	Then I see "Select yes if your main address has been in the UK, Channel Islands or Isle of Man for any period of at least 5 years, since you turned 13" on the page
 	When I choose the "No" radio button
@@ -127,7 +127,7 @@ Scenario Outline: Back and forward navigation all screens for 1st Party
 	And I press the "Continue" button
 	Then I see "Have you worked in the criminal justice system in the last 5 years?" on the page
 	When I click on the "Back" link
-	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
+	Then I see "Have you lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since your 13th birthday?" on the page
 	And I press the "Continue" button
 	
 	#CJS

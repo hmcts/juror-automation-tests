@@ -112,7 +112,7 @@ Scenario Outline: Welsh 3rd Party Straight Through
 	
 	#Residency
 	And I see "steps/qualify/residency/tp" in the URL
-	Then I see "Ers iddynt droi'n 13 oed, a yw eu prif gyfeiriad wedi bod yn y DU, Ynysoedd y Sianel neu Ynys Manaw am unrhyw gyfnod o 5 mlynedd o leiaf?" on the page
+	Then I see "A ydynt wedi byw yn y Deyrnas Unedig, Ynysoedd y Sianel neu Ynys Manaw am gyfnod parhaus o bum mlynedd neu fwy ers eu pen-blwydd yn 13 oed?" on the page
 	When I click on the "A ydych angen cymorth i ateb hyn?" link
 	Then I see "Rhaid i chi gysylltu â ni i gael cyngor ar eu sefyllfa benodol." on the page
 	Then I see "Rhif ffôn: 0300 456 1024" on the page
