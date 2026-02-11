@@ -201,7 +201,7 @@ Scenario Outline: Welsh_3rd_ErrorChecks
 	When I press the "Parhau" button
 	
 	#Residency Yes
-	Then I see "Ers iddynt droi'n 13 oed, a yw eu prif gyfeiriad wedi bod yn y DU, Ynysoedd y Sianel neu Ynys Manaw am unrhyw gyfnod o 5 mlynedd o leiaf?" on the page
+	Then I see "A ydynt wedi byw yn y Deyrnas Unedig, Ynysoedd y Sianel neu Ynys Manaw am gyfnod parhaus o bum mlynedd neu fwy ers eu pen-blwydd yn 13 oed?" on the page
 	When I press the "Parhau" button
 	Then I see "Mae problem" on the page
 	And I see "Dewiswch ydy os yw eu prif gyfeiriad wedi bod yn y DU, Ynysoedd y Sianel neu Ynys Manaw am unrhyw gyfnod o 5 mlynedd o leiaf, ers iddynt droi'n 13 oed" on the page

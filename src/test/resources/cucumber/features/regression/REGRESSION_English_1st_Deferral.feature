@@ -49,7 +49,7 @@ Feature: Regression English_1st_Deferral
 
     And I press the "Continue" button
 
-    Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
+    Then I see "Have you lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since your 13th birthday?" on the page
     And I choose the "Yes" radio button
     And I press the "Continue" button
 
@@ -309,7 +309,7 @@ Feature: Regression English_1st_Deferral
 
     And I press the "Continue" button
 
-    Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
+    Then I see "Have you lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since your 13th birthday?" on the page
     And I choose the "Yes" radio button
     And I press the "Continue" button
 
@@ -446,7 +446,7 @@ Feature: Regression English_1st_Deferral
     When I set "Enter your email address" to "<email>"
     And I press the "Continue" button
 
-    Then I see text "Yes" in the same row as "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?"
+    Then I see text "Yes" in the same row as "Have you lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since your 13th birthday?"
     And I validate the "First" deferral date is "20" weeks in the future
     And I validate the "Second" deferral date is "18" weeks in the future
     And I validate the "Third" deferral date is "19" weeks in the future
@@ -578,7 +578,7 @@ Feature: Regression English_1st_Deferral
     When I press the "Continue" button
 
 	#Residency
-    Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
+    Then I see "Have you lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since your 13th birthday?" on the page
     When I choose the "Yes" radio button
     And I press the "Continue" button
 
@@ -730,7 +730,7 @@ Feature: Regression English_1st_Deferral
     When I press the "Continue" button
 
 	#Residency
-    Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
+    Then I see "Have you lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since your 13th birthday?" on the page
     When I choose the "Yes" radio button
     And I press the "Continue" button
 
@@ -925,7 +925,7 @@ Feature: Regression English_1st_Deferral
     When I press the "Continue" button
 
 	#Residency
-    Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
+    Then I see "Have you lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since your 13th birthday?" on the page
     When I see "Eligibility" on the page
     And I choose the "Yes" radio button
     And I press the "Continue" button
@@ -1141,7 +1141,7 @@ Feature: Regression English_1st_Deferral
     When I press the "Continue" button
 
 	#Residency
-    Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
+    Then I see "Have you lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since your 13th birthday?" on the page
     When I see "Eligibility" on the page
     And I choose the "Yes" radio button
     And I press the "Continue" button
@@ -1336,7 +1336,7 @@ Feature: Regression English_1st_Deferral
 
     And I press the "Continue" button
 
-    Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
+    Then I see "Have you lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since your 13th birthday?" on the page
     And I choose the "Yes" radio button
     And I press the "Continue" button
 
@@ -1623,7 +1623,7 @@ Feature: Regression English_1st_Deferral
 
     And I press the "Continue" button
 
-    Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
+    Then I see "Have you lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since your 13th birthday?" on the page
     And I choose the "Yes" radio button
 
     And I press the "Continue" button
@@ -1840,7 +1840,7 @@ Feature: Regression English_1st_Deferral
 
     And I press the "Continue" button
 
-    Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
+    Then I see "Have you lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since your 13th birthday?" on the page
     And I choose the "Yes" radio button
 
     And I press the "Continue" button
@@ -2052,7 +2052,7 @@ Feature: Regression English_1st_Deferral
 
     And I press the "Continue" button
 
-    Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
+    Then I see "Have you lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since your 13th birthday?" on the page
     And I choose the "Yes" radio button
 
     And I press the "Continue" button
@@ -2263,7 +2263,7 @@ Feature: Regression English_1st_Deferral
 
     And I press the "Continue" button
 
-    Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
+    Then I see "Have you lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since your 13th birthday?" on the page
     And I choose the "Yes" radio button
 
     And I press the "Continue" button
@@ -2475,7 +2475,7 @@ Feature: Regression English_1st_Deferral
 
     And I press the "Continue" button
 
-    Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
+    Then I see "Have you lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since your 13th birthday?" on the page
     And I choose the "Yes" radio button
 
     And I press the "Continue" button
@@ -2732,7 +2732,7 @@ Feature: Regression English_1st_Deferral
 
     And I press the "Continue" button
 
-    Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
+    Then I see "Have you lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since your 13th birthday?" on the page
     And I choose the "Yes" radio button
     And I press the "Continue" button
 
@@ -2962,7 +2962,7 @@ Feature: Regression English_1st_Deferral
 
     And I press the "Continue" button
 
-    Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
+    Then I see "Have you lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since your 13th birthday?" on the page
     And I choose the "Yes" radio button
     And I press the "Continue" button
 
@@ -3206,7 +3206,7 @@ Feature: Regression English_1st_Deferral
 
     And I press the "Continue" button
 
-    Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
+    Then I see "Have you lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since your 13th birthday?" on the page
     And I choose the "Yes" radio button
     And I press the "Continue" button
 

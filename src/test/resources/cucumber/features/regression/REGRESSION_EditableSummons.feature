@@ -61,7 +61,7 @@ Scenario Outline: edit links and buttons disabled
 	Then I see "Confirm if the person is eligible for jury service" on the page
 	When I press the "Continue" button
 
-	Then I see "Since they turned 13, has their main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
+	Then I see "Have they lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since their 13th birthday?" on the page
 	When I choose the "Yes" radio button
 	And I press the "Continue" button
 

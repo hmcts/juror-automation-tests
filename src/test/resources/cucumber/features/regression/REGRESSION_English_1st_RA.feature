@@ -58,7 +58,7 @@ Scenario Outline: English 1st Party RA
 	And I press the "Continue" button
 	
 	#residency
-	Then I see "Since you turned 13, has your main address" on the page
+	Then I see "Have you lived in the UK," on the page
 	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	
@@ -174,7 +174,7 @@ Scenario Outline: Reasonable adjustments (DIABETES) to automatically update Juro
 	And I press the "Continue" button
 	
 	#residency
-	Then I see "Since you turned 13, has your main address" on the page
+	Then I see "Have you lived in the UK," on the page
 	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	
@@ -309,7 +309,7 @@ Scenario Outline: Reasonable adjustments (OTHER) to automatically update Juror d
 	And I press the "Continue" button
 	
 	#residency
-	Then I see "Since you turned 13, has your main address" on the page
+	Then I see "Have you lived in the UK," on the page
 	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	
@@ -443,7 +443,7 @@ Scenario Outline: Reasonable adjustments (MULTIPLE) to automatically update Juro
 	And I press the "Continue" button
 	
 	#residency
-	Then I see "Since you turned 13, has your main address" on the page
+	Then I see "Have you lived in the UK," on the page
 	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	

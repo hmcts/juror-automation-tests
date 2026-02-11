@@ -80,7 +80,7 @@ Scenario Outline: Welsh 1st Party - Character count warning should be on all app
 	When I press the "Parhau" button
 	
 	#Residency
-	Then I see "Ers i chi droi'n 13 oed, a yw eich prif gyfeiriad wedi bod yn y DU, Ynysoedd y Sianel neu Ynys Manaw am unrhyw gyfnod o 5 mlynedd o leiaf?" on the page
+	Then I see "A ydych chi wedi byw yn y Deyrnas Unedig, Ynysoedd y Sianel neu Ynys Manaw am gyfnod parhaus o bum mlynedd neu fwy ers eich pen-blwydd yn 13 oed" on the page
 	When I set the radio button to "Naddo"
 	
 	And I see "Mae gennych 1000 o nodau yn weddill" on the page

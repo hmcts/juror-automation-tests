@@ -57,7 +57,7 @@ Scenario Outline: Testing all change links on Check your answers screen
 	When I press the "Continue" button
 	
 	#Residency Yes
-	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
+	Then I see "Have you lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since your 13th birthday?" on the page
 	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	
@@ -135,12 +135,12 @@ Scenario Outline: Testing all change links on Check your answers screen
 	And I press the "Continue" button
 	Then I see text "18 September 1972" in the same row as "Date of birth"
 	
-	When I click on the "Change" link in the same row as "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?"
-	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
+	When I click on the "Change" link in the same row as "Have you lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since your 13th birthday?"
+	Then I see "Have you lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since your 13th birthday?" on the page
 	When I choose the "No" radio button
 	And I set "Provide details" to "Residency information"
 	And I press the "Continue" button
-	Then I see text "No - Residency information" in the same row as "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?"
+	Then I see text "No - Residency information" in the same row as "Have you lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since your 13th birthday?"
 
 	When I click on the "Change" link in the same row as "Are you being detained, looked after or treated under the Mental Health Act?"
 	Then I see "Are you being detained, looked after or treated under the Mental Health Act?" on the page

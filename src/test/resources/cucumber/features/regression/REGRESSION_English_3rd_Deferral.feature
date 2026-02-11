@@ -89,7 +89,7 @@ Feature: Regression English_3rd_Deferral
     And I press the "Continue" button
 	
 	#Residency
-    Then I see "Since they turned 13, has their main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
+    Then I see "Have they lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since their 13th birthday?" on the page
     When I see "Eligibility" on the page
     And I choose the "Yes" radio button
     And I press the "Continue" button
@@ -373,7 +373,7 @@ Feature: Regression English_3rd_Deferral
     And I press the "Continue" button
 	
 	#Residency
-    Then I see "Since they turned 13, has their main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
+    Then I see "Have they lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since their 13th birthday?" on the page
     When I see "Eligibility" on the page
     And I choose the "Yes" radio button
     And I press the "Continue" button
@@ -703,7 +703,7 @@ Feature: Regression English_3rd_Deferral
     And I press the "Continue" button
 	
 	#Residency
-    Then I see "Since they turned 13, has their main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
+    Then I see "Have they lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since their 13th birthday?" on the page
     When I see "Eligibility" on the page
     And I choose the "Yes" radio button
     And I press the "Continue" button
@@ -940,7 +940,7 @@ Feature: Regression English_3rd_Deferral
     And I press the "Continue" button
 	
 	#Residency
-    Then I see "Since they turned 13, has their main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
+    Then I see "Have they lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since their 13th birthday?" on the page
     When I see "Eligibility" on the page
     And I choose the "Yes" radio button
     And I press the "Continue" button
@@ -1175,7 +1175,7 @@ Feature: Regression English_3rd_Deferral
     And I press the "Continue" button
 	
 	#Residency
-    Then I see "Since they turned 13, has their main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
+    Then I see "Have they lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since their 13th birthday?" on the page
     When I see "Eligibility" on the page
     And I choose the "Yes" radio button
     And I press the "Continue" button
@@ -1411,7 +1411,7 @@ Feature: Regression English_3rd_Deferral
     And I press the "Continue" button
 	
 	#Residency
-    Then I see "Since they turned 13, has their main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
+    Then I see "Have they lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since their 13th birthday?" on the page
     When I see "Eligibility" on the page
     And I choose the "Yes" radio button
     And I press the "Continue" button
@@ -1646,7 +1646,7 @@ Feature: Regression English_3rd_Deferral
     And I press the "Continue" button
 	
 	#Residency
-    Then I see "Since they turned 13, has their main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
+    Then I see "Have they lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since their 13th birthday?" on the page
     When I see "Eligibility" on the page
     And I choose the "Yes" radio button
     And I press the "Continue" button

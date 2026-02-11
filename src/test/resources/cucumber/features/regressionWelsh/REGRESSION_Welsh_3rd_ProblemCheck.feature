@@ -103,7 +103,7 @@ Scenario Outline: Welsh_3rd_ProblemCheck
 	Then I see "Cadarnhau a yw'r unigolyn yn gymwys i wasanaethu ar reithgor" on the page
 	And I press the "Parhau" button
 	
-	Then I see "Ers iddynt droi'n 13 oed, a yw eu prif gyfeiriad wedi bod yn y DU, Ynysoedd y Sianel neu Ynys Manaw am unrhyw gyfnod o 5 mlynedd o leiaf?" on the page
+	Then I see "A ydynt wedi byw yn y Deyrnas Unedig, Ynysoedd y Sianel neu Ynys Manaw am gyfnod parhaus o bum mlynedd neu fwy ers eu pen-blwydd yn 13 oed?" on the page
 	When I press the "Parhau" button
 	Then I see "Mae problem" on the page
 	And I do not see any links on the page that open to a new page without an alt text

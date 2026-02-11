@@ -115,7 +115,7 @@ Scenario Outline: Welsh 1st Party Straight Through (english court)
 	And I see "eisiau cael eich esgusodi" on the page
 	And I see "Gallwch ofyn i gael eich esgusodi ar ôl yr adran hon, os bydd angen." on the page
 	When I press the "Parhau" button
-	Then I see "Ers i chi droi'n 13 oed, a yw eich prif gyfeiriad wedi bod yn y DU, Ynysoedd y Sianel neu Ynys Manaw am unrhyw gyfnod o 5 mlynedd o leiaf?" on the page
+	Then I see "A ydych chi wedi byw yn y Deyrnas Unedig, Ynysoedd y Sianel neu Ynys Manaw am gyfnod parhaus o bum mlynedd neu fwy ers eich pen-blwydd yn 13 oed" on the page
 	
 	#Residency
 	And I see "steps/qualify/residency" in the URL
@@ -355,7 +355,7 @@ Scenario Outline: Welsh 1st Party Straight Through (welsh court)
 	When I press the "Parhau" button
 
 	#Residency
-	Then I see "Ers i chi droi'n 13 oed, a yw eich prif gyfeiriad wedi bod yn y DU, Ynysoedd y Sianel neu Ynys Manaw am unrhyw gyfnod o 5 mlynedd o leiaf?" on the page
+	Then I see "A ydych chi wedi byw yn y Deyrnas Unedig, Ynysoedd y Sianel neu Ynys Manaw am gyfnod parhaus o bum mlynedd neu fwy ers eich pen-blwydd yn 13 oed" on the page
 	When I click on the "A ydych angen cymorth i ateb hyn?" link
 
 	And I see "Rhif ffôn: 0300 456 1024" on the page

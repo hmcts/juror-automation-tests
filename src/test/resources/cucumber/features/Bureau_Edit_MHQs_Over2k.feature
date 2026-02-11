@@ -68,7 +68,7 @@ Scenario Outline: Bureau User Edits a Response Where MHQ1 and MHQ2 Are 2000 char
 	
 	#residency
 	
-	Then I see "Since you turned 13, has your main address" on the page
+	Then I see "Have you lived in the UK," on the page
 	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	

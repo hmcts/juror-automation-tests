@@ -59,7 +59,7 @@ Scenario Outline: English 1st RA Char Counter
 	When I press the "Continue" button
 	
 	#Residency Yes
-	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
+	Then I see "Have you lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since your 13th birthday?" on the page
 	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	
@@ -203,7 +203,7 @@ Scenario Outline: English 3rd RA Char Counter
 	And I press the "Continue" button
 	
 	#JDB-3373
-	Then I see "Since they turned 13, has their main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
+	Then I see "Have they lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since their 13th birthday?" on the page
 	
 	#Residency
 	When I see "Eligibility" on the page
@@ -361,7 +361,7 @@ Scenario Outline: Welsh 1st RA Char Counter
 	When I press the "Parhau" button
 	
 	#JDB-3373
-	Then I see "Ers i chi droi'n 13 oed, a yw eich prif gyfeiriad wedi bod yn y DU, Ynysoedd y Sianel neu Ynys Manaw am unrhyw gyfnod o 5 mlynedd o leiaf?" on the page
+	Then I see "A ydych chi wedi byw yn y Deyrnas Unedig, Ynysoedd y Sianel neu Ynys Manaw am gyfnod parhaus o bum mlynedd neu fwy ers eich pen-blwydd yn 13 oed" on the page
 	
 	#Residency JDB-3378 JDB-3389
 	When I see "Cymhwysedd" on the page
@@ -524,7 +524,7 @@ Examples:
 	And I press the "Parhau" button
 	
 	#Residency
-	Then I see "Ers iddynt droi'n 13 oed, a yw eu prif gyfeiriad wedi bod yn y DU, Ynysoedd y Sianel neu Ynys Manaw am unrhyw gyfnod o 5 mlynedd o leiaf?" on the page
+	Then I see "A ydynt wedi byw yn y Deyrnas Unedig, Ynysoedd y Sianel neu Ynys Manaw am gyfnod parhaus o bum mlynedd neu fwy ers eu pen-blwydd yn 13 oed?" on the page
 	When I see "Cymhwysedd" on the page
 	And I set the radio button to "Do"
 	And I press the "Parhau" button

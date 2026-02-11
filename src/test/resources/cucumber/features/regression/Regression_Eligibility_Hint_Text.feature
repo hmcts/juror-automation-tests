@@ -58,7 +58,7 @@ Scenario Outline: English_1st_Eligibility_Hint_Text
 	When I press the "Continue" button
 	
 	#Residency Yes
-	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
+	Then I see "Have you lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since your 13th birthday?" on the page
 	When I choose the "Yes" radio button
 	
 	#help text
@@ -265,7 +265,7 @@ Scenario Outline: English_3rd_Eligibility_Hint_Text
 	When I press the "Continue" button
 	
 	#Residency Yes
-	Then I see "Since they turned 13, has their main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
+	Then I see "Have they lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since their 13th birthday?" on the page
 	When I choose the "Yes" radio button
 	
 	#help text

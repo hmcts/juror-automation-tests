@@ -463,7 +463,7 @@ Scenario Outline: English_3rd_ErrorChecks
 	When I press the "Continue" button
 	
 	#Residency Yes
-	Then I see "Since they turned 13, has their main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
+	Then I see "Have they lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since their 13th birthday?" on the page
 	When I press the "Continue" button
 	Then I see "There is a problem" on the page
 	And I see error "Select yes if their main address has been in the UK, Channel Islands or Isle of Man for any period of at least 5 years, since they turned 13"

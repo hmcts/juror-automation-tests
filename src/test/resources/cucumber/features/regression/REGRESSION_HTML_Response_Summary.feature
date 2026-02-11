@@ -55,7 +55,7 @@ Scenario Outline: English_Max_Chars HTML Response Summary
 	When I press the "Continue" button
 	
 	#Residency
-	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
+	Then I see "Have you lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since your 13th birthday?" on the page
 	And I choose the "No" radio button
 	And I set "Provide details about where you have lived since your 13th birthday" to "These are the details.These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are th"
 	And I press the "Continue" button
@@ -128,7 +128,7 @@ Scenario Outline: English_Max_Chars HTML Response Summary
 	And I see "02078211818" in the same row as "Main phone:"
 	And I see "<email>" in the same row as "Email:"
 	And I see "You answered the eligibility questions" on the page
-	And I see "These are the details.These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are th" in the same row as "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?"
+	And I see "These are the details.These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are th" in the same row as "Have you lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since your 13th birthday?"
 	And I see "These are the details.These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are th" in the same row as "Are you being detained, looked after or treated under the Mental Health Act?"
 	And I see "These are the details.These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are th" in the same row as "Has it been decided that you 'lack mental capacity'?"
 	And I see "These are the details.These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are the details. These are th" in the same row as "Are you currently on bail for a criminal offence?"
@@ -205,7 +205,7 @@ Scenario Outline: English 1st Party Excusal HTML Response Summary
 	And I set "Year" to "1981"
 	And I press the "Continue" button
 	And I press the "Continue" button
-	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
+	Then I see "Have you lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since your 13th birthday?" on the page
 	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	When I choose the "No" radio button
@@ -253,7 +253,7 @@ Scenario Outline: English 1st Party Excusal HTML Response Summary
 	And I see "02078211818" in the same row as "Main phone:"
 	And I see "<email>" in the same row as "Email:"
 	And I see "You answered the eligibility questions" on the page
-	And I see "Yes" in the same row as "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?"
+	And I see "Yes" in the same row as "Have you lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since your 13th birthday?"
 	And I see "No" in the same row as "Are you being detained, looked after or treated under the Mental Health Act?"
 	And I see "No" in the same row as "Has it been decided that you 'lack mental capacity'?"
 	And I see "No" in the same row as "Are you currently on bail for a criminal offence?"
@@ -331,7 +331,7 @@ Scenario Outline: English 1st Party Deferral HTML Response Summary
 	And I set "Year" to "1981"
 	And I press the "Continue" button
 	And I press the "Continue" button
-	Then I see "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?" on the page
+	Then I see "Have you lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since your 13th birthday?" on the page
 	And I choose the "Yes" radio button
 	And I press the "Continue" button
 	When I choose the "No" radio button
@@ -395,7 +395,7 @@ Scenario Outline: English 1st Party Deferral HTML Response Summary
 	And I see "02078211818" in the same row as "Main phone:"
 	And I see "<email>" in the same row as "Email:"
 	And I see "You answered the eligibility questions" on the page
-	And I see "Yes" in the same row as "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?"
+	And I see "Yes" in the same row as "Have you lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since your 13th birthday?"
 	And I see "No" in the same row as "Are you being detained, looked after or treated under the Mental Health Act?"
 	And I see "No" in the same row as "Has it been decided that you 'lack mental capacity'?"
 	And I see "No" in the same row as "Are you currently on bail for a criminal offence?"
@@ -535,7 +535,7 @@ Scenario Outline: Welsh 1st Party Straight Through (welsh court)
 	And I see "0207 821 1818" in the same row as "Prif rif ffôn:"
 	And I see "<email>" in the same row as "E-bost:"
 	And I see "Mi wnaethoch ateb y cwestiynau cymhwysedd" on the page
-	And I see "Do" in the same row as "Ers i chi droi'n 13 oed, a yw eich prif gyfeiriad wedi bod yn y DU, Ynysoedd y Sianel neu Ynys Manaw am unrhyw gyfnod o 5 mlynedd o leiaf?"
+	And I see "Do" in the same row as "A ydych chi wedi byw yn y Deyrnas Unedig, Ynysoedd y Sianel neu Ynys Manaw am gyfnod parhaus o bum mlynedd neu fwy ers eich pen-blwydd yn 13 oed"
 	And I see "Nac ydw" in the same row as "A ydych chi wedi gweithio yn y system cyfiawnder troseddol yn y 5 mlynedd diwethaf?"
 	And I see "Na" in the same row as "Ydych chi'n cael eich cadw, yn cael eich gwarchod neu eich trin o dan y Ddeddf Galluedd Meddyliol?"
 	And I see "Nac ydw" in the same row as "Ydych chi ar fechnïaeth ar hyn o bryd am gyflawni trosedd?"
@@ -714,7 +714,7 @@ Scenario Outline: English 3rd Party Deferral HTML Response summary
 	And I see "The person is not here" in the same row as "Your reason for replying on behalf of the juror:"
 	
 	And I see "You answered the eligibility questions for the person you're replying for" on the page
-	And I see "Yes" in the same row as "Since they turned 13, has their main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?"
+	And I see "Yes" in the same row as "Have they lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since their 13th birthday?"
 	And I see "No" in the same row as "Is the person you're replying for being detained, looked after or treated under the Mental Health Act?"
 	And I see "No" in the same row as "Has it been decided that the person you're replying for 'lacks mental capacity'?"
 	And I see "No" in the same row as "Is the person currently on bail for a criminal offence?"
@@ -1006,7 +1006,7 @@ Scenario Outline: English 1st ST HTML Check
 	And I press the "Continue" button
 	
 	#residency
-	Then I see "Since you turned 13, has your main address" on the page
+	Then I see "Have you lived in the UK," on the page
 	When I choose the "Yes" radio button
 	And I press the "Continue" button
 	
@@ -1076,7 +1076,7 @@ Scenario Outline: English 1st ST HTML Check
 	And I see "02078211818" in the same row as "Main phone:"
 	And I see "<email>" in the same row as "Email:"
 	And I see "You answered the eligibility questions" on the page
-	And I see "Yes" in the same row as "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?"
+	And I see "Yes" in the same row as "Have you lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since your 13th birthday?"
 	And I see "No" in the same row as "Are you being detained, looked after or treated under the Mental Health Act?"
 	And I see "No" in the same row as "Has it been decided that you 'lack mental capacity'?"
 	And I see "No" in the same row as "Are you currently on bail for a criminal offence?"
@@ -1243,7 +1243,7 @@ Scenario Outline: English 1st Ineligible HTML Check
 	And I see "09999999999" in the same row as "Another phone (optional):"
 	And I see "<email>" in the same row as "Email:"
 	And I see "You answered the eligibility questions" on the page
-	And I see "No" in the same row as "Since you turned 13, has your main address been in the UK, Channel Islands or Isle of Man for any period of at least 5 years?"
+	And I see "No" in the same row as "Have you lived in the UK, Channel Islands or Isle of Man for more than five consecutive years, since your 13th birthday?"
 	And I see "Yes" in the same row as "Are you being detained, looked after or treated under the Mental Health Act?"
 	And I see "Yes" in the same row as "Has it been decided that you 'lack mental capacity'?"
 	And I see "Yes" in the same row as "Are you currently on bail for a criminal offence?"

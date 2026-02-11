@@ -182,7 +182,7 @@ Scenario Outline: Welsh 1st Party - Accessibility Statement on each page
 	And I see link with text "Datganiad hygyrchedd"
 	
 	#Residency
-	Then I see "Ers i chi droi'n 13 oed, a yw eich prif gyfeiriad wedi bod yn y DU, Ynysoedd y Sianel neu Ynys Manaw am unrhyw gyfnod o 5 mlynedd o leiaf?" on the page
+	Then I see "A ydych chi wedi byw yn y Deyrnas Unedig, Ynysoedd y Sianel neu Ynys Manaw am gyfnod parhaus o bum mlynedd neu fwy ers eich pen-blwydd yn 13 oed" on the page
 	When I click on the "A ydych angen cymorth i ateb hyn?" link
 	Then I see "Rhaid i chi gysylltu â ni i gael cyngor ar eich sefyllfa benodol." on the page
 	And I see "Rhif ffôn: 0300 456 1024" on the page
@@ -405,7 +405,7 @@ Scenario Outline: Welsh 3rd Party - Accessibility statement on each page
 	And I see link with text "Datganiad hygyrchedd"
 	
 	#Residency
-	Then I see "Ers iddynt droi'n 13 oed, a yw eu prif gyfeiriad wedi bod yn y DU, Ynysoedd y Sianel neu Ynys Manaw am unrhyw gyfnod o 5 mlynedd o leiaf?" on the page
+	Then I see "A ydynt wedi byw yn y Deyrnas Unedig, Ynysoedd y Sianel neu Ynys Manaw am gyfnod parhaus o bum mlynedd neu fwy ers eu pen-blwydd yn 13 oed?" on the page
 	When I click on the "A ydych angen cymorth i ateb hyn?" link
 	Then I see "Rhaid i chi gysylltu â ni i gael cyngor ar eu sefyllfa benodol." on the page
 	Then I see "Rhif ffôn: 0300 456 1024" on the page
