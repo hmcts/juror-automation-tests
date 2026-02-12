@@ -1,6 +1,6 @@
 Feature: WelshCharChecks
 
-@RegressionWelsh @NewSchemaConverted
+@RegressionWelsh
 Scenario Outline: WelshCharChecksTest
 
 	Given I am on the welsh version of "Public" "test"

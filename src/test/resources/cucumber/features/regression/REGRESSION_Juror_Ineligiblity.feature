@@ -711,7 +711,7 @@ Feature: Regression Test Ineligbility
   @RegressionWelsh
   Scenario Outline: Welsh_1st_StraightThrough_MentalResidency
 
-    Given I am on the welsh version of "Public" "ithc"
+    Given I am on the welsh version of "Public" "test"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
@@ -933,7 +933,7 @@ Feature: Regression Test Ineligbility
     Then I see "Gwiriwch eich ymatebion nawr" on the page
 	
 	#residency
-    And I see text "Do" in the same row as "A ydych chi wedi byw yn y Deyrnas Unedig, Ynysoedd y Sianel neu Ynys Manaw am gyfnod parhaus o bum mlynedd neu fwy ers eich pen-blwydd yn 13 oed"
+    And I see text "Do" in the same row as "A ydych chi wedi byw yn y Deyrnas Unedig, Ynysoedd y Sianel neu Ynys Manaw am gyfnod parhaus o bum mlynedd neu fwy ers eich pen-blwydd yn 13 oed?"
 	
 	#detained under MH act
     And I see text "Ie" in the same row as "Ydych chi'n cael eich cadw, yn cael eich gwarchod neu eich trin o dan y Ddeddf Galluedd Meddyliol?"
