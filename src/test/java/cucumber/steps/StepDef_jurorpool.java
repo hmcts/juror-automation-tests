@@ -2063,10 +2063,11 @@ public class StepDef_jurorpool {
         GRP.click_radioButtonWithLabel("Request new pool");
         NAV.press_buttonByName("Continue");
 
+        NAV.waitForPageLoad();
         NAV.set_valueTo("Enter a court name or location code", court);
         NAV.click_link_by_text(court);
         NAV.press_buttonByName("Continue");
-        //NAV.waitForPageLoad();
+        NAV.waitForPageLoad();
         POOL_REQUESTS_PAGE.clickChangeDate();
         POOL_REQUESTS_PAGE.enterNewDate(newDateValues);
         NAV.press_buttonByName("Change");
@@ -2084,6 +2085,7 @@ public class StepDef_jurorpool {
         }
         NAV.set_value_to("Number of jurors", "10");
         NAV.press_buttonByName("Continue");
+        NAV.waitForPageLoad();
         poolNumber.set(CHECK_POOL_REQUEST_PAGE.getCourtNewPoolRequestNumber());
         poolNumbers.get().add(CHECK_POOL_REQUEST_PAGE.getCourtNewPoolRequestNumber());
         poolDate.set(CHECK_POOL_REQUEST_PAGE.getNewPoolAttendanceDate());
@@ -3118,6 +3120,7 @@ public class StepDef_jurorpool {
         NAV.press_buttonByName("Request pool");
 
         POOL_REQUESTS_PAGE.clickInactivePoolNumber(poolNumber.get());
+        NAV.waitForPageLoad();
         NAV.press_buttonByName("Summon jurors");
         NAV.set_value_to("Citizens to summon", "1");
         NAV.press_buttonByName("Create pool and summon citizens");
@@ -3125,6 +3128,7 @@ public class StepDef_jurorpool {
 
     @When("^I select one of the jurors I have just summoned$")
     public void selectFirstJurorInList() {
+        NAV.waitForPageLoad();
         POOL_REQUESTS_PAGE.selectFirstJurorInList();
     }
     @And("^I get an initial list of the jurors that have been summoned$")
