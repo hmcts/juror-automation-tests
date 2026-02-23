@@ -127,6 +127,15 @@ public class StepDef {
 		}
 
 	}
+	@Then("^I log in to ER as \"([^\"]*)\"$")
+	public void loginWithUsernameER(String username) throws Throwable {
+		loginErUsers(username);
+
+		try {
+			NAV.waitForPageLoad();
+		} catch (Exception e) {
+			log.info("ER login completed for user: " + username);		}
+	}
 
 
 	@Then("^I log in as \"([^\"]*)\" selecting court \"([^\"]*)\"$")
@@ -274,6 +283,22 @@ public class StepDef {
 	public void clear_field(String fieldId) {
 		NAV.clear_field(fieldId);
 
+	}
+	public void loginErUsers(String username) throws Throwable {
+
+		switch (username) {
+
+			case "test_user1@localauthority1":
+			case "test_user2@localauthority1":
+			case "test_user1@localauthority2":
+			case "test_user2@localauthority2":
+			case "test_user1@localauthority4":
+			default:
+				LGN.loginADTestRoute(username + ".council.uk");
+				break;
+		}
+
+		NAV.waitForPageLoad(180);
 	}
 
 	@Given("^I navigate to \"([^\"]*)\" URL$")
