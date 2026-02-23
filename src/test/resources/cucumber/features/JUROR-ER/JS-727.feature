@@ -18,6 +18,7 @@ Feature: JS-727
       | user                       |
       | test_user1@localauthority1 |
 
+ @JurorTransformation
   Scenario Outline: Login to JUROR ER - unhappy path
 
     Given I am on "Er" "test"
