@@ -9,6 +9,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
+import java.sql.SQLException;
+
 import static org.junit.Assert.assertEquals;
 
 public class StepDef_electoralRegManagement {
@@ -50,7 +52,7 @@ public class StepDef_electoralRegManagement {
         POOL_SEARCH = PageFactory.initElements(webDriver, PoolSearch.class);
         VIEW_SUMMONS_REPLY = PageFactory.initElements(webDriver, ViewSummonsReply.class);
         HEADER_PAGE = PageFactory.initElements(webDriver, Header.class);
-        DBTNSD = dbtnsd;
+        DBTNSD = PageFactory.initElements(webDriver, DatabaseTesterNewSchemaDesign.class);
         DASH = PageFactory.initElements(webDriver, Dashboard.class);
         ELEC = PageFactory.initElements(webDriver, ElectoralRegManagement.class);
     }
@@ -94,6 +96,17 @@ public class StepDef_electoralRegManagement {
     @Then("^the Local Authority returned in the results matches \"([^\"]*)\"$")
     public void filteredLocalAuthMatchesExpected(String expected) {
         assertEquals(expected, ELEC.localAuthInTableName());
+    }
+
+    @Then("^\"([^\"]*)\" Local Authority in the results table has status \"([^\"]*)\"$")
+    public void filteredLocalAuthStatusMatchesExpected(String localAuth, String expected) {
+        assertEquals(expected, ELEC.localAuthStatusInTableHasStatus(localAuth));
+    }
+
+    @Then("^the number of required LAs in the donut matches the number of active LAs$")
+    public int requiredLAsMatchesActiveLAsCount() throws SQLException {
+        assertEquals(ELEC.requiredCount(), String.valueOf(DBTNSD.getCountOfActiveERLocalAuthorities()));
+        return 0;
     }
 
     }
