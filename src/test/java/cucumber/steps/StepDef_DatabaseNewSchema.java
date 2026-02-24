@@ -798,4 +798,9 @@ public class StepDef_DatabaseNewSchema {
     public void verifyJurorAddressUpdates() throws SQLException {
         DBTNSD.verifyJurorAddress4Updates();
     }
+
+    @Given("^all ER Local Authorities are set to active new schema$")
+    public void setERLAsToActive() throws SQLException {
+        DBTNSD.updateERLAsToAcvtive();
+    }
 }

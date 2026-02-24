@@ -1,6 +1,7 @@
 package cucumber.pageObjects;
 
 import org.apache.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -70,6 +71,11 @@ public class ElectoralRegManagement {
 
     public String localAuthInTableName() {
         return localAuthorityInResults.getText();
+    }
+
+    public String localAuthStatusInTableHasStatus(String localAuth) {
+        WebElement localAuthInTable = driver.findElement(By.xpath("//*[contains(text(),'"+ localAuth + "')]/../following-sibling::td/strong"));
+        return localAuthInTable.getText();
     }
 
 }

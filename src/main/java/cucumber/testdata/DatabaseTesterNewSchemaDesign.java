@@ -22,7 +22,7 @@ public class DatabaseTesterNewSchemaDesign {
 
 	private static Logger log = Logger.getLogger(DatabaseTesterNewSchemaDesign.class);
 
-	private DBConnection db;
+    private DBConnection db;
 	private Connection conn;
 	private PreparedStatement pStmt = null;
 	private String holidayDate;
@@ -5512,4 +5512,43 @@ public class DatabaseTesterNewSchemaDesign {
 			}
 		}
 	}
+
+    public void updateERLAsToAcvtive() throws SQLException {
+        db = new DBConnection();
+        String env_property = System.getProperty("env.database");
+
+        if (env_property != null)
+            conn = db.getConnection(env_property);
+        else
+            conn = db.getConnection("demo");
+
+        try {
+            pStmt = conn.prepareStatement("UPDATE juror_er.local_authority SET is_active = TRUE");
+            pStmt.executeUpdate();
+
+            System.out.println("All ER local authorities set to active");
+        } catch (SQLException e) {
+            log.error("Message:" + e.getMessage());
+        } finally {
+            conn.commit();
+            conn.close();
+        }
+    }
+
+    public int getCountOfActiveERLocalAuthorities() throws SQLException {
+        db = new DBConnection();
+        String env_property = System.getProperty("env.database");
+        conn = db.getConnection(env_property);
+        try {
+            pStmt = conn.prepareStatement("select count(*) from juror_er.local_authority where is_active=TRUE");
+            ResultSet rs = pStmt.executeQuery();
+            rs.next();
+            log.info("Got count of active LAs");
+            return rs.getInt(1);
+        } catch (SQLException e) {
+            log.error("Message:" + e.getMessage());
+            log.info(11);
+        }
+        return 0;
+    }
 }
