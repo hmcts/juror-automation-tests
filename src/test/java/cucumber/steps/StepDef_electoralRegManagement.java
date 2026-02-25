@@ -21,6 +21,7 @@ import java.util.Date;
 import java.util.Locale;
 
 import static java.lang.String.format;
+
 import static org.junit.Assert.assertEquals;
 
 public class StepDef_electoralRegManagement {

@@ -89,6 +89,8 @@ public class ElectoralRegManagement {
     public String localAuthStatusInTableHasLastUpload(String localAuth) {
         WebElement localAuthLastUpload = driver.findElement(By.xpath("//*[contains(text(),'"+ localAuth + "')]/../following-sibling::td[2]"));
         return localAuthLastUpload.getText();
+        WebElement localAuthInTable = driver.findElement(By.xpath("//*[contains(text(),'"+ localAuth + "')]/../following-sibling::td/strong"));
+        return localAuthInTable.getText();
     }
 
 }
