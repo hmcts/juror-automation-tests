@@ -7,11 +7,19 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import javax.lang.model.element.Element;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
+import java.util.Date;
+
 public class ElectoralRegManagement {
     private static WebDriver driver;
     private static final Logger log = Logger.getLogger(ElectoralRegManagement.class);
 
-    public void ElectoralRegManagement(WebDriver webDriver) {
+    public ElectoralRegManagement(WebDriver webDriver) {
         ElectoralRegManagement.driver = webDriver;
         PageFactory.initElements(driver, this);
     }
@@ -74,8 +82,13 @@ public class ElectoralRegManagement {
     }
 
     public String localAuthStatusInTableHasStatus(String localAuth) {
-        WebElement localAuthInTable = driver.findElement(By.xpath("//*[contains(text(),'"+ localAuth + "')]/../following-sibling::td/strong"));
-        return localAuthInTable.getText();
+        WebElement localAuthStatusInTable = driver.findElement(By.xpath("//*[contains(text(),'" + localAuth + "')]/../following-sibling::td"));
+        return localAuthStatusInTable.getText();
+    }
+
+    public String localAuthStatusInTableHasLastUpload(String localAuth) {
+        WebElement localAuthLastUpload = driver.findElement(By.xpath("//*[contains(text(),'"+ localAuth + "')]/../following-sibling::td[2]"));
+        return localAuthLastUpload.getText();
     }
 
 }

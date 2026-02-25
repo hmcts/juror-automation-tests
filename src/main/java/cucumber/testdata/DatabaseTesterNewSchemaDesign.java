@@ -5551,4 +5551,82 @@ public class DatabaseTesterNewSchemaDesign {
         }
         return 0;
     }
+
+    public int getCountOfNotUploadedERLocalAuthorities() throws SQLException {
+        db = new DBConnection();
+        String env_property = System.getProperty("env.database");
+        conn = db.getConnection(env_property);
+        try {
+            pStmt = conn.prepareStatement("select count(*) from juror_er.local_authority where upload_status='NOT_UPLOADED'");
+            ResultSet rs = pStmt.executeQuery();
+            rs.next();
+            log.info("Got count of LAs who have not uploaded docs");
+            return rs.getInt(1);
+        } catch (SQLException e) {
+            log.error("Message:" + e.getMessage());
+            log.info(11);
+        }
+        return 0;
+    }
+
+    public int getCountOfUploadedERLocalAuthorities() throws SQLException {
+        db = new DBConnection();
+        String env_property = System.getProperty("env.database");
+        conn = db.getConnection(env_property);
+        try {
+            pStmt = conn.prepareStatement("select count(*) from juror_er.local_authority where upload_status='UPLOADED'");
+            ResultSet rs = pStmt.executeQuery();
+            rs.next();
+            log.info("Got count of LAs who have uploaded docs");
+            return rs.getInt(1);
+        } catch (SQLException e) {
+            log.error("Message:" + e.getMessage());
+            log.info(11);
+        }
+        return 0;
+    }
+
+    public void updateERLAsToNotUploaded() throws SQLException {
+        db = new DBConnection();
+        String env_property = System.getProperty("env.database");
+
+        if (env_property != null)
+            conn = db.getConnection(env_property);
+        else
+            conn = db.getConnection("demo");
+
+        try {
+            pStmt = conn.prepareStatement("UPDATE juror_er.local_authority SET upload_status = NOT_UPLOADED");
+            pStmt.executeUpdate();
+
+            System.out.println("All ER local authorities set to NOT_UPLOADED");
+        } catch (SQLException e) {
+            log.error("Message:" + e.getMessage());
+        } finally {
+            conn.commit();
+            conn.close();
+        }
+    }
+
+    public void deleteERLAsLastUploaded(String localAuth) throws SQLException {
+        db = new DBConnection();
+        String env_property = System.getProperty("env.database");
+
+        if (env_property != null)
+            conn = db.getConnection(env_property);
+        else
+            conn = db.getConnection("demo");
+
+        try {
+            pStmt = conn.prepareStatement("DELETE from juror_er.file_uploads where la_code in (select la_code from juror_er.local_authority where la_name = "+ localAuth);
+            pStmt.executeUpdate();
+
+            System.out.println("All uploads for ER local authority "+ localAuth +" set to NOT_UPLOADED");
+        } catch (SQLException e) {
+            log.error("Message:" + e.getMessage());
+        } finally {
+            conn.commit();
+            conn.close();
+        }
+    }
 }

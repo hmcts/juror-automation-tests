@@ -803,4 +803,14 @@ public class StepDef_DatabaseNewSchema {
     public void setERLAsToActive() throws SQLException {
         DBTNSD.updateERLAsToAcvtive();
     }
+
+    @Given("^all ER Local Authorities are set to not uploaded new schema$")
+    public void setERLAsToNotUploaded() throws SQLException {
+        DBTNSD.updateERLAsToNotUploaded();
+    }
+
+    @Given("^all uploads for Local Authority \"([^\"]*)\" are deleted new schema$")
+    public void deleteERLAsLastUploaded(String localAuth) throws SQLException {
+        DBTNSD.deleteERLAsLastUploaded(localAuth);
+    }
 }

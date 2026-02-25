@@ -1,6 +1,6 @@
 Feature: ELEC Mark LA as Inactive
 
-@elecRegManagement
+@JurorTransformation
 Scenario Outline: Mark LA as Inactive
   
   Given I am on "Bureau" "test"

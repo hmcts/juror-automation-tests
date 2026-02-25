@@ -3,14 +3,24 @@ package cucumber.steps;
 import cucumber.pageObjects.*;
 import cucumber.testdata.DatabaseTester;
 import cucumber.testdata.DatabaseTesterNewSchemaDesign;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.util.Date;
+import java.util.Locale;
 
+import static java.lang.String.format;
 import static org.junit.Assert.assertEquals;
 
 public class StepDef_electoralRegManagement {
@@ -67,9 +77,9 @@ public class StepDef_electoralRegManagement {
         assertEquals(expected, ELEC.daysRemainingCount());
     }
 
-    @Then("^the number of Not Uploaded on Electoral Register Management dash matches \"([^\"]*)\"$")
-    public void notUploadedMatchesExpected(String expected) {
-        assertEquals(expected, ELEC.notUploadedCount());
+    @Then("^the number of Not Uploaded on Electoral Register Management dash is correct$")
+    public void notUploadedMatchesExpected() throws SQLException {
+        assertEquals(ELEC.notUploadedCount(), String.valueOf(DBTNSD.getCountOfNotUploadedERLocalAuthorities()));
     }
 
     @Then("^the number required in the donut on Electoral Register Management dash matches \"([^\"]*)\"$")
@@ -77,14 +87,14 @@ public class StepDef_electoralRegManagement {
         assertEquals(expected, ELEC.requiredCount());
     }
 
-    @Then("^the number Uploaded in the donut on Electoral Register Management dash matches \"([^\"]*)\"$")
-    public void donutUploadedMatchesExpected(String expected) {
-        assertEquals(expected, ELEC.doughnutUploadedcount());
+    @Then("^the number Uploaded in the donut on Electoral Register Management dash is correct$")
+    public void donutUploadedMatchesExpected() throws SQLException {
+        assertEquals(String.valueOf(DBTNSD.getCountOfUploadedERLocalAuthorities()), ELEC.doughnutUploadedcount());
     }
 
-    @Then("^the number Not Uploaded in the donut on Electoral Register Management dash matches \"([^\"]*)\"$")
-    public void donutNotUploadedMatchesExpected(String expected) {
-        assertEquals(expected, ELEC.doughnutNotUploadedCount());
+    @Then("^the number Not Uploaded in the donut on Electoral Register Management dash is correct$")
+    public void donutNotUploadedMatchesExpected() throws SQLException {
+        assertEquals(String.valueOf(DBTNSD.getCountOfNotUploadedERLocalAuthorities()), ELEC.doughnutNotUploadedCount());
     }
 
     @When("^I filter on Local Authority \"([^\"]*)\"$")
@@ -103,10 +113,28 @@ public class StepDef_electoralRegManagement {
         assertEquals(expected, ELEC.localAuthStatusInTableHasStatus(localAuth));
     }
 
+    @Then("^\"([^\"]*)\" Local Authority in the results table has Last Data Upload \"([^\"]*)\"$")
+    public void filteredLocalAuthLastUploadMatchesExpected(String localAuth, String expected) {
+        assertEquals(expected, ELEC.localAuthStatusInTableHasLastUpload(localAuth));
+    }
+
     @Then("^the number of required LAs in the donut matches the number of active LAs$")
     public int requiredLAsMatchesActiveLAsCount() throws SQLException {
         assertEquals(ELEC.requiredCount(), String.valueOf(DBTNSD.getCountOfActiveERLocalAuthorities()));
         return 0;
+    }
+
+    @And("^I see days remaining is calculated correctly according to Deadline Date$")
+    public void daysRemainingIsCorrect() {
+
+        String string = ELEC.deadlineDate();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMMM yyyy", Locale.ENGLISH);
+        LocalDate deadlineDate = LocalDate.parse(string, formatter);
+
+        long noOfDaysBetween = ChronoUnit.DAYS.between(LocalDate.now(), deadlineDate);
+        String str = noOfDaysBetween+"";
+
+        assertEquals(str, ELEC.daysRemainingCount());
     }
 
     }
