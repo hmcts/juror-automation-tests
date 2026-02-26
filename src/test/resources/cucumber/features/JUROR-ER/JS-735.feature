@@ -20,11 +20,12 @@ Scenario Outline: Track which LAs have uploaded
   #check all elements
   Then I see "/electoral-register" in the URL
   And I see "Dashboard" on the page
-  And deadline date on Electoral Register Management dash displays "17 April 2026"
+  And I check the deadline date shown on screen matches the DB new schema
 
   Then I see days remaining is calculated correctly according to Deadline Date
   And the number of Not Uploaded on Electoral Register Management dash is correct
 
+  #donut
   And the number Not Uploaded in the donut on Electoral Register Management dash is correct
   And the number of required LAs in the donut matches the number of active LAs
   And the number Uploaded in the donut on Electoral Register Management dash is correct
@@ -34,8 +35,8 @@ Scenario Outline: Track which LAs have uploaded
 
   And the radio button "All statuses" is "selected"
 
-  And "West Oxfordshire" Local Authority in the results table has status "Uploaded"
-  And "West Oxfordshire" Local Authority in the results table has Last Data Upload "08 February 2026"
+  And I check the upload status shown on screen for LA "West Oxfordshire" matches the DB new schema
+  And I check the last upload date shown on screen for LA "West Oxfordshire" matches the DB new schema
 
   And I filter on Local Authority "<localAuth>"
   Then the Local Authority returned in the results matches "<localAuth>"
