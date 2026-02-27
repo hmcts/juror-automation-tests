@@ -813,4 +813,9 @@ public class StepDef_DatabaseNewSchema {
         DBTNSD.deleteERLAsLastUploaded(localAuth);
 
     }
+
+    @Given("^I set ER deadline date to \"([^\"]*)\" new schema$")
+    public void setERDeadlineDateToday(String value) throws SQLException {
+        DBTNSD.setERDeadlineDate(value);
+    }
 }

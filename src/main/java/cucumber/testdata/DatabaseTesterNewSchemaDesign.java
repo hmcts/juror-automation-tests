@@ -5547,6 +5547,9 @@ public class DatabaseTesterNewSchemaDesign {
         } catch (SQLException e) {
             log.error("Message:" + e.getMessage());
             log.info(11);
+        } finally {
+            pStmt.close();
+            conn.close();
         }
         return 0;
     }
@@ -5564,6 +5567,9 @@ public class DatabaseTesterNewSchemaDesign {
         } catch (SQLException e) {
             log.error("Message:" + e.getMessage());
             log.info(11);
+        } finally {
+            pStmt.close();
+            conn.close();
         }
         return 0;
     }
@@ -5581,8 +5587,12 @@ public class DatabaseTesterNewSchemaDesign {
         } catch (SQLException e) {
             log.error("Message:" + e.getMessage());
             log.info(11);
+        } finally {
+            pStmt.close();
+            conn.close();
         }
         return 0;
+
     }
 
     public void updateERLAsToNotUploaded() throws SQLException {
@@ -5629,6 +5639,40 @@ public class DatabaseTesterNewSchemaDesign {
         }
     }
 
+    public void setERDeadlineDate(String value) throws SQLException {
+        if (value.contains(" time")) {
+            value = DateManipulator.processString(value);
+        }
+
+        db = new DBConnection();
+        String env_property = System.getProperty("env.database");
+
+        if (env_property != null)
+            conn = db.getConnection(env_property);
+        else
+            conn = db.getConnection("demo");
+
+        try {
+            pStmt = conn.prepareStatement("UPDATE juror_er.deadline set deadline_date= '" + value + "'");
+            pStmt.executeUpdate();
+
+            if (value.contains("today")) {
+                pStmt = conn.prepareStatement("UPDATE juror_er.deadline set deadline_date= CURRENT_DATE");
+
+                System.out.println("Set ER deadline date to today");
+            } else if (value.contains("yesterday")) {
+                pStmt = conn.prepareStatement("UPDATE juror_er.deadline set deadline_date= CURRENT_DATE-1");
+
+                System.out.println("Set ER deadline date to today");
+            }
+        } catch (SQLException e) {
+            log.error("Message:" + e.getMessage());
+        } finally {
+            conn.commit();
+            conn.close();
+        }
+}
+	
     public java.sql.Date getDeadlineDate() throws SQLException {
         db = new DBConnection();
         String env_property = System.getProperty("env.database");
