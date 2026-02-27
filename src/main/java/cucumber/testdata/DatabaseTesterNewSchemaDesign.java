@@ -5671,8 +5671,8 @@ public class DatabaseTesterNewSchemaDesign {
             conn.commit();
             conn.close();
         }
-    }
 }
+	
     public java.sql.Date getDeadlineDate() throws SQLException {
         db = new DBConnection();
         String env_property = System.getProperty("env.database");
