@@ -48,9 +48,7 @@ public class ElectoralRegManagement {
     @FindBy(xpath="//*[@id='localAuthoritiesTable']/tbody/tr/td[2]/a")
     WebElement localAuthorityInResults;
 
-    public String deadlineDate() {
-        return deadlineDateField.getText();
-    }
+    public String deadlineDate() { return deadlineDateField.getText(); }
 
     public String daysRemainingCount() {
         return daysRemainingField.getText();
@@ -90,5 +88,4 @@ public class ElectoralRegManagement {
         WebElement localAuthLastUpload = driver.findElement(By.xpath("//*[contains(text(),'"+ localAuth + "')]/../following-sibling::td[2]"));
         return localAuthLastUpload.getText();
     }
-
 }

@@ -5451,7 +5451,6 @@ public class DatabaseTesterNewSchemaDesign {
 		PreparedStatement pStmt = null;
 		ResultSet rs = null;
 
-
 		Map<String, String> expected = new HashMap<>();
 		expected.put("820211676", "MOVETOADD4");
 		expected.put("820211826", null);
@@ -5548,6 +5547,9 @@ public class DatabaseTesterNewSchemaDesign {
         } catch (SQLException e) {
             log.error("Message:" + e.getMessage());
             log.info(11);
+        } finally {
+            pStmt.close();
+            conn.close();
         }
         return 0;
     }
@@ -5565,6 +5567,9 @@ public class DatabaseTesterNewSchemaDesign {
         } catch (SQLException e) {
             log.error("Message:" + e.getMessage());
             log.info(11);
+        } finally {
+            pStmt.close();
+            conn.close();
         }
         return 0;
     }
@@ -5582,8 +5587,12 @@ public class DatabaseTesterNewSchemaDesign {
         } catch (SQLException e) {
             log.error("Message:" + e.getMessage());
             log.info(11);
+        } finally {
+            pStmt.close();
+            conn.close();
         }
         return 0;
+
     }
 
     public void updateERLAsToNotUploaded() throws SQLException {
@@ -5628,5 +5637,101 @@ public class DatabaseTesterNewSchemaDesign {
             conn.commit();
             conn.close();
         }
+    }
+
+    public void setERDeadlineDate(String value) throws SQLException {
+        if (value.contains(" time")) {
+            value = DateManipulator.processString(value);
+        }
+
+        db = new DBConnection();
+        String env_property = System.getProperty("env.database");
+
+        if (env_property != null)
+            conn = db.getConnection(env_property);
+        else
+            conn = db.getConnection("demo");
+
+        try {
+            pStmt = conn.prepareStatement("UPDATE juror_er.deadline set deadline_date= '" + value + "'");
+            pStmt.executeUpdate();
+
+            if (value.contains("today")) {
+                pStmt = conn.prepareStatement("UPDATE juror_er.deadline set deadline_date= CURRENT_DATE");
+
+                System.out.println("Set ER deadline date to today");
+            } else if (value.contains("yesterday")) {
+                pStmt = conn.prepareStatement("UPDATE juror_er.deadline set deadline_date= CURRENT_DATE-1");
+
+                System.out.println("Set ER deadline date to today");
+            }
+        } catch (SQLException e) {
+            log.error("Message:" + e.getMessage());
+        } finally {
+            conn.commit();
+            conn.close();
+        }
+}
+	
+    public java.sql.Date getDeadlineDate() throws SQLException {
+        db = new DBConnection();
+        String env_property = System.getProperty("env.database");
+        conn = db.getConnection(env_property);
+        try {
+            pStmt = conn.prepareStatement("select deadline_date from juror_er.deadline where deadline_date > CURRENT_DATE");
+            ResultSet rs = pStmt.executeQuery();
+            rs.next();
+            log.info("Got deadline date");
+            return rs.getDate(1);
+
+        } catch (SQLException e) {
+            log.error("Message:" + e.getMessage());
+            log.info(11);
+        }
+        return null;
+    }
+
+    public String getDeadlineDateAsString() throws SQLException {
+        return String.valueOf(getDeadlineDate());
+    }
+
+    public java.sql.Date getLastUploadDateForLA(String localAuth) throws SQLException {
+        db = new DBConnection();
+        String env_property = System.getProperty("env.database");
+        conn = db.getConnection(env_property);
+        try {
+            pStmt = conn.prepareStatement("select MAX(upload_date) from juror_er.file_uploads where la_code in(select la_code from juror_er.local_authority where la_name= '"+ localAuth +"')");
+            ResultSet rs = pStmt.executeQuery();
+            rs.next();
+            log.info("Got last upload date for LA");
+            return rs.getDate(1);
+
+        } catch (SQLException e) {
+            log.error("Message:" + e.getMessage());
+            log.info(11);
+        }
+        return null;
+    }
+
+    public String getmaxUploadDateForLAAsString(String localAuth) throws SQLException {
+        return String.valueOf(getLastUploadDateForLA(localAuth)).trim();
+    }
+
+    public String getUploadStatusForLA(String localAuth) throws SQLException {
+        db = new DBConnection();
+        String env_property = System.getProperty("env.database");
+        conn = db.getConnection(env_property);
+        try {
+            pStmt = conn.prepareStatement("select upload_status from juror_er.local_authority where la_name= '"+ localAuth +"'");
+            ResultSet rs = pStmt.executeQuery();
+            rs.next();
+            log.info("Got upload status for LA");
+            return rs.getString(1);
+
+        } catch (SQLException e) {
+            log.error("Message:" + e.getMessage());
+            log.info(11);
+        }
+        return null;
     }
 }
