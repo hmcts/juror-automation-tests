@@ -45,6 +45,7 @@ Scenario Outline: Mark LA as Inactive
   Then I do not see "<localAuth>" on the page
   And the number of required LAs in the donut matches the number of active LAs
 
+  #filter
   When I filter on Local Authority "<localAuth>"
   Then I see "Authority marked as inactive" on the page
   And I see "some reasons here" on the page
