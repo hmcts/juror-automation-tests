@@ -5548,6 +5548,9 @@ public class DatabaseTesterNewSchemaDesign {
         } catch (SQLException e) {
             log.error("Message:" + e.getMessage());
             log.info(11);
+        } finally {
+            pStmt.close();
+            conn.close();
         }
         return 0;
     }
@@ -5565,6 +5568,9 @@ public class DatabaseTesterNewSchemaDesign {
         } catch (SQLException e) {
             log.error("Message:" + e.getMessage());
             log.info(11);
+        } finally {
+            pStmt.close();
+            conn.close();
         }
         return 0;
     }
@@ -5582,8 +5588,12 @@ public class DatabaseTesterNewSchemaDesign {
         } catch (SQLException e) {
             log.error("Message:" + e.getMessage());
             log.info(11);
+        } finally {
+            pStmt.close();
+            conn.close();
         }
         return 0;
+
     }
 
     public void updateERLAsToNotUploaded() throws SQLException {
