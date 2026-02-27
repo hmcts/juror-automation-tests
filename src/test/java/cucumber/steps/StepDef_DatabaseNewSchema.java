@@ -565,7 +565,6 @@ public class StepDef_DatabaseNewSchema {
         DBTNSD.updateVotersPostcodeNSD(court, postcode);
     }
 
-
     @And("^the pool created in this test is deleted new schema$")
     public void thePoolIsDeletedNSD() throws SQLException {
         System.out.println("Deleting pool number -- " + StepDef_jurorpool.poolNumber.get());
@@ -812,6 +811,7 @@ public class StepDef_DatabaseNewSchema {
     @Given("^all uploads for Local Authority \"([^\"]*)\" are deleted new schema$")
     public void deleteERLAsLastUploaded(String localAuth) throws SQLException {
         DBTNSD.deleteERLAsLastUploaded(localAuth);
+
     }
 
     @Given("^I set ER deadline date to \"([^\"]*)\" new schema$")

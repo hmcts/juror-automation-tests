@@ -4,6 +4,7 @@ import cucumber.pageObjects.*;
 import cucumber.testdata.DatabaseTester;
 import cucumber.testdata.DatabaseTesterNewSchemaDesign;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
@@ -13,7 +14,6 @@ import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.Instant;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
@@ -22,6 +22,7 @@ import java.util.Locale;
 
 import static java.lang.String.format;
 
+import static java.lang.String.valueOf;
 import static org.junit.Assert.assertEquals;
 
 public class StepDef_electoralRegManagement {
@@ -46,7 +47,7 @@ public class StepDef_electoralRegManagement {
     private final Dashboard DASH;
     private final ElectoralRegManagement ELEC;
 
-    public StepDef_electoralRegManagement(PoolSummoningProgress poolSummoningProgress, SharedDriver webDriver, DatabaseTester dbt, DatabaseTesterNewSchemaDesign dbtnsd, Header dash){
+    public StepDef_electoralRegManagement(PoolSummoningProgress poolSummoningProgress, SharedDriver webDriver, DatabaseTester dbt, DatabaseTesterNewSchemaDesign dbtnsd, Header dash) {
         POOL_SUMMONING_PROGRESS = poolSummoningProgress;
         this.webDriver = webDriver;
         DBT = dbt;
@@ -133,9 +134,45 @@ public class StepDef_electoralRegManagement {
         LocalDate deadlineDate = LocalDate.parse(string, formatter);
 
         long noOfDaysBetween = ChronoUnit.DAYS.between(LocalDate.now(), deadlineDate);
-        String str = noOfDaysBetween+"";
+        String str = noOfDaysBetween + "";
 
         assertEquals(str, ELEC.daysRemainingCount());
     }
 
+    @Given("^I check the deadline date shown on screen matches the DB new schema$")
+    public void getDeadlineDateFromDB() throws ParseException, SQLException {
+
+        String start_deadline = ELEC.deadlineDate();
+        DateFormat formatter = new SimpleDateFormat("d MMMM yyyy");
+        Date date = (Date)formatter.parse(start_deadline);
+        SimpleDateFormat newFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String finalString = newFormat.format(date);
+
+        assertEquals(DBTNSD.getDeadlineDateAsString(), finalString);
+
     }
+
+    @Given("^I check the last upload date shown on screen for LA \"([^\"]*)\" matches the DB new schema$")
+    public void lastUploadDateFromDBForLAMatchesFE(String localAuth) throws ParseException, SQLException {
+
+        String lastUploadDate = ELEC.localAuthStatusInTableHasLastUpload(localAuth);
+        DateFormat formatter = new SimpleDateFormat("d MMMM yyyy");
+        Date date = (Date)formatter.parse(lastUploadDate);
+        SimpleDateFormat newFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String finalString = newFormat.format(date);
+
+        assertEquals(DBTNSD.getmaxUploadDateForLAAsString(localAuth), finalString);
+    }
+
+    @Given("^I check the upload status shown on screen for LA \"([^\"]*)\" matches the DB new schema$")
+    public void uploadStatusFromDBForLAMatchesFE(String localAuth) throws ParseException, SQLException {
+
+        String uploadStatusOnFE = ELEC.localAuthStatusInTableHasStatus(localAuth);
+        String caseInsensitive =uploadStatusOnFE.toUpperCase();
+
+        assertEquals(DBTNSD.getUploadStatusForLA(localAuth), caseInsensitive);
+    }
+
+
+
+}
