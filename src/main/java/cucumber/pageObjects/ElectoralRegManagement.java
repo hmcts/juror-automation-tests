@@ -50,10 +50,10 @@ public class ElectoralRegManagement {
     WebElement daysRemainingFieldOnLAUploadScreen;
 
     @FindBy(xpath = "//th[contains(text(),'Deadline')]/../td")
-    public WebElement deadlineDateOnLAUploadScreen;
+    WebElement deadlineDateOnLAUploadScreen;
 
     @FindBy(xpath = "//th[contains(text(),'Status')]/../td/strong")
-    public WebElement statusOnDataUploadScreen;
+    WebElement statusOnDataUploadScreen;
 
     public String deadlineDate() { return deadlineDateField.getText(); }
 
