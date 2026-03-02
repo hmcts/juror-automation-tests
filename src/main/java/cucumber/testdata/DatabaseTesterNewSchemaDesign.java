@@ -5627,10 +5627,13 @@ public class DatabaseTesterNewSchemaDesign {
             conn = db.getConnection("demo");
 
         try {
-            pStmt = conn.prepareStatement("DELETE from juror_er.file_uploads where la_code in (select la_code from juror_er.local_authority where la_name = "+ localAuth);
+            pStmt = conn.prepareStatement("DELETE from juror_er.file_uploads where la_code in (select la_code from juror_er.local_authority where la_name = '"+ localAuth + "')");
             pStmt.executeUpdate();
 
-            System.out.println("All uploads for ER local authority "+ localAuth +" set to NOT_UPLOADED");
+            pStmt = conn.prepareStatement("UPDATE juror_er.local_authority set upload_status='NOT_UPLOADED' where la_name = '"+ localAuth + "'");
+            pStmt.executeUpdate();
+
+            System.out.println("All uploads for ER local authority "+ localAuth +" deleted and LA status set to NOT_UPLOADED");
         } catch (SQLException e) {
             log.error("Message:" + e.getMessage());
         } finally {

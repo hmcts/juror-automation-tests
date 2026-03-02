@@ -173,6 +173,40 @@ public class StepDef_electoralRegManagement {
         assertEquals(DBTNSD.getUploadStatusForLA(localAuth), caseInsensitive);
     }
 
+    @Then("the LA name on the ER upload screen is \"([^\"]*)\"$")
+    public void LANameOnUploadScreenIsCorrect(String expected) {
+        assertEquals(expected, ELEC.localAuthNameOnDataUploadScreen());
+    }
 
+    @Given("^I check the deadline date shown on the LA upload screen matches the DB new schema$")
+    public void LADeadlineDateOnUploadScreenIsCorrect() throws ParseException, SQLException {
+
+        String start_deadline = ELEC.localAuthDeadlineDateOnDataUploadScreen();
+        DateFormat formatter = new SimpleDateFormat("d MMMM yyyy");
+        Date date = (Date)formatter.parse(start_deadline);
+        SimpleDateFormat newFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String finalString = newFormat.format(date);
+
+        assertEquals(DBTNSD.getDeadlineDateAsString(), finalString);
+
+    }
+
+    @And("^I check the days remaining shown on the LA upload screen is correct$")
+    public void daysRemainingOnLAUploadScreenIsCorrect() {
+
+        String string = ELEC.localAuthDeadlineDateOnDataUploadScreen();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMMM yyyy", Locale.ENGLISH);
+        LocalDate deadlineDate = LocalDate.parse(string, formatter);
+
+        long noOfDaysBetween = ChronoUnit.DAYS.between(LocalDate.now(), deadlineDate);
+        String str = noOfDaysBetween + "";
+
+        assertEquals(str, ELEC.localAuthDaysRemainingDateOnDataUploadScreen());
+    }
+
+    @Then("the LA upload status on the ER upload screen is \"([^\"]*)\"$")
+    public void localAuthStatusOnDataUploadScreenMatchesExpected(String expected) {
+        assertEquals(expected, ELEC.localAuthStatusOnDataUploadScreen());
+    }
 
 }
