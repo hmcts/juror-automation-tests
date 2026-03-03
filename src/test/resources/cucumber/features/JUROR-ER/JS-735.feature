@@ -1,6 +1,6 @@
 Feature: ELEC Track which LAs have uploaded
 
-@JurorTransformation
+@JurorEr
 Scenario Outline: Track which LAs have uploaded
   
   Given I am on "Bureau" "test"
@@ -32,6 +32,7 @@ Scenario Outline: Track which LAs have uploaded
 
   And I see link with text "Change deadline for local authorities"
   And I see link with text "Download all authority emails"
+  And I see link with text "Download all active authority emails"
 
   And the radio button "All statuses" is "selected"
 

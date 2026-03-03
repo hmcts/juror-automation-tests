@@ -1,6 +1,6 @@
 Feature: ELEC Deadline Date is passed
 
-@JurorTransformation
+@JurorEr
 Scenario Outline: Check Update window is now closed appears when deadline date is passed
   
   Given I am on "Bureau" "test"
