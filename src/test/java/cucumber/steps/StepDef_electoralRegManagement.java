@@ -103,6 +103,7 @@ public class StepDef_electoralRegManagement {
     public void iFilterOnLocalAuth(final String localAuth) throws Throwable {
         ELEC.filterByLocalAuthority(localAuth);
         NAV.press_buttonByName("Filter");
+        NAV.waitForPageLoad();
     }
 
     @Then("^the Local Authority returned in the results matches \"([^\"]*)\"$")

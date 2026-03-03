@@ -1030,9 +1030,11 @@ public class StepDef_response {
 			GRP.click_radioButtonWithLabel("Yes");
 			NAV.press_buttonByName("Continue");
 
+            NAV.textPresentOnPage("Main phone");
 			NAV.set_valueTo("Main phone", "07551179225");
 			NAV.press_buttonByName("Continue");
 
+            NAV.textPresentOnPage("Enter your email address");
 			NAV.set_valueTo("Enter your email address", email);
 			NAV.set_valueTo("Enter your email address again", email);
 			NAV.press_buttonByName("Continue");
