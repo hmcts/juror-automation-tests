@@ -18,7 +18,7 @@ import org.junit.runner.RunWith;
         cucumberOptions = @CucumberOptions(
                 features = "src/test/resources/cucumber/features",
                 tags = {
-                		"@jurorEr"
+                		"@JurorEr"
             		},
                 plugin = {
                         "pretty",
