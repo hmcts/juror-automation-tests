@@ -1,6 +1,6 @@
 Feature: ELEC  JS-731
 
-  @JurorTransformation
+  @JurorEr
   Scenario Outline: As a local Authority I want to know the rules for uploading data in the Juror ER app
 
     Given I am on "Er" "test"

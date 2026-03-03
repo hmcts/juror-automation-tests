@@ -1,6 +1,6 @@
 Feature: JS-727
 
-  @JurorTransformation
+  @JurorEr
   Scenario Outline: Login to JUROR ER
 
     Given I am on "Er" "test"
@@ -18,7 +18,7 @@ Feature: JS-727
       | user                       |
       | test_user1@localauthority1 |
 
- @JurorTransformation
+ @JurorEr
   Scenario Outline: Login to JUROR ER - unhappy path
 
     Given I am on "Er" "test"
