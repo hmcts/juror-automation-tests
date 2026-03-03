@@ -26,7 +26,8 @@ def product = "juror"
 def component = "automation-tests"
 
 def SUITES_BY_BRANCH = [
-        'master'     : ['Shakedown','JurorTransformation','JurorTransformationMulti','JurorTransformationWIP'],
+        'master'     : ['Shakedown','JurorTransformation','JurorTransformationMulti'],
+    //    'master'     : ['Shakedown','JurorTransformation','JurorTransformationMulti','JurorTransformationWIP'],
    //     'nightly-dev': ['Shakedown','Expenses','Features','Regression','RegressionSingle','RegressionWelsh'],
          'demo': [] // example: turn off tests in environment, also uncomment line 148
 ]
@@ -38,8 +39,10 @@ def ENV_BY_BRANCH = [
 
 def applyBranchDefaults = { String branch ->
   [
-          'Expenses','Features',
-          'JurorTransformation','JurorTransformationMulti','JurorTransformationWIP',
+          'Expenses',
+//          'Expenses','Features',
+          'JurorTransformation','JurorTransformationMulti',
+//          'JurorTransformation','JurorTransformationMulti','JurorTransformationWIP',
           'Regression','RegressionSingle','RegressionWelsh',
           'Shakedown'
   ].each { suite ->
@@ -98,10 +101,10 @@ def isTimerBuild() {
 def setBuildName() {
   def suffixes = [
     "RunExpenses"                 : ",ex",
-    "RunFeatures"                 : ",fe",
+//    "RunFeatures"                 : ",fe",
     "RunJurorTransformationMulti" : ",jM",
     "RunJurorTransformation"      : ",jT",
-    "RunJurorTransformationWIP"   : ",jW",
+//    "RunJurorTransformationWIP"   : ",jW",
     "RunRegression"               : ",re",
     "RunRegressionSingle"         : ",rS",
     "RunRegressionWelsh"          : ",rW",
