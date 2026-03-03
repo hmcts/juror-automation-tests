@@ -12,6 +12,7 @@ properties([
     booleanParam(name: 'runRegression', defaultValue: false, description: 'Include Regression tests'),
     booleanParam(name: 'runRegressionSingle', defaultValue: false, description: 'Include RegressionSingle tests'),
     booleanParam(name: 'runRegressionWelsh', defaultValue: false, description: 'Include RegressionWelsh tests'),
+    booleanParam(name: 'runJurorEr', defaultValue: false, description: 'Include Juror ER tests'),
     booleanParam(name: 'runShakedown', defaultValue: false, description: 'Include Shakedown tests')
   ])
 ])
@@ -61,6 +62,7 @@ def setBuildName() {
     "RunJurorTransformationMulti" : ",jM",
     "RunJurorTransformation"      : ",jT",
     "RunJurorTransformationWIP"   : ",jW",
+    "RunJurorEr"                  : ",jER",
     "RunRegression"               : ",re",
     "RunRegressionSingle"         : ",rS",
     "RunRegressionWelsh"          : ",rW",
@@ -95,6 +97,7 @@ withNightlyPipeline(type, product, component, 600) {
   env.runJurorTransformation = params.runJurorTransformation
   env.runJurorTransformationMulti = params.runJurorTransformationMulti
   env.runJurorTransformationWIP = params.runJurorTransformationWIP
+  env.runJurorEr = params.runJurorEr
   env.runRegression = params.runRegression
   env.runRegressionSingle = params.runRegressionSingle
   env.runRegressionWelsh = params.runRegressionWelsh
@@ -147,6 +150,15 @@ withNightlyPipeline(type, product, component, 600) {
       reportDir            : "target/TestRunner_JurorTransformationWIP/",
       reportFiles          : "cucumber.html",
       reportName           : "Cucumber JurorTransformationWIP Test Report"
+    ]
+
+    publishHTML target: [
+      allowMissing         : true,
+      alwaysLinkToLastBuild: true,
+      keepAll              : true,
+      reportDir            : "target/TestRunner_JurorEr/",
+      reportFiles          : "cucumber.html",
+      reportName           : "Cucumber JurorER Test Report"
     ]
 
     publishHTML target: [
