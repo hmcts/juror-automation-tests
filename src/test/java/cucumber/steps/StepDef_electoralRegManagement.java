@@ -144,7 +144,7 @@ public class StepDef_electoralRegManagement {
 
         String start_deadline = ELEC.deadlineDate();
         DateFormat formatter = new SimpleDateFormat("d MMMM yyyy");
-        Date date = (Date)formatter.parse(start_deadline);
+        Date date = (Date) formatter.parse(start_deadline);
         SimpleDateFormat newFormat = new SimpleDateFormat("yyyy-MM-dd");
         String finalString = newFormat.format(date);
 
@@ -157,7 +157,7 @@ public class StepDef_electoralRegManagement {
 
         String lastUploadDate = ELEC.localAuthStatusInTableHasLastUpload(localAuth);
         DateFormat formatter = new SimpleDateFormat("d MMMM yyyy");
-        Date date = (Date)formatter.parse(lastUploadDate);
+        Date date = (Date) formatter.parse(lastUploadDate);
         SimpleDateFormat newFormat = new SimpleDateFormat("yyyy-MM-dd");
         String finalString = newFormat.format(date);
 
@@ -168,7 +168,7 @@ public class StepDef_electoralRegManagement {
     public void uploadStatusFromDBForLAMatchesFE(String localAuth) throws ParseException, SQLException {
 
         String uploadStatusOnFE = ELEC.localAuthStatusInTableHasStatus(localAuth);
-        String caseInsensitive =uploadStatusOnFE.toUpperCase();
+        String caseInsensitive = uploadStatusOnFE.toUpperCase();
 
         assertEquals(DBTNSD.getUploadStatusForLA(localAuth), caseInsensitive);
     }
@@ -183,7 +183,7 @@ public class StepDef_electoralRegManagement {
 
         String start_deadline = ELEC.localAuthDeadlineDateOnDataUploadScreen();
         DateFormat formatter = new SimpleDateFormat("d MMMM yyyy");
-        Date date = (Date)formatter.parse(start_deadline);
+        Date date = (Date) formatter.parse(start_deadline);
         SimpleDateFormat newFormat = new SimpleDateFormat("yyyy-MM-dd");
         String finalString = newFormat.format(date);
 
@@ -207,6 +207,31 @@ public class StepDef_electoralRegManagement {
     @Then("the LA upload status on the ER upload screen is \"([^\"]*)\"$")
     public void localAuthStatusOnDataUploadScreenMatchesExpected(String expected) {
         assertEquals(expected, ELEC.localAuthStatusOnDataUploadScreen());
+    }
+
+    @Then("I check reminder has been sent to LA$")
+    public void reminderSentInLastFiveMinutes() throws SQLException {
+        DBTNSD.checkRecentReminder();
+    }
+
+    @And("^I see the banner for sent reminder$")
+    public void iSeeMessageSentBannerContaining() {
+        ELEC.remindersSentSuccessBanner();
+    }
+
+    @When("^I select the checkbox for Local Authority \"([^\"]*)\"$")
+    public void iSelectAuthorityCheckboxForLA(String localAuthority) {
+        ELEC.checkAuthority(localAuthority);
+    }
+
+    @When("^I click the Send Reminder button$")
+    public void iClickSendReminderButton() {
+        ELEC.clickSendReminderButton();
+    }
+
+    @When("^I click the yes send reminder button$")
+    public void iClickYesSendReminderButton() {
+        ELEC.forceClickSendReminder();
     }
 
 }

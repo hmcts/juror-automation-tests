@@ -6,17 +6,17 @@ import cucumber.utils.ReadProperties;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalAdjusters;
 import java.util.*;
+import java.util.Date;
 
 public class DatabaseTesterNewSchemaDesign {
 
@@ -5091,11 +5091,19 @@ public class DatabaseTesterNewSchemaDesign {
 			conn.setAutoCommit(false);
 
 			int maxSuffix = -1;
-			String checkMax = "SELECT MAX(RIGHT(pool_no, 2)::int) FROM juror_mod.pool";
+			final String checkMax =
+					"SELECT MAX(CASE WHEN RIGHT(TRIM(pool_no),2) ~ '^[0-9]+$' THEN RIGHT(TRIM(pool_no),2)::int ELSE NULL END) "
+							+ "FROM juror_mod.pool";
+
 			try (PreparedStatement ps = conn.prepareStatement(checkMax);
 				 ResultSet rs = ps.executeQuery()) {
 				if (rs.next()) {
-					maxSuffix = rs.getInt(1);
+					int tmp = rs.getInt(1);
+					if (rs.wasNull()) {
+						maxSuffix = -1;
+					} else {
+						maxSuffix = tmp;
+					}
 				}
 			}
 
@@ -5110,7 +5118,8 @@ public class DatabaseTesterNewSchemaDesign {
 							"FROM juror_mod.pool p " +
 							"LEFT JOIN juror_mod.juror_pool jp ON jp.pool_number = p.pool_no " +
 							"WHERE jp.pool_number IS NULL " +
-							"  AND RIGHT(p.pool_no, 2)::int > 89";
+							"  AND RIGHT(TRIM(p.pool_no),2) ~ '^[0-9]+$' " +
+							"  AND RIGHT(TRIM(p.pool_no),2)::int > 89";
 
 			java.util.List<String> targets = new java.util.ArrayList<>();
 			try (PreparedStatement ps = conn.prepareStatement(selectTargets);
@@ -5137,8 +5146,10 @@ public class DatabaseTesterNewSchemaDesign {
 				for (String poolNo : targets) {
 					dHist.setString(1, poolNo);
 					dHist.executeUpdate();
+
 					dComm.setString(1, poolNo);
 					dComm.executeUpdate();
+
 					dPool.setString(1, poolNo);
 					dPool.executeUpdate();
 				}
@@ -5737,4 +5748,46 @@ public class DatabaseTesterNewSchemaDesign {
         }
         return null;
     }
-}
+	public void checkRecentReminder() throws SQLException {
+		db = new DBConnection();
+		ResultSet rs = null;
+
+		String env_property = System.getProperty("env.database");
+
+		if (env_property != null)
+			conn = db.getConnection(env_property);
+		else
+			conn = db.getConnection("demo");
+
+		try {
+			pStmt = conn.prepareStatement(
+					"select * from juror_er.reminder_history " +
+							"where sent_to=? and time_sent >= ?"
+			);
+
+			pStmt.setString(1, "test_user1@localauthority1.council.uk");
+			pStmt.setTimestamp(2, Timestamp.from(
+					Instant.now().minus(5, ChronoUnit.MINUTES)
+			));
+
+			rs = pStmt.executeQuery();
+
+			if (rs.next()) {
+				log.info("Recent reminder FOUND in database.");
+			} else {
+				log.warn("No recent reminder found in database.");
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.error("Message:" + e.getMessage());
+
+		} finally {
+			if (rs != null) rs.close();
+			conn.commit();
+			pStmt.close();
+			conn.close();
+		}
+	}
+
+	}
