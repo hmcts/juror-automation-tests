@@ -1,6 +1,6 @@
 Feature: ELEC  JS-729
 
-  @JurorTransformation
+  @JurorEr
   Scenario Outline: As a local authority I want to be able to upload my data to the new Juror ER app
 
     Given I am on "Er" "test"

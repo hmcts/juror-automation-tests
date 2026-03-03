@@ -13,6 +13,7 @@ properties([
     booleanParam(name: 'runRegressionSingle', defaultValue: false, description: 'Include RegressionSingle tests'),
     booleanParam(name: 'runRegressionWelsh', defaultValue: false, description: 'Include RegressionWelsh tests'),
     booleanParam(name: 'runShakedown', defaultValue: false, description: 'Include Shakedown tests'),
+    booleanParam(name: 'runJurorEr', defaultValue: false, description: 'Include Juror ER tests'),
     booleanParam(name: 'masterOverride', defaultValue: false, description: 'Select this if you need master to run other than MOD tests')
   ])
 ])
@@ -26,7 +27,7 @@ def product = "juror"
 def component = "automation-tests"
 
 def SUITES_BY_BRANCH = [
-        'master'     : ['Shakedown','JurorTransformation','JurorTransformationMulti'],
+        'master'     : ['Shakedown','JurorTransformation','JurorTransformationMulti','JurorEr'],
     //    'master'     : ['Shakedown','JurorTransformation','JurorTransformationMulti','JurorTransformationWIP'],
    //     'nightly-dev': ['Shakedown','Expenses','Features','Regression','RegressionSingle','RegressionWelsh'],
          'demo': [] // example: turn off tests in environment, also uncomment line 148
@@ -41,7 +42,7 @@ def applyBranchDefaults = { String branch ->
   [
           'Expenses',
 //          'Expenses','Features',
-          'JurorTransformation','JurorTransformationMulti',
+          'JurorTransformation','JurorTransformationMulti','JurorEr',
 //          'JurorTransformation','JurorTransformationMulti','JurorTransformationWIP',
           'Regression','RegressionSingle','RegressionWelsh',
           'Shakedown'
@@ -105,6 +106,7 @@ def setBuildName() {
     "RunJurorTransformationMulti" : ",jM",
     "RunJurorTransformation"      : ",jT",
 //    "RunJurorTransformationWIP"   : ",jW",
+    "RunJurorEr"                  : ",jER",
     "RunRegression"               : ",re",
     "RunRegressionSingle"         : ",rS",
     "RunRegressionWelsh"          : ",rW",
@@ -132,6 +134,7 @@ withNightlyPipeline(type, product, component, 600) {
   env.runFeatures = params.runFeatures
   env.runJurorTransformation = params.runJurorTransformation
   env.runJurorTransformationMulti = params.runJurorTransformationMulti
+  env.runJurorEr = params.runJurorEr
   env.runJurorTransformationWIP = params.runJurorTransformationWIP
   env.runRegression = params.runRegression
   env.runRegressionSingle = params.runRegressionSingle
@@ -197,6 +200,15 @@ withNightlyPipeline(type, product, component, 600) {
       reportFiles          : "cucumber.html",
       reportName           : "Cucumber JurorTransformationWIP Test Report"
     ]
+
+    publishHTML target: [
+      allowMissing         : true,
+      alwaysLinkToLastBuild: true,
+      keepAll              : true,
+      reportDir            : "target/TestRunner_JurorEr/",
+      reportFiles          : "cucumber.html",
+      reportName           : "Cucumber JurorER Test Report"
+      ]
 
     publishHTML target: [
       allowMissing         : true,
