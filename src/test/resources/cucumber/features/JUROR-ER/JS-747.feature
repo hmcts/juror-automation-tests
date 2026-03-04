@@ -1,7 +1,7 @@
 Feature: ELEC Mark LA as Inactive
 
 @JurorEr
-Scenario Outline: Mark LA as Inactive
+Scenario Outline: Mark LA as Inactive then Active
   
   Given I am on "Bureau" "test"
 
@@ -53,6 +53,16 @@ Scenario Outline: Mark LA as Inactive
   And I do not see link with text "Mark as inactive"
   And I do not see link with text "Send email reminder"
   And I do not see link with text "Reminder history"
+
+  When I click on the "Mark as active" link
+  Then I see "Mark authority as active" on the page
+  And I see "some reasons here" on the page
+  And I see "Activating the account will require the local authority to upload electoral register data." on the page
+  Then I press the "Mark as active" button
+  And I see "<localAuth>" on the page
+  And I see "Not uploaded" on the page
+  And I see link with text "Mark as inactive"
+
 
   Examples:
     | user          | localAuth |
