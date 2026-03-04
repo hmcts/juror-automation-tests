@@ -55,11 +55,11 @@ Scenario Outline:
 	
 #I want to set the year dynamically to current year - 16
 
-	And I set "Blwyddyn" to "2008"
+	And I set "Blwyddyn" to "2010"
 	And I press the "Parhau" button
 	
 	Then I see "Cadarnhewch ddyddiad geni" on the page
-	And I see "unigolyn oedd 27 Ebrill 2008" on the page
+	And I see "unigolyn oedd 27 Ebrill 2010" on the page
 	And I see "r dyddiad geni yn gywir?" on the page
 	
 	Then I set the radio button to "Na"
@@ -74,7 +74,7 @@ Scenario Outline:
 	And I press the "Parhau" button
 	
 	Then I see "Gwiriwch eich ymatebion nawr" on the page
-	And I see text "2 Ebrill 2008" in the same row as "Dyddiad geni"
+	And I see text "2 Ebrill 2010" in the same row as "Dyddiad geni"
 	
 	Then I check the "Hyd gwn i, mae'r wybodaeth rwyf wedi ei rhoi am yr unigolyn rwyf yn ymateb ar ei ran yn gywir." checkbox
 	When I press the "Cyflwyno" button

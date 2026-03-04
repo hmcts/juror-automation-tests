@@ -595,9 +595,11 @@ public class StepDef_jurorpool {
         try {
             assertTrue(CHECK_POOL_REQUEST_PAGE.poolNumberNotVisible());
             POOL_REQUESTS_PAGE.clickContinue();
+            NAV.waitForPageLoad();
         } catch (Exception e) {
             poolRequestNumber.set(CHECK_POOL_REQUEST_PAGE.getPoolNumber());
             POOL_REQUESTS_PAGE.clickContinue();
+            NAV.waitForPageLoad();
         }
     }
 
@@ -2483,6 +2485,8 @@ public class StepDef_jurorpool {
         DEFERRAL_MAINTENANCE.filterByDeferredTo(expectedDate);
         DEFERRAL_MAINTENANCE.clickApplyFiltersButton();
         DEFERRAL_MAINTENANCE.clickShowFilterButton();
+
+        NAV.waitForPageLoad();
     }
 
     @When("^I filter on name \"([^\"]*)\"$")
