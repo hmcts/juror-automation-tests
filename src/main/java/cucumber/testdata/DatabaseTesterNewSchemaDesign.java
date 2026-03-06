@@ -5790,4 +5790,37 @@ public class DatabaseTesterNewSchemaDesign {
 		}
 	}
 
+	public void clearDownLaCode() throws SQLException {
+		db = new DBConnection();
+		String env_property = System.getProperty("env.database");
+
+		if (env_property != null)
+			conn = db.getConnection(env_property);
+		else
+			conn = db.getConnection("demo");
+
+		try {
+			pStmt = conn.prepareStatement("select count(*) from juror_er.user where la_code = '022'");
+			ResultSet rs = pStmt.executeQuery();
+
+			int rowCount = 0;
+			if (rs.next()) {
+				rowCount = rs.getInt(1);
+			}
+
+			if (rowCount > 0) {
+				pStmt = conn.prepareStatement("delete from juror_er.user where la_code = '022'");
+				pStmt.executeUpdate();
+				System.out.println("All rows with la_code 022 have been removed");
+			} else {
+				System.out.println("No rows found with la_code 022");
+			}
+
+		} catch (SQLException e) {
+			log.error("Message:" + e.getMessage());
+		} finally {
+			conn.commit();
+			conn.close();
+		}
 	}
+}
