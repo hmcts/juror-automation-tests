@@ -235,4 +235,8 @@ public class StepDef_electoralRegManagement {
         ELEC.forceClickSendReminder();
     }
 
+    @When("I check there are no users within the Broadland LA")
+    public void clearDownLaCode() throws SQLException {
+        DBTNSD.clearDownLaCode();
+    }
 }
