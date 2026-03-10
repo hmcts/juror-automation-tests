@@ -41,7 +41,7 @@ def ENV_BY_BRANCH = [
 def applyBranchDefaults = { String branch ->
   [
     'Expenses','Features',
-    'JurorTransformation','JurorTransformationMulti','JurorTransformationWIP', 'JurorEr'
+    'JurorTransformation','JurorTransformationMulti','JurorTransformationWIP', 'JurorEr',
     'Regression','RegressionSingle','RegressionWelsh',
     'Shakedown'
   ].each { suite ->
