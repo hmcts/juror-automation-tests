@@ -61,6 +61,7 @@ Scenario Outline: Send Reminders - Bulk
 
     And I select the checkbox for Local Authority "West Oxfordshire"
     And I select the checkbox for Local Authority "Broadland"
+    Then I click the Send Reminder button
 
     And I click the yes send reminder button
     And I see "Failed to send one or more reminder emails to Broadland." on the page
