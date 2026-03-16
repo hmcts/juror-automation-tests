@@ -1,6 +1,6 @@
 plugins {
   id 'java-library'
-  id 'org.owasp.dependencycheck' version '9.2.0'
+  id 'org.owasp.dependencycheck' version '12.2.0'
   id 'jacoco'
   id 'idea'
   id 'eclipse'
@@ -12,11 +12,11 @@ version = '0.0.1'
 
 java {
   toolchain {
-    languageVersion = JavaLanguageVersion.of(17)
+    languageVersion = JavaLanguageVersion.of(21)
   }
 }
 
-tasks.withType(JavaCompile) {
+tasks.withType(JavaCompile).configureEach {
   options.compilerArgs << "-Xlint:unchecked" << "-Werror"
 }
 
@@ -39,6 +39,10 @@ dependencyCheck {
     // range of 0-10 fails the build, anything greater and it doesn't fail the build
     failBuildOnCVSS = 10
     suppressionFile = 'config/owasp/suppressions.xml'
+}
+
+jacoco {
+  toolVersion = '0.8.14'
 }
 
 dependencies {
@@ -74,9 +78,24 @@ dependencies {
 
   implementation group: 'org.apache.chemistry.opencmis', name: 'chemistry-opencmis-client-impl', version: '1.1.+'
 
-  implementation group: 'org.postgresql', name: 'postgresql', version: '42.7.5'
+  implementation group: 'org.postgresql', name: 'postgresql', version: '42.7.10'
 
   implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.17.0'
+  implementation group: 'commons-io', name: 'commons-io', version: '2.14.0'
+
+  //optional
+//  implementation 'com.opencsv:opencsv:5.12.0'
+
+
+  testImplementation 'io.cucumber:cucumber-picocontainer:7.20.1'
+  testImplementation 'io.cucumber:cucumber-core:7.20.1'
+  testImplementation 'io.cucumber:cucumber-java:7.20.1'
+  testImplementation 'io.cucumber:cucumber-jvm-deps:1.0.6'
+  testImplementation 'io.cucumber:cucumber-junit:7.20.1'
+
+  testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.11.4'
+  testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.11.4'
+
 }
 
 task functional(type: Test, dependsOn: testClasses) {
