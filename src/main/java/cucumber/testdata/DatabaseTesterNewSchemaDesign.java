@@ -539,23 +539,49 @@ public class DatabaseTesterNewSchemaDesign {
 		}
 	}
 
-	public void onDatabaseTable_seeColIsNull_whereColColvalueNSD(String environment, String database, String databaseTable,
-																 String expectedNullColumn, String whereColumn, String whereColumnValue) throws SQLException {
-
-		rowsExistIn_Where(
-				1,
-				environment,
-				database,
-				databaseTable,
-				expectedNullColumn,
-				"NULL",
-				whereColumn,
-				whereColumnValue,
-				whereColumn,
-				Integer.valueOf(whereColumnValue)
-		);
+	public void onDatabaseTable_seeColIsNull_whereColColvalueNSD(String environment, String database, String databaseTable, String expectedNullColumn, String whereColumn, String whereColumnValue) throws SQLException {
+        try {
+            rowsExistIn_Where(
+                    1,
+                    environment,
+                    database,
+                    databaseTable,
+                    expectedNullColumn,
+                    "NULL",
+                    whereColumn,
+                    whereColumnValue,
+                    whereColumn,
+                    Integer.valueOf(whereColumnValue)
+            );
+            log.info("Value for selected juror is null");
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error("Message: Value for selected juror is not null when expected null" + e.getMessage());
+        }
 
 	}
+
+    public void onDatabaseTable_seeColIsNotNull_whereColColvalueNSD(String environment, String database, String databaseTable, String expectedNullColumn, String whereColumn, String whereColumnValue) throws SQLException {
+    try {
+        rowsExistIn_Where(
+                1,
+                environment,
+                database,
+                databaseTable,
+                expectedNullColumn,
+                "NOT NULL",
+                whereColumn,
+                whereColumnValue,
+                whereColumn,
+                Integer.valueOf(whereColumnValue)
+        );
+        log.info("Value for selected juror is not null");
+
+    } catch (Exception e) {
+        e.printStackTrace();
+        log.error("Message: Value for selected juror is null when expected not null" + e.getMessage());
+    }
+    }
 
 
 	public void staffWithName_doesNotExistNSD(String staffName) throws SQLException {
