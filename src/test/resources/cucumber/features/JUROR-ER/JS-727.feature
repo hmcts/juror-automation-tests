@@ -23,7 +23,7 @@ Feature: JS-727
 
     Given I am on "Er" "test"
     And I log in to ER as "<user>"
-    And I see error "No account found for the provided email address"
+    And I see error "Unable to sign in with the provided email address"
 
     Examples:
       | user              |

@@ -645,7 +645,7 @@ public class TrialsAndAttendance {
                     driver.findElement(By.cssSelector(".js-datepicker-next-month")).click();
                 }
 
-                Thread.sleep(300);
+                Thread.sleep(500);
             }
 
             String dayStr = String.valueOf(targetDate.getDayOfMonth());

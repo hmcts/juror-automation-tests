@@ -173,7 +173,7 @@ Feature: JM-4958, JM-4954, JM-4955 As a jury officer i need to be able to comple
   @JurorTransformationMulti
   Scenario Outline: Uncomplete Service as an SJO
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "test"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number  	| pool_number	| att_date_weeks_in_future	| owner |
@@ -207,8 +207,8 @@ Feature: JM-4958, JM-4954, JM-4955 As a jury officer i need to be able to comple
     And I press the "Complete service" button
     Then I see "Juror's service completed" on the page
     And I see the juror status on the juror record screen is "Completed"
-    Given I am on "Bureau" "ithc"
 
+    Given I am on "Bureau" "test"
     # Log in as SJO and uncomplete
     And I log in as "SJOUSER"
     And I see senior jury officer notification banner
