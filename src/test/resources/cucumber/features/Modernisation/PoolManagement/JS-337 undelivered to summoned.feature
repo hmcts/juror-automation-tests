@@ -3,7 +3,7 @@ Feature: JS-337
   @JurorTransformationMulti
   Scenario Outline: Set an undelivered juror to summoned - Bureau User
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "test"
 
     Given a bureau owned pool is created with jurors
       | court  | juror_number  	| pool_number	   | att_date_weeks_in_future	| owner |
@@ -41,6 +41,8 @@ Feature: JS-337
     Then I see the juror record updated banner containing "Summons undeliverable"
     And I see the juror status has updated to "Undeliverable"
 
+    And on "JUROR_MOD" . "JUROR_POOL" I see "NEXTDATE" is null where "JUROR_NUMBER" is "<juror_number2>" new schema
+
     When I press the "Update juror record" button
     Then I see "Mark as summoned" on the page
     And I do not see "Mark summons as undeliverable" on the page
@@ -53,6 +55,8 @@ Feature: JS-337
     When I press the "Update juror record" button
     Then I do not see "Mark as summoned" on the page
     And I see "Mark summons as undeliverable" on the page
+
+    And on "JUROR_MOD" . "JUROR_POOL" I see "NEXTDATE" is not null where "JUROR_NUMBER" is "<juror_number2>" new schema
     
     Examples:
       | user          | juror_number1  | juror_number2| pool_number   |

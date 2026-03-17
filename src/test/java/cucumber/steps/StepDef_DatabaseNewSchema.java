@@ -149,6 +149,20 @@ public class StepDef_DatabaseNewSchema {
         );
     }
 
+    @Then("^on \"([^\"]*)\" \\. \"([^\"]*)\" I see \"([^\"]*)\" is not null where \"([^\"]*)\" is \"([^\"]*)\" new schema$")
+    public void onDatabaseTable_seeColWithColValue_whereColColvalueIsNotNullNSD(
+            String database, String databaseTable,
+            String expectedNullColumn,
+            String whereColumn, String whereColumnValue) throws SQLException {
+
+        DBTNSD.onDatabaseTable_seeColIsNotNull_whereColColvalueNSD(
+                "demo",
+                database, databaseTable,
+                expectedNullColumn, //, expectedColumnValue,
+                whereColumn, whereColumnValue
+        );
+    }
+
     @Given("^staff with name \"([^\"]*)\" does not exist new schema$")
     public void staffWithName_doesNotExistNSD(String staffName) throws SQLException {
         DBTNSD.staffWithName_doesNotExistNSD(staffName);
