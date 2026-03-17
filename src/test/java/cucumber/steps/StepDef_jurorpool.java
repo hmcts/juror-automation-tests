@@ -654,8 +654,10 @@ public class StepDef_jurorpool {
 
     @When("^I save the new pool request$")
     public void iSaveTheNewPoolRequest() {
+        NAV.waitForPageLoad();
         poolRequestNumber.set(CHECK_POOL_REQUEST_PAGE.getPoolNumber());
         CHECK_POOL_REQUEST_PAGE.submitRequest();
+        NAV.waitForPageLoad();
     }
 
     @When("^I click the link for the successfully created court only pool$")

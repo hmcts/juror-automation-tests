@@ -170,8 +170,12 @@ public class StepDef_electoralRegManagement {
 
         String uploadStatusOnFE = ELEC.localAuthStatusInTableHasStatus(localAuth);
         String caseInsensitive = uploadStatusOnFE.toUpperCase();
+        if (caseInsensitive.equals("NOT UPLOADED")) {
+            caseInsensitive = "NOT_UPLOADED";
+        }
 
         assertEquals(DBTNSD.getUploadStatusForLA(localAuth), caseInsensitive);
+
     }
 
     @Then("the LA name on the ER upload screen is \"([^\"]*)\"$")
