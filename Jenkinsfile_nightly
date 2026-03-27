@@ -29,8 +29,8 @@ def component = "automation-tests"
 def SUITES_BY_BRANCH = [
   'master'     : ['Shakedown','JurorTransformation','JurorTransformationMulti','JurorEr'],
   // 'master'     : ['Shakedown','JurorTransformation','JurorTransformationMulti','JurorTransformationWIP'],
-  'nightly-dev': ['Shakedown','Expenses','Regression','RegressionSingle','RegressionWelsh'],
-  // 'demo': [] // example: turn off tests in environment, also uncomment line 152
+//  'nightly-dev': ['Shakedown','Expenses','Regression','RegressionSingle','RegressionWelsh'],
+   'demo': [] // example: turn off tests in environment, also uncomment line 152
 ]
 
 def ENV_BY_BRANCH = [
@@ -149,7 +149,7 @@ withNightlyPipeline(type, product, component, 600) {
     }
   }
 
-   // if (env.envName == 'demo') { applyBranchDefaults('demo') } // turn off tests in environment
+    if (env.envName == 'demo') { applyBranchDefaults('demo') } // turn off tests in environment
 
   setBuildName()
   afterAlways('fullFunctionalTest') {
