@@ -5,10 +5,10 @@ properties([
     choice(choices: ['chrome', 'firefox', 'msedge'], name: 'Browser'),
     choice(choices: ['ithc', 'test', 'stg', 'demo'], name: 'EnvironmentChoice'),
     booleanParam(name: 'runExpenses', defaultValue: false, description: 'Include Expenses tests'),
-    booleanParam(name: 'runFeatures', defaultValue: false, description: 'Include Features tests'),
+//    booleanParam(name: 'runFeatures', defaultValue: false, description: 'Include Features tests'),
     booleanParam(name: 'runJurorTransformation', defaultValue: true, description: 'Include JurorTransformation tests'),
     booleanParam(name: 'runJurorTransformationMulti', defaultValue: true, description: 'Include JurorTransformationMulti tests'),
-    booleanParam(name: 'runJurorTransformationWIP', defaultValue: true, description: 'Include JurorTransformationWIP tests'),
+//    booleanParam(name: 'runJurorTransformationWIP', defaultValue: true, description: 'Include JurorTransformationWIP tests'),
     booleanParam(name: 'runRegression', defaultValue: false, description: 'Include Regression tests'),
     booleanParam(name: 'runRegressionSingle', defaultValue: false, description: 'Include RegressionSingle tests'),
     booleanParam(name: 'runRegressionWelsh', defaultValue: false, description: 'Include RegressionWelsh tests'),
@@ -129,11 +129,11 @@ withNightlyPipeline(type, product, component, 600) {
   env.envName = params.EnvironmentChoice
   env.envDriver = params.Browser
   env.runExpenses = params.runExpenses
-  env.runFeatures = params.runFeatures
+//  env.runFeatures = params.runFeatures
   env.runJurorTransformation = params.runJurorTransformation
   env.runJurorTransformationMulti = params.runJurorTransformationMulti
   env.runJurorEr = params.runJurorEr
-  env.runJurorTransformationWIP = params.runJurorTransformationWIP
+//  env.runJurorTransformationWIP = params.runJurorTransformationWIP
   env.runRegression = params.runRegression
   env.runRegressionSingle = params.runRegressionSingle
   env.runRegressionWelsh = params.runRegressionWelsh
@@ -163,14 +163,14 @@ withNightlyPipeline(type, product, component, 600) {
       reportName           : "Cucumber Expenses Test Report"
     ]
 
-    publishHTML target: [
-      allowMissing         : true,
-      alwaysLinkToLastBuild: true,
-      keepAll              : true,
-      reportDir            : "target/TestRunner_Features/",
-      reportFiles          : "cucumber.html",
-      reportName           : "Cucumber Features Test Report"
-    ]
+//    publishHTML target: [
+//      allowMissing         : true,
+//      alwaysLinkToLastBuild: true,
+//      keepAll              : true,
+//      reportDir            : "target/TestRunner_Features/",
+//      reportFiles          : "cucumber.html",
+//      reportName           : "Cucumber Features Test Report"
+//    ]
 
     publishHTML target: [
       allowMissing         : true,
@@ -190,14 +190,14 @@ withNightlyPipeline(type, product, component, 600) {
       reportName           : "Cucumber JurorTransformationMulti Test Report"
     ]
 
-    publishHTML target: [
-      allowMissing         : true,
-      alwaysLinkToLastBuild: true,
-      keepAll              : true,
-      reportDir            : "target/TestRunner_JurorTransformationWIP/",
-      reportFiles          : "cucumber.html",
-      reportName           : "Cucumber JurorTransformationWIP Test Report"
-    ]
+//    publishHTML target: [
+//      allowMissing         : true,
+//      alwaysLinkToLastBuild: true,
+//      keepAll              : true,
+//      reportDir            : "target/TestRunner_JurorTransformationWIP/",
+//      reportFiles          : "cucumber.html",
+//      reportName           : "Cucumber JurorTransformationWIP Test Report"
+//    ]
 
     publishHTML target: [
       allowMissing         : true,
