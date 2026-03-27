@@ -102,7 +102,7 @@ Scenario Outline: English 1st Overage Skip to Main Content Check
 	Then I choose the "No" radio button
 	And I press the "Continue" button
 	
-	And I set "Year" to "1950"
+	And I set "Year" to "1960"
 	And I press the "Continue" button
 	Then I see "Confirm you're eligible for jury service" on the page
 	When I click on the "Back" link
