@@ -6,6 +6,7 @@ import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 
 import java.sql.SQLException;
 import java.time.DayOfWeek;
@@ -831,5 +832,9 @@ public class StepDef_DatabaseNewSchema {
     @Given("^I set ER deadline date to \"([^\"]*)\" new schema$")
     public void setERDeadlineDateToday(String value) throws SQLException {
         DBTNSD.setERDeadlineDate(value);
+    }
+    @When("I check juror \"([^\"]*)\" is not on call$")
+    public void checkJurorNotOnCall(String jurorNumber) throws SQLException {
+        DBTNSD.isJurorOnCallFalse(jurorNumber);
     }
 }

@@ -5849,4 +5849,52 @@ public class DatabaseTesterNewSchemaDesign {
 			conn.close();
 		}
 	}
+	public boolean isJurorOnCallFalse(String jurorNumber) throws SQLException {
+		db = new DBConnection();
+
+		String env_property = System.getProperty("env.database");
+
+		if (env_property != null)
+			conn = db.getConnection(env_property);
+		else
+			conn = db.getConnection("demo");
+
+		ResultSet rs = null;
+		boolean isFalse = false;
+
+		try {
+			pStmt = conn.prepareStatement(
+					"SELECT on_call FROM juror_mod.juror_pool WHERE juror_number = ?"
+			);
+			pStmt.setString(1, jurorNumber);
+
+			rs = pStmt.executeQuery();
+
+			if (rs.next()) {
+				boolean onCall = rs.getBoolean("on_call");
+
+				if (onCall) {
+					throw new AssertionError("Juror " + jurorNumber + " is unexpectedly on call");
+				}
+
+				isFalse = true;
+
+				log.info("Juror " + jurorNumber + " is correctly not on call");
+
+			} else {
+				throw new AssertionError("No juror found with juror_number: " + jurorNumber);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.error("Message:" + e.getMessage());
+
+		} finally {
+			if (rs != null) rs.close();
+			if (pStmt != null) pStmt.close();
+			if (conn != null) conn.close();
+		}
+
+		return isFalse;
+	}
 }
