@@ -555,7 +555,7 @@ Feature: JM-4949 & JM-5766
   @JurorTransformation
   Scenario Outline: Happy path to create a trial then return all the jurors and end trial
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "test"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
@@ -565,7 +565,7 @@ Feature: JM-4949 & JM-5766
     Then a new pool is inserted for where record has transferred to the court new schema
       |part_no              | pool_no           | owner |
       |<juror_number_1>     | <pool_number>     | 415   |
-      |<juror_number_2>     | <pool_number>      | 415   |
+      |<juror_number_2>     | <pool_number>     | 415   |
 
     And I Confirm all the data in the record attendance table is cleared
     And a new trial is inserted with the trial number "<trial_number>"
@@ -574,6 +574,10 @@ Feature: JM-4949 & JM-5766
    #set juror as responded
     And I update juror "<juror_number_1>" to have a status of responded in order to record attendance
     And I update juror "<juror_number_2>" to have a status of responded in order to record attendance
+
+   #give jurors emails
+   And juror "<juror_number_1>" has "h_email" as "e1@mail.com" new schema
+   And juror "<juror_number_2>" has "h_email" as "e2@mail.com" new schema
 
    #check in jurors
     And I press the "Apps" button
@@ -663,6 +667,36 @@ Feature: JM-4949 & JM-5766
     And I see "Testing" in the same row as "Judge"
     And I see "Jury Assembly Room" in the same row as "Courtroom"
     And I see "No" in the same row as "Protected?"
+
+    #send sentencing invite to returned jurors
+    And I press the "Apps" button
+    And I click on the "Messaging" link
+    And I see "Send messages" on the page
+    And I click on the "Sentencing invite (email only)" link
+    And I see "Message details" on the page
+    And I see the draft message template
+    And I see "The defendant in the trial in which you were a juror is being sentenced on <sentence_date>. Please contact the court if you wish to attend on <court_phone>. Alternatively contact the court after the hearing date quoting reference number <trial_no> if you would like to know the sentence. Please note that jurors do not have a role in sentencing, and as such your attendance is entirely voluntary and travel and subsistence payments cannot be claimed. Please do not reply to this email as this mailbox is unmonitored." on the page
+    And I set the "Sentence" date to a Monday "5" weeks in the future
+    And I press the "Continue" button
+
+    And I see "Select a trial" on the page
+    And I select the "<trial_number>" trial number radio button
+    And I press the "Continue with selected" button
+    And I check the select all checkbox
+    And I see "Select jurors to send message to" on the page
+    And I press the "Send message" button
+
+    And I see "Check and send message" on the page
+    And I see "You’re sending the following message to 2 jurors. You cannot undo this after sending." on the page
+    And I see the draft message template
+
+    And I see "The defendant in the trial in which you were a juror is being sentenced on" on the page
+    And I see "Please contact the court if you wish to attend on 01244 356726. Alternatively contact the court after the hearing date quoting reference number T202419999998 if you would like to know the sentence. Please note that jurors do not have a role in sentencing, and as such your attendance is entirely voluntary and travel and subsistence payments cannot be claimed. Please do not reply to this email as this mailbox is unmonitored." on the page
+    And I see the template containing my attendance date with a monday "5" weeks in the future
+    And I press the "Send message" button
+    And I see the message sent banner containing "Message will be sent to 2 jurors"
+    And I see the juror "<juror_number_1>" has a message in the database
+    And I see the juror "<juror_number_2>" has a message in the database
 
     Examples:
       | user		 | juror_number_1  | juror_number_2 | pool_number   | trial_number |
