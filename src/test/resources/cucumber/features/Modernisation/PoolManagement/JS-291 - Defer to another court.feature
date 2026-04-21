@@ -3,7 +3,7 @@ Feature: JS-291
   @JurorTransformationMulti
   Scenario Outline: Defer to another court as a bureau officer
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "test"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number  	| pool_number	| att_date_weeks_in_future	| owner |
@@ -72,7 +72,7 @@ Feature: JS-291
     And I see "<juror_number3>" on the page
 
     When I press the "Move to another court" button
-    Then I see error "Select the deferrals you want to move court"
+    Then I see "Select the deferrals you want to move court" on the page
 
     #move single juror to different court
     When I check the juror "<juror_number1>" checkbox

@@ -1,15 +1,16 @@
 Feature: JM-7894
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: As a Satellite court user I should see the attendances for the court I am logged in as not the active court the juror is at
-    Given I am on "Bureau" "ithc"
+
+    Given I am on "Bureau" "test"
 
     Given a bureau owned pool is created with jurors
-      | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
+      | court | juror_number  	| pool_number	    | att_date_weeks_in_future	| owner |
       | 415   | <juror_number> 	| <pool_number>     | 5				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no            | pool_no       | owner |
+      |part_no           | pool_no       | owner |
       |<juror_number>    | <pool_number> | 415   |
 
     And I update juror "<juror_number>" to have a status of "Responded"
@@ -44,7 +45,7 @@ Feature: JM-7894
     And I press the "Continue" button
     And I see "Juror record updated: Reassigned to pool" on the page
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "test"
     And I log in as "<user>" selecting court "462"
 
     And the user searches for juror record "<juror_number>" from the global search bar
@@ -65,7 +66,7 @@ Feature: JM-7894
     And I click on the pm radio button for juror check out on confirm attendance
     And I press the "Add attendance day" button
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "test"
     And I log in as "<user>"
 
     And the user searches for juror record "<juror_number>" from the global search bar

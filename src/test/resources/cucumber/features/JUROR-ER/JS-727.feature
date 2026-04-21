@@ -3,8 +3,22 @@ Feature: JS-727
   @JurorEr
   Scenario Outline: Login to JUROR ER
 
-    Given I am on "Er" "test"
+    Given I am on "Er" "ithc"
     And I log in to ER as "<user>"
+    
+    Then I see "/data-upload" in the URL
+    
+    And I click on the "Sign out" link
+
+    And I log in to ER as "<userUpper>"
+
+    Then I see "/data-upload" in the URL
+
+    And I click on the "Sign out" link
+
+    And I log in to ER as "<userMixed>"
+
+    Then I see "/data-upload" in the URL
 
     And I see "Electoral register data portal" on the page
     And I see "Data upload" on the page
@@ -15,8 +29,8 @@ Feature: JS-727
     And I see "Users with portal access" on the page
 
     Examples:
-      | user                       |
-      | test_user1@localauthority1 |
+      | user                       | userUpper                  | userMixed                  |
+      | test_user1@localauthority1 | TEST_USER1@LOCALAUTHORITY1 | Test_User1@LocalAuthority1 |
 
  @JurorEr
   Scenario Outline: Login to JUROR ER - unhappy path
