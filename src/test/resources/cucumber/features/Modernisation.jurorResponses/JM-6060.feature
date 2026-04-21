@@ -62,16 +62,16 @@ Feature: JM-6060 - As a jury officer, I want to be able to add or change juror's
       |user       |juror_number |   pool_number   |
       |MODTESTCOURT |041536765    | 415360585       |
 
-  @JurorTransformation @NewSchemaConverted
+  @JurorTransformation
   Scenario Outline: Change juror bank details error check
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
     When a bureau owned pool is created with jurors
-      | court |juror_number         | pool_number      | att_date_weeks_in_future | owner |
-      | 415   |<juror_number>     | <pool_number>       | 5                      | 400  |
+      | court |juror_number       | pool_number      | att_date_weeks_in_future | owner |
+      | 415   |<juror_number>     | <pool_number>    | 5                        | 400  |
 
     Then a new pool is inserted for where record has transferred to the court new schema
-      |part_no              | pool_no           | owner |
+      |part_no            | pool_no           | owner |
       |<juror_number>     | <pool_number>     | 415   |
 
     And I Confirm all the data in the record attendance table is cleared
@@ -149,5 +149,5 @@ Feature: JM-6060 - As a jury officer, I want to be able to add or change juror's
     And I see error "Account holder's name must be 18 characters or fewer"
 
     Examples:
-      |user       |juror_number |   pool_number   |
+      |user         |juror_number |   pool_number   |
       |MODTESTCOURT |041536766    | 415360586       |
