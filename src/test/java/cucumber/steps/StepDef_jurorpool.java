@@ -1551,13 +1551,13 @@ public class StepDef_jurorpool {
        assertTrue(SUMMONS_REPLY.getResponseBannerText().contains(bannerText));
     }
 
-    @And("^I see juror status is Responded with alert \"([^\"]*)\"$")
-    public void iSeeStatusRespondedAlert(String respondedAlert) {
+    @And("^I see juror status is Responded with alert for deferral refused$")
+    public void iSeeStatusRespondedAlert() {
         try {
-            NAV.iSeeRespondedAlert(respondedAlert);
+            NAV.iSeeRespondedAlert();
         } catch (Exception e) {
             NAV.waitForPageLoad();
-            NAV.iSeeRespondedAlert(respondedAlert);
+            NAV.iSeeRespondedAlert();
         }
     }
 
