@@ -34,7 +34,7 @@ public class JurorRecord {
     @FindBy(className = "govuk-heading-l")
     WebElement heading;
 
-    @FindBy(xpath = "//div/strong[@class='govuk-tag govuk-tag--turquoise']")
+    @FindBy(xpath = "//div/strong[@class='govuk-tag govuk-tag--teal']")
     WebElement jurorRecordTag;
 
     @FindBy(xpath = "//a[contains(@class, 'govuk-button') and normalize-space(text()) ='Enter summons reply']")

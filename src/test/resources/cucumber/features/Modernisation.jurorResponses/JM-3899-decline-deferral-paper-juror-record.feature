@@ -123,7 +123,7 @@ Feature: JM-3899
     And I press the "Continue" button
 
     And I see "Deferral refused (other)" on the page
-    And I see juror status is Responded with alert "Deferral refused"
+    And I see juror status is Responded with alert for deferral refused
 
     Examples:
       | juror_number | pool_number  | user          |

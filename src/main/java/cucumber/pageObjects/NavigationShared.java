@@ -21,6 +21,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
+import java.util.NoSuchElementException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -1701,16 +1702,15 @@ public class NavigationShared {
 
     }
 
-    public void iSeeRespondedAlert(String respondedAlert) {
-        try {
-            log.info("Going to confirm responded icon is =>" + respondedAlert);
-            driver.findElement(
-                    By.xpath("//*[@class='info with-icon']/span[@title='" + respondedAlert + "']"));
-            log.info("confirm responded icon is =>" + respondedAlert);
-        } catch (Exception e) {
-            driver.findElement(
-                    By.xpath("//*[@class='info with-icon']/span[@title='" + respondedAlert + "']"));
+    public void iSeeRespondedAlert() {
+        for (WebElement block : driver.findElements(By.cssSelector("div.info.with-icon"))) {
+            if (block.getText().contains("Responded") &&
+                    !block.findElements(By.cssSelector("span.mod-icon-urgent")).isEmpty()) {
+                return;
+            }
         }
+
+        throw new NoSuchElementException("Could not find Responded status with urgent icon");
     }
 
     public void recordFlaggedOverdue(String nextToText) {
