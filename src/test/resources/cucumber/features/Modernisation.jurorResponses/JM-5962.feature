@@ -1,9 +1,10 @@
 Feature: JM-5962 - As a jury officer I need to be able to bulk change jurors attendance date
 
-  @JurorTransformation @NewSchemaConverted
+  @JurorTransformation
   Scenario Outline: As a jury officer I want to bulk change multiple jurors attendance date - Happy Path
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "<environment>"
+
     When a bureau owned pool is created with jurors
       | court |juror_number  	    | pool_number	      | att_date_weeks_in_future	| owner |
       | 415   |<juror_number>       | <pool_number>       | 5				            | 400	|
@@ -47,14 +48,15 @@ Feature: JM-5962 - As a jury officer I need to be able to bulk change jurors att
     And I see the banner for next due at court date
 
     Examples:
-      | user         | juror_number | juror_number_1 | juror_number_2 | juror_number_3 | juror_number_4 | pool_number |
-      | MODTESTCOURT | 041537788    | 041537789      | 041537786      | 041537785      | 041537784      | 415366828   |
+      | user         | juror_number | juror_number_1 | juror_number_2 | juror_number_3 | juror_number_4 | pool_number | environment |
+      | MODTESTCOURT | 041537788    | 041537789      | 041537786      | 041537785      | 041537784      | 415366828   | test        |
 
 
   @JurorTransformation
   Scenario Outline: As a jury officer I want to bulk change multiple jurors attendance date - Unhappy Path
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
+
     When a bureau owned pool is created with jurors
       | court |juror_number  	    | pool_number	      | att_date_weeks_in_future	| owner |
       | 415   |<juror_number>       | <pool_number>       | 5				            | 400	|
@@ -104,7 +106,7 @@ Feature: JM-5962 - As a jury officer I need to be able to bulk change jurors att
 
     And I set the "Next due date" date to a Monday "-23" weeks in the future
     And I press the "Continue" button
-    And I see error "Date must be in the future"
+    And I see error "Date cannot be in the past"
 
     And I set "Enter date next due at court" to "2019/02/10"
     And I press the "Continue" button
@@ -127,5 +129,5 @@ Feature: JM-5962 - As a jury officer I need to be able to bulk change jurors att
     And I see the banner for next due at court date
 
     Examples:
-      | user         | juror_number | juror_number_1 | juror_number_2 | juror_number_3 | juror_number_4 | pool_number |
-      | MODTESTCOURT | 041537783    | 041537782      | 041537781      | 041537780      | 041537779      | 415366829   |
+      | user         | juror_number | juror_number_1 | juror_number_2 | juror_number_3 | juror_number_4 | pool_number | environment |
+      | MODTESTCOURT | 041537783    | 041537782      | 041537781      | 041537780      | 041537779      | 415366829   | test        |
