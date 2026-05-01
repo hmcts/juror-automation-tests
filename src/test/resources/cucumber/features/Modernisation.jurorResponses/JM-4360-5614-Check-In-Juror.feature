@@ -3,7 +3,7 @@ Feature: JM-4360 - As a jury officer I need to be able to check jurors in for th
   @JurorTransformation
   Scenario Outline: Check in jurors for attendance on their day
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
@@ -44,14 +44,14 @@ Feature: JM-4360 - As a jury officer I need to be able to check jurors in for th
     And I see "<juror_number2>" in the same row as "2:30pm"
 
     Examples:
-      |user			| juror_number1 | juror_number2 | pool_number|
-      |MODTESTCOURT | 041500148     | 041500149     | 415300248  |
+      |user			| juror_number1 | juror_number2 | pool_number| environment  |
+      |MODTESTCOURT | 041500148     | 041500149     | 415300248  | test         |
 
 
   @JurorTransformation
   Scenario Outline: Check in jurors for attendance on their day - Unhappy Path
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number  	| pool_number	    | att_date_weeks_in_future	| owner |
@@ -84,7 +84,7 @@ Feature: JM-4360 - As a jury officer I need to be able to check jurors in for th
 
     #change postcode for police check
     And I click on the "Add or change" link
-    And I click on the "Change" link
+    And I click on the "Change" link in the same row as "Address"
     And I set "Postcode" to "B68ZX"
     And I press the "Review Edit" button
     And I see "Additional requirements" on the page
@@ -114,5 +114,5 @@ Feature: JM-4360 - As a jury officer I need to be able to check jurors in for th
     And I see "Failed" in the same row as "<juror_number>"
 
     Examples:
-      | user		 | juror_number | pool_number|
-      | MODTESTCOURT | 041522662    | 415319228  |
+      | user		 | juror_number | pool_number| environment |
+      | MODTESTCOURT | 041522662    | 415319228  | test        |

@@ -3,7 +3,7 @@ Feature: JM-6118
   @JurorTransformation
   Scenario Outline: Edit approved expenses for reapproval as a jury officer
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     When a bureau owned pool is created with jurors
       | court |juror_number  	| pool_number	  | att_date_weeks_in_future	| owner |
@@ -64,7 +64,7 @@ Feature: JM-6118
     And I check the checkbox containing my expense date
     And I press the "Submit for approval" button
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
     And I log in as "CMANAGER"
     And I press the "Apps" button
     And I click on the "Juror management" link
@@ -72,7 +72,7 @@ Feature: JM-6118
     And I check the checkbox in the same row as "<juror_number>"
     And I press the "Approve" button
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
     And I log in as "<user>"
 
     When the user searches for juror record "<juror_number>" from the global search bar
@@ -90,5 +90,5 @@ Feature: JM-6118
     And I see "Expenses submitted for reapproval" on the page
 
     Examples:
-      | user		 | juror_number | pool_number   |
-      | MODTESTCOURT | 041587184    | 415485939     |
+      | user		 | juror_number | pool_number   | environment |
+      | MODTESTCOURT | 041587184    | 415485939     | test        |

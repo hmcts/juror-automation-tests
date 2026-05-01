@@ -1974,7 +1974,7 @@ public class StepDef_response {
 
 			GRP.click_radioButtonWithLabel("I am replying for someone else");
 			NAV.press_buttonByName("Continue");
-			NAV.textPresentOnPage("The juror number can be found on the jury s");
+			NAV.textPresentOnPage("You can find their juror number");
 			NAV.set_valueTo("9-digit juror number", part_no);
 			NAV.set_valueTo("Juror last name", last_name);
 			NAV.set_valueTo("Juror postcode", postcode);
@@ -2008,14 +2008,17 @@ public class StepDef_response {
 			GRP.click_radioButtonWithLabel("Yes");
 			NAV.press_buttonByName("Continue");
 
-			NAV.textPresentOnPage("Please give the date of birth for the person you're replying for");
+			NAV.textPresentOnPage("Give the date of birth for the person you're replying for");
 			NAV.set_valueTo("Day", "27");
 			NAV.set_valueTo("Month", "09");
 			NAV.set_valueTo("Year", "1927");
 			NAV.press_buttonByName("Continue");
 
-			NAV.textPresentOnPage("Confirm the date of birth for the person you're answering for");
+			NAV.textPresentOnPage("Confirm the date of birth for the person you're replying for");
 			NAV.press_buttonByName("Continue");
+
+            GRP.click_radioButtonWithLabel("Yes");
+            NAV.press_buttonByName("Continue");
 
 			NAV.textPresentOnPage("Check your answers now");
 			NAV.check_checkbox("The answers I have given for the person I'm replying for are true as far as I know.");

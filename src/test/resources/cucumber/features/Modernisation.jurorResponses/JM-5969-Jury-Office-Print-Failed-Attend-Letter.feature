@@ -3,7 +3,7 @@ Feature: As a jury officer I need to be able to print a failed to attend letter
   @JurorTransformation
   Scenario Outline:Verify jury officer able to print a failed to attend letter
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     When a bureau owned pool is created with jurors
       | court | juror_number   | pool_number      | att_date_weeks_in_future | owner |
@@ -33,13 +33,13 @@ Feature: As a jury officer I need to be able to print a failed to attend letter
     Then I see "documents/failed-to-attend/letters-list" in the URL
 
     Examples:
-      | juror_number  | pool_number | user           |
-      | 041530039     | 415300355   | MODTESTCOURT   |
+      | juror_number  | pool_number | user           | environment |
+      | 041530039     | 415300355   | MODTESTCOURT   | test        |
 
   @JurorTransformation
   Scenario Outline:Verify jury officer able to print the failed to attend letter from the juror record under the attendance tab.
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     When a bureau owned pool is created with jurors
       | court | juror_number    | pool_number      | att_date_weeks_in_future | owner |
@@ -48,7 +48,9 @@ Feature: As a jury officer I need to be able to print a failed to attend letter
     And a new pool is inserted for where record has transferred to the court new schema
       |part_no               | pool_no           | owner |
       |<juror_number>       | <pool_number>      | 415   |
+
     And I Confirm all the data in the record attendance table is cleared
+
     #log on and search for juror
     And I update juror "<juror_number>" to have confirm attendance date as todays date
     And I log in as "<user>"
@@ -66,5 +68,5 @@ Feature: As a jury officer I need to be able to print a failed to attend letter
     Then I see "Document sent for printing" on the page
 
     Examples:
-      | juror_number  | pool_number | user           |
-      |  041530040    |415300355    | MODTESTCOURT   |
+      | juror_number  | pool_number | user           | environment |
+      |  041530040    |415300355    | MODTESTCOURT   | test        |

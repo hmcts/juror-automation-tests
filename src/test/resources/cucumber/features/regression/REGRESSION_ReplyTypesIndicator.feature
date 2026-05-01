@@ -5,7 +5,7 @@ Feature: Regression English_ReplyTypesIndicator
   @Regression
   Scenario Outline: English 1st Party + Juror Details Change
 
-    Given I am on "Public" "ithc"
+    Given I am on "Public" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
@@ -95,7 +95,7 @@ Feature: Regression English_ReplyTypesIndicator
     Then I click on the "Download a copy of your summons reply HTML (15KB)" link
     And I see "You answered the eligibility questions" on the page
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
     And I log in as "MODTESTBUREAU"
 
     When I click on the "Search" link
@@ -111,7 +111,7 @@ Feature: Regression English_ReplyTypesIndicator
     Then I see "Your work" on the page
 
     Then I click on the "Sign out" link
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     When I log in as "CPASS"
     Then I see "<juror_number>" on the page
@@ -121,14 +121,14 @@ Feature: Regression English_ReplyTypesIndicator
     And I see "Needs review" on the page
 
     Examples:
-      | juror_number | last_name | postcode | email      | pool_number |
-      | 045200136    | DOE       | SW1H 9AJ | a@eeee.com | 452300135   |
+      | juror_number | last_name | postcode | email      | pool_number | environment |
+      | 045200136    | DOE       | SW1H 9AJ | a@eeee.com | 452300135   | test        |
 
 
   @RegressionSingle
   Scenario Outline: English 1st Party + RA
 
-    Given I am on "Public" "ithc"
+    Given I am on "Public" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
@@ -232,7 +232,7 @@ Feature: Regression English_ReplyTypesIndicator
     Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "TODO" where "JUROR_NUMBER" is "<juror_number>"
     Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "N" where "JUROR_NUMBER" is "<juror_number>"
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
     And I log in as "MODTESTBUREAU"
 
     When I click on the "Search" link
@@ -248,7 +248,7 @@ Feature: Regression English_ReplyTypesIndicator
     Then I see "Your work" on the page
 
     Then I click on the "Sign out" link
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
     When I log in as "CPASS"
     Then I see "<juror_number>" on the page
     Then I see "<juror_number>" has reply type indicator "Deferral"
@@ -257,13 +257,13 @@ Feature: Regression English_ReplyTypesIndicator
     And I see "Deferral" on the page
 
     Examples:
-      | juror_number | pool_number | last_name       | postcode | email      |
-      | 045200137    | 452300136   | LNAMESIXONEZERO | SY2 6LU  | e@eeee.com |
+      | juror_number | pool_number | last_name       | postcode | email      | environment |
+      | 045200137    | 452300136   | LNAMESIXONEZERO | SY2 6LU  | e@eeee.com | test        |
 
   @Regression
   Scenario Outline: English 1st Party + Residency
 
-    Given I am on "Public" "ithc"
+    Given I am on "Public" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
@@ -354,7 +354,7 @@ Feature: Regression English_ReplyTypesIndicator
     Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "TODO" where "JUROR_NUMBER" is "<juror_number>"
     Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "N" where "JUROR_NUMBER" is "<juror_number>"
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
     And I log in as "MODTESTBUREAU"
 
     When I click on the "Search" link
@@ -370,7 +370,7 @@ Feature: Regression English_ReplyTypesIndicator
     Then I see "Your work" on the page
 
     Then I click on the "Sign out" link
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
     When I log in as "CPASS"
     Then I see "<juror_number>" on the page
     Then I see "<juror_number>" has reply type indicator "Needs review"
@@ -379,13 +379,13 @@ Feature: Regression English_ReplyTypesIndicator
     And I see "Ineligible" on the page
 
     Examples:
-      | juror_number | pool_number | last_name          | postcode | email      |
-      | 045200138    | 452300137   | LNAMESIXTHREESEVEN | SY2 6LU  | e@eeee.com |
+      | juror_number | pool_number | last_name          | postcode | email      | environment |
+      | 045200138    | 452300137   | LNAMESIXTHREESEVEN | SY2 6LU  | e@eeee.com | test        |
 
   @Regression
   Scenario Outline: English 1st Party + Bail
 
-    Given I am on "Public" "ithc"
+    Given I am on "Public" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
@@ -476,7 +476,7 @@ Feature: Regression English_ReplyTypesIndicator
     Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "TODO" where "JUROR_NUMBER" is "<juror_number>"
     Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "N" where "JUROR_NUMBER" is "<juror_number>"
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
     And I log in as "MODTESTBUREAU"
 
     When I click on the "Search" link
@@ -492,7 +492,7 @@ Feature: Regression English_ReplyTypesIndicator
     Then I see "Your work" on the page
 
     Then I click on the "Sign out" link
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
     When I log in as "CPASS"
     Then I see "<juror_number>" on the page
     Then I see "<juror_number>" has reply type indicator "Needs review"
@@ -501,13 +501,13 @@ Feature: Regression English_ReplyTypesIndicator
     And I see "Ineligible" on the page
 
     Examples:
-      | juror_number | pool_number | last_name          | postcode | email      |
-      | 045200139    | 452300138   | LNAMESIXTHREESEVEN | SY2 6LU  | e@eeee.com |
+      | juror_number | pool_number | last_name          | postcode | email      | environment |
+      | 045200139    | 452300138   | LNAMESIXTHREESEVEN | SY2 6LU  | e@eeee.com | test        |
 
   @Regression
   Scenario Outline: English 3rd Party + Convictions
 
-    Given I am on "Public" "ithc"
+    Given I am on "Public" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
@@ -606,7 +606,7 @@ Feature: Regression English_ReplyTypesIndicator
     And I press the "Submit" button
     And I see "You have completed your reply" on the page
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
     And I log in as "MODTESTBUREAU"
 
     When I click on the "Search" link
@@ -622,7 +622,7 @@ Feature: Regression English_ReplyTypesIndicator
     Then I see "Your work" on the page
 
     Then I click on the "Sign out" link
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
     When I log in as "CPASS"
     Then I see "<juror_number>" on the page
     Then I see "<juror_number>" has reply type indicator "Needs review"
@@ -631,13 +631,13 @@ Feature: Regression English_ReplyTypesIndicator
     And I see "Ineligible" on the page
 
     Examples:
-      | juror_number | last_name        | postcode | email             | pool_number |
-      | 045200140    | LNAMESIXNINEFOUR | SY2 6LU  | email@outlook.com | 452300139   |
+      | juror_number | last_name        | postcode | email             | pool_number | environment |
+      | 045200140    | LNAMESIXNINEFOUR | SY2 6LU  | email@outlook.com | 452300139   | test        |
 
   @Regression
   Scenario Outline: English 3rd Party + Residency
 
-    Given I am on "Public" "ithc"
+    Given I am on "Public" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
@@ -736,7 +736,7 @@ Feature: Regression English_ReplyTypesIndicator
     And I press the "Submit" button
     And I see "You have completed your reply" on the page
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
     And I log in as "MODTESTBUREAU"
 
     When I click on the "Search" link
@@ -752,7 +752,7 @@ Feature: Regression English_ReplyTypesIndicator
     Then I see "Your work" on the page
 
     Then I click on the "Sign out" link
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
     When I log in as "CPASS"
     Then I see "<juror_number>" on the page
     Then I see "<juror_number>" has reply type indicator "Needs review"
@@ -761,12 +761,13 @@ Feature: Regression English_ReplyTypesIndicator
     And I see "Ineligible" on the page
 
     Examples:
-      | juror_number | last_name         | postcode | email             | pool_number |
-      | 045200141    | LNAMESEVENTWOZERO | SY2 6LU  | email@outlook.com | 452300140   |
+      | juror_number | last_name         | postcode | email             | pool_number | environment |
+      | 045200141    | LNAMESEVENTWOZERO | SY2 6LU  | email@outlook.com | 452300140   | test        |
 
   @Regression
   Scenario Outline: English 3rd Party + Bail
-    Given I am on "Public" "ithc"
+
+    Given I am on "Public" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
@@ -865,7 +866,7 @@ Feature: Regression English_ReplyTypesIndicator
     And I press the "Submit" button
     And I see "You have completed your reply" on the page
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
     And I log in as "MODTESTBUREAU"
 
     When I click on the "Search" link
@@ -881,7 +882,7 @@ Feature: Regression English_ReplyTypesIndicator
     Then I see "Your work" on the page
 
     Then I click on the "Sign out" link
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
     When I log in as "CPASS"
     Then I see "<juror_number>" on the page
     Then I see "<juror_number>" has reply type indicator "Needs review"
@@ -890,13 +891,13 @@ Feature: Regression English_ReplyTypesIndicator
     And I see "Ineligible" on the page
 
     Examples:
-      | juror_number | last_name           | postcode | email             | pool_number |
-      | 045200142    | LNAMESEVENFOURTHREE | SY2 6LU  | email@outlook.com | 452300141   |
+      | juror_number | last_name           | postcode | email             | pool_number | environment |
+      | 045200142    | LNAMESEVENFOURTHREE | SY2 6LU  | email@outlook.com | 452300141   | test        |
 
   @Regression
   Scenario Outline: English 3rd Party + Mental Health
 
-    Given I am on "Public" "ithc"
+    Given I am on "Public" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
@@ -996,7 +997,7 @@ Feature: Regression English_ReplyTypesIndicator
     And I press the "Submit" button
     And I see "You have completed your reply" on the page
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
     And I log in as "MODTESTBUREAU"
 
     When I click on the "Search" link
@@ -1012,7 +1013,7 @@ Feature: Regression English_ReplyTypesIndicator
     Then I see "Your work" on the page
 
     Then I click on the "Sign out" link
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
     When I log in as "CPASS"
     Then I see "<juror_number>" on the page
     Then I see "<juror_number>" has reply type indicator "Needs review"
@@ -1021,13 +1022,13 @@ Feature: Regression English_ReplyTypesIndicator
     And I see "Ineligible" on the page
 
     Examples:
-      | juror_number | last_name           | postcode | email             | pool_number |
-      | 045200143    | LNAMESEVENFOUREIGHT | SY2 6LU  | email@outlook.com | 452300142   |
+      | juror_number | last_name           | postcode | email             | pool_number | environment |
+      | 045200143    | LNAMESEVENFOUREIGHT | SY2 6LU  | email@outlook.com | 452300142   | test        |
 
   @Regression
   Scenario Outline: Multiple reply types
 
-    Given I am on "Public" "ithc"
+    Given I am on "Public" "<environment>"
 
     Given auto straight through processing has been enabled new schema
 
@@ -1086,7 +1087,7 @@ Feature: Regression English_ReplyTypesIndicator
 
 	#RESPONSE 1
 	#3rd party MH
-    Given I am on "Public" "ithc"
+    Given I am on "Public" "<environment>"
 
     And I set the radio button to "I am replying for someone else"
     And I press the "Continue" button
@@ -1181,7 +1182,7 @@ Feature: Regression English_ReplyTypesIndicator
 
 	#RESPONSE 2
 	#3rd party bail
-    Given I am on "Public" "ithc"
+    Given I am on "Public" "<environment>"
 
     And I set the radio button to "I am replying for someone else"
     And I press the "Continue" button
@@ -1275,7 +1276,7 @@ Feature: Regression English_ReplyTypesIndicator
 
 	#RESPONSE 3
 	#3rd party residency
-    Given I am on "Public" "ithc"
+    Given I am on "Public" "<environment>"
 
     And I set the radio button to "I am replying for someone else"
     And I press the "Continue" button
@@ -1369,7 +1370,7 @@ Feature: Regression English_ReplyTypesIndicator
 
 	#RESPONSE 4
 	#3rd party convictions
-    Given I am on "Public" "ithc"
+    Given I am on "Public" "<environment>"
 
     And I set the radio button to "I am replying for someone else"
     And I press the "Continue" button
@@ -1463,7 +1464,7 @@ Feature: Regression English_ReplyTypesIndicator
 
 	#RESPONSE 5
 	#1st bail
-    Given I am on "Public" "ithc"
+    Given I am on "Public" "<environment>"
 
     And I set the radio button to "I am replying for myself"
     And I press the "Continue" button
@@ -1540,7 +1541,7 @@ Feature: Regression English_ReplyTypesIndicator
 
 	#RESPONSE 6
 	#1st residency
-    Given I am on "Public" "ithc"
+    Given I am on "Public" "<environment>"
 
     And I set the radio button to "I am replying for myself"
     And I press the "Continue" button
@@ -1617,7 +1618,7 @@ Feature: Regression English_ReplyTypesIndicator
 
 	#RESPONSE 7
 	#1st details change
-    Given I am on "Public" "ithc"
+    Given I am on "Public" "<environment>"
 
     And I set the radio button to "I am replying for myself"
 
@@ -1702,7 +1703,7 @@ Feature: Regression English_ReplyTypesIndicator
 
 	#RESPONSE 8
 	#1st deferral
-    Given I am on "Public" "ithc"
+    Given I am on "Public" "<environment>"
 
     Then I see "Reply to a jury summons" on the page
 
@@ -1795,7 +1796,7 @@ Feature: Regression English_ReplyTypesIndicator
 
 	#RESPONSE 9
 	#1st excusal
-    Given I am on "Public" "ithc"
+    Given I am on "Public" "<environment>"
 
     Then I see "Reply to a jury summons" on the page
 
@@ -1877,7 +1878,7 @@ Feature: Regression English_ReplyTypesIndicator
 
 	#RESPONSE 10
 	#3rd Deceased
-    Given I am on "Public" "ithc"
+    Given I am on "Public" "<environment>"
 
     And I have submitted a third party English deceased response
       | part_no            | pool_number   | last_name   | postcode   | email   |
@@ -1885,13 +1886,13 @@ Feature: Regression English_ReplyTypesIndicator
 
 	#RESPONSE 11
 	#auto processed
-    Given I am on "Public" "ithc"
+    Given I am on "Public" "<environment>"
 
     And I have submitted a first party English straight through response
       | part_no               | pool_number   | last_name   | postcode   | email   |
       | <juror_number_eleven> | <pool_number> | <last_name> | <postcode> | <email> |
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     When I log in as "MODTESTBUREAU"
 
@@ -1934,9 +1935,9 @@ Feature: Regression English_ReplyTypesIndicator
     Then I see "Your work" on the page
 
     Then I click on the "Sign out" link
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     And I log in as "ARAMIS1"
 
@@ -2134,14 +2135,14 @@ Feature: Regression English_ReplyTypesIndicator
     And I see "Excusal" on the page
 
     Examples:
-      | juror_number | juror_number_two | juror_number_three | juror_number_four | juror_number_five | juror_number_six | juror_number_seven | juror_number_eight | juror_number_nine | juror_number_ten | juror_number_eleven | last_name | postcode | email             | pool_number | pool_number_two | pool_number_three |
-      | 045200144    | 045200145        | 045200146          | 045200147         | 045200148         | 045200149        | 045200150          | 045200151          | 045200152         | 045200153        | 045200154           | LNAME     | SY2 6LU  | email@outlook.com | 452300143   | 452300144       | 452300145         |
+      | environment  | juror_number | juror_number_two | juror_number_three | juror_number_four | juror_number_five | juror_number_six | juror_number_seven | juror_number_eight | juror_number_nine | juror_number_ten | juror_number_eleven | last_name | postcode | email             | pool_number | pool_number_two | pool_number_three |
+      | test         | 045200144    | 045200145        | 045200146          | 045200147         | 045200148         | 045200149        | 045200150          | 045200151          | 045200152         | 045200153        | 045200154           | LNAME     | SY2 6LU  | email@outlook.com | 452300143   | 452300144       | 452300145         |
 
 
   @RegressionSingle
   Scenario Outline: Multiple reply types in Awaiting Information
 
-    Given I am on "Public" "ithc"
+    Given I am on "Public" "<environment>"
 
     Given auto straight through processing has been enabled new schema
 
@@ -2192,7 +2193,7 @@ Feature: Regression English_ReplyTypesIndicator
 
 	#RESPONSE 1
 	#3rd party MH
-    Given I am on "Public" "ithc"
+    Given I am on "Public" "<environment>"
 
     And I set the radio button to "I am replying for someone else"
     And I press the "Continue" button
@@ -2287,7 +2288,7 @@ Feature: Regression English_ReplyTypesIndicator
 
 	#RESPONSE 2
 	#3rd party bail
-    Given I am on "Public" "ithc"
+    Given I am on "Public" "<environment>"
 
     And I set the radio button to "I am replying for someone else"
     And I press the "Continue" button
@@ -2381,7 +2382,7 @@ Feature: Regression English_ReplyTypesIndicator
 
 	#RESPONSE 3
 	#3rd party residency
-    Given I am on "Public" "ithc"
+    Given I am on "Public" "<environment>"
     And I set the radio button to "I am replying for someone else"
     And I press the "Continue" button
 
@@ -2474,7 +2475,7 @@ Feature: Regression English_ReplyTypesIndicator
 
 	#RESPONSE 4
 	#3rd party convictions
-    Given I am on "Public" "ithc"
+    Given I am on "Public" "<environment>"
     And I set the radio button to "I am replying for someone else"
     And I press the "Continue" button
 
@@ -2565,7 +2566,7 @@ Feature: Regression English_ReplyTypesIndicator
 
 	#RESPONSE 5
 	#1st bail
-    Given I am on "Public" "ithc"
+    Given I am on "Public" "<environment>"
 
     And I set the radio button to "I am replying for myself"
     And I press the "Continue" button
@@ -2642,7 +2643,7 @@ Feature: Regression English_ReplyTypesIndicator
 
 	#RESPONSE 6
 	#1st residency
-    Given I am on "Public" "ithc"
+    Given I am on "Public" "<environment>"
 
     And I set the radio button to "I am replying for myself"
     And I press the "Continue" button
@@ -2719,7 +2720,7 @@ Feature: Regression English_ReplyTypesIndicator
 
 	#RESPONSE 7
 	#1st details change
-    Given I am on "Public" "ithc"
+    Given I am on "Public" "<environment>"
 
     And I set the radio button to "I am replying for myself"
 
@@ -2805,7 +2806,7 @@ Feature: Regression English_ReplyTypesIndicator
 
 	#RESPONSE 8
 	#1st deferral
-    Given I am on "Public" "ithc"
+    Given I am on "Public" "<environment>"
 
     Then I see "Reply to a jury summons" on the page
 
@@ -2898,7 +2899,7 @@ Feature: Regression English_ReplyTypesIndicator
 
 	#RESPONSE 9
 	#1st excusal
-    Given I am on "Public" "ithc"
+    Given I am on "Public" "<environment>"
 
     Then I see "Reply to a jury summons" on the page
 
@@ -2979,7 +2980,7 @@ Feature: Regression English_ReplyTypesIndicator
     And I see "You have completed your reply" on the page
 
 	#BUREAU
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
     And I log in as "MODTESTBUREAU"
 
     When I click on the "Search" link
@@ -3021,9 +3022,9 @@ Feature: Regression English_ReplyTypesIndicator
     Then I see "Your work" on the page
 
     Then I click on the "Sign out" link
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
     When I log in as "CPASS"
 
 	#Then I take a screenshot
@@ -3234,5 +3235,5 @@ Feature: Regression English_ReplyTypesIndicator
     And I see "Needs review" on the page
 
     Examples:
-      | juror_number | juror_number_two | juror_number_three | juror_number_four | juror_number_five | juror_number_six | juror_number_seven | juror_number_eight | juror_number_nine | last_name | postcode | email             | pool_number | pool_number_two | pool_number_three |
-      | 045200155    | 045200156        | 045200157          | 045200158         | 045200159         | 045200160        | 045200161          | 045200162          | 045200163         | LNAME     | SY2 6LU  | email@outlook.com | 452300146   | 452300147       | 452300148         |
+      | environment   | juror_number | juror_number_two | juror_number_three | juror_number_four | juror_number_five | juror_number_six | juror_number_seven | juror_number_eight | juror_number_nine | last_name | postcode | email             | pool_number | pool_number_two | pool_number_three |
+      | test          | 045200155    | 045200156        | 045200157          | 045200158         | 045200159         | 045200160        | 045200161          | 045200162          | 045200163         | LNAME     | SY2 6LU  | email@outlook.com | 452300146   | 452300147       | 452300148         |

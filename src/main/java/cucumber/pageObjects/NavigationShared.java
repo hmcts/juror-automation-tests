@@ -1443,7 +1443,6 @@ public class NavigationShared {
             case "Your name":
                 clickTextId = "changeThirdPartyName";
                 break;
-            case "Address":
             case "Cyfeiriad":
                 clickTextId = "changeAddress";
                 break;
@@ -1528,6 +1527,9 @@ public class NavigationShared {
             case "Please tell us about any special arrangements or help the person you're answering for needs while they're doing jury service":
             case "Rhowch wybod inni am unrhyw drefniadau arbennig neu gymorth bydd yr unigolyn rydych yn ymateb ar ei ran ei angen wrth iddynt wasanaethu ar reithgor.":
                 clickTextId = "changeSpecialArrangements";
+                break;
+            case "Address":
+                clickTextId = "addressChangeAnchor";
                 break;
 
 //		expenses change links

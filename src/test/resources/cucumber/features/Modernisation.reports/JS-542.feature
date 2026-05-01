@@ -1,9 +1,9 @@
 Feature: JS-542
 
   @JurorTransformation
-  Scenario: Check Digital summons received report
+  Scenario Outline: Check Digital summons received report
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     Given paper responses are deleted new schema
     
@@ -33,11 +33,13 @@ Feature: JS-542
 #    Then I close the browser tab
 
     #dont see report as standard user
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
     When I log in as "TeamPickListUser"
     And I click on the "Apps" link
     And I click on the "Reporting" link
     And I do not see "Team lead reports" on the page
     And I do not see link with text "Digital summons received report"
 
-
+    Examples:
+      | environment |
+      | test        |

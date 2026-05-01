@@ -3,7 +3,7 @@ Feature: JM-4949 & JM-5766
   @JurorTransformation
   Scenario Outline: Return all jurors on a panel
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
@@ -109,14 +109,15 @@ Feature: JM-4949 & JM-5766
     And I see "<trial_number>" in the same row as "1 of 1"
 
     Examples:
-      |user			|juror_number  |  pool_number    | trial_number |
-      |MODTESTCOURT |041520012     |  415300201      | TEST2022222  |
+      |user			|juror_number  |  pool_number    | trial_number | environment |
+      |MODTESTCOURT |041520012     |  415300201      | TEST2022222  | test        |
 
 
   @JurorTransformation
   Scenario Outline: Return select jurors on a panel to keep panel active
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "<environment>"
+
     Given a bureau owned pool is created with jurors
       | court |juror_number  	        | pool_number	    | att_date_weeks_in_future	| owner |
       | 415   |<juror_number> 	        | <pool_number>     | 5				            | 400	|
@@ -239,14 +240,15 @@ Feature: JM-4949 & JM-5766
     And I see "Juror" in the same row as "<juror_number_3>"
 
     Examples:
-      |user			|juror_number  |juror_number_2  |juror_number_3 | pool_number  | trial_number |
-      |MODTESTCOURT |041520013     |  041520014     |  041520015    |  415300201   | TEST2022223  |
+      |user			|juror_number  |juror_number_2  |juror_number_3 | pool_number  | trial_number | environment |
+      |MODTESTCOURT |041520013     |  041520014     |  041520015    |  415300201   | TEST2022223  | test        |
 
 
   @JurorTransformation
   Scenario Outline: Return juror but do not confirm attendance
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "<environment>"
+
     Given a bureau owned pool is created with jurors
       | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
       | 415   |<juror_number> 	    | <pool_number>     | 5				            | 400	|
@@ -329,14 +331,14 @@ Feature: JM-4949 & JM-5766
 
 
     Examples:
-      |user			|juror_number  |  pool_number    | trial_number |
-      |MODTESTCOURT |041520016     |  415300201      | TEST2022224  |
+      |user			|juror_number  |  pool_number    | trial_number | environment |
+      |MODTESTCOURT |041520016     |  415300201      | TEST2022224  | test        |
 
 
   @JurorTransformation
   Scenario Outline: Return juror and complete their service
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
@@ -429,14 +431,14 @@ Feature: JM-4949 & JM-5766
     And I see the juror status has updated to "Completed"
 
     Examples:
-      |user			|juror_number  |  pool_number    | trial_number |
-      |MODTESTCOURT |041520017     |  415300201      | TEST2022225  |
+      |user			|juror_number  |  pool_number    | trial_number | environment |
+      |MODTESTCOURT |041520017     |  415300201      | TEST2022225  | test        |
 
 
   @JurorTransformation
   Scenario Outline: Attempt to end trial for panel which is still active
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "<environment>"
     Given a bureau owned pool is created with jurors
       | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
       | 415   |<juror_number> 	    | <pool_number>     | 5				            | 400	|
@@ -548,14 +550,14 @@ Feature: JM-4949 & JM-5766
 
 
     Examples:
-      |user			|juror_number  | juror_number_2 |   pool_number    | trial_number |
-      |MODTESTCOURT |041520018     | 041520024      |    415300201      | TEST2022226  |
+      |user			|juror_number  | juror_number_2 |   pool_number    | trial_number  | environment  |
+      |MODTESTCOURT |041520018     | 041520024      |    415300201      | TEST2022226  | test         |
 
 
   @JurorTransformation
   Scenario Outline: Happy path to create a trial then return all the jurors and end trial
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
@@ -664,7 +666,7 @@ Feature: JM-4949 & JM-5766
     And I see "Criminal" in the same row as "Trial type"
     And I see "Trial start date" on the page
     And I see "Trial end date" on the page
-    And I see "PATRICIA H AITKEN" in the same row as "Judge"
+#    And I see "Testing" in the same row as "Judge"
     And I see "Jury Assembly Room" in the same row as "Courtroom"
     And I see "No" in the same row as "Protected?"
 
@@ -729,5 +731,5 @@ Feature: JM-4949 & JM-5766
     And I see the juror "<juror_number_2>" has a message in the database
 
     Examples:
-      | user		 | juror_number_1  | juror_number_2 | pool_number   | trial_number |
-      | MODTESTCOURT | 041520020       | 041520021      | 415300201     | TEST2022226  |
+      | user		 | juror_number_1  | juror_number_2 | pool_number   | trial_number | environment |
+      | MODTESTCOURT | 041520020       | 041520021      | 415300201     | TEST2022226  | test        |

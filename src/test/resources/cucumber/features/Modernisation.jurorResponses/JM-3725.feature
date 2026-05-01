@@ -3,7 +3,7 @@ Feature: JM-3725
   @JurorTransformation
   Scenario Outline: Automatically disqualify a juror if they are over 75
 
-   Given I am on "Bureau" "ithc"
+   Given I am on "Bureau" "<environment>"
 
     And I log in as "<user>"
 
@@ -24,14 +24,14 @@ Feature: JM-3725
     And I see the juror record updated banner containing "Disqualified (age)"
 
        Examples:
-      | user          |
-      | MODTESTBUREAU |
+      | user          | environment |
+      | MODTESTBUREAU | test        |
 
 
   @JurorTransformationMulti
   Scenario Outline: Automatically disqualify a juror if they are under 18
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     And I log in as "<user>"
 
@@ -52,5 +52,5 @@ Feature: JM-3725
     And I see the juror record updated banner containing "Disqualified (age)"
 
     Examples:
-      | user          |
-      | MODTESTBUREAU |
+      | user          | environment |
+      | MODTESTBUREAU | test        |
