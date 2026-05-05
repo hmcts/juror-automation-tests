@@ -255,12 +255,12 @@ public class Groups {
 
 		String expectedText = "All content is available under the Open Government Licence v3.0, except where otherwise stated";
 
-		WebElement footerElement = driver.findElement(By.cssSelector("footer"));
+		WebElement footerElement = driver.findElement(By.cssSelector(".govuk-footer"));
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("arguments[0].scrollIntoView(true);", footerElement);
 
-
-		String mainText = driver.findElement(By.xpath("/html/body/footer/div/div/div[1]/span")).getText().trim();
+		String mainText = driver.findElement(
+				By.cssSelector(".govuk-footer__licence-description")).getText().trim();
 
 		mainText = mainText.replaceAll("\\s+", " ");
 
