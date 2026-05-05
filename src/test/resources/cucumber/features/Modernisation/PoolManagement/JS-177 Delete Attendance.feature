@@ -3,7 +3,7 @@ Feature: JS-177 Delete Attendance
   @JurorTransformation
   Scenario Outline: JS-177 I can press back after deleting an attendance
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     When a bureau owned pool is created with jurors
       | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
@@ -41,6 +41,7 @@ Feature: JS-177 Delete Attendance
     #confirm attendance
     Then I see "Record attendance" on the page
     When I press the "Confirm attendance" button
+    And I refresh the page
     And I press the "Confirm attendance list is correct" button
 
     #nav to juror record
@@ -59,5 +60,5 @@ Feature: JS-177 Delete Attendance
     And I do not see "There is a problem" on the page
 
     Examples:
-      | user		  | juror_number_1 | pool_number   |
-      | MODTESTCOURT  | 041500151      | 415300178     |
+      | user		  | juror_number_1 | pool_number   | environment |
+      | MODTESTCOURT  | 041500151      | 415300178     | test        |
