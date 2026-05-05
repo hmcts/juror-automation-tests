@@ -114,7 +114,7 @@ Feature: JM-252 JM-4302 Court user create new pools
   @JurorTransformationMulti
   Scenario Outline: Happy Path Test to create a new pool of jurors as court user with >1 court
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "test"
 
     And I log in as "<user>"
 
@@ -193,8 +193,10 @@ Feature: JM-252 JM-4302 Court user create new pools
     And I set "Number of jurors required in total" to "150"
     Then I press the "Continue" button
 
-    Then I click on the "Change" link
-    Then I click the change link for the chosen court
+    Then I click on the court change link on the pool creation screen
+    And I see "Request a new pool" on the page
+    Then I click on the court change link on the pool creation screen
+
     # check that user cannot see courts outside of jurisdiction
     Then I set input field with "ID" of "courtNameOrLocation" to "420"
     And I do not see "Doncaster (420)" on the page

@@ -137,7 +137,7 @@ Feature: JM-5072 - Dismiss random jurors
 
     And the user searches for juror record "<juror_number_3>" from the global search bar
     And I click on the "Attendance" link
-    And I click on the "Change" link
+    And I click the change link on the juror record attendance tab
     And I check the "Put juror on call" checkbox
     And I press the "Save" button
     Then I see "On call" in the same row as "Next due at court"

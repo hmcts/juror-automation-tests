@@ -3,7 +3,7 @@ Feature: JM-4247 Edit Juror Record as Court User
   @JurorTransformationMulti
   Scenario Outline: The system shall allow the Jury officer to edit a juror record for a juror in their control
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "test"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
@@ -40,13 +40,11 @@ Feature: JM-4247 Edit Juror Record as Court User
     And I see "When you enter a new name here, it will overwrite any previous pending name." on the page
     And I click on the "Cancel" link
 
-    And I click on the "Change" link
-    # change this section
-    And I click on the "Change" link
+    And I click on change address link on the juror record
     And I set "Address line 1" to "530 Test Name"
     And I set "Town or city" to "LONDON"
     And I click on the "Cancel" link
-    And I click on the "Change" link
+    And I click on change address link on the juror record
     And I set "Address line 1" to "530 Test Name"
     And I set "Town or city" to "LONDON"
     And I press the "Review Edit" button

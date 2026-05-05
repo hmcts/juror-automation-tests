@@ -31,7 +31,7 @@ Feature: JM-5178
 
     When the user searches for juror record "<juror_number>" from the global search bar
     And I click on the "Attendance" link
-    And I click on the "Change" link
+    And I click the change link on the juror record attendance tab
     And I see "When are they next due at court?" on the page
     And I press the "Save" button
     And I see error "Enter when the juror is next due at court or put the juror on call"

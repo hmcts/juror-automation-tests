@@ -700,5 +700,28 @@ public class StepDef_jurorRecord {
     public void checkLivingOverseasFlag(String livingOverseasFlagYN) {
         JUROR_RECORD.setLivingOverseasFlag(livingOverseasFlagYN);
     }
+    @When("^I click the change link on the juror record attendance tab$")
+    public void clickChangeAttendanceDate() {
+        JUROR_RECORD.clickChangeAttendanceDate();
+    }
 
+    @When("^I click on the change link in the same row as \"([^\"]*)\" on the record attendance screen$")
+    public void clickChangeAttendanceTimes(String jurorNumber) {
+        NAV.waitForPageLoad();
+        JUROR_RECORD.clickChangeAttendanceTimes(jurorNumber);
+    }
+
+    @When("^I click on the court change link on the pool creation screen$")
+    public void clickChangeCourt() {
+        JUROR_RECORD.clickChangeCourt();
+    }
+
+    @When("^I click on change address link on the juror record$")
+    public void clickChangeAddressLink() {
+        JUROR_RECORD.clickChangeAddress();
+    }
+    @When("^I click on the court home link for \"([^\"]*)\"$")
+    public void clickCourtHome(String court) {
+        JUROR_RECORD.clickCourtHome(court);
+    }
 }
