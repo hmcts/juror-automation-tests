@@ -112,4 +112,16 @@
   <suppress>
     <cve>CVE-2022-40152</cve>
   </suppress>
+  <suppress>
+    <cve>CVE-2026-42402</cve>
+  </suppress>
+  <suppress>
+    <cve>CVE-2026-42403</cve>
+  </suppress>
+  <suppress>
+    <cve>CVE-2026-42404</cve>
+  </suppress>
+  <suppress>
+    <cve>CVE-2026-42198</cve>
+  </suppress>
 </suppressions>
