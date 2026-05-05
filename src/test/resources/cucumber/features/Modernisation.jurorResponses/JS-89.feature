@@ -25,7 +25,7 @@ Feature: JS-89
   @JurorTransformation
   Scenario Outline: Confirm attendance as many times as wanted within a week
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number  	    | pool_number	        | att_date_weeks_in_future	| owner |
@@ -110,8 +110,8 @@ Feature: JS-89
     And I press the "Confirm attendance list is correct" button
 
     Examples:
-      |user			|juror_number  |juror_number_1 | pool_number   |
-      |MODTESTCOURT |041521779     |041521778      | 415321235     |
+      |user			|juror_number  |juror_number_1 | pool_number   | environment |
+      |MODTESTCOURT |041521779     |041521778      | 415321235     | test        |
 
 
   @JurorTransformation
