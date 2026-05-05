@@ -3,7 +3,7 @@ Feature:As a jury officer, I want to edit a juror's draft daily expenses
   @JurorTransformation
   Scenario Outline: Edit draft expenses for full day
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     When a bureau owned pool is created with jurors
       | court | juror_number       | pool_number      | att_date_weeks_in_future | owner |
@@ -133,13 +133,13 @@ Feature:As a jury officer, I want to edit a juror's draft daily expenses
       | Daily limit (Full day)      | £64.95                      |
 
     Examples:
-      | user         | juror_number  | pool_number    |
-      | MODTESTCOURT | 041520020     | 415300201      |
+      | user         | juror_number  | pool_number    | environment |
+      | MODTESTCOURT | 041520020     | 415300201      | test        |
 
   @JurorTransformation
   Scenario Outline: Edit draft expenses for half day and verify error message as Juror’s financial loss is over the daily limit
 
-    Given I am on "Bureau" "demo"
+    Given I am on "Bureau" "<environment>"
 
     When a bureau owned pool is created with jurors
       | court |juror_number      | pool_number      | att_date_weeks_in_future | owner  |
@@ -221,18 +221,18 @@ Feature:As a jury officer, I want to edit a juror's draft daily expenses
     Then I see "Juror’s financial loss is over the daily limit" on the page
     And I see "The amounts you entered will be automatically recalculated to limit the juror’s loss to £37.45." on the page
     And I see the following Half day daily day limit details on the loss over limit form
-      | Juror's loss                | £64.95                      |
-      | Daily limit (Half day)      | £37.45                   |
+      | Juror's loss                | £64.95    |
+      | Daily limit (Half day)      | £37.45    |
 
     Examples:
-      | user         | juror_number  | pool_number    |
-      | MODTESTCOURT | 041520020     | 415300201      |
+      | user         | juror_number  | pool_number    | environment |
+      | MODTESTCOURT | 041520020     | 415300201      | test        |
 
 
   @JurorTransformation
   Scenario Outline: Edit draft expenses for half day and verify error message as Amounts entered are more than court’s suggested daily limits
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     When a bureau owned pool is created with jurors
       | court | juror_number      | pool_number      | att_date_weeks_in_future | owner |
@@ -289,6 +289,7 @@ Feature:As a jury officer, I want to edit a juror's draft daily expenses
     And I set "Minute" to "30"
     And I set the radio button to "pm"
     And I press the "Continue" button
+    And I refresh the page
     And I press the "Confirm attendance list is correct" button
 
     And the user searches for juror record "<juror_number>" from the global search bar
@@ -339,5 +340,5 @@ Feature:As a jury officer, I want to edit a juror's draft daily expenses
     And I see "fname lname" on the page
 
     Examples:
-      | user         | juror_number  |  pool_number    |
-      | MODTESTCOURT | 041520020     |  415300201      |
+      | user         | juror_number  |  pool_number    | environment |
+      | MODTESTCOURT | 041520020     |  415300201      | test        |

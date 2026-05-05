@@ -3,7 +3,7 @@ Feature: JM-3899
   @JurorTransformationMulti
   Scenario Outline: Decline Deferral Request for Paper Response as Bureau user - Juror Record View
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
@@ -52,13 +52,13 @@ Feature: JM-3899
     And I see "Deferral refused (other)" on the page
 
     Examples:
-      | juror_number | pool_number  | user          |
-      | 041540009    | 415300409 	| MODTESTBUREAU |
+      | juror_number | pool_number  | user          | environment |
+      | 041540009    | 415300409 	| MODTESTBUREAU | test        |
 
   @JurorTransformationMulti
   Scenario Outline: Decline Deferral Request for Paper Response as Bureau user - New Pool
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
@@ -126,5 +126,5 @@ Feature: JM-3899
     And I see juror status is Responded with alert for deferral refused
 
     Examples:
-      | juror_number | pool_number  | user          |
-      | 045200268    | 452300247 	| MODTESTBUREAU |
+      | juror_number | pool_number  | user          | environment |
+      | 045200268    | 452300247 	| MODTESTBUREAU | test        |

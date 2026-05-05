@@ -3,7 +3,7 @@ Feature: JS-285
   @JurorTransformation
   Scenario Outline: Check date picker for record attendance screen
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
@@ -34,7 +34,6 @@ Feature: JS-285
     And I select "156" days in the past from the date picker
     And I select "3" days in the past from the date picker
 
-
     Examples:
-      |user			| juror_number1  | pool_number|
-      |MODTESTCOURT | 041533397      | 415369213  |
+      |user			| juror_number1  | pool_number| environment |
+      |MODTESTCOURT | 041533397      | 415369213  | test        |

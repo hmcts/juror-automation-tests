@@ -3,7 +3,7 @@ Feature: JM-3671 Validation and Errors
   @JurorTransformation
   Scenario Outline: Coroners court warning - no court or jurors requested entered
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     And I log in as "<user>"
 
@@ -20,13 +20,13 @@ Feature: JM-3671 Validation and Errors
     And I see "The number of jurors you can request must be a number between 30 and 250" on the page
 
     Examples:
-      | user	      |
-      | MODTESTBUREAU |
+      | user	      | environment |
+      | MODTESTBUREAU | test        |
 
   @JurorTransformation
   Scenario Outline: Coroners court warning - invalid court
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     And I log in as "<user>"
 
@@ -65,13 +65,13 @@ Feature: JM-3671 Validation and Errors
     And I see error "This court does not exist. Please enter a name or code of an existing court"
 
     Examples:
-      | user	      | selectedCourt | courtCode | displayCourt |
-      | MODTESTBUREAU | CHESTER       | 415       | Chester      |
+      | user	      | selectedCourt | courtCode | displayCourt | environment |
+      | MODTESTBUREAU | CHESTER       | 415       | Chester      | test        |
 
   @JurorTransformation
   Scenario Outline: Coroners court warning - invalid number of jurors
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     And I log in as "<user>"
 
@@ -106,13 +106,13 @@ Feature: JM-3671 Validation and Errors
 
 
     Examples:
-      | user	      | selectedCourt | courtCode | displayCourt |
-      | MODTESTBUREAU | CHESTER       | 415       | Chester      |
+      | user	      | selectedCourt | courtCode | displayCourt | environment  |
+      | MODTESTBUREAU | CHESTER       | 415       | Chester      | test         |
 
   @JurorTransformation
   Scenario Outline: Coroners court warning - invalid requested by details
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     And I log in as "<user>"
 
@@ -159,13 +159,13 @@ Feature: JM-3671 Validation and Errors
     And I see "Enter a valid requested date for this pool - DD/MM/YYYY" on the page
 
     Examples:
-      | user	      | selectedCourt | courtCode | displayCourt |
-      | MODTESTBUREAU | CHESTER       | 415       | Chester      |
+      | user	      | selectedCourt | courtCode | displayCourt | environment  |
+      | MODTESTBUREAU | CHESTER       | 415       | Chester      | test         |
 
   @JurorTransformation
   Scenario Outline: Coroners court warning - requested on date cannot be date in the past
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     And I log in as "<user>"
 
@@ -201,15 +201,18 @@ Feature: JM-3671 Validation and Errors
     And I see error "Requested date must be in the future"
 
     Examples:
-      | user	      | selectedCourt | courtCode | displayCourt | noJurors | name   | phone       | email      |
-      | MODTESTBUREAU | CHESTER       | 415       | Chester      | 150      | A Name | 07888888888 | e@mail.com |
+      | user	      | selectedCourt | courtCode | displayCourt | noJurors | name   | phone       | email      | environment |
+      | MODTESTBUREAU | CHESTER       | 415       | Chester      | 150      | A Name | 07888888888 | e@mail.com | test        |
 
   @JurorTransformation
   Scenario Outline: Coroners court warning - invalid input on add jurors
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
+
     Given coroners pools older than today have been cleared down new schema
+
     Given voters for court "415" have been updated to postcode "CH1 1AN" new schema
+
     And I log in as "<user>"
 
     When I navigate to the pool request screen
@@ -304,13 +307,13 @@ Feature: JM-3671 Validation and Errors
       | rowsOfCitizens | 151            |
 
     Examples:
-      | user	      | selectedCourt | courtCode | displayCourt | noJurors | name   | email      | phone       |
-      | MODTESTBUREAU | CHESTER       | 415       | Chester      | 150      | A Name | e@mail.com | 07889999999 |
+      | user	      | selectedCourt | courtCode | displayCourt | noJurors | name   | email      | phone       | environment |
+      | MODTESTBUREAU | CHESTER       | 415       | Chester      | 150      | A Name | e@mail.com | 07889999999 | test        |
 
   @JurorTransformation
   Scenario Outline: Coroners court warning - no voters available
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
     Given coroners pools older than today have been cleared down new schema
 
     And I log in as "<user>"
@@ -382,5 +385,5 @@ Feature: JM-3671 Validation and Errors
       | rowsOfCitizens | 0              |
 
     Examples:
-      | user	      | courtCode | displayCourt | noJurors | name   | phone       | email      |
-      | MODTESTBUREAU | 423       | Exeter       | 150      | A Name | 07888888888 | e@mail.com |
+      | user	      | courtCode | displayCourt | noJurors | name   | phone       | email      | environment |
+      | MODTESTBUREAU | 423       | Exeter       | 150      | A Name | 07888888888 | e@mail.com | test        |

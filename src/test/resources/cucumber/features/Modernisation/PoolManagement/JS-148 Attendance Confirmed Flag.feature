@@ -3,7 +3,7 @@ Feature: JS-148
   @JurorTransformation
   Scenario Outline: Testing confirming multiple times a day
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     #set up pool and 4 jurors
     Given a bureau owned pool is created with jurors
@@ -191,7 +191,7 @@ Feature: JS-148
     And I see the confirmed status for juror "<juror_number_3>" is "-"
     And I see the confirmed status for juror "<juror_number_4>" is "-"
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     And I log in as "<sjo_user>"
     When I click on the "Apps" link
@@ -241,7 +241,7 @@ Feature: JS-148
     And I see the confirmed status for juror "<juror_number_3>" is "Confirmed"
     And I see the confirmed status for juror "<juror_number_4>" is "Confirmed"
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     And I log in as "<user>"
     When I click on the "Apps" link
@@ -257,5 +257,5 @@ Feature: JS-148
     And I see the confirmed status for juror "<juror_number_4>" is "Confirmed"
 
     Examples:
-      | user         | sjo_user | juror_number_1 | juror_number_2  | juror_number_3  | juror_number_4  | pool_number | trial_number  |
-      | MODTESTCOURT | SJOUSER  | 041500109      | 041500110       | 041500111       | 041500112       | 415300175   | TRIALJS148    |
+      | user         | sjo_user | juror_number_1 | juror_number_2  | juror_number_3  | juror_number_4  | pool_number | trial_number  | environment |
+      | MODTESTCOURT | SJOUSER  | 041500109      | 041500110       | 041500111       | 041500112       | 415300175   | TRIALJS148    | test        |

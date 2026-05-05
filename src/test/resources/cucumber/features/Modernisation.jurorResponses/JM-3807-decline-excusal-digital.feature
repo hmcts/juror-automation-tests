@@ -3,7 +3,7 @@ Feature: Decline excusal digital
   @JurorTransformation
   Scenario Outline: Test to decline excusal on digital response
     
-    Given I am on "Public" "ithc"
+    Given I am on "Public" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
@@ -13,7 +13,7 @@ Feature: Decline excusal digital
     | part_no	        | pool_number   | last_name		| postcode	  | email |
 	| <juror_number>	| <pool_number>	| <last_name>	| <postcode>  |<email>|
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     And I log in as "<user>"
 
@@ -30,6 +30,6 @@ Feature: Decline excusal digital
     And I see "Summoned" on the page
 
     Examples:
-      | dropDown       | user          | juror_number   | pool_number   | last_name   | postcode | email      |
-      | C - CHILD CARE | MODTESTBUREAU | 041518981      | 415131102     | lname       | CH2 2AA  | e@mail.com |
-      | D - DECEASED   | MODTESTBUREAU | 041518982      | 415131103     | lname       | CH2 2AA  | e@mail.com |
+      | dropDown       | user          | juror_number   | pool_number   | last_name   | postcode | email      | environment |
+      | C - CHILD CARE | MODTESTBUREAU | 041518981      | 415131102     | lname       | CH2 2AA  | e@mail.com | test        |
+      | D - DECEASED   | MODTESTBUREAU | 041518982      | 415131103     | lname       | CH2 2AA  | e@mail.com | test        |
