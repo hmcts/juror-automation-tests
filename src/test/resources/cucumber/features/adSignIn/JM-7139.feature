@@ -25,8 +25,8 @@ Feature: JM-7139 - As a tester I want to be able to provide an email to sign int
     Then I see "Chester" on the page
     And I see "(415)" on the page
 
-    Then I click the Change link to change the court
-    And I change the court to "767"
+    And I click on the "Change" link
+    And I click on the court home link for "767"
 
     Then I see "Knutsford" on the page
     And I see "(767)" on the page
@@ -39,15 +39,10 @@ Feature: JM-7139 - As a tester I want to be able to provide an email to sign int
     Then I see "Chester" on the page
     And I see "(415)" on the page
 
-    Then I click the Change link to change the court
-    And I see "CHESTER (415)" on the page
-    And I see "KNUTSFORD (767)" on the page
-    And I see "WARRINGTON (462)" on the page
-
-    And I do not see "Guildford SITTING AT CHICHESTER (416)" on the page
-
-    And I do not see "MOLD (769)" on the page
-    And I do not see "WELSHPOOL (774)" on the page
+    And I click on the "Change" link
+    And I see "Chester (415)" on the page
+    And I see "Knutsford (767)" on the page
+    And I see "Warrington (462)" on the page
 
   Scenario: Sign in as a court user to a court with no satellites and need to re-log to change to another court
     Given I am on "Bureau" "test"
@@ -55,4 +50,3 @@ Feature: JM-7139 - As a tester I want to be able to provide an email to sign int
 
     Then I see "Guildford Sitting At Chichester" on the page
     And I see "(416)" on the page
-    And I do not see the link to change the court

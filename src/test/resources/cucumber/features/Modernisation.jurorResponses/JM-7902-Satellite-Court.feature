@@ -46,7 +46,7 @@ Feature: JM-7902
     And I press the "Check in juror" button
     And I see "<juror_number1>" in the same row as "9:00am"
 
-    And I click on the "Change" link
+    And I click on the change link in the same row as "<juror_number1>" on the record attendance screen
     And I see "Enter check in time" on the page
     And I see "Enter check out time" on the page
     And I see "Delete attendance and mark as absent" on the page

@@ -53,7 +53,7 @@
       When the user searches for juror record "<juror_number>" from the global search bar
       
       And I click on the "Attendance" link
-      And I click on the "Change" link
+      And I click the change link on the juror record attendance tab
       And I check the "Put juror on call" checkbox
       And I press the "Save" button
 

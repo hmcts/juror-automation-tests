@@ -34,7 +34,7 @@ public class JurorRecord {
     @FindBy(className = "govuk-heading-l")
     WebElement heading;
 
-    @FindBy(xpath = "//div/strong[@class='govuk-tag govuk-tag--teal']")
+    @FindBy(xpath = "//div/strong[@class='govuk-tag govuk-tag--turquoise']")
     WebElement jurorRecordTag;
 
     @FindBy(xpath = "//a[contains(@class, 'govuk-button') and normalize-space(text()) ='Enter summons reply']")
@@ -234,6 +234,13 @@ public class JurorRecord {
     @FindBy(xpath = "//input[@id='livingOverseas-2']")
     public WebElement livingOverseasFlagNo;
 
+    @FindBy(xpath = "//a[contains(@href,'/juror-management/record') and contains(@href,'change-attendance-date')]")
+    WebElement changeAttendanceDate;
+
+    @FindBy(id = "addressChangeAnchor")
+    WebElement changeAddress;
+
+
     public String getHeading() {
         return heading.getText();
     }
@@ -258,6 +265,23 @@ public class JurorRecord {
         addOrEditNotes.click();
     }
 
+    public void clickChangeAttendanceDate() { changeAttendanceDate.click(); }
+
+    public void clickChangeAttendanceTimes(String jurorNumber) {
+        String xpath = "//tr[.//text()[contains(.,'" + jurorNumber + "')]]//a[contains(@id,'changeLink')]";
+        driver.findElement(By.xpath(xpath)).click();
+    }
+
+    public void clickChangeAddress() { changeAddress.click(); }
+
+    public void clickCourtHome(String courtId) {
+        driver.findElement(By.xpath("//a[contains(@href, '/auth/court/" + courtId + "')]")).click();
+    }
+    public void clickChangeCourt() {
+        driver.findElement(
+                By.xpath("/html/body/div[4]/main/div/div/form/dl[1]/div/dd[2]/a")
+        ).click();
+    }
     public void clickLogNewContact() {
         logNewContact.click();
     }
