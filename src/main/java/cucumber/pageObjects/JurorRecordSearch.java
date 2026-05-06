@@ -105,7 +105,6 @@ public class JurorRecordSearch {
     public Boolean searchButtonInvisible() {
         List<WebElement> elements = driver.findElements(By.id("search-button"));
         return elements.isEmpty();
-
     }
 
     public String getJurorNumber() {

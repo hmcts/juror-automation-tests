@@ -933,6 +933,16 @@ public class StepDef_jurorpool {
         assertTrue("search button was visible", JUROR_RECORD_SEARCH.searchButtonInvisible());
     }
 
+    @Then("^I do not see Change Attendance link on Overview tab$")
+    public void changeLinkToChangeAttendanceIsNotDisplayed(){
+        JUROR_RECORD.changeAttendanceLinkNotVisible();
+    }
+
+    @Then("^I see Change Attendance link on Overview tab$")
+    public void changeLinkToChangeAttendanceIsDisplayed(){
+        JUROR_RECORD.changeAttendanceLinkIsVisible();
+    }
+
     @When("^I check the Apps button is not visible$")
     public void appsButtonInvisible() {
         assertTrue("apps button is visible", HEADER_PAGE.appsButtonInvisible());
