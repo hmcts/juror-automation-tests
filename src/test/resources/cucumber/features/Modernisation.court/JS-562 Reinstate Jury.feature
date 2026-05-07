@@ -3,8 +3,8 @@ Feature: As a court officer I want to reinstate a jury for active trial
   @JurorTransformationMulti
   Scenario Outline: Reinstate Jury
 
-    Given I am on "Bureau" "ithc"
-#
+    Given I am on "Bureau" "<environment>"
+
     Given a bureau owned pool is created with jurors
       | court | juror_number     | pool_number     | att_date_weeks_in_future | owner |
       | 415   | <juror_number01> | <pool_number01> | 0                        | 400   |
@@ -249,5 +249,5 @@ Feature: As a court officer I want to reinstate a jury for active trial
     Then on "JUROR_MOD" . "JUROR_POOL" I see "STATUS" is "2" where "JUROR_NUMBER" is "<juror_number16>" new schema
 
     Examples:
-      | juror_number01 | juror_number02 | juror_number03 | juror_number04 | juror_number05 | juror_number06 | juror_number07 | juror_number08 | juror_number09 | juror_number10 | juror_number11 | juror_number12 | juror_number13| juror_number14 | juror_number15 | juror_number16 | pool_number01 |
-      | 076798031      | 076798032      | 076798033      | 076798034      | 076798035      | 076798036      | 076798037      | 076798038      | 076798039      | 076798040      | 076798041      | 076798042      | 076798043     | 076798044      | 076798045      | 076798046      | 767980915      |
+      | juror_number01 | juror_number02 | juror_number03 | juror_number04 | juror_number05 | juror_number06 | juror_number07 | juror_number08 | juror_number09 | juror_number10 | juror_number11 | juror_number12 | juror_number13| juror_number14 | juror_number15 | juror_number16 | pool_number01 | environment |
+      | 076798031      | 076798032      | 076798033      | 076798034      | 076798035      | 076798036      | 076798037      | 076798038      | 076798039      | 076798040      | 076798041      | 076798042      | 076798043     | 076798044      | 076798045      | 076798046      | 767980915     | test        |
