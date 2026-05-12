@@ -137,7 +137,7 @@ Feature: JS-121 Set Multiple Jurors to On Call
   @JurorTransformationMulti
   Scenario Outline: Unappy Path Set multiple jurors in a pool to On Call
 
-    Given I am on "Bureau" "demo"
+    Given I am on "Bureau" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number  	    | pool_number	| att_date_weeks_in_future	| owner |
@@ -353,5 +353,5 @@ Feature: JS-121 Set Multiple Jurors to On Call
     And I see "On Call" in the same row as "<juror_number_12>"
 
     Examples:
-      | user         | pool_number  | juror_number_1  | juror_number_2  | juror_number_3  | juror_number_4  | juror_number_5  | juror_number_6  | juror_number_7  | juror_number_8  | juror_number_9  | juror_number_10  | juror_number_11  | juror_number_12  |
-      | MODTESTCOURT | 415300174    | 041500095       | 041500096       | 041500097       | 041500098       | 041500099       | 041500100       | 041500101       | 041500102       | 041500103       | 041500104        | 041500105        | 041500106        |
+      | user         | pool_number  | juror_number_1  | juror_number_2  | juror_number_3  | juror_number_4  | juror_number_5  | juror_number_6  | juror_number_7  | juror_number_8  | juror_number_9  | juror_number_10  | juror_number_11  | juror_number_12  | environment |
+      | MODTESTCOURT | 415300174    | 041500095       | 041500096       | 041500097       | 041500098       | 041500099       | 041500100       | 041500101       | 041500102       | 041500103       | 041500104        | 041500105        | 041500106        | ithc        |

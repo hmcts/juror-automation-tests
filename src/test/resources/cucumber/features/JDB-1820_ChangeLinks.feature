@@ -1,9 +1,9 @@
 Feature: JDB-1820 Change links
 
-@Regression @NewSchemaConverted
+@Regression
 Scenario Outline: Testing all change links on Check your answers screen
 
-	Given I am on "Public" "demo"
+	Given I am on "Public" "<environment>"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -105,7 +105,7 @@ Scenario Outline: Testing all change links on Check your answers screen
 	And I press the "Continue" button
 	Then I see text "FirstNameA LastNameB" in the same row as "Name"
 	
-	When I click on the "Change" link in the same row as "Address"
+	When I click on "Change" in the same row as "Address"
 	Then I see "What is your address?" on the page
 	And I set "Address line 1" to "123 STREET NAME"
 	And I set "Town or city" to "ChangedTown"
@@ -202,5 +202,5 @@ Scenario Outline: Testing all change links on Check your answers screen
 	Then I see "We may get in touch to talk about the help you need so you can do jury service." on the page
 	
 Examples:
-	| juror_number	| last_name			| postcode	| email           	| pool_number  	|
-	| 045200179		| LNAMEONETWOFOUR	| CH1 2AN	| email@outlook.com	| 452300164		|
+	| juror_number	| last_name			| postcode	| pool_number  	| environment |
+	| 045200179		| LNAMEONETWOFOUR	| CH1 2AN	| 452300164		| ithc        |
