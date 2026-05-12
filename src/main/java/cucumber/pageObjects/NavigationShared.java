@@ -1398,6 +1398,8 @@ public class NavigationShared {
                                 + "//div//dd[contains(text(),\"" + searchText + "\")]//ancestor::div//dt[text()[contains(., \"" + nextToText + "\")]]"
                                 + " | "
                                 + "//div//dd/*[contains(text(),\"" + nextToText + "\")]//ancestor::dd/div[contains(text(),\"" + searchText + "\")]"
+                                + " | "
+                                + "//div/dt[contains(text(),\"" + nextToText + "\")]//ancestor::div/dd/span[contains(text(),\"" + searchText + "\")]"
                 ));
         log.info("Found =>" + searchText + "<= in the same row as =>" + nextToText + "<= as expected");
 
@@ -1418,7 +1420,11 @@ public class NavigationShared {
                                 + "|"
                                 + "//table//tr//*[contains(text(),\"" + nextToText + "\")]//ancestor::tr//a[text()[contains(., \"" + clickText + "\")]]"
                                 + "|"
-                                + "//td/a[contains(text(),\"" + nextToText + "\")]/../..//td//a[text()[contains(., \"" + clickText + "\")]]"));
+                                + "//td/a[contains(text(),\"" + nextToText + "\")]/../..//td//a[text()[contains(., \"" + clickText + "\")]]"
+                                + " | "
+                                + "//div/dt[contains(text(),\"" + nextToText + "\")]//ancestor::div/dd/span[contains(text(),\"" + clickText + "\")]"
+                                + " | "
+                                + "//div/dt[contains(text(),\"" + nextToText + "\")]//ancestor::div/dd/a[contains(text(),\"" + clickText + "\")]"));
 
         wait.waitForClickableElement(click_text);
         click_onElement(click_text);

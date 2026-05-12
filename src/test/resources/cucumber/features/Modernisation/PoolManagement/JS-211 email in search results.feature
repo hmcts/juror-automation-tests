@@ -3,7 +3,7 @@ Feature: JS-211
   @JurorTransformationMulti
   Scenario Outline: Juror email displayed on search results for Bureau users
 
-    Given I am on "Bureau" "demo"
+    Given I am on "Bureau" "<environment>"
 
     And I log in as "<user>"
 
@@ -59,12 +59,11 @@ Feature: JS-211
     When I select that the summons reply has been signed
     And I click done on the juror summons reply page
 
-    And I press the "Process reply" button
-    And I set the radio button to "Mark as responded"
-    And I press the "Continue" button
-    Then I see "Mark as responded" on the page
-    And I check the "Mark juror as 'responded'" checkbox
-    And I press the "Confirm" button
+    And I press the "Yes, process now" button
+    And I see "successfully processed: Responded" on the page
+    And I click on the "<juror_number_3>" link
+
+    And I see the juror's status on the juror record screen is "Responded"
 
     #search results page displays email
     When I select the global search
@@ -80,10 +79,9 @@ Feature: JS-211
     And I see "longnameemaillongnameemaillongnameemail@email.com" in the same row as "<juror_number_2>"
     And I see "-" in the same row as "<juror_number_3>"
 
-
     Examples:
-      | juror_number_1  | juror_number_2  | juror_number_3  | pool_number   | user         |
-      | 041500170       | 041500171       | 041500172       | 415300250     | MODTESTBUREAU|
+      | juror_number_1  | juror_number_2  | juror_number_3  | pool_number   | user         | environment  |
+      | 041500170       | 041500171       | 041500172       | 415300250     | MODTESTBUREAU| ithc         |
 
   @JurorTransformationMulti
   Scenario Outline: Juror email not displayed on search results for Court users

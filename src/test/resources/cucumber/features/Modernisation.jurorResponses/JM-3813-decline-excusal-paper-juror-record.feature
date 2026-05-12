@@ -3,7 +3,7 @@ Feature: JM-3813
   @JurorTransformationMulti
   Scenario Outline: Decline Excusal Request for Paper Response as Bureau user - Juror Record View
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court  | juror_number  	| pool_number	   | att_date_weeks_in_future	| owner |
@@ -55,5 +55,5 @@ Feature: JM-3813
     And I see the reply method of the summons reply on juror record is "Paper"
 
     Examples:
-      | user          | juror_number  | pool_number   |fname           |lname          |
-      | MODTESTBUREAU | 041500078     | 415300168     |FNAMETWOZEROTWO |LNAMETWOZEROTWO|
+      | user          | juror_number  | pool_number   |fname           |lname          | environment |
+      | MODTESTBUREAU | 041500078     | 415300168     |FNAMETWOZEROTWO |LNAMETWOZEROTWO| test        |
