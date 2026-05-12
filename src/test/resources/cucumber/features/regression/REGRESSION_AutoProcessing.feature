@@ -1,11 +1,9 @@
 Feature: Regression Test AUTOPROCESSING
 
-@Features @JDB-6701
+@RegressionSingle
 Scenario Outline: submit responses which are auto processed
 
-#	return to @Regression when bug fixed
-
-	Given I am on "Public" "ithc"
+	Given I am on "Public" "<environment>"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  	| pool_number	| att_date_weeks_in_future	| owner |
@@ -165,10 +163,7 @@ Scenario Outline: submit responses which are auto processed
 	And I do not see any links on the page that open to a new page without an alt text
 
 	#Auto Processed Deceased
-	Given I am on "Public" "test"
-
-	And juror "<juror_number2>" has "LAST_NAME" as "<last_name>" new schema
-	And juror "<juror_number2>" has "POSTCODE" as "<postcode>" new schema
+	Given I am on "Public" "<environment>"
 
 	And I set the radio button to "I am replying for someone else"
 	And I press the "Continue" button
@@ -212,10 +207,7 @@ Scenario Outline: submit responses which are auto processed
 	Given auto straight through processing has been disabled new schema
 
 	#Auto Processed Underage
-	Given I am on "Public" "test"
-
-	And "<juror_number3>" has "LAST_NAME" as "<last_name>"
-	And "<juror_number3>" has "POSTCODE" as "<postcode>"
+	Given I am on "Public" "<environment>"
 
 	And I set the radio button to "I am replying for myself"
 	And I press the "Continue" button
@@ -264,10 +256,7 @@ Scenario Outline: submit responses which are auto processed
 	Given auto straight through processing has been disabled new schema
 
 	#Auto Processing overage
-	Given I am on "Public" "test"
-
-	And juror "<juror_number4>" has "LAST_NAME" as "<last_name>" new schema
-	And juror "<juror_number4>" has "POSTCODE" as "<postcode>" new schema
+	Given I am on "Public" "<environment>"
 
 	And I set the radio button to "I am replying for myself"
 	And I press the "Continue" button
@@ -275,6 +264,7 @@ Scenario Outline: submit responses which are auto processed
 	When I set "9-digit juror number" to "<juror_number4>"
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
+
 	And I press the "Continue" button
 
 	And I see "Is the name we have for you correct?" on the page
@@ -296,7 +286,7 @@ Scenario Outline: submit responses which are auto processed
 	#On DoB Screen
 	When I set "Day" to "27"
 	And I set "Month" to "04"
-	And I set "Year" to "1900"
+	And I set "Year" to "1926"
 
 	#Moving past DoB Section
 	And I press the "Continue" button
@@ -315,7 +305,7 @@ Scenario Outline: submit responses which are auto processed
 	#Disable auto processing
 	Given auto straight through processing has been disabled new schema
 
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "<environment>"
 	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
@@ -331,43 +321,38 @@ Scenario Outline: submit responses which are auto processed
 	Then I see "Completed" in the same row as "<juror_number4>"
 	And I see "AUTO" in the same row as "<juror_number4>"
 	
-	Then on "JUROR" . "POOL" I see "RESPONDED" is "Y" where "juror_number" is "<juror_number1>"
-	Then on "JUROR" . "POOL" I see "USER_EDTQ" is "AUTO" where "juror_number" is "<juror_number1>"
+	Then on "JUROR_MOD" . "JUROR_POOL" I see "STATUS" is "2" where "juror_number" is "<juror_number1>"
+	Then on "JUROR_MOD" . "JUROR_POOL" I see "USER_EDTQ" is "AUTO" where "juror_number" is "<juror_number1>"
 	
 	#JDB-3453
-	
-	Then on "JUROR_MOD" . "JUROR" I see "WELSH" is null where "juror_number" is "<juror_number1>"
-	Then on "JUROR_MOD" . "JUROR" I see "RESPONDED" is "Y" where "juror_number" is "<juror_number2>"
-	Then on "JUROR_MOD" . "JUROR" I see "USER_EDTQ" is "AUTO" where "juror_number" is "<juror_number2>"
-	
-	#JDB-3453
-	
-	Then on "JUROR_MOD" . "JUROR" I see "WELSH" is null where "juror_number" is "<juror_number2>" and "owner" is "400"
-	Then on "JUROR_MOD" . "JUROR" I see "RESPONDED" is "Y" where "juror_number" is "<juror_number3>"
-	Then on "JUROR_MOD" . "JUROR" I see "USER_EDTQ" is "AUTO" where "juror_number" is "<juror_number3>"
+
+	Then on "JUROR_MOD" . "JUROR_POOL" I see "STATUS" is "5" where "juror_number" is "<juror_number2>"
+	Then on "JUROR_MOD" . "JUROR_POOL" I see "USER_EDTQ" is "AUTO" where "juror_number" is "<juror_number2>"
 	
 	#JDB-3453
 	
 	Then on "JUROR_MOD" . "JUROR" I see "WELSH" is null where "juror_number" is "<juror_number3>" and "owner" is "400"
-	Then on "JUROR_MOD" . "JUROR" I see "RESPONDED" is "Y" where "juror_number" is "<juror_number4>"
-	Then on "JUROR_MOD" . "JUROR" I see "USER_EDTQ" is "AUTO" where "juror_number" is "<juror_number4>"
+	Then on "JUROR_MOD" . "JUROR_POOL" I see "STATUS" is "6" where "juror_number" is "<juror_number3>"
+	Then on "JUROR_MOD" . "JUROR_POOL" I see "USER_EDTQ" is "AUTO" where "juror_number" is "<juror_number3>"
 	
 	#JDB-3453
 	
-	Then on "JUROR_MOD" . "JUROR" I see "WELSH" is null where "juror_number" is "<juror_number4>"
-	
+	Then on "JUROR_MOD" . "JUROR" I see "WELSH" is null where "juror_number" is "<juror_number4>" and "owner" is "400"
+	Then on "JUROR_MOD" . "JUROR_POOL" I see "STATUS" is "6" where "juror_number" is "<juror_number4>"
+	Then on "JUROR_MOD" . "JUROR_POOL" I see "USER_EDTQ" is "AUTO" where "juror_number" is "<juror_number4>"
+
 	# finish test with auto processing enabled
 	
 	Given auto straight through processing has been enabled new schema
 	
 Examples:
-	|juror_number1	|juror_number2	|juror_number3	|juror_number4	|pool_number|last_name 	|postcode	|email		|
-	|641500607		|641500327		|641500339		|641500376 		|415170401	|LNAME 		|CH1 2AN	|e@mail.com	|
+	|juror_number1	|juror_number2	|juror_number3	|juror_number4	|pool_number|last_name 	|postcode	|email		| environment |
+	|641500607		|641500327		|641500339		|641500376 		|415170401	|LNAME 		|CH1 2AN	|e@mail.com	| test        |
 
 @Regression
 Scenario Outline: Check that when name is changed, the response is NOT auto processed
 
-	Given I am on "Public" "ithc"
+	Given I am on "Public" "<environment>"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -487,7 +472,7 @@ Scenario Outline: Check that when name is changed, the response is NOT auto proc
 	Then I see "We have sent you an email to say you have replied to your jury summons." on the page
 	
 	#Bureau
-	Given I am on "Bureau" "ithc"
+	Given I am on "Bureau" "<environment>"
 	When I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -500,13 +485,13 @@ Scenario Outline: Check that when name is changed, the response is NOT auto proc
 	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "STAFF_ASSIGNMENT_DATE" is null where "JUROR_NUMBER" is "<juror_number>"
 	
 Examples:
-	| juror_number	| last_name	| postcode	| email 			| pool_number	|
-	| 045200212		| DOE		| SW1H 9AJ	| email@outlook.com	| 452300197		|
+	| juror_number	| last_name	| postcode	| pool_number	| environment |
+	| 045200212		| DOE		| SW1H 9AJ	| 452300197		| test        |
 	
 @Regression
 Scenario Outline: Check that when address is changed, the response is NOT auto processed
 
-	Given I am on "Public" "ithc"
+	Given I am on "Public" "<environment>"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -626,7 +611,7 @@ Scenario Outline: Check that when address is changed, the response is NOT auto p
 	Then I see "We have sent you an email to say you have replied to your jury summons." on the page
 	
 	#Bureau
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "<environment>"
 	When I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -638,13 +623,13 @@ Scenario Outline: Check that when address is changed, the response is NOT auto p
 	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "STAFF_ASSIGNMENT_DATE" is null where "JUROR_NUMBER" is "<juror_number>"
 	
 Examples:
-	| juror_number	| last_name	| postcode	| email 			| pool_number	|
-	| 045200213		| DOE		| SW1H 9AJ	| email@outlook.com	| 452300198		|
+	| juror_number	| last_name	| postcode	| pool_number	| environment |
+	| 045200213		| DOE		| SW1H 9AJ	| 452300198		| test        |
 
 @Regression
 Scenario Outline: Check that when Address2 is changed from (null), the response is not auto processed
 
-	Given I am on "Public" "ithc"
+	Given I am on "Public" "<environment>"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -762,7 +747,7 @@ Scenario Outline: Check that when Address2 is changed from (null), the response 
 	Then I see "We have sent you an email to say you have replied to your jury summons." on the page
 	
 	#Bureau
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "<environment>"
 	When I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -778,13 +763,13 @@ Scenario Outline: Check that when Address2 is changed from (null), the response 
 	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "STAFF_ASSIGNMENT_DATE" is null where "JUROR_NUMBER" is "<juror_number>"
 	
 Examples:
-	| juror_number	| last_name		| postcode	| email 			| pool_number	|
-	| 045200214		| LNAMENINEFIVE	| SA1 4PF	| email@outlook.com	| 452300199		|
+	| juror_number	| last_name		| postcode	| pool_number	| environment |
+	| 045200214		| LNAMENINEFIVE	| SA1 4PF	| 452300199		| test        |
 	
 @Regression
 Scenario Outline: Check that when Address3 is changed from (null), the response is not auto processed
 
-	Given I am on "Public" "ithc"
+	Given I am on "Public" "<environment>"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -903,7 +888,7 @@ Scenario Outline: Check that when Address3 is changed from (null), the response 
 	Then I see "We have sent you an email to say you have replied to your jury summons." on the page
 	
 	#Bureau
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "<environment>"
 	When I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -919,13 +904,13 @@ Scenario Outline: Check that when Address3 is changed from (null), the response 
 	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "STAFF_ASSIGNMENT_DATE" is null where "JUROR_NUMBER" is "<juror_number>"
 	
 Examples:
-	| juror_number	| last_name			| postcode	| email 			| pool_number	|
-	| 045200215		| LNAMEFOURTHREEZERO| NN1 3HQ	| email@outlook.com	| 452300200		|
+	| juror_number	| last_name			| postcode	| pool_number	| environment |
+	| 045200215		| LNAMEFOURTHREEZERO| NN1 3HQ	| 452300200		| test        |
 	
 @Regression
 Scenario Outline: Check that when Address4 is changed from (null), the response is not auto processed
 
-	Given I am on "Public" "ithc"
+	Given I am on "Public" "<environment>"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -1045,7 +1030,7 @@ Scenario Outline: Check that when Address4 is changed from (null), the response 
 	Then I see "We have sent you an email to say you have replied to your jury summons." on the page
 	
 	#Bureau
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "<environment>"
 	When I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -1061,13 +1046,13 @@ Scenario Outline: Check that when Address4 is changed from (null), the response 
 	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "STAFF_ASSIGNMENT_DATE" is null where "JUROR_NUMBER" is "<juror_number>"
 	
 Examples:
-	| juror_number	| last_name			| postcode	| email 			| pool_number	|
-	| 045200216		| LNAMEONEONEEIGHT	| SA1 4PF	| email@outlook.com	| 452300201		|
+	| juror_number	| last_name			| postcode	| pool_number	| environment |
+	| 045200216		| LNAMEONEONEEIGHT	| SA1 4PF	| 452300201		| test        |
 	
 @Regression
 Scenario Outline: Check that when Address5 is changed from (null), the response is not auto processed
 
-	Given I am on "Public" "ithc"
+	Given I am on "Public" "<environment>"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -1186,7 +1171,7 @@ Scenario Outline: Check that when Address5 is changed from (null), the response 
 	Then I see "We have sent you an email to say you have replied to your jury summons." on the page
 	
 	#Bureau
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "<environment>"
 	When I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -1202,13 +1187,13 @@ Scenario Outline: Check that when Address5 is changed from (null), the response 
 	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "STAFF_ASSIGNMENT_DATE" is null where "JUROR_NUMBER" is "<juror_number>"
 	
 Examples:
-	| juror_number	| last_name			| postcode	| email 			| pool_number	|
-	| 045200217		| LNAMENINEZEROTWO	| NN1 3HQ	| email@outlook.com	| 452300202		|
+	| juror_number	| last_name			| postcode	| pool_number	| environment |
+	| 045200217		| LNAMENINEZEROTWO	| NN1 3HQ	| 452300202		| test        |
 	
 @Regression
 Scenario Outline: Check that when Address2 is changed from string value, the response is not auto processed
 
-	Given I am on "Public" "ithc"
+	Given I am on "Public" "<environment>"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -1327,7 +1312,7 @@ Scenario Outline: Check that when Address2 is changed from string value, the res
 	Then I see "We have sent you an email to say you have replied to your jury summons." on the page
 	
 	#Bureau
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "<environment>"
 	When I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -1343,13 +1328,13 @@ Scenario Outline: Check that when Address2 is changed from string value, the res
 	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "STAFF_ASSIGNMENT_DATE" is null where "JUROR_NUMBER" is "<juror_number>"
 	
 Examples:
-	| juror_number	| last_name	| postcode	| email 			| pool_number	|
-	| 045200218		| DOE		| SW1H 9AJ	| email@outlook.com	| 452300203		|
+	| juror_number	| last_name	| postcode	| pool_number	| environment |
+	| 045200218		| DOE		| SW1H 9AJ	| 452300203		| test        |
 	
 @Regression
 Scenario Outline: Check that when Address3 is changed from string value, the response is not auto processed
 
-	Given I am on "Public" "ithc"
+	Given I am on "Public" "<environment>"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -1468,7 +1453,7 @@ Scenario Outline: Check that when Address3 is changed from string value, the res
 	Then I see "We have sent you an email to say you have replied to your jury summons." on the page
 	
 	#Bureau
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "<environment>"
 	When I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -1484,13 +1469,13 @@ Scenario Outline: Check that when Address3 is changed from string value, the res
 	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "STAFF_ASSIGNMENT_DATE" is null where "JUROR_NUMBER" is "<juror_number>"
 	
 Examples:
-	| juror_number	| last_name				| postcode	| email 			| pool_number	|
-	| 045200219		| LNAMENINEFIVETHREE	| CH1 2AN	| email@outlook.com	| 452300204		|
+	| juror_number	| last_name				| postcode	| pool_number	| environment |
+	| 045200219		| LNAMENINEFIVETHREE	| CH1 2AN	| 452300204		| test        |
 	
 @Regression
 Scenario Outline: Check that when Address4 is changed from string value, the response is not auto processed
 
-	Given I am on "Public" "ithc"
+	Given I am on "Public" "<environment>"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -1609,7 +1594,7 @@ Scenario Outline: Check that when Address4 is changed from string value, the res
 	Then I see "We have sent you an email to say you have replied to your jury summons." on the page
 	
 	#Bureau
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "<environment>"
 	When I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -1625,13 +1610,13 @@ Scenario Outline: Check that when Address4 is changed from string value, the res
 	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "STAFF_ASSIGNMENT_DATE" is null where "JUROR_NUMBER" is "<juror_number>"
 	
 Examples:
-	| juror_number	| last_name	| postcode	| email 			| pool_number	|
-	| 045200220		| DOE		| SY2 6LU	| email@outlook.com	| 452300205		|
+	| juror_number	| last_name	| postcode	| pool_number	| environment |
+	| 045200220		| DOE		| SY2 6LU	| 452300205		| test        |
 	
 @Regression
 Scenario Outline: Check that when Address5 is changed from string value, the response is not auto processed
 
-	Given I am on "Public" "ithc"
+	Given I am on "Public" "<environment>"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -1750,7 +1735,7 @@ Scenario Outline: Check that when Address5 is changed from string value, the res
 	Then I see "We have sent you an email to say you have replied to your jury summons." on the page
 	
 	#Bureau
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "<environment>"
 	When I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -1766,5 +1751,5 @@ Scenario Outline: Check that when Address5 is changed from string value, the res
 	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "STAFF_ASSIGNMENT_DATE" is null where "JUROR_NUMBER" is "<juror_number>"
 	
 Examples:
-	| juror_number	| last_name	| postcode	| email 			| pool_number	|
-	| 045200221		| DOE		| NN1 4EE	| email@outlook.com	| 452300206		|
+	| juror_number	| last_name	| postcode	| pool_number	| environment |
+	| 045200221		| DOE		| NN1 4EE	| 452300206		| test        |

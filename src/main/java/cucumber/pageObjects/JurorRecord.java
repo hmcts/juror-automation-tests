@@ -15,6 +15,9 @@ import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.*;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 
 public class JurorRecord {
 
@@ -266,6 +269,16 @@ public class JurorRecord {
     }
 
     public void clickChangeAttendanceDate() { changeAttendanceDate.click(); }
+
+    public void changeAttendanceLinkNotVisible() {
+        List<WebElement> links = driver.findElements(By.xpath("//a[contains(@href,'/juror-management/record') and contains(@href,'change-attendance-date')]"));
+        assertTrue(links.isEmpty(), "Change attendance link does not exist on the page");
+    }
+
+    public void changeAttendanceLinkIsVisible() {
+        List<WebElement> links = driver.findElements(By.xpath("//a[contains(@href,'/juror-management/record') and contains(@href,'change-attendance-date')]"));
+        assertFalse(links.isEmpty(), "Change attendance link does exist on the page");
+    }
 
     public void clickChangeAttendanceTimes(String jurorNumber) {
         String xpath = "//tr[.//text()[contains(.,'" + jurorNumber + "')]]//a[contains(@id,'changeLink')]";

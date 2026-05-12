@@ -120,6 +120,17 @@ Feature: JM-5962 - As a jury officer I need to be able to bulk change jurors att
     And I press the "Continue" button
     And I see error "Enter a date they’re next due at court in the correct format, for example, 31/01/2023"
 
+    And I set the "Next due date" date to a Monday "0" weeks in the future
+    And I press the "Continue" button
+    And I see "Confirm date next due at court" on the page
+    And I see "2 jurors will be next due to attend on" on the page
+    
+    Then I click on the "Cancel" link
+
+    And I see "<pool_number>" on the page
+    And I press the "Change next due at court" button
+    And I see "Enter date next due at court" on the page
+    
     And I set the "Next due date" date to a Monday "5" weeks in the future
     And I press the "Continue" button
 
