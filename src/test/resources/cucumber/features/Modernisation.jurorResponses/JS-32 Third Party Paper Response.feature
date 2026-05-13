@@ -3,7 +3,7 @@ Feature: JS-32 Third Party paper response
   @JurorTransformationMulti
   Scenario Outline: Third party paper response - validation
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
@@ -57,23 +57,27 @@ Feature: JS-32 Third Party paper response
     Then the juror summons reply Signature page is displayed
     When I select that the summons reply has been signed
     And I click done on the juror summons reply page
-    Then the view summons reply page is displayed
 
-    And I see the reply status has updated to "To Do"
+    And I press the "Yes, process now" button
+    And I see "successfully processed: Responded" on the page
+    And I click on the "<juror_number>" link
+
+    And I see the juror's status on the juror record screen is "Responded"
+
+    And I click on the "Juror details" link
 
     And I see "Contact Third Party" in the same row as "Main phone"
     And I see "Contact Third Party" in the same row as "Email"
-    And I see "Contact Third Party" in the same row as "Alternative phone"
-
+    And I see "Contact Third Party" in the same row as "Other phone"
 
     Examples:
-      | juror_number | pool_number |user            |
-      | 041500082    | 415300172   | MODTESTBUREAU  |
+      | juror_number | pool_number |user            | environment |
+      | 041500082    | 415300172   | MODTESTBUREAU  | ithc        |
 
   @JurorTransformationMulti
   Scenario Outline: Third party paper response where juror is contact JS-586
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
@@ -138,19 +142,24 @@ Feature: JS-32 Third Party paper response
     Then the juror summons reply Signature page is displayed
     When I select that the summons reply has been signed
     And I click done on the juror summons reply page
-    Then the view summons reply page is displayed
 
-    And I see the reply status has updated to "To Do"
+    And I press the "Yes, process now" button
+    And I see "successfully processed: Responded" on the page
+    And I click on the "<juror_number>" link
 
-    And I see "07777777777" in the same row as "Main Phone"
-    And I see "07777777711" in the same row as "Alternative phone"
+    And I see the juror's status on the juror record screen is "Responded"
+
+    And I click on the "Juror details" link
+
+    And I see "07777777777" in the same row as "Main phone"
+    And I see "07777777711" in the same row as "Other phone"
     And I see "test@test.com" in the same row as "Email"
 
     And I do not see "Contact Third Party" on the page
 
     And I see "07999999999" in the same row as "Main phone"
-    And I see "07888888888" in the same row as "Another phone"
+    And I see "07888888888" in the same row as "Other phone"
 
     Examples:
-      | juror_number | pool_number |user            |
-      | 041500107    | 415300172   | MODTESTBUREAU  |
+      | juror_number | pool_number |user            | environment |
+      | 041500107    | 415300172   | MODTESTBUREAU  | ithc        |
