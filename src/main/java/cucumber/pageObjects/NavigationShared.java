@@ -566,7 +566,7 @@ public class NavigationShared {
         }
 
         try { // Investigate purpose of this
-            wait.waitForClickableElement(button, 2);
+            wait.waitForClickableElement(button, 8);
         } catch (Exception e) {
             log.error("unexpected exception when waiting for element to be clickable", e);
         }
@@ -693,7 +693,23 @@ public class NavigationShared {
                         .executeScript("return document.readyState")
                         .equals("complete")
         );
+
+        wait.until(driver -> {
+            Object angularReady = ((JavascriptExecutor) driver).executeScript(
+                    "return window.angular === undefined || " +
+                            "angular.element(document.body).injector() === undefined || " +
+                            "angular.element(document.body).injector().get('$http').pendingRequests.length === 0"
+            );
+            return Boolean.TRUE.equals(angularReady);
+        });
+
+        wait.until(driver ->
+                driver.findElements(By.cssSelector(".moj-loading, .loading, [aria-busy='true']"))
+                        .stream()
+                        .noneMatch(WebElement::isDisplayed)
+        );
     }
+
 
     public void waitForPageLoad(int waitTime) {
         waitForPageLoad(2, waitTime);
@@ -758,21 +774,15 @@ public class NavigationShared {
 
     public void click_link_by_text(String arg1) {
         WebElement linkText;
-        Duration originalImplicitWait = driver.manage().timeouts().getImplicitWaitTimeout();
 
         try {
-            driver.manage().timeouts().implicitlyWait(Duration.ZERO);
             linkText = return_oneVisibleFromList(driver.findElements(By.linkText(arg1)), true);
         } catch (Exception e) {
-            driver.manage().timeouts().implicitlyWait(originalImplicitWait);
-            linkText = wait.activateExplicitWait(5)
-                    .until(ExpectedConditions.elementToBeClickable(
-                            By.xpath("//*[text()[contains(., \"" + arg1 + "\")]]")));
-        } finally {
-            driver.manage().timeouts().implicitlyWait(originalImplicitWait);
+            wait.activateImplicitWait();
+            linkText = driver.findElement(By.xpath("//*[text()[contains(., \"" + arg1 + "\")]]"));
         }
 //		wait.waitForClickableElement(linkText);
-        wait.activateExplicitWait(5).until(ExpectedConditions.elementToBeClickable(linkText));
+        wait.activateImplicitWait();
         click_onElement(linkText);
 
         log.info("Clicked on URL with link text =>" + arg1);
