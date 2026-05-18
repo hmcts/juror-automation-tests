@@ -32,7 +32,7 @@ public class StepDef_groups {
 	    try{
 	    	GRP.click_iconNextTo(text);
 	    } catch (Exception e) {
-	    	NAV.waitForPageLoad();
+	    	NAV.waitForPageLoadNew();
 	    	GRP.click_iconNextTo(text);
 	    }
 	}
@@ -42,7 +42,7 @@ public class StepDef_groups {
 		try{
 			GRP.seeText_inGroupAddedList(arg1);
 		} catch (Exception e) {
-			NAV.waitForPageLoad();
+			NAV.waitForPageLoadNew();
 			GRP.seeText_inGroupAddedList(arg1);
 		}
 	}
@@ -52,7 +52,7 @@ public class StepDef_groups {
 		try{
 			GRP.doNotSeeText_inGroupAddedList(arg1);
 		} catch (Exception e) {
-			NAV.waitForPageLoad();
+			NAV.waitForPageLoadNew();
 			GRP.doNotSeeText_inGroupAddedList(arg1);
 		}
 	}	
@@ -67,10 +67,10 @@ public class StepDef_groups {
 		try{
 			GRP.click_inPanelHeader(headerName, expectedText);
 		} catch (Exception e) {
-			NAV.waitForPageLoad();
+			NAV.waitForPageLoadNew();
 			GRP.click_inPanelHeader(headerName, expectedText);
 		}
-		NAV.waitForPageLoad();
+		NAV.waitForPageLoadNew();
 	};
 	
 	@When("^I \"([^\"]*)\" the checkbox for \"([^\"]*)\" \"([^\"]*)\"$")
@@ -83,7 +83,7 @@ public class StepDef_groups {
 	    try{
 	    	GRP.click_radioButtonWithLabel(arg1);
 	    } catch (Throwable e) {
-	    	NAV.waitForPageLoad();
+	    	NAV.waitForPageLoadNew();
 	    	GRP.click_radioButtonWithLabel(arg1);
 	    }
 	};
@@ -93,7 +93,7 @@ public class StepDef_groups {
 		try{
 			GRP.chooseRadioButtonWithLabel(arg1);
 		} catch (Throwable e) {
-			NAV.waitForPageLoad();
+			NAV.waitForPageLoadNew();
 			GRP.chooseRadioButtonWithLabel(arg1);
 		}
 	}
@@ -110,7 +110,7 @@ public class StepDef_groups {
 		try {
 			GRP.clickDeferralRadioButtonExcludingMaintenance();
 		} catch (Throwable e) {
-			NAV.waitForPageLoad();
+			NAV.waitForPageLoadNew();
 			GRP.clickDeferralRadioButtonExcludingMaintenance();
 		}
 	}
