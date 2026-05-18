@@ -185,10 +185,25 @@ withNightlyPipeline(type, product, component, 600) {
       allowMissing         : true,
       alwaysLinkToLastBuild: true,
       keepAll              : true,
-      reportDir            : "target/TestRunner_JurorTransformationMulti/",
+      reportDir            : "target/TestRunner_JurorTransformationMulti/initial/",
       reportFiles          : "cucumber.html",
-      reportName           : "Cucumber JurorTransformationMulti Test Report"
+      reportName           : "Cucumber JurorTransformationMulti Initial Test Report"
     ]
+
+    publishHTML target: [
+      allowMissing         : true,
+      alwaysLinkToLastBuild: true,
+      keepAll              : true,
+      reportDir            : "target/TestRunner_JurorTransformationMulti/rerun/",
+      reportFiles          : "cucumber.html",
+      reportName           : "Cucumber JurorTransformationMulti Rerun Test Report"
+    ]
+
+    steps.junit testResults: 'target/TestRunner_JurorTransformationMulti/**/*.xml',
+      allowEmptyResults: true
+
+    steps.archiveArtifacts allowEmptyArchive: true,
+      artifacts: 'target/TestRunner_JurorTransformationMulti/**/*.xml'
 
     publishHTML target: [
       allowMissing         : true,
@@ -265,5 +280,6 @@ withNightlyPipeline(type, product, component, 600) {
     steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'selenium.log'
     steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'target/**/*.json'
     steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'target/**/*.html'
+    steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'target/**/*.xml'
   }
 }
