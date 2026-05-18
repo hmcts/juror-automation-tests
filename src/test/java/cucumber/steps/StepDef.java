@@ -46,7 +46,7 @@ public class StepDef {
 	@Given("^I am on the Admin Login Page$")
 	public void accessAdminLoginPage() throws Throwable {
 		NAV.accessAdminLoginPage();
-		NAV.waitForPageLoad();
+		NAV.waitForPageLoadNew();
 	}
 
 	@Given("^I am looking at cookies on \"([^\"]*)\" \"([^\"]*)\"$")
@@ -66,11 +66,11 @@ public class StepDef {
 	@Given("^I am on \"([^\"]*)\" \"([^\"]*)\"$")
 	public void loadPage_for(String publicBureau, String env) throws Throwable {
 		NAV.accessLoginPage(publicBureau, env);
-		try {
-			NAV.press_buttonByName("Accept analytics cookies");
-			NAV.press_buttonByName("Hide cookie message");
-		} catch (Exception e) {
-		}
+	//	try {
+	//		NAV.press_buttonByName("Accept analytics cookies");
+	//		NAV.press_buttonByName("Hide cookie message");
+	//	} catch (Exception e) {
+	//	}
 	}
 
 	@Given("^I am on the welsh version of \"([^\"]*)\" \"([^\"]*)\"")
@@ -123,7 +123,7 @@ public class StepDef {
 			}
 
 		} catch (Exception e) {
-			NAV.waitForPageLoad();
+			NAV.waitForPageLoadNew();
 		}
 
 	}
@@ -132,7 +132,7 @@ public class StepDef {
 		loginErUsers(username);
 
 		try {
-			NAV.waitForPageLoad();
+			NAV.waitForPageLoadNew();
 		} catch (Exception e) {
 			log.info("ER login completed for user: " + username);		}
 	}
@@ -146,66 +146,51 @@ public class StepDef {
 
 	public void loginWithAD(String username, String specifiedCourt) throws Throwable {
 		String defaultCourt = null;
+
 		switch (username) {
 			case "SWANSEA":
 				defaultCourt = "457";
-				LGN.loginADTestRoute(username + "@email.gov.uk");
 				break;
 			case "MODTESTCOURT":
-				defaultCourt = "415";
-				LGN.loginADTestRoute(username + "@email.gov.uk");
-				break;
 			case "MODCOURT":
 				defaultCourt = "415";
-				LGN.loginADTestRoute(username + "@email.gov.uk");
 				break;
-			case "MODTESTBUREAU":
-			case "SYSTEMADMIN":
-			case "AUTO":
-			case "TeamPickListUser":
-			case "AutomationStaffTWO":
-			case "SYSTEM":
-			case "SJOUSER1":
-			case "SJOUSER":
-			case "CPASS":
-			case "ARAMIS1":
-			case "CMANAGER":
-			case "CMANAGER2":
-			case "SHREWSBURY":
-			case "NEWUSER":
 			default:
-				LGN.loginADTestRoute(username + "@email.gov.uk");
 				break;
 		}
-		NAV.waitForPageLoad(180);
-		if (LGN.courtOptionsDisplayed()) {
+
+		LGN.loginADTestRoute(username + "@email.gov.uk");
+
+		boolean shouldCheckCourtOptions = !username.equalsIgnoreCase("SYSTEMADMIN")
+				&& !username.equalsIgnoreCase("MODTESTBUREAU");
+
+		if (shouldCheckCourtOptions && LGN.courtOptionsDisplayed()) {
 			ArrayList<String> userCourts = DBT.getUserCourts(username);
 			log.info("courts: " + userCourts);
 			if (userCourts.isEmpty()) {
 				log.info("User has no courts.");
-			}
-			if (userCourts.size() == 1) {
+			} else if (userCourts.size() == 1) {
 				log.info("Selecting court: " + userCourts.get(0));
 				LGN.selectCourt(userCourts.get(0));
-			}
-			if (userCourts.size() > 1 && Objects.equals(specifiedCourt, "") && userCourts.contains("415")) {
+				NAV.waitForPageLoadNew();
+			} else if (userCourts.size() > 1 && !Objects.equals(specifiedCourt, "") && userCourts.contains(specifiedCourt)) {
+				log.info("Selecting specified court: " + specifiedCourt);
+				LGN.selectCourt(specifiedCourt);
+				NAV.waitForPageLoadNew();
+			} else if (userCourts.size() > 1 && Objects.equals(specifiedCourt, "") && userCourts.contains("415")) {
 				if (defaultCourt == null) {
 					defaultCourt = "415";
 				}
 				log.info("Assuming default court");
 				log.info("Selecting court: " + defaultCourt);
 				LGN.selectCourt(defaultCourt);
-			}
-			if (userCourts.size() > 1 && userCourts.contains(specifiedCourt)) {
-				log.info("Selecting specified court: " + specifiedCourt);
-				LGN.selectCourt(specifiedCourt);
-			} else if (userCourts.size() > 1 && !userCourts.contains(specifiedCourt) && !Objects.equals(specifiedCourt, "")) {
+				NAV.waitForPageLoadNew();
+			} else if (userCourts.size() > 1 && !Objects.equals(specifiedCourt, "") && !userCourts.contains(specifiedCourt)) {
 				throw new Throwable("court - " + specifiedCourt + " not in : " + userCourts);
 			}
 			LGN.clickContinue();
+			NAV.waitForPageLoadNew();
 		}
-
-		NAV.waitForPageLoad(180); // 3 Minute login timeout - Up from 120 seconds - Up from 60 seconds
 	}
 
 	@Then("^I click the Change link to change the court$")
@@ -216,7 +201,7 @@ public class StepDef {
 	public void changeCourtTo(String court){
 		LGN.selectCourt(court);
 		LGN.clickContinue();
-		NAV.waitForPageLoad(180);
+		NAV.waitForPageLoadNew();
 	}
 	@Then("^I do not see the link to change the court$")
 	public void changeLinkToChangeCourtIsNotDisplayed(){
@@ -228,13 +213,13 @@ public class StepDef {
 	@Then("^I log in with \"([^\"]*)\" and \"([^\"]*)\"$")
 	public void loginWith_usernameAndPassword(String username, String password) throws Throwable {
 		LGN.login(username, password);
-		NAV.waitForPageLoad(180); // 3 Minute login timeout - Up from 120 seconds - Up from 60 seconds
+		NAV.waitForPageLoadNew();
 	}
 
 	@Then("^I log in via AD with \"([^\"]*)\" and \"([^\"]*)\"$")
 	public void loginViaADWith_usernameAndPassword(String username, String password) throws Throwable {
 		LGN.loginWithAD(username, password);
-		NAV.waitForPageLoad(180); // 3 Minute login timeout - Up from 120 seconds - Up from 60 seconds
+		NAV.waitForPageLoadNew();
 	}
 
 	@When("^I log in$")
@@ -298,7 +283,7 @@ public class StepDef {
 				break;
 		}
 
-		NAV.waitForPageLoad(180);
+		NAV.waitForPageLoadNew();
 	}
 
 	@Given("^I navigate to \"([^\"]*)\" URL$")

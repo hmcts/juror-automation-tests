@@ -100,7 +100,7 @@ public class StepDef_navigation {
 		try {
 			NAV.textPresentOnPage(banner);
 		} catch (AssertionError | Exception e) {
-			NAV.waitForPageLoad();
+			NAV.waitForPageLoadNew();
 			NAV.textPresentOnPage(banner);
 		}
 	}
@@ -127,7 +127,7 @@ public class StepDef_navigation {
 		try {
 			NAV.textPresentOnPage(arg1);
 		} catch (AssertionError | Exception e) {
-			NAV.waitForPageLoad();
+			NAV.waitForPageLoadNew();
 			NAV.textPresentOnPage(arg1);
 		}
 	}
@@ -145,7 +145,7 @@ public class StepDef_navigation {
 		try {
 			NAV.textPresentOnPage(arg1);
 		} catch (AssertionError | Exception e) {
-			NAV.waitForPageLoad();
+			NAV.waitForPageLoadNew();
 			NAV.textPresentOnPage(arg1);
 		}
 	}
@@ -199,7 +199,7 @@ public class StepDef_navigation {
 		try {
 			NAV.check_Jurorcheckbox(arg1);
 		} catch (Exception e) {
-			NAV.waitForPageLoad(2);
+			NAV.waitForPageLoadNew();
 			NAV.check_Jurorcheckbox(arg1);
 		}
 	}
@@ -211,45 +211,40 @@ public class StepDef_navigation {
 	}
 
 	@When("^I set \"([^\"]*)\" to \"([^\"]*)\"$")
-	public void set_value_to(String arg1, String arg2) throws Throwable {
+	public void set_value_to(String label, String rawValue) throws Throwable {
+		NAV.waitForPageLoadNew();
+		String value = normalizeValue(rawValue);
 
-		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-		Date date = new Date();
-		String date1 = dateFormat.format(date);
+		WebElement field = NAV.find_inputBy_labelName(label);
+		field.clear();
+		field.sendKeys(value);
+	}
 
-//		NAV.waitForPageLoad();
-
-		if (arg2.contains("today")) {
-			arg2 = date1;
+	private String normalizeValue(String value) throws Throwable {
+		if (value == null || value.isEmpty()) {
+			return value;
 		}
 
-		if (arg2.contains(" time")) {
-			arg2 = formatDate(
-					DateManipulator.processString(arg2, false),
+		if ("today".equals(value)) {
+			return LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+		}
+
+		if (value.contains(" time")) {
+			return formatDate(
+					DateManipulator.processString(value, false),
 					"dd/MM/yyyy"
 			);
 		}
 
-		if (arg2.contains("{") && arg2.contains("}")) {
-			arg2 = arg2.replace("{", "").replace("}", "");
-			arg2 = formatDate(
-					DateManipulator.processString(arg2, false),
+		if (value.contains("{") && value.contains("}")) {
+			String cleaned = value.replace("{", "").replace("}", "");
+			return formatDate(
+					DateManipulator.processString(cleaned, false),
 					"dd/MM/yyyy"
 			);
 		}
 
-		try {
-			WebElement childField;
-			childField = NAV.find_inputBy_labelName(arg1);
-			childField.clear();
-			NAV.set_valueTo(arg1, arg2);
-		} catch (Exception e) {
-			WebElement newChildField;
-			newChildField = NAV.find_inputBy_labelName(arg1);
-			newChildField.clear();
-			NAV.waitForPageLoad();
-			NAV.set_valueTo(arg1, arg2);
-		}
+		return value;
 	}
 
 	@When("^I set the following fields$")
@@ -313,10 +308,10 @@ public class StepDef_navigation {
 	@When("^I check the Urgent checkbox on Search screen$")
 	public void checkUrgentCheckbox() throws Throwable {
 		try {
-			NAV.waitForPageLoad();
+			NAV.waitForPageLoadNew();
 			NAV.checkUrgentCheckbox();
 		} catch (Exception e) {
-			NAV.waitForPageLoad();
+			NAV.waitForPageLoadNew();
 			NAV.checkUrgentCheckbox();
 		}
 	}
@@ -326,7 +321,7 @@ public class StepDef_navigation {
 		try {
 			NAV.uncheck_checkbox(arg1);
 		} catch (Exception e) {
-			NAV.waitForPageLoad();
+			NAV.waitForPageLoadNew();
 			NAV.uncheck_checkbox(arg1);
 		}
 	}
@@ -354,7 +349,7 @@ public class StepDef_navigation {
 			try {
 				BUR.pressBackLink();
 			} catch (Exception e) {
-				NAV.waitForPageLoad();
+				NAV.waitForPageLoadNew();
 				BUR.pressBackLink();
 			}
 			return;
@@ -363,7 +358,7 @@ public class StepDef_navigation {
 			try {
 				BUR.clickChangeLink();
 			} catch (Exception e) {
-				NAV.waitForPageLoad();
+				NAV.waitForPageLoadNew();
 				BUR.clickChangeLink();
 			}
 			return;
@@ -371,7 +366,7 @@ public class StepDef_navigation {
 		try {
 			NAV.click_link_by_text(arg1);
 		} catch (Exception e) {
-			NAV.waitForPageLoad();
+			NAV.waitForPageLoadNew();
 			NAV.click_link_by_text(arg1);
 		}
 	}
@@ -390,7 +385,7 @@ public class StepDef_navigation {
 			NAV.click_link_by_text(arg1);
 			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("autocomplete__menu--visible")));
 		} catch (Exception e) {
-			NAV.waitForPageLoad();
+			NAV.waitForPageLoadNew();
 			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("autocomplete__menu--visible")));
 			NAV.click_link_by_text(arg1);
 		}
@@ -411,7 +406,7 @@ public class StepDef_navigation {
 		try {
 			NAV.select_fromDropdown(option_value, dropdown_name);
 		} catch (Exception e) {
-			NAV.waitForPageLoad();
+			NAV.waitForPageLoadNew();
 			NAV.select_fromDropdown(option_value, dropdown_name);
 		}
 	}
@@ -423,7 +418,7 @@ public class StepDef_navigation {
 			GRP.chooseRadioButtonWithLabel(optionValue);
 			NAV.press_buttonByName("Continue");
 		} catch (Exception e) {
-			NAV.waitForPageLoad();
+			NAV.waitForPageLoadNew();
 			NAV.setProcessReplyTo_(optionValue);
 		}
 	}
@@ -433,7 +428,7 @@ public class StepDef_navigation {
 		try {
 			NAV.select_fromDashboardDropdown(option_value, dropdown_name);
 		} catch (Exception e) {
-			NAV.waitForPageLoad();
+			NAV.waitForPageLoadNew();
 			NAV.select_fromDashboardDropdown(option_value, dropdown_name);
 		}
 	}
@@ -453,7 +448,7 @@ public class StepDef_navigation {
 		try {
 			GRP.checkGroupsAddedPosition_withText(text, position);
 		} catch (Exception e) {
-			NAV.waitForPageLoad();
+			NAV.waitForPageLoadNew();
 			GRP.checkGroupsAddedPosition_withText(text, position);
 		}
 	}
@@ -490,10 +485,10 @@ public class StepDef_navigation {
 		try {
 			NAV.select_fromDropdown(option);
 		} catch (Error e) {
-			NAV.waitForPageLoad(3, 60);
+			NAV.waitForPageLoadNew();
 			NAV.select_fromDropdown(option);
 		} catch (Exception e) {
-			NAV.waitForPageLoad(3, 60);
+			NAV.waitForPageLoadNew();
 			NAV.select_fromDropdown(option);
 		}
 	}
@@ -550,7 +545,7 @@ public class StepDef_navigation {
 		try {
 			NAV.seeText_inSameRow_asText(searchText, nextToText);
 		} catch (Exception e) {
-			NAV.waitForPageLoad();
+			NAV.waitForPageLoadNew();
 			NAV.seeText_inSameRow_asText(searchText, nextToText);
 		}
 	}
@@ -560,7 +555,7 @@ public class StepDef_navigation {
 		try {
 			NAV.seeText_inSameRow_asText(searchText, StepDef_jurorpool.summonedJurors.get().get(0));
 		} catch (Exception e) {
-			NAV.waitForPageLoad();
+			NAV.waitForPageLoadNew();
 			NAV.seeText_inSameRow_asText(searchText, StepDef_jurorpool.summonedJurors.get().get(0));
 		}
 	}
@@ -573,7 +568,7 @@ public class StepDef_navigation {
 		try {
 			NAV.seeText_inSameRow_asText_Two(searchText, nextToText);
 		} catch (Exception e) {
-			NAV.waitForPageLoad();
+			NAV.waitForPageLoadNew();
 			NAV.seeText_inSameRow_asText_Two(searchText, nextToText);
 		}
 	}
@@ -585,7 +580,7 @@ public class StepDef_navigation {
 		try {
 			NAV.clickText_inSameRow_asText(clickText, nextToText);
 		} catch (Exception e) {
-			NAV.waitForPageLoad();
+			NAV.waitForPageLoadNew();
 			NAV.clickText_inSameRow_asText(clickText, nextToText);
 		}
 	}
@@ -595,7 +590,7 @@ public class StepDef_navigation {
 		try {
 			NAV.clickText_inSameRow_asText(clickText, StepDef_jurorpool.summonedJurors.get().get(0));
 		} catch (Exception e) {
-			NAV.waitForPageLoad();
+			NAV.waitForPageLoadNew();
 			NAV.clickText_inSameRow_asText(clickText, StepDef_jurorpool.summonedJurors.get().get(0));
 		}
 	}
@@ -606,7 +601,7 @@ public class StepDef_navigation {
 		try {
 			NAV.clickText_inSameRow_asText_Two(clickText, nextToText);
 		} catch (Exception e) {
-			NAV.waitForPageLoad();
+			NAV.waitForPageLoadNew();
 			NAV.clickText_inSameRow_asText_Two(clickText, nextToText);
 		}
 	}
@@ -636,7 +631,7 @@ public class StepDef_navigation {
 		holidayAttendanceDate = new SimpleDateFormat(fullDatePattern).format(mondayDate.getTime());
 
 		NAV.enterNewSingleDate(attDateSequence, mondayDateValue);
-		NAV.waitForPageLoad();
+		NAV.waitForPageLoadNew();
 
 	}
 
@@ -651,7 +646,7 @@ public class StepDef_navigation {
 
 		String yesterdayDate = new SimpleDateFormat(datePattern).format((dateValue).getTime());
 		NAV.enterNewSingleDate("Enter a date for the non-attendance day", yesterdayDate);
-		NAV.waitForPageLoad();
+		NAV.waitForPageLoadNew();
 
 	}
 
@@ -670,7 +665,7 @@ public class StepDef_navigation {
 		holidayAttendanceDate = new SimpleDateFormat(fullDatePattern).format(mondayDate.getTime());
 
 		NAV.enterNewDate(attDateSequence, mondayDateValues[0], mondayDateValues[1], mondayDateValues[2]);
-		NAV.waitForPageLoad();
+		NAV.waitForPageLoadNew();
 
 	}
 
@@ -687,7 +682,7 @@ public class StepDef_navigation {
 		String mondayDateValue = new SimpleDateFormat(datePattern).format((mondayDate).getTime());
 
 		NAV.enterNewSingleDate(deferDateSeq, mondayDateValue);
-		NAV.waitForPageLoad();
+		NAV.waitForPageLoadNew();
 
 	}
 
@@ -779,7 +774,7 @@ public class StepDef_navigation {
 		try {
 			NAV.checkboxState_inSameRow_asText(checkboxState, nextToText);
 		} catch (Exception e) {
-			NAV.waitForPageLoad();
+			NAV.waitForPageLoadNew();
 			NAV.checkboxState_inSameRow_asText(checkboxState, nextToText);
 		}
 	}
@@ -789,7 +784,7 @@ public class StepDef_navigation {
 		try {
 			NAV.seeIconSame_rowAs(icon, nextToText);
 		} catch (Exception e) {
-			NAV.waitForPageLoad();
+			NAV.waitForPageLoadNew();
 			NAV.seeIconSame_rowAs(icon, nextToText);
 		}
 	}
@@ -815,7 +810,7 @@ public class StepDef_navigation {
 		try {
 			NAV.checkCheckboxSame_rowAs(nextToText);
 		} catch (Exception e) {
-			NAV.waitForPageLoad();
+			NAV.waitForPageLoadNew();
 			NAV.checkCheckboxSame_rowAs(nextToText);
 		}
 	}
@@ -829,7 +824,7 @@ public class StepDef_navigation {
 
 	@When("^I hit the tab key$")
 	public void hitKey() throws Throwable {
-		NAV.waitForPageLoad();
+		NAV.waitForPageLoadNew();
 		NAV.press_tabKeyOnBody();
 
 	}
@@ -925,7 +920,7 @@ public class StepDef_navigation {
 		try {
 			NAV.eligibilityErrorOnPage(arg1);
 		} catch (AssertionError | Exception e) {
-			NAV.waitForPageLoad();
+			NAV.waitForPageLoadNew();
 			NAV.eligibilityErrorOnPage(arg1);
 		}
 	}
@@ -952,7 +947,7 @@ public class StepDef_navigation {
 
 	@And("^I see the message sent banner containing \"([^\"]*)\"$")
 	public void iSeeMessageSentBannerContaining(String bannerContains) {
-		NAV.waitForPageLoad();
+		NAV.waitForPageLoadNew();
         assertEquals(bannerContains, NAV.messageSentBanner());
 	}
 
@@ -1016,7 +1011,7 @@ public class StepDef_navigation {
 		String adjustedDateValue = new SimpleDateFormat(datePattern).format(adjustedDate);
 		holidayAttendanceDate = new SimpleDateFormat(fullDatePattern).format(adjustedDate);
 		NAV.enterNewSingleDate(attDateSequence, adjustedDateValue);
-		NAV.waitForPageLoad();
+		NAV.waitForPageLoadNew();
 	}
 
 	@When("^I click the link with the date (\\d+) days (in the future|in the past)$")
@@ -1039,7 +1034,7 @@ public class StepDef_navigation {
 	}
 	@Then("^I see my court \"([^\"]*)\" under the sub heading \"([^\"]*)\"$")
 	public void verifySelectedCourtNameUnderLabelStep(String expectedCourtName, String label) {
-		NAV.waitForPageLoad(3);
+		NAV.waitForPageLoadNew();
 		NAV.verifySelectedCourtName(expectedCourtName, label);
 	}
 
