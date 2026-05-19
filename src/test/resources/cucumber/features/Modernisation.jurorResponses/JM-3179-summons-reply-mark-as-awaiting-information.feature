@@ -15,13 +15,20 @@ Feature: JM-3179
     When the user searches for juror record "<juror_number>" from the global search bar
     And I click on the "Summons reply" link
     And I click on the "View summons reply" link
+    And I click the More Actions button
+    And I click on the "Mark as awaiting information" link
+    Then I see "Who are you waiting for information from?" on the page
+    And I mark this reply as awaiting information from "<waitingOnReplyFrom>"
+    Then I press the "Confirm" button
+    And I do not see "Select whether you’re waiting for information from either the juror, court or translation unit" on the page
+    And I do not see "The summons reply has been updated by another user" on the page
     And I see the reply status has updated to "<updatedReplyStatus>"
 
     Examples:
-    | processing_status    | updatedReplyStatus   | juror_number | pool_number |
-    | AWAITING_CONTACT     | Awaiting juror info  | 045200009    | 452300005   |
-    | AWAITING_COURT_REPLY | Awaiting court reply | 045200009    | 452300005   |
-    | AWAITING_TRANSLATION | Awaiting Translation | 045200009    | 452300005   |
+    | processing_status    | updatedReplyStatus   | juror_number | pool_number | waitingOnReplyFrom |
+    | AWAITING_CONTACT     | Awaiting juror info  | 045200009    | 452300005   | Juror              |
+    | AWAITING_COURT_REPLY | Awaiting court reply | 045200009    | 452300005   | Court              |
+    | AWAITING_TRANSLATION | Awaiting Translation | 045200009    | 452300005   | Translation unit   |
 
   @JurorTransformationMulti
   Scenario Outline: Test to mark paper summons reply as awaiting information - validation
@@ -62,13 +69,20 @@ Feature: JM-3179
     When the user searches for juror record "<juror_number>" from the global search bar
     And I click on the "Summons reply" link
     And I click on the "View summons reply" link
+    And I click the More Actions button
+    And I click on the "Mark as awaiting information" link
+    Then I see "Who are you waiting for information from?" on the page
+    And I mark this reply as awaiting information from "<waitingOnReplyFrom>"
+    Then I press the "Confirm" button
+    And I do not see "Select whether you’re waiting for information from either the juror, court or translation unit" on the page
+    And I do not see "The summons reply has been updated by another user" on the page
     And I see the reply status has updated to "<updatedReplyStatus>"
 
     Examples:
-      | processing_status    | updatedReplyStatus   | juror_number | pool_number |
-      | AWAITING_CONTACT     | Awaiting juror info  | 045200011    | 452300007   |
-      | AWAITING_COURT_REPLY | Awaiting court reply | 045200011    | 452300007   |
-      | AWAITING_TRANSLATION | Awaiting Translation | 045200011    | 452300007   |
+      | processing_status    | updatedReplyStatus   | juror_number | pool_number | waitingOnReplyFrom |
+      | AWAITING_CONTACT     | Awaiting juror info  | 045200011    | 452300007   | Juror              |
+      | AWAITING_COURT_REPLY | Awaiting court reply | 045200011    | 452300007   | Court              |
+      | AWAITING_TRANSLATION | Awaiting Translation | 045200011    | 452300007   | Translation unit   |
 
   @JurorTransformationMulti
   Scenario Outline: Test to mark summons reply as awaiting information - validation
