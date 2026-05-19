@@ -2020,6 +2020,158 @@ public class DatabaseTesterNewSchemaDesign {
 		insertNewPaperSummonsReplyWithResponseNameNSD(newJurorRecordNumber, "Andy", "Marshall", poolNo);
 	}
 
+	public void insertExcusalRequestPaperSummonsReplyNSD(String jurorNumber) throws SQLException {
+		db = new DBConnection();
+		String env_property = System.getProperty("env.database");
+
+		try (Connection connection = db.getConnection(env_property != null ? env_property : "demo")) {
+			try (PreparedStatement deleteExistingResponse = connection.prepareStatement(
+					"DELETE FROM juror_mod.juror_response WHERE juror_number = ?")) {
+				deleteExistingResponse.setString(1, jurorNumber);
+				deleteExistingResponse.execute();
+			}
+
+			try (PreparedStatement insertResponse = connection.prepareStatement(
+					"INSERT INTO juror_mod.juror_response ("
+							+ "juror_number, date_received, title, first_name, last_name, address_line_1, address_line_2, address_line_3, address_line_4, address_line_5, postcode, "
+							+ "processing_status, date_of_birth, phone_number, alt_phone_number, email, residency, residency_detail, mental_health_act, mental_health_capacity, "
+							+ "mental_health_act_details, bail, bail_details, convictions, convictions_details, deferral, deferral_reason, deferral_date, "
+							+ "reasonable_adjustments_arrangements, excusal, excusal_reason, processing_complete, signed, version, thirdparty_fname, thirdparty_lname, relationship, "
+							+ "main_phone, other_phone, email_address, thirdparty_reason, thirdparty_other_reason, juror_phone_details, juror_email_details, staff_login, "
+							+ "staff_assignment_date, urgent, completed_at, welsh, reply_type) "
+							+ "SELECT juror_number, CURRENT_DATE, COALESCE(title, 'Mr'), COALESCE(first_name, 'Fname'), COALESCE(last_name, 'Lname'), "
+							+ "COALESCE(address_line_1, '7 Poppy Square'), COALESCE(address_line_2, 'New Theo'), COALESCE(address_line_3, ''), "
+							+ "COALESCE(address_line_4, ''), COALESCE(address_line_5, ''), COALESCE(postcode, 'W1 1AB'), "
+							+ "'TODO', DATE '1976-07-18', '07777777777', '07777777711', 'test@test.com', 'Y', NULL, 'N', 'N', NULL, 'N', NULL, 'N', NULL, "
+							+ "NULL, NULL, NULL, NULL, 'Y', NULL, 'N', 'Y', '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Y', 'Y', 'MODTESTBUREAU', "
+							+ "NULL, 'N', NULL, 'N', 'Paper' "
+							+ "FROM juror_mod.juror WHERE juror_number = ?")) {
+				insertResponse.setString(1, jurorNumber);
+				int rowsInserted = insertResponse.executeUpdate();
+				if (rowsInserted != 1) {
+					throw new SQLException("Could not create excusal request paper summons response for juror: " + jurorNumber);
+				}
+			}
+
+			connection.commit();
+		}
+	}
+
+	public void insertDeferralRequestPaperSummonsReplyNSD(String jurorNumber) throws SQLException {
+		db = new DBConnection();
+		String env_property = System.getProperty("env.database");
+
+		try (Connection connection = db.getConnection(env_property != null ? env_property : "demo")) {
+			try (PreparedStatement deleteExistingResponse = connection.prepareStatement(
+					"DELETE FROM juror_mod.juror_response WHERE juror_number = ?")) {
+				deleteExistingResponse.setString(1, jurorNumber);
+				deleteExistingResponse.execute();
+			}
+
+			try (PreparedStatement insertResponse = connection.prepareStatement(
+					"INSERT INTO juror_mod.juror_response ("
+							+ "juror_number, date_received, title, first_name, last_name, address_line_1, address_line_2, address_line_3, address_line_4, address_line_5, postcode, "
+							+ "processing_status, date_of_birth, phone_number, alt_phone_number, email, residency, residency_detail, mental_health_act, mental_health_capacity, "
+							+ "mental_health_act_details, bail, bail_details, convictions, convictions_details, deferral, deferral_reason, deferral_date, "
+							+ "reasonable_adjustments_arrangements, excusal, excusal_reason, processing_complete, signed, version, thirdparty_fname, thirdparty_lname, relationship, "
+							+ "main_phone, other_phone, email_address, thirdparty_reason, thirdparty_other_reason, juror_phone_details, juror_email_details, staff_login, "
+							+ "staff_assignment_date, urgent, completed_at, welsh, reply_type) "
+							+ "SELECT juror_number, CURRENT_DATE, COALESCE(title, 'Mr'), COALESCE(first_name, 'Fname'), COALESCE(last_name, 'Lname'), "
+							+ "COALESCE(address_line_1, '7 Poppy Square'), COALESCE(address_line_2, 'New Theo'), COALESCE(address_line_3, ''), "
+							+ "COALESCE(address_line_4, ''), COALESCE(address_line_5, ''), COALESCE(postcode, 'W1 1AB'), "
+							+ "'TODO', DATE '1976-07-18', '07777777777', '07777777711', 'test@test.com', 'Y', NULL, 'N', 'N', NULL, 'N', NULL, 'N', NULL, "
+							+ "'Y', NULL, NULL, NULL, NULL, NULL, 'N', 'Y', '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Y', 'Y', 'MODTESTBUREAU', "
+							+ "NULL, 'N', NULL, 'N', 'Paper' "
+							+ "FROM juror_mod.juror WHERE juror_number = ?")) {
+				insertResponse.setString(1, jurorNumber);
+				int rowsInserted = insertResponse.executeUpdate();
+				if (rowsInserted != 1) {
+					throw new SQLException("Could not create deferral request paper summons response for juror: " + jurorNumber);
+				}
+			}
+
+			connection.commit();
+		}
+	}
+
+	public void insertPaperSummonsReplyWithProcessingStatusNSD(String jurorNumber, String processingStatus) throws SQLException {
+		insertPaperSummonsReplyNSD(jurorNumber, processingStatus);
+	}
+
+	private void insertPaperSummonsReplyNSD(String jurorNumber, String processingStatus) throws SQLException {
+		db = new DBConnection();
+		String env_property = System.getProperty("env.database");
+		String processingStatusCode = getProcessingStatusCode(processingStatus);
+
+		try (Connection connection = db.getConnection(env_property != null ? env_property : "demo")) {
+			try (PreparedStatement deleteExistingResponse = connection.prepareStatement(
+					"DELETE FROM juror_mod.juror_response WHERE juror_number = ?")) {
+				deleteExistingResponse.setString(1, jurorNumber);
+				deleteExistingResponse.execute();
+			}
+
+			try (PreparedStatement insertResponse = connection.prepareStatement(
+					"INSERT INTO juror_mod.juror_response ("
+							+ "juror_number, date_received, title, first_name, last_name, address_line_1, address_line_2, address_line_3, address_line_4, address_line_5, postcode, "
+							+ "processing_status, date_of_birth, phone_number, alt_phone_number, email, residency, residency_detail, mental_health_act, mental_health_capacity, "
+							+ "mental_health_act_details, bail, bail_details, convictions, convictions_details, deferral, deferral_reason, deferral_date, "
+							+ "reasonable_adjustments_arrangements, excusal, excusal_reason, processing_complete, signed, version, thirdparty_fname, thirdparty_lname, relationship, "
+							+ "main_phone, other_phone, email_address, thirdparty_reason, thirdparty_other_reason, juror_phone_details, juror_email_details, staff_login, "
+							+ "staff_assignment_date, urgent, completed_at, welsh, reply_type) "
+								+ "SELECT juror_number, CURRENT_DATE, COALESCE(title, 'Mr'), COALESCE(first_name, 'Fname'), COALESCE(last_name, 'Lname'), "
+								+ "COALESCE(address_line_1, '7 Poppy Square'), COALESCE(address_line_2, 'New Theo'), COALESCE(address_line_3, ''), "
+								+ "COALESCE(address_line_4, ''), COALESCE(address_line_5, ''), COALESCE(postcode, 'W1 1AB'), "
+								+ "?, COALESCE(dob, DATE '1976-07-18'), '07777777777', '07777777711', 'test@test.com', 'Y', NULL, 'N', 'N', NULL, 'N', NULL, 'N', NULL, "
+								+ "NULL, NULL, NULL, NULL, NULL, NULL, 'N', 'Y', '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Y', 'Y', 'MODTESTBUREAU', "
+								+ "NULL, 'N', NULL, COALESCE(welsh, 'N'), 'Paper' "
+								+ "FROM juror_mod.juror WHERE juror_number = ?")) {
+					insertResponse.setString(1, processingStatusCode);
+					insertResponse.setString(2, jurorNumber);
+					int rowsInserted = insertResponse.executeUpdate();
+					if (rowsInserted != 1) {
+						throw new SQLException("Could not create paper summons response for juror: " + jurorNumber);
+				}
+			}
+
+			try (PreparedStatement updateJuror = connection.prepareStatement(
+					"UPDATE juror_mod.juror SET response_entered = true WHERE juror_number = ?")) {
+				updateJuror.setString(1, jurorNumber);
+				updateJuror.executeUpdate();
+			}
+
+			if (processingStatusCode.startsWith("AWAITING")) {
+				try (PreparedStatement updateJurorPool = connection.prepareStatement(
+						"UPDATE juror_mod.juror_pool SET status = '11' WHERE juror_number = ? AND is_active = 'Y'")) {
+					updateJurorPool.setString(1, jurorNumber);
+					updateJurorPool.executeUpdate();
+				}
+			}
+
+			connection.commit();
+		}
+	}
+
+	private String getProcessingStatusCode(String processingStatus) {
+		if (processingStatus == null || processingStatus.isEmpty()) {
+			return "TODO";
+		}
+
+		switch (processingStatus.trim().toLowerCase()) {
+			case "awaiting juror info":
+			case "awaiting juror reply":
+			case "awaiting_contact":
+				return "AWAITING_CONTACT";
+			case "awaiting court reply":
+			case "awaiting_court_reply":
+				return "AWAITING_COURT_REPLY";
+			case "awaiting translation":
+			case "awaiting_translation":
+				return "AWAITING_TRANSLATION";
+			default:
+				return processingStatus.trim();
+		}
+	}
+
 	public void insertNewPaperSummonsReplyWithResponseNameNSD(String newJurorRecordNumber, String firstName, String lastName, String poolNo) throws SQLException {
 		db = new DBConnection();
 

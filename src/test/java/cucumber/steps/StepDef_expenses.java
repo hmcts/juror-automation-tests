@@ -87,7 +87,7 @@ public class StepDef_expenses {
     @Then("^I see the following expenses on the jurors unpaid expenses form$")
     public void iSeeTheFollowingInformationOnUnpaidExpenseTable(DataTable dataTable) {
 
-        NAV.waitForPageLoad(3);
+        NAV.waitForPageLoadNew();
         Map<String, String> expectedData = dataTable.asMap(String.class, String.class);
         Map<String, String> actualData = EXPENSES.getUnpaidAttendanceDetails();
 
@@ -113,7 +113,7 @@ public class StepDef_expenses {
     @Then("^I see the following details on the expenses for approval form$")
     public void iSeeTheFollowingInformationOnApproveExpenseTable(DataTable dataTable) {
 
-        NAV.waitForPageLoad(3);
+        NAV.waitForPageLoadNew();
         Map<String, String> expectedData = dataTable.asMap(String.class, String.class);
         Map<String, String> actualData = EXPENSES.getApproveExpenseDetails();
 
@@ -187,7 +187,7 @@ public class StepDef_expenses {
     @Then("^I see the following details on the loss over limit form$")
     public void iSeeTheFollowingInformationOnlossOverLimitForm(DataTable dataTable) {
 
-        NAV.waitForPageLoad(3);
+        NAV.waitForPageLoadNew();
         Map<String, String> expectedData = dataTable.asMap(String.class, String.class);
         Map<String, String> actualData = EXPENSES.getLossOverLimitDetails();
 
@@ -197,7 +197,7 @@ public class StepDef_expenses {
     @Then("^I see the following Half day daily day limit details on the loss over limit form$")
     public void iSeeTheFollowingHalfDayInformationOnlossOverLimitForm(DataTable dataTable) {
 
-        NAV.waitForPageLoad(3);
+        NAV.waitForPageLoadNew();
         Map<String, String> expectedData = dataTable.asMap(String.class, String.class);
         Map<String, String> actualData = EXPENSES.getLossOverHalfDayLimitDetails();
 
@@ -208,7 +208,7 @@ public class StepDef_expenses {
 
     @When("^I see the following public expenses on travel overlimit page$")
     public void travelOverLimitExpense(DataTable dataTable){
-        NAV.waitForPageLoad(3);
+        NAV.waitForPageLoadNew();
         Map<String, String> expectedData = dataTable.asMap(String.class, String.class);
         Map<String, String> actualData = EXPENSES.getTravelOverLimitDetails();
         assertEquals(expectedData.get("Daily limit"), actualData.get("Daily limit"));
@@ -217,7 +217,7 @@ public class StepDef_expenses {
     }
     @When("^I see the following taxi expenses on travel overlimit page$")
     public void taxiOverLimitExpense(DataTable dataTable){
-        NAV.waitForPageLoad(3);
+        NAV.waitForPageLoadNew();
         Map<String, String> expectedData = dataTable.asMap(String.class, String.class);
         Map<String, String> actualData = EXPENSES.getTaxiOverLimitDetails();
         assertEquals(expectedData.get("Daily limit"), actualData.get("Daily limit"));

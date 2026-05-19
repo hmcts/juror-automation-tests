@@ -76,7 +76,7 @@ public class StepDef_jurorRecord {
 
     @Then("^I am on the Juror Record for juror \"([^\"]*)\"$")
     public void iAmOnJurorRecord(String jurorRecordNumber) throws Throwable {
-        NAV.waitForPageLoad();
+        NAV.waitForPageLoadNew();
         NAV.textPresentOnPage(jurorRecordNumber);
         assertTrue(JUROR_RECORD.seeJurorRecordTag());
         assertTrue(JUROR_RECORD.seeOverviewTab());
@@ -160,7 +160,7 @@ public class StepDef_jurorRecord {
 
     @Then("^I see the reassign active pools table$")
     public void seeReassignActivePoolsTable() {
-        NAV.waitForPageLoad();
+        NAV.waitForPageLoadNew();
         assertTrue(JUROR_RECORD.seeReassignActivePoolsTable());
         List<String> tableHeadings = JUROR_RECORD.getReassignActivePoolsHeadings();
         assertEquals("Pool number", tableHeadings.get(0));
@@ -354,7 +354,7 @@ public class StepDef_jurorRecord {
 
     @Then("^I click on the \"([^\"]*)\" link in the same row as \"([^\"]*)\" on Check your answers$")
     public void clickChangeLinkInSameRowAs_inCreateJurorRecord(String link, String nextTo) throws Throwable {
-        NAV.waitForPageLoad(2);
+        NAV.waitForPageLoadNew();
         JUROR_RECORD.clickChangeLinkInSameRowAs_inCreateJurorRecord(link, nextTo);
     }
 
@@ -431,7 +431,7 @@ public class StepDef_jurorRecord {
 
     @Then("I see the printed letter for juror number \"([^\"]*)\" in the letters table$")
     public void seeThePrintedLetterForJurorInTheTable(String jurorNumber) {
-        NAV.waitForPageLoad(2);
+        NAV.waitForPageLoadNew();
         JUROR_RECORD.seePrintedLetterInLettersTable(jurorNumber);
     }
 
@@ -487,7 +487,7 @@ public class StepDef_jurorRecord {
         try {
             NAV.seeText_inSameRow_asText(dateFormat.format(newDate), nextToText);
         } catch (Exception e) {
-            NAV.waitForPageLoad();
+            NAV.waitForPageLoadNew();
             NAV.seeText_inSameRow_asText(dateFormat.format(newDate), nextToText);
         }
     }
@@ -513,7 +513,7 @@ public class StepDef_jurorRecord {
         try {
             NAV.seeText_inSameRow_asText(dateFormat.format(newDate), nextToText);
         } catch (Exception e) {
-            NAV.waitForPageLoad();
+            NAV.waitForPageLoadNew();
             NAV.seeText_inSameRow_asText(dateFormat.format(newDate), nextToText);
         }
     }
@@ -539,7 +539,7 @@ public class StepDef_jurorRecord {
         try {
             NAV.seeText_inSameRow_asText(dateFormat.format(newDate), nextToText);
         } catch (Exception e) {
-            NAV.waitForPageLoad();
+            NAV.waitForPageLoadNew();
             NAV.seeText_inSameRow_asText(dateFormat.format(newDate), nextToText);
         }
     }
@@ -566,7 +566,7 @@ public class StepDef_jurorRecord {
         try {
             NAV.click_link_by_text(dateFormat.format(newDate));
         } catch (Exception e) {
-            NAV.waitForPageLoad();
+            NAV.waitForPageLoadNew();
             NAV.click_link_by_text(dateFormat.format(newDate));
         }
     }
@@ -585,7 +585,7 @@ public class StepDef_jurorRecord {
 
     @When("^I check all the checkboxes in the letters table$")
     public void selectAllCheckboxesInLettersTable(){
-        NAV.waitForPageLoad(2);
+        NAV.waitForPageLoadNew();
         JUROR_RECORD.selectAllCheckboxesInLettersTable();
     }
 
@@ -613,7 +613,7 @@ public class StepDef_jurorRecord {
     }
     @Then("I see the absence date for juror \"([^\"]*)\" in the letters table$")
     public void seeAbsenceDateInTable(String jurorNumber) {
-        NAV.waitForPageLoad(2);
+        NAV.waitForPageLoadNew();
         JUROR_RECORD.seeAbsenceDateInTable(jurorNumber);
     }
 
@@ -628,13 +628,13 @@ public class StepDef_jurorRecord {
 
     @Then("I focus page to the new tab$")
     public void closeMainBrowser() {
-        NAV.waitForPageLoad();
+        NAV.waitForPageLoadNew();
         NAV.selectNextTab();
     }
 
     @Then("I focus page to the original tab$")
     public void goToOriginalTab() {
-        NAV.waitForPageLoad();
+        NAV.waitForPageLoadNew();
         NAV.selectOriginalTab();
     }
 
@@ -707,7 +707,7 @@ public class StepDef_jurorRecord {
 
     @When("^I click on the change link in the same row as \"([^\"]*)\" on the record attendance screen$")
     public void clickChangeAttendanceTimes(String jurorNumber) {
-        NAV.waitForPageLoad();
+        NAV.waitForPageLoadNew();
         JUROR_RECORD.clickChangeAttendanceTimes(jurorNumber);
     }
 

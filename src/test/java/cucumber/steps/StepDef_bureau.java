@@ -66,7 +66,7 @@ public class StepDef_bureau {
 		try {
  			BUR.assignNewReplies_toStaff(staffMember);
 		} catch (Exception e) {
-			NAV.waitForPageLoad();
+			NAV.waitForPageLoadNew();
 			BUR.assignNewReplies_toStaff(staffMember);
 		}
 	};
