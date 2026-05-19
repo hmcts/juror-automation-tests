@@ -36,10 +36,10 @@ public class StepDef_login {
 	    try{
 	    	LGN.passwordReset(password);
 	    } catch (Exception e) {
-	    	NAV.waitForPageLoad();
+	    	NAV.waitForPageLoadNew();
 	    	LGN.passwordReset(password);
 	    }
-	    NAV.waitForPageLoad();
+	    NAV.waitForPageLoadNew();
 	}
 	
 }

@@ -46,64 +46,64 @@ public class StepDef_trialsAndAttendance {
 	@And("^I select the radio button with name \"([^\"]*)\" and value \"([^\"]*)\"$")
 	public void selectRadioButton(String jurorNumber, String status) {
 		String formId = "juryEmpanelSelectForm";
-		NAV.waitForPageLoad(2);
+		NAV.waitForPageLoadNew();
 		TRL.selectStatusForEmpanelledJuror(formId, jurorNumber, status);
 	}
 
 	@When("^I set juror check in minute to \"([^\"]*)\" on confirm attendance$")
 	public void setJurorCheckInMinute(String checkInTime) {
-		NAV.waitForPageLoad(1);
+		NAV.waitForPageLoadNew();
 		TRL.jurorCheckInMinute(checkInTime);
 
 	}
 
 	@When("^I set juror check in hour to \"([^\"]*)\" on confirm attendance$")
 	public void setJurorCheckInHour(String checkInTime) {
-		NAV.waitForPageLoad(1);
+		NAV.waitForPageLoadNew();
 		TRL.jurorCheckInHour(checkInTime);
 
 	}
 
 	@When("^I click on the am radio button for juror check in on confirm attendance$")
 	public void clickAmRadioButtonOnCheckIn() {
-		NAV.waitForPageLoad(1);
+		NAV.waitForPageLoadNew();
 		TRL.jurorCheckInRadioButtonAm();
 	}
 
 	@When("^I click on the pm radio button for juror check in on confirm attendance$")
 	public void clickPmRadioButtonOnCheckIn() {
-		NAV.waitForPageLoad(1);
+		NAV.waitForPageLoadNew();
 		TRL.jurorCheckInRadioButtonPm();
 	}
 
 	@When("^I set juror check out minute to \"([^\"]*)\" on confirm attendance$")
 	public void setJurorCheckOutMinute(String checkOutTime) {
-		NAV.waitForPageLoad(1);
+		NAV.waitForPageLoadNew();
 		TRL.jurorCheckOutMinute(checkOutTime);
 	}
 
 	@When("^I set juror check out hour to \"([^\"]*)\" on confirm attendance$")
 	public void setJurorCheckOutHour(String checkOutTime) {
-		NAV.waitForPageLoad(1);
+		NAV.waitForPageLoadNew();
 		TRL.jurorCheckOutHour(checkOutTime);
 	}
 
 	@When("^I click on the am radio button for juror check out on confirm attendance$")
 	public void clickAmRadioButtonOnCheckOut() {
-		NAV.waitForPageLoad(1);
+		NAV.waitForPageLoadNew();
 		TRL.jurorCheckOutRadioButtonAm();
 	}
 
 	@When("^I click on the pm radio button for juror check out on confirm attendance$")
 	public void clickPmRadioButtonOnCheckOut() {
-		NAV.waitForPageLoad(1);
+		NAV.waitForPageLoadNew();
 		TRL.jurorCheckOutRadioButtonPm();
 	}
 
 	@Then("^I see the following juror information on the Trial details screen$")
 	public void iSeeTheFollowingInformationOnaTrial(DataTable dataTable) {
 
-		NAV.waitForPageLoad(3);
+		NAV.waitForPageLoadNew();
 		Map<String, String> expectedData = dataTable.asMap(String.class, String.class);
 		Map<String, String> actualData = TRL.getTrialDetails();
 
@@ -117,7 +117,7 @@ public class StepDef_trialsAndAttendance {
 	@Then("^I see the following information on the Juror Attendance table$")
 	public void iSeeTheFollowingInformationOnaJurorAttendanceTable(DataTable dataTable) {
 
-		NAV.waitForPageLoad(3);
+		NAV.waitForPageLoadNew();
 		Map<String, String> expectedData = dataTable.asMap(String.class, String.class);
 		Map<String, String> actualData = TRL.getAttendanceDetails();
 
@@ -214,7 +214,7 @@ public class StepDef_trialsAndAttendance {
 
 	@When("^I input juror \"([^\"]*)\" to be checked in$")
 	public void checkInJuror(String checkIn) {
-		NAV.waitForPageLoad(1);
+		NAV.waitForPageLoadNew();
 		TRL.jurorCheckIn(checkIn);
 	}
 
@@ -234,7 +234,7 @@ public class StepDef_trialsAndAttendance {
 		try {
 			TRL.click_CheckoutRadioButton(arg);
 		} catch (Throwable e) {
-			NAV.waitForPageLoad();
+			NAV.waitForPageLoadNew();
 			TRL.click_CheckoutRadioButton(arg);
 		}
 	}
@@ -251,7 +251,7 @@ public class StepDef_trialsAndAttendance {
 	}
 	@When("^I select the \"([^\"]*)\" trial number radio button$")
 	public void checkFailedToAttendCheckBox(String trialNumber) {
-		NAV.waitForPageLoad(1);
+		NAV.waitForPageLoadNew();
 		TRL.clickTrialRadioButton(trialNumber);
 	}
 	@And("^I see the banner for dismissed jurors containing \"([^\"]*)\"$")
@@ -261,7 +261,7 @@ public class StepDef_trialsAndAttendance {
 	@When("^I press the calculate available jurors button$")
 	public void clickAvailableJurorsButton() {
 		TRL.clickAvailableJurorsButton();
-		NAV.waitForPageLoad(2);
+		NAV.waitForPageLoadNew();
 	}
 	@When("^I see Absence displayed as \"([^\"]*)\" on the attendance table$")
 	public void verifyAbsenceCount(String absenceNumber) {
@@ -280,7 +280,7 @@ public class StepDef_trialsAndAttendance {
 
 		for (int i = 0; i < clicks; i++) {
 			TRL.clickPreviousAttendanceLink();
-			NAV.waitForPageLoad();
+			NAV.waitForPageLoadNew();
 
 			try {
 				Thread.sleep(2000);
@@ -297,13 +297,13 @@ public class StepDef_trialsAndAttendance {
 	}
 	@When("^I select the \"([^\"]*)\" trial number radio button on reassign panel screen$")
 	public void selectTrialRadioButtonForReassign(String trialNumber) {
-		NAV.waitForPageLoad(1);
+		NAV.waitForPageLoadNew();
 		TRL.selectTrialNumberRadioButton(trialNumber);
 	}
 	@When("^I check the pool number \"([^\"]*)\" in the dismiss table$")
 	public void checkPoolNumberInDismissTable(String poolNumber) throws Throwable {
 		try {
-			NAV.waitForPageLoad(1);
+			NAV.waitForPageLoadNew();
 			TRL.selectCheckboxInDismissTable(poolNumber);
 			return;
 		} catch (Exception e) {}
@@ -316,7 +316,7 @@ public class StepDef_trialsAndAttendance {
 		try {
 			TrialsAndAttendance.seeConfirmedAttendanceStatusForJuror(juror, confirmedStatus);
 		} catch (Exception e) {
-			NAV.waitForPageLoad();
+			NAV.waitForPageLoadNew();
 			TrialsAndAttendance.seeConfirmedAttendanceStatusForJuror(juror, confirmedStatus);
 		}
 	}
@@ -366,7 +366,7 @@ public class StepDef_trialsAndAttendance {
 
 	@And("^I select the Select all checkbox on the trial$")
 	public void selectAllOnTrial() {
-		NAV.waitForPageLoad(1);
+		NAV.waitForPageLoadNew();
 		TRL.selectAllOnTrial();
 	}
 }

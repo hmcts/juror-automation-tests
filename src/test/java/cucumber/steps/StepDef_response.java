@@ -224,7 +224,7 @@ public class StepDef_response {
 			GRP.click_radioButtonWithLabel("The person is not here");
 			NAV.press_buttonByName("Continue");
 
-			NAV.waitForPageLoad();
+			NAV.waitForPageLoadNew();
 			NAV.textPresentOnPage("Is the name we have for them correct?");
 			GRP.click_radioButtonWithLabel("Yes");
 			NAV.press_buttonByName("Continue");
@@ -281,7 +281,7 @@ public class StepDef_response {
 			NAV.check_checkbox("The answers I have given for the person I'm replying for are true as far as I know.");
 			NAV.press_buttonByName("Submit");
 
-			NAV.waitForPageLoad();
+			NAV.waitForPageLoadNew();
 			NAV.textPresentOnPage("You have completed your reply");
 
 		}
@@ -558,13 +558,13 @@ public class StepDef_response {
 			NAV.setTextAreaWith_toText("id", "convictedDetails", "Convicted");
 			NAV.press_buttonByName("Continue");
 
-			NAV.waitForPageLoad();
+			NAV.waitForPageLoadNew();
 			NAV.textPresentOnPage("Are you being detained");
 			GRP.click_radioButtonWithLabel("Yes");
 			NAV.set_valueTo("Provide details", "Am detained");
 			NAV.press_buttonByName("Continue");
 
-			NAV.waitForPageLoad();
+			NAV.waitForPageLoadNew();
 			NAV.textPresentOnPage("Has it been decided that you 'lack mental capacity'?");
 			GRP.click_radioButtonWithLabel("Yes");
 			NAV.set_valueTo("Provide brief details about why it was decided you lack mental capacity", "Lack capacity");
@@ -832,7 +832,7 @@ public class StepDef_response {
 			NAV.set_valueTo("Prif rif ff", "02078211818");
 			NAV.press_buttonByName("Parhau");
 
-			NAV.waitForPageLoad();
+			NAV.waitForPageLoadNew();
 			NAV.set_valueTo("Nodwch eich cyfeiriad e-bost", email);
 			NAV.set_valueTo("Nodwch eich cyfeiriad e-bost eto", email);
 			NAV.press_buttonByName("Parhau");
@@ -1444,7 +1444,7 @@ public class StepDef_response {
 			NAV.set_valueTo("Main phone", "07590309447");
 			NAV.press_buttonByName("Continue");
 
-			NAV.waitForPageLoad();
+			NAV.waitForPageLoadNew();
 
 			NAV.set_valueTo("Enter your email address", email);
 			NAV.set_valueTo("Enter your email address again", email);

@@ -1400,7 +1400,7 @@ public class StepDef_jurorpoolNewSchema {
 //
 //    @Then("^I am on the modernisation version of View Summons Reply$")
 //    public void iAmOnModernisationVersionOfSummonsReply() {
-//        NAV.waitForPageLoad();
+//        NAV.waitForPageLoadNew();
 //        assertTrue(VIEW_SUMMONS_REPLY.seeSummonsReplyTag());
 //        assertTrue(VIEW_SUMMONS_REPLY.seeReplyMethodLabel());
 //        assertTrue(VIEW_SUMMONS_REPLY.seeServiceStartDateLabel());
@@ -1469,12 +1469,12 @@ public class StepDef_jurorpoolNewSchema {
 //        NAV.set_valueTo("First name", "Changed fname");
 //        NAV.set_valueTo("Last name", "Changed lname");
 //        SUMMONS_REPLY.saveChanges();
-//        NAV.waitForPageLoad();
+//        NAV.waitForPageLoadNew();
 //
 //        SUMMONS_REPLY.clickChangeAddress();
 //        NAV.set_valueTo("Address line 1", "Changed address line 1");
 //        SUMMONS_REPLY.saveChanges();
-//        NAV.waitForPageLoad();
+//        NAV.waitForPageLoadNew();
 //
 //        SUMMONS_REPLY.enterDateOfBirth("18/07/1976");
 //
@@ -1777,7 +1777,7 @@ public class StepDef_jurorpoolNewSchema {
 //        NAV.press_buttonByName("Continue");
 //        NAV.set_valueTo("Enter a court name or location code", court);
 //        NAV.press_buttonByName("Continue");
-//        NAV.waitForPageLoad();
+//        NAV.waitForPageLoadNew();
 //        POOL_REQUESTS_PAGE.clickToChangeDeferrals();
 //        POOL_REQUESTS_PAGE.enterNumberOfCourtDeferrals("0");
 //        NAV.press_buttonByName("Continue");
@@ -1809,7 +1809,7 @@ public class StepDef_jurorpoolNewSchema {
 //        NAV.press_buttonByName("Request a new pool");
 //        NAV.set_valueTo("Enter a court name or location code", court);
 //        NAV.press_buttonByName("Continue");
-//        NAV.waitForPageLoad();
+//        NAV.waitForPageLoadNew();
 //        if (poolRequestType.equals("Civil"))
 //            POOL_REQUESTS_PAGE.selectPoolType(PoolRequests.PoolType.CIVIL);
 //        if (poolRequestType.equals("Crown"))
@@ -1839,7 +1839,7 @@ public class StepDef_jurorpoolNewSchema {
 //        NAV.press_buttonByName("Continue");
 //        NAV.set_valueTo("Enter a court name or location code", court);
 //        NAV.press_buttonByName("Continue");
-//        NAV.waitForPageLoad();
+//        NAV.waitForPageLoadNew();
 //        iClickTheChangeLinkForTheCourtDeferrals();
 //        iChangeTheNumberOfCourtDeferralsTo(deferralsNumber);
 //        if (poolRequestType.equals("Civil"))
@@ -1863,7 +1863,7 @@ public class StepDef_jurorpoolNewSchema {
 //    @Then("^I create a \"([^\"]*)\" court pool request$")
 //    public void createNewPoolRequest(String poolRequestType) throws Throwable {
 //        NAV.press_buttonByName("Request a new pool");
-//        NAV.waitForPageLoad();
+//        NAV.waitForPageLoadNew();
 //        POOL_REQUESTS_PAGE.clickToChangeDeferrals();
 //        NAV.set_value_to("Number of deferred jurors to include in this pool", "0");
 //        NAV.press_buttonByName("Continue");
@@ -1906,7 +1906,7 @@ public class StepDef_jurorpoolNewSchema {
 //
 //        NAV.set_valueTo("Enter a court name or location code", court);
 //        NAV.press_buttonByName("Continue");
-//        //NAV.waitForPageLoad();
+//        //NAV.waitForPageLoadNew();
 //        POOL_REQUESTS_PAGE.clickChangeDate();
 //        POOL_REQUESTS_PAGE.enterNewDate(newDateValues);
 //        NAV.press_buttonByName("Change");
@@ -1937,7 +1937,7 @@ public class StepDef_jurorpoolNewSchema {
 //
 //        NAV.set_valueTo("Enter a court name or location code", court);
 //        NAV.press_buttonByName("Continue");
-//        //NAV.waitForPageLoad();
+//        //NAV.waitForPageLoadNew();
 //        POOL_REQUESTS_PAGE.clickChangeDate();
 //        POOL_REQUESTS_PAGE.enterNewDate(mondayWeeksInFuture(mondaysInFuture));
 //        NAV.press_buttonByName("Change");
@@ -2118,7 +2118,7 @@ public class StepDef_jurorpoolNewSchema {
 
     @Then("^The \"([^\"]*)\" new jurors have been sent a summons letter new schema$")
     public void checkNewJurorSummonsLetterNSD(String noJurors) throws SQLException {
-        NAV.waitForPageLoad();
+        NAV.waitForPageLoadNew();
         int jurorRows = Integer.parseInt(noJurors);
 
         for (int index = 1; index <= jurorRows; index++) {
@@ -2855,7 +2855,7 @@ public class StepDef_jurorpoolNewSchema {
 //        NAV.press_buttonByName("Continue");
 //        NAV.set_valueTo("Enter a court name or location code", court);
 //        NAV.press_buttonByName("Continue");
-//        NAV.waitForPageLoad();
+//        NAV.waitForPageLoadNew();
 //
 //        if (poolRequestType.equals("Civil"))
 //            POOL_REQUESTS_PAGE.selectPoolType(PoolRequests.PoolType.CIVIL);

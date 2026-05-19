@@ -211,40 +211,45 @@ public class StepDef_navigation {
 	}
 
 	@When("^I set \"([^\"]*)\" to \"([^\"]*)\"$")
-	public void set_value_to(String label, String rawValue) throws Throwable {
-		NAV.waitForPageLoadNew();
-		String value = normalizeValue(rawValue);
+	public void set_value_to(String arg1, String arg2) throws Throwable {
 
-		WebElement field = NAV.find_inputBy_labelName(label);
-		field.clear();
-		field.sendKeys(value);
-	}
+		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		Date date = new Date();
+		String date1 = dateFormat.format(date);
 
-	private String normalizeValue(String value) throws Throwable {
-		if (value == null || value.isEmpty()) {
-			return value;
+//		NAV.waitForPageLoad();
+
+		if (arg2.contains("today")) {
+			arg2 = date1;
 		}
 
-		if ("today".equals(value)) {
-			return LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-		}
-
-		if (value.contains(" time")) {
-			return formatDate(
-					DateManipulator.processString(value, false),
+		if (arg2.contains(" time")) {
+			arg2 = formatDate(
+					DateManipulator.processString(arg2, false),
 					"dd/MM/yyyy"
 			);
 		}
 
-		if (value.contains("{") && value.contains("}")) {
-			String cleaned = value.replace("{", "").replace("}", "");
-			return formatDate(
-					DateManipulator.processString(cleaned, false),
+		if (arg2.contains("{") && arg2.contains("}")) {
+			arg2 = arg2.replace("{", "").replace("}", "");
+			arg2 = formatDate(
+					DateManipulator.processString(arg2, false),
 					"dd/MM/yyyy"
 			);
 		}
 
-		return value;
+		try {
+			WebElement childField;
+			childField = NAV.find_inputBy_labelName(arg1);
+			childField.clear();
+			NAV.set_valueTo(arg1, arg2);
+		} catch (Exception e) {
+			WebElement newChildField;
+			newChildField = NAV.find_inputBy_labelName(arg1);
+			newChildField.clear();
+			NAV.waitForPageLoad();
+			NAV.set_valueTo(arg1, arg2);
+		}
 	}
 
 	@When("^I set the following fields$")

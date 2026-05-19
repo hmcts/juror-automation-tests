@@ -216,6 +216,21 @@ public class StepDef_DatabaseNewSchema {
         }
     }
 
+    @And("^I record an excusal request paper summons response for juror \"([^\"]*)\" via the database$")
+    public void recordExcusalRequestPaperSummonsResponseViaDatabase(String jurorNumber) throws SQLException {
+        DBTNSD.insertExcusalRequestPaperSummonsReplyNSD(jurorNumber);
+    }
+
+    @And("^I record a deferral request paper summons response for juror \"([^\"]*)\" via the database$")
+    public void recordDeferralRequexstPaperSummonsResponseViaDatabase(String jurorNumber) throws SQLException {
+        DBTNSD.insertDeferralRequestPaperSummonsReplyNSD(jurorNumber);
+    }
+
+    @And("^I record a paper summons response for juror \"([^\"]*)\" with processing status \"([^\"]*)\" via the database$")
+    public void recordPaperSummonsResponseWithProcessingStatusViaDatabase(String jurorNumber, String processingStatus) throws SQLException {
+        DBTNSD.insertPaperSummonsReplyWithProcessingStatusNSD(jurorNumber, processingStatus);
+    }
+
     @Given("^I set pool \"([^\"]*)\" loc_code to be \"([^\"]*)\"$")
     public void setPoolLocCode(String pool_number, String loc_code) throws SQLException {
         DBTNSD.setPoolLocCode(pool_number, loc_code);

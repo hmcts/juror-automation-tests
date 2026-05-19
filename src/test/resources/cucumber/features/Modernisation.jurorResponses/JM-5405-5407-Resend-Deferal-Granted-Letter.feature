@@ -104,43 +104,10 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
 
     And I update service start date to 4 Mondays from now for pool number "<pool_number>"
 
+    And I record a deferral request paper summons response for juror "<juror_number>" via the database
     And the user searches for juror record "<juror_number>" from the global search bar
-
-  #record paper summons response
-    And I click the Enter summons reply button
-    Then the juror details form is displayed
-
-  #juror details
-    When I fill in all of the juror details for the summons reply
-    And I click continue on the juror summons reply page
-
-  #eligibility
-    Then the juror summons reply eligibility page is displayed
-    When I answer the juror summons reply eligibility questions
-    And I click continue on the juror summons reply page
-
-  #deferral
-    Then the juror summons reply types page is displayed
-    When I set the radio button to "Deferral request"
-    And I click continue on the juror summons reply page
-
-  #cjs
-    Then the juror summons reply CJS employment page is displayed
-    When I select that the juror has not worked in the criminal justice system
-    And I click continue on the juror summons reply page
-
-  #reasonable adjustments
-    Then the juror summons reply reasonable adjustments page is displayed
-    And I choose the "No" radio button
-    And I click continue on the juror summons reply page
-
-  #confirm/sign
-    Then the juror summons reply Signature page is displayed
-    When I select that the summons reply has been signed
-    And I click done on the juror summons reply page
-
-    Then I see the reply "status" on the response is "To Do"
-    And I see the reply "type" on the response is "Deferral"
+    And I click on the "Summons reply" link
+    And I click on the "View summons reply" link
     And I press the "Process reply" button
     And I set the radio button to "Deferral request"
     And I press the "Continue" button
@@ -183,43 +150,11 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
 
     And I update service start date to 4 Mondays from now for pool number "<pool_number>"
 
+    And I record a deferral request paper summons response for juror "<juror_number>" via the database
+    And I record a deferral request paper summons response for juror "<juror_number_1>" via the database
     When the user searches for juror record "<juror_number>" from the global search bar
-
-  #record paper summons response
-    And I click the Enter summons reply button
-    Then the juror details form is displayed
-
-  #juror details
-    When I fill in all of the juror details for the summons reply
-    And I click continue on the juror summons reply page
-
-  #eligibility
-    Then the juror summons reply eligibility page is displayed
-    When I answer the juror summons reply eligibility questions
-    And I click continue on the juror summons reply page
-
-  #can attend on date
-    Then the juror summons reply types page is displayed
-    When I set the radio button to "Deferral request"
-    And I click continue on the juror summons reply page
-
-  #cjs
-    Then the juror summons reply CJS employment page is displayed
-    When I select that the juror has not worked in the criminal justice system
-    And I click continue on the juror summons reply page
-
-  #reasonable adjustments
-    Then the juror summons reply reasonable adjustments page is displayed
-    And I choose the "No" radio button
-    And I click continue on the juror summons reply page
-
-  #confirm/sign
-    Then the juror summons reply Signature page is displayed
-    When I select that the summons reply has been signed
-    And I click done on the juror summons reply page
-
-    Then I see the reply "status" on the response is "To Do"
-    And I see the reply "type" on the response is "Deferral"
+    And I click on the "Summons reply" link
+    And I click on the "View summons reply" link
     And I press the "Process reply" button
     And I set the radio button to "Deferral request"
     And I press the "Continue" button
@@ -235,42 +170,8 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
     And I verify the banner message "Deferral granted" on the page
 #update the 2nd juror number to deferred
     When the user searches for juror record "<juror_number_1>" from the global search bar
-
-  #record paper summons response
-    And I click the Enter summons reply button
-    Then the juror details form is displayed
-
-  #juror details
-    When I fill in all of the juror details for the summons reply
-    And I click continue on the juror summons reply page
-
-  #eligibility
-    Then the juror summons reply eligibility page is displayed
-    When I answer the juror summons reply eligibility questions
-    And I click continue on the juror summons reply page
-
-  #can attend on date
-    Then the juror summons reply types page is displayed
-    When I set the radio button to "Deferral request"
-    And I click continue on the juror summons reply page
-
-  #cjs
-    Then the juror summons reply CJS employment page is displayed
-    When I select that the juror has not worked in the criminal justice system
-    And I click continue on the juror summons reply page
-
-  #reasonable adjustments
-    Then the juror summons reply reasonable adjustments page is displayed
-    And I choose the "No" radio button
-    And I click continue on the juror summons reply page
-
-  #confirm/sign
-    Then the juror summons reply Signature page is displayed
-    When I select that the summons reply has been signed
-    And I click done on the juror summons reply page
-
-    Then I see the reply "status" on the response is "To Do"
-    And I see the reply "type" on the response is "Deferral"
+    And I click on the "Summons reply" link
+    And I click on the "View summons reply" link
     And I press the "Process reply" button
     And I set the radio button to "Deferral request"
     And I press the "Continue" button
@@ -339,43 +240,10 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
 
     And I update service start date to 4 Mondays from now for pool number "<pool_number>"
 
+    And I record a deferral request paper summons response for juror "<juror_number>" via the database
     And the user searches for juror record "<juror_number>" from the global search bar
-
-  #record paper summons response
-    And I click the Enter summons reply button
-    Then the juror details form is displayed
-
-  #juror details
-    When I fill in all of the juror details for the summons reply
-    And I click continue on the juror summons reply page
-
-  #eligibility
-    Then the juror summons reply eligibility page is displayed
-    When I answer the juror summons reply eligibility questions
-    And I click continue on the juror summons reply page
-
-  #can attend on date
-    Then the juror summons reply types page is displayed
-    When I set the radio button to "Deferral request"
-    And I click continue on the juror summons reply page
-
-  #cjs
-    Then the juror summons reply CJS employment page is displayed
-    When I select that the juror has not worked in the criminal justice system
-    And I click continue on the juror summons reply page
-
-  #reasonable adjustments
-    Then the juror summons reply reasonable adjustments page is displayed
-    And I choose the "No" radio button
-    And I click continue on the juror summons reply page
-
-  #confirm/sign
-    And the juror summons reply Signature page is displayed
-    When I select that the summons reply has been signed
-    And I click done on the juror summons reply page
-
-    Then I see the reply "status" on the response is "To Do"
-    And I see the reply "type" on the response is "Deferral"
+    And I click on the "Summons reply" link
+    And I click on the "View summons reply" link
     And I press the "Process reply" button
     And I set the radio button to "Deferral request"
     And I press the "Continue" button
@@ -421,45 +289,12 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
 
     And I update service start date to 4 Mondays from now for pool number "<pool_number>"
     And I clear down the bulk print data table for Juror "<juror_number>"
+    And I record a deferral request paper summons response for juror "<juror_number>" via the database
     And I update the bureau transfer date of the juror "<juror_number>"
     And I log in as "<user>"
     When the user searches for juror record "<juror_number>" from the global search bar
-
-  #record paper summons response
-    And I click the Enter summons reply button
-    Then the juror details form is displayed
-
-  #juror details
-    When I fill in all of the juror details for the summons reply
-    And I click continue on the juror summons reply page
-
-  #eligibility
-    Then the juror summons reply eligibility page is displayed
-    When I answer the juror summons reply eligibility questions
-    And I click continue on the juror summons reply page
-
-  #can attend on date
-    Then the juror summons reply types page is displayed
-    When I set the radio button to "Deferral request"
-    And I click continue on the juror summons reply page
-
-  #cjs
-    Then the juror summons reply CJS employment page is displayed
-    When I select that the juror has not worked in the criminal justice system
-    And I click continue on the juror summons reply page
-
-  #reasonable adjustments
-    Then the juror summons reply reasonable adjustments page is displayed
-    And I choose the "No" radio button
-    And I click continue on the juror summons reply page
-
-  #confirm/sign
-    And the juror summons reply Signature page is displayed
-    When I select that the summons reply has been signed
-    And I click done on the juror summons reply page
-
-    And I see the reply "status" on the response is "To Do"
-    And I see the reply "type" on the response is "Deferral"
+    And I click on the "Summons reply" link
+    And I click on the "View summons reply" link
     And I press the "Process reply" button
     And I set the radio button to "Deferral request"
     And I press the "Continue" button
@@ -527,45 +362,12 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
 
     And I update service start date to 4 Mondays from now for pool number "<pool_number>"
     And I clear down the bulk print data table for Juror "<juror_number>"
+    And I record a deferral request paper summons response for juror "<juror_number>" via the database
     And I update the bureau transfer date of the juror "<juror_number>"
     And I log in as "<user>"
     When the user searches for juror record "<juror_number>" from the global search bar
-
-  #record paper summons response
-    And I click the Enter summons reply button
-    Then the juror details form is displayed
-
-  #juror details
-    When I fill in all of the juror details for the summons reply
-    And I click continue on the juror summons reply page
-
-  #eligibility
-    Then the juror summons reply eligibility page is displayed
-    When I answer the juror summons reply eligibility questions
-    And I click continue on the juror summons reply page
-
-  #can attend on date
-    Then the juror summons reply types page is displayed
-    When I set the radio button to "Deferral request"
-    And I click continue on the juror summons reply page
-
-  #cjs
-    Then the juror summons reply CJS employment page is displayed
-    When I select that the juror has not worked in the criminal justice system
-    And I click continue on the juror summons reply page
-
-  #reasonable adjustments
-    Then the juror summons reply reasonable adjustments page is displayed
-    And I choose the "No" radio button
-    And I click continue on the juror summons reply page
-
-  #confirm/sign
-    And the juror summons reply Signature page is displayed
-    When I select that the summons reply has been signed
-    And I click done on the juror summons reply page
-
-    Then I see the reply "status" on the response is "To Do"
-    And I see the reply "type" on the response is "Deferral"
+    And I click on the "Summons reply" link
+    And I click on the "View summons reply" link
     And I press the "Process reply" button
     And I set the radio button to "Deferral request"
     And I press the "Continue" button

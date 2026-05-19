@@ -467,7 +467,7 @@ public class SummonsReply {
     }
 
     public void clickLivedConsecutivelyYes() {
-        NAV.waitForPageLoad();
+        NAV.waitForPageLoadNew();
         livedConsecutivelyYes.click();
     }
 
@@ -516,7 +516,7 @@ public class SummonsReply {
     }
 
     public void clickExcusalRequest() {
-        NAV.waitForPageLoad();
+        NAV.waitForPageLoadNew();
         excusalRequest.click();
     }
 
@@ -525,7 +525,7 @@ public class SummonsReply {
     }
 
     public void clickCjsEmploymentNo() {
-        NAV.waitForPageLoad();
+        NAV.waitForPageLoadNew();
         cjsEmploymentNo.click();
     }
 
@@ -534,7 +534,7 @@ public class SummonsReply {
     }
 
     public void clickAdjustmentsNo() {
-        NAV.waitForPageLoad();
+        NAV.waitForPageLoadNew();
         adjustmentsNo.click();
     }
 
@@ -544,7 +544,7 @@ public class SummonsReply {
     }
 
     public void clickSignedYes() {
-        NAV.waitForPageLoad();
+        NAV.waitForPageLoadNew();
         signedYes.click();
     }
 
