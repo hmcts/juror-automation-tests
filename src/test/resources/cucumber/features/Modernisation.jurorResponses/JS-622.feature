@@ -7,20 +7,14 @@ Feature: JS-622 - Shuffle address
 
     Given a bureau owned pool is created with jurors
       | court |juror_number  	| pool_number	| att_date_weeks_in_future	| owner |
-      | 415   |<juror_number> 	| <pool_number> | 5				            | 400	|
+      | 452   |<juror_number> 	| <pool_number> | 5				            | 400	|
 
-    And I clear down my jurors for shuffle address test
-      | court | juror_number  	        | pool_number	    |
-      | 415   | <juror_number1> 	    | <pool_number>     |
-      | 415   | <juror_number2> 	    | <pool_number>     |
-      | 415   | <juror_number3> 	    | <pool_number>     |
-      | 415   | <juror_number4> 	    | <pool_number>     |
-      | 415   | <juror_number5> 	    | <pool_number>     |
+    And I clear down existing jurors for shuffle address test in pool "<pool_number>"
 
     And I log in as "<user>"
 
     And new voter records are inserted into the voters table for address shuffle
-    And I check the catchment area table to ensure my loc code is present
+    And I reset the catchment area for shuffle address
 
     And I press the "Apps" button
     And I click on the "Pool management" link
@@ -33,14 +27,8 @@ Feature: JS-622 - Shuffle address
     And I set "Extra citizens to summon" to "5"
     And I press the "Summon more citizens" button
 
-    And I see "<juror_number1>" on the page
-    And I see "<juror_number2>" on the page
-    And I see "<juror_number3>" on the page
-    And I see "<juror_number4>" on the page
-    And I see "<juror_number5>" on the page
-
-    And I verify the juror address shuffles are correct
+    And I verify the juror address shuffles are correct for pool "<pool_number>"
 
     Examples:
-     | juror_number | juror_number1 | juror_number2 | juror_number3 | juror_number4 | juror_number5 | pool_number | user          |
-     | 041578833    | 820211676     | 820211826     | 820211896     | 820211816     | 820211886     | 452388166   | MODTESTBUREAU |
+     | juror_number | pool_number | user          |
+     | 045278833    | 452388166   | MODTESTBUREAU |

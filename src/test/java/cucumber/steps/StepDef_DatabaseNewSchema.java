@@ -810,9 +810,9 @@ public class StepDef_DatabaseNewSchema {
     public void insertNewVotersData() throws SQLException {
         DBTNSD.insertNewVotersDataForShuffle();
     }
-    @Given("^I check the catchment area table to ensure my loc code is present$")
-    public void ensureTF14CatchmentExists() throws SQLException {
-        DBTNSD.insertCatchmentAreaIfNotExists();
+    @Given("^I reset the catchment area for shuffle address$")
+    public void resetCatchmentAreaForShuffleAddress() throws SQLException {
+        DBTNSD.resetCatchmentAreaForShuffleAddress();
     }
     @Given("^I clear down my jurors for shuffle address test$")
     public void jurorsClearedDown(DataTable arg1) throws SQLException {
@@ -823,9 +823,17 @@ public class StepDef_DatabaseNewSchema {
             DBTNSD.cleanTestDataForShuffleAddress(pool_number, juror_number);
         }
     }
+    @Given("^I clear down existing jurors for shuffle address test in pool \"([^\"]*)\"$")
+    public void existingShuffleAddressJurorsClearedDown(String poolNumber) throws SQLException {
+        DBTNSD.clearDownExistingJurorsForShuffleAddress(poolNumber);
+    }
     @Then("^I verify the juror address shuffles are correct$")
     public void verifyJurorAddressUpdates() throws SQLException {
         DBTNSD.verifyJurorAddress4Updates();
+    }
+    @Then("^I verify the juror address shuffles are correct for pool \"([^\"]*)\"$")
+    public void verifyJurorAddressUpdatesForPool(String poolNumber) throws SQLException {
+        DBTNSD.verifyJurorAddress4Updates(poolNumber);
     }
 
     @Given("^all ER Local Authorities are set to active new schema$")
