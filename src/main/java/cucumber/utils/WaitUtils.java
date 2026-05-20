@@ -109,6 +109,16 @@ public class WaitUtils {
 		log.info("Activated Implicit wait for =>"+seconds+"<= seconds");
 		driver.manage().timeouts().implicitlyWait(seconds, TimeUnit.SECONDS); // Activate implicitlyWait()														
 	}
+
+	public void activateExplicitWait() {
+		activateExplicitWait(5);
+	}
+
+	public WebDriverWait activateExplicitWait(Integer seconds) {
+		log.info("Activated Explicit wait for =>" + seconds + "<= seconds");
+
+		return new WebDriverWait(driver, Duration.ofSeconds(seconds));
+	}
 	
 
 	public void deactivateImplicitWait() {

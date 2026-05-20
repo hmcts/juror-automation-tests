@@ -122,7 +122,7 @@ public class StepDef_summoningprogress {
     @Then("^I see the pool I created \"([^\"]*)\" in a row on the search results with the values$")
     public void iSeeThePoolCreatedInTheSearchResultsTable(String poolNumber, DataTable dataTable) throws Throwable {
         Map<String, String> expectedData = dataTable.asMap(String.class, String.class);
-        NAV.waitForPageLoad();
+        NAV.waitForPageLoadNew();
         System.out.println("Pool Created: " + poolNumber);
         NAV.textPresentOnPage(poolNumber);
         String[] actualData = POOL_SUMMONING_PROGRESS.getRowOfTableContainingPoolNumber(poolNumber);

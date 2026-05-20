@@ -11,8 +11,7 @@ Feature: JM-3179
 
     And I log in as "MODTESTBUREAU"
 
-    When the user searches for juror record "<juror_number>" from the global search bar
-    And I record a happy path paper summons response
+    And I record a paper summons response for juror "<juror_number>" with processing status "<processing_status>" via the database
     When the user searches for juror record "<juror_number>" from the global search bar
     And I click on the "Summons reply" link
     And I click on the "View summons reply" link
@@ -26,10 +25,10 @@ Feature: JM-3179
     And I see the reply status has updated to "<updatedReplyStatus>"
 
     Examples:
-    | waitingOnReplyFrom | updatedReplyStatus   | juror_number | pool_number |
-    | Juror              | Awaiting juror info  | 045200009    | 452300005   |
-    | Court              | Awaiting court reply | 045200009    | 452300005   |
-    | Translation unit   | Awaiting Translation | 045200009    | 452300005   |
+    | processing_status    | updatedReplyStatus   | juror_number | pool_number | waitingOnReplyFrom |
+    | AWAITING_CONTACT     | Awaiting juror info  | 045200009    | 452300005   | Juror              |
+    | AWAITING_COURT_REPLY | Awaiting court reply | 045200009    | 452300005   | Court              |
+    | AWAITING_TRANSLATION | Awaiting Translation | 045200009    | 452300005   | Translation unit   |
 
   @JurorTransformationMulti
   Scenario Outline: Test to mark paper summons reply as awaiting information - validation
@@ -41,8 +40,7 @@ Feature: JM-3179
       | 452   | <juror_number> 	    | <pool_number>     | 5				            | 400	|
 
     And I log in as "<user>"
-    When the user searches for juror record "<juror_number>" from the global search bar
-    And I record a happy path paper summons response
+    And I record a paper summons response for juror "<juror_number>" with processing status "TODO" via the database
     When the user searches for juror record "<juror_number>" from the global search bar
     And I click on the "Summons reply" link
     And I click on the "View summons reply" link
@@ -67,8 +65,7 @@ Feature: JM-3179
 
     And I log in as "MODTESTBUREAU"
 
-    When the user searches for juror record "<juror_number>" from the global search bar
-    And I record a happy path paper summons response
+    And I record a paper summons response for juror "<juror_number>" with processing status "<processing_status>" via the database
     When the user searches for juror record "<juror_number>" from the global search bar
     And I click on the "Summons reply" link
     And I click on the "View summons reply" link
@@ -82,10 +79,10 @@ Feature: JM-3179
     And I see the reply status has updated to "<updatedReplyStatus>"
 
     Examples:
-      | waitingOnReplyFrom | updatedReplyStatus   | juror_number | pool_number |
-      | Juror              | Awaiting juror info  | 045200011    | 452300007   |
-      | Court              | Awaiting court reply | 045200011    | 452300007   |
-      | Translation unit   | Awaiting Translation | 045200011    | 452300007   |
+      | processing_status    | updatedReplyStatus   | juror_number | pool_number | waitingOnReplyFrom |
+      | AWAITING_CONTACT     | Awaiting juror info  | 045200011    | 452300007   | Juror              |
+      | AWAITING_COURT_REPLY | Awaiting court reply | 045200011    | 452300007   | Court              |
+      | AWAITING_TRANSLATION | Awaiting Translation | 045200011    | 452300007   | Translation unit   |
 
   @JurorTransformationMulti
   Scenario Outline: Test to mark summons reply as awaiting information - validation
@@ -97,8 +94,7 @@ Feature: JM-3179
       | 415   | <juror_number> 	    | <pool_number>     | 7				            | 400	|
 
     And I log in as "<user>"
-    When the user searches for juror record "<juror_number>" from the global search bar
-    And I record a happy path paper summons response
+    And I record a paper summons response for juror "<juror_number>" with processing status "TODO" via the database
     When the user searches for juror record "<juror_number>" from the global search bar
     And I click on the "Summons reply" link
     And I click on the "View summons reply" link

@@ -542,7 +542,7 @@ public class NavigationShared {
 
     public NavigationShared press_buttonByName(String button_name) throws Throwable {
         log.info("Going to press button with name =>" + button_name);
-        wait.activateImplicitWait();
+        waitForPageLoadNew();
         WebElement button;
 
         List<WebElement> buttons = driver.findElements(By.xpath(
@@ -566,7 +566,7 @@ public class NavigationShared {
         }
 
         try { // Investigate purpose of this
-            wait.waitForClickableElement(button, 10);
+            wait.waitForClickableElement(button, 2);
         } catch (Exception e) {
             log.error("unexpected exception when waiting for element to be clickable", e);
         }
@@ -686,6 +686,51 @@ public class NavigationShared {
         waitForPageLoad(7, 120);
     }
 
+
+    public void waitForPageLoadNew() {
+        By loadingIndicators = By.cssSelector(".moj-loading, .loading, [aria-busy='true']");
+        Duration originalImplicitWait = driver.manage().timeouts().getImplicitWaitTimeout();
+
+        driver.manage().timeouts().implicitlyWait(Duration.ZERO);
+
+        try {
+            boolean loaderVisible = driver.findElements(loadingIndicators)
+                    .stream()
+                    .anyMatch(WebElement::isDisplayed);
+
+            if (!loaderVisible) {
+                try {
+                    new WebDriverWait(driver, Duration.ofMillis(500))
+                            .pollingEvery(Duration.ofMillis(100))
+                            .until(webDriver -> webDriver.findElements(loadingIndicators)
+                                    .stream()
+                                    .anyMatch(WebElement::isDisplayed));
+
+                    loaderVisible = true;
+                    log.info("Saw loading indicator after short grace wait");
+                } catch (Exception e) {
+                    log.info("No loading indicator seen - continuing");
+                    return;
+                }
+            }
+
+            try {
+                new WebDriverWait(driver, Duration.ofSeconds(25))
+                        .pollingEvery(Duration.ofMillis(250))
+                        .until(webDriver -> webDriver.findElements(loadingIndicators)
+                                .stream()
+                                .noneMatch(WebElement::isDisplayed));
+
+                log.info("Loading indicator now gone - continuing");
+            } catch (Exception e) {
+                log.info("Loading indicator still present after 25 seconds - continuing");
+            }
+        } finally {
+            driver.manage().timeouts().implicitlyWait(originalImplicitWait);
+        }
+    }
+
+
     public void waitForPageLoad(int waitTime) {
         waitForPageLoad(2, waitTime);
     }
@@ -749,8 +794,10 @@ public class NavigationShared {
 
     public void click_link_by_text(String arg1) {
         WebElement linkText;
+        Duration originalImplicitWait = driver.manage().timeouts().getImplicitWaitTimeout();
 
         try {
+            driver.manage().timeouts().implicitlyWait(Duration.ZERO);
             linkText = return_oneVisibleFromList(driver.findElements(By.linkText(arg1)), true);
         } catch (Exception e) {
             wait.activateImplicitWait();

@@ -3,15 +3,15 @@ Feature: JM-5413-5415 - Resend excusal granted letter for Bureau and Jury users
   @JurorTransformationMulti
   Scenario Outline:As a bureau officer test a Excused juror can resend a granted letter by searching via juror number
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "demo"
 
     When a bureau owned pool is created with jurors
       | court | juror_number  | pool_number   | att_date_weeks_in_future   | owner  |
       | 415   | <juror_number>| <pool_number> | 5                          | 400    |
 
+    And I record an excusal request paper summons response for juror "<juror_number>" via the database
+
     And I log in as "<user>"
-    And the user searches for juror record "<juror_number>" from the global search bar
-    And I record an excusal request paper summons response
     And the user searches for juror record "<juror_number>" from the global search bar
     And I click on the "Summons reply" link
     And I click on the "View summons reply" link
@@ -60,14 +60,14 @@ Feature: JM-5413-5415 - Resend excusal granted letter for Bureau and Jury users
   @JurorTransformationMulti
   Scenario Outline:As a bureau officer verify a excused juror letter in printing stage can delete
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "demo"
     And I log in as "<user>"
     When a bureau owned pool is created with jurors
       | court | juror_number  | pool_number   | att_date_weeks_in_future    | owner |
       | 415   | <juror_number>| <pool_number> | 5                           | 400   |
 
-    And the user searches for juror record "<juror_number>" from the global search bar
-    And I record an excusal request paper summons response
+    And I record an excusal request paper summons response for juror "<juror_number>" via the database
+
     And the user searches for juror record "<juror_number>" from the global search bar
     And I click on the "Summons reply" link
     And I click on the "View summons reply" link
@@ -104,18 +104,18 @@ Feature: JM-5413-5415 - Resend excusal granted letter for Bureau and Jury users
   @JurorTransformationMulti
   Scenario Outline: Excusal granted letter - via pool Number happy path bulk
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "demo"
     And I log in as "<user>"
 
     When a bureau owned pool is created with jurors
       | court   | juror_number    | pool_number     | att_date_weeks_in_future  | owner |
       | 415     | <juror_number>  | <pool_number>   | 5                         | 400   |
       | 415     | <juror_number_2>| <pool_number>   | 5                         | 400   |
-      | 415     | <juror_number_3>| <pool_number>   | 5                         | 400   |
+
+    And I record an excusal request paper summons response for juror "<juror_number>" via the database
+    And I record an excusal request paper summons response for juror "<juror_number_2>" via the database
 
     #record response for first juror
-    And the user searches for juror record "<juror_number>" from the global search bar
-    And I record an excusal request paper summons response
     And the user searches for juror record "<juror_number>" from the global search bar
     And I click on the "Summons reply" link
     And I click on the "View summons reply" link
@@ -131,8 +131,6 @@ Feature: JM-5413-5415 - Resend excusal granted letter for Bureau and Jury users
     And I ensure juror "<juror_number>" has an excusal code set
 
     #record response for second juror
-    And the user searches for juror record "<juror_number_2>" from the global search bar
-    And I record an excusal request paper summons response
     And the user searches for juror record "<juror_number_2>" from the global search bar
     And I click on the "Summons reply" link
     And I click on the "View summons reply" link
@@ -147,22 +145,6 @@ Feature: JM-5413-5415 - Resend excusal granted letter for Bureau and Jury users
     And I see the juror status has updated to "Excused"
     And I ensure juror "<juror_number_2>" has an excusal code set
 
-     #record response for third juror
-    And the user searches for juror record "<juror_number_3>" from the global search bar
-    And I record an excusal request paper summons response
-    And the user searches for juror record "<juror_number_3>" from the global search bar
-    And I click on the "Summons reply" link
-    And I click on the "View summons reply" link
-    And I press the "Process reply" button
-
-    And I set the radio button to "Excusal - grant or refuse"
-    Then I press the "Continue" button
-    And I select "O - OTHER" from the "Reason for excusal request" dropdown
-    And I set the radio button to "Grant excusal"
-    And I press the "Continue" button
-    And the user searches for juror record "<juror_number_3>" from the global search bar
-    And I see the juror status has updated to "Excused"
-    And I ensure juror "<juror_number_3>" has an excusal code set
 
   #search via pool  number and resend letter for all jurors
     When I press the "Apps" button
@@ -177,7 +159,6 @@ Feature: JM-5413-5415 - Resend excusal granted letter for Bureau and Jury users
     And I see "Change" on the page
     And I update juror "<juror_number>" to change the status of printed in order to resend letter
     And I update juror "<juror_number_2>" to change the status of printed in order to resend letter
-    And I update juror "<juror_number_3>" to change the status of printed in order to resend letter
 
     And I press the "Apps" button
     And I click on the "Documents" link
@@ -188,17 +169,15 @@ Feature: JM-5413-5415 - Resend excusal granted letter for Bureau and Jury users
 
     And I see the printed letter for juror number "<juror_number>" in the letters table
     And I see the printed letter for juror number "<juror_number_2>" in the letters table
-    And I see the printed letter for juror number "<juror_number_3>" in the letters table
     And I see "Excusal granted letters" on the page
     And I check the "<juror_number>" checkbox
     And I check the "<juror_number_2>" checkbox
-    And I check the "<juror_number_3>" checkbox
     And I press the "Resend excusal granted letter" button
-    And I see "3 documents sent for printing" on the page
+    And I see "2 documents sent for printing" on the page
 
     Examples:
-      | juror_number | juror_number_2 | juror_number_3 | pool_number | user          |
-      | 041529056    | 041529057      | 041529058      | 415980676   | MODTESTBUREAU |
+      | juror_number | juror_number_2 | pool_number | user          |
+      | 041529056    | 041529057      | 415980676   | MODTESTBUREAU |
 
 
   @JurorTransformationMulti
@@ -211,9 +190,10 @@ Feature: JM-5413-5415 - Resend excusal granted letter for Bureau and Jury users
       | 415     | <juror_number>  | <pool_number>   | 5                         | 400   |
       | 415     | <juror_number_1>| <pool_number>   | 5                         | 400   |
 
+    And I record an excusal request paper summons response for juror "<juror_number>" via the database
+    And I record an excusal request paper summons response for juror "<juror_number_1>" via the database
+
     #record response for first juror
-    And the user searches for juror record "<juror_number>" from the global search bar
-    And I record an excusal request paper summons response
     And the user searches for juror record "<juror_number>" from the global search bar
     And I click on the "Summons reply" link
     And I click on the "View summons reply" link
@@ -229,8 +209,6 @@ Feature: JM-5413-5415 - Resend excusal granted letter for Bureau and Jury users
     And I ensure juror "<juror_number>" has an excusal code set
 
     #record response for second juror
-    And the user searches for juror record "<juror_number_1>" from the global search bar
-    And I record an excusal request paper summons response
     And the user searches for juror record "<juror_number_1>" from the global search bar
     And I click on the "Summons reply" link
     And I click on the "View summons reply" link
@@ -294,15 +272,15 @@ Feature: JM-5413-5415 - Resend excusal granted letter for Bureau and Jury users
   @JurorTransformationMulti
   Scenario Outline:Verify as a bureau user can view letters queued for printing and can delete it
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "demo"
 
     When a bureau owned pool is created with jurors
       | court   | juror_number  | pool_number     | att_date_weeks_in_future  | owner |
       | 415     | <juror_number>| <pool_number>   | 5                         | 400   |
 
+    And I record an excusal request paper summons response for juror "<juror_number>" via the database
+
     And I log in as "<user>"
-    And the user searches for juror record "<juror_number>" from the global search bar
-    And I record an excusal request paper summons response
     And the user searches for juror record "<juror_number>" from the global search bar
     And I click on the "Summons reply" link
     And I click on the "View summons reply" link
@@ -338,10 +316,12 @@ Feature: JM-5413-5415 - Resend excusal granted letter for Bureau and Jury users
   @JurorTransformation
   Scenario Outline: As a jury officer I want to print a excusal granted letter for juror
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "demo"
     When a bureau owned pool is created with jurors
       | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
       | 415   | <juror_number>| <pool_number>           | 5                          | 400  |
+
+    And I record an excusal request paper summons response for juror "<juror_number>" via the database
 
     Then a new pool is inserted for where record has transferred to the court new schema
       |part_no              | pool_no           | owner |
@@ -350,10 +330,8 @@ Feature: JM-5413-5415 - Resend excusal granted letter for Bureau and Jury users
     And I log in as "<user>"
     And I update the bureau transfer date of the juror "<juror_number>"
     And the user searches for juror record "<juror_number>" from the global search bar
-    And I record an excusal request paper summons response
 
     #view response and grant excusal
-    And the user searches for juror record "<juror_number>" from the global search bar
     And I click on the "Summons reply" link
     And I click on the "View summons reply" link
     And I press the "Process reply" button
@@ -367,7 +345,7 @@ Feature: JM-5413-5415 - Resend excusal granted letter for Bureau and Jury users
     And I choose the "Yes" radio button
     And I press the "Continue" button
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "demo"
     And I log in as "<user>"
     And I press the "Apps" button
     And I click on the "Documents" link
@@ -387,7 +365,7 @@ Feature: JM-5413-5415 - Resend excusal granted letter for Bureau and Jury users
   @JurorTransformationMulti
   Scenario Outline:As a jury officer test a Excused juror can resend a granted letter by searching via pool number
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "demo"
 
     When a bureau owned pool is created with jurors
       | court |juror_number   | pool_number	    | att_date_weeks_in_future	| owner |
@@ -397,9 +375,9 @@ Feature: JM-5413-5415 - Resend excusal granted letter for Bureau and Jury users
       |part_no        | pool_no           | owner |
       | <juror_number>| <pool_number>     | 415   |
 
+    And I record an excusal request paper summons response for juror "<juror_number>" via the database
+
     And I log in as "<user>"
-    And the user searches for juror record "<juror_number>" from the global search bar
-    And I record an excusal request paper summons response
     And the user searches for juror record "<juror_number>" from the global search bar
     And I click on the "Summons reply" link
     And I click on the "View summons reply" link

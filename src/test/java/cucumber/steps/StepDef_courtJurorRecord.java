@@ -60,7 +60,7 @@ public class StepDef_courtJurorRecord {
 
     @Then("^I am on the court Juror Record for juror \"([^\"]*)\"$")
     public void iAmOnCourtJurorRecord(String jurorRecordNumber) throws Throwable {
-        NAV.waitForPageLoad();
+        NAV.waitForPageLoadNew();
         NAV.textPresentOnPage(jurorRecordNumber);
         assertTrue(COURT_JUROR_RECORD.seeJurorRecordTag());
         assertTrue(COURT_JUROR_RECORD.seeEnterSummonsReplyButton());

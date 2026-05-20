@@ -41,7 +41,7 @@ public class StepDef_suspendDelete {
 	    try{
 	    	SD.seeText_underHeading(text, heading);
 	    } catch (Exception e) {
-	    	NAV.waitForPageLoad();
+	    	NAV.waitForPageLoadNew();
 	    	SD.seeText_underHeading(text, heading);
 	    }
 	};

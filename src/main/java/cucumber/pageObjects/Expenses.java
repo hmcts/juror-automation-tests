@@ -352,7 +352,7 @@ public class Expenses {
 
     public Map<String, String> getExpenseDetailAfterRecalculate() {
         Map<String, String> details = new HashMap<>();
-        NAV.waitForPageLoad();
+        NAV.waitForPageLoadNew();
         details.put("Total due",totalDueAmt.getText().replaceAll("\\s", ""));
         System.out.println(totalDueAmt.getText());
                 details.put("Financial loss (capped)", financialLossGetAmt.get(2).getText());
@@ -406,7 +406,7 @@ public class Expenses {
         try {
             NAV.click_link_by_text(formattedDate);
         } catch (Exception e) {
-            NAV.waitForPageLoad();
+            NAV.waitForPageLoadNew();
             NAV.click_link_by_text(formattedDate);
         }
     }

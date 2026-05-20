@@ -10,24 +10,24 @@ import org.junit.runner.RunWith;
 
 @RunWith(Courgette.class)
 @CourgetteOptions(
-        reportTargetDir = "target/TestRunner_JurorTransformationMulti",
-        threads = 6,
-        runLevel = CourgetteRunLevel.SCENARIO,
-        rerunFailedScenarios = true,
+		reportTargetDir = "target/TestRunner_JurorTransformationMulti",
+		threads = 6,
+		runLevel = CourgetteRunLevel.SCENARIO,
+		rerunFailedScenarios = true,
 		testOutput = CourgetteTestOutput.CONSOLE,
-        cucumberOptions = @CucumberOptions(
-                features = "src/test/resources/cucumber/features",
-                tags = {
-                		"@JurorTransformationMulti"
-            		},
-                plugin = {
-                        "pretty",
-                        "json:target/TestRunner_JurorTransformationMulti/cucumber.json",
-                        "html:target/TestRunner_JurorTransformationMulti/cucumber.html"
-                    },
-        		glue = {
-        				"cucumber.steps"
-        			}
-        ))
+		cucumberOptions = @CucumberOptions(
+				features = "src/test/resources/cucumber/features",
+				tags = {
+						"@JurorTransformationMulti"
+				},
+				plugin = {
+						"pretty",
+						"json:target/TestRunner_JurorTransformationMulti/cucumber.json",
+						"html:target/TestRunner_JurorTransformationMulti/cucumber.html"
+				},
+				glue = {
+						"cucumber.steps"
+				}
+		))
 public class TestRunner_JurorTransformationMulti {
 }

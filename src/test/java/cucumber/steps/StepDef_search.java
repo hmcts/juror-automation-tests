@@ -41,7 +41,7 @@ public class StepDef_search {
 	    try{
 	    	SEARCH.search_personOrganisationTopSearch(arg1);
 	    } catch (Exception e) {
-	    	NAV.waitForPageLoad();
+	    	NAV.waitForPageLoadNew();
 	    	SEARCH.search_personOrganisationTopSearch(arg1);
 	    }
 	};

@@ -18,7 +18,7 @@ properties([
   ])
 ])
 
-@Library("Infrastructure") 
+@Library("Infrastructure")
 
 import uk.gov.hmcts.contino.GradleBuilder
 
@@ -182,12 +182,12 @@ withNightlyPipeline(type, product, component, 600) {
     ]
 
     publishHTML target: [
-      allowMissing         : true,
-      alwaysLinkToLastBuild: true,
-      keepAll              : true,
-      reportDir            : "target/TestRunner_JurorTransformationMulti/",
-      reportFiles          : "cucumber.html",
-      reportName           : "Cucumber JurorTransformationMulti Test Report"
+            allowMissing         : true,
+            alwaysLinkToLastBuild: true,
+            keepAll              : true,
+            reportDir            : "target/TestRunner_JurorTransformationMulti/",
+            reportFiles          : "cucumber.html",
+            reportName           : "Cucumber JurorTransformationMulti Test Report"
     ]
 
     publishHTML target: [

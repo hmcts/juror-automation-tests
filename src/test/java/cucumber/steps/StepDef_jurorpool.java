@@ -119,7 +119,7 @@ public class StepDef_jurorpool {
 
     @And("^I verify reassign error message with the text \"([^\"]*)\"$")
     public void reassignErrorMessageWithTheText(String errorText) {
-        NAV.waitForPageLoad();
+        NAV.waitForPageLoadNew();
         assertEquals(errorText, SUMMONS_REPLY.reassignErrorText());
     }
 
@@ -595,11 +595,11 @@ public class StepDef_jurorpool {
         try {
             assertTrue(CHECK_POOL_REQUEST_PAGE.poolNumberNotVisible());
             POOL_REQUESTS_PAGE.clickContinue();
-            NAV.waitForPageLoad();
+            NAV.waitForPageLoadNew();
         } catch (Exception e) {
             poolRequestNumber.set(CHECK_POOL_REQUEST_PAGE.getPoolNumber());
             POOL_REQUESTS_PAGE.clickContinue();
-            NAV.waitForPageLoad();
+            NAV.waitForPageLoadNew();
         }
     }
 
@@ -654,10 +654,10 @@ public class StepDef_jurorpool {
 
     @When("^I save the new pool request$")
     public void iSaveTheNewPoolRequest() {
-        NAV.waitForPageLoad();
+        NAV.waitForPageLoadNew();
         poolRequestNumber.set(CHECK_POOL_REQUEST_PAGE.getPoolNumber());
         CHECK_POOL_REQUEST_PAGE.submitRequest();
-        NAV.waitForPageLoad();
+        NAV.waitForPageLoadNew();
     }
 
     @When("^I click the link for the successfully created court only pool$")
@@ -667,7 +667,7 @@ public class StepDef_jurorpool {
 
     @Then("^I should be taken to the pool summary page$")
     public void iShouldBeTakenToThePoolSummaryPage() {
-        NAV.waitForPageLoad();
+        NAV.waitForPageLoadNew();
         assertEquals("Pool requests", POOL_REQUESTS_PAGE.getPageHeading());
     }
 
@@ -913,7 +913,7 @@ public class StepDef_jurorpool {
 
     @When("^the user searches for juror record \"([^\"]*)\" from the global search bar$")
     public void userSearchesForJurorRecord(String partNo) throws InterruptedException {
-        NAV.waitForPageLoad();
+        NAV.waitForPageLoadNew();
         JUROR_RECORD_SEARCH.searchForRecordFromGlobalSearch(partNo);
 
     }
@@ -1520,7 +1520,7 @@ public class StepDef_jurorpool {
 
     @Then("^I am on the modernisation version of View Summons Reply$")
     public void iAmOnModernisationVersionOfSummonsReply() {
-        NAV.waitForPageLoad();
+        NAV.waitForPageLoadNew();
         assertTrue(VIEW_SUMMONS_REPLY.seeSummonsReplyTag());
         assertTrue(VIEW_SUMMONS_REPLY.seeReplyMethodLabel());
         assertTrue(VIEW_SUMMONS_REPLY.seeServiceStartDateLabel());
@@ -1566,7 +1566,7 @@ public class StepDef_jurorpool {
         try {
             NAV.iSeeRespondedAlert();
         } catch (Exception e) {
-            NAV.waitForPageLoad();
+            NAV.waitForPageLoadNew();
             NAV.iSeeRespondedAlert();
         }
     }
@@ -1593,7 +1593,7 @@ public class StepDef_jurorpool {
 
     @And("^I click on the first pool in Active Pools$")
     public void firstPoolInActivePools() {
-        NAV.waitForPageLoad();
+        NAV.waitForPageLoadNew();
         NAV.firstPoolInActivePools();
     }
 
@@ -1605,12 +1605,12 @@ public class StepDef_jurorpool {
         NAV.set_valueTo("First name", "Changed fname");
         NAV.set_valueTo("Last name", "Changed lname");
         SUMMONS_REPLY.saveChanges();
-        NAV.waitForPageLoad();
+        NAV.waitForPageLoadNew();
 
         SUMMONS_REPLY.clickChangeAddress();
         NAV.set_valueTo("Address line 1", "Changed address line 1");
         SUMMONS_REPLY.saveChanges();
-        NAV.waitForPageLoad();
+        NAV.waitForPageLoadNew();
 
         SUMMONS_REPLY.enterDateOfBirth("18/07/1976");
 
@@ -1650,7 +1650,7 @@ public class StepDef_jurorpool {
 
     @And("^I record a happy path paper summons response$")
     public void iRecordHappyPathPaperResponse() throws Throwable {
-        NAV.waitForPageLoad();
+        NAV.waitForPageLoadNew();
         SUMMONS_REPLY.clickEnterSummonsReplyButton();
 
         SUMMONS_REPLY.enterDateOfBirth("18/07/1976");
@@ -1686,7 +1686,7 @@ public class StepDef_jurorpool {
     @And("^I record a happy path paper summons response and process now$")
     public void iRecordHappyPathPaperResponseProcessed() throws Throwable {
 
-        NAV.waitForPageLoad();
+        NAV.waitForPageLoadNew();
         SUMMONS_REPLY.clickEnterSummonsReplyButton();
 
         SUMMONS_REPLY.enterDateOfBirth("18/07/1976");
@@ -1739,7 +1739,7 @@ public class StepDef_jurorpool {
         SUMMONS_REPLY.clickCriminalOffenceNo();
         SUMMONS_REPLY.clickContinue();
 
-        NAV.waitForPageLoad();
+        NAV.waitForPageLoadNew();
         SUMMONS_REPLY.clickDeferralRequest();
         SUMMONS_REPLY.clickContinue();
 
@@ -1755,7 +1755,7 @@ public class StepDef_jurorpool {
 
     @And("^I record an excusal request paper summons response$")
     public void iRecordExcusalRequestPaperResponse() throws Throwable {
-        NAV.waitForPageLoad();
+        NAV.waitForPageLoadNew();
         SUMMONS_REPLY.clickEnterSummonsReplyButton();
 
         SUMMONS_REPLY.enterDateOfBirth("18/07/1976");
@@ -1947,7 +1947,7 @@ public class StepDef_jurorpool {
         NAV.set_valueTo("Enter a court name or location code", court);
         NAV.click_link_by_text(court);
         NAV.press_buttonByName("Continue");
-        NAV.waitForPageLoad();
+        NAV.waitForPageLoadNew();
         POOL_REQUESTS_PAGE.clickToChangeDeferrals();
         POOL_REQUESTS_PAGE.enterNumberOfCourtDeferrals("0");
         NAV.press_buttonByName("Continue");
@@ -1979,7 +1979,7 @@ public class StepDef_jurorpool {
         NAV.press_buttonByName("Request a new pool");
         NAV.set_valueTo("Enter a court name or location code", court);
         NAV.press_buttonByName("Continue");
-        NAV.waitForPageLoad();
+        NAV.waitForPageLoadNew();
         if (poolRequestType.equals("Civil"))
             POOL_REQUESTS_PAGE.selectPoolType(PoolRequests.PoolType.CIVIL);
         if (poolRequestType.equals("Crown"))
@@ -2009,7 +2009,7 @@ public class StepDef_jurorpool {
         NAV.press_buttonByName("Continue");
         NAV.set_valueTo("Enter a court name or location code", court);
         NAV.press_buttonByName("Continue");
-        NAV.waitForPageLoad();
+        NAV.waitForPageLoadNew();
         iClickTheChangeLinkForTheCourtDeferrals();
         iChangeTheNumberOfCourtDeferralsTo(deferralsNumber);
         if (poolRequestType.equals("Civil"))
@@ -2077,11 +2077,11 @@ public class StepDef_jurorpool {
         GRP.click_radioButtonWithLabel("Request new pool");
         NAV.press_buttonByName("Continue");
 
-        NAV.waitForPageLoad();
+        NAV.waitForPageLoadNew();
         NAV.set_valueTo("Enter a court name or location code", court);
         NAV.click_link_by_text(court);
         NAV.press_buttonByName("Continue");
-        NAV.waitForPageLoad();
+        NAV.waitForPageLoadNew();
         POOL_REQUESTS_PAGE.clickChangeDate();
         POOL_REQUESTS_PAGE.enterNewDate(newDateValues);
         NAV.press_buttonByName("Change");
@@ -2099,7 +2099,7 @@ public class StepDef_jurorpool {
         }
         NAV.set_value_to("Number of jurors", "10");
         NAV.press_buttonByName("Continue");
-        NAV.waitForPageLoad();
+        NAV.waitForPageLoadNew();
         poolNumber.set(CHECK_POOL_REQUEST_PAGE.getCourtNewPoolRequestNumber());
         poolNumbers.get().add(CHECK_POOL_REQUEST_PAGE.getCourtNewPoolRequestNumber());
         poolDate.set(CHECK_POOL_REQUEST_PAGE.getNewPoolAttendanceDate());
@@ -2114,7 +2114,7 @@ public class StepDef_jurorpool {
 
         NAV.set_valueTo("Enter a court name or location code", court);
         NAV.press_buttonByName("Continue");
-        //NAV.waitForPageLoad();
+        //NAV.waitForPageLoadNew();
         POOL_REQUESTS_PAGE.clickChangeDate();
         POOL_REQUESTS_PAGE.enterNewDate(mondayWeeksInFuture(mondaysInFuture));
         NAV.press_buttonByName("Change");
@@ -2133,7 +2133,7 @@ public class StepDef_jurorpool {
         }
         NAV.set_value_to("Number of jurors", "10");
         NAV.press_buttonByName("Continue");
-        NAV.waitForPageLoad();
+        NAV.waitForPageLoadNew();
         poolNumber.set(CHECK_POOL_REQUEST_PAGE.getCourtNewPoolRequestNumber());
 
         ArrayList<String> pools = poolNumbers.get();
@@ -2141,7 +2141,7 @@ public class StepDef_jurorpool {
 
         poolDate.set(CHECK_POOL_REQUEST_PAGE.getNewPoolAttendanceDate());
         NAV.press_buttonByName("Request pool");
-        NAV.waitForPageLoad();
+        NAV.waitForPageLoadNew();
         POOL_REQUESTS_PAGE.clickInactivePoolNumber(poolNumber.get());
 
         NAV.press_buttonByName("Summon jurors");
@@ -2163,7 +2163,7 @@ public class StepDef_jurorpool {
             NAV.click_link_by_text("Search");
             JUROR_RECORD_SEARCH.searchForRecordFromPoolSearch(poolNumber.get());
 //            POOL_REQUESTS_PAGE.clickFirstRequestLink();
-            NAV.waitForPageLoad();
+            NAV.waitForPageLoadNew();
             NAV.press_buttonByName("Summon jurors");
             NAV.set_value_to("Citizens to summon", "1");
             NAV.press_buttonByName("Create pool and summon citizens");
@@ -2182,7 +2182,7 @@ public class StepDef_jurorpool {
             ArrayList<String> pools = poolNumbers.get();
             NAV.click_link_by_text("Search");
             JUROR_RECORD_SEARCH.searchForRecordFromPoolSearch(poolNumber.get());
-            NAV.waitForPageLoad();
+            NAV.waitForPageLoadNew();
 
             NAV.press_buttonByName("Summon jurors");
             NAV.set_value_to("Citizens to summon", jurorsToSummon);
@@ -2386,7 +2386,7 @@ public class StepDef_jurorpool {
     @Then("^The first deferral in the table is \"([^\"]*)\" with a deferral date \"([^\"]*)\" Mondays in the future$")
     public void theFirstDeferralInTheTableIs(String deferral, String noWeeks) {
         String expectedDate = DateManipulator.getDateAsString(Long.valueOf(noWeeks),DayOfWeek.MONDAY,"EEE dd MMM yyyy");
-        NAV.waitForPageLoad();
+        NAV.waitForPageLoadNew();
         assertEquals(deferral + ", " + expectedDate, DEFERRAL_MAINTENANCE.getFirstDeferralTableRow());
     }
 
@@ -2489,7 +2489,7 @@ public class StepDef_jurorpool {
 
     @When("^I set the deferral deferred to filter to \"([^\"]*)\" Mondays in the future$")
     public void iSetTheDeferralDeferredToFilterTo(String noWeeks) {
-        NAV.waitForPageLoad();
+        NAV.waitForPageLoadNew();
         DEFERRAL_MAINTENANCE.clickShowFilterButton();
         DEFERRAL_MAINTENANCE.clickClearFiltersLink();
 
@@ -2498,17 +2498,17 @@ public class StepDef_jurorpool {
         DEFERRAL_MAINTENANCE.clickApplyFiltersButton();
         DEFERRAL_MAINTENANCE.clickShowFilterButton();
 
-        NAV.waitForPageLoad();
+        NAV.waitForPageLoadNew();
     }
 
     @When("^I filter on name \"([^\"]*)\"$")
     public void iFilterOnName(String lastName) {
-        NAV.waitForPageLoad();
+        NAV.waitForPageLoadNew();
         DEFERRAL_MAINTENANCE.clickShowFilterButton();
         DEFERRAL_MAINTENANCE.filterByLastName(lastName);
         DEFERRAL_MAINTENANCE.clickApplyFiltersButton();
         DEFERRAL_MAINTENANCE.clickShowFilterButton();
-        NAV.waitForPageLoad();
+        NAV.waitForPageLoadNew();
     }
 
     @When("^I navigate to the last page of deferral maintenance$")
@@ -2780,7 +2780,7 @@ public class StepDef_jurorpool {
         NAV.set_valueTo("Year", "1970");
         NAV.press_buttonByName("Continue");
 
-        NAV.waitForPageLoad();
+        NAV.waitForPageLoadNew();
         NAV.textPresentOnPage("Confirm you're eligible for jury service");
         NAV.press_buttonByName("Continue");
 
@@ -2822,7 +2822,7 @@ public class StepDef_jurorpool {
         NAV.check_checkbox("The information I have given is true to the best of my knowledge.");
         NAV.press_buttonByName("Submit");
 
-        NAV.waitForPageLoad();
+        NAV.waitForPageLoadNew();
         NAV.textPresentOnPage("You have completed your reply");
     }
 
@@ -3060,7 +3060,7 @@ public class StepDef_jurorpool {
     @When("^I select the yes radio button from the Additional Requirements Juror details$")
     public void clickAdditionalRequirementsYesButton() {
         SUMMONS_REPLY.clickYesAdditionalRequirementsJurorDetailsButton();
-        NAV.waitForPageLoad();
+        NAV.waitForPageLoadNew();
     }
 
     @When("^I select the Juror Details tab from the summons reply page$")
@@ -3112,7 +3112,7 @@ public class StepDef_jurorpool {
         NAV.press_buttonByName("Continue");
         NAV.set_valueTo("Enter a court name or location code", court);
         NAV.press_buttonByName("Continue");
-        NAV.waitForPageLoad();
+        NAV.waitForPageLoadNew();
 
         if (poolRequestType.equals("Civil"))
             POOL_REQUESTS_PAGE.selectPoolType(PoolRequests.PoolType.CIVIL);
@@ -3136,7 +3136,7 @@ public class StepDef_jurorpool {
         NAV.press_buttonByName("Request pool");
 
         POOL_REQUESTS_PAGE.clickInactivePoolNumber(poolNumber.get());
-        NAV.waitForPageLoad();
+        NAV.waitForPageLoadNew();
         NAV.press_buttonByName("Summon jurors");
         NAV.set_value_to("Citizens to summon", "1");
         NAV.press_buttonByName("Create pool and summon citizens");
@@ -3144,7 +3144,7 @@ public class StepDef_jurorpool {
 
     @When("^I select one of the jurors I have just summoned$")
     public void selectFirstJurorInList() {
-        NAV.waitForPageLoad();
+        NAV.waitForPageLoadNew();
         POOL_REQUESTS_PAGE.selectFirstJurorInList();
     }
     @And("^I get an initial list of the jurors that have been summoned$")
@@ -3187,13 +3187,13 @@ public class StepDef_jurorpool {
 
     @When("^I check the select all checkbox on pool overview$")
     public void selectAllcheckboxOnPoolOverview() {
-        NAV.waitForPageLoad();
+        NAV.waitForPageLoadNew();
         ACTIVE_POOLS_PAGE.checkSelectAllCheckboxOnPoolOverview();
     }
 
     @When("^I check the select all checkbox on pool overview as bureau user$")
     public void checkSelectAllCheckboxOnPoolOverviewForBureau() {
-        NAV.waitForPageLoad();
+        NAV.waitForPageLoadNew();
         ACTIVE_POOLS_PAGE.bureauCheckSelectAllCheckboxOnPoolOverview();
     }
 
@@ -3223,7 +3223,7 @@ public class StepDef_jurorpool {
         jurorRecordNumber = URL.substring(Math.max(0, URL.length() - 9));
         GRP.click_radioButtonWithLabel("Approve");
         NAV.press_buttonByName("Confirm");
-        NAV.waitForPageLoad();
+        NAV.waitForPageLoadNew();
         JUROR_RECORD_SEARCH.searchForRecordFromGlobalSearch(jurorRecordNumber);
     }
 
