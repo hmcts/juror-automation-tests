@@ -52,7 +52,7 @@ Feature: JM-5066 - As a SJO I need to approve a manually created juror
     And I press the "Create juror record" button
     And I see "Draft juror record created for John Doe - senior jury officer will need to approve this" on the page
     Given I am on "Bureau" "test"
-    And I log in as "SJOUSER"
+    And I log in as "<user2>"
     And I see senior jury officer notification banner
     And I click on the jurors to approve link from the sjo notification
     And I see "Approve jurors" on the page
@@ -63,8 +63,8 @@ Feature: JM-5066 - As a SJO I need to approve a manually created juror
     And I see "Pending juror approved" on the page
 
     Examples:
-      |user			|
-      |MODTESTCOURT |
+      |user			| user2 |
+      |MODTESTCOURT | SJOUSER |
 
   @JurorTransformationMulti
   Scenario Outline: Reject Manually created juror as a senior jury officer
@@ -118,7 +118,7 @@ Feature: JM-5066 - As a SJO I need to approve a manually created juror
 
     #login as SJOUSER
     Given I am on "Bureau" "test"
-    And I log in as "SJOUSER"
+    And I log in as "<user2>"
     And I see senior jury officer notification banner
     And I click on the jurors to approve link from the sjo notification
     And I see "Approve jurors" on the page
@@ -136,8 +136,9 @@ Feature: JM-5066 - As a SJO I need to approve a manually created juror
     And I see "Pending juror rejected" on the page
 
     Examples:
-      |user			|
-      |MODTESTCOURT |
+      |user			| user2 |
+      |MODTESTCOURT | SJOUSER |
+
 
 
   @JurorTransformationMulti
@@ -194,7 +195,7 @@ Feature: JM-5066 - As a SJO I need to approve a manually created juror
 
     #login with SJO user who is assigned to 416 court
     Given I am on "Bureau" "test"
-    And I log in as "SJOUSER1"
+    And I log in as "<user2>"
     And I do not see the senior jury officer notification banner
 
     And I click on the "Apps" link
@@ -203,5 +204,5 @@ Feature: JM-5066 - As a SJO I need to approve a manually created juror
     And I see "There are no pending jurors to approve" on the page
 
     Examples:
-      |user			|
-      |MODTESTCOURT |
+      |user			| user2 |
+      |MODTESTCOURT | SJOUSER1 |

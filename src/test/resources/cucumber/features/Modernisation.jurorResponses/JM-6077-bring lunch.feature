@@ -227,7 +227,7 @@ Feature: As a jury officer I want to send the bring lunch message
   @JurorTransformationMulti @Messages
   Scenario Outline: Send bring lunch message for anyone at Trial
 
-    Given I am on "Bureau" "demo"
+    Given I am on "Bureau" "test"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
@@ -260,7 +260,7 @@ Feature: As a jury officer I want to send the bring lunch message
 
     And I press the "Apps" button
     And I click on the "Trial management" link
-    And I click on the "<trial_number>" link
+    And I click on the trial number "<trial_number>"
 
     And I press the "Generate panel" button
     And I choose the "All available jurors" radio button

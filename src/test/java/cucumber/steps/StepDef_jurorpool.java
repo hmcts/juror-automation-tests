@@ -2145,9 +2145,11 @@ public class StepDef_jurorpool {
         POOL_REQUESTS_PAGE.clickInactivePoolNumber(poolNumber.get());
 
         NAV.press_buttonByName("Summon jurors");
+        NAV.waitForPageLoadNew();
         NAV.set_value_to("Citizens to summon", "1");
-        NAV.press_buttonByName("Create pool and summon citizens");
-        POOL_REQUESTS_PAGE.clickTab("Pool requests");
+        NAV.waitForPageLoad();
+        POOL_REQUESTS_PAGE.clickCreatePoolAndSummonCitizensButton();
+        POOL_REQUESTS_PAGE.clickTabWhenReady("Pool requests");
     }
 
     @Then("^I create \"([^\"]*)\" new \"([^\"]*)\" pool requests each a week apart in court \"([^\"]*)\"$")
