@@ -31,6 +31,17 @@ public class DatabaseTesterNewSchemaDesign {
 	public static ThreadLocal<java.lang.String> newPoolDate = new ThreadLocal<>();
 	private int newCoronerPoolNumber;
 
+	//for JS-622
+	private static final String SHUFFLE_ADDRESS_POSTCODE_PREFIX = "TF14";
+	private static final String SHUFFLE_ADDRESS_MOVED_LINE = "MOVETOADD4";
+	private static final long[] SHUFFLE_ADDRESS_HASH_IDS = {
+			570060811L,
+			570060812L,
+			570060813L,
+			570060814L,
+			570060815L
+	};
+
 	public static String oracleWeeksInFuture(int noWeeks) {
 		String datePattern = "dd-MMM-yyyy";
 		Calendar date = Calendar.getInstance();
@@ -2554,19 +2565,13 @@ public class DatabaseTesterNewSchemaDesign {
 			pStmt = conn.prepareStatement("delete from JUROR_mod.JUROR_HISTORY where juror_number like '1" + court + "%' or juror_number like '2%'");
 			pStmt.execute();
 
-			//populate voters
-//			pStmt = conn.prepareStatement("update JUROR.VOTERS" + court + " set part_no = '1'||substr(part_no,2,8) where part_no like '6%'");
-//			pStmt.executeUpdate();
-//			pStmt = conn.prepareStatement("insert into JUROR_MOD.VOTERS SELECT '" + court + "' as LOC_CODE, PART_NO, REGISTER_LETT, POLL_NUMBER, NEW_MARKER, TITLE, LNAME, FNAME, DOB, FLAGS, ADDRESS_LINE_1, ADDRESS_LINE_2, ADDRESS_LINE_3, ADDRESS_LINE_4, ADDRESS_LINE_5, POSTCODE, DATE_SELECTED1, DATE_SELECTED2, DATE_SELECTED3, REC_NUM, PERM_DISQUAL, SOURCE_ID FROM JUROR.VOTERS" + court + " where part_no like '1%'");
-//			pStmt.executeUpdate();
-
 			pStmt = conn.prepareStatement(
 					"UPDATE JUROR_MOD.VOTERS SET date_selected1 = NULL " +
-							"WHERE (part_no LIKE '1%' OR part_no LIKE '2%' OR part_no LIKE '5%') " +
+							"WHERE (CAST(hash_id AS TEXT) LIKE '1%' OR CAST(hash_id AS TEXT) LIKE '2%' OR CAST(hash_id AS TEXT) LIKE '5%') " +
 							"AND EXISTS ( " +
 							"    SELECT 1 FROM JUROR_MOD.COURT_CATCHMENT_AREA cc " +
 							"    WHERE cc.loc_code = '" + court + "' " +
-							"    AND JUROR_MOD.VOTERS.zip LIKE cc.postcode || '%' " +
+							"    AND JUROR_MOD.VOTERS.postcode LIKE cc.postcode || '%' " +
 							")"
 			);
 			pStmt.executeUpdate();
@@ -3082,12 +3087,12 @@ public class DatabaseTesterNewSchemaDesign {
 			conn = db.getConnection("demo");
 		try {
 			pStmt = conn.prepareStatement(
-					"UPDATE JUROR_MOD.VOTERS SET ZIP = '" + postcode + "' " +
+					"UPDATE JUROR_MOD.VOTERS SET postcode = '" + postcode + "' " +
 							"WHERE poll_number < '250' " +
 							"AND EXISTS ( " +
 							"    SELECT 1 FROM JUROR_MOD.COURT_CATCHMENT_AREA cc " +
 							"    WHERE cc.loc_code = '" + court + "' " +
-							"    AND JUROR_MOD.VOTERS.zip LIKE cc.postcode || '%' " +
+							"    AND JUROR_MOD.VOTERS.postcode LIKE cc.postcode || '%' " +
 							")"
 			);
 			pStmt.executeUpdate();
@@ -3494,12 +3499,12 @@ public class DatabaseTesterNewSchemaDesign {
 
 		try {
 
-			pStmt = conn.prepareStatement("INSERT INTO JUROR_MOD.VOTERS (PART_NO,REGISTER_LETT,POLL_NUMBER,NEW_MARKER,TITLE,LNAME,FNAME,DOB,FLAGS,ADDRESS,ADDRESS2,ADDRESS3,ADDRESS4,ADDRESS5,ADDRESS6,ZIP,DATE_SELECTED1,DATE_SELECTED2,DATE_SELECTED3,REC_NUM,PERM_DISQUAL,SOURCE_ID)" +
-					"VALUES ('9" + court + "99999','999','999',NULL,NULL,'LNAMEONE','FNAMEONE',NULL,NULL,'1 STREET NAME','ANYTOWN',NULL,NULL,NULL,NULL,'CH1 2AN',CURRENT_DATE,NULL,NULL,1,NULL,NULL)");
+			pStmt = conn.prepareStatement("INSERT INTO JUROR_MOD.VOTERS (HASH_ID,REGISTER_LETT,POLL_NUMBER,TITLE,LNAME,FNAME,DOB,FLAGS,ADDRESS,ADDRESS2,ADDRESS3,ADDRESS4,ADDRESS5,POSTCODE,DATE_SELECTED1,LA_ID,PERM_DISQUAL,SOURCE_ID)" +
+					"VALUES ('9" + court + "99999','999','999',NULL,'LNAMEONE','FNAMEONE',NULL,NULL,'1 STREET NAME','ANYTOWN',NULL,NULL,NULL,'CH1 2AN',CURRENT_DATE,1,NULL,NULL)");
 			pStmt.execute();
 
-			pStmt = conn.prepareStatement("INSERT INTO JUROR_MOD.VOTERS (PART_NO,REGISTER_LETT,POLL_NUMBER,NEW_MARKER,TITLE,LNAME,FNAME,DOB,FLAGS,ADDRESS,ADDRESS2,ADDRESS3,ADDRESS4,ADDRESS5,ADDRESS6,ZIP,DATE_SELECTED1,DATE_SELECTED2,DATE_SELECTED3,REC_NUM,PERM_DISQUAL,SOURCE_ID)" +
-					"VALUES ('9" + court + "99998','998','998',NULL,NULL,'LNAMETWO','FNAMETWO',NULL,NULL,'2 STREET NAME','ANYTOWN',NULL,NULL,NULL,NULL,'CH1 2AN',CURRENT_DATE,NULL,NULL,1,NULL,NULL)");
+			pStmt = conn.prepareStatement("INSERT INTO JUROR_MOD.VOTERS (HASH_ID,REGISTER_LETT,POLL_NUMBER,TITLE,LNAME,FNAME,DOB,FLAGS,ADDRESS,ADDRESS2,ADDRESS3,ADDRESS4,ADDRESS5,POSTCODE,DATE_SELECTED1,LA_ID,PERM_DISQUAL,SOURCE_ID)" +
+					"VALUES ('9" + court + "99998','998','998',NULL,'LNAMETWO','FNAMETWO',NULL,NULL,'2 STREET NAME','ANYTOWN',NULL,NULL,NULL,'CH1 2AN',CURRENT_DATE,1,NULL,NULL)");
 			pStmt.execute();
 
 			pStmt = conn.prepareStatement("insert into juror_mod.juror (juror_number,poll_number,title,last_name,first_name,dob,ADDRESS_LINE_1,ADDRESS_LINE_2,ADDRESS_LINE_3,ADDRESS_LINE_4,ADDRESS_LINE_5,POSTCODE,h_phone,w_phone,w_ph_local,responded,date_excused,excusal_code,acc_exc,date_disq,disq_code,user_edtq,notes,no_def_pos,perm_disqual,reasonable_adj_code,reasonable_adj_msg,sort_code,bank_acct_name,bank_acct_no,bldg_soc_roll_no,welsh,police_check,last_update,summons_file,m_phone,h_email,contact_preference,notifications,date_created,optic_reference,pending_title,pending_first_name,pending_last_name)"
@@ -3542,40 +3547,40 @@ public class DatabaseTesterNewSchemaDesign {
 
 			//voters
 
-			pStmt = conn.prepareStatement("INSERT INTO JUROR_MOD.VOTERS (PART_NO,REGISTER_LETT,POLL_NUMBER,NEW_MARKER,TITLE,LNAME,FNAME,DOB,FLAGS,ADDRESS,ADDRESS2,ADDRESS3,ADDRESS4,ADDRESS5,ADDRESS6,ZIP,DATE_SELECTED1,DATE_SELECTED2,DATE_SELECTED3,REC_NUM,PERM_DISQUAL,SOURCE_ID)" +
-					"VALUES ('6" + court + "91101','101','101',NULL,NULL,'LNAMEONE','FNAMEONE',NULL,NULL,'1 STREET NAME','ANYTOWN',NULL,NULL,NULL,NULL,'CH1 2AN',CURRENT_DATE,NULL,NULL,1,NULL,NULL)");
+			pStmt = conn.prepareStatement("INSERT INTO JUROR_MOD.VOTERS (HASH_ID,REGISTER_LETT,POLL_NUMBER,TITLE,LNAME,FNAME,DOB,FLAGS,ADDRESS,ADDRESS2,ADDRESS3,ADDRESS4,ADDRESS5,POSTCODE,DATE_SELECTED1,LA_ID,PERM_DISQUAL,SOURCE_ID)" +
+					"VALUES ('6" + court + "91101','101','101',NULL,'LNAMEONE','FNAMEONE',NULL,NULL,'1 STREET NAME','ANYTOWN',NULL,NULL,NULL,'CH1 2AN',CURRENT_DATE,1,NULL,NULL)");
 			pStmt.execute();
 
-			pStmt = conn.prepareStatement("INSERT INTO JUROR_MOD.VOTERS (PART_NO,REGISTER_LETT,POLL_NUMBER,NEW_MARKER,TITLE,LNAME,FNAME,DOB,FLAGS,ADDRESS,ADDRESS2,ADDRESS3,ADDRESS4,ADDRESS5,ADDRESS6,ZIP,DATE_SELECTED1,DATE_SELECTED2,DATE_SELECTED3,REC_NUM,PERM_DISQUAL,SOURCE_ID)" +
-					"VALUES ('6" + court + "91102','102','102',NULL,NULL,'LNAMETWO','FNAMETWO',NULL,NULL,'2 STREET NAME','ANYTOWN',NULL,NULL,NULL,NULL,'CH1 2AN',CURRENT_DATE,NULL,NULL,1,NULL,NULL)");
+			pStmt = conn.prepareStatement("INSERT INTO JUROR_MOD.VOTERS (HASH_ID,REGISTER_LETT,POLL_NUMBER,TITLE,LNAME,FNAME,DOB,FLAGS,ADDRESS,ADDRESS2,ADDRESS3,ADDRESS4,ADDRESS5,POSTCODE,DATE_SELECTED1,LA_ID,PERM_DISQUAL,SOURCE_ID)" +
+					"VALUES ('6" + court + "91102','102','102',NULL,'LNAMETWO','FNAMETWO',NULL,NULL,'2 STREET NAME','ANYTOWN',NULL,NULL,NULL,'CH1 2AN',CURRENT_DATE,1,NULL,NULL)");
 			pStmt.execute();
 
-			pStmt = conn.prepareStatement("INSERT INTO JUROR_MOD.VOTERS (PART_NO,REGISTER_LETT,POLL_NUMBER,NEW_MARKER,TITLE,LNAME,FNAME,DOB,FLAGS,ADDRESS,ADDRESS2,ADDRESS3,ADDRESS4,ADDRESS5,ADDRESS6,ZIP,DATE_SELECTED1,DATE_SELECTED2,DATE_SELECTED3,REC_NUM,PERM_DISQUAL,SOURCE_ID)" +
-					"VALUES ('6" + court + "91103','103','103',NULL,NULL,'LNAMETWO','FNAMETWO',NULL,NULL,'2 STREET NAME','ANYTOWN',NULL,NULL,NULL,NULL,'CH1 2AN',CURRENT_DATE,NULL,NULL,1,NULL,NULL)");
+			pStmt = conn.prepareStatement("INSERT INTO JUROR_MOD.VOTERS (HASH_ID,REGISTER_LETT,POLL_NUMBER,TITLE,LNAME,FNAME,DOB,FLAGS,ADDRESS,ADDRESS2,ADDRESS3,ADDRESS4,ADDRESS5,POSTCODE,DATE_SELECTED1,LA_ID,PERM_DISQUAL,SOURCE_ID)" +
+					"VALUES ('6" + court + "91103','103','103',NULL,'LNAMETWO','FNAMETWO',NULL,NULL,'2 STREET NAME','ANYTOWN',NULL,NULL,NULL,'CH1 2AN',CURRENT_DATE,1,NULL,NULL)");
 			pStmt.execute();
 
-			pStmt = conn.prepareStatement("INSERT INTO JUROR_MOD.VOTERS (PART_NO,REGISTER_LETT,POLL_NUMBER,NEW_MARKER,TITLE,LNAME,FNAME,DOB,FLAGS,ADDRESS,ADDRESS2,ADDRESS3,ADDRESS4,ADDRESS5,ADDRESS6,ZIP,DATE_SELECTED1,DATE_SELECTED2,DATE_SELECTED3,REC_NUM,PERM_DISQUAL,SOURCE_ID)" +
-					"VALUES ('6" + court + "91104','104','104',NULL,NULL,'LNAMETWO','FNAMETWO',NULL,NULL,'2 STREET NAME','ANYTOWN',NULL,NULL,NULL,NULL,'CH1 2AN',CURRENT_DATE,NULL,NULL,1,NULL,NULL)");
+			pStmt = conn.prepareStatement("INSERT INTO JUROR_MOD.VOTERS (HASH_ID,REGISTER_LETT,POLL_NUMBER,TITLE,LNAME,FNAME,DOB,FLAGS,ADDRESS,ADDRESS2,ADDRESS3,ADDRESS4,ADDRESS5,POSTCODE,DATE_SELECTED1,LA_ID,PERM_DISQUAL,SOURCE_ID)" +
+					"VALUES ('6" + court + "91104','104','104',NULL,'LNAMETWO','FNAMETWO',NULL,NULL,'2 STREET NAME','ANYTOWN',NULL,NULL,NULL,'CH1 2AN',CURRENT_DATE,1,NULL,NULL)");
 			pStmt.execute();
 
-			pStmt = conn.prepareStatement("INSERT INTO JUROR_MOD.VOTERS (PART_NO,REGISTER_LETT,POLL_NUMBER,NEW_MARKER,TITLE,LNAME,FNAME,DOB,FLAGS,ADDRESS,ADDRESS2,ADDRESS3,ADDRESS4,ADDRESS5,ADDRESS6,ZIP,DATE_SELECTED1,DATE_SELECTED2,DATE_SELECTED3,REC_NUM,PERM_DISQUAL,SOURCE_ID)" +
-					"VALUES ('6" + court + "91105','105','105',NULL,NULL,'LNAMETWO','FNAMETWO',NULL,NULL,'2 STREET NAME','ANYTOWN',NULL,NULL,NULL,NULL,'CH1 2AN',CURRENT_DATE,NULL,NULL,1,NULL,NULL)");
+			pStmt = conn.prepareStatement("INSERT INTO JUROR_MOD.VOTERS (HASH_ID,REGISTER_LETT,POLL_NUMBER,TITLE,LNAME,FNAME,DOB,FLAGS,ADDRESS,ADDRESS2,ADDRESS3,ADDRESS4,ADDRESS5,POSTCODE,DATE_SELECTED1,LA_ID,PERM_DISQUAL,SOURCE_ID)" +
+					"VALUES ('6" + court + "91105','105','105',NULL,'LNAMETWO','FNAMETWO',NULL,NULL,'2 STREET NAME','ANYTOWN',NULL,NULL,NULL,'CH1 2AN',CURRENT_DATE,1,NULL,NULL)");
 			pStmt.execute();
 
-			pStmt = conn.prepareStatement("INSERT INTO JUROR_MOD.VOTERS (PART_NO,REGISTER_LETT,POLL_NUMBER,NEW_MARKER,TITLE,LNAME,FNAME,DOB,FLAGS,ADDRESS,ADDRESS2,ADDRESS3,ADDRESS4,ADDRESS5,ADDRESS6,ZIP,DATE_SELECTED1,DATE_SELECTED2,DATE_SELECTED3,REC_NUM,PERM_DISQUAL,SOURCE_ID)" +
-					"VALUES ('6" + court + "91106','106','106',NULL,NULL,'LNAMETWO','FNAMETWO',NULL,NULL,'2 STREET NAME','ANYTOWN',NULL,NULL,NULL,NULL,'CH1 2AN',CURRENT_DATE,NULL,NULL,1,NULL,NULL)");
+			pStmt = conn.prepareStatement("INSERT INTO JUROR_MOD.VOTERS (HASH_ID,REGISTER_LETT,POLL_NUMBER,TITLE,LNAME,FNAME,DOB,FLAGS,ADDRESS,ADDRESS2,ADDRESS3,ADDRESS4,ADDRESS5,POSTCODE,DATE_SELECTED1,LA_ID,PERM_DISQUAL,SOURCE_ID)" +
+					"VALUES ('6" + court + "91106','106','106',NULL,'LNAMETWO','FNAMETWO',NULL,NULL,'2 STREET NAME','ANYTOWN',NULL,NULL,NULL,'CH1 2AN',CURRENT_DATE,1,NULL,NULL)");
 			pStmt.execute();
 
-			pStmt = conn.prepareStatement("INSERT INTO JUROR_MOD.VOTERS (PART_NO,REGISTER_LETT,POLL_NUMBER,NEW_MARKER,TITLE,LNAME,FNAME,DOB,FLAGS,ADDRESS,ADDRESS2,ADDRESS3,ADDRESS4,ADDRESS5,ADDRESS6,ZIP,DATE_SELECTED1,DATE_SELECTED2,DATE_SELECTED3,REC_NUM,PERM_DISQUAL,SOURCE_ID)" +
-					"VALUES ('6" + court + "91107','107','107',NULL,NULL,'LNAMETWO','FNAMETWO',NULL,NULL,'2 STREET NAME','ANYTOWN',NULL,NULL,NULL,NULL,'CH1 2AN',CURRENT_DATE,NULL,NULL,1,NULL,NULL)");
+			pStmt = conn.prepareStatement("INSERT INTO JUROR_MOD.VOTERS (HASH_ID,REGISTER_LETT,POLL_NUMBER,TITLE,LNAME,FNAME,DOB,FLAGS,ADDRESS,ADDRESS2,ADDRESS3,ADDRESS4,ADDRESS5,POSTCODE,DATE_SELECTED1,LA_ID,PERM_DISQUAL,SOURCE_ID)" +
+					"VALUES ('6" + court + "91107','107','107',NULL,'LNAMETWO','FNAMETWO',NULL,NULL,'2 STREET NAME','ANYTOWN',NULL,NULL,NULL,'CH1 2AN',CURRENT_DATE,1,NULL,NULL)");
 			pStmt.execute();
 
-			pStmt = conn.prepareStatement("INSERT INTO JUROR_MOD.VOTERS (PART_NO,REGISTER_LETT,POLL_NUMBER,NEW_MARKER,TITLE,LNAME,FNAME,DOB,FLAGS,ADDRESS,ADDRESS2,ADDRESS3,ADDRESS4,ADDRESS5,ADDRESS6,ZIP,DATE_SELECTED1,DATE_SELECTED2,DATE_SELECTED3,REC_NUM,PERM_DISQUAL,SOURCE_ID)" +
-					"VALUES ('6" + court + "91108','108','108',NULL,NULL,'LNAMETWO','FNAMETWO',NULL,NULL,'2 STREET NAME','ANYTOWN',NULL,NULL,NULL,NULL,'CH1 2AN',CURRENT_DATE,NULL,NULL,1,NULL,NULL)");
+			pStmt = conn.prepareStatement("INSERT INTO JUROR_MOD.VOTERS (HASH_ID,REGISTER_LETT,POLL_NUMBER,TITLE,LNAME,FNAME,DOB,FLAGS,ADDRESS,ADDRESS2,ADDRESS3,ADDRESS4,ADDRESS5,POSTCODE,DATE_SELECTED1,LA_ID,PERM_DISQUAL,SOURCE_ID)" +
+					"VALUES ('6" + court + "91108','108','108',NULL,'LNAMETWO','FNAMETWO',NULL,NULL,'2 STREET NAME','ANYTOWN',NULL,NULL,NULL,'CH1 2AN',CURRENT_DATE,1,NULL,NULL)");
 			pStmt.execute();
 
-			pStmt = conn.prepareStatement("INSERT INTO JUROR_MOD.VOTERS (PART_NO,REGISTER_LETT,POLL_NUMBER,NEW_MARKER,TITLE,LNAME,FNAME,DOB,FLAGS,ADDRESS,ADDRESS2,ADDRESS3,ADDRESS4,ADDRESS5,ADDRESS6,ZIP,DATE_SELECTED1,DATE_SELECTED2,DATE_SELECTED3,REC_NUM,PERM_DISQUAL,SOURCE_ID)" +
-					"VALUES ('6" + court + "91109','109','109',NULL,NULL,'LNAMETWO','FNAMETWO',NULL,NULL,'2 STREET NAME','ANYTOWN',NULL,NULL,NULL,NULL,'CH1 2AN',CURRENT_DATE,NULL,NULL,1,NULL,NULL)");
+			pStmt = conn.prepareStatement("INSERT INTO JUROR_MOD.VOTERS (HASH_ID,REGISTER_LETT,POLL_NUMBER,TITLE,LNAME,FNAME,DOB,FLAGS,ADDRESS,ADDRESS2,ADDRESS3,ADDRESS4,ADDRESS5,POSTCODE,DATE_SELECTED1,LA_ID,PERM_DISQUAL,SOURCE_ID)" +
+					"VALUES ('6" + court + "91109','109','109',NULL,'LNAMETWO','FNAMETWO',NULL,NULL,'2 STREET NAME','ANYTOWN',NULL,NULL,NULL,'CH1 2AN',CURRENT_DATE,1,NULL,NULL)");
 			pStmt.execute();
 
 			//juror
@@ -3674,7 +3679,8 @@ public class DatabaseTesterNewSchemaDesign {
 
 		try {
 
-			pStmt = conn.prepareStatement("DELETE FROM JUROR_MOD.VOTERS WHERE PART_NO = '" + partNo + "'");
+			pStmt = conn.prepareStatement("DELETE FROM JUROR_MOD.VOTERS WHERE hash_id = CAST(? AS BIGINT)");
+			pStmt.setString(1, partNo);
 			pStmt.execute();
 
 			pStmt = conn.prepareStatement("DELETE FROM JUROR_MOD.JUROR_POOL WHERE juror_number = '" + partNo + "'");
@@ -5478,6 +5484,67 @@ public class DatabaseTesterNewSchemaDesign {
 			conn.close();
 		}
 	}
+
+	private void clearDownVotersForShufflePostcode(String postcodePrefix) throws SQLException {
+		try (PreparedStatement clearVotersStmt = conn.prepareStatement("DELETE FROM juror_mod.voters WHERE postcode LIKE ?")) {
+			clearVotersStmt.setString(1, postcodePrefix + "%");
+			int deletedRows = clearVotersStmt.executeUpdate();
+			log.info("Deleted " + deletedRows + " rows from juror_mod.voters where postcode starts with=>" + postcodePrefix);
+		}
+	}
+
+	private Map<Long, String> expectedShuffleAddressLine4ByHashId() {
+		Map<Long, String> expected = new LinkedHashMap<>();
+		expected.put(570060811L, SHUFFLE_ADDRESS_MOVED_LINE);
+		expected.put(570060812L, null);
+		expected.put(570060813L, SHUFFLE_ADDRESS_MOVED_LINE);
+		expected.put(570060814L, null);
+		expected.put(570060815L, SHUFFLE_ADDRESS_MOVED_LINE);
+		return expected;
+	}
+
+	public void clearDownExistingJurorsForShuffleAddress(String poolNumber) throws SQLException {
+		DBConnection cleanupDb = new DBConnection();
+		Connection cleanupConn;
+		String env_property = System.getProperty("env.database");
+		if (env_property != null)
+			cleanupConn = cleanupDb.getConnection(env_property);
+		else
+			cleanupConn = cleanupDb.getConnection("demo");
+
+		List<String> jurorNumbers = new ArrayList<>();
+
+		String sql =
+				"SELECT DISTINCT j.juror_number " +
+						"FROM juror_mod.juror j " +
+						"LEFT JOIN juror_mod.juror_pool jp ON jp.juror_number = j.juror_number " +
+						"WHERE j.address_line_4 = ? " +
+						"OR j.hash_id IN (?, ?, ?, ?, ?) " +
+						"OR (jp.pool_number = ? AND j.juror_number NOT LIKE '0%')";
+
+		try (PreparedStatement cleanupStmt = cleanupConn.prepareStatement(sql)) {
+			cleanupStmt.setString(1, SHUFFLE_ADDRESS_MOVED_LINE);
+			for (int i = 0; i < SHUFFLE_ADDRESS_HASH_IDS.length; i++) {
+				cleanupStmt.setLong(i + 2, SHUFFLE_ADDRESS_HASH_IDS[i]);
+			}
+			cleanupStmt.setString(SHUFFLE_ADDRESS_HASH_IDS.length + 2, poolNumber);
+
+			try (ResultSet rs = cleanupStmt.executeQuery()) {
+				while (rs.next()) {
+					jurorNumbers.add(rs.getString("juror_number"));
+				}
+			}
+		} finally {
+			cleanupConn.close();
+		}
+
+		for (String jurorNumber : jurorNumbers) {
+			cleanTestDataForShuffleAddress(poolNumber, jurorNumber);
+		}
+
+		log.info("Cleared down " + jurorNumbers.size() + " existing shuffle address jurors for pool=>" + poolNumber);
+	}
+
 	public void insertNewVotersDataForShuffle() throws SQLException {
 		db = new DBConnection();
 
@@ -5489,14 +5556,15 @@ public class DatabaseTesterNewSchemaDesign {
 			conn = db.getConnection("demo");
 
 		try {
+			clearDownVotersForShufflePostcode(SHUFFLE_ADDRESS_POSTCODE_PREFIX);
 
 			pStmt = conn.prepareStatement(
-					"INSERT INTO juror_mod.voters (part_no,register_lett,poll_number,new_marker,title,lname,fname,dob,flags,address,address2,address3,address4,address5,address6,zip,date_selected1,date_selected2,date_selected3,rec_num,perm_disqual,source_id) VALUES" +
-							" ('820211676','650','650',NULL,NULL,'LNAMESIXFIVEZERO','FNAMESIXFIVEZERO',NULL,NULL,'650 STREET NAME',NULL,'MOVETOADD4',NULL,NULL,NULL,'TF14 5AJ',NULL,NULL,NULL,650,NULL,NULL)," +
-							" ('820211826','175','175',NULL,NULL,'LNAMEONESEVENFIVE','FNAMEONESEVENFIVE',NULL,NULL,'175 STREET NAME',NULL,'123 DONT MOVE',NULL,NULL,NULL,'TF14 5AJ',NULL,NULL,NULL,175,NULL,NULL)," +
-							" ('820211896','968','968',NULL,NULL,'LNAMENINESIXEIGHT','FNAMENINESIXEIGHT',NULL,NULL,'968 STREET NAME',NULL,'MOVETOADD4',NULL,NULL,NULL,'TF14 5AJ',NULL,NULL,NULL,968,NULL,NULL)," +
-							" ('820211816','480','480',NULL,NULL,'LNAMEFOUREIGHTZERO','FNAMEFOUREIGHTZERO',NULL,NULL,'480 STREET NAME','123 DONT MOVE',NULL,NULL,NULL,NULL,'TF14 5AJ',NULL,NULL,NULL,480,NULL,NULL)," +
-							" ('820211886','545','545',NULL,NULL,'LNAMEFIVEFOURFIVE','FNAMEFIVEFOURFIVE',NULL,NULL,'545 STREET NAME','MOVETOADD4',NULL,NULL,NULL,NULL,'TF14 5AJ',NULL,NULL,NULL,545,NULL,NULL)"
+					"INSERT INTO juror_mod.voters (hash_id,register_lett,poll_number,title,lname,fname,dob,flags,address,address2,address3,address4,address5,postcode,date_selected1,la_id,perm_disqual,source_id) VALUES" +
+							" (570060811,'650','650',NULL,'LNAMESIXFIVEZERO','FNAMESIXFIVEZERO',NULL,NULL,'650 STREET NAME',NULL,'MOVETOADD4',NULL,NULL,'TF14 5AJ',NULL,650,NULL,NULL)," +
+							" (570060812,'175','175',NULL,'LNAMEONESEVENFIVE','FNAMEONESEVENFIVE',NULL,NULL,'175 STREET NAME',NULL,'123 DONT MOVE',NULL,NULL,'TF14 5AJ',NULL,175,NULL,NULL)," +
+							" (570060813,'968','968',NULL,'LNAMENINESIXEIGHT','FNAMENINESIXEIGHT',NULL,NULL,'968 STREET NAME',NULL,'MOVETOADD4',NULL,NULL,'TF14 5AJ',NULL,968,NULL,NULL)," +
+							" (570060814,'480','480',NULL,'LNAMEFOUREIGHTZERO','FNAMEFOUREIGHTZERO',NULL,NULL,'480 STREET NAME','123 DONT MOVE',NULL,NULL,NULL,'TF14 5AJ',NULL,480,NULL,NULL)," +
+							" (570060815,'545','545',NULL,'LNAMEFIVEFOURFIVE','FNAMEFIVEFOURFIVE',NULL,NULL,'545 STREET NAME','MOVETOADD4',NULL,NULL,NULL,'TF14 5AJ',NULL,545,NULL,NULL)"
 			);
 
 			pStmt.execute();
@@ -5504,14 +5572,15 @@ public class DatabaseTesterNewSchemaDesign {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			log.error("Message: inserted voters data " + e.getMessage());
+			throw e;
 		} finally {
-			conn.commit();
-			pStmt.close();
-			conn.close();
+			if (conn != null) conn.commit();
+			if (pStmt != null) pStmt.close();
+			if (conn != null) conn.close();
 		}
 	}
 
-	public void insertCatchmentAreaIfNotExists() throws SQLException {
+	public void resetCatchmentAreaForShuffleAddress() throws SQLException {
 		db = new DBConnection();
 
 		String env_property = System.getProperty("env.database");
@@ -5521,36 +5590,26 @@ public class DatabaseTesterNewSchemaDesign {
 		else
 			conn = db.getConnection("demo");
 
-		ResultSet rs = null;
-
 		try {
 			pStmt = conn.prepareStatement(
-					"SELECT 1 FROM juror_mod.court_catchment_area " +
-							"WHERE loc_code = '452' AND postcode LIKE 'TF14%'");
+					"DELETE FROM juror_mod.court_catchment_area WHERE loc_code = '452'");
+			pStmt.executeUpdate();
+			pStmt.close();
 
-			rs = pStmt.executeQuery();
-
-			if (rs.next()) {
-				log.info("TF14 postcode already exists for loc_code 452. Ignoring insert.");
-			} else {
-
-			
-				pStmt = conn.prepareStatement(
-						"INSERT INTO juror_mod.court_catchment_area (loc_code, postcode) " +
-								"VALUES ('452', 'TF14')");
-
-				pStmt.execute();
-				log.info("Inserted new TF14 catchment area for loc_code 452.");
-			}
+			pStmt = conn.prepareStatement(
+					"INSERT INTO juror_mod.court_catchment_area (loc_code, postcode) " +
+							"VALUES ('452', 'TF14')");
+			pStmt.executeUpdate();
+			log.info("Reset shuffle address catchment area for loc_code 452 to postcode TF14.");
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 			log.error("Message: error checking/inserting catchment area " + e.getMessage());
+			throw e;
 		} finally {
-			conn.commit();
-			if (rs != null) rs.close();
-			pStmt.close();
-			conn.close();
+			if (conn != null) conn.commit();
+			if (pStmt != null) pStmt.close();
+			if (conn != null) conn.close();
 		}
 	}
 
@@ -5567,7 +5626,7 @@ public class DatabaseTesterNewSchemaDesign {
 			conn.setAutoCommit(false);
 
 			String[] sqls = new String[]{
-					"DELETE FROM juror_mod.voters WHERE part_no = ?",
+					"DELETE FROM juror_mod.voters WHERE hash_id = CAST(? AS BIGINT)",
 					"DELETE FROM juror_mod.bulk_print_data WHERE juror_no = ?",
 					"DELETE FROM juror_mod.juror_trial WHERE juror_number = ?",
 					"DELETE FROM juror_mod.juror_response_aud WHERE juror_number = ?",
@@ -5629,6 +5688,10 @@ public class DatabaseTesterNewSchemaDesign {
 	}
 
 	public void verifyJurorAddress4Updates() throws SQLException {
+		verifyJurorAddress4Updates(null);
+	}
+
+	public void verifyJurorAddress4Updates(String poolNumber) throws SQLException {
 		db = new DBConnection();
 
 		String env_property = System.getProperty("env.database");
@@ -5637,47 +5700,64 @@ public class DatabaseTesterNewSchemaDesign {
 		else
 			conn = db.getConnection("demo");
 
+		Map<Long, String> expected = expectedShuffleAddressLine4ByHashId();
 		PreparedStatement pStmt = null;
 		ResultSet rs = null;
 
-		Map<String, String> expected = new HashMap<>();
-		expected.put("820211676", "MOVETOADD4");
-		expected.put("820211826", null);
-		expected.put("820211896", "MOVETOADD4");
-		expected.put("820211816", null);
-		expected.put("820211886", "MOVETOADD4");
-
 		try {
 			String sql =
-					"SELECT juror_number, address_line_4 " +
-							"FROM juror_mod.juror " +
-							"WHERE juror_number IN ('820211676','820211826','820211896','820211816','820211886')";
+					"SELECT j.juror_number, j.hash_id, j.address_line_4 " +
+							"FROM juror_mod.juror j " +
+							(poolNumber == null ? "" : "INNER JOIN juror_mod.juror_pool jp ON jp.juror_number = j.juror_number ") +
+							"WHERE " +
+							(poolNumber == null ? "" : "jp.pool_number = ? AND ") +
+							"j.hash_id IN (?, ?, ?, ?, ?)";
 
 			pStmt = conn.prepareStatement(sql);
+			int index = 1;
+			if (poolNumber != null) {
+				pStmt.setString(index++, poolNumber);
+			}
+			for (Long hashId : expected.keySet()) {
+				pStmt.setLong(index++, hashId);
+			}
 			rs = pStmt.executeQuery();
 
+			Map<Long, String> actualByHashId = new HashMap<>();
 			while (rs.next()) {
-				String juror = rs.getString("juror_number");
-				String actual = rs.getString("address_line_4");
-				String expectedValue = expected.get(juror);
+				long hashId = rs.getLong("hash_id");
+				String actualValue = rs.getString("address_line_4");
+				actualByHashId.put(hashId, actualValue);
+				log.info("Found shuffle address juror_number=" + rs.getString("juror_number") +
+						" | hash_id=" + hashId +
+						" | address_line_4=" + actualValue);
+			}
 
+			for (Map.Entry<Long, String> expectedEntry : expected.entrySet()) {
+				Long hashId = expectedEntry.getKey();
+				String expectedValue = expectedEntry.getValue();
+
+				if (!actualByHashId.containsKey(hashId)) {
+					throw new AssertionError("No juror found in pool " + poolNumber + " for shuffle address hash_id=" + hashId);
+				}
+
+				String actualValue = actualByHashId.get(hashId);
 				boolean matches =
-						(expectedValue == null && actual == null) ||
-								(expectedValue != null && expectedValue.equals(actual));
+						(expectedValue == null && actualValue == null) ||
+								(expectedValue != null && expectedValue.equals(actualValue));
 
 				if (!matches) {
-					log.error("Address mismatch for juror_number=" + juror +
+					log.error("Address mismatch for hash_id=" + hashId +
 							" | expected=" + expectedValue +
-							" | actual=" + actual);
+							" | actual=" + actualValue);
 
 					throw new AssertionError(
-							"Address mismatch for juror " + juror +
-									" expected=" + expectedValue + " but found=" + actual
+							"Address mismatch for hash_id=" + hashId +
+									" expected=" + expectedValue + " but found=" + actualValue
 					);
 				}
 
-				log.info("✔ Address correct for juror_number=" + juror +
-						" | value=" + actual);
+				log.info("Address correct for hash_id=" + hashId + " | value=" + actualValue);
 			}
 
 		} catch (SQLException e) {
