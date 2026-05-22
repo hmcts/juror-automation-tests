@@ -205,7 +205,7 @@ Feature: JM-5060 - 5062
 
     #Undo failed to attend
     Given I am on "Bureau" "ithc"
-    And I log in as "SJOUSER"
+    And I log in as "<user2>"
 
     When the user searches for juror record "<juror_number>" from the global search bar
     And I press the "Update juror record" button
@@ -218,5 +218,5 @@ Feature: JM-5060 - 5062
     And I see the juror status has updated to "Responded"
 
     Examples:
-      | user		  | juror_number | pool_number |
-      | MODTESTCOURT  | 741500319    | 415240833   |
+      | user		  | juror_number | pool_number | user2   |
+      | MODTESTCOURT  | 741500319    | 415240833   | SJOUSER |

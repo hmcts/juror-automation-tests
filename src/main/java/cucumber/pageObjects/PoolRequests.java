@@ -123,7 +123,10 @@ public class PoolRequests {
     WebElement requestPoolButton;
     @FindBy(xpath = "/html/body/div[3]/main/div[3]/div[4]/a")
     WebElement summonJurorsButton;
-    @FindBy(xpath = "/html/body/div[3]/main/div/div/form/div[5]/button")
+    private static final By CREATE_POOL_AND_SUMMON_CITIZENS_BUTTON =
+            By.xpath("//button[contains(normalize-space(.),'Create pool and summon citizens')]");
+
+    @FindBy(xpath = "//button[contains(normalize-space(.),'Create pool and summon citizens')]")
     WebElement createPoolAndSummonCitizensButton;
     @FindBy(id = "membersListTable")
     WebElement jurorPartNumbertable;
@@ -217,7 +220,16 @@ public class PoolRequests {
         log.info("Clicking tab");
         var tabElement = driver.findElement(By.linkText(tabName));
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", tabElement);
-}
+    }
+
+    public void clickTabWhenReady(final String tabName) {
+        log.info("Waiting for tab to be clickable: " + tabName);
+        WebElement tabElement = new WebDriverWait(driver, Duration.ofSeconds(60))
+                .ignoring(StaleElementReferenceException.class)
+                .until(ExpectedConditions.elementToBeClickable(By.linkText(tabName)));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", tabElement);
+        NAV.waitForPageLoadNew();
+    }
 
     public void clickActivePools() {
         log.info("Click active pools");
@@ -734,7 +746,18 @@ public class PoolRequests {
 
     public void clickCreatePoolAndSummonCitizensButton() {
         log.info("Clicking create pool and summon citizens button");
-        requestPoolButton.click();
+        WebElement button = new WebDriverWait(driver, Duration.ofSeconds(30))
+                .ignoring(StaleElementReferenceException.class)
+                .until(ExpectedConditions.elementToBeClickable(CREATE_POOL_AND_SUMMON_CITIZENS_BUTTON));
+
+        button.click();
+
+        new WebDriverWait(driver, Duration.ofSeconds(30))
+                .until(ExpectedConditions.or(
+                        ExpectedConditions.stalenessOf(button),
+                        ExpectedConditions.invisibilityOfElementLocated(CREATE_POOL_AND_SUMMON_CITIZENS_BUTTON)
+                ));
+        NAV.waitForPageLoadNew();
     }
 
     public void selectFirstJurorInList() {
@@ -781,4 +804,3 @@ public class PoolRequests {
         }
     }
 }
-

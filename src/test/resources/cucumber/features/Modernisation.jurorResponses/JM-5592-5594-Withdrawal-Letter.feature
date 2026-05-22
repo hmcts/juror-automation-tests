@@ -244,6 +244,7 @@ Feature: JM-5592-5594 - Resend withdrawal letter for Bureau and Jury users
 
     Given I am on "Bureau" "ithc"
     And I log in as "<user>"
+    And I see "Summons replies to be processed" on the page
     And I press the "Apps" button
     And I click on the "Documents" link
     And I click on the "Withdrawal letters" link

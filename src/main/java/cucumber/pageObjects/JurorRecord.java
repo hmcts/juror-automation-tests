@@ -612,7 +612,21 @@ public class JurorRecord {
     }
 
     public void sjoNotification() {
-        sjoNotificationBanner.getText();
+        WaitUtils waitUtils = new WaitUtils(driver);
+        By sjoBanner = By.xpath("//*[contains(.,'to approve')]");
+
+        waitUtils.deactivateImplicitWait();
+
+        try {
+            WebElement banner = new WebDriverWait(driver, Duration.ofSeconds(7))
+                    .pollingEvery(Duration.ofMillis(250))
+                    .ignoring(StaleElementReferenceException.class)
+                    .until(ExpectedConditions.visibilityOfElementLocated(sjoBanner));
+
+            log.info("Saw SJO notification banner => " + banner.getText());
+        } finally {
+            waitUtils.activateImplicitWait();
+        }
     }
 
     public void clickSjoNotification() {
