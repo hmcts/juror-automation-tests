@@ -10,11 +10,14 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.time.Duration;
 import java.util.List;
 
 public class Login {
     private static WebDriver driver;
     private static Logger log = Logger.getLogger(Login.class);
+    private static final long LOGIN_SETTLE_DELAY_MILLIS = 2000;
+    private static final int LOGIN_LANDING_TIMEOUT_SECONDS = 5;
     private WaitUtils wait;
     private WaitUtil_v2 wait1;
     private AngularJsHTTPCallWait aJsWait;
@@ -89,6 +92,7 @@ public class Login {
 
         //login_button.click();
         NAV.press_buttonByName("Sign in");
+        waitForPostLoginLanding();
 
         log.info("Logging in with Username=>" + username + "- Password=>" + password);
 
@@ -100,6 +104,7 @@ public class Login {
         emailField.sendKeys(username);
 
         signInWithEmail.click();
+        waitForPostLoginLanding();
 
         log.info("Logging in with Username=> " + username);
 
@@ -119,6 +124,7 @@ public class Login {
         // There is an additional step where AD asks if you'd like to stay logged in
         wait.waitForDisplayedElement(submitAD, 10);
         submitAD.click();
+        waitForPostLoginLanding();
 
         return PageFactory.initElements(driver, Login.class);
     }
@@ -191,5 +197,33 @@ public class Login {
     public boolean changeCourtLinkIsNotDisplayed(){
         List<WebElement> changeCourtLink = driver.findElements(By.xpath("//a[@href='/auth/courts-list']"));
         return changeCourtLink.isEmpty();
+    }
+
+    private void pauseAfterLoginSubmit() {
+        try {
+            Thread.sleep(LOGIN_SETTLE_DELAY_MILLIS);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+    }
+
+    private void waitForPostLoginLanding() {
+        pauseAfterLoginSubmit();
+
+        Duration originalImplicitWait = driver.manage().timeouts().getImplicitWaitTimeout();
+        driver.manage().timeouts().implicitlyWait(Duration.ZERO);
+
+        try {
+            wait.until(webDriver -> !webDriver.findElements(By.id("courtToManageForm")).isEmpty()
+                    || !webDriver.findElements(By.id("apps-button")).isEmpty()
+                    || !webDriver.findElements(By.xpath("//a[normalize-space()='Apps']|//button[normalize-space()='Apps']|//input[@value='Apps']")).isEmpty()
+                    || !webDriver.findElements(By.xpath("//a[normalize-space()='Upload guidance']")).isEmpty(),
+                    LOGIN_LANDING_TIMEOUT_SECONDS);
+            log.info("Post-login landing marker visible; continuing");
+        } catch (Exception e) {
+            log.info("Post-login landing marker was not visible after short wait; continuing");
+        } finally {
+            driver.manage().timeouts().implicitlyWait(originalImplicitWait);
+        }
     }
 }
