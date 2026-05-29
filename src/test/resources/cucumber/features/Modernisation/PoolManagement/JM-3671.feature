@@ -50,10 +50,10 @@ Feature: JM-3671
       | user	      | selectedCourt | courtCode | displayCourt | noJurors | name   | phone       | email      |
       | MODTESTBUREAU | CHESTER       | 415       | Chester      | 150      | A Name | 07888888888 | e@mail.com |
 
-  @JurorTransformationMulti
+  @JurorTransformationMulti @Bureau
   Scenario Outline: Happy Path Test to add jurors to a coroner's pool from another catchment area
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
     Given I refresh the voters table for court "457" new schema
     And voters for court "457" have been updated to postcode "SA1 4PF" new schema
 
@@ -169,5 +169,5 @@ Feature: JM-3671
     Then I press the "Export pool" button
 
     Examples:
-      | user	      | selectedCourt | courtCode | displayCourt | noJurors | name   | phone       | email      |
-      | MODTESTBUREAU | CHESTER       | 415       | Chester      | 180      | A Name | 07888888888 | e@mail.com |
+      | user	      | selectedCourt | courtCode | displayCourt | noJurors | name   | phone       | email      | environment |
+      | MODTESTBUREAU | CHESTER       | 415       | Chester      | 180      | A Name | 07888888888 | e@mail.com | test        |

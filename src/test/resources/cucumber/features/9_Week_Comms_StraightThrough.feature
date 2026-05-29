@@ -2,19 +2,26 @@ Feature: 9_Week_Comms_StraightThrough
 
 @comms 
 Scenario Outline: 1st Party English ST, 5 weeks in advance, PNC pass
-	Given I am on "Public" "juror-test01"
+
+	Given I am on "Public" "<environment>"
+
 	Given I have cleared down the juror digital database
+
 	Given the juror numbers have not been processed
 	|part_no		|pool_no 	|Owner 		|
 	|741500438		|415181001 	|400		|
+
 	Given auto straight through processing has been enabled new schema
+
 	And "<juror_number>" has "RET_DATE" as "2 mondays time"
 	And "<juror_number>" has "NEXT_DATE" as "2 mondays time"
+
 	And I have submitted a first party English straight through response
 	| part_no		|pool_number| last_name		|postcode	| email |
 	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
 
-	Given I am on "Bureau" "juror-test01"	
+	Given I am on "Bureau" "<environment>"
+
 	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
@@ -35,24 +42,31 @@ Scenario Outline: 1st Party English ST, 5 weeks in advance, PNC pass
 #	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<juror_number>"
 	
 Examples:
-|part_no		|pool_no 	|last_name 				|postcode 	|email					|
-|741500438		|415181001 	|LNAMEFOURTHREEEIGHT	|CH1 2AN	|osman.salah@cgi.com	|
+|part_no		|pool_no 	|last_name 				|postcode 	|email					| environment |
+|741500438		|415181001 	|LNAMEFOURTHREEEIGHT	|CH1 2AN	|osman.salah@cgi.com	| test01	  |
 
 @comms
 Scenario Outline: 1st Party English ST, 3 weeks in advance, PNC fail
-	Given I am on "Public" "juror-test01"
+
+	Given I am on "Public" "<environment>"
+
 	Given I have cleared down the juror digital database
+
 	Given the juror numbers have not been processed
 	|part_no		|pool_no 	|Owner 		|
 	|741500543		|415181001 	|400		|
+
 	Given auto straight through processing has been enabled new schema
+
 	And "<juror_number>" has "RET_DATE" as "3 mondays time"
 	And "<juror_number>" has "NEXT_DATE" as "3 mondays time"
+
 	And I have submitted a first party English straight through response
 	| part_no		|pool_number| last_name		|postcode	| email |
 	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
 	
-	Given I am on "Bureau" "juror-test01"	
+	Given I am on "Bureau" "<environment>"
+
 	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
@@ -85,19 +99,25 @@ Scenario Outline: 1st Party English ST, 3 weeks in advance, PNC fail
 #	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<juror_number>"
 	
 Examples:
-|part_no		|pool_no 	|last_name 				|postcode 	|email					|
-|741500543		|415181001 	|LNAMEFIVEFOURTHREE		|CH1 2AN	|e@mail.com	|
+|part_no		|pool_no 	|last_name 				|postcode 	|email		| environment |
+|741500543		|415181001 	|LNAMEFIVEFOURTHREE		|CH1 2AN	|e@mail.com	| test        |
 
-@comms 
+@comms
 Scenario Outline: 1st Party English ST, 4 weeks in advance, PNC pass
-	Given I am on "Public" "juror-test01"
+
+	Given I am on "Public" "<environment>"
+
 	Given I have cleared down the juror digital database
+
 	Given the juror numbers have not been processed
 	|part_no		|pool_no 	|Owner 		|
 	|741500586		|415181001 	|400		|
+
 	Given auto straight through processing has been enabled new schema
+
 	And "<juror_number>" has "RET_DATE" as "2 mondays time"
 	And "<juror_number>" has "NEXT_DATE" as "2 mondays time"
+
 	And I have submitted a first party Welsh straight through response
 	| part_no		|pool_number| last_name		|postcode	| email |
 	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
@@ -108,7 +128,7 @@ Scenario Outline: 1st Party English ST, 4 weeks in advance, PNC pass
 
 	#Currently an issue with 4 weeks and urgents JDB-4010 (ONLY ON FRIDAY)
 
-	Given I am on "Bureau" "juror-test01"	
+	Given I am on "Bureau" "<environment>"
 	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
@@ -136,8 +156,8 @@ Scenario Outline: 1st Party English ST, 4 weeks in advance, PNC pass
 #	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<juror_number>"
 	
 Examples:
-|part_no		|pool_no 	|last_name 				|postcode 	|email					|
-|741500586		|415181001 	|LNAMEFIVEEIGHTSIX		|CH1 2AN	|osman.salah@cgi.com	|
+|part_no		|pool_no 	|last_name 				|postcode 	|email					| environment |
+|741500586		|415181001 	|LNAMEFIVEEIGHTSIX		|CH1 2AN	|osman.salah@cgi.com	| test  	  |
 
 @comms
 Scenario Outline: 1st Party English ST, 3 weeks in advance, PNC pass
@@ -1709,25 +1729,31 @@ Examples:
 
 @comms 
 Scenario Outline: 3rd Party English Age Disqualified, 5 weeks in advance, PNC n/a
-	Given I am on "Public" "juror-test01"
-	Given I have cleared down the juror digital database
-	Given the juror numbers have not been processed
-	|part_no		|pool_no 	|Owner 		|
-	|841501948		|415181001 	|400		|
-	Given auto straight through processing has been enabled new schema
 
+	Given I am on "Public" "demo"
+
+#	Given I have cleared down the juror digital database
+
+  Given a bureau owned pool is created with jurors
+    | court |juror_number   | pool_number	| att_date_weeks_in_future	| owner |
+    | 452   |<part_no>      | <pool_no>	    | 5				            | 400	|
+
+    And juror "<part_no>" has "LAST_NAME" as "<last_name>" new schema
+    And juror "<part_no>" has "POSTCODE" as "<postcode>" new schema
+
+	Given auto straight through processing has been enabled new schema
 
 	And I have submitted a third party English overage response
 	| part_no		|pool_number| last_name		|postcode	| email |
 	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
 
-	Given I am on "Bureau" "juror-test01"	
+	Given I am on "Bureau" "demo"
 	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
-	And I set "Juror number" to "<juror_number>"
+	And I set "Juror number" to "<part_no>"
 	And I press the "Search" button
-	And I click on "<juror_number>" in the same row as "<juror_number>"
+	And I click on "<part_no>" in the same row as "<part_no>"
 	Then I see "Summoned" on the page
 	
 	#DB checks (Do PNC N/A)
@@ -1737,7 +1763,7 @@ Scenario Outline: 3rd Party English Age Disqualified, 5 weeks in advance, PNC n/
 #	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<juror_number>"
 	
 Examples:
-|part_no		|pool_no 	|last_name 	|postcode 	|email					|
+|part_no		|pool_no 	|last_name 	|postcode 	|email		|
 |841501948		|415181001 	|LNAME1948	|CH1 2AN	|e@mail.com	|
 
 @comms 

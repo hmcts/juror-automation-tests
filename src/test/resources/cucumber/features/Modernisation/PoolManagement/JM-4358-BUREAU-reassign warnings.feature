@@ -1,9 +1,9 @@
 Feature: JM-4358
 
-  @JurorTransformationMulti
+  @JurorTransformationMulti @Bureau
   Scenario Outline: Reassign a juror Bureau User - warning cannot be reassigned when status not 1 or 2
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
     And the new pool for court "415" with multiple statuses is deleted new schema
     And the voter record for "641591101" is deleted new schema
     And the voter record for "641591102" is deleted new schema
@@ -115,14 +115,14 @@ Feature: JM-4358
     Then I see "1 jurors reassigned to pool" on the page
 
     Examples:
-      |pool_no    | user          |
-      |415911911  | MODTESTBUREAU |
+      |pool_no    | user          | environment |
+      |415911911  | MODTESTBUREAU | test        |
 
 
-  @JurorTransformation
+  @JurorTransformation @Bureau
   Scenario Outline: Reassign a juror Bureau User - warning cannot be reassigned when juror will be over 75
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     #And new pool requests are deleted new schema
     And the new pool for court "415" is deleted new schema
@@ -189,5 +189,5 @@ Feature: JM-4358
     Then I verify reassign error message with the text "You can only move jurors with a responded or summoned status. The following jurors have a different status and cannot be moved."
 
     Examples:
-      | pool_number   | user          |
-      | 415222222     | MODTESTBUREAU |
+      | pool_number   | user          | environment |
+      | 415222222     | MODTESTBUREAU | test        |

@@ -1,9 +1,9 @@
 Feature: Regression English_1st_ChangeAddress_Bureau
 
-@Regression
+@Regression @Bureau
 Scenario Outline: Change postcode - old postcode in >1 loc_code SHOWS CHANGE COURT
 
-	Given I am on "Public" "ithc"
+	Given I am on "Public" "<environment>"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -107,7 +107,7 @@ Scenario Outline: Change postcode - old postcode in >1 loc_code SHOWS CHANGE COU
 	Then I see "We have sent you an email to say you have replied to your jury summons." on the page
 	
 	#bureau
-	Given I am on "Bureau" "ithc"
+	Given I am on "Bureau" "<environment>"
 	When I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -122,13 +122,13 @@ Scenario Outline: Change postcode - old postcode in >1 loc_code SHOWS CHANGE COU
 	And I see "You can change the juror's court when you process the reply." on the page
 
 Examples:
-	| juror_number	| last_name	| postcode	| email 		| pool_number	|
-	| 045200185		| DOE		| SY2 6LU	| a@eeee.com	| 452300170		|
+	| juror_number	| last_name	| postcode	| email 		| pool_number	| environment	|
+	| 045200185		| DOE		| SY2 6LU	| a@eeee.com	| 452300170		| test          |
 	
-@Regression
+@Regression @Bureau
 Scenario Outline: Change Postcode but same loc_code CHANGE COURT FLAG NOT SHOWN
 
-	Given I am on "Public" "ithc"
+	Given I am on "Public" "<environment>"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -233,7 +233,7 @@ Scenario Outline: Change Postcode but same loc_code CHANGE COURT FLAG NOT SHOWN
 	Then I see "We have sent you an email to say you have replied to your jury summons." on the page
 	
 	#bureau
-	Given I am on "Bureau" "ithc"
+	Given I am on "Bureau" "<environment>"
 	When I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -246,13 +246,13 @@ Scenario Outline: Change Postcode but same loc_code CHANGE COURT FLAG NOT SHOWN
 	And I do not see "Change Court" on the page
 	
 Examples:
-	| juror_number	| last_name	| postcode	| email 		| pool_number	|
-	| 045200186		| DOE		| SA1 4EE	| a@eeee.com	| 452300171		|
+	| juror_number	| last_name	| postcode	| email 		| pool_number	| environment |
+	| 045200186		| DOE		| SA1 4EE	| a@eeee.com	| 452300171		| test        |
 
-@Regression
+@Regression @Bureau
 Scenario Outline: Change postcode - different loc_code SHOWS CHANGE COURT
 
-	Given I am on "Public" "ithc"
+	Given I am on "Public" "<environment>"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -358,7 +358,7 @@ Scenario Outline: Change postcode - different loc_code SHOWS CHANGE COURT
 	Then I see "We have sent you an email to say you have replied to your jury summons." on the page
 	
 	#bureau
-	Given I am on "Bureau" "ithc"
+	Given I am on "Bureau" "<environment>"
 	When I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -373,13 +373,13 @@ Scenario Outline: Change postcode - different loc_code SHOWS CHANGE COURT
 	And I see "You can change the juror's court when you process the reply." on the page
 
 Examples:
-	| juror_number	| last_name	| postcode	| email 		| pool_number	|
-	| 045200187		| DOE		| CH1 6LU	| a@eeee.com	| 452300172		|
+	| juror_number	| last_name	| postcode	| email 		| pool_number	| environment |
+	| 045200187		| DOE		| CH1 6LU	| a@eeee.com	| 452300172		| test        |
 
-@Regression
+@Regression @Bureau
 Scenario Outline: Change postcode - new postcode in >1 loc_code SHOWS CHANGE COURT
 
-	Given I am on "Public" "ithc"
+	Given I am on "Public" "<environment>"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -485,7 +485,7 @@ Scenario Outline: Change postcode - new postcode in >1 loc_code SHOWS CHANGE COU
 	Then I see "We have sent you an email to say you have replied to your jury summons." on the page
 
 	#bureau
-	Given I am on "Bureau" "ithc"
+	Given I am on "Bureau" "<environment>"
 	When I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -497,13 +497,13 @@ Scenario Outline: Change postcode - new postcode in >1 loc_code SHOWS CHANGE COU
 	And I see "Juror's address is outside the catchment area of the court they were summoned to" on the page
 	
 Examples:
-	| juror_number	| last_name	| postcode	| email 		| pool_number	|
-	| 045200188		| DOE		| CH1 6LU	| a@eeee.com	| 452300173		|
+	| juror_number	| last_name	| postcode	| email 		| pool_number	| environment	|
+	| 045200188		| DOE		| CH1 6LU	| a@eeee.com	| 452300173		| ithc          |
 
-@regression
+@regression @Bureau
 Scenario Outline: Change postcode - new postcode not in court_catchment_area
 
-	Given I am on "Public" "ithc"
+	Given I am on "Public" "<environment>"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -609,7 +609,7 @@ Scenario Outline: Change postcode - new postcode not in court_catchment_area
 	Then I see "We have sent you an email to say you have replied to your jury summons." on the page
 	
 	#bureau
-	Given I am on "Bureau" "ithc"
+	Given I am on "Bureau" "<environment>"
 	When I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -622,13 +622,13 @@ Scenario Outline: Change postcode - new postcode not in court_catchment_area
 	And I see "Juror's postcode is not recognised as belonging to any court catchment area" on the page
 	
 Examples:
-	| juror_number	| last_name	| postcode	| email 		| pool_number	|
-	| 045200189		| DOE		| CH1 6LU	| a@eeee.com	| 452300174		|
+	| juror_number	| last_name	| postcode	| email 		| pool_number	| environment |
+	| 045200189		| DOE		| CH1 6LU	| a@eeee.com	| 452300174		| test        |
 
-@regression
+@regression @Bureau
 Scenario Outline: Change postcode - old postcode not in court_catchment_area DOES NOT SHOW CHANGE COURT
 
-	Given I am on "Public" "ithc"
+	Given I am on "Public" "<environment>"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -734,7 +734,7 @@ Scenario Outline: Change postcode - old postcode not in court_catchment_area DOE
 	Then I see "We have sent you an email to say you have replied to your jury summons." on the page
 	
 	#bureau
-	Given I am on "Bureau" "ithc"
+	Given I am on "Bureau" "<environment>"
 	When I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -747,13 +747,13 @@ Scenario Outline: Change postcode - old postcode not in court_catchment_area DOE
 	And I do not see "Change Court" on the page
 	
 Examples:
-	| juror_number	| last_name	| postcode	| email 		| pool_number	|
-	| 045200190		| DOE		| SW1H 6LU	| a@eeee.com	| 452300175		|
+	| juror_number	| last_name	| postcode	| email 		| pool_number	| environment |
+	| 045200190		| DOE		| SW1H 6LU	| a@eeee.com	| 452300175		| test        |
 
-@Regression
+@Regression @Bureau
 Scenario Outline: Change Postcode but same loc_code CHANGE COURT FLAG NOT SHOWN two
 
-	Given I am on "Public" "ithc"
+	Given I am on "Public" "<environment>"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -859,7 +859,7 @@ Scenario Outline: Change Postcode but same loc_code CHANGE COURT FLAG NOT SHOWN 
 	Then I see "We have sent you an email to say you have replied to your jury summons." on the page
 	
 	#bureau
-	Given I am on "Bureau" "ithc"
+	Given I am on "Bureau" "<environment>"
 	When I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -872,5 +872,5 @@ Scenario Outline: Change Postcode but same loc_code CHANGE COURT FLAG NOT SHOWN 
 	And I do not see "Juror's address is outside the catchment area of the court they were summoned to" on the page
 	
 Examples:
-	| juror_number	| last_name	| postcode	| email 		| pool_number	|
-	| 045200191		| DOE		| SY2 4EE	| a@eeee.com	| 452300176		|
+	| juror_number	| last_name	| postcode	| email 		| pool_number	| environment |
+	| 045200191		| DOE		| SY2 4EE	| a@eeee.com	| 452300176		| test        |

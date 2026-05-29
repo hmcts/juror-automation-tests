@@ -1,13 +1,13 @@
 Feature: Bureau A Test
 	
-@RegressionSingle
+@RegressionSingle @Bureau
 Scenario Outline: Lift from QC Script for Bureau A Functionality
 
-	Given I am on "Public" "ithc"
+	Given I am on "Public" "<environment>"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  		| pool_number		| att_date_weeks_in_future	| owner |
-		| 452   | <juror_number_one>	| <pool_number_one>	| 5				            | 400	|
+		| 452   | <juror_number_one>	| <pool_number_one>	| 1				            | 400	|
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  		| pool_number		| att_date_weeks_in_future	| owner |
@@ -44,7 +44,7 @@ Scenario Outline: Lift from QC Script for Bureau A Functionality
 	#re-enable auto processing
 	Given auto straight through processing has been enabled new schema
 
-	Given I am on "Bureau" "ithc"
+	Given I am on "Bureau" "<environment>"
 	And I log in as "MODTESTBUREAU"
 	And I do not see any links on the page that open to a new page without an alt text
 
@@ -56,7 +56,7 @@ Scenario Outline: Lift from QC Script for Bureau A Functionality
 	And I do not see any links on the page that open to a new page without an alt text
 	And I click on the "Sign out" link
 
-	Given I am on "Bureau" "ithc"
+	Given I am on "Bureau" "<environment>"
 	And I log in as "ARAMIS1"
 	And I click on the "Search" link
 	And I set "Juror's pool number" to "<pool_number_three>"
@@ -81,14 +81,14 @@ Scenario Outline: Lift from QC Script for Bureau A Functionality
 	Then I press the "More actions" button
 	And I click on the "Mark as awaiting information" link
 	Then I see "Mark this reply as awaiting information" on the page
-	
+
 	#check error message
 	And I press the "Confirm" button
 	And I see "Select whether you’re waiting for information from either the juror, court or translation unit" on the page
-	
+
 	#check cancel
 	Then I click on the "Cancel" link
-	
+
 	#now mark as awaiting info
 	Then I press the "More actions" button
 	And I click on the "Mark as awaiting information" link
@@ -122,7 +122,7 @@ Scenario Outline: Lift from QC Script for Bureau A Functionality
 	And I press the "Search" button
 
 	When I click on "<juror_number_three>" in the same row as "<juror_number_three>"
-	
+
 	Then I see "Reply status" on the page
 	And I do not see "Edit" on the page
 	And I do not see "edit" on the page
@@ -133,13 +133,13 @@ Scenario Outline: Lift from QC Script for Bureau A Functionality
 	Then I do not see "Completed" on the page
 
 	When I click on the "Back" link
-		
+
 	Given the date received for the juror response "<juror_number_one>" is set to 6 working days before the current date
 	Given the date received for the juror response "<juror_number_two>" is set to 6 working days before the current date
-	
+
 	And I click on the "Sign out" link
-	
-	Given I am on "Bureau" "ithc"
+
+	Given I am on "Bureau" "<environment>"
 
 	And I log in as "ARAMIS1"
 	And I see "Awaiting information" on the page
@@ -148,14 +148,14 @@ Scenario Outline: Lift from QC Script for Bureau A Functionality
 	And I do not see "OVERDUE" on the page
 
 Examples:
-	| juror_number_one	| juror_number_two	| juror_number_three	| pool_number_one 	| pool_number_two	| pool_number_three	| last_name 		| postcode 	|
-	| 045200238			| 045200239			| 045200240				| 452300217 		| 452300218			| 452300219	        | LNAMEONEFIVEFOUR 	| CH1 2AN	|
+	| juror_number_one	| juror_number_two	| juror_number_three	| pool_number_one 	| pool_number_two	| pool_number_three	| last_name 		| postcode 	| environment	|
+	| 045200238			| 045200239			| 045200240				| 452300217 		| 452300218			| 452300219	        | LNAMEONEFIVEFOUR 	| CH1 2AN	| ithc          |
 	
 
-@RegressionSingle
+@RegressionSingle @Bureau
 Scenario Outline: Bureau A script, steps 24 onwards
 
-	Given I am on "Public" "ithc"
+	Given I am on "Public" "<environment>"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  	| pool_number	| att_date_weeks_in_future	| owner |
@@ -268,7 +268,7 @@ Scenario Outline: Bureau A script, steps 24 onwards
 	And I press the "Submit" button
 	Then I see "You have completed your reply" on the page
 
-	Given I am on "Bureau" "ithc"
+	Given I am on "Bureau" "<environment>"
 	And I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -318,7 +318,7 @@ Scenario Outline: Bureau A script, steps 24 onwards
 	And I press the "Confirm" button
 	Then I see "Awaiting court reply" on the page
 	
-	Given I am on "Bureau" "ithc"
+	Given I am on "Bureau" "<environment>"
 	And I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
 	And I set "Juror number" to "<juror_number>"
@@ -335,5 +335,5 @@ Scenario Outline: Bureau A script, steps 24 onwards
 	And I see the juror record updated banner containing "Responded"
 	
 Examples:
-	| juror_number 	| pool_number	| last_name			| postcode	| email				|
-	| 045200241		| 452300220		| LNAMEEIGHTFOUR	| CH1 2AN	| email@bureauA.com	|
+	| juror_number 	| pool_number	| last_name			| postcode	| email				| environment	|
+	| 045200241		| 452300220		| LNAMEEIGHTFOUR	| CH1 2AN	| email@bureauA.com	| test          |

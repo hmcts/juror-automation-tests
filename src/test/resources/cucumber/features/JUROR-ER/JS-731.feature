@@ -3,7 +3,7 @@ Feature: ELEC  JS-731
   @JurorEr
   Scenario Outline: As a local Authority I want to know the rules for uploading data in the Juror ER app
 
-    Given I am on "Er" "test"
+    Given I am on "Er" "<environment>"
 
     And I log in to ER as "<user>"
 
@@ -54,5 +54,5 @@ Feature: ELEC  JS-731
     And I see "Closed on bank holidays" on the page
 
     Examples:
-      | user                       |
-      | test_user1@localauthority2 |
+      | user                       | environment |
+      | test_user1@localauthority2 | test        |

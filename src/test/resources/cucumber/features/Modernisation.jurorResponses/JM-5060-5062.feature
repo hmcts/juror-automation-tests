@@ -52,10 +52,10 @@ Feature: JM-5060 - 5062
       | MODTESTCOURT  | 041536188     | 415212883     |
 
 
-  @JurorTransformationMulti
+  @JurorTransformationMulti @Court
   Scenario Outline: JM-5060 - Mark Juror as Failed to Attend for a juror with an Attendance - Unhappy Path
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
@@ -107,8 +107,8 @@ Feature: JM-5060 - 5062
     And I see error "This juror cannot be given a Failed To Attend status because they have had attendances recorded. The Failed To Attend status is only for jurors who have not attended at all"
 
     Examples:
-      | user		  | juror_number  | pool_number   |
-      | MODTESTCOURT  | 041536189     | 415212883     |
+      | user		  | juror_number  | pool_number   | environment |
+      | MODTESTCOURT  | 041536189     | 415212883     | test        |
 
 
   @JurorTransformationMulti

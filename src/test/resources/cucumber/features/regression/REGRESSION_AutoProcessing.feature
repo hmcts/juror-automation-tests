@@ -1,6 +1,6 @@
 Feature: Regression Test AUTOPROCESSING
 
-@RegressionSingle
+@RegressionSingle @Bureau
 Scenario Outline: submit responses which are auto processed
 
 	Given I am on "Public" "<environment>"
@@ -349,7 +349,7 @@ Examples:
 	|juror_number1	|juror_number2	|juror_number3	|juror_number4	|pool_number|last_name 	|postcode	|email		| environment |
 	|641500607		|641500327		|641500339		|641500376 		|415170401	|LNAME 		|CH1 2AN	|e@mail.com	| test        |
 
-@Regression
+@Regression @Bureau
 Scenario Outline: Check that when name is changed, the response is NOT auto processed
 
 	Given I am on "Public" "<environment>"
@@ -486,9 +486,9 @@ Scenario Outline: Check that when name is changed, the response is NOT auto proc
 	
 Examples:
 	| juror_number	| last_name	| postcode	| pool_number	| environment |
-	| 045200212		| DOE		| SW1H 9AJ	| 452300197		| test        |
+	| 045200212		| DOE		| SW1H 9AJ	| 452300197		| ithc        |
 	
-@Regression
+@Regression @Bureau
 Scenario Outline: Check that when address is changed, the response is NOT auto processed
 
 	Given I am on "Public" "<environment>"
@@ -626,7 +626,7 @@ Examples:
 	| juror_number	| last_name	| postcode	| pool_number	| environment |
 	| 045200213		| DOE		| SW1H 9AJ	| 452300198		| test        |
 
-@Regression
+@Regression @Bureau
 Scenario Outline: Check that when Address2 is changed from (null), the response is not auto processed
 
 	Given I am on "Public" "<environment>"
@@ -766,7 +766,7 @@ Examples:
 	| juror_number	| last_name		| postcode	| pool_number	| environment |
 	| 045200214		| LNAMENINEFIVE	| SA1 4PF	| 452300199		| test        |
 	
-@Regression
+@Regression @Bureau
 Scenario Outline: Check that when Address3 is changed from (null), the response is not auto processed
 
 	Given I am on "Public" "<environment>"
@@ -907,7 +907,7 @@ Examples:
 	| juror_number	| last_name			| postcode	| pool_number	| environment |
 	| 045200215		| LNAMEFOURTHREEZERO| NN1 3HQ	| 452300200		| test        |
 	
-@Regression
+@Regression @Bureau
 Scenario Outline: Check that when Address4 is changed from (null), the response is not auto processed
 
 	Given I am on "Public" "<environment>"
@@ -1048,8 +1048,8 @@ Scenario Outline: Check that when Address4 is changed from (null), the response 
 Examples:
 	| juror_number	| last_name			| postcode	| pool_number	| environment |
 	| 045200216		| LNAMEONEONEEIGHT	| SA1 4PF	| 452300201		| test        |
-	
-@Regression
+
+@Regression @Bureau
 Scenario Outline: Check that when Address5 is changed from (null), the response is not auto processed
 
 	Given I am on "Public" "<environment>"
@@ -1190,7 +1190,7 @@ Examples:
 	| juror_number	| last_name			| postcode	| pool_number	| environment |
 	| 045200217		| LNAMENINEZEROTWO	| NN1 3HQ	| 452300202		| test        |
 	
-@Regression
+@Regression @Bureau
 Scenario Outline: Check that when Address2 is changed from string value, the response is not auto processed
 
 	Given I am on "Public" "<environment>"
@@ -1331,7 +1331,7 @@ Examples:
 	| juror_number	| last_name	| postcode	| pool_number	| environment |
 	| 045200218		| DOE		| SW1H 9AJ	| 452300203		| test        |
 	
-@Regression
+@Regression @Bureau
 Scenario Outline: Check that when Address3 is changed from string value, the response is not auto processed
 
 	Given I am on "Public" "<environment>"
@@ -1470,9 +1470,9 @@ Scenario Outline: Check that when Address3 is changed from string value, the res
 	
 Examples:
 	| juror_number	| last_name				| postcode	| pool_number	| environment |
-	| 045200219		| LNAMENINEFIVETHREE	| CH1 2AN	| 452300204		| test        |
+	| 045200219		| LNAMENINEFIVETHREE	| CH1 2AN	| 452300204		| ithc        |
 	
-@Regression
+@Regression @Bureau
 Scenario Outline: Check that when Address4 is changed from string value, the response is not auto processed
 
 	Given I am on "Public" "<environment>"
@@ -1613,7 +1613,7 @@ Examples:
 	| juror_number	| last_name	| postcode	| pool_number	| environment |
 	| 045200220		| DOE		| SY2 6LU	| 452300205		| test        |
 	
-@Regression
+@Regression @Bureau
 Scenario Outline: Check that when Address5 is changed from string value, the response is not auto processed
 
 	Given I am on "Public" "<environment>"

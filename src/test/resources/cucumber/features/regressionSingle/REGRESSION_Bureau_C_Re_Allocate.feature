@@ -1,9 +1,9 @@
 Feature: Bureau C Test
 	
-@Regression
+@Regression @Bureau
 Scenario Outline: Bureau C script
 
-	Given I am on "Bureau" "ithc"
+	Given I am on "Bureau" "<environment>"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  			| pool_number	| att_date_weeks_in_future	| owner |
@@ -28,7 +28,7 @@ Scenario Outline: Bureau C script
 		| <juror_number_two>	| <pool_number>	| <last_name>		|<postcode>		|<email>	|<details>	|
 		| <juror_number_three>	| <pool_number>	| <last_name>		|<postcode>		|<email>	|<details>	|
 
-	Given I am on "Bureau" "ithc"
+	Given I am on "Bureau" "<environment>"
 
 	When I log in as "CPASS"
 	And I click on the "Assign Replies" link
@@ -74,7 +74,7 @@ Scenario Outline: Bureau C script
 
 	And I click on the "Sign out" link
 
-	Given I am on "Bureau" "ithc"
+	Given I am on "Bureau" "<environment>"
 	And I log in as "ARAMIS1"
 	Then I see "<juror_number_one>" on the page
 
@@ -88,7 +88,7 @@ Scenario Outline: Bureau C script
 
 	And I click on the "Sign out" link
 
-	Given I am on "Bureau" "ithc"
+	Given I am on "Bureau" "<environment>"
 	And I log in as "MODTESTBUREAU"
 	Then I see "<juror_number_one>" on the page
 
@@ -103,7 +103,7 @@ Scenario Outline: Bureau C script
 
 	And I click on the "Sign out" link
 
-	Given I am on "Bureau" "ithc"
+	Given I am on "Bureau" "<environment>"
 	And I log in as "ARAMIS1"
 	Then I see "<juror_number_one>" on the page
 	Then I see "<juror_number_two>" on the page
@@ -111,7 +111,7 @@ Scenario Outline: Bureau C script
 
 	And I click on the "Sign out" link
 
-	Given I am on "Bureau" "ithc"
+	Given I am on "Bureau" "<environment>"
 	And I log in as "MODTESTBUREAU"
 	When I click on the "Search" link
 	And I see "Juror's pool number" on the page
@@ -128,7 +128,7 @@ Scenario Outline: Bureau C script
 
 	And I click on the "Sign out" link
 
-	Given I am on "Bureau" "ithc"
+	Given I am on "Bureau" "<environment>"
 	And I log in as "CPASS"
 	Then I do not see "<juror_number_one>" on the page
 	Then I do not see "<juror_number_two>" on the page
@@ -160,5 +160,5 @@ Scenario Outline: Bureau C script
 
 	
 Examples:
-	| juror_number_one 	| juror_number_two	| juror_number_three	| pool_number	| last_name			| postcode	| email				| details		|
-	| 045200242			| 045200243			| 045200244				| 452300221		| LNAMEEIGHTFOUR	| CH1 2AN	| email@bureauA.com	| 12345abcde	|
+	| juror_number_one 	| juror_number_two	| juror_number_three	| pool_number	| last_name			| postcode	| email				| details		| environment	|
+	| 045200242			| 045200243			| 045200244				| 452300221		| LNAMEEIGHTFOUR	| CH1 2AN	| email@bureauA.com	| 12345abcde	| ithc          |
