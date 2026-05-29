@@ -1,9 +1,9 @@
 Feature: Bureau change jurors deferral date
 
-  @JurorTransformation
+  @JurorTransformation @Bureau
   Scenario Outline: Change jurors deferral date
 
-    Given I am on "Public" "ithc"
+    Given I am on "Public" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
@@ -14,7 +14,7 @@ Feature: Bureau change jurors deferral date
       |jurorLname    | <last_name>|
       |jurorPostcode | <postcode> |
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     Given I log in as "MODTESTBUREAU"
 
@@ -52,5 +52,5 @@ Feature: Bureau change jurors deferral date
     And I see Deferred to is "41" Mondays in the future
 
     Examples:
-      | juror_number| pool_number | last_name       | postcode	|
-      | 041566659	| 415300149   | lname	        | CH2 2AA	|
+      | juror_number| pool_number | last_name       | postcode	| environment |
+      | 041566659	| 415300149   | lname	        | CH2 2AA	| ithc        |

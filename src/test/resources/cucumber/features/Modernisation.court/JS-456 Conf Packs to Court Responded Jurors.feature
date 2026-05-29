@@ -1,9 +1,9 @@
 Feature: Court responded jurors to receive confirmation pack
 
-  @JurorTransformation
+  @JurorTransformation @Court
   Scenario Outline: Court responded juror receives conf pack - bilingual
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number        | pool_number	  | att_date_weeks_in_future	| owner |
@@ -45,13 +45,13 @@ Feature: Court responded jurors to receive confirmation pack
     Then I check that a bilingual confirmation letter has been generated for juror "<juror_number01>" new schema
 
     Examples:
-      | juror_number01  | pool_number01 |
-      | 045798031       | 457980930     |
+      | juror_number01  | pool_number01 | environment |
+      | 045798031       | 457980930     | test        |
 
-  @JurorTransformation
+  @JurorTransformation @Court
   Scenario Outline: Court responded juror receives conf pack - english at welsh court
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number        | pool_number	  | att_date_weeks_in_future	| owner |
@@ -83,13 +83,13 @@ Feature: Court responded jurors to receive confirmation pack
     Then I check that a confirmation letter has been generated for juror "<juror_number01>" new schema
 
     Examples:
-      | juror_number01  | pool_number01 |
-      | 045798032       | 457980932     |
+      | juror_number01  | pool_number01 | environment |
+      | 045798032       | 457980932     | test        |
 
-  @JurorTransformation
+  @JurorTransformation @Court
   Scenario Outline: Court responded juror receives conf pack
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number        | pool_number	  | att_date_weeks_in_future	| owner |
@@ -120,13 +120,13 @@ Feature: Court responded jurors to receive confirmation pack
     Then I check that a confirmation letter has been generated for juror "<juror_number01>" new schema
 
     Examples:
-      | juror_number01  | pool_number01 |
-      | 041598031       | 415980930     |
+      | juror_number01  | pool_number01 | environment |
+      | 041598031       | 415980930     | test        |
 
-  @JurorTransformation
+  @JurorTransformation @Court
   Scenario Outline: Court responded juror does not receive conf pack when return date equals police check passed date
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number        | pool_number	  | att_date_weeks_in_future	| owner |
@@ -157,13 +157,13 @@ Feature: Court responded jurors to receive confirmation pack
     Then I check that a confirmation letter has not been generated for juror "<juror_number01>" new schema
 
     Examples:
-      | juror_number01  | pool_number01 |
-      | 041598032       | 415980932     |
+      | juror_number01  | pool_number01 | environment |
+      | 041598032       | 415980932     | test        |
 
-  @JurorTransformation
+  @JurorTransformation @Court
   Scenario Outline: Court responded juror does not receive conf pack when return date before police check passed date
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number        | pool_number	  | att_date_weeks_in_future	| owner |
@@ -194,13 +194,13 @@ Feature: Court responded jurors to receive confirmation pack
     Then I check that a confirmation letter has not been generated for juror "<juror_number01>" new schema
 
     Examples:
-      | juror_number01  | pool_number01 |
-      | 041598033       | 415980933     |
+      | juror_number01  | pool_number01 | environment |
+      | 041598033       | 415980933     | test        |
 
-  @JurorTransformation
+  @JurorTransformation @Court
   Scenario Outline: Court responded juror does not receive conf pack when responded date before police check passed date
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number        | pool_number	  | att_date_weeks_in_future	| owner |
@@ -234,13 +234,13 @@ Feature: Court responded jurors to receive confirmation pack
     Then I check that a confirmation letter has not been generated for juror "<juror_number01>" new schema
 
     Examples:
-      | juror_number01  | pool_number01 |
-      | 041598033       | 415980933     |
+      | juror_number01  | pool_number01 | environment |
+      | 041598033       | 415980933     | test        |
 
-  @JurorTransformation
+  @JurorTransformation @Court
   Scenario Outline: Court responded juror does not receive conf pack when police check fails
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number        | pool_number	  | att_date_weeks_in_future	| owner |
@@ -277,5 +277,5 @@ Feature: Court responded jurors to receive confirmation pack
     Then I check that a confirmation letter has not been generated for juror "<juror_number01>" new schema
 
     Examples:
-      | juror_number01  | pool_number01 |
-      | 223456719       | 415240701     |
+      | juror_number01  | pool_number01 | environment |
+      | 223456719       | 415240701     | test        |

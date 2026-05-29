@@ -1,6 +1,6 @@
 Feature: As a court officer I want to reinstate a jury for active trial
 
-  @JurorTransformationMulti
+  @JurorTransformationMulti @Court
   Scenario Outline: Reinstate Jury
 
     Given I am on "Bureau" "<environment>"
@@ -214,6 +214,7 @@ Feature: As a court officer I want to reinstate a jury for active trial
     And I check the select all checkbox
     And I press the "Reinstate" button
     Then I see "14 jurors reinstated" on the page
+
     And I see "Juror" in the same row as "<juror_number01>"
     And I see "Juror" in the same row as "<juror_number02>"
     And I see "Juror" in the same row as "<juror_number03>"
@@ -250,4 +251,4 @@ Feature: As a court officer I want to reinstate a jury for active trial
 
     Examples:
       | juror_number01 | juror_number02 | juror_number03 | juror_number04 | juror_number05 | juror_number06 | juror_number07 | juror_number08 | juror_number09 | juror_number10 | juror_number11 | juror_number12 | juror_number13| juror_number14 | juror_number15 | juror_number16 | pool_number01 | environment |
-      | 076798031      | 076798032      | 076798033      | 076798034      | 076798035      | 076798036      | 076798037      | 076798038      | 076798039      | 076798040      | 076798041      | 076798042      | 076798043     | 076798044      | 076798045      | 076798046      | 767980915     | test        |
+      | 076798031      | 076798032      | 076798033      | 076798034      | 076798035      | 076798036      | 076798037      | 076798038      | 076798039      | 076798040      | 076798041      | 076798042      | 076798043     | 076798044      | 076798045      | 076798046      | 767980915     | ithc        |

@@ -325,7 +325,7 @@ Feature: JM-4222
   @JurorTransformation
   Scenario Outline: As a jury officer officer when I transfer a juror the optic reference should be copied over to the new record
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number  | pool_number  | att_date_weeks_in_future    | owner  |
@@ -346,7 +346,7 @@ Feature: JM-4222
     And I click the juror details adjustments tab
     And I see "12345678" in the same row as "Optic reference"
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
     And I log in as "<user>"
 
     #transfer to court
@@ -385,7 +385,7 @@ Feature: JM-4222
     And I click on the "Reasonable adjustments" link
     And I see "12345678" in the same row as "Optic reference"
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
     And I log in as "MODTESTBUREAU"
 
     #check juror record for optic reference
@@ -396,8 +396,8 @@ Feature: JM-4222
     And I see "Reasonable adjustments reasons" on the page
 
     Examples:
-      | user         | juror_number | pool_number  |
-      | MODTESTCOURT | 041503352    | 415300140    |
+      | user         | juror_number | pool_number  | environment |
+      | MODTESTCOURT | 041503352    | 415300140    | ithc        |
 
   @JurorTransformationMulti
   Scenario Outline: As a Jury Officer I should be able to see the optic reference on a juror record and summons reply as a standard juror

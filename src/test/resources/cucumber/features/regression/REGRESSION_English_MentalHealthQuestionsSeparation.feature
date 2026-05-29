@@ -1,9 +1,9 @@
 Feature: Regression 1st_MentalHealthQuestionsSeparation
 
-@Regression
+@Regression @Bureau @DigitalResponse
 Scenario Outline: 1st party MHQ1=Y MHQ2=Y
 	
-	Given I am on "Public" "ithc"
+	Given I am on "Public" "<environment>"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -107,7 +107,7 @@ Scenario Outline: 1st party MHQ1=Y MHQ2=Y
 	Then I see "We have sent you an email to say you have replied to your jury summons." on the page
 
 	#Bureau
-	Given I am on "Bureau" "ithc"
+	Given I am on "Bureau" "<environment>"
 	And I log in as "MODTESTBUREAU"
 
 	When I click on the "Search" link
@@ -122,13 +122,13 @@ Scenario Outline: 1st party MHQ1=Y MHQ2=Y
 	And I do not see "[MENTAL HEALTH Q2]" on the page
 
 Examples:
-	| juror_number	| last_name			| postcode	| email            | pool_number|
-	| 045200097		| LNAMEFIVETHREEZERO| CH1 2AN	| email@outlook.com| 452300096	|
+	| juror_number	| last_name			| postcode	| email            | pool_number| environment |
+	| 045200097		| LNAMEFIVETHREEZERO| CH1 2AN	| email@outlook.com| 452300096	| test		  |
 	
-@Regression
+@Regression @Bureau @DigitalResponse
 Scenario Outline: 1st party MHQ1=Y MHQ2=N
 	
-	Given I am on "Public" "ithc"
+	Given I am on "Public" "<environment>"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -231,7 +231,7 @@ Scenario Outline: 1st party MHQ1=Y MHQ2=N
 	Then I see "We have sent you an email to say you have replied to your jury summons." on the page
 
 	#Bureau
-	Given I am on "Bureau" "ithc"
+	Given I am on "Bureau" "<environment>"
 	And I log in as "MODTESTBUREAU"
 
 	When I click on the "Search" link
@@ -246,13 +246,13 @@ Scenario Outline: 1st party MHQ1=Y MHQ2=N
 	And I do not see "[MENTAL HEALTH Q2]" on the page
 
 Examples:
-	| juror_number	| last_name			| postcode	| email            | pool_number|
-	| 045200098		| LNAMESIXZEROSEVEN	| CH1 2AN	| email@outlook.com| 452300097	|
+	| juror_number	| last_name			| postcode	| email            | pool_number| environment |
+	| 045200098		| LNAMESIXZEROSEVEN	| CH1 2AN	| email@outlook.com| 452300097	| test		  |
 	
-@Regression
+@Regression @Bureau @DigitalResponse
 Scenario Outline: 1st party MHQ1=N MHQ2=Y
 	
-	Given I am on "Public" "ithc"
+	Given I am on "Public" "<environment>"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -356,7 +356,7 @@ Scenario Outline: 1st party MHQ1=N MHQ2=Y
 	Then I see "We have sent you an email to say you have replied to your jury summons." on the page
 
 	#Bureau
-	Given I am on "Bureau" "ithc"
+	Given I am on "Bureau" "<environment>"
 	And I log in as "MODTESTBUREAU"
 
 	When I click on the "Search" link
@@ -371,13 +371,13 @@ Scenario Outline: 1st party MHQ1=N MHQ2=Y
 	And I do not see "[MENTAL HEALTH Q2]" on the page
 
 Examples:
-	| juror_number	| last_name			| postcode	| pool_number	|
-	| 045200099		| LNAMEFIVETHREEONE	| CH1 2AN	| 452300098		|
+	| juror_number	| last_name			| postcode	| pool_number	| environment |
+	| 045200099		| LNAMEFIVETHREEONE	| CH1 2AN	| 452300098		| test		  |
 	
-@Regression
+@Regression @Bureau @DigitalResponse
 Scenario Outline: 1st party MHQ1=N MHQ2=N
 	
-	Given I am on "Public" "ithc"
+	Given I am on "Public" "<environment>"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -478,7 +478,7 @@ Scenario Outline: 1st party MHQ1=N MHQ2=N
 	Then I see "We have sent you an email to say you have replied to your jury summons." on the page
 
 	#Bureau
-	Given I am on "Bureau" "ithc"
+	Given I am on "Bureau" "<environment>"
 	And I log in as "MODTESTBUREAU"
 
 	When I click on the "Search" link
@@ -493,13 +493,13 @@ Scenario Outline: 1st party MHQ1=N MHQ2=N
 	And I do not see "[MENTAL HEALTH Q2]" on the page
 
 Examples:
-	| juror_number	| last_name	| postcode	| email            | pool_number|
-	| 045200100		| 415170401	| CH1 2AN	| email@outlook.com| 452300099	|
+	| juror_number	| last_name	| postcode	| email            | pool_number| environment |
+	| 045200100		| 415170401	| CH1 2AN	| email@outlook.com| 452300099	| test		  |
 
-@Regression
+@Regression @Bureau @DigitalResponse
 Scenario Outline: English_3rd_YY
 
-	Given I am on "Public" "ithc"
+	Given I am on "Public" "<environment>"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -675,7 +675,7 @@ Scenario Outline: English_3rd_YY
 	And I see "Download a copy of your summons reply HTML" on the page 
 
  	#Bureau
-	Given I am on "Bureau" "ithc"
+	Given I am on "Bureau" "<environment>"
 	And I log in as "MODTESTBUREAU"
 
 	When I click on the "Search" link
@@ -691,13 +691,13 @@ Scenario Outline: English_3rd_YY
 	And I do not see "[MENTAL HEALTH Q2]" on the page
 	
 Examples:
-	| juror_number	| last_name			| postcode	| email           	| pool_number	|
-	| 045200101		| LNAMENINETHREETWO	| CH1 2AN	| email@outlook.com	| 452300100		|
+	| juror_number	| last_name			| postcode	| email           	| pool_number	| environment |
+	| 045200101		| LNAMENINETHREETWO	| CH1 2AN	| email@outlook.com	| 452300100		| test		  |
 
-@Regression
+@Regression @Bureau @DigitalResponse
 Scenario Outline: English_3rd_YN
 
-	Given I am on "Public" "ithc"
+	Given I am on "Public" "<environment>"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -829,7 +829,7 @@ Scenario Outline: English_3rd_YN
 	Then I see "We have sent an email to say you have replied to this jury summons." on the page
 
 	#Bureau
-	Given I am on "Bureau" "ithc"
+	Given I am on "Bureau" "<environment>"
 	And I log in as "MODTESTBUREAU"
 
 	When I click on the "Search" link
@@ -844,13 +844,13 @@ Scenario Outline: English_3rd_YN
 	And I do not see "[MENTAL HEALTH Q2]" on the page
 	
 Examples:
-	| juror_number	| last_name			| postcode	| email           	| pool_number	|
-	| 045200102		| LNAMENINETHREETWO	| CH1 2AN	| email@outlook.com	| 452300101		|
+	| juror_number	| last_name			| postcode	| email           	| pool_number	| environment |
+	| 045200102		| LNAMENINETHREETWO	| CH1 2AN	| email@outlook.com	| 452300101		| test		  |
 
-@Regression
+@Regression @Bureau @DigitalResponse
 Scenario Outline: English_3rd_NY
 
-	Given I am on "Public" "ithc"
+	Given I am on "Public" "<environment>"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -989,7 +989,7 @@ Scenario Outline: English_3rd_NY
 	Then I see "We have sent an email to say you have replied to this jury summons." on the page
 
 	#Bureau
-	Given I am on "Bureau" "ithc"
+	Given I am on "Bureau" "<environment>"
 	And I log in as "MODTESTBUREAU"
 
 	When I click on the "Search" link
@@ -1004,13 +1004,13 @@ Scenario Outline: English_3rd_NY
 	And I do not see "[MENTAL HEALTH Q2]" on the page
 	
 Examples:
-	| juror_number	| last_name			| postcode	| email           	| pool_number	|
-	| 045200103		| LNAMENINETHREETWO	| CH1 2AN	| email@outlook.com	| 452300102		|
+	| juror_number	| last_name			| postcode	| email           	| pool_number	| environment |
+	| 045200103		| LNAMENINETHREETWO	| CH1 2AN	| email@outlook.com	| 452300102		| test		  |
 
-@Regression
+@Regression @Bureau @DigitalResponse
 Scenario Outline: English_3rd_NN
 
-	Given I am on "Public" "ithc"
+	Given I am on "Public" "<environment>"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -1146,7 +1146,7 @@ Scenario Outline: English_3rd_NN
 	Then I see "We have sent an email to say you have replied to this jury summons." on the page
 
 	#Bureau
-	Given I am on "Bureau" "ithc"
+	Given I am on "Bureau" "<environment>"
 	And I log in as "MODTESTBUREAU"
 
 	When I click on the "Search" link
@@ -1161,5 +1161,5 @@ Scenario Outline: English_3rd_NN
 	And I do not see "[MENTAL HEALTH Q2]" on the page
 	
 Examples:
-	| juror_number	| last_name			| postcode	| email            | pool_number|
-	| 045200104		| LNAMENINETHREETWO	| CH1 2AN	| email@outlook.com| 452300103	|
+	| juror_number	| last_name			| postcode	| email            | pool_number| environment |
+	| 045200104		| LNAMENINETHREETWO	| CH1 2AN	| email@outlook.com| 452300103	| test		  |

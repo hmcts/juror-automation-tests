@@ -4894,12 +4894,13 @@ public class DatabaseTesterNewSchemaDesign {
 				pStmt = conn.prepareStatement("insert into juror_mod.user_permissions (username, permission) VALUES ('" + user + "', 'CREATE_JUROR')");
 				pStmt.executeUpdate();
 				conn.commit();
+
 				log.info("Set CREATE_USER permission for =>" + user);
 			} else
 				pStmt = conn.prepareStatement("delete from juror_mod.user_permissions where username='" + user + "'");
-			pStmt.executeUpdate();
-			conn.commit();
-			log.info("Deleted CREATE_USER permission for =>" + user);
+			    pStmt.executeUpdate();
+			    conn.commit();
+			    log.info("Deleted CREATE_USER permission for =>" + user);
 
 		} catch (SQLException e) {
 			e.printStackTrace();

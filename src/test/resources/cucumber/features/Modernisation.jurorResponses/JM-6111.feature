@@ -1,9 +1,9 @@
 Feature: JM-6111 - As a jury officer, I want to view a consolidated list of expenses in draft
 
-  @JurorTransformation
+  @JurorTransformation @Court
   Scenario Outline: View list of draft expenses as a jury officer
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
     When a bureau owned pool is created with jurors
       | court |juror_number  	  | pool_number	    | att_date_weeks_in_future	| owner |
       | 415   |<juror_number>     | <pool_number>   | 5				            | 400	|
@@ -102,5 +102,5 @@ Feature: JM-6111 - As a jury officer, I want to view a consolidated list of expe
       | Total                      | £77.12                               |
 
     Examples:
-      |user			|juror_number |   pool_number   |
-      |MODTESTCOURT |041536688    | 415360983       |
+      |user			|juror_number |   pool_number   | environment	|
+      |MODTESTCOURT |041536688    | 415360983       | ithc          |

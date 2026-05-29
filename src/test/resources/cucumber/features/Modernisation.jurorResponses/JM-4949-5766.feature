@@ -1,6 +1,6 @@
 Feature: JM-4949 & JM-5766
 
-  @JurorTransformation
+  @JurorTransformation @Court
   Scenario Outline: Return all jurors on a panel
 
     Given I am on "Bureau" "<environment>"
@@ -113,7 +113,7 @@ Feature: JM-4949 & JM-5766
       |MODTESTCOURT |041520012     |  415300201      | TEST2022222  | test        |
 
 
-  @JurorTransformation
+  @JurorTransformation @Court
   Scenario Outline: Return select jurors on a panel to keep panel active
 
     Given I am on "Bureau" "<environment>"
@@ -199,7 +199,6 @@ Feature: JM-4949 & JM-5766
     And I see "Juror" in the same row as "<juror_number_2>"
     And I see "Juror" in the same row as "<juror_number_3>"
 
-
     #retrurn jury process
     And I check the juror "<juror_number>" checkbox
     And I check the juror "<juror_number_2>" checkbox
@@ -244,7 +243,7 @@ Feature: JM-4949 & JM-5766
       |MODTESTCOURT |041520013     |  041520014     |  041520015    |  415300201   | TEST2022223  | test        |
 
 
-  @JurorTransformation
+  @JurorTransformation @Court
   Scenario Outline: Return juror but do not confirm attendance
 
     Given I am on "Bureau" "<environment>"
@@ -329,13 +328,12 @@ Feature: JM-4949 & JM-5766
     And I click on the "Record attendance" link
     And I see "<juror_number>" in the same row as "Responded"
 
-
     Examples:
       |user			|juror_number  |  pool_number    | trial_number | environment |
       |MODTESTCOURT |041520016     |  415300201      | TEST2022224  | test        |
 
 
-  @JurorTransformation
+  @JurorTransformation @Court
   Scenario Outline: Return juror and complete their service
 
     Given I am on "Bureau" "<environment>"
@@ -554,7 +552,7 @@ Feature: JM-4949 & JM-5766
       |MODTESTCOURT |041520018     | 041520024      |    415300201      | TEST2022226  | test         |
 
 
-  @JurorTransformation
+  @JurorTransformation @Court
   Scenario Outline: Happy path to create a trial then return all the jurors and end trial
 
     Given I am on "Bureau" "<environment>"

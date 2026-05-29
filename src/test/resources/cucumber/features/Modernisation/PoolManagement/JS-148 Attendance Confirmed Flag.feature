@@ -1,6 +1,6 @@
 Feature: JS-148
 
-  @JurorTransformation
+  @JurorTransformation @Court
   Scenario Outline: Testing confirming multiple times a day
 
     Given I am on "Bureau" "<environment>"
@@ -258,4 +258,4 @@ Feature: JS-148
 
     Examples:
       | user         | sjo_user | juror_number_1 | juror_number_2  | juror_number_3  | juror_number_4  | pool_number | trial_number  | environment |
-      | MODTESTCOURT | SJOUSER  | 041500109      | 041500110       | 041500111       | 041500112       | 415300175   | TRIALJS148    | test        |
+      | MODTESTCOURT | SJOUSER  | 041500109      | 041500110       | 041500111       | 041500112       | 415300175   | TRIALJS148    | ithc        |

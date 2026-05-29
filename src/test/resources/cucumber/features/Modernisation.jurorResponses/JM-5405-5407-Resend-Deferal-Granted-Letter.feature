@@ -138,11 +138,13 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
       | 041520127    | 415300740   | MODTESTBUREAU |
 
 
-  @JurorTransformation
+  @JurorTransformation @Bureau
   Scenario Outline: As a bureau officer test a Deferred juror with status changed can resend a granted letter
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
+
     And I log in as "<user>"
+
     When a bureau owned pool is created with jurors
       | court | juror_number     | pool_number   | att_date_weeks_in_future | owner |
       | 415   | <juror_number>   | <pool_number> | 5                        | 400   |
@@ -168,7 +170,8 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
     And I press the "Continue" button
     And I press the "Put in deferral maintenance" button
     And I verify the banner message "Deferral granted" on the page
-#update the 2nd juror number to deferred
+
+  #update the 2nd juror number to deferred
     When the user searches for juror record "<juror_number_1>" from the global search bar
     And I click on the "Summons reply" link
     And I click on the "View summons reply" link
@@ -224,8 +227,8 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
     And I see "<juror_number_1>" in the same row as "Excused"
 
     Examples:
-      | juror_number | juror_number_1 | pool_number | user          |
-      | 041520035    | 041520036      | 415300704   | MODTESTBUREAU |
+      | juror_number | juror_number_1 | pool_number | user          | environment |
+      | 041520035    | 041520036      | 415300704   | MODTESTBUREAU | ithc        |
 
 
   @JurorTransformationMulti

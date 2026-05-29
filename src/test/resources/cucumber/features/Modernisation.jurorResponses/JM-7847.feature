@@ -1,8 +1,9 @@
 Feature: JM-7847
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti @Court
   Scenario Outline: As a Satellite court user when requesting a new pool the court should default to the current logged in court
-    Given I am on "Bureau" "ithc"
+
+    Given I am on "Bureau" "<environment>"
 
     And I log in as "<user>"
 
@@ -28,7 +29,7 @@ Feature: JM-7847
     And I see "Chester" on the page
 
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
     And I log in as "<user>" selecting court "462"
 
     And I press the "Apps" button
@@ -52,9 +53,7 @@ Feature: JM-7847
     And I press the "Continue" button
     And I see "Warrington" on the page
 
-
-
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
     And I log in as "<user>" selecting court "767"
 
     And I press the "Apps" button
@@ -78,7 +77,6 @@ Feature: JM-7847
     And I press the "Continue" button
     And I see "Knutsford" on the page
 
-
     Examples:
-      |user			|
-      |MODTESTCOURT |
+      |user			| environment |
+      |MODTESTCOURT | test        |
