@@ -24,7 +24,7 @@ Scenario Outline: JM-3000 Assign Reply Happy Path
 
 	#view the assigned record
 	When I click on the "Search" link
-	And I set "Juror number" to "<juror_number>"
+	And I set input field with "id" of "jurorNumber" to "<juror_number>"
 	And I press the "Search" button
 
 	#Check it's assigned to ARAMIS1
@@ -48,7 +48,7 @@ Scenario Outline: JM-3000 Assign Reply Happy Path
 
 	#view the assigned record
 	When I click on the "Search" link
-	And I set "Juror number" to "<juror_number>"
+	And I set input field with "id" of "jurorNumber" to "<juror_number>"
 	And I press the "Search" button
 
 	#Check it's assigned to SYSTEM
@@ -67,7 +67,7 @@ Examples:
 
 		#this test needs to stay in single threaded as it checks backlog counts which will be more dynamic in the multi threaded execution
 
-		Given I am on "Bureau" "demo"
+		Given I am on "Bureau" "test"
 
 		Given a bureau owned pool is created with jurors
 			| court | juror_number       | pool_number   | att_date_weeks_in_future | owner |
@@ -92,7 +92,8 @@ Examples:
 
 	#view the assigned record
 		When I click on the "Search" link
-		And I set "Juror number" to "<juror_number>"
+		And I see "Search" on the page
+		And I set input field with "id" of "jurorNumber" to "<juror_number>"
 		And I press the "Search" button
 
 	#Check it's assigned to ARAMIS1
@@ -142,7 +143,7 @@ Examples:
 
 		#check I cannot reassign a closed response
 		When I click on the "Search" link
-		And I set "Juror number" to "<juror_number_two>"
+		And I set input field with "id" of "jurorNumber" to "<juror_number_two>"
 		And I press the "Search" button
 
 	#Check it's assigned to CPASS

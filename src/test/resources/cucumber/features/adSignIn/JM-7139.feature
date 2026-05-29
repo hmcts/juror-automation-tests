@@ -11,9 +11,10 @@ Feature: JM-7139 - As a tester I want to be able to provide an email to sign int
     And I see "Your work" on the page
 
   Scenario: Sign in as a court user
-    Given I am on "Bureau" "demo"
+    Given I am on "Bureau" "test"
     And I log in as "MODCOURT" selecting court "415"
 
+    And I click the HMCTS Juror header link
     Then I see "Chester" on the page
     And I see "(415)" on the page
     And I see "Notifications" on the page
