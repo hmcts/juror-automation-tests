@@ -124,4 +124,13 @@
   <suppress>
     <cve>CVE-2026-42198</cve>
   </suppress>
+  <suppress>
+    <cve>CVE-2026-44930</cve>
+  </suppress>
+  <suppress>
+    <cve>CVE-2026-44417</cve>
+  </suppress>
+  <suppress>
+    <cve>CVE-2026-44618</cve>
+  </suppress>
 </suppressions>
