@@ -6,7 +6,8 @@ Feature: As a court officer I want to have a dashboard on the juror application 
     Given I am on "Bureau" "ithc"
 
     And I log in as "MODTESTCOURT" selecting court "415"
-    
+
+    And I click the HMCTS Juror header link
     And I see "homepage/dashboard" in the URL
     And I see "Notifications" on the page
     And I see "Attendance" on the page
