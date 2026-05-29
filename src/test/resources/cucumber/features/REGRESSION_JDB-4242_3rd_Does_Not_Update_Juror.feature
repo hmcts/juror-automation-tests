@@ -400,7 +400,7 @@ Scenario Outline: English 3rd Party Welsh - contact details different for juror
 	Then on "JUROR_MOD" . "JUROR" I see "W_PHONE" is null where "JUROR_NUMBER" is "<juror_number>"
 
 Examples:
-	| juror_number	| last_name			| postcode	| pool_number	| environment
+	| juror_number	| last_name			| postcode	| pool_number	| environment |
 	| 045700199		| LNAMESIXSEVENFIVE	| NN1 3HQ	| 457300184		| test        |
 
 @Regression @Bureau
