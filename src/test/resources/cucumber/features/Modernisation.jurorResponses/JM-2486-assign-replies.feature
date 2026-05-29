@@ -177,12 +177,12 @@ Feature: JM-2486
       |juror_number4|juror_number5	|juror_number6	|pool_number|last_name 	|postcode 	|email				|user          |
       |045200004	|045200005	    |045200006		|452300002 	|LNAME		|NN1 3HQ	|email@outlook.com	|MODTESTBUREAU |
 
-  @JurorTransformation
+  @JurorTransformation @Bureau
   Scenario Outline: Work Allocation - only shows TO DO in urgent and standard counts
 
     #this test needs to stay in single threaded as it checks assignment counts which will be more dynamic in the multi threaded execution
 
-    Given I am on "Bureau" "demo"
+    Given I am on "Bureau" "<environment>"
     And paper responses are deleted new schema
 
     Given a bureau owned pool is created with jurors
@@ -205,7 +205,7 @@ Feature: JM-2486
     And juror "<juror_number4>" has "LAST_NAME" as "<last_name>" new schema
     And juror "<juror_number4>" has "POSTCODE" as "<postcode>" new schema
 
-    Given I am on "Public" "demo"
+    Given I am on "Public" "<environment>"
 
     And auto straight through processing has been disabled new schema
 
@@ -216,7 +216,7 @@ Feature: JM-2486
       | <juror_number3>		| <pool_number>| <last_name>| <postcode>| <email>|
 
     #log on as Team Lead
-    Given I am on "Bureau" "demo"
+    Given I am on "Bureau" "<environment>"
     And I log in as "<user>"
 
     #paper response is not counted in Assign Replies
@@ -307,5 +307,5 @@ Feature: JM-2486
     And auto straight through processing has been enabled new schema
 
     Examples:
-      |juror_number1|juror_number2	|juror_number3	|juror_number4	|pool_number|last_name 	|postcode 	|email				|user          |
-      |045200010	|045200011	    |045200013	    |045200025 	    |452600003 	|LNAME		|NN1 3HQ	|email@outlook.com	|MODTESTBUREAU |
+      |juror_number1|juror_number2	|juror_number3	|juror_number4	|pool_number|last_name 	|postcode 	|email				|user          | environment |
+      |045200010	|045200011	    |045200013	    |045200025 	    |452600003 	|LNAME		|NN1 3HQ	|email@outlook.com	|MODTESTBUREAU | ithc        |

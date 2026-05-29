@@ -1,9 +1,9 @@
 Feature: Regression JDB-4242 3rd Party Details Do Not Update Legacy Juror
 
-@Regression
+@Regression @Bureau
 Scenario Outline: English 3rd Party Deceased
 
-	Given I am on "Public" "test"
+	Given I am on "Public" "<environment>"
 
 	Given auto straight through processing has been enabled new schema
 
@@ -26,13 +26,13 @@ Scenario Outline: English 3rd Party Deceased
 	Then on "JUROR_MOD" . "JUROR" I see "EXCUSAL_CODE" is "D" where "JUROR_NUMBER" is "<juror_number>"
 
 Examples:
-	| juror_number	| last_name			| postcode	| email          	| pool_number	|
-	| 045200193		| LNAMETWOSIXEIGHT	| CH1 2AN	| email@outlook.com	| 452300178		|
+	| juror_number	| last_name			| postcode	| email          	| pool_number	| environment |
+	| 045200193		| LNAMETWOSIXEIGHT	| CH1 2AN	| email@outlook.com	| 452300178		| test        |
 	
-@Regression
+@Regression @Bureau
 Scenario Outline: English 3rd Party Excused - contact details same as 3rd party
 
-	Given I am on "Public" "ithc"
+	Given I am on "Public" "<environment>"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -45,7 +45,7 @@ Scenario Outline: English 3rd Party Excused - contact details same as 3rd party
 	| part_no		| pool_number	| last_name		| postcode	| email 	|
 	| <juror_number>| <pool_number>	| <last_name>	| <postcode>| <email>	|
 	
-	Given I am on "Bureau" "ithc"
+	Given I am on "Bureau" "<environment>"
 	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
@@ -68,13 +68,13 @@ Scenario Outline: English 3rd Party Excused - contact details same as 3rd party
 	Then on "JUROR_MOD" . "JUROR" I see "W_PHONE" is null where "JUROR_NUMBER" is "<juror_number>"
 
 Examples:
-	| juror_number	| last_name				| postcode	| email         	| pool_number	|
-	| 045200194		| LNAMEFOURTHREETHREE	| NN1 3HQ	| email@outlook.com	| 452300179		|
+	| juror_number	| last_name				| postcode	| email         	| pool_number	| environment |
+	| 045200194		| LNAMEFOURTHREETHREE	| NN1 3HQ	| email@outlook.com	| 452300179		| test        |
 
-@Regression
+@Regression @Bureau
 Scenario Outline: English 3rd Party Deferred - contact details same as 3rd party
 
-	Given I am on "Public" "ithc"
+	Given I am on "Public" "<environment>"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -87,7 +87,7 @@ Scenario Outline: English 3rd Party Deferred - contact details same as 3rd party
 	| part_no		| pool_number	| last_name		| postcode	| email 	|
 	| <juror_number>| <pool_number>	| <last_name>	| <postcode>| <email>	|
 
-	Given I am on "Bureau" "ithc"
+	Given I am on "Bureau" "<environment>"
 	And I log in as "MODTESTBUREAU"
 
 	When I click on the "Search" link
@@ -110,13 +110,13 @@ Scenario Outline: English 3rd Party Deferred - contact details same as 3rd party
 	Then on "JUROR_MOD" . "JUROR" I see "W_PHONE" is null where "JUROR_NUMBER" is "<juror_number>"
 
 Examples:
-	| juror_number	| last_name			| postcode	| email         	| pool_number	|
-	| 045200195		| LNAMESIXSEVENFOUR	| NN1 3HQ	| email@outlook.com	| 452300180		|
+	| juror_number	| last_name			| postcode	| email         	| pool_number	| environment |
+	| 045200195		| LNAMESIXSEVENFOUR	| NN1 3HQ	| email@outlook.com	| 452300180		| test        |
 
-@Regression
+@Regression @Bureau
 Scenario Outline: English 3rd Party ST - contact details same as 3rd party
 
-	Given I am on "Public" "ithc"
+	Given I am on "Public" "<environment>"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -129,7 +129,7 @@ Scenario Outline: English 3rd Party ST - contact details same as 3rd party
 	| part_no		| pool_number	| last_name		| postcode	| email 	|
 	| <juror_number>| <pool_number>	| <last_name>	| <postcode>| <email>	|
 	
-	Given I am on "Bureau" "ithc"
+	Given I am on "Bureau" "<environment>"
 	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
@@ -149,13 +149,13 @@ Scenario Outline: English 3rd Party ST - contact details same as 3rd party
 	Then on "JUROR_MOD" . "JUROR" I see "W_PHONE" is null where "JUROR_NUMBER" is "<juror_number>"
 
 Examples:
-	| juror_number	| last_name			| postcode	| email         	| pool_number	|
-	| 045200196		| LNAMESIXSEVENFOUR	| NN1 3HQ	| email@outlook.com	| 452300181		|
+	| juror_number	| last_name			| postcode	| email         	| pool_number	| environment |
+	| 045200196		| LNAMESIXSEVENFOUR	| NN1 3HQ	| email@outlook.com	| 452300181		| test        |
 	
-@Regression
+@Regression @bureau
 Scenario Outline: English 3rd Party Disqualified - contact details same as 3rd party
 
-	Given I am on "Public" "ithc"
+	Given I am on "Public" "<environment>"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -168,7 +168,7 @@ Scenario Outline: English 3rd Party Disqualified - contact details same as 3rd p
 	| part_no		| pool_number	| last_name		| postcode	| email 	|
 	| <juror_number>| <pool_number>	| <last_name>	| <postcode>| <email>	|
 	
-	Given I am on "Bureau" "ithc"
+	Given I am on "Bureau" "<environment>"
 	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
@@ -193,8 +193,8 @@ Scenario Outline: English 3rd Party Disqualified - contact details same as 3rd p
 	Then on "JUROR_MOD" . "JUROR" I see "W_PHONE" is null where "JUROR_NUMBER" is "<juror_number>"
 
 Examples:
-	| juror_number	| last_name			| postcode	| email         	| pool_number	|
-	| 452300182		| LNAMEFOURFOURNINE	| NN1 3HQ	| email@outlook.com	| 452300248		|
+	| juror_number	| last_name			| postcode	| email         	| pool_number	| environment |
+	| 452300182		| LNAMEFOURFOURNINE	| NN1 3HQ	| email@outlook.com	| 452300248		| test        |
 	
 @Features
 Scenario Outline: English 3rd Party Super Urgent - contact details same as 3rd party
@@ -235,10 +235,10 @@ Examples:
 	| juror_number	| last_name			| postcode	| email         	| pool_number	|
 	| 045200198		| LNAMEFOURFIVEZERO	| NN1 3HQ	| email@outlook.com	| 452300183		|
 	
-@RegressionWelsh
+@RegressionWelsh @Bureau
 Scenario Outline: English 3rd Party Welsh - contact details different for juror
 
-	Given I am on the welsh version of "Public" "ithc"
+	Given I am on the welsh version of "Public" "<environment>"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -381,7 +381,7 @@ Scenario Outline: English 3rd Party Welsh - contact details different for juror
 	Then I see "Os byddwn yn cysylltu â nhw, efallai bydd angen iddynt ddarparu eu rhif rheithiwr. Mae'r rhif hefyd ar y llythyr bu inni anfon atynt." on the page
 	
 	#Bureau process reply
-	Given I am on "Bureau" "ithc"
+	Given I am on "Bureau" "<environment>"
 	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
@@ -400,13 +400,13 @@ Scenario Outline: English 3rd Party Welsh - contact details different for juror
 	Then on "JUROR_MOD" . "JUROR" I see "W_PHONE" is null where "JUROR_NUMBER" is "<juror_number>"
 
 Examples:
-	| juror_number	| last_name			| postcode	| email         	| pool_number	|
-	| 045700199		| LNAMESIXSEVENFIVE	| NN1 3HQ	| email@outlook.com	| 457300184		|
+	| juror_number	| last_name			| postcode	| pool_number	| environment |
+	| 045700199		| LNAMESIXSEVENFIVE	| NN1 3HQ	| 457300184		| test        |
 
-@Regression
+@Regression @Bureau
 Scenario Outline: English 3rd Party Straight Through - Juror already has contact details
 
-	Given I am on "Public" "ithc"
+	Given I am on "Public" "<environment>"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -424,7 +424,7 @@ Scenario Outline: English 3rd Party Straight Through - Juror already has contact
 	| <juror_number>	| <pool_number>	| <last_name>	| <postcode>| <email>	|
 	
 	#Bureau process reply
-	Given I am on "Bureau" "ithc"
+	Given I am on "Bureau" "<environment>"
 	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
@@ -444,8 +444,8 @@ Scenario Outline: English 3rd Party Straight Through - Juror already has contact
 	Then on "JUROR_MOD" . "JUROR" I see "W_PHONE" is null where "JUROR_NUMBER" is "<juror_number>"
 
 Examples:
-	| juror_number	| last_name			| postcode	| email         	| pool_number	|
-	| 045200200		| LNAMESEVENEIGHTSIX| SY2 6LU	| email@outlook.com	| 452300185		|
+	| juror_number	| last_name			| postcode	| email         	| pool_number	| environment |
+	| 045200200		| LNAMESEVENEIGHTSIX| SY2 6LU	| email@outlook.com	| 452300185		| test        |
 
 @Features
 Scenario Outline: English 1st Party Straight Through - regression - contact details populated to Juror

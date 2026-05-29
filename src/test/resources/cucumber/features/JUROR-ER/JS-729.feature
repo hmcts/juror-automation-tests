@@ -3,7 +3,7 @@ Feature: ELEC  JS-729
   @JurorEr
   Scenario Outline: As a local authority I want to be able to upload my data to the new Juror ER app
 
-    Given I am on "Er" "test"
+    Given I am on "Er" "<environment>"
 
     Given all uploads for Local Authority "<localAuth>" are deleted new schema
 
@@ -37,6 +37,6 @@ Feature: ELEC  JS-729
     Given I set ER deadline date to "30 mondays time" new schema
 
     Examples:
-      | user                       | localAuth  |
-      | test_user1@localauthority2 | Broxtowe   |
+      | user                       | localAuth  | environment |
+      | test_user1@localauthority2 | Broxtowe   | test        |
 

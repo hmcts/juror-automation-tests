@@ -504,10 +504,10 @@ Examples:
 	| juror_number	| pool_number | last_name	| postcode |
 	| 045700047		| 457300047   |DOE			| SA2 9AJ  |
 
-@RegressionWelsh
+@RegressionWelsh @Bureau
 Scenario Outline: Welsh Already Replied info page
 
-	Given I am on the welsh version of "Public" "ithc"
+	Given I am on the welsh version of "Public" "<environment>"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -520,7 +520,7 @@ Scenario Outline: Welsh Already Replied info page
 		| part_no		| pool_number	| last_name		| postcode	| email 	|
 		| <juror_number>| <pool_number>	| <last_name>	| <postcode>| <email>	|
 
-	Given I am on the welsh version of "Public" "ithc"
+	Given I am on the welsh version of "Public" "<environment>"
 
 	Then I see "A ydych yn ymateb dros eich hun neu ar ran rhywun arall?" on the page
 
@@ -551,5 +551,5 @@ Scenario Outline: Welsh Already Replied info page
 	And I see "Ni allwch ddefnyddio'r gwasanaeth digidol hwn i roi gwybodaeth ychwanegol i ni." on the page
 
 	Examples:
-		| juror_number	| last_name	      	| postcode   | pool_number	| email 		|
-		| 045700048		| LNAMESIXSEVENSIX 	| SW1H 9AJ   | 457300048	| e@mail.com 	|
+		| juror_number	| last_name	      	| postcode   | pool_number	| email 		| environment |
+		| 045700048		| LNAMESIXSEVENSIX 	| SW1H 9AJ   | 457300048	| e@mail.com 	| ithc        |

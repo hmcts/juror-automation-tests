@@ -1,9 +1,9 @@
 Feature: JM-5072 - Dismiss random jurors
 
-  @JurorTransformationMulti
+  @JurorTransformationMulti @Court
   Scenario Outline: As a jury officer I want to dismiss random jurors - Happy Path
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number  	  | pool_number	    | att_date_weeks_in_future	    | owner |
@@ -84,14 +84,14 @@ Feature: JM-5072 - Dismiss random jurors
     And I see the juror status has updated to "Completed"
 
     Examples:
-      | user		  | juror_number    | juror_number_2  | pool_number   |
-      | MODTESTCOURT  | 041588770       | 041588773       | 415388671     |
+      | user		  | juror_number    | juror_number_2  | pool_number   | environment |
+      | MODTESTCOURT  | 041588770       | 041588773       | 415388671     | test        |
 
 
-  @JurorTransformationMulti
+  @JurorTransformationMulti @Court
   Scenario Outline:   As a jury officer I want to dismiss random jurors - Unhappy Path
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
@@ -187,5 +187,5 @@ Feature: JM-5072 - Dismiss random jurors
     And I see the juror status has updated to "Completed"
 
     Examples:
-      | user		  | juror_number    | juror_number_2  | juror_number_3  | pool_number   |
-      | MODTESTCOURT  | 041588774       | 041588775       | 041588776       | 415388775     |
+      | user		  | juror_number    | juror_number_2  | juror_number_3  | pool_number   | environment |
+      | MODTESTCOURT  | 041588774       | 041588775       | 041588776       | 415388775     | test        |

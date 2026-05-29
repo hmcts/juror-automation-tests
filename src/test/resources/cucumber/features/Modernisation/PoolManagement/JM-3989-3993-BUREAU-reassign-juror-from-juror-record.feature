@@ -1,9 +1,9 @@
 Feature: JM-3989 JM-3993
 
-  @JurorTransformation @JM-7664
+  @JurorTransformation @Bureau
   Scenario Outline: Reassign a juror to a pool for a different court - Bureau User
 
-    Given I am on "Bureau" "demo"
+    Given I am on "Bureau" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court  | juror_number  	| pool_number	   | att_date_weeks_in_future	| owner |
@@ -47,13 +47,13 @@ Feature: JM-3989 JM-3993
     And the juror record court name has updated to "The Crown Court At Welshpool"
 
     Examples:
-      | user          | juror_number   | pool_number   | juror_number2  | pool_number2  |
-      | MODTESTBUREAU | 041531086      | 415304677     | 041531087      | 774222222     |
+      | user          | juror_number   | pool_number   | juror_number2  | pool_number2  | environment |
+      | MODTESTBUREAU | 041531086      | 415304677     | 041531087      | 774222222     | test        |
 
-  @JurorTransformation
+  @JurorTransformation @Bureau
   Scenario Outline: Reassign a juror to a pool at the same court - Bureau User
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court  | juror_number  	| pool_number	  | att_date_weeks_in_future	| owner |
@@ -83,13 +83,13 @@ Feature: JM-3989 JM-3993
     And I confirm I have reassigned my juror in pool "<pool_number>" to another pool
 
     Examples:
-      | user          | juror_number   | pool_number   |
-      | MODTESTBUREAU | 041531088      | 415304177     |
+      | user          | juror_number   | pool_number   | environment |
+      | MODTESTBUREAU | 041531088      | 415304177     | test        |
 
-  @JurorTransformation
+  @JurorTransformation @Bureau
   Scenario Outline: Reassign a juror to a pool - Bureau User - Errors
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court  | juror_number  	| pool_number	   | att_date_weeks_in_future	| owner |
@@ -136,5 +136,5 @@ Feature: JM-3989 JM-3993
     Then I see "Choose an active pool to add selected jurors to" on the page
 
     Examples:
-      | user          | juror_number   | pool_number   |
-      | MODTESTBUREAU | 041531071      | 415334177     |
+      | user          | juror_number   | pool_number   | environment |
+      | MODTESTBUREAU | 041531071      | 415334177     | test        |

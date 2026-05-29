@@ -1,9 +1,9 @@
 Feature: JM-252 JM-4302 Court user create new pools
 
-  @JurorTransformationMulti
+  @JurorTransformationMulti @Court
   Scenario Outline: Happy Path Test to create a new pool of jurors as court user with 1 court
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     And I log in as "<user>"
 
@@ -57,15 +57,15 @@ Feature: JM-252 JM-4302 Court user create new pools
       | jurorsRequired | <noJurors>     |
 
     Examples:
-      | user         | courtType | courtTypeFull | displayCourt | noJurors | courtCode |
-      | MODTESTCOURT | Crown     | Crown court   | Chester      | 100      | 415       |
-      | MODTESTCOURT | Civil     | Civil court   | Chester      | 100      | 415       |
-      | MODTESTCOURT | High      | High court    | Chester      | 100      | 415       |
+      | user         | courtType | courtTypeFull | displayCourt | noJurors | courtCode | environment |
+      | MODTESTCOURT | Crown     | Crown court   | Chester      | 100      | 415       | test        |
+      | MODTESTCOURT | Civil     | Civil court   | Chester      | 100      | 415       | test        |
+      | MODTESTCOURT | High      | High court    | Chester      | 100      | 415       | test        |
 
-  @JurorTransformationMulti
+  @JurorTransformationMulti @Court
   Scenario Outline: JM-4681 Happy Path Test to create a new 'court only' pool as court officer
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     And I log in as "<user>"
 
@@ -107,14 +107,14 @@ Feature: JM-252 JM-4302 Court user create new pools
     And I see "There are no results to display" on the page
 
     Examples:
-      | user         | courtTypeFull | displayCourt | courtCode |
-      | MODTESTCOURT | Crown court   | Chester      | 415       |
-      | MODTESTCOURT | Civil court   | Chester      | 415       |
+      | user         | courtTypeFull | displayCourt | courtCode | environment |
+      | MODTESTCOURT | Crown court   | Chester      | 415       | test        |
+      | MODTESTCOURT | Civil court   | Chester      | 415       | test        |
 
-  @JurorTransformationMulti
+  @JurorTransformationMulti @Court
   Scenario Outline: Happy Path Test to create a new pool of jurors as court user with >1 court
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "<environment>"
 
     And I log in as "<user>"
 
@@ -218,16 +218,16 @@ Feature: JM-252 JM-4302 Court user create new pools
       | jurorsRequired | 150       |
 
     Examples:
-      | user         | courtType | displayCourt | noJurors | courtCode | courtTypeFull |
-      | MODTESTCOURT | Crown     | Chester      | 150      | 415       | Crown court   |
-      | MODTESTCOURT | Civil     | Chester      | 150      | 415       | Civil court   |
-      | MODTESTCOURT | High      | Chester      | 150      | 415       | High court    |
+      | user         | courtType | displayCourt | noJurors | courtCode | courtTypeFull | environment |
+      | MODTESTCOURT | Crown     | Chester      | 150      | 415       | Crown court   | test        |
+      | MODTESTCOURT | Civil     | Chester      | 150      | 415       | Civil court   | test        |
+      | MODTESTCOURT | High      | Chester      | 150      | 415       | High court    | test        |
 
 
-  @JurorTransformationMulti
+  @JurorTransformationMulti @Court
   Scenario Outline: Happy Path Test to create a new pool with 0 jurors
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     And I log in as "<user>"
 
@@ -282,7 +282,7 @@ Feature: JM-252 JM-4302 Court user create new pools
       | jurorsRequired | 0              |
 
     Examples:
-      | user         | courtType | courtTypeFull | courtCode | displayCourt | noJurors |
-      | MODTESTCOURT | Crown     | Crown court   | 415       | Chester      | 0        |
-      | MODTESTCOURT | Civil     | Civil court   | 415       | Chester      | 0        |
-      | MODTESTCOURT | High      | High court    | 415       | Chester      | 0        |
+      | user         | courtType | courtTypeFull | courtCode | displayCourt | noJurors | environment |
+      | MODTESTCOURT | Crown     | Crown court   | 415       | Chester      | 0        | test        |
+      | MODTESTCOURT | Civil     | Civil court   | 415       | Chester      | 0        | test        |
+      | MODTESTCOURT | High      | High court    | 415       | Chester      | 0        | test        |

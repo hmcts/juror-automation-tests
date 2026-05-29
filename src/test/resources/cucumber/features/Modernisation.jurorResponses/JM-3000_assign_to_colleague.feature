@@ -1,11 +1,11 @@
 Feature: JM-3000 Assign to a colleague
 
-@JurorTransformation
+@JurorTransformation @Bureau
 Scenario Outline: JM-3000 Assign Reply Happy Path
 
 	#this test needs to stay in single threaded as it checks backlog counts which will be more dynamic in the multi threaded execution
 
-	Given I am on "Bureau" "ithc"
+	Given I am on "Bureau" "<environment>"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
@@ -17,7 +17,7 @@ Scenario Outline: JM-3000 Assign Reply Happy Path
 		| part_no        | pool_number   | last_name   | postcode   | email   | details   |
 		| <juror_number> | <pool_number> | <last_name> | <postcode> | <email> | <details> |
 
-	Given I am on "Bureau" "ithc"
+	Given I am on "Bureau" "<environment>"
 	And I log in as "<user>"
 	And I click on the "Assign Replies" link
 	And I assign all the New Replies to "ARAMIS1"
@@ -59,15 +59,15 @@ Scenario Outline: JM-3000 Assign Reply Happy Path
 	And I click on the "Sign out" link
 
 Examples:
-	| juror_number | user          | pool_number | first_name | last_name | postcode | email             | details    |
-	| 641500613    | MODTESTBUREAU | 415170401   | fname      | lname     | CH2 2AA  | email@bureauA.com | 12345abcde |
+	| juror_number | user          | pool_number | first_name | last_name | postcode | email             | details    | environment |
+	| 641500613    | MODTESTBUREAU | 415170401   | fname      | lname     | CH2 2AA  | email@bureauA.com | 12345abcde | test        |
 
 	@JurorTransformation
 	Scenario Outline: JM-3000 Assign Reply Errors Warnings Validations
 
 		#this test needs to stay in single threaded as it checks backlog counts which will be more dynamic in the multi threaded execution
 
-		Given I am on "Bureau" "test"
+		Given I am on "Bureau" "<environment>"
 
 		Given a bureau owned pool is created with jurors
 			| court | juror_number       | pool_number   | att_date_weeks_in_future | owner |
@@ -84,7 +84,7 @@ Examples:
 			| part_no            | pool_number   | last_name       | postcode   | email   | details   |
 			| <juror_number_two> | <pool_number> | <last_name_two> | <postcode> | <email> | <details> |
 
-		Given I am on "Bureau" "demo"
+		Given I am on "Bureau" "<environment>"
 		And I log in as "<user>"
 		And I click on the "Assign Replies" link
 
@@ -155,5 +155,5 @@ Examples:
 		And I click on the "Sign out" link
 
 		Examples:
-			| user          | pool_number | juror_number | juror_number_two | first_name | last_name | last_name_two | postcode | email             | details    |
-			| MODTESTBUREAU | 415170401   | 641500613    | 641500616        | fname      | lname     | lname         | CH2 2AA  | email@bureauA.com | 12345abcde |
+			| user          | pool_number | juror_number | juror_number_two | first_name | last_name | last_name_two | postcode | email             | details    | environment |
+			| MODTESTBUREAU | 415170401   | 641500613    | 641500616        | fname      | lname     | lname         | CH2 2AA  | email@bureauA.com | 12345abcde | ithc        |

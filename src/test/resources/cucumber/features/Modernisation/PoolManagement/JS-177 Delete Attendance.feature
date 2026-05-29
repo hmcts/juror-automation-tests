@@ -1,6 +1,6 @@
 Feature: JS-177 Delete Attendance
 
-  @JurorTransformation
+  @JurorTransformation @Court
   Scenario Outline: JS-177 I can press back after deleting an attendance
 
     Given I am on "Bureau" "<environment>"

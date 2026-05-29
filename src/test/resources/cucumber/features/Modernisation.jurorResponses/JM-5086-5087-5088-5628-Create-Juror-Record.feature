@@ -1,9 +1,9 @@
 Feature: Create Juror Record scenarios
 
-  @JurorTransformation
+  @JurorTransformation @Court
   Scenario Outline: Create Juror Record via existing pool - Happy Path
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
     And I log in as "<user>"
 
     And I click on the "Juror management" link
@@ -47,13 +47,13 @@ Feature: Create Juror Record scenarios
     And I see "Draft juror record created for John Doe - senior jury officer will need to approve this" on the page
 
     Examples:
-      |user			|
-      |MODTESTCOURT |
+      |user			| environment |
+      |MODTESTCOURT | test        |
 
-  @JurorTransformation
+  @JurorTransformation @Court
   Scenario Outline: Create Juror Record via existing pool - Unhappy Path
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
     And I log in as "<user>"
 
     And I click on the "Juror management" link
@@ -133,14 +133,14 @@ Feature: Create Juror Record scenarios
     And I see "Draft juror record created for Tony Stark - senior jury officer will need to approve this" on the page
 
     Examples:
-      |user			|
-      |MODTESTCOURT |
+      |user			| environment |
+      |MODTESTCOURT | test        |
 
 
-  @JurorTransformation
+  @JurorTransformation @Court
   Scenario Outline: Create Juror Record via existing pool for juror too old
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
     And I log in as "<user>"
 
     And I click on the "Juror management" link
@@ -171,13 +171,13 @@ Feature: Create Juror Record scenarios
     And I see "Manage jurors" on the page
 
     Examples:
-      |user			|
-      |MODTESTCOURT |
+      |user			| environment |
+      |MODTESTCOURT | test        |
 
-  @JurorTransformation
+  @JurorTransformation @Court
   Scenario Outline: Create Juror Record via existing pool for juror too young
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
     And I log in as "<user>"
 
     And I click on the "Juror management" link
@@ -208,13 +208,13 @@ Feature: Create Juror Record scenarios
     And I see "Manage jurors" on the page
 
     Examples:
-      |user			|
-      |MODTESTCOURT |
+      |user			| environment |
+      |MODTESTCOURT | test        |
 
-  @JurorTransformation
+  @JurorTransformation @Court
   Scenario Outline: Create Juror Record via Create new pool
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
     And I log in as "<user>"
 
     And I click on the "Juror management" link
@@ -266,17 +266,18 @@ Feature: Create Juror Record scenarios
     And I see "Check your answers" on the page
 
     #create juror record
+    And I refresh the page
     And I press the "Create juror record" button
     And I see "Draft juror record created for John Doe - senior jury officer will need to approve this" on the page
 
     Examples:
-      |user			|
-      |MODTESTCOURT |
+      |user			| environment |
+      |MODTESTCOURT | test        |
 
-  @JurorTransformation
+  @JurorTransformation @Court
   Scenario Outline: Create Juror Record for juror outside of any court catchment area
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
     And I log in as "<user>"
 
     And I click on the "Juror management" link
@@ -330,13 +331,13 @@ Feature: Create Juror Record scenarios
     And I see "Draft juror record created for Edward Stevens - senior jury officer will need to approve this" on the page
 
     Examples:
-      |user			|
-      |MODTESTCOURT |
+      |user			| environment |
+      |MODTESTCOURT | test        |
 
-  @JurorTransformation
+  @JurorTransformation @Court
   Scenario Outline: Juror record shows manually created juror
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
     And I log in as "<user>"
 
     And I click on the "Juror management" link
@@ -387,7 +388,7 @@ Feature: Create Juror Record scenarios
     And I see "Draft juror record created for John ManualSummon - senior jury officer will need to approve this" on the page
 
    #Approve Juror and check summons reply
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
     And I log in as "SJOUSER"
     And I see senior jury officer notification banner
     And I click on the jurors to approve link from the sjo notification
@@ -399,14 +400,14 @@ Feature: Create Juror Record scenarios
     Then I see "Juror was summoned in person" on the page
 
     Examples:
-      |user         |
-      |MODTESTCOURT |
+      |user         | environment |
+      |MODTESTCOURT | test        |
 
 
-  @JurorTransformation
+  @JurorTransformation @Court
   Scenario Outline: Create Juror Record via existing pool - Happy Path - Satellite Court
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
     And I log in as "<user>"
 
     And I click on the "Juror management" link
@@ -449,10 +450,10 @@ Feature: Create Juror Record scenarios
     And I press the "Create juror record" button
     And I see "Draft juror record created for Testing Edwards - senior jury officer will need to approve this" on the page
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
     And I log in as "SJOUSER"
     And I see senior jury officer notification banner
 
     Examples:
-      |user			|
-      |MODTESTCOURT |
+      |user			| environment |
+      |MODTESTCOURT | ithc        |

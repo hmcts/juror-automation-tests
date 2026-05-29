@@ -1,6 +1,6 @@
 Feature: JM-6118
 
-  @JurorTransformation
+  @JurorTransformation @Court
   Scenario Outline: Edit approved expenses for reapproval as a jury officer
 
     Given I am on "Bureau" "<environment>"

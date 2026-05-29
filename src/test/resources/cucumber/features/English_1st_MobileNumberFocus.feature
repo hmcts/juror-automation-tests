@@ -3,7 +3,7 @@ Feature: 1st_Straight Spaces in Phone number
 @RegressionSingle
 Scenario Outline: 1st_Straight Spaces in Phone number
 
-	Given I am on "Public" "ithc"
+	Given I am on "Public" "<environment>"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  	| pool_number	| att_date_weeks_in_future	| owner |
@@ -122,7 +122,7 @@ Scenario Outline: 1st_Straight Spaces in Phone number
 
 	Given auto straight through processing has been enabled new schema
 
-	Given I am on "Bureau" "ithc"
+	Given I am on "Bureau" "<environment>"
 	When I log in as "CPASS"
 	
 	When I click on the "Search" link
@@ -148,5 +148,5 @@ Scenario Outline: 1st_Straight Spaces in Phone number
 	Then on "JUROR_MOD" . "JUROR" I see "M_PHONE" is "0207 1111 112" where "JUROR_NUMBER" is "<juror_number>"
 	
 Examples:
-	| juror_number	| last_name			| postcode	| email 	| pool_number	|
-	| 045200254		|LNAMETHREESIXZERO	|SA1 4PF	|a@eeee.com	| 452300231		|
+	| juror_number	| last_name			| postcode	| email 	| pool_number	| environment |
+	| 045200254		|LNAMETHREESIXZERO	|SA1 4PF	|a@eeee.com	| 452300231		| ithc        |

@@ -1,9 +1,9 @@
 Feature: JM-3991 Reassign Juror as Court User
 
-  @JurorTransformationMulti
+  @JurorTransformationMulti @Court
   Scenario Outline: Reassign a juror to a pool court - Jury User
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number  	| pool_number	| att_date_weeks_in_future	| owner |
@@ -40,7 +40,7 @@ Feature: JM-3991 Reassign Juror as Court User
       |<juror_number2> | <pool_number2> | 415   |
 
     #log on as court
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
     And I log in as "<user>"
 
     When I navigate to the pool request screen
@@ -60,5 +60,5 @@ Feature: JM-3991 Reassign Juror as Court User
     And the juror record pool number has updated to "<pool_number2>"
 
     Examples:
-      |juror_number1|pool_number1 |juror_number2|pool_number2  |user         |
-      |041500041    |415300131    |041500042    |415300132     |MODTESTCOURT |
+      |juror_number1|pool_number1 |juror_number2|pool_number2  |user         | environment  |
+      |041500041    |415300131    |041500042    |415300132     |MODTESTCOURT | test         |
