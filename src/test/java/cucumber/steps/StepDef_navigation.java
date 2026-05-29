@@ -42,6 +42,7 @@ public class StepDef_navigation {
 	private NavigationShared NAV;
 	private Bureau BUR;
 	private Groups GRP;
+	private Header HEADER_PAGE;
 	private ScreenShotTaker SST;
 	private ClickOverrider CO;
 	private StepDef_jurorpool STP;
@@ -61,6 +62,7 @@ public class StepDef_navigation {
 		LGN = PageFactory.initElements(webDriver, Login.class);
 		NAV = PageFactory.initElements(webDriver, NavigationShared.class);
 		GRP = PageFactory.initElements(webDriver, Groups.class);
+		HEADER_PAGE = PageFactory.initElements(webDriver, Header.class);
 		BUR = PageFactory.initElements(webDriver, Bureau.class);
 		CO = PageFactory.initElements(webDriver, ClickOverrider.class);
 		SST = PageFactory.initElements(webDriver, ScreenShotTaker.class);
@@ -374,6 +376,11 @@ public class StepDef_navigation {
 			NAV.waitForPageLoadNew();
 			NAV.click_link_by_text(arg1);
 		}
+	}
+
+	@When("^I click the HMCTS Juror header link$")
+	public void clickHmctsJurorHeaderLink() {
+		HEADER_PAGE.clickHmctsJurorHeaderLink();
 	}
 
 	@When("^I select the \"(.*)\" court selection link$")

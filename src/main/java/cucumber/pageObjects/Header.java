@@ -39,6 +39,9 @@ public class Header {
     @FindBy(linkText = "Summons management")
     WebElement summonsManagementLink;
 
+    @FindBy(xpath = "//a[contains(@class,'moj-header__link') and @href='/homepage'][.//span[normalize-space()='HMCTS'] and .//span[normalize-space()='Juror']]")
+    WebElement hmctsJurorHeaderLink;
+
     public void openAppsMenu()  {
         log.info("Opening apps menu");
         appsButton.click();
@@ -58,6 +61,12 @@ public class Header {
     public void clickSummonsManagement() {
         log.info("Clicking Summons management");
         summonsManagementLink.click();
+    }
+
+    public void clickHmctsJurorHeaderLink() {
+        log.info("Clicking HMCTS Juror header link");
+        wait.waitForClickableElement(hmctsJurorHeaderLink);
+        NAV.click_onElement(hmctsJurorHeaderLink);
     }
 
 }
