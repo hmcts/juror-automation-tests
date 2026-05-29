@@ -34,16 +34,16 @@ Feature: JM-4001 and JM-4002 - Court User
     When I select juror "<juror_number>" from the deferrals table
     And I press the "Add to a pool" button
     Then I see "Choose an active pool to add selected jurors to" on the page
-    And I select pool "<target_pool>" from the active pools table
+    And I select pool "<pool_number>" from the active pools table
     And I press the "Continue" button
     And I see "<dob_error>" on the page
     And I insert dob for juror "<juror_number>"
-    And I select pool "<target_pool>" from the active pools table
+    And I select pool "<pool_number>" from the active pools table
     And I press the "Continue" button
-    Then I see "Selected jurors added to pool <target_pool>" on the page
+    Then I see "Selected jurors added to pool <pool_number>" on the page
 
     Examples:
-      | juror_number | target_pool | dob_error                                                                                  |
+      | juror_number | pool_number | dob_error                                                                                  |
       | 041500000    | 415111111   | You cannot postpone a juror without a date of birth - please ensure all selected jurors have a date of birth |
 
   @JurorTransformation
@@ -56,17 +56,17 @@ Feature: JM-4001 and JM-4002 - Court User
     And I select juror "<juror_number_two>" from the deferrals table
     And I press the "Add to a pool" button
     Then I see "Choose an active pool to add selected jurors to" on the page
-    And I select pool "<target_pool>" from the active pools table
+    And I select pool "<pool_number>" from the active pools table
     And I press the "Continue" button
     And I see "<dob_error>" on the page
     And I insert dob for juror "<juror_number_one>"
     And I insert dob for juror "<juror_number_two>"
-    And I select pool "<target_pool>" from the active pools table
+    And I select pool "<pool_number>" from the active pools table
     And I press the "Continue" button
-    Then I see "Selected jurors added to pool <target_pool>" on the page
+    Then I see "Selected jurors added to pool <pool_number>" on the page
 
     Examples:
-      | juror_number_one | juror_number_two | target_pool | dob_error                                                                                  |
+      | juror_number_one | juror_number_two | pool_number | dob_error                                                                                  |
       | 041500000        | 041500001        | 415111111   | You cannot postpone a juror without a date of birth - please ensure all selected jurors have a date of birth |
 
   @JurorTransformation
