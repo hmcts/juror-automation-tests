@@ -9,10 +9,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -626,6 +623,11 @@ public class StepDef_navigation {
 	@When("^I set input field with \"([^\"]*)\" of \"([^\"]*)\" to \"([^\"]*)\"$")
 	public void setInputFieldWith_toText(String attributeType, String attributeValue, String inputText) {
 		NAV.setInputFieldWith_toText(attributeType, attributeValue, inputText);
+	}
+
+	@When("^I set input field with id \"([^\"]*)\" to \"([^\"]*)\" using JS$")
+	public void setInputFieldWithIdUsingJs(String id, String inputText) {
+		NAV.setInputFieldWithJs(id, inputText);
 	}
 
 	@When("^I set the \"([^\"]*)\" date to a Monday \"([^\"]*)\" weeks in the future$")

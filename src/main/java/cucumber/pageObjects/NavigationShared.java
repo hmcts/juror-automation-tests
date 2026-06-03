@@ -2790,4 +2790,26 @@ public class NavigationShared {
         }
         log.info("Verified last run date is today. Cell text = " + text);
     }
+
+    public void setInputFieldWithJs(String id, String inputText) {
+
+        WebElement inputField = driver.findElement(By.id(id));
+
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+
+        js.executeScript(
+                "const element = arguments[0];" +
+                        "const value = arguments[1];" +
+                        "const nativeInputValueSetter = Object.getOwnPropertyDescriptor(" +
+                        "window.HTMLInputElement.prototype, 'value').set;" +
+                        "nativeInputValueSetter.call(element, value);" +
+                        "element.dispatchEvent(new Event('input', { bubbles: true }));" +
+                        "element.dispatchEvent(new Event('change', { bubbles: true }));" +
+                        "element.dispatchEvent(new Event('blur', { bubbles: true }));",
+                inputField,
+                inputText
+        );
+
+        log.info("Set input field using JS");
+    }
 }
