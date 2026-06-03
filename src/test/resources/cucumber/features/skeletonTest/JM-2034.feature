@@ -57,7 +57,7 @@ Feature: JM-2034 delete pool requests
     And I click the delete pool request button
     Then I am asked if I'm sure I want to delete this pool
     When I click the confirm deletion button
-    Then I see "Unable to delete pool" in the pool banner
+    And I see "Unable to delete pool" on the page
     
     #tear down pool
     Then I clear down the data for the pool
