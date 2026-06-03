@@ -32,10 +32,10 @@ Scenario Outline: Postpone a juror to another court as a Bureau officer - Bulk f
       | MODTESTBUREAU   | 041520019     | 041520120       | 041520121       | 041520122       | 415300801     |
 
 
-    @JurorTransformationMulti
+    @JurorTransformationMulti @Bureau
     Scenario Outline: Postpone a juror to another court as a Bureau officer - Ineligible due to age - Bulk flow
 
-        Given I am on "Bureau" "ithc"
+        Given I am on "Bureau" "<environment>"
 
         Given a bureau owned pool is created with jurors
             | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
@@ -77,13 +77,30 @@ Scenario Outline: Postpone a juror to another court as a Bureau officer - Bulk f
         And I press the "Continue" button
         And I see "There are no active pools for this date" on the page
         And I press the "Put in deferral maintenance" button
-        Then I see "The following jurors cannot be moved because they'll be 76 years old by the new date and no longer eligible for jury service." on the page
-        And I press the "Continue and move remaining jurors" button
-        And I see "1 juror postponed to deferral maintenance" on the page
+
+        Then I see "Not postponed due to age" on the page
+        And I see "These jurors would be 76 or over on the new date. They have not been postponed." on the page
+        And I see "<juror_number>" on the page
+        And I see "<juror_number_2>" on the page
+
+        When I press the "Disqualify jurors" button
+        Then I see "2 jurors disqualified due to age" on the page
+        And I see "Disqualified" in the same row as "<juror_number>"
+        And I see "Disqualified" in the same row as "<juror_number_2>"
+
+        When I click on the "<juror_number>" link
+        Then I see the juror status has updated to "Disqualified"
+        When I click on the "Summons reply" link
+        Then I see "Disqualified (age)" on the page
+        When I click on the "Attendance" link
+        Then I see "-" in the same row as "Next due at court"
+        When I click on the "History" link
+        Then I see "Juror disqualification" on the page
+        And I see "Disqualified code - A" on the page
 
         Examples:
-            | user		    | juror_number  | juror_number_2  | juror_number_3   | pool_number  |
-            | MODTESTBUREAU | 041534789     | 041534788       | 041534787        | 415300701    |
+            | user		    | juror_number  | juror_number_2  | juror_number_3   | pool_number  | environment |
+            | MODTESTBUREAU | 041534789     | 041534788       | 041534787        | 415300701    | test        |
 
     @JurorTransformationMulti
     Scenario Outline: Postpone a juror to another court as a Bureau officer - Ineligible due to status - Bulk flow
