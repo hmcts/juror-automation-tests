@@ -156,9 +156,11 @@ Scenario Outline: Postpone a juror to another court as a Jury officer - Bulk flo
             |user			 |juror_number_1| juror_number_2  |juror_number_3    | pool_number   | trial_number    |
             |MODTESTCOURT    |041520222     | 041520223       |041520224         |415300718      | TESTINGTRIAL2024|
 
-    @JurorTransformationMulti
+    @JurorTransformationMulti @Court
     Scenario Outline: Postpone a juror having age more than 75 to another court as a Jury officer - Bulk flow happy path
-        Given I am on "Bureau" "test"
+
+        Given I am on "Bureau" "<environment>"
+
         Given a bureau owned pool is created with jurors
             | court |juror_number       | pool_number      | att_date_weeks_in_future | owner |
             | 415   |<juror_number_1>     | <pool_number>     | 5                      | 400  |
@@ -166,10 +168,10 @@ Scenario Outline: Postpone a juror to another court as a Jury officer - Bulk flo
             | 415   |<juror_number_3>   | <pool_number>     | 5                         | 400  |
 
         Then a new pool is inserted for where record has transferred to the court new schema
-            |part_no               | pool_no           | owner |
-            |<juror_number_1>       | <pool_number>      | 415   |
-            |<juror_number_2>     | <pool_number>      | 415   |
-            |<juror_number_3>     | <pool_number>      | 415   |
+            |part_no              | pool_no           | owner |
+            |<juror_number_1>     | <pool_number>     | 415   |
+            |<juror_number_2>     | <pool_number>     | 415   |
+            |<juror_number_3>     | <pool_number>     | 415   |
 
         And I log in as "<user>"
         And I press the "Apps" button
@@ -193,17 +195,7 @@ Scenario Outline: Postpone a juror to another court as a Jury officer - Bulk flo
         And I click on the "Add or change" link
         And I change a date of birth of a juror that will make more than 75 years
         Then I press the "Save" button
-        And I press the "Apps" button
-        And I click on the "Pool management" link
-        And I click on the "Search" link
-        And I set "Pool number" to "<pool_number>"
-        And I press the "Continue" button
-        And I check the juror "<juror_number_3>" checkbox
-        And I click on "<juror_number_3>" in the same row as "<juror_number_3>"
-        And I click on the "Juror details" link
-        And I click on the "Add or change" link
-        And I change a date of birth of a juror that will make more than 75 years
-        Then I press the "Save" button
+
         And I press the "Apps" button
         And I click on the "Pool management" link
         And I click on the "Search" link
@@ -213,13 +205,33 @@ Scenario Outline: Postpone a juror to another court as a Jury officer - Bulk flo
         And I press the "Postpone" button
         When I set the "Enter a new service start date" date to a Monday "38" weeks in the future
         And I press the "Continue" button
+
         Then I see "There are no active pools for this date" on the page
         When I press the "Put in deferral maintenance" button
-        Then I see "The following jurors cannot be moved because they'll be 76 years old by the new date and no longer eligible for jury service." on the page
+
+        Then I see "Not postponed due to age" on the page
+        And I see "These jurors would be 76 or over on the new date. They have not been postponed." on the page
+        And I see "<juror_number_1>" on the page
+        And I see "<juror_number_2>" on the page
+
+        When I press the "Disqualify jurors" button
+        Then I see "2 jurors disqualified due to age" on the page
+        And I see "Disqualified" in the same row as "<juror_number_1>"
+        And I see "Disqualified" in the same row as "<juror_number_2>"
+      
+        When I click on the "<juror_number_1>" link
+        Then I see the juror status has updated to "Disqualified"
+        When I click on the "Summons reply" link
+        Then I see "Disqualified (age)" on the page
+        When I click on the "Attendance" link
+        Then I see "-" in the same row as "Next due at court"
+        When I click on the "History" link
+        Then I see "Juror disqualification" on the page
+        And I see "Disqualified code - A" on the page
 
         Examples:
-            |user          |juror_number_1  | juror_number_2  | juror_number_3  |  pool_number  |
-            |MODTESTCOURT  |041520045     | 041520046    |041520047          |  415300709    |
+            | user          | juror_number_1  | juror_number_2  | juror_number_3  | pool_number  | environment |
+            | MODTESTCOURT  | 041520045       | 041520046       | 041520047       | 415300709    | test        |
 
 
     @JurorTransformationMulti
