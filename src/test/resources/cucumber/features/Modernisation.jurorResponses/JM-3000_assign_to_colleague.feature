@@ -24,7 +24,7 @@ Scenario Outline: JM-3000 Assign Reply Happy Path
 
 	#view the assigned record
 	When I click on the "Search" link
-	And I set input field with "id" of "jurorNumber" to "<juror_number>"
+	And I set input field with id "jurorNumber" to "<juror_number>" using JS
 	And I press the "Search" button
 
 	#Check it's assigned to ARAMIS1
@@ -48,7 +48,7 @@ Scenario Outline: JM-3000 Assign Reply Happy Path
 
 	#view the assigned record
 	When I click on the "Search" link
-	And I set input field with "id" of "jurorNumber" to "<juror_number>"
+	And I set input field with id "jurorNumber" to "<juror_number>" using JS
 	And I press the "Search" button
 
 	#Check it's assigned to SYSTEM
@@ -93,7 +93,7 @@ Examples:
 	#view the assigned record
 		When I click on the "Search" link
 		And I see "Search" on the page
-		And I set input field with "id" of "jurorNumber" to "<juror_number>"
+		And I set input field with id "jurorNumber" to "<juror_number>" using JS
 		And I press the "Search" button
 
 	#Check it's assigned to ARAMIS1
@@ -143,7 +143,7 @@ Examples:
 
 		#check I cannot reassign a closed response
 		When I click on the "Search" link
-		And I set input field with "id" of "jurorNumber" to "<juror_number_two>"
+		And I set input field with id "jurorNumber" to "<juror_number_two>" using JS
 		And I press the "Search" button
 
 	#Check it's assigned to CPASS
