@@ -2177,6 +2177,9 @@ public class NavigationShared {
     @FindBy(id = "jurorDob")
     WebElement dobOptional;
 
+    @FindBy(id = "dateOfBirth")
+    WebElement dateOfBirth;
+
     @FindBy(name = "dateFrom")
     WebElement expensePaymentsDateFrom;
 
@@ -2340,6 +2343,11 @@ public class NavigationShared {
             case "Date of birth (optional)":
                 dobOptional.clear();
                 dobOptional.sendKeys(mondayDateValue);
+                break;
+
+            case "Date of birth":
+                dateOfBirth.clear();
+                dateOfBirth.sendKeys(mondayDateValue);
                 break;
 
             case "Date from":
