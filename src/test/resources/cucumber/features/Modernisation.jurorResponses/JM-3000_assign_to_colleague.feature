@@ -23,8 +23,8 @@ Scenario Outline: JM-3000 Assign Reply Happy Path
 	And I assign all the New Replies to "ARAMIS1"
 
 	#view the assigned record
-	When I click on the "Search" link
-	And I set input field with id "jurorNumber" to "<juror_number>" using JS
+	And I click the Search link
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
 
 	#Check it's assigned to ARAMIS1
@@ -47,8 +47,8 @@ Scenario Outline: JM-3000 Assign Reply Happy Path
 	And I press the "Send" button
 
 	#view the assigned record
-	When I click on the "Search" link
-	And I set input field with id "jurorNumber" to "<juror_number>" using JS
+	And I click the Search link
+	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
 
 	#Check it's assigned to SYSTEM
@@ -91,9 +91,8 @@ Examples:
 		And I assign all the New Replies to "ARAMIS1"
 
 	#view the assigned record
-		When I click on the "Search" link
-		And I see "Search" on the page
-		And I set input field with id "jurorNumber" to "<juror_number>" using JS
+		And I click the Search link
+		And I set "Juror number" to "<juror_number>"
 		And I press the "Search" button
 
 	#Check it's assigned to ARAMIS1
@@ -142,8 +141,8 @@ Examples:
 		And I see assigned to is "ARAMIS1"
 
 		#check I cannot reassign a closed response
-		When I click on the "Search" link
-		And I set input field with id "jurorNumber" to "<juror_number_two>" using JS
+		And I click the Search link
+		And I set "Juror number" to "<juror_number_two>"
 		And I press the "Search" button
 
 	#Check it's assigned to CPASS
@@ -156,4 +155,4 @@ Examples:
 
 		Examples:
 			| user          | pool_number | juror_number | juror_number_two | first_name | last_name | last_name_two | postcode | email             | details    | environment |
-			| MODTESTBUREAU | 415170401   | 641500613    | 641500616        | fname      | lname     | lname         | CH2 2AA  | email@bureauA.com | 12345abcde | ithc        |
+			| MODTESTBUREAU | 415170401   | 641500613    | 641500616        | fname      | lname     | lname         | CH2 2AA  | email@bureauA.com | 12345abcde | test        |

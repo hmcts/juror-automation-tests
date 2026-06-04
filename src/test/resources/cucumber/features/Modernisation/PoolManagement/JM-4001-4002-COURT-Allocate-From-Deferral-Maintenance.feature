@@ -40,7 +40,7 @@ Feature: JM-4001 and JM-4002 - Court User
     And I insert dob for juror "041500000"
     And I select pool "415111111" from the active pools table
     And I press the "Continue" button
-    Then I see "Selected jurors added to pool 415111111" on the page
+    Then I see "1 juror added to pool 415111111" on the page
 
   @JurorTransformation
   Scenario: Happy path to allocate multiple juror to a pool from deferral maintenance COURT
@@ -59,7 +59,7 @@ Feature: JM-4001 and JM-4002 - Court User
     And I insert dob for juror "041500001"
     And I select pool "415111111" from the active pools table
     And I press the "Continue" button
-    Then I see "Selected jurors added to pool 415111111" on the page
+    Then I see "2 jurors added to pool 415111111" on the page
 
   @JurorTransformation
   Scenario: Test to check sort functionality on deferral maintenance page
