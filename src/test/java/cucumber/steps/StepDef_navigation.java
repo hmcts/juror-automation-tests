@@ -649,6 +649,16 @@ public class StepDef_navigation {
 
 	}
 
+	@When("^I click the Search link$")
+	public void click_search_link() throws Throwable {
+		NAV.clickSearchLink();
+	}
+
+	@When("^I click the Expenses link$")
+	public void click_expenses_link() throws Throwable {
+		NAV.clickExpensesLink();
+	}
+
 	@When("^I set the non-attendance date to yesterday$")
 	public void iSetTheAttendanceDateToYesterday() {
 		String datePattern = "dd/MM/yyyy";
