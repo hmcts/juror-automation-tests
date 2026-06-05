@@ -313,19 +313,19 @@ Feature: JM-5413-5415 - Resend excusal granted letter for Bureau and Jury users
       |  041529015    |415980685      | MODTESTBUREAU |
 
 
-  @JurorTransformation
+  @JurorTransformation @Court
   Scenario Outline: As a jury officer I want to print a excusal granted letter for juror
 
-    Given I am on "Bureau" "demo"
+    Given I am on "Bureau" "<environment>"
     When a bureau owned pool is created with jurors
-      | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
-      | 415   | <juror_number>| <pool_number>           | 5                          | 400  |
+      | court |juror_number   | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   | <juror_number>| <pool_number>   | 5                         | 400   |
 
     And I record an excusal request paper summons response for juror "<juror_number>" via the database
 
     Then a new pool is inserted for where record has transferred to the court new schema
       |part_no              | pool_no           | owner |
-     | <juror_number>       | <pool_number>     | 415   |
+      | <juror_number>      | <pool_number>     | 415   |
 
     And I log in as "<user>"
     And I update the bureau transfer date of the juror "<juror_number>"
@@ -345,7 +345,7 @@ Feature: JM-5413-5415 - Resend excusal granted letter for Bureau and Jury users
     And I choose the "Yes" radio button
     And I press the "Continue" button
 
-    Given I am on "Bureau" "demo"
+    Given I am on "Bureau" "<environment>"
     And I log in as "<user>"
     And I press the "Apps" button
     And I click on the "Documents" link
@@ -356,10 +356,9 @@ Feature: JM-5413-5415 - Resend excusal granted letter for Bureau and Jury users
     And I press the "Search" button
     And I see the printed letter for juror number "<juror_number>" in the letters table
 
-
     Examples:
-      | juror_number  | pool_number | user      |
-      |  041529016    | 415980685   | MODCOURT  |
+      | juror_number  | pool_number | user      | environment |
+      |  041529016    | 415980685   | MODCOURT  | ithc        |
 
 
   @JurorTransformationMulti

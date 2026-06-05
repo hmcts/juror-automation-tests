@@ -62,10 +62,10 @@ Feature: As a court officer I want to have a dashboard on the juror application 
 
     And I see "homepage/dashboard" in the URL
 
-  @JurorTransformation
+  @JurorTransformation @Court
   Scenario Outline: As a court officer I want to have a dashboard on the juror application so I can manage my court more effectively
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number        | pool_number	  | att_date_weeks_in_future	| owner |
@@ -246,6 +246,7 @@ Feature: As a court officer I want to have a dashboard on the juror application 
     And I set input field with "id" of "numberOfJurors" to "2"
     And I press the "Continue" button
     And I press the "Confirm and empanel jury" button
+    And I see "Trial" on the page
 
     #check in more jurors and put on panel
     And I press the "Apps" button
@@ -361,41 +362,46 @@ Feature: As a court officer I want to have a dashboard on the juror application 
     And I press the "Apps" button
     And I click on the "Juror management" link
     And I click on the "Unpaid attendance" link
-    And I see "<juror_number17>" on the page
-    And I click on "View expenses" in the same row as "<juror_number17>"
+    And I see "<juror_number21>" on the page
+    And I click on "View expenses" in the same row as "<juror_number21>"
     And I click link with ID "expenseDateLink"
     And I see "Loss of earnings or benefits" on the page
     When I set "Loss of earnings or benefits" to "20"
     And I press the "Save and back to all days" button
-    And I press the "Save and back to all days" button
+#    And I press the "Save and back to all days" button
     And I see "Total in draft" on the page
-
-    #backdate a juror's attendance to a year ago
-    When I backdate juror "<juror_number17>"'s attendance by "366" days
 
     When I click on the "HMCTS Juror" link
 
     Then total expected today donut displays "13"
-    And on the dashboard the total "Checked-in" today matches "3"
+    And on the dashboard the total "Checked-in" today matches "4"
     And on the dashboard the total "Checked-out" today matches "1"
     And on the dashboard the total "On trials" today matches "4"
-    And on the dashboard the total "Not checked-in" today matches "5"
+    And on the dashboard the total "Not checked-in" today matches "4"
 
-#    Then total expected in the last 7 days donut displays "5"
-#    And on the dashboard the total "Expected" in the last 7 days matches "5"
+    Then total expected in the last 7 days donut displays "5"
+    And on the dashboard the total "Expected" in the last 7 days matches "5"
     And on the dashboard the total "Attended" in the last 7 days matches "1"
     And on the dashboard the total "On trials" in the last 7 days matches "0"
     And on the dashboard the total "Absent" in the last 7 days matches "0"
 
-    And on the dashboard the total due to attend matches "9"
+    And on the dashboard the total due to attend matches "11"
     And on the dashboard the total with reasonable adjustments matches "1"
-    And on the dashboard the total unconfirmed attendances matches "8"
+    And on the dashboard the total unconfirmed attendances matches "9"
     And on the dashboard the total on call matches "1"
-    And on the dashboard the total unpaid attendances matches "2"
+    And on the dashboard the total unpaid attendances matches "1"
     And on the dashboard the oldest unpaid attendance is "4" days old
 
     And on the dashboard the date monthly utilisation report last run matches "-"
     And on the dashboard the Last run monthly utilisation percentage matches "-"
+
+    #backdate a juror's attendance to a year ago
+    When I backdate juror "<juror_number21>"'s attendance by "366" days
+
+    When I click on the "HMCTS Juror" link
+
+    And on the dashboard the total unpaid attendances matches "-"
+    And on the dashboard the oldest unpaid attendance is "-" days old
 
     Examples:
       | juror_number01  | juror_number02  | juror_number03  | juror_number04  | juror_number05  | juror_number06  | juror_number07  | juror_number08  | juror_number09  | juror_number10  | juror_number11  | juror_number12  | juror_number13  | juror_number14  | juror_number15  | juror_number16  | juror_number17  | juror_number18  | juror_number19  | juror_number20  | juror_number21  | pool_number01 | pool_number02 | pool_number03 | pool_number04 | pool_number05 | environment  |
