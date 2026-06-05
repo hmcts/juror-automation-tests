@@ -1,9 +1,9 @@
 Feature: JS-291
 
-  @JurorTransformationMulti
+  @JurorTransformationMulti @Bureau
   Scenario Outline: Defer to another court as a bureau officer
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number  	| pool_number	| att_date_weeks_in_future	| owner |
@@ -85,7 +85,7 @@ Feature: JS-291
 
     When I choose the "<pool_number2>" radio button
     And I press the "Continue" button
-    Then I see "1 Juror successfully moved to Swansea Crown Court (457) and remain deferred" in the pool banner
+    Then I see "1 juror successfully moved to Swansea Crown Court (457) and remain deferred" in the pool banner
 
     And I do not see "<juror_number1>" on the page
 
@@ -104,7 +104,7 @@ Feature: JS-291
 
     When I choose the "<pool_number2>" radio button
     And I press the "Continue" button
-    Then I see "2 Jurors successfully moved to Swansea Crown Court (457) and remain deferred" in the pool banner
+    Then I see "2 jurors successfully moved to Swansea Crown Court (457) and remain deferred" in the pool banner
 
     And I do not see "<juror_number2>" on the page
     And I do not see "<juror_number3>" on the page
@@ -126,5 +126,5 @@ Feature: JS-291
     Then I see "Reassigned to pool - <pool_number2>" on the page
 
     Examples:
-      | user          | pool_number| juror_number1 | juror_number2   | juror_number3 | pool_number2 | juror_number4  |
-      | MODTESTBUREAU | 415308245  | 041500450     | 041500451       | 041500452     | 457308245    | 045700450      |
+      | user          | pool_number| juror_number1 | juror_number2   | juror_number3 | pool_number2 | juror_number4  | environment |
+      | MODTESTBUREAU | 415308245  | 041500450     | 041500451       | 041500452     | 457308245    | 045700450      | test        |
