@@ -5486,11 +5486,16 @@ public class DatabaseTesterNewSchemaDesign {
 		}
 	}
 
-	private void clearDownVotersForShufflePostcode(String postcodePrefix) throws SQLException {
-		try (PreparedStatement clearVotersStmt = conn.prepareStatement("DELETE FROM juror_mod.voters WHERE postcode LIKE ?")) {
-			clearVotersStmt.setString(1, postcodePrefix + "%");
+	private void clearDownVotersForShuffleAddressData() throws SQLException {
+		try (PreparedStatement clearVotersStmt = conn.prepareStatement(
+				"DELETE FROM juror_mod.voters WHERE hash_id IN (?, ?, ?, ?, ?) OR postcode LIKE ?")) {
+			int index = 1;
+			for (long hashId : SHUFFLE_ADDRESS_HASH_IDS) {
+				clearVotersStmt.setLong(index++, hashId);
+			}
+			clearVotersStmt.setString(index, SHUFFLE_ADDRESS_POSTCODE_PREFIX + "%");
 			int deletedRows = clearVotersStmt.executeUpdate();
-			log.info("Deleted " + deletedRows + " rows from juror_mod.voters where postcode starts with=>" + postcodePrefix);
+			log.info("Deleted " + deletedRows + " shuffle address voter rows by hash_id/postcode prefix");
 		}
 	}
 
@@ -5557,7 +5562,7 @@ public class DatabaseTesterNewSchemaDesign {
 			conn = db.getConnection("demo");
 
 		try {
-			clearDownVotersForShufflePostcode(SHUFFLE_ADDRESS_POSTCODE_PREFIX);
+			clearDownVotersForShuffleAddressData();
 
 			pStmt = conn.prepareStatement(
 					"INSERT INTO juror_mod.voters (hash_id,register_lett,poll_number,title,lname,fname,dob,flags,address,address2,address3,address4,address5,postcode,date_selected1,la_id,perm_disqual,source_id) VALUES" +

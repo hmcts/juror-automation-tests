@@ -76,7 +76,7 @@ Feature: JM-6118
     And I log in as "<user>"
 
     When the user searches for juror record "<juror_number>" from the global search bar
-    And I click on the "Expenses" link
+    And I click the Expenses link
     And I click on the total approved link for my expense
 
     And I check the checkbox containing my todays expense

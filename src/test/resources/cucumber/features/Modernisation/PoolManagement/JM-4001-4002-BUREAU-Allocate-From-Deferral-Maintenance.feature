@@ -4,7 +4,7 @@ Feature: JM-4001 and JM-4002 - Bureau User
 
     #needs to stay in single thread pack
 
-    Given I am on "Bureau" "demo"
+    Given I am on "Bureau" "test"
     Given "3" new pool's are inserted for court "415" with owner "400" and a deferral date "1" Mondays in the future new schema
 
     #reset data
@@ -48,7 +48,7 @@ Feature: JM-4001 and JM-4002 - Bureau User
     Then I see "Choose an active pool to add selected jurors to" on the page
     And I select pool "415111111" from the active pools table
     And I press the "Continue" button
-    Then I see "Selected jurors added to pool 415111111" on the page
+    Then I see "1 juror added to pool 415111111" on the page
 
   @JurorTransformation
   Scenario: Happy path to allocate multiple juror to a pool from deferral maintenance
@@ -62,7 +62,7 @@ Feature: JM-4001 and JM-4002 - Bureau User
     Then I see "Choose an active pool to add selected jurors to" on the page
     And I select pool "415111111" from the active pools table
     And I press the "Continue" button
-    Then I see "Selected jurors added to pool 415111111" on the page
+    Then I see "2 jurors added to pool 415111111" on the page
 
   @JurorTransformation
   Scenario: Test to change selected court while on deferral maintenance

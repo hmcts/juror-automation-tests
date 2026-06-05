@@ -829,6 +829,26 @@ public class NavigationShared {
         wait.activateImplicitWait();
     }
 
+    public void clickSearchLink() {
+        WebElement searchLink = driver.findElement(By.xpath("//a[@href='/search']"));
+
+        try {
+            searchLink.click();
+        } catch (Exception e) {
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("arguments[0].click();", searchLink);
+        }
+    }
+
+    public void clickExpensesLink() {
+        try {
+            driver.findElement(By.id("expensesTab")).click();
+        } catch (Exception e) {
+            WebElement expenseLink = driver.findElement(By.id("expensesTab"));
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", expenseLink);
+        }
+    }
+
     public void radio_button_not_visible(String radioButtonNotExpected) {
         log.info("Going to check whether link radio button =>" + radioButtonNotExpected + "<= is present on the page");
         wait.deactivateImplicitWait();
