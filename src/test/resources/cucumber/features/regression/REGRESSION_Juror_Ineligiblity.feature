@@ -1353,10 +1353,10 @@ Feature: Regression Test Ineligbility
       | juror_number | pool_number | last_name       | postcode | email      |
       | 045700025    | 457300025   | LNAMETWOSIXZERO | CH1 2AN  | e@eeee.com |
 
-  @RegressionSingle
+  @RegressionSingle @Bureau @DigitalResponse
   Scenario Outline: 1st Party Ineligible
 
-    Given I am on "Public" "ithc"
+    Given I am on "Public" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
@@ -1497,7 +1497,7 @@ Feature: Regression Test Ineligbility
     And I do not see "Your Guide to Jury Service (PDF 85KB)" on the page
     And I see "What did you think of this service? (Takes 30 seconds)" on the page
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
     And I log in as "MODTESTBUREAU"
 
     When I click on the "Search" link
@@ -1513,21 +1513,21 @@ Feature: Regression Test Ineligbility
     Then I see "Your work" on the page
 
     Then I click on the "Sign out" link
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
     When I log in as "CPASS"
     Then I see "<juror_number>" on the page
     Then I see "<juror_number>" has reply type indicator "Needs review"
 
     Examples:
-      | juror_number | last_name         | postcode | email             | pool_number |
-      | 045700026    | LNAMENINEFOURFIVE | CH1 2AN  | email@outlook.com | 457300026   |
+      | juror_number | last_name         | postcode | email             | pool_number | environment |
+      | 045700026    | LNAMENINEFOURFIVE | CH1 2AN  | email@outlook.com | 457300026   | test        |
 
   @Regression
   Scenario Outline: New CJS Options 3rd party
 
-    Given I am on "Public" "ithc"
+    Given I am on "Public" "demo"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
@@ -1659,7 +1659,7 @@ Feature: Regression Test Ineligbility
     And I do not see "Your Guide to Jury Service (PDF 85KB)" on the page
     And I see "What did you think of this service? (Takes 30 seconds)" on the page
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "demo"
     And I log in as "MODTESTBUREAU"
 
     When I click on the "Search" link
@@ -1675,7 +1675,7 @@ Feature: Regression Test Ineligbility
     Then I see "Your work" on the page
 
     Then I click on the "Sign out" link
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "demo"
     When I log in as "CPASS"
     Then I see "<juror_number>" on the page
     Then I see "<juror_number>" has reply type indicator "Needs review"

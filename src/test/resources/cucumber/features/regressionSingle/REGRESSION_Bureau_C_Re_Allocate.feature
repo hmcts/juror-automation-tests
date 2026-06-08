@@ -35,12 +35,14 @@ Scenario Outline: Bureau C script
 
 	And I assign all the New Replies to "ARAMIS1"
 
+    When I see "Search" on the page
 	When I click on the "Search" link
 	And I set "Juror number" to "<juror_number_one>"
 	And I press the "Search" button
 
 	And I press the "Select all" button
 	And I press the "Send to..." button
+    And I see "Send" on the page
 	And I set input field with "id" of "sendToOfficer" to "CPASS"
 	And I press the "Send" button
 	Then I click on the "Your work" link
@@ -161,4 +163,4 @@ Scenario Outline: Bureau C script
 	
 Examples:
 	| juror_number_one 	| juror_number_two	| juror_number_three	| pool_number	| last_name			| postcode	| email				| details		| environment	|
-	| 045200242			| 045200243			| 045200244				| 452300221		| LNAMEEIGHTFOUR	| CH1 2AN	| email@bureauA.com	| 12345abcde	| ithc          |
+	| 045200242			| 045200243			| 045200244				| 452300221		| LNAMEEIGHTFOUR	| CH1 2AN	| email@bureauA.com	| 12345abcde	| test          |
