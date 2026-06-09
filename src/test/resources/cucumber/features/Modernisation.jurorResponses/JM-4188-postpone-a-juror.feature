@@ -1,9 +1,9 @@
   Feature: 4188 - postpone juror
 
-  @JurorTransformationMulti
+  @JurorTransformationMulti @Bureau
   Scenario Outline: Test to mark juror as postponed and add to future pool
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
@@ -31,13 +31,13 @@
     Then I see "Juror record updated: Postponed" on the page
 
     Examples:
-      | user          | juror_number  | pool_number  |
-      | MODTESTBUREAU | 041500125     | 415300225    |
+      | user          | juror_number  | pool_number  | environment |
+      | MODTESTBUREAU | 041500125     | 415300225    | ithc        |
 
-    @JurorTransformationMulti
+    @JurorTransformationMulti @Court
     Scenario Outline: Test to check on call removed upon deferring via postponement - JS-787
 
-      Given I am on "Bureau" "test"
+      Given I am on "Bureau" "<environment>"
 
       Given a bureau owned pool is created with jurors
         | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
@@ -71,5 +71,5 @@
       And I check juror "<juror_number>" is not on call
 
       Examples:
-        | user          | juror_number  | pool_number  |
-        | MODTESTCOURT | 041598376     | 415308772    |
+        | user         | juror_number  | pool_number  | environment |
+        | MODTESTCOURT | 041598376     | 415308772    | ithc        |

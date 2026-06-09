@@ -294,10 +294,11 @@ Feature: 1)JM-5409,JM-5411 - As a Bureau/jury officer I need to resend a deferra
       | 041520124    | 415300708   | MODTESTBUREAU |
 
 
-  @JurorTransformationMulti
+  @JurorTransformationMulti @Court
   Scenario Outline:As a jury officer test a Deferred juror can resend a refused letter by searching via juror number
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
+
     When a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
       | 415   | <juror_number> | <pool_number> | 5                        | 400   |
@@ -389,11 +390,12 @@ Feature: 1)JM-5409,JM-5411 - As a Bureau/jury officer I need to resend a deferra
     And I am able to see and interact with the jurors Deferral Refused letter tabs and fields
     When I check the "<juror_number>" checkbox
     And I press the "Print deferral refused letter" button
-    Then I see "/documents/deferral-refused/letters-list?documentSearchBy=juror_number&jurorNumber=041530033" in the URL
+    And I focus page to the original tab
+    Then I see "/documents/deferral-refused/letters-list?documentSearchBy=jurorNumber&jurorNumber=041530033" in the URL
 
     Examples:
-      | juror_number | pool_number | user         |
-      | 041530033    | 415300345   | MODTESTCOURT |
+      | juror_number | pool_number | user         | environment |
+      | 041530033    | 415300345   | MODTESTCOURT | ithc        |
 
   @JurorTransformationMulti
   Scenario Outline:As a jury officer test a Deferred juror can resend a granted refused letter by searching via pool number
