@@ -215,7 +215,7 @@ Scenario Outline: Cannot Set Juror Record to Postponed while response is TODO
 @RegressionSingle
 Scenario Outline: Can Set Juror Record to Reassigned while response is TODO
 
-	Given I am on "Public" "ithc"
+	Given I am on "Public" "demo"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -230,7 +230,7 @@ Scenario Outline: Can Set Juror Record to Reassigned while response is TODO
 		| part_no			| pool_number	|last_name		|postcode	|email 	|
 		| <juror_number>	| <pool_number>	|<last_name>	|<postcode>	|<email>|
 
-	Given I am on "Bureau" "ithc"
+	Given I am on "Bureau" "demo"
 	And I log in as "CPASS"
 
 	##reassign juror
@@ -306,7 +306,7 @@ Scenario Outline: Can Set Juror Record to Deceased while response is TODO
 @RegressionSingle
 Scenario Outline: Can Set Juror Record to undelivered while response is TODO
 
-	Given I am on "Public" "ithc"
+	Given I am on "Public" "<environment>"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -320,7 +320,7 @@ Scenario Outline: Can Set Juror Record to undelivered while response is TODO
 		| part_no			| pool_number	| last_name		| postcode		| email 	|
 		| <juror_number>	| <pool_number>	| <last_name>	| <postcode>	| <email>	|
 
-	Given I am on "Bureau" "ithc"
+	Given I am on "Bureau" "<environment>"
 	And I log in as "CPASS"
 
 	And I search for juror "<juror_number>"
@@ -335,5 +335,5 @@ Scenario Outline: Can Set Juror Record to undelivered while response is TODO
 	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "LAST_NAME" is "Changed" where "JUROR_NUMBER" is "<juror_number>"
 
 	Examples:
-		| juror_number	| pool_number	| last_name	| postcode	| email 	|
-		| 045200260		| 452300237		| DOE		| SW1H 9AJ	| a@a.com	|
+		| juror_number	| pool_number	| last_name	| postcode	| email 	| environment |
+		| 045200260		| 452300237		| DOE		| SW1H 9AJ	| a@a.com	| ithc		  |

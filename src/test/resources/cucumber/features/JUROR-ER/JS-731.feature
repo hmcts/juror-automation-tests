@@ -7,6 +7,9 @@ Feature: ELEC  JS-731
 
     And I log in to ER as "<user>"
 
+    And I choose the "Broxtowe" radio button
+    And I press the "Continue" button
+
     And I click on the "Upload guidance" link
 
     Then I see "File upload guidance" on the page
@@ -55,4 +58,4 @@ Feature: ELEC  JS-731
 
     Examples:
       | user                       | environment |
-      | test_user1@localauthority2 | test        |
+      | test_user1@localauthority2 | ithc        |

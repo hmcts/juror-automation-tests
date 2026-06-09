@@ -1,9 +1,9 @@
 Feature: JM-8127
 
-  @JurorTransformationMulti
+  @JurorTransformationMulti @Bureau
   Scenario Outline: Process reply for juror with different catchment area to original summons
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     And I log in as "<user>"
 
@@ -46,7 +46,7 @@ Feature: JM-8127
     And I click continue on the juror summons reply page
 
     And I see "You may need to reassign this juror to a different court before you can finish processing this reply" on the page
-    And I set the radio button to "Shrewsbury (452)"
+    And I set the radio button to "Welshpool (774)"
     And I press the "Continue" button
     And I select one of the active pools available
     And I press the "Continue" button
@@ -56,8 +56,8 @@ Feature: JM-8127
     And I see the juror record updated banner containing "Responded"
     When the user searches for juror record "<juror_number>" from the global search bar
     And I see the juror status has updated to "Responded"
-    And I see the court name on the juror record screen is "The Crown Court At Shrewsbury"
+    And I see the court name on the juror record screen is "The Crown Court At Welshpool"
 
     Examples:
-      | user          | juror_number  | pool_number   |
-      | MODTESTBUREAU | 041568274     | 415388613     |
+      | user          | juror_number  | pool_number   | environment |
+      | MODTESTBUREAU | 041568274     | 415388613     | ithc        |

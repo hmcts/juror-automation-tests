@@ -1770,6 +1770,8 @@ Feature: Regression English_ReplyTypesIndicator
     When I set text area with "id" of "deferralReason" to "Deferral Reason"
     And I press the "Continue" button
 
+    And I see "First" on the page
+
     When I set the "First" single date field to a Monday "6" weeks in the future
     When I set the "Second" single date field to a Monday "7" weeks in the future
     When I set the "Third" single date field to a Monday "8" weeks in the future

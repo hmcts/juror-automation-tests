@@ -1,9 +1,9 @@
 Feature: JS-121 Set Multiple Jurors to On Call
 
-  @JurorTransformationMulti
+  @JurorTransformationMulti @Court
   Scenario Outline: Happy Path Set multiple jurors in a pool to On Call
 
-    Given I am on "Bureau" "demo"
+    Given I am on "Bureau" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number  	    | pool_number	| att_date_weeks_in_future	| owner |
@@ -131,8 +131,8 @@ Feature: JS-121 Set Multiple Jurors to On Call
     Then I see link with text "<juror_number_10>"
 
     Examples:
-      | user         | pool_number  | juror_number_1  | juror_number_2  | juror_number_3  | juror_number_4  | juror_number_5  | juror_number_6  | juror_number_7  | juror_number_8  | juror_number_9  | juror_number_10  |
-      | MODTESTCOURT | 415300173    | 041500083       | 041500084       | 041500085       | 041500086       | 041500087       | 041500088       | 041500089       | 041500090       | 041500091       | 041500092        |
+      | user         | pool_number  | juror_number_1  | juror_number_2  | juror_number_3  | juror_number_4  | juror_number_5  | juror_number_6  | juror_number_7  | juror_number_8  | juror_number_9  | juror_number_10  | environment |
+      | MODTESTCOURT | 415300173    | 041500083       | 041500084       | 041500085       | 041500086       | 041500087       | 041500088       | 041500089       | 041500090       | 041500091       | 041500092        | test        |
 
   @JurorTransformationMulti
   Scenario Outline: Unappy Path Set multiple jurors in a pool to On Call
