@@ -32,7 +32,7 @@
 
     Examples:
       | user          | juror_number  | pool_number  | environment |
-      | MODTESTBUREAU | 041500125     | 415300225    | ithc
+      | MODTESTBUREAU | 041500125     | 415300225    | ithc        |
 
     @JurorTransformationMulti @Court
     Scenario Outline: Test to check on call removed upon deferring via postponement - JS-787
