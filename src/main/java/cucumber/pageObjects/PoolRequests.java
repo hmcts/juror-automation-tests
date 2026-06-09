@@ -692,22 +692,56 @@ public class PoolRequests {
     }
 
     public void clickActivePoolNumber(String poolNo) {
-        log.info("Finding and clicking active pool number");
-        boolean lastPage = false;
-        while (!lastPage) {
-            List<WebElement> activePoolOverviewLink = driver.findElements(By.xpath("//*[contains(text(),'" + poolNo + "')]"));
-            if (activePoolOverviewLink.size() >= 1) {
-                activePoolOverviewLink.get(0).click();
-                break;
-            } else {
-                if (driver.findElements(By.className("govuk-pagination__next")).size() < 1) {
-                    lastPage = true;
-                } else {
-                    log.info("Clicking next pagination");
-                    clickNextPagination();
-                }
+        log.info("Finding and clicking active pool number: " + poolNo);
+
+        int pagesChecked = 0;
+        int maxPages = 50;
+
+        while (pagesChecked < maxPages) {
+            pagesChecked++;
+
+            List<WebElement> activePoolOverviewLinks = driver.findElements(
+                    By.xpath("//a[contains(normalize-space(.), '" + poolNo + "')]")
+            );
+
+            if (!activePoolOverviewLinks.isEmpty()) {
+                log.info("Found active pool number " + poolNo + " on page " + pagesChecked);
+                activePoolOverviewLinks.get(0).click();
+                return;
+            }
+
+            List<WebElement> nextLinks = driver.findElements(
+                    By.cssSelector(".govuk-pagination__next a[rel='next']")
+            );
+
+            if (nextLinks.isEmpty()) {
+                throw new AssertionError(
+                        "Active pool " + poolNo + " was not found after checking " + pagesChecked
+                                + " page(s). Last URL: " + driver.getCurrentUrl()
+                );
+            }
+
+            String currentUrl = driver.getCurrentUrl();
+            log.info("Clicking next pagination from URL: " + currentUrl);
+
+            nextLinks.get(0).click();
+
+            try {
+                new WebDriverWait(driver, Duration.ofSeconds(10))
+                        .until(webDriver -> !webDriver.getCurrentUrl().equals(currentUrl));
+            } catch (TimeoutException e) {
+                throw new AssertionError(
+                        "Clicked next pagination while looking for active pool " + poolNo
+                                + ", but the page did not change. Current URL: " + driver.getCurrentUrl(),
+                        e
+                );
             }
         }
+
+        throw new AssertionError(
+                "Active pool " + poolNo + " was not found after checking " + maxPages
+                        + " page(s). Last URL: " + driver.getCurrentUrl()
+        );
     }
 
     public void clickInactivePoolNumber(String poolNo) {
