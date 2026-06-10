@@ -103,6 +103,7 @@ task functionalSmoke(type: Test, dependsOn: testClasses) {
   systemProperty "envDriver", System.getenv("envDriver")
 
   include '**/TestRunner_SmokeTest.class'
+  reports.junitXml.outputLocation = layout.buildDirectory.dir('test-results/functionalTest')
   outputs.upToDateWhen { false }
 }
 
