@@ -120,7 +120,6 @@ task functional(type: Test, dependsOn: [testClasses, functionalSmoke]) {
   def runRegression = System.getenv("runRegression")
   def runRegressionSingle = System.getenv("runRegressionSingle")
   def runRegressionWelsh = System.getenv("runRegressionWelsh")
-  def runShakedown = System.getenv("runShakedown")
   def hasSelectedFunctionalSuite = false
   
   if (runExpenses == 'true') {
@@ -157,10 +156,6 @@ task functional(type: Test, dependsOn: [testClasses, functionalSmoke]) {
   }
   if (runRegressionWelsh == 'true') {
     include '**/TestRunner_RegressionWelsh.class'
-    hasSelectedFunctionalSuite = true
-  }
-  if (runShakedown == 'true') {
-    include '**/TestRunner_Shakedown.class'
     hasSelectedFunctionalSuite = true
   }
   onlyIf { hasSelectedFunctionalSuite }
