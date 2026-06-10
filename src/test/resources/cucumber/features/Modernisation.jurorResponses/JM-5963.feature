@@ -1,9 +1,9 @@
 Feature: JM-5963 - As a jury I need to be able to print a certificate of attendance
 
-  @JurorTransformationMulti
+  @JurorTransformationMulti @Court
   Scenario Outline: As a court officer I want to print a certificate of exemption
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number  	| pool_number	| att_date_weeks_in_future	| owner |
@@ -45,11 +45,12 @@ Feature: JM-5963 - As a jury I need to be able to print a certificate of attenda
     And I see "Certificates of attendance" on the page
     And I check the "<juror_number>" checkbox
     And I press the "Print certificate of attendance" button
-    And I see "/documents/certificate-attendance/letters-list?documentSearchBy=juror_number&jurorNumber=041587205" in the URL
+    And I focus page to the original tab
+    And I see "/documents/certificate-attendance/letters-list?documentSearchBy=jurorNumber&jurorNumber=041587205" in the URL
 
     Examples:
-      |user			| juror_number | pool_number  |
-      |MODTESTCOURT | 041587205    | 415320579    |
+      |user			| juror_number | pool_number  | environment |
+      |MODTESTCOURT | 041587205    | 415320579    | ithc        |
 
 
   @JurorTransformation

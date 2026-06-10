@@ -9,6 +9,9 @@ Feature: ELEC  JS-729
 
     And I log in to ER as "<user>"
 
+    And I choose the "Broxtowe" radio button
+    And I press the "Continue" button
+
     Then the LA name on the ER upload screen is "<localAuth>"
     And I see "Electoral register data portal" on the page
     And I see link with text "Data upload"
@@ -38,5 +41,5 @@ Feature: ELEC  JS-729
 
     Examples:
       | user                       | localAuth  | environment |
-      | test_user1@localauthority2 | Broxtowe   | test        |
+      | test_user1@localauthority2 | Broxtowe   | ithc        |
 

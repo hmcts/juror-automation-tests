@@ -374,7 +374,7 @@ Scenario Outline: Change postcode - different loc_code SHOWS CHANGE COURT
 
 Examples:
 	| juror_number	| last_name	| postcode	| email 		| pool_number	| environment |
-	| 045200187		| DOE		| CH1 6LU	| a@eeee.com	| 452300172		| test        |
+	| 045200187		| DOE		| CH1 6LU	| a@eeee.com	| 452300172		| ithc        |
 
 @Regression @Bureau
 Scenario Outline: Change postcode - new postcode in >1 loc_code SHOWS CHANGE COURT
@@ -781,7 +781,7 @@ Scenario Outline: Change Postcode but same loc_code CHANGE COURT FLAG NOT SHOWN 
 	And I choose the "No" radio button
 	And I press the "Continue" button
 
-	And I set "Postcode" to "SY2 2AN"
+	And I set "Postcode" to "TF14 2AN"
 	And I press the "Continue" button
 	
 	#phone
@@ -868,9 +868,9 @@ Scenario Outline: Change Postcode but same loc_code CHANGE COURT FLAG NOT SHOWN 
 	
 	#JDB-3629
 	When I click on "<juror_number>" in the same row as "<juror_number>"
-	Then I see "SY2 2AN" on the page
+	Then I see "TF14 2AN" on the page
 	And I do not see "Juror's address is outside the catchment area of the court they were summoned to" on the page
 	
 Examples:
 	| juror_number	| last_name	| postcode	| email 		| pool_number	| environment |
-	| 045200191		| DOE		| SY2 4EE	| a@eeee.com	| 452300176		| test        |
+	| 045200191		| DOE		| TF14 4EE	| a@eeee.com	| 452300176		| ithc        |
