@@ -2911,10 +2911,10 @@ Feature: Regression English_1st_Deferral
       | juror_number | pool_number | last_name          | postcode | email      | environment |
       | 045200039    | 452300038   | LNAMESEVENONETHREE | SW1H 9AJ | e@eeee.com | test        |
 
-  @Regression
+  @Regression @Bureau @DigitalResponse
   Scenario Outline: English 1st Party Deferral + Bail + Name change
 
-    Given I am on "Public" "ithc"
+    Given I am on "Public" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
@@ -3099,7 +3099,7 @@ Feature: Regression English_1st_Deferral
     And I validate the "Second" deferral date is "7" weeks in the future
     And I validate the "Third" deferral date is "8" weeks in the future
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
     And I log in as "MODTESTBUREAU"
 
     When I click on the "Search" link
@@ -3115,19 +3115,19 @@ Feature: Regression English_1st_Deferral
     Then I see "Your work" on the page
 
     Then I click on the "Sign out" link
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
     When I log in as "CPASS"
     Then I see "<juror_number>" on the page
     Then I see "<juror_number>" has reply type indicator "Deferral"
 
     Examples:
-      | juror_number | pool_number | last_name          | postcode | email      |
-      | 045200040    | 452300039   | LNAMESEVENONETHREE | SY2 6LU  | e@eeee.com |
+      | juror_number | pool_number | last_name          | postcode | email      | environment |
+      | 045200040    | 452300039   | LNAMESEVENONETHREE | SY2 6LU  | e@eeee.com | ithc        |
 
-  @Regression
+  @Regression @Bureau @DigitalResponse
   Scenario Outline: English 1st Party Deferral - NEW PAGE
 
-    Given I am on "Bureau" "demo"
+    Given I am on "Bureau" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
@@ -3172,7 +3172,7 @@ Feature: Regression English_1st_Deferral
     And I press the "Create pool and summon citizens" button
     And I click on the "Sign out" link
 
-    Given I am on "Public" "demo"
+    Given I am on "Public" "<environment>"
 
     Then I see "Reply to a jury summons" on the page
 
@@ -3278,7 +3278,7 @@ Feature: Regression English_1st_Deferral
     Then I see "You have completed your reply" on the page
     Then I see "<juror_number>" on the page
 
-    Given I am on "Bureau" "demo"
+    Given I am on "Bureau" "<environment>"
     And I log in as "MODTESTBUREAU"
 
     When I click on the "Search" link
@@ -3293,7 +3293,7 @@ Feature: Regression English_1st_Deferral
     And I press the "Send" button
     Then I see "Your work" on the page
 
-    Given I am on "Bureau" "demo"
+    Given I am on "Bureau" "<environment>"
     When I log in as "ARAMIS1"
     Then I see "<juror_number>" on the page
     Then I see "<juror_number>" has reply type indicator "Deferral"
@@ -3349,5 +3349,5 @@ Feature: Regression English_1st_Deferral
     And I see the juror status has updated to "Responded"
 
     Examples:
-      | juror_number | juror_number2 | pool_number | pool_number2 | last_name        | postcode | email      |
-      | 045200041    | 045200042     | 452300040   | 452300041    | LNAMEFIVETWOZERO | SW1H 9AJ | e@eeee.com |
+      | juror_number | juror_number2 | pool_number | pool_number2 | last_name        | postcode | email      | environment |
+      | 045200041    | 045200042     | 452300040   | 452300041    | LNAMEFIVETWOZERO | SW1H 9AJ | e@eeee.com | ithc        |

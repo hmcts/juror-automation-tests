@@ -133,4 +133,28 @@
   <suppress>
     <cve>CVE-2026-44618</cve>
   </suppress>
+  <suppress>
+      <cve>CVE-2026-50630</cve>
+  </suppress>
+  <suppress>
+      <cve>CVE-2026-50631</cve>
+  </suppress>
+  <suppress>
+      <cve>CVE-2026-50632</cve>
+  </suppress>
+  <suppress>
+      <cve>CVE-2026-50633</cve>
+  </suppress>
+  <suppress>
+      <cve>CVE-2026-50634</cve>
+  </suppress>
+  <suppress>
+      <cve>CVE-2026-50623</cve>
+  </suppress>
+  <suppress>
+      <cve>CVE-2026-50645</cve>
+  </suppress>
+  <suppress>
+      <cve>CVE-2026-50629</cve>
+  </suppress>
 </suppressions>
