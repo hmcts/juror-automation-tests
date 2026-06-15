@@ -190,10 +190,10 @@ Examples:
 	| 045200105		| LNAMENINEZEROZERO	| SY2 6LU	| a@eeee.com	| 452300104		|
 
 
-@Regression
+@Regression @DigitalResponse
 Scenario Outline: English_3rd_Char_Counts_and_warnings
 
-	Given I am on "Public" "ithc"
+	Given I am on "Public" "<environment>"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -488,8 +488,8 @@ Scenario Outline: English_3rd_Char_Counts_and_warnings
 	Then I see "You have completed your reply" on the page
 	
 Examples:
-	| juror_number	| last_name				| postcode	| email         	| pool_number	|
-	| 045200106		| LNAMEEIGHTEIGHTTHREE	| SY2 6LU	| email@outlook.com	| 452300105		|
+	| juror_number	| last_name				| postcode	| email         	| pool_number	| environment |
+	| 045200106		| LNAMEEIGHTEIGHTTHREE	| SY2 6LU	| email@outlook.com	| 452300105		| ithc        |
 	
 @Regression
 Scenario Outline: English_Special_Chars
@@ -684,7 +684,7 @@ Examples:
 @Regression
 Scenario Outline: English_1st_Char_Counts_and_warnings
 
-	Given I am on "Public" "ithc"
+	Given I am on "Public" "DEMO"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
