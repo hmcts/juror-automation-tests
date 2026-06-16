@@ -296,7 +296,7 @@ public class SummonsReply {
     @FindBy(xpath = "/html/body/div[4]/main/nav/div[1]/div/div[1]/nav/ul/li[2]/a")
     WebElement eligibilityTab;
 
-    @FindBy(xpath = "/html/body/div[4]/main/nav/div[1]/div/div[1]/nav/ul/li[3]/a")
+    @FindBy(id = "deferral-excusal-section-menu-item")
     WebElement deferralOrExcusalTab;
 
     @FindBy(xpath = "/html/body/div[4]/main/nav/div[1]/div/div[1]/nav/ul/li[4]/a")
