@@ -5233,6 +5233,60 @@ public class DatabaseTesterNewSchemaDesign {
 		}
 	}
 
+	public void checkBulkPrintDataDetailRecordContainsText(String jurorNumber, String expectedText) throws SQLException {
+		db = new DBConnection();
+
+		String env_property = System.getProperty("env.database");
+
+		if (env_property != null)
+			conn = db.getConnection(env_property);
+		else
+			conn = db.getConnection("demo");
+
+		ResultSet rs = null;
+		try {
+			log.info("Verifying detail_rec contains '" + expectedText + "' in bulk_print_data for juror: " + jurorNumber);
+			pStmt = conn.prepareStatement("""
+					    SELECT detail_rec, creation_date
+					    FROM juror_mod.bulk_print_data
+					    WHERE juror_no = ?
+					    AND detail_rec LIKE ? ESCAPE '!'
+					    AND creation_date = (
+					        SELECT MAX(creation_date)
+					        FROM juror_mod.bulk_print_data
+					        WHERE juror_no = ?
+					    )
+					""");
+			pStmt.setString(1, jurorNumber);
+			pStmt.setString(2, "%" + escapeSqlLikePattern(expectedText) + "%");
+			pStmt.setString(3, jurorNumber);
+			rs = pStmt.executeQuery();
+
+			if (rs.next()) {
+				log.info("Expected text found in detail_rec!");
+				log.info("Creation date: " + rs.getTimestamp("creation_date"));
+			} else {
+				log.error("Expected text not found in detail_rec for juror: " + jurorNumber);
+				throw new AssertionError("Expected text '" + expectedText + "' not found in detail_rec for juror " + jurorNumber);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.error("Message:" + e.getMessage());
+			throw e;
+		} finally {
+			if (rs != null) rs.close();
+			if (pStmt != null) pStmt.close();
+			if (conn != null) conn.close();
+		}
+	}
+
+	private String escapeSqlLikePattern(String value) {
+		return value
+				.replace("!", "!!")
+				.replace("%", "!%")
+				.replace("_", "!_");
+	}
 	public void updateJurorNameLeadingSpace(String title, String firstName, String lastName, String jurorNumber) throws SQLException {
 		db = new DBConnection();
 		String env_property = System.getProperty("env.database");

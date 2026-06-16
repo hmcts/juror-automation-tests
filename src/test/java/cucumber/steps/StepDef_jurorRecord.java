@@ -720,6 +720,17 @@ public class StepDef_jurorRecord {
     public void clickChangeAddressLink() {
         JUROR_RECORD.clickChangeAddress();
     }
+
+    @When("^I click the use juror record address radio button$")
+    public void clickUseSummonsAddressSecondRadioButton() {
+        JUROR_RECORD.clickUseSummonsAddressSecondRadioButton();
+    }
+
+    @When("^I click the summons reply address radio button$")
+    public void clickUseSummonsAddressFirstRadioButton() {
+        JUROR_RECORD.clickUseSummonsAddressFirstRadioButton();
+    }
+
     @When("^I click on the court home link for \"([^\"]*)\"$")
     public void clickCourtHome(String court) {
         JUROR_RECORD.clickCourtHome(court);
