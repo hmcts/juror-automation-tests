@@ -63,7 +63,7 @@ dependencies {
 
   testImplementation 'io.cucumber:cucumber-jvm-deps:1.0.6'
 
-  testImplementation 'io.cucumber:cucumber-core:7.20.1'
+  testImplementation 'io.cucumber:cucumber-core:7.34.3'
 
   testImplementation 'io.cucumber:cucumber-java:7.20.1'
   implementation 'org.hamcrest:hamcrest-core:2.2'
@@ -88,7 +88,7 @@ dependencies {
 
 
   testImplementation 'io.cucumber:cucumber-picocontainer:7.20.1'
-  testImplementation 'io.cucumber:cucumber-core:7.20.1'
+  testImplementation 'io.cucumber:cucumber-core:7.34.3'
   testImplementation 'io.cucumber:cucumber-java:7.20.1'
   testImplementation 'io.cucumber:cucumber-jvm-deps:1.0.6'
   testImplementation 'io.cucumber:cucumber-junit:7.20.1'
