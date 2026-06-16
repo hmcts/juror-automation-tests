@@ -1,4 +1,4 @@
-Feature: JM-5417-5586 - Resend excusal refused letter for Bureau and Jury users
+Feature: JS-934 - As a officer I want to be able to select what address to send a letter to if the juror has 1 on the juror record and the summons reply
 
   @JurorTransformationMulti
   Scenario Outline: Use address on juror record when refusing excusal request if addresses do not match
