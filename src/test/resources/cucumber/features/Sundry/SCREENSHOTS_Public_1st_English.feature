@@ -3,16 +3,19 @@ Feature: Screenshots
 
 Scenario Outline: English 1st Party Straight Through
 	
-	Given I am on "Public" "juror-test02"
+	Given I am on "Public" "test"
 	
-	#Then I take a screenshot
-	
-	Given the juror numbers have not been processed
-		| part_no 	| pool_no 	| owner |
-		| <part_no> |<pool_no>	| 400 	|
+	Then I take a screenshot
+  
+    Then I press the "Accept analytics cookies" button
+  
+    Then I press the "Hide cookie message" button
+
+    Given a bureau owned pool is created with jurors
+    | court | juror_number   | pool_number	| att_date_weeks_in_future	| owner |
+    | 415   | <juror_number> | <pool_no>	| 5                         | 400 	|
 		
 	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
-
 
 	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 	
@@ -24,14 +27,14 @@ Scenario Outline: English 1st Party Straight Through
 	
 	And I press the "Continue" button
 	
-	#Then I take a screenshot
+	Then I take a screenshot
 
 	#move on
 	
 	And I set the radio button to "I am replying for myself"
 	And I press the "Continue" button
 	
-	#Then I take a screenshot
+	Then I take a screenshot
 	
 ##log on
 	
@@ -39,7 +42,7 @@ Scenario Outline: English 1st Party Straight Through
 	
 	And I press the "Continue" button
 	
-	#Then I take a screenshot
+	Then I take a screenshot
 	
 	#move on
 	
@@ -50,20 +53,22 @@ Scenario Outline: English 1st Party Straight Through
 	
 ##name
 	
-	#Then I take a screenshot
+	Then I take a screenshot
 	
 	#error
+
+    And I see "name" on the page
 	
 	And I press the "Continue" button
 	
-	#Then I take a screenshot
+	Then I take a screenshot
 	
 	#move on NO
 	
 	And I set the radio button to "No"
 	And I press the "Continue" button
 	
-	#Then I take a screenshot
+	Then I take a screenshot
 	
 	Then I click on the "Back" link
 	
@@ -74,20 +79,20 @@ Scenario Outline: English 1st Party Straight Through
 	
 ##address
 	
-	#Then I take a screenshot
+	Then I take a screenshot
 
 	#error
 	
 	When I press the "Continue" button
 	
-	#Then I take a screenshot
+	Then I take a screenshot
 	
 	#move on NO
 	
 	And I set the radio button to "No"
 	And I press the "Continue" button
 	
-	#Then I take a screenshot
+	Then I take a screenshot
 	
 	Then I click on the "Back" link
 	
@@ -98,13 +103,13 @@ Scenario Outline: English 1st Party Straight Through
 
 ##phone
 
-	#Then I take a screenshot
+	Then I take a screenshot
 
 	#error
 	
 	And I press the "Continue" button
 
-	#Then I take a screenshot
+	Then I take a screenshot
 	
 	#move on
 	
@@ -113,13 +118,13 @@ Scenario Outline: English 1st Party Straight Through
 
 ##email
 
-	#Then I take a screenshot
+	Then I take a screenshot
 	
 	#error
 	
 	And I press the "Continue" button
 	
-	#Then I take a screenshot
+	Then I take a screenshot
 	
 	#move on
 	
@@ -129,13 +134,13 @@ Scenario Outline: English 1st Party Straight Through
 	
 ##DOB
 
-	#Then I take a screenshot
+	Then I take a screenshot
 
 	#error
 	
 	And I press the "Continue" button
 
-	#Then I take a screenshot
+	Then I take a screenshot
 	
 	#move on OVERAGE
 	
@@ -144,7 +149,7 @@ Scenario Outline: English 1st Party Straight Through
 	And I set "Year" to "1900"
 	And I press the "Continue" button
 	
-	#Then I take a screenshot
+	Then I take a screenshot
 
 	#move on
 	
@@ -155,13 +160,13 @@ Scenario Outline: English 1st Party Straight Through
 	And I set "Year" to "1990"
 	And I press the "Continue" button
 	
-	#Then I take a screenshot
+	Then I take a screenshot
 
 ##qualifying
 
 	When I press the "Continue" button
 	
-	#Then I take a screenshot
+	Then I take a screenshot
 
 ##residency
 
@@ -169,20 +174,20 @@ Scenario Outline: English 1st Party Straight Through
 	
 	And I press the "Continue" button
 	
-	#Then I take a screenshot
+	Then I take a screenshot
 	
 	#move on NO
 	
 	And I set the radio button to "No"
 	
-	#Then I take a screenshot
+	Then I take a screenshot
 	
 	#move on YES
 	
 	And I set the radio button to "Yes"
 	And I press the "Continue" button
 	
-	#Then I take a screenshot
+	Then I take a screenshot
 	
 ##CJS
 
@@ -190,20 +195,20 @@ Scenario Outline: English 1st Party Straight Through
 	
 	And I press the "Continue" button
 	
-	#Then I take a screenshot
+	Then I take a screenshot
 	
 	#move on YES
 	
 	When I set the radio button to "Yes"
 	
-	#Then I take a screenshot
+	Then I take a screenshot
 	
 	#move on NO
 		
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
-	#Then I take a screenshot
+	Then I take a screenshot
 	
 ##Bail
 	
@@ -211,20 +216,20 @@ Scenario Outline: English 1st Party Straight Through
 	
 	And I press the "Continue" button
 	
-	#Then I take a screenshot
+	Then I take a screenshot
 	
 	#move on YES
 
 	When I set the radio button to "Yes"
 	
-	#Then I take a screenshot
+	Then I take a screenshot
 	
 	#move on NO
 
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
-	#Then I take a screenshot
+	Then I take a screenshot
 	
 ##Convictions
 
@@ -232,20 +237,20 @@ Scenario Outline: English 1st Party Straight Through
 	
 	And I press the "Continue" button
 	
-	#Then I take a screenshot
+	Then I take a screenshot
 	
 	#move on YES
 	
 	When I set the radio button to "Yes"
 	
-	#Then I take a screenshot
+	Then I take a screenshot
 	
 	#move on NO
 	
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
-	#Then I take a screenshot
+	Then I take a screenshot
 		
 ##Mental Health Sectioned
 
@@ -253,20 +258,20 @@ Scenario Outline: English 1st Party Straight Through
 	
 	And I press the "Continue" button
 	
-	#Then I take a screenshot
+	Then I take a screenshot
 	
 	#move on YES
 	
 	And I set the radio button to "Yes"
 	
-	#Then I take a screenshot
+	Then I take a screenshot
 	
 	#move on No
 	
 	And I set the radio button to "No"
 	And I press the "Continue" button
 	
-	#Then I take a screenshot
+	Then I take a screenshot
 	
 ##Mental Health Capacity
 
@@ -274,20 +279,20 @@ Scenario Outline: English 1st Party Straight Through
 	
 	And I press the "Continue" button
 
-	#Then I take a screenshot
+	Then I take a screenshot
 	
 	#move on YES
 	
 	And I set the radio button to "Yes"
 	
-	#Then I take a screenshot
+	Then I take a screenshot
 	
 	#move on NO
 	
 	And I set the radio button to "No"
 	And I press the "Continue" button
 
-	#Then I take a screenshot
+	Then I take a screenshot
 	
 ##I can attend
 
@@ -295,14 +300,14 @@ Scenario Outline: English 1st Party Straight Through
 	
 	And  I press the "Continue" button
 	
-	#Then I take a screenshot
+	Then I take a screenshot
 	
 	#move on
 	
 	And I set the radio button to "Yes, I can start on"
 	And  I press the "Continue" button
 	
-	#Then I take a screenshot
+	Then I take a screenshot
 
 ##Deferal
 
@@ -311,24 +316,24 @@ Scenario Outline: English 1st Party Straight Through
 	When I set the radio button to "No, I need to change the date"
 	And  I press the "Continue" button
 	
-	#Then I take a screenshot
+	Then I take a screenshot
 	
 	#reason
 	
 	When I set text area with "id" of "deferralReason" to "Deferral Reason"
 	And I press the "Continue" button
 	
-	#Then I take a screenshot
+	Then I take a screenshot
 	
 	#Dates
 	
 	When I set the "First" single date field to a Monday "10" weeks in the future
-	When I set the "Second" single date field date fieldte to a Monday "11" weeks in the future
+	When I set the "Second" single date field to a Monday "11" weeks in the future
 	When I set the "Third" single date field to a Monday "12" weeks in the future
 	
 	And I press the "Continue" button
 	
-	#Then I take a screenshot
+	Then I take a screenshot
 	
 ##Excusal
 
@@ -339,7 +344,7 @@ Scenario Outline: English 1st Party Straight Through
 	When I set the radio button to "No, I cannot do jury service and need to be excused" 
 	And  I press the "Continue" button
 	
-	#Then I take a screenshot
+	Then I take a screenshot
 	
 	#reason
 	
@@ -347,7 +352,7 @@ Scenario Outline: English 1st Party Straight Through
 	
 	And  I press the "Continue" button
 	
-	#Then I take a screenshot
+	Then I take a screenshot
 
 ##RA no
 	
@@ -355,20 +360,20 @@ Scenario Outline: English 1st Party Straight Through
 	
 	And I press the "Continue" button
 	
-	#Then I take a screenshot
+	Then I take a screenshot
 	
 	#move on YES
 	
 	When I set the radio button to "Yes"
 	
-	#Then I take a screenshot
+	Then I take a screenshot
 
 	#move on NO
 	
 	When I set the radio button to "No"
 	And I press the "Continue" button
 	
-	#Then I take a screenshot
+	Then I take a screenshot
 	
 ##Check your answers
 	
@@ -376,24 +381,24 @@ Scenario Outline: English 1st Party Straight Through
 	
 	And I press the "Submit" button
 
-	#Then I take a screenshot
+	Then I take a screenshot
 	
 	#move on
 	
 	And I check the "The information I have given is true to the best of my knowledge" checkbox
 	And I press the "Submit" button
 
-	#Then I take a screenshot
+	Then I take a screenshot
 	
 ##HTML
 
 	And I click on the "Download a copy of your summons reply HTML" link
 	
-	#Then I take a screenshot
+	Then I take a screenshot
 
 Examples:
-	|part_no	|last_name			|postcode	|email 		|pool_no	|
-	|645200349	|LNAMETHREEFOURNINE	|SY2 6LU	|a@eeee.com	|452170401	|
+	|juror_number |last_name			|postcode	|email 		|pool_no	|
+	|645200349	  |LNAMETHREEFOURNINE	|SY2 6LU	|a@eeee.com	|452170401	|
 	
 
 Scenario Outline: English 3rd Party Straight Through
