@@ -59,7 +59,7 @@ dependencies {
 
   testImplementation 'io.cucumber:cucumber-picocontainer:7.20.1'
 
-  implementation 'io.cucumber:cucumber-junit:7.20.1'
+  implementation 'io.cucumber:cucumber-junit:7.34.3'
 
   testImplementation 'io.cucumber:cucumber-jvm-deps:1.0.6'
 
@@ -91,7 +91,7 @@ dependencies {
   testImplementation 'io.cucumber:cucumber-core:7.20.1'
   testImplementation 'io.cucumber:cucumber-java:7.20.1'
   testImplementation 'io.cucumber:cucumber-jvm-deps:1.0.6'
-  testImplementation 'io.cucumber:cucumber-junit:7.20.1'
+  testImplementation 'io.cucumber:cucumber-junit:7.34.3'
 
   testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.11.4'
   testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.11.4'
