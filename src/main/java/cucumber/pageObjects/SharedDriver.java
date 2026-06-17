@@ -11,12 +11,9 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.ie.InternetExplorerOptions;
-import org.openqa.selenium.phantomjs.PhantomJSDriver;
-import org.openqa.selenium.phantomjs.PhantomJSDriverService;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.events.EventFiringDecorator;
 
-import java.util.concurrent.TimeUnit;
+import java.time.Duration;
 
 public class SharedDriver extends EventFiringDecorator<WebDriver>
     implements WebDriveDecorator {
@@ -66,20 +63,17 @@ public class SharedDriver extends EventFiringDecorator<WebDriver>
                 options.addArguments("--remote-allow-origins=*");
                 REAL_DRIVER = new EdgeDriver(options);
             }
-        } else if (usingDriver.toLowerCase().equals("phantomjs")) {
-            DesiredCapabilities DesireCaps = new DesiredCapabilities();
-            DesireCaps.setCapability(PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY,
-                "src/test/resources/phantomjs.exe");
-            REAL_DRIVER = new PhantomJSDriver(DesireCaps);
+        } else if (usingDriver.equalsIgnoreCase("phantomjs")) {
+            throw new IllegalArgumentException("PhantomJS is no longer supported; use chrome with headlessChrome=true.");
         } else if (usingDriver.equalsIgnoreCase("firefox")) {
-            System.setProperty("webdriver.gecko.driver", "src/test/resources/geckodriver.exe");
-            FirefoxOptions options = new FirefoxOptions();
-            options.addArguments("--headless");
+            System.setProperty("webdriver.gecko.driver", "src/test/resources/drivers/geckodriver");
+    //        FirefoxOptions options = new FirefoxOptions();
+  //          options.addArguments("--headless");
             try {
-                REAL_DRIVER = new FirefoxDriver(options);
+     //           REAL_DRIVER = new FirefoxDriver(options);
             } catch (Exception e) { // intended settings for running in jenkins
-                System.setProperty("webdriver.gecko.driver", "/usr/bin/geckodriver");
-                REAL_DRIVER = new FirefoxDriver(options);
+    //            System.setProperty("webdriver.gecko.driver", "src/test/resources/drivers/geckodriver");
+         //       REAL_DRIVER = new FirefoxDriver(options);
             }
         } else { // Assuming Chrome
             // These settings are intended for Windows machines
@@ -107,7 +101,7 @@ public class SharedDriver extends EventFiringDecorator<WebDriver>
                     REAL_DRIVER = new ChromeDriver(options);
                 } catch (Exception f) { // intended settings for running in jenkins
                     System.setProperty("webdriver.chrome.driver",
-                        "src/test/resources/drivers/chromedriver-linux64/chromedriver");
+                            "src/test/resources/drivers/chromedriver-linux64/chromedriver");
                     options.addArguments("--headless");
                     options.addArguments("--window-size=1920,1080");
                     options.addArguments("--disable-dev-shm-usage");
@@ -117,7 +111,7 @@ public class SharedDriver extends EventFiringDecorator<WebDriver>
             }
         }
 
-        REAL_DRIVER.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+        REAL_DRIVER.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
         REAL_DRIVER.manage().deleteAllCookies();
 
         // REAL_DRIVER.manage().window().setSize(new Dimension(1024,728));
