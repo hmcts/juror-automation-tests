@@ -13,7 +13,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.concurrent.TimeUnit;
 
 public class WaitUtils {
 	private WebDriver driver;
@@ -107,7 +106,7 @@ public class WaitUtils {
 	
 	public void activateImplicitWait (Integer seconds) {
 		log.info("Activated Implicit wait for =>"+seconds+"<= seconds");
-		driver.manage().timeouts().implicitlyWait(seconds, TimeUnit.SECONDS); // Activate implicitlyWait()														
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(seconds)); // Activate implicitlyWait()
 	}
 
 	public void activateExplicitWait() {
@@ -123,7 +122,7 @@ public class WaitUtils {
 
 	public void deactivateImplicitWait() {
 		
-		driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS); // nullify implicitlyWait()	
+		driver.manage().timeouts().implicitlyWait(Duration.ZERO); // nullify implicitlyWait()
 		log.info("Deactivate Implicit wait");
 	}
 	
