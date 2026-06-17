@@ -46,7 +46,6 @@ jacoco {
 }
 
 ext {
-  cxfVersion = '3.6.11'
   cucumberVersion = '7.34.3'
   courgetteVersion = '6.21.0'
   jacksonAnnotationsVersion = '2.22'
@@ -62,6 +61,7 @@ configurations.configureEach {
   exclude group: 'com.codeborne', module: 'phantomjsdriver'
   exclude group: 'log4j', module: 'log4j'
   exclude group: 'net.sf.opencsv', module: 'opencsv'
+  exclude group: 'org.apache.cxf'
   exclude group: 'org.codehaus.woodstox', module: 'woodstox-core-asl'
   exclude group: 'org.slf4j', module: 'slf4j-log4j12'
   exclude group: 'org.slf4j', module: 'slf4j-reload4j'
@@ -86,10 +86,6 @@ configurations.configureEach {
     if (details.requested.group == 'org.apache.commons' && details.requested.name == 'commons-lang3') {
       details.useVersion '3.20.0'
       details.because 'Resolve Commons Lang CVEs suppressed by OWASP Dependency-Check'
-    }
-    if (details.requested.group == 'org.apache.cxf') {
-      details.useVersion cxfVersion
-      details.because 'OpenCMIS 1.1.0 pulls vulnerable CXF 3.0.x transitives'
     }
     if (details.requested.group == 'org.freemarker' && details.requested.name == 'freemarker') {
       details.useVersion '2.3.34'
@@ -141,7 +137,7 @@ dependencies {
   implementation group: 'org.apache.chemistry.opencmis', name: 'chemistry-opencmis-client-impl', version: '1.1.0'
   implementation group: 'com.fasterxml.woodstox', name: 'woodstox-core', version: '7.2.1'
 
-  implementation group: 'org.postgresql', name: 'postgresql', version: '42.7.10'
+  implementation group: 'org.postgresql', name: 'postgresql', version: '42.7.11'
 
   implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.20.0'
 
