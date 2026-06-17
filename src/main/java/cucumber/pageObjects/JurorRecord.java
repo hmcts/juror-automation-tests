@@ -243,6 +243,12 @@ public class JurorRecord {
     @FindBy(id = "addressChangeAnchor")
     WebElement changeAddress;
 
+    @FindBy(id = "useSummonsAddress-2")
+    WebElement useSummonsAddressSecondRadioButton;
+
+    @FindBy(id = "useSummonsAddress")
+    WebElement useSummonsAddressFirstRadioButton;
+
 
     public String getHeading() {
         return heading.getText();
@@ -286,6 +292,14 @@ public class JurorRecord {
     }
 
     public void clickChangeAddress() { changeAddress.click(); }
+
+    public void clickUseSummonsAddressSecondRadioButton() {
+        useSummonsAddressSecondRadioButton.click();
+    }
+
+    public void clickUseSummonsAddressFirstRadioButton() {
+        useSummonsAddressFirstRadioButton.click();
+    }
 
     public void clickCourtHome(String courtId) {
         driver.findElement(By.xpath("//a[contains(@href, '/auth/court/" + courtId + "')]")).click();
@@ -1035,4 +1049,3 @@ public class JurorRecord {
 
     }
 }
-
