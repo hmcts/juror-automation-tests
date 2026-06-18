@@ -391,11 +391,12 @@ Feature: 1)JM-5409,JM-5411 - As a Bureau/jury officer I need to resend a deferra
     When I check the "<juror_number>" checkbox
     And I press the "Print deferral refused letter" button
     And I focus page to the original tab
-    Then I see "/documents/deferral-refused/letters-list?documentSearchBy=jurorNumber&jurorNumber=041530033" in the URL
+#    Then I see "/documents/deferral-refused/letters-list?documentSearchBy=jurorNumber&jurorNumber=041530033" in the URL
+    Then I see "/documents/deferral-refused/letters-list?documentSearchBy=juror_number&jurorNumber=041530033" in the URL
 
     Examples:
       | juror_number | pool_number | user         | environment |
-      | 041530033    | 415300345   | MODTESTCOURT | ithc        |
+      | 041530033    | 415300345   | MODTESTCOURT | test        |
 
   @JurorTransformationMulti
   Scenario Outline:As a jury officer test a Deferred juror can resend a granted refused letter by searching via pool number

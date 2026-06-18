@@ -100,7 +100,7 @@ Feature: JM-4358
     And I press the "Reassign" button
     And I select one of the active pools available
     And I press the "Continue" button
-    Then I see "1 jurors reassigned to pool" on the page
+    Then I see "1 juror reassigned to pool" on the page
 
     #Reassign Responded juror
     When I navigate to the pool request screen
@@ -112,7 +112,7 @@ Feature: JM-4358
     And I press the "Reassign" button
     And I select one of the active pools available
     And I press the "Continue" button
-    Then I see "1 jurors reassigned to pool" on the page
+    Then I see "1 juror reassigned to pool" on the page
 
     Examples:
       |pool_no    | user          | environment |

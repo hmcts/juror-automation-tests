@@ -1,9 +1,9 @@
 Feature: JS-312 - As a court officer I want to be able to add non attendance days in bulk for certain jurors
 
-  @JurorTransformation
+  @JurorTransformation @Court
   Scenario Outline: Add non attendance day for juror via panel
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
@@ -69,8 +69,8 @@ Feature: JS-312 - As a court officer I want to be able to add non attendance day
     Then I see the date "12" weeks from now in the same row as "Non-attendance day"
 
     Examples:
-      |user			|juror_number  |  pool_number    | trial_number |
-      |MODTESTCOURT |041584531     |  415387215      | TRIALLLL112  |
+      |user			|juror_number  |  pool_number    | trial_number | environment |
+      |MODTESTCOURT |041584531     |  415387215      | TRIALLLL112  | ithc        |
 
 
 

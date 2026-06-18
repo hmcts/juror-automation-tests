@@ -1,9 +1,9 @@
 Feature: JS-934 - As a officer I want to be able to select what address to send a letter to if the juror has 1 on the juror record and the summons reply
 
-  @JurorTransformationMulti
+  @JurorTransformationMulti @Bureau
   Scenario Outline: Use address on juror record when refusing excusal request if addresses do not match
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "<environment>"
 
     When a bureau owned pool is created with jurors
       | court | juror_number  | pool_number     | att_date_weeks_in_future   | owner |
@@ -51,11 +51,9 @@ Feature: JS-934 - As a officer I want to be able to select what address to send 
     And I verify bulk print data detail_rec contains "25 CHANGED ADDRESS" for juror "<juror_number>"
     And I verify bulk print data detail_rec contains "LONDONNNNN" for juror "<juror_number>"
 
-
-
     Examples:
-      | juror_number  | pool_number | user          |
-      |  041599886    | 415980529   | MODTESTBUREAU |
+      | juror_number  | pool_number | user          | environment |
+      |  041599886    | 415980529   | MODTESTBUREAU | test        |
 
   @JurorTransformationMulti
   Scenario Outline: Use address on summons reply when refusing excusal request if addresses do not match

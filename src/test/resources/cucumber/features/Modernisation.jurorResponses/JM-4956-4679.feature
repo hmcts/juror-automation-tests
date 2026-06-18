@@ -300,10 +300,10 @@ Feature: JM-4956 - 4679
       |MODTESTCOURT |041520006     | 041520007       |041520008        | 415300211      | T202495831   |
 
 
-  @JurorTransformation
+  @JurorTransformation @Court
   Scenario Outline: JM-4679 -  Generate a panel and then empanel - Unhappy Path
 
-    Given I am on "Bureau" "demo"
+    Given I am on "Bureau" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
@@ -424,8 +424,8 @@ Feature: JM-4956 - 4679
     And I see "Responded" in the same row as "<juror_number_5>"
 
     Examples:
-      | user		 | juror_number  | juror_number_2  | juror_number_3   | juror_number_4   | juror_number_5   | pool_number    | trial_number |
-      | MODTESTCOURT | 041520009     | 041520010       | 041520011        | 041520022        | 041520023        | 415300214      | T202425891   |
+      | user		 | juror_number  | juror_number_2  | juror_number_3   | juror_number_4   | juror_number_5   | pool_number    | trial_number | environment |
+      | MODTESTCOURT | 041520009     | 041520010       | 041520011        | 041520022        | 041520023        | 415300214      | T202425891   | ithc        |
 
 
   @JurorTransformation
