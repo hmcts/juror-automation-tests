@@ -110,10 +110,10 @@ Feature: JM-3546 and JM-3466 Bureau User Marks Digital Response as Awaiting Info
       | juror_number| pool_number 	| last_name 		| postcode 	|
       | 041500153	| 415300252 	| lname	            | CH2 2AA	|
 
-  @JurorTransformationMulti
+  @JurorTransformationMulti @Bureau @DigitalResponse
   Scenario Outline: Bureau User Marks Digital Response as Awaiting Info - errors and warnings
 
-    Given I am on "Public" "test"
+    Given I am on "Public" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
@@ -125,7 +125,7 @@ Feature: JM-3546 and JM-3466 Bureau User Marks Digital Response as Awaiting Info
       |<juror_number>	|<pool_number>	|<last_name>	|<postcode>	|a@a.com|
 
     #log on
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "<environment>"
     And I log in as "MODTESTBUREAU"
 
     #search for response
@@ -153,5 +153,5 @@ Feature: JM-3546 and JM-3466 Bureau User Marks Digital Response as Awaiting Info
     Then I see Reply Method is "Digital"
 
     Examples:
-      | juror_number| pool_number 	| last_name 		| postcode 	|
-      | 041500154	| 415300253 	| lname             | CH2 2AA	|
+      | juror_number| pool_number 	| last_name 		| postcode 	| environment 	|
+      | 041500154	| 415300253 	| lname             | CH2 2AA	| test 	        |

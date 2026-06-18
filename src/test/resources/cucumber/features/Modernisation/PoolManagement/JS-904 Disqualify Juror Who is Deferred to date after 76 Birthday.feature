@@ -1,6 +1,6 @@
 Feature: JS-904 As an officer I want to be able to disqualify a juror that is too old when deferring
 
-  @JurorTransformationMulti @Court
+  @JurorTransformation @Court
   Scenario Outline: Court User disqualify a juror that is too old when deferring
 
     Given I am on "Bureau" "<environment>"
@@ -83,7 +83,7 @@ Feature: JS-904 As an officer I want to be able to disqualify a juror that is to
       | user         | juror_number_1 | pool_number | environment |
       | MODTESTCOURT | 041588771      | 415388672   | test        |
 
-  @JurorTransformationMulti @Court
+  @JurorTransformation @Court
   Scenario Outline: Court User disqualify a juror that is too old when deferring - no letter
 
     Given I am on "Bureau" "<environment>"
@@ -166,7 +166,7 @@ Feature: JS-904 As an officer I want to be able to disqualify a juror that is to
       | user         | juror_number_1 | pool_number | environment |
       | MODTESTCOURT | 041588777      | 415388674   | test        |
 
-  @JurorTransformationMulti @Bureau
+  @JurorTransformation @Bureau
   Scenario Outline: Bureau User disqualify a juror that is too old when deferring
 
     Given I am on "Bureau" "<environment>"
@@ -242,7 +242,7 @@ Feature: JS-904 As an officer I want to be able to disqualify a juror that is to
       | user          | juror_number_1 | pool_number | environment |
       | MODTESTBUREAU | 041588772      | 415388673   | test        |
 
-  @JurorTransformationMulti @Court
+  @JurorTransformation @Court
   Scenario Outline: Court User disqualify a juror that is too old when deferring from summons reply
 
     Given I am on "Bureau" "<environment>"
@@ -340,7 +340,7 @@ Feature: JS-904 As an officer I want to be able to disqualify a juror that is to
       | user         | juror_number_1 | pool_number | environment |
       | MODTESTCOURT | 041588780      | 415388678   | test        |
 
-  @JurorTransformationMulti @Court
+  @JurorTransformation @Court
   Scenario Outline: Court User disqualify a juror that is too old when deferring from summons reply - no letter
 
     Given I am on "Bureau" "<environment>"
@@ -410,7 +410,7 @@ Feature: JS-904 As an officer I want to be able to disqualify a juror that is to
       | user         | juror_number_1 | pool_number | environment |
       | MODTESTCOURT | 041588779      | 415388675   | test        |
 
-  @JurorTransformationMulti @Bureau
+  @JurorTransformation @Bureau
   Scenario Outline: Bureau User disqualify a juror that is too old when deferring from summons reply
 
     Given I am on "Bureau" "<environment>"
@@ -500,7 +500,7 @@ Feature: JS-904 As an officer I want to be able to disqualify a juror that is to
       | user          | juror_number_1 | pool_number | environment |
       | MODTESTBUREAU | 041588778      | 415388676   | test        |
 
-  @JurorTransformationMulti @Court
+  @JurorTransformation @Court
   Scenario Outline: Court User disqualify a juror that is too old when postponing
 
     Given I am on "Bureau" "<environment>"
@@ -583,7 +583,7 @@ Feature: JS-904 As an officer I want to be able to disqualify a juror that is to
       | user         | juror_number_1 | pool_number | environment |
       | MODTESTCOURT | 041588782      | 415388681   | test        |
 
-  @JurorTransformationMulti @Bureau
+  @JurorTransformation @Bureau
   Scenario Outline: Bureau User disqualify a juror that is too old when postponing
 
     Given I am on "Bureau" "<environment>"
@@ -607,7 +607,7 @@ Feature: JS-904 As an officer I want to be able to disqualify a juror that is to
     When I press the "Update juror record" button
     And I set the radio button to "Postpone service start date"
     And I press the "Continue" button
-    When I set the "Enter a new service start date" date to a Monday "40" weeks in the future
+    When I set the "Enter a new service start date" date to a Monday "50" weeks in the future
     And I press the "Continue" button
 
     Then I see "There are no active pools for this date" on the page
@@ -627,7 +627,7 @@ Feature: JS-904 As an officer I want to be able to disqualify a juror that is to
     When I press the "Update juror record" button
     And I set the radio button to "Postpone service start date"
     And I press the "Continue" button
-    When I set the "Enter a new service start date" date to a Monday "40" weeks in the future
+    When I set the "Enter a new service start date" date to a Monday "50" weeks in the future
     And I press the "Continue" button
 
     Then I see "There are no active pools for this date" on the page
@@ -658,7 +658,7 @@ Feature: JS-904 As an officer I want to be able to disqualify a juror that is to
       | user          | juror_number_1 | pool_number | environment |
       | MODTESTBUREAU | 041588781      | 415388680   | test        |
 
-  @JurorTransformationMulti @Bureau
+  @JurorTransformation @Bureau
   Scenario Outline: Bureau User disqualify a juror that is too old when bulk postponing from deferral maintenance
 
     Given I am on "Bureau" "<environment>"

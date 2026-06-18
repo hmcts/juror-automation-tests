@@ -238,25 +238,23 @@ Feature: As a jury officer I need to send a reminder to attend message to jurors
       |MODTESTCOURT | 041529996    | 415980999   |
 
 
-  @JurorTransformationMulti @NewSchemaConverted @Messages
+  @JurorTransformationMulti @Court @Messages
   Scenario Outline: Send reminder to attend message for Juror in Trial
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
-      | 415   |<juror_number>    | <pool_number>     | 5				            | 400	|
+      | 415   |<juror_number>    | <pool_number>    | 5				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
       |part_no               | pool_no          | owner |
       |<juror_number>        | <pool_number>    | 415   |
 
-
     And I Confirm all the data in the record attendance table is cleared
     And a new trial is inserted with the trial number "<trial_number>"
     And I update juror "<juror_number>" to be able to send a message to them
     And I update juror "<juror_number>" to have a status of responded in order to record attendance
-
 
     #log on and search for juror
     And I log in as "<user>"
@@ -335,14 +333,14 @@ Feature: As a jury officer I need to send a reminder to attend message to jurors
     And I see the juror "<juror_number>" has a message in the database
 
     Examples:
-      |user			| juror_number | pool_number |trial_number       |
-      |MODTESTCOURT | 041529995    | 415980999   |T202419999997      |
+      |user			| juror_number | pool_number |trial_number       | environment |
+      |MODTESTCOURT | 041529995    | 415980999   |T202419999997      | ithc        |
 
 
-  @JurorTransformationMulti @NewSchemaConverted @Messages
+  @JurorTransformationMulti @Court @Messages
   Scenario Outline: Send reminder to attend message for Juror - Next start date
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number      | pool_number	     | att_date_weeks_in_future	| owner |
@@ -353,7 +351,6 @@ Feature: As a jury officer I need to send a reminder to attend message to jurors
       |<juror_number>        | <pool_number>    | 415   |
 
     And I update juror "<juror_number>" to be able to send a message to them
-
 
     #log on and search for juror
     And I log in as "<user>"
@@ -392,10 +389,9 @@ Feature: As a jury officer I need to send a reminder to attend message to jurors
     And I see the message sent banner containing "Message will be sent to 1 jurors"
     And I see the juror "<juror_number>" has a message in the database
 
-
     Examples:
-      |user			| juror_number | pool_number |
-      |MODTESTCOURT | 041529994    | 415980999   |
+      |user			| juror_number | pool_number | environment |
+      |MODTESTCOURT | 041529994    | 415980999   | ithc        |
 
 
   @JurorTransformationMulti @NewSchemaConverted @Messages

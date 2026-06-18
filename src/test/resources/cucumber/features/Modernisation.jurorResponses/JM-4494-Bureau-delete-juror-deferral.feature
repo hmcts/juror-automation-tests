@@ -96,10 +96,10 @@ Feature: JM-4494 Bureau Delete Juror Deferral
       | juror_number| pool_number | environment |
       | 041500063   | 415300153	  | test        |
 
-  @JurorTransformationMulti
+  @JurorTransformationMulti @Bureau
   Scenario Outline: Deferral sent to pool not valid for Delete Juror deferral
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
@@ -136,10 +136,11 @@ Feature: JM-4494 Bureau Delete Juror Deferral
     And I verify summons reply banner processed by user "MODTESTBUREAU" and status "Responded"
 
     Then the user searches for juror record "<juror_number>" from the global search bar
+    And I see "<juror_number>" on the page
     And I see the juror status on the juror record screen is "Responded"
     And I see the number of deferrals is "1"
     And I do not see "In deferral maintenance" on the page
 
     Examples:
-      | juror_number| pool_number |
-      | 041500061   | 415300151	  |
+      | juror_number| pool_number | environment |
+      | 041500061   | 415300151	  | test        |

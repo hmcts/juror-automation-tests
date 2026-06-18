@@ -1,9 +1,9 @@
 Feature: JM-7840 - As a jury officer I want to be able to confirm the attendance for jurors on a trial
 
-  @JurorTransformationMulti
+  @JurorTransformationMulti @Court
   Scenario Outline: Confirm Attendance for Jurors on a trial - Happy Path - Satellite Court
 
-    Given I am on "Bureau" "demo"
+    Given I am on "Bureau" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number   | pool_number	 | att_date_weeks_in_future	| owner |
@@ -26,7 +26,7 @@ Feature: JM-7840 - As a jury officer I want to be able to confirm the attendance
     And I press the "Continue" button
     And I see "Juror record updated: Reassigned to pool" on the page
 
-    Given I am on "Bureau" "demo"
+    Given I am on "Bureau" "<environment>"
 
     And I delete trials data
     And I Confirm all the data in the record attendance table is cleared
@@ -116,5 +116,5 @@ Feature: JM-7840 - As a jury officer I want to be able to confirm the attendance
     And I see "1 of 1" in the same row as "<trial_number>"
 
     Examples:
-      | user		 | juror_number  | pool_number   | trial_number     |
-      | MODTESTCOURT | 041564379     | 415314612     | TESTINGGGGGGGG   |
+      | user		 | juror_number  | pool_number   | trial_number     | environment |
+      | MODTESTCOURT | 041564379     | 415314612     | TESTINGGGGGGGG   | ithc        |

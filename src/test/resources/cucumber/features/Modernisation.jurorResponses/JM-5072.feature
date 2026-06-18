@@ -89,7 +89,7 @@ Feature: JM-5072 - Dismiss random jurors
 
 
   @JurorTransformationMulti @Court
-  Scenario Outline:   As a jury officer I want to dismiss random jurors - Unhappy Path
+  Scenario Outline: As a jury officer I want to dismiss random jurors - Unhappy Path
 
     Given I am on "Bureau" "<environment>"
 
