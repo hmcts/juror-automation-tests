@@ -1,9 +1,9 @@
 Feature: JM-2251 JM-3038
 
-  @JurorTransformationMulti
+  @JurorTransformationMulti @Bureau
   Scenario Outline: Test to view paper summons reply
 
-    Given I am on "Bureau" "demo"
+    Given I am on "Bureau" "<environment>"
 
     #reset data to summoned state
     Given a bureau owned pool is created with jurors
@@ -36,7 +36,7 @@ Feature: JM-2251 JM-3038
     Then I see the following summons reply details under the juror details tab
       | jurorName      | FNAMENINENINESIX <last_name>               |
       | jurorAddress   | address\nAddress Line Four\n<postcode>     |
-      | jurorDob       | 18 Jul 1976 (Juror will be 49 years old)   |
+      | jurorDob       | 18 Jul 1976 (Juror will be 50 years old)   |
       | jurorMainPhone | 07777777777                                |
       | jurorAltPhone  | 07777777711                                |
       | jurorEmail     | test@test.com                              |
@@ -67,14 +67,14 @@ Feature: JM-2251 JM-3038
     Then I see the signature status is "Yes"
 
     Examples:
-      |juror_number |pool_number  |last_name 	      |postcode |user          |
-      |045200028    |452300027 	  |LNAMENINENINESIX   |CH1 2AN	|MODTESTBUREAU |
+      |juror_number |pool_number  |last_name 	      |postcode |user          | environment  |
+      |045200028    |452300027 	  |LNAMENINENINESIX   |CH1 2AN	|MODTESTBUREAU | ithc         |
 
 
-  @JurorTransformationMulti
+  @JurorTransformationMulti @Bureau
   Scenario Outline: Test to view paper summons reply with name change
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number    | pool_number  | att_date_weeks_in_future| owner |
@@ -95,16 +95,16 @@ Feature: JM-2251 JM-3038
     And I record a paper summons response with reasonable adjustment of "C - Caring Responsibilities"
 
     Then I see the following summons reply details under the juror details tab
-      | jurorName      | Firstname Lastname                           |
-      | jurorAddress   | 570 STREET NAME\nAddress Line Four\n<postcode>  |
-      | jurorDob       | 18 Jul 1976 (Juror will be 49 years old)     |
-      | jurorMainPhone | 07777777777                                   |
-      | jurorAltPhone  | 07777777711                                   |
-      | jurorEmail     | test@test.com                                |
+      | jurorName      | Firstname Lastname                               |
+      | jurorAddress   | 570 STREET NAME\nAddress Line Four\n<postcode>   |
+      | jurorDob       | 18 Jul 1976 (Juror will be 50 years old)         |
+      | jurorMainPhone | 07777777777                                      |
+      | jurorAltPhone  | 07777777711                                      |
+      | jurorEmail     | test@test.com                                    |
 
     Examples:
-      |juror_number	|pool_number|postcode 	|user          |
-      |045200029    |452300028  |CH1 2AN	|MODTESTBUREAU |
+      |juror_number	|pool_number|postcode 	|user          | environment |
+      |045200029    |452300028  |CH1 2AN	|MODTESTBUREAU | ithc        |
 
   @JurorTransformationMulti
   Scenario Outline: Test to view paper summons reply with CJS and reasonable adjustments

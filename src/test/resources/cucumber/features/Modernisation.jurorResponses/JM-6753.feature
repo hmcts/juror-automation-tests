@@ -101,10 +101,10 @@ Feature: JM-6753 - As a jury officer I want to be able to confirm the attendance
       |MODTESTCOURT | 041583771     | 415362298    | TEST12TRIAL   |
 
 
-  @JurorTransformation
+  @JurorTransformation @Court
   Scenario Outline: Confirm Attendance for Jurors on a trial - Unhappy Path
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number  | pool_number	    | att_date_weeks_in_future	| owner |
@@ -208,8 +208,8 @@ Feature: JM-6753 - As a jury officer I want to be able to confirm the attendance
     And I see "1 of 1" in the same row as "<trial_number>"
 
     Examples:
-      |user			|juror_number    | pool_number    | trial_number  |
-      |MODTESTCOURT |041583772       | 415362294      | TEST11TRIAL   |
+      |user			|juror_number    | pool_number    | trial_number  | environment |
+      |MODTESTCOURT |041583772       | 415362294      | TEST11TRIAL   | ithc        |
 
 
   @JurorTransformation
