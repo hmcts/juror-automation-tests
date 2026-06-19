@@ -1,6 +1,6 @@
 Feature: JM-6259 - As a bureau officer I need to be able to send/resend a summons reminder letter
 
-  @JurorTransformation
+  @JurorTransformation @Bureau
   Scenario Outline: As a Bureau officer send/resend a summons reminder letter
 
     Given I am on "Bureau" "<environment>"
@@ -62,7 +62,7 @@ Feature: JM-6259 - As a bureau officer I need to be able to send/resend a summon
 
     Examples:
       |user			  | juror_number | pool_number  | environment |
-      |MODTESTBUREAU  | 041596235    | 415395409    | test        |
+      |MODTESTBUREAU  | 041596235    | 415395409    | ithc        |
 
 
   @JurorTransformation
