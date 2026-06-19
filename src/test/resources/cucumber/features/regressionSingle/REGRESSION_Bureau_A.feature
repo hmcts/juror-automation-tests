@@ -149,10 +149,10 @@ Scenario Outline: Lift from QC Script for Bureau A Functionality
 
 Examples:
 	| juror_number_one	| juror_number_two	| juror_number_three	| pool_number_one 	| pool_number_two	| pool_number_three	| last_name 		| postcode 	| environment	|
-	| 045200238			| 045200239			| 045200240				| 452300217 		| 452300218			| 452300219	        | LNAMEONEFIVEFOUR 	| CH1 2AN	| ithc          |
+	| 045200238			| 045200239			| 045200240				| 452300217 		| 452300218			| 452300219	        | LNAMEONEFIVEFOUR 	| CH1 2AN	| test          |
 	
 
-@RegressionSingle @Bureau
+@RegressionSingle @Bureau @DigitalResponse
 Scenario Outline: Bureau A script, steps 24 onwards
 
 	Given I am on "Public" "<environment>"

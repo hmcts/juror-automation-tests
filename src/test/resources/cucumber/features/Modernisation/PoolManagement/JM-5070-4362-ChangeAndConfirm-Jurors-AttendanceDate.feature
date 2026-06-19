@@ -203,10 +203,10 @@ Feature: JM-5070 As a jury officer I need to be able to change a jurors attendan
       | MODTESTCOURT | 041530015      | 041530016       | 041530017      | 415300301     |
 
 
-  @JurorTransformation
+  @JurorTransformation @Court
   Scenario Outline: create a new pool of jurors and verify attendance date for panel members
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     When a bureau owned pool is created with jurors
       | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
@@ -341,5 +341,5 @@ Feature: JM-5070 As a jury officer I need to be able to change a jurors attendan
     Then I see "1 of 1" in the same row as "TEST5070"
 
     Examples:
-      | user		  | juror_number_1 | juror_number_2  | juror_number_3 | pool_number   |
-      | MODTESTCOURT  | 041530015      | 041530016       | 041530019      | 415300301     |
+      | user		  | juror_number_1 | juror_number_2  | juror_number_3 | pool_number   | environment |
+      | MODTESTCOURT  | 041530015      | 041530016       | 041530019      | 415300301     | ithc        |

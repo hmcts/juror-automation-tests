@@ -216,6 +216,11 @@ public class StepDef_DatabaseNewSchema {
         }
     }
 
+    @And("^I clear down pool and jurors in pool \"([^\"]*)\" via the database$")
+    public void clearDownPoolandJurors(String poolNumber) throws SQLException {
+        DBTNSD.cleanTestDataPoolAndJurorsNSD(poolNumber);
+    }
+
     @And("^I record an excusal request paper summons response for juror \"([^\"]*)\" via the database$")
     public void recordExcusalRequestPaperSummonsResponseViaDatabase(String jurorNumber) throws SQLException {
         DBTNSD.insertExcusalRequestPaperSummonsReplyNSD(jurorNumber);
