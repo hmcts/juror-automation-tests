@@ -11,7 +11,7 @@ import org.junit.runner.RunWith;
 @RunWith(Courgette.class)
 @CourgetteOptions(
 		reportTargetDir = "target/TestRunner_JurorTransformationMulti",
-		threads = 6,
+		threads = 3,
 		runLevel = CourgetteRunLevel.SCENARIO,
 		rerunFailedScenarios = true,
 		testOutput = CourgetteTestOutput.CONSOLE,
