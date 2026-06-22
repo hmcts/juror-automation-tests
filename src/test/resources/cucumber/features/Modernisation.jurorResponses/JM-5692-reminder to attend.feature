@@ -66,10 +66,10 @@ Feature: As a jury officer I need to send a reminder to attend message to jurors
 
 
 
-  @JurorTransformationMulti @NewSchemaConverted @Messages
+  @JurorTransformationMulti @Court @Messages
   Scenario Outline: Send reminder to attend message for Juror
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
@@ -80,7 +80,6 @@ Feature: As a jury officer I need to send a reminder to attend message to jurors
       |<juror_number>        | <pool_number>    | 415   |
 
     And I update juror "<juror_number>" to be able to send a message to them
-
 
     #log on and search for juror
     And I log in as "<user>"
@@ -118,8 +117,8 @@ Feature: As a jury officer I need to send a reminder to attend message to jurors
     And I see the juror "<juror_number>" has a message in the database
 
     Examples:
-      |user			| juror_number | pool_number |
-      |MODTESTCOURT | 041529998    | 415980999   |
+      |user			| juror_number | pool_number | environment |
+      |MODTESTCOURT | 041529998    | 415980999   | ithc        |
 
 
   @JurorTransformationMulti @NewSchemaConverted @Messages

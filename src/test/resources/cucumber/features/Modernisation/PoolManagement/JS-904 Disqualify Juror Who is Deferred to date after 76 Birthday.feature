@@ -79,6 +79,8 @@ Feature: JS-904 As an officer I want to be able to disqualify a juror that is to
     Then I see "Juror disqualification" on the page
     And I see "Disqualified code - A" on the page
 
+    Then I clear down pool and jurors in pool "<pool_number>" via the database
+
     Examples:
       | user         | juror_number_1 | pool_number | environment |
       | MODTESTCOURT | 041588771      | 415388672   | test        |
@@ -162,6 +164,8 @@ Feature: JS-904 As an officer I want to be able to disqualify a juror that is to
     Then I see "Juror disqualification" on the page
     And I see "Disqualified code - A" on the page
 
+    Then I clear down pool and jurors in pool "<pool_number>" via the database
+
     Examples:
       | user         | juror_number_1 | pool_number | environment |
       | MODTESTCOURT | 041588777      | 415388674   | test        |
@@ -237,6 +241,8 @@ Feature: JS-904 As an officer I want to be able to disqualify a juror that is to
     When I click on the "History" link
     Then I see "Juror disqualification" on the page
     And I see "Disqualified code - A" on the page
+
+    Then I clear down pool and jurors in pool "<pool_number>" via the database
 
     Examples:
       | user          | juror_number_1 | pool_number | environment |
@@ -336,6 +342,8 @@ Feature: JS-904 As an officer I want to be able to disqualify a juror that is to
     Then I see "Juror disqualification" on the page
     And I see "Disqualified code - A" on the page
 
+    Then I clear down pool and jurors in pool "<pool_number>" via the database
+
     Examples:
       | user         | juror_number_1 | pool_number | environment |
       | MODTESTCOURT | 041588780      | 415388678   | test        |
@@ -405,6 +413,8 @@ Feature: JS-904 As an officer I want to be able to disqualify a juror that is to
     When I click on the "History" link
     Then I see "Juror disqualification" on the page
     And I see "Disqualified code - A" on the page
+
+    Then I clear down pool and jurors in pool "<pool_number>" via the database
 
     Examples:
       | user         | juror_number_1 | pool_number | environment |
@@ -496,6 +506,8 @@ Feature: JS-904 As an officer I want to be able to disqualify a juror that is to
     Then I see "Juror disqualification" on the page
     And I see "Disqualified code - A" on the page
 
+    Then I clear down pool and jurors in pool "<pool_number>" via the database
+
     Examples:
       | user          | juror_number_1 | pool_number | environment |
       | MODTESTBUREAU | 041588778      | 415388676   | test        |
@@ -579,6 +591,8 @@ Feature: JS-904 As an officer I want to be able to disqualify a juror that is to
     Then I see "Juror disqualification" on the page
     And I see "Disqualified code - A" on the page
 
+    Then I clear down pool and jurors in pool "<pool_number>" via the database
+
     Examples:
       | user         | juror_number_1 | pool_number | environment |
       | MODTESTCOURT | 041588782      | 415388681   | test        |
@@ -653,6 +667,8 @@ Feature: JS-904 As an officer I want to be able to disqualify a juror that is to
     When I click on the "History" link
     Then I see "Juror disqualification" on the page
     And I see "Disqualified code - A" on the page
+
+    Then I clear down pool and jurors in pool "<pool_number>" via the database
 
     Examples:
       | user          | juror_number_1 | pool_number | environment |
@@ -746,6 +762,8 @@ Feature: JS-904 As an officer I want to be able to disqualify a juror that is to
     When I click on the "History" link
     Then I see "Juror disqualification" on the page
     And I see "Disqualified code - A" on the page
+
+    Then I clear down pool and jurors in pool "<pool_number>" via the database
 
     Examples:
       | user          | juror_number_1 | pool_number | environment |

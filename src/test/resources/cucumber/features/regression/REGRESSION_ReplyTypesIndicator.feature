@@ -2,7 +2,7 @@ Feature: Regression English_ReplyTypesIndicator
 
 #this test contains scenarios that test the reply types indicator which do not already exist in other scripts
 
-  @Regression
+  @Regression @Bureau @DigitalResponse
   Scenario Outline: English 1st Party + Juror Details Change
 
     Given I am on "Public" "<environment>"
@@ -764,7 +764,7 @@ Feature: Regression English_ReplyTypesIndicator
       | juror_number | last_name         | postcode | email             | pool_number | environment |
       | 045200141    | LNAMESEVENTWOZERO | SY2 6LU  | email@outlook.com | 452300140   | test        |
 
-  @Regression
+  @Regression @Bureau @DigitalResponse
   Scenario Outline: English 3rd Party + Bail
 
     Given I am on "Public" "<environment>"
