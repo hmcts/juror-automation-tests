@@ -6,8 +6,12 @@ Feature: JS-542
     Given I am on "Bureau" "<environment>"
 
     Given paper responses are deleted new schema
+
+    Given a bureau owned pool is created with jurors
+      | court | juror_number  	  | pool_number	    | att_date_weeks_in_future	    | owner |
+      | 416   | <juror_number>    | <pool_number>   | 5			                    | 400	|
     
-    And a digital summons reply has been entered for the summoned juror "564138536" new schema
+    And a digital summons reply has been entered for the summoned juror "<juror_number>" new schema
 
     When I log in as "MODTESTBUREAU"
     And I click on the "Apps" link
@@ -41,5 +45,5 @@ Feature: JS-542
     And I do not see link with text "Digital summons received report"
 
     Examples:
-      | environment |
-      | test        |
+      | environment | juror_number  | pool_number    |
+      | demo        | 564138536     | 416387217      |

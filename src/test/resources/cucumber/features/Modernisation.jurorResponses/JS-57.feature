@@ -1,9 +1,9 @@
 Feature: JS-57
 
-  @JurorTransformationMulti @Messages
+  @JurorTransformationMulti @Messages @Bureau
   Scenario Outline: Check juror number can contain special charcters
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
@@ -65,5 +65,5 @@ Feature: JS-57
     And I see "Juror details" on the page
 
     Examples:
-      |user			  | juror_number | pool_number |
-      |MODTESTBUREAU  | 041531675    | 415981923   |
+      |user			  | juror_number | pool_number | environment |
+      |MODTESTBUREAU  | 041531675    | 415981923   | test        |
