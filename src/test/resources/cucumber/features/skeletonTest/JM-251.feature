@@ -1,9 +1,9 @@
 Feature: JM-251
 
-	@JurorTransformationMulti
+	@JurorTransformationMulti @Bureau
 	Scenario Outline: Test to create a new pool of jurors to be summoned for jury duty as a bureau officer
 
-	Given I am on "Bureau" "demo"
+	Given I am on "Bureau" "<environment>"
 
 	Given a bureau owned pool is created with jurors
 		| court 	| juror_number  	| pool_number	| att_date_weeks_in_future	| owner |
@@ -74,8 +74,8 @@ Feature: JM-251
 		|surplus	  |0	|
 
 	Examples:
-		| user			| poolType | court | juror_number 	| pool_number  	|
-		| MODTESTBUREAU	| Crown    | 415   | 041500014 		| 415300112		|
+		| user			| poolType | court | juror_number 	| pool_number  	| environment |
+		| MODTESTBUREAU	| Crown    | 415   | 041500014 		| 415300112		| test        |
 
 	@JurorTransformationMulti @NewSchemaConverted
 	Scenario Outline: Test to create a new pool of jurors to be summoned for jury duty as a court officer

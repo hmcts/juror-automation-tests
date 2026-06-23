@@ -106,11 +106,13 @@ Feature: JM-3987 Monitor Pools Progress
     And I see "There is a problem" on the page
     And I see "Enter the name or location code for a court" on the page
 
-  @JurorTransformation
+  @JurorTransformation @Bureau
   Scenario Outline: Test for correct values on table
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
+
     Given new pool requests are deleted new schema
+
     And I clear summoned jurors from pool "<pool_number>"
 
     Given a bureau owned pool is created with jurors
@@ -147,13 +149,14 @@ Feature: JM-3987 Monitor Pools Progress
       | balance     |-20  |
 
     Examples:
-      |user			  | pool_number    | juror_number |
-      |MODTESTBUREAU  | 415367341      | 041582941    |
+      |user			  | pool_number    | juror_number | environment |
+      |MODTESTBUREAU  | 415367341      | 041582941    | demo        |
 
-  @JurorTransformation
+  @JurorTransformation @Bureau
   Scenario Outline: Test to show all 8 weeks are populated when an active pool exist for that week
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
+
     Given new pool requests are deleted new schema
 
     Given a bureau owned pool is created with jurors
@@ -191,5 +194,5 @@ Feature: JM-3987 Monitor Pools Progress
     And I see "<pool_number1>" on the page
 
     Examples:
-      | user          | pool_number1 | pool_number2 | pool_number3 | pool_number4 | pool_number5 | pool_number6 | pool_number7 | pool_number8 | juror_number1 | juror_number2 | juror_number3 | juror_number4 | juror_number5 | juror_number6 | juror_number7 | juror_number8 |
-      | MODTESTBUREAU | 415377224    | 415377225    | 415377226    | 415377227    | 415377228    | 415377229    | 415377231    | 415377232    | 041582861     | 041582862     | 041582863     | 041582864     | 041582865     | 041582866     | 041582867     | 041582868     |
+      | environment | user          | pool_number1 | pool_number2 | pool_number3 | pool_number4 | pool_number5 | pool_number6 | pool_number7 | pool_number8 | juror_number1 | juror_number2 | juror_number3 | juror_number4 | juror_number5 | juror_number6 | juror_number7 | juror_number8 |
+      | demo        | MODTESTBUREAU | 415377224    | 415377225    | 415377226    | 415377227    | 415377228    | 415377229    | 415377231    | 415377232    | 041582861     | 041582862     | 041582863     | 041582864     | 041582865     | 041582866     | 041582867     | 041582868     |

@@ -251,10 +251,10 @@ Feature: JM-4222
       | juror_number  | pool_number | user          |
       | 045200024     | 452300022   | MODTESTBUREAU |
 
-  @JurorTransformation
+  @JurorTransformation @Court
   Scenario Outline: As a Jury officer when I reassign a juror the optic reference should be copied over to the new record
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     And I log in as "<user>"
 
@@ -303,7 +303,7 @@ Feature: JM-4222
     And I press the "Reassign" button
     And I select one of the active pools available
     And I press the "Continue" button
-    And I see "1 jurors reassigned to pool" on the page
+    And I see "1 juror reassigned to pool" on the page
     And I check optic reference in the database for juror "<juror_number>" is "12345678" new schema
 
     When the user searches for juror record "<juror_number>" from the global search bar
@@ -319,8 +319,8 @@ Feature: JM-4222
     And I see "Reasonable adjustments reasons" on the page
 
     Examples:
-      | user         | juror_number  | pool_number | juror_number_1| pool_number_1|
-      | MODTESTCOURT | 041500049     | 415300139   | 041500050     | 415300140    |
+      | user         | juror_number  | pool_number | juror_number_1| pool_number_1| environment |
+      | MODTESTCOURT | 041500049     | 415300139   | 041500050     | 415300140    | demo        |
 
   @JurorTransformation
   Scenario Outline: As a jury officer officer when I transfer a juror the optic reference should be copied over to the new record
