@@ -1,9 +1,9 @@
 Feature: JM-5592-5594 - Resend withdrawal letter for Bureau and Jury users
 
-  @JurorTransformationMulti
+  @JurorTransformationMulti @Bureau
   Scenario Outline: Resend Withdrawal letter as a bureau officer
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     When a bureau owned pool is created with jurors
       | court | juror_number  | pool_number   | att_date_weeks_in_future   | owner |
@@ -48,8 +48,8 @@ Feature: JM-5592-5594 - Resend withdrawal letter for Bureau and Jury users
     And I see "1 document sent for printing" on the page
 
     Examples:
-      | juror_number  | pool_number | user          |
-      |  041549591    | 415999185   | MODTESTBUREAU |
+      | juror_number  | pool_number | user          | environment |
+      |  041549591    | 415999185   | MODTESTBUREAU | ithc        |
 
   @JurorTransformationMulti
   Scenario Outline: Delete a Withdrawal letter which is still pending as a bureau officer

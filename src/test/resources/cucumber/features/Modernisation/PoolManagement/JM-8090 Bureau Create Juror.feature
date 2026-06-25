@@ -1,12 +1,12 @@
 Feature: Bureau Create Juror Record
 
-  @JurorTransformationMulti @Bureau
+  @JurorTransformation @Bureau
   Scenario: Bureau Team Lead switch off create juror permissions
 
   Given I am on "Bureau" "test"
 
   #disable permissions
-#  Given I "disable" CREATE_JUROR permission for bureau user "MODTESTBUREAU"
+  Given I "disable" CREATE_JUROR permission for bureau user "MODTESTBUREAU"
 
   And I log in as "MODTESTBUREAU"
 
@@ -17,7 +17,7 @@ Feature: Bureau Create Juror Record
   And I do not see "Create juror record" on the page
 
   #enable permissions
-#  Given I "enable" CREATE_JUROR permission for bureau user "MODTESTBUREAU"
+  Given I "enable" CREATE_JUROR permission for bureau user "MODTESTBUREAU"
 
   @JurorTransformation
   Scenario: Bureau standard user with create juror permissions cannot access create juror button
@@ -25,7 +25,7 @@ Feature: Bureau Create Juror Record
     Given I am on "Bureau" "test"
 
     #enable permissions
-#    Given I "enable" CREATE_JUROR permission for bureau user "ARAMIS1"
+    Given I "enable" CREATE_JUROR permission for bureau user "ARAMIS1"
 
     And I log in as "ARAMIS1"
 
@@ -36,9 +36,9 @@ Feature: Bureau Create Juror Record
     And I do not see "Create juror record" on the page
 
     #disable permissions
-#    Given I "disable" CREATE_JUROR permission for bureau user "ARAMIS1"
+    Given I "disable" CREATE_JUROR permission for bureau user "ARAMIS1"
 
-  @JurorTransformationMulti @Bureau
+  @JurorTransformation @Bureau
   Scenario: Bureau Create Juror Record with a DOB - validation checks
 
     Given I am on "Bureau" "test"
@@ -153,13 +153,13 @@ Feature: Bureau Create Juror Record
     And I see pool summoned total count is "2"
     And I see "Summoned" in the same row as "Stark"
 
-  @JurorTransformationMulti @Bureau
+  @JurorTransformation @Bureau
   Scenario Outline: Bureau Create Juror Record - validation checks
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     #enable permissions
-#    Given I "enable" CREATE_JUROR permission for bureau user "MODTESTBUREAU"
+    Given I "enable" CREATE_JUROR permission for bureau user "MODTESTBUREAU"
 
     And I log in as "MODTESTBUREAU"
 
@@ -330,13 +330,13 @@ Feature: Bureau Create Juror Record
     | J'ohn-James | D'oe-Smith  | e@mail.com  | 07777777777   | 01211111111 | CH1 2NN   | 5 Testing Street  | Line 2  | Line 3  | London  | County  | Note testing  |
 
 
-  @JurorTransformationMulti @Bureau
+  @JurorTransformation @Bureau
   Scenario: Create juror button not available on POOL REQUESTS
 
     Given I am on "Bureau" "test"
 
     #enable permissions
-#    Given I "enable" CREATE_JUROR permission for bureau user "MODTESTBUREAU"
+    Given I "enable" CREATE_JUROR permission for bureau user "MODTESTBUREAU"
 
     And I log in as "MODTESTBUREAU"
 
@@ -352,13 +352,13 @@ Feature: Bureau Create Juror Record
 
     And I do not see "Create juror record" on the page
 
-  @JurorTransformationMulti @Bureau
+  @JurorTransformation @Bureau
   Scenario Outline: Bureau Create Juror Record age validation - too old
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     #enable permissions
-#    Given I "enable" CREATE_JUROR permission for bureau user "<user>"
+    Given I "enable" CREATE_JUROR permission for bureau user "<user>"
 
     And I log in as "<user>"
 
@@ -412,13 +412,13 @@ Feature: Bureau Create Juror Record
       |user			 |
       |MODTESTBUREAU |
 
-  @JurorTransformationMulti @Bureau
+  @JurorTransformation @Bureau
   Scenario Outline: Bureau Create Juror Record age validation - too young
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     #enable permissions
-#    Given I "enable" CREATE_JUROR permission for bureau user "<user>"
+    Given I "enable" CREATE_JUROR permission for bureau user "<user>"
 
     And I log in as "<user>"
 
@@ -473,13 +473,13 @@ Feature: Bureau Create Juror Record
       |MODTESTBUREAU |
 
 
-  @JurorTransformationMulti @Bureau
+  @JurorTransformation @Bureau
   Scenario Outline: Bureau Create Juror Record for juror outside of any court catchment area
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     #enable permissions
-#    Given I "enable" CREATE_JUROR permission for bureau user "<user>"
+    Given I "enable" CREATE_JUROR permission for bureau user "<user>"
 
     And I log in as "<user>"
 
@@ -558,13 +558,13 @@ Feature: Bureau Create Juror Record
       |MODTESTBUREAU |
 
 
-  @JurorTransformationMulti @Bureau
+  @JurorTransformation @Bureau
   Scenario Outline: Bureau Create Juror Record - Satellite Court
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     #enable permissions
-#    Given I "enable" CREATE_JUROR permission for bureau user "<user>"
+    Given I "enable" CREATE_JUROR permission for bureau user "<user>"
 
     And I log in as "<user>"
 
