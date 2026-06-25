@@ -197,10 +197,10 @@ Feature: As a jury officer I need to send a contact the court message
       |MODTESTCOURT | 041529917    | 415980991   |
 
 
-  @JurorTransformationMulti
+  @JurorTransformationMulti @Court
   Scenario Outline: Send contact the court message for Juror in Trial
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
@@ -281,8 +281,8 @@ Feature: As a jury officer I need to send a contact the court message
     And I see the juror "<juror_number>" has a message in the database
 
     Examples:
-      | user		 | juror_number | pool_number | trial_number       |
-      | MODTESTCOURT | 041529916    | 415980991   | T202419999989      |
+      | user		 | juror_number | pool_number | trial_number       | environment |
+      | MODTESTCOURT | 041529916    | 415980991   | T202419999989      | ithc        |
 
 
   @JurorTransformationMulti @Messages

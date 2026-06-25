@@ -238,10 +238,10 @@ Feature: JM-666
       | juror_number	| pool_number	| no_weeks|
       | 041500073       | 415300163	    | 10      |
 
-  @JurorTransformationMulti
+  @JurorTransformationMulti @Court
   Scenario Outline: Test to search for pool by pool number with non matching pool stage
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
@@ -261,8 +261,8 @@ Feature: JM-666
     Then I see "There are no matching results" on the page
 
     Examples:
-      | juror_number  | pool_number	|no_weeks|
-      | 041500074     | 415300164	|10      |
+      | juror_number  | pool_number	| no_weeks | environment |
+      | 041500074     | 415300164	| 10       | ithc        |
 
   @JurorTransformationMulti
   Scenario Outline: Test to search for pool by pool number with non matching pool type

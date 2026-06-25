@@ -1,9 +1,9 @@
 Feature: JM-5070 As a jury officer I need to be able to change a jurors attendance date - 4362 As a Jury officer I need to be able to confirm a jurors attendance
 
-  @JurorTransformationMulti
+  @JurorTransformationMulti @Court
   Scenario Outline: Happy Path Test to create a new pool of jurors and change a jurors attendance date
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     When a bureau owned pool is created with jurors
       | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
@@ -42,8 +42,8 @@ Feature: JM-5070 As a jury officer I need to be able to change a jurors attendan
     And I see "3 jurors next due at court on" on the page
 
     Examples:
-      | user         | juror_number_1 | juror_number_2 | juror_number_3    | pool_number   |
-      | MODTESTCOURT  |041566732      | 041566733      | 041566734         | 415835633     |
+      | user         | juror_number_1 | juror_number_2 | juror_number_3    | pool_number   | environment |
+      | MODTESTCOURT  |041566732      | 041566733      | 041566734         | 415835633     | ithc        |
 
 
   @JurorTransformation

@@ -1,9 +1,9 @@
 Feature: Regression English_1st_Excusal
 
-  @Regression
+  @Regression @Bureau @DigitalResponse
   Scenario Outline: English 1st Party Excusal Accepted
 
-    Given I am on "Public" "ithc"
+    Given I am on "Public" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
@@ -124,7 +124,7 @@ Feature: Regression English_1st_Excusal
     Then I click on the "Download a copy of your summons reply HTML (15KB)" link
     And I see "Why do you need to be excused from jury service?" on the page
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
     And I log in as "MODTESTBUREAU"
     And I click on the "Search" link
     And I set "Juror number" to "<juror_number>"
@@ -147,7 +147,7 @@ Feature: Regression English_1st_Excusal
     Then I see "Your work" on the page
 
     Then I click on the "Sign out" link
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
     When I log in as "CPASS"
     Then I see "<juror_number>" on the page
     Then I see "<juror_number>" has reply type indicator "Excusal"
@@ -175,8 +175,8 @@ Feature: Regression English_1st_Excusal
     And I see the juror record updated banner containing "Excusal granted"
 
     Examples:
-      | juror_number | last_name      | postcode | email             | pool_number |
-      | 045200051    | LNAMETWOTWOSIX | CH1 2AN  | email@outlook.com | 452300050   |
+      | juror_number | last_name      | postcode | email             | pool_number | environment |
+      | 045200051    | LNAMETWOTWOSIX | CH1 2AN  | email@outlook.com | 452300050   | test        |
 
   @Regression
   Scenario Outline: English 1st Party Excusal Refused
@@ -458,10 +458,10 @@ Feature: Regression English_1st_Excusal
       | juror_number | last_name         | postcode | email             | pool_number |
       | 045200053    | LNAMEONEFOURSEVEN | SY2 6LU  | email@outlook.com | 452300052   |
 
-  @Regression
+  @Regression @Bureau @DigitalResponse
   Scenario Outline: English 1st Party Excusal error messages
 
-    Given I am on "Public" "ithc"
+    Given I am on "Public" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
@@ -571,7 +571,7 @@ Feature: Regression English_1st_Excusal
     And I press the "Submit" button
     And I see "You have completed your reply" on the page
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
     And I log in as "MODTESTBUREAU"
     And I click on the "Search" link
     And I set "Juror number" to "<juror_number>"
@@ -619,8 +619,8 @@ Feature: Regression English_1st_Excusal
     And I see the juror record updated banner containing "Excusal granted"
 
     Examples:
-      | juror_number | last_name         | postcode | email             | pool_number |
-      | 045200054    | LNAMEEIGHTONEFOUR | SY2 6LU  | email@outlook.com | 452300053   |
+      | juror_number | last_name         | postcode | email             | pool_number | environment |
+      | 045200054    | LNAMEEIGHTONEFOUR | SY2 6LU  | email@outlook.com | 452300053   | test        |
 
   @Regression
   Scenario Outline: English 1st Party Excusal Reason Special Character (£) check
