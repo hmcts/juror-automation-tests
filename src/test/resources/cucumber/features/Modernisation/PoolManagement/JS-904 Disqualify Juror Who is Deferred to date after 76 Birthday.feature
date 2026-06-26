@@ -5,6 +5,20 @@ Feature: JS-904 As an officer I want to be able to disqualify a juror that is to
 
     Given I am on "Bureau" "<environment>"
 
+    Then I clear down pool and jurors in pool "415388672" via the database
+    Then I clear down pool and jurors in pool "415388673" via the database
+    Then I clear down pool and jurors in pool "415388674" via the database
+    Then I clear down pool and jurors in pool "415388675" via the database
+    Then I clear down pool and jurors in pool "415388676" via the database
+    Then I clear down pool and jurors in pool "415388678" via the database
+    Then I clear down pool and jurors in pool "415388680" via the database
+    Then I clear down pool and jurors in pool "416388673" via the database
+    Then I clear down pool and jurors in pool "415388681" via the database
+    Then I clear down pool and jurors in pool "415388684" via the database
+    Then I clear down pool and jurors in pool "415388686" via the database
+    Then I clear down pool and jurors in pool "415388688" via the database
+    Then I clear down pool and jurors in pool "416388690" via the database
+
     Given a bureau owned pool is created with jurors
       | court | juror_number  	  | pool_number	    | att_date_weeks_in_future	    | owner |
       | 415   | <juror_number_1>  | <pool_number>   | 5			                    | 400	|
@@ -83,12 +97,26 @@ Feature: JS-904 As an officer I want to be able to disqualify a juror that is to
 
     Examples:
       | user         | juror_number_1 | pool_number | environment |
-      | MODTESTCOURT | 041588771      | 415388672   | test        |
+      | MODTESTCOURT | 041588771      | 415388672   | ithc        |
 
   @JurorTransformation @Court
   Scenario Outline: Court User disqualify a juror that is too old when deferring - no letter
 
     Given I am on "Bureau" "<environment>"
+
+    Then I clear down pool and jurors in pool "415388672" via the database
+    Then I clear down pool and jurors in pool "415388673" via the database
+    Then I clear down pool and jurors in pool "415388674" via the database
+    Then I clear down pool and jurors in pool "415388675" via the database
+    Then I clear down pool and jurors in pool "415388676" via the database
+    Then I clear down pool and jurors in pool "415388678" via the database
+    Then I clear down pool and jurors in pool "415388680" via the database
+    Then I clear down pool and jurors in pool "416388673" via the database
+    Then I clear down pool and jurors in pool "415388681" via the database
+    Then I clear down pool and jurors in pool "415388684" via the database
+    Then I clear down pool and jurors in pool "415388686" via the database
+    Then I clear down pool and jurors in pool "415388688" via the database
+    Then I clear down pool and jurors in pool "416388690" via the database
 
     Given a bureau owned pool is created with jurors
       | court | juror_number  	  | pool_number	    | att_date_weeks_in_future	    | owner |
@@ -175,6 +203,20 @@ Feature: JS-904 As an officer I want to be able to disqualify a juror that is to
 
     Given I am on "Bureau" "<environment>"
 
+    Then I clear down pool and jurors in pool "415388672" via the database
+    Then I clear down pool and jurors in pool "415388673" via the database
+    Then I clear down pool and jurors in pool "415388674" via the database
+    Then I clear down pool and jurors in pool "415388675" via the database
+    Then I clear down pool and jurors in pool "415388676" via the database
+    Then I clear down pool and jurors in pool "415388678" via the database
+    Then I clear down pool and jurors in pool "415388680" via the database
+    Then I clear down pool and jurors in pool "416388673" via the database
+    Then I clear down pool and jurors in pool "415388681" via the database
+    Then I clear down pool and jurors in pool "415388684" via the database
+    Then I clear down pool and jurors in pool "415388686" via the database
+    Then I clear down pool and jurors in pool "415388688" via the database
+    Then I clear down pool and jurors in pool "416388690" via the database
+
     Given a bureau owned pool is created with jurors
       | court | juror_number  	  | pool_number	    | att_date_weeks_in_future	    | owner |
       | 415   | <juror_number_1>  | <pool_number>   | 5			                    | 400	|
@@ -246,12 +288,26 @@ Feature: JS-904 As an officer I want to be able to disqualify a juror that is to
 
     Examples:
       | user          | juror_number_1 | pool_number | environment |
-      | MODTESTBUREAU | 041588772      | 415388673   | test        |
+      | MODTESTBUREAU | 041588772      | 415388673   | ithc        |
 
   @JurorTransformation @Court
   Scenario Outline: Court User disqualify a juror that is too old when deferring from summons reply
 
     Given I am on "Bureau" "<environment>"
+
+    Then I clear down pool and jurors in pool "415388672" via the database
+    Then I clear down pool and jurors in pool "415388673" via the database
+    Then I clear down pool and jurors in pool "415388674" via the database
+    Then I clear down pool and jurors in pool "415388675" via the database
+    Then I clear down pool and jurors in pool "415388676" via the database
+    Then I clear down pool and jurors in pool "415388678" via the database
+    Then I clear down pool and jurors in pool "415388680" via the database
+    Then I clear down pool and jurors in pool "416388673" via the database
+    Then I clear down pool and jurors in pool "415388681" via the database
+    Then I clear down pool and jurors in pool "415388684" via the database
+    Then I clear down pool and jurors in pool "415388686" via the database
+    Then I clear down pool and jurors in pool "415388688" via the database
+    Then I clear down pool and jurors in pool "416388690" via the database
 
     Given a bureau owned pool is created with jurors
       | court | juror_number  	  | pool_number	    | att_date_weeks_in_future	    | owner |
@@ -346,12 +402,26 @@ Feature: JS-904 As an officer I want to be able to disqualify a juror that is to
 
     Examples:
       | user         | juror_number_1 | pool_number | environment |
-      | MODTESTCOURT | 041588780      | 415388678   | test        |
+      | MODTESTCOURT | 041588780      | 415388678   | ithc        |
 
   @JurorTransformation @Court
   Scenario Outline: Court User disqualify a juror that is too old when deferring from summons reply - no letter
 
     Given I am on "Bureau" "<environment>"
+
+    Then I clear down pool and jurors in pool "415388672" via the database
+    Then I clear down pool and jurors in pool "415388673" via the database
+    Then I clear down pool and jurors in pool "415388674" via the database
+    Then I clear down pool and jurors in pool "415388675" via the database
+    Then I clear down pool and jurors in pool "415388676" via the database
+    Then I clear down pool and jurors in pool "415388678" via the database
+    Then I clear down pool and jurors in pool "415388680" via the database
+    Then I clear down pool and jurors in pool "416388673" via the database
+    Then I clear down pool and jurors in pool "415388681" via the database
+    Then I clear down pool and jurors in pool "415388684" via the database
+    Then I clear down pool and jurors in pool "415388686" via the database
+    Then I clear down pool and jurors in pool "415388688" via the database
+    Then I clear down pool and jurors in pool "416388690" via the database
 
     Given a bureau owned pool is created with jurors
       | court | juror_number  	  | pool_number	    | att_date_weeks_in_future	    | owner |
@@ -418,12 +488,26 @@ Feature: JS-904 As an officer I want to be able to disqualify a juror that is to
 
     Examples:
       | user         | juror_number_1 | pool_number | environment |
-      | MODTESTCOURT | 041588779      | 415388675   | test        |
+      | MODTESTCOURT | 041588779      | 415388675   | ithc        |
 
   @JurorTransformation @Bureau
   Scenario Outline: Bureau User disqualify a juror that is too old when deferring from summons reply
 
     Given I am on "Bureau" "<environment>"
+
+    Then I clear down pool and jurors in pool "415388672" via the database
+    Then I clear down pool and jurors in pool "415388673" via the database
+    Then I clear down pool and jurors in pool "415388674" via the database
+    Then I clear down pool and jurors in pool "415388675" via the database
+    Then I clear down pool and jurors in pool "415388676" via the database
+    Then I clear down pool and jurors in pool "415388678" via the database
+    Then I clear down pool and jurors in pool "415388680" via the database
+    Then I clear down pool and jurors in pool "416388673" via the database
+    Then I clear down pool and jurors in pool "415388681" via the database
+    Then I clear down pool and jurors in pool "415388684" via the database
+    Then I clear down pool and jurors in pool "415388686" via the database
+    Then I clear down pool and jurors in pool "415388688" via the database
+    Then I clear down pool and jurors in pool "416388690" via the database
 
     Given a bureau owned pool is created with jurors
       | court | juror_number  	  | pool_number	    | att_date_weeks_in_future	    | owner |
@@ -510,12 +594,26 @@ Feature: JS-904 As an officer I want to be able to disqualify a juror that is to
 
     Examples:
       | user          | juror_number_1 | pool_number | environment |
-      | MODTESTBUREAU | 041588778      | 415388676   | test        |
+      | MODTESTBUREAU | 041588778      | 415388676   | ithc        |
 
   @JurorTransformation @Court
   Scenario Outline: Court User disqualify a juror that is too old when postponing
 
     Given I am on "Bureau" "<environment>"
+
+    Then I clear down pool and jurors in pool "415388672" via the database
+    Then I clear down pool and jurors in pool "415388673" via the database
+    Then I clear down pool and jurors in pool "415388674" via the database
+    Then I clear down pool and jurors in pool "415388675" via the database
+    Then I clear down pool and jurors in pool "415388676" via the database
+    Then I clear down pool and jurors in pool "415388678" via the database
+    Then I clear down pool and jurors in pool "415388680" via the database
+    Then I clear down pool and jurors in pool "416388673" via the database
+    Then I clear down pool and jurors in pool "415388681" via the database
+    Then I clear down pool and jurors in pool "415388684" via the database
+    Then I clear down pool and jurors in pool "415388686" via the database
+    Then I clear down pool and jurors in pool "415388688" via the database
+    Then I clear down pool and jurors in pool "416388690" via the database
 
     Given a bureau owned pool is created with jurors
       | court | juror_number  	  | pool_number	    | att_date_weeks_in_future	    | owner |
@@ -595,12 +693,26 @@ Feature: JS-904 As an officer I want to be able to disqualify a juror that is to
 
     Examples:
       | user         | juror_number_1 | pool_number | environment |
-      | MODTESTCOURT | 041588782      | 415388681   | test        |
+      | MODTESTCOURT | 041588782      | 415388681   | ithc        |
 
   @JurorTransformation @Bureau
   Scenario Outline: Bureau User disqualify a juror that is too old when postponing
 
     Given I am on "Bureau" "<environment>"
+
+    Then I clear down pool and jurors in pool "415388672" via the database
+    Then I clear down pool and jurors in pool "415388673" via the database
+    Then I clear down pool and jurors in pool "415388674" via the database
+    Then I clear down pool and jurors in pool "415388675" via the database
+    Then I clear down pool and jurors in pool "415388676" via the database
+    Then I clear down pool and jurors in pool "415388678" via the database
+    Then I clear down pool and jurors in pool "415388680" via the database
+    Then I clear down pool and jurors in pool "416388673" via the database
+    Then I clear down pool and jurors in pool "415388681" via the database
+    Then I clear down pool and jurors in pool "415388684" via the database
+    Then I clear down pool and jurors in pool "415388686" via the database
+    Then I clear down pool and jurors in pool "415388688" via the database
+    Then I clear down pool and jurors in pool "416388690" via the database
 
     Given a bureau owned pool is created with jurors
       | court | juror_number  	  | pool_number	    | att_date_weeks_in_future	    | owner |
@@ -672,12 +784,26 @@ Feature: JS-904 As an officer I want to be able to disqualify a juror that is to
 
     Examples:
       | user          | juror_number_1 | pool_number | environment |
-      | MODTESTBUREAU | 041588781      | 415388680   | test        |
+      | MODTESTBUREAU | 041588781      | 415388680   | ithc        |
 
   @JurorTransformation @Bureau
   Scenario Outline: Bureau User disqualify a juror that is too old when bulk postponing from deferral maintenance
 
     Given I am on "Bureau" "<environment>"
+
+    Then I clear down pool and jurors in pool "415388672" via the database
+    Then I clear down pool and jurors in pool "415388673" via the database
+    Then I clear down pool and jurors in pool "415388674" via the database
+    Then I clear down pool and jurors in pool "415388675" via the database
+    Then I clear down pool and jurors in pool "415388676" via the database
+    Then I clear down pool and jurors in pool "415388678" via the database
+    Then I clear down pool and jurors in pool "415388680" via the database
+    Then I clear down pool and jurors in pool "416388673" via the database
+    Then I clear down pool and jurors in pool "415388681" via the database
+    Then I clear down pool and jurors in pool "415388684" via the database
+    Then I clear down pool and jurors in pool "415388686" via the database
+    Then I clear down pool and jurors in pool "415388688" via the database
+    Then I clear down pool and jurors in pool "416388690" via the database
 
     Given a bureau owned pool is created with jurors
       | court | juror_number  	  | pool_number	    | att_date_weeks_in_future	    | owner |
