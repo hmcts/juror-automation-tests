@@ -980,10 +980,10 @@ Feature: Regression Test Ineligbility
       | juror_number | last_name | postcode | email      | pool_number |
       | 045700022    | LNAME1327 | CH1 2AN  | a@eeee.com | 457300022   |
 
-  @RegressionWelsh
+  @RegressionWelsh @Bureau
   Scenario Outline: Welsh_1st_Inel_Email_Check
 
-    Given I am on the welsh version of "Public" "ithc"
+    Given I am on the welsh version of "Public" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
@@ -1016,7 +1016,7 @@ Feature: Regression Test Ineligbility
     Then I do not see "Eich Canllaw i'r Gwasanaeth Rheithgor (PDF 85KB)" on the page
     Then I see "Beth yw eich barn am y gwasanaeth hwn? (30 eiliad o'ch amser)" on the page
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
     And I log in as "MODTESTBUREAU"
 
     When I click on the "Search" link
@@ -1037,8 +1037,8 @@ Feature: Regression Test Ineligbility
     And I see "Disqualified" on the page
 
     Examples:
-      | juror_number | last_name | postcode | email      | pool_number |
-      | 045700023    | LNAME436  | CH1 2AN  | e@mail.com | 457300023   |
+      | juror_number | last_name | postcode | email      | pool_number | environment |
+      | 045700023    | LNAME436  | CH1 2AN  | e@mail.com | 457300023   | test        |
 
   @RegressionWelsh
   Scenario Outline: Welsh_3rd_Deferral_Inel

@@ -47,10 +47,10 @@ Feature: JM-3897 mark juror as deferred paper
       | user		  | juror_number| pool_number  | environment |
       | MODTESTBUREAU | 041500056   | 415300146    | test        |
 
-  @JurorTransformationMulti
+  @JurorTransformationMulti @Bureau
   Scenario Outline: Mark juror as deferred - Add to pool Happy path paper
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
@@ -94,8 +94,8 @@ Feature: JM-3897 mark juror as deferred paper
     Then the poolNumbers lists is empty
 
     Examples:
-      | user		  | juror_number| pool_number |
-      | MODTESTBUREAU | 041500057   | 415300147   |
+      | user		  | juror_number| pool_number | environment |
+      | MODTESTBUREAU | 041500057   | 415300147   | ithc        |
 
   @JurorTransformationMulti
   Scenario Outline: Mark juror as deferred - No dates entered validation paper

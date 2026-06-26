@@ -116,7 +116,7 @@ Feature: JS-904 As an officer I want to be able to disqualify a juror that is to
     And I select "A - MOVED FROM AREA" from the "Reason for the deferral request" dropdown
     And I set the radio button to "Grant deferral"
     And I set the radio button to "Other"
-    And I set "Deferral date" to "40 mondays time"
+    And I set "Deferral date" to "50 mondays time"
     And I press the "Continue" button
 
     Then I see "Check the juror's age" on the page
@@ -137,7 +137,7 @@ Feature: JS-904 As an officer I want to be able to disqualify a juror that is to
     And I select "A - MOVED FROM AREA" from the "Reason for the deferral request" dropdown
     And I set the radio button to "Grant deferral"
     And I set the radio button to "Other"
-    And I set "Deferral date" to "40 mondays time"
+    And I set "Deferral date" to "50 mondays time"
     And I press the "Continue" button
 
     Then I see "Check the juror's age" on the page
@@ -168,7 +168,7 @@ Feature: JS-904 As an officer I want to be able to disqualify a juror that is to
 
     Examples:
       | user         | juror_number_1 | pool_number | environment |
-      | MODTESTCOURT | 041588777      | 415388674   | test        |
+      | MODTESTCOURT | 041588777      | 415388674   | ithc        |
 
   @JurorTransformation @Bureau
   Scenario Outline: Bureau User disqualify a juror that is too old when deferring
@@ -749,7 +749,7 @@ Feature: JS-904 As an officer I want to be able to disqualify a juror that is to
 
     When I press the "Disqualify jurors" button
     Then I see "1 juror disqualified due to age." on the page
-    
+
     When I search for juror "<juror_number_1>"
     And I see the juror status has updated to "Disqualified"
 
@@ -767,4 +767,4 @@ Feature: JS-904 As an officer I want to be able to disqualify a juror that is to
 
     Examples:
       | user          | juror_number_1 | pool_number | environment |
-      | MODTESTBUREAU | 041688772      | 416388673   | test        |
+      | MODTESTBUREAU | 041688772      | 416388673   | ithc        |

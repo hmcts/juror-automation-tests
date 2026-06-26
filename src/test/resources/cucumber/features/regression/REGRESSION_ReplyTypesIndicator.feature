@@ -504,7 +504,7 @@ Feature: Regression English_ReplyTypesIndicator
       | juror_number | pool_number | last_name          | postcode | email      | environment |
       | 045200139    | 452300138   | LNAMESIXTHREESEVEN | SY2 6LU  | e@eeee.com | test        |
 
-  @Regression
+  @Regression @Bureau @DigitalResponse
   Scenario Outline: English 3rd Party + Convictions
 
     Given I am on "Public" "<environment>"
@@ -892,7 +892,7 @@ Feature: Regression English_ReplyTypesIndicator
 
     Examples:
       | juror_number | last_name           | postcode | email             | pool_number | environment |
-      | 045200142    | LNAMESEVENFOURTHREE | SY2 6LU  | email@outlook.com | 452300141   | test        |
+      | 045200142    | LNAMESEVENFOURTHREE | SY2 6LU  | email@outlook.com | 452300141   | ithc        |
 
   @Regression
   Scenario Outline: English 3rd Party + Mental Health

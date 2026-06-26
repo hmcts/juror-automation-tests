@@ -1,9 +1,10 @@
 Feature: Bureau Process Options
 
-@RegressionSingle
+@RegressionSingle @Bureau @PaperResponse
 Scenario Outline: Cycle through process options
 
-	Given I am on "Public" "ithc"
+	Given I am on "Public" "<environment>"
+
 	Given auto straight through processing has been disabled new schema
 
 	Given a bureau owned pool is created with jurors
@@ -19,7 +20,7 @@ Scenario Outline: Cycle through process options
 		|part_no		|pool_number	|last_name		|postcode	|email 	|
 		|<juror_number>	|<pool_number>	|<last_name>	|<postcode>	|a@a.com|
 
-	Given I am on "Bureau" "ithc"
+	Given I am on "Bureau" "<environment>"
 	And I log in as "MODTESTBUREAU"
 
 	When I click on the "Assign Replies" link
@@ -92,8 +93,8 @@ Scenario Outline: Cycle through process options
 	Given auto straight through processing has been enabled new schema
 
 Examples:
-	| juror_number	| pool_number 	| last_name 		| postcode 	|
-	| 045200231		| 452300211 	| LNAMETWOEIGHTNINE	| SY2 6LU	|
+	| juror_number	| pool_number 	| last_name 		| postcode 	| environment |
+	| 045200231		| 452300211 	| LNAMETWOEIGHTNINE	| SY2 6LU	| ithc        |
 	
 @Features
 Scenario Outline: Send to court process options
