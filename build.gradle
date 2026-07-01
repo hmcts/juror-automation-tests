@@ -143,16 +143,10 @@ dependencies {
 
 }
 
-task functionalSmoke(type: Test, dependsOn: testClasses) {
-  systemProperty "envName", System.getenv("envName")
-  systemProperty "envDriver", System.getenv("envDriver")
+task functional(type: Test, dependsOn: testClasses) {
+  testClassesDirs = sourceSets.test.output.classesDirs
+  classpath = sourceSets.test.runtimeClasspath
 
-  include '**/TestRunner_SmokeTest.class'
-  reports.junitXml.outputLocation = layout.buildDirectory.dir('test-results/functionalTest')
-  outputs.upToDateWhen { false }
-}
-
-task functional(type: Test, dependsOn: [testClasses, functionalSmoke]) {
   systemProperty "envName", System.getenv("envName")
   systemProperty "envDriver", System.getenv("envDriver")
 
@@ -165,44 +159,35 @@ task functional(type: Test, dependsOn: [testClasses, functionalSmoke]) {
   def runRegression = System.getenv("runRegression")
   def runRegressionSingle = System.getenv("runRegressionSingle")
   def runRegressionWelsh = System.getenv("runRegressionWelsh")
-  def hasSelectedFunctionalSuite = false
   
   if (runExpenses == 'true') {
     include '**/TestRunner_Expenses.class'
-    hasSelectedFunctionalSuite = true
   }
   if (runFeatures == 'true') {
     include '**/TestRunner_Features.class'
-    hasSelectedFunctionalSuite = true
   }
   if (runJurorTransformation == 'true') {
     include '**/TestRunner_JurorTransformation.class'
-    hasSelectedFunctionalSuite = true
   }
   if (runJurorTransformationMulti == 'true') {
     include '**/TestRunner_JurorTransformationMulti.class'
-    hasSelectedFunctionalSuite = true
   }
   if (runJurorTransformationWIP == 'true') {
     include '**/TestRunner_JurorTransformationWIP.class'
-    hasSelectedFunctionalSuite = true
   }
   if (runJurorEr == 'true') {
     include '**/TestRunner_JurorEr.class'
-    hasSelectedFunctionalSuite = true
   }
   if (runRegression == 'true') {
     include '**/TestRunner_Regression.class'
-    hasSelectedFunctionalSuite = true
   }
   if (runRegressionSingle == 'true') {
     include '**/TestRunner_RegressionSingle.class'
-    hasSelectedFunctionalSuite = true
   }
   if (runRegressionWelsh == 'true') {
     include '**/TestRunner_RegressionWelsh.class'
-    hasSelectedFunctionalSuite = true
   }
-  onlyIf { hasSelectedFunctionalSuite }
+  //Always run SmokeTest
+  include '**/TestRunner_SmokeTest.class'
   outputs.upToDateWhen { false }
 }
