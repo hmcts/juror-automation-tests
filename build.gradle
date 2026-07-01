@@ -46,7 +46,7 @@ jacoco {
 }
 
 ext {
-  cucumberVersion = '7.34.3'
+  cucumberVersion = '7.34.4'
   courgetteVersion = '6.21.0'
   jacksonAnnotationsVersion = '2.22'
   jacksonVersion = '2.22.0'
@@ -90,6 +90,10 @@ configurations.configureEach {
     if (details.requested.group == 'org.freemarker' && details.requested.name == 'freemarker') {
       details.useVersion '2.3.34'
       details.because 'Override older Courgette transitive Freemarker'
+    }
+    if (details.requested.group == 'io.cucumber' && details.requested.name == 'messages-ndjson') {
+      details.useVersion '0.3.4'
+      details.because 'Remove messages-ndjson 0.3.2 shaded jackson-databind 2.21.1 reported by Dependency-Check'
     }
     if (details.requested.group == 'org.projectlombok' && details.requested.name == 'lombok') {
       details.useVersion '1.18.46'
