@@ -92,8 +92,8 @@ configurations.configureEach {
       details.because 'Override older Courgette transitive Freemarker'
     }
     if (details.requested.group == 'io.cucumber' && details.requested.name == 'messages-ndjson') {
-      details.useVersion '0.3.4'
-      details.because 'Remove messages-ndjson 0.3.2 shaded jackson-databind 2.21.1 reported by Dependency-Check'
+      details.useVersion '0.5.1'
+      details.because 'Remove messages-ndjson versions that shade vulnerable com.fasterxml Jackson metadata'
     }
     if (details.requested.group == 'org.projectlombok' && details.requested.name == 'lombok') {
       details.useVersion '1.18.46'
