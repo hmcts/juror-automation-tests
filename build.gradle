@@ -48,8 +48,6 @@ jacoco {
 ext {
   cucumberVersion = '7.34.4'
   courgetteVersion = '6.21.0'
-  jacksonAnnotationsVersion = '2.22'
-  jacksonVersion = '2.22.0'
   junitJupiterVersion = '5.14.4'
   log4j2Version = '2.26.0'
   seleniumVersion = '4.31.0'
@@ -63,19 +61,10 @@ configurations.configureEach {
   exclude group: 'net.sf.opencsv', module: 'opencsv'
   exclude group: 'org.apache.cxf'
   exclude group: 'org.codehaus.woodstox', module: 'woodstox-core-asl'
-  exclude group: 'io.cucumber', module: 'messages-ndjson'
   exclude group: 'org.slf4j', module: 'slf4j-log4j12'
   exclude group: 'org.slf4j', module: 'slf4j-reload4j'
 
   resolutionStrategy.eachDependency { details ->
-    if (details.requested.group == 'com.fasterxml.jackson.core' && details.requested.name == 'jackson-annotations') {
-      details.useVersion jacksonAnnotationsVersion
-      details.because 'Keep Jackson annotations aligned with the current secure 2.x line'
-    }
-    if (details.requested.group == 'com.fasterxml.jackson.core' && details.requested.name != 'jackson-annotations') {
-      details.useVersion jacksonVersion
-      details.because 'Keep transitive Jackson components aligned on the current secure line'
-    }
     if (details.requested.group == 'com.google.code.gson' && details.requested.name == 'gson') {
       details.useVersion '2.14.0'
       details.because 'Override older Courgette transitive Gson'
