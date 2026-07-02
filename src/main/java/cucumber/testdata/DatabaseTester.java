@@ -422,7 +422,7 @@ public class DatabaseTester {
 				pStmt.setString(2, columnValueA);
 			}
 
-			pStmt.executeQuery();
+			pStmt.executeUpdate();
 			log.info("Update Successful ");
 //
 //	     } catch (SQLException e)  {
@@ -567,12 +567,12 @@ public class DatabaseTester {
 
 			pStmt = conn.prepareStatement("delete from juror_mod.user_roles where username=?");
 			pStmt.setString(1, staffName);
-			pStmt.executeQuery();
+			pStmt.executeUpdate();
 			log.info("Delete all JUROR_MOD.USER_ROLES rows where username =>" + staffName);
 
 			pStmt = conn.prepareStatement("delete from juror_mod.user_courts where username=?");
 			pStmt.setString(1, staffName);
-			pStmt.executeQuery();
+			pStmt.executeUpdate();
 			log.info("Delete all JUROR_MOD.USER_COURTS rows where username =>" + staffName);
 
 			pStmt = conn.prepareStatement("delete from juror_MOD.USERS where name=?"); // SQL Statement here
@@ -1232,11 +1232,11 @@ public class DatabaseTester {
 		try {
 
 			pStmt = conn.prepareStatement("delete from juror_mod.user_roles where username='TeamPickListUser'");
-			pStmt.executeQuery();
+			pStmt.executeUpdate();
 			log.info("Delete all JUROR_MOD.USER_ROLES rows where username='TeamPickListUser'");
 
 			pStmt = conn.prepareStatement("delete from juror_mod.user_courts where username='TeamPickListUser'");
-			pStmt.executeQuery();
+			pStmt.executeUpdate();
 			log.info("Delete all JUROR_MOD.USER_COURTS rows where username='TeamPickListUser'");
 
 			pStmt = conn.prepareStatement("Delete from juror_mod.users where username='TeamPickListUser'");
