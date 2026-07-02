@@ -46,10 +46,8 @@ jacoco {
 }
 
 ext {
-  cucumberVersion = '7.34.3'
+  cucumberVersion = '7.34.4'
   courgetteVersion = '6.21.0'
-  jacksonAnnotationsVersion = '2.22'
-  jacksonVersion = '2.22.0'
   junitJupiterVersion = '5.14.4'
   log4j2Version = '2.26.0'
   seleniumVersion = '4.31.0'
@@ -67,14 +65,6 @@ configurations.configureEach {
   exclude group: 'org.slf4j', module: 'slf4j-reload4j'
 
   resolutionStrategy.eachDependency { details ->
-    if (details.requested.group == 'com.fasterxml.jackson.core' && details.requested.name == 'jackson-annotations') {
-      details.useVersion jacksonAnnotationsVersion
-      details.because 'Keep Jackson annotations aligned with the current secure 2.x line'
-    }
-    if (details.requested.group == 'com.fasterxml.jackson.core' && details.requested.name != 'jackson-annotations') {
-      details.useVersion jacksonVersion
-      details.because 'Keep transitive Jackson components aligned on the current secure line'
-    }
     if (details.requested.group == 'com.google.code.gson' && details.requested.name == 'gson') {
       details.useVersion '2.14.0'
       details.because 'Override older Courgette transitive Gson'
@@ -153,16 +143,10 @@ dependencies {
 
 }
 
-task functionalSmoke(type: Test, dependsOn: testClasses) {
-  systemProperty "envName", System.getenv("envName")
-  systemProperty "envDriver", System.getenv("envDriver")
+task functional(type: Test, dependsOn: testClasses) {
+  testClassesDirs = sourceSets.test.output.classesDirs
+  classpath = sourceSets.test.runtimeClasspath
 
-  include '**/TestRunner_SmokeTest.class'
-  reports.junitXml.outputLocation = layout.buildDirectory.dir('test-results/functionalTest')
-  outputs.upToDateWhen { false }
-}
-
-task functional(type: Test, dependsOn: [testClasses, functionalSmoke]) {
   systemProperty "envName", System.getenv("envName")
   systemProperty "envDriver", System.getenv("envDriver")
 
@@ -175,44 +159,35 @@ task functional(type: Test, dependsOn: [testClasses, functionalSmoke]) {
   def runRegression = System.getenv("runRegression")
   def runRegressionSingle = System.getenv("runRegressionSingle")
   def runRegressionWelsh = System.getenv("runRegressionWelsh")
-  def hasSelectedFunctionalSuite = false
   
   if (runExpenses == 'true') {
     include '**/TestRunner_Expenses.class'
-    hasSelectedFunctionalSuite = true
   }
   if (runFeatures == 'true') {
     include '**/TestRunner_Features.class'
-    hasSelectedFunctionalSuite = true
   }
   if (runJurorTransformation == 'true') {
     include '**/TestRunner_JurorTransformation.class'
-    hasSelectedFunctionalSuite = true
   }
   if (runJurorTransformationMulti == 'true') {
     include '**/TestRunner_JurorTransformationMulti.class'
-    hasSelectedFunctionalSuite = true
   }
   if (runJurorTransformationWIP == 'true') {
     include '**/TestRunner_JurorTransformationWIP.class'
-    hasSelectedFunctionalSuite = true
   }
   if (runJurorEr == 'true') {
     include '**/TestRunner_JurorEr.class'
-    hasSelectedFunctionalSuite = true
   }
   if (runRegression == 'true') {
     include '**/TestRunner_Regression.class'
-    hasSelectedFunctionalSuite = true
   }
   if (runRegressionSingle == 'true') {
     include '**/TestRunner_RegressionSingle.class'
-    hasSelectedFunctionalSuite = true
   }
   if (runRegressionWelsh == 'true') {
     include '**/TestRunner_RegressionWelsh.class'
-    hasSelectedFunctionalSuite = true
   }
-  onlyIf { hasSelectedFunctionalSuite }
+  //Always run SmokeTest
+  include '**/TestRunner_SmokeTest.class'
   outputs.upToDateWhen { false }
 }
