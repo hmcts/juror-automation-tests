@@ -178,6 +178,10 @@ public class StepDef_jurorpool {
 
     @When("^I select the pool that I have just created to move to the pool summary page$")
     public void aPoolNumberIsSelectedToMoveToTheCreateAPoolSummaryPage() throws Throwable {
+        if (!webDriver.findElements(By.xpath("//div[contains(@class, 'pool-values__summary')]")).isEmpty()) {
+            return;
+        }
+
         try {
             NAV.click_link_by_text(poolNumber.get());
         } catch (Exception e) {
@@ -185,6 +189,15 @@ public class StepDef_jurorpool {
             POOL_REQUESTS_PAGE.clickTab("Search");
             POOL_SEARCH.enterPoolNo(poolNumber.get());
             NAV.press_buttonByName("Continue");
+            NAV.waitForPageLoadNew();
+
+            if (webDriver.findElements(By.xpath("//div[contains(@class, 'pool-values__summary')]")).isEmpty()) {
+                List<WebElement> poolLinks = webDriver.findElements(By.linkText(poolNumber.get()));
+                if (!poolLinks.isEmpty()) {
+                    poolLinks.get(0).click();
+                    NAV.waitForPageLoadNew();
+                }
+            }
         }
     }
 
@@ -2212,19 +2225,17 @@ public class StepDef_jurorpool {
 
     @Then("^I can see the newly created pool$")
     public void seeNewPoolRequest() throws Throwable {
-
         String mainText = JUROR_RECORD_SEARCH.getMainBodyText();
-        By element = By.className("govuk-pagination__next");
-        List<WebElement> nextNavButton = webDriver.findElements(element);
-
-        if (!mainText.contains(poolNumber.get())) while (!nextNavButton.isEmpty()) {
-            POOL_SEARCH.nextButton.click();
-            nextNavButton = webDriver.findElements(element);
+        if (!mainText.contains(poolNumber.get())) {
+            POOL_REQUESTS_PAGE.clickTab("Search");
+            NAV.waitForPageLoadNew();
+            POOL_SEARCH.enterPoolNo(poolNumber.get());
+            NAV.press_buttonByName("Continue");
+            NAV.waitForPageLoadNew();
+            mainText = JUROR_RECORD_SEARCH.getMainBodyText();
         }
 
-        if (mainText.contains(poolNumber.get())) {
-            assertTrue(mainText.contains(poolNumber.get()));
-        }
+        assertTrue("Expected newly created pool " + poolNumber.get() + " to be visible", mainText.contains(poolNumber.get()));
     }
 
     @And("^I make a note of the pool number$")
