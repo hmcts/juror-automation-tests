@@ -7,40 +7,57 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.ie.InternetExplorerOptions;
 import org.openqa.selenium.support.events.EventFiringDecorator;
 
 import java.time.Duration;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class SharedDriver extends EventFiringDecorator<WebDriver>
     implements WebDriveDecorator {
 
-    private static WebDriver REAL_DRIVER;
-    private static Thread CLOSE_THREAD = new Thread() {
-        @Override
-        public void run() {
-            REAL_DRIVER.quit();
-        }
-    };
+    private static final ThreadLocal<WebDriver> REAL_DRIVER = new ThreadLocal<>();
+    private static final Set<WebDriver> ALL_DRIVERS = ConcurrentHashMap.newKeySet();
+
+    static {
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            for (WebDriver driver : ALL_DRIVERS) {
+                try {
+                    driver.quit();
+                } catch (Exception ignored) {
+                    // Driver may already be closed
+                }
+            }
+            ALL_DRIVERS.clear();
+        }));
+    }
 
     public SharedDriver() {
         super();
-        decorate(REAL_DRIVER);
+        decorate(getOrCreateDriver());
     }
 
-    static {
-        String usingDriver = ReadProperties.machine("usingDriver");
-        String usingProxy = ReadProperties.machine("usingProxy");
-        String headlessChrome = ReadProperties.machine("headlessChrome");
+    private static WebDriver getOrCreateDriver() {
+        WebDriver driver = REAL_DRIVER.get();
+        if (driver == null) {
+            driver = createWebDriver();
+            REAL_DRIVER.set(driver);
+            ALL_DRIVERS.add(driver);
+        }
+        return driver;
+    }
 
+    private static WebDriver createWebDriver() {
+        String usingDriver = ReadProperties.machine("usingDriver");
+        String headlessChrome = ReadProperties.machine("headlessChrome");
 
         if (System.getProperty("envDriver") != null) {
             usingDriver = System.getProperty("envDriver");
         }
 
+        WebDriver driver;
         if (usingDriver.toLowerCase().equals("ie")) {
             System.setProperty("webdriver.ie.driver", ReadProperties.machine("ie_driver"));
             InternetExplorerOptions options = new InternetExplorerOptions();
@@ -48,78 +65,61 @@ public class SharedDriver extends EventFiringDecorator<WebDriver>
             org.openqa.selenium.Proxy proxy = new org.openqa.selenium.Proxy();
             proxy.setProxyType(org.openqa.selenium.Proxy.ProxyType.DIRECT);
             options.setProxy(proxy);
-
-            REAL_DRIVER = new InternetExplorerDriver(options);
+            driver = new InternetExplorerDriver(options);
         } else if (usingDriver.equalsIgnoreCase("msedge")) {
             System.setProperty("webdriver.edge.driver", "src/test/resources/msedgedriver.exe");
             EdgeOptions options = new EdgeOptions();
             try {
-                REAL_DRIVER = new EdgeDriver(options);
-            } catch (Exception e) { // intended settings for running in jenkins
+                driver = new EdgeDriver(options);
+            } catch (Exception e) {
                 System.setProperty("webdriver.edge.driver", "/usr/bin/msedgedriver");
                 options.addArguments("--headless");
                 options.addArguments("--window-size=1920,1080");
                 options.addArguments("--disable-dev-shm-usage");
                 options.addArguments("--remote-allow-origins=*");
-                REAL_DRIVER = new EdgeDriver(options);
+                driver = new EdgeDriver(options);
             }
         } else if (usingDriver.equalsIgnoreCase("phantomjs")) {
             throw new IllegalArgumentException("PhantomJS is no longer supported; use chrome with headlessChrome=true.");
         } else if (usingDriver.equalsIgnoreCase("firefox")) {
-            System.setProperty("webdriver.gecko.driver", "src/test/resources/drivers/geckodriver");
-    //        FirefoxOptions options = new FirefoxOptions();
-  //          options.addArguments("--headless");
-            try {
-     //           REAL_DRIVER = new FirefoxDriver(options);
-            } catch (Exception e) { // intended settings for running in jenkins
-    //            System.setProperty("webdriver.gecko.driver", "src/test/resources/drivers/geckodriver");
-         //       REAL_DRIVER = new FirefoxDriver(options);
-            }
-        } else { // Assuming Chrome
-            // These settings are intended for Windows machines
+            throw new IllegalArgumentException("Firefox driver is not configured; use chrome or msedge.");
+        } else {
             System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver91.exe");
             ChromeOptions options = new ChromeOptions();
             options.addArguments("--disable-features=VizDisplayCompositor");
             options.addArguments("--start-maximized");
-//			options.addArguments("--no-proxy-server");
-//			options.addArguments("--version");
             options.addArguments("--incognito");
             options.setUnhandledPromptBehaviour(UnexpectedAlertBehaviour.IGNORE);
             if (headlessChrome.equalsIgnoreCase("true")) {
                 options.addArguments("--headless");
                 options.addArguments("--window-size=1920,1080");
                 options.addArguments("--user-agent=Chrome/117.0.5938.132");
-            } else {
-                //options.addArguments("--start-maximized");
             }
             try {
-                REAL_DRIVER = new ChromeDriver(options);
+                driver = new ChromeDriver(options);
             } catch (Exception e) {
                 try {
-                    // These settings are intended for dev macbooks
                     System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver_mac");
-                    REAL_DRIVER = new ChromeDriver(options);
-                } catch (Exception f) { // intended settings for running in jenkins
+                    driver = new ChromeDriver(options);
+                } catch (Exception f) {
                     System.setProperty("webdriver.chrome.driver",
                             "src/test/resources/drivers/chromedriver-linux64/chromedriver");
                     options.addArguments("--headless");
                     options.addArguments("--window-size=1920,1080");
                     options.addArguments("--disable-dev-shm-usage");
                     options.addArguments("--user-agent=Chrome/117.0.5938.132");
-                    REAL_DRIVER = new ChromeDriver(options);
+                    driver = new ChromeDriver(options);
                 }
             }
         }
 
-        REAL_DRIVER.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
-        REAL_DRIVER.manage().deleteAllCookies();
-
-        // REAL_DRIVER.manage().window().setSize(new Dimension(1024,728));
-        Runtime.getRuntime().addShutdownHook(CLOSE_THREAD);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+        driver.manage().deleteAllCookies();
+        return driver;
     }
 
     @Override
     public WebDriver getDriver() {
-        return REAL_DRIVER;
+        return getOrCreateDriver();
     }
 }

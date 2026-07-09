@@ -304,7 +304,7 @@ public class DatabaseTesterNewSchemaDesign {
 				pStmt.setString(2, columnValueA);
 			}
 
-			pStmt.executeQuery();
+			pStmt.executeUpdate();
 			log.info("Update Successful ");
 //
 		} catch (SQLException e) {
@@ -2522,11 +2522,11 @@ public class DatabaseTesterNewSchemaDesign {
 
 
 			pStmt = conn.prepareStatement("delete from juror_mod.user_roles where username IN ('MODTESTBUREAU','MODTESTCOURT','MODCOURT', 'MODBUREAUOFFICER', 'AUTO', 'TeamPickListUser', 'AutomationStaffMembe', 'CPASS', 'SYSTEM', 'SJOUSER1', 'ARAMIS1', 'NEWUSER')");
-			pStmt.executeQuery();
+			pStmt.executeUpdate();
 			log.info("Delete all JUROR_MOD.USER_ROLES rows where username IN ('MODTESTBUREAU','MODTESTCOURT','MODCOURT', 'MODBUREAUOFFICER', 'AUTO', 'TeamPickListUser', 'AutomationStaffMembe', 'CPASS', 'SYSTEM', 'SJOUSER1', 'ARAMIS1', 'NEWUSER')");
 
 			pStmt = conn.prepareStatement("delete from juror_mod.user_courts where username IN ('MODTESTBUREAU','MODTESTCOURT','MODCOURT', 'MODBUREAUOFFICER', 'AUTO', 'TeamPickListUser', 'AutomationStaffMembe', 'CPASS', 'SYSTEM', 'SJOUSER1', 'ARAMIS1', 'NEWUSER')");
-			pStmt.executeQuery();
+			pStmt.executeUpdate();
 			log.info("Delete all JUROR_MOD.USER_COURTS rows where username IN ('MODTESTBUREAU','MODTESTCOURT','MODCOURT', 'MODBUREAUOFFICER', 'AUTO', 'TeamPickListUser', 'AutomationStaffMembe', 'CPASS', 'SYSTEM', 'SJOUSER1', 'ARAMIS1', 'NEWUSER')");
 
 			pStmt = conn.prepareStatement("DELETE FROM JUROR_MOD.USERS WHERE USERNAME IN ('MODTESTBUREAU','MODTESTCOURT','MODCOURT', 'MODBUREAUOFFICER', 'AUTO', 'TeamPickListUser', 'AutomationStaffMembe', 'CPASS', 'SYSTEM', 'SJOUSER1', 'ARAMIS1', 'NEWUSER')");
@@ -3155,14 +3155,14 @@ public class DatabaseTesterNewSchemaDesign {
 		try {
 			pStmt = conn.prepareStatement("update juror_mod.app_setting set value='TRUE' where setting = 'PCQ_SERVICE_ENABLED'");
 //              pStmt = conn.prepareStatement("Insert into JUROR_DIGITAL.APP_SETTINGS (SETTING,VALUE) values ('PCQ_SERVICE_RETURN_URL','http://172.117.3.70:3000/steps/confirm-information')");
-			pStmt.executeQuery();
+			pStmt.executeUpdate();
 
 			pStmt = conn.prepareStatement("update juror_mod.app_setting set value='https://pcq.aat.platform.hmcts.net' where setting = 'PCQ_SERVICE_URL'");
-			pStmt.executeQuery();
+			pStmt.executeUpdate();
 
 			pStmt = conn.prepareStatement("update juror_mod.app_setting set value=? where setting = 'PCQ_SERVICE_RETURN_URL'");
 			pStmt.setString(1, pcq_return_value);
-			pStmt.executeQuery();
+			pStmt.executeUpdate();
 
 			log.info("Updated app_settings to enable PCQ with return url " + pcq_return_value);
 		} catch (SQLException e) {
@@ -3185,7 +3185,7 @@ public class DatabaseTesterNewSchemaDesign {
 			conn = db.getConnection("demo");
 		try {
 			pStmt = conn.prepareStatement("update juror_mod.app_setting set value='FALSE' where setting = 'PCQ_SERVICE_ENABLED'");
-			pStmt.executeQuery();
+			pStmt.executeUpdate();
 			log.info("Updated app_settings to disable PCQ");
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -3857,7 +3857,7 @@ public class DatabaseTesterNewSchemaDesign {
 		try {
 
 			pStmt = conn.prepareStatement("DELETE FROM JUROR_DIGITAL.VOTERS WHERE LOC_CODE = " + court);
-			pStmt.executeQuery();
+			pStmt.executeUpdate();
 
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -10,6 +10,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -57,8 +58,8 @@ public class PoolOverview {
     @FindBy(xpath = "//span[contains(text(),'Additional requirements')]/following-sibling::span")
     WebElement additionalRequirements;
 
-    @FindBy(xpath = "//div[@class='bullet required']/../span")
-    WebElement numberOfJurorsRequested;
+    private static final By NUMBER_OF_JURORS_REQUESTED =
+            By.xpath("//div[contains(@class, 'bullet') and contains(@class, 'required')]/../span");
 
     @FindBy(xpath = "//span[contains(text(),'Jurors needed')]//ancestor::div/span")
     WebElement numberOfJurorsRequiredCourtOverview;
@@ -69,16 +70,16 @@ public class PoolOverview {
     @FindBy(xpath = "//span[contains(text(),'Court deferrals used')]//ancestor::div/span")
     WebElement numberOfCourtDeferralsUsed;
 
-    @FindBy(xpath = "//div[@class='bullet available']/following-sibling::span[@class='amount']")
+    @FindBy(xpath = "//div[contains(concat(' ', normalize-space(@class), ' '), ' bullet ') and contains(concat(' ', normalize-space(@class), ' '), ' available ')]/following-sibling::span[contains(concat(' ', normalize-space(@class), ' '), ' amount ')]")
     WebElement numberOfJurorsConfirmed;
 
-    @FindBy(xpath = "//div[@class='bullet unavailable']/following-sibling::span[@class='amount']")
+    @FindBy(xpath = "//div[contains(concat(' ', normalize-space(@class), ' '), ' bullet ') and contains(concat(' ', normalize-space(@class), ' '), ' unavailable ')]/following-sibling::span[contains(concat(' ', normalize-space(@class), ' '), ' amount ')]")
     WebElement numberOfJurorsUnavailable;
 
-    @FindBy(xpath = "//div[@class='bullet unresolved']/following-sibling::span[@class='amount']")
+    @FindBy(xpath = "//div[contains(concat(' ', normalize-space(@class), ' '), ' bullet ') and contains(concat(' ', normalize-space(@class), ' '), ' unresolved ')]/following-sibling::span[contains(concat(' ', normalize-space(@class), ' '), ' amount ')]")
     WebElement numberOfJurorsNotResponded;
 
-    @FindBy(xpath = "//div[@class='bullet surplus']/following-sibling::span[@class='amount']")
+    @FindBy(xpath = "//div[contains(concat(' ', normalize-space(@class), ' '), ' bullet ') and contains(concat(' ', normalize-space(@class), ' '), ' surplus ')]/following-sibling::span[contains(concat(' ', normalize-space(@class), ' '), ' amount ')]")
     WebElement numberOfJurorsSurplus;
 
     @FindBy(id = "deletePoolButton")
@@ -123,11 +124,11 @@ public class PoolOverview {
     public String getConvertedStartDate() throws ParseException {
         String overviewStartDate = overviewCourtStartDate.getText();
 
-        DateFormat df = new SimpleDateFormat("EEEE dd MMM yyyy");
+        DateFormat df = new SimpleDateFormat("EEEE dd MMM yyyy", Locale.ENGLISH);
         Date convertedStartDate = df.parse(overviewStartDate);
 
         String newDateFormat = "EEEE dd MMMM yyyy";
-        String newStartDate = new SimpleDateFormat(newDateFormat).format(convertedStartDate);
+        String newStartDate = new SimpleDateFormat(newDateFormat, Locale.ENGLISH).format(convertedStartDate);
 
         log.info("Getting court start date");
         return newStartDate;
@@ -140,7 +141,7 @@ public class PoolOverview {
 
     public String getNumberOfJurorsRequested() {
         log.info("Getting number of jurors requested");
-        return numberOfJurorsRequested.getText();
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(NUMBER_OF_JURORS_REQUESTED)).getText();
     }
 
     public String getNumberOfJurorsRequestedCourtOverview() {
@@ -180,7 +181,7 @@ public class PoolOverview {
 
     public String getNumberOfJurorsRequired() {
         log.info("Getting number of jurors required");
-        return numberOfJurorsRequested.getText();
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(NUMBER_OF_JURORS_REQUESTED)).getText();
     }
 
     public String getNumberOfJurorsRequiredCourtOverview() {

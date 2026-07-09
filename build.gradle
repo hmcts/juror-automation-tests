@@ -47,11 +47,13 @@ jacoco {
 
 ext {
   cucumberVersion = '7.34.4'
-  courgetteVersion = '6.21.0'
+  courgetteVersion = '6.22.0'
   junitJupiterVersion = '5.14.4'
-  log4j2Version = '2.26.0'
+  log4j2Version = '2.26.1'
   seleniumVersion = '4.31.0'
   slf4jVersion = '2.0.18'
+  httpclient5Version = '5.6.2'
+  httpcore5Version = '5.4.3'
 }
 
 configurations.configureEach {
@@ -93,6 +95,11 @@ configurations.configureEach {
       details.useVersion '7.12.0'
       details.because 'Override older Courgette transitive TestNG'
     }
+    if (details.requested.group == 'org.apache.httpcomponents.core5'
+      && ['httpcore5', 'httpcore5-h2'].contains(details.requested.name)) {
+      details.useVersion httpcore5Version
+      details.because 'Resolve CVE-2026-54399 and CVE-2026-54428 in Apache HttpComponents Core'
+    }
   }
 }
 
@@ -107,8 +114,9 @@ dependencies {
 
   testImplementation "io.github.prashant-ramcharan:courgette-jvm:${courgetteVersion}"
 
-  implementation 'org.apache.httpcomponents:httpclient:4.5.14'
-  implementation 'org.apache.httpcomponents:httpcore:4.4.16'
+  implementation "org.apache.httpcomponents.client5:httpclient5:${httpclient5Version}"
+  implementation "org.apache.httpcomponents.core5:httpcore5:${httpcore5Version}"
+  implementation "org.apache.httpcomponents.core5:httpcore5-h2:${httpcore5Version}"
 
   testImplementation "io.cucumber:cucumber-picocontainer:${cucumberVersion}"
 
@@ -127,7 +135,7 @@ dependencies {
   implementation group: 'org.apache.chemistry.opencmis', name: 'chemistry-opencmis-client-impl', version: '1.1.0'
   implementation group: 'com.fasterxml.woodstox', name: 'woodstox-core', version: '7.2.1'
 
-  implementation group: 'org.postgresql', name: 'postgresql', version: '42.7.11'
+  implementation group: 'org.postgresql', name: 'postgresql', version: '42.7.13'
 
   implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.20.0'
 
@@ -143,7 +151,19 @@ dependencies {
 
 }
 
-task functional(type: Test, dependsOn: testClasses) {
+task functionalSmoke(type: Test, dependsOn: testClasses) {
+  testClassesDirs = sourceSets.test.output.classesDirs
+  classpath = sourceSets.test.runtimeClasspath
+
+  systemProperty "envName", System.getenv("envName")
+  systemProperty "envDriver", System.getenv("envDriver")
+
+  include '**/TestRunner_SmokeTest.class'
+  reports.junitXml.outputLocation = layout.buildDirectory.dir('test-results/functionalTest')
+  outputs.upToDateWhen { false }
+}
+
+task functional(type: Test, dependsOn: [testClasses, functionalSmoke]) {
   testClassesDirs = sourceSets.test.output.classesDirs
   classpath = sourceSets.test.runtimeClasspath
 
@@ -159,35 +179,44 @@ task functional(type: Test, dependsOn: testClasses) {
   def runRegression = System.getenv("runRegression")
   def runRegressionSingle = System.getenv("runRegressionSingle")
   def runRegressionWelsh = System.getenv("runRegressionWelsh")
-  
+  def hasSelectedFunctionalSuite = false
+
   if (runExpenses == 'true') {
     include '**/TestRunner_Expenses.class'
+    hasSelectedFunctionalSuite = true
   }
   if (runFeatures == 'true') {
     include '**/TestRunner_Features.class'
+    hasSelectedFunctionalSuite = true
   }
   if (runJurorTransformation == 'true') {
     include '**/TestRunner_JurorTransformation.class'
+    hasSelectedFunctionalSuite = true
   }
   if (runJurorTransformationMulti == 'true') {
     include '**/TestRunner_JurorTransformationMulti.class'
+    hasSelectedFunctionalSuite = true
   }
   if (runJurorTransformationWIP == 'true') {
     include '**/TestRunner_JurorTransformationWIP.class'
+    hasSelectedFunctionalSuite = true
   }
   if (runJurorEr == 'true') {
     include '**/TestRunner_JurorEr.class'
+    hasSelectedFunctionalSuite = true
   }
   if (runRegression == 'true') {
     include '**/TestRunner_Regression.class'
+    hasSelectedFunctionalSuite = true
   }
   if (runRegressionSingle == 'true') {
     include '**/TestRunner_RegressionSingle.class'
+    hasSelectedFunctionalSuite = true
   }
   if (runRegressionWelsh == 'true') {
     include '**/TestRunner_RegressionWelsh.class'
+    hasSelectedFunctionalSuite = true
   }
-  //Always run SmokeTest
-  include '**/TestRunner_SmokeTest.class'
+  onlyIf { hasSelectedFunctionalSuite }
   outputs.upToDateWhen { false }
 }
