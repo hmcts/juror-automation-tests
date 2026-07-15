@@ -1,9 +1,9 @@
 Feature: Regression English_1st_Overage_SkipMainContent
 
-@Regression @NewSchemaConverted
+@Regression @Bureau @DigitalResponse
 Scenario Outline: English 1st Overage Skip to Main Content Check
 
-	Given I am on "Public" "test"
+	Given I am on "Public" "<environment>"
 
 	And auto straight through processing has been enabled new schema
 
@@ -147,7 +147,7 @@ Scenario Outline: English 1st Overage Skip to Main Content Check
 	Then I click on the "Skip to main content" link
 	Then I see "You have completed your reply" on the page
 
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "<environment>"
 	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
@@ -158,5 +158,5 @@ Scenario Outline: English 1st Overage Skip to Main Content Check
 	Then I see "<juror_number>" has reply type indicator "Completed"
 	
 Examples:
-	| juror_number	| pool_number	|last_name	|postcode	|email 		|
-	| 045200066		| 452300065		|DOE		|SW1H 9AJ	|e@eeee.com	|
+	| juror_number	| pool_number	|last_name	|postcode	|email 		| environment |
+	| 045200066		| 452300065		|DOE		|SW1H 9AJ	|e@eeee.com	| test        |

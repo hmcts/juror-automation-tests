@@ -634,9 +634,7 @@ Examples:
 @Regression
 Scenario Outline: English response completed in Legacy and login attempted on Digital
 
-	#return to @Regression once defect fixed
-
-	Given I am on "Bureau" "ithc"
+	Given I am on "Bureau" "demo"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -650,7 +648,7 @@ Scenario Outline: English response completed in Legacy and login attempted on Di
 
 	And I record a happy path paper summons response and process now
 
-	Given I am on "Public" "ithc"
+	Given I am on "Public" "demo"
 
 	Then I see "Reply to a jury summons" on the page
 	

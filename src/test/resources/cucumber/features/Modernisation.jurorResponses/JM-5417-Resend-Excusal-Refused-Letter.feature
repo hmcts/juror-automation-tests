@@ -105,10 +105,10 @@ Feature: JM-5417-5586 - Resend excusal refused letter for Bureau and Jury users
       |  041529019    | 415980686   | MODTESTBUREAU |
 
 
-  @JurorTransformationMulti
+  @JurorTransformationMulti @Bureau
   Scenario Outline: Excusal refused letter - via pool Number happy path bulk
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     And I log in as "<user>"
 
@@ -209,8 +209,8 @@ Feature: JM-5417-5586 - Resend excusal refused letter for Bureau and Jury users
     And I see "3 documents sent for printing" on the page
 
     Examples:
-      | juror_number  |juror_number_2 |juror_number_3 |pool_number | user          |
-      |  041529024    | 041529040     |041529041      |415980686   | MODTESTBUREAU |
+      | juror_number  |juror_number_2 |juror_number_3 |pool_number | user          | environment  |
+      |  041529024    | 041529040     |041529041      |415980686   | MODTESTBUREAU | test         |
 
 
   @JurorTransformationMulti

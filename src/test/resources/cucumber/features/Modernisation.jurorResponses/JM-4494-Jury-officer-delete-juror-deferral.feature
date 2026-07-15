@@ -1,13 +1,13 @@
 Feature: JM-4494 Jury officer Delete Juror Deferral
 
-  @JurorTransformationMulti
+  @JurorTransformationMulti @Court
   Scenario Outline: Jury Officer Delete Juror deferral - paper
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     Given a bureau owned pool is created with jurors
-      | court |juror_number  	        | pool_number	    | att_date_weeks_in_future	| owner |
-      | 415   |<juror_number> 	        | <pool_number>     | 5				            | 400	|
+      | court |juror_number   | pool_number	    | att_date_weeks_in_future	| owner |
+      | 415   |<juror_number> | <pool_number>   | 5				            | 400	|
 
     Then a new pool is inserted for where record has transferred to the court new schema
       |part_no        | pool_no       | owner |
@@ -47,5 +47,5 @@ Feature: JM-4494 Jury officer Delete Juror Deferral
     And I see the juror status on the juror record screen is "Responded"
 
     Examples:
-      | juror_number| pool_number |
-      | 041500060	| 415300150	  |
+      | juror_number| pool_number | environment |
+      | 041500060	| 415300150	  | test        |
