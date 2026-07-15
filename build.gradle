@@ -139,8 +139,11 @@ dependencies {
 
   implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.20.0'
 
-  implementation("com.fasterxml.jackson.core:jackson-databind:2.22.1")
-
+  constraints {
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.22.1") {
+      because 'Override vulnerable jackson-databind version flagged by CVE-2026-54515'
+    }
+  }
 
   testImplementation "io.cucumber:cucumber-picocontainer:${cucumberVersion}"
   testImplementation "io.cucumber:cucumber-core:${cucumberVersion}"
