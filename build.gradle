@@ -46,8 +46,9 @@ jacoco {
 }
 
 ext {
-  cucumberVersion = '7.34.4'
-  courgetteVersion = '6.22.0'
+  // Cucumber 7.34.x depends on messages-ndjson 0.3.x, which shades the vulnerable jackson databind code covered by CVE-2026-54515
+  cucumberVersion = '7.33.0'
+  courgetteVersion = '6.21.0'
   junitJupiterVersion = '5.14.4'
   log4j2Version = '2.26.1'
   seleniumVersion = '4.31.0'
@@ -141,7 +142,7 @@ dependencies {
 
   constraints {
     implementation("com.fasterxml.jackson.core:jackson-databind:2.22.1") {
-      because 'Override vulnerable jackson-databind version flagged by CVE-2026-54515'
+      because 'Replace vulnerable transitive Jackson Databind versions covered by CVE-2026-54515'
     }
   }
 
