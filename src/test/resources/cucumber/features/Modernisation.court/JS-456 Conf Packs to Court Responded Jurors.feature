@@ -46,7 +46,7 @@ Feature: Court responded jurors to receive confirmation pack
 
     Examples:
       | juror_number01  | pool_number01 | environment |
-      | 045798031       | 457980930     | test        |
+      | 045798031       | 457980930     | demo        |
 
   @JurorTransformation @Court
   Scenario Outline: Court responded juror receives conf pack - english at welsh court
@@ -78,13 +78,14 @@ Feature: Court responded jurors to receive confirmation pack
 
     #refresh page
     When I refresh the page
+    When I refresh the page
     And I see "Passed" on the page
 
     Then I check that a confirmation letter has been generated for juror "<juror_number01>" new schema
 
     Examples:
       | juror_number01  | pool_number01 | environment |
-      | 045798032       | 457980932     | test        |
+      | 045798032       | 457980932     | ithc        |
 
   @JurorTransformation @Court
   Scenario Outline: Court responded juror receives conf pack
@@ -114,6 +115,7 @@ Feature: Court responded jurors to receive confirmation pack
     And I see "Not Checked" on the page
 
     #refresh page
+    When I refresh the page
     When I refresh the page
     And I see "Passed" on the page
 
@@ -195,7 +197,7 @@ Feature: Court responded jurors to receive confirmation pack
 
     Examples:
       | juror_number01  | pool_number01 | environment |
-      | 041598033       | 415980933     | test        |
+      | 041598033       | 415980933     | ithc        |
 
   @JurorTransformation @Court
   Scenario Outline: Court responded juror does not receive conf pack when responded date before police check passed date
@@ -228,6 +230,7 @@ Feature: Court responded jurors to receive confirmation pack
     And I see "Not Checked" on the page
 
     #refresh page
+    When I refresh the page
     When I refresh the page
     And I see "Passed" on the page
 
@@ -272,10 +275,11 @@ Feature: Court responded jurors to receive confirmation pack
 
     #refresh page
     When I refresh the page
+    When I refresh the page
     And I see "Failed" on the page
 
     Then I check that a confirmation letter has not been generated for juror "<juror_number01>" new schema
 
     Examples:
       | juror_number01  | pool_number01 | environment |
-      | 223456719       | 415240701     | test        |
+      | 223456719       | 415240701     | ithc        |

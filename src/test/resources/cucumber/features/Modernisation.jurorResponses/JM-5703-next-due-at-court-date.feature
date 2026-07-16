@@ -382,10 +382,10 @@ Feature: As a jury officer i need to send a attendance date and time changed mes
       |MODTESTCOURT | 041529935    | 415980993   |
 
 
-  @JurorTransformationMulti @NewSchemaConverted @Messages
+  @JurorTransformationMulti @Messages @Court
   Scenario Outline: Send next due at court message for Juror via their deferred date
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
@@ -496,8 +496,8 @@ Feature: As a jury officer i need to send a attendance date and time changed mes
     And I see the juror "<juror_number>" has a message in the database
 
     Examples:
-      |user			| juror_number | pool_number |
-      |MODTESTCOURT | 041529934    | 415980993   |
+      |user			| juror_number | pool_number | environment |
+      |MODTESTCOURT | 041529934    | 415980993   | ithc        |
 
 
   @JurorTransformationMulti @NewSchemaConverted @Messages

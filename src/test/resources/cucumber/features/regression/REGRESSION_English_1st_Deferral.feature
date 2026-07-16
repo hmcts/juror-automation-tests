@@ -674,10 +674,10 @@ Feature: Regression English_1st_Deferral
       | juror_number | last_name           | postcode | email             | pool_number |
       | 045200016    | LNAMESEVENFIVETHREE | CH1 2AN  | email@outlook.com | 452300012   |
 
-  @Regression
+  @Regression @Bureau @DigitalResponse
   Scenario Outline: 1st English Deferral with Bureau Check
 
-    Given I am on "Public" "ithc"
+    Given I am on "Public" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
@@ -813,7 +813,7 @@ Feature: Regression English_1st_Deferral
     And I press the "Submit" button
     And I see "You have completed your reply" on the page
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
     And I log in as "MODTESTBUREAU"
     And I click on the "Search" link
     And I set "Juror number" to "<juror_number>"
@@ -834,10 +834,9 @@ Feature: Regression English_1st_Deferral
     When I select "S - RECENTLY SERVED" from the "Reason for the deferral request" dropdown
     And I click any radio button while prioritising pool numbers for deferral
 
-
     Examples:
-      | juror_number | last_name | postcode | email             | pool_number |
-      | 045200017    | LNAME21   | CH1 2AN  | email@outlook.com | 452300013   |
+      | juror_number | last_name | postcode | email             | pool_number | environment |
+      | 045200017    | LNAME21   | CH1 2AN  | email@outlook.com | 452300013   | ithc        |
 
   @Regression
   Scenario Outline: 1st English Back Button Logic with Deferral Reason Screen
@@ -1054,10 +1053,10 @@ Feature: Regression English_1st_Deferral
       | juror_number | last_name    | postcode | email      | pool_number |
       | 045200018    | LNAMENINETWO | CH1 2AN  | a@eeee.com | 452300014   |
 
-  @Regression
+  @Regression @Bureau @DigitalResponse
   Scenario Outline: 1st English Back Button Logic with Deferral Dates Screen
 
-    Given I am on "Public" "ithc"
+    Given I am on "Public" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
@@ -1286,8 +1285,8 @@ Feature: Regression English_1st_Deferral
     Then I see "We have sent you an email to say you have replied to your jury summons." on the page
 
     Examples:
-      | juror_number | last_name | postcode | pool_number |
-      | 045200019    | DOE       | SW1H 9AJ | 452300015   |
+      | juror_number | last_name | postcode | pool_number | environment |
+      | 045200019    | DOE       | SW1H 9AJ | 452300015   | test        |
 
   @Regression
   Scenario Outline: English 1st Party Deferral - Validation and Errors
