@@ -50,7 +50,7 @@ ext {
   courgetteVersion = '6.22.0'
   junitJupiterVersion = '5.14.4'
   log4j2Version = '2.26.1'
-  seleniumVersion = '4.31.0'
+  seleniumVersion = '4.46.0'
   slf4jVersion = '2.0.18'
   httpclient5Version = '5.6.2'
   httpcore5Version = '5.4.3'
