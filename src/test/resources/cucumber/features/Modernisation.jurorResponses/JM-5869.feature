@@ -1,6 +1,6 @@
 Feature: As a Bureau Officer I need to search for a juror summon reply so that I can locate their details for processing or management
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti
   Scenario Outline: Search summons replies happy path
 
     Given I am on "Bureau" "test"

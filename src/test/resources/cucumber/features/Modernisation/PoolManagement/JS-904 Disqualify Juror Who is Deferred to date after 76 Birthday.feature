@@ -793,6 +793,8 @@ Feature: JS-904 As an officer I want to be able to disqualify a juror that is to
 
     Then I clear down pool and jurors in pool "415388672" via the database
     Then I clear down pool and jurors in pool "415388673" via the database
+    Then I clear down pool and jurors in pool "416388673" via the database
+    Then I clear down pool and jurors in pool "416388694" via the database
     Then I clear down pool and jurors in pool "415388674" via the database
     Then I clear down pool and jurors in pool "415388675" via the database
     Then I clear down pool and jurors in pool "415388676" via the database
@@ -844,7 +846,7 @@ Feature: JS-904 As an officer I want to be able to disqualify a juror that is to
     And I press the "Find" button
     Then I see "<juror_number_1>" on the page
 
-    Then I check the select all checkbox
+    Then I check the "<juror_number_1>" checkbox
     And I press the "Postpone" button
 
     When I set the "Enter a new service start date" date to a Monday "50" weeks in the future

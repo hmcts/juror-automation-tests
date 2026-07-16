@@ -567,10 +567,10 @@ Examples:
 	| juror_number	| pool_number	| first_name| last_name	| postcode	| email 		|
 	| 045200113		| 452300112		| John		| Doe		| SW1H 9AJ	| a@eeee.com	|
 
-@Regression
+@Regression @Bureau @DigitalResponse
 Scenario Outline: English 3rd Party Deferral HTML Response summary
 
-	Given I am on "Public" "ithc"
+	Given I am on "Public" "<environment>"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -754,8 +754,8 @@ Scenario Outline: English 3rd Party Deferral HTML Response summary
 	And I see "Download a copy of your summons reply HTML" on the page	
 	
 Examples:
-	| juror_number	| pool_number	| first_name| last_name	| postcode	| email 		|
-	| 045200114		| 452300113		| John		| Doe		| SW1H 9AJ	| a@eeee.com	|
+	| juror_number	| pool_number	| first_name| last_name	| postcode	| email 		| environment |
+	| 045200114		| 452300113		| John		| Doe		| SW1H 9AJ	| a@eeee.com	| test        |
 	
 @Regression
 Scenario Outline: English 1st Party Overage HTML Response Summary

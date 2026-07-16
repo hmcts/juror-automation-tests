@@ -3,7 +3,7 @@ Feature: Send reminder to LA
 @JurorEr
 Scenario Outline: Send Reminders - Bulk
   
-  Given I am on "Bureau" "test"
+  Given I am on "Bureau" "ithc"
 
   Given all ER Local Authorities are set to active new schema
 
@@ -19,7 +19,6 @@ Scenario Outline: Send Reminders - Bulk
   And I see the banner for sent reminder
   Then I check reminder has been sent to LA
 
-
   Examples:
     | user          |
     | MODTESTBUREAU |
@@ -27,7 +26,7 @@ Scenario Outline: Send Reminders - Bulk
   @JurorEr
   Scenario Outline: Send Reminders - Single
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     Given all ER Local Authorities are set to active new schema
 
@@ -49,7 +48,7 @@ Scenario Outline: Send Reminders - Bulk
   @JurorEr
   Scenario Outline: Send Reminders - unhappy path
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "ithc"
 
     Given all ER Local Authorities are set to active new schema
     And I check there are no users within the Broadland LA

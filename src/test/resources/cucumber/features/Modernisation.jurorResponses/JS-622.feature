@@ -1,9 +1,9 @@
 Feature: JS-622 - Shuffle address
 
-  @JurorTransformation
+  @JurorTransformation @Bureau
   Scenario Outline: Shuffle address data when address4 is null
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number  	| pool_number	| att_date_weeks_in_future	| owner |
@@ -30,5 +30,5 @@ Feature: JS-622 - Shuffle address
     And I verify the juror address shuffles are correct for pool "<pool_number>"
 
     Examples:
-     | juror_number | pool_number | user          |
-     | 045278833    | 452388166   | MODTESTBUREAU |
+     | juror_number | pool_number | user          | environment |
+     | 045278833    | 452388166   | MODTESTBUREAU | ithc        |

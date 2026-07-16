@@ -138,7 +138,7 @@ Feature: JM-4326 - Defer a juror and then complete their service at a later date
   @JurorTransformationMulti
   Scenario Outline: Mark juror as deferred - Add to pool - Digital Response Bureau Officer
 
-    Given I am on "Public" "ithc"
+    Given I am on "Public" "test"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
@@ -148,8 +148,8 @@ Feature: JM-4326 - Defer a juror and then complete their service at a later date
 
     #record digital response
     And I record a digital response for a juror with a deferral
-      | jurorNumber   | <juror_number>      |
-      | jurorLname    | lname            |
+      | jurorNumber   | <juror_number> |
+      | jurorLname    | lname          |
       | jurorPostcode | CH2 2AA        |
 
     #log on and create a pool to defer to
@@ -194,7 +194,7 @@ Feature: JM-4326 - Defer a juror and then complete their service at a later date
   @JurorTransformationMulti
   Scenario Outline: Mark juror as deferred - Add to pool - Digital Response Jury Officer
 
-    Given I am on "Public" "ithc"
+    Given I am on "Public" "test"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
@@ -213,7 +213,7 @@ Feature: JM-4326 - Defer a juror and then complete their service at a later date
       |part_no              | pool_no           | owner |
       |<juror_number>       | <pool_number>     | 415   |
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "test"
     And I log in as "<user>"
 
     #search for juror and view response

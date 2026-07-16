@@ -953,10 +953,10 @@ Examples:
 	| juror_number	| last_name			| postcode	| email           	| pool_number	|
 	| 045200108		| LNAMENINETWOTWO	| SY2 6LU	| email@outlook.com	| 452300107		|
 	
-@Regression
+@Regression @Bureau @DigitalResponse
 Scenario Outline: English_1st_Char_Counts_YesToNo
 
-	Given I am on "Public" "test"
+	Given I am on "Public" "<environment>"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -1134,5 +1134,5 @@ Scenario Outline: English_1st_Char_Counts_YesToNo
 	Then I see "You have completed your reply" on the page
 	
 Examples:
-	| juror_number	| last_name			| postcode	| email           	| pool_number	|
-	| 045200109		| LNAMENINETWOSEVEN	| SY2 6LU	| email@outlook.com	| 452300108		|
+	| juror_number	| last_name			| postcode	| email           	| pool_number	| environment |
+	| 045200109		| LNAMENINETWOSEVEN	| SY2 6LU	| email@outlook.com	| 452300108		| test        |
