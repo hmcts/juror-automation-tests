@@ -591,7 +591,10 @@ public class StepDef_jurorRecord {
 
     @When("^I check the checkbox for one of the jurors in the pool$")
     public void selectOneCheckboxForJurorInPool(){
-        String jurorNumber = StepDef_jurorpool.summonedJurors.get().get(StepDef_jurorpool.summonedJurors.get().size()-1);
+        var summonedJurors = StepDef_jurorpool.summonedJurors.get();
+        assertFalse("No newly summoned jurors found; check that 'Summon more citizens' added jurors to the pool",
+                summonedJurors.isEmpty());
+        String jurorNumber = summonedJurors.get(summonedJurors.size() - 1);
         JUROR_RECORD.selectCheckboxesInLettersTableForJuror(jurorNumber);
     }
 
