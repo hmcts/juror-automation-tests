@@ -61,6 +61,7 @@ public class StepDef_jurorpool {
     private final Groups GRP;
     private final JurorRecordSearch JUROR_RECORD_SEARCH;
     private final JurorRecord JUROR_RECORD;
+    private final DigitalByDefault DBD;
 
     private final TrialsAndAttendance TRL;
     public static ThreadLocal<String> poolRequestNumber = new ThreadLocal<>();
@@ -110,6 +111,7 @@ public class StepDef_jurorpool {
         GRP = PageFactory.initElements(webDriver, Groups.class);
         TRL = PageFactory.initElements(webDriver, TrialsAndAttendance.class);
         DBTNSD = new DatabaseTesterNewSchemaDesign();
+        DBD = PageFactory.initElements(webDriver, DigitalByDefault.class);
     }
 
     @Given("^I go to the launch screen of the bureau app$")
@@ -2363,11 +2365,6 @@ public class StepDef_jurorpool {
     public void thereIsAnErrorMessageWithTheTextOnAdditionalSummons(String errorText) {
         assertTrue(ADDITIONAL_SUMMONS.errorIsPresent());
         assertEquals(errorText, ADDITIONAL_SUMMONS.getErrorText());
-    }
-
-    @When("^I click the change catchment area link$")
-    public void clickChangeCatchmentArea() {
-        ADDITIONAL_SUMMONS.clickChangeCatchmentAreaLink();
     }
 
     @When("^I click all postcode checkboxes$")
