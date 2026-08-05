@@ -59,9 +59,6 @@ public class AdditionalSummons {
     @FindBy(xpath = "//*[@class='govuk-error-summary']/div/ul/li/a")
     WebElement respondedErrorText;
 
-    @FindBy(xpath = "//*[@id=\"catchmentArea\"]/div/dd[2]/a")
-    WebElement changeCatchmentAreaLink;
-
     @FindBy(id = "postcodes")
     WebElement postcodes;
 
@@ -114,10 +111,6 @@ public class AdditionalSummons {
         return respondedErrorText.getText();
     }
 
-    public void clickChangeCatchmentAreaLink(){
-        log.info("Clicking change catchment area link");
-        changeCatchmentAreaLink.click();
-    }
 
     public void clickAllPostcodeCheckboxes(){
         List<WebElement> checkboxes = postcodes.findElements(By.tagName("input"));
