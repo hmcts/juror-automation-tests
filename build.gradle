@@ -46,13 +46,13 @@ jacoco {
 }
 
 ext {
-  cucumberVersion = '7.34.4'
+  cucumberVersion = '7.34.6'
   courgetteVersion = '6.22.0'
   junitJupiterVersion = '5.14.4'
   log4j2Version = '2.26.1'
   seleniumVersion = '4.46.0'
   slf4jVersion = '2.0.18'
-  httpclient5Version = '5.6.2'
+  httpclient5Version = '5.6.3'
   httpcore5Version = '5.4.3'
 }
 
@@ -133,7 +133,7 @@ dependencies {
   implementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: junitJupiterVersion
 
   implementation group: 'org.apache.chemistry.opencmis', name: 'chemistry-opencmis-client-impl', version: '1.1.0'
-  implementation group: 'com.fasterxml.woodstox', name: 'woodstox-core', version: '7.2.1'
+  implementation group: 'com.fasterxml.woodstox', name: 'woodstox-core', version: '7.2.2'
 
   implementation group: 'org.postgresql', name: 'postgresql', version: '42.7.13'
 
