@@ -191,13 +191,14 @@ Feature: Court responded jurors to receive confirmation pack
 
     #refresh page
     When I refresh the page
+    When I refresh the page
     And I see "Passed" on the page
 
     Then I check that a confirmation letter has not been generated for juror "<juror_number01>" new schema
 
     Examples:
       | juror_number01  | pool_number01 | environment |
-      | 041598033       | 415980933     | ithc        |
+      | 041598033       | 415980933     | test        |
 
   @JurorTransformation @Court
   Scenario Outline: Court responded juror does not receive conf pack when responded date before police check passed date

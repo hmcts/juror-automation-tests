@@ -24,14 +24,20 @@ Scenario Outline: Back and forward navigation all screens for 3rd Party
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
-	Then I see "What is your name?" on the page
+
+	And I determine whether this is a Digital By Default response and select the correct action
+
+    Then I see "What is your name?" on the page
 	When I click on the "Back" link
 	Then I see "Their juror details" on the page
 	When I set "9-digit juror number" to "<juror_number>"
 	And I set "Juror last name" to "<last_name>"
 	And I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
-	Then I see "What is your name?" on the page
+
+	And I determine whether this is a Digital By Default response and select the correct action
+
+    Then I see "What is your name?" on the page
 	
 	#3rd Party Name
 	When I set "First name" to "FirstNameA"
@@ -39,7 +45,10 @@ Scenario Outline: Back and forward navigation all screens for 3rd Party
 	And I press the "Continue" button
 	Then I see "Your relationship to the person" on the page
 	When I click on the "Back" link
-	Then I see "What is your name?" on the page
+
+	And I determine whether this is a Digital By Default response and select the correct action
+
+    Then I see "What is your name?" on the page
 	Then "First name" is "FirstNameA"
 	Then "Last name" is "LastNameB"
 	And I press the "Continue" button

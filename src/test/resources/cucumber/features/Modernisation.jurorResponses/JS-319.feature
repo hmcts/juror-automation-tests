@@ -84,6 +84,7 @@ Feature: JS-319 Alternative phone number is correctly saved to the juror record
     Then I set "Tell us about any special arrangements or help you need while you're doing jury service (optional)" to "Special Need is DIABETES"
     And I press the "Continue" button
 
+    And I see "The information I have given is true to the best of my knowledge" on the page
     Then I check the "The information I have given is true to the best of my knowledge" checkbox
     And I press the "Submit" button
 

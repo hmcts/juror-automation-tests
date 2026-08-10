@@ -3,7 +3,7 @@ Feature: JM-4326 - Defer a juror and then complete their service at a later date
   @JurorTransformationMulti
   Scenario Outline: Mark juror as deferred - Add to pool Happy path paper - Bureau Officer
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     Given I log in as "<user>"
 
@@ -64,8 +64,8 @@ Feature: JM-4326 - Defer a juror and then complete their service at a later date
     And I see the reply type has been updated to "Deferral"
 
     Examples:
-      |user			|juror_number  |pool_number  |
-      |MODTESTBUREAU|041530012     |415300301    |
+      |user			|juror_number  |pool_number  | environment |
+      |MODTESTBUREAU|041530012     |415300301    | test        |
 
   @JurorTransformationMulti
   Scenario Outline: Mark juror as deferred - Add to pool Happy path paper - Jury Officer
@@ -138,7 +138,7 @@ Feature: JM-4326 - Defer a juror and then complete their service at a later date
   @JurorTransformationMulti
   Scenario Outline: Mark juror as deferred - Add to pool - Digital Response Bureau Officer
 
-    Given I am on "Public" "test"
+    Given I am on "Public" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
@@ -188,8 +188,8 @@ Feature: JM-4326 - Defer a juror and then complete their service at a later date
     And I see the reply status has updated to "Completed"
 
     Examples:
-      | user		  | juror_number  | pool_number |
-      | MODTESTBUREAU | 041500138     | 415300238   |
+      | user		  | juror_number  | pool_number | environment |
+      | MODTESTBUREAU | 041500138     | 415300238   | test        |
 
   @JurorTransformationMulti
   Scenario Outline: Mark juror as deferred - Add to pool - Digital Response Jury Officer

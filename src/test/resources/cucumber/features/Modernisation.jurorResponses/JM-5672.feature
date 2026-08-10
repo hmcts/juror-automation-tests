@@ -3,7 +3,8 @@ Feature:JM-5672-As a jury officer I need to be able to bulk postpone
 @JurorTransformationMulti
 Scenario Outline: Postpone a juror to another court as a Jury officer - Bulk flow happy path
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "<environment>"
+
     Given a bureau owned pool is created with jurors
       | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
       | 415   |<juror_number_1> 	| <pool_number>     | 5				            | 400	|
@@ -35,8 +36,8 @@ Scenario Outline: Postpone a juror to another court as a Jury officer - Bulk flo
     And I see "4 jurors postponed to deferral maintenance" on the page
 
     Examples:
-      |user			 |juror_number_1  | juror_number_2  | juror_number_3  |juror_number_4  |pool_number  |
-      |MODTESTCOURT  |041520045       | 041520046         |041520047      |041520048       |415300712    |
+      |user			 |juror_number_1  | juror_number_2  | juror_number_3  |juror_number_4  |pool_number  | environment |
+      |MODTESTCOURT  |041520045       | 041520046         |041520047      |041520048       |415300712    | test        |
 
 
     @JurorTransformationMulti
