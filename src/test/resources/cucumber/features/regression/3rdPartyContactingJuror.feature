@@ -2,8 +2,7 @@ Feature: 3rd_Party_ContactingJuror
 
 @Regression
 Scenario Outline: English check that result cannot be processed without phone number for juror
-
-	Given I am on "Public" "<environment>"
+	Given I am on "Public" "test"
 
 	Given a bureau owned pool is created with jurors
 		| court 	|juror_number  		| pool_number	| att_date_weeks_in_future	| owner |
@@ -16,7 +15,6 @@ Scenario Outline: English check that result cannot be processed without phone nu
 	
 	And I set the radio button to "I am replying for someone else"
 	And I press the "Continue" button
-
 	Then I see "Their juror details" on the page
 	
 	#Juror Log In
@@ -24,10 +22,7 @@ Scenario Outline: English check that result cannot be processed without phone nu
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
-
-	And I determine whether this is a Digital By Default response and select the correct action
-
-    Then I see "What is your name?" on the page
+	Then I see "What is your name?" on the page
 	
 	#3rd Party Name
 	When I see "Your Details" on the page
@@ -110,6 +105,6 @@ Scenario Outline: English check that result cannot be processed without phone nu
 	Then I see "Confirm if the person is eligible for jury service" on the page
 	
 Examples:
-	| juror_number	| last_name	| postcode	| email           	| pool_number| court	| environment |
-	| 041500015		| DOE		| SW1H 9AJ	| email@outlook.com	| 415300113  | 415      | ithc        |
+	| juror_number	| last_name	| postcode	| email           	| pool_number| court	|
+	| 041500015		| DOE		| SW1H 9AJ	| email@outlook.com	| 415300113  | 415      |
 	

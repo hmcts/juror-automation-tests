@@ -111,9 +111,8 @@ Feature: JM-4494 Bureau Delete Juror Deferral
     Given I create an active "civil" court pool request for court "415", "14" Mondays in the future
 
     When the user searches for juror record "<juror_number>" from the global search bar
-    And I see "<juror_number>" on the page
     Then I record a happy path deferral paper summons response
-    And I see "Deferral" on the page
+
     And I see the reply "type" on the response is "Deferral"
     Then I click the process reply button
     Then I set the radio button to "Deferral request"

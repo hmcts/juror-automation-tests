@@ -46,8 +46,8 @@ Feature: JM-5963 - As a jury I need to be able to print a certificate of attenda
     And I check the "<juror_number>" checkbox
     And I press the "Print certificate of attendance" button
     And I focus page to the original tab
-    And I see "/documents/certificate-attendance/letters-list?documentSearchBy=jurorNumber&jurorNumber=041587205" in the URL
-#    And I see "/documents/certificate-attendance/letters-list?documentSearchBy=juror_number&jurorNumber=041587205" in the URL
+#    And I see "/documents/certificate-attendance/letters-list?documentSearchBy=jurorNumber&jurorNumber=041587205" in the URL
+    And I see "/documents/certificate-attendance/letters-list?documentSearchBy=juror_number&jurorNumber=041587205" in the URL
 
     Examples:
       |user			| juror_number | pool_number  | environment |

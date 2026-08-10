@@ -52,10 +52,7 @@ Scenario Outline: English 3rd Party Straight Through with Skip to Main Content C
 	Then I see "Skip to main content" on the page
 	Then the page language is "en"
 	Then I click on the "Skip to main content" link
-
-	And I determine whether this is a Digital By Default response and select the correct action
-
-    Then I see "What is your name?" on the page
+	Then I see "What is your name?" on the page
 	
 	When I set "First name" to "FirstNameA"
 	And I set "Last name" to "LastNameB"

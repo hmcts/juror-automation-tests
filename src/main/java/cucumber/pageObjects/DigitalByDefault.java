@@ -3,7 +3,6 @@ package cucumber.pageObjects;
 import cucumber.testdata.DBConnection;
 import cucumber.utils.WaitUtils;
 import org.apache.log4j.Logger;
-import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -27,7 +26,6 @@ public class DigitalByDefault {
             Logger.getLogger(DigitalByDefault.class);
     private static final DateTimeFormatter SERVICE_START_DATE_FORMAT =
             DateTimeFormatter.ofPattern("EEEE d MMMM uuuu", Locale.ENGLISH);
-    private final NavigationShared NAV;
 
     private final WebDriver driver;
     private final WaitUtils wait;
@@ -36,7 +34,6 @@ public class DigitalByDefault {
         this.driver = driver;
         PageFactory.initElements(driver, this);
         wait = new WaitUtils(driver);
-        NAV = new NavigationShared(driver);
     }
 
     @FindBy(css = "[data-test='response-start-what']")
@@ -63,7 +60,7 @@ public class DigitalByDefault {
     @FindBy(css = "#main-content .govuk-inset-text p.govuk-body")
     private WebElement juryServiceSummonsInformation;
 
-    @FindBy(xpath = "//a[text()[contains(.,'Start your response')]]")
+    @FindBy(css = "a.govuk-button[href='/steps/your-details']")
     private WebElement startYourResponseButton;
 
     @FindBy(css = "a.govuk-link[aria-label='Change court catchment area']")
@@ -400,17 +397,5 @@ public class DigitalByDefault {
         }
 
         log.info("Saw " + expectedHeading + " card");
-    }
-
-    public void determineDigitalByDefaultResponseAndSelectAction() throws SQLException {
-        NAV.waitForPageLoad();
-
-        List<WebElement> buttons = driver.findElements(By.xpath("//a[text()[contains(.,'Start your response')]]"));
-
-        if (!buttons.isEmpty() && buttons.get(0).isDisplayed()) {
-            log.info("Start your response button is present and visible.");
-            buttons.get(0).click();
-            log.info("Clicked the Start your response button.");
-        }
     }
 }

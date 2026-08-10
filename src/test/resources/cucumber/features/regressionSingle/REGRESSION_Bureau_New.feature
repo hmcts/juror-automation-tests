@@ -1075,7 +1075,7 @@ Scenario: Manage Team
 @RegressionSingle
 Scenario Outline: Results grid updates when status changes are made
 
-	Given I am on "Bureau" "<environment>"
+	Given I am on "Bureau" "ithc"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -1096,7 +1096,7 @@ Scenario Outline: Results grid updates when status changes are made
 	#turn on auto processing
 	Given auto straight through processing has been enabled new schema
 
-	Given I am on "Bureau" "<environment>"
+	Given I am on "Bureau" "ithc"
 	When I log in as "MODTESTBUREAU"
 	
 	Then I click on the "Search" link
@@ -1160,5 +1160,5 @@ Scenario Outline: Results grid updates when status changes are made
 	Then I see "Completed" in the same row as "<last_name>"
 	
 Examples:
-	| juror_number	| pool_number 	| last_name 	| postcode | environment |
-	| 045200250		| 452300227 	| Lnameupdate	| CH2 2AA  | test        |
+	| juror_number	| pool_number 	| last_name 	| postcode |
+	| 045200250		| 452300227 	| Lnameupdate	| CH2 2AA  |

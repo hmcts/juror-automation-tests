@@ -47,10 +47,7 @@ Scenario Outline: English 3rd Deceased Skip to Main Content Check
 	Then I hit the tab key
 	Then I see "Skip to main content" on the page
 	Then I click on the "Skip to main content" link
-
-	And I determine whether this is a Digital By Default response and select the correct action
-
-    Then I see "What is your name?" on the page
+	Then I see "What is your name?" on the page
 	
 	And I press the "Continue" button
 	

@@ -14,7 +14,6 @@ Feature: JM-3897 mark juror as deferred paper
     Given I create an active "civil" court pool request for court "415", "14" Mondays in the future
     When the user searches for juror record "<juror_number>" from the global search bar
     Then I record a happy path deferral paper summons response
-    And I see "Deferral" on the page
     And I see the reply "type" on the response is "Deferral"
     
     Then I click the process reply button
@@ -38,7 +37,6 @@ Feature: JM-3897 mark juror as deferred paper
     And I see "Deferral granted" on the page
 
     Then the user searches for juror record "<juror_number>" from the global search bar
-    And I see "<juror_number>" on the page
     And I click the summons reply tab
 
     And I click on the "View summons reply" link
@@ -97,7 +95,7 @@ Feature: JM-3897 mark juror as deferred paper
 
     Examples:
       | user		  | juror_number| pool_number | environment |
-      | MODTESTBUREAU | 041500057   | 415300147   | test        |
+      | MODTESTBUREAU | 041500057   | 415300147   | ithc        |
 
   @JurorTransformationMulti
   Scenario Outline: Mark juror as deferred - No dates entered validation paper

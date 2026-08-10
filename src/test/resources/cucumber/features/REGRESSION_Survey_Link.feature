@@ -55,10 +55,7 @@ Scenario Outline: Survey Link 3rd Party Eng
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
-
-	And I determine whether this is a Digital By Default response and select the correct action
-
-    Then I see "What is your name?" on the page
+	Then I see "What is your name?" on the page
 	
 	And I see "Give feedback (opens in a new window or tab)" on the page
 	And I click on the "Give feedback (opens in a new window or tab)" link

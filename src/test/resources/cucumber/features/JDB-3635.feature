@@ -24,10 +24,7 @@ Scenario Outline: Checking that TP is visible in all 3rd Party browser URLs afte
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
-
-	And I determine whether this is a Digital By Default response and select the correct action
-
-    Then I see "What is your name?" on the page
+	Then I see "What is your name?" on the page
 	
 	#3rd Party Name
 	When I see "Your Details" on the page

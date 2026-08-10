@@ -86,9 +86,4 @@ public class StepDef_DBD {
     public void verifyServiceStartDateForJuror(String jurorNumber) throws SQLException {
         DBD.verifyServiceStartDateForJuror(jurorNumber);
     }
-
-    @When("^I determine whether this is a Digital By Default response and select the correct action$")
-    public void determineDigitalByDefaultResponseAndSelectAction() throws SQLException {
-        DBD.determineDigitalByDefaultResponseAndSelectAction();
-    }
 }

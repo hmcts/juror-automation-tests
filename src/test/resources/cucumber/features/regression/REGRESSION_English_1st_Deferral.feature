@@ -2212,7 +2212,7 @@ Feature: Regression English_1st_Deferral
   @RegressionSingle
   Scenario Outline: English 1st Party Deferral - >1 date selected is a BH
 
-    Given I am on "Public" "<environment>"
+    Given I am on "Public" "ithc"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
@@ -2392,7 +2392,7 @@ Feature: Regression English_1st_Deferral
     And I validate the "Second" deferral date is "10" weeks in the future
     And I validate the "Third" deferral date is "11" weeks in the future
 
-    Given I am on "Bureau" "<environment>"
+    Given I am on "Bureau" "ithc"
     And I log in as "MODTESTBUREAU"
 
     When I click on the "Search" link
@@ -2419,8 +2419,8 @@ Feature: Regression English_1st_Deferral
     Then I delete bank holiday new schema
 
     Examples:
-      | juror_number | pool_number | last_name          | postcode | email      | environment |
-      | 045200037    | 452300036   | LNAMESEVENONETHREE | SW1H 9AJ | e@eeee.com | test        |
+      | juror_number | pool_number | last_name          | postcode | email      |
+      | 045200037    | 452300036   | LNAMESEVENONETHREE | SW1H 9AJ | e@eeee.com |
 
   @RegressionSingle
   Scenario Outline: English 1st Party Deferral - Navigate back from BH page
