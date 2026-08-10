@@ -28,7 +28,10 @@ Scenario Outline: Checking page text for Eligibility page
 	#Check Name
 	And I choose the "No" radio button
 	And I press the "Continue" button
-	Then I see "What is your name?" on the page
+
+	And I determine whether this is a Digital By Default response and select the correct action
+
+    Then I see "What is your name?" on the page
 	
 	Then I set "First name" to ""
 	And I set "Last name" to ""

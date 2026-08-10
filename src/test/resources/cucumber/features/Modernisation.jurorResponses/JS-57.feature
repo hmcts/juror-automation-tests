@@ -18,14 +18,14 @@ Feature: JS-57
     And I set "Date of birth" to "03/06/1992"
     And I set "Main phone - UK only (optional)" to "079399-58017"
     And I press the "Save" button
-    And I see "079399-58017" in the same row as "Main phone"
+    And I see "07939958017" in the same row as "Main phone"
 
     And the user searches for juror record "<juror_number>" from the global search bar
     And I click on the "Juror details" link
     And I click on the "Add or change" link
     And I set "Main phone - UK only (optional)" to "+447939958017"
     And I press the "Save" button
-    And I see "+447939958017" in the same row as "Main phone"
+    And I see "07939958017" in the same row as "Main phone"
 
     And the user searches for juror record "<juror_number>" from the global search bar
     And I click on the "Juror details" link

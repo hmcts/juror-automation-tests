@@ -12,6 +12,7 @@ Feature: JM-251
 	Given I log in as "<user>"
 
 	And I navigate to the pool request screen
+    And I see "Pool" on the page
 	And I create a "<poolType>" court pool request for court "<court>" with "0" deferral
 
 	Then I can see the newly created pool

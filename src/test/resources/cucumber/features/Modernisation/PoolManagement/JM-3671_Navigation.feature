@@ -1,8 +1,9 @@
 Feature: JM-3671 Navigation
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti @Bureau
   Scenario Outline: Coroners pool change pool details
-    Given I am on "Bureau" "test"
+
+    Given I am on "Bureau" "<environment>"
     And I log in as "<user>"
 
     When I navigate to the pool request screen
@@ -82,5 +83,5 @@ Feature: JM-3671 Navigation
       | rowsOfCitizens | 0              |
 
     Examples:
-      | user	      | selectedCourt | courtCode | displayCourt | noJurors | name   | phone       | email      |
-      | MODTESTBUREAU | CHESTER       | 415       | Chester      | 150      | A Name | 07888888888 | e@mail.com |
+      | user	      | selectedCourt | courtCode | displayCourt | noJurors | name   | phone       | email      | environment |
+      | MODTESTBUREAU | CHESTER       | 415       | Chester      | 150      | A Name | 07888888888 | e@mail.com | test        |
