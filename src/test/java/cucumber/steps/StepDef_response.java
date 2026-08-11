@@ -25,6 +25,7 @@ public class StepDef_response {
 	private Login LGN;
 	private NavigationShared NAV;
 	private Groups GRP;
+    private DigitalByDefault DBD;
 	private final WebDriver webDriver;
 	private ScreenShotTaker SST;
 	private final SummonsReply SUMMONS_REPLY;
@@ -37,6 +38,7 @@ public class StepDef_response {
 		GRP = PageFactory.initElements(webDriver, Groups.class);
 		SST = PageFactory.initElements(webDriver, ScreenShotTaker.class);
 		SUMMONS_REPLY = summons_reply;
+        DBD = PageFactory.initElements(webDriver, DigitalByDefault.class);;
 	}
 
 	@Given("^I have completed the response for$")
@@ -100,6 +102,9 @@ public class StepDef_response {
 			NAV.set_valueTo("Juror last name", last_name);
 			NAV.set_valueTo("Juror postcode", postcode);
 			NAV.press_buttonByName("Continue");
+
+            DBD.determineDigitalByDefaultResponseAndSelectAction();
+
 			NAV.textPresentOnPage("Is the name we have for you correct?");
 			GRP.click_radioButtonWithLabel("Yes");
 			NAV.press_buttonByName("Continue");
@@ -203,6 +208,8 @@ public class StepDef_response {
 			NAV.set_valueTo("Juror postcode", postcode);
 			NAV.press_buttonByName("Continue");
 
+            DBD.determineDigitalByDefaultResponseAndSelectAction();
+
 			NAV.textPresentOnPage("What is your name?");
 			NAV.set_valueTo("First name", "FirstName");
 			NAV.set_valueTo("Last name", "LastName");
@@ -287,9 +294,7 @@ public class StepDef_response {
 		}
 	}
 
-	;
 
-	//| part_no		|pool_number	| last_name			|postcode	| email |
 	@Given("^I have submitted a first party Welsh straight through response$")
 	public void submitFirstWelshStraightThroughResponse(DataTable arg1) throws Throwable {
 		List<Map<String, String>> list = arg1.asMaps(String.class, String.class);
@@ -315,6 +320,9 @@ public class StepDef_response {
 			NAV.set_valueTo("Cyfenw'r Rheithiwr", last_name);
 			NAV.set_valueTo("Cod post Rheithiwr", postcode);
 			NAV.press_buttonByName("Parhau");
+
+            DBD.determineDigitalByDefaultResponseAndSelectAction();
+
 			NAV.textPresentOnPage("A yw'r enw sydd gennym ar eich cyfer chi yn gywir?");
 			GRP.click_radioButtonWithLabel("Ydy");
 			NAV.press_buttonByName("Parhau");
@@ -371,9 +379,6 @@ public class StepDef_response {
 		}
 	}
 
-	;
-
-	//| part_no		|pool_number	| last_name			|postcode	| email |
 	@Given("^I have submitted a third party Welsh straight through response$")
 	public void submitThirdWelshStraightThroughResponse(DataTable arg1) throws Throwable {
 		List<Map<String, String>> list = arg1.asMaps(String.class, String.class);
@@ -398,6 +403,8 @@ public class StepDef_response {
 			NAV.set_valueTo("Cyfenw'r Rheithiwr", last_name);
 			NAV.set_valueTo("Cod post Rheithiwr", postcode);
 			NAV.press_buttonByName("Parhau");
+
+            DBD.determineDigitalByDefaultResponseAndSelectAction();
 
 			NAV.textPresentOnPage("Beth yw eich enw?");
 			NAV.set_valueTo("Enw cyntaf", "FirstName");
@@ -501,6 +508,9 @@ public class StepDef_response {
 			NAV.set_valueTo("Juror last name", last_name);
 			NAV.set_valueTo("Juror postcode", postcode);
 			NAV.press_buttonByName("Continue");
+
+            DBD.determineDigitalByDefaultResponseAndSelectAction();
+
 			NAV.textPresentOnPage("Is the name we have for you correct?");
 			GRP.click_radioButtonWithLabel("No");
 			NAV.press_buttonByName("Continue");
@@ -613,6 +623,8 @@ public class StepDef_response {
 			NAV.set_valueTo("Juror postcode", postcode);
 			NAV.press_buttonByName("Continue");
 
+            DBD.determineDigitalByDefaultResponseAndSelectAction();
+
 			GRP.click_radioButtonWithLabel("Yes");
 			NAV.press_buttonByName("Continue");
 
@@ -709,6 +721,8 @@ public class StepDef_response {
 			NAV.set_valueTo("Juror postcode", postcode);
 			NAV.press_buttonByName("Continue");
 
+            DBD.determineDigitalByDefaultResponseAndSelectAction();
+
 			NAV.textPresentOnPage("What is your name?");
 			NAV.set_valueTo("First name", "FirstName");
 			NAV.set_valueTo("Last name", "LastName");
@@ -796,7 +810,6 @@ public class StepDef_response {
 		}
 	}
 
-	;
 
 	@Given("^I have submitted a first party Welsh ineligibilty response$")
 	public void submitFirstWelshIneligbileResponse(DataTable arg1) throws Throwable {
@@ -813,8 +826,6 @@ public class StepDef_response {
 
 			NAV.accessLoginPageWelsh("public", env);
 
-//				NAV.click_link_by_text("Welsh (Cymraeg)");
-//				NAV.press_buttonByName("Dechrau nawr");
 			GRP.click_radioButtonWithLabel("Rwy'n ymateb dros fy hun");
 			NAV.press_buttonByName("Parhau");
 			NAV.textPresentOnPage("Rhif rheithiwr");
@@ -822,6 +833,9 @@ public class StepDef_response {
 			NAV.set_valueTo("Cyfenw'r Rheithiwr", last_name);
 			NAV.set_valueTo("Cod post Rheithiwr", postcode);
 			NAV.press_buttonByName("Parhau");
+
+            DBD.determineDigitalByDefaultResponseAndSelectAction();
+
 			NAV.textPresentOnPage("A yw'r enw sydd gennym ar eich cyfer chi yn gywir?");
 			GRP.click_radioButtonWithLabel("Ydy");
 			NAV.press_buttonByName("Parhau");
@@ -916,6 +930,8 @@ public class StepDef_response {
 			NAV.set_valueTo("Cyfenw'r Rheithiwr", last_name);
 			NAV.set_valueTo("Cod post Rheithiwr", postcode);
 			NAV.press_buttonByName("Parhau");
+
+            DBD.determineDigitalByDefaultResponseAndSelectAction();
 
 			NAV.textPresentOnPage("Beth yw eich enw?");
 			NAV.set_valueTo("Enw cyntaf", "FirstName");
@@ -1023,6 +1039,9 @@ public class StepDef_response {
 			NAV.set_valueTo("Juror last name", last_name);
 			NAV.set_valueTo("Juror postcode", postcode);
 			NAV.press_buttonByName("Continue");
+
+            DBD.determineDigitalByDefaultResponseAndSelectAction();
+
 			NAV.textPresentOnPage("Is the name we have for you correct?");
 			GRP.click_radioButtonWithLabel("Yes");
 			NAV.press_buttonByName("Continue");
@@ -1114,7 +1133,6 @@ public class StepDef_response {
 
 			NAV.accessLoginPage("public", env);
 
-//		NAV.press_buttonByName("Start now");
 			GRP.click_radioButtonWithLabel("I am replying for someone else");
 			NAV.press_buttonByName("Continue");
 			NAV.textPresentOnPage("You can find their juror number on the jury summons letter.");
@@ -1122,6 +1140,8 @@ public class StepDef_response {
 			NAV.set_valueTo("Juror last name", last_name);
 			NAV.set_valueTo("Juror postcode", postcode);
 			NAV.press_buttonByName("Continue");
+
+            DBD.determineDigitalByDefaultResponseAndSelectAction();
 
 			NAV.textPresentOnPage("What is your name?");
 			NAV.set_valueTo("First name", "FirstName");
@@ -1224,8 +1244,6 @@ public class StepDef_response {
 
 			NAV.accessLoginPageWelsh("public", env);
 
-//			NAV.click_link_by_text("Welsh (Cymraeg)");
-//			NAV.press_buttonByName("Dechrau nawr");
 			GRP.click_radioButtonWithLabel("Rwy'n ymateb dros fy hun");
 			NAV.press_buttonByName("Parhau");
 //			NAV.textPresentOnPage("Gellir dod o hyd i'ch rhif rheithiwr ar eich llythyr gwŷs rheithgor");
@@ -1233,6 +1251,9 @@ public class StepDef_response {
 			NAV.set_valueTo("Cyfenw'r Rheithiwr", last_name);
 			NAV.set_valueTo("Cod post Rheithiwr", postcode);
 			NAV.press_buttonByName("Parhau");
+
+            DBD.determineDigitalByDefaultResponseAndSelectAction();
+
 			NAV.textPresentOnPage("A yw'r enw sydd gennym ar eich cyfer chi yn gywir?");
 			GRP.click_radioButtonWithLabel("Ydy");
 			NAV.press_buttonByName("Parhau");
@@ -1324,6 +1345,8 @@ public class StepDef_response {
 			NAV.set_valueTo("Cyfenw'r Rheithiwr", last_name);
 			NAV.set_valueTo("Cod post Rheithiwr", postcode);
 			NAV.press_buttonByName("Parhau");
+
+            DBD.determineDigitalByDefaultResponseAndSelectAction();
 
 			NAV.textPresentOnPage("Beth yw eich enw?");
 			NAV.set_valueTo("Enw cyntaf", "FirstName");
@@ -1434,6 +1457,9 @@ public class StepDef_response {
 			NAV.set_valueTo("Juror last name", last_name);
 			NAV.set_valueTo("Juror postcode", postcode);
 			NAV.press_buttonByName("Continue");
+
+            DBD.determineDigitalByDefaultResponseAndSelectAction();
+
 			NAV.textPresentOnPage("Is the name we have for you correct?");
 			GRP.click_radioButtonWithLabel("Yes");
 			NAV.press_buttonByName("Continue");
@@ -1520,6 +1546,8 @@ public class StepDef_response {
 			NAV.set_valueTo("Juror last name", last_name);
 			NAV.set_valueTo("Juror postcode", postcode);
 			NAV.press_buttonByName("Continue");
+
+            DBD.determineDigitalByDefaultResponseAndSelectAction();
 
 			NAV.textPresentOnPage("What is your name?");
 			NAV.set_valueTo("First name", "FirstName");
@@ -1618,8 +1646,6 @@ public class StepDef_response {
 
 			NAV.accessLoginPageWelsh("public", env);
 
-//	NAV.click_link_by_text("Welsh (Cymraeg)");
-//	NAV.press_buttonByName("Dechrau nawr");
 			GRP.click_radioButtonWithLabel("Rwy'n ymateb dros fy hun");
 			NAV.press_buttonByName("Parhau");
 			NAV.textPresentOnPage("Gellir dod o hyd i'r rhif rheithiwr ar frig y llythyr gwŷs");
@@ -1627,6 +1653,9 @@ public class StepDef_response {
 			NAV.set_valueTo("Cyfenw'r Rheithiwr", last_name);
 			NAV.set_valueTo("Cod post Rheithiwr", postcode);
 			NAV.press_buttonByName("Parhau");
+
+            DBD.determineDigitalByDefaultResponseAndSelectAction();
+
 			NAV.textPresentOnPage("A yw'r enw sydd gennym ar eich cyfer chi yn gywir?");
 			GRP.click_radioButtonWithLabel("Ydy");
 			NAV.press_buttonByName("Parhau");
@@ -1713,6 +1742,8 @@ public class StepDef_response {
 			NAV.set_valueTo("Cyfenw'r Rheithiwr", last_name);
 			NAV.set_valueTo("Cod post Rheithiwr", postcode);
 			NAV.press_buttonByName("Parhau");
+
+            DBD.determineDigitalByDefaultResponseAndSelectAction();
 
 			NAV.textPresentOnPage("Beth yw eich enw?");
 			NAV.set_valueTo("Enw cyntaf", "FirstName");
@@ -1819,6 +1850,8 @@ public class StepDef_response {
 			NAV.set_valueTo("Juror postcode", postcode);
 			NAV.press_buttonByName("Continue");
 
+            DBD.determineDigitalByDefaultResponseAndSelectAction();
+
 			NAV.textPresentOnPage("What is your name?");
 			NAV.set_valueTo("First name", "FirstName");
 			NAV.set_valueTo("Last name", "LastName");
@@ -1863,10 +1896,7 @@ public class StepDef_response {
 			if (System.getProperty("env.database") != null)
 				env = System.getProperty("env.database");
 
-//		NAV.accessLoginPage("public", env);
 
-//		NAV.click_link_by_text("Welsh (Cymraeg)");
-//		NAV.press_buttonByName("Dechrau nawr");
 			GRP.click_radioButtonWithLabel("Rwy'n ymateb ar ran rhywun arall");
 			NAV.press_buttonByName("Parhau");
 //		NAV.textPresentOnPage("Gellir dod o hyd i'r rhif rheithiwr ar y llythyr gwŷs rheithgor");
@@ -1874,6 +1904,8 @@ public class StepDef_response {
 			NAV.set_valueTo("Cyfenw'r Rheithiwr", last_name);
 			NAV.set_valueTo("Cod post Rheithiwr", postcode);
 			NAV.press_buttonByName("Parhau");
+
+            DBD.determineDigitalByDefaultResponseAndSelectAction();
 
 			NAV.textPresentOnPage("Beth yw eich enw?");
 			NAV.set_valueTo("Enw cyntaf", "FirstName");
@@ -1927,6 +1959,9 @@ public class StepDef_response {
 			NAV.set_valueTo("Juror last name", last_name);
 			NAV.set_valueTo("Juror postcode", postcode);
 			NAV.press_buttonByName("Continue");
+
+            DBD.determineDigitalByDefaultResponseAndSelectAction();
+
 			NAV.textPresentOnPage("Is the name we have for you correct?");
 			GRP.click_radioButtonWithLabel("Yes");
 			NAV.press_buttonByName("Continue");
@@ -1979,6 +2014,8 @@ public class StepDef_response {
 			NAV.set_valueTo("Juror last name", last_name);
 			NAV.set_valueTo("Juror postcode", postcode);
 			NAV.press_buttonByName("Continue");
+
+            DBD.determineDigitalByDefaultResponseAndSelectAction();
 
 			NAV.textPresentOnPage("What is your name?");
 			NAV.set_valueTo("First name", "FirstName");
@@ -2044,8 +2081,6 @@ public class StepDef_response {
 
 			NAV.accessLoginPageWelsh("public", env);
 
-//		NAV.click_link_by_text("Welsh (Cymraeg)");
-//		NAV.press_buttonByName("Dechrau nawr");
 			GRP.click_radioButtonWithLabel("Rwy'n ymateb dros fy hun");
 			NAV.press_buttonByName("Parhau");
 //		NAV.textPresentOnPage("Gellir dod o hyd i'ch rhif rheithiwr ar eich llythyr gwŷs rheithgor");
@@ -2053,6 +2088,9 @@ public class StepDef_response {
 			NAV.set_valueTo("Cyfenw'r Rheithiwr", last_name);
 			NAV.set_valueTo("Cod post Rheithiwr", postcode);
 			NAV.press_buttonByName("Parhau");
+
+            DBD.determineDigitalByDefaultResponseAndSelectAction();
+
 			NAV.textPresentOnPage("A yw'r enw sydd gennym ar eich cyfer chi yn gywir?");
 			GRP.click_radioButtonWithLabel("Ydy");
 			NAV.press_buttonByName("Parhau");
@@ -2107,6 +2145,8 @@ public class StepDef_response {
 			NAV.set_valueTo("Cyfenw'r Rheithiwr", last_name);
 			NAV.set_valueTo("Cod post Rheithiwr", postcode);
 			NAV.press_buttonByName("Parhau");
+
+            DBD.determineDigitalByDefaultResponseAndSelectAction();
 
 			NAV.textPresentOnPage("Beth yw eich enw?");
 			NAV.set_valueTo("Enw cyntaf", "FirstName");
