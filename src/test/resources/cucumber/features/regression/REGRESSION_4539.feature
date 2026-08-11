@@ -3,7 +3,7 @@ Feature: Regression JDB-4539
 @Regression
 Scenario Outline: English 1st Party ST JDB-4539
 	
-	Given I am on "Public" "ithc"
+	Given I am on "Public" "<environment>"
 
 	Given a bureau owned pool is created with jurors
 		| court 	|juror_number  		| pool_number	| att_date_weeks_in_future	| owner |
@@ -38,6 +38,7 @@ Scenario Outline: English 1st Party ST JDB-4539
 	And I set "Juror last name" to "<last_name>"
 	And I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
+    And I determine whether this is a Digital By Default response and select the correct action
 	Then on the page I see
 		| text	|
 		| Your details |
@@ -185,8 +186,8 @@ Scenario Outline: English 1st Party ST JDB-4539
 	Then I see "We have sent you an email to say you have replied to your jury summons." on the page
 	
 Examples:
-	|juror_number	|last_name	|postcode	|email 		|pool_number| court |
-	|041500029		|DOE		|SW1H 9AJ	|a@eeee.com	|415300120	| 415	|
+	|juror_number	|last_name	|postcode	|email 		|pool_number| court | environment |
+	|041500029		|DOE		|SW1H 9AJ	|a@eeee.com	|415300120	| 415	| ithc        |
 	
 @Regression
 Scenario Outline: English 3rd Party St JDB-4539
@@ -391,7 +392,7 @@ Examples:
 @Regression @JDB-4539 
 Scenario Outline: English 1st Party Deferral JDB-4539
 	
-	Given I am on "Public" "ithc"
+	Given I am on "Public" "<environment>"
 
 	Given a bureau owned pool is created with jurors
 		| court 	|juror_number  		| pool_number	| att_date_weeks_in_future	| owner |
@@ -423,6 +424,7 @@ Scenario Outline: English 1st Party Deferral JDB-4539
 	And I set "Juror last name" to "<last_name>"
 	And I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
+    And I determine whether this is a Digital By Default response and select the correct action
 	Then on the page I see
 		| text	|
 		| Your details |
@@ -567,8 +569,8 @@ Scenario Outline: English 1st Party Deferral JDB-4539
 	Then I see "You have completed your reply" on the page	
 	
 Examples:
-	|juror_number	|pool_number|last_name			|postcode	|email 		| court |
-	|041500031		|415300122	|LNAMESEVENONETHREE	|SY2 6LU	|e@eeee.com	| 415	|
+	|juror_number	|pool_number|last_name			|postcode	|email 		| court | environment |
+	|041500031		|415300122	|LNAMESEVENONETHREE	|SY2 6LU	|e@eeee.com	| 415	| ithc        |
 	
 		
 @Regression
@@ -790,7 +792,7 @@ Examples:
 @Regression
 Scenario Outline: English 1st Party Excusal JDB-4539
 	
-	Given I am on "Public" "ithc"
+	Given I am on "Public" "<environment>"
 
 	Given a bureau owned pool is created with jurors
 		| court 	|juror_number  		| pool_number	| att_date_weeks_in_future	| owner |
@@ -822,6 +824,7 @@ Scenario Outline: English 1st Party Excusal JDB-4539
 	And I set "Juror last name" to "<last_name>"
 	And I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
+    And I determine whether this is a Digital By Default response and select the correct action
 	Then on the page I see
 		| text	|
 		| Your details |
@@ -967,13 +970,13 @@ Scenario Outline: English 1st Party Excusal JDB-4539
 	And I see "You have completed your reply" on the page
 	
 Examples:
-	| juror_number	| last_name		| postcode	| email            | pool_number| court |
-	| 041500033		| LNAMETWOTWOSIX| CH1 2AN	| email@outlook.com| 415300124	| 415   |
+	| juror_number	| last_name		| postcode	| email            | pool_number| court | environment |
+	| 041500033		| LNAMETWOTWOSIX| CH1 2AN	| email@outlook.com| 415300124	| 415   | ithc        |
 	
 @Regression
 Scenario Outline: English 3rd Party Excusal JDB-4539
 
-	Given I am on "Public" "ithc"
+	Given I am on "Public" "<environment>"
 
 	Given a bureau owned pool is created with jurors
 		| court 	|juror_number  		| pool_number	| att_date_weeks_in_future	| owner |
@@ -1173,6 +1176,6 @@ Scenario Outline: English 3rd Party Excusal JDB-4539
 	And I see "You have completed your reply" on the page
 	
 Examples:
-	|juror_number	|last_name			|postcode	|email       	    |pool_number| court |
-	|041500166		|LNAMETWOSIXEIGHT	|CH1 2AN	|email@outlook.com	|415300182	| 415	|
+	|juror_number	|last_name			|postcode	|email       	    |pool_number| court | environment |
+	|041500166		|LNAMETWOSIXEIGHT	|CH1 2AN	|email@outlook.com	|415300182	| 415	| ithc        |
 	

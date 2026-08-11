@@ -49,6 +49,7 @@ Scenario Outline: English 3rd Party Excused - contact details same as 3rd party
 	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
+    And I see "Search" on the page
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
 	And I click on "<juror_number>" in the same row as "<juror_number>"
@@ -91,6 +92,7 @@ Scenario Outline: English 3rd Party Deferred - contact details same as 3rd party
 	And I log in as "MODTESTBUREAU"
 
 	When I click on the "Search" link
+    And I see "Search" on the page
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
 	And I click on "<juror_number>" in the same row as "<juror_number>"
@@ -111,7 +113,7 @@ Scenario Outline: English 3rd Party Deferred - contact details same as 3rd party
 
 Examples:
 	| juror_number	| last_name			| postcode	| email         	| pool_number	| environment |
-	| 045200195		| LNAMESIXSEVENFOUR	| NN1 3HQ	| email@outlook.com	| 452300180		| test        |
+	| 045200195		| LNAMESIXSEVENFOUR	| NN1 3HQ	| email@outlook.com	| 452300180		| ithc        |
 
 @Regression @Bureau
 Scenario Outline: English 3rd Party ST - contact details same as 3rd party
@@ -133,6 +135,7 @@ Scenario Outline: English 3rd Party ST - contact details same as 3rd party
 	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
+    And I see "Search" on the page
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
 	And I click on "<juror_number>" in the same row as "<juror_number>"
@@ -172,6 +175,7 @@ Scenario Outline: English 3rd Party Disqualified - contact details same as 3rd p
 	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
+    And I see "Search" on the page
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
 	And I click on "<juror_number>" in the same row as "<juror_number>"
@@ -222,6 +226,7 @@ Scenario Outline: English 3rd Party Super Urgent - contact details same as 3rd p
 	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
+    And I see "Search" on the page
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
 	And I click on "<juror_number>" in the same row as "<juror_number>"
@@ -385,6 +390,7 @@ Scenario Outline: English 3rd Party Welsh - contact details different for juror
 	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
+    And I see "Search" on the page
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
 	And I click on "<juror_number>" in the same row as "<juror_number>"
@@ -428,6 +434,7 @@ Scenario Outline: English 3rd Party Straight Through - Juror already has contact
 	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
+    And I see "Search" on the page
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
 	And I click on "<juror_number>" in the same row as "<juror_number>"

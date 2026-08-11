@@ -3,7 +3,7 @@ Feature: Regression Welsh_3rd_ProblemCheck
 @RegressionWelsh @JDB-3460 @JDB-3516 
 Scenario Outline: Welsh_3rd_ProblemCheck
 
-	Given I am on the welsh version of "Public" "test"
+	Given I am on the welsh version of "Public" "<environment>"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
@@ -27,6 +27,7 @@ Scenario Outline: Welsh_3rd_ProblemCheck
 	And I set "Cyfenw" to "<last_name>"
 	And I set "Cod post Rheithiwr" to "<postcode>"
 	And I press the "Parhau" button
+    And I determine whether this is a Digital By Default response and select the correct action
 	Then I see "Beth yw eich enw?" on the page
 	
 	When I press the "Parhau" button
@@ -216,5 +217,5 @@ Scenario Outline: Welsh_3rd_ProblemCheck
 	And I see "<juror_number>" on the page
 
 	Examples:
-		|juror_number	|last_name			|postcode	     |email 		|pool_number	|
-		|041592773	    |lname	            |CH2 2AA	     |e@mail.com	|415355404	    |
+		|juror_number	|last_name			|postcode	     |email 		|pool_number	| environment |
+		|041592773	    |lname	            |CH2 2AA	     |e@mail.com	|415355404	    | ithc        |

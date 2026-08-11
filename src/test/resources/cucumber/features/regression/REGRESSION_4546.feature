@@ -75,7 +75,7 @@ Scenario: English Accessibility Statement
 @Regression
 Scenario Outline: English 1st Party - Accessibility Statement on each page
 
-	Given I am on "Public" "ithc"
+	Given I am on "Public" "<environment>"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  		| pool_number	| att_date_weeks_in_future	| owner |
@@ -99,6 +99,7 @@ Scenario Outline: English 1st Party - Accessibility Statement on each page
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
+    And I determine whether this is a Digital By Default response and select the correct action
 	
 	Then I see "Is the name we have for you correct?" on the page
 	Then I see "LNAMESEVENONETHREE" on the page
@@ -230,14 +231,14 @@ Scenario Outline: English 1st Party - Accessibility Statement on each page
 	Then I see "<juror_number>" on the page
 
 Examples:
-	|juror_number	|pool_number|last_name			|postcode	|email 		|
-	|041500034		|415300125	|LNAMESEVENONETHREE	|SY2 6LU	|e@eeee.com	|
+	|juror_number	|pool_number|last_name			|postcode	|email 		| environment |
+	|041500034		|415300125	|LNAMESEVENONETHREE	|SY2 6LU	|e@eeee.com	| ithc        |
 	
 
 @Regression
 Scenario Outline: English 3rd Party - Accessibility statement on each page
 	
-	Given I am on "Public" "ithc"
+	Given I am on "Public" "<environment>"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  	| pool_number	| att_date_weeks_in_future	| owner |
@@ -420,5 +421,5 @@ Scenario Outline: English 3rd Party - Accessibility statement on each page
 	And I see link with text "Accessibility statement"
 	
 Examples:
-	|juror_number	|last_name			|postcode	|email           	|pool_number|
-	|041500035		|LNAMESIXSEVENSIX	|CH1 2AN	|email@outlook.com	|415300126	|
+	|juror_number	|last_name			|postcode	|email           	|pool_number| environment |
+	|041500035		|LNAMESIXSEVENSIX	|CH1 2AN	|email@outlook.com	|415300126	| ithc        |

@@ -34,6 +34,7 @@ Scenario Outline: submit responses which are auto processed
 	And I set "Juror last name" to "<last_name>"
 	And I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
+    And I determine whether this is a Digital By Default response and select the correct action
 	Then on the page I see
 		| text	|
 		| Your details |
@@ -172,6 +173,7 @@ Scenario Outline: submit responses which are auto processed
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
+    And I determine whether this is a Digital By Default response and select the correct action
 
 	When I set "First name" to "FirstNamea"
 	And I set "Last name" to "LastNameb"
@@ -216,6 +218,8 @@ Scenario Outline: submit responses which are auto processed
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
+
+    And I determine whether this is a Digital By Default response and select the correct action
 
 	And I choose the "Yes" radio button
 	And I press the "Continue" button
@@ -266,6 +270,8 @@ Scenario Outline: submit responses which are auto processed
 	When I set "Juror postcode" to "<postcode>"
 
 	And I press the "Continue" button
+
+    And I determine whether this is a Digital By Default response and select the correct action
 
 	And I see "Is the name we have for you correct?" on the page
 	And I choose the "Yes" radio button
@@ -369,6 +375,7 @@ Scenario Outline: Check that when name is changed, the response is NOT auto proc
 	And I set "Juror last name" to "<last_name>"
 	And I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
+    And I determine whether this is a Digital By Default response and select the correct action
 	Then I see "Is the name we have for you correct?" on the page
 		
 	And I choose the "No" radio button
@@ -509,6 +516,7 @@ Scenario Outline: Check that when address is changed, the response is NOT auto p
 	And I set "Juror last name" to "<last_name>"
 	And I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
+    And I determine whether this is a Digital By Default response and select the correct action
 	Then I see "Is the name we have for you correct?" on the page
 	And I choose the "Yes" radio button
 		
@@ -646,6 +654,7 @@ Scenario Outline: Check that when Address2 is changed from (null), the response 
 	And I set "Juror last name" to "<last_name>"
 	And I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
+    And I determine whether this is a Digital By Default response and select the correct action
 	Then I see "Is the name we have for you correct?" on the page
 	And I choose the "Yes" radio button
 		
@@ -787,6 +796,7 @@ Scenario Outline: Check that when Address3 is changed from (null), the response 
 	And I set "Juror last name" to "<last_name>"
 	And I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
+    And I determine whether this is a Digital By Default response and select the correct action
 	Then I see "Is the name we have for you correct?" on the page
 	And I choose the "Yes" radio button
 		
@@ -928,6 +938,7 @@ Scenario Outline: Check that when Address4 is changed from (null), the response 
 	And I set "Juror last name" to "<last_name>"
 	And I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
+    And I determine whether this is a Digital By Default response and select the correct action
 	Then I see "Is the name we have for you correct?" on the page
 	And I choose the "Yes" radio button
 
@@ -1070,6 +1081,7 @@ Scenario Outline: Check that when Address5 is changed from (null), the response 
 	And I set "Juror last name" to "<last_name>"
 	And I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
+    And I determine whether this is a Digital By Default response and select the correct action
 	Then I see "Is the name we have for you correct?" on the page
 	And I choose the "Yes" radio button
 		
@@ -1211,6 +1223,7 @@ Scenario Outline: Check that when Address2 is changed from string value, the res
 	And I set "Juror last name" to "<last_name>"
 	And I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
+    And I determine whether this is a Digital By Default response and select the correct action
 	Then I see "Is the name we have for you correct?" on the page
 	And I choose the "Yes" radio button
 		
@@ -1352,6 +1365,7 @@ Scenario Outline: Check that when Address3 is changed from string value, the res
 	And I set "Juror last name" to "<last_name>"
 	And I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
+    And I determine whether this is a Digital By Default response and select the correct action
 	Then I see "Is the name we have for you correct?" on the page
 	And I choose the "Yes" radio button
 		
@@ -1493,6 +1507,7 @@ Scenario Outline: Check that when Address4 is changed from string value, the res
 	And I set "Juror last name" to "<last_name>"
 	And I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
+    And I determine whether this is a Digital By Default response and select the correct action
 	Then I see "Is the name we have for you correct?" on the page
 	And I choose the "Yes" radio button
 		
@@ -1634,6 +1649,7 @@ Scenario Outline: Check that when Address5 is changed from string value, the res
 	And I set "Juror last name" to "<last_name>"
 	And I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
+    And I determine whether this is a Digital By Default response and select the correct action
 	Then I see "Is the name we have for you correct?" on the page
 	And I choose the "Yes" radio button
 		

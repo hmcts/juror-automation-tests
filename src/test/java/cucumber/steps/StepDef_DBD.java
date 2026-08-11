@@ -91,4 +91,10 @@ public class StepDef_DBD {
     public void determineDigitalByDefaultResponseAndSelectAction() throws SQLException {
         DBD.determineDigitalByDefaultResponseAndSelectAction();
     }
+
+    @When("^I see juror \"([^\"]*)\" has \"([^\"]*)\" as \"([^\"]*)\"$")
+    public void emailOrLetterOnDocumentsQueue(String jurorNo, String originalorCurrent, String emailorLetter) throws SQLException {
+        DBD.emailOrLetterOnDocumentsQueue(jurorNo, originalorCurrent, emailorLetter);
+    }
+
 }

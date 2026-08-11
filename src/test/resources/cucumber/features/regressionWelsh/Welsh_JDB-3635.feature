@@ -3,7 +3,7 @@ Feature: Welsh_JDB-3635
 @RegressionWelsh @JDB-3635 @JDB-3827 
 Scenario Outline: Checking that TP is visible in all 3rd Party browser URLs after 3rd party specific screens
 
-	Given I am on the welsh version of "Public" "test"
+	Given I am on the welsh version of "Public" "<environment>"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
@@ -21,6 +21,7 @@ Scenario Outline: Checking that TP is visible in all 3rd Party browser URLs afte
 	When I set "Cyfenw" to "<last_name>"
 	When I set "Cod post Rheithiwr" to "<postcode>"
 	And I press the "Parhau" button
+     And I determine whether this is a Digital By Default response and select the correct action
     Then I see "Beth yw eich enw?" on the page
 	
 	#3rd Party Name
@@ -89,7 +90,6 @@ Scenario Outline: Checking that TP is visible in all 3rd Party browser URLs afte
 	And I set the radio button to "Defnyddio'r rhif ffôn rydych eisoes wedi'i ddarparu i gysylltu â chi"
 	
 	#Checking field
-	
 	And I set the radio button to "Rhoi cyfeiriad e-bost gwahanol ar gyfer y rheithiwr"
 	And I see "Nodwch gyfeiriad e-bost" on the page
 	
@@ -230,5 +230,5 @@ Scenario Outline: Checking that TP is visible in all 3rd Party browser URLs afte
 	And I see "/tp" in the URL
 
 	Examples:
-		|juror_number	|last_name			|postcode	     |email 		|pool_number	|
-		|041592724	    |lname	            |CH2 2AA	     |e@mail.com	|415355412	    |
+		|juror_number	|last_name			|postcode	     |email 		|pool_number	| environment   |
+		|041592724	    |lname	            |CH2 2AA	     |e@mail.com	|415355412	    | ithc          |
