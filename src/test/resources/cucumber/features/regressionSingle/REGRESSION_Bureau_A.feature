@@ -173,6 +173,7 @@ Scenario Outline: Bureau A script, steps 24 onwards
 	When I set "Juror last name" to "<last_name>"
 	When I set "Juror postcode" to "<postcode>"
 	And I press the "Continue" button
+    And I determine whether this is a Digital By Default response and select the correct action
 	Then I see "Your details" on the page
 
 	And I choose the "No" radio button
@@ -190,6 +191,7 @@ Scenario Outline: Bureau A script, steps 24 onwards
 	And I choose the "No" radio button
 	And I press the "Continue" button
 
+    And I see "address" on the page
 	And I set "Address line 1" to "BUILDINGCHANGED"
 	And I press the "Continue" button
 

@@ -2,7 +2,8 @@ Feature: Welsh_LogOn_Content
 
 @RegressionWelsh @JDB-3081 @JDB-3077 @JDB-3080 
 Scenario Outline:
-	Given I am on the welsh version of "Public" "test"
+
+	Given I am on the welsh version of "Public" "<environment>"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
@@ -22,7 +23,7 @@ Scenario Outline:
 	When I set "Cyfenw" to "<last_name>"
 	When I set "Cod post Rheithiwr" to "<postcode>"
 	And I press the "Parhau" button
-
+    And I determine whether this is a Digital By Default response and select the correct action
 	Then I see "Eich Manylion" on the page
 	
 	When I set "Enw cyntaf" to "FirstNamea"
@@ -84,5 +85,5 @@ Scenario Outline:
 	Then I see "<juror_number>" on the page
 
 	Examples:
-		|juror_number	|last_name			|postcode	     |email 		|pool_number	|
-		|041592771	    |lname	            |CH2 2AA	     |e@mail.com	|415355402	    |
+		|juror_number	|last_name			|postcode	     |email 		|pool_number	| environment |
+		|041592771	    |lname	            |CH2 2AA	     |e@mail.com	|415355402	    | ithc        |

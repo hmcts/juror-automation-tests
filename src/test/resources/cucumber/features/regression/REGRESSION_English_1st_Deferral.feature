@@ -841,7 +841,7 @@ Feature: Regression English_1st_Deferral
   @Regression
   Scenario Outline: 1st English Back Button Logic with Deferral Reason Screen
 
-    Given I am on "Public" "ithc"
+    Given I am on "Public" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
@@ -859,6 +859,7 @@ Feature: Regression English_1st_Deferral
     And I set "Juror last name" to "<last_name>"
     And I set "Juror postcode" to "<postcode>"
     And I press the "Continue" button
+    And I determine whether this is a Digital By Default response and select the correct action
     Then on the page I see
       | text                                 |
       | Your details                         |
@@ -995,6 +996,8 @@ Feature: Regression English_1st_Deferral
     When I set text area with "id" of "deferralReason" to "Deferral Reason"
     And I press the "Continue" button
 
+    And I see "Choose 3 Mondays" on the page
+
 	#enter dates
     When I set the "First" single date field to a Monday "9" weeks in the future
     When I set the "Second" single date field to a Monday "10" weeks in the future
@@ -1050,8 +1053,8 @@ Feature: Regression English_1st_Deferral
     Then I see "We have sent you an email to say you have replied to your jury summons." on the page
 
     Examples:
-      | juror_number | last_name    | postcode | email      | pool_number |
-      | 045200018    | LNAMENINETWO | CH1 2AN  | a@eeee.com | 452300014   |
+      | juror_number | last_name    | postcode | email      | pool_number | environment |
+      | 045200018    | LNAMENINETWO | CH1 2AN  | a@eeee.com | 452300014   | ithc        |
 
   @Regression @Bureau @DigitalResponse
   Scenario Outline: 1st English Back Button Logic with Deferral Dates Screen
@@ -1074,6 +1077,7 @@ Feature: Regression English_1st_Deferral
     And I set "Juror last name" to "<last_name>"
     And I set "Juror postcode" to "<postcode>"
     And I press the "Continue" button
+    And I determine whether this is a Digital By Default response and select the correct action
     Then on the page I see
       | text                                 |
       | Your details                         |
@@ -1291,7 +1295,7 @@ Feature: Regression English_1st_Deferral
   @Regression
   Scenario Outline: English 1st Party Deferral - Validation and Errors
 
-    Given I am on "Public" "ithc"
+    Given I am on "Public" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
@@ -1314,6 +1318,7 @@ Feature: Regression English_1st_Deferral
     When I set "Juror last name" to "<last_name>"
     When I set "Juror postcode" to "<postcode>"
     And I press the "Continue" button
+    And I determine whether this is a Digital By Default response and select the correct action
 
     Then I see "Is the name we have for you correct?" on the page
     And I choose the "Yes" radio button
@@ -1567,13 +1572,13 @@ Feature: Regression English_1st_Deferral
     Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "N" where "JUROR_NUMBER" is "<juror_number>"
 
     Examples:
-      | juror_number | pool_number | last_name          | postcode | email      |
-      | 045200020    | 452300016   | LNAMESEVENONETHREE | SW1H 9AJ | e@eeee.com |
+      | juror_number | pool_number | last_name          | postcode | email      | environment |
+      | 045200020    | 452300016   | LNAMESEVENONETHREE | SW1H 9AJ | e@eeee.com | ithc        |
 
   @RegressionSingle
   Scenario Outline: English 1st Party Deferral - date 1 selected is a BH
 
-    Given I am on "Public" "ithc"
+    Given I am on "Public" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
@@ -1596,6 +1601,7 @@ Feature: Regression English_1st_Deferral
     When I set "Juror last name" to "<last_name>"
     When I set "Juror postcode" to "<postcode>"
     And I press the "Continue" button
+    And I determine whether this is a Digital By Default response and select the correct action
 
 	#name
     And I choose the "Yes" radio button
@@ -1754,7 +1760,7 @@ Feature: Regression English_1st_Deferral
     And I validate the "Second" deferral date is "9" weeks in the future
     And I validate the "Third" deferral date is "10" weeks in the future
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
     And I log in as "MODTESTBUREAU"
 
     When I click on the "Search" link
@@ -1783,13 +1789,13 @@ Feature: Regression English_1st_Deferral
     And I delete bank holiday new schema
 
     Examples:
-      | juror_number | pool_number | last_name          | postcode | email      |
-      | 041500054    | 415300144   | LNAMESEVENONETHREE | SW1H 9AJ | e@eeee.com |
+      | juror_number | pool_number | last_name          | postcode | email      | environment |
+      | 041500054    | 415300144   | LNAMESEVENONETHREE | SW1H 9AJ | e@eeee.com | ithc        |
 
   @RegressionSingle
   Scenario Outline: English 1st Party Deferral - date 2 selected is a BH
 
-    Given I am on "Public" "ithc"
+    Given I am on "Public" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
@@ -1813,6 +1819,8 @@ Feature: Regression English_1st_Deferral
     When I set "Juror last name" to "<last_name>"
     When I set "Juror postcode" to "<postcode>"
     And I press the "Continue" button
+
+    And I determine whether this is a Digital By Default response and select the correct action
 
 	#name
     And I choose the "Yes" radio button
@@ -1966,7 +1974,7 @@ Feature: Regression English_1st_Deferral
     And I validate the "Second" deferral date is "10" weeks in the future
     And I validate the "Third" deferral date is "11" weeks in the future
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
     And I log in as "MODTESTBUREAU"
 
     When I click on the "Search" link
@@ -1995,13 +2003,13 @@ Feature: Regression English_1st_Deferral
     And I delete bank holiday new schema
 
     Examples:
-      | juror_number | pool_number | last_name          | postcode | email      |
-      | 045200035    | 452300034   | LNAMESEVENONETHREE | CH1 2AN  | e@eeee.com |
+      | juror_number | pool_number | last_name          | postcode | email      | environment |
+      | 045200035    | 452300034   | LNAMESEVENONETHREE | CH1 2AN  | e@eeee.com | ithc        |
 
   @RegressionSingle
   Scenario Outline: English 1st Party Deferral - date 3 selected is a BH
 
-    Given I am on "Public" "ithc"
+    Given I am on "Public" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
@@ -2025,6 +2033,8 @@ Feature: Regression English_1st_Deferral
     When I set "Juror last name" to "<last_name>"
     When I set "Juror postcode" to "<postcode>"
     And I press the "Continue" button
+
+    And I determine whether this is a Digital By Default response and select the correct action
 
 	#name
     And I choose the "Yes" radio button
@@ -2179,10 +2189,11 @@ Feature: Regression English_1st_Deferral
     And I validate the "Second" deferral date is "10" weeks in the future
     And I validate the "Third" deferral date is "11" weeks in the future
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
     And I log in as "MODTESTBUREAU"
 
     When I click on the "Search" link
+    And I see "Search" on the page
     And I set "Juror number" to "<juror_number>"
     And I press the "Search" button
 
@@ -2206,8 +2217,8 @@ Feature: Regression English_1st_Deferral
     And I delete bank holiday new schema
 
     Examples:
-      | juror_number | pool_number | last_name          | postcode | email      |
-      | 045200036    | 452300035   | LNAMESEVENONETHREE | SW1H 9AJ | e@eeee.com |
+      | juror_number | pool_number | last_name          | postcode | email      | environment |
+      | 045200036    | 452300035   | LNAMESEVENONETHREE | SW1H 9AJ | e@eeee.com | ithc        |
 
   @RegressionSingle
   Scenario Outline: English 1st Party Deferral - >1 date selected is a BH
@@ -2236,6 +2247,8 @@ Feature: Regression English_1st_Deferral
     When I set "Juror last name" to "<last_name>"
     When I set "Juror postcode" to "<postcode>"
     And I press the "Continue" button
+
+    And I determine whether this is a Digital By Default response and select the correct action
 
 	#name
     And I choose the "Yes" radio button
@@ -2425,7 +2438,7 @@ Feature: Regression English_1st_Deferral
   @RegressionSingle
   Scenario Outline: English 1st Party Deferral - Navigate back from BH page
 
-    Given I am on "Public" "ithc"
+    Given I am on "Public" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
@@ -2448,6 +2461,8 @@ Feature: Regression English_1st_Deferral
     When I set "Juror last name" to "<last_name>"
     When I set "Juror postcode" to "<postcode>"
     And I press the "Continue" button
+
+    And I determine whether this is a Digital By Default response and select the correct action
 
 	#name
     And I choose the "Yes" radio button
@@ -2650,7 +2665,7 @@ Feature: Regression English_1st_Deferral
     And I validate the "Second" deferral date is "7" weeks in the future
     And I validate the "Third" deferral date is "11" weeks in the future
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
     And I log in as "MODTESTBUREAU"
 
     When I click on the "Search" link
@@ -2677,8 +2692,8 @@ Feature: Regression English_1st_Deferral
     And I delete bank holiday new schema
 
     Examples:
-      | juror_number | pool_number | last_name          | postcode | email      |
-      | 045200038    | 452300037   | LNAMESEVENONETHREE | WV1 4EE  | e@eeee.com |
+      | juror_number | pool_number | last_name          | postcode | email      | environment |
+      | 045200038    | 452300037   | LNAMESEVENONETHREE | WV1 4EE  | e@eeee.com | ithc        |
 
   @RegressionSingle @Bureau @DigitalResponse
   Scenario Outline: English 1st Party Deferral - selected date makes juror >76
@@ -2707,6 +2722,8 @@ Feature: Regression English_1st_Deferral
     When I set "Juror last name" to "<last_name>"
     When I set "Juror postcode" to "<postcode>"
     And I press the "Continue" button
+
+    And I determine whether this is a Digital By Default response and select the correct action
 
     Then I see "Is the name we have for you correct?" on the page
     And I choose the "Yes" radio button
@@ -2879,7 +2896,7 @@ Feature: Regression English_1st_Deferral
     And I validate the "Second" deferral date is "10" weeks in the future
     And I validate the "Third" deferral date is "11" weeks in the future
 
-    Given I am on "Bureau" "environment"
+    Given I am on "Bureau" "<environment>"
     And I log in as "MODTESTBUREAU"
 
     When I click on the "Search" link
@@ -2936,6 +2953,8 @@ Feature: Regression English_1st_Deferral
     When I set "Juror last name" to "<last_name>"
     When I set "Juror postcode" to "<postcode>"
     And I press the "Continue" button
+
+    And I determine whether this is a Digital By Default response and select the correct action
 
     Then I see "Is the name we have for you correct?" on the page
     And I choose the "No" radio button
@@ -3183,6 +3202,8 @@ Feature: Regression English_1st_Deferral
     When I set "Juror last name" to "<last_name>"
     When I set "Juror postcode" to "<postcode>"
     And I press the "Continue" button
+
+    And I determine whether this is a Digital By Default response and select the correct action
 
     Then I see "Is the name we have for you correct?" on the page
     And I choose the "Yes" radio button

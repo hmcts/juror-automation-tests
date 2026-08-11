@@ -21,6 +21,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import static org.junit.Assert.assertEquals;
+
 public class DigitalByDefault {
 
     private static final Logger log =
@@ -413,4 +415,22 @@ public class DigitalByDefault {
             log.info("Clicked the Start your response button.");
         }
     }
+    public void emailOrLetterOnDocumentsQueue(String jurorNo, String originalorCurrent, String emailorLetter) throws SQLException {
+
+        switch (originalorCurrent) {
+            case "original":
+                WebElement originalSentByForJuror = driver.findElement(By.xpath("//*[contains(./@id, 'originalSentBy')] [contains(./@id, '" + jurorNo + "')]/strong"));
+                String actualOriginalSentBy = originalSentByForJuror.getText();
+                assertEquals(actualOriginalSentBy,emailorLetter);
+                break;
+            case "current":
+                WebElement currentPreferenceForJuror = driver.findElement(By.xpath("//*[contains(./@id, 'currentPreference')] [contains(./@id, '" + jurorNo + "')]/strong"));
+                String actualCurrentPreference = currentPreferenceForJuror.getText();
+                assertEquals(actualCurrentPreference,emailorLetter);
+                break;
+        }
+
+        }
+
+
 }

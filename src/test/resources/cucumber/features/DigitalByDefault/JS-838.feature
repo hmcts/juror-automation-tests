@@ -3,10 +3,10 @@ Feature: JS-838
   @JurorTransformation
   Scenario Outline: Summon juror into court on DBD pilot and check summoned juror has been included
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     Given a bureau owned pool is created with jurors
-      | court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
+      | court |juror_number  | pool_number	    | att_date_weeks_in_future	| owner |
       | 431   |<juror_number>| <pool_number>	| 5				        | 400	|
 
     And I clear all jurors from juror_pool for pool "<pool_number>" apart from juror "<juror_number>"
@@ -30,10 +30,33 @@ Feature: JS-838
     
     And I see "Juror is part of the digital by default pilot" on the page
 
+    #change communication preference to paper
+    And I click on the "Juror details" link
+    And I see "Digital" in the same row as "Communication preference"
+    And I see "-" in the same row as "Date of birth"
+    And I click on the "Add or change" link
+    And the radio button "Digital" is "selected"
+    And I check the "Paper" checkbox
+    And I press the "Save" button
+    And I check the "Leave as Lewes (431)" checkbox
+    And I press the "Continue" button
+    And I check the "Yes" checkbox
+    And I press the "Continue" button
+    And I see "Paper" in the same row as "Communication preference"
+
+    #change back to digital
+    And I see "-" in the same row as "Date of birth"
+    And I click on the "Add or change" link
+    And the radio button "Paper" is "selected"
+    And I check the "Digital" checkbox
+    And I press the "Save" button
+    And I check the "Leave as Lewes (431)" checkbox
+    And I press the "Continue" button
+    And I see "Digital" in the same row as "Communication preference"
 
     Examples:
-      | juror_number	| pool_number	|
-      | 043100186		| 431309163     |
+      | juror_number	| pool_number	| environment   |
+      | 043100186		| 431309163     | ithc          |
 
 
   @JurorTransformation

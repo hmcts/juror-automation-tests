@@ -3,7 +3,7 @@ Feature: Regression Welsh Cookie Policy
 @RegressionWelsh @NewSchemaConverted
 Scenario Outline: Welsh Cookie Policy
 
-	Given I am on the welsh version of "Public" "test"
+	Given I am on the welsh version of "Public" "<environment>"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  	| pool_number	| att_date_weeks_in_future	| owner |
@@ -37,13 +37,14 @@ Scenario Outline: Welsh Cookie Policy
     And the radio button "Nac oes" is "unselected"
     
 Examples:
-	| juror_number	| last_name	| postcode	| pool_number	|
-	| 045700076		| LastNameB	| SW1H 9AJ	| 457300076		|
+	| juror_number	| last_name	| postcode	| pool_number	| environment |
+	| 045700076		| LastNameB	| SW1H 9AJ	| 457300076		| ithc        |
 
 
 @RegressionWelsh
 Scenario Outline: Welsh 1st Party Cookies Policy on each Page
-	Given I am on the welsh version of "Public" "test"
+
+	Given I am on the welsh version of "Public" "<environment>"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
@@ -71,6 +72,7 @@ Scenario Outline: Welsh 1st Party Cookies Policy on each Page
 	When I set "Cod post Rheithiwr" to "<postcode>"
 	And I see link with text "Cwcis" 
 	And I press the "Parhau" button
+    And I determine whether this is a Digital By Default response and select the correct action
 	
 	And I set the radio button to "Nac ydy"
 	And I see link with text "Cwcis" 
@@ -262,12 +264,13 @@ Scenario Outline: Welsh 1st Party Cookies Policy on each Page
 	And I see link with text "Cwcis" 
 	
 Examples:
-	|juror_number	|last_name			|postcode	     |email 		|pool_number	|
-	|041592778	    |lname	            |CH2 2AA	     |e@mail.com	|415355408	|
+	| juror_number	| last_name			| postcode	     | email 		| pool_number| environment |
+	| 041592778	    | lname	            | CH2 2AA	     | e@mail.com	| 415355408	 | ithc        |
 	
 @RegressionWelsh @JDB-4533 
 Scenario Outline: Welsh 3rd Party Cookies Policy on each page
-	Given I am on the welsh version of "Public" "test"
+
+	Given I am on the welsh version of "Public" "<environment>"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
@@ -290,6 +293,7 @@ Scenario Outline: Welsh 3rd Party Cookies Policy on each page
 	When I set "Cod post Rheithiwr" to "<postcode>"
 	And I see link with text "Cwcis" 
 	And I press the "Parhau" button
+    And I determine whether this is a Digital By Default response and select the correct action
     Then I see "Beth yw eich enw?" on the page
 	
 	#3rd Party Name
@@ -508,6 +512,6 @@ Scenario Outline: Welsh 3rd Party Cookies Policy on each page
 	Then I see "Os byddwn yn cysylltu â nhw, efallai bydd angen iddynt ddarparu eu rhif rheithiwr. Mae'r rhif hefyd ar y llythyr bu inni anfon atynt." on the page
 
 	Examples:
-		|juror_number	|last_name			|postcode	     |email 		|pool_number	|
-		|041592765	    |lname	            |CH2 2AA	     |e@mail.com	|415355407	    |
+		|juror_number	|last_name			|postcode	     |email 		|pool_number	| environment |
+		|041592765	    |lname	            |CH2 2AA	     |e@mail.com	|415355407	    | ithc        |
 	
