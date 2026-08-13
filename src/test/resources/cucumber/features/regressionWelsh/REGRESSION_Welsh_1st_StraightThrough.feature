@@ -1,9 +1,9 @@
 Feature: Regression Welsh_1st_StraightThrough
 
-@RegressionWelsh @NewSchemaConverted
+@RegressionWelsh
 Scenario Outline: Welsh 1st Party Straight Through (english court)
 
-	Given I am on the welsh version of "Public" "test"
+	Given I am on the welsh version of "Public" "<environment>"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -40,6 +40,8 @@ Scenario Outline: Welsh 1st Party Straight Through (english court)
 	When I set "Cyfenw" to "<last_name>"
 	When I set "Cod post Rheithiwr" to "<postcode>"
 	And I press the "Parhau" button
+
+    And I determine whether this is a Digital By Default response and select the correct action
 	
 	#Check Your Name
 	And I see "steps/your-details/name" in the URL
@@ -242,6 +244,7 @@ Scenario Outline: Welsh 1st Party Straight Through (english court)
 	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
+    And I see "Search" on the page
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
 	

@@ -3,7 +3,6 @@ package cucumber.pageObjects;
 import cucumber.testdata.DBConnection;
 import cucumber.utils.WaitUtils;
 import org.apache.log4j.Logger;
-import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -77,11 +76,13 @@ public class DigitalByDefault {
     @FindBy(xpath = "//table[.//caption[normalize-space()='Pools list']]")
     private WebElement reassignActivePoolsTable;
 
+    @FindBy(xpath = "//p[text()[contains(.,'You are summoned to start jury service on')]]/../p[2]")
+    private WebElement attendanceDate;
 
     public void verifyWhatJuryServiceInvolvesCard() {
         verifyCard(
                 whatJuryServiceInvolvesCard,
-                "What jury service involves"
+                "How jury service works"
         );
     }
 
@@ -432,5 +433,9 @@ public class DigitalByDefault {
 
         }
 
+        public String getAttendanceDate() {
+            log.info("Getting court name");
+            return attendanceDate.getText().substring(0, attendanceDate.getText().length() - 8);
+        }
 
 }

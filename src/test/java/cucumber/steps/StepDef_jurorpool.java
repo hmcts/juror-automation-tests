@@ -2771,6 +2771,8 @@ public class StepDef_jurorpool {
         NAV.press_buttonByName("Continue");
         NAV.textNotPresentOnPage("There is a problem");
 
+        DBD.determineDigitalByDefaultResponseAndSelectAction();
+
         GRP.click_radioButtonWithLabel("Yes");
         NAV.press_buttonByName("Continue");
 

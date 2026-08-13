@@ -62,6 +62,7 @@ Feature: JM-251
 
 	#retrive pool
 	When I click on the "Search" link
+    And I see "Search" on the page
 	When I search for pool number
 
 	And I see the pool status is ACTIVE

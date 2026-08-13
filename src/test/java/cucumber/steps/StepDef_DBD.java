@@ -1,17 +1,30 @@
 package cucumber.steps;
 
+import com.fasterxml.jackson.core.JsonPointer;
 import cucumber.pageObjects.DigitalByDefault;
+import cucumber.pageObjects.NavigationShared;
 import cucumber.pageObjects.SharedDriver;
 import io.cucumber.java.en.When;
 
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.temporal.TemporalAdjusters;
+import java.util.Calendar;
+import java.util.Date;
+
+import static org.junit.Assert.assertEquals;
 
 public class StepDef_DBD {
 
     private final DigitalByDefault DBD;
+    private final NavigationShared NAV;
 
     public StepDef_DBD(SharedDriver webDriver) {
         DBD = new DigitalByDefault(webDriver);
+        NAV = new NavigationShared(webDriver);
     }
 
     @When("^I see What jury service involves card$")
@@ -96,5 +109,22 @@ public class StepDef_DBD {
     public void emailOrLetterOnDocumentsQueue(String jurorNo, String originalorCurrent, String emailorLetter) throws SQLException {
         DBD.emailOrLetterOnDocumentsQueue(jurorNo, originalorCurrent, emailorLetter);
     }
+
+    @When("^I validate the attendance date is \"([^\"]*)\" weeks in the future$")
+    public void iValidateAttendanceDateInTheFuture(Integer noOfWeeks) throws Throwable {
+
+        String fullDatePattern = "EEEEE dd MMMMM yyyy";
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.WEEK_OF_MONTH, noOfWeeks);
+        LocalDate localDate = calendar.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+        Date date =Date.from(localDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+
+        String todayDateFullConverted = new SimpleDateFormat(fullDatePattern).format(date);
+
+        assertEquals(DBD.getAttendanceDate(), todayDateFullConverted);
+
+    }
+
 
 }

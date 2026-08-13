@@ -482,6 +482,7 @@ Scenario Outline: Check that when name is changed, the response is NOT auto proc
 	Given I am on "Bureau" "<environment>"
 	When I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
+    And I see "Search" on the page
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
 	Then I see "<juror_number>" in the same row as "To do"

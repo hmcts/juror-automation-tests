@@ -199,6 +199,7 @@ Scenario Outline: Bureau A script, steps 24 onwards
 	When I set "Main phone" to "01211112222"
 	And I press the "Continue" button
 
+    And I see "email" on the page
 	And I set "Enter your email address" to "<email>"
 	And I set "Enter your email address again" to "<email>"
 	And I press the "Continue" button

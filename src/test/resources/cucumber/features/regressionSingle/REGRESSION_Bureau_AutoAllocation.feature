@@ -785,6 +785,7 @@ Scenario Outline: 9. Complete a PENDING ALLOCATION response
 	
 	#check response is pending allocation
 	And I click on the "Search" link
+    And I see "Search" on the page
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
 	Then I see "To do" in the same row as "<juror_number>"

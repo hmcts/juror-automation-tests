@@ -3,7 +3,7 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
   @JurorTransformationMulti
   Scenario Outline:As a bureau officer test a Deferred juror can resend a granted letter by searching via juror number
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
     And I clear down the bulk print data table for Juror "<juror_number>"
     And I log in as "<user>"
     When a bureau owned pool is created with jurors
@@ -89,13 +89,14 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
     Then I see "1 document sent for printing" on the page
 
     Examples:
-      | juror_number | pool_number | user          |
-      | 041520126    | 415300739   | MODTESTBUREAU |
+      | juror_number | pool_number | user          | environment  |
+      | 041520126    | 415300739   | MODTESTBUREAU | ithc         |
 
   @JurorTransformationMulti
   Scenario Outline:As a bureau officer verify a deferral granted letter in printing stage can delete
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
+
     And I log in as "<user>"
 
     When a bureau owned pool is created with jurors
@@ -121,7 +122,7 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
     And I press the "Continue" button
     And I press the "Put in deferral maintenance" button
     And I verify the banner message "Deferral granted" on the page
-  #delete a pending document
+    #delete a pending document
     And I press the "Apps" button
     And I click on the "Documents" link
     And I click on the "Deferral granted letters" link
@@ -134,8 +135,8 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
     Then I see "1 pending document deleted" on the page
 
     Examples:
-      | juror_number | pool_number | user          |
-      | 041520127    | 415300740   | MODTESTBUREAU |
+      | juror_number | pool_number | user          | environment  |
+      | 041520127    | 415300740   | MODTESTBUREAU | ithc         |
 
 
   @JurorTransformation @Bureau
