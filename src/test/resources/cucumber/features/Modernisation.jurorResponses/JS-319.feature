@@ -23,6 +23,8 @@ Feature: JS-319 Alternative phone number is correctly saved to the juror record
     And I set "Juror postcode" to "<postcode>"
     And I press the "Continue" button
 
+    And I determine whether this is a Digital By Default response and select the correct action
+
     #name
     And I choose the "Yes" radio button
     And I press the "Continue" button
