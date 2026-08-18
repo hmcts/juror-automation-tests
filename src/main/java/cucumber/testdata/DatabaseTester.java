@@ -703,8 +703,8 @@ public class DatabaseTester {
 			conn = db.getConnection("demo");
 
 		try {
-			pStmt = conn.prepareStatement("INSERT INTO juror.part_hist (owner, part_no, date_part, history_code, user_id, other_information, pool_no, last_update)"
-					+ "VALUES ('400', '" + part_no + "', CURRENT_DATE, 'RSUM', 'CPASS', 'File -JURY081001.0001', '" + pool_no + "', CURRENT_DATE)");
+			pStmt = conn.prepareStatement("INSERT INTO juror.part_hist (owner, part_no, date_part, history_code, user_id, pool_no, last_update)"
+					+ "VALUES ('400', '" + part_no + "', CURRENT_DATE, 'RSUM', 'CPASS', '" + pool_no + "', CURRENT_DATE)");
 			pStmt.execute();
 		} finally {
 			conn.commit();

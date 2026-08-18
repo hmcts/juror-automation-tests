@@ -1124,8 +1124,8 @@ public class DatabaseTesterNewSchemaDesign {
 			conn = db.getConnection("demo");
 
 		try {
-			pStmt = conn.prepareStatement("INSERT INTO juror_mod.juror_history (juror_number,date_created, history_code, user_id, other_information,pool_number)"
-					+ "VALUES ('" + part_no + "', NOW(), 'RSUM', 'CPASS', 'File -JURY081001.0001', '" + pool_no + "')");
+			pStmt = conn.prepareStatement("INSERT INTO juror_mod.juror_history (juror_number,date_created, history_code, user_id,pool_number)"
+					+ "VALUES ('" + part_no + "', NOW(), 'RSUM', 'CPASS', '" + pool_no + "')");
 			pStmt.execute();
 
 //			pStmt = conn.prepareStatement("insert into juror_mod.rev_info (revision_number, revision_timestamp) values ((select MAX(revision_number)+1 from juror.juror_mod.rev_info), EXTRACT(EPOCH FROM current_date))");
