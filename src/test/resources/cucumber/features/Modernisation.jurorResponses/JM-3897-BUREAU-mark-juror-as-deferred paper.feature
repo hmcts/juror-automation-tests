@@ -87,6 +87,7 @@ Feature: JM-3897 mark juror as deferred paper
     And I verify summons reply banner processed by user "MODTESTBUREAU" and status "Responded"
 
     When the user searches for juror record "<juror_number>" from the global search bar
+    And I see "Summons reply" on the page
     And I click the summons reply tab
     And I click on the "View summons reply" link
     And I see the reply "type" on the response is "Deferral"

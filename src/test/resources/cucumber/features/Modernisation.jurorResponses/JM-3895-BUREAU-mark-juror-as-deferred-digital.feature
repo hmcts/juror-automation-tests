@@ -50,7 +50,7 @@ Feature: JM-3895 mark juror as deferred digital
   @JurorTransformationMulti
   Scenario Outline: Mark juror as deferred - Add to pool Happy path digital
 
-    Given I am on "Public" "ithc"
+    Given I am on "Public" "<environment>"
 
     When a bureau owned pool is created with jurors
       | court | juror_number      | pool_number     | att_date_weeks_in_future | owner |
@@ -61,7 +61,7 @@ Feature: JM-3895 mark juror as deferred digital
       | jurorLname    | lname             |
       | jurorPostcode | CH2 2AA           |
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
     Given I log in as "MODTESTBUREAU"
 
     Given I navigate to the pool request screen
@@ -90,6 +90,7 @@ Feature: JM-3895 mark juror as deferred digital
     And I verify summons reply banner processed by user "MODTESTBUREAU" and status "Responded"
 
     Then the user searches for juror record "<juror_number>" from the global search bar
+    And I see "Summons reply" on the page
     And I click the summons reply tab
     And I click on the "View summons reply" link
     And I see the reply "type" on the response is "Deferral"
@@ -99,5 +100,5 @@ Feature: JM-3895 mark juror as deferred digital
     Then the poolNumbers lists is empty
 
     Examples:
-      | juror_number  | pool_number |
-      | 041500143     | 415300243   |
+      | juror_number  | pool_number | environment |
+      | 041500143     | 415300243   | test        |
