@@ -79,6 +79,9 @@ public class DigitalByDefault {
     @FindBy(xpath = "//p[text()[contains(.,'You are summoned to start jury service on')]]/../p[2]")
     private WebElement attendanceDate;
 
+    @FindBy(xpath = "//*[@id='loss-of-earnings-details-2']/summary/span[contains(text(),'Loss of earnings')]")
+    private WebElement lossOfEarningsTwoDetails;
+
     public void verifyWhatJuryServiceInvolvesCard() {
         verifyCard(
                 whatJuryServiceInvolvesCard,
@@ -437,5 +440,11 @@ public class DigitalByDefault {
             log.info("Getting court name");
             return attendanceDate.getText().substring(0, attendanceDate.getText().length() - 8);
         }
+
+    public void clickSecondLossOfEarningsLink() {
+        wait.waitForClickableElement(lossOfEarningsTwoDetails, 10);
+        lossOfEarningsTwoDetails.click();
+        log.info("Clicked the second loss of earnings link");
+    }
 
 }

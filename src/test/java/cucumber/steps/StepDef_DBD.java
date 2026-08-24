@@ -126,5 +126,10 @@ public class StepDef_DBD {
 
     }
 
+    @When("^I click on the Loss of earnings link on Claiming expenses info card$")
+    public void clickSecondLossOfEarningsLinkOnClaimingExpenses() throws SQLException {
+        DBD.clickSecondLossOfEarningsLink();
+    }
+
 
 }
