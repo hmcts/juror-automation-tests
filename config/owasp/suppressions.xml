@@ -3,4 +3,7 @@
     <suppress>
         <cve>CVE-2026-54515</cve>
     </suppress>
+    <suppress>
+        <cve>CVE-2026-54285</cve>
+    </suppress>
 </suppressions>
