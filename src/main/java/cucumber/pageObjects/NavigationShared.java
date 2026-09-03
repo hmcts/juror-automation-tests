@@ -20,6 +20,7 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.*;
 import java.util.NoSuchElementException;
 import java.util.regex.Matcher;
@@ -2808,8 +2809,19 @@ public class NavigationShared {
         if (text.isBlank()) {
             throw new AssertionError("No date text found in 'Date Last Run' cell.");
         }
-        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("EEE d MMM uuuu", Locale.UK);
-        LocalDate cellDate = LocalDate.parse(text, fmt);
+        LocalDate cellDate = null;
+        for (Locale locale : Arrays.asList(Locale.ENGLISH, Locale.UK)) {
+            try {
+                DateTimeFormatter fmt = DateTimeFormatter.ofPattern("EEE d MMM uuuu", locale);
+                cellDate = LocalDate.parse(text, fmt);
+                break;
+            } catch (DateTimeParseException ignored) {
+            }
+        }
+
+        if (cellDate == null) {
+            throw new AssertionError("Could not parse 'date last run' date.");
+        }
         LocalDate today = LocalDate.now(ZoneId.of("Europe/London"));
 
         if (!cellDate.equals(today)) {
