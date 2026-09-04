@@ -724,7 +724,7 @@ public class JurorRecord {
                     dateColumnIndex = i;
                 }
             }
-            if (jurorFound && dateFound && dateColumnIndex == 8) {
+            if (jurorFound && dateFound && dateColumnIndex == 10) {
                 System.out.println("Found matching juror and date: " + jurorNumber + ", " + printedDate);
                 return;
             }
