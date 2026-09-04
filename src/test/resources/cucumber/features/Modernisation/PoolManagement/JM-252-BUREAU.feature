@@ -214,6 +214,7 @@ Feature: JM-252 Bureau user create new pools
 
     When I click the delete pool request button
     When I click the confirm deletion button
+    And I see "Pool requests" on the page
     Then a message is displayed on the pool requests page informing me that the pool has been deleted
     And the pool is no longer visible
 

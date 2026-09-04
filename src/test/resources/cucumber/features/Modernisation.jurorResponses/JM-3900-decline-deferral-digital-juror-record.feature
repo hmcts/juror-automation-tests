@@ -1,9 +1,9 @@
 Feature: JM-3900
 
-  @JurorTransformationMulti
+  @JurorTransformationMulti @Bureau @DigitalResponse
   Scenario Outline: Decline Deferral Request for Digital Response as Bureau user - Juror Record View
 
-    Given I am on "Public" "ithc"
+    Given I am on "Public" "<environment>"
 
     When a bureau owned pool is created with jurors
       | court |juror_number  	| pool_number	  | att_date_weeks_in_future  | owner |
@@ -14,7 +14,7 @@ Feature: JM-3900
       | jurorLname    | <last_name>     |
       | jurorPostcode | <postcode>      |
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
     And I log in as "MODTESTBUREAU"
     When the user searches for juror record "<juror_number>" from the global search bar
     And I click on the "Summons reply" link
@@ -54,5 +54,5 @@ Feature: JM-3900
     And the warning icon is displayed next to the juror status
 
     Examples:
-      | juror_number   | pool_number   | last_name  | postcode |
-      | 041520027      | 415300704     | lname      | CH2 2AA  |
+      | juror_number   | pool_number   | last_name  | postcode | environment |
+      | 041520027      | 415300704     | lname      | CH2 2AA  | test        |

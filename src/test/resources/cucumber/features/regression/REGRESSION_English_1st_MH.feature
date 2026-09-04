@@ -240,7 +240,7 @@ Feature: Regression English_1st_MH
   @Regression
   Scenario Outline: Checking MH questions have been split in Bureau and no text MENTAL HEALTH Q2 is visible
 
-    Given I am on "Public" "ithc"
+    Given I am on "Public" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
@@ -428,7 +428,7 @@ Feature: Regression English_1st_MH
     And I see "Download a copy of your summons reply HTML" on the page
 	
 	#Bureau
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "<environment>"
     And I log in as "MODTESTBUREAU"
 
     When I click on the "Search" link
@@ -444,7 +444,7 @@ Feature: Regression English_1st_MH
     Then I see "Your work" on the page
 
     Then I click on the "Sign out" link
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "<environment>"
     When I log in as "CPASS"
     Then I see "<juror_number>" on the page
     Then I see "<juror_number>" has reply type indicator "Needs review"
@@ -458,5 +458,5 @@ Feature: Regression English_1st_MH
     And I do not see "[MENTAL HEALTH Q2]" on the page
 
     Examples:
-      | juror_number | last_name         | postcode | email      | pool_number |
-      | 045200061    | LNAMESIXSEVENNINE | CH1 2AN  | a@eeee.com | 452300060   |
+      | juror_number | last_name         | postcode | email      | pool_number | environment  |
+      | 045200061    | LNAMESIXSEVENNINE | CH1 2AN  | a@eeee.com | 452300060   | test         |

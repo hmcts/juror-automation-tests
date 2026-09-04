@@ -41,10 +41,11 @@ Feature: JM-6388 - As a jury officer I need to be able to manually add an attend
 
 
 
-  @JurorTransformationMulti
+  @JurorTransformationMulti @Court
   Scenario Outline: As a jury officer I want to manually add an attendance day - Unhappy Path
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
+
     When a bureau owned pool is created with jurors
       | court |juror_number  	    | pool_number	      | att_date_weeks_in_future	| owner |
       | 415   |<juror_number>       | <pool_number>       | 5				            | 400	|
@@ -139,8 +140,8 @@ Feature: JM-6388 - As a jury officer I need to be able to manually add an attend
     And I see error "Attendance day cannot be in the future"
 
     Examples:
-      | user         | juror_number | pool_number  |
-      | MODTESTCOURT | 041536965    | 415360964    |
+      | user         | juror_number | pool_number  | environment |
+      | MODTESTCOURT | 041536965    | 415360964    | test        |
 
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline: As a jury officer I want to manually add an attendance day - Ineligible juror

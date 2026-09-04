@@ -26,7 +26,6 @@ Feature: JS-999
     And I press the "Continue" button
 
     #DBD landing screen
-
     And I see "Your jury summons information is online" on the page
     And I see "You are signed in. You can read the information that would normally be included in a printed summons pack, then start your response." on the page
 

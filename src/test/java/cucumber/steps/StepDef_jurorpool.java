@@ -3053,7 +3053,7 @@ public class StepDef_jurorpool {
 
     @When("^I change the jurors date of birth$")
     public void enterDobJurorDetails() {
-        SUMMONS_REPLY.enterDateOfBirth("11/4/1979");
+        SUMMONS_REPLY.enterDateOfBirth("11/04/1979");
 
     }
 

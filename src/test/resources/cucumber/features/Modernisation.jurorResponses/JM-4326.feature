@@ -153,7 +153,7 @@ Feature: JM-4326 - Defer a juror and then complete their service at a later date
       | jurorPostcode | CH2 2AA        |
 
     #log on and create a pool to defer to
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
     Given I log in as "<user>"
 
     Given I navigate to the pool request screen

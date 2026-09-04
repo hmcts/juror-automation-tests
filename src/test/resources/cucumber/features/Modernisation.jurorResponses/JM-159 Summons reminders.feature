@@ -3,7 +3,7 @@ Feature: JS-159 Suummons reminders history entries
   @JurorTransformationMulti
   Scenario Outline: JS-159 Suummons reminders history entries
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
     And I log in as "<user>"
 
     When I navigate to the pool request screen
@@ -62,8 +62,8 @@ Feature: JS-159 Suummons reminders history entries
     And I click on the "History" link
 
     And I see history item "Summons reminder letter issued" created by "MODTESTBUREAU"
-    And I see "Reminder letter printed" on the page
+    And I see "Reminder letter" on the page
 
     Examples:
-      | user          |
-      | MODTESTBUREAU |
+      | user          | environment   |
+      | MODTESTBUREAU | test          |
