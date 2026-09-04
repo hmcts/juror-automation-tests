@@ -3,8 +3,9 @@ Feature: JM-5066 - As a SJO I need to approve a manually created juror
   @JurorTransformationMulti
   Scenario Outline: Approve Manually created juror as a senior jury officer
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
     And I log in as "<user>"
+
     And I click on the "Juror management" link
     And I press the "Create juror record" button
     And I set the radio button to "Create a pool to add the juror to"
@@ -51,8 +52,10 @@ Feature: JM-5066 - As a SJO I need to approve a manually created juror
     #create juror record
     And I press the "Create juror record" button
     And I see "Draft juror record created for John Doe - senior jury officer will need to approve this" on the page
-    Given I am on "Bureau" "test"
+
+    Given I am on "Bureau" "<environment>"
     And I log in as "<user2>"
+
     And I see senior jury officer notification banner
     And I click on the jurors to approve link from the sjo notification
     And I see "Approve jurors" on the page
@@ -63,12 +66,13 @@ Feature: JM-5066 - As a SJO I need to approve a manually created juror
     And I see "Pending juror approved" on the page
 
     Examples:
-      |user			| user2 |
-      |MODTESTCOURT | SJOUSER |
+      |user			| user2   | environment |
+      |MODTESTCOURT | SJOUSER | test        |
 
   @JurorTransformationMulti
   Scenario Outline: Reject Manually created juror as a senior jury officer
-    Given I am on "Bureau" "ithc"
+
+    Given I am on "Bureau" "<environment>"
     And I log in as "<user>"
 
     And I click on the "Juror management" link
@@ -117,8 +121,9 @@ Feature: JM-5066 - As a SJO I need to approve a manually created juror
     And I see "Draft juror record created for Jane Smith - senior jury officer will need to approve this" on the page
 
     #login as SJOUSER
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "<environment>"
     And I log in as "<user2>"
+
     And I see senior jury officer notification banner
     And I click on the jurors to approve link from the sjo notification
     And I see "Approve jurors" on the page
@@ -136,15 +141,15 @@ Feature: JM-5066 - As a SJO I need to approve a manually created juror
     And I see "Pending juror rejected" on the page
 
     Examples:
-      |user			| user2 |
-      |MODTESTCOURT | SJOUSER |
+      |user			| user2   | environment |
+      |MODTESTCOURT | SJOUSER | test        |
 
 
 
   @JurorTransformationMulti
   Scenario Outline: Create juror at a different court to senior jury officer
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
     And I log in as "<user>"
     And I click on the "Juror management" link
     And I press the "Create juror record" button
@@ -194,7 +199,7 @@ Feature: JM-5066 - As a SJO I need to approve a manually created juror
     And I see "Draft juror record created for John Doe - senior jury officer will need to approve this" on the page
 
     #login with SJO user who is assigned to 416 court
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "<environment>"
     And I log in as "<user2>"
     And I do not see the senior jury officer notification banner
 
@@ -204,5 +209,5 @@ Feature: JM-5066 - As a SJO I need to approve a manually created juror
     And I see "There are no pending jurors to approve" on the page
 
     Examples:
-      |user			| user2 |
-      |MODTESTCOURT | SJOUSER1 |
+      |user			| user2     | environment |
+      |MODTESTCOURT | SJOUSER1  | test        |

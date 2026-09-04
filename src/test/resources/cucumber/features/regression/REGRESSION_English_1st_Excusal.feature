@@ -181,7 +181,7 @@ Feature: Regression English_1st_Excusal
   @Regression
   Scenario Outline: English 1st Party Excusal Refused
 
-    Given I am on "Public" "ithc"
+    Given I am on "Public" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
@@ -293,7 +293,7 @@ Feature: Regression English_1st_Excusal
     And I press the "Submit" button
     And I see "You have completed your reply" on the page
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
     And I log in as "MODTESTBUREAU"
     And I click on the "Search" link
     And I set "Juror number" to "<juror_number>"
@@ -315,8 +315,8 @@ Feature: Regression English_1st_Excusal
     And I see the juror status on the juror record screen is "Summoned"
 
     Examples:
-      | juror_number | last_name        | postcode | email             | pool_number |
-      | 045200052    | LNAMEEIGHTONETWO | SY2 6LU  | email@outlook.com | 452300051   |
+      | juror_number | last_name        | postcode | email             | pool_number | environment |
+      | 045200052    | LNAMEEIGHTONETWO | SY2 6LU  | email@outlook.com | 452300051   | test        |
 
   @Features
   Scenario Outline: English 1st Party Excusal Super Urgent
@@ -625,7 +625,7 @@ Feature: Regression English_1st_Excusal
   @Regression
   Scenario Outline: English 1st Party Excusal Reason Special Character (£) check
 
-    Given I am on "Public" "ithc"
+    Given I am on "Public" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
@@ -732,7 +732,7 @@ Feature: Regression English_1st_Excusal
     And I see "You have completed your reply" on the page
 	
 	#check Bureau
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
     And I log in as "MODTESTBUREAU"
 
     When I click on the "Search" link
@@ -758,8 +758,8 @@ Feature: Regression English_1st_Excusal
     Then I see "Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful text here£ Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful text here£ Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful text here£ Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful text here£ Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful text here£ Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful text here£ Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful text here Insert meaningful text here££ that is 1000" on the page
 
     Examples:
-      | juror_number | last_name | postcode | email             | pool_number |
-      | 045200055    | DOE       | CH1 2AN  | email@outlook.com | 452300054   |
+      | juror_number | last_name | postcode | email             | pool_number | environment |
+      | 045200055    | DOE       | CH1 2AN  | email@outlook.com | 452300054   | test        |
 
   @Regression
   Scenario Outline: 1st English Back Button Logic with Excusal Reason Screen

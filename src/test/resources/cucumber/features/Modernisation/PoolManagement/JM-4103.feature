@@ -115,7 +115,7 @@ Feature: JM-4103
   @JurorTransformationMulti
   Scenario Outline: Transfer a juror to another court as a jury officer - Pool Record - Select All
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     When a bureau owned pool is created with jurors
       | court |juror_number     | pool_number	  | att_date_weeks_in_future  | owner |
@@ -152,7 +152,7 @@ Feature: JM-4103
     And I press the "Continue" button
     And I see "3 jurors transferred" on the page
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
     And I log in as "MODTESTBUREAU"
     When the user searches for juror record "<juror_number_1>" from the global search bar
     And I click on "<juror_number_1>" in the same row as "Guildford Sitting At Chichester"
@@ -167,5 +167,5 @@ Feature: JM-4103
     And I see the juror status has updated to "Responded"
 
     Examples:
-      | user         | pool_number   | juror_number_1  | juror_number_2 | juror_number_3  |
-      | MODTESTCOURT | 415180901     | 641500279       |  641500939     | 641500851       |
+      | user         | pool_number   | juror_number_1  | juror_number_2 | juror_number_3  | environment |
+      | MODTESTCOURT | 415180901     | 641500279       |  641500939     | 641500851       | test        |

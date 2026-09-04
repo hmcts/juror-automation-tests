@@ -104,7 +104,8 @@ Feature: JM-4368 Jury Officer Can Manually Run a Police Check
 
   @JurorTransformationMulti @Not_Implemented_In_Backend
   Scenario Outline: Manually run police check - police check runs NOT IMPLEMENTED IN BACKEND
-    Given I am on "Bureau" "test"
+
+    Given I am on "Bureau" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court | juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
@@ -130,5 +131,5 @@ Feature: JM-4368 Jury Officer Can Manually Run a Police Check
     And I see the police check value is not "Not checked"
 
     Examples:
-      | juror_number  | pool_number |
-      | 041500130     | 415300230   |
+      | juror_number  | pool_number | environment |
+      | 041500130     | 415300230   | test        |

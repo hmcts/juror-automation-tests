@@ -3,7 +3,7 @@ Feature: JM-6081 - 6083
   @JurorTransformationMulti @Messages
   Scenario Outline: Send jury sentencing date message - JM-6803
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
@@ -17,7 +17,6 @@ Feature: JM-6081 - 6083
     And a new trial is inserted with the trial number "<trial_number>"
     And I update juror "<juror_number>" to be able to send a message to them
     And I update juror "<juror_number>" to have a status of responded in order to record attendance
-
 
     #log on and search for juror
     And I log in as "<user>"
@@ -48,7 +47,6 @@ Feature: JM-6081 - 6083
     And I press the "Continue" button
 
     And I see "<juror_number>" in the same row as "Panel"
-
 
     #Empanel jury
     And I check the juror "<juror_number>" checkbox
@@ -94,8 +92,8 @@ Feature: JM-6081 - 6083
     And I see the juror "<juror_number>" has a message in the database
 
     Examples:
-      |user			| juror_number | pool_number | trial_number   |
-      |MODTESTCOURT | 041529859    | 415980985   | T202419999999  |
+      |user			| juror_number | pool_number | trial_number   | environment |
+      |MODTESTCOURT | 041529859    | 415980985   | T202419999999  | test        |
 
 
   @JurorTransformationMulti @Messages

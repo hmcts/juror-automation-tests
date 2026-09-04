@@ -110,7 +110,7 @@ Feature: JM-5962 - As a jury officer I need to be able to bulk change jurors att
 
     And I set "Enter date next due at court" to "2019/02/10"
     And I press the "Continue" button
-    And I see error "Enter a real date"
+    And I see error "Enter a date they’re next due at court in the correct format, for example, 31/01/2023"
 
     And I set "Enter date next due at court" to "2019/02/1!"
     And I press the "Continue" button

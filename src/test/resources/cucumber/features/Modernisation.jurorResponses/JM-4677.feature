@@ -3,7 +3,7 @@ Feature: JM-4677 - As a jury officer I need to create a trial
   @JurorTransformationMulti
   Scenario Outline: Create a Trial
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     #log on and search for juror
     And I log in as "<user>" selecting court "415"
@@ -35,7 +35,12 @@ Feature: JM-4677 - As a jury officer I need to create a trial
 
     And I set "Judge" to "PATRICIA H AITKEN"
     And I set the radio button to "Chester"
+    And I set "Courtroom" to "fff"
+    And I press the "Create trial" button
     And I see error "Select courtroom from provided list"
+
+    And I set the radio button to "Chester"
+    And I set "Courtroom" to ""
     And I set "Courtroom" to "JURY ASSEMBLY ROOM"
     And I press the "Create trial" button
 
@@ -47,8 +52,8 @@ Feature: JM-4677 - As a jury officer I need to create a trial
       | Protected?           | No                                |
 
     Examples:
-      |user			|
-      |MODTESTCOURT |
+      |user			| environment |
+      |MODTESTCOURT | test        |
 
 
   @JurorTransformationWIP

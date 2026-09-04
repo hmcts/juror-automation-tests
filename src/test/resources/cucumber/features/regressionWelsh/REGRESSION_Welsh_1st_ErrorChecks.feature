@@ -447,7 +447,7 @@ Examples:
 @RegressionWelsh
 Scenario Outline: Welsh response completed in Juror and login attempted on Digital
 
-Given I am on "Bureau" "ithc"
+Given I am on "Bureau" "<environment>"
 
 Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -501,8 +501,8 @@ Given a bureau owned pool is created with jurors
 	And I see "Ni allwch ddefnyddio'r gwasanaeth digidol hwn i roi gwybodaeth ychwanegol i ni." on the page
 	
 Examples:
-	| juror_number	| pool_number | last_name	| postcode |
-	| 045700047		| 457300047   |DOE			| SA2 9AJ  |
+	| juror_number	| pool_number | last_name	| postcode | environment |
+	| 045700047		| 457300047   |DOE			| SA2 9AJ  | test        |
 
 @RegressionWelsh @Bureau
 Scenario Outline: Welsh Already Replied info page
@@ -552,4 +552,4 @@ Scenario Outline: Welsh Already Replied info page
 
 	Examples:
 		| juror_number	| last_name	      	| postcode   | pool_number	| email 		| environment |
-		| 045700048		| LNAMESIXSEVENSIX 	| SW1H 9AJ   | 457300048	| e@mail.com 	| ithc        |
+		| 045700048		| LNAMESIXSEVENSIX 	| SW1H 9AJ   | 457300048	| e@mail.com 	| test        |

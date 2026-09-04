@@ -135,6 +135,7 @@ Feature: JM-5417-5586 - Resend excusal refused letter for Bureau and Jury users
 
     #return to juror record - status will be summoned (JS-376)
     When the user searches for juror record "<juror_number>" from the global search bar
+    And I see "Juror record" on the page
     And I see the juror status has updated to "Summoned"
     #record response for second juror
     And the user searches for juror record "<juror_number_2>" from the global search bar

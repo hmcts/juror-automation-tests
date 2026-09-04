@@ -200,10 +200,10 @@ Feature: JM-5687 - Resend Confirmation letter
       |  041588978    | 041588979     |041588980      |415981286   | MODTESTBUREAU |
 
 
-  @JurorTransformationMulti @NewSchemaConverted
+  @JurorTransformationMulti @Bureau
   Scenario Outline:Verify as a bureau user can view confirmation letters queued for printing and can delete it
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "<environment>"
 
     When a bureau owned pool is created with jurors
       | court   | juror_number  | pool_number     | att_date_weeks_in_future   | owner |
@@ -242,5 +242,5 @@ Feature: JM-5687 - Resend Confirmation letter
     And I see "1 pending document deleted" on the page
 
     Examples:
-      | juror_number  |  pool_number | user          |
-      |  041588983    |415981289     | MODTESTBUREAU |
+      | juror_number  |  pool_number | user          | environment  |
+      |  041588983    |415981289     | MODTESTBUREAU | test         |

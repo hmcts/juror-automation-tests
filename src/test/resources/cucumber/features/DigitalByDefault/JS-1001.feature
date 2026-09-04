@@ -25,6 +25,7 @@ Feature: DBD Information Cards
     Then I see "When and where to attend" on the page
 
     When I click on the "When and where to attend" link
+
     Then I see "Your start date, court address, arrival time and security information." on the page
     And I see "You are summoned to start jury service on" on the page
     And I validate the attendance date is "5" weeks in the future
@@ -80,6 +81,7 @@ Feature: DBD Information Cards
     Then I see "How jury service works" on the page
 
     When I click on the "How jury service works" link
+
     Then I see "What jury service is and who can be called" on the page
     And I see "What is jury service?" on the page
     And I see "Jury service is an important public duty. You and usually 11 other people will form a jury. Together, you'll decide the result of a criminal trial in the Crown court." on the page
@@ -130,6 +132,7 @@ Feature: DBD Information Cards
     And I see "Support and accessibility" on the page
 
     When I click on the "Support and accessibility" link
+
     Then I see "Support and accessibility" on the page
     And I see "If you have a disability and need us to make reasonable adjustments to help you during your jury service, you can tell us as part of your response." on the page
     And I see "For more information, please visit request reasonable adjustments (opens in a new tab)" on the page
@@ -172,6 +175,7 @@ Feature: DBD Information Cards
     And I see "Employment and time off work" on the page
 
     When I click on the "Employment and time off work" link
+
     Then I see "Employment and time off work" on the page
     And I see "Information for employees and self-employed jurors" on the page
     And I see "Links will open in a new tab." on the page
@@ -228,6 +232,7 @@ Feature: DBD Information Cards
     And I see "Claiming expenses" on the page
 
     When I click on the "Claiming expenses" link
+
     Then I see "You do not get paid for doing jury service but you can claim some money back towards loss of earnings, childcare, travel, and food and drink costs." on the page
     And I see "The rates are set out here: jury service and there's also a calculator to help you work out what you may be able to claim from the court: check juror claims" on the page
     
@@ -237,11 +242,13 @@ Feature: DBD Information Cards
     When I focus page to the original tab
 
     When I click on the "Loss of earnings and extra childcare or care costs" link
+
     Then  I see "We can reimburse you a single maximum daily amount to cover both:" on the page
     And I see "Loss of earnings" on the page
     And I see "Additional care costs due to jury service" on the page
 
     When I click on the Loss of earnings link on Claiming expenses info card
+
     Then I see "You can claim for loss of earnings if you're either:" on the page
     And I see "employed and your employer will not pay you during jury service" on the page
     And I see "self-employed or a paid company director" on the page
@@ -259,14 +266,17 @@ Feature: DBD Information Cards
     And I see "You cannot claim for weekends or bank holidays because the court is closed." on the page
 
     When I click on the "Childcare or care costs" link
+
     Then I see "You cannot claim for care costs you normally have, for example as part of your usual working week. But if you'll have additional care costs that are only due to jury service, you can claim some money towards these." on the page
     And I see "You must be within the combined maximum daily allowance for loss of earnings and caring costs." on the page
     And I see "For example, if you're claiming £64.95 for extra care costs, you'll have used up all this allowance and cannot claim any more on top for loss of earnings." on the page
 
     When I click on the "If you claim benefits" link
+
     Then I see "Your benefits will not be affected for at least 8 weeks, as long as you tell your benefits officer or work coach about your jury service. If you're asked to serve on a longer trial, when you arrive at court, you'll need to speak with the jury manager to find out how your benefits will be affected." on the page
 
     When I click on the "Travel costs" link
+
     Then I see "How much you can claim depends on how you travel to court. You cannot claim any travel or accommodation expenses from abroad." on the page
     And I see "Information on how much you can claim is available here: jury service" on the page
 
@@ -279,10 +289,12 @@ Feature: DBD Information Cards
     And I see "You must check with your jury manager at the court that you can claim for parking before you pay for it." on the page
 
     When I click on the "Travel tickets" link
+
     Then I see "Only buy daily travel tickets unless the court tells you otherwise when you start jury service." on the page
     And I see "Keep copies of your tickets or receipts, to submit with your claim. If you do not keep these, we may not be able to pay you back." on the page
 
     When I click on the "Food and drink costs" link
+
     Then I see "You can claim these amounts even if you bring your own food and drink." on the page
     And I see "The rates are set out here: jury service" on the page
 
@@ -293,9 +305,11 @@ Feature: DBD Information Cards
     When I focus page to the original tab
 
     When I click on the "When to claim" link
+
     Then I see "Submit your claim at the end of jury service. You'll usually be paid 7 to 10 working days after submitting your claim form. The court may be able to pay your expenses during the trial if it's likely to last a long time or if you're facing financial hardship. Check with the jury manager at your court when you start." on the page
 
     When I click on the "If you have questions" link
+
     Then I see "Up to a week before jury service starts please contact:" on the page
     And I see "Jury Central Summoning Bureau" on the page
     And I see "jurysummoning@justice.gov.uk" on the page
@@ -400,11 +414,13 @@ Feature: DBD Information Cards
     And I see "If any of the following applies to you, you do not qualify for jury service:" on the page
 
     And I click on the "Mental disorders" link
+
     And I see "Under the Mental Health Act 1983, some people can not do jury service." on the page
     And I see "If you are detained (this is sometimes called being 'sectioned'), in hospital, under a guardianship order or under a community treatment order because of a mental disorder, you can not be on a jury." on the page
     And I see "If you suffer from a mental disorder (including depression and anxiety) but you are not being detained, looked after or treated under the Mental Health Act, you can still be on a jury" on the page
 
     And I click on the "Mental capacity" link
+
     And I see "If you lack the mental capacity to serve as a juror, you can not be on a jury." on the page
     And I see "Mental capacity means being able to make a decision for yourself." on the page
     And I see "People who cannot do this are said to lack capacity under the Mental Capacity Act 2005" on the page
@@ -417,9 +433,11 @@ Feature: DBD Information Cards
     And I see "If you are not sure if you can do jury service because of a mental disorder or lack of mental capacity, you can phone us on 0300 456 1024 for advice." on the page
 
     And I click on the "Bail" link
+
     And I see "If you are on bail in criminal proceedings, you can not do jury service." on the page
 
     And I click on the "Convictions" link
+
     And I see "You can do jury service if you have points on your driving licence, speeding fines or have been to a speed awareness course, as long as you have not received any of the sentences below" on the page
     And I see "You can not do jury service if you have ever had one of these criminal sentences in the United Kingdom, the Channel Islands or the Isle of Man. You also can not do jury service if you've had one of these criminal sentences for a service offence under the Armed Forces Act 2006 anywhere in the world." on the page
     And I see "to imprisonment for life, detention for life or custody for life," on the page

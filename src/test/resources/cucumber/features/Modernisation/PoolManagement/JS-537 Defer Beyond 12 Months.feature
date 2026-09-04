@@ -175,10 +175,10 @@ Feature: JS-537 Defer Beyond 12 Months
       | juror_number| pool_number |
       | 041500080	| 415300177	  |
 
-  @JurorTransformationMulti
+  @JurorTransformationMulti @Court
   Scenario Outline: Court Non-Manager Cannot Defer Beyond 12 Months
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number  	        | pool_number	    | att_date_weeks_in_future	| owner |
@@ -228,5 +228,5 @@ Feature: JS-537 Defer Beyond 12 Months
     Then I see "Date cannot be more than 12 months after the original summons date" on the page
 
     Examples:
-      | juror_number| pool_number |
-      | 041500093	| 415300186	  |
+      | juror_number| pool_number | environment |
+      | 041500093	| 415300186	  | test        |

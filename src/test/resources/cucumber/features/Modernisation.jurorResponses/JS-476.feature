@@ -3,8 +3,8 @@ Feature: JS-476
   @JurorTransformation
   Scenario Outline: Check monthly util stats report
 
-    #chester
-    Given I am on "Bureau" "ithc"
+#    #chester
+    Given I am on "Bureau" "<environment>"
     When I log in as "<user>"
     And I click on the "Courts and bureau" link
     And I click the court home link for court "415"
@@ -14,7 +14,7 @@ Feature: JS-476
     And I see "Monthly wastage and utilisation report" on the page
 
 #    #swansea
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
     When I log in as "<user>"
     And I click on the "Courts and bureau" link
     And I click the court home link for court "457"
@@ -24,7 +24,7 @@ Feature: JS-476
     And I see "Monthly wastage and utilisation report" on the page
 
 #     #blackfriars
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
     When I log in as "<user>"
     And I click on the "Courts and bureau" link
     And I click the court home link for court "428"
@@ -33,8 +33,7 @@ Feature: JS-476
     And I press the "Yes - prepare" button
     And I see "Monthly wastage and utilisation report" on the page
 
-
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
     When I log in as "<user>"
     And I click on the "Courts and bureau" link
     And I click the court home link for court "415"
@@ -58,8 +57,7 @@ Feature: JS-476
     And I press the "Continue" button
     And I see the last run date for court "Chester (415)" is today
 
-
     Examples:
-      | user         |
-      | SYSTEMADMIN  |
+      | user         | environment  |
+      | SYSTEMADMIN  | test         |
 

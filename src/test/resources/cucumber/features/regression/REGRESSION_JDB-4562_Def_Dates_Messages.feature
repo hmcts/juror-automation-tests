@@ -1,9 +1,9 @@
 Feature: Regression JDB-4562 Defferal Dates Messages
 
-@Regression
+@Regression @DigitalResponse
 Scenario Outline: English 1st Party Deferral Dates Messages
 
-	Given I am on "Public" "ithc"
+	Given I am on "Public" "<environment>"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -112,8 +112,8 @@ Scenario Outline: English 1st Party Deferral Dates Messages
 	Then I see "You have completed your reply" on the page	
 	
 Examples:
-	| juror_number	| pool_number	| first_name| last_name	| postcode	| email 		|
-	| 045200126		| 452300125		| John		| Doe		| SW1H 9AJ	| a@eeee.com	|
+	| juror_number	| pool_number	| first_name| last_name	| postcode	| email 		| environment |
+	| 045200126		| 452300125		| John		| Doe		| SW1H 9AJ	| a@eeee.com	| test        |
 	
 @RegressionWelsh
 Scenario Outline: Welsh 1st Party Deferral Dates Messaged

@@ -156,7 +156,7 @@ Feature: Bureau Create Juror Record
   @JurorTransformation @Bureau
   Scenario Outline: Bureau Create Juror Record - validation checks
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     #enable permissions
     Given I "enable" CREATE_JUROR permission for bureau user "MODTESTBUREAU"
@@ -326,8 +326,8 @@ Feature: Bureau Create Juror Record
     And I see "Summoned" in the same row as "D'oe-smith"
 
     Examples:
-    | fname       | lname       | email       | mobile        | altphone    | postcode  | line1             | line2   | line3   | town    | county  | notes         |
-    | J'ohn-James | D'oe-Smith  | e@mail.com  | 07777777777   | 01211111111 | CH1 2NN   | 5 Testing Street  | Line 2  | Line 3  | London  | County  | Note testing  |
+    | environment | fname       | lname       | email       | mobile        | altphone    | postcode  | line1             | line2   | line3   | town    | county  | notes         |
+    | test        | J'ohn-James | D'oe-Smith  | e@mail.com  | 07777777777   | 01211111111 | CH1 2NN   | 5 Testing Street  | Line 2  | Line 3  | London  | County  | Note testing  |
 
 
   @JurorTransformation @Bureau
@@ -355,7 +355,7 @@ Feature: Bureau Create Juror Record
   @JurorTransformation @Bureau
   Scenario Outline: Bureau Create Juror Record age validation - too old
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "test"
 
     #enable permissions
     Given I "enable" CREATE_JUROR permission for bureau user "<user>"
@@ -415,7 +415,7 @@ Feature: Bureau Create Juror Record
   @JurorTransformation @Bureau
   Scenario Outline: Bureau Create Juror Record age validation - too young
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "test"
 
     #enable permissions
     Given I "enable" CREATE_JUROR permission for bureau user "<user>"
@@ -561,7 +561,7 @@ Feature: Bureau Create Juror Record
   @JurorTransformation @Bureau
   Scenario Outline: Bureau Create Juror Record - Satellite Court
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "test"
 
     #enable permissions
     Given I "enable" CREATE_JUROR permission for bureau user "<user>"
