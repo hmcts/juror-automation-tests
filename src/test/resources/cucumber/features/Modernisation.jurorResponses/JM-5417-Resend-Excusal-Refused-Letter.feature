@@ -3,7 +3,7 @@ Feature: JM-5417-5586 - Resend excusal refused letter for Bureau and Jury users
   @JurorTransformationMulti
   Scenario Outline: Excusal refused letter - via juror number
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     When a bureau owned pool is created with jurors
       | court | juror_number  | pool_number     | att_date_weeks_in_future   | owner |
@@ -55,8 +55,8 @@ Feature: JM-5417-5586 - Resend excusal refused letter for Bureau and Jury users
     And I see "1 document sent for printing" on the page
 
     Examples:
-      | juror_number  | pool_number | user          |
-      |  041529018    | 415980686   | MODTESTBUREAU |
+      | juror_number  | pool_number | user          | environment |
+      |  041529018    | 415980686   | MODTESTBUREAU | ithc        |
 
   @JurorTransformationMulti
   Scenario Outline: Delete pending excusal refused letter as a bureau officer
@@ -211,7 +211,7 @@ Feature: JM-5417-5586 - Resend excusal refused letter for Bureau and Jury users
 
     Examples:
       | juror_number  |juror_number_2 |juror_number_3 |pool_number | user          | environment  |
-      |  041529024    | 041529040     |041529041      |415980686   | MODTESTBUREAU | test         |
+      |  041529024    | 041529040     |041529041      |415980686   | MODTESTBUREAU | ithc         |
 
 
   @JurorTransformationMulti

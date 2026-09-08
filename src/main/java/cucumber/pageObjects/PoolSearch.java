@@ -27,7 +27,7 @@ public class PoolSearch {
     WebElement locationCode;
 
     @FindBy(id = "serviceStartDate")
-    WebElement serviceStartDate;
+    public WebElement serviceStartDate;
 
     @FindBy(id = "poolStatus")
     WebElement poolRequested;
@@ -93,6 +93,10 @@ public class PoolSearch {
 
     public void enterServiceStartDate(String text) {
         serviceStartDate.sendKeys(text);
+    }
+
+    public String getServiceStartDate() {
+        return serviceStartDate.getText();
     }
 
     public void clickAdvancedSearch() {

@@ -40,7 +40,7 @@ Feature: JM-4677 - As a jury officer I need to create a trial
     And I see error "Select courtroom from provided list"
 
     And I set the radio button to "Chester"
-    And I set "Courtroom" to ""
+    And I clear field with id "CHESTER-Courtroom"
     And I set "Courtroom" to "JURY ASSEMBLY ROOM"
     And I press the "Create trial" button
 

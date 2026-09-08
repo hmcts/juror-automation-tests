@@ -190,7 +190,7 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
     And I press the "Put in deferral maintenance" button
     And I verify the banner message "Deferral granted" on the page
 
-  #search via pool  number and resend letter for first deferred juror
+    #search via pool  number and resend letter for first deferred juror
     When I press the "Apps" button
     And I click on the "Documents" link
     And I click on the "Deferral granted letters" link
@@ -210,7 +210,8 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
     And I press the "Search" button
     And I update juror "<juror_number_1>" to have a status of "Excused"
     And I open new tab on the same browser
-    Given I am on "Bureau" "test"
+
+    Given I am on "Bureau" "<environment>"
     And I log in as "<user>"
     And I press the "Apps" button
     When I click on the "Documents" link

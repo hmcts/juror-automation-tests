@@ -325,3 +325,86 @@ Feature: JM-252_Validation_and_Errors_COURT
     Examples:
       | user         | courtCode | displayCourt | courtTypeFull |
       | MODTESTCOURT | 462       | Warrington   | Crown court   |
+
+  @JurorTransformation @Court
+  Scenario Outline: Attendance date is set to a BH date for court user on create pool for court use only
+
+    #leaving in single thread as it deletes and sets up BHs which may break other tests
+
+    Given I am on "Bureau" "<environment>"
+
+    Given I have deleted all holidays new schema
+
+    And I log in as "<user>"
+
+    When I navigate to the pool request screen
+
+    When I press the "Create pool" button
+    And I set the radio button to "Create pool for court use only"
+    And I press the "Continue" button
+
+    And I create a bank holiday "6" weeks in the future for court/bureau "<courtCode>" new schema
+    And I create a national bank holiday "7" weeks in the future
+
+    #create pool on a date that is a LOCAL holiday for the court only
+    And I see "Service start date" on the page
+    When I set the "Service start date" date to a Monday "6" weeks in the future
+    And I choose the "Crown" radio button
+    And I press the "Continue" button
+
+    Then I see "The service start date is a non working day or bank holiday" on the page
+    And I see "You’ve selected a service start date that’s a non working day or a UK bank holiday. You can continue or go back and change the date." on the page
+
+    #choose to go ahead anyway
+    When I press the "Continue" button
+
+    Then I see "Check pool details" on the page
+    And I validate the new pool service start date is "6" weeks in the future
+
+    #change date to NATIONAL bank holiday
+    When I click on "Change" in the same row as "Pool details"
+    And I see "Service start date" on the page
+    When I set the "Service start date" date to a Monday "7" weeks in the future
+    And I choose the "Crown" radio button
+    And I press the "Continue" button
+
+    Then I see "The service start date is a non working day or bank holiday" on the page
+    And I see "You’ve selected a service start date that’s a non working day or a UK bank holiday. You can continue or go back and change the date." on the page
+
+    #choose to go ahead anyway
+    When I press the "Continue" button
+
+    Then I see "Check pool details" on the page
+    And I validate the new pool service start date is "7" weeks in the future
+
+    #change court so that local bank holiday is not invoked
+    When I click on "Change" in the same row as "Pool details"
+    And I click the change link for the chosen court
+    And I set "Enter a court name or location code" to "462"
+    And I click on the "Warrington (462)" link
+    And I press the "Continue" button
+    And I see "Service start date" on the page
+    When I set the "Service start date" date to a Monday "6" weeks in the future
+    And I press the "Continue" button
+
+    Then I do not see "The service start date is a non working day or bank holiday" on the page
+    And I do not see "You’ve selected a service start date that’s a non working day or a UK bank holiday. You can continue or go back and change the date." on the page
+    And I validate the new pool service start date is "6" weeks in the future
+
+    #and now check new court gets bank holiday warning for national holiday
+    When I click on "Change" in the same row as "Pool details"
+    And I see "Service start date" on the page
+    When I set the "Service start date" date to a Monday "7" weeks in the future
+    And I press the "Continue" button
+
+    Then I see "The service start date is a non working day or bank holiday" on the page
+    And I see "You’ve selected a service start date that’s a non working day or a UK bank holiday. You can continue or go back and change the date." on the page
+
+    And I press the "Continue" button
+    And I validate the new pool service start date is "7" weeks in the future
+
+    Then I delete bank holiday new schema
+
+    Examples:
+      | environment | user         | courtCode |
+      | ithc        | MODTESTCOURT | 415       |

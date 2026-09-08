@@ -41,7 +41,6 @@ Feature: JS-177 Delete Attendance
     #confirm attendance
     Then I see "Record attendance" on the page
     When I press the "Confirm attendance" button
-    And I refresh the page
     And I press the "Confirm attendance list is correct" button
 
     #nav to juror record
@@ -61,4 +60,4 @@ Feature: JS-177 Delete Attendance
 
     Examples:
       | user		  | juror_number_1 | pool_number   | environment |
-      | MODTESTCOURT  | 041500151      | 415300178     | test        |
+      | MODTESTCOURT  | 041500151      | 415300178     | ithc        |

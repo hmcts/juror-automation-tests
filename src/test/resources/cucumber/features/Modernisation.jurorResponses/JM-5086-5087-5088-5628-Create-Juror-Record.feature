@@ -224,6 +224,10 @@ Feature: Create Juror Record scenarios
     And I set the radio button to "Create a pool to add the juror to"
     And I press the "Continue" button
 
+    #create a national bank holiday
+    Given I have deleted all holidays new schema
+    And I create a national bank holiday "10" weeks in the future
+
     #create pool/error checks
     And I see "Create a pool for court use only" on the page
     And I press the "Continue" button
@@ -232,7 +236,16 @@ Feature: Create Juror Record scenarios
     And I set the "Service start date for new pool" date to a Monday "10" weeks in the future
     And I set the radio button to "Crown court"
     And I press the "Continue" button
+
+    #warning that this is a bank holiday
+    Then I see "The service start date is a non working day or bank holiday" on the page
+    And I see "You’ve selected a service start date that’s a non working day or a UK bank holiday. You can continue or go back and change the date." on the page
+
+    #choose to go ahead
+    And I press the "Continue" button
+
     And I see "Check pool details" on the page
+    And I validate the new pool service start date is "10" weeks in the future
     And I press the "Create active pool" button
 
     #jurors name
@@ -272,7 +285,7 @@ Feature: Create Juror Record scenarios
 
     Examples:
       |user			| environment |
-      |MODTESTCOURT | test        |
+      |MODTESTCOURT | ithc        |
 
   @JurorTransformation @Court
   Scenario Outline: Create Juror Record for juror outside of any court catchment area

@@ -106,6 +106,9 @@ public class PoolOverview {
     @FindBy(id = "pool-overview-filter")
     WebElement poolFilterTable;
 
+    @FindBy(xpath = "//div/dt[contains(text(),'Service start date')]/../dd")
+    static WebElement newPoolServiceStartDate;
+
     public String getCourtName() {
         log.info("Getting court name");
         return courtName.getText();
@@ -213,6 +216,12 @@ public class PoolOverview {
         log.info("Getting status");
         return status.getText();
     }
+
+    public static String getNewPoolServiceStartDate() {
+        log.info("Getting new pool service start date");
+        return newPoolServiceStartDate.getText();
+    }
+
 
     public boolean statusExists() {
         By statusLocator = By.xpath("//*[@id=\"main-content\"]/div[1]/div/div/strong");
