@@ -399,10 +399,10 @@ Feature: 1)JM-5409,JM-5411 - As a Bureau/jury officer I need to resend a deferra
       | juror_number | pool_number | user         | environment |
       | 041530033    | 415300345   | MODTESTCOURT | test        |
 
-  @JurorTransformationMulti
+  @JurorTransformationMulti @Court
   Scenario Outline:As a jury officer test a Deferred juror can resend a granted refused letter by searching via pool number
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     When a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
@@ -413,6 +413,7 @@ Feature: 1)JM-5409,JM-5411 - As a Bureau/jury officer I need to resend a deferra
       | <juror_number> | <pool_number> | 415   |
 
     And I log in as "<user>"
+
     And I update the bureau transfer date of the juror "<juror_number>"
     When the user searches for juror record "<juror_number>" from the global search bar
 
@@ -492,12 +493,12 @@ Feature: 1)JM-5409,JM-5411 - As a Bureau/jury officer I need to resend a deferra
     And I check the "Include printed" checkbox
     And I press the "Search" button
     Then I see "Change" on the page
-    And I see the printed letter for juror number "<juror_number>" in the letters table
+    And as a court user I see the printed letter for juror number "<juror_number>" in the letters table
     And I see "Print deferral refused letter" on the page
     When I check the "<juror_number>" checkbox
     And I press the "Print deferral refused letter" button
     Then I see "documents/deferral-refused/letters-list" in the URL
 
     Examples:
-      | juror_number | pool_number | user         |
-      | 041530029    | 415300305   | MODTESTCOURT |
+      | juror_number | pool_number | user         | environment |
+      | 041530029    | 415300305   | MODTESTCOURT | ithc        |

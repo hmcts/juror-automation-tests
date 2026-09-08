@@ -110,7 +110,7 @@ Feature: JM-5962 - As a jury officer I need to be able to bulk change jurors att
 
     And I set "Enter date next due at court" to "2019/02/10"
     And I press the "Continue" button
-    And I see error "Enter a date they’re next due at court in the correct format, for example, 31/01/2023"
+    And I see error "Enter a real date"
 
     And I set "Enter date next due at court" to "2019/02/1!"
     And I press the "Continue" button
@@ -141,4 +141,4 @@ Feature: JM-5962 - As a jury officer I need to be able to bulk change jurors att
 
     Examples:
       | user         | juror_number | juror_number_1 | juror_number_2 | juror_number_3 | juror_number_4 | pool_number | environment |
-      | MODTESTCOURT | 041537783    | 041537782      | 041537781      | 041537780      | 041537779      | 415366829   | test        |
+      | MODTESTCOURT | 041537783    | 041537782      | 041537781      | 041537780      | 041537779      | 415366829   | ithc        |

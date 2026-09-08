@@ -1,8 +1,9 @@
 Feature: JM-252_Validation_and_Errors_COURT
 
-  @JurorTransformationMulti
+  @JurorTransformationMulti @Court
   Scenario Outline: Errors and Warnings on Create New Pool for Court user
-    Given I am on "Bureau" "ithc"
+
+    Given I am on "Bureau" "<environment>"
 
     And I log in as "<user>"
 
@@ -27,7 +28,6 @@ Feature: JM-252_Validation_and_Errors_COURT
     And I press the "Continue" button
 
     #check page content
-
     And on the page I see
       | text                                              |
       | Request a new pool                                |
@@ -158,10 +158,10 @@ Feature: JM-252_Validation_and_Errors_COURT
       | jurorsRequired | 149            |
 
     Examples:
-      | user         | displayCourt | courtType | courtTypeFull | courtCode | juror_number | pool_number |
-      | MODTESTCOURT | Chester      | Crown     | Crown court   | 415       | 041540010    | 415300410   |
-      | MODTESTCOURT | Chester      | Civil     | Civil court   | 415       | 041540011    | 415300411   |
-      | MODTESTCOURT | Chester      | High      | High court    | 415       | 041540012    | 415300412   |
+      | user         | displayCourt | courtType | courtTypeFull | courtCode | juror_number | pool_number | environment  |
+      | MODTESTCOURT | Chester      | Crown     | Crown court   | 415       | 041540010    | 415300410   | ithc         |
+      | MODTESTCOURT | Chester      | Civil     | Civil court   | 415       | 041540011    | 415300411   | ithc         |
+      | MODTESTCOURT | Chester      | High      | High court    | 415       | 041540012    | 415300412   | ithc         |
 
   @JurorTransformationMulti
   Scenario Outline: Test to assure that a warning appears if the attendance date is set to a weekend date for Court user

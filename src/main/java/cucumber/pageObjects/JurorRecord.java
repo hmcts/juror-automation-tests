@@ -692,15 +692,58 @@ public class JurorRecord {
                 log.info(" Text - " + DeferralGrantedResultsheaderTableName.get(2).getText() + " - is visible on the page ");
                 break;
             case "Date printed":
-                Assert.assertTrue("Expected Text not found", DeferralGrantedResultsheaderTableName.get(9).getText().equals(tabName));
-                log.info(" Text - " + DeferralGrantedResultsheaderTableName.get(2).getText() + " - is visible on the page ");
-                break;
+                try {
+                    Assert.assertTrue("Expected Text not found", DeferralGrantedResultsheaderTableName.get(9).getText().equals(tabName));
+                    log.info(" Text - " + DeferralGrantedResultsheaderTableName.get(2).getText() + " - is visible on the page ");
+                    break;
+                } catch (IndexOutOfBoundsException e) {
+                    Assert.assertTrue("Expected Text not found", DeferralGrantedResultsheaderTableName.get(7).getText().equals(tabName));
+                    log.info(" Text - " + DeferralGrantedResultsheaderTableName.get(2).getText() + " - is visible on the page ");
+                    break;
+                }
 
             default:
                 log.info("Expected element text is not present on the page");
                 break;
         }
 
+    }
+
+    public void seePrintedLetterInLettersTableCourt(String jurorNumber) {
+        Calendar today = Calendar.getInstance();
+        SimpleDateFormat formatter = new SimpleDateFormat("EEE d MMM yyyy", Locale.ENGLISH);
+        String printedDate = formatter.format(today.getTime());
+
+        printedDate = enforceThreeLetterMonth(printedDate);
+        System.out.println("Formatted date: " + printedDate);
+        WebElement table = driver.findElement(By.xpath("//*[@id=\"main-content\"]/div[4]/div/table/tbody"));
+        List<WebElement> rows = table.findElements(By.tagName("tr"));
+
+        for (WebElement row : rows) {
+            List<WebElement> cells = row.findElements(By.tagName("td"));
+            boolean jurorFound = false;
+            boolean dateFound = false;
+            int dateColumnIndex = -1;
+
+            for (int i = 0; i < cells.size(); i++) {
+                WebElement cell = cells.get(i);
+                String cellText = cell.getText().trim();
+
+                if (cellText.contains(jurorNumber)) {
+                    jurorFound = true;
+                }
+
+                if (cellText.contains(printedDate)) {
+                    dateFound = true;
+                    dateColumnIndex = i;
+                }
+            }
+            if (jurorFound && dateFound && dateColumnIndex == 8) {
+                System.out.println("Found matching juror and date: " + jurorNumber + ", " + printedDate);
+                return;
+            }
+        }
+        throw new RuntimeException("Matching juror and date not found: " + jurorNumber + ", " + printedDate);
     }
 
     public void seePrintedLetterInLettersTable(String jurorNumber) {

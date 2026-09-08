@@ -162,6 +162,7 @@ Feature: JM-4326 - Defer a juror and then complete their service at a later date
 
     #search for juror and process reply
     When the user searches for juror record "<juror_number>" from the global search bar
+    And I see "Summons reply" on the page
     And I click the summons reply tab
     And I click on the "View summons reply" link
     And I see the reply "type" on the response is "Deferral"
@@ -189,7 +190,7 @@ Feature: JM-4326 - Defer a juror and then complete their service at a later date
 
     Examples:
       | user		  | juror_number  | pool_number | environment |
-      | MODTESTBUREAU | 041500138     | 415300238   | test        |
+      | MODTESTBUREAU | 041500138     | 415300238   | ithc        |
 
   @JurorTransformationMulti
   Scenario Outline: Mark juror as deferred - Add to pool - Digital Response Jury Officer

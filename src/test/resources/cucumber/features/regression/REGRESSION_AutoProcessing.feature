@@ -1329,6 +1329,7 @@ Scenario Outline: Check that when Address2 is changed from string value, the res
 	Given I am on "Bureau" "<environment>"
 	When I log in as "MODTESTBUREAU"
 	And I click on the "Search" link
+    And I see "Juror number" on the page
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
 	And I see "<juror_number>" in the same row as "To do"
