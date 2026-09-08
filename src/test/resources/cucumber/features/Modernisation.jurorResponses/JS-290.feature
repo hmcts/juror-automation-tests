@@ -3,7 +3,7 @@ Feature: JS-290
   @JurorTransformationMulti
   Scenario Outline: Excusal refused letter - check jurors address matches that in bulk print table
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     When a bureau owned pool is created with jurors
       | court | juror_number  | pool_number     | att_date_weeks_in_future   | owner |
@@ -55,13 +55,13 @@ Feature: JS-290
     And I verify address "<juror_address>" exists in print record for juror "<juror_number>"
 
     Examples:
-      | juror_number  | pool_number | user          | juror_address     |
-      |  041573611    | 415984412   | MODTESTBUREAU | ADDRESS LINE FOUR |
+      | juror_number  | pool_number | user          | juror_address     | environment |
+      |  041573611    | 415984412   | MODTESTBUREAU | ADDRESS LINE FOUR | ithc        |
 
   @JurorTransformationMulti
   Scenario Outline: Excusal refused letter - when responded
 
-    Given I am on "Bureau" "demo"
+    Given I am on "Bureau" "<environment>"
 
     When a bureau owned pool is created with jurors
       | court | juror_number  | pool_number     | att_date_weeks_in_future   | owner |
@@ -120,13 +120,13 @@ Feature: JS-290
     And I verify address "<juror_address>" exists in print record for juror "<juror_number>"
 
     Examples:
-      | juror_number  | pool_number | user          | juror_address     |
-      |  041573617    | 415984417   | MODTESTBUREAU | ADDRESS LINE FOUR |
+      | juror_number  | pool_number | user          | juror_address     | environment |
+      |  041573617    | 415984417   | MODTESTBUREAU | ADDRESS LINE FOUR | ithc        |
 
   @JurorTransformationMulti
   Scenario Outline: Resend Withdrawal letter as a bureau officer - check jurors address matches that in bulk print table
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     When a bureau owned pool is created with jurors
       | court | juror_number  | pool_number   | att_date_weeks_in_future   | owner |
@@ -172,5 +172,5 @@ Feature: JS-290
     And I verify address "<juror_address>" exists in print record for juror "<juror_number>"
 
     Examples:
-      | juror_number | pool_number | user          | juror_address     |
-      | 041573612    | 415984412   | MODTESTBUREAU | ADDRESS LINE FOUR |
+      | juror_number | pool_number | user          | juror_address     | environment |
+      | 041573612    | 415984412   | MODTESTBUREAU | ADDRESS LINE FOUR | ithc        |

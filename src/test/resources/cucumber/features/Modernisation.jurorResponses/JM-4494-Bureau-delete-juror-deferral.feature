@@ -3,7 +3,7 @@ Feature: JM-4494 Bureau Delete Juror Deferral
   @JurorTransformationMulti
   Scenario Outline: Delete Juror deferral - digital
 
-    Given I am on "Public" "test"
+    Given I am on "Public" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number      | pool_number	    | att_date_weeks_in_future	| owner |
@@ -14,7 +14,7 @@ Feature: JM-4494 Bureau Delete Juror Deferral
       |jurorLname    | <last_name>    |
       |jurorPostcode | <postcode>     |
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "<environment>"
     Given I log in as "MODTESTBUREAU"
     When the user searches for juror record "<juror_number>" from the global search bar
     And I click the summons reply tab
@@ -46,8 +46,8 @@ Feature: JM-4494 Bureau Delete Juror Deferral
     And I see the juror status on the juror record screen is "Responded"
 
     Examples:
-      | juror_number| last_name	  | postcode| pool_number |
-      | 041500062   | lname       | CH2 2AA	| 415300152	  |
+      | juror_number| last_name	  | postcode| pool_number | environment |
+      | 041500062   | lname       | CH2 2AA	| 415300152	  | test        |
 
   @JurorTransformationMulti @Bureau
   Scenario Outline: Delete Juror deferral - paper

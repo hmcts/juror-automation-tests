@@ -28,6 +28,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import static cucumber.pageObjects.PoolOverview.*;
 import static cucumber.utils.DateManipulator.formatDate;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -43,6 +44,7 @@ public class StepDef_navigation {
 	private ScreenShotTaker SST;
 	private ClickOverrider CO;
 	private StepDef_jurorpool STP;
+    private PoolSearch PSC;
 	private final WebDriver webDriver;
 
 	private final CheckPoolRequest CHECK_POOL_REQUEST_PAGE;
@@ -753,7 +755,21 @@ public class StepDef_navigation {
 		}
 	}
 
-	;
+    @When("^I validate the new pool service start date is \"([^\"]*)\" weeks in the future$")
+    public void iValidateNewPoolAttendanceDateInTheFuture(Integer noOfWeeks) throws Throwable {
+
+        String fullDatePattern = "EEEEE dd MMMMM yyyy";
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.WEEK_OF_MONTH, noOfWeeks);
+        LocalDate localDate = calendar.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+        Date date =Date.from(localDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+
+        String todayDateFullConverted = new SimpleDateFormat(fullDatePattern).format(date);
+
+        assertEquals(PoolOverview.getNewPoolServiceStartDate(), todayDateFullConverted);
+
+    }
 
 	@When("^I select deferral date \"([^\"]*)\" weeks in the future$")
 	public void iSelectDeferralDate(Integer noOfWeeks) throws Throwable {

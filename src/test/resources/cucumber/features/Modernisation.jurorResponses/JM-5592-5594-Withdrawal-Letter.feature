@@ -94,8 +94,10 @@ Feature: JM-5592-5594 - Resend withdrawal letter for Bureau and Jury users
   @JurorTransformationMulti
   Scenario Outline: Withdrawal letter - via pool Number happy path bulk
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
+
     And I log in as "<user>"
+
     When a bureau owned pool is created with jurors
       | court   | juror_number    | pool_number     | att_date_weeks_in_future  | owner |
       | 415     | <juror_number>  | <pool_number>   | 5                         | 400   |
@@ -174,8 +176,8 @@ Feature: JM-5592-5594 - Resend withdrawal letter for Bureau and Jury users
     And I see "3 documents sent for printing" on the page
 
     Examples:
-      | juror_number  |juror_number_2 |juror_number_3 |pool_number | user          |
-      |  041549594    | 041549595     |041549596      |415999186   | MODTESTBUREAU |
+      | juror_number  |juror_number_2 |juror_number_3 |pool_number | user          | environment  |
+      |  041549594    | 041549595     |041549596      |415999186   | MODTESTBUREAU | ithc         |
 
   @JurorTransformationMulti
   Scenario Outline:Verify as a bureau user can view letters queued for printing and can delete it

@@ -2368,6 +2368,45 @@ public class DatabaseTesterNewSchemaDesign {
 		}
 	}
 
+    public void insertNationalHolidayInTheFutureNSD(Integer noOfWeeks) throws SQLException {
+        db = new DBConnection();
+
+        String env_property = System.getProperty("env.database");
+
+        if (env_property != null)
+            conn = db.getConnection(env_property);
+        else
+            conn = db.getConnection("demo");
+
+        LocalDate localDate = LocalDate.now().plusWeeks(noOfWeeks);
+
+        holidayDate = localDate.toString();
+
+        try {
+            pStmt = conn.prepareStatement(
+                    "INSERT INTO JUROR_MOD.HOLIDAY(LOC_CODE, HOLIDAY, DESCRIPTION, PUBLIC) VALUES (?, ?, ?, ?)"
+            );
+            pStmt.setString(1, "400");
+            pStmt.setDate(2, java.sql.Date.valueOf(localDate));
+            pStmt.setString(3, "Test National Holiday");
+            pStmt.setBoolean(4, true);
+
+            pStmt.executeUpdate();
+            conn.commit();
+
+            log.info("Successfully inserted national holiday on date: " + localDate);
+
+        } catch (SQLException e) {
+            log.error("Message: failed to insert bank holiday for date: " + localDate, e);
+            throw e;
+
+        } finally {
+            conn.commit();
+            pStmt.close();
+            conn.close();
+        }
+    }
+
 	public void insertHolidayMondayInTheFutureNSD(Integer noOfWeeks, String owner) throws SQLException {
 		db = new DBConnection();
 

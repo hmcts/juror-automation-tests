@@ -394,6 +394,8 @@ public class StepDef_jurorRecord {
         JUROR_RECORD.deferralGrantedjurorsTabPresent("Status");
         JUROR_RECORD.deferralGrantedjurorsTabPresent("Deferred to");
         JUROR_RECORD.deferralGrantedjurorsTabPresent("Reason");
+        JUROR_RECORD.deferralGrantedjurorsTabPresent("Original sent by");
+        JUROR_RECORD.deferralGrantedjurorsTabPresent("Current preference");
         JUROR_RECORD.deferralGrantedjurorsTabPresent("Date printed");
     }
     @When("^I expand the summons replies search advanced search criteria$")

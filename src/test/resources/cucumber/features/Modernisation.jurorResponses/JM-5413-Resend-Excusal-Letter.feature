@@ -3,7 +3,7 @@ Feature: JM-5413-5415 - Resend excusal granted letter for Bureau and Jury users
   @JurorTransformationMulti
   Scenario Outline:As a bureau officer test a Excused juror can resend a granted letter by searching via juror number
 
-    Given I am on "Bureau" "demo"
+    Given I am on "Bureau" "<environment>"
 
     When a bureau owned pool is created with jurors
       | court | juror_number  | pool_number   | att_date_weeks_in_future   | owner  |
@@ -54,8 +54,8 @@ Feature: JM-5413-5415 - Resend excusal granted letter for Bureau and Jury users
     And I see "1 document sent for printing" on the page
 
     Examples:
-      | juror_number  | pool_number | user          |
-      |  041529011    | 415980685   | MODTESTBUREAU |
+      | juror_number  | pool_number | user          | environment |
+      |  041529011    | 415980685   | MODTESTBUREAU | ithc        |
 
   @JurorTransformationMulti
   Scenario Outline:As a bureau officer verify a excused juror letter in printing stage can delete
@@ -104,7 +104,8 @@ Feature: JM-5413-5415 - Resend excusal granted letter for Bureau and Jury users
   @JurorTransformationMulti
   Scenario Outline: Excusal granted letter - via pool Number happy path bulk
 
-    Given I am on "Bureau" "demo"
+    Given I am on "Bureau" "<environment>"
+
     And I log in as "<user>"
 
     When a bureau owned pool is created with jurors
@@ -176,15 +177,17 @@ Feature: JM-5413-5415 - Resend excusal granted letter for Bureau and Jury users
     And I see "2 documents sent for printing" on the page
 
     Examples:
-      | juror_number | juror_number_2 | pool_number | user          |
-      | 041529056    | 041529057      | 415980676   | MODTESTBUREAU |
+      | juror_number | juror_number_2 | pool_number | user          | environment |
+      | 041529056    | 041529057      | 415980676   | MODTESTBUREAU | ithc        |
 
 
   @JurorTransformationMulti
   Scenario Outline:As a bureau officer test a excused juror can resend a granted letter by searching via Pool number - unhappy path
 
-    Given I am on "Bureau" "demo"
+    Given I am on "Bureau" "<environment>"
+
     And I log in as "<user>"
+
     When a bureau owned pool is created with jurors
       | court   | juror_number    | pool_number     | att_date_weeks_in_future  | owner |
       | 415     | <juror_number>  | <pool_number>   | 5                         | 400   |
@@ -265,8 +268,8 @@ Feature: JM-5413-5415 - Resend excusal granted letter for Bureau and Jury users
     And I see "<juror_number_1>" in the same row as "Deceased"
 
     Examples:
-      | juror_number| juror_number_1  | pool_number | user          |
-      |  041529013  | 041529034       | 415980685   | MODTESTBUREAU |
+      | juror_number| juror_number_1  | pool_number | user          | environment |
+      |  041529013  | 041529034       | 415980685   | MODTESTBUREAU | ithc        |
 
 
   @JurorTransformationMulti

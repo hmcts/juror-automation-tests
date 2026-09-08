@@ -720,6 +720,11 @@ public class StepDef_jurorpoolNewSchema {
         DBTNSD.insertHolidayInTheFutureNSD(noOfWeeks, holidayOwner);
     }
 
+    @When("^I create a national bank holiday \"([^\"]*)\" weeks in the future$")
+    public void insertNationalBankHolidayInTheFutureNSD(Integer noOfWeeks) throws SQLException {
+        DBTNSD.insertNationalHolidayInTheFutureNSD(noOfWeeks);
+    }
+
     @When("^I create a bank holiday \"([^\"]*)\" weeks in the future for court/bureau \"([^\"]*)\" and display on screen$")
     public void insertHolidayAndDisplayOnSCreens(Integer noOfWeeks, String holidayOwner) throws SQLException {
         DBTNSD.insertHolidayInTheFrontScreen(noOfWeeks, holidayOwner);

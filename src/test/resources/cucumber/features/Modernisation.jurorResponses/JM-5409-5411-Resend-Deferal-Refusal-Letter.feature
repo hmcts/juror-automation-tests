@@ -1,9 +1,10 @@
 Feature: 1)JM-5409,JM-5411 - As a Bureau/jury officer I need to resend a deferral refusal letters
 
-  @JurorTransformationMulti
+  @JurorTransformationMulti @Bureau
   Scenario Outline:Verify as a bureau officer can able to resend a deferral refusal letter
 
-    Given I am on "Bureau" "demo"
+    Given I am on "Bureau" "<environment>"
+
     And I log in as "<user>"
 
     When a bureau owned pool is created with jurors
@@ -104,8 +105,8 @@ Feature: 1)JM-5409,JM-5411 - As a Bureau/jury officer I need to resend a deferra
     Then I see "1 document sent for printing" on the page
 
     Examples:
-      | juror_number | pool_number | user          |
-      | 041520030    | 415300707   | MODTESTBUREAU |
+      | juror_number | pool_number | user          | environment  |
+      | 041520030    | 415300707   | MODTESTBUREAU | ithc         |
 
   @JurorTransformationMulti
   Scenario Outline:As a bureau officer verify a deferred juror letter in printing stage can delete

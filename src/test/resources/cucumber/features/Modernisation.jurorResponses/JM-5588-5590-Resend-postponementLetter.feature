@@ -1,9 +1,9 @@
 Feature:As a Bureau/jury officer I want to re send a postponement letter
 
-  @JurorTransformation
+  @JurorTransformation @Bureau
   Scenario Outline: As a bureau officer test a postponement juror can resend a letter by searching via juror number
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
     And I log in as "<user>"
 
     When a bureau owned pool is created with jurors
@@ -83,8 +83,8 @@ Feature:As a Bureau/jury officer I want to re send a postponement letter
     Then I see "1 document sent for printing" on the page
 
     Examples:
-      | juror_number | pool_number | user          |
-      | 041520043    | 415300725   | MODTESTBUREAU |
+      | juror_number | pool_number | user          | environment  |
+      | 041520043    | 415300725   | MODTESTBUREAU | ithc         |
 
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline:Verify as bureau officer postponement juror can delete the letter in pending stage
@@ -167,7 +167,7 @@ Feature:As a Bureau/jury officer I want to re send a postponement letter
   @JurorTransformationMulti
   Scenario Outline:As a bureau officer test a postponement juror can resend a letter by searching via Pool number
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     And I log in as "<user>"
 
@@ -249,8 +249,8 @@ Feature:As a Bureau/jury officer I want to re send a postponement letter
     Then I see "1 document sent for printing" on the page
 
     Examples:
-      | juror_number | pool_number | user          |
-      | 041520044    | 415300726   | MODTESTBUREAU |
+      | juror_number | pool_number | user          | environment  |
+      | 041520044    | 415300726   | MODTESTBUREAU | ithc         |
 
 
   @JurorTransformationMulti

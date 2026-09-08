@@ -2380,6 +2380,11 @@ public class NavigationShared {
                 expensePaymentsDateTo.clear();
                 expensePaymentsDateTo.sendKeys(mondayDateValue);
                 break;
+
+            case "Service start date":
+                serviceStartDate.clear();
+                serviceStartDate.sendKeys(mondayDateValue);
+                break;
         }
     }
 
