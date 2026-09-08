@@ -240,13 +240,14 @@ Scenario Outline: Welsh 1st Party Straight Through (english court)
 	And I see "Mi wnaethoch ateb y cwestiynau cymhwysedd" on the page
 	
 	#Bureau
-	Given I am on "Bureau" "test"
+	Given I am on "Bureau" "<environment>"
 	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
     And I see "Search" on the page
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
+    And I see "Juror" on the page
 	
 	When I click on "<juror_number>" in the same row as "<juror_number>"
 	
@@ -258,8 +259,8 @@ Scenario Outline: Welsh 1st Party Straight Through (english court)
 	Then on "JUROR_MOD" . "JUROR" I see "WELSH" is null where "juror_number" is "<juror_number>"
 	
 Examples:
-	| juror_number	| last_name	| postcode	| email 		| pool_number	|
-	| 045200265		| LastNameB	| CH1 2AN	| e@mail.com	| 452300242		|
+	| juror_number	| last_name	| postcode	| email 		| pool_number	| environment |
+	| 045200265		| LastNameB	| CH1 2AN	| e@mail.com	| 452300242		| test        |
 
 @RegressionWelsh @NewSchemaConverted
 Scenario Outline: Welsh 1st Party Straight Through (welsh court)

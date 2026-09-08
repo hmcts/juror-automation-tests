@@ -398,6 +398,19 @@ public class StepDef_jurorRecord {
         JUROR_RECORD.deferralGrantedjurorsTabPresent("Current preference");
         JUROR_RECORD.deferralGrantedjurorsTabPresent("Date printed");
     }
+
+    @Then("^as a court user I am able to see and interact with the jurors Deferral letter tabs and fields$")
+    public void iAmAbleToSeeAndInteractWithTheDeferralGrantedLetterTabsAndFieldsAsCourtUser() {
+        JUROR_RECORD.deferralGrantedjurorsTabPresent("Juror number");
+        JUROR_RECORD.deferralGrantedjurorsTabPresent("First name");
+        JUROR_RECORD.deferralGrantedjurorsTabPresent("Last name");
+        JUROR_RECORD.deferralGrantedjurorsTabPresent("Postcode");
+        JUROR_RECORD.deferralGrantedjurorsTabPresent("Status");
+        JUROR_RECORD.deferralGrantedjurorsTabPresent("Deferred to");
+        JUROR_RECORD.deferralGrantedjurorsTabPresent("Reason");
+        JUROR_RECORD.deferralGrantedjurorsTabPresent("Date printed");
+    }
+
     @When("^I expand the summons replies search advanced search criteria$")
     public void expandPoolSearchAdvanced() { SUMMONS_SEARCH.clickAdvancedSearch(); }
 
@@ -435,6 +448,12 @@ public class StepDef_jurorRecord {
     public void seeThePrintedLetterForJurorInTheTable(String jurorNumber) {
         NAV.waitForPageLoadNew();
         JUROR_RECORD.seePrintedLetterInLettersTable(jurorNumber);
+    }
+
+    @Then("as a court user I see the printed letter for juror number \"([^\"]*)\" in the letters table$")
+    public void seeThePrintedLetterForJurorInTheTableCourt(String jurorNumber) {
+        NAV.waitForPageLoadNew();
+        JUROR_RECORD.seePrintedLetterInLettersTableCourt(jurorNumber);
     }
 
     @When("^I return to the previous tab$")

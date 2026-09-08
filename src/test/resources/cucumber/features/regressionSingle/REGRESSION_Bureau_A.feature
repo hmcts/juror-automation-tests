@@ -244,6 +244,7 @@ Scenario Outline: Bureau A script, steps 24 onwards
 	And I see "No, I need to change the date" on the page
 	And I set the radio button to "No, I need to change the date"
 	And I press the "Continue" button
+    And I see "reason" on the page
 	And I set text area with "id" of "deferralReason" to "unableToAttendAndDeferring"
 	And I press the "Continue" button
 	Then I see "Choose 3 Mondays" on the page

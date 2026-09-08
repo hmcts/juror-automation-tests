@@ -320,6 +320,7 @@ Feature: JM-5413-5415 - Resend excusal granted letter for Bureau and Jury users
   Scenario Outline: As a jury officer I want to print a excusal granted letter for juror
 
     Given I am on "Bureau" "<environment>"
+
     When a bureau owned pool is created with jurors
       | court |juror_number   | pool_number	    | att_date_weeks_in_future	| owner |
       | 415   | <juror_number>| <pool_number>   | 5                         | 400   |
@@ -331,6 +332,7 @@ Feature: JM-5413-5415 - Resend excusal granted letter for Bureau and Jury users
       | <juror_number>      | <pool_number>     | 415   |
 
     And I log in as "<user>"
+
     And I update the bureau transfer date of the juror "<juror_number>"
     And the user searches for juror record "<juror_number>" from the global search bar
 
@@ -357,7 +359,7 @@ Feature: JM-5413-5415 - Resend excusal granted letter for Bureau and Jury users
     And I set "Enter juror number" to "<juror_number>"
     And I check the "Include printed" checkbox
     And I press the "Search" button
-    And I see the printed letter for juror number "<juror_number>" in the letters table
+    And as a court user I see the printed letter for juror number "<juror_number>" in the letters table
 
     Examples:
       | juror_number  | pool_number | user      | environment |

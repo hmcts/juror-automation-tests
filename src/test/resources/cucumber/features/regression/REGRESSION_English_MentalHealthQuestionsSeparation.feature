@@ -111,6 +111,7 @@ Scenario Outline: 1st party MHQ1=Y MHQ2=Y
 	And I log in as "MODTESTBUREAU"
 
 	When I click on the "Search" link
+    And I see "Juror number" on the page
 	And I set "Juror number" to "<juror_number>"
 	And I press the "Search" button
 	And I click on "<juror_number>" in the same row as "<juror_number>"

@@ -60,7 +60,8 @@ Feature: JM-251
 	# Can successfully submit a pool request
 	When I set the number of users I want to summon to "9"
 
-	#retrive pool
+	#retrieve pool
+    And I see "Active pools" on the page
 	When I click on the "Search" link
     And I see "Search" on the page
 	When I search for pool number
@@ -77,7 +78,7 @@ Feature: JM-251
 
 	Examples:
 		| user			| poolType | court | juror_number 	| pool_number  	| environment |
-		| MODTESTBUREAU	| Crown    | 415   | 041500014 		| 415300112		| test        |
+		| MODTESTBUREAU	| Crown    | 415   | 041500014 		| 415300112		| ithc        |
 
 	@JurorTransformationMulti @NewSchemaConverted
 	Scenario Outline: Test to create a new pool of jurors to be summoned for jury duty as a court officer

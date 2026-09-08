@@ -4,8 +4,11 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
   Scenario Outline:As a bureau officer test a Deferred juror can resend a granted letter by searching via juror number
 
     Given I am on "Bureau" "<environment>"
+
     And I clear down the bulk print data table for Juror "<juror_number>"
+
     And I log in as "<user>"
+
     When a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
       | 415   | <juror_number> | <pool_number> | 5                        | 400   |
@@ -234,7 +237,7 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
 
 
   @JurorTransformationMulti
-  Scenario Outline:Verify as a bureau user can view letters queued for printing and can delete it
+  Scenario Outline: Verify as a bureau user can view letters queued for printing and can delete it
 
     Given I am on "Bureau" "ithc"
     And I clear down the bulk print data table for Juror "<juror_number>"
@@ -283,7 +286,8 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
   @JurorTransformationMulti
   Scenario Outline:As a jury officer test a Deferred juror can print a granted letter by searching via juror number
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
+
     When a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
       | 415   | <juror_number> | <pool_number> | 5                        | 400   |
@@ -344,19 +348,20 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
     And I press the "Search" button
     Then I see "Change" on the page
     And I see "Print deferral granted letter" on the page
-    And I am able to see and interact with the jurors Deferral letter tabs and fields
+    And as a court user I am able to see and interact with the jurors Deferral letter tabs and fields
     When I check the "<juror_number>" checkbox
     And I press the "Print deferral granted letter" button
     Then I see "documents/deferral-granted/letters-list" in the URL
 
     Examples:
-      | juror_number | pool_number | user         |
-      | 041530027    | 415300305   | MODTESTCOURT |
+      | juror_number | pool_number | user         | environment |
+      | 041530027    | 415300305   | MODTESTCOURT | ithc        |
 
-  @JurorTransformationMulti
+  @JurorTransformationMulti @Court
   Scenario Outline:As a jury officer test a Deferred juror can print a granted letter by searching via pool number
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
+
     When a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
       | 415   | <juror_number> | <pool_number> | 5                        | 400   |
@@ -417,12 +422,12 @@ Feature: JM-5405-5407 - Resend deferral granted letter for Bureau and Jury users
     And I press the "Search" button
     Then I see "Change" on the page
     And I see "Print deferral granted letter" on the page
-    And I am able to see and interact with the jurors Deferral letter tabs and fields
-    And I see the printed letter for juror number "<juror_number>" in the letters table
+    And as a court user I am able to see and interact with the jurors Deferral letter tabs and fields
+    And as a court user I see the printed letter for juror number "<juror_number>" in the letters table
     When I check the "<juror_number>" checkbox
     And I press the "Print deferral granted letter" button
     Then I see "documents/deferral-granted" in the URL
 
     Examples:
-      | juror_number | pool_number | user         |
-      | 041530028    | 415300306   | MODTESTCOURT |
+      | juror_number | pool_number | user         | environment |
+      | 041530028    | 415300306   | MODTESTCOURT | ithc        |

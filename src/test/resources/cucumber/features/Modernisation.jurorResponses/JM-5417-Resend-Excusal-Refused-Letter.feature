@@ -325,10 +325,10 @@ Feature: JM-5417-5586 - Resend excusal refused letter for Bureau and Jury users
       | juror_number  | pool_number | user         |
       | 041586214     | 415982987   | MODTESTCOURT |
 
-  @JurorTransformationMulti
+  @JurorTransformationMulti @Court
   Scenario Outline:As a jury officer test a Excused juror can resend a refused letter by searching via pool number
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     When a bureau owned pool is created with jurors
       | court | juror_number  | pool_number	    | att_date_weeks_in_future	| owner |
@@ -376,8 +376,8 @@ Feature: JM-5417-5586 - Resend excusal refused letter for Bureau and Jury users
     And I press the "Search" button
 
     And I see "Print excusal refused letter" on the page
-    And I see the printed letter for juror number "<juror_number>" in the letters table
+    And as a court user I see the printed letter for juror number "<juror_number>" in the letters table
 
     Examples:
-      | juror_number  | pool_number | user         |
-      | 041586213     | 415982987   | MODTESTCOURT |
+      | juror_number  | pool_number | user         | environment  |
+      | 041586213     | 415982987   | MODTESTCOURT | ithc         |

@@ -416,10 +416,10 @@ Feature:As a Bureau/jury officer I want to re send a postponement letter
       | juror_number | pool_number | user         |
       | 041530090    | 415300306   | MODTESTCOURT |
 
-  @JurorTransformationMulti
-  Scenario Outline:Verify postponement juror with print letter searching via pool number
+  @JurorTransformationMulti @Court
+  Scenario Outline: Verify postponement juror with print letter searching via pool number
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     When a bureau owned pool is created with jurors
       | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
@@ -430,6 +430,7 @@ Feature:As a Bureau/jury officer I want to re send a postponement letter
       | <juror_number> | <pool_number> | 415   |
 
     And I log in as "<user>"
+
     And I update the bureau transfer date of the juror "<juror_number>"
     When the user searches for juror record "<juror_number>" from the global search bar
 
@@ -497,11 +498,11 @@ Feature:As a Bureau/jury officer I want to re send a postponement letter
     And I press the "Search" button
     Then I see "Print postponement letter" on the page
     And I am able to see and interact with the jurors Postponement letter tabs and fields
-    And I see the printed letter for juror number "<juror_number>" in the letters table
+    And as a court user I see the printed letter for juror number "<juror_number>" in the letters table
     When I check the juror "<juror_number>" checkbox
     And I press the "Print postponement letter" button
     Then I see "documents/postponement/letters-list" in the URL
 
     Examples:
-      | juror_number | pool_number | user         |
-      | 041530031    | 415300313   | MODTESTCOURT |
+      | juror_number | pool_number | user         | environment  |
+      | 041530031    | 415300313   | MODTESTCOURT | ithc         |
