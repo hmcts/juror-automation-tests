@@ -1,6 +1,6 @@
 Feature: JS-290
 
-  @JurorTransformationMulti
+  @JurorTransformationMulti @Bureau
   Scenario Outline: Excusal refused letter - check jurors address matches that in bulk print table
 
     Given I am on "Bureau" "<environment>"
@@ -38,6 +38,7 @@ Feature: JS-290
     And I see error "Enter juror number"
     And I set "Enter juror number" to "<juror_number>"
     And I press the "Search" button
+    And I am able to see and interact with the jurors Excusal Refused letter tabs and fields
     And I see "Pending" in the same row as "<juror_number>"
     And I press the "Apps" button
     When I click on the "Documents" link

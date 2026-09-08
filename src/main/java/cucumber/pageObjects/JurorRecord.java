@@ -679,8 +679,82 @@ public class JurorRecord {
                 Assert.assertTrue("Expected Text not found", DeferralGrantedResultsheaderTableName.get(5).getText().equals(tabName));
                 log.info(" Text - " + DeferralGrantedResultsheaderTableName.get(2).getText() + " - is visible on the page ");
                 break;
+            case "Date excused":
+                Assert.assertTrue("Expected Text not found", DeferralGrantedResultsheaderTableName.get(5).getText().equals(tabName));
+                log.info(" Text - " + DeferralGrantedResultsheaderTableName.get(2).getText() + " - is visible on the page ");
+                break;
+            case "Date refused":
+                Assert.assertTrue("Expected Text not found", DeferralGrantedResultsheaderTableName.get(5).getText().equals(tabName));
+                log.info(" Text - " + DeferralGrantedResultsheaderTableName.get(2).getText() + " - is visible on the page ");
+                break;
+            case "Date disqualified":
+                Assert.assertTrue("Expected Text not found", DeferralGrantedResultsheaderTableName.get(5).getText().equals(tabName));
+                log.info(" Text - " + DeferralGrantedResultsheaderTableName.get(2).getText() + " - is visible on the page ");
+                break;
             case "Reason":
                 Assert.assertTrue("Expected Text not found", DeferralGrantedResultsheaderTableName.get(6).getText().equals(tabName));
+                log.info(" Text - " + DeferralGrantedResultsheaderTableName.get(2).getText() + " - is visible on the page ");
+                break;
+            case "Original sent by":
+                try {
+                    Assert.assertTrue("Expected Text not found", DeferralGrantedResultsheaderTableName.get(7).getText().equals(tabName));
+                    log.info(" Text - " + DeferralGrantedResultsheaderTableName.get(2).getText() + " - is visible on the page ");
+                    break;
+                } catch (IndexOutOfBoundsException e) {
+                    Assert.assertTrue("Expected Text not found", DeferralGrantedResultsheaderTableName.get(4).getText().equals(tabName));
+                    log.info(" Text - " + DeferralGrantedResultsheaderTableName.get(2).getText() + " - is visible on the page ");
+                    break;
+                }
+            case "Current preference":
+                try {
+                    Assert.assertTrue("Expected Text not found", DeferralGrantedResultsheaderTableName.get(8).getText().equals(tabName));
+                    log.info(" Text - " + DeferralGrantedResultsheaderTableName.get(2).getText() + " - is visible on the page ");
+                    break;
+                } catch (IndexOutOfBoundsException e) {
+                    Assert.assertTrue("Expected Text not found", DeferralGrantedResultsheaderTableName.get(5).getText().equals(tabName));
+                    log.info(" Text - " + DeferralGrantedResultsheaderTableName.get(2).getText() + " - is visible on the page ");
+                    break;
+                }
+            case "Date printed":
+                try {
+                    try {
+                        Assert.assertTrue("Expected Text not found", DeferralGrantedResultsheaderTableName.get(9).getText().equals(tabName));
+                        log.info(" Text - " + DeferralGrantedResultsheaderTableName.get(2).getText() + " - is visible on the page ");
+                        break;
+                    } catch (IndexOutOfBoundsException e) {
+                        Assert.assertTrue("Expected Text not found", DeferralGrantedResultsheaderTableName.get(7).getText().equals(tabName));
+                        log.info(" Text - " + DeferralGrantedResultsheaderTableName.get(2).getText() + " - is visible on the page ");
+                        break;
+                    }
+                } catch (IndexOutOfBoundsException e) {
+                    Assert.assertTrue("Expected Text not found", DeferralGrantedResultsheaderTableName.get(6).getText().equals(tabName));
+                    log.info(" Text - " + DeferralGrantedResultsheaderTableName.get(2).getText() + " - is visible on the page ");
+                    break;
+                }
+            default:
+                log.info("Expected element text is not present on the page");
+                break;
+        }
+    }
+
+
+    public void confirmationLettersjurorsTabPresent(final String tabName) {
+        log.info("Clicking tab");
+        switch (tabName) {
+            case "Juror number":
+                Assert.assertTrue("Expected Text not found", DeferralGrantedResultsheaderTableName.get(0).getText().equals(tabName));
+                log.info(" Text - " + DeferralGrantedResultsheaderTableName.get(0).getText() + " - is visible on the page ");
+                break;
+            case "First name":
+                Assert.assertTrue("Expected Text not found", DeferralGrantedResultsheaderTableName.get(1).getText().equals(tabName));
+                log.info(" Text - " + DeferralGrantedResultsheaderTableName.get(1).getText() + " - is visible on the page ");
+                break;
+            case "Last name":
+                Assert.assertTrue("Expected Text not found", DeferralGrantedResultsheaderTableName.get(2).getText().equals(tabName));
+                log.info(" Text - " + DeferralGrantedResultsheaderTableName.get(2).getText() + " - is visible on the page ");
+                break;
+            case "Postcode":
+                Assert.assertTrue("Expected Text not found", DeferralGrantedResultsheaderTableName.get(3).getText().equals(tabName));
                 log.info(" Text - " + DeferralGrantedResultsheaderTableName.get(2).getText() + " - is visible on the page ");
                 break;
             case "Original sent by":

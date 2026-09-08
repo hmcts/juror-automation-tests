@@ -32,6 +32,7 @@ Feature: JM-5592-5594 - Resend withdrawal letter for Bureau and Jury users
     And I see error "Enter juror number"
     And I set "Enter juror number" to "<juror_number>"
     And I press the "Search" button
+    And I am able to see and interact with the jurors Withdrawal letter tabs and fields
     And I see "Pending" in the same row as "<juror_number>"
     And I press the "Apps" button
     When I click on the "Documents" link

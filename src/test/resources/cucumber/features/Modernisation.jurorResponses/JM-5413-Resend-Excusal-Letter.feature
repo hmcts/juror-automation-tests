@@ -39,6 +39,7 @@ Feature: JM-5413-5415 - Resend excusal granted letter for Bureau and Jury users
     And I see error "Enter juror number"
     And I set "Enter juror number" to "<juror_number>"
     And I press the "Search" button
+    And I am able to see and interact with the jurors Excusal Granted letter tabs and fields
     And I see "Pending" in the same row as "<juror_number>"
     And I press the "Apps" button
     When I click on the "Documents" link

@@ -411,6 +411,17 @@ public class StepDef_jurorRecord {
         JUROR_RECORD.deferralGrantedjurorsTabPresent("Date printed");
     }
 
+    @Then("^I am able to see and interact with the jurors Confirmation letter tabs and fields$")
+    public void iAmAbleToSeeAndInteractWithTheConfirmationLetterTabsAndFields() {
+        JUROR_RECORD.deferralGrantedjurorsTabPresent("Juror number");
+        JUROR_RECORD.deferralGrantedjurorsTabPresent("First name");
+        JUROR_RECORD.deferralGrantedjurorsTabPresent("Last name");
+        JUROR_RECORD.deferralGrantedjurorsTabPresent("Postcode");
+        JUROR_RECORD.deferralGrantedjurorsTabPresent("Original sent by");
+        JUROR_RECORD.deferralGrantedjurorsTabPresent("Current preference");
+        JUROR_RECORD.deferralGrantedjurorsTabPresent("Date printed");
+    }
+
     @When("^I expand the summons replies search advanced search criteria$")
     public void expandPoolSearchAdvanced() { SUMMONS_SEARCH.clickAdvancedSearch(); }
 
@@ -604,6 +615,47 @@ public class StepDef_jurorRecord {
         JUROR_RECORD.checkTabsOnLettersTabPresent("Date printed");
     }
 
+    @Then("^I am able to see and interact with the jurors Excusal Granted letter tabs and fields$")
+    public void iAmAbleToSeeAndInteractWithTheExcusalGrantedLetterTabsAndFields() {
+        JUROR_RECORD.checkTabsOnLettersTabPresent("Juror number");
+        JUROR_RECORD.checkTabsOnLettersTabPresent("First name");
+        JUROR_RECORD.checkTabsOnLettersTabPresent("Last name");
+        JUROR_RECORD.checkTabsOnLettersTabPresent("Postcode");
+        JUROR_RECORD.checkTabsOnLettersTabPresent("Status");
+        JUROR_RECORD.checkTabsOnLettersTabPresent("Date excused");
+        JUROR_RECORD.checkTabsOnLettersTabPresent("Reason");
+        JUROR_RECORD.deferralGrantedjurorsTabPresent("Original sent by");
+        JUROR_RECORD.deferralGrantedjurorsTabPresent("Current preference");
+        JUROR_RECORD.checkTabsOnLettersTabPresent("Date printed");
+    }
+
+    @Then("^I am able to see and interact with the jurors Excusal Refused letter tabs and fields$")
+    public void iAmAbleToSeeAndInteractWithTheExcusalRefusedLetterTabsAndFields() {
+        JUROR_RECORD.checkTabsOnLettersTabPresent("Juror number");
+        JUROR_RECORD.checkTabsOnLettersTabPresent("First name");
+        JUROR_RECORD.checkTabsOnLettersTabPresent("Last name");
+        JUROR_RECORD.checkTabsOnLettersTabPresent("Postcode");
+        JUROR_RECORD.checkTabsOnLettersTabPresent("Status");
+        JUROR_RECORD.deferralGrantedjurorsTabPresent("Date refused");
+        JUROR_RECORD.checkTabsOnLettersTabPresent("Reason");
+        JUROR_RECORD.deferralGrantedjurorsTabPresent("Original sent by");
+        JUROR_RECORD.deferralGrantedjurorsTabPresent("Current preference");
+        JUROR_RECORD.checkTabsOnLettersTabPresent("Date printed");
+    }
+
+    @Then("^I am able to see and interact with the jurors Withdrawal letter tabs and fields$")
+    public void iAmAbleToSeeAndInteractWithTheWithdrawalGrantedLetterTabsAndFields() {
+        JUROR_RECORD.checkTabsOnLettersTabPresent("Juror number");
+        JUROR_RECORD.checkTabsOnLettersTabPresent("First name");
+        JUROR_RECORD.checkTabsOnLettersTabPresent("Last name");
+        JUROR_RECORD.checkTabsOnLettersTabPresent("Postcode");
+        JUROR_RECORD.checkTabsOnLettersTabPresent("Status");
+        JUROR_RECORD.deferralGrantedjurorsTabPresent("Date disqualified");
+        JUROR_RECORD.checkTabsOnLettersTabPresent("Reason");
+        JUROR_RECORD.deferralGrantedjurorsTabPresent("Original sent by");
+        JUROR_RECORD.deferralGrantedjurorsTabPresent("Current preference");
+        JUROR_RECORD.checkTabsOnLettersTabPresent("Date printed");
+    }
     @When("^I check all the checkboxes in the letters table$")
     public void selectAllCheckboxesInLettersTable(){
         NAV.waitForPageLoadNew();
@@ -630,6 +682,8 @@ public class StepDef_jurorRecord {
         JUROR_RECORD.checkTabsOnLettersTabPresent("Status");
         JUROR_RECORD.checkTabsOnLettersTabPresent("Postponed to");
         JUROR_RECORD.checkTabsOnLettersTabPresent("Reason");
+        JUROR_RECORD.deferralGrantedjurorsTabPresent("Original sent by");
+        JUROR_RECORD.deferralGrantedjurorsTabPresent("Current preference");
         JUROR_RECORD.checkTabsOnLettersTabPresent("Date printed");
     }
     @Then("I see the absence date for juror \"([^\"]*)\" in the letters table$")
