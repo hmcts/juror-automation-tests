@@ -206,8 +206,8 @@ Feature: JM-5687 - Resend Confirmation letter
     Given I am on "Bureau" "<environment>"
 
     When a bureau owned pool is created with jurors
-      | court   | juror_number  | pool_number     | att_date_weeks_in_future   | owner |
-      | 415     | <juror_number>| <pool_number>   | 5                       | 400  |
+      | court   | juror_number  | pool_number     | att_date_weeks_in_future    | owner |
+      | 415     | <juror_number>| <pool_number>   | 5                           | 400  |
 
     And I update service start date to 4 Mondays from now for pool number "<pool_number>"
 
@@ -229,13 +229,14 @@ Feature: JM-5687 - Resend Confirmation letter
     When the user searches for juror record "<juror_number>" from the global search bar
     And I see the juror status has updated to "Responded"
 
-   #navigate to documents and verify the printing message
+    #navigate to documents and verify the printing message
     And I press the "Apps" button
     And I click on the "Documents" link
     And I click on the "Confirmation letters" link
     When I set the radio button to "Show all letters queued for printing"
     And I press the "Search" button
 
+    And I am able to see and interact with the jurors Confirmation letter tabs and fields
     Then I see "<juror_number>" on the page
     And I see "Change" on the page
     When I click on "Delete" in the same row as "<juror_number>"
@@ -243,4 +244,4 @@ Feature: JM-5687 - Resend Confirmation letter
 
     Examples:
       | juror_number  |  pool_number | user          | environment  |
-      |  041588983    |415981289     | MODTESTBUREAU | test         |
+      |  041588983    |415981289     | MODTESTBUREAU | ithc         |
