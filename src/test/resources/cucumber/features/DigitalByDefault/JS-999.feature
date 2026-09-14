@@ -27,7 +27,7 @@ Feature: JS-999
 
     #DBD landing screen
     And I see "Your jury summons information is online" on the page
-    And I see "You are signed in. You can read the information that would normally be included in a printed summons pack, then start your response." on the page
+    And I see "You are signed in. You can read information below about jury service before completing your response, or go straight to the online reply form. Guidance will be available throughout the process." on the page
 
     And I see the correct jury service start date for juror "<juror_number>"
     And I see "Jury service information" on the page

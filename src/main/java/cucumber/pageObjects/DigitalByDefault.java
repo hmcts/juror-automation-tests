@@ -40,25 +40,25 @@ public class DigitalByDefault {
         NAV = new NavigationShared(driver);
     }
 
-    @FindBy(css = "[data-test='response-start-what']")
+    @FindBy(linkText = "How jury service works")
     private WebElement whatJuryServiceInvolvesCard;
 
-    @FindBy(css = "[data-test='response-start-attend']")
+    @FindBy(linkText = "When and where to attend")
     private WebElement whenAndWhereToAttendCard;
 
-    @FindBy(css = "[data-test='response-start-expenses']")
+    @FindBy(linkText = "Claiming expenses")
     private WebElement claimingExpensesCard;
 
-    @FindBy(css = "[data-test='response-start-work']")
+    @FindBy(linkText = "Employment and time off work")
     private WebElement employmentAndTimeOffWorkCard;
 
-    @FindBy(css = "[data-test='response-start-date']")
-    private WebElement changeYourDatesCard;
+    @FindBy(linkText = "Asking to change your dates or be excused")
+    private WebElement changeDatesOrBeExcusedCard;
 
-    @FindBy(css = "[data-test='response-start-support']")
+    @FindBy(linkText = "Support and accessibility")
     private WebElement supportAndAccessibilityCard;
 
-    @FindBy(css = "[data-test='response-start-eligibility']")
+    @FindBy(linkText = "Juror eligibility")
     private WebElement jurorEligibilityCard;
 
     @FindBy(css = "#main-content .govuk-inset-text p.govuk-body")
@@ -112,8 +112,8 @@ public class DigitalByDefault {
 
     public void verifyChangeYourDatesCard() {
         verifyCard(
-                changeYourDatesCard,
-                "Ask to change your dates"
+                changeDatesOrBeExcusedCard,
+                "Asking to change your dates or be excused"
         );
     }
 
@@ -394,7 +394,6 @@ public class DigitalByDefault {
         }
 
         String actualHeading = card
-                .findElement(By.cssSelector(".card__heading"))
                 .getText()
                 .trim();
 

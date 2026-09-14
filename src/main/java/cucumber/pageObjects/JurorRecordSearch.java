@@ -4,7 +4,10 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.List;
 
 
@@ -57,7 +60,7 @@ public class JurorRecordSearch {
     @FindBy(xpath = "//*[contains(text(),'View summons reply')]")
     WebElement viewSummonsReplyLink;
 
-    @FindBy(xpath = "//*[contains(text(),'Update juror record')]")
+    @FindBy(xpath = "//a[@role='button' and normalize-space(.)='Update juror record']")
     WebElement updateJurorRecordButton;
     @FindBy(xpath = "//*[contains(text(),'Mark as deceased')]")
     WebElement markAsDeceasedRadioButton;
@@ -165,13 +168,14 @@ public class JurorRecordSearch {
     public void clickUpdateJurorRecord() {
         log.info("Clicking 'Update Juror Record' button");
 
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
         int maxRetries = 2;
         int retryCount = 0;
         StaleElementReferenceException lastException = null;
 
         while (retryCount < maxRetries) {
             try {
-                updateJurorRecordButton.click();
+                wait.until(ExpectedConditions.elementToBeClickable(updateJurorRecordButton)).click();
                 return;
             } catch (StaleElementReferenceException e) {
                 lastException = e;
@@ -192,7 +196,7 @@ public class JurorRecordSearch {
 
         log.error("Unable to click 'Update Juror Record' button due to stale element: " +
                 (lastException != null ? lastException.getMessage() : "unknown"));
-        throw new RuntimeException("Failed to click 'Update Juror Record' after retries.");
+        throw new RuntimeException("Failed to click 'Update Juror Record' after retries.", lastException);
     }
 
     public void clickMarkAsDeceasedRadioButton() { markAsDeceasedRadioButton.click();}
