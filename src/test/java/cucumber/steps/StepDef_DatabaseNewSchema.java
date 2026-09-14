@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 
 public class StepDef_DatabaseNewSchema {
@@ -679,7 +680,10 @@ public class StepDef_DatabaseNewSchema {
     }
     @Given("^I update a juror in the pool to change the status of printed in order to resend letter$")
     public void setAJurorInPoolAsPrinted() throws SQLException {
-        String jurorNumber = StepDef_jurorpool.summonedJurors.get().get(StepDef_jurorpool.summonedJurors.get().size()-1);
+        var summonedJurors = StepDef_jurorpool.summonedJurors.get();
+        assertFalse(summonedJurors.isEmpty(),
+                "No newly summoned jurors found; check that 'Summon more citizens' added jurors to the pool");
+        String jurorNumber = summonedJurors.get(summonedJurors.size() - 1);
         DBTNSD.setJurorsStatusAsPrintedforResendDeferralLetter(jurorNumber);
     }
 
