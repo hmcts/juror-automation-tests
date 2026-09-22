@@ -141,7 +141,7 @@ Feature: JM-4184 - The system shall allow the jury officer to process a summons 
   @JurorTransformationMulti
   Scenario Outline: Process summons reply that has been returned late (Postponed)
 
-    Given I am on "Bureau" "demo"
+    Given I am on "Bureau" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court  |juror_number  	| pool_number	   | att_date_weeks_in_future	| owner |
@@ -161,6 +161,7 @@ Feature: JM-4184 - The system shall allow the jury officer to process a summons 
 
     When the user searches for juror record "<juror_number>" from the global search bar
 
+    And I see "Summons reply" on the page
     Then I click the summons reply tab
     And I click on the view summons reply link
     And I see "Juror’s service start date has passed" on the page
@@ -184,8 +185,8 @@ Feature: JM-4184 - The system shall allow the jury officer to process a summons 
     And I see the juror status has updated to "Deferred"
 
     Examples:
-      | user		  | juror_number  | pool_number  |
-      | MODTESTCOURT  | 041516913     | 415308241    |
+      | user		  | juror_number  | pool_number  | environment  |
+      | MODTESTCOURT  | 041516913     | 415308241    | test         |
 
 
   @JurorTransformationMulti @JM-6998

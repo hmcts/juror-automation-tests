@@ -81,6 +81,7 @@ Feature: JM-5962 - As a jury officer I need to be able to bulk change jurors att
     Then I press the "Apps" button
     And I click on the "Pool management" link
     And I click on the "Search" link
+    And I see "pool number" on the page
     And I set "Pool number" to "<pool_number>"
     And I press the "Continue" button
     And I see "<pool_number>" on the page

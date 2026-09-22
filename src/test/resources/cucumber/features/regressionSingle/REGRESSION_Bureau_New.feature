@@ -939,9 +939,9 @@ Examples:
 
 
 @RegressionSingle
-Scenario: Manage Team
+Scenario Outline: Manage Team
 
-	Given I am on "Bureau" "ithc"
+	Given I am on "Bureau" "<environment>"
 
 	And I log in as "MODTESTBUREAU"
 
@@ -984,7 +984,7 @@ Scenario: Manage Team
 	And the radio button "Active users" is "Selected"
 
 	And I click on the "Sign out" link
-	Given I am on "Bureau" "ithc"
+	Given I am on "Bureau" "<environment>"
 	And I log in as "SYSTEMADMIN"
 	
 	#add team member
@@ -1071,6 +1071,9 @@ Scenario: Manage Team
 	And I see "Email address already in use" on the page
 	
 	#attempt to deactivate when user has assigned responses
+  Examples:
+  | environment |
+  | test        |
 
 @RegressionSingle
 Scenario Outline: Results grid updates when status changes are made

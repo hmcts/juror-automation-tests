@@ -6259,4 +6259,26 @@ public class DatabaseTesterNewSchemaDesign {
 
 		return isFalse;
 	}
+
+	public void updateLetterStatusToSent(String value) throws SQLException {
+		db = new DBConnection();
+		String env_property = System.getProperty("env.database");
+
+		if (env_property != null)
+			conn = db.getConnection(env_property);
+		else
+			conn = db.getConnection("demo");
+
+		try {
+			pStmt = conn.prepareStatement("UPDATE juror_mod.bulk_print_data SET extracted_flag = TRUE where juror_no = '" + value + "'");
+			pStmt.executeUpdate();
+
+			System.out.println("Letter status updated to SENT for juror_no: " + value);
+		} catch (SQLException e) {
+			log.error("Message:" + e.getMessage());
+		} finally {
+			conn.commit();
+			conn.close();
+		}
+	}
 }

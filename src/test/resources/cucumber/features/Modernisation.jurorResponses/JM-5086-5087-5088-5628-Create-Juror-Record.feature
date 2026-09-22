@@ -409,6 +409,7 @@ Feature: Create Juror Record scenarios
     And I click on "Pending approval" in the same row as "Manualsummon"
     And I see "Approve or reject pending juror" on the page
     When I approve juror and search record
+    And I see "Summons reply" on the page
     And I click on the Summons Reply tab
     Then I see "Juror was summoned in person" on the page
 
