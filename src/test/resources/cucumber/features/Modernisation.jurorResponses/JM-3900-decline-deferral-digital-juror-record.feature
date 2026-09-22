@@ -7,7 +7,9 @@ Feature: JM-3900
 
     When a bureau owned pool is created with jurors
       | court |juror_number  	| pool_number	  | att_date_weeks_in_future  | owner |
-      | 415   | <juror_number>  | <pool_number>   | 5                         | 400   |
+      | 431   | <juror_number>  | <pool_number>   | 5                         | 400   |
+
+    And I update "<juror_number>" to set them up for digital by default
 
     And I record a digital response for a juror with a deferral
       | jurorNumber   | <juror_number>  |
@@ -55,4 +57,4 @@ Feature: JM-3900
 
     Examples:
       | juror_number   | pool_number   | last_name  | postcode | environment |
-      | 041520027      | 415300704     | lname      | CH2 2AA  | test        |
+      | 043120027      | 431300704     | lname      | CH2 2AA  | ithc        |

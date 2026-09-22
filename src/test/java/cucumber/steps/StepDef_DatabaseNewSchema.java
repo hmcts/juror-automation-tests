@@ -3,6 +3,7 @@ package cucumber.steps;
 import cucumber.testdata.DatabaseTester;
 import cucumber.testdata.DatabaseTesterNewSchemaDesign;
 import io.cucumber.datatable.DataTable;
+import io.cucumber.java.PendingException;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -869,5 +870,10 @@ public class StepDef_DatabaseNewSchema {
     @When("I check juror \"([^\"]*)\" is not on call$")
     public void checkJurorNotOnCall(String jurorNumber) throws SQLException {
         DBTNSD.isJurorOnCallFalse(jurorNumber);
+    }
+
+    @And("I update the letter for \"([^\"]*)\" to set the status to sent$")
+    public void iUpdateTheLetterForToSetTheStatusToSent(String value)  throws SQLException {
+        DBTNSD.updateLetterStatusToSent(value);
     }
 }
