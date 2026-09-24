@@ -84,7 +84,7 @@ Feature:As a Bureau/jury officer I want to re send a postponement letter
 
     Examples:
       | juror_number | pool_number | user          | environment  |
-      | 041520043    | 415300725   | MODTESTBUREAU | ithc         |
+      | 041520043    | 415300725   | MODTESTBUREAU | test         |
 
   @JurorTransformationMulti @NewSchemaConverted
   Scenario Outline:Verify as bureau officer postponement juror can delete the letter in pending stage
@@ -407,7 +407,7 @@ Feature:As a Bureau/jury officer I want to re send a postponement letter
     And I press the "Search" button
     And I see "Change" on the page
     And I see "Print postponement letter" on the page
-    And I am able to see and interact with the jurors Postponement letter tabs and fields
+    And as a court user, I am able to see and interact with the jurors Postponement letter tabs and fields
     When I check the "<juror_number>" checkbox
     And I press the "Print postponement letter" button
     Then I see "documents/postponement/letters-list" in the URL
@@ -497,7 +497,7 @@ Feature:As a Bureau/jury officer I want to re send a postponement letter
     And I check the "Include printed" checkbox
     And I press the "Search" button
     Then I see "Print postponement letter" on the page
-    And I am able to see and interact with the jurors Postponement letter tabs and fields
+    And as a court user, I am able to see and interact with the jurors Postponement letter tabs and fields
     And as a court user I see the printed letter for juror number "<juror_number>" in the letters table
     When I check the juror "<juror_number>" checkbox
     And I press the "Print postponement letter" button

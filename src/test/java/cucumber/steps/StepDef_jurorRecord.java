@@ -455,13 +455,13 @@ public class StepDef_jurorRecord {
     @When("^I enter assigned officer \"([^\"]*)\"$")
     public void setOfficerAssigned(String officerAssigned) { SUMMONS_SEARCH.setOfficerAssigned(officerAssigned); }
 
-    @Then("I see the printed letter for juror number \"([^\"]*)\" in the letters table$")
+    @Then("^I see the printed letter for juror number \"([^\"]*)\" in the letters table$")
     public void seeThePrintedLetterForJurorInTheTable(String jurorNumber) {
         NAV.waitForPageLoadNew();
         JUROR_RECORD.seePrintedLetterInLettersTable(jurorNumber);
     }
 
-    @Then("as a court user I see the printed letter for juror number \"([^\"]*)\" in the letters table$")
+    @Then("^as a court user I see the printed letter for juror number \"([^\"]*)\" in the letters table$")
     public void seeThePrintedLetterForJurorInTheTableCourt(String jurorNumber) {
         NAV.waitForPageLoadNew();
         JUROR_RECORD.seePrintedLetterInLettersTableCourt(jurorNumber);
@@ -684,6 +684,18 @@ public class StepDef_jurorRecord {
         JUROR_RECORD.checkTabsOnLettersTabPresent("Reason");
         JUROR_RECORD.deferralGrantedjurorsTabPresent("Original sent by");
         JUROR_RECORD.deferralGrantedjurorsTabPresent("Current preference");
+        JUROR_RECORD.checkTabsOnLettersTabPresent("Date printed");
+    }
+
+    @Then("^as a court user, I am able to see and interact with the jurors Postponement letter tabs and fields$")
+    public void asCourtUserIAmAbleToSeeAndInteractWithThePostponementLetterTabsAndFields() {
+        JUROR_RECORD.checkTabsOnLettersTabPresent("Juror number");
+        JUROR_RECORD.checkTabsOnLettersTabPresent("First name");
+        JUROR_RECORD.checkTabsOnLettersTabPresent("Last name");
+        JUROR_RECORD.checkTabsOnLettersTabPresent("Postcode");
+        JUROR_RECORD.checkTabsOnLettersTabPresent("Status");
+        JUROR_RECORD.checkTabsOnLettersTabPresent("Postponed to");
+        JUROR_RECORD.checkTabsOnLettersTabPresent("Reason");
         JUROR_RECORD.checkTabsOnLettersTabPresent("Date printed");
     }
     @Then("I see the absence date for juror \"([^\"]*)\" in the letters table$")
