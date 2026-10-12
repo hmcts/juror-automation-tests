@@ -18,6 +18,12 @@ Feature: JS-986 Add SJO to User Results Table
     Then I see "ARAMIS1" has status: "Active"
     Then I see "AutomationStaffTWO" has status: "Inactive"
 
+    And I see "CARDIFF SJO" is marked as Manager user "No"
+    And I see "CARDIFF SJO" is marked as SJO user "Yes"
+
+    And I see "CARDIFF MANAGER" is marked as Manager user "Yes"
+    And I see "CARDIFF MANAGER" is marked as SJO user "No"
+
 #    And I see "Inactive" in the same row as "AutomationStaffTWO"
 
     When I choose the "Active users" radio button
@@ -27,12 +33,6 @@ Feature: JS-986 Add SJO to User Results Table
 
     And I see "CARDIFF SJO MANAGER" is marked as Manager user "Yes"
     And I see "CARDIFF SJO MANAGER" is marked as SJO user "Yes"
-
-    And I see "CARDIFF SJO" is marked as Manager user "No"
-    And I see "CARDIFF SJO" is marked as SJO user "Yes"
-
-    And I see "CARDIFF MANAGER" is marked as Manager user "Yes"
-    And I see "CARDIFF MANAGER" is marked as SJO user "No"
     
     When I click on the "Advanced search" link
     Then I see "User roles" on the page
@@ -46,7 +46,7 @@ Feature: JS-986 Add SJO to User Results Table
     Then I do not see "ARAMIS1" on the page
     And I see "CARDIFF SJO MANAGER" on the page
     And I see "CARDIFF SJO" on the page
-    And I see "CARDIFF MANAGER" on the page
+    And I do not see "CARDIFF MANAGER" on the page
 
     Examples:
       | user         | environment |

@@ -3,7 +3,7 @@ Feature: JS-537 Defer Beyond 12 Months
   @JurorTransformationMulti
   Scenario Outline: Bureau Manager Defer Beyond 12 Months
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number  	        | pool_number	    | att_date_weeks_in_future	| owner |
@@ -54,8 +54,8 @@ Feature: JS-537 Defer Beyond 12 Months
     And I see "Juror record updated" on the page
 
     Examples:
-      | juror_number| pool_number |
-      | 041500063	| 415300170	  |
+      | juror_number| pool_number | environment |
+      | 041500063	| 415300170	  | ithc        |
 
   @JurorTransformationMulti
   Scenario Outline: Bureau Non-Manager Cannot Defer Beyond 12 Months
