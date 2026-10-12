@@ -3,7 +3,7 @@ Feature: Regression Welsh_1st_Excusal
 @RegressionWelsh @NewSchemaConverted
 Scenario Outline: Welsh 1st Party Excusal
 
-	Given I am on the welsh version of "Public" "test"
+	Given I am on the welsh version of "Public" "<environment>"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  	| pool_number	| att_date_weeks_in_future	| owner |
@@ -127,5 +127,5 @@ Scenario Outline: Welsh 1st Party Excusal
 	And I see "Pam fod angen ichi gael eich esgusodi rhag gwasanaethu ar reithgor?" on the page
 	
 Examples:
-	| juror_number	| last_name	| postcode	| pool_number 	|
-	| 045700059		| LNAME1327	|CH1 2AN	| 457300059		|
+	| juror_number	| last_name	| postcode	| pool_number 	| environment 	|
+	| 045700059		| LNAME1327	|CH1 2AN	| 457300059		| ithc			|

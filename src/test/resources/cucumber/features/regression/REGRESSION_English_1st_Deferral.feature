@@ -15,7 +15,7 @@ Feature: Regression English_1st_Deferral
     And juror "<juror_number>" has "ADDRESS_LINE_4" as "LONDON" new schema
     And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 
-    And I have deleted all holidays new schema
+#    And I have deleted all holidays new schema
 
     Then I see "Reply to a jury summons" on the page
 
@@ -175,6 +175,8 @@ Feature: Regression English_1st_Deferral
 
     Then I see "You have completed your reply" on the page
     Then I see "<juror_number>" on the page
+
+    And I do not see "Tell us about your experience" on the page
 
     Then I see "You have completed your reply" on the page
     Then I see "If we get in touch with you, you may need to give your juror number. It's also on the letter we sent you." on the page
@@ -3140,7 +3142,7 @@ Feature: Regression English_1st_Deferral
 
     Examples:
       | juror_number | pool_number | last_name          | postcode | email      | environment |
-      | 045200040    | 452300039   | LNAMESEVENONETHREE | SY2 6LU  | e@eeee.com | ithc        |
+      | 045200040    | 452300039   | LNAMESEVENONETHREE | SY2 6LU  | e@eeee.com | test        |
 
   @Regression @Bureau @DigitalResponse
   Scenario Outline: English 1st Party Deferral - NEW PAGE

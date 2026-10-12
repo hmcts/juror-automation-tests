@@ -3,7 +3,7 @@ Feature: Work Allocation Regression
 @Regression @NewSchemaConverted
 Scenario Outline: Check that Urgent ST is not auto assigned
 
-	Given I am on "Public" "test"
+	Given I am on "Public" "<environment>"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -122,13 +122,13 @@ Scenario Outline: Check that Urgent ST is not auto assigned
 	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "SUPER_URGENT" is "N" where "JUROR_NUMBER" is "<juror_number>"
 	
 Examples:
-	| juror_number	| last_name			| postcode	| email           	| pool_number	|
-	| 045200207		| LNAMESIXEIGHTTHREE| CH1 2AN	| email@outlook.com	| 452300192		|
+	| juror_number	| last_name			| postcode	| email           	| pool_number	| environment |
+	| 045200207		| LNAMESIXEIGHTTHREE| CH1 2AN	| email@outlook.com	| 452300192		| ithc        |
 	
 @Regression
 Scenario Outline: Check that Super Urgent ST is not auto assigned
 
-	Given I am on "Public" "ithc"
+	Given I am on "Public" "<environment>"
 
 	Given a bureau owned pool is created with jurors
 		| court | juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -256,5 +256,5 @@ Scenario Outline: Check that Super Urgent ST is not auto assigned
 	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "STAFF_ASSIGNMENT_DATE" is null where "JUROR_NUMBER" is "<juror_number>"
 	
 Examples:
-	| juror_number	| last_name			| postcode	| pool_number	|
-	| 045200208		| LNAMESEVENONEONE	| CH1 2AN	| 452300193		|
+	| juror_number	| last_name			| postcode	| pool_number	| environment |
+	| 045200208		| LNAMESEVENONEONE	| CH1 2AN	| 452300193		| ithc        |

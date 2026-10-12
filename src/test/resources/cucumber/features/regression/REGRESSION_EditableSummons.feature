@@ -3,7 +3,7 @@ Feature: Regression - Editable Summons
 @Regression
 Scenario Outline: edit links and buttons disabled
 
-	Given I am on "Public" "ithc"
+	Given I am on "Public" "<environment>"
 
 	Given a bureau owned pool is created with jurors
 		| court |juror_number  | pool_number	| att_date_weeks_in_future	| owner |
@@ -101,7 +101,7 @@ Scenario Outline: edit links and buttons disabled
 	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_STATUS" is "TODO" where "JUROR_NUMBER" is "<juror_number>"
 	Then on "JUROR_MOD" . "JUROR_RESPONSE" I see "PROCESSING_COMPLETE" is "N" where "JUROR_NUMBER" is "<juror_number>"
 
-	Given I am on "Bureau" "ithc"
+	Given I am on "Bureau" "<environment>"
 	And I log in as "CPASS"
 	
 	When I click on the "Search" link
@@ -335,5 +335,5 @@ Scenario Outline: edit links and buttons disabled
 	Then I click on the "Cancel" link
 	
 Examples:
-	| juror_number	| pool_number	| last_name			| postcode	|
-	| 045200173		| 452300157		| LNAMETWOSIXZERO	| CH1 2AN	|
+	| juror_number	| pool_number	| last_name			| postcode	| environment |
+	| 045200173		| 452300157		| LNAMETWOSIXZERO	| CH1 2AN	| ithc        |

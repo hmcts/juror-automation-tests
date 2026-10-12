@@ -85,19 +85,19 @@ Scenario Outline: Postpone a juror to another court as a Jury officer - Bulk flo
     @JurorTransformationMulti
     Scenario Outline: Postpone a juror to another court as a Jury officer - Bulk flow UNHAPPY PATH
 
-        Given I am on "Bureau" "ithc"
+        Given I am on "Bureau" "<environment>"
 
         Given a bureau owned pool is created with jurors
-            | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
-            | 415   |<juror_number_1>     | <pool_number> | 5				                | 400	|
-            | 415   |<juror_number_2> 	| <pool_number>     | 5				            | 400	|
-            | 415   |<juror_number_3> 	| <pool_number>     | 5				            | 400	|
+            | court |juror_number  	    | pool_number	| att_date_weeks_in_future	| owner |
+            | 415   |<juror_number_1>   | <pool_number> | 5				            | 400	|
+            | 415   |<juror_number_2> 	| <pool_number> | 5				            | 400	|
+            | 415   |<juror_number_3> 	| <pool_number> | 5				            | 400	|
 
         Then a new pool is inserted for where record has transferred to the court new schema
-            |part_no              | pool_no           |  owner |
-            |<juror_number_1>     | <pool_number>      | 415   |
-            |<juror_number_2>     | <pool_number>      | 415   |
-            |<juror_number_3>     | <pool_number>      | 415   |
+            |part_no              | pool_no           | owner |
+            |<juror_number_1>     | <pool_number>     | 415   |
+            |<juror_number_2>     | <pool_number>     | 415   |
+            |<juror_number_3>     | <pool_number>     | 415   |
 
         And I Confirm all the data in the record attendance table is cleared
         And a new trial is inserted with the trial number "<trial_number>"
@@ -154,8 +154,8 @@ Scenario Outline: Postpone a juror to another court as a Jury officer - Bulk flo
         And I see "1 juror postponed to deferral maintenance" on the page
 
         Examples:
-            |user			 |juror_number_1| juror_number_2  |juror_number_3    | pool_number   | trial_number    |
-            |MODTESTCOURT    |041520222     | 041520223       |041520224         |415300718      | TESTINGTRIAL2024|
+            |user			 |juror_number_1| juror_number_2  |juror_number_3    | pool_number   | trial_number    | environment |
+            |MODTESTCOURT    |041520222     | 041520223       |041520224         |415300718      | TESTINGTRIAL2024| ithc        |
 
     @JurorTransformationMulti @Court
     Scenario Outline: Postpone a juror having age more than 75 to another court as a Jury officer - Bulk flow happy path

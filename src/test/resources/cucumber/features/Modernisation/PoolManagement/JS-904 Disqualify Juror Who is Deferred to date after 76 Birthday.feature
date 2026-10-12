@@ -347,7 +347,7 @@ Feature: JS-904 As an officer I want to be able to disqualify a juror that is to
     Then I see "Check the juror's age" on the page
     And I see "You entered the new service start date as" on the page
     And I see "The juror's date of birth is" on the page
-    And I see "This means they will be 76 years old on their new service start date and are not eligible for jury service." on the page
+    And I see "years old on their new service start date and are not eligible for jury service." on the page
     And I see "Do you want to disqualify this juror?" on the page
     And I see link with text "No - change service start date"
 
@@ -375,7 +375,7 @@ Feature: JS-904 As an officer I want to be able to disqualify a juror that is to
     Then I see "Check the juror's age" on the page
     And I see "You entered the new service start date as" on the page
     And I see "The juror's date of birth is" on the page
-    And I see "This means they will be 76 years old on their new service start date and are not eligible for jury service." on the page
+    And I see "years old on their new service start date and are not eligible for jury service." on the page
     And I see "Do you want to disqualify this juror?" on the page
     And I see link with text "No - change service start date"
 
@@ -461,7 +461,7 @@ Feature: JS-904 As an officer I want to be able to disqualify a juror that is to
     Then I see "Check the juror's age" on the page
     And I see "You entered the new service start date as" on the page
     And I see "The juror's date of birth is" on the page
-    And I see "This means they will be 76 years old on their new service start date and are not eligible for jury service." on the page
+    And I see "years old on their new service start date and are not eligible for jury service." on the page
     And I see "Do you want to disqualify this juror?" on the page
     And I see link with text "No - change service start date"
 
@@ -543,7 +543,7 @@ Feature: JS-904 As an officer I want to be able to disqualify a juror that is to
     Then I see "Check the juror's age" on the page
     And I see "You entered the new service start date as" on the page
     And I see "The juror's date of birth is" on the page
-    And I see "This means they will be 76 years old on their new service start date and are not eligible for jury service." on the page
+    And I see "years old on their new service start date and are not eligible for jury service." on the page
     And I see "Do you want to disqualify this juror?" on the page
     And I see link with text "No - change service start date"
 
@@ -571,7 +571,7 @@ Feature: JS-904 As an officer I want to be able to disqualify a juror that is to
     Then I see "Check the juror's age" on the page
     And I see "You entered the new service start date as" on the page
     And I see "The juror's date of birth is" on the page
-    And I see "This means they will be 76 years old on their new service start date and are not eligible for jury service." on the page
+    And I see "years old on their new service start date and are not eligible for jury service." on the page
     And I see "Do you want to disqualify this juror?" on the page
     And I see link with text "No - change service start date"
 

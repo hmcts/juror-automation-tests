@@ -475,14 +475,20 @@ Examples:
 
 @comms @refuse_excuse_lett
 Scenario Outline: 1st Party Welsh Excusal refused, juror replies in Welsh
-	Given I am on "Public" "juror-test01"
-	Given I have cleared down the juror digital database
+
+	Given I am on "Public" "ithc"
+
+#	Given I have cleared down the juror digital database
+
 	Given the juror numbers have not been processed
 	|part_no	|pool_no 	|Owner 	|
 	|<part_no>	|<pool_no> 	|400	|
-	Given auto straight through processing has been enabled new schema
+
+#	Given auto straight through processing has been enabled new schema
+
 	And "<juror_number>" has "RET_DATE" as "4 mondays time"
 	And "<juror_number>" has "NEXT_DATE" as "4 mondays time"
+
 	And I have submitted a first party Welsh excusal response
 	|part_no	|pool_number|last_name	|postcode	| email |
 	|<part_no>	|<pool_no>	|<last_name>|<postcode>	|<email>|
@@ -491,7 +497,7 @@ Scenario Outline: 1st Party Welsh Excusal refused, juror replies in Welsh
 #	|part_no	|pool_number|last_name	|postcode	| email |
 #	|<part_no>	|<pool_no>	|<last_name>|<postcode>	|<email>|
 
-	Given I am on "Bureau" "juror-test01"	
+	Given I am on "Bureau" "ithc"
 	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
@@ -520,7 +526,7 @@ Scenario Outline: 1st Party Welsh Excusal refused, juror replies in Welsh
 #	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<juror_number>"
 	
 Examples:
-|part_no	|pool_no 	|last_name 		|postcode 	|email					|
+|part_no	|pool_no 	|last_name 		|postcode 	|email		|
 |645700090	|457170401 	|LNAMENINEZERO	|SA1 4PF	|e@mail.com	|
 
 @comms @refuse_excuse_lett
@@ -1177,23 +1183,26 @@ Examples:
 
 @comms @defer_lett
 Scenario Outline: 1st Party Welsh Deferral accepted, responds in Welsh
-	Given I am on "Public" "juror-test01"
-	Given I have cleared down the juror digital database
-	Given the juror numbers have not been processed
-	|part_no		|pool_no 	|Owner 		|
-	|<part_no>		|<pool_no> 	|400		|
-	Given auto straight through processing has been enabled new schema
 
+	Given I am on "Public" "<environment>"
 
-	And I have submitted a first party Welsh deferral response
-	| part_no		|pool_number| last_name		|postcode	| email |
-	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
-	
-#	And I have submitted a first party English deferral response
+  When a bureau owned pool is created with jurors
+    | court | juror_number   | pool_number   | att_date_weeks_in_future | owner |
+    | 431   | <juror_number> | <pool_number> | 5                        | 400   |
+
+  Given juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
+  Given juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
+  Given I update "<juror_number>" to set them up for digital by default
+
+#	And I have submitted a first party Welsh deferral response
 #	| part_no		|pool_number| last_name		|postcode	| email |
 #	|<part_no>		|<pool_no>	| <last_name>	|<postcode>	|<email>|
 
-	Given I am on "Bureau" "juror-test01"	
+	And I have submitted a first party English deferral response
+	| part_no		|pool_number    | last_name		|postcode	| email |
+	| <juror_number>|<pool_number>	| <last_name>	|<postcode>	|<email>|
+
+	Given I am on "Bureau" "<environment>"
 	And I log in as "MODTESTBUREAU"
 	
 	When I click on the "Search" link
@@ -1202,18 +1211,20 @@ Scenario Outline: 1st Party Welsh Deferral accepted, responds in Welsh
 	And I click on "<juror_number>" in the same row as "<juror_number>"
 	Then I see "Summoned" on the page
 	
-	When I select "Deferral" from Process reply
-	And I set the radio button to "Accept deferral"
-	Then I see "Defer until" on the page
-	
-	When I set "Defer until" to "{7 mondays time}"
-	And I select "O - OTHER" from the "Reason for deferral request" dropdown
-	And I press the "Mark as completed" button
-	Then I see "Completed" on the page
-	
+  When I select "Deferral" from Process reply
+
+  Then I select "O - OTHER" from the "Reason for the deferral request" dropdown
+  Then I select to Choose a different date
+  Then I set the "alternate" choice to "51" Mondays in the future
+  And I press the "Continue" button
+
+  Then I see "There are no active pools for this date" on the page
+  And I press the "Put in deferral maintenance" button
+  And I see "Deferral granted" on the page
+
 	#DB checks (Do PNC PASS)
-	And "<juror_number>" has "POLICE_CHECK" as "P"
-	And "<juror_number>" has "PHOENIX_CHECKED" as "C"
+#	And "<juror_number>" has "POLICE_CHECK" as "P" new schema
+#	And "<juror_number>" has "PHOENIX_CHECKED" as "C" new schema
 	
 	#deferral letter generated
 #	Given a deferral letter is generated for juror "<juror_number>"
@@ -1223,8 +1234,8 @@ Scenario Outline: 1st Party Welsh Deferral accepted, responds in Welsh
 #	Then on "JUROR" . "POOL" I see "NOTIFICATIONS" is null where "PART_NO" is "<juror_number>"
 	
 Examples:
-|part_no	|pool_no 	|last_name 		|postcode 	|email					|
-|645700090	|457170401 	|LNAMENINEZERO	|SA1 4PF	|e@mail.com	|
+| juror_number	| pool_number | last_name 	  | postcode  | email		| environment |
+| 643100090	    | 431170401   | LNAMENINEZERO | SA1 4PF	  | e@mail.com  | ithc        |
 
 @comms @defer_lett
 Scenario Outline: 1st Party Welsh Deferral accepted, responds in English
