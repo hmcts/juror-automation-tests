@@ -137,7 +137,7 @@ dependencies {
 
   implementation group: 'org.postgresql', name: 'postgresql', version: '42.7.14'
 
-  implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.20.0'
+  implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.21.0'
 
 
   testImplementation "io.cucumber:cucumber-picocontainer:${cucumberVersion}"
