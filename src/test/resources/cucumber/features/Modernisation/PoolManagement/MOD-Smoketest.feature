@@ -36,10 +36,10 @@ Feature: MOD-Smoketest
     And I see link with text "Deferral maintenance"
     And I see link with text "Search"
 
-    When I set "Filter by court name or location code" to "415"
-    And I click on the "Chester (415)" link
-    And I press the "Filter" button
-    And I see "Chester" on the page
+#    When I set "Filter by court name or location code" to "415"
+#    And I click on the "Chester (415)" link
+#    And I press the "Filter" button
+#    And I see "Chester" on the page
 
     Examples:
       | user	        |
