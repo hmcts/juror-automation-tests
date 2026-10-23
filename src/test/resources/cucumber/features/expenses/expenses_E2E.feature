@@ -519,7 +519,7 @@ Scenario: expensesParkingPage
 @expenses
 Scenario: expenses survey link
 	
-	Given I am on expenses on "expenses" "bau-test"
+	Given I am on expenses on "expenses" "ithc"
 	
 	And I press the "Start now" button
 	
@@ -530,4 +530,4 @@ Scenario: expenses survey link
 	And I click on the "Give feedback (opens in a new window or tab)" link
 	And I switch to the new window
 	Then I see "Were you able to do what you needed to do today?" on the page
-	And I see "https://www.smartsurvey.co.uk/s/FO8HDU/" in the URL
+	And I see "https://www.smartsurvey.co.uk/t/FO8HDU/" in the URL

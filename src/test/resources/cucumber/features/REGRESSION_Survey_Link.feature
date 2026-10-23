@@ -27,7 +27,7 @@ Scenario Outline: Survey Link 1st Party Eng
 	And I click on the "Give feedback (opens in a new window or tab)" link
 	And I focus page to the new tab
 #	Then I see "Were you able to do what you needed to do today?" on the page
-	And I see "https://www.smartsurvey.co.uk/s/DL1RCF/" in the URL
+	And I see "https://www.smartsurvey.co.uk/t/DL1RCF/" in the URL
 
 Examples:
 	| juror_number	| last_name			| postcode	| pool_number	|
@@ -96,7 +96,7 @@ Scenario Outline: Survey Link 1st Party Welsh
 	And I click on the "Give feedback (opens in a new window or tab)" link
 	And I focus page to the new tab
 	Then I see "Were you able to do what you needed to do today?" on the page
-	And I see "https://www.smartsurvey.co.uk/s/DL1RCF/" in the URL
+	And I see "https://www.smartsurvey.co.uk/t/DL1RCF/" in the URL
 	
 Examples:
 	| juror_number	| last_name			| postcode	| pool_number	|
