@@ -12,14 +12,16 @@ Scenario Outline: Welsh 1st Party Straight Through (english court)
 	And juror "<juror_number>" has "LAST_NAME" as "<last_name>" new schema
 	And juror "<juror_number>" has "POSTCODE" as "<postcode>" new schema
 
-	Then I see "Beth ddylwn ei wneud os oes angen cymorth arnaf i ymateb?" on the page
-	And I click on the "Beth ddylwn ei wneud os oes angen cymorth arnaf i ymateb?" link
-	And I see "Gallwch ofyn i aelod o'ch teulu, ffrind neu ofalydd i'ch helpu." on the page
-	And I see "Gallant ymateb ar eich rhan neu'ch cynorthwyo i ymateb dros eich hun" on the page
-	And I see "Mae'n bosib y gallech gael cymorth gyda defnyddio cyfrifiadur yn eich llyfrgell leol" on the page
-	And I see "Os oes angen rhagor o gymorth arnoch, gallwch ein ffonio ar:" on the page
-	And I see "Rhif ffôn: 0300 456 1024" on the page
-	And I see "Llinell Gymraeg: 0300 303 5173" on the page
+	Then I see "Beth oes oes angen cymorth i ymateb arnaf?" on the page
+	And I click on the "Beth oes oes angen cymorth i ymateb arnaf?" link
+	And I see "Gallwch ofyn i aelod o'ch teulu, ffrind neu ofalydd i'ch helpu. Gallant ymateb ar eich rhan neu'ch cynorthwyo i ateb dros eich hun." on the page
+	And I see "Os nad oes gennych chi, neu'r person sy'n eich helpu, fynediad rheolaidd i'r rhyngrwyd neu os nad ydych chi'n teimlo'n hyderus yn ei ddefnyddio, cysylltwch â We Are Group." on the page
+	And I see "Efallai y byddwch yn gymwys i gael apwyntiad am ddim i'ch helpu i gael mynediad at y ffurflen ar-lein a'i defnyddio. Ni allant roi cyngor cyfreithiol i chi." on the page
+	And I see "Rhif ffôn 03300 160 051" on the page
+	And I see "Dydd Llun i Gwener 9am tan 5pm (ac eithrio gwyliau cyhoeddus)" on the page
+	And I see "Neu tecstiwch FORM i 60777 a bydd rhywun yn eich ffonio yn ôl" on the page
+	And I see "E-bost: support@wearegroup.com" on the page
+	And I see "Os oes angen unrhyw gymorth arall arnoch, ffoniwch y Swyddfa Ganolog Gwysio Rheithgor ar 0300 456 1024" on the page
 	And I set the radio button to "n ymateb dros fy hun"
 	And I press the "Parhau" button
 	Then I see "Eich manylion rheithiwr" on the page
@@ -260,7 +262,7 @@ Scenario Outline: Welsh 1st Party Straight Through (english court)
 	
 Examples:
 	| juror_number	| last_name	| postcode	| email 		| pool_number	| environment |
-	| 045200265		| LastNameB	| CH1 2AN	| e@mail.com	| 452300242		| test        |
+	| 045200265		| LastNameB	| CH1 2AN	| e@mail.com	| 452300242		| ithc        |
 
 @RegressionWelsh @NewSchemaConverted
 Scenario Outline: Welsh 1st Party Straight Through (welsh court)

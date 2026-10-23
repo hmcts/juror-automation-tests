@@ -16,8 +16,9 @@ Scenario Outline: English 1st Party ST JDB-4539
    	Then I click on the "What if I need help replying?" link
    	And I see "You can ask a family member, friend or carer to help you." on the page
    	And I see "They can reply for you or help you to do it yourself." on the page
-   	And I see "You may be able to get help with using a computer at your local library." on the page
-   	And I see "If you need more help, call 0300 456 1024." on the page
+   	And I see "If you, or the person helping you, do not have regular access to the internet or do not feel confident using it, contact We Are Group." on the page
+   	And I see "You may be eligible for a free appointment to help you access and use the online form." on the page
+	And I see "They cannot give you legal advice." on the page
    	Then I click on the "What if I need help replying?" link
    	And I do not see "You can ask a family member, friend or carer to help you." on the page
 

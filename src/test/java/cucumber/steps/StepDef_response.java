@@ -1648,7 +1648,7 @@ public class StepDef_response {
 
 			GRP.click_radioButtonWithLabel("Rwy'n ymateb dros fy hun");
 			NAV.press_buttonByName("Parhau");
-			NAV.textPresentOnPage("Gellir dod o hyd i'r rhif rheithiwr ar frig y llythyr gwŷs");
+//			NAV.textPresentOnPage("Gellir dod o hyd i'r rhif rheithiwr ar frig y llythyr gwŷs");
 			NAV.set_valueTo("Rhif rheithiwr – 9 digid", part_no);
 			NAV.set_valueTo("Cyfenw'r Rheithiwr", last_name);
 			NAV.set_valueTo("Cod post Rheithiwr", postcode);

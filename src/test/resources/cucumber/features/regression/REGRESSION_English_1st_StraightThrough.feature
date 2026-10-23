@@ -20,8 +20,13 @@ Scenario Outline: English 1st Party Straight Through
 	And I see "Give feedback (opens in a new window or tab)" on the page
 	And I see "Accessibility statement" on the page
 	And I click on the "What if I need help replying?" link
-	And I see "You can ask a family member, friend or carer to help you. They can reply for you or help you to do it yourself. You may be able to get help with using a computer at your local library. If you need more help, call 0300 456 1024." on the page
-	
+	And I see "You can ask a family member, friend or carer to help you. They can reply for you or help you to do it yourself. If you, or the person helping you, do not have regular access to the internet or do not feel confident using it, contact We Are Group. You may be eligible for a free appointment to help you access and use the online form. They cannot give you legal advice." on the page
+	And I see "Telephone 03300 160 051" on the page
+	And I see "Monday to Friday 9am to 5pm (except public holidays)" on the page
+	And I see "Or text FORM to 60777 and someone will call you back" on the page
+	And I see "Email: support@wearegroup.com" on the page
+	And I see "If you need any other help, call the Jury Central Summoning Bureau on 0300 456 1024" on the page
+
 	And I press the "Continue" button
 	And I see "steps/login" in the URL
 	And I see "Your juror details" on the page

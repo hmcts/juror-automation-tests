@@ -1,11 +1,11 @@
 Feature: Deferral and Excusal Dashboard
 
-@dashboard 
+@dashboard @Regression
 Scenario: Dashboard - Content
-	Given I am on "defexcusdash" "juror-test02"
+	Given I am on "defexcusdash" "demo"
 	
 	And I see "Juror Deferrals & Excusals" on the page
-	And I see "This dashboard displays information on juror deferrals and excusals." on the page
+	And I see "This dashboard displays information about juror deferrals and excusals." on the page
 	And I see "Configure Report" on the page
 	
 	Then I see "Deferrals/Excusals" on the page
@@ -27,11 +27,11 @@ Scenario: Dashboard - Content
 	
 	And I press the "Submit" button
 
-	And I see "Deferrals/Excusals by Bureau/Court: 01-04-2020 to 31-03-2021" on the page
+	And I see "Deferrals/Excusals by Bureau/Court: 01/04/2020 to 31/03/2021" on the page
 	
-@dashboard 
+@dashboard @Regression
 Scenario: Dashboard - Vary parameters
-	Given I am on "defexcusdash" "juror-test02"
+	Given I am on "defexcusdash" "demo"
 	
 	And I see "Juror Deferrals & Excusals" on the page
 	
@@ -80,6 +80,7 @@ Scenario: Dashboard - Vary parameters
 	#Reasons
 	
 	And I press the "Select all" button
+	Then "Criminal Record" is checked
 	Then "Deceased" is checked
 	Then "Recently Served" is checked
 	Then "The Forces" is checked
@@ -95,9 +96,14 @@ Scenario: Dashboard - Vary parameters
 	Then "Language Difficulties" is checked
 	Then "Holiday" is checked
 	Then "Carer" is checked
-	Then "Works In Administration Of Justice" is checked
-	Then "Mental Health" is checked
+	Then "Financial Hardship" is checked
+	Then "Bereavement" is checked
 	Then "Excuse By Bureau, Too Many Jurors" is checked
+	Then "Ill" is checked
+	Then "Mental Health" is checked
+	Then "Personal Engagement" is checked
+	Then "Cjs Employee (unable To Transfer)" is checked
+	Then "Deferred By Court - Too Many Jurors" is checked
 	
 	And I press the "Select none" button
 	Then "Deceased" is unchecked
