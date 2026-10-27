@@ -3,7 +3,7 @@ Feature:JM-5670
 @JurorTransformationMulti
 Scenario Outline: Postpone a juror to another court as a Bureau officer - Bulk flow happy path
 
-    Given I am on "Bureau" "ithc"
+    Given I am on "Bureau" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
@@ -28,8 +28,8 @@ Scenario Outline: Postpone a juror to another court as a Bureau officer - Bulk f
     And I see "4 jurors postponed to deferral maintenance" on the page
 
     Examples:
-      | user		    | juror_number  | juror_number_2  | juror_number_3  | juror_number_4  | pool_number   |
-      | MODTESTBUREAU   | 041520019     | 041520120       | 041520121       | 041520122       | 415300801     |
+      | user		    | juror_number  | juror_number_2  | juror_number_3  | juror_number_4  | pool_number   | environment |
+      | MODTESTBUREAU   | 041520019     | 041520120       | 041520121       | 041520122       | 415300801     | demo        |
 
 
     @JurorTransformationMulti @Bureau
@@ -100,12 +100,12 @@ Scenario Outline: Postpone a juror to another court as a Bureau officer - Bulk f
 
         Examples:
             | user		    | juror_number  | juror_number_2  | juror_number_3   | pool_number  | environment |
-            | MODTESTBUREAU | 041534789     | 041534788       | 041534787        | 415300701    | test        |
+            | MODTESTBUREAU | 041534789     | 041534788       | 041534787        | 415300701    | demo        |
 
     @JurorTransformationMulti
     Scenario Outline: Postpone a juror to another court as a Bureau officer - Ineligible due to status - Bulk flow
 
-        Given I am on "Bureau" "ithc"
+        Given I am on "Bureau" "demo"
 
         Given a bureau owned pool is created with jurors
             | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |

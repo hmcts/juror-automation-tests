@@ -195,7 +195,7 @@ Feature: JM-4326 - Defer a juror and then complete their service at a later date
   @JurorTransformationMulti
   Scenario Outline: Mark juror as deferred - Add to pool - Digital Response Jury Officer
 
-    Given I am on "Public" "test"
+    Given I am on "Public" "<environment>"
 
     Given a bureau owned pool is created with jurors
       | court |juror_number  	    | pool_number	    | att_date_weeks_in_future	| owner |
@@ -214,7 +214,7 @@ Feature: JM-4326 - Defer a juror and then complete their service at a later date
       |part_no              | pool_no           | owner |
       |<juror_number>       | <pool_number>     | 415   |
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "<environment>"
     And I log in as "<user>"
 
     #search for juror and view response
@@ -261,5 +261,5 @@ Feature: JM-4326 - Defer a juror and then complete their service at a later date
     And I see the reply type has been updated to "Deferral"
 
     Examples:
-      |user			|juror_number  |pool_number  |
-      |MODTESTCOURT |041537779     |415366829    |
+      |user			|juror_number  |pool_number  | environment |
+      |MODTESTCOURT |041537779     |415366829    | demo        |
