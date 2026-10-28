@@ -3,23 +3,23 @@ Feature: MOD-Smoketest
   @Shakedown
   Scenario Outline: Smoketest
 
-    Given I am on "bureau" "demo"
+    Given I am on "bureau" "ithc"
 
-#    Given I delete pools created yesterday for court "415"
-#    Given I delete pools created yesterday for court "767"
-#    Given I delete pools created yesterday for court "471"
-#    Given I delete pools created yesterday for court "457"
-#    Given I delete pools created yesterday for court "452"
-#    Given I delete appearances data
-#    Given I delete trials data
-#    Given I run the fallback process for 99 pools errors
+    Given I delete pools created yesterday for court "415"
+    Given I delete pools created yesterday for court "767"
+    Given I delete pools created yesterday for court "471"
+    Given I delete pools created yesterday for court "457"
+    Given I delete pools created yesterday for court "452"
+    Given I delete appearances data
+    Given I delete trials data
+    Given I run the fallback process for 99 pools errors
 #    Given I refresh the voters table for court "452" new schema
 #    Given I refresh the voters table for court "457" new schema
 #    Given I refresh the voters table for court "471" new schema
-#    Given I refresh the voters table for court "431" new schema
+    Given I refresh the voters table for court "431" new schema
 #    Given I refresh the voters table for court "767" new schema
 #    And voters for court "471" have been updated to postcode "CH2 2AN" new schema
-#    And voters for court "431" have been updated to postcode "BN7 1YB" new schema
+    And voters for court "431" have been updated to postcode "BN7 1YB" new schema
 #    And voters for court "767" have been updated to postcode "CH2 2AN" new schema
 #    And voters for court "457" have been updated to postcode "SA1 4PF" new schema
 #    And voters for court "452" have been updated to postcode "SA1 4PF" new schema
@@ -36,10 +36,10 @@ Feature: MOD-Smoketest
     And I see link with text "Deferral maintenance"
     And I see link with text "Search"
 
-#    When I set "Filter by court name or location code" to "415"
-#    And I click on the "Chester (415)" link
-#    And I press the "Filter" button
-#    And I see "Chester" on the page
+    When I set "Filter by court name or location code" to "415"
+    And I click on the "Chester (415)" link
+    And I press the "Filter" button
+    And I see "Chester" on the page
 
     Examples:
       | user	        |
