@@ -49,6 +49,7 @@ Feature: JS-148
     When I click the update juror record button
     When I choose the "Mark as responded" radio button
     And I press the "Continue" button
+    And I see "Mark as responded" on the page
     And I check the "Mark juror as 'responded'" checkbox
     And I press the "Confirm" button
     Then I see "Responded" on the page
@@ -58,6 +59,7 @@ Feature: JS-148
     When I click the update juror record button
     When I choose the "Mark as responded" radio button
     And I press the "Continue" button
+    And I see "Mark as responded" on the page
     And I check the "Mark juror as 'responded'" checkbox
     And I press the "Confirm" button
     Then I see "Responded" on the page
@@ -67,6 +69,7 @@ Feature: JS-148
     When I click the update juror record button
     When I choose the "Mark as responded" radio button
     And I press the "Continue" button
+    And I see "Mark as responded" on the page
     And I check the "Mark juror as 'responded'" checkbox
     And I press the "Confirm" button
     Then I see "Responded" on the page

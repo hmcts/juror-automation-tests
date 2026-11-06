@@ -66,6 +66,10 @@ public class StepDef_DBD {
     public void pressStartYourResponseButton() {
         DBD.pressStartYourResponseButton();
     }
+    @When("^I press the Welsh start your response button$")
+    public void pressWelshStartYourResponseButton() {
+        DBD.pressWelshStartYourResponseButton();
+    }
 
     @When("^I click the change catchment area link$")
     public void clickChangeCatchmentAreaLink() {
@@ -113,7 +117,7 @@ public class StepDef_DBD {
     @When("^I validate the attendance date is \"([^\"]*)\" weeks in the future$")
     public void iValidateAttendanceDateInTheFuture(Integer noOfWeeks) throws Throwable {
 
-        String fullDatePattern = "EEEEE dd MMMMM yyyy";
+        String fullDatePattern = "EEEEE d MMMMM yyyy";
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.WEEK_OF_MONTH, noOfWeeks);
         LocalDate localDate = calendar.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();

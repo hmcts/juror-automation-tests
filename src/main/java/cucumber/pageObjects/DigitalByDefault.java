@@ -67,6 +67,9 @@ public class DigitalByDefault {
     @FindBy(xpath = "//a[text()[contains(.,'Start your response')]]")
     private WebElement startYourResponseButton;
 
+    @FindBy(xpath = "//a[text()[contains(.,'Dechrau eich ymateb')]]")
+    private WebElement welshStartYourResponseButton;
+
     @FindBy(css = "a.govuk-link[aria-label='Change court catchment area']")
     private WebElement changeCatchmentAreaLink;
 
@@ -135,6 +138,12 @@ public class DigitalByDefault {
         wait.waitForClickableElement(startYourResponseButton, 2);
         startYourResponseButton.click();
         log.info("Pressed the Start your response button");
+    }
+
+    public void pressWelshStartYourResponseButton() {
+        wait.waitForClickableElement(welshStartYourResponseButton, 2);
+        welshStartYourResponseButton.click();
+        log.info("Pressed the Welsh Start your response button");
     }
 
     public void clickChangeCatchmentAreaLink() {

@@ -242,6 +242,7 @@ Feature:As a Bureau/jury officer I want to re send a postponement letter
     And I set the radio button to "Pool"
     When I set "Enter pool number" to "<pool_number>"
     And I press the "Search" button
+    And I see "<juror_number>" on the page
     Then I see the printed letter for juror number "<juror_number>" in the letters table
     And I am able to see and interact with the jurors Postponement letter tabs and fields
     And I check the "<juror_number>" checkbox
