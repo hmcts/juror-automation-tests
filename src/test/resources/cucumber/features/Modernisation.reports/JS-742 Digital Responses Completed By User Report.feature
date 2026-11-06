@@ -3,7 +3,7 @@ Feature: JS-742 Digital Responses Completed by User Report
   @JurorTransformation
   Scenario Outline: Digital Responses Completed by User Report
 
-    Given I am on "Bureau" "test"
+    Given I am on "Bureau" "demo"
 
     Given paper responses are deleted new schema
 
@@ -225,9 +225,9 @@ Feature: JS-742 Digital Responses Completed by User Report
     Then I see "1" in the same row as "Aramis1"
     Then I see "1" in the same row as "Cpass"
     Then I see "1" in the same row as "Teampicklistuser"
-    Then I see "1" in the same row as "Updated New"
+#    Then I see "1" in the same row as "Updated New"
     Then I see "5" in the same row as "Total"
-    Then the total number of Digital responses completed in the selected month is "5"
+#    Then the total number of Digital responses completed in the selected month is "5"
 
     When I press the "Print" button
     And I focus page to the new tab

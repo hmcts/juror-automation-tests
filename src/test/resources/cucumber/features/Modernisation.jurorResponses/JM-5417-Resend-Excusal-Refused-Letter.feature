@@ -174,6 +174,7 @@ Feature: JM-5417-5586 - Resend excusal refused letter for Bureau and Jury users
 
     #return to juror record - status will be responded due to refusal
     When the user searches for juror record "<juror_number_3>" from the global search bar
+    And I see "<juror_number_3>" on the page
     Then I see the juror's status on the juror record screen is "Summoned"
 
     #search via pool  number and resend letter for all jurors

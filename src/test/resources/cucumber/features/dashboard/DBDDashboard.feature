@@ -30,7 +30,7 @@ Scenario: DBD Dashboard
 
 	When I select "All courts" from the "View data by" dropdown
 	And I select "Last 12 months" from the "Time period" dropdown
-	And I press "Submit" button
+	And I press the "Submit" button
 
 	Then I see "Response rates by month jurors were summoned" on the page
 	And I see "Total responses by court" on the page

@@ -4,6 +4,7 @@ Feature: JM-252_Validation_and_Errors
 
   @JurorTransformationMulti
   Scenario Outline: Errors and Warnings on Create New Pool - Continue With No Input
+
     Given I am on "Bureau" "ithc"
 
     And I log in as "<user>"
@@ -58,6 +59,7 @@ Feature: JM-252_Validation_and_Errors
 
   @JurorTransformationMulti
   Scenario Outline: Errors and Warnings on Create New Pool - Continue With Invalid loc_code
+
     Given I am on "Bureau" "ithc"
 
     And I log in as "<user>"
@@ -169,6 +171,7 @@ Feature: JM-252_Validation_and_Errors
 
   @JurorTransformationMulti
   Scenario Outline: Errors and Warnings on Change Number Of Deferrals - Continue With No Input
+
     Given I am on "Bureau" "ithc"
 
     And I log in as "<user>"
@@ -230,6 +233,7 @@ Feature: JM-252_Validation_and_Errors
 
   @JurorTransformationMulti
   Scenario Outline: Errors and Warnings on Change Number Of Deferrals - Continue An Invalid Input
+
     Given I am on "Bureau" "ithc"
 
     And I log in as "<user>"
@@ -289,6 +293,7 @@ Feature: JM-252_Validation_and_Errors
 
   @JurorTransformationMulti
   Scenario Outline: Errors and Warnings on Change Number Of Deferrals - Number > Number of Defs Available
+
     Given I am on "Bureau" "ithc"
 
     And I log in as "<user>"
@@ -349,6 +354,7 @@ Feature: JM-252_Validation_and_Errors
 
   @JurorTransformationMulti
   Scenario Outline: Errors and Warnings on Change Number Of Deferrals - Zero Deferrals
+
     Given I am on "Bureau" "ithc"
 
     And I log in as "<user>"
@@ -413,6 +419,7 @@ Feature: JM-252_Validation_and_Errors
 
   @JurorTransformation
   Scenario Outline: Errors and Warnings on Change Number Of Deferrals - One Deferral
+
     Given I am on "Bureau" "ithc"
 
     And I log in as "<user>"
@@ -473,6 +480,7 @@ Feature: JM-252_Validation_and_Errors
 
   @JurorTransformationMulti
   Scenario Outline: Errors and Warnings on Continue - No Selections
+
     Given I am on "Bureau" "ithc"
 
     And I log in as "<user>"
@@ -503,6 +511,7 @@ Feature: JM-252_Validation_and_Errors
 
   @JurorTransformationMulti
   Scenario Outline: Errors and Warnings on Continue - Only Number of Jurors
+
     Given I am on "Bureau" "ithc"
 
     And I log in as "<user>"
@@ -533,6 +542,7 @@ Feature: JM-252_Validation_and_Errors
 
   @JurorTransformationMulti
   Scenario Outline: Errors and Warnings on Continue - Only Pool Type Set
+
     Given I am on "Bureau" "ithc"
 
     And I log in as "<user>"
@@ -567,6 +577,7 @@ Feature: JM-252_Validation_and_Errors
 
   @JurorTransformationMulti
   Scenario Outline: Errors and Warnings on Continue - Complete New Pool Fields
+
     Given I am on "Bureau" "ithc"
 
     And I log in as "<user>"
@@ -628,6 +639,7 @@ Feature: JM-252_Validation_and_Errors
 
   @JurorTransformationMulti
   Scenario Outline: Errors and Warnings on Change Pool Number - No Pool Number
+
     Given I am on "Bureau" "ithc"
 
     And I log in as "<user>"
@@ -691,6 +703,7 @@ Feature: JM-252_Validation_and_Errors
 
   @JurorTransformationMulti
   Scenario Outline: Errors and Warnings on Change Pool Number - Pool Number Does Not Contain Court Location Code
+
     Given I am on "Bureau" "ithc"
 
     And I log in as "<user>"
@@ -806,7 +819,7 @@ Feature: JM-252_Validation_and_Errors
     #Change pool no
     Then I click the change link for the pool number
     And I see "Change pool number" on the page
-    Then I set "Pool number" to "457260000"
+    Then I set "Pool number" to "457270000"
     Then I press the "Change" button
 
     Then I see "Pool number is wrong" on the page
@@ -826,6 +839,7 @@ Feature: JM-252_Validation_and_Errors
 
   @JurorTransformationMulti
   Scenario Outline: Errors and Warnings on Change Pool Number - Pool Number Too Long
+
     Given I am on "Bureau" "ithc"
 
     And I log in as "<user>"
@@ -890,6 +904,7 @@ Feature: JM-252_Validation_and_Errors
 
   @JurorTransformationMulti
   Scenario Outline: Errors and Warnings on Change Pool Number - Pool Number Too Short
+
     Given I am on "Bureau" "ithc"
 
     And I log in as "<user>"
@@ -954,6 +969,7 @@ Feature: JM-252_Validation_and_Errors
 
   @JurorTransformation
   Scenario Outline: Errors and Warnings on Change Pool Number - Pool Number Already in Use
+
     Given I am on "Bureau" "ithc"
 
     And I log in as "<user>"
@@ -1022,6 +1038,7 @@ Feature: JM-252_Validation_and_Errors
 
   @JurorTransformation
   Scenario Outline: Errors and Warnings on Change Pool Number - Valid Pool Number
+
     Given I am on "Bureau" "ithc"
 
     And I log in as "<user>"
@@ -1081,6 +1098,7 @@ Feature: JM-252_Validation_and_Errors
 
     #Request Pool
     And I submit the pool request
+    
     And I click on the "Service start date" link
 
     And I should see the newly created pool request
