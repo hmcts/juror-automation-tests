@@ -1592,7 +1592,7 @@ public class DatabaseTesterNewSchemaDesign {
 
 		try {
 
-			pStmt = conn.prepareStatement("DELETE FROM juror_mod.juror WHERE juror_number in (select juror_number from juror_mod.juror_pool where pool_no in ('" + poolNumber + "'))");
+			pStmt = conn.prepareStatement("DELETE FROM juror_mod.juror WHERE juror_number in (select juror_number from juror_mod.juror_pool where pool_number in ('" + poolNumber + "'))");
 			pStmt.execute();
 
 			pStmt = conn.prepareStatement("DELETE FROM juror_mod.juror_pool WHERE pool_number in ('" + poolNumber + "')");
