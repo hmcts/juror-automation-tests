@@ -1,6 +1,6 @@
 plugins {
   id 'java-library'
-  id 'org.owasp.dependencycheck' version '12.2.2'
+  id 'org.owasp.dependencycheck' version '13.0.0'
   id 'jacoco'
   id 'idea'
   id 'eclipse'
@@ -48,6 +48,7 @@ jacoco {
 ext {
   cucumberVersion = '7.34.9'
   courgetteVersion = '6.22.0'
+  jacksonVersion = '2.18.9'
   junitJupiterVersion = '5.14.4'
   log4j2Version = '2.26.1'
   seleniumVersion = '4.53.0'
@@ -104,6 +105,10 @@ configurations.configureEach {
 }
 
 dependencies {
+  testImplementation(enforcedPlatform("com.fasterxml.jackson:jackson-bom:${jacksonVersion}")) {
+    because 'Align Courgette transitive Jackson dependencies to resolve CVE-2026-54515'
+  }
+
   implementation "org.apache.logging.log4j:log4j-api:${log4j2Version}"
   implementation "org.apache.logging.log4j:log4j-core:${log4j2Version}"
   implementation "org.apache.logging.log4j:log4j-1.2-api:${log4j2Version}"
