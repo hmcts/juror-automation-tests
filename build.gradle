@@ -54,7 +54,7 @@ ext {
   seleniumVersion = '4.53.0'
   slf4jVersion = '2.0.20'
   httpclient5Version = '5.6.5'
-  httpcore5Version = '5.4.4'
+  httpcore5Version = '5.5'
 }
 
 configurations.configureEach {
